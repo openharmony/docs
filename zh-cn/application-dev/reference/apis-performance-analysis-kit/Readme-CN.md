@@ -16,6 +16,7 @@
 - C API
   - 模块
     - [HiAppEvent](_hi_app_event.md)
+    - [HiDebug](_hi_debug.md)
     - [HiLog](_hi_log.md)
     - [Hitrace](_hitrace.md)
   - 头文件
@@ -23,11 +24,21 @@
     - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
     - [hiappevent_event.h](hiappevent__event_8h.md)
     - [hiappevent_param.h](hiappevent__param_8h.md)
+    - [hidebug.h](hidebug_8h.md)
+    - [hidebug_type.h](hidebug__type_8h.md)
     - [log.h](log_8h.md)
     - [trace.h](trace_8h.md)
+  - 结构体
+    - [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md)
+    - [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md)
+    - [HiDebug_MemoryLimit](_hi_debug___memory_limit.md)
+    - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
+    - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
+    - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
 - 错误码
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
+  - [Hidebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
   - [系统事件错误码](errorcode-hisysevent-sys.md)
   - [维测日志错误码](errorcode-loglibrary-sys.md)

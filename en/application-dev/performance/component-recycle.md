@@ -15,44 +15,47 @@ For component reuse to take effect, the following conditions must be met:
 
 1. @Reusable indicates that a custom component can be reused. While it can be used to decorate any custom component, take notes of the creation and update processes of the custom component to ensure that the component behaves correctly after being reused.
 2. The cache and reuse of reusable custom components can occur only under the same parent component. This means that instances of the same custom component cannot be reused under different parent components. For example, component A is a reusable component, which is also a child component of component B and in the reuse cache of component B. When component A is created in component C, component A cached in component B cannot be used in component C.
-3. The reuse of custom components improves performance mainly by reducing the time for creating JS objects of custom components and reusing the component tree structure of custom components. If you use rendering control syntax before and after the reuse of custom components, and the component tree structure of custom components is significantly changed, you will not be able to reap the benefits of performance improvement from component reuse.
-4. Component reuse occurs only when a reusable component is removed from the component tree and then added to the component tree again. For example, if **ForEach** is used to create a reusable custom component, component reuse cannot be triggered due to the full expansion attribute of **ForEach**.
+3. To reuse a subtree, you only need to decorate its root node with @Reusable. For example, if custom component A has custom child component B, then to reuse the subtree of A and B, you only need to add the @Reusable decorator to A.
+4. When a custom component is nested within a reusable custom component, to update the content of the nested component, you must implement the **aboutToReuse** lifecycle callback in the component.
+5. The performance benefits of component reuse mainly result from its reducing the time for creating JS objects and reusing the component tree structure. As such, if the component tree structure of custom components is significantly changed due to conditional rendering before or after the reuse, you will not be able to reap the performance benefits of component reuse.
+6. Component reuse occurs only when a reusable component is removed from the component tree and then added to the component tree again. For example, if **ForEach** is used to create a reusable custom component, component reuse cannot be triggered due to the full expansion attribute of **ForEach**.
+7. Reusable components cannot be nested. That is, if a reusable component exists in the subtree of another reusable component, undefined results may occur.
 
-## Development Guidelines
+## Developer's Tips
 
-1. To maximize the component reuse performance, avoid any operations that may change the component tree structure of the custom component or re-lay out the reusable component.
-2. For achieve best possible performance, combine component reuse with the **LazyForEach** rendering control syntax in list scrolling scenarios.
-3. Distinguish the behavior during the creation and update of custom components. Note that the reuse of custom components is essentially a special component update behavior. The process and lifecycle seen in component creation will not occur during component reuse, and the constructor parameters of the custom component are transferred to it through the **aboutToReuse** lifecycle callback. In other words, the **aboutToAppear** lifecycle and initialization parameter input of the custom component will not occur during component reuse.
+1. To maximize the component reuse performance, avoid any operations that may change the component tree structure or re-lay out the reusable components.
+2. For best possible performance, combine component reuse with the **LazyForEach** syntax in list scrolling scenarios.
+3. Pay attention to the behavior differences between the creation and update of custom components. Component reuse is, in effect, a special form of component update. The process and lifecycle callbacks used in component creation will not occur during component reuse, and the constructor parameters of the custom component are passed to it through the **aboutToReuse** lifecycle callback. In other words, the **aboutToAppear** lifecycle and initialization parameter input of the custom component will not occur during component reuse.
 4. Avoid time-consuming operations during the **aboutToReuse** lifecycle callback. The best practice is to, in **aboutToReuse**, only update the state variable values required for updating custom components.
-5. You do not need to update the state variables decorated by @Link, @StorageLink, @ObjectLink, and @Consume in **aboutToReuse**. These state variables are automatically updated, and manual update may trigger unnecessary component update.
+5. You do not need to update the state variables decorated by @Link, @StorageLink, @ObjectLink, and @Consume in **aboutToReuse**. These state variables are automatically updated, and manual update may trigger unnecessary component re-rendering.
 
 ## Lifecycle
 
-When a reusable component is removed from the component tree on the C++ side, the **CustomNode** instance of the custom component on the native side of the ArkUI framework is mounted to the corresponding JSView. When reuse occurs, **CustomNode** is referenced by JSView and the **aboutToRecycle** callback on **ViewPU** is triggered. The **ViewPU** instance is referenced by **RecycleManager**.
+When a reusable component is removed from the component tree in C++ code, the **CustomNode** instance of the component on the native side of the ArkUI framework is mounted to the corresponding JSView. When reuse occurs, **CustomNode** is referenced by JSView and the **aboutToRecycle** callback on **ViewPU** is triggered. The **ViewPU** instance is referenced by **RecycleManager**.
 
-When a reusable component is re-added to the component tree from **RecycleManager**, the **aboutToReuse** callback on the frontend **ViewPU** instance is called.
+When the reusable component is re-added to the component tree from **RecycleManager**, the **aboutToReuse** callback on the frontend **ViewPU** instance is called.
 
 ## Available APIs
 
-Component lifecycle callback called before the reusable component is about to be added from the reuse cache to the component tree. The component's state variables can be updated in this callback to display correct content. The argument type is the same as the constructor parameter type of the custom component.
+Called when this reusable component is about to be added from the reuse cache to the component tree. The component's state variables can be updated in this callback. The argument type is the same as the constructor parameter type of the custom component.
 
 ```ts
 aboutToReuse?(params: { [key: string]: unknown }): void;
 ```
 
-Component lifecycle callback called when the reusable component is about to be added from the component tree to the reuse cache.
+Called when this reusable component is about to be added from the component tree to the reuse cache.
 
 ```ts
 aboutToRecycle?(): void;
 ```
 
-API used to add the reusable component to a reuse group. Components with the same **reuseId** value are reused in the same reuse group.
+Adds this reusable component to a reuse group. Components with the same **reuseId** value are reused in the same reuse group.
 
 ```ts
 reuseId(id: string);
 ```
 
-Reusable decorator used to declare that a component is reusable.
+Declares that a component is reusable.
 
 ```ts
 declare const Reusable: ClassDecorator;
@@ -190,11 +193,11 @@ LazyForEach(this.GoodDataOne, (item, index) => {
 
 **After Component Reuse**
 
-When the component is reused, the ArkUI framework passes to the **aboutToResue** lifecycle callback the constructor parameters of the component. You need to assign values to the state variables to be updated in the **aboutToReuse** lifecycle callback, and the ArkUI framework will display the UI based on the latest state variable values.
+When the component is reused, the ArkUI framework passes to the **aboutToReuse** lifecycle callback the constructor parameters of the component. Assign values to the state variables to be updated in **aboutToReuse**, and the ArkUI framework will display the UI with the latest state variable values.
 
-If the structures of different instances of the same custom component vary greatly, you are advised to use **reuseId** to mark reuse groups for different custom component instances to achieve the optimal effect.
+If the instances of a custom component vary greatly, use **reuseId** to assign these instances to different reuse groups to achieve the optimal effect.
 
-If a custom component has a reference to a large object or other unnecessary resources, the reference can be released in the **aboutToRecycle** lifecycle callback to avoid memory leak.
+If a custom component has a reference to a large object or other unnecessary resources, release the reference in the **aboutToRecycle** lifecycle callback to avoid memory leak.
 
 ```ts
 LazyForEach(this.GoodDataOne, (item, index) => {

@@ -17,7 +17,7 @@ import formInfo from '@ohos.application.formInfo';
 
 卡片信息
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写     | 说明                                                         |
 | ----------- | -------- |-------- | -------------------- | ------------------------------------------------------------ |
@@ -44,7 +44,7 @@ import formInfo from '@ohos.application.formInfo';
 
 支持的卡片类型枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -54,7 +54,7 @@ import formInfo from '@ohos.application.formInfo';
 
 卡片支持的颜色模式枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -66,7 +66,7 @@ import formInfo from '@ohos.application.formInfo';
 
 卡片状态信息。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写     | 说明                                                         |
 | ----------- | -------- |-------- | -------------------- | ------------------------------------------------------------ |
@@ -77,7 +77,7 @@ import formInfo from '@ohos.application.formInfo';
 
 卡片状态枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -89,7 +89,7 @@ import formInfo from '@ohos.application.formInfo';
 
 卡片参数枚举。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |

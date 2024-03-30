@@ -17,11 +17,11 @@ The **OH_Drawing_PlaceholderSpan** struct describes a placeholder that acts as a
 
 | Name| Description|
 | -------- | -------- |
-| double [width](#width) | Describes the width of a placeholder.|
-| double [height](#height) | Describes the height of a placeholder.|
-| [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment)[alignment](#alignment) | Describes the alignment mode of a placeholder.|
-| [OH_Drawing_TextBaseline](_drawing.md#oh_drawing_textbaseline)[baseline](#baseline) | Describes the baseline of a placeholder.|
-| double [baselineOffset](#baselineoffset) | Describes the baseline offset of a placeholder.|
+| double [width](#width) | Width of a placeholder.|
+| double [height](#height) | Height of a placeholder.|
+| [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) [alignment](#alignment) | Alignment mode of a placeholder.|
+| [OH_Drawing_TextBaseline](_drawing.md#oh_drawing_textbaseline) [baseline](#baseline) | Baseline of a placeholder.|
+| double [baselineOffset](#baselineoffset) | Baseline offset of a placeholder.|
 
 
 ## Member Variable Description
@@ -35,7 +35,7 @@ OH_Drawing_PlaceholderVerticalAlignment OH_Drawing_PlaceholderSpan::alignment
 
 **Description**
 
-Describes the alignment mode of a placeholder.
+Alignment mode of a placeholder.
 
 
 ### baseline
@@ -46,7 +46,7 @@ OH_Drawing_TextBaseline OH_Drawing_PlaceholderSpan::baseline
 
 **Description**
 
-Describes the baseline of a placeholder.
+Baseline of a placeholder.
 
 
 ### baselineOffset
@@ -57,7 +57,7 @@ double OH_Drawing_PlaceholderSpan::baselineOffset
 
 **Description**
 
-Describes the baseline offset of a placeholder.
+Baseline offset of a placeholder.
 
 
 ### height
@@ -68,7 +68,7 @@ double OH_Drawing_PlaceholderSpan::height
 
 **Description**
 
-Describes the height of a placeholder.
+Height of a placeholder.
 
 
 ### width
@@ -79,4 +79,4 @@ double OH_Drawing_PlaceholderSpan::width
 
 **Description**
 
-Describes the width of a placeholder.
+Width of a placeholder.

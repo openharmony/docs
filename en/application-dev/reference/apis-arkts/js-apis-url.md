@@ -32,11 +32,18 @@ A constructor used to create a **URLParams** instance.
 **Example**
 
 ```ts
+// Construct a URLParams object in string[][] mode.
 let objectParams = new Url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+// Construct a URLParams object in Record<string, string> mode.
 let objectParams1 = new Url.URLParams({"fod" : '1' , "bard" : '2'});
+// Construct a URLParams object in string mode.
 let objectParams2 = new Url.URLParams('?fod=1&bard=2');
+// Construct a URLParams object using the search attribute of the Url object.
 let urlObject = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
-let params = new Url.URLParams(urlObject.search);
+let objectParams3 = new Url.URLParams(urlObject.search);
+// Construct a URLParams object using the params attribute of the Url object.
+let urlObject1 = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
+let objectParams4 = urlObject1.params;
 ```
 
 
@@ -377,7 +384,7 @@ console.log(params.toString());
 
 ## URL
 
-Provides APIs for parsing, constructing, and encoding URL strings.
+Provides APIs for parsing, constructing, standardizing, and encoding URL strings.
 
 ### Attributes
 
@@ -445,7 +452,7 @@ A no-argument constructor used to create a URL. It returns a **URL** object afte
 
 ### parseURL<sup>9+</sup>
 
-static parseURL(url : string, base?: string | URL): URL
+static parseURL(url: string, base?: string | URL): URL
 
 Parses a URL.
 
@@ -460,7 +467,7 @@ Parses a URL.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |

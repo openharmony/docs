@@ -34,7 +34,7 @@ import faultLogger from '@ohos.faultLogger';
 | pid | number | 是 | 故障进程的进程id |
 | uid | number | 是 | 故障进程的用户id |
 | type | [FaultType](#faulttype) | 是 | 故障类型 |
-| timestamp | number | 是 | 日志生成时的秒级时间戳 |
+| timestamp | number | 是 | 日志生成时的毫秒级时间戳 |
 | reason | string | 是 | 发生故障的原因 |
 | module | string | 是 | 发生故障的模块 |
 | summary | string | 是 | 故障的概要 |

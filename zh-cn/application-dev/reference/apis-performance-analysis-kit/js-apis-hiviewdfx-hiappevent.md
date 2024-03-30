@@ -772,6 +772,11 @@ hiAppEvent.clearData();
 | DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。 |
 | APP_CRASH<sup>11+</sup>   | string | 应用崩溃事件。       |
 | APP_FREEZE<sup>11+</sup>  | string | 应用卡死事件。       |
+| APP_LAUNCH<sup>12+</sup>  | string | 应用启动耗时事件。   |
+| SCROLL_JANK<sup>12+</sup> | string | 应用滑动丢帧事件。   |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | 应用CPU高负载事件。 |
+| BATTERY_USAGE<sup>12+</sup> | string | 应用24h功耗器件分解统计事件。 |
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 应用资源泄露事件。 |
 
 
 ## param

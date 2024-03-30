@@ -2831,7 +2831,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | bundle manager error.               |
+| 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2884,7 +2884,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | bundle manager error.               |
+| 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3009,7 +3009,7 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3044,7 +3044,7 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 
 **示例：**

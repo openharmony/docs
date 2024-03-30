@@ -1,5 +1,7 @@
 # @ohos.xml (XML Parsing and Generation)
 
+The **XML** module provides a series of APIs for converting XML text into JavaScript objects and generating and parsing XML files.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -64,8 +66,8 @@ Sets an attribute.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance1", "high1");
@@ -97,8 +99,8 @@ Adds an empty element.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let result = '<d/>';
@@ -115,15 +117,15 @@ console.log(view1) // <d/>
 
 setDeclaration(): void
 
-Sets a declaration.
+Sets a file declaration with encoding.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -158,8 +160,8 @@ Writes the start tag based on the given element name.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -185,8 +187,8 @@ Writes the end tag of the element.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -220,8 +222,8 @@ Sets the namespace for an element tag.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
@@ -253,8 +255,8 @@ Sets a comment.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let result = '<!--Hello, World!-->';
@@ -284,8 +286,8 @@ Sets CDATA data.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let result = '<![CDATA[root SYSTEM]]>';
@@ -315,8 +317,8 @@ Sets a tag value.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
@@ -349,8 +351,8 @@ Sets a document type.
 **Example**
 
 ```ts
-const myMAX = 2048;
-let arrayBuffer = new ArrayBuffer(myMAX);
+const MY_MAX = 2048;
+let arrayBuffer = new ArrayBuffer(MY_MAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let result = '<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">';

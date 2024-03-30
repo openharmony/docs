@@ -43,7 +43,7 @@ A constructor used to create a **LinkedList** instance.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -79,7 +79,7 @@ Adds an element at the end of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -118,7 +118,7 @@ Adds an element at the top of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -158,7 +158,7 @@ Inserts an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -196,7 +196,7 @@ Checks whether this container has the specified element.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -228,11 +228,11 @@ Obtains an element at the specified position in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | Element obtained. If the element does not exist, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -274,7 +274,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -316,7 +316,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -340,7 +340,7 @@ let result = linkedList.getIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index and then removes it.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -354,11 +354,11 @@ Removes an element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the element does not exist, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -393,7 +393,7 @@ Removes the first element from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -428,7 +428,7 @@ Removes the last element from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -469,7 +469,7 @@ Removes the first occurrence of the specified element from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -504,11 +504,11 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -545,11 +545,11 @@ Removes the last occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed; returns **false** if the element fails to be removed or does not exist.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -584,7 +584,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -627,7 +627,7 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -656,7 +656,7 @@ Clears this container and sets its length to **0**.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -692,11 +692,11 @@ Replaces an element at the specified position in this container with a given ele
 
 | Type| Description|
 | -------- | -------- |
-| T | New element.|
+| T | New element. If the operation fails, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -730,7 +730,7 @@ Converts this container into an array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -762,7 +762,7 @@ Obtains the first element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -795,7 +795,7 @@ Obtains the last element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -832,7 +832,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |

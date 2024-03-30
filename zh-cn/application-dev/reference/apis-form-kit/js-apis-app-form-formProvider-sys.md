@@ -3,6 +3,7 @@
 FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片、设置卡片更新时间、获取卡片信息、请求发布卡片等。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 当前页面仅包含本模块的系统接口，其他公共接口参见[@ohos.app.form.formProvider (formProvider)](./js-apis-app-form-formProvider.md)。
 
@@ -21,15 +22,15 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                           | 是   | 发布请求，需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，返回卡片标识。 |
 
 **错误码：**
 
@@ -70,7 +71,7 @@ try {
       console.error(`callback error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
       return;
     }
-    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+    console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
@@ -85,14 +86,14 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
-| callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求，需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数，返回卡片标识。 |
 
 **错误码：**
 
@@ -142,13 +143,13 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
+| want            | [Want](../apis-ability-kit/js-apis-app-ability-want.md)                          | 是   | 发布请求，需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据，默认为空，不提供创建卡片数据。                                      |
 
 **返回值：**
@@ -201,7 +202,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询是否支持发布一张卡片到使用方，使用callback异步回调。
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -268,7 +269,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 查询是否支持发布一张卡片到使用方，使用Promise异步回调。
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Ability.Form
 

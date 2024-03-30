@@ -80,7 +80,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
 | networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
 | range<sup>9+</sup>     | number                    | 是    | 发现设备的距离。  |
-| authForm<sup>10+</sup> | [AuthForm](#authform10)     | 是    | 设备认证类型  |
+| authForm<sup>10+</sup> | [AuthForm](#authform10)     | 是    | 设备认证类型。  |
 
 ## DeviceType
 
@@ -92,13 +92,13 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称           | 值  | 说明   |
 | ------------ | ---- | ---- |
-| SPEAKER      | 0x0A | 智能音箱 |
-| PHONE        | 0x0E | 手机   |
-| TABLET       | 0x11 | 平板   |
-| WEARABLE     | 0x6D | 智能穿戴 |
-| TV           | 0x9C | 智慧屏  |
-| CAR          | 0x83 | 车    |
-| UNKNOWN_TYPE | 0    | 未知设备 |
+| SPEAKER      | 0x0A | 智能音箱。 |
+| PHONE        | 0x0E | 手机。   |
+| TABLET       | 0x11 | 平板。   |
+| WEARABLE     | 0x6D | 智能穿戴。 |
+| TV           | 0x9C | 智慧屏。  |
+| CAR          | 0x83 | 车。    |
+| UNKNOWN_TYPE | 0    | 未知设备。 |
 
 ## AuthForm<sup>10+</sup>
 
@@ -110,10 +110,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称                 | 值  | 说明             |
 | ------------------- | ---- | --------------- |
-| INVALID_TYPE        | -1   | 设备没有认证 |
-| PEER_TO_PEER        | 0    | 无账号设备点对点认证   |
-| IDENTICAL_ACCOUNT   | 1    | 设备同账号认证   |
-| ACROSS_ACCOUNT      | 2    | 设备跨账号认证 |
+| INVALID_TYPE        | -1   | 设备没有认证。 |
+| PEER_TO_PEER        | 0    | 无账号设备点对点认证。   |
+| IDENTICAL_ACCOUNT   | 1    | 设备同账号认证。   |
+| ACROSS_ACCOUNT      | 2    | 设备跨账号认证。 |
 
 ## DeviceStateChangeAction
 
@@ -1143,7 +1143,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 设置用户ui操作行为。
 
-> 从API version 11 开始废弃。建议使用[replyUiAction](js-apis-distributedDeviceManager.md#replyuiaction)替代。
+> 从API version 11 开始废弃。建议使用[replyUiAction](js-apis-distributedDeviceManager-sys.md#replyuiaction)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1379,7 +1379,7 @@ on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 ui状态变更回调。
 
-> 从API version 11 开始废弃。建议使用[on('replyResult')](js-apis-distributedDeviceManager.md#onreplyresult)替代。
+> 从API version 11 开始废弃。建议使用[on('replyResult')](js-apis-distributedDeviceManager-sys.md#onreplyresult)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1425,7 +1425,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 取消ui状态变更回调。
 
-> 从API version 11 开始废弃。建议使用[off('replyResult')](js-apis-distributedDeviceManager.md#offreplyresult)替代。
+> 从API version 11 开始废弃。建议使用[off('replyResult')](js-apis-distributedDeviceManager-sys.md#offreplyresult)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 

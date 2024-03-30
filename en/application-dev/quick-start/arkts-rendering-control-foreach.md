@@ -1,7 +1,7 @@
 # ForEach: Rendering of Repeated Content
 
 
-**ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [\<List>](../reference/arkui-ts/ts-container-list.md) component.
+**ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
 
 > **NOTE**
 >
@@ -542,7 +542,7 @@ struct ChildItem {
 
 The following figure shows the initial screen (on the left) and the screen after **Insert Item After First Item** is clicked (on the right).
 
-**Figure 8** Rendering result not as expecte
+**Figure 8** Rendering result not as expected
 
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
@@ -612,7 +612,7 @@ After **Insert Item After First Item** is clicked, DevEco Studio displays logs a
 
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
-After a new item is inserted, **ForEach** creates the corresponding child items for the **new item**, **two**, and **three** array items, and executes the [aboutToAppear()](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) callback. Below are the reasons:
+After a new item is inserted, **ForEach** creates the corresponding child items for the **new item**, **two**, and **three** array items, and executes the [aboutToAppear()](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) callback. Below are the reasons:
 
 1. When **ForEach** is used for initial rendering, the created keys are **0__one**, **1__two** and **2__three** in sequence.
 2. After a new item is inserted, the data source **simpleList** changes to ['one','new item', 'two', 'three']. The ArkUI framework detects changes in the length of the @State decorated data source and triggers **ForEach** for re-rendering.

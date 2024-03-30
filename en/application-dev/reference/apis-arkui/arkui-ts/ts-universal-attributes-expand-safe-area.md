@@ -119,7 +119,7 @@ struct SafeAreaExample {
 ### Example 3
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -156,7 +156,7 @@ struct KeyboardAvoidExample {
 ### Example 4
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
   onWindowStageCreate(windowStage: window.WindowStage) {

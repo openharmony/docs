@@ -17,7 +17,7 @@ Bluetooth is a short-range communication protocol based on radio technologies. I
 
 - **hfp** module: Hands-Free Profile (HFP) allows hands-free calls and voice control to be implemented between devices via a Bluetooth link. For details about the APIs, see [@ohos.bluetooth.hfp](../../reference/apis/js-apis-bluetooth-hfp.md).
 
-- **hid** module: allows connect to a Human Interface Device (HID) device such as a keyboard, a mouse, or a game controller over Bluetooth. Wireless control and input can be implemented by connecting the HID devices to a Bluetooth host. For details about the APIs, see [@ohos.bluetooth.hid](../../reference/apis/js-apis-bluetooth-hid.md).
+- **hid** module: allows connections to Human Interface Devices (HIDs) such as a keyboard, a mouse, or a game controller over Bluetooth. Wireless control and input can be implemented by connecting the HID devices to a Bluetooth host. For details about the APIs, see [@ohos.bluetooth.hid](../../reference/apis/js-apis-bluetooth-hid.md).
 
 - **pan** module: Personal Area Network (PAN) is a wireless communication technology used to connect devices within an individual person's workspace. For example, connect devices such as a smartphone, computer, and printer to a PAN to enable files to be shared and printed. For details about the APIs, see [@ohos.bluetooth.pan](../../reference/apis/js-apis-bluetooth-pan.md).
 

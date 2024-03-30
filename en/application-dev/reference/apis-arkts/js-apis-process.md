@@ -176,7 +176,7 @@ Sends a signal to the specified process to terminate it.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.  |
 
 **Example**
 
@@ -561,7 +561,7 @@ Sends a signal to the specified process to terminate it.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.  |
 
 **Example**
 

@@ -19,8 +19,8 @@
 | -------- | -------- |
 | [camera.h](camera_8h.md) | 声明相机的基本概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera.h&gt; | 
 | [camera_input.h](camera__input_8h.md) | 声明相机输入概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera_input.h&gt; | 
-| [camera_manager.h](camera__manager_8h.md) | 声明相机管理器的概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera_manager.h&gt; | 
-| [capture_session.h](capture__session_8h.md) | 声明捕获会话概念。<br/>**库： **libohcamera.so<br/>**引用文件：**&lt;ohcamera/capture_session.h&gt; | 
+| [camera_manager.h](camera__manager_8h.md) | 声明相机管理器的概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera_manager.h&gt; |
+| [capture_session.h](capture__session_8h.md) | 声明捕获会话概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/capture_session.h&gt; |
 | [metadata_output.h](metadata__output_8h.md) | 声明元数据输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/metadata_output.h&gt; | 
 | [photo_output.h](photo__output_8h.md) | 声明拍照输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/photo_output.h&gt; | 
 | [preview_output.h](preview__output_8h.md) | 声明预览输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/preview_output.h&gt; | 

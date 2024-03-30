@@ -39,7 +39,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     }
   });
 });
-ws.on('message',(BusinessError<void>, value: string | ArrayBuffer) => {
+ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
   // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
   if (value === 'bye') {
@@ -58,7 +58,19 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
 ws.on('error', (err: BusinessError) => {
   console.log("on error, error:" + JSON.stringify(err));
 });
-ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
+ws.connect(defaultIpAddress, {
+  header:{
+      name1: 'value1',
+      name2: 'value2',
+      name3: 'value3'
+  },
+  proxy: {
+      host: '192.168.0.150',
+      port: 8888,
+      exclusionList: []
+  },
+  protocol: 'my-protocol',
+  }, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -748,6 +760,58 @@ let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
 
+### on('headerReceive')<sup>12+</sup>
+
+on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
+
+订阅HTTP Response Header事件，使用callback方式作为同步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |        类型       | 必填 |                说明                    |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 是   | 回调函数,返回订阅事件。                             |
+
+**示例：**
+
+```ts
+import webSocket from '@ohos.net.webSocket';
+
+let ws = webSocket.createWebSocket();
+ws.on('headerReceive', (data) => {
+  console.log("on headerReceive " + JSON.stringify(data));
+});
+```
+
+### off('headerReceive')<sup>12+</sup>
+
+off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
+
+取消订阅HTTP Response Header事件，使用callback方式作为同步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   |        类型       | 必填 |                说明                    |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 否   | 回调函数,返回订阅事件。                           |
+
+**示例：**
+
+```ts
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
+ws.off('headerReceive');
+```
+
 ## WebSocketRequestOptions
 
 建立WebSocket连接时，可选参数的类型和说明。
@@ -759,6 +823,8 @@ ws.off('dataEnd');
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
 | caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
+| proxy<sup>12+</sup> | ProxyConfiguration | 否 | 通信过程中的代理信息，默认使用系统网络代理。 |
+| protocol<sup>12+</sup> | string | 否 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
 
 ## ClientCert<sup>11+</sup>
 
@@ -771,6 +837,18 @@ ws.off('dataEnd');
 | certPath   | string  | 是   | 证书路径。 |
 | keyPath | string | 是   | 证书秘钥的路径。 |
 | keyPassword | string | 否   | 证书秘钥的密码。 |
+
+## ProxyConfiguration<sup>12+</sup>
+
+网络代理配置信息
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称    | 类型   | 必填 | 说明                      |
+| ------ | ------ | --- |------------------------- |
+| 'system' | string | 否  |  使用系统默认网络代理。 |
+| 'no-proxy' | string | 否  |  不使用网络代理。 |
+| HttpProxy | Object | 否  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
@@ -793,6 +871,18 @@ ws.off('dataEnd');
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | code   | number | 是   | 错误码，订阅close事件得到的关闭连接的错误码。 |
 | reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
+
+## ResponseHeaders<sup>12+</sup>
+
+服务器发送的响应头。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 类型   | 必填 | 说明                                                         |
+| ------ | ---- | ------------------------------------------------------------ |
+| [k:string]:string | 否   | header数据类型为键值对 |
+| string[] | 否   | header数据类型为字符串 |
+| undefined | 否   | header数据类型为undefined |
 
 ## close错误码说明
 

@@ -31,7 +31,7 @@
 | title          | string |  否  |  是  | 通知标题（不可为空字符串）。         |
 | text           | string |  否  |  是  | 通知内容（不可为空字符串）。         |
 | additionalText | string |  否  |  否  | 通知附加内容，是对通知内容的补充。   |
-
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 
 ## NotificationLongTextContent
 
@@ -44,6 +44,7 @@
 | title          | string |  否  | 是  | 通知标题（不可为空字符串）。                         |
 | text           | string |  否  | 是  | 通知内容（不可为空字符串）。                         |
 | additionalText | string |  否  | 否  | 通知附加内容，是对通知内容的补充。   |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | longText       | string |  否  | 是  | 通知的长文本（不可为空字符串）。                     |
 | briefText      | string |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。   |
 | expandedTitle  | string |  否  | 是  | 通知展开时的标题（不可为空字符串）。                 |
@@ -60,6 +61,7 @@
 | title          | string          | 否  | 是  | 通知标题（不可为空字符串）。       |
 | text           | string          | 否  | 是  | 通知内容（不可为空字符串）。       |
 | additionalText | string          | 否  | 否  | 通知附加内容，是对通知内容的补充。 |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | briefText      | string          | 否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
 | longTitle      | string          | 否  | 是  | 通知展开时的标题（不可为空字符串）。|
 | lines          | Array\<string\> | 否  | 是  | 通知的多行文本。                  |
@@ -76,6 +78,7 @@
 | title          | string                                       |  否  | 是  | 通知标题（不可为空字符串）。          |
 | text           | string                                       |  否  | 是  | 通知内容（不可为空字符串）。          |
 | additionalText | string                                       |  否  | 否  | 通知附加内容，是对通知内容的补充。    |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | briefText      | string                                       |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
 | expandedTitle  | string                                       |  否  | 是  | 通知展开时的标题（不可为空字符串）。    |
 | picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|
@@ -92,6 +95,7 @@
 | title                        | string                                          | 否  | 是  | 通知标题（不可为空字符串）。          |
 | text                         | string                                          | 否  | 是  | 通知内容（不可为空字符串）。          |
 | additionalText               | string                                          | 否  | 否  | 通知附加内容，是对通知内容的补充。     |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | typeCode<sup>11+</sup>       | number                                          | 否  | 是  | 类型标识符，标记调用方业务类型。       |
 | capsule<sup>11+</sup>        | [NotificationCapsule](#notificationcapsule11)   | 否  | 否  | 实况通知的胶囊。                     |
 | button<sup>11+</sup>         | [NotificationButton](#notificationbutton11)     | 否  | 否  | 实况通知的按钮。                     |

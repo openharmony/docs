@@ -79,22 +79,22 @@ In by-reference parameter passing, state variables can be passed, and the change
 
 
 ```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
   paramB1: string = ''
 }
 
-@Builder function ABuilder(params : ABuilderParam) {...}
+@Builder function overBuilder(params : Tmp) {...}
 ```
 
 
 
 ```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
 }
 
-@Builder function ABuilder(params: ABuilderParam) {
+@Builder function overBuilder(params: Tmp) {
   Row() {
     Text(`UseStateVarByReference: ${params.paramA1} `)
   }
@@ -105,8 +105,8 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
-      ABuilder({ paramA1: this.label })
+      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
@@ -120,25 +120,25 @@ struct Parent {
 When parameters are passed by reference, if a custom component is called within the \@Builder method, ArkUI provides $$ as the paradigm for passing parameters by reference.
 
 ```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
   paramB1: string = ''
 }
 
-@Builder function ABuilder($$ : ABuilderParam) {...}
+@Builder function overBuilder($$ : Tmp) {...}
 ```
 
 
 
 ```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
 }
 
-@Builder function BBuilder($$: ABuilderParam) {
+@Builder function overBuilder($$: Tmp) {
   Row() {
     Column() {
-      Text(`BBuilder===${$$.paramA1}`)
+      Text(`overBuilder===${$$.paramA1}`)
       HelloComponent({message: $$.paramA1})
     }
   }
@@ -161,8 +161,8 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the BBuilder component when the BBuilder component is called in the Parent component.
-      BBuilder({paramA1: this.label})
+      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
@@ -179,7 +179,7 @@ By default, parameters in the \@Builder decorated functions are passed by value.
 
 
 ```ts
-@Builder function ABuilder(paramA1: string) {
+@Builder function overBuilder(paramA1: string) {
   Row() {
     Text(`UseStateVarByValue: ${paramA1} `)
   }
@@ -190,7 +190,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      ABuilder(this.label)
+      overBuilder(this.label)
     }
   }
 }

@@ -55,6 +55,13 @@ create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 **示例：**
 
+从API version 11前使用用例：
+```ts
+let result = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let retStr = result.encoding;
+```
+
+从API version 11及以后使用用例：
 ```ts
 let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
@@ -87,6 +94,22 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 **示例：**
 
+从API version 11前使用用例：
+```ts
+let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.info("input num:");
+let retStr = textDecoder.decodeWithStream( result , {stream: false});
+console.info("retStr = " + retStr);
+```
+
+从API version 11及以后使用用例：
 ```ts
 let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,

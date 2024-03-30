@@ -339,6 +339,26 @@ sms.getDefaultSmsSlotId().then((data: number) => {
 });
 ```
 
+## sms.hasSmsCapability<sup>7+</sup>
+
+hasSmsCapability\(\): boolean
+
+检查当前设备是否具备短信发送和接收能力，该方法是同步方法。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
+
+```ts
+import sms from '@ohos.telephony.sms';
+
+let result = sms.hasSmsCapability(); 
+console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
+```
 
 ## sms.getDefaultSmsSimId<sup>10+</sup>
 
@@ -420,6 +440,7 @@ promise.then((data: number) => {
     console.error(`getDefaultSmsSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
 
 ## ShortMessage
 

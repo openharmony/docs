@@ -6,7 +6,7 @@ You can determine the execution sequence of tasks with the same priority. They a
 
 If the number of tasks to be executed is greater than the number of worker threads in the task pool, the task pool scales out based on load balancing to minimize the waiting duration. Similarly, when the number of tasks to be executed falls below the number of worker threads, the task pool scales in to reduce the number of worker threads.
 
-The **TaskPool** APIs return error codes in numeric format. For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+The **TaskPool** APIs return error codes in numeric format. For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 For details about the precautions for using **TaskPool**, see [Precautions for TaskPool](../../arkts-utils/taskpool-introduction.md#precautions-for-taskpool).
 
@@ -22,7 +22,7 @@ import taskpool from '@ohos.taskpool';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-Places the function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution. The function to be executed in this mode cannot be canceled.
+Places a function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -30,7 +30,7 @@ Places the function to be executed in the internal queue of the task pool. The f
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be executed. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Return value**
@@ -41,7 +41,7 @@ Places the function to be executed in the internal queue of the task pool. The f
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. The task to be executed in this mode can be canceled. The task cannot be a task in a task group or queue.
+Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. It can be executed by calling **execute()** for multiple times.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -86,7 +86,7 @@ Places a task in the internal queue of the task pool. The task will be distribut
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                    |
 | -------- | ------------------------------------------- |
@@ -103,9 +103,17 @@ function printArgs(args: number): number {
     return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.execute(task).then((value: Object) => {
-  console.info("taskpool result: " + value);
+let task1: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+let task2: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
+let task3: taskpool.Task = new taskpool.Task(printArgs, 300); // 300: test number
+taskpool.execute(task1, taskpool.Priority.LOW).then((value: Object) => {
+  console.info("taskpool result1: " + value);
+});
+taskpool.execute(task2, taskpool.Priority.MEDIUM).then((value: Object) => {
+  console.info("taskpool result2: " + value);
+});
+taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
+  console.info("taskpool result3: " + value);
 });
 ```
 
@@ -113,7 +121,7 @@ taskpool.execute(task).then((value: Object) => {
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-Places a task group in the internal queue of the task pool. The task group will be distributed to the worker thread for execution.
+Places a task group in the internal queue of the task pool. The task group will be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This API applies when you want to execute a group of associated tasks.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -132,7 +140,7 @@ Places a task group in the internal queue of the task pool. The task group will 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                    |
 | -------- | ------------------------------------------- |
@@ -171,7 +179,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-Executes a task after a given delay. The task cannot be a task in a task group or queue.
+Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. It can be executed by calling **executeDelayed()** for multiple times.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -180,7 +188,7 @@ Executes a task after a given delay. The task cannot be a task in a task group o
 | Name      | Type         | Mandatory| Description                |
 | ----------- | ------------- | ---- | -------------------- |
 | delayTime   | number        | Yes  | Delay, in ms. |
-| task        | [Task](#task) | Yes  | Task to delay.|
+| task        | [Task](#task) | Yes  | Task to be executed with a delay.|
 | priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
@@ -191,7 +199,7 @@ Executes a task after a given delay. The task cannot be a task in a task group o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID  | Error Message                        |
 | --------- | -------------------------------- |
@@ -223,7 +231,7 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 
 cancel(task: Task): void
 
-Cancels a task in the task pool.
+Cancels a task in the task pool. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and **undefined** is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. In other words, **taskpool.cancel** takes effect before **taskpool.execute** or **taskpool.executeDelayed** is called.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -235,7 +243,7 @@ Cancels a task in the task pool.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
@@ -267,31 +275,39 @@ function inspectStatus(arg: number): number {
   return arg + 1;
 }
 
-let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
-let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
-let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
-let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
-let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-taskpool.execute(task1).then((res: Object)=>{
-  console.info("taskpool test result: " + res);
-});
-taskpool.execute(task2);
-taskpool.execute(task3);
-taskpool.execute(task4);
-taskpool.execute(task5);
-taskpool.execute(task6);
-// Cancel the task 1s later.
-setTimeout(()=>{
-  taskpool.cancel(task1);
-}, 1000);
+function concurrntFunc() {
+  let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
+  let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
+  let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
+  let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
+  let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
+  taskpool.execute(task1).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  });
+  taskpool.execute(task2);
+  taskpool.execute(task3);
+  taskpool.execute(task4);
+  taskpool.execute(task5);
+  taskpool.execute(task6);
+  // Cancel the task 1s later.
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(task1);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
 
 cancel(group: TaskGroup): void
 
-Cancels a task group in the task pool.
+Cancels a task group in the task pool. If a task group is canceled before all the tasks in it are finished, **undefined** is returned.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -303,7 +319,7 @@ Cancels a task group in the task pool.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                |
 | -------- | ------------------------------------------------------- |
@@ -322,23 +338,27 @@ function printArgs(args: number): number {
   return args;
 }
 
-let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup1.addTask(printArgs, 10); // 10: test number
-let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
-taskGroup2.addTask(printArgs, 100); // 100: test number
-taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
-  console.info("taskGroup1 res is:" + res);
-});
-taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
-  console.info("taskGroup2 res is:" + res);
-});
-setTimeout(()=>{
-  try {
-    taskpool.cancel(taskGroup2);
-  } catch (e) {
-    console.error("taskGroup.cancel occur error:" + e);
-  }
-}, 1000);
+function concurrntFunc() {
+  let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup1.addTask(printArgs, 10); // 10: test number
+  let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
+  taskGroup2.addTask(printArgs, 100); // 100: test number
+  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+    console.info("taskGroup1 res is:" + res);
+  });
+  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+    console.info("taskGroup2 res is:" + res);
+  });
+  setTimeout(()=>{
+    try {
+      taskpool.cancel(taskGroup2);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
+}
+
+concurrntFunc();
 ```
 
 
@@ -346,7 +366,7 @@ setTimeout(()=>{
 
 getTaskPoolInfo(): TaskPoolInfo
 
-Obtains the internal information about this task pool.
+Obtains internal information about this task pool, including thread information and task information.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -364,7 +384,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 ## Priority
 
-Enumerates the priorities available for created tasks.
+Enumerates the priorities available for created tasks. The task priority applies during task execution.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -379,34 +399,37 @@ Enumerates the priorities available for created tasks.
 ```ts
 @Concurrent
 function printArgs(args: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) { // 1000: delay 1s
+    continue;
+  }
   console.info("printArgs: " + args);
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: Object) => {
-    lowCount++;
-    console.info("taskpool lowCount is :" + lowCount);
-  });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: Object) => {
-    mediumCount++;
-    console.info("taskpool mediumCount is :" + mediumCount);
-  });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
-    highCount++;
-    console.info("taskpool highCount is :" + highCount);
-  });
+let allCount = 100; // 100: test number
+let taskArray: Array<taskpool.Task> = [];
+// Create 300 tasks and add them to taskArray.
+for (let i: number = 1; i < allCount; i++) {
+  let task1: taskpool.Task = new taskpool.Task(printArgs, i);
+  taskArray.push(task1);
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  taskArray.push(task2);
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  taskArray.push(task3);
+}
+
+// Obtain different tasks from taskArray and specify different priorities for execution.
+for (let i: number = 0; i < allCount; i+=3) { // 3: Three tasks are executed each time. When obtaining tasks cyclically, obtain the three items following the last batch to ensure that different tasks are obtained each time.
+  taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
+  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
 }
 ```
 
 ## Task
 
-Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance.
+Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group or queue for execution, or added with dependencies for execution.
 
 ### constructor
 
@@ -420,12 +443,12 @@ A constructor used to create a **Task** instance.
 
 | Name| Type     | Mandatory| Description                                                                 |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
@@ -456,12 +479,12 @@ A constructor used to create a **Task** instance, with the task name specified.
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | Yes  | Task name.                                                  |
-| func   | Function | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
@@ -550,7 +573,7 @@ taskpool.execute(task).then((res: Object)=>{
 
 setTransferList(transfer?: ArrayBuffer[]): void
 
-Sets the task transfer list. Before using this API, you must create a **Task** instance.
+Sets the task transfer list. Before using this API, you must create a **Task** instance. If this API is not called, the ArrayBuffer in the data is transferred by default.
 
 > **NOTE**<br>
 > This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid. An empty **ArrayBuffer** will not be transferred.
@@ -565,7 +588,7 @@ Sets the task transfer list. Before using this API, you must create a **Task** i
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                       |
 | -------- | -------------------------------------------------------------- |
@@ -588,6 +611,9 @@ let view1: Uint8Array = new Uint8Array(buffer1);
 
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
+// The execution result is as follows:
+// testTransfer view byteLength: 8
+// testTransfer view1 byteLength: 16
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
@@ -596,8 +622,11 @@ taskpool.execute(task).then((res: Object)=>{
 }).catch((e: string)=>{
   console.error("test catch: " + e);
 })
-console.info("testTransfer view byteLength: " + view.byteLength);
-console.info("testTransfer view1 byteLength: " + view1.byteLength);
+console.info("testTransfer view2 byteLength: " + view.byteLength);
+console.info("testTransfer view3 byteLength: " + view1.byteLength);
+// The value is 0 after transfer. The execution result is as follows:
+// testTransfer view2 byteLength: 0
+// testTransfer view3 byteLength: 0
 ```
 
 
@@ -620,7 +649,7 @@ Sets the task clone list. Before using this API, you must create a **Task** inst
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                       |
 | -------- | -------------------------------------------------------------- |
@@ -765,7 +794,7 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
@@ -822,7 +851,7 @@ async function testFunc(): Promise<void> {
     task.onReceiveData(pringLog);
     await taskpool.execute(task);
   } catch (e) {
-    console.info(`taskpool: error code: ${e.code}, info: ${e.message}`);
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
   }
 }
 
@@ -833,7 +862,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task cannot be a task in a task group or queue, or a task that has been executed.
+Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task and its dependent tasks cannot be a task in a task group or queue, or a task that has been executed. A task with a dependency relationship (a task that depends on another task or a task that is depended on) cannot be executed multiple times.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -845,7 +874,7 @@ Adds dependent tasks for this task. Before using this API, you must create a **T
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
@@ -900,7 +929,7 @@ Removes dependent tasks for this task. Before using this API, you must create a 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -958,7 +987,7 @@ taskpool.execute(task3).then(() => {
 
 ## TaskGroup<sup>10+</sup>
 
-Implements a task group, in which all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
+Implements a task group, in which tasks are associated with each other and all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
 
 ### constructor<sup>10+</sup>
 
@@ -1000,7 +1029,7 @@ let name: string = taskGroup.name;
 
 addTask(func: Function, ...args: Object[]): void
 
-Adds the function to be executed to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, and tasks that have been executed cannot be added to the task group.
+Adds the function to be executed to this task group. Before using this API, you must create a **TaskGroup** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1008,12 +1037,12 @@ Adds the function to be executed to this task group. Before using this API, you 
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
@@ -1036,7 +1065,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance.
+Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, and tasks that have been executed cannot be added to the task group.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1048,7 +1077,7 @@ Adds a created task to this task group. Before using this API, you must create a
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
@@ -1078,7 +1107,7 @@ taskGroup.addTask(task);
 
 ## SequenceRunner <sup>11+</sup>
 
-Implements a queue that executes the tasks in sequence. Before calling any APIs in **SequenceRunner**, you must use [constructor](#constructor11-3) to create a **SequenceRunner** instance.
+Implements a queue, in which all tasks are executed in sequence. Before calling any APIs in **SequenceRunner**, you must use [constructor](#constructor11-3) to create a **SequenceRunner** instance.
 
 ### constructor<sup>11+</sup>
 
@@ -1127,7 +1156,7 @@ Adds a task to the queue for execution. Before using this API, you must create a
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
@@ -1177,7 +1206,7 @@ async function seqRunner()
 
 ## State<sup>10+</sup>
 
-Enumerates the task states.
+Enumerates the task states. After a task is created and **execute()** is called, the task is placed in the internal queue of the task pool and the state is **WAITING**. When the task is being executed by the worker thread of the task pool, the state changes to **RUNNING**. After the task is executed and the result is returned, the state is reset to **WAITING**. When the task is proactively canceled, the state changes to **CANCELED**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1239,7 +1268,7 @@ Describes the internal information about a task pool.
 ## Additional Information
 
 ### Sequenceable Data Types
-The following sequenceable data types are supported: All Primitive Type (excluding symbol), Date, String, RegExp, Array, Map, Set, Object, ArrayBuffer, and TypedArray.
+The following sequenceable data types are supported: All Primitive Type (excluding symbol), Date, String, RegExp, Array, Map, Set, Object, ArrayBuffer, and TypedArray. [Serialization Types Supported by TaskPool and Worker](../../arkts-utils/serialization-support-types.md)
 
 ### Using the Task Pool in Simple Mode
 
@@ -1385,7 +1414,12 @@ async function taskpoolCancel(): Promise<void> {
   });
   // Cancel the task 1s later.
   setTimeout(()=>{
-    taskpool.cancel(task);}, 1000);
+    try {
+      taskpool.cancel(task);
+    } catch (e) {
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+    }
+  }, 1000);
 }
 
 taskpoolCancel();
@@ -1425,7 +1459,7 @@ async function taskpoolCancel(): Promise<void> {
     try {
       taskpool.cancel(task); // The task has been executed and fails to be canceled.
     } catch (e) {
-      console.error("taskpool.cancel occur error:" + e);
+      console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
     }
   }, 3000); // Wait for 3s to ensure that the task has been executed.
 }
@@ -1470,7 +1504,11 @@ async function taskpoolGroupCancelTest(): Promise<void> {
     console.error("taskpool execute error is:" + e);
   });
 
-  taskpool.cancel(taskGroup2);
+  try {
+    taskpool.cancel(taskGroup2);
+  } catch (e) {
+    console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+  }
 }
 
 taskpoolGroupCancelTest()

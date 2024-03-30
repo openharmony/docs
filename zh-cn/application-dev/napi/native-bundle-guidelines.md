@@ -8,7 +8,9 @@
 
 | 接口名                                                       | 描述                                     |
 | :----------------------------------------------------------- | :--------------------------------------- |
-| [OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo()](../reference/native-apis/native__interface__bundle.md) | 获取应用自身相关信息。          |
+| [OH_NativeBundle_GetCurrentApplicationInfo](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身相关信息。          |
+| [OH_NativeBundle_GetAppId](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
+| [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
 
 ## 开发步骤
 
@@ -75,19 +77,23 @@
         napi_value fingerprint;
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
+
+        char* appId = OH_NativeBundle_GetAppId();
         // Native接口获取的appId转为js对象里的appId属性
-        napi_value appId;
-        napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
-        napi_set_named_property(env, result, "appId", appId);
+        napi_value napi_appId;
+        napi_create_string_utf8(env, appId, NAPI_AUTO_LENGTH, &napi_appId);
+        napi_set_named_property(env, result, "appId", napi_appId);
+
+        char* appIdentifier = OH_NativeBundle_GetAppIdentifier();
         // Native接口获取的appIdentifier转为js对象里的appIdentifier属性
-        napi_value appIdentifier;
-        napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
-        napi_set_named_property(env, result, "appIdentifier", appIdentifier);
-        // 最后为了防止内存泄漏，手动free
+        napi_value napi_appIdentifier;
+        napi_create_string_utf8(env, appIdentifier, NAPI_AUTO_LENGTH, &napi_appIdentifier);
+        napi_set_named_property(env, result, "appIdentifier", napi_appIdentifier);
+        // 最后为了防止内存泄漏，手动释放
         free(nativeApplicationInfo.bundleName);
         free(nativeApplicationInfo.fingerprint);
-        free(nativeApplicationInfo.appId);
-        free(nativeApplicationInfo.appIdentifier);
+        free(appId);
+        free(appIdentifier);
         return result;
     }
     ```
@@ -141,4 +147,4 @@
     }
     ```
 
-关于包管理NDK开发，可参考[Bundle模块介绍](../reference/native-apis/_bundle.md)。
+关于包管理NDK开发，可参考[Bundle模块介绍](../reference/apis-ability-kit/_bundle.md)。

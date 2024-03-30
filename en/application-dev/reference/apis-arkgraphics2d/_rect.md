@@ -3,15 +3,11 @@
 
 ## Overview
 
-The **Rect** module describes a rectangle on the display.
+The **Rect** struct describes a rectangle.
 
-**Since**
+**Since**: 8
 
-8
-
-**Related Modules**
-
-[NativeWindow](_native_window.md)
+**Related module**: [NativeWindow](_native_window.md)
 
 
 ## Summary
@@ -19,7 +15,7 @@ The **Rect** module describes a rectangle on the display.
 
 ### Member Variables
 
-  | Name| Description| 
+| Name| Description| 
 | -------- | -------- |
 | [x](#x) | Start X coordinate of the rectangle.| 
 | [y](#y) | Start Y coordinate of the rectangle.| 
@@ -27,9 +23,8 @@ The **Rect** module describes a rectangle on the display.
 | [h](#h) | Height of the rectangle.| 
 
 
-### x
+## x
 
-  
 ```
 int32_t Rect::x
 ```
@@ -39,9 +34,8 @@ int32_t Rect::x
 Start X coordinate of the rectangle.
 
 
-### y
+## y
 
-  
 ```
 int32_t Rect::y
 ```
@@ -51,9 +45,8 @@ int32_t Rect::y
 Start Y coordinate of the rectangle.
 
 
-### w
+## w
 
-  
 ```
 uint32_t Rext::w
 ```
@@ -63,11 +56,10 @@ uint32_t Rext::w
 Width of the rectangle.
 
 
-### h
+## h
 
-  
 ```
-uint32_t Rect::h
+uint32_t Rext::h
 ```
 
 **Description**

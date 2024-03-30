@@ -1,6 +1,6 @@
-# @ohos.account.osAccount (OS Account) (System API)
+# @ohos.account.osAccount (System Account) (System API)
 
-The **osAccount** module provides basic capabilities for managing OS accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account.
+The **osAccount** module provides basic capabilities for managing system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling a system account.
 
 > **NOTE**
 >
@@ -15,13 +15,13 @@ import account_osAccount from '@ohos.account.osAccount';
 
 ## AccountManager
 
-Provides APIs for managing OS accounts.
+Provides APIs for managing system accounts.
 
 ### activateOsAccount
 
 activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Activates an OS account. This API uses an asynchronous callback to return the result.
+Activates a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -33,7 +33,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 
 | Name  | Type                      | Mandatory| Description                                               |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | Yes  | ID of the target OS account.                 |
+| localId  | number                    | Yes  | ID of the target system account.                 |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -46,7 +46,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 | 12300008 | Restricted Account. |
 | 12300009 | Account has been activated. |
 
-**Example**: Activate OS account 100.
+**Example**: Activate system account 100.
   ```ts
   import { BusinessError } from '@ohos.base';
   let localId: number = 100;
@@ -67,7 +67,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 
 activateOsAccount(localId: number): Promise&lt;void&gt;
 
-Activates an OS account. This API uses a promise to return the result.
+Activates a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -79,7 +79,7 @@ Activates an OS account. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -97,7 +97,7 @@ Activates an OS account. This API uses a promise to return the result.
 | 12300008 | Restricted Account. |
 | 12300009 | Account has been activated. |
 
-**Example**: Activate OS account 100.
+**Example**: Activate system account 100.
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
@@ -117,7 +117,7 @@ Activates an OS account. This API uses a promise to return the result.
 
 isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account is activated. This API uses a promise to return the result.
+Checks whether a system account is activated. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -129,7 +129,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -144,7 +144,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
-**Example**: Check whether OS account 100 is activated.
+**Example**: Check whether system account 100 is activated.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -165,7 +165,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-Checks whether a constraint is enabled for an OS account. This API uses a promise to return the result.
+Checks whether a constraint is enabled for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -177,7 +177,7 @@ Checks whether a constraint is enabled for an OS account. This API uses a promis
 
 | Name    | Type  | Mandatory| Description                               |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | Yes  | ID of the target OS account. |
+| localId    | number | Yes  | ID of the target system account. |
 | constraint | string | Yes  | [Constraint](js-apis-osAccount.md#constraints) to check.|
 
 **Return value**
@@ -193,7 +193,7 @@ Checks whether a constraint is enabled for an OS account. This API uses a promis
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
-**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether system account 100 is forbidden to use Wi-Fi.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -215,7 +215,7 @@ Checks whether a constraint is enabled for an OS account. This API uses a promis
 
 isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account has been verified. This API uses a promise to return the result.
+Checks whether a system account has been verified. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -227,13 +227,13 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | Yes  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
 
 **Return value**
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -263,7 +263,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-Removes an OS account. This API uses an asynchronous callback to return the result.
+Removes a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -275,7 +275,7 @@ Removes an OS account. This API uses an asynchronous callback to return the resu
 
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | Yes  | ID of the target OS account.                 |
+| localId  | number                    | Yes  | ID of the target system account.                 |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -313,7 +313,7 @@ Removes an OS account. This API uses an asynchronous callback to return the resu
 
 removeOsAccount(localId: number): Promise&lt;void&gt;
 
-Removes an OS account. This API uses a promise to return the result.
+Removes a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -325,7 +325,7 @@ Removes an OS account. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -366,7 +366,7 @@ Removes an OS account. This API uses a promise to return the result.
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-Sets or removes constraints for an OS account. This API uses an asynchronous callback to return the result.
+Sets or removes constraints for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -378,7 +378,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 
 | Name     | Type                     | Mandatory| Description                                            |
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId     | number                    | Yes  | ID of the target OS account.              |
+| localId     | number                    | Yes  | ID of the target system account.              |
 | constraints | Array&lt;string&gt;       | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.       |
 | enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                          |
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
@@ -392,7 +392,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Disable Wi-Fi for OS account 100.
+**Example**: Disable Wi-Fi for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -416,7 +416,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-Sets or removes constraints for an OS account. This API uses a promise to return the result.
+Sets or removes constraints for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -428,7 +428,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 
 | Name     | Type               | Mandatory| Description                                        |
 | ----------- | ------------------- | ---- | -------------------------------------------- |
-| localId     | number              | Yes  | ID of the target OS account.          |
+| localId     | number              | Yes  | ID of the target system account.          |
 | constraints | Array&lt;string&gt; | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.   |
 | enable      | boolean             | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                    |
 
@@ -447,7 +447,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Remove the constraint on the use of Wi-Fi for OS account 100.
+**Example**: Remove the constraint on the use of Wi-Fi for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -468,7 +468,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 
 setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a name for an OS account. This API uses an asynchronous callback to return the result.
+Sets a name for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -480,7 +480,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 
 | Name   | Type                     | Mandatory| Description                                            |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId   | number                    | Yes  | ID of the target OS account.              |
+| localId   | number                    | Yes  | ID of the target system account.              |
 | localName | string                    | Yes  | Account name. The value cannot exceed 1024 characters.                         |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
@@ -493,7 +493,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set the name of OS account 100 to **demoName**.
+**Example**: Set the name of system account 100 to **demoName**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -517,7 +517,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-Sets a name for an OS account. This API uses a promise to return the result.
+Sets a name for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -529,7 +529,7 @@ Sets a name for an OS account. This API uses a promise to return the result.
 
 | Name   | Type  | Mandatory| Description                               |
 | --------- | ------ | ---- | --------------------------------- |
-| localId   | number | Yes  | ID of the target OS account.|
+| localId   | number | Yes  | ID of the target system account.|
 | localName | string | Yes  | Account name to set. The value cannot exceed 1024 characters.           |
 
 **Return value**
@@ -547,7 +547,7 @@ Sets a name for an OS account. This API uses a promise to return the result.
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set the name of OS account 100 to **demoName**.
+**Example**: Set the name of system account 100 to **demoName**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -569,7 +569,7 @@ Sets a name for an OS account. This API uses a promise to return the result.
 
 queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
-Queries the maximum number of OS accounts that can be created. This API uses an asynchronous callback to return the result.
+Queries the maximum number of system accounts that can be created. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -579,7 +579,7 @@ Queries the maximum number of OS accounts that can be created. This API uses an 
 
 | Name  | Type                       | Mandatory| Description                                                                             |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of OS accounts that can be created. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of system accounts that can be created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -609,7 +609,7 @@ Queries the maximum number of OS accounts that can be created. This API uses an 
 
 queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
-Queries the maximum number of OS accounts that can be created. This API uses a promise to return the result.
+Queries the maximum number of system accounts that can be created. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -619,7 +619,7 @@ Queries the maximum number of OS accounts that can be created. This API uses a p
 
 | Type                 | Description                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum number of OS accounts that can be created.|
+| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created.|
 
 **Error codes**
 
@@ -647,7 +647,7 @@ Queries the maximum number of OS accounts that can be created. This API uses a p
 
 getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all the enabled constraints of an OS account. This API uses a promise to return the result.
+Obtains all the enabled constraints of a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -659,13 +659,13 @@ Obtains all the enabled constraints of an OS account. This API uses a promise to
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                              | Description                                                      |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](js-apis-osAccount.md#constraints) of the OS account.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](js-apis-osAccount.md#constraints) of the system account.|
 
 **Error codes**
 
@@ -674,7 +674,7 @@ Obtains all the enabled constraints of an OS account. This API uses a promise to
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
-**Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -695,7 +695,7 @@ Obtains all the enabled constraints of an OS account. This API uses a promise to
 
 queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&gt;): void
 
-Queries information about all the OS accounts created. This API uses an asynchronous callback to return the result.
+Queries information about all the system accounts created. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -707,7 +707,7 @@ Queries information about all the OS accounts created. This API uses an asynchro
 
 | Name  | Type                                                        | Mandatory| Description                                              |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created OS accounts. Otherwise, **data** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created system accounts. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -734,7 +734,7 @@ Queries information about all the OS accounts created. This API uses an asynchro
 
 queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
-Queries information about all the OS accounts created. This API uses a promise to return the result.
+Queries information about all the system accounts created. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -746,7 +746,7 @@ Queries information about all the OS accounts created. This API uses a promise t
 
 | Type                                                       | Description                                          |
 | ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise used to return the information about all the OS accounts created.|
+| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise used to return the information about all the system accounts created.|
 
 **Error codes**
 
@@ -774,7 +774,7 @@ Queries information about all the OS accounts created. This API uses a promise t
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Creates an OS account. This API uses an asynchronous callback to return the result.
+Creates a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -786,9 +786,9 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 
 | Name   | Type                                                | Mandatory| Description                                                                        |
 | :-------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------- |
-| localName | string                                               | Yes  | Name of the OS account to create.                                                       |
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the OS account to create.                                                       |
-| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created OS account. Otherwise, **err** is an error object.|
+| localName | string                                               | Yes  | Name of the system account to create.                                                       |
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the system account to create.                                                       |
+| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -796,6 +796,7 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 | -------- | ------------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localName or type. |
+| 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -818,9 +819,9 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 
 ### createOsAccount
 
-createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInfo&gt;
+createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccountOptions): Promise&lt;OsAccountInfo&gt;
 
-Creates an OS account. This API uses a promise to return the result.
+Creates a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -832,32 +833,37 @@ Creates an OS account. This API uses a promise to return the result.
 
 | Name   | Type                           | Mandatory| Description                  |
 | --------- | ------------------------------- | ---- | ---------------------- |
-| localName | string                          | Yes  | Name of the OS account to create.|
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the OS account to create.|
+| localName | string                          | Yes  | Name of the system account to create.|
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
 | Type                                          | Description                                 |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
 
 **Error codes**
 
 | ID | Error Message                  |
 | -------- | ------------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localName or type. |
+| 12300002 | Invalid localName, type or options. |
+| 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
+| 12300015 | Short name already exists. |
 
 **Example**
 
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let options: account_osAccount.CreateOsAccountOptions;
+  options.shortName = 'myShortName';
   try {
-    accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then(
+    accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, options).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
@@ -872,7 +878,7 @@ Creates an OS account. This API uses a promise to return the result.
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Creates an OS account and associates it with the specified domain account. This API uses an asynchronous callback to return the result.
+Creates a system account and associates it with the specified domain account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -884,9 +890,9 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Name    | Type                                                | Mandatory| Description                                                                        |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the OS account to create.                                                      |
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the system account to create.                                                      |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | Yes  | Domain account information.                                                              |
-| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created OS account. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -921,7 +927,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
 
-Creates an OS account and associates it with the specified domain account. This API uses a promise to return the result.
+Creates a system account and associates it with the specified domain account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -933,14 +939,14 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Name    | Type                                     | Mandatory| Description                |
 | ---------- | ---------------------------------------- | ---- | -------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the OS account to create.|
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
 
 **Return value**
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
 
 **Error codes**
 
@@ -976,7 +982,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
 queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-Queries information about the OS account to which the current process belongs. This API uses a promise to return the result.
+Queries information about the system account to which the current process belongs. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -988,7 +994,7 @@ Queries information about the OS account to which the current process belongs. T
 
 | Type                                          | Description                                      |
 | ---------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Error codes**
 
@@ -1016,7 +1022,7 @@ Queries information about the OS account to which the current process belongs. T
 
 queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-Queries information about the OS account of the given ID. This API uses an asynchronous callback to return the result.
+Queries information about the system account of the given ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1028,8 +1034,8 @@ Queries information about the OS account of the given ID. This API uses an async
 
 | Name  | Type                                                | Mandatory| Description                                                                      |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| localId  | number                                               | Yes  | ID of the target OS account.                                                     |
-| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the OS account information obtained. Otherwise, **data** is an error object.|
+| localId  | number                                               | Yes  | ID of the target system account.                                                     |
+| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -1039,7 +1045,7 @@ Queries information about the OS account of the given ID. This API uses an async
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Query information about OS account 100.
+**Example**: Query information about system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1059,7 +1065,7 @@ Queries information about the OS account of the given ID. This API uses an async
 
 queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
-Queries information about the OS account of the given ID. This API uses a promise to return the result.
+Queries information about the system account of the given ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1071,13 +1077,13 @@ Queries information about the OS account of the given ID. This API uses a promis
 
 | Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                                          | Description                                |
 | ---------------------------------------------- | ------------------------------------ |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the OS account information obtained.|
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Error codes**
 
@@ -1087,7 +1093,7 @@ Queries information about the OS account of the given ID. This API uses a promis
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
-**Example**: Query information about OS account 100.
+**Example**: Query information about system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1108,7 +1114,7 @@ Queries information about the OS account of the given ID. This API uses a promis
 
 getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the profile photo of an OS account. This API uses an asynchronous callback to return the result.
+Obtains the profile photo of a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1120,7 +1126,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 
 | Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| localId  | number                      | Yes  | ID of the target OS account.                                                               |
+| localId  | number                      | Yes  | ID of the target system account.                                                               |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the profile photo information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1131,7 +1137,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain the profile photo of OS account 100.
+**Example**: Obtain the profile photo of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1151,7 +1157,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 
 getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
-Obtains the profile photo of an OS account. This API uses a promise to return the result.
+Obtains the profile photo of a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1163,7 +1169,7 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
@@ -1179,7 +1185,7 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**Example**: Obtain the profile photo of OS account 100.
+**Example**: Obtain the profile photo of system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1200,7 +1206,7 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 
 setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a profile photo for an OS account. This API uses an asynchronous callback to return the result.
+Sets a profile photo for a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1212,7 +1218,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 
 | Name  | Type                     | Mandatory| Description        |
 | -------- | ------------------------- | ---- | ------------ |
-| localId  | number                    | Yes  | ID of the target OS account.|
+| localId  | number                    | Yes  | ID of the target system account.|
 | photo    | string                    | Yes  | Profile photo information.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
@@ -1225,7 +1231,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set a profile photo for OS account 100.
+**Example**: Set a profile photo for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1248,7 +1254,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 
 setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
-Sets a profile photo for an OS account. This API uses a promise to return the result.
+Sets a profile photo for a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1260,7 +1266,7 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target OS account.|
+| localId | number | Yes  | ID of the target system account.|
 | photo   | string | Yes  | Profile photo information.  |
 
 **Return value**
@@ -1278,7 +1284,7 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**Example**: Set a profile photo for OS account 100.
+**Example**: Set a profile photo for system account 100.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1303,7 +1309,7 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-Subscribes to the OS account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
+Subscribes to the system account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1315,9 +1321,9 @@ Subscribes to the OS account activation states, including the states of the acco
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the OS account activation is complete, and **activating** indicates an event reported when OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates an event reported when the system account activation is complete, and **activating** indicates an event reported when system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
-| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the OS account being activated or activated.   |
+| callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the system account being activated or activated.   |
 
 **Error codes**
 
@@ -1344,7 +1350,7 @@ Subscribes to the OS account activation states, including the states of the acco
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-Unsubscribes from the OS account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
+Unsubscribes from the system account activation states, including the states of the account being activated and the account with activation completed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1356,9 +1362,9 @@ Unsubscribes from the OS account activation states, including the states of the 
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that a system account is activated, and **activating** means an event indicating that a system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-| callback | Callback&lt;number&gt;     | No  | Callback for the OS account activation state events. By default, this parameter is left empty, which unsubscribes from all the callbacks for the OS account activation state events.                     |
+| callback | Callback&lt;number&gt;     | No  | Callback for the system account activation state events. By default, this parameter is left empty, which unsubscribes from all the callbacks for the system account activation state events.                     |
 
 **Error codes**
 
@@ -1512,7 +1518,7 @@ Obtains the bundle ID based on the specified UID. The API returns the result syn
 
 isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 
-Checks whether the current process belongs to the main OS account. This API uses an asynchronous callback to return the result.
+Checks whether the current process belongs to the main system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1524,7 +1530,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 | Name  | Type                         | Mandatory| Description                                                              |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the current process belongs to the main OS account. If **false** is returned, the current process does not belong to the main OS account.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
 
 **Error codes**
 
@@ -1551,7 +1557,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 isMainOsAccount(): Promise&lt;boolean&gt;;
 
-Checks whether the current process belongs to the main OS account. This API uses a promise to return the result.
+Checks whether the current process belongs to the main system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1563,7 +1569,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 | Type                  | Description                                                                 |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main OS account. If **false** is returned, the current process does not belong to the main OS account.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
 
 **Error codes**
 
@@ -1591,7 +1597,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
 
-Obtains the constraint source information of an OS account. This API uses an asynchronous callback to return the result.
+Obtains the constraint source information of a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1603,7 +1609,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | Yes  |  ID of the target OS account.|
+| localId     | number | Yes  |  ID of the target system account.|
 | constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained.|
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](js-apis-osAccount.md#constraints) source information obtained. Otherwise, **err** is an error object.                     |
 
@@ -1635,7 +1641,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
-Obtains the constraint source information of an OS account. This API uses a promise to return the result.
+Obtains the constraint source information of a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1647,7 +1653,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 | Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | Yes  |  ID of the target OS account.|
+| localId     | number | Yes  |  ID of the target system account.|
 | constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained.|
 
 **Return value**
@@ -2190,12 +2196,12 @@ Register a PIN inputer.
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    let result = pinAuth.registerInputer({
+    pinAuth.registerInputer({
         onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
-    console.log('registerInputer result = ' + result);
+    console.log('registerInputer success.');
   } catch (e) {
     console.log('registerInputer exception = ' + JSON.stringify(e));
   }
@@ -2983,7 +2989,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| localId   | number  | Yes  | Local ID of the OS account bound to the domain account.|
+| localId   | number  | Yes  | Local ID of the system account bound to the domain account.|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
 
 **Error codes**
@@ -4389,6 +4395,16 @@ Enumerates the tip codes for fingerprint authentication.
 | FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | Press your finger.                 |
 | FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | Lift your finger.               |
 
+## OsAccountInfo
+
+Defines the system account information.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| shortName<sup>12+</sup> | string | No  | Short name of a system account.<br>**System API**: This is a system API and is left blank by default.|
+
 ## DomainAccountInfo<sup>8+</sup>
 
 Defines the domain account information.
@@ -4398,7 +4414,7 @@ Defines the domain account information.
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: It is a system API and is left blank by default.|
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: It is a system API. The default value is **false**.|
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -4410,7 +4426,7 @@ Defines the constraint source type.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| localId      | number | Yes  | ID of the OS account.    |
+| localId      | number | Yes  | ID of the system account.    |
 | type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source.|
 
 ## ConstraintSourceType<sup>9+</sup>
@@ -4480,3 +4496,15 @@ Defines the options for the domain plug-in to obtain the domain account informat
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | callerUid | number | Yes  | Unique identifier of the caller.|
+
+## CreateOsAccountOptions<sup>12+</sup>
+
+Defines the options for creating a system account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|

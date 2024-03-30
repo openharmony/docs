@@ -33,7 +33,7 @@ Data persistence is an operation that takes time. Applications should avoid the 
 
 It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
 
-PersistentStorage can be called to persist data only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask), is specified.
+PersistentStorage can be called to persist data only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask), is specified.  
 
 ## Application Scenarios
 

@@ -10,10 +10,10 @@ This topic walks you through on how to import an AES 256-bit key. For details ab
    The key alias cannot exceed 64 bytes.
 
 2. Encapsulate the key property set and key material.
-   - The key property set must contain [HuksKeyAlg](../../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../../reference/apis/js-apis-huks.md#hukskeypurpose).
-   - The key material must comply with the [HUKS key material format](huks-concepts.md#key-material-format) and is used to fill the **inData** field of [HuksOptions](../../reference/apis/js-apis-huks.md#huksoptions) in Uint8Array format.
+   - The key property set must contain [HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg), [HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose).
+   - The key material must comply with the [HUKS key material format](huks-concepts.md#key-material-format) and is used to fill the **inData** field of [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions) in Uint8Array format.
 
-3. Use [huks.importKeyItem](../../reference/apis/js-apis-huks.md#huksimportkeyitem9) to import the key.
+3. Use [huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9) to import the key.
 
 ```ts
 /* Import an AES 256-bit key in plaintext. This example uses callback-based APIs. */
@@ -65,7 +65,7 @@ try {
 
 ## Verification
 
-Use [huks.isKeyItemExist](../../reference/apis/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.
+Use [huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.
 
 ```ts
 import huks from '@ohos.security.huks';

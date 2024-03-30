@@ -77,7 +77,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [build Function](#build-function)
+- [build() Function](#build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
@@ -89,7 +89,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component.  
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -131,7 +131,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
 
   ```ts
   @Entry
@@ -176,24 +176,20 @@ To fully understand the preceding example, a knowledge of the following concepts
 In addition to the mandatory **build()** function, a custom component may implement other member functions with the following restrictions:
 
 
-- Static functions are not supported.
-
-- Access to the member functions is private.
+- Access to the member functions is private. Avoid declaring the member functions as static functions.
 
 
 A custom component can also implement member variables with the following restrictions:
 
 
-- Static member variables are not supported.
-
-- Access to the member variables is private. The access rules of member variables are the same as those of member functions.
+- Access to the member variables is private. Avoid declaring the member variables as static variables.
 
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
 
 ## Rules for Custom Component Parameters
 
-As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) decorated function. During the creation, the custom component's parameters are initialized based on the decorator rules.
+As can be learnt from preceding examples, a custom component can be created from a **build** method. During the creation, the custom component's parameters are initialized based on the decorator rules.
 
 
 ```ts

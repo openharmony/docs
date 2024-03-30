@@ -22,16 +22,14 @@ import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import vpnExt from '@ohos.net.vpnExtension';
 
-let VpnConnection: vpnExt.VpnConnection;
-
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = 'xxx.xxx.x.x';
   private tunIp: string = 'x.x.x.x';
   private blockedAppName: string = 'xxxx';
 
   onCreate(want: Want) {
-    // this.context is VpnExtensionContext
-    VpnConnection = vpnExt.createVpnConnection(this.context);
+    let VpnConnection: vpnExt.VpnConnection = vpnExt.createVpnConnection(this.context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
 ```

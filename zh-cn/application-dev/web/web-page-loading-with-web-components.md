@@ -170,6 +170,11 @@ import web_webview from '@ohos.web.webview'
 import { NodeController, BuilderNode, Size, FrameNode }  from '@ohos.arkui.node';
 // @Builder中为动态组件的具体组件内容
 // Data为入参封装类
+class Data{
+  url: string = "https://www.example.com";
+  controller: WebviewController = new web_webview.WebviewController();
+}
+
 @Builder
 function WebBuilder(data:Data) {
   Column() {

@@ -26,35 +26,35 @@ HUKS为开发者提供了密钥全生命周期的管理能力，其核心功能�
 
 ### 密钥生成
 
-| 功能 | 说明 | 支持算法 | 
-| -------- | -------- | -------- |
-| **[密钥生成](huks-key-generation-overview.md)** | 随机生成密钥，且在密钥的全生命周期内，其明文仅在安全环境中进行访问操作，不会将明文传递出安全环境。 | AES、HMAC、RSA、x25519、ED25519、SM2、SM4、DH、ECC、DSA | 
-| **[密钥导入](huks-key-import-overview.md)** | 业务可以将外部生成的密钥导入到HUKS进行管理。 | - | 
+| 功能 | 说明 |
+| -------- | -------- |
+| **[密钥生成](huks-key-generation-overview.md)** | 随机生成密钥，且在密钥的全生命周期内，其明文仅在安全环境中进行访问操作，不会将明文传递出安全环境。 |
+| **[密钥导入](huks-key-import-overview.md)** | 业务可以将外部生成的密钥导入到HUKS进行管理。 |
 
 
 ### 密钥使用
 
-| 功能 | 说明 | 支持算法 | 
-| -------- | -------- | -------- |
-| **[加密/解密](huks-encryption-decryption-overview.md)** | 使用密钥将数据加密为攻击者无法理解的密文，或使用密钥将数据解密为业务可用的明文。 | DH、ECDH、x25519、SM2 | 
-| **[签名/验签](huks-signing-signature-verification-overview.md)** | 用于认证消息内容以及消息发送者身份的真实性。 | RSA、DSA、ECC、SM2、ED25519 | 
-| **[密钥协商](huks-key-agreement-overview.md)** | 两个或多个实体通过协商，共同建立会话密钥。 | DH、ECDH、x25519 | 
-| **[密钥派生](huks-key-derivation-overview.md)** | 从一个现有密钥派生出一个或多个新密钥。 | AES、HMAC、SM4 | 
-| **[访问控制](huks-identity-authentication-overview.md)** | 确保存储在HUKS中的密钥，不会被越权访问。 | - | 
+| 功能 | 说明 |
+| -------- | -------- |
+| **[加密/解密](huks-encryption-decryption-overview.md)** | 使用密钥将数据加密为攻击者无法理解的密文，或使用密钥将数据解密为业务可用的明文。 |
+| **[签名/验签](huks-signing-signature-verification-overview.md)** | 用于认证消息内容以及消息发送者身份的真实性。 |
+| **[密钥协商](huks-key-agreement-overview.md)** | 两个或多个实体通过协商，共同建立会话密钥。 |
+| **[密钥派生](huks-key-derivation-overview.md)** | 从一个现有密钥派生出一个或多个新密钥。 |
+| **[访问控制](huks-identity-authentication-overview.md)** | 确保存储在HUKS中的密钥，不会被越权访问。 |
 
 
 ### 密钥删除
 
-| 功能 | 说明 | 支持算法 | 
-| -------- | -------- | -------- |
-| **[密钥删除](huks-delete-key-arkts.md)** | 安全地删除存储在HUKS中的密钥数据。 | - | 
+| 功能 | 说明 |
+| -------- | -------- |
+| **[密钥删除](huks-delete-key-arkts.md)** | 安全地删除存储在HUKS中的密钥数据。 |
 
 
 ### 密钥证明
 
-| 功能 | 说明 | 支持算法 | 
-| -------- | -------- | -------- |
-| **[密钥证明](huks-key-attestation-overview.md)** | 为存储在HUKS中的非对称密钥对中的公钥签发证书，从而证明密钥的合法性（如密钥在安全环境中生成）。 | RSA、ECC、X25519 | 
+| 功能 | 说明 |
+| -------- | -------- |
+| **[密钥证明](huks-key-attestation-overview.md)** | 为存储在HUKS中的非对称密钥对中的公钥签发证书，从而证明密钥的合法性（如密钥在安全环境中生成）。 |
 
 
 ## 与相关Kit的关系

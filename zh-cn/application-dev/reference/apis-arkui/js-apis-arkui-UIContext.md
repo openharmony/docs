@@ -230,6 +230,160 @@ struct AnimateToExample {
 }
 ```
 
+### getSharedLocalStorage<sup>12+</sup>
+
+getSharedLocalStorage(): LocalStorage
+
+获取当前stage共享的LocalStorage实例。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型                             | 描述                |
+| ------------------------------ | ----------------- |
+| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) | 返回LocalStorage实例。 |
+
+**示例：**
+
+```ts
+// index.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct SharedLocalStorage {
+  localStorage = this.getUIContext().getSharedLocalStorage()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Change Local Storage to 47")
+          .onClick(() => {
+            this.localStorage?.setOrCreate("propA",47)
+          })
+        Button("Get Local Storage")
+          .onClick(() => {
+            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+          })
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/GetSharedLocalStorage'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+// GetSharedLocalStorage.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct GetSharedLocalStorage {
+  localStorage = this.getUIContext().getSharedLocalStorage()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Change Local Storage to 100")
+          .onClick(() => {
+            this.localStorage?.setOrCreate("propA",100)
+          })
+        Button("Get Local Storage")
+          .onClick(() => {
+            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+### getHostContext<sup>12+</sup>
+
+getHostContext(): common.Context
+
+获得当前元能力的Context。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型 | 说明                             |
+| ------ | ------------------------------- |
+| [common.Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  uiContext: UIContext | null | undefined = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = this.uiContext?.getHostContext();
+            console.info("CacheDir:" + context?.cacheDir)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
+### getFrameNodeById<sup>12+</sup>
+
+getFrameNodeById(id: string): FrameNode | null
+
+提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+**示例：**
+
+```ts
+uiContext.getFrameNodeById("TestNode")
+```
+
 ### showAlertDialog
 
 showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
@@ -279,7 +433,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                 |
+| 参数名 | 类型                                                         | 必填 | 说明                 |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
 | value  | [ActionSheetOptions](arkui-ts/ts-methods-action-sheet.md#actionsheetoptions对象说明) | 是   | 配置列表弹窗的参数。 |
 
@@ -334,7 +488,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 描述                           |
+| 参数名  | 类型                                                         | 必填 | 说明                           |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | options | [DatePickerDialogOptions](arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions对象说明) | 是   | 配置日期滑动选择器弹窗的参数。 |
 
@@ -370,7 +524,7 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 描述                           |
+| 参数名  | 类型                                                         | 必填 | 说明                           |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | options | [TimePickerDialogOptions](arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions对象说明) | 是   | 配置时间滑动选择器弹窗的参数。 |
 
@@ -429,7 +583,7 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 描述                           |
+| 参数名  | 类型                                                         | 必填 | 说明                           |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | options | [TextPickerDialogOptions](arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
 
@@ -968,6 +1122,145 @@ let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
+### on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
+
+**示例：**
+
+请参考[offscrollevent示例](#offscrollevent12-1)
+
+### off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
+
+**示例：**
+
+请参考[offscrollevent示例](#offscrollevent12-1)
+
+### on('scrollEvent')<sup>12+</sup>
+
+on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.ScrollEventInfo\>): void
+
+监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
+
+**示例：**
+
+请参考[offscrollevent示例](#offscrollevent12-1)
+
+### off('scrollEvent')<sup>12+</sup>
+
+off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.ScrollEventInfo\>): void
+
+取消监听滚动事件的开始和结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
+| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
+
+**示例：**
+
+```ts
+import uiContext, { UIObserver } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  scroller: Scroller = new Scroller();
+  observer: uiContext.UIObserver = new UIObserver();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroller) {
+          Column() {
+            ForEach(this.arr, (item: number) => {
+              Text(item.toString())
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+            }, (item: string) => item)
+          }.width('100%')
+        }
+        .id("testId")
+        .height('80%')
+      }
+      .width('100%')
+
+      Row() {
+        Button('UIObserver on')
+          .onClick(() => {
+            this.observer.on('scrollEvent', (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserver off')
+          .onClick(() => {
+            this.observer.off('scrollEvent');
+          })
+      }
+
+      Row() {
+        Button('UIObserverWithId on')
+          .onClick(() => {
+            this.observer.on('scrollEvent', { id:"testId" }, (info) => {
+              console.info('scrollEventInfo', JSON.stringify(info));
+            });
+          })
+        Button('UIObserverWithId off')
+          .onClick(() => {
+            this.observer.off('scrollEvent', { id:"testId" });
+          })
+      }
+    }
+    .height('100%')
+  }
+}
+```
+
 ### on('routerPageUpdate')<sup>11+</sup>
 
 on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
@@ -986,8 +1279,9 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+import {UIContext, UIObserver } from '@kit.ArkUI';
+
+let observer:UIObserver = this.getUIContext().getUIObserver();
 observer.on('routerPageUpdate', (info) => {
     console.info('RouterPage state updated, called by ' + `${info.name}`);
 });
@@ -1011,10 +1305,255 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
-let observer:UIObserver = uiContext.getUIObserver();
+import {UIContext, UIObserver } from '@kit.ArkUI';
+
+let observer:UIObserver = this.getUIContext().getUIObserver();
+function callBackFunc(info:observer.RouterPageInfo) {};
 // callBackFunc is defined and used before
 observer.off('routerPageUpdate', callBackFunc);
+```
+
+### observer.on('densityUpdate')<sup>12+</sup>
+
+on(type: 'densityUpdate', callback: Callback<DensityInfo>): void
+
+监听屏幕像素密度变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.off('densityUpdate')<sup>12+</sup>
+
+off(type: 'densityUpdate', callback?: Callback<DensityInfo>): void
+
+取消监听屏幕像素密度的变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
+| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 否   | 需要被注销的回调函数。                  |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  @State density: number = 0;
+  @State message: string = '未注册监听'
+
+  densityUpdateCallback = (info: observer.DensityInfo) => {
+    this.density = info.density;
+    this.message = '变化后的DPI：' + this.density.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+      Button('注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '已注册监听'
+          this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
+        })
+      Button('解除注册屏幕像素密度变化监听')
+        .onClick(() => {
+          this.message = '未注册监听'
+          this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.on('willDraw')<sup>12+</sup>
+
+on(type: 'willDraw', callback: Callback\<void\>): void
+
+监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发");
+  }
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.off('willDraw')<sup>12+</sup>
+
+off(type: 'willDraw', callback?: Callback\<void\>): void
+
+取消监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发")
+  }
+
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('willDraw', this.willDrawCallback);
+        })
+      Button('解除注册绘制指令下发监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().off('willDraw', this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.on('didLayout')<sup>12+</sup>
+
+on(type: 'didLayout', callback: Callback\<void\>): void
+
+监听每一帧布局完成情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("layout布局完成");
+  }
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
+        })
+    }
+  }
+}
+```
+
+### observer.off('didLayout')<sup>12+</sup>
+
+off(type: 'didLayout', callback?: Callback\<void\>): void
+
+取消监听每一帧布局完成情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否将要绘制。 |
+| callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("layout布局完成")
+  }
+
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().on('didLayout', this.didLayoutCallback);
+        })
+      Button('解除注册注册布局完成监听')
+        .onClick(() => {
+          this.getUIContext().getUIObserver().off('didLayout', this.didLayoutCallback);
+        })
+    }
+  }
+}
 ```
 
 ## MediaQuery
@@ -1033,7 +1572,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](..ui/arkts-layout-development-media-query.md#语法规则)。 |
+| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
 
 **返回值：**
 
@@ -1916,6 +2455,37 @@ let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
 
+### back<sup>12+</sup>
+
+back(index: number, params?: Object): void;
+
+返回指定的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| index | number | 是    | 跳转目标页面的索引值。  |
+| params    | Object      | 否    | 页面返回时携带的参数。 |
+
+**示例：**
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+router.back(1);
+```
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+router.back(1, {info:'来自Home页'}); //携带参数返回
+```
+
 ### clear
 
 clear(): void
@@ -1981,6 +2551,74 @@ let page = router.getState();
 console.log('current index = ' + page.index);
 console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
+```
+
+### getStateByIndex<sup>12+</sup>
+
+getStateByIndex(index: number): router.RouterState | undefined
+
+通过索引值获取对应页面的状态信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| index    | number | 是   | 表示要获取的页面索引。  |
+
+**返回值：**
+
+| 类型                          | 说明      |
+| --------------------------- | ------- |
+| router.[RouterState](js-apis-router.md#outerstate) | 页面状态信息。 |
+| undefined   | 索引不存在时返回undefined。|
+
+**示例：** 
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+let options:router.RouterState = router.getStateByIndex(1);
+console.log('index = ' + options.index);
+console.log('name = ' + options.name);
+console.log('path = ' + options.path);
+console.log('params = ' + options.params);
+```
+### getStateByUrl<sup>12+</sup>
+
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
+
+通过url获取当前页面的状态信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| url    | string | 是   | 表示要获取对应页面信息的url。  |
+
+**返回值：**
+
+| 类型                          | 说明      |
+| --------------------------- | ------- |
+| Array<router.[RouterState](js-apis-router.md#outerstate)> | 页面状态信息。 |
+
+**示例：** 
+
+```ts
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+let router: Router = uiContext.getRouter();
+let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+for (let i: number = 0; i < options.length; i++) {
+  console.log('index = ' + options[i].index);
+  console.log('name = ' + options[i].name);
+  console.log('path = ' + options[i].path);
+  console.log('params = ' + options[i].params);
+}
 ```
 
 ### showAlertBeforeBackPage
@@ -2416,7 +3054,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                             |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
@@ -2764,12 +3402,18 @@ struct DragControllerPage {
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，以下接口将失效。
 
 ### setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
 通过该方法设置原子化服务menuBar是否可见。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2777,7 +3421,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visiable | boolean | 是 | 原子化服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。|
 
 
 **示例：**
@@ -2807,6 +3451,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务menuBar的背景颜色。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2843,6 +3490,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setTitleContent(content:string): void
 
 通过该方法设置原子化服务menuBar的标题内容。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2879,6 +3529,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setTitleFontStyle(font:FontStyle):void
 
 通过该方法设置原子化服务menuBar的字体样式。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
@@ -2915,6 +3568,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 setIconColor(color:Nullable<Color | number | string>): void
 
 通过该方法设置原子化服务图标的颜色。
+> **说明：**
+>
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

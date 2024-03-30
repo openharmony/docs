@@ -25,15 +25,15 @@ It also provides APIs to define common sensor attributes.
 
 | Name| Description|
 | -------- | -------- |
-| [Sensor_Type](#sensor_type) | Defines an enum that enumerates the sensor types. |
-| [Sensor_Result](#sensor_result) | Defines an enum that enumerates the sensor result codes. |
-| [Sensor_Accuracy](#sensor_accuracy) | Defines an enum that enumerates the accuracy levels of data reported by a sensor. |
-| [Sensor_Info](#sensor_info) | Defines the sensor information. |
-| [Sensor_Event](#sensor_event) | Defines the sensor data information. |
-| [Sensor_SubscriptionId](#sensor_subscriptionid) | Defines the sensor subscription ID, which uniquely identifies a sensor. |
-| [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) | Defines the sensor subscription attribute.|
+| [Sensor_Type](#sensor_type) | Defines an enum for sensor types. |
+| [Sensor_Result](#sensor_result) | Defines an enum for sensor result codes. |
+| [Sensor_Accuracy](#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Info](#sensor_info) | Defines a struct for the sensor information. |
+| [Sensor_Event](#sensor_event) | Defines a struct for the sensor data information. |
+| [Sensor_SubscriptionId](#sensor_subscriptionid) | Defines a struct for the sensor subscription ID, which uniquely identifies a sensor. |
+| [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) | Defines a struct for the sensor subscription attribute.|
 | void ([*Sensor_EventCallback](#sensor_eventcallback)) ([Sensor_Event](#sensor_event) \*event) | Defines the callback function used to report sensor data. |
-| [Sensor_Subscriber](#sensor_subscriber) | Defines the sensor subscriber information. |
+| [Sensor_Subscriber](#sensor_subscriber) | Defines a struct for the sensor subscriber information. |
 
 
 ### Enums
@@ -88,7 +88,7 @@ typedef enum Sensor_Accuracy Sensor_Accuracy
 ```
 **Description**
 
-Defines an enum that enumerates the accuracy levels of data reported by a sensor.
+Defines an enum for accuracy levels of data reported by a sensor.
 
 **Since**: 11
 
@@ -100,7 +100,7 @@ typedef struct Sensor_Event Sensor_Event
 ```
 **Description**
 
-Defines the sensor data information.
+Defines a struct for the sensor data information.
 
 **Since**: 11
 
@@ -124,7 +124,7 @@ typedef struct Sensor_Info Sensor_Info
 ```
 **Description**
 
-Defines the sensor information.
+Defines a struct for the sensor information.
 
 **Since**: 11
 
@@ -136,7 +136,7 @@ typedef enum Sensor_Result Sensor_Result
 ```
 **Description**
 
-Defines an enum that enumerates the sensor result codes.
+Defines an enum for sensor result codes.
 
 **Since**: 11
 
@@ -148,7 +148,7 @@ typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
 **Description**
 
-Defines the sensor subscriber information.
+Defines a struct the sensor subscriber information.
 
 **Since**: 11
 
@@ -160,7 +160,7 @@ typedef struct Sensor_SubscriptionAttribute Sensor_SubscriptionAttribute
 ```
 **Description**
 
-Defines the sensor subscription attribute.
+Defines a struct for the sensor subscription attribute.
 
 **Since**: 11
 
@@ -172,7 +172,7 @@ typedef struct Sensor_SubscriptionId Sensor_SubscriptionId
 ```
 **Description**
 
-Defines the sensor subscription ID, which uniquely identifies a sensor.
+Defines a struct for the sensor subscription ID, which uniquely identifies a sensor.
 
 **Since**: 11
 
@@ -184,7 +184,7 @@ typedef enum Sensor_Type Sensor_Type
 ```
 **Description**
 
-Defines an enum that enumerates the sensor types.
+Defines an enum for sensor types.
 
 **Since**: 11
 

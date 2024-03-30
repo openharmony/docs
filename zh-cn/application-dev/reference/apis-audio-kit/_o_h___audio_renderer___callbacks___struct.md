@@ -27,6 +27,9 @@
 
 ## 结构体成员变量说明
 
+> **说明：**
+> 以下回调接口的返回值没有枚举定义，当前版本实现并不按返回值区分处理，但为保证后续版本可扩展，默认使用0。
+
 
 ### OH_AudioRenderer_OnError
 
@@ -38,7 +41,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnError)(OH_AudioR
 
 该函数指针将指向用于处理音频播放错误结果的回调函数。
 
-**起始版本：** 10
 
 
 ### OH_AudioRenderer_OnInterruptEvent
@@ -51,8 +53,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnInterruptEvent)(
 
 该函数指针将指向用于处理音频播放中断事件的回调函数。
 
-**起始版本：** 10
-
 
 ### OH_AudioRenderer_OnStreamEvent
 
@@ -63,8 +63,6 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnStreamEvent)(OH_
 **描述**
 
 该函数指针将指向用于处理音频播放流事件的回调函数。
-
-**起始版本：** 10
 
 
 ### OH_AudioRenderer_OnWriteData

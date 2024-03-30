@@ -1071,7 +1071,7 @@ class FilledRectangle extends RectangleSize {
     this.color = c
   }
 
-  override draw() {
+  draw() {
     super.draw() // call of super methods
     // super.height - can be used here
     /* fill rectangle */
@@ -1082,7 +1082,6 @@ class FilledRectangle extends RectangleSize {
 #### Override Methods
 
 A subclass can override implementation of a method defined in its superclass.
-An overridden method can be marked with the keyword `override` to improve readability.
 An overridden method must have the same types of parameters, and same or derived return type as the original method.
 
 ```typescript
@@ -1095,7 +1094,7 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   private side: number = 0
-  override area(): number {
+  area(): number {
     return this.side * this.side;
   }
 }
@@ -1549,10 +1548,10 @@ y = c.value! + 1; // ok，2
 
 ### Null-Coalescing Operator
 
-The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to null.
+The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to `null` or `undefined`.
 If it is, then the result of the expression is the right-hand-side expression; otherwise, it is the left-hand-side expression.
 
-In other words, `a ?? b` equals the ternary operator `a != null ? a : b`.
+In other words, `a ?? b` equals the ternary operator `(a != null && a != undefined) ? a : b`.
 
 In the following example, the method `getNick` returns a nickname if it is set; otherwise, an empty string is returned:
 

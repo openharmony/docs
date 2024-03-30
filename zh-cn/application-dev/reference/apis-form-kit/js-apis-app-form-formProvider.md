@@ -3,6 +3,7 @@
 FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片、设置卡片更新时间、获取卡片信息、请求发布卡片等。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -377,3 +378,49 @@ try {
 }
 ```
 
+## setConfigurationUpdateEnabled
+
+setConfigurationUpdateEnabled(formId: string, enableFlags: formInfo.ConfigurationUpdateFlags) : void
+
+设置配置信息更新时，是否允许配置信息在卡片页面中生效。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| enableFlags | [formInfo.ConfigurationUpdateFlags](js-apis-app-form-formInfo.md#configurationupdateflags) | 否 | 卡片配置信息更新开关标志位。 |
+
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
+以上错误码的详细介绍请参见[卡片错误码](../apis-form-kit/errorcode-form.md)。
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.app.form.formProvider';
+
+let formId: string = '12400633174999288';
+const enableFlags: formInfo.ConfigurationUpdateFlags = {
+  fontEnabled : false
+};
+try {
+    formProvider.setConfigurationUpdateEnabled(formId, enableFlags);
+} catch (error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+}
+```

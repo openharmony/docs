@@ -60,6 +60,7 @@ FormComponent(value: {
 | Dimension_4_4              | 4*4 卡片 |
 | Dimension_2_1<sup>9+</sup> | 2*1 卡片 |
 | Dimension_1_1<sup>11+</sup> | 1*1 卡片 |
+| Dimension_6_4<sup>12+</sup> | 6*4 卡片 |
 
 ## FormRenderingMode<sup>11+</sup>
 | 名称                       | 描述     |
@@ -68,24 +69,152 @@ FormComponent(value: {
 | SINGLE_COLOR               | 单色模式。|
 
 ## 属性
-| 名称        | 参数类型                                                                                              | 必填 | 描述                                                                    |
-| ----------- | ----------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------------------------------- |
-| size        | {<br/>width?:&nbsp;number,<br/>height?:&nbsp;number<br/>}                                             | 是   | 设置高宽尺寸。                                                          |
-| moduleName  | string                                                                                                | 是   | 卡片模块名称。                                                          |
-| dimension   | [FormDimension](#formdimension)                                                                       | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
-| allowUpdate | boolean                                                                                               | 否   | 是否允许卡片更新。<br/>默认值：true。                                   |
-| visibility  | [Visibility](ts-appendix-enums.md#visibility)                                                         | 否   | 是否允许卡片可见。<br/>默认值：Visible。                                |
 
+### size
 
+size(value: { width: number; height: number })
+
+设置高宽尺寸。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明       |
+| ------ | --------------------------------------------------------- | ---- | ---------- |
+| value  | {<br/>width?:&nbsp;number,<br/>height?:&nbsp;number<br/>} | 是   | 宽高尺寸。 |
+
+### moduleName
+
+moduleName(value: string)
+
+设置卡片模块名称。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 卡片模块名称。 |
+
+### dimension
+
+dimension(value: FormDimension)
+
+设置卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                            | 必填 | 说明                                 |
+| ------ | ------------------------------- | ---- | ------------------------------------ |
+| value  | [FormDimension](#formdimension) | 是   | 卡片尺寸。<br/>默认值：Dimension_2_2 |
+
+### allowUpdate
+
+allowUpdate(value: boolean)
+
+设置是否允许卡片更新。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                |
+| ------ | ------- | ---- | ----------------------------------- |
+| value  | boolean | 是   | 是否允许卡片更新。<br/>默认值：true |
+
+### visibility
+
+visibility(value: Visibility)
+
+设置是否允许卡片可见。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                   |
+| ------ | --------------------------------------------- | ---- | -------------------------------------- |
+| value  | [Visibility](ts-appendix-enums.md#visibility) | 是   | 是否允许卡片可见。<br/>默认值：Visible |
 
 ## 事件
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 获取到卡片后触发，返回卡片的id.                              |
-| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。<br/>具体可参考[卡片错误码说明文档](../../apis-form-kit/errorcode-form.md) |
-| onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void) | 组件路由事件回调,返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
-| onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件卸载回调，返回卸载卡片的id.                              |
+### onAcquired
+
+onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+获取到卡片后触发，返回卡片的id。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明       |
+| ------ | ----------------------------------- | ---- | ---------- |
+| info   | &nbsp;{&nbsp;id:&nbsp;number&nbsp;} | 是   | 卡片的id。 |
+
+### onError
+
+onError(callback: (info: { errcode: number; msg: string }) => void)
+
+组件加载错误回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                            |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| info   | &nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;} | 是   | errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
+
+### onRouter
+
+onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)
+
+组件路由事件回调，返回[routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明                                                         |
+| ------ | ---- | ---- | ------------------------------------------------------------ |
+| info   | any  | 是   | [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#事件绑定)中的信息。 |
+
+### onUninstall
+
+onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+组件卸载回调，返回卸载卡片的id。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明       |
+| ------ | ----------------------------------- | ---- | ---------- |
+| info   | &nbsp;{&nbsp;id:&nbsp;number&nbsp;} | 是   | 卡片的id。 |
 
 
 ## 示例

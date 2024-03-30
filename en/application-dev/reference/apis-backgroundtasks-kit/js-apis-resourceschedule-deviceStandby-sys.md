@@ -4,6 +4,8 @@ A device enters standby mode if it is unused for a long period of time or after 
 >  **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -21,7 +23,6 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**System API**: This is a system API.
 
 **Parameters**
 
@@ -32,7 +33,7 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -70,7 +71,6 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**System API**: This is a system API.
 
 **Parameters**
 
@@ -86,7 +86,7 @@ Obtains the list of applications that can still use resources of the specified t
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -122,7 +122,6 @@ Requests exemption, so that the application can use restricted resources when th
 
 **Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**System API**: This is a system API.
 
 **Parameters**
 
@@ -132,7 +131,7 @@ Requests exemption, so that the application can use restricted resources when th
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -165,7 +164,6 @@ Cancels exemption for the application.
 
 **Required permissions**: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**System API**: This is a system API.
 
 **Parameters**
 
@@ -175,7 +173,7 @@ Cancels exemption for the application.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](../errorcodes/errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
@@ -204,7 +202,6 @@ Enumerates the types of resources that can be used by exempted applications.
 
 **System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**System API**: This is a system API.
 
 |Name  |Value  |Description|
 | ------------ | ------------ |--------------|
@@ -222,7 +219,6 @@ Defines the information about an exempted application.
 
 **System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**System API**: This is a system API.
 
 |Name |Type  | Mandatory  |Description  |
 | ------------ | ------------ |------------ | ------------ |
@@ -236,7 +232,6 @@ Defines the message used to request to be an exempted application.
 
 **System capability**: SystemCapability.ResourceSchedule.DeviceStandby
 
-**System API**: This is a system API.
 
 |Name  |Type  | Mandatory  |Description  |
 | ------------ | ------------ |------------| ------------ |

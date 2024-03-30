@@ -46,7 +46,7 @@ export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
   onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback) {
     const adType: number | undefined = adParam.adType;
     const ads: Array<advertising.Advertisement> = [];
-    const rewardVerifyConfig： Map<string, string> = new Map();
+    const rewardVerifyConfig: Map<string, string> = new Map();
     ads.push({adType: adType as number, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     ads.push({adType: adType as number, uniqueId: '222222', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot: string = 'test';
@@ -88,7 +88,7 @@ export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
   onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions, respCallback: RespCallback) {
     const adType1: number = adParams[0].adType as number; 
     const ads1: Array<advertising.Advertisement> = [];
-    const rewardVerifyConfig： Map<string, string> = new Map();
+    const rewardVerifyConfig: Map<string, string> = new Map();
     ads1.push({adType: adType1, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     ads1.push({adType: adType1, uniqueId: '222222', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot1: string = 'test1';
@@ -131,7 +131,7 @@ import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
 
 function respDemo(respCallback: RespCallback) {
   const ads: Array<advertising.Advertisement> = [];
-  const rewardVerifyConfig： Map<string, string> = new Map();
+  const rewardVerifyConfig: Map<string, string> = new Map();
   ads.push({adType: 7, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false})
   const slot: string = "test";
   const resMap: Map<string, Array<advertising.Advertisement>> = new Map();

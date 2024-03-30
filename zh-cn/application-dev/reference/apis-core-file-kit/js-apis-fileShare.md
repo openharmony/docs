@@ -34,6 +34,7 @@ import fileShare from '@ohos.fileshare';
 | PERSISTENCE_FORBIDDEN  | 1   | URI禁止被持久化 |
 | INVALID_MODE  | 2   | 无效的模式     |
 | INVALID_PATH  | 3   | 无效的路径     |
+| PERMISSION_NOT_PERSISTED<sup>12+</sup>  | 4   | 权限没有被持久化 |
 
 ## PolicyErrorResult<sup>11+</sup>
 
@@ -72,7 +73,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型                                    | 必填 | 说明                      |
 | -------- |---------------------------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
 
 **返回值：**
 
@@ -142,7 +143,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型                 | 必填 | 说明                      |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
 
 **返回值：**
 
@@ -212,7 +213,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
 
 **返回值：**
 
@@ -256,6 +257,9 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
+              if(err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
+                await fileshare.persistPermission(policies);
+              }
             }
           }
       });
@@ -280,7 +284,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                      |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。           |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
 
 **返回值：**
 
@@ -330,6 +334,78 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+## fileShare.checkPersistentPermission<sup>12+</sup>
+
+checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;boolean&gt;&gt;
+
+异步方法校验所选择的多个文件或目录URI持久化授权，以promise形式返回结果。
+
+**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
+
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                      |
+| -------- |---------------------------------------| -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息，policies数组大小上限为500。|
+
+**返回值：**
+
+|              类型                   |               说明                    |
+| ----------------------------------- | ------------------------------------- |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有持久化授权。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 401      | Parameter error. |
+| 801      | Capability not supported. |
+| 13900042 | Unknown error                          |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function checkPersistentPermissionExample() {
+    try {
+      let documentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(documentSelectOptions);
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uris[0], 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.checkPersistentPermission(policies).then(async (data) => {
+        let result: Array<boolean> = data;
+        for (let i = 0; i < result.length; i++) {
+          console.log("checkPersistentPermission result: " + JSON.stringify(result[i]));
+          if(!result[i]){
+            let info: fileShare.PolicyInfo = {
+              uri: policies[i].uri, 
+              operationMode: policies[i].operationMode,
+            };
+            let policy : Array<fileShare.PolicyInfo> = [info];
+            await fileShare.persistPermission(policy);
+          }
+        }
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
     }
   }
   ```

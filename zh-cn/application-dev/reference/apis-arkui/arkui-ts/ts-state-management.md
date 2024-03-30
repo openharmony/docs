@@ -61,7 +61,10 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
+与link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，从API version 12开始defaultValue可以为null或undefined。
+
+> **说明：**<br/>
+> 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +73,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，从API version 12开始，defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -120,7 +123,10 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与prop接口类似。如果给定的propName在AppStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
+与prop接口类似。如果给定的propName在AppStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为T类型，从API version 12开始defaultValue可以为null或undefined。
+
+> **说明：**<br/>
+> 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,7 +135,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，从API version 12开始，defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -201,7 +207,10 @@ let value: number = AppStorage.get('PropA') as number; // 47
 
 static set&lt;T&gt;(propName: string, newValue: T): boolean
 
-在AppStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值。
+在AppStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值，从API version 12开始，newValue可以为null或undefined。
+
+> **说明：**<br/>
+> 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、understand以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -210,13 +219,13 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 | 参数名      | 类型     | 必填   | 参数描述                   |
 | -------- | ------ | ---- | ---------------------- |
 | propName | string | 是    | AppStorage中的属性名。       |
-| newValue | T      | 是    | 属性值，不能为undefined或null。 |
+| newValue | T      | 是    | 属性值，从API version 12开始可以为null或undefined。 |
 
 **返回值：**
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果AppStorage中不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功则返回true。 |
+| boolean | 如果AppStorage中不存在propName对应的属性，返回false。设置成功则返回true。 |
 
 **示例：**
 ```ts
@@ -231,9 +240,10 @@ let res1: boolean = AppStorage.set('PropB', 47) // false
 static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 如果propName已经在AppStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
-如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个AppStorage的键值对，如果想创建多个AppStorage键值对，可以多次调用此方法。
+如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个AppStorage的键值对，如果想创建多个AppStorage键值对，可以多次调用此方法。从API version 12开始，newValue可以为null或undefined。
 
-newValue不能为undefined或null。
+> **说明：**<br/>
+> 从API version 12 version 开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -242,7 +252,7 @@ newValue不能为undefined或null。
 | 参数名      | 类型     | 必填   | 参数描述                   |
 | -------- | ------ | ---- | ---------------------- |
 | propName | string | 是    | AppStorage中的属性名。       |
-| newValue | T      | 是    | 属性值，不能为undefined或null。 |
+| newValue | T      | 是    | 属性值，从API version 12开始可以为null或undefined。 |
 
 **示例：**
 ```ts
@@ -389,7 +399,7 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与Link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其双向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
+与Link接口类似，如果给定的propName在AppStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其双向绑定数据。defaultValue必须为T类型，且不能为null或undefined。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[setAndLink10+](#setandlink10)替代。
@@ -401,7 +411,7 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为null或undefined。 |
 
 **返回值：**
 
@@ -453,7 +463,7 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-与Prop接口类似。如果给定的propName在AppStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，且不能为undefined或null。
+与Prop接口类似。如果给定的propName在AppStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，且不能为null或undefined。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[setAndProp10+](#setandprop10)替代。
@@ -465,7 +475,7 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | S      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
+| defaultValue | S      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为null或undefined。 |
 
 **返回值：**
 
@@ -549,10 +559,10 @@ static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述                   |
-| -------- | ------ | ---- | ---------------------- |
-| propName | string | 是    | AppStorage中的属性名。       |
-| newValue | T      | 是    | 属性值，不能为undefined或null。 |
+| 参数名   | 类型   | 必填 | 参数描述                        |
+| -------- | ------ | ---- | ------------------------------- |
+| propName | string | 是   | AppStorage中的属性名。          |
+| newValue | T      | 是   | 属性值，不能为null或undefined。 |
 
 **返回值：**
 
@@ -573,7 +583,7 @@ static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 如果propName已经在AppStorage中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，值为newValue。
 
-newValue不能为undefined或null。
+newValue不能为null或undefined。
 
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 10 开始废弃，推荐使用[setOrCreate10+](#setorcreate10)替代。
@@ -582,10 +592,10 @@ newValue不能为undefined或null。
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述                   |
-| -------- | ------ | ---- | ---------------------- |
-| propName | string | 是    | AppStorage中的属性名。       |
-| newValue | T      | 是    | 属性值，不能为undefined或null。 |
+| 参数名   | 类型   | 必填 | 参数描述                        |
+| -------- | ------ | ---- | ------------------------------- |
+| propName | string | 是   | AppStorage中的属性名。          |
+| newValue | T      | 是   | 属性值，不能为null或undefined。 |
 
 **示例：**
 ```ts
@@ -875,10 +885,11 @@ let value: number = storage.get('PropA') as number; // 47
 
 set&lt;T&gt;(propName: string, newValue: T): boolean
 
-在LocalStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值。
+在LocalStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值。从API version 12开始，newValue可以为null或undefined。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -887,13 +898,13 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 | 参数名      | 类型     | 必填   | 参数描述                    |
 | -------- | ------ | ---- | ----------------------- |
 | propName | string | 是    | LocalStorage中的属性名。      |
-| newValue | T      | 是    | 属性值，不能为undefined或者null。 |
+| newValue | T      | 是    | 属性值，从API version 12开始可以为undefined或者null。 |
 
 **返回值：**
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果LocalStorage中不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功返回true。 |
+| boolean | 如果LocalStorage中不存在propName对应的属性，返回false。设置成功返回true。 |
 
 **示例：**
 
@@ -910,10 +921,11 @@ let res1: boolean = storage.set('PropB', 47); // false
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
 如果propName已经在LocalStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
-如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个LocalStorage的键值对，如果想创建多个LocalStorage键值对，可以多次调用此方法。
+如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个LocalStorage的键值对，如果想创建多个LocalStorage键值对，可以多次调用此方法。从API version 12开始，newValue可以为null或undefined。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -922,13 +934,13 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 | 参数名      | 类型     | 必填   | 参数描述                    |
 | -------- | ------ | ---- | ----------------------- |
 | propName | string | 是    | LocalStorage中的属性名。      |
-| newValue | T      | 是    | 属性值，不能为undefined或者null。 |
+| newValue | T      | 是    | 属性值，从API version 12开始可以为undefined或者null。 |
 
 **返回值：**
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果设置的newValue是undefined或者null，返回false。<br/>如果LocalStorage中存在propName，则更新其值为newValue，返回true。<br/>如果LocalStorage中不存在propName，则创建propName，并初始化其值为newValue，返回true。 |
+| boolean | 如果LocalStorage中存在propName，则更新其值为newValue，返回true。<br/>如果LocalStorage中不存在propName，则创建propName，并初始化其值为newValue，返回true。 |
 
 **示例：**
 
@@ -982,10 +994,11 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与link接口类似，如果给定的propName在LocalStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，且不能为undefined或null。
+与link接口类似，如果给定的propName在LocalStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，从API开始defaultValue可以为null或undefined。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -994,7 +1007,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
-| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
+| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，从API version 12开始defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -1048,10 +1061,11 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
-与prop接口类似。如果propName在LocalStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，且不能为undefined或null。
+与prop接口类似。如果propName在LocalStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，从API version 12开始defaultValue可以为null或undefined。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1060,7 +1074,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
-| defaultValue | S      | 是   | 当propName在LocalStorage中不存在，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue不能为undefined或null。 |
+| defaultValue | S      | 是   | 当propName在LocalStorage中不存在，使用defaultValue在LocalStorage中初始化对应的propName，从API version 12开始defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -1251,10 +1265,12 @@ prop1.get(); //  prop1.get()=47
 
 abstract set(newValue: T): void
 
-设置AppStorage/LocalStorage同步属性的数据，newValue必须是T类型，不能为undefined或null。
+设置AppStorage/LocalStorage同步属性的数据，newValue必须是T类型，从API version 12开始可以为null或undefined。
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
+>
+> 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1262,9 +1278,9 @@ abstract set(newValue: T): void
 **参数：**
 
 
-| 参数名   | 类型 | 必填 | 参数描述                              |
-| -------- | ---- | ---- | ------------------------------------- |
-| newValue | T    | 是   | 要设置的数据，不能为undefined或null。 |
+| 参数名   | 类型 | 必填 | 参数描述                                                  |
+| -------- | ---- | ---- | --------------------------------------------------------- |
+| newValue | T    | 是   | 要设置的数据，从API version 12开始可以为null或undefined。 |
 
 
 **示例：**
@@ -1292,8 +1308,10 @@ link.aboutToBeDeleted();
 
 ## PersistentStorage
 
-
 PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../../quick-start/arkts-persiststorage.md)
+
+> **说明：**<br/>
+> 从API version 12开始，PersistentStorage支持null、undefined。
 
 ### PersistPropsOptions
 
@@ -1304,7 +1322,7 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 | 参数名       | 类型                                  | 必填 | 参数描述                                                     |
 | ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | key          | string                                | 是   | 属性名。                                                     |
-| defaultValue | number \| string \| boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。不允许为undefined和null。 |
+| defaultValue | number \| string \| boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。从API version 12开始，defaultValue允许为null或undefined。 |
 
 
 ### persistProp<sup>10+</sup>
@@ -1330,7 +1348,7 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | key          | string | 是   | 属性名。                                                     |
-| defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。不允许为undefined和null。 |
+| defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。从API version 12开始允许为null或undefined。 |
 
 
 **示例：**
@@ -1426,7 +1444,7 @@ static PersistProp&lt;T&gt;(key: string, defaultValue: T): void
 | 参数名       | 类型   | 必填 | 参数描述                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | key          | string | 是   | 属性名。                                                     |
-| defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。不允许为undefined和null。 |
+| defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。不允许为null或undefined。 |
 
 
 **示例：**

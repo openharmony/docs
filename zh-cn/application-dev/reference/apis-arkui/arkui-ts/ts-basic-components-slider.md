@@ -46,34 +46,326 @@ Slider(options?: SliderOptions)
 | -------- | -------- |
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
+| NONE<sup>12+</sup> | 无滑块 |
 
 ## 属性
 
 支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#ffffff'。<br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockColor`可设置默认圆形滑块颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无填充，设置`blockColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockColor`可设置自定义形状的填充颜色。 |
-| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#19182431'。|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#007dff'。 |
-| showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| showTips | value: boolean,<br/>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | value：设置滑动时是否显示气泡提示。<br/>默认值：false <br/>content：设置气泡提示的文本内容，默认显示当前百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距或者边距比较小时，tip会被截断。|
-| trackThickness<sup>8+</sup> | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于等于0的值时，取默认值。 |
-| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。<br/>**说明：** <br/>默认值：'#00000000'。<br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderColor`可设置默认圆形滑块描边颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderColor`可设置自定义形状中线的颜色。 |
-| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderWidth`可设置默认圆形滑块描边粗细；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderWidth`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderWidth`可设置自定义形状中线的粗细。 |
-| stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。<br/>**说明：** <br/>默认值：'#19182431'。 |
-| trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。<br/>**说明：** <br/>默认值：'2vp'。 |
-| blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 <br/>**说明：** <br/>默认值：当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet 时为：{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为：{width: 12, height: 12}。<br/>当设置的bolckSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。|
-| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10对象说明) | 设置滑块形状参数。<br/>**说明：** <br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
-| stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 <br/>**说明：** <br/>默认值：'4vp'。<br/>当值为0时，刻度点不显示，当值小于0时，取默认值。|
-| minLabel<sup>deprecated</sup> | string | 设置最小值。<br/>从APIversion9开始废弃，使用min替代。 |
-| maxLabel<sup>deprecated</sup> | string | 设置最大值。<br/>从APIversion9开始废弃，使用max替代。 |
+### blockColor
+
+blockColor(value: ResourceColor)
+
+设置滑块的颜色。
+
+当滑块形状设置为SliderBlockType.DEFAULT时，blockColor可设置默认圆形滑块颜色。
+
+当滑块形状设置为SliderBlockType.IMAGE时，滑块无填充，设置blockColor不生效。
+
+当滑块形状设置为SliderBlockType.SHAPE时，blockColor可设置自定义形状的填充颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                |
+| ------ | ------------------------------------------ | ---- | ----------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑块的颜色。 <br/>默认值：'#ffffff' |
+
+### trackColor
+
+trackColor(value: ResourceColor | LinearGradient)
+
+设置滑轨的背景颜色。
+
+从API version 12开始支持利用LinearGradient设置滑轨的渐变色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                      |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431' |
+
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+设置滑轨的已滑动部分颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                          |
+| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>默认值：'#007dff' |
+
+### showSteps
+
+showSteps(value: boolean)
+
+设置当前是否显示步长刻度值。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                       |
+| ------ | ------- | ---- | ------------------------------------------ |
+| value  | boolean | 是   | 当前是否显示步长刻度值。<br/>默认值：false |
+
+### showTips
+
+showTips(value: boolean, content?: ResourceStr)
+
+设置滑动时是否显示气泡提示。
+
+当direction的值为Axis.Horizontal时，tip显示在滑块上方，如果上方空间不够，则在下方显示。值为Axis.Vertical时，tip显示在滑块左边，如果左边空间不够，则在右边显示。不设置周边边距或者周边边距比较小时，tip会被截断。
+
+tip的绘制区域为Slider自身节点的overlay。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                   | 必填 | 说明                                       |
+| --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
+| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。<br/>默认值：false |
+| content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 气泡提示的文本内容，默认显示当前百分比。   |
+
+### trackThickness<sup>8+</sup>
+
+trackThickness(value: Length)
+
+设置滑轨的粗细。设置为小于等于0的值时，取默认值。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp。 |
+
+### blockBorderColor<sup>10+</sup>
+
+blockBorderColor(value: ResourceColor)
+
+设置滑块描边颜色。
+
+当滑块形状设置为SliderBlockType.DEFAULT时，blockBorderColor可设置默认圆形滑块描边颜色。
+
+当滑块形状设置为SliderBlockType.IMAGE时，滑块无描边，设置blockBorderColor不生效。
+
+当滑块形状设置为SliderBlockType.SHAPE时，blockBorderColor可设置自定义形状中线的颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                   |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑块描边颜色。<br/>默认值：'#00000000' |
+
+### blockBorderWidth<sup>10+</sup>
+
+blockBorderWidth(value: Length)
+
+设置滑块描边粗细。
+
+当滑块形状设置为SliderBlockType.DEFAULT时，blockBorderWidth可设置默认圆形滑块描边粗细。
+
+当滑块形状设置为SliderBlockType.IMAGE时，滑块无描边，设置blockBorderWidth不生效。
+
+当滑块形状设置为SliderBlockType.SHAPE时，blockBorderWidth可设置自定义形状中线的粗细。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明           |
+| ------ | ---------------------------- | ---- | -------------- |
+| value  | [Length](ts-types.md#length) | 是   | 滑块描边粗细。 |
+
+### stepColor<sup>10+</sup>
+
+stepColor(value: ResourceColor)
+
+设置刻度颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                               |
+| ------ | ------------------------------------------ | ---- | ---------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 刻度颜色。<br/>默认值：'#19182431' |
+
+### trackBorderRadius<sup>10+</sup>
+
+trackBorderRadius(value: Length)
+
+设置底板圆角半径。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                             |
+| ------ | ---------------------------- | ---- | -------------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：'2vp' |
+
+### selectedBorderRadius<sup>12+</sup>
+
+selectedBorderRadius(value: Length)
+
+设置已滑动部分（高亮）圆角半径。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                             |
+| ------ | ---------------------------- | ---- | -------------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。|
+
+### blockSize<sup>10+</sup>
+
+blockSize(value: SizeOptions)
+
+设置滑块大小。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                   | 必填 | 说明       |
+| ------ | -------------------------------------- | ---- | ---------- |
+| value  | [SizeOptions](ts-types.md#sizeoptions) | 是   | 滑块大小。<br/>默认值：当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet时为{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为{width: 12, height: 12}。<br/>当设置的bolckSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。 |
+
+### blockStyle<sup>10+</sup>
+
+blockStyle(value: SliderBlockStyle)
+
+设置滑块形状参数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [SliderBlockStyle](#sliderblockstyle10对象说明) | 是   | 滑块形状参数。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+
+### stepSize<sup>10+</sup>
+
+stepSize(value: Length)
+
+设置刻度大小（直径）。当值为0时，刻度点不显示，当值小于0时，取默认值。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                  |
+| ------ | ---------------------------- | ---- | ------------------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 刻度大小（直径）。 <br/>默认值：'4vp' |
+
+### minLabel<sup>(deprecated)</sup>
+
+minLabel(value: string)
+
+设置最小值。
+
+从APIversion9开始废弃，使用min替代。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明     |
+| ------ | ------ | ---- | -------- |
+| value  | string | 是   | 最小值。 |
+
+### maxLabel<sup>(deprecated)</sup>
+
+maxLabel(value: string)
+
+设置最大值。
+
+从APIversion9开始废弃，使用max替代。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明     |
+| ------ | ------ | ---- | -------- |
+| value  | string | 是   | 最大值。 |
 
 >  **说明：** 
 >
 >  - Slider无默认padding。
 >  - 当Slider为水平滑动条时，Slider默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，左右间距为分别为10vp，若设置padding，padding不会覆盖左右间距。
 >  - 当Slider为竖直滑动条时，Slider默认宽度为40vp，高度为父容器的高度，滑动条居中显示，上下间距为分别为6vp，若设置padding，padding不会覆盖上下间距。
+
+### sliderInteractionMode<sup>12+</sup>
+
+sliderInteractionMode(value: SliderInteraction)
+
+设置用户与滑动条组件交互方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明     |
+| ------ | ------ | ---- | -------- |
+| value  | [SliderInteraction](#sliderinteraction12枚举说明) | 否   | 用户与滑动条组件交互方式。 <br /> 默认值：SliderInteraction.SLIDE_AND_CLICK。 |
+
+### minResponsiveDistance<sup>12+</sup>
+
+minResponsiveDistance(value: number)
+
+设置滑动响应的最小距离。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                       |
+| ------ | ------- | ---- | ------------------------------------------ |
+| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数min和max一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -95,13 +387,39 @@ Slider组件滑块形状枚举。
 | IMAGE   | 使用图片资源作为滑块。   |
 | SHAPE   | 使用自定义形状作为滑块。 |
 
+## SliderInteraction<sup>12+</sup>枚举说明
+
+用户与滑动条组件交互方式
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| SLIDE_AND_CLICK | 用户可拖拽滑块或者点击滑轨使滑块移动。|
+| SLIDE_ONLY | 不允许用户通过点击滑轨使滑块移动。|
+
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖动或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用number.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变化时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
+### onChange
+
+onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void)
+
+Slider拖动或点击时触发事件回调。
+
+Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变化时触发。
+
+当连贯动作为拖动动作时，不触发Click状态。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number                                        | 是   | 当前滑动进度值，变化范围为对应步长steps数组。若返回值有小数，可使用number.toFixed()方法将数据处理为预期的精度。 |
+| mode   | [SliderChangeMode](#sliderchangemode枚举说明) | 是   | 事件触发的相关状态值。                                       |
 
 ## SliderChangeMode枚举说明
 
@@ -125,6 +443,7 @@ Slider组件滑块形状枚举。
 struct SliderExample {
   @State outSetValueOne: number = 40
   @State inSetValueOne: number = 40
+  @State noneValueOne: number = 40
   @State outSetValueTwo: number = 40
   @State inSetValueTwo: number = 40
   @State vOutSetValueOne: number = 40
@@ -203,6 +522,26 @@ struct SliderExample {
       }
       .width('80%')
 
+      Text('none slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: this.noneValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.NONE
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.noneValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+        Text(this.noneValueOne.toFixed(0)).fontSize(12)
+      }
+      .width('80%')
+
       Row() {
         Column() {
           Text('vertical outset slider').fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15)
@@ -272,7 +611,7 @@ struct SliderExample {
 }
 ```
 
-![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)
+![slider](figures/slider.gif)
 
 ### 示例2
 
@@ -300,6 +639,10 @@ struct SliderExample {
       Slider({ style: SliderStyle.InSet, value: 40 })
         .trackBorderRadius(2)
       Divider()
+      Text('selected').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .selectedBorderRadius(2)
+      Divider()
       Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockStyle({ type: SliderBlockType.DEFAULT })
@@ -321,4 +664,4 @@ struct SliderExample {
 }
 ```
 
-![](figures/slider_2.png)
+![slider_2](figures/slider_2.png)

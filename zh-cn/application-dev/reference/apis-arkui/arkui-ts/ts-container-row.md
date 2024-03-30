@@ -29,10 +29,37 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：FlexAlign.Start <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### alignItems
+
+alignItems(value: VerticalAlign)
+
+设置子组件在垂直方向上的对齐格式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 是   | 子组件在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
+
+### justifyContent<sup>8+</sup>
+
+justifyContent(value: FlexAlign)
+
+设置子组件在水平方向上的对齐格式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | [FlexAlign](ts-appendix-enums.md#flexalign) | 是   | 子组件在水平方向上的对齐格式。<br/>默认值：FlexAlign.Start |
 
 >  **说明：**    
 >

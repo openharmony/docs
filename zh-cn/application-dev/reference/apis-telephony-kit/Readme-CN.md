@@ -13,5 +13,6 @@
   - [@ohos.telephony.radio (网络搜索)（系统接口）](js-apis-radio-sys.md)
   - [@ohos.telephony.sim (SIM卡管理)（系统接口）](js-apis-sim-sys.md)
   - [@ohos.telephony.sms (短信服务)（系统接口）](js-apis-sms-sys.md)
+  - [@ohos.telephony.vcard (VCard模块)（系统接口）](js-apis-vcard-sys.md)
 - 错误码
   - [电话子系统错误码](errorcode-telephony.md)

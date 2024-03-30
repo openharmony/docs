@@ -114,8 +114,19 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
 - AppScope（仅API9的Stage模型支持）。
 - HAP包自身模块。
-- 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照依赖顺序进行覆盖（依赖顺序在前的优先级较高）。
-
+- 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照工程oh-package.json5中dependencies下的依赖顺序进行覆盖，依赖顺序在前的优先级较高。例如下方示例中dayjs和lottie中包含同名文件时，会优先使用dayjs中的资源。
+> **说明：**
+> 
+> 如果在AppScope/HAP模块/HAR模块的国际化目录中配置了资源，在相同的国际化限定词下，合并的优先级也遵循上述规则。同时，国际化限定词中配置的优先级高于在base中的配置。如：在AppScope的base中配置了资源字段，在HAR模块的en_US中配置了同样的资源字段，则在en_US的使用场景中，会更优先使用HAR模块中配置的资源字段。
+```
+// oh-package.json5
+{
+  "dependencies": {
+    "dayjs": "^1.10.4",
+    "lottie": "^2.0.0"
+  }
+}
+```
 
 ## 使用
 

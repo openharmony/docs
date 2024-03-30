@@ -78,7 +78,7 @@ import effectKit from "@ohos.effectKit";
 ```
 **References**
 
-[blur](../reference/apis/js-apis-effectKit.md#blur)
+[blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)
 
 
 ## Can EGL operations be performed in subthreads? (API version 10)

@@ -1,4 +1,4 @@
-# 应用文件访问
+# 应用文件访问(ArkTS)
 
 应用需要对应用文件目录下的应用文件进行查看、创建、读写、删除、移动、复制、获取属性等访问操作，下文介绍具体方法。
 
@@ -174,12 +174,13 @@ function getListFile(): void {
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
-    filter: {}
+    filter: {
+      suffix: [".png", ".jpg", ".txt"],
+      displayName: ["test*"],
+      fileSizeOver: 0,
+      lastModifiedAfter: new Date(0).getTime()
+    }
   };
-  listFileOption.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
-  listFileOption.filter.displayName = ['test*'];                    // 匹配文件全名以'test'开头
-  listFileOption.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
-  listFileOption.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
   let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);

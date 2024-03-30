@@ -45,7 +45,7 @@ The component binds gesture objects of different **GestureType** instances throu
 
 | Name| Description|
 | -------- | -------- |
-| onAction((event?:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
+| onAction((event:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
 
 ## GestureEvent
 | Name| Type| Description|
@@ -81,8 +81,8 @@ The component binds gesture objects of different **GestureType** instances throu
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | id | number | Index of a finger.|
-| globalX | number | X-coordinate relative to the upper left corner of the application window.|
-| globalY | number | Y-coordinate relative to the upper left corner of the application window.|
+| globalX | number | X coordinate relative to the upper left corner of the application window.|
+| globalY | number | Y coordinate relative to the upper left corner of the application window.|
 | localX | number | X coordinate relative to the upper left corner of the current component's original area.|
 | localY | number | Y coordinate relative to the upper left corner of the current component's original area.|
 

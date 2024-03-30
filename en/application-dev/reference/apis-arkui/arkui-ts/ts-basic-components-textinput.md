@@ -104,7 +104,7 @@ Defines the user submission event.
 | Password                           | Password input mode. This mode accepts only digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default. The password input mode does not support underlines. If Password Vault is enabled, autofill is available for the username and password.|
 | Email                              | Email address input mode. This mode accepts only digits, letters, underscores (_), dots (.), and one at sign (@).|
 | Number                             | Digit input mode.                                |
-| PhoneNumber<sup>9+</sup>           | Phone number input mode.<br>This mode accepts only digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.     |
+| PhoneNumber<sup>9+</sup>           | Phone number input mode.<br>In this mode, the following are allowed: digits, spaces, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.     |
 | USER_NAME<sup>11+<sup>             | Username input mode. If Password Vault is enabled, autofill is available for the username and password.               |
 | NEW_PASSWORD<sup>11+<sup>          | New password input mode. If Password Vault is enabled, a new password can be automatically generated.                                |
 | NUMBER_PASSWORD<sup>11+</sup>      | Numeric password input mode. An eye icon is used to show or hide the password, and the password is hidden behind dots by default. The password input mode does not support underlines.|
@@ -134,11 +134,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onSubmit(callback: (enterKey: EnterKeyType, event<sup>11+</sup>: [SubmitEvent](#submitevent11)) =&gt; void) | Triggered when the Enter key on the keyboard is pressed.<br>**enterKey**: type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered. For details, see [EnterKeyType](#enterkeytype).<br>**event**: submission event. For details, see [SubmitEvent](#submitevent11).|
 | onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended.|
 | onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. The text box is in the editing state when the caret is placed in it. If the value of **isEditing** is **true**, text input is in progress.|
-| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
-| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
-| onPaste(callback:(value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.<br>**event**: custom paste event.|
+| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is copied.|
+| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is cut.|
+| onPaste(callback:(value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is pasted.<br>**event**: custom paste event.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
+| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: offset in the X coordinate of the text in the content area, in px.<br>**totalOffsetY**: offset in the Y coordinate of the text in the content area, in px.|
 
 ## TextInputController<sup>8+</sup>
 
@@ -199,7 +199,7 @@ Obtains the position of the edited text area relative to the component and its s
 
 ### RectResult<sup>10+</sup>
 
-Describes the position and size.
+Sets the position and size, in pixels.
 
 | Parameter    | Type    | Description      |
 | ------ | ------ | -------- |
@@ -240,8 +240,8 @@ Returns the position information of the caret.
 | Name  | Type    | Description            |
 | ----- | ------ | -------------- |
 | index | number | Index of the caret position.   |
-| x     | number | X coordinate of the caret relative to the text box.|
-| y     | number | Y coordinate of the caret relative to the text box.|
+| x     | number | X coordinate of the caret relative to the text box, in px.|
+| y     | number | Y coordinate of the caret relative to the text box, in px.|
 
 ## InputCounterOptions<sup>11+</sup>
 
@@ -495,3 +495,80 @@ struct TextInputExample {
 ```
 
 ![TextInputCounter](figures/TextInputShowCounter.jpg)
+
+
+### Example 6
+This example shows how to format a phone number to XXX XXXX XXXX in the **\<TextInput>** component.
+```ts
+@Entry
+@Component
+struct phone_example {
+  @State submitValue: string = ''
+  @State text : string = ''
+
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+
+  isEmpty(str?: string): boolean {
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
+  }
+
+  checkNeedNumberSpace(numText: string) {
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
+    let isRule: RegExp = new RegExp('^\\+.*');
+
+    if (isSpace.test(numText)) {
+      // If the phone number contains special characters, no space is added.
+      if (isRule.test(numText)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  removeSpace(str: string): string {
+    if (this.isEmpty(str)) {
+      return '';
+    }
+    return str.replace(new RegExp("[\\s]", "g"), '');
+  }
+
+  build() {
+    Column() {
+        Row() {
+          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
+            .onChange((number: string) => {
+              let teleNumberNoSpace: string = this.removeSpace(number);
+              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+                this.text = teleNumberNoSpace;
+              } else if (this.checkNeedNumberSpace(number)) {
+                if (teleNumberNoSpace.length <= 3) {
+                  this.text = teleNumberNoSpace;
+                } else {
+                  let split1: string = teleNumberNoSpace.substring(0, 3);
+                  let split2: string = teleNumberNoSpace.substring(3);
+                  this.text = split1 + ' ' + split2;
+                  if (teleNumberNoSpace.length > 7) {
+                    split2 = teleNumberNoSpace.substring(3, 7);
+                    let split3: string = teleNumberNoSpace.substring(7);
+                    this.text = split1 + ' ' + split2 + ' ' + split3;
+                  }
+                }
+              } else if (teleNumberNoSpace.length > 8) {
+                let split4 = teleNumberNoSpace.substring(0, 8);
+                let split5 = teleNumberNoSpace.substring(8);
+                this.text = split4 + ' ' + split5;
+              } else {
+                this.text = number;
+              }
+            })
+        }
+    }
+    .width('100%')
+    .height("100%")
+  }
+}
+
+``` 
+![phone_example](figures/phone_number.jpeg)

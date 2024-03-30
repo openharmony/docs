@@ -14,9 +14,15 @@ This component can contain a single child component.
 
 ## APIs
 
-ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: BarState })
+ScrollBar(value: ScrollBarOptions)
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value |  [ScrollBarOptions](#scrollbaroptions)| Yes| Scrollbar settings.|
+
+## ScrollBarOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

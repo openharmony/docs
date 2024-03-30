@@ -64,7 +64,7 @@ param set musl.log.ld.app.{app_name} false
 
 [native api中没有导出的符号列表](musl-peculiar-symbol.md)
 
-[native api由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
+[NDK musl-libc接口受权限影响的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
 
 
 <!--no_check-->

@@ -7,6 +7,7 @@
 - [OpenSL ES](opensles.md)
 - [OpenGL ES](opengles.md)
 - [EGL](egl.md)
+- [ICU4C](icu4c.md)
 - [Zlib](zlib.md)
 - Vulkan
   - [Vulkan开发指导](vulkan-guidelines.md)
@@ -23,6 +24,6 @@
     - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)
 - 附录
   - [libc中没有导出的符号列表](musl-peculiar-symbol.md)
-  - [libc中由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
+  - [NDK musl-libc接口受权限影响的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
   - [Native api中导出的EGL符号列表](egl-symbol.md)
   - [Native api中导出的OpenGL ES 3.2符号列表](openglesv3-symbol.md)

@@ -1099,10 +1099,8 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
-
 // worker.ets
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = (err: MessageEvents) => {

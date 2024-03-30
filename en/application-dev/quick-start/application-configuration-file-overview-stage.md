@@ -1,4 +1,4 @@
-# Application Configuration Files (Stage Model)
+# Overview of Application Configuration Files in Stage Model
 
 
 Each application project must have configuration files in its code directory. These configuration files provide basic application information for build tools, operating systems, and application markets.

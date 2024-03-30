@@ -24,7 +24,7 @@ Obtains a **CameraManager** instance. This API returns the result synchronously.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../apis/js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)      | Yes  | Application context.                  |
 
 **Return value**
 
@@ -482,7 +482,7 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | Yes  | Supported preview profiles, which are obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
-| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
+| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
 
 **Return value**
 
@@ -1251,7 +1251,7 @@ Subscribes to **CameraInput** error events. This API uses a callback to return t
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
 | camera   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
-| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
 
@@ -1281,7 +1281,7 @@ Unsubscribes from **CameraInput** error events.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
 | camera   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
-| callback | ErrorCallback | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)  |
 
 **Example**
 
@@ -1656,7 +1656,7 @@ Subscribes to **PreviewOutput** error events. This API uses a callback to return
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as [Session.start](#start11-1) or [CameraOutput.release](#release-1).|
-| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
 
@@ -1685,7 +1685,7 @@ Unsubscribes from **PreviewOutput** error events.
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created.|
-| callback | ErrorCallback | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
 
 **Example**
 
@@ -2285,7 +2285,7 @@ Subscribes to **PhotoOutput** error events. This API uses a callback to return t
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photo-related API.|
-| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
 
@@ -2314,7 +2314,7 @@ Unsubscribes from **PhotoOutput** error events.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | ErrorCallback | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)  |
 
 **Example**
 
@@ -2611,7 +2611,7 @@ Subscribes to **VideoOutput** error events. This API uses a callback to return t
 | Name    | Type      | Mandatory| Description                                   |
 | -------- | ----------- | ---- | -------------------------------------- |
 | type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a recording-related API such as [start](#start-1) or [CameraOutput.release](#release-1).|
-| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
 
 **Example**
 
@@ -2640,7 +2640,7 @@ Unsubscribes from **VideoOutput** error events.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | ErrorCallback | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)              |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)              |
 
 **Example**
 
@@ -2855,7 +2855,7 @@ Subscribes to metadata error events. This API uses an asynchronous callback to r
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a metadata-related API such as [start](#start-3) or [CameraOutput.release](#release-1).|
-| callback | ErrorCallback | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
 
 **Example**
 
@@ -2884,7 +2884,7 @@ Unsubscribes from metadata error events.
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created.|
-| callback | ErrorCallback | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)          |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)          |
 
 **Example**
 
@@ -3901,7 +3901,7 @@ function getMeteringPoint(photoSession: camera.PhotoSession): camera.Point | und
 
 setMeteringPoint(point: Point): void
 
-Sets the metering point, which is the center point of the metering rectangle. 
+Sets the metering point, which is the center point of the metering rectangle.
 
 The metering point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
 
@@ -4476,7 +4476,7 @@ Sets smooth zoom.
 | Name      | Type           | Mandatory| Description              |
 | ------------ | -------------- | ---- | ----------------- |
 | targetRatio  | number         | Yes  | Target zoom ratio.     |
-| mode         | SmoothZoomMode | No  | Smooth zoom mode.     |
+| mode         | [SmoothZoomMode](#smoothzoommode11) | No  | Smooth zoom mode.     |
 
 **Error codes**
 
@@ -5871,7 +5871,7 @@ setFocusPoint(point: Point): void
 
 Sets the focal point. The focal point must be in the coordinate system (0-1), where the upper left corner is {0, 0} and the lower right corner is {1, 1}.
 
-The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the  charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
+The coordinate system is based on the horizontal device direction with the device's charging port on the right. If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the touch point is {x, y}, then the coordinate point after conversion is {y/h, 1-x/w}.
 
 > **NOTE**
 >
@@ -6342,10 +6342,10 @@ Subscribes to **CaptureSession** error events. This API uses a callback to retur
 
 **Parameters**
 
-| Name    | Type                                                         | Mandatory| Description                          |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](#beginconfigdeprecated), [commitConfig](#commitconfigdeprecated-1), and [addInput](#addinputdeprecated).|
-| callback | ErrorCallback| Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
+| Name    | Type                                                                      | Mandatory| Description                          |
+| -------- |--------------------------------------------------------------------------| ---- | ------------------------------ |
+| type     | string                                                                   | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](#beginconfigdeprecated), [commitConfig](#commitconfigdeprecated-1), and [addInput](#addinputdeprecated).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
 
 **Example**
 
@@ -6376,7 +6376,7 @@ Unsubscribes from **CaptureSession** error events. This API uses a callback to r
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | ErrorCallback| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)      |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)      |
 
 **Example**
 
@@ -6405,7 +6405,7 @@ Subscribes to **PhotoSession** error events. This API uses a callback to return 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](#beginconfig11), [commitConfig](#commitconfig11-1), and [addInput](#addinput11).|
-| callback | ErrorCallback| Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
 
 **Example**
 
@@ -6436,7 +6436,7 @@ Unsubscribes from **PhotoSession** error events. This API uses a callback to ret
 | Name    | Type                           | Mandatory| Description                          |
 | -------- | -------------------------------- | ---- | ------------------------------ |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | ErrorCallback| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)    |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)    |
 
 **Example**
 
@@ -6569,7 +6569,7 @@ Subscribes to **VideoSession** error events. This API uses a callback to return 
 | Name    | Type             | Mandatory| Description                          |
 | -------- | ------------------ | ---- | ------------------------------ |
 | type     | string             | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](#beginconfig11), [commitConfig](#commitconfig11-1), and [addInput](#addinput11).|
-| callback | ErrorCallback      | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)      | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
 
 **Example**
 
@@ -6598,7 +6598,7 @@ Unsubscribes from **VideoSession** error events. This API uses a callback to ret
 | Name    | Type                         | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | type     | string                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | ErrorCallback| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)     |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)     |
 
 **Example**
 

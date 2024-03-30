@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Vibrator_FileDescription** struct defines the vibration file description.
+The **Vibrator_FileDescription** struct describes the vibration file description.
 
 **Since**: 11
 

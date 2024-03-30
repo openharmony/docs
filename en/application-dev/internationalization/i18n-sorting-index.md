@@ -6,7 +6,7 @@ When there are many options in a list, users need to slide the window to search 
 
 ## How to Develop
 
-For details about how to use related APIs, see [IndexUtil](../reference/apis/js-apis-i18n.md#indexutil8).
+For details about how to use related APIs, see [IndexUtil](../reference/apis-localization-kit/js-apis-i18n.md#indexutil8).
 
 1. Import the **i18n** module.
    ```ts

@@ -7,46 +7,47 @@ Public
 
 **Reason for Change**
 
-According to privacy protection requirements, the location permission is added with the **Allow only while in use** option. When the location permission is required, the **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted in a dialog box.
+According to privacy protection requirements, the location permission is added with the **Allow only while in use** option, and the **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted separately in a dialog box.
+
+If an application requires **ohos.permission.LOCATION_IN_BACKGROUND**, the permission must be granted by the user in **Settings**. For details, see **Adaptation Guide**.
 
 **Change Impact**
 
-This change is a non-compatible change. The location permission is added with the **Allow only while in use** option. When the location permission is required, the **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted in a dialog box. 
+Involved permissions:
+
+- Foreground location permissions (used to control the behavior of a foreground application to obtain location information):
+  - [ohos.permission.LOCATION](../../../application-dev/security/AccessToken/permissions-for-all.md#ohospermissionlocation): allows an application to obtain the precise location information of a device. This permission can be requested only after the ohos.permission.APPROXIMATELY_LOCATION permission is available.
+  - [ohos.permission.APPROXIMATELY_LOCATION](../../../application-dev/security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location): allows an application to obtain approximate location information of a device.
+
+- Background location permission (used to control the behavior of a background application to obtain location information):
+
+  [ohos.permission.LOCATION_IN_BACKGROUND](../../../application-dev/security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background): allows an application running in the background to obtain device location information. This permission can be requested only after the foreground location permissions are available.
 
 The following scenarios are involved:
 
-- The application applies for only the **ohos.permission.LOCATION_IN_BACKGROUND** permission (the **ohos.permission.LOCATION** permission has not been granted).
+a) The application requests only the background location permission (without the foreground location permissions).
 
-  Before the change: 
+Before the change:<br>A dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission.
 
-  A dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission.
+After the change:<br>The **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted by the user in a dialog box.
 
-  After the change: 
+b) The application requests only the background location permission (with the foreground location permissions available).
 
-  No dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission. 
+Before the change:<br>The **ohos.permission.LOCATION_IN_BACKGROUND** permission is granted when the **ohos.permission.LOCATION** permission is granted for the first time.
 
-- The application applies for only the **ohos.permission.LOCATION_IN_BACKGROUND** permission (the **ohos.permission.LOCATION** permission has been granted).
+After the change:<br>The **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted by the user in a dialog box.
 
-  Before the change: 
+c) The application requests both the foreground and background location permissions.
 
-  No dialog box will be displayed, but the **ohos.permission.LOCATION_IN_BACKGROUND** permission is granted when the **ohos.permission.LOCATION** permission is granted for the first time.
+Before the change:<br>A dialog box containing **Allow** and **Deny** will be displayed for granting the permissions.
 
-  After the change: 
+After the change:
 
-  No dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission. 
+API 10 and earlier: A dialog box containing **Allow only while in use** and **Deny** will be displayed. If **Allow only while in use** is selected, only the **ohos.permission.LOCATION** permission is granted.
 
-- The application applies for both the **ohos.permission.LOCATION** and **ohos.permission.LOCATION_IN_BACKGROUND** permissions.
+API 11 and later: No dialog box will be displayed for granting the foreground and background location permissions.
 
-  Before the change: 
-
-  A dialog box containing **Allow** and **Deny** will be displayed for granting the two permissions.
-
-  After the change:
-
-  - API version 10 and earlier: A dialog box containing **Allow only while in use** and **Deny** will be displayed. If **Allow only while in use** is selected, only the **ohos.permission.LOCATION** permission is granted.
-  - API version 11 and later: No dialog box will be displayed.
-
-**API Level**
+**API level**
 
 9
 
@@ -56,7 +57,7 @@ OpenHarmony SDK 4.1.5.3
 
 **Key API/Component Changes**
 
-**requestPermissionsFromUser** in @ohos.abilityAccessCtrl.d.ts
+[requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) in @ohos.abilityAccessCtrl.d.ts
 
 **Affected APIs**
 
@@ -141,4 +142,38 @@ OpenHarmony SDK 4.1.5.3
 
 **Adaptation Guide**
 
-For details about the sample code, see [**requestPermissionsFromUser**](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9).
+1. Request the foreground and background location permissions for your application using **requestPermissionsFromUser**.
+
+    a) Check whether the application requires the background location permission. If yes, request the foreground location permissions first.
+
+        Change:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION', 'ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        To:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION'], ......)
+        
+        Or change:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        To:
+        <br>atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION'], ......).
+
+    b) After the user has granted the foreground location permissions, a dialog box is displayed, informing the user to grant the background location permission in **Settings**.
+
+    c) The user selects **Always allow** on the **Settings** screen to grant the background location permission.
+
+2. Request only the background location permission for your application using **requestPermissionsFromUser**.
+
+    a) Check whether the application requires the background location permission. If yes, request the foreground location permissions in a dialog box first.
+
+        Change:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+    To:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION'], ......)
+        
+    Or change:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.LOCATION_IN_BACKGROUND'], ......)
+        To:
+        atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION'], ......).
+    
+    b) See the steps in case 1.
+
+For details about the sample code, see [**requestPermissionsFromUser**](../../../application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9).

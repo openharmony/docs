@@ -1,8 +1,8 @@
 # Adding a WantAgent Object to a Notification
 
-A [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md) object encapsulates an intention to start a specified ability, release a common event, and more. A **WantAgent** object can be passed in a notification from the publisher to the subscriber, so as to trigger the intention specified. For example, you may want the user to start a specific ability by touching the notification published by your application. In this case, you can add a **WantAgent** object that encapsulates such an action to the notification. After receiving the **WantAgent** object, the system triggers it once the user touches the notification from the notification panel, starting the specified ability.
+A [WantAgent](../reference/apis-ability-kit/js-apis-wantAgent.md) object encapsulates an intention to start a specified ability, release a common event, and more. It can be passed in a notification from the publisher to the subscriber, so as to trigger the intention specified. For example, you may want the user to start a specific ability by touching the notification published by your application. In this case, you can add a **WantAgent** object that encapsulates such an intention to a notification. After receiving the **WantAgent** object, the system triggers it once the user touches the notification, starting the specified ability.
 
-Below you can see the process of adding a **WantAgent** object to a notification. The notification publisher requests a **WantAgent** object from the Ability Manager Service (AMS), and then sends a notification carrying the **WantAgent** object to the home screen. When the user touches the notification from the notification panel on the home screen, the **WantAgent** object is triggered.
+Below you can see the process of adding a **WantAgent** object to a notification. The notification publisher requests a **WantAgent** object from the Ability Manager Service (AMS), and then sends a notification carrying the **WantAgent** object to the home screen. When the user touches the notification from the notification panel on the home screen, the intention specified is triggered.
 
 **Figure 1** Publishing a notification with a WantAgent object
 
@@ -11,7 +11,7 @@ Below you can see the process of adding a **WantAgent** object to a notification
 
 ## Available APIs
 
-For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
+For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-ability-kit/js-apis-wantAgent.md).
 
 | Name | Description|
 | -------- | -------- |
@@ -37,7 +37,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
 
 3. Create a **WantAgentInfo** object.
 
-   Scenario 1: Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object for starting a UIAbility component.
+   Scenario 1: Create a [WantAgentInfo](../reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md) object for starting a UIAbility.
 
    ```typescript
    let wantAgentObj:WantAgent; // Save the created WantAgent object for completing the trigger operations at a later time.
@@ -61,7 +61,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    };
    ```
 
-   Scenario 2: Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object for publishing a [common event](../application-models/common-event-overview.md).
+   Scenario 2: Create a [WantAgentInfo](../reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md) object for publishing a [common event](../application-models/common-event-overview.md).
 
    ```typescript
    let wantAgentObj:WantAgent; // Save the created WantAgent object for completing the trigger operations at a later time.
@@ -80,7 +80,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    };
    ```
 
-4. Invoke the [getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) API to create a **WantAgent** object.
+4. Call the [getWantAgent()](../reference/apis-ability-kit/js-apis-wantAgent.md#wantagentgetwantagent) API to create a **WantAgent** object.
 
    ```typescript
    // Create a WantAgent object.

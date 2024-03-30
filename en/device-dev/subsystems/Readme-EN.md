@@ -25,7 +25,8 @@
       - [FAQs](subsys-build-FAQ.md)
 - [ArkCompiler Development](subsys-arkcompiler-guide.md)
 - ArkUI
-    - [Custom Window Title Bar Development](subsys-arkui-customize_titlebar.md)
+    - [Window Title Bar Customization Development (ArkTS)](subsys-arkui-customize-titlebar-arkts.md)
+    - [Window Title Bar Customization Development (C++)](subsys-arkui-customize-titlebar-c++.md)
 - Small-System Graphics
   - [Overview of Small-System Graphics](subsys-graphics-overview.md)
   - [Common Component Development](subsys-graphics-common-guide.md)
@@ -47,7 +48,7 @@
 - [Utils Development](subsys-utils-guide.md)
 - AI
     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
-    - [NNRt Access Adaptation](subsys-ai-nnrt-guide.md)
+    - [Neural Network Runtime Device Access](subsys-ai-nnrt-guide.md)
 - Sensor
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
@@ -65,11 +66,24 @@
   - [Security Overview](subsys-security-overview.md)
   - [Development on Application Signature Verification](subsys-security-sigverify.md)
   - [Development on Application Permission Management](subsys-security-rightmanagement.md)
-  - [Development on IPC Authentication](subsys-security-communicationverify.md)
+  - [IPC Authentication Development](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
-  - [Development on HUKS](subsys-security-huks-guide.md)
+  - [HUKS Development](subsys-security-huks-guide.md)
   - [Application Privilege Configuration](subsys-app-privilege-config-guide.md)
   - [Configuration of Pre-installed Applications](subsys-preinstall-app-config-guide.md)
+    - OpenHarmony SELinux Development
+      - [OpenHarmony SELinux Overview](subsys-security-selinux-overview.md)
+      - [OpenHarmony SELinux Development](subsys-security-selinux-develop-intro.md)
+      - [Compiling and Loading OpenHarmony SELinux](subsys-security-selinux-compile.md)
+      - OpenHarmony SELinux Development Guides
+        - [Configuring an OpenHarmony SELinux Policy for a Process](subsys-security-selinux-sample-domain.md)
+        - [Configuring an OpenHarmony SELinux Policy for a File](subsys-security-selinux-sample-file.md)
+        - [Configuring an OpenHarmony SELinux Policy for a Parameter](subsys-security-selinux-sample-param.md)
+        - [Configuring an OpenHarmony SELinux Policy for a an SA or HDF Service](subsys-security-selinux-sample-sa.md)
+      - [OpenHarmony SELinux APIs](subsys-security-selinux-func.md)
+      - [OpenHarmony SELinux Check](subsys-security-selinux-check.md)
+      - [OpenHarmony SELinux FAQs](subsys-security-selinux-faq.md)
+      - [OpenHarmony SELinux Checklist](subsys-security-selinux-checklist.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
   - [Device Boot](subsys-boot-deviceboot.md)

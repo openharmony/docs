@@ -124,14 +124,15 @@
      inData: StringToUint8Array(agreeX25519InData)
  }
  /* 集成第二个协商参数集 */
+ let finishPropertiesSecond = [...finishProperties]
+ finishPropertiesSecond[6] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
+    value: StringToUint8Array(srcKeyAliasSecond + 'final'),
+ }
  let finishOptionsSecond: huks.HuksOptions = {
-     properties: finishProperties,
+     properties: finishPropertiesSecond,
      inData: StringToUint8Array(agreeX25519InData)
  }
- finishOptionsSecond.properties!.splice(6, 1, {
-     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
-     value: StringToUint8Array(srcKeyAliasSecond + 'final'),
- })
  function StringToUint8Array(str:string) {
      let arr: number[] = new Array();
      for (let i = 0, j = str.length; i < j; ++i) {

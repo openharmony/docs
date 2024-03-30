@@ -29,7 +29,7 @@ Creates a Location button that contains the specified elements.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | LocationButtonOptions | No| Creates a Location button that contains the specified elements.|
+| option | [LocationButtonOptions](#locationbuttonoptions) | No| Creates a Location button that contains the specified elements.|
 
 ## LocationButtonOptions
 

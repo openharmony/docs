@@ -63,7 +63,7 @@ LLDB（Low Lever Debugger）是新一代高性能调试器。详细说明参考[
 
 ## 使用指导-本地调试
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > Linux x86_64或Mac本地调试步骤一致。
 
 **使用步骤**
@@ -156,13 +156,13 @@ LLDB（Low Lever Debugger）是新一代高性能调试器。详细说明参考[
       (lldb) quit
       ```
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > 步骤3和4可以调换顺序执行。
 
 
 ## 使用指导-远程调试
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 远程调试时需要lldb-server和lldb配合使用。
 > 
 > - Windows，Linux x86_64和Mac远程调试步骤一致。
@@ -171,7 +171,7 @@ LLDB（Low Lever Debugger）是新一代高性能调试器。详细说明参考[
 
 此处以在Windows平台连接arm架构OpenHarmony设备（如：RK3568开发板）进行远程调试为例。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 其中/data/local/tmp为设备上指定的目录。
 > 
 > 8080为监听端口，可自定义。

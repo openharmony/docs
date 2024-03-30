@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control. It can be used with the [<Web\>](../arkui-ts/ts-basic-components-web.md) component, which can be used to display web pages.
+The **Webview** module provides APIs for web control. It can work with the [<Web\>](ts-basic-components-web.md) component, which is used to display web pages.
 
 > **NOTE**
 >
@@ -277,14 +277,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(1);
               this.message.setString("helloFromEts");
-              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setNumber').margin({
@@ -296,13 +296,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(2);
               this.message.setNumber(12345);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setBoolean').margin({
@@ -313,13 +314,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(3);
               this.message.setBoolean(true);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArrayBuffer').margin({
@@ -330,13 +332,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(4);
               this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setArray').margin({
@@ -348,13 +351,14 @@ struct WebComponent {
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
+              this.message.setType(5);
               this.message.setArray([1,2,3]);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
         Button('SendToH5 setError').margin({
@@ -369,11 +373,12 @@ struct WebComponent {
           }
           catch (error) {
             if (this.nativePort) {
+              this.message.setType(6);
               this.message.setError(error);
               this.nativePort.postMessageEventExt(this.message);
             }
             let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -581,6 +586,20 @@ struct WebComponent {
 ## WebviewController
 
 Implements a **WebviewController** to control the behavior of the **\<Web>** component. A **WebviewController** can control only one **\<Web>** component, and the APIs (except static APIs) in the **WebviewController** can be invoked only after it has been bound to the target **\<Web>** component.
+
+### constructor<sup>11+</sup>
+
+constructor(webTag?: string)
+
+Constructor used to create a **WebviewController** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | -------------------------------- |
+| webTag   | string | No  | Name of the **\<Web>** component. The default value is **Empty**.|
 
 ### initializeWebEngine
 
@@ -837,7 +856,7 @@ struct WebComponent {
 }
 ```
 
-3. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
+3. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](ts-basic-components-web.md#web).
 
 HTML file to be loaded:
 ```html
@@ -1044,7 +1063,7 @@ struct WebComponent {
 
 accessBackward(): boolean
 
-Checks whether moving to the previous page can be performed on the current page.
+Checks whether going to the previous page can be performed on the current page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1142,6 +1161,7 @@ struct WebComponent {
 onActive(): void
 
 Invoked to instruct the **\<Web>** component to enter the active foreground state.
+<br>The application can interact with the user while in the active foreground state, and it remains in this state until the focus is moved away from it due to some event (for example, an incoming call is received or the device screen is turned off).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1186,7 +1206,7 @@ struct WebComponent {
 
 onInactive(): void
 
-Invoked to instruct the **\<Web>** component to enter the inactive state.
+Invoked to instruct the **\<Web>** component to enter the inactive state. You can implement the behavior to perform after the application loses focus.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1439,7 +1459,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 
 | Name    | Type      | Mandatory| Description                                       |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods can be declared, but not attributes.<br> The parameters and return values of the methods can be of the following types:<br>- String, number, or Boolean type<br>- Dictionary or Array type, with a maximum of 10 nested layers, and each layer containing 10,000 data records<br>- Object type, to which you need to add the **methodNameListForJsProxy:[fun1, fun2]** attribute, where *fun1* and *fun2* are methods that can be called<br>The parameters can be a function or promise, but its callback cannot have any return value.<br>The return value can be a promise, but its callback cannot have any return value. For more examples, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
+| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods can be declared, but not attributes.<br><br>The parameter and return value can be any of the following types:<br>- String, number, or Boolean type<br>- Dictionary or Array type, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter can be a function or promise, but its callback cannot have return values.<br>The return value can be a promise, but its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 | name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string> | Yes  | Methods of the JavaScript object to be registered at the application side.                      |
 
@@ -1778,7 +1798,8 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  let e: business_error.BusinessError = error as business_error.BusinessError;
+                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
                   return;
                 }
                 if (result) {
@@ -2077,7 +2098,7 @@ HTML file to be loaded:
 
 zoom(factor: number): void
 
-Zooms in or out of this web page. This API is effective only when [zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess) is **true**.
+Zooms in or out of this web page. This API is effective only when [zoomAccess](ts-basic-components-web.md#zoomaccess) is **true**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2131,7 +2152,7 @@ struct WebComponent {
 
 searchAllAsync(searchString: string): void
 
-Searches the web page for content that matches the keyword specified by **'searchString'** and highlights the matches on the page. This API returns the result asynchronously through [onSearchResultReceive](../arkui-ts/ts-basic-components-web.md#onsearchresultreceive9).
+Searches the web page for content that matches the keyword specified by **'searchString'** and highlights the matches on the page. This API returns the result asynchronously through [onSearchResultReceive](ts-basic-components-web.md#onsearchresultreceive9).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2508,7 +2529,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2585,7 +2606,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2902,7 +2923,7 @@ struct WebComponent {
 }
 ```
 
-You can customize the user agent based on the default user agent.
+You can define a custom user agent based on the default user agent.
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -2917,7 +2938,7 @@ struct WebComponent {
   aboutToAppear():void {
     web_webview.once('webInited', () => {
       try {
-        // Customize the user agent on the application side.
+        // Define a custom user agent on the application side.
         this.ua = this.controller.getUserAgent() + 'xxx';
       } catch(error) {
         let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3051,8 +3072,8 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | Yes  |  Save path of the web page. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
+| baseName | string                | Yes  | Save path of the web page. The value cannot be null.                                |
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value.|
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
@@ -3083,7 +3104,8 @@ struct WebComponent {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
               if (error) {
-                console.info(`save web archive error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`save web archive error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               if (filename != null) {
@@ -3091,7 +3113,7 @@ struct WebComponent {
               }
             });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
+            let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
@@ -3114,7 +3136,7 @@ Stores this web page. This API uses a promise to return the result.
 | Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | baseName | string   | Yes  | Save path of the web page. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value.|
 
 **Return value**
 
@@ -3155,7 +3177,7 @@ struct WebComponent {
                 }
               })
               .catch((error:business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -3608,7 +3630,7 @@ Obtains the favicon of this page.
 
 | Type                                  | Description                           |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page.|
+| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page.|
 
 **Error codes**
 
@@ -3763,7 +3785,8 @@ struct WebComponent {
           try {
             this.controller.hasImage((error, data) => {
               if (error) {
-                console.info(`hasImage error: ` + JSON.stringify(error))
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`hasImage error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               console.info("hasImage: " + data);
@@ -4063,7 +4086,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 **Example**
 
-1. To perform operations on files, you must import the file management module. For details, see [File Management](../apis-core-file-kit/js-apis-file-fs.md).
+1. To perform operations on files, you must first import the **fs** module. For details, see [File Management](../apis-core-file-kit/js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -4100,7 +4123,7 @@ struct WebComponent {
 }
 ```
 
-2. Modify the **EntryAbility.ts** file.
+2. Modify the **EntryAbility.ets** file.
 Obtain the path of the application cache file.
 ```ts
 // xxx.ts
@@ -4140,7 +4163,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 **Example**
 
-1. To perform operations on files, you must import the file management module. For details, see [File Management](../apis-core-file-kit/js-apis-file-fs.md).
+1. To perform operations on files, you must first import the **fs** module. For details, see [File Management](../apis-core-file-kit/js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
@@ -4186,7 +4209,7 @@ struct WebComponent {
 }
 ```
 
-2. Modify the **EntryAbility.ts** file.
+2. Modify the **EntryAbility.ets** file.
 Obtain the path of the application cache file.
 ```ts
 // xxx.ts
@@ -4422,7 +4445,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md) of the website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4718,12 +4741,12 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
         // Replace 'https://www.example.com' with a real URL for the API to work.
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        AppStorage.setOrCreate("abilityWant", want)
-        console.log("EntryAbility onCreate done")
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
     }
 }
 ```
@@ -4740,7 +4763,7 @@ Sets a custom user agent, which will overwrite the default user agent.
 
 | Name         | Type   |  Mandatory | Description                                           |
 | ---------------| ------- | ---- | ------------- |
-| userAgent      | string  | Yes  | Information about the custom user agent.|
+| userAgent      | string  | Yes  | Information about the custom user agent. It is recommended that you obtain the current default user agent through [getUserAgent](#getuseragent) and then customize the obtained user agent.|
 
 **Error codes**
 
@@ -4785,7 +4808,7 @@ struct WebComponent {
 
 setDownloadDelegate(delegate: WebDownloadDelegate): void
 
-Sets a **WebDownloadDelegate** object for this **\<Web>** component. The delegate is used to receive the download and download progress triggered on the page.
+Sets a **WebDownloadDelegate** object to receive downloads and download progress triggered from a page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4837,7 +4860,7 @@ struct WebComponent {
 
 startDownload(url: string): void
 
-.
+Downloads a file, such as an image, from the specified URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4998,8 +5021,6 @@ struct WebComponent {
 }
 ```
 
-
-
 ### enableSafeBrowsing<sup>11+</sup>
 
 enableSafeBrowsing(enable: boolean): void
@@ -5039,7 +5060,7 @@ struct WebComponent {
       Button('enableSafeBrowsing')
         .onClick(() => {
           try {
-            web_webview.WebviewController.enableSafeBrowsing(true);
+            this.controller.enableSafeBrowsing(true);
             console.log("enableSafeBrowsing: true");
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -5081,7 +5102,7 @@ struct WebComponent {
     Column() {
       Button('isSafeBrowsingEnabled')
         .onClick(() => {
-          let result = web_webview.WebviewController.isSafeBrowsingEnabled();
+          let result = this.controller.isSafeBrowsingEnabled();
           console.log("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5319,13 +5340,215 @@ struct WebComponent {
 }
 ```
 
+### setScrollable<sup>12+</sup>
+
+setScrollable(enable: boolean): void
+
+Sets whether this web page is scrollable.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description              |
+| ------ | -------- | ---- | ---------------------- |
+| enable     | boolean   | Yes  | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+|  401 | Invalid input parameter. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setScrollable')
+        .onClick(() => {
+          try {
+            this.controller.setScrollable(true);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getScrollable<sup>12+</sup>
+
+getScrollable(): boolean
+
+Obtains whether this web page is scrollable.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description          |
+| ------ | -------------- |
+| boolean | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getScrollable')
+        .onClick(() => {
+          try {
+            let scrollEnabled= this.controller.getScrollable();
+            console.log("scrollEnabled: " + scrollEnabled);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setPrintBackground<sup>12+</sup>
+
+setPrintBackground(enable: boolean): void
+
+Sets whether to print the web page background.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                     |
+| -------- | ------- | ---- | -------------------------------------- |
+| enable | boolean | Yes  | Whether to print the web page background. The value **true** means to print the web page background, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+import webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setPrintBackground')
+        .onClick(() => {
+          try {
+            this.controller.setPrintBackground(false);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getPrintBackground<sup>12+</sup>
+
+getPrintBackground(): boolean
+
+Obtains whether the web page background is printed.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                | Description                     |
+| -------------------- | ------------------------- |
+| boolean              | Whether the web page background is printed.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+import webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setPrintBackground')
+        .onClick(() => {
+          try {
+            let enable = this.controller.getPrintBackground();
+            console.log("getPrintBackground: " + enable);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
-
-> **NOTE**
->
-> You must load the **\<Web>** component before calling APIs in **WebCookieManager**.
 
 ### getCookie<sup>(deprecated)</sup>
 
@@ -5561,7 +5784,7 @@ struct WebComponent {
                 console.log("fetchCookie cookie = " + cookie);
               })
               .catch((error:business_error.BusinessError) => {
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -6220,7 +6443,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.clearAllCookies((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6382,7 +6606,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.clearSessionCookie((error) => {
               if (error) {
-                console.log("error: " + error);
+                let e: business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
               }
             })
           } catch (error) {
@@ -6549,7 +6774,7 @@ HTML file to be loaded:
   <div id="status" name="status">Status</div>
   </body>
   </html>
- ```
+  ```
 
 ### getOrigins
 
@@ -7192,7 +7417,7 @@ Implements a **GeolocationPermissions** object.
 
 ### Required Permissions
 
-**ohos.permission.LOCATION**, **ohos.permission.APPROXIMATELY_LOCATION**, and **ohos.permission.LOCATION_IN_BACKGROUND**, which are required for accessing the location information. For details about the permissions, see [@ohos.geolocation (Geolocation)](../apis/js-apis-geolocation.md).
+**ohos.permission.LOCATION**, **ohos.permission.APPROXIMATELY_LOCATION**, and **ohos.permission.LOCATION_IN_BACKGROUND**, which are required for accessing the location information. For details about the permissions, see [@ohos.geolocation (Geolocation)](../apis-location-kit/js-apis-geolocation.md).
 
 ### allowGeolocation
 
@@ -7412,7 +7637,7 @@ struct WebComponent {
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -7459,6 +7684,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
+                let e: business_error.BusinessError = error as business_error.BusinessError;
                 console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
@@ -7518,7 +7744,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -8176,7 +8402,7 @@ Describes a historical page record.
 
 | Name         | Type                                  | Readable| Writable| Description                        |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
+| icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
 | historyUrl    | string                                 | Yes  | No  | URL of the historical page.       |
 | historyRawUrl | string                                 | Yes  | No  | Original URL of the historical page.   |
 | title         | string                                 | Yes  | No  | Title of the historical page.          |
@@ -8202,7 +8428,7 @@ Describes the mode in which the **\<Web>** component uses HTTPDNS.
 | Name         | Value| Description                                     |
 | ------------- | -- |----------------------------------------- |
 | OFF                                  | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
-| AUTO                                 | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
+| AUTO                                 | 1 |HTTPDNS is used in automatic mode. If the specified HTTPDNS server is unavailable for resolution, the component falls back to the system DNS server.|
 | SECURE_ONLY                          | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|
 
 ## WebDownloadState<sup>11+</sup>
@@ -10241,4 +10467,4 @@ struct WebComponent {
   }
 }
 ```
-
+<!--no_check-->

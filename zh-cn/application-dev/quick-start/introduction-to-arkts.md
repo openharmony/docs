@@ -12,7 +12,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
 
 ## 基本知识
 
@@ -692,22 +692,21 @@ let sum2 = (x: number, y: number) => x + y
 
 ### 闭包
 
-箭头函数通常在另一个函数中定义。作为内部函数，它可以访问外部函数中定义的所有变量和函数。
+闭包是由函数及声明该函数的环境组合而成的。该环境包含了这个闭包创建时作用域内的任何局部变量。
 
-为了捕获上下文，内部函数将其环境组合成闭包，以允许内部函数在自身环境之外的访问。
+在下例中，`z`是执行`f`时创建的`g`箭头函数实例的引用。`g`的实例维持了对它的环境的引用（变量`count`存在其中）。因此，当`z`被调用时，变量`count`仍可用。
 
 ```typescript
 function f(): () => number {
   let count = 0;
-  return (): number => { count++; return count; }
+  let g = (): number => { count++; return count; };
+  return g;
 }
 
 let z = f();
 z(); // 返回：1
 z(); // 返回：2
 ```
-
-在以上示例中，箭头函数闭包捕获`count`变量。
 
 ### 函数重载
 
@@ -1035,7 +1034,7 @@ class FilledRectangle extends RectangleSize {
     this.color = c;
   }
 
-  override draw() {
+  draw() {
     super.draw(); // 父类方法的调用
     // super.height -可在此处使用
     /* 填充矩形 */
@@ -1045,7 +1044,7 @@ class FilledRectangle extends RectangleSize {
 
 #### 方法重写
 
-子类可以重写其父类中定义的方法的实现。重写的方法可以用关键字`override`标记，以提高可读性。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
+子类可以重写其父类中定义的方法的实现。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
 
 ```typescript
 class RectangleSize {
@@ -1057,7 +1056,7 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   private side: number = 0
-  override area(): number {
+  area(): number {
     return this.side * this.side;
   }
 }
@@ -1497,9 +1496,9 @@ y = c.value! + 1; // ok，值为2
 
 ### 空值合并运算符
 
-空值合并二元运算符`??`用于检查左侧表达式的求值是否等于null。如果是，则表达式的结果为右侧表达式；否则，结果为左侧表达式。
+空值合并二元运算符`??`用于检查左侧表达式的求值是否等于`null`或者`undefined`。如果是，则表达式的结果为右侧表达式；否则，结果为左侧表达式。
 
-换句话说，`a ?? b`等价于三元运算符`a != null ? a : b`。
+换句话说，`a ?? b`等价于三元运算符`(a != null && a != undefined) ? a : b`。
 
 在以下示例中，`getNick`方法如果设置了昵称，则返回昵称；否则，返回空字符串：
 
@@ -1591,6 +1590,8 @@ export function Distance(p1: Point, p2: Point): number {
 
 ### 导入
 
+#### 静态导入
+
 导入声明用于导入从其他模块导出的实体，并在当前模块中提供其绑定。导入声明由两部分组成：
 
 * 导入路径，用于指定导入的模块；
@@ -1625,6 +1626,44 @@ Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
 ```
 
+#### 动态导入
+应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替静态导入。
+import()语法通常称为动态导入dynamic import，是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
+如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
+
+```typescript
+let modulePath = prompt("Which module to load?");
+import(modulePath)
+.then(obj => <module object>)
+.catch(err => <loading error, e.g. if no such module>)
+```
+
+如果在异步函数中，可以使用let module = await import(modulePath)。
+
+```typescript
+// say.ts
+export function hi() {
+  console.log('Hello');
+}
+export function bye() {
+  console.log('Bye');
+}
+```
+
+那么，可以像下面这样进行动态导入：
+
+```typescript
+async function test() {
+  let ns = await import('./say');
+  let hi = ns.hi;
+  let bye = ns.bye;
+  hi();
+  bye();
+}
+```
+
+更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)
+
 ### 顶层语句
 
 模块可以包含除return语句外的任何模块级语句。
@@ -1643,7 +1682,7 @@ function main() {
 
 ## ArkUI支持
 
-本节演示AkTS为创建图形用户界面（GUI）程序提供的机制。ArkUI基于TypeScript提供了一系列扩展能力，以声明式地描述应用程序的GUI以及GUI组件间的交互。
+本节演示ArkTS为创建图形用户界面（GUI）程序提供的机制。ArkUI基于TypeScript提供了一系列扩展能力，以声明式地描述应用程序的GUI以及GUI组件间的交互。
 
 
 ### ArkUI示例

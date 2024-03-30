@@ -1,6 +1,6 @@
 # Web
 
-The **<Web\>** component can be used to display web pages. It can be used with the [@ohos.web.webview](../apis/js-apis-webview.md) module, which provides APIs for web control.
+The **<Web\>** component can be used to display web pages. It can be used with the [@ohos.web.webview](js-apis-webview.md) module, which provides APIs for web control.
 
 > **NOTE**
 >
@@ -21,15 +21,14 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 > **NOTE**
 >
 > Transition animation is not supported.
->
-> **\<Web>** components on a page must be bound to different **WebviewController**s.
+> **\<Web>** components on a page must be bound to different **WebviewController** instances.
 
 **Parameters**
 
 | Name       | Type                                    | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
 
 **Example**
@@ -53,7 +52,7 @@ Example of loading online web pages:
   ```
 
 Example of loading online web pages in incognito mode:
-
+ 
    ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -68,7 +67,7 @@ Example of loading online web pages in incognito mode:
       }
     }
   }
-   ```
+  ```
 
 Example of loading local web pages:
 
@@ -189,7 +188,7 @@ Example of loading local resource files in the sandbox:
 
 ## Attributes
 
-The following universal attributes are supported: [aspectRatio](../arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../arkui-ts/ts-universal-attributes-image-effect.md#backdropblur), [backgroundColor](../arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu ](../arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexGrow](../arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow), [flexShrink](../arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../arkui-ts/ts-universal-attributes-grid.md), [height](../arkui-ts/ts-universal-attributes-size.md#height), [touchable](../arkui-ts/ts-universal-attributes-click.md), [margin](../arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../arkui-ts/ts-universal-attributes-location.md#offset), [width](../arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../arkui-ts/ts-universal-attributes-size.md#size), [stateStyles](../arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles), [opacity](../arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../arkui-ts/ts-transition-animation-shared-elements.md), [transition](../arkui-ts/ts-transition-animation-component.md)
+The following universal attributes are supported: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexGrow](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [stateStyles](../apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)
 
 ### domStorageAccess
 
@@ -290,7 +289,7 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy).
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy).
 
 **Parameters**
 
@@ -299,7 +298,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 | object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.                  |
 | name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.               |
 | methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
 
@@ -816,7 +815,7 @@ Sets the pasteboard copy options.
 
 | Name      | Type                       | Mandatory  | Default Value              | Description     |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.Cross_Device | Pasteboard copy options.|
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.Cross_Device | Pasteboard copy options.|
 
 **Example**
 
@@ -940,7 +939,7 @@ Sets the user agent.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup> instead.
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [setCustomUserAgent](js-apis-webview.md#setcustomuseragent10)<sup>10+</sup> instead.
 
 **Parameters**
 
@@ -1717,7 +1716,7 @@ Sets nested scrolling options.
 >
 > - You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.
 > - You can set separate nested scrolling modes for the forward and backward directions.
-> - The default mode is **NestedScrollOptions.SELF_FIRST**.
+> - The default mode for **scrollForward** and **scrollBackward** is **NestedScrollMode.SELF_FIRST**.
 
 **Parameters**
 
@@ -1779,7 +1778,7 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
 
 ## Events
 
-The following universal events are supported: [onAppear](../arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
+The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
 
 ### onAlert
 
@@ -2483,7 +2482,7 @@ Called when loading of the web page is complete. This API is used by an applicat
 | Name        | Type   | Description                                    |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | URL to be accessed.                                 |
-| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh) API, and **false** means the opposite.|
+| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](js-apis-webview.md#refresh) API, and **false** means the opposite.|
 
 **Example**
 
@@ -3889,7 +3888,7 @@ Called when the key event is intercepted and before it is consumed by the webvie
 
 | Name  | Type                                    | Description          |
 | ----- | ---------------------------------------- | -------------- |
-| event | [KeyEvent](../arkui-ts/ts-universal-events-key.md#keyevent) | Key event that is triggered.|
+| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) | Key event that is triggered.|
 
 **Return value**
 
@@ -3964,7 +3963,7 @@ Called when this web page receives a new favicon.
 
 | Name    | Type                                    | Description                     |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object of the received favicon.|
+| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the received favicon.|
 
 **Example**
 
@@ -4225,7 +4224,7 @@ Called to indicate the offset by which the web page overscrolls.
 onControllerAttached(callback: () => void)
 
 Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
-As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut](../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl](../apis/js-apis-webview.md#loadurl) and [getWebId](../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
+As the web page is not yet loaded when this callback is called, APIs for operating the web page, for example, [zoomIn](js-apis-webview.md#zoomin) and [zoomOut](js-apis-webview.md#zoomout), cannot be used in the callback. Other APIs, such as [loadUrl](js-apis-webview.md#loadurl) and [getWebId](js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
 
 **Example**
 
@@ -4324,7 +4323,7 @@ Called when a web page redirection request is submitted.
     }
   }
   ```
-
+  
 ### onSafeBrowsingCheckResult<sup>11+</sup>
 
 onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
@@ -4362,8 +4361,10 @@ Called when the safe browsing check result is received.
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onSafeBrowsingCheckResult((details: OnSafeBrowsingCheckResultCallback) => {
-            console.log("onSafeBrowsingCheckResult: [threatType]= " + details.threatType);
+        .onSafeBrowsingCheckResult((callback) => {
+            let jsonData = JSON.stringify(callback)
+            let json:OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData)
+            console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
         })
       }
     }
@@ -4584,7 +4585,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 | Name       | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -4785,7 +4786,7 @@ Sets the data in the resource response.
 
 | Name | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -5349,7 +5350,7 @@ Sets the geolocation permission status of a web page.
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | Yes   | -    | Index of the origin.                              |
 | allow  | boolean | Yes   | -    | Geolocation permission status.                            |
-| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](../apis/js-apis-webview.md#geolocationpermissions).|
+| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions).|
 
 ## MessageLevel
 
@@ -5558,7 +5559,7 @@ Cancels the resending of web form data.
 
 Implements a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
 
-This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) instead.
+This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) instead.
 
 ### Creating an Object
 
@@ -5572,7 +5573,7 @@ getCookieManager(): WebCookie
 
 Obtains the cookie management object of the **\<Web>** component.
 
-This API is deprecated since API version 9. You are advised to use [getCookie](../apis/js-apis-webview.md#getcookiedeprecated) instead.
+This API is deprecated since API version 9. You are advised to use [getCookie](js-apis-webview.md#getcookiedeprecated) instead.
 
 **Return value**
 
@@ -5607,7 +5608,7 @@ requestFocus()
 
 Requests focus for this web page.
 
-This API is deprecated since API version 9. You are advised to use [requestFocus<sup>9+</sup>](../apis/js-apis-webview.md#requestfocus) instead.
+This API is deprecated since API version 9. You are advised to use [requestFocus<sup>9+</sup>](js-apis-webview.md#requestfocus) instead.
 
 **Example**
 
@@ -5636,7 +5637,7 @@ accessBackward(): boolean
 
 Checks whether going to the previous page can be performed on the current page.
 
-This API is deprecated since API version 9. You are advised to use [accessBackward<sup>9+</sup>](../apis/js-apis-webview.md#accessbackward) instead.
+This API is deprecated since API version 9. You are advised to use [accessBackward<sup>9+</sup>](js-apis-webview.md#accessbackward) instead.
 
 **Return value**
 
@@ -5672,7 +5673,7 @@ accessForward(): boolean
 
 Checks whether going to the next page can be performed on the current page.
 
-This API is deprecated since API version 9. You are advised to use [accessForward<sup>9+</sup>](../apis/js-apis-webview.md#accessforward) instead.
+This API is deprecated since API version 9. You are advised to use [accessForward<sup>9+</sup>](js-apis-webview.md#accessforward) instead.
 
 **Return value**
 
@@ -5708,7 +5709,7 @@ accessStep(step: number): boolean
 
 Performs a specific number of steps forward or backward from the current page.
 
-This API is deprecated since API version 9. You are advised to use [accessStep<sup>9+</sup>](../apis/js-apis-webview.md#accessstep) instead.
+This API is deprecated since API version 9. You are advised to use [accessStep<sup>9+</sup>](js-apis-webview.md#accessstep) instead.
 
 **Parameters**
 
@@ -5751,7 +5752,7 @@ backward(): void
 
 Goes to the previous page based on the history stack. This API is generally used together with **accessBackward**.
 
-This API is deprecated since API version 9. You are advised to use [backward<sup>9+</sup>](../apis/js-apis-webview.md#backward) instead.
+This API is deprecated since API version 9. You are advised to use [backward<sup>9+</sup>](js-apis-webview.md#backward) instead.
 
 **Example**
 
@@ -5780,7 +5781,7 @@ forward(): void
 
 Goes to the next page based on the history stack. This API is generally used together with **accessForward**.
 
-This API is deprecated since API version 9. You are advised to use [forward<sup>9+</sup>](../apis/js-apis-webview.md#forward) instead.
+This API is deprecated since API version 9. You are advised to use [forward<sup>9+</sup>](js-apis-webview.md#forward) instead.
 
 **Example**
 
@@ -5809,7 +5810,7 @@ deleteJavaScriptRegister(name: string)
 
 Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refreshdeprecated) API.
 
-This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister) instead.
+This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](js-apis-webview.md#deletejavascriptregister) instead.
 
 **Parameters**
 
@@ -5845,7 +5846,7 @@ getHitTest(): HitTestType
 
 Obtains the element type of the area being clicked.
 
-This API is deprecated since API version 9. You are advised to use [getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest) instead.
+This API is deprecated since API version 9. You are advised to use [getHitTest<sup>9+</sup>](js-apis-webview.md#gethittest) instead.
 
 **Return value**
 
@@ -5885,7 +5886,7 @@ If **baseUrl** is set to a data URL, the encoded string will be loaded by the **
 
 If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **\<Web>** component as a non-encoded string in a manner similar to **loadUrl**.
 
-This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](../apis/js-apis-webview.md#loaddata) instead.
+This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](js-apis-webview.md#loaddata) instead.
 
 **Parameters**
 
@@ -5932,7 +5933,7 @@ The object injected through **loadUrl** is valid only in the current document. I
 
 The object injected through **registerJavaScriptProxy** is still valid on a new page redirected through **loadUrl**.
 
-This API is deprecated since API version 9. You are advised to use [loadUrl<sup>9+</sup>](../apis/js-apis-webview.md#loadurl) instead.
+This API is deprecated since API version 9. You are advised to use [loadUrl<sup>9+</sup>](js-apis-webview.md#loadurl) instead.
 
 **Parameters**
 
@@ -5968,7 +5969,7 @@ onActive(): void
 
 Called when the **\<Web>** component enters the active state.
 
-This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive) instead.
+This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](js-apis-webview.md#onactive) instead.
 
 **Example**
 
@@ -5997,7 +5998,7 @@ onInactive(): void
 
 Called when the **\<Web>** component enters the inactive state.
 
-This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive) instead.
+This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](js-apis-webview.md#oninactive) instead.
 
 **Example**
 
@@ -6025,7 +6026,7 @@ zoom(factor: number): void
 
 Sets a zoom factor for the current web page.
 
-This API is deprecated since API version 9. You are advised to use [zoom<sup>9+</sup>](../apis/js-apis-webview.md#zoom) instead.
+This API is deprecated since API version 9. You are advised to use [zoom<sup>9+</sup>](js-apis-webview.md#zoom) instead.
 
 **Parameters**
 
@@ -6061,7 +6062,7 @@ refresh()
 
 Called when the **\<Web>** component refreshes the web page.
 
-This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh) instead.
+This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](js-apis-webview.md#refresh) instead.
 
 **Example**
 
@@ -6090,7 +6091,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. You must invoke the [refresh](#refreshdeprecated) API for the registration to take effect.
 
-This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy) instead.
+This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy) instead.
 
 **Parameters**
 
@@ -6165,7 +6166,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
-This API is deprecated since API version 9. You are advised to use [runJavaScript<sup>9+</sup>](../apis/js-apis-webview.md#runjavascript) instead.
+This API is deprecated since API version 9. You are advised to use [runJavaScript<sup>9+</sup>](js-apis-webview.md#runjavascript) instead.
 
 **Parameters**
 
@@ -6227,7 +6228,7 @@ stop()
 
 Stops page loading.
 
-This API is deprecated since API version 9. You are advised to use [stop<sup>9+</sup>](../apis/js-apis-webview.md#stop) instead.
+This API is deprecated since API version 9. You are advised to use [stop<sup>9+</sup>](js-apis-webview.md#stop) instead.
 
 **Example**
 
@@ -6256,7 +6257,7 @@ clearHistory(): void
 
 Clears the browsing history.
 
-This API is deprecated since API version 9. You are advised to use [clearHistory<sup>9+</sup>](../apis/js-apis-webview.md#clearhistory) instead.
+This API is deprecated since API version 9. You are advised to use [clearHistory<sup>9+</sup>](js-apis-webview.md#clearhistory) instead.
 
 **Example**
 
@@ -6289,7 +6290,7 @@ setCookie()
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
-This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookiedeprecated) instead.
+This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](js-apis-webview.md#setcookiedeprecated) instead.
 
 ### saveCookie<sup>(deprecated)</sup>
 
@@ -6297,7 +6298,7 @@ saveCookie()
 
 Saves the cookies in the memory to the drive. This API returns the result synchronously.
 
-This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync) instead.
+This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](js-apis-webview.md#savecookieasync) instead.
 
 ## ScriptItem<sup>11+</sup>
 
@@ -6306,7 +6307,7 @@ Describes the **ScriptItem** object injected to the **\<Web>** component through
 | Name         | Type            | Mandatory  | Description                   |
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | Yes   | JavaScript script to be injected and executed.|
-| scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.         |
+| scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.<br>1. To allow URLs from all sources, use the wildcard (*).<br>2. If exact match is required, specify the exact URL, for example, **https:\//www\.example.com**.<br>3. For fuzzy match, you can use a wildcard (*) in the website URL, for example, **https://*.example.com**. The following are not allowed: "x. * .y.com", " * foobar.com".<br>4. If the source is an IP address, follow rule 2.      |
 
 ## WebNavigationType<sup>11+</sup>
 
@@ -6402,4 +6403,4 @@ Provides touch information of the **\<embed>** tag.
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | Yes   | Unique ID of the tag.|
-| touchEvent  | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent)  | Yes   | Touch action information. |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent)  | Yes   | Touch action information. |

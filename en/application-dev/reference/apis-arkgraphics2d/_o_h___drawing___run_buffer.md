@@ -17,10 +17,10 @@ The **OH_Drawing_RunBuffer** struct describes a run, which provides storage for 
 
 | Name| Description|
 | -------- | -------- |
-| uint16_t \* [glyphs](#glyphs) | Describes the storage for glyph indexes in the run.|
-| float \* [pos](#pos) | Describes the storage for glyph positions in the run.|
-| char \* [utf8text](#utf8text) | Describes the storage for UTF-8 encoded text units in the run.|
-| uint32_t \* [clusters](#clusters) | Describes the storage for glyph clusters (index of the UTF-8 encoded text unit) in the run.|
+| uint16_t \* [glyphs](#glyphs) | Storage for glyph indexes in the run. |
+| float \* [pos](#pos) | Storage for glyph positions in the run. |
+| char \* [utf8text](#utf8text) | Storage for UTF-8 encoded text units in the run. |
+| uint32_t \* [clusters](#clusters) | Storage for glyph clusters (index of the UTF-8 encoded text unit) in the run. |
 
 
 ## Member Variable Description
@@ -31,10 +31,9 @@ The **OH_Drawing_RunBuffer** struct describes a run, which provides storage for 
 ```
 uint32_t* OH_Drawing_RunBuffer::clusters
 ```
-
 **Description**
 
-Describes the storage for glyph clusters (index of the UTF-8 encoded text unit) in the run.
+Storage for glyph clusters (index of the UTF-8 encoded text unit) in the run.
 
 
 ### glyphs
@@ -42,10 +41,9 @@ Describes the storage for glyph clusters (index of the UTF-8 encoded text unit) 
 ```
 uint16_t* OH_Drawing_RunBuffer::glyphs
 ```
-
 **Description**
 
-Describes the storage for glyph indexes in the run.
+Storage for glyph indexes in the run.
 
 
 ### pos
@@ -53,10 +51,9 @@ Describes the storage for glyph indexes in the run.
 ```
 float* OH_Drawing_RunBuffer::pos
 ```
-
 **Description**
 
-Describes the storage for glyph positions in the run.
+Storage for glyph positions in the run.
 
 
 ### utf8text
@@ -64,7 +61,6 @@ Describes the storage for glyph positions in the run.
 ```
 char* OH_Drawing_RunBuffer::utf8text
 ```
-
 **Description**
 
-Describes the storage for UTF-8 encoded text units in the run.
+Storage for UTF-8 encoded text units in the run.

@@ -19,6 +19,8 @@ import request from '@ohos.request';
 ## Filter<sup>10+</sup>
 过滤条件。
 
+**需要权限**：ohos.permission.INTERNET
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -28,6 +30,8 @@ import request from '@ohos.request';
 
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
+
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 

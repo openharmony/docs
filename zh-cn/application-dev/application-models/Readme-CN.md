@@ -1,8 +1,7 @@
-# 应用模型
+# Ability Kit（程序框架服务）
 
-- 应用模型概述
-  - [应用模型的构成要素](application-model-composition.md)
-  - [应用模型解读](application-model-description.md)
+- [Ability Kit简介](abilitykit-overview.md)
+- [应用模型](application-models.md)
 - Stage模型开发指导
   - [Stage模型开发概述](stage-model-development-overview.md)
   - Stage模型应用组件
@@ -14,47 +13,13 @@
       - [UIAbility组件基本用法](uiability-usage.md)
       - [UIAbility组件与UI的数据同步](uiability-data-sync-with-ui.md)
       - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
-    - ExtensionAbility组件
-      - [ExtensionAbility组件概述](extensionability-overview.md)
-      - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)
-      - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
-      - [DriverExtensionAbility](driverextensionability.md)
-    - 服务卡片开发指导（Stage模型）
-      - [服务卡片概述](service-widget-overview.md)
-      - 开发基于ArkTS UI的卡片
-        - [ArkTS卡片运行机制](arkts-ui-widget-working-principles.md)
-        - [ArkTS卡片相关模块](arkts-ui-widget-modules.md)
-        - ArkTS卡片开发指导
-          - [创建一个ArkTS卡片](arkts-ui-widget-creation.md)
-          - [配置卡片的配置文件](arkts-ui-widget-configuration.md)
-          - [卡片生命周期管理](arkts-ui-widget-lifecycle.md)
-          - 开发卡片页面
-            - [卡片页面能力说明](arkts-ui-widget-page-overview.md)
-            - [卡片使用动效能力](arkts-ui-widget-page-animation.md)
-            - [卡片使用自定义绘制能力](arkts-ui-widget-page-custom-drawing.md)
-          - 开发卡片事件
-            - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
-            - [使用router事件跳转到指定UIAbility](arkts-ui-widget-event-router.md)
-            - [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
-            - [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
-            - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
-          - 卡片数据交互
-            - [卡片数据交互说明](arkts-ui-widget-interaction-overview.md)
-            - [卡片定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
-            - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
-            - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
-            - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
-            - [使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
-      - [开发基于JS UI的卡片](js-ui-widget-development.md)
+    - [ExtensionAbility组件](extensionability-overview.md)
+      - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
-      - [常见action与entities](actions-entities.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
@@ -64,22 +29,9 @@
       - [跨端迁移](hop-cross-device-migration.md)
       - [多端协同](hop-multi-device-collaboration.md)
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
-  - 了解进程模型
-    - [进程模型概述](process-model-stage.md)
-    - 公共事件
-      - [公共事件简介](common-event-overview.md)
-      - 公共事件订阅
-        - [公共事件订阅概述](common-event-subscription-overview.md)
-        - [动态订阅公共事件](common-event-subscription.md)
-        - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
-        - [取消动态订阅公共事件](common-event-unsubscription.md)
-      - [公共事件发布](common-event-publish.md)
-      - [移除粘性公共事件（仅对系统应用开放）](common-event-remove-sticky.md)
-    - [后台服务](background-services.md)
-  - 了解线程模型
-    - [线程模型概述](thread-model-stage.md)
-    - [使用EventHub进行线程内通信](itc-with-eventHub.md)
-  - 任务（Mission）管理
+  - [进程模型](process-model-stage.md)
+  - [线程模型](thread-model-stage.md)
+  - 任务（Mission）管理（仅对系统应用开放）
     - [任务（Mission）管理场景介绍](mission-management-overview.md)
     - [任务（Mission）与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
@@ -117,18 +69,12 @@
       - [启动DataAbility](start-dataability.md)
       - [访问DataAbility](access-dataability.md)
       - [DataAbility权限控制](dataability-permission-control.md)
-    - [服务卡片开发指导](widget-development-fa.md)
     - [FA模型的Context](application-context-fa.md)
     - [信息传递载体Want](want-fa.md)
     - [组件启动规则（FA模型）](component-startup-rules-fa.md)
-  - 了解进程模型
-    - [进程模型概述](process-model-fa.md)
-    - [公共事件](common-event-fa.md)
-    - [后台服务](rpc.md)
-  - 了解线程模型
-    - [线程模型概述](thread-model-fa.md)
-    - [使用Emitter进行线程间通信](itc-with-emitter.md)
-  - [任务管理](mission-management-fa.md)
+  - [进程模型](process-model-fa.md)
+  - [线程模型](thread-model-fa.md)
+  - [任务管理（仅对系统应用开放）](mission-management-fa.md)
   - [FA模型应用配置文件](config-file-fa.md)
 - FA模型与Stage模型应用组件互通指导
   - [FA模型与Stage模型应用组件互通综述](fa-stage-interaction-overview.md)
@@ -163,3 +109,4 @@
     - [resourceManager接口切换](resourcemanager-switch.md)
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
+- [程序访问控制](../security/AccessToken/Readme-CN.md)

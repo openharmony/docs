@@ -1,26 +1,23 @@
-# 广告标识服务
+# 重置OAID信息（仅对系统应用开放）
 
-## 获取OAID信息
+## 场景介绍
 
+OAID会在下述场景中发生变化：
+- 用户恢复手机出厂设置。
+- 系统应用可主动调用resetOAID()接口重置OAID。
+下面为系统应用开发者给出重置OAID的开发指导。
 
-### 场景介绍
-
-开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）：是一种非永久性设备标识符，基于开放匿名设备标识符，可在保护用户个人数据隐私安全的前提下，向用户提供个性化广告，同时三方监测平台也可以向广告主提供转化归因分析。
-
-媒体App、广告平台、三方监测平台等开发者，可获取设备上的OAID，您可基于OAID进行个性化广告推荐或广告转化归因分析。
-
-
-### 接口说明
+## 接口说明
 
 | 接口名 | 描述 |
 | -------- | -------- |
 | [resetOAID()](../../reference/apis-ads-kit/js-apis-oaid-sys.md#identifierresetoaid):&nbsp;void | 重置OAID，此接口为系统接口。 |
 
 
-### 开发步骤
+## 开发步骤
 
 1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent)。示例代码如下所示：
-   ```
+   ```ts
    {
      "module": {
        "requestPermissions": [
@@ -59,7 +56,7 @@
    ```
    
 2. 调用resetOAID方法重置OAID信息，此接口为系统接口。示例代码如下所示：
-   ```
+   ```ts
    import identifier from '@ohos.identifier.oaid';
    import hilog from '@ohos.hilog'; 
    

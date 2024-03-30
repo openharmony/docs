@@ -21,4 +21,4 @@
   - [资源使用](resource-usage.md)
 - [功能开发的一多能力介绍](development-intro.md)
 - [一多开发实例（短信）](case.md)
-- [常见问题](faq.md)
+- [常见问题](multi-faq.md)

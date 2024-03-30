@@ -4,9 +4,9 @@ The **Screenshot** module provides APIs for you to set information such as the r
 
 >  **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -73,7 +73,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------- |
@@ -83,6 +83,7 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -97,12 +98,12 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
   "displayId": 0
 };
 try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap) => {
+  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
     if (err) {
       console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
       return;
     }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // Release the memory in time after the PixelMap is used.
   });
 } catch (exception) {
@@ -130,14 +131,15 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 try {
-  screenshot.save((err: BusinessError, pixelMap) => {
+  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
     if (err) {
       console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
       return;
     }
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // Release the memory in time after the PixelMap is used.
   });
 } catch (exception) {
@@ -165,12 +167,13 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 
 | Type                         | Description                                           |
 | ----------------------------- | ----------------------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Promise used to return a **PixelMap** object.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return a **PixelMap** object.|
 
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -186,8 +189,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
 };
 try {
   let promise = screenshot.save(screenshotOptions);
-  promise.then((pixelMap) => {
-    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  promise.then((pixelMap: image.PixelMap) => {
+    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
     pixelMap.release(); // Release the memory in time after the PixelMap is used.
   }).catch((err: BusinessError) => {
     console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));

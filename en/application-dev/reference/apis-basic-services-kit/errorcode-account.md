@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-The following includes the error codes for OS accounts, distributed accounts, and app accounts.
+The following includes the error codes for system accounts, distributed accounts, and app accounts.
 
 ## 12300001 System Service Abnormal
 
@@ -14,7 +14,6 @@ System service works abnormally.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - The account management service cannot start properly.
 - The IPC object for account management cannot be obtained.
 - The services on which the account management depends cannot start properly, or the IPC object on which the account management depends cannot be obtained.
@@ -37,11 +36,10 @@ Invalid parameter.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - The user name is empty.
-- The user name of the OS account exceeds 1024 characters.
+- The user name of the system account exceeds 1024 characters.
 - The user name of the distributed account exceeds 256 characters.
-- The OS account ID is less than 0 or 100, or greater than 1099.
+- The system account ID is less than 0 or 100, or greater than 1099.
 - The distributed account ID exceeds 512 characters.
 - The event type passed in for the distributed account is not supported.
 - The domain name is empty.
@@ -51,7 +49,7 @@ The possible causes are as follows:
 - The constraint is empty.
 - The constraint exceeds 128 characters.
 - Invalid authentication or query parameters are passed in.
-- The profile photo string of the OS account exceeds 4 KB.
+- The profile photo string of the system account exceeds 4 KB.
 - The profile photo string of the distributed account exceeds 2 MB.
 - The images are not in .jpg or .png format.
 - The app account name exceeds 512 characters.
@@ -75,7 +73,6 @@ The account does not exist.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - The account to query, activate, or delete is not created.
 - The account to query, activate, or delete has been deleted.
 - The constraint, user name, or profile photo is set for an account that has been deleted.
@@ -156,7 +153,6 @@ The specified account is restricted.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - The account to delete is a reserved account of the system.
 - The constraint source type to query belongs to a reserved account.
 - The ID of the account to create is 0 to 100.
@@ -187,7 +183,6 @@ The account service does not respond.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - Repeated requests, such as the requests for activating an account or applying the same settings, are submitted in a short period of time.
 - When the number of authentication sessions for app accounts reaches 256, new authentication requests cannot be processed.
 
@@ -231,7 +226,6 @@ The network exception.
 
 **Possible Causes**
 
-The possible causes are as follows:
 1. The device is not connected to the network.
 2. The network connection is abnormal.
 3. The app does not have the network access permission.
@@ -252,7 +246,6 @@ The credential is incorrect.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - An incorrect password is entered.
 - The biological feature does not match the feature enrolled.
 - The token is invalid.
@@ -269,7 +262,6 @@ The credential does not exist.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - The credential to authenticate has not been enrolled.
 - The credential to query has not been enrolled.
 - The credential to delete has not been enrolled.
@@ -356,6 +348,7 @@ The authentication session does not exist.
 
 **Possible Causes**
 
+
 The session callback to query does not exist.
 
 **Solution**
@@ -369,8 +362,6 @@ Use an opened session to query session callbacks.
 The authentication, enrollment, update operation is canceled.
 
 **Possible Causes**
-
-The possible causes are as follows:
 
 - The user canceled the authentication.
 - The user canceled the credential enrollment.
@@ -402,8 +393,7 @@ The authentication timed out.
 
 **Possible Causes**
 
-The possible causes are as follows:
-1. The authentication or credential enrollment of an OS account takes more than three minutes.
+1. The authentication or credential enrollment of a system account takes more than three minutes.
 2. The authentication service does not respond in time due to network problems.
 
 **Solution**
@@ -419,9 +409,7 @@ The authentication service does not respond.
 
 **Possible Causes**
 
-The possible causes are as follows:
-
-- The total number of OS accounts being authenticated exceeds 5.
+- The total number of system accounts being authenticated exceeds 5.
 - The authentication service of the third-party app does not respond.
 
 **Solution**
@@ -455,7 +443,6 @@ The account authentication service works abnormally.
 
 **Possible Causes**
 
-The possible causes are as follows:
 1. An unknown error occurs in the identity authentication service.
 2. The app authenticator does not comply with specifications.
 
@@ -472,7 +459,6 @@ The application does not exist.
 
 **Possible Causes**
 
-The possible causes are as follows:
 - The target app does not exist when the app permission is set.
 - The target app does not exist when the app permission is authorized.
 

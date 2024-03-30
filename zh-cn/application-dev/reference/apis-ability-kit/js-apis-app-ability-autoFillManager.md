@@ -55,17 +55,22 @@ onFailure(): void
       console.log("save request on failure");
     }
   }
-  ...
-  Button('requestAutoSave')
-    .onClick(() => {
-      try {
-        // 发起保存请求
-        autoFillManager.requestAutoSave(uiContext, callback);
-      } catch (error) {
-        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-      }
-    })
-  ...
+  
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      Button('requestAutoSave')
+        .onClick(() => {
+          try {
+            // 发起保存请求
+            autoFillManager.requestAutoSave(uiContext, callback);
+          } catch (error) {
+            console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+          }
+        })
+    }
+  }
   ```
 
 > **说明：**

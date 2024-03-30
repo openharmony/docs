@@ -1,0 +1,35 @@
+# 查询用户注册凭据的状态。
+
+
+调用者需感知用户注册凭据（人脸、指纹、口令）的变化，可以通过该接口查询当前用户注册凭据的状态。
+
+
+## 接口说明
+
+具体参数、返回值、错误码等描述，请参考对应的[API文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetenrolledstate12)。
+
+| 接口名称 | 功能描述 | 
+| -------- | -------- |
+| getEnrolledState(authType : UserAuthType): EnrolledState | 根据指定的认证类型，查询用户注册凭据的状态，用于感知注册凭据变化。 | 
+
+
+## 开发步骤
+
+1. [申请权限](prerequisites.md#申请权限)：ohos.permission.ACCESS_BIOMETRIC。
+
+2. 指定认证类型（UserAuthType），调用[getEnrolledState](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetenrolledstate12)接口查询用户注册凭据的状态。
+
+以查询用户人脸注册凭据的状态为例：
+
+```ts
+import type {BusinessError} from '@ohos.base';
+import userAuth from '@ohos.userIAM.userAuth';
+
+try {
+  let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
+  console.info(`get current enrolled state success, enrolledState: ${JSON.stringify(enrolledState)}`);
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`get current enrolled state failed, Code is ${err?.code}, message is ${err?.message}`);
+}
+```

@@ -29,7 +29,7 @@ Creates a Paste button that contains the specified elements.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | PasteButtonOptions | No| Creates a Paste button that contains the specified elements.|
+| option | [PasteButtonOptions](#pastebuttonoptions) | No| Creates a Paste button that contains the specified elements.|
 
 ## PasteButtonOptions
 

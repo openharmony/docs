@@ -79,12 +79,12 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
                   callback: autoFillManager.FillRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
       hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
-      hilog.info(0x0000, 'testTag', "get request viewData: ", JSON.stringify(request.viewData));
+      hilog.info(0x0000, 'testTag', 'get request viewData: ', JSON.stringify(request.viewData));
       try {
         let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
           autoFillManager.ViewData | common.AutoFillExtensionContext> = {
           'session': session,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'fillCallback': callback,
           'viewData': request.viewData,
           'context': this.context,
@@ -136,7 +136,7 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
         let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.SaveRequestCallback |
           autoFillManager.ViewData | common.AutoFillExtensionContext> = {
           'session': session,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'fillCallback': callback,
           'viewData': request.viewData,
           'context': this.context,

@@ -46,15 +46,112 @@ Component3D组件配置选项。
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                 | 参数类型                                     | 描述                                       |
-| ------------------ | ---------------------------------------- | ---------------------------------------- |
-| environment        | [Resource](ts-types.md#resource)         | 设置3D环境资源。 <br/>**说明：** <br/>目前仅支持GLTF格式资源，模型资源在控件创建后不支持动态修改。 |
-| customRender       | uri: [Resource](ts-types.md#resource)<br/> selfRenderUpdate: boolean | uri:自定义渲染管线的配置文件。<br/> selfRenderUpdate: 当设置为true时外部UI没有更新时也能触发动效渲染，当设置为false时只有外部UI更新才能触发渲染。<br/>**说明：** <br/>管线配置及自渲染属性在控件创建后不支持动态修改。 |
-| shader             | [Resource](ts-types.md#resource)         | 自定义渲染的shader文件资源。 <br/>**说明：** <br/>  自定义渲染的shader文件资源在控件创建后不支持动态修改。 |
-| shaderImageTexture | [Resource](ts-types.md#resource)         | 自定义渲染用到的纹理资源。<br/>**说明：** <br/>若自定义渲染用到多个纹理资源则则调用多次，绑定点与调用顺序一致，不支持纹理更换。纹理资源在控件创建后不支持动态修改。 |
-| shaderInputBuffer  | Array<number\>                           | 自定义渲染用到的动效参数。                            |
-| renderWidth        | [Dimension](ts-types.md#dimension10)     | 3D渲染分辨率的宽度。<br/>**说明：** <br/> 渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。<br/> 不调用此属性时默认渲染分辨率。<br/> 渲染分辨率在控件创建后不支持动态修改。 |
-| renderHeight       | [Dimension](ts-types.md#dimension10)     | 3D渲染分辨率的长度。<br/>**说明：** <br/> 渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。<br/> 不调用此属性时默认渲染分辨率。<br/> 渲染分辨率在控件创建后不支持动态修改。 |
+### environment
+
+environment(uri: Resource)
+
+设置3D环境资源。目前仅支持GLTF格式资源，模型资源在控件创建后不支持动态修改。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                             | 必填 | 说明         |
+| ------ | -------------------------------- | ---- | ------------ |
+| uri    | [Resource](ts-types.md#resource) | 是   | 3D环境资源。 |
+
+### customRender
+
+customRender(uri: Resource, selfRenderUpdate: boolean)
+
+设置三维场景渲染的渲染管道。管线配置及自渲染属性在控件创建后不支持动态修改。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名           | 类型                             | 必填 | 说明                                                         |
+| ---------------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| uri              | [Resource](ts-types.md#resource) | 是   | 自定义渲染管线的配置文件。                                   |
+| selfRenderUpdate | boolean                          | 是   | 当设置为true时外部UI没有更新时也能触发动效渲染。<br/>当设置为false时只有外部UI更新才能触发渲染。 |
+
+### shader
+
+shader(uri: Resource)
+
+设置自定义渲染的shader文件资源。自定义渲染的shader文件资源在控件创建后不支持动态修改。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                             | 必填 | 说明                         |
+| ------ | -------------------------------- | ---- | ---------------------------- |
+| uri    | [Resource](ts-types.md#resource) | 是   | 自定义渲染的shader文件资源。 |
+
+### shaderImageTexture
+
+shaderImageTexture(uri: Resource)
+
+设置自定义渲染用到的纹理资源。若自定义渲染用到多个纹理资源则调用多次，绑定点与调用顺序一致，不支持纹理更换。纹理资源在控件创建后不支持动态修改。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                             | 必填 | 说明                       |
+| ------ | -------------------------------- | ---- | -------------------------- |
+| uri    | [Resource](ts-types.md#resource) | 是   | 自定义渲染用到的纹理资源。 |
+
+### shaderInputBuffer
+
+shaderInputBuffer(buffer: Array&lt;number&gt;)
+
+设置自定义渲染用到的动效参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型           | 必填 | 说明                       |
+| ------ | -------------- | ---- | -------------------------- |
+| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数。 |
+
+### renderWidth
+
+renderWidth(value: Dimension)
+
+设置3D渲染分辨率的宽度。渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。
+
+不调用此属性时默认渲染分辨率。
+
+渲染分辨率在控件创建后不支持动态修改。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                 | 必填 | 说明                 |
+| ------ | ------------------------------------ | ---- | -------------------- |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度。 |
+
+### renderHeight
+
+renderHeight(value: Dimension)
+
+设置3D渲染分辨率的长度。渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。
+
+不调用此属性时默认渲染分辨率。
+
+渲染分辨率在控件创建后不支持动态修改。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                 | 必填 | 说明                 |
+| ------ | ------------------------------------ | ---- | -------------------- |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度。 |
 
 ## 事件
 

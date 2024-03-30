@@ -9,7 +9,7 @@
 
 ## onHover
 
-onHover(event: (isHover: boolean, event: HoverEvent) => void)
+onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
 鼠标进入或退出组件时触发该回调。
 
@@ -21,6 +21,12 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void)
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | isHover             | boolean                             | 是   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
 | event<sup>10+</sup> | [HoverEvent](#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。                                       |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## onMouse
 
@@ -80,7 +86,7 @@ struct MouseEventExample {
       Button(this.hoverText)
         .width(180).height(80)
         .backgroundColor(this.color)
-        .onHover((isHover?: boolean, event?: HoverEvent):void => {
+        .onHover((isHover: boolean, event: HoverEvent) => {
           // 通过onHover事件动态修改按钮在是否有鼠标悬浮时的文本内容与背景颜色
           if (isHover) {
             this.hoverText = 'hover';

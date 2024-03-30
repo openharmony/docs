@@ -6,6 +6,7 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.wifi (WLAN)](js-apis-wifi.md)
+> 从API Version 9 开始，该接口不再维护，推荐使用[`@ohos.wifiManager (WLAN)`](js-apis-wifiManager-sys.md)等相关接口。
 
 
 ## 导入模块
@@ -371,10 +372,7 @@ try {
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
 | snr | number | 是 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
-| macAddress | string | 是 | 否 | 设备的MAC地址。 |
-| ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | suppState | [SuppState](#suppstate) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
-| connState | [ConnState](js-apis-wifi.md#connstate) | 是 | 否 | WLAN连接状态。 |
 
 
 ## SuppState

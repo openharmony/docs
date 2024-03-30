@@ -28,7 +28,7 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 
 **Model restriction**: This API can be used only in the FA model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -54,7 +54,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the FA model.
 
-**System capability**: SystemCapability.Applications.settings.Core
+**System capability**: SystemCapability.Applications.Settings.Core
 
 **Parameters**
 
@@ -69,4 +69,3 @@ Sets the value for a data item. This API uses a promise to return the result.
 | Type             | Description                                              |
 | ----------------- | -------------------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
-<!--no_check-->

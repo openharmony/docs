@@ -18,8 +18,8 @@ Triggered when the component area changes in size or position due to layout upda
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| oldValue | [Area](ts-types.md#area8) | No  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page before the change.|
-| newValue | [Area](ts-types.md#area8) | No  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page after the change.|
+| oldValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page before the change.|
+| newValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page after the change.|
 
 
 ## Example

@@ -33,7 +33,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -152,7 +152,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](../errorcodes/errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -686,7 +686,7 @@ Describes the preset vibration.
 
 ## VibrateFromFile<sup>10+</sup>
 
-Describes the custom vibration type, which is supported only by certain devices. If a device does not support this vibration type, [an error code indicating unsupported device](../errorcodes/errorcode-universal.md) is returned.
+Describes the custom vibration type, which is supported only by certain devices. If a device does not support this vibration type, [an error code indicating unsupported device](../errorcode-universal.md) is returned.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -969,5 +969,3 @@ vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: Busin
   }
 })
 ```
-
- <!--no_check--> 

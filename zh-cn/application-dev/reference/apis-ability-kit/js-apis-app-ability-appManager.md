@@ -160,7 +160,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>
 
-获取应用程序的内存大小。
+获取当前应用程序可以使用的内存的值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -168,7 +168,7 @@ getAppMemorySize(): Promise\<number>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | Promise&lt;number&gt; | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。| 
 
 **错误码**：
 
@@ -182,7 +182,7 @@ getAppMemorySize(): Promise\<number>
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
-import { BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base';
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
@@ -195,7 +195,7 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取应用程序的内存大小。
+获取当前应用程序可以使用的内存的值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -203,7 +203,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 |以回调方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 |获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。| 
 
 **错误码**：
 

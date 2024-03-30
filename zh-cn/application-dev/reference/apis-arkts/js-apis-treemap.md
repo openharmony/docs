@@ -61,7 +61,11 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 **示例：**
 
 ```ts
+//默认构造
 let treeMap : TreeMap<number, number> = new TreeMap();
+```
+
+```ts
 //使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
 let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
 treeMap.set("aa","3");
@@ -72,6 +76,24 @@ let numbers = Array.from(treeMap.keys())
 for (let item of numbers) {
   console.log("treeMap:" + item);
 }
+```
+
+```ts
+//当插入自定义类型时，则必须要提供比较函数。
+ class TestEntry{
+   public id: number = 0;
+ }
+ let ts1: TreeMap<TestEntry, string> = new TreeMap<TestEntry, string>((t1: TestEntry, t2: TestEntry): boolean => {return t1.id < t2.id;});
+ let entry1: TestEntry = {
+   id: 0
+ };
+ let entry2: TestEntry = {
+   id: 1
+ }
+ ts1.set(entry1, "0");
+ ts1.set(entry2, "1");
+ console.log("treeMap: ", ts1.length);
+
 ```
 
 

@@ -17,11 +17,18 @@ The **drawing_shader_effect.h** file declares the functions related to the shade
 ## Summary
 
 
+### Types
+
+| Name| Description|
+| -------- | -------- |
+| typedef enum [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode)  [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) | Defines an enum for tile modes of the shader effect.|
+
+
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) {<br>CLAMP, REPEAT, MIRROR, DECAL<br>} | Enumerates the tile modes of the shader effect.|
+| [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) { CLAMP, REPEAT, MIRROR, DECAL } | Enumerates the tile modes of the shader effect.|
 
 
 ### Functions

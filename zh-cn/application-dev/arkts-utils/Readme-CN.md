@@ -1,4 +1,4 @@
-# ArkTS语言基础类库
+# ArkTS（方舟编程语言）
 
 - [ArkTS简介](arkts-commonlibrary-overview.md)
 - 并发

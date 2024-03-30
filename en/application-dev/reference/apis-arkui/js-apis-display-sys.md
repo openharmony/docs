@@ -167,6 +167,43 @@ try {
 }
 ```
 
+## display.setFoldStatusLocked<sup>11+</sup>
+
+setFoldStatusLocked(locked: boolean): void
+
+Sets whether to lock the current fold status of the foldable device.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. The value **true** means to lock the current fold status, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import display from '@ohos.display';
+
+try {
+  let locked: boolean = false;
+  display.setFoldStatusLocked(locked);
+} catch (exception) {
+  console.error('Failed to change the fold status locked mode. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## Display
 Implements a **Display** instance, with properties and APIs defined.
 
@@ -263,7 +300,7 @@ let promise = displayClass.hasImmersiveWindow();
 promise.then((data) => {
   console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
+  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
 })
 ```
 

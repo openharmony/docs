@@ -17,14 +17,14 @@ The **Camera_OutputCapability** struct defines the camera output capability.
 
 | Name| Description| 
 | -------- | -------- |
-| [previewProfiles](#previewprofiles) | List of preview profiles.| 
-| [previewProfilesSize](#previewprofilessize) | Size of the preview profiles.| 
-| [photoProfiles](#photoprofiles) | List of photo profiles.| 
-| [photoProfilesSize](#photoprofilessize) | Size of the photo profiles.| 
-| [videoProfiles](#videoprofiles) | List of video profiles.| 
-| [videoProfilesSize](#videoprofilessize) | Size of the video profiles.| 
-| [supportedMetadataObjectTypes](#supportedmetadataobjecttypes) | Types of the metadata objects supported.| 
-| [metadataProfilesSize](#metadataprofilessize) | Size of the metadata profiles.| 
+| [Camera_Profile](_camera___profile.md) \*\* [previewProfiles](#previewprofiles) | List of preview profiles. | 
+| uint32_t [previewProfilesSize](#previewprofilessize) | Size of the preview profiles. | 
+| [Camera_Profile](_camera___profile.md) \*\* [photoProfiles](#photoprofiles) | List of photo profiles. | 
+| uint32_t [photoProfilesSize](#photoprofilessize) | Size of the photo profiles. | 
+| [Camera_VideoProfile](_camera___video_profile.md) \*\* [videoProfiles](#videoprofiles) | List of video profiles. | 
+| uint32_t [videoProfilesSize](#videoprofilessize) | Size of the video profiles. | 
+| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype) \*\* [supportedMetadataObjectTypes](#supportedmetadataobjecttypes) | Types of the metadata objects supported. | 
+| uint32_t [metadataProfilesSize](#metadataprofilessize) | Size of the metadata profiles. | 
 
 
 ## Member Variable Description
@@ -35,7 +35,6 @@ The **Camera_OutputCapability** struct defines the camera output capability.
 ```
 uint32_t Camera_OutputCapability::metadataProfilesSize
 ```
-
 **Description**
 
 Size of the metadata profiles.
@@ -46,7 +45,6 @@ Size of the metadata profiles.
 ```
 Camera_Profile** Camera_OutputCapability::photoProfiles
 ```
-
 **Description**
 
 List of photo profiles.
@@ -57,7 +55,6 @@ List of photo profiles.
 ```
 uint32_t Camera_OutputCapability::photoProfilesSize
 ```
-
 **Description**
 
 Size of the photo profiles.
@@ -68,7 +65,6 @@ Size of the photo profiles.
 ```
 Camera_Profile** Camera_OutputCapability::previewProfiles
 ```
-
 **Description**
 
 List of preview profiles.
@@ -79,7 +75,6 @@ List of preview profiles.
 ```
 uint32_t Camera_OutputCapability::previewProfilesSize
 ```
-
 **Description**
 
 Size of the preview profiles.
@@ -90,7 +85,6 @@ Size of the preview profiles.
 ```
 Camera_MetadataObjectType** Camera_OutputCapability::supportedMetadataObjectTypes
 ```
-
 **Description**
 
 Types of the metadata objects supported.
@@ -101,7 +95,6 @@ Types of the metadata objects supported.
 ```
 Camera_VideoProfile** Camera_OutputCapability::videoProfiles
 ```
-
 **Description**
 
 List of video profiles.
@@ -112,7 +105,6 @@ List of video profiles.
 ```
 uint32_t Camera_OutputCapability::videoProfilesSize
 ```
-
 **Description**
 
 Size of the video profiles.

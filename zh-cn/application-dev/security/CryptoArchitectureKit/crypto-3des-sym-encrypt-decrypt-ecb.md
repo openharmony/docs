@@ -37,44 +37,88 @@
 
 3. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
 
+- 异步方法示例：
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import buffer from '@ohos.buffer';
 
-// 加密消息
-async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-  let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
-  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
-  let encryptData = await cipher.doFinal(plainText);
-  return encryptData;
-}
-// 解密消息
-async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-  let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
-  await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
-  let decryptData = await decoder.doFinal(cipherText);
-  return decryptData;
-}
-async function genSymKeyByData(symKeyData: Uint8Array) {
-  let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-  let symGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
-  let symKey = await symGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
-  return symKey;
-}
-async function main() {
-  let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224, 139, 253, 248, 239, 239, 41, 71, 25, 235, 206, 230, 162, 249, 27, 234, 114]);
-  let symKey = await genSymKeyByData(keyData);
-  let message = "This is a test";
-  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-  let encryptText = await encryptMessagePromise(symKey, plainText);
-  let decryptText = await decryptMessagePromise(symKey, encryptText);
-  if (plainText.data.toString() === decryptText.data.toString()) {
-    console.info('decrypt ok');
-    console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
-  } else {
-    console.error('decrypt failed');
+  // 加密消息
+  async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+    let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
+    await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
+    let encryptData = await cipher.doFinal(plainText);
+    return encryptData;
   }
-}
-```
+  // 解密消息
+  async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+    let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
+    await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
+    let decryptData = await decoder.doFinal(cipherText);
+    return decryptData;
+  }
+  async function genSymKeyByData(symKeyData: Uint8Array) {
+    let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
+    let symGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+    let symKey = await symGenerator.convertKey(symKeyBlob);
+    console.info('convertKey success');
+    return symKey;
+  }
+  async function main() {
+    let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224, 139, 253, 248, 239, 239, 41, 71, 25, 235, 206, 230, 162, 249, 27, 234, 114]);
+    let symKey = await genSymKeyByData(keyData);
+    let message = "This is a test";
+    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+    let encryptText = await encryptMessagePromise(symKey, plainText);
+    let decryptText = await decryptMessagePromise(symKey, encryptText);
+    if (plainText.data.toString() === decryptText.data.toString()) {
+      console.info('decrypt ok');
+      console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
+    } else {
+      console.error('decrypt failed');
+    }
+  }
+  ```
+
+- 同步方法示例：
+
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import buffer from '@ohos.buffer';
+
+  // 加密消息
+  function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+    let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
+    cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
+    let encryptData = cipher.doFinalSync(plainText);
+    return encryptData;
+  }
+  // 解密消息
+  function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+    let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
+    decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
+    let decryptData = decoder.doFinalSync(cipherText);
+    return decryptData;
+  }
+  async function genSymKeyByData(symKeyData: Uint8Array) {
+    let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
+    let symGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+    let symKey = await symGenerator.convertKey(symKeyBlob);
+    console.info('convertKey success');
+    return symKey;
+  }
+  async function main() {
+    let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224, 139, 253, 248, 239, 239, 41, 71, 25, 235, 206, 230, 162, 249, 27, 234, 114]);
+    let symKey = await genSymKeyByData(keyData);
+    let message = "This is a test";
+    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+    let encryptText = encryptMessage(symKey, plainText);
+    let decryptText = decryptMessage(symKey, encryptText);
+    if (plainText.data.toString() === decryptText.data.toString()) {
+      console.info('decrypt ok');
+      console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
+    } else {
+      console.error('decrypt failed');
+    }
+  }
+  ```

@@ -82,9 +82,20 @@ LocationButton(option:LocationButtonOptions)
 
 不支持通用事件，仅支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：位置权限的授权结果。<br/>event：见ClickEvent对象说明。 |
+### onClick
+
+onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; void)
+
+点击动作触发该回调
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| result | [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)| 是 | 位置权限的授权结果。|
 
 
 ## 示例

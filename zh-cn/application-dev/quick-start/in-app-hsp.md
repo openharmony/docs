@@ -3,7 +3,7 @@
 HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库、资源和配置文件，通过HSP可以实现应用内的代码和资源的共享。HSP不支持独立发布，而是跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 > **说明：**
 > 
-> 当前暂不支持应用间HSP，提到HSP时都指的是应用内HSP。
+> 仅支持应用内HSP，不支持应用间HSP。
 
 ## 使用场景
 - 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
@@ -49,7 +49,6 @@ export struct MyTitleBar {
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)
         .fontSize(32)
-        .fontWeight(700)
         .fontColor($r('app.color.text_color'))
     }
     .width('100%')
@@ -368,7 +367,6 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
           .fontFamily('HarmonyHeiTi')
           .fontWeight(FontWeight.Bold)
           .fontSize(32)
-          .fontWeight(700)
           .fontColor($r('app.color.text_color'))
           .margin({ top: '32px' })
           .width('624px')

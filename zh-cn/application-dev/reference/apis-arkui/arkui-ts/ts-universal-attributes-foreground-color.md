@@ -10,7 +10,7 @@
 
 foregroundColor(value: ResourceColor | ColoringStrategy)
 
-设置组件的前景色。
+设置组件的前景色。当组件未设置前景色，默认继承父组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

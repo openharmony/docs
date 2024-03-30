@@ -33,6 +33,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | 名称                   | 类型                                                                 | 可读  | 可写  | 说明                  |
 |----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
 | accessibilityFocused | boolean                                                            | 是   | 否   |   accessibility焦点状态。   |
+| accessibilityText<sup>12+</sup> | string                                                  | 是   | 否   | 元素的无障碍文本信息。 |
 | bundleName           | string                                                             | 是   | 否   | 应用包名。 |
 | checkable            | boolean                                                            | 是   | 否   | 元素是否可查。 |
 | checked              | boolean                                                            | 是   | 否   | 元素是否被检查。 |
@@ -292,7 +293,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 参数名                  | 类型                                       | 必填   | 说明                |
 | -------------------- | ---------------------------------------- | ---- | ----------------- |
-| isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素。    |
+| isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素，True表示是，False表示否。    |
 | callback             | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
 **错误码：**
@@ -1243,5 +1244,42 @@ rootElement.findElement('focusDirection', condition, (err: BusinessError, data: 
     return;
   }
   console.info(`Succeeded in find element, ${JSON.stringify(data)}`);
+});
+```
+
+### findElement('elementId')<sup>12+</sup>
+
+findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement>;
+
+根据elementId查询当前活动窗口下的节点元素，使用Promise异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名       | 类型                                | 必填   | 说明                                       |
+| --------- | --------------------------------- | ---- | ---------------------------------------- |
+| type      | string                            | 是    | 固定为'elementId', 表示根据elementId查询当前活动窗口下的节点元素。 |
+| condition | number | 是    | 表示要查询的阶段元素的elementId。                           |
+
+**返回值：**
+
+| 类型                                  | 说明                               |
+| ----------------------------------- | -------------------------------- |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询条件的节点元素。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+//elementId为10
+let condition = 10;
+
+// rootElement是AccessibilityElement的实例
+rootElement.findElement('elementId', condition).then((data: AccessibilityElement) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
 });
 ```

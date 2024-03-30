@@ -31,6 +31,83 @@
 >
 > 当class对象中没有一个属性被标记@Track，行为与原先保持不变。@Track没有深度观测的功能。
 
+使用@Track装饰器可以避免冗余刷新。
+
+```ts
+class LogTrack {
+  @Track str1: string;
+  @Track str2: string;
+
+  constructor(str1: string) {
+    this.str1 = str1;
+    this.str2 = 'World';
+  }
+}
+
+class LogNotTrack {
+  str1: string;
+  str2: string;
+
+  constructor(str1: string) {
+    this.str1 = str1;
+    this.str2 = '世界';
+  }
+}
+
+@Entry
+@Component
+struct AddLog {
+  @State logTrack: LogTrack = new LogTrack('Hello');
+  @State logNotTrack: LogNotTrack = new LogNotTrack('你好');
+
+  isRender(index: number) {
+    console.log(`Text ${index} is rendered`);
+    return 50;
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.logTrack.str1) // UINode1
+          .fontSize(this.isRender(1))
+          .fontWeight(FontWeight.Bold)
+        Text(this.logTrack.str2) // UINode2
+          .fontSize(this.isRender(2))
+          .fontWeight(FontWeight.Bold)
+        Button('change logTrack.str1')
+          .onClick(() => {
+            this.logTrack.str1 = 'Bye';
+          })
+        Text(this.logNotTrack.str1) // UINode3
+          .fontSize(this.isRender(3))
+          .fontWeight(FontWeight.Bold)
+        Text(this.logNotTrack.str2) // UINode4
+          .fontSize(this.isRender(4))
+          .fontWeight(FontWeight.Bold)
+        Button('change logNotTrack.str1')
+          .onClick(() => {
+            this.logNotTrack.str1 = '再见';
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+在上面的示例中：
+
+1. 类LogTrack中的属性均被@Track装饰器装饰，点击按钮"change logTrack.str1"，此时UINode1刷新，UINode2不刷新，只有一条日志输出，避免了冗余刷新。
+```ts
+Text 1 is rendered
+```
+
+2. 类logNotTrack中的属性均未被@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时UINode3、UINode4均会刷新，有两条日志输出，存在冗余刷新。
+```ts
+Text 3 is rendered
+Text 4 is rendered
+```
 
 ## 限制条件
 

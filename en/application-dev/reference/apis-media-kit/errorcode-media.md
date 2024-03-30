@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 ## 5400101 Memory Allocation Failed
 
@@ -114,3 +114,21 @@ The file format is not supported.
 **Solution**
 
 Use a supported format.
+
+## 5400107 Audio Focus Conflict
+
+**Error Message**
+
+Audio interrupted
+
+**Description**
+
+Recording fails due to audio focus conflicts.
+
+**Possible Causes**
+
+Another process occupies the audio focus.
+
+**Solution**
+
+Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.

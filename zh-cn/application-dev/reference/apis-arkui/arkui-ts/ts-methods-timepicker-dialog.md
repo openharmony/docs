@@ -31,7 +31,7 @@ show(options?: TimePickerDialogOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false<br />**说明：**当展示时间为12小时制时，上下午与小时无联动关系。 |
+| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false<br />**说明：** 当展示时间为12小时制时，上下午与小时无联动关系。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
@@ -43,6 +43,10 @@ show(options?: TimePickerDialogOptions)
 | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。 |
+| OnDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>OnWillDisappear>>OnDidDisappear。 |
+| OnWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在OnWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
+| OnWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>OnWillDisappear>>OnDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。 |
 
 ## 示例
 
@@ -75,6 +79,18 @@ struct TimePickerDialogExample {
             },
             onChange: (value: TimePickerResult) => {
               console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            },
+            onDidAppear: () => {
+              console.info("TimePickerDialog:onDidAppear()")
+            },
+            onDidDisappear: () => {
+              console.info("TimePickerDialog:onDidDisappear()")
+            },
+            onWillAppear: () => {
+              console.info("TimePickerDialog:onWillAppear()")
+            },
+            onWillDisappear: () => {
+              console.info("TimePickerDialog:onWillDisappear()")
             }
           })
         })
@@ -98,6 +114,18 @@ struct TimePickerDialogExample {
             },
             onChange: (value: TimePickerResult) => {
               console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            },
+            onDidAppear: () => {
+              console.info("TimePickerDialog:onDidAppear()")
+            },
+            onDidDisappear: () => {
+              console.info("TimePickerDialog:onDidDisappear()")
+            },
+            onWillAppear: () => {
+              console.info("TimePickerDialog:onWillAppear()")
+            },
+            onWillDisappear: () => {
+              console.info("TimePickerDialog:onWillDisappear()")
             }
           })
         })

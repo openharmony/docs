@@ -15,8 +15,8 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [min](_o_h___native_x_component.md#min) | 期望帧率范围最小值。 |
-| [max](_o_h___native_x_component.md#max) | 期望帧率范围最大值。 |
-| [expected](_o_h___native_x_component.md#expected) | 期望帧率。 |
+| int32_t [min](_o_h___native_x_component.md#min) |  期望帧率范围最小值。| 
+| int32_t [max](_o_h___native_x_component.md#max) |  期望帧率范围最大值。| 
+| int32_t [expected](_o_h___native_x_component.md#expected) |  期望帧率。| 

@@ -68,7 +68,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
   > **说明：**
   >
-  > 从API version 12开始，type为SURFACE("surface")时支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)。
+  > 从API version 11开始，type为SURFACE("surface")时支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)。
 
 - type为COMPONENT("component")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用挂载子组件的方式进行设置相关内容。
 
@@ -119,12 +119,13 @@ getXComponentSurfaceId(): string
 | string | XComponent持有Surface的ID。 |
 
 
-### setXComponentSurfaceSize
+### setXComponentSurfaceSize<sup>(deprecated)</sup>
 
 setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
 设置XComponent持有Surface的宽度和高度，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
+该接口从API Version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
 
 **参数:**
 
@@ -146,6 +147,48 @@ getXComponentContext(): Object
 | ------ | ------------------------------------------------------------ |
 | Object | 获取XComponent实例对象的context，context包含的具体接口方法由开发者自定义，context内容与onLoad回调中的第一个参数一致。 |
 
+### setXComponentSurfaceRect<sup>12+</sup>
+
+setXComponentSurfaceRect(rect: SurfaceRect): void
+
+设置XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名 | 参数类型                             | 必填 | 描述                              |
+| ------ | ------------------------------------ | ---- | --------------------------------- |
+| rect   | [SurfaceRect](#surfacerect12类型说明) | 是   | XComponent持有Surface的显示区域。 |
+
+> **说明：**
+>
+> rect参数中的offsetX/offsetY不设置时，Surface显示区域相对于XComponent左上角x/y轴的偏移效果默认按照居中显示。
+>
+> rect参数中的surfaceWidth和surfaceHeight存在0或负数时，调用该接口设置显示区域不生效。
+>
+> 该方法优先级高于[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等可以改变内容偏移和大小的属性。
+
+### getXComponentSurfaceRect<sup>12+</sup>
+
+getXComponentSurfaceRect(): SurfaceRect
+
+获取XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**返回值:**
+
+| 类型                                 | 描述                                  |
+| ------------------------------------ | ------------------------------------- |
+| [SurfaceRect](#surfacerect12类型说明) | 获取XComponent持有Surface的显示区域。 |
+
+### SurfaceRect<sup>12+</sup>类型说明
+
+用于描述XComponent持有Surface的显示区域。
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| offsetX       | number | 否   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
+| offsetY       | number | 否   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
+| surfaceWidth  | number | 是   | Surface显示区域的宽度，单位：px。                            |
+| surfaceHeight | number | 是   | Surface显示区域的高度，单位：px。                            |
 
 ## 示例
 
@@ -159,23 +202,27 @@ struct PreviewArea {
   private surfaceId: string = ''
   private xComponentContext: Record<string, () => void> = {}
   xComponentController: XComponentController = new XComponentController()
+  @State rect: SurfaceRect | null = null
 
   build() {
-    Row() {
+    Column() {
+      Text(JSON.stringify(this.rect))
+        .fontSize(12)
       XComponent({
         id: 'xcomponent',
         type: XComponentType.SURFACE,
         controller: this.xComponentController
       })
         .onLoad(() => {
-          this.xComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
           this.surfaceId = this.xComponentController.getXComponentSurfaceId()
           this.xComponentContext = this.xComponentController.getXComponentContext() as Record<string, () => void>
+          let surfaceRect: SurfaceRect = { offsetX: 20, offsetY: 20, surfaceWidth: 500, surfaceHeight: 500 }
+          this.xComponentController.setXComponentSurfaceRect(surfaceRect)
+          this.rect = this.xComponentController.getXComponentSurfaceRect()
         })
         .width('640px')
         .height('480px')
     }
-    .backgroundColor(Color.Black)
     .position({ x: 0, y: 48 })
   }
 }

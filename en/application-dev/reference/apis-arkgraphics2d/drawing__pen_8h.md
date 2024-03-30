@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **drawing_pen.h** file declares the functions related to the pen in the drawing module.
+The **drawing_pen.h** file declares functions related to the pen in the drawing module.
 
 **File to include**: &lt;native_drawing/drawing_pen.h&gt;
 
@@ -17,12 +17,20 @@ The **drawing_pen.h** file declares the functions related to the pen in the draw
 ## Summary
 
 
+### Types
+
+| Name| Description|
+| -------- | -------- |
+| typedef enum [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle)  [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) | Defines an enum for line cap styles of a pen. The line cap style defines the style of both ends of a line segment drawn by the pen.|
+| typedef enum [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)  [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) | Defines an enum for line join styles of a pen. The line join style defines the shape of the joints of a polyline segment drawn by the pen.|
+
+
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) {<br>LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP<br>} | Enumerates the line cap styles of a pen. The line cap style defines the style of both ends of a line segment drawn by the pen.|
-| [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) {<br>LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN<br>} | Enumerates the line join styles of a pen. The line join style defines the shape of the joints of a polyline segment drawn by the pen.|
+| [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) { LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP } | Enumerates the line cap styles of a pen. The line cap style defines the style of both ends of a line segment drawn by the pen.|
+| [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) { LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN } | Enumerates the line join styles of a pen. The line join style defines the shape of the joints of a polyline segment drawn by the pen.|
 
 
 ### Functions
@@ -45,3 +53,7 @@ The **drawing_pen.h** file declares the functions related to the pen in the draw
 | void [OH_Drawing_PenSetCap](_drawing.md#oh_drawing_pensetcap) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle)) | Sets the line cap style for a pen.|
 | [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](_drawing.md#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | Obtains the line join style of a pen.|
 | void [OH_Drawing_PenSetJoin](_drawing.md#oh_drawing_pensetjoin) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)) | Sets the line join style for a pen.|
+| void [OH_Drawing_PenSetShaderEffect](_drawing.md#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) \*) | Sets the shader effect for a pen.|
+| void [OH_Drawing_PenSetPathEffect](_drawing.md#oh_drawing_pensetpatheffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) \*) | Sets the path effect for a pen.|
+| void [OH_Drawing_PenSetFilter](_drawing.md#oh_drawing_pensetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | Sets a filter for a pen.|
+| void [OH_Drawing_PenSetBlendMode](_drawing.md#oh_drawing_pensetblendmode) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | Sets a blender for a pen. The blender implements the specified blend mode.|

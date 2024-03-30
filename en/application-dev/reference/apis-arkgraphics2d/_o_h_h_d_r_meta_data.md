@@ -3,19 +3,13 @@
 
 ## Overview
 
-The **OHHDRMetaData** module defines the HDR metadata.
+The **OHHDRMetaData** struct describes the HDR metadata.
 
-**Since**
+**Since**: 9
 
-9
+**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.
 
-**Deprecated**
-
-This module is deprecated since API version 10. No substitute module is provided.
-
-**Related Modules**
-
-[NativeWindow](_native_window.md)
+**Related module**: [NativeWindow](_native_window.md)
 
 
 ## Summary
@@ -23,17 +17,16 @@ This module is deprecated since API version 10. No substitute module is provided
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [key](#key) | HDR metadata key.|
-| [value](#value) | Value of the key.|
+| [OHHDRMetadataKey](_native_window.md#ohhdrmetadatakey)  [key](#key) | HDR metadata key.| 
+| float [value](#value) | Value of the key.| 
 
 
 ## Member Variable Description
 
 
 ### key
-
 
 ```
 OHHDRMetadataKey OHHDRMetaData::key
@@ -45,7 +38,6 @@ HDR metadata key.
 
 
 ### value
-
 
 ```
 float OHHDRMetaData::value

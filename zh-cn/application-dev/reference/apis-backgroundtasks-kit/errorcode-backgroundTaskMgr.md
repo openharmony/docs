@@ -10,6 +10,10 @@
 
 Memory operation failed.
 
+**错误描述**
+
+内存操作失败。
+
 **可能原因**
 
 1. 系统内存泄漏。
@@ -26,6 +30,10 @@ Memory operation failed.
 
 Parcel operation failed.
 
+**错误描述**
+
+进程间通信，读写操作失败。
+
 **可能原因**
 
 调用MessageParcel对象读取或写入对象异常。
@@ -39,6 +47,10 @@ Parcel operation failed.
 **错误信息**
 
 Inner transact failed.
+
+**错误描述**
+
+进程间通信，IPC通信失败。
 
 **可能原因**
 
@@ -54,6 +66,10 @@ IPC通信失败。
 
 System service operation failed.
 
+**错误描述**
+
+客户端进程请求系统服务进程，获取系统服务操作失败。
+
 **可能原因**
 
 1. 系统服务还未启动。
@@ -68,6 +84,10 @@ System service operation failed.
 **错误信息**
 
 Background task verification failed.
+
+**错误描述**
+
+长时任务校验失败。
 
 **可能原因**
 
@@ -89,6 +109,10 @@ Background task verification failed.
 
 Notification verification failed.
 
+**错误描述**
+
+长时任务发送通知信息校验失败。
+
 **可能原因**
 
 1. 缓存在资源子系统的长时任务通知信息资源加载失败。
@@ -104,6 +128,10 @@ Notification verification failed.
 **错误信息**
 
 Task storage failed.
+
+**错误描述**
+
+长时任务信息存储失败。
 
 **可能原因**
 
@@ -121,6 +149,10 @@ Task storage failed.
 **错误信息**
 
 Caller information verification failed.
+
+**错误描述**
+
+短时任务调用方信息校验失败。
 
 **可能原因**
 
@@ -140,6 +172,10 @@ Caller information verification failed.
 
 Background task verification failed.
 
+**错误描述**
+
+短时任务校验失败。
+
 **可能原因**
 
 1. requestSuspendDelay()方法传递的callback对象已存在。
@@ -158,6 +194,10 @@ Background task verification failed.
 **错误信息**
 
 Caller information verification failed.
+
+**错误描述**
+
+资源申请接口信息校验失败。
 
 **可能原因**
 

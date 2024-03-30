@@ -326,7 +326,7 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCallba
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| callback | 所有回调函数的集合，请参见 [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
+| callback | 所有回调函数的集合，请参阅 [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
 | userData | 用户特定数据。 | 
 
 **返回：**

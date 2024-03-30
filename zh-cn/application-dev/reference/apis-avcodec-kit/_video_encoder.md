@@ -67,7 +67,7 @@ VideoEncoder模块提供用于视频编码的函数。
 ### OH_VideoEncodeBitrateMode
 
 ```
-typedef enum OH_VideoEncodeBitrateModeOH_VideoEncodeBitrateMode
+typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
 ```
 
 **描述**

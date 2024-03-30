@@ -28,7 +28,7 @@ The DataShareHelper is not initialized successfully.
     (1) 找到数据提供者包名，在uri的path里面找，例如：uri = "datashareproxy://com.acts.ohos.data.datasharetest/test"。
     (2) 根据包名找到配置，例如：bm dump --bundle-name com.acts.ohos.data.datasharetest，在里面找到DataShareExtension的配置，确认数据访问者是否有readPermission或writePermission中配置的权限.
 
-## 15700011 添加/删除模板异常
+## 15700011 uri不存在
 
 **错误信息**
 
@@ -36,12 +36,12 @@ The uri is not exist.
 
 **错误描述**
 
-添加/删除模板异常时，系统会产生此错误码。
+添加/删除模板异常或者开启/关闭静默访问传入的uri格式或者路径错误时，系统会产生此错误码。
 
 **可能原因**
 
-1. 添加模板异常时，接口addTemplate的入参uri不正确。
-2. 删除模板异常时，接口delTemplate的入参uri不正确。
+1. 入参uri路径不正确。
+2. 入参uri格式不正确。
 
 **处理步骤**
 

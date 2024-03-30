@@ -4,9 +4,8 @@ The **systemSoundManager** module provides basic capabilities for managing syste
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -345,7 +344,7 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -393,7 +392,7 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -482,7 +481,7 @@ Sets a URI for a system alert tone. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |
@@ -530,7 +529,7 @@ Obtains the URI of a system alert tone. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message             |
 | ------- | --------------------- |

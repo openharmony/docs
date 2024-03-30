@@ -19,10 +19,10 @@ The **OH_AVCodecCallback** struct defines all the asynchronous callback function
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVCodecOnError](_codec_base.md#oh_avcodeconerror)[onError](#onerror) | Defines the callback used to report a codec operation error.| 
-| [OH_AVCodecOnStreamChanged](_codec_base.md#oh_avcodeconstreamchanged)[onStreamChanged](#onstreamchanged) | Defines the callback used to report a codec stream change.| 
-| [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)[onNeedInputBuffer](#onneedinputbuffer) | Defines the callback used to report input data required.| 
-| [OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)[onNewOutputBuffer](#onnewoutputbuffer) | Defines the callback used to report output data generated.| 
+| [OH_AVCodecOnError](_codec_base.md#oh_avcodeconerror) [onError](#onerror) | Defines the callback used to report a codec operation error.| 
+| [OH_AVCodecOnStreamChanged](_codec_base.md#oh_avcodeconstreamchanged) [onStreamChanged](#onstreamchanged) | Defines the callback used to report a codec stream change.| 
+| [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer) [onNeedInputBuffer](#onneedinputbuffer) | Defines the callback used to report input data required.| 
+| [OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer) [onNewOutputBuffer](#onnewoutputbuffer) | Defines the callback used to report output data generated.| 
 
 
 ## Member Variable Description

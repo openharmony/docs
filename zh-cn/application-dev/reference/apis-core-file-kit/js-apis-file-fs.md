@@ -1199,7 +1199,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&
 
   | 类型                                 | 说明     |
   | ---------------------------------- | ------ |
-  | Promise&lt;number&gt; | Promise对象。返回读取的实际数据长度。 |
+  | Promise&lt;number&gt; | Promise对象。返回实际读取的数据长度，单位字节。|
 
 **错误码：**
 
@@ -1239,7 +1239,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCall
   | fd       | number                                   | 是    | 已打开的文件描述符。                             |
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options | [ReadOptions](#readoptions11)      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
-  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回读取的实际数据长度。                             |
+  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回实际读取的数据长度，单位字节。                             |
 
 **错误码：**
 
@@ -1285,7 +1285,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: ReadOptions): number
 
   | 类型     | 说明       |
   | ------ | -------- |
-  | number | 返回实际读取的长度。 |
+  | number | 返回实际读取的数据长度，单位字节。 |
 
 **错误码：**
 
@@ -1510,7 +1510,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise
 
   | 类型                    | 说明       |
   | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
+  | Promise&lt;number&gt; | Promise对象。返回实际写入的数据长度，单位字节。 |
 
 **错误码：**
 
@@ -1590,7 +1590,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): num
 
   | 类型     | 说明       |
   | ------ | -------- |
-  | number | 实际写入的长度。 |
+  | number | 返回实际写入的数据长度，单位字节。 |
 
 **错误码：**
 
@@ -1611,7 +1611,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): num
 
 truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
-截断文件，使用Promise异步返回。
+截断文件内容，使用Promise异步返回。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1649,7 +1649,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
 truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
-截断文件，使用callback异步回调。
+截断文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1684,7 +1684,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
 
 truncateSync(file: string | number, len?: number): void
 
-以同步方法截断文件。
+以同步方法截断文件内容。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1941,7 +1941,7 @@ readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fs, { ReadOptions } from '@ohos.file.fs';
+  import fs, { ReadTextOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let readTextOption: ReadTextOptions = {
       offset: 1,
@@ -1987,7 +1987,7 @@ readTextSync(filePath: string, options?: ReadTextOptions): string
 **示例：**
 
   ```ts
-  import fs, { ReadOptions } from '@ohos.file.fs'; 
+  import fs, { ReadTextOptions } from '@ohos.file.fs'; 
   let filePath = pathDir + "/test.txt";
   let readTextOptions: ReadTextOptions = {
     offset: 1,
@@ -3153,9 +3153,44 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
 
 ## fs.createRandomAccessFile<sup>10+</sup>
 
+createRandomAccessFile(file: string | File, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
+
+基于文件路径或文件对象，以只读方式创建RandomAccessFile文件对象，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+|  参数名    | 类型     | 必填   | 说明                          |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+    if (err) {
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("randomAccessFile fd: " + randomAccessFile.fd);
+      randomAccessFile.close();
+    }
+    fs.closeSync(file);
+  });
+  ```
+
+  ## fs.createRandomAccessFile<sup>10+</sup>
+
 createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
 
-基于文件路径或文件对象，以只读方式创建RandomAccessFile文件对象。使用callback异步回调。
+基于文件路径或文件对象创建RandomAccessFile文件对象。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3187,40 +3222,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   });
   ```
 
-  ## fs.createRandomAccessFile<sup>10+</sup>
 
-createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
-
-基于文件路径或文件对象创建RandomAccessFile文件对象，使用callback异步回调。
-
-**系统能力**：SystemCapability.FileManagement.File.FileIO
-
-**参数：**
-
-|  参数名    | 类型     | 必填   | 说明                          |
-| ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
-| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
-    if (err) {
-      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
-    } else {
-      console.info("randomAccessFile fd: " + randomAccessFile.fd);
-      randomAccessFile.close();
-    }
-    fs.closeSync(file);
-  });
-  ```
 
 ## fs.createRandomAccessFileSync<sup>10+</sup>
 

@@ -32,9 +32,9 @@ Subscribes to data of the acceleration sensor.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error codes**
+**Error codes** 
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -79,9 +79,9 @@ Subscribes to data of the uncalibrated acceleration sensor.
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error codes**
+**Error codes**  
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -129,7 +129,7 @@ Subscribes to data of the ambient light sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -172,7 +172,7 @@ Subscribes to data of the ambient temperature sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -215,11 +215,13 @@ Subscribes to data of the barometer sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -256,11 +258,13 @@ Subscribes to data of the gravity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -301,11 +305,13 @@ Subscribes to data of the gyroscope sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -347,11 +353,13 @@ Subscribes to data of the uncalibrated gyroscope sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -394,11 +402,13 @@ Subscribes to data of the Hall effect sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -438,11 +448,13 @@ Subscribes to data of the heart rate sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -479,11 +491,13 @@ Subscribes to data of the humidity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -523,11 +537,13 @@ Subscribes to data of the linear acceleration sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -566,11 +582,13 @@ Subscribes to data of the magnetic field sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -609,11 +627,13 @@ Subscribes to data of the uncalibrated magnetic field sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -647,7 +667,7 @@ Subscribes to data of the orientation sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -660,6 +680,8 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 | type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.               |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **OrientationResponse** object.  |
 | options  | [Options](#options)                                         | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -692,7 +714,7 @@ Subscribes to data of the pedometer sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -705,6 +727,8 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 | type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.                 |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerResponse** object.    |
 | options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -744,11 +768,13 @@ Subscribes to data of the pedometer detection sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -785,11 +811,13 @@ Subscribes to data of the proximity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -827,11 +855,13 @@ Subscribes to data of the rotation vector sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -872,11 +902,13 @@ Subscribes to data of the significant motion sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -914,11 +946,13 @@ Subscribes to data of the wear detection sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -958,11 +992,13 @@ Obtains data of the acceleration sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -999,11 +1035,13 @@ Obtains data of the uncalibrated acceleration sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1041,11 +1079,13 @@ Obtains data of the ambient light sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1078,11 +1118,13 @@ Obtains data of the temperature sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1115,11 +1157,13 @@ Obtains data of the barometer sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1152,11 +1196,13 @@ Obtains data of the gravity sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1193,11 +1239,13 @@ Obtains to data of the gyroscope sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -1234,11 +1282,13 @@ Obtains data of the uncalibrated gyroscope sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1276,11 +1326,13 @@ Obtains data of the Hall effect sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1315,11 +1367,13 @@ Obtains data of the heart rate sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1352,11 +1406,13 @@ Obtains data of the humidity sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1391,11 +1447,13 @@ Obtains data of the linear acceleration sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1430,11 +1488,13 @@ Obtains data of the magnetic field sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1469,11 +1529,13 @@ Obtains data of the uncalibrated magnetic field sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1511,11 +1573,13 @@ Obtains data of the orientation sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1552,11 +1616,13 @@ Obtains data of the pedometer sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1591,11 +1657,13 @@ Obtains data of the pedometer sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1628,11 +1696,13 @@ Obtains data of the proximity sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1665,11 +1735,13 @@ Obtains data of the rotation vector sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1705,11 +1777,13 @@ Obtains data of the significant motion sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1742,11 +1816,13 @@ Obtains data of the wear detection sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1780,6 +1856,8 @@ Unsubscribes from data of the acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.              |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1823,6 +1901,8 @@ Unsubscribes from data of the uncalibrated acceleration sensor.
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -1862,6 +1942,8 @@ Unsubscribes from data of the ambient light sensor.
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.              |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1903,6 +1985,8 @@ Unsubscribes from data of the ambient temperature sensor.
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -1943,6 +2027,8 @@ Unsubscribes from data of the barometer sensor.
 | type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.                  |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -1982,6 +2068,8 @@ Unsubscribes from data of the gravity sensor.
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.                    |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2026,6 +2114,8 @@ Unsubscribes from data of the gyroscope sensor.
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.                  |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2068,6 +2158,8 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2107,6 +2199,8 @@ Unsubscribes from data of the Hall effect sensor.
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.                       |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2150,6 +2244,8 @@ Unsubscribes from data of the heart rate sensor.
 | type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.                 |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2189,6 +2285,8 @@ Unsubscribes from data of the humidity sensor.
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.                   |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2232,6 +2330,8 @@ Unsubscribes from data of the linear acceleration sensor.
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELERATION**.        |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2271,6 +2371,8 @@ Unsubscribes from data of the magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2312,6 +2414,8 @@ Unsubscribes from data of the uncalibrated magnetic field sensor.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2351,6 +2455,8 @@ Unsubscribes from data of the orientation sensor.
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.                |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2394,6 +2500,8 @@ Unsubscribes from data of the pedometer sensor.
 | type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.                  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2436,6 +2544,8 @@ Unsubscribes from data of the pedometer detection sensor.
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2475,6 +2585,8 @@ Unsubscribes from data of the proximity sensor.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.                  |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2516,6 +2628,8 @@ Unsubscribes from data of the rotation vector sensor.
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2556,6 +2670,8 @@ Unsubscribes from data of the significant motion sensor.
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from "@ohos.sensor";
 import BusinessError from "@ohos.base";
@@ -2595,6 +2711,8 @@ Unsubscribes from data of the wear detection sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2639,11 +2757,13 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2693,11 +2813,13 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2740,11 +2862,13 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2789,11 +2913,13 @@ Obtains the altitude based on the atmospheric pressure. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2831,11 +2957,13 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2883,11 +3011,13 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2931,11 +3061,13 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2994,11 +3126,13 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3050,11 +3184,13 @@ Obtains the rotation matrix from a rotation vector. This API uses an asynchronou
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3099,11 +3235,13 @@ Obtains the rotation matrix from a rotation vector. This API uses a promise to r
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3144,11 +3282,13 @@ Transforms a rotation vector based on the coordinate system. This API uses an as
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.transformRotationMatrix](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3198,11 +3338,13 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.transformRotationMatrix](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3245,11 +3387,13 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3294,11 +3438,13 @@ Obtains the quaternion from a rotation vector. This API uses a promise to return
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3337,11 +3483,13 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3393,11 +3541,13 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3441,11 +3591,13 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message         |
-| -------- | ----------------- |
-| 14500101 | Service exception |
+| ID| Error Message          |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3490,11 +3642,13 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3531,11 +3685,13 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3573,11 +3729,13 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3614,11 +3772,13 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3660,11 +3820,13 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 **Error codes**
 
-For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4166,6 +4328,8 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4222,6 +4386,8 @@ Subscribes to data changes of the uncalibrated acceleration sensor. If this API 
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4258,6 +4424,8 @@ Subscribes to data changes of the gravity sensor. If this API is called multiple
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt;        | Yes  | Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
 | options  | [Options](#options)                                        | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4292,6 +4460,8 @@ Subscribes to data changes of the gyroscope sensor. If this API is called multip
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt;      | Yes  | Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4325,6 +4495,8 @@ Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is 
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4361,6 +4533,8 @@ Subscribes to data changes of the significant motion sensor. If this API is call
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4392,6 +4566,8 @@ Subscribes to data changes of the pedometer detection sensor. If this API is cal
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4425,6 +4601,8 @@ Subscribes to data changes of the pedometer sensor. If this API is called multip
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt;      | Yes  | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4455,6 +4633,8 @@ Subscribes to data changes of the ambient temperature sensor. If this API is cal
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4484,6 +4664,8 @@ Subscribes to data changes of the magnetic field sensor. If this API is called m
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.     |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4516,6 +4698,8 @@ Subscribes to data changes of the uncalibrated magnetic field sensor. If this AP
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4552,6 +4736,8 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt;      | Yes  | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. The default value is 200,000,000 ns. This parameter is used to set the data reporting frequency when proximity sensor events are frequently triggered.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4581,6 +4767,8 @@ Subscribes to data changes of the humidity sensor. If this API is called multipl
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HUMIDITY | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.           |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt;       | Yes  | Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
 | options  | [Options](#options)                                         | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4612,6 +4800,8 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt;      | Yes  | Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4641,6 +4831,8 @@ Subscribes to data changes of the Hall effect sensor. If this API is called mult
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.               |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt;           | Yes  | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
 | options  | [Options](#options)                                     | No  | List of optional parameters. The default value is 200,000,000 ns. This parameter is used to set the data reporting frequency when Hall effect events are frequently triggered.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4672,6 +4864,8 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | Yes  | Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4701,6 +4895,8 @@ Subscribes to data changes of the orientation sensor. If this API is called mult
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ORIENTATION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.        |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt;  | Yes  | Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4756,6 +4952,8 @@ Subscribes to data changes of the rotation vector sensor. If this API is called 
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4789,6 +4987,8 @@ Subscribes to data changes of the wear detection sensor. If this API is called m
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4821,6 +5021,8 @@ Subscribes to only one data change of the acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.            |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4874,6 +5076,8 @@ Subscribes to only one data change of the uncalibrated acceleration sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4906,6 +5110,8 @@ Subscribes to only one data change of the gravity sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GRAVITY | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**.                    |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt;        | Yes  | One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4937,6 +5143,8 @@ Subscribes to only one data change of the gyroscope sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**.                |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt;      | Yes  | One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -4967,6 +5175,8 @@ Subscribes to only one data change of the uncalibrated gyroscope sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
+
+**Example**
 
 
 ```ts
@@ -5001,6 +5211,8 @@ Subscribes to only one data change of the significant motion sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_SIGNIFICANT_MOTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.     |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5029,6 +5241,8 @@ Subscribes to only one data change of the pedometer detection sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.    |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5059,6 +5273,8 @@ Subscribes to only one data change of the pedometer sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**.                  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt;      | Yes  | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5086,6 +5302,8 @@ Subscribes to only one data change of the ambient temperature sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.    |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5112,6 +5330,8 @@ Subscribes to only one data change of the magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5141,6 +5361,8 @@ Subscribes to only one data change of the uncalibrated magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5174,6 +5396,8 @@ Subscribes to only one data change of the proximity sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PROXIMITY | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.                |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt;      | Yes  | One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5202,6 +5426,8 @@ Subscribes to only one data change of the humidity sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HUMIDITY | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.                   |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt;       | Yes  | One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5228,6 +5454,8 @@ Subscribes to only one data change of the barometer sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_BAROMETER | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**.                |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt;      | Yes  | One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5256,6 +5484,8 @@ Subscribes to only one data change of the Hall effect sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.                       |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt;           | Yes  | One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5283,6 +5513,8 @@ Subscribes to only one data change of the ambient light sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.            |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | Yes  | One-shot callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5309,6 +5541,8 @@ Subscribes to only one data change of the orientation sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ORIENTATION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.                |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt;  | Yes  | One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5338,6 +5572,8 @@ Subscribes to only one data change of the rotation vector sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ROTATION_VECTOR | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.        |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5390,6 +5626,8 @@ Subscribes to only one data change of the wear detection sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.         |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
 
+**Example**
+
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5421,6 +5659,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5454,6 +5694,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5489,6 +5731,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.|
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5517,6 +5761,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5547,6 +5793,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_BAROMETER | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_BAROMETER**.    |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5575,6 +5823,8 @@ Unsubscribes from sensor data changes.
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GRAVITY | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GRAVITY**.        |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt;        | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5609,6 +5859,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE**.    |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5642,6 +5894,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5672,6 +5926,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HALL**.           |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt;           | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5704,6 +5960,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HEART_RATE | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HEART_RATE**.     |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5732,6 +5990,8 @@ Unsubscribes from sensor data changes.
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HUMIDITY | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HUMIDITY**.       |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt;       | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5764,6 +6024,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5795,6 +6057,8 @@ Unsubscribes from sensor data changes.
 | type             | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
 | callbackcallback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5825,6 +6089,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5860,6 +6126,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ORIENTATION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ORIENTATION**.    |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt;  | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5893,6 +6161,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER**.      |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5924,6 +6194,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5953,6 +6225,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PROXIMITY | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PROXIMITY**.    |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt;      | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -5981,6 +6255,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ROTATION_VECTOR | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6014,6 +6290,8 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_SIGNIFICANT_MOTION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 
@@ -6042,6 +6320,8 @@ Unsubscribes from sensor data changes.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.|
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6072,6 +6352,8 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 | inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector to rotate.            |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Direction of the coordinate system.          |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being rotated.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6114,6 +6396,8 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 | ---------------------------------- | ---------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being rotated.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 import BusinessError from '@ohos.base';
@@ -6148,6 +6432,8 @@ Obtains the geomagnetic field of a geographic location. This API uses an asynchr
 | locationOptions | [LocationOptions](#locationoptions)                          | Yes  | Geographic location.                        |
 | timeMillis      | number                                                       | Yes  | Time for obtaining the magnetic declination, in milliseconds.|
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                |
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6188,6 +6474,8 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 | ---------------------------------------------------------- | -------------------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 import BusinessError from '@ohos.base';
@@ -6221,6 +6509,8 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 | seaPressure     | number                      | Yes  | Sea-level atmospheric pressure, in hPa.         |
 | currentPressure | number                      | Yes  | Atmospheric pressure at the altitude where the device is located, in hPa. |
 | callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6260,6 +6550,8 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 | --------------------- | ------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 import BusinessError from '@ohos.base';
@@ -6291,6 +6583,8 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 | ----------------- | --------------------------- | ---- | -------------------------------- |
 | inclinationMatrix | Array&lt;number&gt;         | Yes  | Inclination matrix.                  |
 | callback          | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the magnetic dip, in radians.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6329,6 +6623,8 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 | --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 import BusinessError from '@ohos.base';
@@ -6360,6 +6656,8 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 | currentRotationMatrix | Array&lt;number&gt;                      | Yes  | Current rotation matrix.                   |
 | preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6402,6 +6700,8 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | ---------------------------------- | --------------------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
+**Example**
+
 ```ts
 import sensor from '@ohos.sensor';
 import BusinessError from '@ohos.base';
@@ -6436,6 +6736,8 @@ Converts a rotation vector into a rotation matrix. This API uses an asynchronous
 | -------------- | ---------------------------------------- | ---- | ------------------ |
 | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector to convert.    |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation matrix.|
+
+**Example**
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6476,6 +6778,8 @@ Converts a rotation vector into a rotation matrix. This API uses a promise to re
 | Type                              | Description                      |
 | ---------------------------------- | -------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
+
+**Example**
 
  ```ts
 import sensor from '@ohos.sensor';

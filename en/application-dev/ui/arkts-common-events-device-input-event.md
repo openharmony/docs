@@ -15,7 +15,7 @@ Mouse events can trigger the following callbacks.
 | onHover(event: (isHover: boolean) =&gt; void) | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
 | onMouse(event: (event?: MouseEvent) =&gt; void) | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
-When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/arkui-ts/ts-universal-attributes-hover-effect.md) attribute to set the hover effect of the component in hover state.
+When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md) attribute to set the hover effect of the component in hover state.
 
 
   **Figure 1** Mouse event data flow 
@@ -107,10 +107,10 @@ onMouse(event: (event?: MouseEvent) => void)
 ```
 
 
-Triggered when a mouse event occurs. It is triggered each time a mouse pointer action (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md#mouseevent) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for customized mouse behavior logic processing.
+Triggered when a mouse event occurs. It is triggered each time a mouse pointer action (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for customized mouse behavior logic processing.
 
 
-You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)), action ([MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
+You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton)), action ([MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
 
 
 >**NOTE**
@@ -329,7 +329,7 @@ onKeyEvent(event: (event?: KeyEvent) => void)
 ```
 
 
-Triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/arkui-ts/ts-universal-events-key.md) can be used to obtain the information about the key event, including [KeyType](../reference/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis/js-apis-keycode.md), keyText, [KeySource](../reference/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
+Triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
 
 
 

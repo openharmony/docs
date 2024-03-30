@@ -1,0 +1,686 @@
+ # @ohos.data.distributedKVStore (Distributed KV Store) (System API)
+
+The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
+
+The **distributedKVStore** module provides the following functions:
+
+- [KVManager](js-apis-distributedKVStore.md#kvmanager): provides a **KVManager** instance to obtain KV store information.
+- [KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset): provides APIs for accessing the results obtained from a KV store.
+- [Query](js-apis-distributedKVStore.md#query): provides APIs for setting predicates for data query.
+- [SingleKVStore](#singlekvstore): provides APIs for querying and synchronizing data in single KV stores. The single KV stores manage data without distinguishing devices.
+- [DeviceKVStore](#devicekvstore): provides APIs for querying and synchronizing data in device KV stores. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
+
+> **NOTE**
+>
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.data.distributedKVStore](js-apis-distributedKVStore.md).
+
+## Modules to Import
+
+```ts
+import distributedKVStore from '@ohos.data.distributedKVStore';
+```
+
+## SingleKVStore
+
+Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data sync completion.
+
+Before calling **SingleKVStore** APIs, you need to use [getKVStore](js-apis-distributedKVStore.md#getkvstore) to create a **SingleKVStore** instance.
+
+### putBatch
+
+putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Writes batch data to this single KV store. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+
+**Parameters**
+
+| Name  | Type                                                    | Mandatory| Description              |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
+| callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback invoked to return the result.        |
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                            |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| ID| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let v8Arr: distributedKVStore.Entry[] = [];
+  let arr = new Uint8Array([4, 5, 6, 7]);
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+
+  v8Arr.push(vb1);
+  v8Arr.push(vb2);
+  v8Arr.push(vb3);
+  kvStore.putBatch(v8Arr, async (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in putting batch');
+  })
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
+}
+```
+
+### putBatch
+
+putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
+
+Writes batch data to this single KV store. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+
+**Parameters**
+
+| Name| Type                                                    | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                            |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| ID| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let v8Arr: distributedKVStore.Entry[] = [];
+  let arr = new Uint8Array([4, 5, 6, 7]);
+  let vb1: distributedKVStore.Entry = { key: "name_1", value: 32 }
+  let vb2: distributedKVStore.Entry = { key: "name_2", value: arr };
+  let vb3: distributedKVStore.Entry = { key: "name_3", value: "lisi" };
+
+  v8Arr.push(vb1);
+  v8Arr.push(vb2);
+  v8Arr.push(vb3);
+  kvStore.putBatch(v8Arr).then(async () => {
+    console.info(`Succeeded in putting patch`);
+  }).catch((err: BusinessError) => {
+    console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`putBatch fail.code is ${error.code},message is ${error.message}`);
+}
+```
+
+### delete
+
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
+
+Deletes KV pairs from this KV store. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                           |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+| callback   | AsyncCallback&lt;void&gt;                                    | Yes  | Callback invoked to return the result.                                     |
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100003     | Database corrupted.                    |
+| 15100005    | Database or result set already closed. |
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| ID| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let arr = ["name"];
+  predicates.inKeys(arr);
+  kvStore.put("name", "bob", (err) => {
+    if (err != undefined) {
+      console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in putting");
+    if (kvStore != null) {
+      kvStore.delete(predicates, (err) => {
+        if (err == undefined) {
+          console.info('Succeeded in deleting');
+        } else {
+          console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+        }
+      });
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
+}
+```
+
+### delete
+
+delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
+
+Deletes KV pairs from this KV store. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                           |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                            |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| ID| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  let arr = ["name"];
+  predicates.inKeys(arr);
+  kvStore.put("name", "bob").then(() => {
+    console.info(`Succeeded in putting data`);
+    if (kvStore != null) {
+      kvStore.delete(predicates).then(() => {
+        console.info('Succeeded in deleting');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
+      });
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
+}
+```
+
+### getResultSet
+
+getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
+
+Obtains a **KVStoreResultSet** object that matches the specified conditions. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.             |
+| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates, async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      });
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
+```
+
+### getResultSet
+
+getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
+
+Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                           |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+
+**Return value**
+
+| Type                                                | Description                     |
+| ---------------------------------------------------- | ------------------------- |
+| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
+```
+
+## DeviceKVStore
+
+Provides APIs for querying and synchronizing data in a device KV store. This class inherits from **SingleKVStore**.
+
+Data is distinguished by device in a device KV store. Each device can only write and modify its own data. Data of other devices is read-only and cannot be modified.
+
+For example, a device KV store can be used to implement image sharing between devices. The images of other devices can be viewed, but not be modified or deleted.
+
+Before calling **DeviceKVStore** APIs, you need to use [getKVStore](js-apis-distributedKVStore.md#getkvstore) to create a **DeviceKVStore** instance.
+
+### getResultSet
+
+getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
+
+Obtains a **KVStoreResultSet** object that matches the specified conditions for this device. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
+| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates, async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      })
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
+```
+
+### getResultSet
+
+getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
+
+Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                           |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+
+**Return value**
+
+| Type                                                | Description                     |
+| ---------------------------------------------------- | ------------------------- |
+| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet(predicates).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
+```
+
+### getResultSet
+
+getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
+
+Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses an asynchronous callback to return the result.
+> **NOTE**
+>
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> For details about how to obtain **deviceId**, see the example of [sync](js-apis-distributedKVStore.md#sync).
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| deviceId  | string                                                       | Yes  | ID of the target device.                                    |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.             |
+| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet('localDeviceId', predicates, async (err, result) => {
+    if (err != undefined) {
+      console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet, (err) => {
+        if (err != undefined) {
+          console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing result set');
+      })
+    }
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
+```
+
+### getResultSet
+
+getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
+
+Obtains a **KVStoreResultSet** object that matches the specified predicate object. This API uses a promise to return the result.
+> **NOTE**
+>
+> **deviceId** can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+> For details about how to obtain **deviceId**, see the example of [sync](js-apis-distributedKVStore.md#sync).
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                    | Mandatory| Description                                           |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| deviceId  | string                                                       | Yes  | ID of the target device.                                    |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
+
+**Return value**
+
+| Type                                                | Description                     |
+| ---------------------------------------------------- | ------------------------- |
+| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed KV Store Error Codes](errorcode-distributedKVStore.md).
+
+| ID| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
+| 15100003     | Database corrupted.                    |
+| 15100005     | Database or result set already closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let resultSet: distributedKVStore.KVStoreResultSet;
+  let predicates = new dataSharePredicates.DataSharePredicates();
+  predicates.prefixKey("batch_test_string_key");
+  kvStore.getResultSet('localDeviceId', predicates).then((result) => {
+    console.info('Succeeded in getting result set');
+    resultSet = result;
+    if (kvStore != null) {
+      kvStore.closeResultSet(resultSet).then(() => {
+        console.info('Succeeded in closing result set');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
+      });
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+}
+```
+<!--no_check-->

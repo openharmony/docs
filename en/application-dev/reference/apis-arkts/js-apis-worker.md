@@ -57,18 +57,12 @@ A constructor used to create a **ThreadWorker** instance.
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | Directory of the script to be executed by the **Worker** instance.<br>In the FA or stage model, DevEco Studio creates a **Worker** project in either of the following scenarios:<br>(a) The script directory is at the same level as the **pages** directory.<br>(b) The script directory is at a different level from the **pages** directory.|
+| scriptURL | string                          | Yes  | URL of the worker thread file.<br>For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).|
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
-
-**Return value**
-
-| Type        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| ThreadWorker | Returns the **ThreadWorker** instance created; returns **undefined** if the **ThreadWorker** instance fails to be created.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -77,78 +71,20 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
+The following code snippet shows how to load the worker thread file of the ability in the stage model. For details about how to use the library to load the worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
+
 ```ts
 import worker from '@ohos.worker';
 
-// Create a Worker instance.
-// In the FA model, the workers directory is at the same level as the pages directory in the entry module.
-const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
-// In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
-const workerFAModel02 = new worker.ThreadWorker("../workers/worker.ts");
+// Two scenarios are involved.
 
-// In the stage model, the workers directory is at the same level as the pages directory in the entry module.
-const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the workers directory is a child directory of the pages directory in the entry module.
-const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts');
+// Scenario 1: URL of the worker thread file: "entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// For the script URL "entry/ets/workers/worker.ts" in the stage model:
-// entry is the value of the name attribute under module in the module.json5 file, and ets indicates the programming language in use.
-// The script URL is related to the level of the workers directory where the worker file is located and is irrelevant to the file where the new worker is located.
+// Scenario 2: URL of the worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
-Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
-
-(1) The **workers** directory and **pages** directory are at the same level.
-
-In the FA model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-In the stage model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-(2) The **workers** directory and **pages** directory are at different levels.
-
-In the FA model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-In the stage model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
-```
 
 ### postMessage<sup>9+</sup>
 
@@ -167,7 +103,7 @@ Used by the host thread to send a message to the worker thread by transferring o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -177,7 +113,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -200,7 +136,7 @@ Used by the host thread to send a message to the worker thread by transferring o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -210,7 +146,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.postMessage("hello world");
 
@@ -231,11 +167,11 @@ Adds an event listener for the worker thread. This API provides the same functio
 | Name  | Type                                        | Mandatory| Description                  |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | Yes  | Type of the event to listen for.      |
-| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs. Callback to invoke when an event of the specified type occurs.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -245,7 +181,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -265,11 +201,11 @@ Adds an event listener for the worker thread and removes the event listener afte
 | Name  | Type                                        | Mandatory| Description                  |
 | -------- | -------------------------------------------- | ---- | ---------------------- |
 | type     | string                                       | Yes  | Type of the event to listen for.      |
-| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs. Callback to invoke when an event of the specified type occurs.|
+| listener | [WorkerEventListener](#workereventlistener9) | Yes| Callback to invoke when an event of the specified type occurs.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -279,7 +215,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -299,11 +235,11 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.        |
-| listener | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+| listener | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -313,7 +249,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 // Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
 workerInstance.off("alert");
 ```
@@ -335,7 +271,7 @@ Registers an object with the **ThreadWorker** instance of the host thread. In th
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -343,7 +279,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
   public getMessage() : string {
@@ -375,7 +311,7 @@ Unregisters an object with the **ThreadWorker** instance of the host thread. Thi
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -383,7 +319,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
   public getMessage() : string {
@@ -412,7 +348,7 @@ Terminates the worker thread to stop it from receiving messages.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -421,7 +357,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.terminate();
 ```
 
@@ -430,19 +366,13 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Defines the event handler to be called when the worker thread exits. The handler is executed in the host thread.
+Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value **1** indicates abnormal exit and **0** indicates normal exit.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Code indicating the worker thread exit state.|
-
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -452,8 +382,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onexit = () => {
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+workerInstance.onexit = (code) => {
  console.log("onexit");
 }
 
@@ -470,19 +400,13 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the host thread.
+Called when an exception occurs during worker execution. The event handler is executed in the host thread. In the callback function, the **err** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | Yes  | Error data.|
-
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -492,9 +416,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onerror = () => {
-    console.log("onerror");
+import worker, { ErrorEvent } from '@ohos.worker';
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.log("onerror" + err.message);
 }
 ```
 
@@ -503,19 +429,13 @@ workerInstance.onerror = () => {
 
 onmessage?: (event: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread.
+Called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                            | Mandatory| Description                  |
-| ------ | -------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvents](#messageevents9) | Yes  | Message received.|
-
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -527,7 +447,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessage = (e: MessageEvents): void => {
  // e: MessageEvents. The usage is as follows:
  // let data = e.data;
@@ -540,19 +460,13 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (event: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
+Called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                            | Mandatory| Description      |
-| ------ | -------------------------------- | ---- | ---------- |
-| event  | [MessageEvents](#messageevents9) | Yes  | Error data.|
-
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -562,9 +476,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessageerror= () => {
-    console.log("onmessageerror");
+import worker, { MessageEvents } from '@ohos.worker';
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+workerInstance.onmessageerror = (err: MessageEvents) => {
+  console.log("onmessageerror");
 }
 ```
 
@@ -585,7 +501,7 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -595,7 +511,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -615,11 +531,11 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -628,7 +544,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -654,11 +570,11 @@ Dispatches the event defined for the worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Returns **true** if the event is dispatched successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the event is dispatched; returns **false** otherwise.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -667,7 +583,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
 ```
@@ -677,7 +593,7 @@ The **dispatchEvent** API can be used together with the **on**, **once**, and **
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
@@ -727,7 +643,7 @@ Removes all event listeners for the worker thread.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -736,7 +652,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -764,7 +680,7 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -774,7 +690,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -794,11 +710,11 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.    |
-| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when an event of the specified type occurs. Callback of the event listener to remove.|
+| callback | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -807,7 +723,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -837,7 +753,7 @@ Dispatches the event defined for the worker thread.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -846,7 +762,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
 ```
@@ -856,7 +772,7 @@ The **dispatchEvent** API can be used together with the **on**, **once**, and **
 ```ts
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
@@ -906,7 +822,7 @@ Removes all event listeners for the worker thread.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -915,7 +831,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -939,12 +855,12 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -957,15 +873,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -987,12 +903,12 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -1005,15 +921,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1047,7 +963,7 @@ Calls a method of an object registered with the host thread. This API is called 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
@@ -1059,7 +975,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1093,7 +1009,7 @@ Terminates the worker thread to stop it from receiving messages.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
@@ -1105,11 +1021,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1123,20 +1039,13 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
+Called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [ThreadWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                                                | Mandatory| Description                    |
-| ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | Yes  | Caller.        |
-| ev     | [MessageEvents](#messageevents9)                     | Yes  | Message received.|
-
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -1149,12 +1058,12 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 
 ```ts
-// worker.ts
+// worker.ets
 import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
@@ -1168,20 +1077,13 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
+Called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [ThreadWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvents](#messageevents9), indicating the received message data.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                            | Mandatory| Description      |
-| ------ | -------------------------------- | ---- | ---------- |
-| this   | [ThreadWorkerGlobalScope](#threadworkerglobalscope9) | Yes  | Caller.        |
-| ev     | [MessageEvents](#messageevents9) | Yes  | Error data.|
-
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -1194,16 +1096,18 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
-// worker.ts
+import worker, { MessageEvents } from '@ohos.worker';
+
+// worker.ets
 import worker from '@ohos.worker';
 
 const workerPort = worker.workerPort;
-workerPort.onmessageerror = () => {
-    console.log("worker.ts onmessageerror")
+workerPort.onmessageerror = (err: MessageEvents) => {
+    console.log("worker.ets onmessageerror");
 }
 ```
 
@@ -1230,7 +1134,7 @@ Implements event listening.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
@@ -1240,8 +1144,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -1265,15 +1169,9 @@ Implements the running environment of the worker thread. The **GlobalScope** cla
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
+Called when an exception occurs during worker execution. The event handler is executed in the worker thread. In the callback function, the **ev** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -1281,16 +1179,16 @@ Defines the event handler to be called when an exception occurs during worker ex
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets")
 ```
 
 ```ts
-// worker.ts
-import worker from '@ohos.worker';
+// worker.ets
+import worker, { ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort
-workerPort.onerror = () => {
-    console.log("worker.ts onerror")
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ets onerror" + err.message)
 }
 ```
 
@@ -1321,18 +1219,12 @@ A constructor used to create a **RestrictedWorker** instance. Before using the f
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | Directory of the script to be executed by the **Worker** instance.<br>DevEco Studio creates a worker thread file in either of the following scenarios:<br>(a) The file directory is at the same level as the **pages** directory.<br>(b) The file directory is at a different level from the **pages** directory.|
+| scriptURL | string                          | Yes  | URL of the worker thread file. For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).|
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **RestrictedWorker** instance.                                          |
-
-**Return value**
-
-| Type        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| RestrictedWorker | Returns the **RestrictedWorker** instance created; returns **undefined** if the **RestrictedWorker** instance fails to be created.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1341,80 +1233,21 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
+The following code snippet shows how to load the worker thread file of the ability in the stage model. For details about how to use the library to load the worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
+
+Only the **Worker** module can be imported to the restricted worker thread file. Other APIs cannot be imported. The following is sample code:
+
 ```ts
 import worker from '@ohos.worker';
 
-// Create a Worker instance.
-// In the FA model, the workers directory is at the same level as the pages directory in the entry module.
-const workerFAModel01 = new worker.RestrictedWorker("workers/worker.ts", {name:"first worker in FA model"});
-// In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
-const workerFAModel02 = new worker.RestrictedWorker("../workers/worker.ts");
+// Two scenarios are involved.
 
-// In the stage model, the workers directory is at the same level as the pages directory in the entry module.
-const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the workers directory is a child directory of the pages directory in the entry module.
-const workerStageModel02 = new worker.RestrictedWorker('entry/ets/pages/workers/worker.ts');
+// Scenario 1: URL of the worker thread file: "entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// For the script URL "entry/ets/workers/worker.ts" in the stage model:
-// entry is the value of the name attribute under module in the module.json5 file, and ets indicates the programming language in use.
-// The script URL is related to the level of the workers directory where the worker file is located and is irrelevant to the file where the new worker is located.
+// Scenario 2: URL of the worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
-
-Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
-
-(1) The **workers** directory and **pages** directory are at the same level.
-
-In the FA model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-In the stage model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-(2) The **workers** directory and **pages** directory are at different levels.
-
-In the FA model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-In the stage model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
-```
-
-Only the **Worker** module can be imported to the restricted worker thread file. Other APIs cannot be imported. The following is sample code:
 
 ```ts
 // Restricted worker thread file
@@ -1453,82 +1286,24 @@ A constructor used to create a **Worker** instance.
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | Directory of the script to be executed by the **Worker** instance.<br>In the FA or stage model, DevEco Studio creates a **Worker** project in either of the following scenarios:<br>(a) The script directory is at the same level as the **pages** directory.<br>(b) The script directory is at a different level from the **pages** directory.|
+| scriptURL | string                          | Yes  | URL of the worker thread file. For details about the rules, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).|
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
 
-**Return value**
-
-| Type  | Description                                                     |
-| ------ | --------------------------------------------------------- |
-| Worker | Returns the **Worker** instance created; returns **undefined** if the **Worker** instance fails to be created.|
-
 **Example**
+
+The following code snippet shows how to load the worker thread file of the ability in the stage model. For details about how to use the library to load the worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
+
 
 ```ts
 import worker from '@ohos.worker';
 
-// Create a Worker instance.
+// Two scenarios are involved.
 
-// In the FA model, the workers directory is at the same level as the pages directory.
-const workerFAModel01 = new worker.Worker("workers/worker.ts", {name:"first worker in FA model"});
-// In the FA model, the workers directory is at the same level as the parent directory of the pages directory.
-const workerFAModel02 = new worker.Worker("../workers/worker.ts");
+// Scenario 1: URL of the worker thread file: "entry/src/main/ets/workers/worker.ets"
+const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// In the stage model, the workers directory is at the same level as the pages directory.
-const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
-// In the stage model, the workers directory is a child directory of the pages directory.
-const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
-
-// For the script URL "entry/ets/workers/worker.ts" in the stage model:
-// entry is the value of the name attribute under module in the module.json5 file.
-// ets indicates the programming language in use.
-```
-Depending on whether the **workers** directory and **pages** directory are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
-
-(1) The **workers** directory and **pages** directory are at the same level.
-
-In the FA model:
-
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
-      ]
-    }
-  }
-```
-In the stage model:
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-(2) The **workers** directory and **pages** directory are at different levels.
-
-In the FA model:
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/workers/worker.ts"
-      ]
-    }
-  }
-```
-In the stage model:
-```json
-  "buildOption": {
-    "sourceOption": {
-      "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
-      ]
-    }
-  }
+// Scenario 2: URL of the worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>
@@ -1552,7 +1327,7 @@ Used by the host thread to send a message to the worker thread by transferring o
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -1579,7 +1354,7 @@ Used by the host thread to send a message to the worker thread by transferring o
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 workerInstance.postMessage("hello world");
 
@@ -1609,8 +1384,8 @@ Adds an event listener for the worker thread. This API provides the same functio
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.on("alert", ()=>{
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -1637,7 +1412,7 @@ Adds an event listener for the worker thread and removes the event listener afte
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -1660,12 +1435,12 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                     | Mandatory| Description                |
 | -------- | ----------------------------------------- | ---- | -------------------- |
 | type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
-| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.    |
+| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed.|
 
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 // Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
 workerInstance.off("alert");
 ```
@@ -1685,7 +1460,7 @@ Terminates the worker thread to stop it from receiving messages.
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.terminate();
 ```
 
@@ -1694,24 +1469,18 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Defines the event handler to be called when the worker thread exits. The handler is executed in the host thread.
+Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value 1 indicates abnormal exit and 0 indicates normal exit.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onexit<sup>9+</sup>](#onexit9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Code indicating the worker thread exit state.|
-
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onexit = () => {
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.onexit = (code) => {
     console.log("onexit");
 }
 
@@ -1728,25 +1497,21 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the host thread.
+Called when an exception occurs during worker execution. The event handler is executed in the host thread. In the callback function, the **err** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onerror<sup>9+</sup>](#onerror9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| err    | [ErrorEvent](#errorevent) | Yes  | Error data.|
-
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onerror = function() {
-    console.log("onerror");
+import worker, { ErrorEvent } from '@ohos.worker';
+
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.log("onerror" + err.message);
 }
 ```
 
@@ -1755,26 +1520,20 @@ workerInstance.onerror = function() {
 
 onmessage?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
+Called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvent](#messageeventt), indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onmessage<sup>9+</sup>](#onmessage9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                              | Mandatory| Description                  |
-| ------ | ---------------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
-
 **Example**
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onmessage = (e: MessageEvents): void => {
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.onmessage = (e): void => {
     console.log("onmessage");
 }
 ```
@@ -1784,24 +1543,20 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (event: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
+Called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvent](#messageeventt), indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onmessageerror<sup>9+</sup>](#onmessageerror9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Parameters**
-
-| Name| Type                              | Mandatory| Description      |
-| ------ | ---------------------------------- | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
-
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onmessageerror= () => {
+import worker from '@ohos.worker';
+
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.onmessageerror = (err) => {
     console.log("onmessageerror");
 }
 ```
@@ -1832,8 +1587,8 @@ Adds an event listener for the worker thread. This API provides the same functio
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -1855,13 +1610,13 @@ Removes an event listener for the worker thread. This API provides the same func
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
-| callback | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.        |
+| callback | [EventListener](#eventlistenerdeprecated) | No  | Callback to invoke when the listener is removed.|
 
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
@@ -1894,7 +1649,7 @@ Dispatches the event defined for the worker thread.
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
 ```
@@ -1902,7 +1657,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is n
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 
 // Usage 1:
 workerInstance.on("alert_on", (e)=>{
@@ -1954,7 +1709,7 @@ Removes all event listeners for the worker thread.
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -2003,28 +1758,28 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject  | Object        | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer | ArrayBuffer[] | Yes  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null.|
 
 **Example**
 
 ```ts
 // Main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e: MessageEvents): void => {
+workerInstance.onmessage = (e): void => {
     // let data = e.data;
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import worker from '@ohos.worker';
 
 const workerPort = worker.workerPort;
-workerPort.onmessage = (e: MessageEvents): void => {
+workerPort.onmessage = (e): void => {
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
     workerPort.postMessage(buffer, [buffer]);
@@ -2046,28 +1801,28 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | options | [PostMessageOptions](#postmessageoptions) | No  | If this parameter is specified, it functions the same as **ArrayBuffer[]**. Specifically, the ownership of the objects in the array is transferred to the host thread and becomes unavailable in the worker thread. The objects are available only in the host thread.<br>If this parameter is not specified, the default value **undefined** is used, and information is transferred to the host thread by copying data.|
 
 **Example**
 
 ```ts
 // Main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e: MessageEvents): void => {
+workerInstance.onmessage = (e): void => {
     // let data = e.data;
-    console.log("receive data from worker.ts");
+    console.log("receive data from worker.ets");
 }
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e: MessageEvents): void => {
+parentPort.onmessage = (e): void => {
     // let data = e.data;
     parentPort.postMessage("receive data from main thread");
 }
@@ -2090,14 +1845,14 @@ Terminates the worker thread to stop it from receiving messages.
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import workerfrom '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e: MessageEvents): void => {
+parentPort.onmessage = (e): void => {
     parentPort.close()
 }
 ```
@@ -2107,19 +1862,12 @@ parentPort.onmessage = (e: MessageEvents): void => {
 
 onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
+Called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated), and the **ev** type is [MessageEvent](#messageeventt), indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1).
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description                    |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent](#messageeventt)                           | Yes  | Message received.|
 
 **Example**
 
@@ -2127,15 +1875,15 @@ Defines the event handler to be called when the worker thread receives a message
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e: MessageEvents): void => {
+parentPort.onmessage = (e): void => {
     console.log("receive main thread message");
 }
 ```
@@ -2145,19 +1893,12 @@ parentPort.onmessage = (e: MessageEvents): void => {
 
 onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
+Called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [DedicatedWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvent](#dedicatedworkerglobalscopedeprecated), indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1).
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description            |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent](#messageeventt)                           | Yes  | Error data.      |
 
 **Example**
 
@@ -2165,15 +1906,15 @@ Defines the event handler to be called when the worker thread receives a message
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts");
+const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
-// worker.ts
+// worker.ets
 import worker from '@ohos.worker';
 
 const parentPort = worker.parentPort;
-parentPort.onmessageerror = () => {
-    console.log("worker.ts onmessageerror")
+parentPort.onmessageerror = (e) => {
+    console.log("worker.ets onmessageerror")
 }
 ```
 
@@ -2227,8 +1968,8 @@ Implements event listening.
 **Example**
 
 ```ts
-const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", ()=>{
+const workerInstance = new worker.Worker("workers/worker.ets");
+workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
 ```
@@ -2274,25 +2015,19 @@ Implements the running environment of the worker thread. The **WorkerGlobalScope
 | Name| Type                                                        | Readable| Writable| Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | Yes  | No  | **Worker** instance specified when there is a new **Worker** instance.|
-| self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.              |
+| self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | **WorkerGlobalScope**.              |
 
 
 ### onerror<sup>(deprecated)</sup>
 
 onerror?: (ev: ErrorEvent) =&gt; void
 
-Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
+Called when an exception occurs during worker execution. The event handler is executed in the worker thread. In the callback function, the **ev** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1).
 
 **System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type                     | Mandatory| Description      |
-| ------ | ------------------------- | ---- | ---------- |
-| ev     | [ErrorEvent](#errorevent) | Yes  | Error data.|
 
 **Example**
 
@@ -2300,15 +2035,15 @@ Defines the event handler to be called when an exception occurs during worker ex
 // Main thread
 import worker from '@ohos.worker';
 
-const workerInstance = new worker.Worker("workers/worker.ts")
+const workerInstance = new worker.Worker("workers/worker.ets")
 ```
 ```ts
-// worker.ts
-import worker from '@ohos.worker';
+// worker.ets
+import worker, { ErrorEvent } from '@ohos.worker';
 
 const parentPort = worker.parentPort
-parentPort.onerror = () => {
-    console.log("worker.ts onerror")
+parentPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ets onerror" + err.message)
 }
 ```
 
@@ -2327,7 +2062,7 @@ Exception: When an object created through a custom class is passed, no serializa
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
 
-const workerInstance = new worker.ThreadWorker("workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
   // When the worker thread passes obj2, data contains obj2, excluding the Init or SetName method.
@@ -2335,8 +2070,8 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 }
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
 class MyModel {
@@ -2346,7 +2081,7 @@ class MyModel {
     }
 }
 workerPort.onmessage = (d: MessageEvents): void => {
-  console.log("worker.ts onmessage");
+  console.log("worker.ets onmessage");
   let data: string = d.data;
   let func1 = () => {
     console.log("post message is function");
@@ -2360,10 +2095,10 @@ workerPort.onmessage = (d: MessageEvents): void => {
   workerPort.postMessage(obj2);     // No serialization error occurs when passing obj2.
 }
 workerPort.onmessageerror = () => {
-    console.log("worker.ts onmessageerror");
+    console.log("worker.ets onmessageerror");
 }
-workerPort.onerror = () => {
-    console.log("worker.ts onerror");
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ets onerror" + err.message);
 }
 ```
 
@@ -2382,7 +2117,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
-const workerInstance = new worker.ThreadWorker("workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 
 // The main thread transfers information to the worker thread.
 workerInstance.postMessage("123");
@@ -2398,7 +2133,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 }
 
 // Call onexit().
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
     console.log("main thread terminate");
 }
 
@@ -2407,8 +2142,8 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create an object in the worker thread for communicating with the main thread.
 const workerPort = worker.workerPort
@@ -2417,15 +2152,15 @@ const workerPort = worker.workerPort
 workerPort.onmessage = (e: MessageEvents): void => {
     // data carries the information sent by the main thread.
     let data: string = e.data;
-    console.log("worker.ts onmessage");
+    console.log("worker.ets onmessage");
 
     // The worker thread sends information to the main thread.
     workerPort.postMessage("123")
 }
 
 // Trigger a callback when an error occurs in the worker thread.
-workerPort.onerror= () => {
-    console.log("worker.ts onerror");
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ets onerror");
 }
 ```
 Configuration of the **build-profile.json5** file:
@@ -2433,7 +2168,7 @@ Configuration of the **build-profile.json5** file:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/entryability/workers/worker.ts"
+        "./src/main/ets/entryability/workers/worker.ets"
       ]
     }
   }
@@ -2444,7 +2179,7 @@ Configuration of the **build-profile.json5** file:
 import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
-const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ets");
 
 // The main thread transfers information to the worker thread.
 workerInstance.postMessage("123");
@@ -2459,7 +2194,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
     workerInstance.terminate();
 }
 // Call onexit().
-workerInstance.onexit = () => {
+workerInstance.onexit = (code) => {
     console.log("main thread terminate");
 }
 
@@ -2468,8 +2203,8 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 ```ts
-// worker.ts
-import worker, { MessageEvents } from '@ohos.worker';
+// worker.ets
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create an object in the worker thread for communicating with the main thread.
 const workerPort = worker.workerPort
@@ -2478,15 +2213,15 @@ const workerPort = worker.workerPort
 workerPort.onmessage = (e: MessageEvents): void => {
     // data carries the information sent by the main thread.
     let data: string = e.data;
-    console.log("worker.ts onmessage");
+    console.log("worker.ets onmessage");
 
     // The worker thread sends information to the main thread.
     workerPort.postMessage("123")
 }
 
 // Trigger a callback when an error occurs in the worker thread.
-workerPort.onerror= () => {
-    console.log("worker.ts onerror");
+workerPort.onerror = (err: ErrorEvent) => {
+    console.log("worker.ets onerror" + err.message);
 }
 ```
 Configuration of the **build-profile.json5** file:
@@ -2494,7 +2229,7 @@ Configuration of the **build-profile.json5** file:
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/pages/workers/worker.ts"
+        "./src/main/ets/pages/workers/worker.ets"
       ]
     }
   }

@@ -1,0 +1,167 @@
+# Data Type Attributes
+
+## Length Type
+
+| Name        | Type                      | Description                                      |
+| ---------- | -------------------------- | ---------------------------------------- |
+| length     | string&nbsp;\|&nbsp;number | Size unit. When the type is **number**, the unit is px. When the type is **string**, the pixel unit needs to be explicitly specified. Currently, the following pixel units are supported:<br>- **px**: logical size unit.<br>- **fp**<sup>6+</sup>: font size unit, which varies with the system font size. This unit is only available for text components.|
+| percentage | string                     | Unit in percentage, for example, **50%**.                         |
+
+
+## Color Type
+
+| Name   | Type                 | Description                                      |
+| ----- | --------------------- | ---------------------------------------- |
+| color | string&nbsp;\|&nbsp; color enums| Color information. The color enums are not supported in JavaScript scripts.<br>Available string formats are as follows:<br>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)'<br>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)'<br>- HEX format: '\#rrggbb', '\#aarrggbb'<br>- Enumeration format: 'black','white'.|
+
+**Table 1** Color enums
+
+| Name                | Hexadecimal Code    | Color                                      |
+| -------------------- | -------- | ---------------------------------------- |
+| aliceblue            | \#f0f8ff | ![en-us_image_0000001173324803](figures/en-us_image_0000001173324803.png) |
+| antiquewhite         | \#faebd7 | ![en-us_image_0000001127285014](figures/en-us_image_0000001127285014.png) |
+| aqua                 | \#00ffff | ![en-us_image_0000001127285050](figures/en-us_image_0000001127285050.png) |
+| aquamarine           | \#7fffd4 | ![en-us_image_0000001173324729](figures/en-us_image_0000001173324729.png) |
+| azure                | \#f0ffff | ![en-us_image_0000001127285040](figures/en-us_image_0000001127285040.png) |
+| beige                | \#f5f5dc | ![en-us_image_0000001173324773](figures/en-us_image_0000001173324773.png) |
+| bisque               | \#ffe4c4 | ![en-us_image_0000001173164895](figures/en-us_image_0000001173164895.png) |
+| black                | \#000000 | ![en-us_image_0000001173324735](figures/en-us_image_0000001173324735.png) |
+| blanchedalmond       | \#ffebcd | ![en-us_image_0000001173164889](figures/en-us_image_0000001173164889.png) |
+| blue                 | \#0000ff | ![en-us_image_0000001127125194](figures/en-us_image_0000001127125194.png) |
+| blueviolet           | \#8a2be2 | ![en-us_image_0000001127285046](figures/en-us_image_0000001127285046.png) |
+| brown                | \#a52a2a | ![en-us_image_0000001173324833](figures/en-us_image_0000001173324833.png) |
+| burlywood            | \#deB887 | ![en-us_image_0000001127285026](figures/en-us_image_0000001127285026.png) |
+| cadetblue            | \#5f9ea0 | ![en-us_image_0000001127125210](figures/en-us_image_0000001127125210.png) |
+| chartreuse           | \#7fff00 | ![en-us_image_0000001173324811](figures/en-us_image_0000001173324811.png) |
+| chocolate            | \#d2691e | ![en-us_image_0000001127125256](figures/en-us_image_0000001127125256.png) |
+| coral                | \#ff7f50 | ![en-us_image_0000001173164877](figures/en-us_image_0000001173164877.png) |
+| cornflowerblue       | \#6495ed | ![en-us_image_0000001173324781](figures/en-us_image_0000001173324781.png) |
+| cornsilk             | \#fff8dc | ![en-us_image_0000001127285048](figures/en-us_image_0000001127285048.png) |
+| crimson              | \#dc143c | ![en-us_image_0000001127285066](figures/en-us_image_0000001127285066.png) |
+| cyan                 | \#00ffff | ![en-us_image_0000001173324789](figures/en-us_image_0000001173324789.png) |
+| darkblue             | \#00008b | ![en-us_image_0000001173164841](figures/en-us_image_0000001173164841.png) |
+| darkcyan             | \#008b8b | ![en-us_image_0000001173324745](figures/en-us_image_0000001173324745.png) |
+| darkgoldenrod        | \#b8860b | ![en-us_image_0000001173324835](figures/en-us_image_0000001173324835.png) |
+| darkgray             | \#a9a9a9 | ![en-us_image_0000001127285028](figures/en-us_image_0000001127285028.png) |
+| darkgreen            | \#006400 | ![en-us_image_0000001127284990](figures/en-us_image_0000001127284990.png) |
+| darkgrey             | \#a9a9a9 | ![en-us_image_0000001127125174](figures/en-us_image_0000001127125174.png) |
+| darkkhaki            | \#bdb76b | ![en-us_image_0000001127285070](figures/en-us_image_0000001127285070.png) |
+| darkmagenta          | \#8b008b | ![en-us_image_0000001173164875](figures/en-us_image_0000001173164875.png) |
+| darkolivegreen       | \#556b2f | ![en-us_image_0000001173164835](figures/en-us_image_0000001173164835.png) |
+| darkorange           | \#ff8c00 | ![en-us_image_0000001127125178](figures/en-us_image_0000001127125178.png) |
+| darkorchid           | \#9932cc | ![en-us_image_0000001173324829](figures/en-us_image_0000001173324829.png) |
+| darkred              | \#8b0000 | ![en-us_image_0000001173164851](figures/en-us_image_0000001173164851.png) |
+| darksalmon           | \#e9967a | ![en-us_image_0000001127284998](figures/en-us_image_0000001127284998.png) |
+| darkseagreen         | \#8fbc8f | ![en-us_image_0000001173324755](figures/en-us_image_0000001173324755.png) |
+| darkslateblue        | \#483d8b | ![en-us_image_0000001127125246](figures/en-us_image_0000001127125246.png) |
+| darkslategray        | \#2f4f4f | ![en-us_image_0000001127125190](figures/en-us_image_0000001127125190.png) |
+| darkslategrey        | \#2f4f4f | ![en-us_image_0000001173324759](figures/en-us_image_0000001173324759.png) |
+| darkturquoise        | \#00ced1 | ![en-us_image_0000001127284980](figures/en-us_image_0000001127284980.png) |
+| darkviolet           | \#9400d3 | ![en-us_image_0000001127285058](figures/en-us_image_0000001127285058.png) |
+| deeppink             | \#ff1493 | ![en-us_image_0000001173324767](figures/en-us_image_0000001173324767.png) |
+| deepskyblue          | \#00bfff | ![en-us_image_0000001173164897](figures/en-us_image_0000001173164897.png) |
+| dimgray              | \#696969 | ![en-us_image_0000001127285022](figures/en-us_image_0000001127285022.png) |
+| dimgrey              | \#696969 | ![en-us_image_0000001173164911](figures/en-us_image_0000001173164911.png) |
+| dodgerblue           | \#1e90ff | ![en-us_image_0000001173164855](figures/en-us_image_0000001173164855.png) |
+| firebrick            | \#b22222 | ![en-us_image_0000001127125234](figures/en-us_image_0000001127125234.png) |
+| floralwhite          | \#fffaf0 | ![en-us_image_0000001173324771](figures/en-us_image_0000001173324771.png) |
+| forestgreen          | \#228b22 | ![en-us_image_0000001173324825](figures/en-us_image_0000001173324825.png) |
+| fuchsia              | \#ff00ff | ![en-us_image_0000001127285052](figures/en-us_image_0000001127285052.png) |
+| gainsboro            | \#dcdcdc | ![en-us_image_0000001173164901](figures/en-us_image_0000001173164901.png) |
+| ghostwhite           | \#f8f8ff | ![en-us_image_0000001127285012](figures/en-us_image_0000001127285012.png) |
+| gold                 | \#ffd700 | ![en-us_image_0000001173324761](figures/en-us_image_0000001173324761.png) |
+| goldenrod            | \#daa520 | ![en-us_image_0000001173324817](figures/en-us_image_0000001173324817.png) |
+| gray                 | \#808080 | ![en-us_image_0000001127125238](figures/en-us_image_0000001127125238.png) |
+| green                | \#008000 | ![en-us_image_0000001173164865](figures/en-us_image_0000001173164865.png) |
+| greenyellow          | \#adff2f | ![en-us_image_0000001127285000](figures/en-us_image_0000001127285000.png) |
+| grey                 | \#808080 | ![en-us_image_0000001127285054](figures/en-us_image_0000001127285054.png) |
+| honeydew             | \#f0fff0 | ![en-us_image_0000001173324813](figures/en-us_image_0000001173324813.png) |
+| hotpink              | \#ff69b4 | ![en-us_image_0000001127285016](figures/en-us_image_0000001127285016.png) |
+| indianred            | \#cd5c5c | ![en-us_image_0000001173164849](figures/en-us_image_0000001173164849.png) |
+| indigo               | \#4b0082 | ![en-us_image_0000001173324821](figures/en-us_image_0000001173324821.png) |
+| ivory                | \#fffff0 | ![en-us_image_0000001173164887](figures/en-us_image_0000001173164887.png) |
+| khaki                | \#f0e68c | ![en-us_image_0000001173324801](figures/en-us_image_0000001173324801.png) |
+| lavender             | \#e6e6fa | ![en-us_image_0000001127125188](figures/en-us_image_0000001127125188.png) |
+| lavenderblush        | \#fff0f5 | ![en-us_image_0000001173324809](figures/en-us_image_0000001173324809.png) |
+| lawngreen            | \#7cfc00 | ![en-us_image_0000001127125224](figures/en-us_image_0000001127125224.png) |
+| lemonchiffon         | \#fffacd | ![en-us_image_0000001173164879](figures/en-us_image_0000001173164879.png) |
+| lightblue            | \#add8e6 | ![en-us_image_0000001127125180](figures/en-us_image_0000001127125180.png) |
+| lightcoral           | \#f08080 | ![en-us_image_0000001127125228](figures/en-us_image_0000001127125228.png) |
+| lightcyan            | \#e0ffff | ![en-us_image_0000001173324799](figures/en-us_image_0000001173324799.png) |
+| lightgoldenrodyellow | \#fafad2 | ![en-us_image_0000001127125218](figures/en-us_image_0000001127125218.png) |
+| lightgray            | \#d3d3d3 | ![en-us_image_0000001127284974](figures/en-us_image_0000001127284974.png) |
+| lightgreen           | \#90ee90 | ![en-us_image_0000001173324805](figures/en-us_image_0000001173324805.png) |
+| lightpink            | \#ffb6c1 | ![en-us_image_0000001127285038](figures/en-us_image_0000001127285038.png) |
+| lightsalmon          | \#ffa07a | ![en-us_image_0000001173324795](figures/en-us_image_0000001173324795.png) |
+| lightseagreen        | \#20b2aa | ![en-us_image_0000001173324737](figures/en-us_image_0000001173324737.png) |
+| lightskyblue         | \#87cefa | ![en-us_image_0000001127285042](figures/en-us_image_0000001127285042.png) |
+| lightslategray       | \#778899 | ![en-us_image_0000001127125226](figures/en-us_image_0000001127125226.png) |
+| lightslategrey       | \#778899 | ![en-us_image_0000001127125222](figures/en-us_image_0000001127125222.png) |
+| lightsteelblue       | \#b0c4de | ![en-us_image_0000001127284976](figures/en-us_image_0000001127284976.png) |
+| lightyellow          | \#ffffe0 | ![en-us_image_0000001173324807](figures/en-us_image_0000001173324807.png) |
+| lime                 | \#00ff00 | ![en-us_image_0000001127285020](figures/en-us_image_0000001127285020.png) |
+| limegreen            | \#32cd32 | ![en-us_image_0000001127125236](figures/en-us_image_0000001127125236.png) |
+| linen                | \#faf0e6 | ![en-us_image_0000001173324739](figures/en-us_image_0000001173324739.png) |
+| magenta              | \#ff00ff | ![en-us_image_0000001127285044](figures/en-us_image_0000001127285044.png) |
+| maroon               | \#800000 | ![en-us_image_0000001127285018](figures/en-us_image_0000001127285018.png) |
+| mediumaquamarine     | \#66cdaa | ![en-us_image_0000001173164899](figures/en-us_image_0000001173164899.png) |
+| mediumblue           | \#0000cd | ![en-us_image_0000001127284968](figures/en-us_image_0000001127284968.png) |
+| mediumorchid         | \#ba55d3 | ![en-us_image_0000001127125216](figures/en-us_image_0000001127125216.png) |
+| mediumpurple         | \#9370db | ![en-us_image_0000001173324779](figures/en-us_image_0000001173324779.png) |
+| mediumseagreen       | \#3cb371 | ![en-us_image_0000001127125230](figures/en-us_image_0000001127125230.png) |
+| mediumslateblue      | \#7b68ee | ![en-us_image_0000001173164921](figures/en-us_image_0000001173164921.png) |
+| mediumspringgreen    | \#00fa9a | ![en-us_image_0000001173324793](figures/en-us_image_0000001173324793.png) |
+| mediumturquoise      | \#48d1cc | ![en-us_image_0000001127125214](figures/en-us_image_0000001127125214.png) |
+| mediumvioletred      | \#c71585 | ![en-us_image_0000001173164893](figures/en-us_image_0000001173164893.png) |
+| midnightblue         | \#191970 | ![en-us_image_0000001127125260](figures/en-us_image_0000001127125260.png) |
+| mintcream            | \#f5fffa | ![en-us_image_0000001127285030](figures/en-us_image_0000001127285030.png) |
+| mistyrose            | \#ffe4e1 | ![en-us_image_0000001173324785](figures/en-us_image_0000001173324785.png) |
+| moccasin             | \#ffe4b5 | ![en-us_image_0000001127125232](figures/en-us_image_0000001127125232.png) |
+| navajowhite          | \#ffdead | ![en-us_image_0000001173164925](figures/en-us_image_0000001173164925.png) |
+| navy                 | \#000080 | ![en-us_image_0000001127285032](figures/en-us_image_0000001127285032.png) |
+| oldlace              | \#fdf5e6 | ![en-us_image_0000001127125184](figures/en-us_image_0000001127125184.png) |
+| olive                | \#808000 | ![en-us_image_0000001127125244](figures/en-us_image_0000001127125244.png) |
+| olivedrab            | \#6b8e23 | ![en-us_image_0000001173324839](figures/en-us_image_0000001173324839.png) |
+| orange               | \#ffa500 | ![en-us_image_0000001173164885](figures/en-us_image_0000001173164885.png) |
+| orangered            | \#ff4500 | ![en-us_image_0000001127284996](figures/en-us_image_0000001127284996.png) |
+| orchid               | \#da70d6 | ![en-us_image_0000001127285056](figures/en-us_image_0000001127285056.png) |
+| palegoldenrod        | \#eee8aa | ![en-us_image_0000001127125262](figures/en-us_image_0000001127125262.png) |
+| palegreen            | \#98fb98 | ![en-us_image_0000001127285006](figures/en-us_image_0000001127285006.png) |
+| paleturquoise        | \#afeeee | ![en-us_image_0000001173324757](figures/en-us_image_0000001173324757.png) |
+| palevioletred        | \#db7093 | ![en-us_image_0000001173164905](figures/en-us_image_0000001173164905.png) |
+| papayawhip           | \#ffefd5 | ![en-us_image_0000001127125248](figures/en-us_image_0000001127125248.png) |
+| peachpuff            | \#ffdab9 | ![en-us_image_0000001173324769](figures/en-us_image_0000001173324769.png) |
+| peru                 | \#cd853f | ![en-us_image_0000001173164843](figures/en-us_image_0000001173164843.png) |
+| pink                 | \#ffc0cb | ![en-us_image_0000001127125242](figures/en-us_image_0000001127125242.png) |
+| plum                 | \#dda0dd | ![en-us_image_0000001173324831](figures/en-us_image_0000001173324831.png) |
+| powderblue           | \#b0e0e6 | ![en-us_image_0000001127285010](figures/en-us_image_0000001127285010.png) |
+| purple               | \#800080 | ![en-us_image_0000001127285002](figures/en-us_image_0000001127285002.png) |
+| rebeccapurple        | \#663399 | ![en-us_image_0000001173164907](figures/en-us_image_0000001173164907.png) |
+| red                  | \#ff0000 | ![en-us_image_0000001127125254](figures/en-us_image_0000001127125254.png) |
+| rosybrown            | \#bc8f8f | ![en-us_image_0000001173324775](figures/en-us_image_0000001173324775.png) |
+| royalblue            | \#4169e1 | ![en-us_image_0000001127284972](figures/en-us_image_0000001127284972.png) |
+| saddlebrown          | \#8b4513 | ![en-us_image_0000001127125250](figures/en-us_image_0000001127125250.png) |
+| salmon               | \#fa8072 | ![en-us_image_0000001127285064](figures/en-us_image_0000001127285064.png) |
+| sandybrown           | \#f4a460 | ![en-us_image_0000001173324777](figures/en-us_image_0000001173324777.png) |
+| seagreen             | \#2e8b57 | ![en-us_image_0000001173324733](figures/en-us_image_0000001173324733.png) |
+| seashell             | \#fff5ee | ![en-us_image_0000001127285062](figures/en-us_image_0000001127285062.png) |
+| sienna               | \#a0522d | ![en-us_image_0000001173164917](figures/en-us_image_0000001173164917.png) |
+| silver               | \#c0c0c0 | ![en-us_image_0000001173324743](figures/en-us_image_0000001173324743.png) |
+| skyblue              | \#87ceeb | ![en-us_image_0000001127284970](figures/en-us_image_0000001127284970.png) |
+| slateblue            | \#6a5acd | ![en-us_image_0000001173164915](figures/en-us_image_0000001173164915.png) |
+| slategray            | \#708090 | ![en-us_image_0000001173324815](figures/en-us_image_0000001173324815.png) |
+| slategrey            | \#708090 | ![en-us_image_0000001127284982](figures/en-us_image_0000001127284982.png) |
+| snow                 | \#fffafa | ![en-us_image_0000001173324731](figures/en-us_image_0000001173324731.png) |
+| springgreen          | \#00ff7f | ![en-us_image_0000001127285060](figures/en-us_image_0000001127285060.png) |
+| steelblue            | \#4682b4 | ![en-us_image_0000001127125240](figures/en-us_image_0000001127125240.png) |
+| tan                  | \#d2b48c | ![en-us_image_0000001173324747](figures/en-us_image_0000001173324747.png) |
+| teal                 | \#008080 | ![en-us_image_0000001173324741](figures/en-us_image_0000001173324741.png) |
+| thistle              | \#d8Bfd8 | ![en-us_image_0000001173164913](figures/en-us_image_0000001173164913.png) |
+| tomato               | \#ff6347 | ![en-us_image_0000001173164909](figures/en-us_image_0000001173164909.png) |
+| turquoise            | \#40e0d0 | ![en-us_image_0000001173164837](figures/en-us_image_0000001173164837.png) |
+| violet               | \#ee82ee | ![en-us_image_0000001127125258](figures/en-us_image_0000001127125258.png) |
+| wheat                | \#f5deb3 | ![en-us_image_0000001127285068](figures/en-us_image_0000001127285068.png) |
+| white                | \#ffffff | ![en-us_image_0000001173324823](figures/en-us_image_0000001173324823.png) |
+| whitesmoke           | \#f5f5f5 | ![en-us_image_0000001127284992](figures/en-us_image_0000001127284992.png) |
+| yellow               | \#ffff00 | ![en-us_image_0000001173324837](figures/en-us_image_0000001173324837.png) |
+| yellowgreen          | \#9acd32 | ![en-us_image_0000001173164923](figures/en-us_image_0000001173164923.png) |

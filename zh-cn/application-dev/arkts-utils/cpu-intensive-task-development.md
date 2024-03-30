@@ -92,22 +92,24 @@ struct Index {
     import worker  from '@ohos.worker';
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    let done = false;
 
     // 接收Worker子线程的结果
     workerInstance.onmessage = (() => {
-     console.info('MyWorker.ts onmessage');
+      console.info('MyWorker.ts onmessage');
+      if (!done) {
+        workerInstance.postMessage({ 'type': 1, 'value': 0 });
+        done = true;
+      }
     })
 
     workerInstance.onerror = (() => {
-     // 接收Worker子线程的错误信息
+      // 接收Worker子线程的错误信息
     })
 
     // 向Worker子线程发送训练消息
     workerInstance.postMessage({ 'type': 0 });
-    // 向Worker子线程发送预测消息
-    workerInstance.postMessage({ 'type': 1, 'value': [90, 5] });
     ```
-
 
 4. 在MyWorker.ts文件中绑定Worker对象，当前线程为Worker线程。
 
@@ -131,7 +133,7 @@ struct Index {
     }
     // 定义优化器训练过程
     function optimize(): void {
-     result = [];
+     result = [0];
     }
     // Worker线程的onmessage逻辑
     workerPort.onmessage = (e: MessageEvents): void => {

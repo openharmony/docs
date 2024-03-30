@@ -24,6 +24,8 @@ import Configuration from '@ohos.app.ability.Configuration';
 | screenDensity  | [ScreenDensity](js-apis-app-ability-configurationConstant.md#configurationconstantscreendensity) | 否 | 否 | 表示屏幕像素密度，取值范围：<br />- SCREEN_DENSITY_NOT_SET：未设置<br />- SCREEN_DENSITY_SDPI：120<br />- SCREEN_DENSITY_MDPI：160<br />- SCREEN_DENSITY_LDPI：240<br />- SCREEN_DENSITY_XLDPI：320<br />- SCREEN_DENSITY_XXLDPI：480<br />- SCREEN_DENSITY_XXXLDPI：640 |
 | displayId  | number | 否 | 否 | 表示应用所在的物理屏幕ID。 |
 | hasPointerDevice  | boolean | 否 | 否 | 指示指针类型设备是否已连接，如键鼠、触控板等。 |
+| fontSizeScale<sup>12+<sup> | number | 否 | 否 | 字体大小缩放比例，取值范围：0~3.2。 |
+| fontWeightScale<sup>12+<sup> | number | 否 | 否 | 字体粗细缩放比例，取值范围：0~1.25。 |
 
 具体字段描述参考ohos.app.ability.Configuration.d.ts文件
 
@@ -46,6 +48,8 @@ export default class EntryAbility extends UIAbility {
                 let screenDensity = config.screenDensity;
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
+                let fontSizeScale = config.fontSizeScale;
+                let fontWeightScale = config.fontWeightScale;
             },
             onMemoryLevel(level) {
                 console.log('onMemoryLevel level: ${level}');

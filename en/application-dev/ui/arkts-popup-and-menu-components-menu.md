@@ -1,7 +1,7 @@
 # Menu
 
 
-You can use menu APIs to display a context menu – a vertical list of items displayed by long pressing, clicking, or right-clicking a component. For details, see [Menu Control](../reference/arkui-ts/ts-universal-attributes-menu.md).
+You can use menu APIs to display a context menu – a vertical list of items displayed by long pressing, clicking, or right-clicking a component. For details, see [Menu Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md).
 
 
 ## Creating a Menu in the Default Style

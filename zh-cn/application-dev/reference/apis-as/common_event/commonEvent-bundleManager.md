@@ -44,3 +44,14 @@
 对设备上安装的应用程序包清除缓存时，将会触发事件通知服务发布该系统公共事件。
 
 与这个公共事件相关的接口：cleanBundleCacheFiles，具体参看[接口文档](../../apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagercleanbundlecachefiles)。
+
+## COMMON_EVENT_PACKAGE_INSTALLATION_STARTED
+
+表示设备上开始安装应用包的公共事件的动作。
+
+- 常量值："usual.event.PACKAGE_INSTALLATION_STARTED"
+- 订阅方需要的权限：无
+
+在设备上指定用户下开始安装应用程序，将会触发事件通知服务发布该系统公共事件。
+
+与这个公共事件相关的接口：install，具体参看[接口文档](../../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)；recover，具体参看[接口文档](../../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerrecover)

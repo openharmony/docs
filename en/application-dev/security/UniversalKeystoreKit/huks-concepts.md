@@ -24,7 +24,7 @@ The following figure illustrates the structure of the RSA key material. For deta
 
 ![keyt](figures/keyt.png)
 
-The key algorithm is a value of [HuksKeyAlg](../../reference/apis/js-apis-huks.md#hukskeyalg).
+The key algorithm is a value of [HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg).
 
 ```
 let rsa2048KeyPairMaterial = new Uint8Array([
@@ -74,29 +74,29 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 
 
 - RSA key pair material format
-  | Key Algorithm| Key Size| Modulus n Length (L<sub>n</sub>)| Public Key Exponent Length (L<sub>e</sub>)| Private Key Exponent d Length (L<sub>d</sub>)| n | e | d | 
+  | Key Algorithm| Key Size| Modulus n Length (L<sub>n</sub>)| Public Key Exponent Length (L<sub>e</sub>)| Private Key Exponent d Length (L<sub>d</sub>)| n | e | d |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>n</sub> bytes| L<sub>e</sub> bytes| L<sub>d</sub> bytes| 
+  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>n</sub> bytes| L<sub>e</sub> bytes| L<sub>d</sub> bytes|
 
 - ECC key pair material format
-  | Key Algorithm| Key Size| Coordinate x Length (L<sub>x</sub>)| Coordinate y Length (L<sub>y</sub>)| Coordinate z Length (L<sub>z</sub>)| x | y | z | 
+  | Key Algorithm| Key Size| Coordinate x Length (L<sub>x</sub>)| Coordinate y Length (L<sub>y</sub>)| Coordinate z Length (L<sub>z</sub>)| x | y | z |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>z</sub> bytes| 
+  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>z</sub> bytes|
 
 - DSA key pair material format
-  | Key Algorithm| Key Size| Private Key x Length (L<sub>x</sub>)| Public Key y Length (L<sub>y</sub>)| Prime p Length (L<sub>p</sub>)| Prime Factor q Length (L<sub>q</sub>)| g length (L<sub>g</sub>)| x | y | p | q | g | 
+  | Key Algorithm| Key Size| Private Key x Length (L<sub>x</sub>)| Public Key y Length (L<sub>y</sub>)| Prime p Length (L<sub>p</sub>)| Prime Factor q Length (L<sub>q</sub>)| g length (L<sub>g</sub>)| x | y | p | q | g |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>p</sub> bytes| L<sub>q</sub> bytes| L<sub>g</sub> bytes| 
+  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>x</sub> bytes| L<sub>y</sub> bytes| L<sub>p</sub> bytes| L<sub>q</sub> bytes| L<sub>g</sub> bytes|
 
 - DH key pair material format
-  | Key Algorithm| Key Size| Public Key pk Length (L<sub>pk</sub>)| Private Key sk Length (L<sub>sk</sub>)| Reserved Field| pk | sk | 
+  | Key Algorithm| Key Size| Public Key pk Length (L<sub>pk</sub>)| Private Key sk Length (L<sub>sk</sub>)| Reserved Field| pk | sk |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes| 
+  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes|
 
 - Curve25519 key pair material format
-  | Key Algorithm| Key Size| Public Key pk Length (L<sub>pk</sub>)| Private Key sk Length (L<sub>sk</sub>)| Reserved Field| pk | sk | 
+  | Key Algorithm| Key Size| Public Key pk Length (L<sub>pk</sub>)| Private Key sk Length (L<sub>sk</sub>)| Reserved Field| pk | sk |
   | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes| 
+  | 4 bytes| 4 bytes| 4 bytes| 4 bytes| 4 bytes| L<sub>pk</sub> bytes| L<sub>sk</sub> bytes|
 
 
 ### Public Key Material Format

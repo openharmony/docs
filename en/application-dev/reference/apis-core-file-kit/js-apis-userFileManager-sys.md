@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (User Data Management) (System API)
 
-The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and files).
+The **userFileManager** module provides user data management capabilities, including accessing and modifying user media data (audio and video clips, images, and documents).
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-Obtains a **UserFileManager** instance. This instance can be used to access and modify user media data (such as audio and video clips, images, and files).
+Obtains a **UserFileManager** instance.This instance can be used to access and modify user media data (such as audio and video clips, images, and documents).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -27,7 +27,7 @@ Obtains a **UserFileManager** instance. This instance can be used to access and 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | Yes  | Context of the ability instance.|
+| context | [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes  | Context of the ability instance.|
 
 **Return value**
 
@@ -64,7 +64,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -121,7 +121,7 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -173,7 +173,7 @@ Creates an image or video asset with the specified file name and URI. This API u
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -224,7 +224,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -273,7 +273,7 @@ Creates an image or video asset with the specified file name and URI. This API u
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -315,7 +315,7 @@ Creates an image or video asset with the specified file name and options. This A
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -367,7 +367,7 @@ Creates an image or video asset with the specified file name and options. This A
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -411,7 +411,7 @@ Creates an audio asset. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -459,7 +459,7 @@ Creates an audio asset. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -683,7 +683,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -741,7 +741,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -797,7 +797,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -853,7 +853,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -914,7 +914,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -963,7 +963,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1011,7 +1011,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1051,7 +1051,7 @@ Obtains audio assets. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1109,7 +1109,7 @@ Obtains audio assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1156,12 +1156,12 @@ Deletes a media file. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the media file.|
+| uri | string | Yes  | URI of the media file to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1215,7 +1215,7 @@ Deletes a media file. This API uses a promise to return the result. The deleted 
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | Yes  | URI of the media file.|
+| uri | string | Yes  | URI of the media file to delete.|
 
 **Return value**
 
@@ -1225,7 +1225,7 @@ Deletes a media file. This API uses a promise to return the result. The deleted 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1416,7 +1416,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1489,7 +1489,7 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1546,7 +1546,7 @@ Call this API when the APIs in the **UserFileManager** instance are no longer us
 
 | Name  | Type                     | Mandatory| Description                |
 | -------- | ------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
 
@@ -1610,7 +1610,7 @@ Registers a listener for the specified URI.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1673,7 +1673,7 @@ Unregisters the listener for the specified URI. Multiple callbacks can be regist
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2316,7 +2316,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Example**
@@ -2357,7 +2357,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| isFavorite | boolean | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
 
 **Return value**
 
@@ -2409,7 +2409,7 @@ The private files set to hidden state are located in the private album (in hidde
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2466,7 +2466,7 @@ The private files set to hidden state are located in the private album (in hidde
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2797,7 +2797,7 @@ Obtains the total number of files in the result set.
 
 | Type    | Description      |
 | ------ | -------- |
-| number | Returns the total number of files obtained.|
+| number | Total number of files obtained.|
 
 **Example**
 
@@ -3116,7 +3116,7 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3167,7 +3167,7 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3296,7 +3296,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3354,7 +3354,7 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3489,7 +3489,7 @@ Adds image and video assets to an album. Before the operation, ensure that the i
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3549,7 +3549,7 @@ Adds image and video assets to an album. Before the operation, ensure that the i
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3603,7 +3603,7 @@ Removes image and video assets from an album. The album and file resources must 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3663,7 +3663,7 @@ Removes image and video assets from an album. The album and file resources must 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3717,7 +3717,7 @@ Recovers image or video assets from the recycle bin. Before the operation, ensur
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3777,7 +3777,7 @@ Recovers image or video assets from the recycle bin. Before the operation, ensur
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3833,7 +3833,7 @@ Deletes image or video assets from the recycle bin. Before the operation, ensure
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3895,7 +3895,7 @@ Deletes image or video assets from the recycle bin. Before the operation, ensure
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3969,7 +3969,7 @@ This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-2) inste
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4027,7 +4027,7 @@ This API will be deprecated. Use [Album.getPhotoAssets](#getphotoassets-3) inste
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4359,7 +4359,7 @@ This API will be deprecated. Use [AlbumType](#albumtype10) and [AlbumSubType](#a
 | Name   |  Value|   Description  |
 | -----   |  ----  |   ----  |
 | TYPE_FAVORITE |  0 |  Favorites.|
-| TYPE_TRASH |  1 |  Recycle bin.|
+| TYPE_TRASH |  1 |  Trash.|
 
 ## AudioKey
 
@@ -4374,7 +4374,7 @@ Defines the key information about an audio file.
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Author of the file.                                                  |
+| ARTIST        | artist              | Artist of the file.                                                  |
 | AUDIOALBUM    | audio_album         | Audio album.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                  |
@@ -4438,7 +4438,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example:<br>fetchColumns: ['uri', 'title']|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## AlbumFetchOptions
@@ -4488,5 +4488,3 @@ Enumerates the **DefaultChangeUri** subtypes.
 | DEFAULT_PHOTO_URI | file://media/Photo      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
 | DEFAULT_ALBUM_URI | file://media/PhotoAlbum | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
 | DEFAULT_AUDIO_URI | file://media/Audio      | Default **AudioAsset** URI. The **AudioAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
-
-<!--no_check-->

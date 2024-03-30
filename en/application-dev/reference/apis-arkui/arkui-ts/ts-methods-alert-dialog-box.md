@@ -6,9 +6,9 @@ You can set the text content and response callback for an alert dialog box.
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 >
-> Since API version 10, you can use the [showAlertDialog](../apis/js-apis-arkui-UIContext.md#showalertdialog) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 10, you can use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API in [UIContext][UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## Attributes
 
@@ -33,6 +33,7 @@ You can set the text content and response callback for an alert dialog box.
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
+| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](#dismissdialog12)) => void | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
 
 ## AlertDialogParamWithButtons
 | Name            | Type               | Mandatory    | Description                    |
@@ -50,6 +51,7 @@ You can set the text content and response callback for an alert dialog box.
 | maskRect<sup>10+</sup> | [Rectangle](#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
+| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](#dismissdialog12)) => void | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
 
 ## AlertDialogParamWithOptions<sup>10+</sup>
 | Name            | Type               | Mandatory    | Description                    |
@@ -67,6 +69,7 @@ You can set the text content and response callback for an alert dialog box.
 |buttonDirection<sup>10+</sup>      | [DialogButtonDirection](#dialogbuttondirection10)| No | Direction in which buttons are laid out.<br>Default value: **DialogButtonDirection.AUTO**<br>When there are more than three buttons, the Auto mode (which automatically switches to the vertical layout when there are more than two buttons) is recommended. In non-Auto mode, buttons that extend beyond the display area are clipped.|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
+| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](#dismissdialog12)) => void | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
 
 ## AlertDialogButtonOptions<sup>10+</sup>
 | Name            | Type               | Mandatory    | Description                    |
@@ -145,6 +148,21 @@ The **Rectangle** type is used to represent a mask area of a dialog box.
 | DEFAULT   | Blue text on white background (black background under the dark theme).|
 | HIGHLIGHT | White text on blue background.                       |
 
+## DismissDialog<sup>12+</sup>
+
+| Name    | Type                                | Mandatory| Description                                                          |
+|----------|-------------------------------------|------|----------------------------------------------------------------|
+| dismiss  | () => void                            |  Yes | Callback for closing the dialog box. This API is called only when the dialog box needs to be exited.   |
+| reason   | [DismissReason](#dismissreason12) |  Yes | Reason why the dialog box cannot be closed. You must specify whether to close the dialog box for each of the listed actions.|
+
+## DismissReason<sup>12+</sup>
+
+| Name            | Description                            |
+| --------------- | -------------------------------- |
+| PRESS_BACK      | Touching the Back button, swiping left or right on the screen, or pressing the Esc key. |
+| TOUCH_OUTSIDE   | Touching the mask.                    |
+| CLOSE_BUTTON    | Touching the Close button.                    |
+
 ## Example
 
 ### Example 1
@@ -174,6 +192,16 @@ struct AlertDialogExample {
               },
               cancel: () => {
                 console.info('Closed callbacks')
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
               }
             }
           )
@@ -207,7 +235,17 @@ struct AlertDialogExample {
               },
               cancel: () => {
                 console.info('Closed callbacks')
-              }
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
+              } 
             }
           )
         }).backgroundColor(0x317aff)
@@ -248,6 +286,16 @@ struct AlertDialogExample {
               ],
               cancel: () => {
                 console.info('Closed callbacks')
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
               }
             }
           )
@@ -307,7 +355,16 @@ struct AlertDialogExample {
               ],
               cancel: () => {
                 console.info('Closed callbacks')
-              }
+              },
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
+                console.info("reason=" + JSON.stringify(dismissDialog.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+                  dismissDialog.dismiss()
+                }
+                if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialog.dismiss()
+                }
             }
           )
         }).backgroundColor(0x317aff)

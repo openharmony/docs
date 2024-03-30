@@ -1,6 +1,6 @@
 # ContinueMissionInfo (系统接口)
 
-表示发起按照包名迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission10)。
+表示发起按照包名迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission10)。
 
 > **说明：**
 >

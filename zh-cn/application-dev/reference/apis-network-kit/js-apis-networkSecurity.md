@@ -207,7 +207,7 @@ networkSecurity.certVerification(cert, caCert)
   });
 
 // Synchronous verification
-const resultSync = networkSecurity.certVerificationSync(cert, caCert);
+let resultSync ：number = networkSecurity.certVerificationSync(cert, caCert);
 console.info('Synchronous Verification Result:', resultSync);
 ```
 

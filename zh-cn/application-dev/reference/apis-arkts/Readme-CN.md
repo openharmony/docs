@@ -12,6 +12,7 @@
   - [@ohos.util.Deque (线性容器Deque)](js-apis-deque.md)
   - [@ohos.util.HashMap (非线性容器HashMap)](js-apis-hashmap.md)
   - [@ohos.util.HashSet (非线性容器HashSet)](js-apis-hashset.md)
+  - [@ohos.util.json (JSON解析与生成)](js-apis-json.md)
   - [@ohos.util.LightWeightMap (非线性容器LightWeightMap)](js-apis-lightweightmap.md)
   - [@ohos.util.LightWeightSet (非线性容器LightWeightSet)](js-apis-lightweightset.md)
   - [@ohos.util.LinkedList (线性容器LinkedList)](js-apis-linkedlist.md)

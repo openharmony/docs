@@ -2,10 +2,6 @@
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
 
-This subsystem offers the following audio and video services:
-
-- Obtaining video thumbnails ([AVImageGenerator](#avimagegenerator11)<sup>11+</sup>)
-
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -15,88 +11,6 @@ This subsystem offers the following audio and video services:
 
 ```ts
 import media from '@ohos.multimedia.media';
-```
-
-## media.createAVImageGenerator<sup>11+</sup>
-
-createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
-
-Creates an **AVImageGenerator** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                 | Mandatory| Description                                                        |
-| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVImageGenerator](#avimagegenerator11)> | Yes  | Callback used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The interface can be used to obtain a video thumbnail.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                      |
-| -------- | ------------------------------ |
-| 5400101  | No memory. Returned by callback. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let avImageGenerator: media.AVImageGenerator;
-media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
-  if (generator != null) {
-    avImageGenerator = generator;
-    console.info('createAVImageGenerator success');
-  } else {
-    console.error(`createAVImageGenerator fail, error message:${error.message}`);
-  }
-});
-```
-
-## media.createAVImageGenerator<sup>11+</sup>
-
-createAVImageGenerator(): Promise\<AVImageGenerator>
-
-Creates an **AVImageGenerator** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-**Return value**
-
-| Type                           | Description                                                        |
-| ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVImageGenerator](#avimagegenerator11)> | Promise used to return the result. If the operation is successful, an **AVImageGenerator** instance is returned; otherwise, **null** is returned. The interface can be used to obtain a video thumbnail.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                     |
-| -------- | ----------------------------- |
-| 5400101  | No memory. Returned by promise. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let avImageGenerator: media.AVImageGenerator;
-media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
-  if (generator != null) {
-    avImageGenerator = generator;
-    console.info('createAVImageGenerator success');
-  } else {
-    console.error('createAVImageGenerator fail');
-  }
-}).catch((error: BusinessError) => {
-  console.error(`AVImageGenerator catchCallback, error message:${error.message}`);
-});
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -185,257 +99,6 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
-## AVImageGenerator<sup>11+</sup>
-
-Provides APIs to obtain a thumbnail from a video. Before calling any API of **AVImageGenerator**, you must use [createAVImageGenerator()](#mediacreateavimagegenerator11) to create an **AVImageGenerator** instance.
-
-For details about the demo for obtaining video thumbnails, see [Obtaining Video Thumbnails](../../media/avimagegenerator.md).
-
-### Attributes
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
-| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**. |
-
-### fetchFrameByTime<sup>11+</sup>
-
-fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams, callback: AsyncCallback\<image.PixelMap>): void
-
-Obtains a video thumbnail. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description                               |
-| -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
-| options | [AVImageQueryOptions](#avimagequeryoptions11)     | Yes  | Relationship between the time passed in and the video frame.|
-| param | [PixelMapParams](#pixelmapparams11)      | Yes  | Format parameters of the thumbnail to be obtained.|
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the video thumbnail.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                                  |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Returned by callback. |
-| 5400106  | Unsupported format. Returned by callback.  |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import image from '@ohos.multimedia.image';
-
-let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-let pixel_map : image.PixelMap | undefined = undefined;
-
-// Initialize input parameters.
-let timeUs: number = 0
-
-let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
-
-let param: media.PixelMapParams = {
-  width : 300,
-  height : 300,
-  colorFormat : media.PixelFormat.RGB_565
-}
-
-// Obtain the thumbnail.
-media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
-    avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
-    avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
-      if (error) {
-        console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
-        return
-      }
-      pixel_map = pixelMap;
-    });
-  } else {
-    console.error(`createAVImageGenerator fail, error message:${err.messag-e}`);
-  };
-});
-```
-
-### fetchFrameByTime<sup>11+</sup>
-
-fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapParams): Promise<image.PixelMap>
-
-Obtains a video thumbnail. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description                               |
-| -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
-| options | [AVImageQueryOptions](#avimagequeryoptions11)     | Yes  | Relationship between the time passed in and the video frame.|
-| param | [PixelMapParams](#pixelmapparams11)      | Yes  | Format parameters of the thumbnail to be obtained.|
-
-**Return value**
-
-| Type          | Description                                    |
-| -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the video thumbnail.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Returned by promise. |
-| 5400106  | Unsupported format. Returned by promise.  |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import image from '@ohos.multimedia.image';
-
-let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-let pixel_map : image.PixelMap | undefined = undefined;
-
-// Initialize input parameters.
-let timeUs: number = 0
-
-let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
-
-let param: media.PixelMapParams = {
-  width : 300,
-  height : 300,
-  colorFormat : media.PixelFormat.RGB_565
-}
-
-// Obtain the thumbnail.
-media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
-    avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
-    avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
-      pixel_map = pixelMap;
-    }).catch((error: BusinessError) => {
-      console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVImageGenerator fail, error message:${err.message}`);
-  };
-});
-```
-
-### release<sup>11+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-Releases this **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                        | Mandatory| Description                               |
-| -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                                  |
-| -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Returned by callback. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-
-let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-
-// Release the instance.
-media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
-    avImageGenerator = generator;
-    console.error(`createAVImageGenerator success`);
-    avImageGenerator.release((error: BusinessError) => {
-      if (error) {
-        console.error(`release failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`release success.`);
-    });
-  } else {
-    console.error(`createAVImageGenerator fail, error message:${err.message}`);
-  };
-});
-```
-
-### release<sup>11+</sup>
-
-release(): Promise\<void>
-
-Releases this **AVMetadataExtractor** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-**System API**: This is a system API.
-
-**Return value**
-
-| Type          | Description                                    |
-| -------------- | ---------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Returned by promise. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-
-let avImageGenerator: media.AVImageGenerator | undefined = undefined;
-
-// Release the instance.
-media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
-  if(generator != null){
-    avImageGenerator = generator;
-    console.error(`creatAVImageGenerator success`);
-    avImageGenerator.release().then(() => {
-      console.info(`release success.`);
-    }).catch((error: BusinessError) => {
-      console.error(`release catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`creatAVImageGenerator fail, error message:${err.message}`);
-  };
-});
-```
-
 ## AVImageQueryOptions<sup>11+</sup>
 
 Enumerates the relationship between the video frame and the time at which the video thumbnail is obtained.
@@ -444,14 +107,9 @@ The time passed in for obtaining the thumbnail may be different from the time of
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
-**System API**: This is a system API.
-
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| AV_IMAGE_QUERY_NEXT_SYNC       | 0   | The key frame at or next to the specified time is selected.                      |
-| AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | The key frame at or prior to the specified time is selected.|
-| AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | The key frame closest to the specified time is selected.                |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.    |
+| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.<br>**System API**: This is a system API.    |
 
 ## PixelMapParams<sup>11+</sup>
 
@@ -459,13 +117,9 @@ Defines the format parameters of the video thumbnail to be obtained.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
-**System API**: This is a system API.
-
 | Name    | Type  |  Readable  |   Writable   |  Description                  |
 | -------- | ------ |   ------| ------ | ---------------------- |
-| width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
-| height | number |  Yes  |  Yes  | Height of the thumbnail.|
-| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.        |
+| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.<br>**System API**: This is a system API.     |
 
 ## PixelFormat<sup>11+</sup>
 

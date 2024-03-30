@@ -1,7 +1,7 @@
 # Creating a Swiper (Swiper)
 
 
-The [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md) component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.
+The [\<Swiper>](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.
 
 The **\<Swiper>** component provides a preloading mechanism, which you can use to improve the swipe experience in complex scenarios. This mechanism allows for prebuilding and prerendering components when the main thread is idle. For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).
 
@@ -24,21 +24,21 @@ When **loop** is set to **true**, the user can switch to the previous or next pa
 private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -54,21 +54,21 @@ Swiper(this.swiperController) {
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -89,21 +89,21 @@ When **autoPlay** is set to **true**, automatic playback is enabled for child co
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -128,21 +128,21 @@ With the **indicatorStyle** attribute, you can set the position of the navigatio
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -160,21 +160,21 @@ Swiper(this.swiperController) {
 ```ts
 let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("1")
+  Text('1')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 
-  Text("2")
+  Text('2')
     .width('90%')
     .height('100%')
     .backgroundColor(Color.Pink)
@@ -209,19 +209,19 @@ struct SwiperDemo {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text("0")
+        Text('0')
           .width(250)
           .height(250)
           .backgroundColor(Color.Gray)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("1")
+        Text('1')
           .width(250)
           .height(250)
           .backgroundColor(Color.Green)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("2")
+        Text('2')
           .width(250)
           .height(250)
           .backgroundColor(Color.Pink)
@@ -286,29 +286,29 @@ Swiper(this.swiperController) {
 
 ## Child Components Per Page
 
-You can set the number of child components per page for the **\<Swiper>** component through its [displayCount](../reference/arkui-ts/ts-container-swiper.md#attributes) attribute.
+You can set the number of child components per page for the **\<Swiper>** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute.
 
 ```ts
 Swiper(this.swiperController) {
-  Text("0")
+  Text('0')
     .width(250)
     .height(250)
     .backgroundColor(Color.Gray)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("1")
+  Text('1')
     .width(250)
     .height(250)
     .backgroundColor(Color.Green)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("2")
+  Text('2')
     .width(250)
     .height(250)
     .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
-  Text("3")
+  Text('3')
     .width(250)
     .height(250)
     .backgroundColor(Color.Blue)

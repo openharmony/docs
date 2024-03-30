@@ -159,7 +159,7 @@ getSupportedCoordTypes(): Array&lt;string&gt;
 获取设备支持的坐标系类型。
 
 > **说明：**<br/>
-> 从API version 9开始废弃。位置服务子系统仅支持wgs84坐标系，后续不再提供接口查询支持的坐标系类型。
+> 从API version 9开始废弃。位置服务子系统仅支持WGS-84坐标系，后续不再提供接口查询支持的坐标系类型。
 
 **系统能力：** SystemCapability.Location.Location.Lite
 

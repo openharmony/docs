@@ -1,20 +1,20 @@
 # Certificate Chain Development
 
-This topic walks you through on how to create a certificate chain instance, obtain information about the certificates of the certificate chain, and validate the certificate chain using a trust anchor.
+This topic walks you through on how to create a certificate chain object, obtain information about the certificates of the certificate chain, and validate the certificate chain using a trust anchor.
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis/js-apis-cert.md) module.
+1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
 
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. Use [cryptoCert.createX509CertChain](../../reference/apis/js-apis-cert.md#cryptocertcreatex509certchain11) to create an X.509 certificate chain (**X509CertChain**) instance.
+2. Use [cryptoCert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509certchain11) to create an X.509 certificate chain (**X509CertChain**) instance.
 
-3. Use [x509CertChain.getCertList](../../reference/apis/js-apis-cert.md#getcertlist11) to obtain information about the X.509 certificates of the certificate chain.
+3. Use [x509CertChain.getCertList](../../reference/apis-device-certificate-kit/js-apis-cert.md#getcertlist11) to obtain information about the X.509 certificates of the certificate chain.
 
-4. Use [x509CertChain.validate](../../reference/apis/js-apis-cert.md#validate11) to validate the certificate chain.
+4. Use [x509CertChain.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate11) to validate the certificate chain.
 
 ```ts
 import certFramework from '@ohos.security.cert';

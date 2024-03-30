@@ -41,7 +41,7 @@ Enumerates the audio latency modes.
 | Name                           |  Value    | Description                                        |
 | ------------------------------- | ------ | -------------------------------------------- |
 | AUDIO_LATENCY_MODE_NORMAL       | 0      | Normal latency mode.                               |
-| AUDIO_LATENCY_MODE_FAST         | 1      | Low latency mode. This mode is applicable to short audio files. A long audio file may be truncated in this mode. It functions the same as [SoundPool](../apis/js-apis-inner-multimedia-soundPool.md#soundpool).|
+| AUDIO_LATENCY_MODE_FAST         | 1      | Low latency mode. This mode is applicable to short audio files. A long audio file may be truncated in this mode. It functions the same as [SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool).|
 
 ## AudioHapticPlayerOptions
 
@@ -70,8 +70,8 @@ Registers an audio-haptic source. This API uses a promise to return the result.
 
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioUri  | string                                  | Yes  | URI of the audio source. For details about the supported audio sources in normal latency mode, see [media.AVPlayer](../apis/js-apis-media.md#avplayer9). For details about the supported audio sources in low latency mode, see [SoundPool](../apis/js-apis-inner-multimedia-soundPool.md#soundpool).          |
-| hapticUri | string                                  | Yes  | URI of the haptic source. For details, see [vibrator](../apis/js-apis-vibrator.md#hapticfiledescriptor10).        |
+| audioUri  | string                                  | Yes  | URI of the audio source. In normal latency mode, the supported audio resource formats and path formats are defined in [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). In low latency mode, the supported audio resource formats are defined in [SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool), and the path format must meet the requirements of [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen). In both modes, you are advised to pass in the absolute path of the file.          |
+| hapticUri | string                                  | Yes  | URI of the haptic source. The supported haptic resource formats are defined in [vibrator](../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10). The path format must meet the requirements of [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen). You are advised to pass in the absolute path of the file.        |
 
 **Return value**
 
@@ -139,7 +139,7 @@ Sets the latency mode for an audio-haptic source.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -170,7 +170,7 @@ Sets the stream usage for an audio-haptic source.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -213,7 +213,7 @@ If the audio-haptic player needs to trigger vibration, check whether the applica
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
@@ -227,10 +227,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 import { BusinessError } from '@ohos.base';
 
 let options: audioHaptic.AudioHapticPlayerOptions = {muteAudio: false, muteHaptics: false};
+let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer | undefined = undefined;
 
-let audioHapticPlayerInstance: audioHaptic.AudioHapticPlayer =
-  await audioHapticManagerInstance.createPlayer(id, options);
-console.info(`Create the audio haptic player successfully.`);
+audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
+  audioHapticPlayerInstance = value;
+  console.info(`Create the audio haptic player successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to create the audio haptic player. ${err}`);
+});
 ```
 
 ## AudioHapticType
@@ -292,7 +296,7 @@ Starts playing the audio and haptic source. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID  | Error Message                             |
 |---------|-----------------------------------|
@@ -329,7 +333,7 @@ Stops playing the audio-haptic source. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID  | Error Message                             |
 |---------|-----------------------------------|
@@ -364,7 +368,7 @@ Releases this audio-haptic player. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID  | Error Message                             |
 |---------|-----------------------------------|

@@ -242,7 +242,7 @@ addRecord(mimeType: string, value: ValueType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -537,7 +537,7 @@ getRecord(index: number): PasteDataRecord
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -635,7 +635,7 @@ removeRecord(index: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -665,7 +665,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -699,7 +699,7 @@ isRemoteData(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -733,7 +733,7 @@ getDataSource(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -773,7 +773,7 @@ hasDataType(mimeType: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -856,7 +856,7 @@ clearDataSync(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -880,6 +880,8 @@ getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -890,7 +892,7 @@ getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -916,6 +918,8 @@ getData(): Promise&lt;PasteData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -926,7 +930,7 @@ getData(): Promise&lt;PasteData&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -950,6 +954,8 @@ getDataSync(): PasteData
 
 读取系统剪贴板内容, 此接口为同步接口。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -960,7 +966,7 @@ getDataSync(): PasteData
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1050,7 +1056,7 @@ hasDataSync(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1085,7 +1091,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1128,7 +1134,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1165,7 +1171,7 @@ setDataSync(data: PasteData): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../apis-basic-services-kit/errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |

@@ -22,15 +22,9 @@ Before you start, understand the following concepts:
 
 - **Predicates**: an object that specifies the conditions for updating, deleting, or querying data in a database.
 
-## Unified Data Definition
-
-When data needs to be shared among multiple applications, a large amount of data needs to be converted for data interaction because the data definition and format vary with applications. To reduce application/service data interaction costs, OpenHarmony uses the unified data definition as the unified data language to build cross-application data interaction standards.
-
-The unified data definition defines common data types. Applications can use the APIs provided by the Unified Data Management Framework (UDMF) to create and use these data types. For details, see [Unified Data Definition](unified-data-definition.md).
-
 ## One-to-Many Cross-Application Data Sharing
 
-You can use **DataShare** to implement one-to-many data sharing across applications. Two implementation modes are provided, depending on whether the data provider is started in the cross-application data sharing.
+You can use **DataShare** to implement one-to-many data sharing across applications. Two implementation modes are provided, depending on whether the data provider is started in the cross-application data sharing.  
 
 ### Implementation
 

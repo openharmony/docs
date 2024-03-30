@@ -25,10 +25,37 @@ TabContent()
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>**说明：**<br/>如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。<br>设置的内容超出tabbar页签时进行裁切。 |
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。<br/>**说明：** <br/>底部样式没有下划线效果。<br/>icon异常时显示灰色图块。 |
+### tabBar
+
+tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; text?: string | Resource })
+
+设置TabBar上显示内容。
+
+如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。
+
+设置的内容超出tabbar页签时进行裁切。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。 |
+
+### tabBar<sup>9+</sup>
+
+tabBar(value: SubTabBarStyle | BottomTabBarStyle)
+
+设置TabBar上显示内容。底部样式没有下划线效果。icon异常时显示灰色图块。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | 是   | TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。 |
 
 >  **说明：**
 >
@@ -110,6 +137,8 @@ SubTabBarStyle的静态构造函数。
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。||
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。                              |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。      |
+| unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 |
+| selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF |
 
 ## BottomTabBarStyle<sup>9+</sup>
 
@@ -131,6 +160,7 @@ BottomTabBarStyle的构造函数。
 ### of<sup>10+</sup>
 
 static of(icon: ResourceStr, text: ResourceStr)
+
 BottomTabBarStyle的静态构造函数。
 
 **参数：**
@@ -152,6 +182,7 @@ BottomTabBarStyle的静态构造函数。
 | symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。 |
 | id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| iconStyle<sup>12+</sup> | [IconStyle](#iconstyle12对象说明) | 设置底部页签的label图标的样式。 |
 
 ## LayoutMode<sup>10+</sup>枚举说明
 
@@ -161,6 +192,28 @@ BottomTabBarStyle的静态构造函数。
 | VERTICAL    | 页签内容上下排布。 |
 | HORIZONAL   | 页签内容左右排布。 |
 
+## IconStyle<sup>12+</sup>对象说明
+
+| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label图标未选中时的颜色。<br/>默认值:#33182431 <br/>**说明：** <br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label图标选中时的颜色。<br/>默认值:#FF007DFF <br/>**说明：** <br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
+
+## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+
+### onWillShow<sup>12+</sup>
+
+onWillShow(event: [VoidCallback](ts-types.md#voidcallback12))
+
+逻辑回调，TabContent将要显示的时候触发该回调。场景包括TabContent首次显示，TabContent切换，页面切换，窗口前后台切换。
+
+### onWillHide<sup>12+</sup>
+
+onWillHide(event: [VoidCallback](ts-types.md#voidcallback12))
+
+逻辑回调，TabContent将要隐藏的时候触发该回调。场景包括TabContent切换，页面切换，窗口前后台切换。
 
 ## 示例
 
@@ -869,3 +922,97 @@ struct TabContentExample6 {
 ```
 
 ![tabContent4](figures/tabContent5.gif)
+
+### 示例7
+
+本示例通过labelStyle中的unselectedColor和selectedColor改变底部页签以及子页签的文本颜色。
+通过iconStyle中的unselectedColor和selectedColor改变底部页签的图标颜色。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column({ space: 5 }) {
+      Text("子页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new SubTabBarStyle('Pink')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new SubTabBarStyle('Yellow')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new SubTabBarStyle('Blue')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new SubTabBarStyle('Green')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+
+      Text("底部页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }
+          .tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'pink')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'Yellow')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'Blue')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'Green')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+    }
+  }
+}
+```
+
+![tabContent](figures/tabContent6.gif)

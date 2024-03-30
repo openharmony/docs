@@ -5,9 +5,7 @@
 
 The **CameraInput_Callbacks** struct defines the callbacks used to listen for camera input errors.
 
-**See**
-
-[OH_CameraInput_RegisterCallback](_o_h___camera.md#oh_camerainput_registercallback)
+For details, see [OH_CameraInput_RegisterCallback](_o_h___camera.md#oh_camerainput_registercallback).
 
 **Since**: 11
 
@@ -19,9 +17,9 @@ The **CameraInput_Callbacks** struct defines the callbacks used to listen for ca
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [onError](#onerror) | Camera input error event.|
+| [OH_CameraInput_OnError](_o_h___camera.md#oh_camerainput_onerror) [onError](#onerror) | Camera input error event.| 
 
 
 ## Member Variable Description

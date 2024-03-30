@@ -25,11 +25,21 @@ RichText(content:string)
 
 ## 事件
 
+### onStart
 
-| 名称 | 描述 |
-| -------- | -------- |
-| onStart(callback: () => void)    | 加载网页时触发。   |
-| onComplete(callback: () => void) | 网页加载结束时触发。 |
+onStart(callback: () => void)
+
+加载网页时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onComplete
+
+onComplete(callback: () => void)
+
+网页加载结束时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 

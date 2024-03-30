@@ -22,9 +22,7 @@ None.
 
 Enumerates the widget types.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |

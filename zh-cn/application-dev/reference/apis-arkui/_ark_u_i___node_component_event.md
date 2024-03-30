@@ -15,9 +15,9 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NumberValue](union_ark_u_i___number_value.md)[data](#data) [MAX_COMPONENT_EVENT_ARG_NUM] | 数据数组对象。  |
+| [ArkUI_NumberValue](union_ark_u_i___number_value.md) [data](#data) [MAX_COMPONENT_EVENT_ARG_NUM] | 数据数组对象。  | 
 
 
 ## 结构体成员变量说明

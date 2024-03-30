@@ -4,7 +4,9 @@ drawing模块提供了基本的绘制能力，如绘制矩形、圆形、点、�
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块不提供像素单位，和应用上下文环境保持一致。如果处于ArkUI开发环境中，采用框架默认像素单位vp。像素单位请参考[像素单位说明文档](../apis-arkui/arkui-ts/ts-pixel-units.md)。
 
 ## 导入模块
 
@@ -272,7 +274,7 @@ drawRect(rect: common2D.Rect): void
 
 > **说明：**
 >
-> 矩形的左上角点的坐标值如果大于右下角的坐标值，可以绘制出矩形；如果左上角和右下角在同一x轴或者y轴，可以绘制出一条直线；如果左上角和右下角是同一点，可以绘制出一个点。
+> 矩形的左上角点的坐标值如果大于右下角的坐标值，可以绘制出矩形；如果左上角和右下角在同一x轴或者y轴，可以绘制出一条直线；如果左上角和右下角是同一点，不会绘制任何内容。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -798,6 +800,8 @@ bounds(): common2D.Rect
 ```ts
 import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
+const font = new drawing.Font();
+font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 textBlob.bounds();
 ```
@@ -1016,6 +1020,10 @@ measureText(text: string, encoding: TextEncoding): number
 
 测量文本的宽度。
 
+> **说明：**
+>
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuremeasuretext)替代。
+
 **系统能力**：SystemCapability.Graphics.Drawing
 
 **参数：**
@@ -1036,7 +1044,7 @@ measureText(text: string, encoding: TextEncoding): number
 ```ts
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
-font.measureText();
+font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
 
 ## FontMetrics
@@ -1434,7 +1442,7 @@ setColorFilter(filter: ColorFilter) : void
 ```ts
 import drawing from "@ohos.graphics.drawing"
 const brush = new drawing.Brush();
-let colorFilter = draw.ColorFilter.createLinearToSRGBGamma();
+let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 brush.setColorFilter(colorFilter);
 ```
 

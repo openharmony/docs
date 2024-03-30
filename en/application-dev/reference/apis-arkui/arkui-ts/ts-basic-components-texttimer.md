@@ -12,9 +12,15 @@ Not supported
 
 ## APIs
 
-TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
+TextTimer(options?: TextTimerOptions)
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [TextTimerOptions](#texttimeroptions)| No| Parameters of the **\<TextTimer>** component.|
+
+## TextTimerOptions
 
 | Name    | Type    | Mandatory | Description                  |
 | ----------- | -------- | -------- | -------- |
@@ -24,16 +30,54 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 
 ## Attributes
 
-| Name       | Type      | Description                            |
-| -------- | ---------------------- | ---------------------- |
-| format   | string   | Custom format. The value must contain at least one of the following keywords: **HH**, **mm**, **ss**, and **SS**. If the specified date format is yy, MM, or dd, the default value is used instead.<br>Default value: **'HH:mm:ss.SS'**|
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
+Among the [universal attributes](ts-universal-attributes-size.md) and [universal text attributes](ts-universal-attributes-text-style.md), **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are supported. In addition, the following attributes are supported.
+
+### format
+
+format(value: string)
+
+Sets the custom format. The value must contain at least one of the following keywords: **HH**, mm, **ss**, and **SS**. If the specified date format is yy, MM, or dd, the default value is used instead.
+
+**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| value  | string | Yes  | Custom format<br>Default value: **'HH:mm:ss.SS'**|
+
+### textShadow<sup>11+</sup>
+
+textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
+
+Sets the text shadow. It supports input parameters in an array to implement multiple text shadows. This API does not work with the **fill** attribute or coloring strategy.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description          |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Yes  | Text shadow.|
 
 ## Events
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onTimer(event: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br>**utc**: Linux timestamp, which is the amount of time that has elapsed since January 1, 1970, in the minimum unit of the format.<br>**elapsedTime**: elapsed time of the timer, in the minimum unit of the format.<br> **NOTE**<br>This event is not triggered when the screen is locked or the application is running in the background.|
+### onTimer
+
+onTimer(event: (utc: number, elapsedTime: number) =&gt; void)
+
+Triggered when the time text changes. This event is not triggered when the screen is locked or the application is running in the background.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| utc         | number | Yes  | Linux timestamp, which is the amount of time that has elapsed since January 1, 1970, in the minimum unit of the format.|
+| elapsedTime | number | Yes  | Elapsed time of the timer, in the minimum unit of the format.                |
 
 ## TextTimerController
 

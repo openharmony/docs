@@ -3,8 +3,9 @@
 The **FormAgent** module provides APIs related to the widget agent. Currently, you can use the APIs to request to publish widgets only.
 
 > **NOTE**
-> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are system APIs.
+>
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -28,7 +29,7 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>**bundleName**: bundle name of the target widget.<br>**abilityName**: ability of the target widget.<br>parameters:<br>- **ohos.extra.param.key.form_dimension**: dimension of the target widget.<br>- **ohos.extra.param.key.form_name**: name of the target widget.<br>- **ohos.extra.param.key.module_name**: module name of the target widget.|
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Publish request, which must contain the following fields:<br>**bundleName**: bundle name of the target widget.<br>**abilityName**: ability of the target widget.<br>parameters:<br>- **ohos.extra.param.key.form_dimension**: dimension of the target widget.<br>- **ohos.extra.param.key.form_name**: name of the target widget.<br>- **ohos.extra.param.key.module_name**: module name of the target widget.|
 | callback | AsyncCallback&lt;string&gt;         | Yes  |  Callback used to return the widget ID.|
 
 **Error codes**
@@ -39,7 +40,7 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -85,7 +86,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 
 | Name         | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Request used for publishing. The following fields must be included:<br>**bundleName**: bundle name of the target widget.<br>**abilityName**: ability of the target widget.<br>parameters:<br>- **ohos.extra.param.key.form_dimension**: dimension of the target widget.<br>- **ohos.extra.param.key.form_name**: name of the target widget.<br>- **ohos.extra.param.key.module_name**: module name of the target widget.|
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Publish request, which must contain the following fields:<br>**bundleName**: bundle name of the target widget.<br>**abilityName**: ability of the target widget.<br>parameters:<br>- **ohos.extra.param.key.form_dimension**: dimension of the target widget.<br>- **ohos.extra.param.key.form_name**: name of the target widget.<br>- **ohos.extra.param.key.module_name**: module name of the target widget.|
 
 **Return value**
 
@@ -101,7 +102,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
@@ -128,5 +129,3 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
-
- <!--no_check--> 

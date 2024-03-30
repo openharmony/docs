@@ -9,7 +9,7 @@ Use **bundleManager.getApplicationInfo** (available only for system applications
 
 **References**
 
-[bundleManager](../reference/apis/js-apis-bundleManager.md)
+[bundleManager](../reference/apis-ability-kit/js-apis-bundleManager.md)
 
 
 ## How do I obtain the version code and version name of an application? (API version 9)
@@ -39,7 +39,7 @@ try {
 
 **References**
 
-[getBundleInfoForSelf](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)
+[getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)
 
 
 ## How do I obtain the bundle name of the current application? (API version 9)
@@ -58,7 +58,7 @@ console.log(`bundleName: ${context.abilityInfo.bundleName}`)
 
 **References**
 
-[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) and [AbilityInfo](../reference/apis/js-apis-bundleManager-abilityInfo.md#abilityinfo)
+[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) and [AbilityInfo](../reference/apis-ability-kit/js-apis-bundleManager-abilityInfo.md)
 
 
 ## How do I obtain the application version number, version name, and screen resolution? (API version 9)
@@ -129,7 +129,7 @@ Currently, only system applications can call the API to query information about 
 
 **References**
 
-[@ohos.bundle.bundleManager \(bundleManager\)](../reference/apis/js-apis-bundleManager.md)
+[@ohos.bundle.bundleManager \(bundleManager\)](../reference/apis-ability-kit/js-apis-bundleManager.md)
 
 
 ## How do I query the PID of a process? (API version 9)
@@ -147,7 +147,7 @@ private pid = process.pid;
 
 **References**
 
-[@ohos.process (Obtaining Process Information)](../reference/apis/js-apis-process.md)
+[@ohos.process (Obtaining Process Information)](../reference/apis-arkts/js-apis-process.md)
 
 
 ## How do I disable the maximize button? (API version 9)
@@ -168,7 +168,7 @@ You can use the **supportWindowModes** field to specify whether to display the m
 "abilities": [
   {
     "name": "EntryAbility",
-    "srcEntry": "./ets/entryability/EntryAbility.ts",
+    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "description": "$string:EntryAbility_desc",
     "icon": "$media:icon",
     "label": "$string:EntryAbility_label",
@@ -192,4 +192,4 @@ You can use the **supportWindowModes** field to specify whether to display the m
 
 **References**
 
-[supportWindowModes](../reference/apis/js-apis-bundleManager-abilityInfo.md)
+[supportWindowModes](../reference/apis-ability-kit/js-apis-bundleManager-abilityInfo.md)

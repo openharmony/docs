@@ -30,9 +30,19 @@ Hyperlink(address: string | Resource, content?: string | Resource)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置超链接文本的颜色。 |
+### color
+
+color(value: Color | number | string | Resource)
+
+设置超链接文本的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 超链接文本的颜色。<br />默认值：'#ff007dff' |
 
 ## 示例
 

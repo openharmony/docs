@@ -30,7 +30,6 @@ These parameters are used to control the playback volume, number of loops, and p
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0.                                   |
 | rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.)|
 | priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority.     |
-| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite.<br>This is a system API.|
 
 ## SoundPool
 
@@ -41,6 +40,8 @@ Implements a sound pool that provides APIs for loading, unloading, playing, and 
 load(uri: string, callback: AsyncCallback\<number>): void
 
 Loads a sound. This API uses an asynchronous callback to obtain the sound ID. The input parameter **uri** is a string starting with fd://, which is generated based on the file descriptor (FD) obtained.
+
+This API cannot be used to load resources in the **rawfile** directory. Instead, use **load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void** or **load(fd: number, offset: number, length: number): Promise\<number>**.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -104,6 +105,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(uri: string): Promise\<number>
 
 Loads a sound. This API uses a promise to obtain the sound ID. The input parameter **uri** is a starting with fd://, which is generated based on the FD obtained.
+
+This API cannot be used to load resources in the **rawfile** directory. Instead, use **load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void** or **load(fd: number, offset: number, length: number): Promise\<number>**.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 

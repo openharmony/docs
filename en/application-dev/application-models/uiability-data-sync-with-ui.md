@@ -9,15 +9,14 @@ Based on the application model, you can use any of the following ways to impleme
 
 ## Using EventHub for Data Synchronization
 
-[EventHub](../reference/apis/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility component so that they can subscribe to, unsubscribe from, and trigger events.
+[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility component so that they can subscribe to, unsubscribe from, and trigger events.
 
 Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md).
 
-1. Call [eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
+1. Call [eventHub.on()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 
    ```ts
    import hilog from '@ohos.hilog';
-   import Logger from '../utils/Logger';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import type window from '@ohos.window';
    import type { Context } from '@ohos.abilityAccessCtrl';
@@ -45,13 +44,13 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
        // ...
        
      eventFunc(argOne: Context, argTwo: Context): void {
-       Logger.info(TAG, '1. ' + `${argOne}, ${argTwo}`);
+       hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
        return;
      }
    }
    ```
 
-2. Call [eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit) on the UI page to trigger the event, and pass in the parameters as required.
+2. Call [eventHub.emit()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubemit) on the UI page to trigger the event, and pass in the parameters as required.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -166,7 +165,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
    [Example].[Entry].[EntryAbility] 1. [2,"test"]
    ```
    
-4. When **event1** is not needed, call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
+4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
    // context is the AbilityContext of the UIAbility instance.

@@ -46,7 +46,7 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 Applies a shadow effect to the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets, though the [ShadowStyle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10) is not supported.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets. Yet, the [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) type is not supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ Applies a grayscale effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Grayscale conversion ratio of the component. If the value is **1.0**, the component is completely converted to grayscale. If the value is **0.0**, the component remains unchanged. Between 0 and 1, the value applies a linear multiplier on the grayscale effect. The unit is percentage.<br>Default value: **0.0**<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
+| value  | number | Yes  | Grayscale conversion ratio of the component. If the value is **1.0**, the component is completely converted to grayscale. If the value is **0.0**, the component remains unchanged. Between 0 and 1, the value applies a linear multiplier on the grayscale effect. The unit is percentage.<br>Default value: **0.0**<br>Value range: [0.0, 1.0]<br>**NOTE**<br>A value less than **0.0** evaluates to the value **0.0**. A value greater than **1.0** evaluates to the value **1.0**.|
 
 ## brightness
 
@@ -102,7 +102,7 @@ Applies a saturation effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the original image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Default value: **1.0**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| value  | number | Yes  | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the original image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Default value: **1.0**<br>Value range: [0, 50)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 
 ## contrast
 
@@ -118,7 +118,7 @@ Applies a contrast effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Default value: **1.0**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| value  | number | Yes  | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Default value: **1.0**<br>Value range: [0, 10]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 
 ## invert
 
@@ -134,7 +134,7 @@ Inverts the image.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \| [InvertOptions](#invertoptions11)<sup>11+</sup> | Yes  | How the image is inverted.<br>If the value is of the number type, it indicates the inversion ratio. If the value is **1**, the image is completely inverted. If the value is **0**, the image remains unchanged. The unit is percentage.<br>Value range: [0, 1]<br>A value less than 0 evaluates to the value **0**.<br>If the value is of the InvertOptions type, the background color is compared with the threshold. If the grayscale value of the background color is greater than the threshold, the **high** value is used. If the grayscale value of the background color is less than the threshold, the **low** value is used.|
+| value  | number \| [InvertOptions](#invertoptions11)<sup>11+</sup> | Yes  | How the image is inverted.<br>If the value is of the number type, it indicates the inversion ratio. If the value is **1**, the image is completely inverted. If the value is **0**, the image remains unchanged. The unit is percentage.<br>Value range: [0, 1]<br>A value less than 0 evaluates to the value **0**.<br>If the value is of the InvertOptions type, the grayscale value of the background color is compared with the threshold range. If the grayscale value is greater than the upper bound of the threshold range, the **high** value is used. If the grayscale value is less than the lower bound of the threshold range, the **low** value is used. If the grayscale value is within the threshold range, the background color changes linearly from high to low.|
 
 ## sepia
 
@@ -203,7 +203,7 @@ Applies a linear gradient foreground blur effect to the component.
 
 renderGroup(value: boolean)
 
-Whether the component and its child components are rendered off the screen and then drawn together with its parent.
+Sets whether the component and its child components are rendered off the screen and then drawn together with its parent.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -217,7 +217,7 @@ Whether the component and its child components are rendered off the screen and t
 
 blendMode(value: BlendMode, type?: BlendApplyType)
 
-将当前控件的内容（包含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。
+Defines how the component's content (including the content of it child components) is blended with the existing content on the canvas (possibly offscreen canvas) below.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -227,8 +227,8 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 
 | Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlendMode](#blendmode11)  | Yes  | 混合模式。<br>Default value: **BlendMode.NONE**  |
-| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    No   | blendMode实现方式是否离屏。<br>默认值：BlendApplyType.FAST<br>**NOTE**<br>1. 设置BlendApplyType.FAST时，不离屏。<br>2. 设置BlendApplyType.OFFSCREEN时，会先将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。     |
+| value  | [BlendMode](#blendmode11)  | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**  |
+| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>Available options:<br>1. **BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: The component's content (including the content of it child components) is drawn on the offscreen canvas, and then blended with the existing content on the canvas in the specified blend mode. |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -256,7 +256,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 | type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**       |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.                      |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#attributes) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.                      |
 | offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>The default value is **0**.                     |
 | offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>The default value is **0**.                     |
 | fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#attributes).                |
@@ -274,11 +274,42 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BlendMode<sup>11+</sup>
 
-| Name          | Description                                                             |
-| ---------------| ------                                                            |
-| NORMAL         | The top image is superimposed on the bottom image without any blending.                 |
-| SOURCE_IN      |The following formula is used for blending: r = d x sa. The colors of the top and bottom images are blended, with the opacity of the bottom image as the weight.|
-| DESTINATION_IN |The following formula is used for blending: r = s x da. The colors of the top and bottom images are blended, with the opacity of the top image as the weight.|
+>  **NOTE**
+>
+>  In the **blendMode** enums, **s** indicates the source pixel, **d** indicates the target pixel, **sa** indicates the opacity of the source pixel, **da** indicates the opacity of the target pixel, **r** indicates the pixel after blending, and **ra** indicates the opacity of the pixel after blending.
+
+| Name          | Description                                                            |
+| ---------------| ------                                                        |
+| NONE            | The top image is superimposed on the bottom image without any blending.             |
+| CLEAR           | The target pixels covered by the source pixels are erased by being turned to completely transparent.                     |
+| SRC             | r = s: Only the source pixels are displayed.                   |
+| DST             | r = d: Only the target pixels are displayed.                 |
+| SRC_OVER        | r = s + (1 - sa) * d: The source pixels are blended based on opacity and cover the target pixels.                |
+| DST_OVER        | r = d + (1 - da) * s: The target pixels are blended based on opacity and cover on the source pixels.                |
+| SRC_IN          | r = s * da: Only the part of the source pixels that overlap with the target pixels is displayed.                       |
+| DST_IN          | r = d * sa: Only the part of the target pixels that overlap with the source pixels is displayed.                       |
+| SRC_OUT         | r = s * (1 - da): Only the part of the source pixels that do not overlap with the target pixels is displayed.               |
+| DST_OUT         | r = d * (1 - sa): Only the part of the target pixels that do not overlap with the source pixels is displayed.               |
+| SRC_ATOP        | r = s * da + d * (1 - sa): The part of the source pixels that overlap with the target pixels is displayed and the part of the target pixels that do not overlap with the source pixels are displayed.                |
+| DST_ATOP        | r = d * sa + s * (1 - da): The part of the target pixels that overlap with the source pixels and the part of the source pixels that do not overlap with the target pixels are displayed.                |
+| XOR             | r = s * (1 - da) + d * (1 - sa): Only the non-overlapping part between the source pixels and the target pixels is displayed.                    |
+| PLUS            | r = min(s + d, 1): New pixels resulting from adding the source pixels to the target pixels are displayed.                    |
+| MODULATE        | r = s * d: New pixels resulting from multiplying the source pixels with the target pixels are displayed.                         |
+| SCREEN          | r = s + d - s * d: Pixels are blended by adding the source pixels to the target pixels and subtracting the product of their multiplication.                   |
+| OVERLAY         | The MULTIPLY or SCREEN mode is used based on the target pixels.                                 |
+| DARKEN          | rc = s + d - max(s * da, d * sa), ra = kSrcOver: When two colors overlap, whichever is darker is used.                |
+| LIGHTEN         | rc = s + d - min(s * da, d * sa), ra = kSrcOver: The darker of the pixels (source and target) is used.           |
+| COLOR_DODGE     | The colors of the target pixels are lightened to reflect the source pixels.                    |
+| COLOR_BURN      | The colors of the target pixels are darkened to reflect the source pixels.                    |
+| HARD_LIGHT      | The MULTIPLY or SCREEN mode is used, depending on the source pixels.                 |
+| SOFT_LIGHT      | The LIGHTEN or DARKEN mode is used, depending on the source pixels.                                                            |
+| DIFFERENCE      | rc = s + d - 2 * (min(s * da, d * sa)), ra = kSrcOver: The final pixel is the result of subtracting the darker of the two pixels (source and target) from the lighter one.                     |
+| EXCLUSION       | rc = s + d - two(s * d), ra = kSrcOver: The final pixel is similar to <b>DIFFERENCE</b>, but with less contrast.         |
+| MULTIPLY        | r = s * (1 - da) + d * (1 - sa) + s * d: The final pixel is the result of multiplying the source pixel by the target pixel.                          |
+| HUE             | The resultant image is created with the luminance and saturation of the source image and the hue of the target image.                                  |
+| SATURATION      | The resultant image is created with the luminance and hue of the target image and the saturation of the source image.                               |
+| COLOR           | The resultant image is created with the saturation and hue of the source image and the luminance of the target image.                                  |
+| LUMINOSITY      | The resultant image is created with the saturation and hue of the target image and the luminance of the source image.                                    |
 
 ## LinearGradientBlurOptions<sup>10+</sup>
 
@@ -287,16 +318,26 @@ Since API version 9, this API is supported in ArkTS widgets.
 | fractionStops | Array\<[FractionStop](#fractionstop)>                                    | Gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 evaluate to **0**, and those greater than 1 evaluate to **1**). The blur positions in the arrays must be in strict ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.|
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | Gradient blur direction.<br>Default value:<br>GradientDirection.Bottom |
 
+## FractionStop
+
+FractionStop = [ number, number ]
+
+Defines a gradient blur stop.
+
+The first element in the tuple indicates the blur degree, represented by a fraction in the [0, 1] range. The value **1** means opaque, and **0** means completely transparent.
+
+The second element indicates the stop position. Its value range is [0, 1]. The value **1** indicates the end position, and **0** indicates the start position.
+
 ## InvertOptions<sup>11+</sup>
 
 Describes the options for inverting the foreground color.
 
 | Name           |  Type | Mandatory | Description                                      |
 | -------------- | ------ | ----- | ------------------------------------------ |
-| low            | number | Yes   | Value when the background color is less than the binary interpolation threshold.                 |
-| high           | number | Yes   | Value when the background color is greater than or equal to the binary interpolation threshold.             |
-| threshold      | number | Yes   | Binary interpolation threshold.                                 |
-| thresholdRange | number | Yes   | Binary interpolation threshold range.<br>**NOTE**<br>If the binary interpolation is beyond the threshold range, the average color value is used as the new threshold.|
+| low            | number | Yes   | Value when the background color is greater than the grayscale threshold.                 |
+| high           | number | Yes   | Value when the background color is less than the grayscale threshold.             |
+| threshold      | number | Yes   | Grayscale threshold.                                 |
+| thresholdRange | number | Yes   | Threshold value range.<br>**NOTE**<br>This range defines the upper and lower bounds of the grayscale threshold. The grayscale value changes linearly from high to low within the range.|
 
 ## Example
 
@@ -408,7 +449,7 @@ struct ImageEffectsExample {
 
 ### Example 3
 
-Apply a linear gradient blur effect to a component.
+Example of applying a linear gradient blur effect to a component:
 
 ```ts
 // xxx.ets
@@ -519,13 +560,10 @@ struct Index {
   }
 }
 ```
-BlendMode.NORMAL<br>
-![testNormal](figures/testNormal.jpeg)
-<br>BlendMode.SOURCE_IN<br>
-![testSourceIn](figures/testSourceIn.jpeg)
-<br>BlendMode.DESTINATION_IN<br>
-![testDestinationIn](figures/testDestinationIn.jpeg)
-<br>The current control has multiple subnodes. (All subnodes are drawn in an off-screen buffer, and the drawing result is blended.)
+
+<br>BlendMode.OVERLAY,BlendApplyType.OFFSCREEN<br>
+![en-us_image_effect_blendMode2](figures/en-us_image_effect_blendMode.png)
+<br>**blendMode** can be used with offscreen rendering to produce different effects.
 
 ### Example 6
 

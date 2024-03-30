@@ -2,6 +2,7 @@
 
 - ArkTS API
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
+  - [@ohos.security.huks (通用密钥库系统)(系统接口)](js-apis-huks-sys.md)
 - C API
   - 模块
     - [HuksKeyApi](_huks_key_api.md)

@@ -3,7 +3,7 @@
 
 ## Overview
 
-**VkNativeBufferUsageOHOS** defines the usage of a **NativeBuffer**.
+**VkNativeBufferUsageOHOS** defines the usage of the **NativeBuffer**.
 
 **Since**
 

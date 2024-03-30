@@ -70,7 +70,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 | ---- | ---- | -------- |
 | HCE  | 0    | HCE 卡模拟。 |
 | UICC | 1    | SIM 卡模拟。 |
-| ESE  | 2    | ESE卡模拟。  |
+| ESE  | 2    | ESE 卡模拟。  |
 
 ## CardType<sup>9+</sup>
 
@@ -164,6 +164,8 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 **示例：**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
+import bundleManager from '@ohos.bundle.bundleManager';
+
 let elementName : bundleManager.ElementName;
 
 // init elementName here, bundleName and abilityName are required.
@@ -171,34 +173,7 @@ let elementName : bundleManager.ElementName;
 let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 // do something according to the isDefaultService value
 ```
-## getPaymentServices<sup>11+</sup>
 
-getPaymentServices(): [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[]
-
-获取所有支付类型的服务列表。如果应用程序声明支持HCE功能，并且声明了"payment-aid"，则会包含在列表里面，参考[HCE卡模拟和AID列表的声明定义](#hce卡模拟和aid列表的声明定义)。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Communication.NFC.CardEmulation
-
-**需要权限：** ohos.permission.NFC_CARD_EMULATION
-
-**返回值：**
-
-| **类型**  | **说明**                               |
-| ------- | ------------------------------------ |
-| [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
-
-**示例：**
-```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-
-let paymentServices = cardEmulation.getPaymentServices();
-if (paymentServices == undefined || paymentServices.length == 0) {
-  console.log('paymentServices is null.');
-}
-
-```
 
 ## HceService<sup>8+</sup>
 
@@ -258,7 +233,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 stopHCE(): boolean
 
-停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表，释放[hceCmd](#on8)的订阅。
+停止HCE业务功能。包括退出当前应用前台优先，释放动态注册的AID列表，释放hceCmd的订阅。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[stop](#stop9)替代。

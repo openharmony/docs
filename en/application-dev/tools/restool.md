@@ -57,6 +57,7 @@ entry/src/main
 |    |    |    |----media
 |    |    |    |----profile
 |    |    |----rawfile
+|    |    |----resfile
 |    |----config.json/module.json
 ```
 
@@ -93,7 +94,7 @@ Step 1: Create the **id_defined.json** file. There are two ways to create the fi
 + Run the following command to generate the file:
 
   ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out/id_defined.json -f
+  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out -f
   ```
 
 + Customize the **id_defined.json** file with the following content:

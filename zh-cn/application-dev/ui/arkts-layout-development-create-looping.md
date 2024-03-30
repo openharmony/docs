@@ -158,7 +158,6 @@ Swiper(this.swiperController) {
 导航点直径设为30vp，左边距为0，导航点颜色设为红色。
 
 ```ts
-let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text('0')
     .width('90%')

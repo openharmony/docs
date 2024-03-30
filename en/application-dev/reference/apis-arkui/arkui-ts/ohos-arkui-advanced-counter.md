@@ -18,7 +18,7 @@ Not supported
 
 ## CounterComponent
 
-CounterComponent({ options: CounterOptions } )
+CounterComponent({ options: CounterOptions })
 
 Defines a counter.
 

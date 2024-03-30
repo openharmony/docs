@@ -15,11 +15,11 @@ The **Camera_MetadataObject** struct defines the camera metadata.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [type](#type) | Type of the metadata object.|
-| [timestamp](#timestamp) | Timestamp of the metadata object, in milliseconds.|
-| \*[boundingBox](#boundingbox) | Axis alignment bounding box of the metadata object.|
+| [Camera_MetadataObjectType](_o_h___camera.md#camera_metadataobjecttype) [type](#type) | Type of the metadata object. | 
+| int64_t [timestamp](#timestamp) | Timestamp of the metadata object, in milliseconds. | 
+| [Camera_Rect](_camera___rect.md) \* [boundingBox](#boundingbox) | Axis alignment bounding box of the metadata object. | 
 
 
 ## Member Variable Description
@@ -30,7 +30,6 @@ The **Camera_MetadataObject** struct defines the camera metadata.
 ```
 Camera_Rect* Camera_MetadataObject::boundingBox
 ```
-
 **Description**
 
 Axis alignment bounding box of the metadata object.
@@ -41,7 +40,6 @@ Axis alignment bounding box of the metadata object.
 ```
 int64_t Camera_MetadataObject::timestamp
 ```
-
 **Description**
 
 Timestamp of the metadata object, in milliseconds.
@@ -52,7 +50,6 @@ Timestamp of the metadata object, in milliseconds.
 ```
 Camera_MetadataObjectType Camera_MetadataObject::type
 ```
-
 **Description**
 
 Type of the metadata object.

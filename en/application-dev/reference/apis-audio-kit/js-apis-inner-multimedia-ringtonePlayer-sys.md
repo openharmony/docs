@@ -1,4 +1,4 @@
-# ringtonePlayer (Ringtone Player)
+# ringtonePlayer (Ringtone Player) (System API)
 
 The **ringtonePlayer** module provides APIs for playing, configuring, and obtaining system ringtones.
 
@@ -6,9 +6,8 @@ This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemS
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -122,7 +121,7 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;[audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)&gt; | Yes| Callback used to return the audio renderer information obtained.|
+| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Yes| Callback used to return the audio renderer information obtained.|
 
 **Example**
 
@@ -156,7 +155,7 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)&gt; | Promise used to return the audio renderer information obtained.|
+| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise used to return the audio renderer information obtained.|
 
 **Example**
 
@@ -440,11 +439,11 @@ Subscribes to audio interruption events. This API uses a callback to obtain inte
 | Name  | Type                    | Mandatory| Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | Yes  | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio rendering is interrupted.|
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the audio interruption event.   |
+| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the audio interruption event.   |
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -500,11 +499,14 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
   }
 });
 ```
+
 ### off('audioInterrupt') <sup>10+</sup>
 
 off(type: 'audioInterrupt'): void
 
 Unsubscribes from audio interruption events.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
@@ -516,7 +518,7 @@ Unsubscribes from audio interruption events.
 
 **Error codes**
 
-For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|

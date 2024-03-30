@@ -11,7 +11,7 @@
 
 ## Child Components
 
-Supported types of child components: built-in components and custom components, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 Number of child components: multiple.
 
@@ -23,14 +23,63 @@ NavDestination()
 
 ## Attributes
 
-In addition to the [backgroundColor](ts-universal-attributes-background.md) attribute, the following attributes are supported.
+In addition to the [backgroundColor](ts-universal-attributes-background.md#backgroundcolor) attribute, the following attributes are supported.
 
-| Name        | Type                                                    | Description                                                        |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| title        | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle) \| [NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle) | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long:<br>(1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...).<br>(2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
-| hideTitleBar | boolean                                                      | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| mode<sup>11+</sup> | [NavDestinationMode](#navdestinationmode11)                                                   | Mode of the navigation destination page.<br>Default value: **NavDestinationMode.STANDARD**|
-| backButtonIcon<sup>11+</sup> |   [ResourceStr](ts-types.md#resourcestr)  \|  [PixelMap](../apis/js-apis-image.md#pixelmap7)       | Icon of the back button on the title bar.|
+### title
+
+title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle)
+
+Sets the page title. When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect. When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description      |
+| ------ | ------------------------------------------------------------ | ---- | ---------- |
+| value  | string \| [CustomBuilder](ts-types.md#custombuilder8) \| [NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9) \| [NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9) | Yes  | Page title.|
+
+### hideTitleBar
+
+hideTitleBar(value: boolean)
+
+Specifies whether to hide the title bar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
+
+### mode <sup>11+</sup>
+
+mode(value: NavDestinationMode)
+
+Sets the mode of the navigation destination page.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [NavDestinationMode](#navdestinationmode11) | Yes  | Mode of the navigation destination page.<br>Default value: **NavDestinationMode.STANDARD**|
+
+### backButtonIcon<sup>11+</sup>
+
+backButtonIcon(value: ResourceStr | PixelMap)
+
+Sets the icon of the back button on the title bar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Icon of the back button on the title bar.|
 
 ## NavDestinationMode<sup>11+</sup>
 | Name  | Description                                      |
@@ -42,13 +91,45 @@ In addition to the [backgroundColor](ts-universal-attributes-background.md) attr
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
+### onShown<sup>10+</sup>
 
-| Name                                                    | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| onShown(callback: () =&gt; void)<sup>10+</sup>          | Called when the navigation destination page is displayed.    |
-| onHidden(callback: () =&gt; void)<sup>10+</sup>         | Called when the navigation destination page is hidden.       |
-| onBackPressed(callback: () =&gt; boolean)<sup>10+</sup> | Called when the back button is pressed.<br>This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component.<br/>The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed. |
+onShown(callback: () =&gt; void)
+
+Called when the navigation destination page is displayed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onHidden<sup>10+</sup>
+
+onHidden(callback: () =&gt; void)
+
+Called when the navigation destination page is hidden.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onBackPressed<sup>10+</sup>
+
+This callback takes effect when there is one or more entries in the navigation stack bound to the **\<Navigation>** component. Called when the back button is pressed.
+
+The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onReady<sup>11+</sup>
+
+onReady(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11)>)
+
+Called when the **\<NavDestination>** component is about to build a child component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+## NavDestinationContext<sup>11+</sup>
+
+| Name  | Type    | Description    |
+| ---- | ------ | ------ |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Path information of the navigation destination page.|
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | Page stack where the current navigation destination page is located.|
 
 ## Example
 
-For details, see [Example in Navrouter](ts-basic-components-navrouter.md#example).
+For details, see [Example in Navigation](ts-basic-components-navigation.md#example-1).

@@ -28,16 +28,38 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)的fontColor、fontSize、fontStyle、fontWeight、fontFamily外，还支持以下属性：
 
-| 名称   | 参数类型 | 描述                                                         |
-| ------ | -------- | ------------------------------------------------------------ |
-| format | string   | y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若想使用01月则使用MM）<br />d：日（若想使用01日则使用dd）<br />E：星期（若想使用星期六则使用EEEE，若想使用周六则使用E、EE、EEE）<br />H：小时（24小时制）   h：小时（12小时制）    <br/>m：分钟<br/>s：秒<br/>SS：厘秒(format中S个数<3，全部按厘秒处理)<br />SSS：毫秒(format中S个数>=3，全部按毫秒处理)<br/>a：上午/下午（当设置小时制式为H时，该参数不生效）<br />日期间隔符："年月日"、“/”、"-"、"."（可以自定义间隔符样式，间隔符不可以为字母，汉字则作为间隔符处理）<br/>允许自行拼接组合显示格式，即：年、月、日、星期、时、分、秒、毫秒可拆分为子元素，可自行排布组合。时间更新频率最高为一秒一次，不建议单独设置厘秒和毫秒格式。<br />当设置无效字母时（非上述字母被认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示为格式yyyy/MM/dd aa hh:mm:ss.SSS<br />若format为空或者undefined，则使用默认值。<br /><br />- 非卡片中默认值：aa hh:mm:ss<br/>- 卡片中默认值：hh:mm <br />- 卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明:** 不支持fill字段, 不支持智能取色模式。 <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| fontFeature<sup>11+</sup> | string   | 设置文字特性效果，比如数字等宽的特性。<br />格式为：normal \| \<feature-tag-value\><br />-  \<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br />- \<feature-tag-value\>的个数可以有多个，中间用','隔开。 <br />例如，使用等宽时钟数字的输入格式为："ss01" on<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
+### format
+
+format(value: string)
+
+设置显示时间格式，如“yyyy/mm/dd”、“yyyy-mm-dd”。
+
+y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若想使用01月则使用MM）<br />d：日（若想使用01日则使用dd）<br />E：星期（若想使用星期六则使用EEEE，若想使用周六则使用E、EE、EEE）H：小时（24小时制）   h：小时（12小时制）    <br/>m：分钟<br/>s：秒<br/>SS：厘秒(format中S个数<3，全部按厘秒处理)<br />SSS：毫秒(format中S个数>=3，全部按毫秒处理)<br/>a：上午/下午（当设置小时制式为H时，该参数不生效）
+
+日期间隔符："年月日"、“/”、"-"、"."（可以自定义间隔符样式，间隔符不可以为字母，汉字则作为间隔符处理）
+
+允许自行拼接组合显示格式，即：年、月、日、星期、时、分、秒、毫秒可拆分为子元素，可自行排布组合。时间更新频率最高为一秒一次，不建议单独设置厘秒和毫秒格式。
+
+当设置无效字母时（非上述字母被认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示为格式yyyy/MM/dd aa hh:mm:ss.SSS
+
+若format为空或者undefined，则使用默认值。
+
+非卡片中默认值：aa hh:mm:ss。卡片中默认值：hh:mm 。卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 显示时间格式。 |
 
 以下是format输入的格式样式及对应的显示效果：
 
-| 输入格式              | 显示效果 |
-| ------------------------------------------------------------ | ------ |
+| 输入格式                | 显示效果            |
+| ----------------------- | ------------------- |
 | yyyy年M月d日 EEEE       | 2023年2月4日 星期六 |
 | yyyy年M月d日            | 2023年2月4日        |
 | M月d日 EEEE             | 2月4日 星期六       |
@@ -47,34 +69,92 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 | yyyy（完整年份）        | 2023年              |
 | yy（年份后两位）        | 23年                |
 | MM（完整月份）          | 02月                |
-| M（月份）               | 2月 |
-| dd（完整日期） | 04日 |
-| d（日期） | 4日 |
-| EEEE（完整星期） | 星期六 |
-| E、EE、EEE（简写星期） | 周六 |
-| yyyy年M月d日 | 2023年2月4日 |
-| yyyy/M/d | 2023/2/4 |
-| yyyy-M-d | 2023-2-4 |
-| yyyy.M.d | 2023.2.4 |
-| HH:mm:ss（时:分:秒） | 17:00:04 |
-| aa hh:mm:ss（时:分:秒） | 上午 5:00:04 |
-| hh:mm:ss（时:分:秒） | 5:00:04 |
-| HH:mm（时:分） | 17:00 |
-| aa hh:mm（时:分） | 上午 5:00 |
-| hh:mm（时:分） | 5:00 |
-| mm:ss（分:秒） | 00:04 |
-| mm:ss.SS（分:秒.厘秒） | 00:04.91 |
-| mm:ss.SSS（分:秒.毫秒） | 00:04.536 |
-| hh:mm:ss aa | 5:00:04 上午 |
-| HH | 17 |
+| M（月份）               | 2月                 |
+| dd（完整日期）          | 04日                |
+| d（日期）               | 4日                 |
+| EEEE（完整星期）        | 星期六              |
+| E、EE、EEE（简写星期）  | 周六                |
+| yyyy年M月d日            | 2023年2月4日        |
+| yyyy/M/d                | 2023/2/4            |
+| yyyy-M-d                | 2023-2-4            |
+| yyyy.M.d                | 2023.2.4            |
+| HH:mm:ss（时:分:秒）    | 17:00:04            |
+| aa hh:mm:ss（时:分:秒） | 上午 5:00:04        |
+| hh:mm:ss（时:分:秒）    | 5:00:04             |
+| HH:mm（时:分）          | 17:00               |
+| aa hh:mm（时:分）       | 上午 5:00           |
+| hh:mm（时:分）          | 5:00                |
+| mm:ss（分:秒）          | 00:04               |
+| mm:ss.SS（分:秒.厘秒）  | 00:04.91            |
+| mm:ss.SSS（分:秒.毫秒） | 00:04.536           |
+| hh:mm:ss aa             | 5:00:04 上午        |
+| HH                      | 17                  |
+
+### textShadow<sup>11+</sup>
+
+textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
+
+设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是   | 文字阴影效果。 |
+
+### fontFeature<sup>11+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽时钟数字的输入格式为："ss01" on。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                         | 功能描述                                                     |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件回调间隔为秒。<br/>- value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的秒数。<br/>- 组件不可见时不回调。<br/>- 非卡片中使用时，该事件回调间隔为秒。<br/>- 卡片中使用时，该事件回调间隔为分钟。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
+### onDateChange
+
+onDateChange(event: (value: number) => void)
+
+提供时间变化回调，该事件回调间隔为秒。
+
+组件不可见时不回调。
+
+非卡片中使用时，该事件回调间隔为秒。
+
+卡片中使用时，该事件回调间隔为分钟。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                   |
+| ------ | ------ | ---- | ------------------------------------------------------ |
+| value  | number | 是   | Unix Time Stamp，即自1970年1月1日（UTC）起经过的秒数。 |
 
 ## TextClockController
 

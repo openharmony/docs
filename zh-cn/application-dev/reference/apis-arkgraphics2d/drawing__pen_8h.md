@@ -17,12 +17,20 @@
 ## 汇总
 
 
+### 类型定义
+
+| 名称 | 描述 |
+| -------- | -------- |
+| typedef enum [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle)  [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
+| typedef enum [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)  [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
+
+
 ### 枚举
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) {<br/>LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP<br/>} | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
-| [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) {<br/>LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN<br/>} | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
+| [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle) { LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP } | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
+| [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle) { LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN } | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
 
 
 ### 函数
@@ -45,3 +53,7 @@
 | void [OH_Drawing_PenSetCap](_drawing.md#oh_drawing_pensetcap) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](_drawing.md#oh_drawing_penlinecapstyle)) | 用于设置画笔笔帽样式。 |
 | [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](_drawing.md#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 用于获取画笔绘制折线转角的样式。 |
 | void [OH_Drawing_PenSetJoin](_drawing.md#oh_drawing_pensetjoin) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)) | 用于设置画笔绘制转角的样式。 |
+| void [OH_Drawing_PenSetShaderEffect](_drawing.md#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) \*) | 设置画笔着色器效果。 |
+| void [OH_Drawing_PenSetPathEffect](_drawing.md#oh_drawing_pensetpatheffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) \*) | 设置画笔路径效果。 |
+| void [OH_Drawing_PenSetFilter](_drawing.md#oh_drawing_pensetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 设置画笔滤波器。 |
+| void [OH_Drawing_PenSetBlendMode](_drawing.md#oh_drawing_pensetblendmode) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | 为画笔设置一个混合器，该混合器实现了指定的混合模式枚举。 |

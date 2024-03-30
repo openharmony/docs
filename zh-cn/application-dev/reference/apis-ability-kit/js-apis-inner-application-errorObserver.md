@@ -1,6 +1,6 @@
 # ErrorObserver
 
-定义异常监听，可以作为[ErrorManager.on](../apis/js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
+定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
 
 > **说明：**
 > 
@@ -56,7 +56,7 @@ onException?(errObject: Error): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| errObject | Error | 否 | 有关异常事件名字、消息和错误堆栈信息的对象。 |
+| errObject | Error | 是 | 有关异常事件名字、消息和错误堆栈信息的对象。 |
 
 **示例：**
 

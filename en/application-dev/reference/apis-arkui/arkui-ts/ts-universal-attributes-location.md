@@ -52,7 +52,7 @@ Sets the absolute position of the component, which defines the offset of the com
 
 | Name| Type                             | Mandatory| Description                                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | Yes  | Absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.|
+| value  | [Position](ts-types.md#position8) | Yes  | Absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component's position in the parent container is fixed, for example, where it is pinned to top or floating above the UI.<br>This attribute is not available for a layout container whose width and height are zero.|
 
 ## markAnchor
 
@@ -120,6 +120,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | Bias  | { horizontal?: number, vertical?: number } | No| Offset of the component under the anchor constraints.<br>- **horizontal**: bias value in the horizontal direction.<br>- **vertical**: bias value in the vertical direction.<br>This parameter takes effect when:<br>The width of the child component can be determined and there are two horizontal anchors.<br><br>-The height of the child component can be determined and there are two vertical anchors.<br>Default value: {<br>horizontal: 0.5,<br>vertical: 0.5<br>}|
+
+## chainMode<sup>11+</sup>
+
+chainMode(direction: Axis, style: ChainStyle)
+
+Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [\<RelativeContainer>](ts-container-relativecontainer.md).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                    |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| direction  | [Axis](ts-appendix-enums.md#Axis) | Yes  | Direction of the chain.|
+| style  | [ChainStyle](ts-appendix-enums.md#chainstyle11) | Yes  | Style of the chain.|
 
 ## Example
 ### Example 1

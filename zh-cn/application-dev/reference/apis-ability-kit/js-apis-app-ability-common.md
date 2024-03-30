@@ -1,9 +1,9 @@
 # @ohos.app.ability.common (应用上下文Context)
 
-Common模块将二级模块API组织在一起方便开发者进行导出。
+开发者可以通过该模块引用Ability公共模块类。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
@@ -32,6 +32,7 @@ import common from '@ohos.app.ability.common';
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
 | AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | AbilityStartCallback二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
+| EmbeddableUIAbilityContext<sup>12+<sup>   | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md)               | EmbeddableUIAbilityContext二级模块。 |
 
 **示例：**
 
@@ -51,5 +52,5 @@ let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
-let autoFillExtensionContext: common.AutoFillExtensionContext;
+let embeddableUIAbilityContext: common.EmbeddableUIAbilityContext;
 ```

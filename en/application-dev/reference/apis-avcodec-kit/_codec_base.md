@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **CodecBase** module provides the variables, attributes, and functions for basic audio and video muxing, demuxing, encoding, and decoding.
+The CodecBase module provides the variables, attributes, and functions for basic audio and video muxing, demuxing, encoding, and decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -33,25 +33,27 @@ The **CodecBase** module provides the variables, attributes, and functions for b
 
 | Name| Description| 
 | -------- | -------- |
-| typedef void(\* [OH_AVCodecOnError](#oh_avcodeconerror)) (OH_AVCodec \*codec, int32_t errorCode, void \*userData) | Defines the pointer to the function that is called to report error information when an error occurs during the running of an **OH_AVCodec** instance.| 
-| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) (OH_AVCodec \*codec, OH_AVFormat \*format, void \*userData) | Defines the pointer to the function that is called to report the new stream description when the output stream changes.| 
-| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
-| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
-| typedef void(\* [OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
-| typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
-| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)[OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
-| typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)[OH_AVCodecCallback](#oh_avcodeccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
-| typedef enum [OH_MediaType](#oh_mediatype)[OH_MediaType](#oh_mediatype) | Defines an enum that enumerates the media types.| 
-| typedef enum [OH_AACProfile](#oh_aacprofile)[OH_AACProfile](#oh_aacprofile) | Defines an enum that enumerates the Advanced Audio Coding (AAC) profiles.| 
-| typedef enum [OH_AVCProfile](#oh_avcprofile)[OH_AVCProfile](#oh_avcprofile) | Defines an enum that enumerates the Advanced Video Coding (AVC) profiles.| 
-| typedef enum [OH_HEVCProfile](#oh_hevcprofile)[OH_HEVCProfile](#oh_hevcprofile) | Defines an enum that enumerates the High Efficiency Video Coding (HEVC) profiles.| 
-| typedef enum [OH_AVOutputFormat](#oh_avoutputformat)[OH_AVOutputFormat](#oh_avoutputformat) | Defines an enum that enumerates the output file formats of a muxer.| 
-| typedef enum [OH_AVSeekMode](#oh_avseekmode)[OH_AVSeekMode](#oh_avseekmode) | Defines an enum that enumerates the seek modes.| 
-| typedef enum [OH_ScalingMode](#oh_scalingmode)[OH_ScalingMode](#oh_scalingmode) | Defines an enum that enumerates the scaling modes.| 
-| typedef enum [OH_BitsPerSample](#oh_bitspersample)[OH_BitsPerSample](#oh_bitspersample) | Defines an enum that enumerates the number of audio bits for each coded sample.| 
-| typedef enum [OH_ColorPrimary](#oh_colorprimary)[OH_ColorPrimary](#oh_colorprimary) | Defines an enum that enumerates the primary colors.| 
-| typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic)[OH_TransferCharacteristic](#oh_transfercharacteristic) | Defines an enum that enumerates the transfer characteristics.| 
-| typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient)[OH_MatrixCoefficient](#oh_matrixcoefficient) | Defines an enum that enumerates the matrix coefficients.| 
+| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct that describes a native object for the graphics interface. | 
+| typedef struct [OH_AVCodec](#oh_avcodec) [OH_AVCodec](#oh_avcodec) | Defines a struct that describes a native object for the audio and video codec interface. | 
+| typedef void(\* [OH_AVCodecOnError](#oh_avcodeconerror)) ([OH_AVCodec](#oh_avcodec) \*codec, int32_t errorCode, void \*userData) | Defines the pointer to the function that is called to report error information when an error occurs during the running of an **OH_AVCodec** instance.| 
+| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) ([OH_AVCodec](#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format, void \*userData) | Defines the pointer to the function that is called to report the new stream description when the output stream changes.| 
+| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
+| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
+| typedef void(\* [OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
+| typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
+| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](#oh_avcodeccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | Defines an enum that enumerates the media types.| 
+| typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | Defines an enum that enumerates the Advanced Audio Coding (AAC) profiles.| 
+| typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | Defines an enum that enumerates the Advanced Video Coding (AVC) profiles.| 
+| typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | Defines an enum that enumerates the High Efficiency Video Coding (HEVC) profiles.| 
+| typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | Defines an enum that enumerates the output file formats of a muxer.| 
+| typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | Defines an enum that enumerates the seek modes.| 
+| typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | Defines an enum that enumerates the scaling modes.| 
+| typedef enum [OH_BitsPerSample](#oh_bitspersample-1) [OH_BitsPerSample](#oh_bitspersample) | Defines an enum that enumerates the number of audio bits for each coded sample.| 
+| typedef enum [OH_ColorPrimary](#oh_colorprimary-1) [OH_ColorPrimary](#oh_colorprimary) | Defines an enum that enumerates the primary colors.| 
+| typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic-1) [OH_TransferCharacteristic](#oh_transfercharacteristic) | Defines an enum that enumerates the transfer characteristics.| 
+| typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient-1) [OH_MatrixCoefficient](#oh_matrixcoefficient) | Defines an enum that enumerates the matrix coefficients.| 
 
 
 ### Enums
@@ -60,17 +62,17 @@ The **CodecBase** module provides the variables, attributes, and functions for b
 | -------- | -------- |
 | [AudioChannelSet](#audiochannelset) : uint64_t {<br>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>BACK_LEFT = 1ULL &lt;&lt; 4U,<br>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>BACK_CENTER = 1ULL &lt;&lt; 8U,<br>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>TOP_CENTER = 1ULL &lt;&lt; 11U,<br>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br>AMBISONICS_W = AMBISONICS_ACN0,<br>AMBISONICS_Y = AMBISONICS_ACN1,<br>AMBISONICS_Z = AMBISONICS_ACN2,<br>AMBISONICS_X = AMBISONICS_ACN3,<br>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br>} | Enumerates the audio channel sets. Each channel number is mapped to a variable of int64.| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br>UNKNOWN_CHANNEL_LAYOUT = 0,<br>MONO = (AudioChannelSet::FRONT_CENTER),<br>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br>HOA_FIRST,<br>HOA_SECOND,<br>HOA_THIRD<br>} | Enumerates the types of the audio channel sets. The output format of the decoder is represented as the channel type of the codec.| 
-| [OH_MediaType](#oh_mediatype) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1<br>} | Enumerates the media types.| 
-| [OH_AACProfile](#oh_aacprofile) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
-| [OH_AVCProfile](#oh_avcprofile) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
-| [OH_HEVCProfile](#oh_hevcprofile) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
-| [OH_AVOutputFormat](#oh_avoutputformat) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6<br>} | Enumerates the output file formats of a muxer.| 
-| [OH_AVSeekMode](#oh_avseekmode) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.| 
-| [OH_ScalingMode](#oh_scalingmode) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes.| 
-| [OH_BitsPerSample](#oh_bitspersample) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.| 
-| [OH_ColorPrimary](#oh_colorprimary) {<br>COLOR_PRIMARY_BT709 = 1,<br>COLOR_PRIMARY_UNSPECIFIED = 2,<br>COLOR_PRIMARY_BT470_M = 4,<br>COLOR_PRIMARY_BT601_625 = 5,<br>COLOR_PRIMARY_BT601_525 = 6,<br>COLOR_PRIMARY_SMPTE_ST240 = 7,<br>COLOR_PRIMARY_GENERIC_FILM = 8,<br>COLOR_PRIMARY_BT2020 = 9,<br>COLOR_PRIMARY_SMPTE_ST428 = 10,<br>COLOR_PRIMARY_P3DCI = 11,<br>COLOR_PRIMARY_P3D65 = 12<br>} | Enumerates the primary colors.| 
-| [OH_TransferCharacteristic](#oh_transfercharacteristic) {<br>TRANSFER_CHARACTERISTIC_BT709 = 1,<br>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br>TRANSFER_CHARACTERISTIC_BT601 = 6,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br>TRANSFER_CHARACTERISTIC_LOG = 9,<br>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br>TRANSFER_CHARACTERISTIC_PQ = 16,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br>TRANSFER_CHARACTERISTIC_HLG = 18<br>} | Enumerates the transfer characteristics.| 
-| [OH_MatrixCoefficient](#oh_matrixcoefficient) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
+| [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1<br>} | Enumerates the media types.| 
+| [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
+| [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
+| [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6<br>} | Enumerates the output file formats of a muxer.| 
+| [OH_AVSeekMode](#oh_avseekmode-1) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.| 
+| [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes.| 
+| [OH_BitsPerSample](#oh_bitspersample-1) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.| 
+| [OH_ColorPrimary](#oh_colorprimary-1) {<br>COLOR_PRIMARY_BT709 = 1,<br>COLOR_PRIMARY_UNSPECIFIED = 2,<br>COLOR_PRIMARY_BT470_M = 4,<br>COLOR_PRIMARY_BT601_625 = 5,<br>COLOR_PRIMARY_BT601_525 = 6,<br>COLOR_PRIMARY_SMPTE_ST240 = 7,<br>COLOR_PRIMARY_GENERIC_FILM = 8,<br>COLOR_PRIMARY_BT2020 = 9,<br>COLOR_PRIMARY_SMPTE_ST428 = 10,<br>COLOR_PRIMARY_P3DCI = 11,<br>COLOR_PRIMARY_P3D65 = 12<br>} | Enumerates the primary colors.| 
+| [OH_TransferCharacteristic](#oh_transfercharacteristic-1) {<br>TRANSFER_CHARACTERISTIC_BT709 = 1,<br>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br>TRANSFER_CHARACTERISTIC_BT601 = 6,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br>TRANSFER_CHARACTERISTIC_LOG = 9,<br>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br>TRANSFER_CHARACTERISTIC_PQ = 16,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br>TRANSFER_CHARACTERISTIC_HLG = 18<br>} | Enumerates the transfer characteristics.| 
+| [OH_MatrixCoefficient](#oh_matrixcoefficient-1) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
 
 
 ### Variables
@@ -105,15 +107,15 @@ The **CodecBase** module provides the variables, attributes, and functions for b
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | Defines the pointer to the original audio format. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | Defines the pointer to the video frame rate. The value type is double.| 
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | Defines the pointer to the video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode).| 
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Defines the pointer to the encoding template. The value type is number. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).| 
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Defines the pointer to the encoding grading. The value type is int32_t. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).| 
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | Defines the pointer to the number of audio channels. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | Defines the pointer to the audio sampling rate. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | Defines the pointer to the key frame interval, in milliseconds. The value type is int32_t.| 
 | const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | Defines the pointer to the rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.| 
-| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | Defines the pointer to the video YUV value range flag. The value type is Boolean.| 
-| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary).| 
-| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic).| 
-| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient).| 
+| const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | Defines the pointer to the video YUV value range flag. The value type is Boolean. The value **true** means a full range, and **false** means a limited range.| 
+| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard.| 
+| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard.| 
+| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.| 
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | Defines the pointer to the request for immediate encoding of I-frames. The value type is Boolean.| 
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | Defines the pointer to the required encoding quality. The value type is uint32_t. This key applies only to encoders configured in constant quality mode.| 
 | const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | Defines the pointer to the codec-specific data. The value type is uint8_t.| 
@@ -151,7 +153,7 @@ The **CodecBase** module provides the variables, attributes, and functions for b
 ### OH_AACProfile
 
 ```
-typedef enum OH_AACProfileOH_AACProfile
+typedef enum OH_AACProfile OH_AACProfile
 ```
 
 **Description**
@@ -163,10 +165,22 @@ Defines an enum that enumerates the AAC profiles.
 **Since**: 9
 
 
+### OH_AVCodec
+
+```
+typedef struct OH_AVCodec OH_AVCodec
+```
+**Description**
+
+Defines a struct that describes a native object for the audio and video codec interface.
+
+**Since**: 9
+
+
 ### OH_AVCodecAsyncCallback
 
 ```
-typedef struct OH_AVCodecAsyncCallbackOH_AVCodecAsyncCallback
+typedef struct OH_AVCodecAsyncCallback OH_AVCodecAsyncCallback
 ```
 
 **Description**
@@ -194,7 +208,7 @@ Defines a struct for all the asynchronous callback function pointers of an **OH_
 ### OH_AVCodecCallback
 
 ```
-typedef struct OH_AVCodecCallbackOH_AVCodecCallback
+typedef struct OH_AVCodecCallback OH_AVCodecCallback
 ```
 
 **Description**
@@ -369,7 +383,7 @@ Defines the pointer to the function that is called to report the new stream desc
 ### OH_AVCProfile
 
 ```
-typedef enum OH_AVCProfileOH_AVCProfile
+typedef enum OH_AVCProfile OH_AVCProfile
 ```
 
 **Description**
@@ -384,7 +398,7 @@ Defines an enum that enumerates the AVC profiles.
 ### OH_AVOutputFormat
 
 ```
-typedef enum OH_AVOutputFormatOH_AVOutputFormat
+typedef enum OH_AVOutputFormat OH_AVOutputFormat
 ```
 
 **Description**
@@ -399,7 +413,7 @@ Defines an enum that enumerates the output file formats of a muxer.
 ### OH_AVSeekMode
 
 ```
-typedef enum OH_AVSeekModeOH_AVSeekMode
+typedef enum OH_AVSeekMode OH_AVSeekMode
 ```
 
 **Description**
@@ -414,7 +428,7 @@ Defines an enum that enumerates the seek modes.
 ### OH_BitsPerSample
 
 ```
-typedef enum OH_BitsPerSampleOH_BitsPerSample
+typedef enum OH_BitsPerSample OH_BitsPerSample
 ```
 
 **Description**
@@ -429,7 +443,7 @@ Defines an enum that enumerates the number of audio bits for each coded sample.
 ### OH_ColorPrimary
 
 ```
-typedef enum OH_ColorPrimaryOH_ColorPrimary
+typedef enum OH_ColorPrimary OH_ColorPrimary
 ```
 
 **Description**
@@ -444,7 +458,7 @@ Defines an enum that enumerates the primary colors.
 ### OH_HEVCProfile
 
 ```
-typedef enum OH_HEVCProfileOH_HEVCProfile
+typedef enum OH_HEVCProfile OH_HEVCProfile
 ```
 
 **Description**
@@ -459,7 +473,7 @@ Defines an enum that enumerates the HEVC profiles.
 ### OH_MatrixCoefficient
 
 ```
-typedef enum OH_MatrixCoefficientOH_MatrixCoefficient
+typedef enum OH_MatrixCoefficient OH_MatrixCoefficient
 ```
 
 **Description**
@@ -474,7 +488,7 @@ Defines an enum that enumerates the matrix coefficients.
 ### OH_MediaType
 
 ```
-typedef enum OH_MediaTypeOH_MediaType
+typedef enum OH_MediaType OH_MediaType
 ```
 
 **Description**
@@ -489,7 +503,7 @@ Defines an enum that enumerates the media types.
 ### OH_ScalingMode
 
 ```
-typedef enum OH_ScalingModeOH_ScalingMode
+typedef enum OH_ScalingMode OH_ScalingMode
 ```
 
 **Description**
@@ -504,7 +518,7 @@ Defines an enum that enumerates the scaling modes.
 ### OH_TransferCharacteristic
 
 ```
-typedef enum OH_TransferCharacteristicOH_TransferCharacteristic
+typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
 ```
 
 **Description**
@@ -514,6 +528,18 @@ Defines an enum that enumerates the transfer characteristics.
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 10
+
+
+### OHNativeWindow
+
+```
+typedef struct NativeWindow OHNativeWindow
+```
+**Description**
+
+Defines a struct that describes a native object for the graphics interface.
+
+**Since**: 9
 
 
 ## Enum Description
@@ -1415,7 +1441,7 @@ const char* OH_MD_KEY_COLOR_PRIMARIES
 
 **Description**
 
-Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary).
+Defines the pointer to the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1625,7 +1651,7 @@ const char* OH_MD_KEY_MATRIX_COEFFICIENTS
 
 **Description**
 
-Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient).
+Defines the pointer to the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1670,7 +1696,7 @@ const char* OH_MD_KEY_PROFILE
 
 **Description**
 
-Defines the pointer to the encoding template. The value type is number. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).
+Defines the pointer to the encoding grading. The value type is int32_t. For details, see [OH_HEVCProfile](#oh_hevcprofile) and [OH_AACProfile](#oh_aacprofile).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1700,7 +1726,7 @@ const char* OH_MD_KEY_RANGE_FLAG
 
 **Description**
 
-Defines the pointer to the video YUV value range flag. The value type is Boolean.
+Defines the pointer to the video YUV value range flag. The value type is Boolean. The value **true** means a full range, and **false** means a limited range.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1835,7 +1861,7 @@ const char* OH_MD_KEY_TRANSFER_CHARACTERISTICS
 
 **Description**
 
-Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic).
+Defines the pointer to the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

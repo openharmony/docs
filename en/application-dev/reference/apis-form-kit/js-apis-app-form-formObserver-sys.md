@@ -112,6 +112,7 @@ formObserver.off('formAdd', bundleName, callback);
 
 ```
 > **NOTE**
+>
 > **on('formAdd', callback)** and **off('formAdd', callback)** must be used in pairs.
 > **on('formAdd', bundleName, callback)** and **off('formAdd', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -150,7 +151,7 @@ formObserver.on('formRemove', callback);
 
  on(type: 'formRemove', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
 
-Subscribes to widget removal events for a given bundle, which functions as the widget host. This API uses an asynchronous callback to return the information about the widget removed.
+Subscribes to widget removal events for a given bundle that functions as the widget host. This API uses an asynchronous callback to return the information about the widget removed.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -212,6 +213,7 @@ let callback = (data: formInfo.RunningFormInfo) => {
 formObserver.off('formRemove', bundleName, callback);
 ```
 > **NOTE**
+>
 > **on('formRemove', callback)** and **off('formRemove', callback)** must be used in pairs.
 > **on('formRemove', bundleName, callback)** and **off('formRemove', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -222,7 +224,7 @@ formObserver.off('formRemove', bundleName, callback);
 
 Subscribes to events indicating that a widget becomes visible. This API uses an asynchronous callback to return the result.
 
-The event is triggered when [notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms) is called to notify that the widget becomes visible.
+​The event is triggered when [notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms) is called to notify that the widget becomes visible.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -253,9 +255,9 @@ formObserver.on('notifyVisible', callback);
 
  on(type: 'notifyVisible', hostBundleName: string, observerCallback: Callback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;): void
 
-Subscribes to events indicating that a widget becomes visible for a given bundle, which functions as the widget host. This API uses an asynchronous callback to return the result.
+Subscribes to events indicating that a widget becomes visible for a given bundle that functions as the widget host. This API uses an asynchronous callback to return the result.
 
-The event is triggered when [notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms) is called to notify that the widget becomes visible.
+​The event is triggered when [notifyVisibleForms](js-apis-app-form-formHost-sys.md#notifyvisibleforms) is called to notify that the widget becomes visible.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -267,7 +269,7 @@ The event is triggered when [notifyVisibleForms](js-apis-app-form-formHost-sys.m
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.     |
 | hostBundleName | string                                                       | Yes  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
-| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.          |
+| observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.           |
 
 
 **Example**
@@ -320,6 +322,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 ```
 
 > **NOTE**
+>
 > **on('notifyVisible', callback)** and **off('notifyVisible', callback)** must be used in pairs.
 > **on('notifyVisible', bundleName, callback)** and **off('notifyVisible', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -330,7 +333,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 
 Subscribes to events indicating that a widget becomes invisible. This API uses an asynchronous callback to return the result.
 
-The event is triggered when [notifyInvisibleForms](js-apis-app-form-formHost-sys.md#notifyinvisibleforms) is called to notify that the widget becomes invisible.
+​The event is triggered when [notifyInvisibleForms](js-apis-app-form-formHost-sys.md#notifyinvisibleforms) is called to notify that the widget becomes invisible.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -363,7 +366,7 @@ formObserver.on('notifyInvisible', callback);
 
 Subscribes to events indicating that a widget becomes invisible for a given bundle, which functions as the widget host. This API uses an asynchronous callback to return the result.
 
-The event is triggered when [notifyInvisibleForms](js-apis-app-form-formHost-sys.md#notifyinvisibleforms) is called to notify that the widget becomes invisible.
+​The event is triggered when [notifyInvisibleForms](js-apis-app-form-formHost-sys.md#notifyinvisibleforms) is called to notify that the widget becomes invisible.
 
 **Required permissions**: ohos.permission.OBSERVE_FORM_RUNNING
 
@@ -426,6 +429,7 @@ formObserver.off('notifyInvisible', bundleName, callback);
 ```
 
 > **NOTE**
+>
 > **on('notifyInvisible', callback)** and **off('notifyInvisible', callback)** must be used in pairs.
 > **on('notifyInvisible', bundleName, callback)** and **off('notifyInvisible', bundleName, callback)** must be used in pairs.
 > To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
@@ -449,7 +453,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 | hostBundleName | string | No|  Name of the bundle that functions as the widget host. If a value is passed in, only the information about the non-temporary widgets that are running under the widget host is returned.<br> If no value is passed in, information about all running non-temporary widgets on the device is returned.|
 
 **Error codes**
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -496,7 +500,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -546,7 +550,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Promise used to return the information about all non-temporary widgets.|
 
 **Error codes**
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -596,7 +600,7 @@ Obtains the information about all non-temporary widgets running on the device. T
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -647,7 +651,7 @@ Obtains the information about widgets based on the widget provider. This API use
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -702,7 +706,7 @@ Obtains the information about widgets based on the widget provider. This API use
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -765,7 +769,7 @@ Obtains the information about the widget based on the widget ID. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -822,7 +826,7 @@ Obtains the information about the widget based on the widget ID. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -870,7 +874,7 @@ Obtains the information about the widget based on the widget ID. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -924,7 +928,7 @@ Obtains the information about the widget based on the widget ID. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |

@@ -5,11 +5,9 @@
 
 The **OH_AVRange** struct defines the value range, which contains the minimum value and maximum value.
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
 
-**Since**
-
-10
+**Since**: 10
 
 **Related Modules**
 
@@ -41,9 +39,7 @@ int32_t minVal
 
 Defines the minimum value.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### maxVal
@@ -57,6 +53,4 @@ int32_t maxVal
 
 Defines the maximum value.
 
-**Since**
-
-10
+**Since**: 10

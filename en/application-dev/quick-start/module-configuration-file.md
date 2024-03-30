@@ -61,7 +61,12 @@ This topic gives an overview of the **module.json5** configuration file. To star
       }
     ],
     "targetModuleName": "feature",
-    "targetPriority": 50
+    "targetPriority": 50,
+    "querySchemes": [
+      "app1Scheme",
+      "app2Scheme"
+    ],
+    "routerMap": "$profile:router_map"
   }
 }
 ```
@@ -75,7 +80,7 @@ As shown above, the **module.json5** file contains several tags.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| name | Name of the module. This name must be unique in the entire application. The value is a string with a maximum of 31 bytes.<br>This name can be changed during application updates. However, if it is changed, directories related to the module must be migrated. You can use the [file operation API](../reference/apis/js-apis-file-fs.md#fscopydir10) for migration.| String| No|
+| name | Name of the module. This name must be unique in the entire application. The value is a string with a maximum of 31 bytes.<br>This name can be changed during application updates. However, if it is changed, directories related to the module must be migrated. You can use the [file operation API](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10) for migration.| String| No|
 | type | Type of the module. The options are as follows:<br>- **entry**: main module of the application.<br>- **feature**: feature module of the application.<br>- **har**: static shared module.<br>- **shared**: dynamic shared module.| String| No|
 | srcEntry | Code path of the module. The value is a string with a maximum of 127 bytes.| String| Yes (initial value: left empty)|
 | description | Description of the module. The value is a string with a maximum of 255 bytes. It can be a resource reference.| String| Yes (initial value: left empty)|
@@ -101,6 +106,8 @@ As shown above, the **module.json5** file contains several tags.
 | compressNativeLibs | Whether the **libs** libraries are packaged in the HAP file after being compressed.<br>- **true**: The **libs** libraries are packaged in the HAP file after being compressed.<br>- **false**: The **libs** libraries are stored without being compressed.| Boolean| Yes (initial value: **false**)|
 | libIsolation | Whether to save the .so files of the current HAP to a separate folder. This is intended to avoid .so file conflicts between HAPs.<br>- **true**: The .so files of the current HAP are stored in a separate folder (named after the module) in the **libs** directory.<br>- **false**: The .so files of the current HAP are directly stored in the **libs** directory.| Boolean| Yes (initial value: **false**)|
 | fileContextMenu | Context menu of the current HAP.| String| Yes (initial value: left empty)|
+| querySchemes | URL schemes that the current application can query for redirection. This tag is only available for entry modules. A maximum of 50 URL schemes can be configured.| String array| Yes (initial value: left empty)|
+| [routerMap](#routermap) | Path of the routing table for the current module.| String| Yes (initial value: left empty)|
 
 ## deviceTypes
 
@@ -150,7 +157,7 @@ Define the **main_pages.json** file under **resources/base/profile** in the deve
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| src | Route information about all pages in the module, including the page path and page name. The value is a string array, each element of which represents a page.| String array| No|
+| src | Route information about all pages in the module, including the page path and page name. The page path is relative to the **src/main/ets** directory of the current module. The value is a string array, each element of which represents a page.| String array| No|
 | window | Window-related configuration.	 | Object| Yes (initial value: left empty)|
 
 
@@ -189,6 +196,7 @@ The **metadata** tag represents the custom metadata of the HAP. The tag value is
 | value | Value of the data item. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | resource | Custom data format. The value is a resource index. It contains a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 
+The value of **resource** is in the format of $profile:file name, where **$profile** indicates that the resource is placed under **/resources/base/profile** in the project directory. For example, **$profile:shortcuts_config** indicates the **/resources/base/profile/shortcuts_config.json** file.
 
 ```json
 {
@@ -339,7 +347,7 @@ The **skills** tag represents the feature set of [wants](../application-models/w
 | port | Port number of the URI. For example, the default HTTP port number is 80, the default HTTPS port number is 443, and the default FTP port number is 21. This field is valid only when both **scheme** and **host** are set.| String| Yes (initial value: left empty)|
 | path \| pathStartWith \| pathRegex | Path of the URI. **path**, **pathStartWith**, and **pathRegex** represent different matching modes between the paths in the URI and the want. Set any one of them as needed. **path** indicates full matching, **pathStartWith** indicates prefix matching, and **pathRegex** indicates regular expression matching. This field is valid only when both **scheme** and **host** are set.| String| Yes (initial value: left empty)|
 | type | Data type that matches the want. The value complies with the Multipurpose Internet Mail Extensions (MIME) type specification. This field can be configured together with **scheme** or be configured separately.| String| Yes (initial value: left empty)|
-| utd | [Uniform data types](../reference/apis/js-apis-data-uniformTypeDescriptor.md) that match the wants. This field is applicable to scenarios such as sharing.| String| Yes (initial value: left empty)|
+| utd | [Uniform data types](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md) that match the wants. This field is applicable to scenarios such as sharing.| String| Yes (initial value: left empty)|
 | maxFileSupported | Maximum number of files of a specified type that can be received or opened at a time. This field is applicable to scenarios such as sharing and must be used together with **utd**.| Integer| Yes (initial value: **0**)|
 
 Example of the **skills** structure:
@@ -387,11 +395,13 @@ The **extensionAbilities** tag represents the configuration of ExtensionAbilitie
 | icon | Icon of the ExtensionAbility. The value is the index of the icon resource file. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory.| String| Yes (initial value: left empty)|
 | label | Name of the ExtensionAbility displayed to users. The value must be a resource index to support multiple languages. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
 | type | Type of the ExtensionAbility. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a deferred task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **fileAccess**: ExtensionAbility for public data access, allowing files and folders to be provided for file management applications to display.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The GUI you develop is combined with the windows of other applications through the **UIExtensionComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility for the push service.<br>- **driver**: ExtensionAbility for the driver framework.<br>- **remoteNotification**: ExtensionAbility for remote notifications.<br>- **remoteLocation**: ExtensionAbility for remote location.<br>- **voip**: ExtensionAbility for VoIP calls.<br>**NOTE**<br>The **service**, **fileAccess**, and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
-| permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/AccessToken/permissions-for-all.md).| String array| Yes (initial value: left empty)|
+| permissions | Permissions required for another application to access the ExtensionAbility.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/AccessToken/permissions-for-all.md).| String array| Yes (initial value: left empty)|
+| readPermission | Permission required for reading data in the ExtensionAbility. The value is a string with a maximum of 255 bytes. This field is available only when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
+| writePermission | Permission required for writing data to the ExtensionAbility. The value is a string with a maximum of 255 bytes. This field is available only when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
 | uri | Data URI provided by the ExtensionAbility. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This field is mandatory when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
-|skills | A set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The label and icon of the first ExtensionAbility that has **skills** configured are used as the label and icon of the entire service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an application,<br>but not for a service.| Array| Yes (initial value: left empty)|
+|skills | A set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The label and icon of the first ExtensionAbility that has **skills** configured are used as the label and icon of the entire service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an application, but not for a service. | Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
-| exported | Whether the ExtensionAbility can be called by other applications.<br>- **true**: The ExtensionAbility can be called by other applications.<br>- **false**: The UIAbility cannot be called by other applications, not even by aa commands.| Boolean| Yes (initial value: **false**)|
+| exported | Whether the ExtensionAbility can be called by other applications.<br>- **true**: The ExtensionAbility can be called by other applications.<br>- **false**: The ExtensionAbility cannot be called by other applications, not even by aa commands.| Boolean| Yes (initial value: **false**)|
 | extensionProcessMode | Multi-process instance model of the ExtensionAbility. Currently, this field is effective only for UIExtensionAbilities and ExtensionAbilities extended from UIExtensionAbilities.<br>- **instance**: Each instance of the ExtensionAbility has a process.<br>- **type**: All instances of the ExtensionAbility run in the same process, separated from other ExtensionAbility instances.<br>- **bundle**: All instances of the ExtensionAbility run in the same process as instances of other ExtensionAbilities using the **bundle** model.| String| Yes (initial value: left empty)|
 
 Example of the **extensionAbilities** structure:
@@ -490,7 +500,7 @@ The **shortcut** information is identified in **metadata**, where:
 | [wants](../application-models/want-overview.md) | Wants to which the shortcut points. Each want can contain one or more of the **bundleName**, **moduleName**, and **abilityName** sub-attributes.<br>- **bundleName**: target bundle name of the shortcut. The value is a string.<br>- **moduleName**: target module name of the shortcut. The value is a string.<br>- **abilityName**: target ability name of the shortcut. The value is a string.| Object| Yes (initial value: left empty)|
 
 
-1. Configure the **shortcuts_config.json** file in **/resource/base/profile/**.
+1. Configure the **shortcuts_config.json** file in **/resources/base/profile/**.
 
    ```json
    {
@@ -820,3 +830,73 @@ Example of the **proxyData** structure:
   }
 }
 ```
+
+## routerMap
+
+The **routerMap** tag represents the path to the routing table for the module.
+
+The **routerMap** configuration file provides the routing table information of the module. The value of the **routerMap** tag is an array.
+
+**Table 22** routerMap
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| name          | Name of the page to be redirected to.| String | No      |
+| pageModule    | Name of the module where the page is located.| String| Yes (initial value: left empty)|
+| pageSourceFile| Path of the page in the module.| String| No |
+| buildFunction | Function decorated by @Builder. The function describes the UI of the page.| String | No  |
+| [data](#data)  | Custom data.| Object  | Yes (initial value: left empty)  |
+
+Example:
+
+1. Define a routing table configuration file under **resources/base/profile** in the development view. The file name can be customized, for example, **router_map.json**.
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "DynamicPage1",
+      "pageModule": "library1",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myFunction"
+    },
+    {
+      "name": "DynamicPage2",
+      "pageModule": "library2",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myBuilder",
+      "data": {
+        "key1": "data1",
+        "key2": "data2"
+      }
+    }
+  ]
+}
+```
+
+2. Define the **routerMap** tag under **module** of the **module.json5** file, set it to point to the defined routing table configuration file, for example, set it to **"routerMap": "$profile:router_map"**.
+
+### data
+
+The **data** tag represents custom data in the routing table.
+In a **data** object, you can specify custom data of the string type.
+
+Example of the **data** structure:
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "DynamicPage",
+      "pageModule": "library",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myBuilder",
+      "data": {
+        "key1": "data1",
+        "key2": "data2"
+      }
+    }
+  ]
+}
+```
+<!--no_check-->

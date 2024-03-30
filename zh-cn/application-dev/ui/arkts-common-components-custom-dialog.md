@@ -109,8 +109,8 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    struct CustomDialogUser {
        dialogController: CustomDialogController = new CustomDialogController({
          builder: CustomDialogExample({
-           cancel: this.onCancel,
-           confirm: this.onAccept,
+           cancel: ()=> { this.onCancel() },
+           confirm: ()=> { this.onAccept() },
          }),
        })
    
@@ -233,8 +233,8 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept,
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() },
     }),
   })
 

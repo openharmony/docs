@@ -1,7 +1,7 @@
-# Web Component Overview
+# Introduction to ArkWeb
 
 
-In addition to displaying web page content on applications, the **Web** component provides you with some other helpful functions, including:
+In addition to displaying web page content on applications, ArkWeb provides you with some other helpful functions, including:
 
 
 - **Page loading**: provides a full set of basic frontend page loading capabilities, which allow you to load network pages, local pages, and HTML text data.

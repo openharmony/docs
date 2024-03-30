@@ -1,6 +1,6 @@
 # Worker Introduction
 
-With the **Worker** module, you can provide a multithreading environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. For details about the APIs and their usage, see [Worker](../reference/apis/js-apis-worker.md).
+With the Worker module, you can provide a multithreading environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. For details about the APIs and their usage, see [Worker](../reference/apis-arkts/js-apis-worker.md).
 
 
 ## Worker Operating Mechanism
@@ -9,81 +9,144 @@ With the **Worker** module, you can provide a multithreading environment for an 
 
 ![worker](figures/worker.png)
 
-The thread that creates the worker thread is referred to as the host thread (not necessarily the main thread, since a worker thread can also create a worker subthread). A worker thread is also named an actor thread. Each worker thread has an independent instance from the host thread, including the infrastructure, object, and code segment. The worker thread communicates with the host thread by means of message exchange. They use the serialization technique to exchange commands and data.
+The thread that creates the worker thread is referred to as the host thread (not necessarily the main thread, since a worker thread can also create another worker thread). A worker thread is also named an actor thread. Each worker thread has an independent instance from the host thread, including the infrastructure, object, and code segment. The worker thread communicates with the host thread by means of message exchange. They use the serialization technique to exchange commands and data.
 
 
 ## Precautions for Worker
 
-- The rules for passing in the **Worker.ts** path during the worker thread creation vary in different API versions. For details, see [Precautions for File Paths](#precautions-for-file-paths).
-
+- A worker thread can be created manually or automatically. In manual creation mode, you must also perform related configurations. For details, see [Precautions for Creating a Worker Thread](#precautions-for-creating-a-worker-thread).
+- The URL of the worker thread file passed in to the constructor function varies according to the version in use. For details, see [Precautions for File URLs](#precautions-for-file-urls).
 - After a worker thread is created, you must manually manage its lifecycle. A maximum of eight worker threads can run simultaneously. For details, see [Lifecycle Precautions](#lifecycle-precautions).
-
-- Modules of the [ability type](../quick-start/application-package-structure-stage.md) support **Worker**, but modules of the [library type](../quick-start/application-package-structure-stage.md) do not.
-
-- When creating a worker thread, the **Worker.ts** file of another module cannot be used. This means that a worker cannot be called across modules.
-
-- Context objects vary in different threads. Therefore, the worker thread of **Worker** can use only a thread-safe library, rather than a non-thread-safe library, for example, UI-related non-thread-safe library. For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
-
+- Context objects vary in different threads. Therefore, the worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
 - A maximum of 16 MB data can be serialized.
-
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
 
+### Precautions for Creating a Worker Thread
 
-### Precautions for File Paths
+The worker thread file must be stored in the ***{moduleName}*/src/main/ets/** directory. Otherwise, it will not be packed into the application. A worker thread can be created manually or automatically.
 
-Before calling an API of the **Worker** module, you must create a **Worker** instance. The constructor function varies in different API versions.
+- Manual creation: Manually create the directory and file, and configure the related field in **build-profile.json5** so that the file can be packed into the application.
+
+  Stage model:
+
+  ```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ets"
+      ]
+    }
+  }
+  ```
+
+  FA model:
+
+  ```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/MainAbility/workers/worker.ets"
+      ]
+    }
+  }
+  ```
+
+- Automatic creation: DevEco Studio supports one-click generation of worker threads. Right-click any position in the {moduleName} directory and choose **New > Worker** to generate the template file and configuration information of the worker thread. You do not need to configure the field in **build-profile.json5**.
+
+
+### Precautions for File URLs
+
+Before calling an API of the Worker module, you must create a **Worker** instance. The constructor function varies in different API versions, and the URL of the worker thread file must be passed in to **scriptURL** of the function.
 
 ```ts
 // Import the worker module.
 import worker from '@ohos.worker';
 
 // Use the following function in API version 9 and later versions:
-const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
 // Use the following function in API version 8 and earlier versions:
-const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ts');
+const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ets');
 ```
 
-The **Worker.ts** file path (specified by **scriptURL**) must be passed in the constructor function. By default, the **workers** directory (upper-level directory of the **Worker.ts** file) is at the same level as the **pages** directory.
+#### File URL Rules in the Stage Model
 
-**Stage Model**
+The requirements for **scriptURL** in the constructor function are as follows:
 
-The following is an example of **scriptURL** in the constructor function:
+- **scriptURL** consists of {moduleName}/ets and {relativePath}.
+- {relativePath} is the relative path of the worker thread file to the ***{moduleName}*/src/main/ets/** directory.
 
+(1) Loading a worker thread file of an ability
+
+To load the worker thread file of an ability, use the URL {moduleName}/ets/{relativePath}.
 
 ```ts
-// Import the worker module.
 import worker from '@ohos.worker';
 
-// In the stage model, the workers directory is at the same level as the pages directory in the entry module.
-const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts', {name:"first worker in Stage model"});
-// In the stage model, the workers directory is a child directory of the pages directory in the entry module.
-const worker2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/MyWorker.ts');
+// URL of the worker thread file: "entry/src/main/ets/workers/worker.ets"
+const workerStage1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
+
+// URL of the worker thread file: "phone/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
 ```
 
-Based on the directory structure of the stage model project, the field meanings are as follows:
-- **entry**: value of the **name** attribute under **module** in the **module.json5** file.
-- **ets**: directory for storing the ArkTS source code. It is fixed.
-- **workers/MyWorker.ts**: path of the worker source file in the **ets** directory.
+(2) Loading a worker thread file in Library-[HSP](../quick-start/in-app-hsp.md)
 
-
-**FA Model**
-
-The following is an example of **scriptURL** in the constructor function:
+To load the worker thread file in HSP, use the URL {moduleName}/ets/{relativePath}.
 
 ```ts
-// Import the worker module.
 import worker from '@ohos.worker';
 
-// In the FA model, the workers directory is at the same level as the pages directory in the entry module.
-const worker1: worker.ThreadWorker = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});
-// In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
-const worker2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.js');
+// URL of the worker thread file: "hsp/src/main/ets/workers/worker.ets"
+const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/workers/worker.ets');
 ```
+
+(3) Loading a worker thread file in Library-[HAR](../quick-start/har-package.md)
+
+The worker thread file in the HAR may be loaded in either of the following cases:
+
+- @ path loading mode: All types of modules load the worker thread file in the local HAR. The URL is @{moduleName}/ets/{relativePath}.
+
+- Relative path loading mode: The local HAR loads the worker thread file in the package. The URL is the relative path of the file where the Worker object is created to the worker thread file.
+
+If the HAR is packed into a third-party package, the worker in the HAR can be created only in the relative path loading mode.
+
+```ts
+import worker from '@ohos.worker';
+
+// @ Path loading mode
+// URL of the worker thread file: "har/src/main/ets/workers/worker.ets"
+const workerStage4: worker.ThreadWorker = new worker.ThreadWorker('@har/ets/workers/worker.ets');
+
+// Relative path loading mode:
+// URL of the worker thread file: "har/src/main/ets/workers/worker.ets"
+// URL of the file where the Worker object is created: "har/src/main/ets/components/mainpage/MainPage.ets"
+const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers/worker.ets');
+```
+
+#### File URL Rules in the FA Model
+
+**scriptURL** in the constructor function is the relative path between the worker thread file and "{moduleName}/src/main/ets/MainAbility".
+
+```ts
+import worker from '@ohos.worker';
+
+// The following three scenarios are involved.
+
+// Scenario 1: URL of the worker thread file: "{moduleName}/src/main/ets/MainAbility/workers/worker.ets"
+const workerFA1: worker.ThreadWorker = new worker.ThreadWorker("workers/worker.ets", {name:"first worker in FA model"});
+
+// Scenario 2: URL of the worker thread file: "{moduleName}/src/main/ets/workers/worker.ets"
+const workerFA2: worker.ThreadWorker = new worker.ThreadWorker("../workers/worker.ets");
+
+// Scenario 3: URL of the worker thread file: "{moduleName}/src/main/ets/MainAbility/ThreadFile/workers/worker.ets"
+const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/workers/worker.ets");
+```
+
 
 
 ### Lifecycle Precautions
 
-- Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them. The worker threads keep running even when they are idle. Therefore, when a worker thread is not required, call [terminate()](../reference/apis/js-apis-worker.md#terminate9) or [parentPort.close()](../reference/apis/js-apis-worker.md#close9) to terminate it. If a worker thread is terminated or being terminated, an error is thrown when it is called.
+- Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them. The worker threads keep running even when they are idle. When a worker thread is not required, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) or [parentPort.close()](../reference/apis-arkts/js-apis-worker.md#close9) to terminate it. If a worker thread is terminated or being terminated, an error is thrown when it is called.
 
 
 - A maximum of eight worker threads can co-exist. When the number of worker threads exceeds the limit, the error "Worker initialization failure, the number of workers exceeds the maximum." is thrown.

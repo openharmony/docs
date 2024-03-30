@@ -12,6 +12,8 @@
     - [随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)
     - [指定二进制数据转换非对称密钥对](crypto-convert-binary-data-to-asym-key-pair.md)
     - [指定密钥参数生成非对称密钥对](crypto-generate-asym-key-pair-from-key-spec.md)
+    - [使用ECC压缩/非压缩公钥格式转换](crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
+    - [使用ECC压缩/非压缩点格式转换](crypto-convert-compressed-or-uncompressed-ECC-point.md)
 - 加解密
   - [加解密介绍](crypto-encryption-decryption-overview.md)
   - 加解密算法规格
@@ -27,10 +29,12 @@
     - [使用RSA非对称密钥分段加解密](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
     - [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
     - [使用SM2非对称密钥加解密](crypto-sm2-asym-encrypt-decrypt.md)
+    - [使用SM2密文格式转换](crypto-sm2-ciphertext-conversion.md)
 - 签名验签
   - [签名验签介绍及算法规格](crypto-sign-sig-verify-overview.md)
   - 签名验签开发指导
     - [使用RSA密钥对（PKCS1模式）签名验签](crypto-rsa-sign-sig-verify-pkcs1.md)
+    - [使用RSA密钥对（PKCS1模式）签名及签名恢复](crypto-rsa-sign-sig-verify-recover-pkcs1.md)
     - [使用RSA密钥对分段签名验签（PKCS1模式）](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
     - [使用RSA密钥对签名验签（PSS模式）](crypto-rsa-sign-sig-verify-pss.md)
     - [使用ECDSA密钥对签名验签](crypto-ecdsa-sign-sig-verify.md)

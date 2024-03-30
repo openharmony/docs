@@ -61,10 +61,9 @@ VpnExtensionAbility生命周期回调，在销毁时回调，执行资源清理�
 
   ```ts
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import Want from '@ohos.app.ability.Want';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
-    onDestroy(want: Want) {
+    onDestroy() {
        console.log('MyVpnExtAbility onDestroy');
     }
 }

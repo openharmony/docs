@@ -22,6 +22,10 @@ The Common Event Manager enables you to print common event information and publi
 
 ### publish
 
+> **NOTE**
+> 
+> The Common Event Manager has two editions: **eng** and **user**. The **publish** command can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot publish common events** is reported.
+
 * Function
 
   Publishes a common event.

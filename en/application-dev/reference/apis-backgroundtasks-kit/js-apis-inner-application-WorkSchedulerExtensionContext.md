@@ -23,5 +23,3 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     }
 }
 ```
-
- <!--no_check--> 

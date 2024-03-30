@@ -734,7 +734,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 import tag from '@ohos.nfc.tag';
 
 try {
-    let uri = "https://gitee.com/openharmony"; // change it to be correct.
+    let uri = "https://www.example.com"; // change it to be correct.
     let ndefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
@@ -965,7 +965,7 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 ```js
 import tag from '@ohos.nfc.tag';
 
-let uriRecord = tag.ndef.makeUriRecord("https://gitee.com/openharmony");
+let uriRecord = tag.ndef.makeUriRecord("https://www.example.com");
 let textRecord = tag.ndef.makeTextRecord("Hello World", "en");
 let ndefRecords = [uriRecord, textRecord];
 try {

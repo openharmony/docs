@@ -34,7 +34,7 @@ This error code is reported when the value of the system parameter is invalid.
 
 **Possible Causes**
 
-The value of the system parameter is empty, is out of range, or contains special characters, for example, "const..param.xxx".
+The value of the system parameter is empty, is out of range, or contains special characters, for example, **const.param.xxx**.
 
 **Solution**
 

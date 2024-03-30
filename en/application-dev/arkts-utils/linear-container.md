@@ -9,7 +9,7 @@ To accelerate data access, linear containers support Create, Read, Update, and D
 
 ## ArrayList
 
-[ArrayList](../reference/apis/js-apis-arraylist.md) is a dynamic array that can be used to construct a global array object. You are advised to use **ArrayList** when elements in a container need to be frequently read.
+[ArrayList](../reference/apis-arkts/js-apis-arraylist.md) is a dynamic array that can be used to construct a global array object. You are advised to use **ArrayList** when elements in a container need to be frequently read.
 
 **ArrayList** uses generics and must be stored in a contiguous memory space. Its initial capacity is 10, and it increases capacity 1.5-fold in each dynamic expansion.
 
@@ -31,11 +31,11 @@ To accelerate data access, linear containers support Create, Read, Update, and D
 
 > **NOTE**
 >
-> The APIs provided by **Vector** are deprecated since API version 9. You are advised to use [ArrayList](../reference/apis/js-apis-arraylist.md).
+> The APIs provided by **Vector** are deprecated since API version 9. You are advised to use [ArrayList](../reference/apis-arkts/js-apis-arraylist.md).
 
-[Vector](../reference/apis/js-apis-vector.md) is a continuous storage structure that can be used to construct a global array object. **Vector** uses generics and must be stored in a contiguous memory space. Its initial capacity is 10, and it has capacity doubled in each dynamic expansion.
+[Vector](../reference/apis-arkts/js-apis-vector.md) is a continuous storage structure that can be used to construct a global array object. **Vector** uses generics and must be stored in a contiguous memory space. Its initial capacity is 10, and it has capacity doubled in each dynamic expansion.
 
-Both **Vector** and [ArrayList](../reference/apis/js-apis-arraylist.md) are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. In addition to operator access, **Vector** provides the getter and setter to provide a more complete verification and error tolerance mechanism.
+Both **Vector** and [ArrayList](../reference/apis-arkts/js-apis-arraylist.md) are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. In addition to operator access, **Vector** provides the getter and setter to provide a more complete verification and error tolerance mechanism.
 
 **Vector** provides the following CRUD APIs.
 
@@ -60,9 +60,9 @@ Both **Vector** and [ArrayList](../reference/apis/js-apis-arraylist.md) are impl
 
 ## List
 
-[List](../reference/apis/js-apis-list.md) can be used to construct a singly linked list, which supports access only through the head node to the tail node. **List** uses generics and can be stored in a non-contiguous memory space.
+[List](../reference/apis-arkts/js-apis-list.md) can be used to construct a singly linked list, which supports access only through the head node to the tail node. **List** uses generics and can be stored in a non-contiguous memory space.
 
-Unlike [LinkedList](../reference/apis/js-apis-linkedlist.md), which is a doubly linked list, **List** does not support insertion or removal at both ends.
+Unlike [LinkedList](../reference/apis-arkts/js-apis-linkedlist.md), which is a doubly linked list, **List** does not support insertion or removal at both ends.
 
 You are advised to use **List** for frequent insertion and removal operations.
 
@@ -89,11 +89,11 @@ You are advised to use **List** for frequent insertion and removal operations.
 
 ## LinkedList
 
-[LinkedList](../reference/apis/js-apis-linkedlist.md) can be used to construct a doubly linked list, which can be traversed at both ends. **LinkedList** uses generics and can be stored in a non-contiguous memory space.
+[LinkedList](../reference/apis-arkts/js-apis-linkedlist.md) can be used to construct a doubly linked list, which can be traversed at both ends. **LinkedList** uses generics and can be stored in a non-contiguous memory space.
 
-Unlike [List](../reference/apis/js-apis-list.md), which is a singly linked list, **LinkedList** supports insertion and removal at both ends.
+Unlike [List](../reference/apis-arkts/js-apis-list.md), which is a singly linked list, **LinkedList** supports insertion and removal at both ends.
 
-**LinkedList** is more efficient in data insertion than [ArrayList](../reference/apis/js-apis-arraylist.md), but less efficient in data access.
+**LinkedList** is more efficient in data insertion than [ArrayList](../reference/apis-arkts/js-apis-arraylist.md), but less efficient in data access.
 
 You are advised to use **LinkedList** for frequent insertion and removal operations.
 
@@ -119,13 +119,13 @@ You are advised to use **LinkedList** for frequent insertion and removal operati
 
 ## Deque
 
-[Deque](../reference/apis/js-apis-deque.md) can be used to construct a double-ended queue (deque) that follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). It allows insertion and removal of elements at both ends.
+[Deque](../reference/apis-arkts/js-apis-deque.md) can be used to construct a double-ended queue (deque) that follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). It allows insertion and removal of elements at both ends.
 
 **Deque** uses generics and must be stored in a contiguous memory space. Its initial capacity is 8, and it has capacity doubled in each dynamic expansion. The bottom layer of **Deque** is implemented by cyclic queues, delivering a high efficiency in enqueuing and dequeuing.
 
-Different from **Deque**, [Queue](../reference/apis/js-apis-queue.md) follows the principle of FIFO only and allows element removal at the front and insertion at the rear.
+Different from **Deque**, [Queue](../reference/apis-arkts/js-apis-queue.md) follows the principle of FIFO only and allows element removal at the front and insertion at the rear.
 
-Unlike [Vector](../reference/apis/js-apis-vector.md), **Deque** does not support insertion and deletion of elements in between. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
+Unlike [Vector](../reference/apis-arkts/js-apis-vector.md), **Deque** does not support insertion and deletion of elements in between. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
 
 You are advised to use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 
@@ -148,13 +148,13 @@ You are advised to use **Deque** when you need to frequently insert or remove el
 
 ## Queue
 
-[Queue](../reference/apis/js-apis-queue.md) can be used to construct a queue that follows the FIFO principle.
+[Queue](../reference/apis-arkts/js-apis-queue.md) can be used to construct a queue that follows the FIFO principle.
 
 **Queue** uses generics and must be stored in a contiguous memory space. Its initial capacity is 8, and it has capacity doubled in each dynamic expansion.
 
 The bottom layer of **Queue** is implemented by cyclic queues, delivering a high efficiency in enqueuing and dequeuing.
 
-Unlike [Deque](../reference/apis/js-apis-deque.md), which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other.
+Unlike [Deque](../reference/apis-arkts/js-apis-deque.md), which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other.
 
 You are advised to use **Queue** in FIFO scenarios.
 
@@ -173,11 +173,11 @@ You are advised to use **Queue** in FIFO scenarios.
 
 ## Stack
 
-[Stack](../reference/apis/js-apis-stack.md) can be used to construct a stack that follows the Last Out First In (LOFI) principle.
+[Stack](../reference/apis-arkts/js-apis-stack.md) can be used to construct a stack that follows the Last Out First In (LOFI) principle.
 
 **Stack** uses generics and must be stored in a contiguous memory space. Its initial capacity is 8, and it increases capacity 1.5-fold in each dynamic expansion. The bottom layer of **Stack** is implemented based on arrays. It supports data insertion and removal at one end.
 
-Unlike [Queue](../reference/apis/js-apis-queue.md), which supports insertion at one end and removal at the other, **Stack** supports insertion and removal at the same end.
+Unlike [Queue](../reference/apis-arkts/js-apis-queue.md), which supports insertion at one end and removal at the other, **Stack** supports insertion and removal at the same end.
 
 You are advised to use **Stack** in LOFI scenarios.
 
@@ -228,9 +228,9 @@ console.info(`result: ${vector2.getFirstElement()}`); // Access an element.
 // Deque
 import Deque from '@ohos.util.Deque'; // Import the Deque module.
 
-let deque1: Deque<string> = new Deque;
+let deque1: Deque<string> = new Deque();
 deque1.insertFront('a');
-let deque2: Deque<number> = new Deque;
+let deque2: Deque<number> = new Deque();
 deque2.insertFront(1); // Add an element.
 console.info(`result: ${deque1[0]}`); // Access an element.
 deque1[0] = 'one'; // Modify an element.
@@ -250,11 +250,11 @@ console.info(`result: ${stack2.length}`);
 // List
 import List from '@ohos.util.List'; // Import the List module.
 
-let list1: List<string> = new List;
+let list1: List<string> = new List();
 list1.add('a');
-let list2: List<number> = new List;
+let list2: List<number> = new List();
 list2.add(1);
-let list3: List<Array<number>> = new List;
+let list3: List<Array<number>> = new List();
 let b2 = [1, 2, 3];
 list3.add(b2); // Add an element.
 console.info(`result: ${list1[0]}`); // Access an element.

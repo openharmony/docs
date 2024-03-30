@@ -107,7 +107,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 回顾之前小节中关于“工程结构”的介绍，我们推荐在common目录中存放基础公共代码，features目录中存放相对独立的功能模块代码，product目录中存放完全独立的产品代码。这样在product目录中依赖features和common中的公共代码来实现功能，可以最大程度实现代码复用。
 
-配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统 ohpm包依赖](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/configuring-dependencies-0000001545614945-V3#section1361763617508)。
+配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统 ohpm包依赖](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import-0000001547293682)。
 
 ![zh-cn_image_0000001267274208](figures/zh-cn_image_0000001267274208.png)
 

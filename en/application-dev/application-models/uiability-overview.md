@@ -11,9 +11,8 @@ The following design philosophy is behind UIAbility:
 
 2. Support for multiple device types and window modes
 
-> **NOTE**
->
-> For details, see [Interpretation of the Application Model](application-model-description.md).
+
+ 
 
 UIAbility is the basic unit of scheduling in OpenHarmony and provides a window for applications to draw the UI. An application can contain one or more UIAbility components. For example, for a payment application, you can use separate UIAbility components to carry the entry and payment functionalities.
 

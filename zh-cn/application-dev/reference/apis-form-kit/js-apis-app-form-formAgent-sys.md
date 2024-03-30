@@ -1,10 +1,11 @@
-# @ohos.app.form.formAgent (FormAgent)
+# @ohos.app.form.formAgent (FormAgent)(系统接口)
 
 FormAgent模块提供了卡片代理相关接口的能力，目前仅包括请求发布卡片。
 
 > **说明：**
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块接口为系统接口。
+>
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -18,18 +19,18 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 请求发布一张卡片到使用方，使用callbck异步回调。使用方通常为桌面。
 
-**需要权限**：ohos.permission.AGENT_REQUIRE_FORM
+**需要权限：** ohos.permission.AGENT_REQUIRE_FORM
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求。需包含以下字段。<br>bundleName: 目标卡片bundleName<br>abilityName: 目标卡片ability<br>parameters:<br>- ohos.extra.param.key.form_dimension: 目标卡片规格<br>- ohos.extra.param.key.form_name: 目标卡片名<br>- ohos.extra.param.key.module_name: 目标卡片moduleName|
-| callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求，需包含以下字段。<br>bundleName: 目标卡片bundleName<br>abilityName: 目标卡片ability<br>parameters:<br>- ohos.extra.param.key.form_dimension: 目标卡片规格<br>- ohos.extra.param.key.form_name: 目标卡片名<br>- ohos.extra.param.key.module_name: 目标卡片moduleName|
+| callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数，返回卡片标识。 |
 
 **错误码：**
 
@@ -75,17 +76,17 @@ requestPublishForm(want: Want): Promise&lt;string&gt;
 
 请求发布一张卡片到使用方，使用Promise异步回调。使用方通常为桌面。
 
-**需要权限**：ohos.permission.AGENT_REQUIRE_FORM
+**需要权限：** ohos.permission.AGENT_REQUIRE_FORM
 
 **系统能力：** SystemCapability.Ability.Form
 
-**系统接口**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求。需包含以下字段。<br>bundleName: 目标卡片bundleName<br>abilityName: 目标卡片ability<br>parameters:<br>- ohos.extra.param.key.form_dimension: 目标卡片规格<br>- ohos.extra.param.key.form_name: 目标卡片名<br>- ohos.extra.param.key.module_name: 目标卡片moduleName |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 发布请求，需包含以下字段。<br>bundleName: 目标卡片bundleName<br>abilityName: 目标卡片ability<br>parameters:<br>- ohos.extra.param.key.form_dimension: 目标卡片规格<br>- ohos.extra.param.key.form_name: 目标卡片名<br>- ohos.extra.param.key.module_name: 目标卡片moduleName |
 
 **返回值：**
 

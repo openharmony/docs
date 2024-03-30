@@ -62,7 +62,7 @@ Enables listening for global mouse events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
-| receiver | Callback&lt;MouseEvent&gt; | Yes   | Callback used to return mouse events asynchronously. |
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md#mouseevent)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
   **Example**
 
@@ -95,7 +95,7 @@ Enables listening for mouse events. When the mouse pointer moves to the specifie
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | rect     | display.Rect[]             | Yes   | Rectangular area where a callback is triggered. One or two rectangular areas can be specified.|
-| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | Yes   | Callback used to return mouse events asynchronously. |
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md#mouseevent)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
   **Example**
 
@@ -251,7 +251,7 @@ Defines the callback for touch (touchscreen) events.
 
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](./js-apis-touchevent.md) | Yes   | Touch event.|
+| touchEvent | [TouchEvent](./js-apis-touchevent.md#touchevent) | Yes   | Touch event.|
 
 **Return value**
 

@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **Vibrator_Attribute** struct defines the vibrator attribute.
+The **Vibrator_Attribute** struct describes the vibrator attribute.
 
 **Since**: 11
 

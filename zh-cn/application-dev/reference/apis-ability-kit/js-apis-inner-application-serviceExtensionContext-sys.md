@@ -869,10 +869,10 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -939,11 +939,11 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1021,12 +1021,12 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -2172,13 +2172,10 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用Promise形式异步回调。
-
-- 如果bundleName一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前应用界面执行交互操作。
-- 如果bundleName不一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前系统界面执行交互操作。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
 
 使用规则：
-- 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+- 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
 - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2198,15 +2195,12 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2215,15 +2209,16 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-class EntryAbility extends ServiceExtensionAbility {
-
+class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
     let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'requestModalUIExtension',
-      moduleName: 'requestModalUIExtension',
+      abilityName: 'com.example.myapplication.UIExtAbility',
+      moduleName: 'entry_test',
       parameters: {
-        bundleName: 'com.example.myapplication'
+        'bundleName': 'com.example.myapplication',
+        //与com.example.myapplication.UIExtAbility配置的type相同
+        'ability.want.params.uiExtensionType': 'sys/commonUI'
       }
     };
 
@@ -2251,13 +2246,10 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用callback形式异步回调。
-
-- 如果bundleName一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前应用界面执行交互操作。
-- 如果bundleName不一致，模态弹窗显示后，用户对该弹窗进行响应之前，将无法在当前系统界面执行交互操作。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
 
 使用规则：
-- 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+- 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
 - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
  
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2272,15 +2264,12 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当拉起UIExtension成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2289,14 +2278,16 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-class EntryAbility extends ServiceExtensionAbility {
+class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
      let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'requestModalUIExtension',
-      moduleName: 'requestModalUIExtension',
+      abilityName: 'com.example.myapplication.UIExtAbility',
+      moduleName: 'entry_test',
       parameters: {
-        bundleName: 'com.example.myapplication'
+        'bundleName': 'com.example.myapplication',
+        //与com.example.myapplication.UIExtAbility配置的type相同
+        'ability.want.params.uiExtensionType': 'sys/commonUI'
       }
     };
 

@@ -2,17 +2,17 @@
 
 The **animateToImmediately** API implements immediate delivery for [explicit animations](ts-explicit-animation.md). When multiple property animations are loaded at once, you can call this API to immediately execute the transition animation for state changes caused by the specified closure function.
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
->  **Note:**
+> **NOTE**
 >
->  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+> This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
-animateToImmediately(value: [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam), event: () => void): void
+animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam) , event: () => void): void
 
 | Parameter   | Type                               | Mandatory| Description                                   |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
+| value | [AnimateParam](ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
 | event | () => void                        | Yes   | Closure function that displays the animation. The system automatically inserts a transition animation for state changes caused by the closure function.|
 
 ## Example

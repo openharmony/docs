@@ -6,9 +6,9 @@
 >
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->- 本模块接口均为系统接口。
->
 >- 文档中“全局”表示整个触控屏或触控板。如监听全局触摸事件，表示触摸触控板任何位置时，整个触控板的触摸事件均被监听。
+>
+>- 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -62,7 +62,7 @@ on(type: 'mouse', receiver: Callback&lt;MouseEvent&gt;): void
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值'mouse'。 |
-| receiver | Callback&lt;MouseEvent&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
+| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md#mouseevent)&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
 
   **示例：**
 
@@ -95,7 +95,7 @@ on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): v
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值'mouse'。 |
 | rect     | display.Rect[]             | 是    | 可以触发回调任务的矩形区域，可传入1至2个。 |
-| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md)&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
+| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md#mouseevent)&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
 
   **示例：**
 
@@ -241,6 +241,8 @@ try {
 
 ## TouchEventReceiver
 
+(touchEvent: TouchEvent): Boolean
+
 触摸（触屏）输入事件的回调函数。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
@@ -251,7 +253,7 @@ try {
 
 | 参数         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md) | 是    | 触摸输入事件。 |
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    | 触摸输入事件。 |
 
 **返回值：**
 

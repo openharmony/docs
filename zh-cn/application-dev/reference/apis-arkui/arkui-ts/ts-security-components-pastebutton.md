@@ -29,7 +29,7 @@ PasteButton(option:PasteButtonOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。 |
+| option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
 
 ## PasteButtonOptions
 
@@ -71,9 +71,20 @@ PasteButton(option:PasteButtonOptions)
 
 不支持通用事件，仅支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。<br/>event：见ClickEvent对象说明。 |
+### onClick
+
+onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
+
+点击动作触发该回调
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| result | [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
 
 
 ## 示例

@@ -34,7 +34,7 @@ The declarative development paradigm is a better choice for building new applica
 
 ## Development Paradigm Support by Application Type
 
-The support for development paradigms varies according to the [application model](../application-models/application-model-composition.md) and page form. For details, see the following table.
+The support for development paradigms varies according to the [application model](../application-models/application-model-description.md) and page form. For details, see the following table.
 
   **Table 1** Supported development paradigms
 

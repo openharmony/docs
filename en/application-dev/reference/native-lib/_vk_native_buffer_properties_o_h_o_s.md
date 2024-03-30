@@ -3,7 +3,7 @@
 
 ## Overview
 
-VkNativeBufferPropertiesOHOS defines the properties of a **NaitveBuffer**.
+**VkNativeBufferPropertiesOHOS** defines the properties of the **NativeBuffer**.
 
 **Since**
 

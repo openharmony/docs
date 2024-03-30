@@ -18,7 +18,7 @@ Called to specify how to perform the touch test on the children of this componen
 
 | Name| Type                                      | Mandatory| Description                  |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | Array<[TouchTestInfo>](#touchtestinfo) | No  | Array of child components.|
+| value  | Array<[TouchTestInfo>](#touchtestinfo) | Yes  | Array of child components.|
 
 **Return value**
 

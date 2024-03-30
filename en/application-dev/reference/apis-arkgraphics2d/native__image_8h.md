@@ -19,7 +19,7 @@ The **native_image.h** file declares the functions for obtaining and using **Nat
 
 | Name| Description|
 | -------- | -------- |
-| [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) | Defines an **OH_NativeImage** listener, which is registered through **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available.|
+| [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) | Describes an **OH_NativeImage** listener, which is registered through **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available.|
 
 
 ### Types

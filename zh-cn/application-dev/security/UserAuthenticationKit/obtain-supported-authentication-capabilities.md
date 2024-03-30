@@ -22,7 +22,8 @@
 以查询设备是否支持认证可信等级≥ATL1的人脸认证功能为例：
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 // 查询认证能力是否支持
 try {    
@@ -30,6 +31,6 @@ try {
     console.info('current auth trust level is supported');
 } catch (error) {
     const err: BusinessError = error as BusinessError;
-    console.info('current auth trust level is not supported. Code is ${err.code}, message is ${err.message}');
+    console.info(`current auth trust level is not supported. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

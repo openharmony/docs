@@ -91,7 +91,7 @@ Creates a standard color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -131,7 +131,7 @@ Creates a custom color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -181,7 +181,7 @@ Obtains the color space type.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -213,7 +213,7 @@ Obtains the coordinates of the white point in the color space.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
@@ -245,7 +245,7 @@ Obtains the gamma of the color space.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](../errorcodes/errorcode-colorspace-manager.md).
+For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |

@@ -88,7 +88,7 @@ let result3 = vector.add(c);
 
 insert(element: T, index: number): void
 
-Inserts an element at the specified position in this container.
+Inserts an element within the length range and moves its subsequent elements rightwards.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -126,7 +126,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the container has the specified element; returns **false** otherwise.|
 
 **Example**
 
@@ -209,7 +209,7 @@ let result = vector.getLastIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an element at the specified position from this container.
+Searches for an element based on its index, removes the element after returning it, and moves its subsequent elements leftwards.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -223,7 +223,7 @@ Removes an element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed.|
+| T | Element removed. If the container is empty, **undefined** is returned. If the index is out of range, an exception is thrown.|
 
 **Example**
 

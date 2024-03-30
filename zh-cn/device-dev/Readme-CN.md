@@ -34,7 +34,7 @@
     - [标准系统内核](kernel/kernel-standard-overview.md)
   - [驱动](driver/Readme-CN.md) 
   - [编译构建](subsystems/subsys-build-all.md)
-  - [ArkUI](subsystems/subsys-arkui-customize_titlebar.md) 
+  - [ArkUI](subsystems/subsys-arkui-customize-titlebar-arkts.md) 
   - [图形图像](subsystems/subsys-graphics-overview.md)	
   - [媒体](subsystems/subsys-multimedia-camera-overview.md)
   - [公共基础](subsystems/subsys-utils-guide.md)

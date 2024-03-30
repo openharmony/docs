@@ -40,7 +40,7 @@ Permission verification failed, application which is not a system application us
 
 **错误信息**
 
-BusinessError 401: Parameter error. The type of "${参数名}" must be ${正确的类型}[or ${其他正确的输入}].
+BusinessError 401: Parameter error. The type of `${参数名}` must be `${正确的类型}[or ${其他正确的输入}]`.
 
 **错误描述**
 
@@ -58,7 +58,7 @@ BusinessError 401: Parameter error. The type of "${参数名}" must be ${正确�
 
 **错误信息**
 
-BusinessError 801: Capability not supported. function ${函数名} can not work correctly due to limited device capabilities.
+BusinessError 801: Capability not supported. function `${函数名}` can not work correctly due to limited device capabilities.
 
 **错误描述**
 

@@ -9,16 +9,6 @@
 | NOTIFICATION_CONTENT_BASIC_TEXT | 普通文本类型。 |
 | NOTIFICATION_CONTENT_MULTILINE  | 多行文本类型。 |
 
-
-目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。文本类型通知的效果示意如下图所示。
-> **说明：**
-> 
-> 根据设计样式的不同，通知的实际显示效果可能有所差异。本文中所涉及的通知效果图仅供参考，请以实际运行结果为准。
-
-**图1** 文本类型通知呈现效果示意图  
-![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
-
-
 ## 接口说明
 
 通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定，可以包括通知内容，通知ID，通知的通道类型和通知发布时间等信息。
@@ -32,16 +22,14 @@
 
 ## 开发步骤
 
-1. [请求通知授权](notification-enable.md)。获得用户授权后，才能使用通知功能。
-
-2. 导入模块。
+1. 导入模块。
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
    ```
 
-3. 构造NotificationRequest对象，并发布通知。
+2. 构造NotificationRequest对象，并发布通知。
    - 普通文本类型通知由标题、文本内容和附加信息三个字段组成，其中标题和文本内容是必填字段，大小均需要小于200字节。
      
       ```ts
@@ -65,8 +53,6 @@
       });
       ```
 
-      运行效果如下图所示。  
-     ![zh-cn_image_0000001466782033](figures/zh-cn_image_0000001466782033.png)
 
    - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
      
@@ -93,6 +79,3 @@
         console.info('Succeeded in publishing notification.');
       });
       ```
-   
-      运行效果如下图所示。  
-     ![zh-cn_image_0000001417062446](figures/zh-cn_image_0000001417062446.png)

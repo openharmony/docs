@@ -20,7 +20,7 @@ DataPanel(options: DataPanelOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数:**
+**参数：** 
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -49,14 +49,77 @@ DataPanel(options: DataPanelOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
+### closeEffect
 
-| 名称          | 参数类型 | 描述 |
-| ------------- | ------- | -------- |
-| closeEffect | boolean | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false <br/>**说明：** <br/> 若未设置trackShadow属性，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。<br/> 若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。|
-| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
-| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前俩位代表透明度。 |
-| strokeWidth<sup>10+</sup> | [Length](ts-types.md#length) | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
-| trackShadow<sup>10+</sup> | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。|
+closeEffect(value: boolean)
+
+设置关闭数据占比图表旋转动效和投影效果。若未设置[trackShadow属性](#trackshadow10)，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                   |
+| ------ | ------- | ---- | ------------------------------------------------------ |
+| value  | boolean | 是   | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false |
+
+### valueColors<sup>10+</sup>
+
+valueColors(value: Array<ResourceColor | LinearGradient>)
+
+设置各数据段颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| value  | Array<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient](#lineargradient10对象说明)> | 是   | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。 |
+
+### trackBackgroundColor<sup>10+</sup>
+
+trackBackgroundColor(value: ResourceColor)
+
+设置底板颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前俩位代表透明度。 |
+
+### strokeWidth<sup>10+</sup>
+
+strokeWidth(value: Length)
+
+设置圆环粗细。数据面板的类型为DataPanelType.Line时该属性不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。 |
+
+### trackShadow<sup>10+</sup>
+
+trackShadow(value: DataPanelShadowOptions)
+
+设置投影样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                  |
+| ------ | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| value  | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 是   | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。 |
 
 
 ## DataPanelShadowOptions<sup>10+</sup>对象说明
@@ -87,8 +150,6 @@ LinearGradient(colorStops: ColorStop[])
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
 | offset | [Length](ts-types.md#length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
 
-
-
 ## 示例
 
 ### 示例1
@@ -104,7 +165,7 @@ struct DataPanelExample {
     Column({ space: 5 }) {
       Row() {
         Stack() {
-          DataPanel({ values: [25], max: 100, type: DataPanelType.Circle }).width(168).height(168)
+          DataPanel({ values: [30], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
             Text('30').fontSize(35).fontColor('#182431')
             Text('1.0.0').fontSize(9.33).lineHeight(12.83).fontWeight(500).opacity(0.6)

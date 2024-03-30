@@ -14,7 +14,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 ## FormInfo
 
-卡片信息
+卡片配置信息。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -25,6 +25,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | name        | string               | 是    | 否     | 应用/元服务名称。                                 |
 | displayName<sup>11+</sup> | string               | 是    | 否     | 卡片名称。                                 |
+| displayNameId<sup>11+</sup> | number               | 是    | 否     | 卡片预览时标识卡片名称的ID。                |
 | description | string               | 是    | 否     | 卡片描述。   |
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。               |
 | type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 |
@@ -107,6 +108,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
+| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。  |
+| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。  |
 
 ##  FormDimension
 
@@ -121,7 +124,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_2_4      | 3   | 2 x 4 form。   |
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
-| DIMENSION_1_1      | 6   | 1 x 1 form。   |
+| DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。   |
+| DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。   |
 
 
 ## FormInfoFilter
@@ -132,7 +136,9 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 类型   | 必填         |说明         |
 | ----------- | ---- | ------------ |------------ |
-| moduleName    | string    |否    | 选填。仅保留moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
+| bundleName    | string    |否    | 选填。仅保留含bundleName与提供值相符的卡片信息。<br>未填写时则不通过bundleName进行过滤。   |
+| moduleName    | string    |否    | 选填。仅保留含moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
+| supportedDimensions | Array<number> |否    | 选填。仅保留含supportedDimensions提供值相符的卡片信息。<br>未填写时则不通过supportedDimensions进行过滤。   |
 
 ## VisibilityType
 
@@ -156,3 +162,13 @@ import formInfo from '@ohos.app.form.formInfo';
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
+
+## ConfigurationUpdateFlags
+
+卡片配置信息允许更新开关，将允许更新的配置字段对应填充。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 类型   | 必填         |说明         |
+| ----------- | ---- | ------------ |------------ |
+| fontEnabled    | boolean    |否    | 选填。是否允许卡片字体跟随系统调整。   |

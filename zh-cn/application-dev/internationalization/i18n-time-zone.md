@@ -20,8 +20,8 @@
    let timezoneId = timezone.getID();// America/Sao_Paulo
    
    // 获取城市Id对应的时区对象
-   let timezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
-   timezone.getID(); // Pacific/Auckland
+   let aucklandTimezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
+   let aucklandTzId = aucklandTimezone.getID(); // Pacific/Auckland
    
    // 时区的本地化名称
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间
@@ -65,7 +65,7 @@
    // 指定地理坐标所在的时区对象数组
    let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
    for (let i =0;i < timezoneArray.length; i++) {
-       timezoneArray.getID(); // America/Sao_Paulo
+       let tzId = timezoneArray[i].getID(); // America/Sao_Paulo
    }
    ```
 

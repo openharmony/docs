@@ -1,7 +1,7 @@
-# wrapBuilder: Encapsulating a Global @Builder
+# wrapBuilder: Encapsulating Global @Builder
 
 
- **wrapBuilder** is a method that accepts a global \@Builder method and returns a **WrappedBuilder** object. With this method, you can assign values and pass parameters for the [global \@Builder](arkts-builder.md#global-custom-builder-function).
+ **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
 
 
 > **NOTE**
@@ -19,35 +19,37 @@ The **WrappedBuilder** object is also a template class.
 
 ```ts
 declare class WrappedBuilder< Args extends Object[]> {
-  builder: (...args: Args): void;
+  builder: (...args: Args) => void;
 
   constructor(builder: (...args: Args) => void);
 }
 ```
 
 
->**NOTE**<br>The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
+>**NOTE**
+>
+>The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
 
 Example
 
 ```ts
 let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
-let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array can be placed.
+let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array is acceptable.
 ```
 
 
 
 ## Constraints
 
-The **wrapBuilder** method accepts only a [global \@Builder](arkts-builder.md#global-custom-builder-function) method as its argument.
+**wrapBuilder** only accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument.
 
 Of the **WrappedBuilder** object it returns, the **builder** attribute method can be used only inside the struct.
 
 
 
-## Usage Scenario 1
+## Use Scenario 1
 
-In this example, the custom component **Index** uses the **wrapBuilder** method declared in the global builder method **globalBuilder**. When the **Text()** component is clicked, **globalBuilder** assigns a new value to **wrapBuilder**, thereby switching between different effects.
+In this example, **wrapBuilder** is assigned to **globalBuilder**, and **MyBuilder** is passed in to **wrapBuilder** as its input parameter. In this way, **MyBuilder** is assigned to **globalBuilder** indirectly.
 
 ```ts
 @Builder
@@ -56,14 +58,8 @@ function MyBuilder(value: string, size: number) {
     .fontSize(size)
 }
 
-@Builder
-function YourBuilder(value: string, size: number) {
-  Text(value)
-    .fontSize(size)
-    .fontColor(Color.Pink)
-}
-
 let globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
+
 @Entry
 @Component
 struct Index {
@@ -73,14 +69,6 @@ struct Index {
     Row() {
       Column() {
         globalBuilder.builder(this.message, 50)
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() =>{
-            this.message = 'Test wrapBuilder';
-            globalBuilder = wrapBuilder(YourBuilder);
-          })
-
       }
       .width('100%')
     }
@@ -89,7 +77,7 @@ struct Index {
 }
 ```
 
-## Usage Scenario 2
+## Use Scenario 2
 
 In this example, the custom component **Index** uses **ForEach** to render different \@Builder functions. You can use the **wrapBuilder** array declared in **builderArr** to present different \@Builder function effects. In this way, the code is neat.
 
@@ -135,7 +123,7 @@ struct Index {
 
 
 
-## Nonexample
+## Incorrect Usage
 
 ```
 function MyBuilder() {

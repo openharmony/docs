@@ -241,7 +241,7 @@ struct Second {
   @State visible: Visibility = Visibility.Hidden
   @State wid: number = 300
   @State hei: number = 300
-  private proxy: UIExtensionProxy = undefined
+  private proxy: UIExtensionProxy | null = null;
 
 
   build() {
@@ -261,7 +261,7 @@ struct Second {
           .height(this.hei)
           .border({width: 5, color: Color.Blue})
           .onResult((data)=>{
-            this.message1 = JSON.stringify(data['want']['bundleName'])
+            this.message1 = data['want'] ? JSON.stringify(data['want']['bundleName']) : "";
           })
           .onRelease((code)=>{
             this.message2 = "release code : " + code
@@ -363,19 +363,19 @@ export default class UIExtAbility extends UIExtensionAbility {
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import router from '@ohos.router';
 
-
 let storage = LocalStorage.getShared()
+AppStorage.setOrCreate('message', 'UIExtensionAbility')
 
 @Entry(storage)
 @Component
 struct Extension {
-  @State message: string = 'UIExtensionAbility'
-  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
+  @StorageLink('message') storageLink: string = '';
+  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
 
   onPageShow() {
     if (this.session != undefined) {
       this.session.setReceiveDataCallback((data)=> {
-        this.message = JSON.stringify(data['data'])
+        this.storageLink = JSON.stringify(data)
         console.info("invoke for test, handle callback set by setReceiveDataCallback successfully");
       })
 
@@ -386,7 +386,7 @@ struct Extension {
   build() {
     Row() {
       Column() {
-        Text(this.message)
+        Text(this.storageLink)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("点击向Component发送数据").onClick(()=>{
@@ -422,8 +422,9 @@ struct Extension {
     .height('100%')
   }
 }
-function func1(data: { [key: string]: Object; }): { [key: string]: Object; } {
-  this.message = JSON.stringify(data['data'])
+function func1(data: Record<string, Object>): Record<string, Object> {
+  let linkToMsg: SubscribedAbstractProperty<string> = AppStorage.link('message');
+  linkToMsg.set(JSON.stringify(data))
   console.info("invoke for test, handle callback set by setReceiveDataForResultCallback successfully");
   return data;
 }

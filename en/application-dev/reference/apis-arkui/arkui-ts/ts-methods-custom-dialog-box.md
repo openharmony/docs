@@ -29,21 +29,22 @@ Defines a custom dialog box.
 
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | [CustomDialog](../../ui/arkts-common-components-custom-dialog.md) | Yes   | Builder of the custom dialog box content.                             |
-| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back key, the ESC key, or the mask is clicked.|
+| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | Yes   | Builder of the custom dialog box content.<br>**NOTE**<br>If the builder uses a callback as the input parameter, as in **build: custombuilder({ callback: ()=> {...}})**, pay attention to the binding of **this**.|
+| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back button or mask is touched or the Esc key is pressed.|
 | autoCancel                    | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked. The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>Default value: **true**|
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.                  |
 | customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>**false** (default): The dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.<br>**true**: The dialog box automatically adapts its width to the child components; the rounded corner is 0; the background color is transparent.|
-| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
+| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | No   | Custom mask color.<br>Default value: **0x33000000**             |
 | maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
-| openAnimation<sup>10+</sup>   | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.|
-| closeAnimation<sup>10+</sup>  | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.<br>For page transition, you are advised to use the default close animation.                   |
+| openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.|
+| closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.<br>For page transition, you are advised to use the default close animation.                   |
 | showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
 | backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.<br>**NOTE**<br>If the content builder also has the background color set, the background color set here will be overridden by the background color of the content builder.|
 | cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }**<br>**NOTE**<br>This attribute must be used together with the [borderRadius](ts-universal-attributes-border.md#borderradius) attribute.|
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
+| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](ts-methods-alert-dialog-box.md#dismissdialog12)) => void | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
 
 > **NOTE**
 >
@@ -55,7 +56,7 @@ Defines a custom dialog box.
 ### Objects to Import
 
 ```ts
-let dialogController : CustomDialogController = new CustomDialogController(CustomDialogControllerOptions)
+dialogController : CustomDialogController | null = new CustomDialogController(CustomDialogControllerOptions)
 ```
 > **NOTE**
 >
@@ -105,6 +106,16 @@ struct CustomDialogExample {
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
+    onWillDismiss:(dismissDialog: DismissDialog)=> {
+      console.info("reason=" + JSON.stringify(dismissDialog.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+        dismissDialog.dismiss()
+      }
+      if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialog.dismiss()
+      }
+    },
     offset: { dx: 0, dy: -25 } })
   controller?: CustomDialogController
   // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self behind all controllers.
@@ -157,13 +168,23 @@ struct CustomDialogUser {
   @State inputValue: string = 'Click Me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept,
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() },
       textValue: $textValue,
       inputValue: $inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,
+    onWillDismiss:(dismissDialog: DismissDialog)=> {
+      console.info("reason=" + JSON.stringify(dismissDialog.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+        dismissDialog.dismiss()
+      }
+      if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialog.dismiss()
+      }
+    },
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
@@ -233,11 +254,21 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() }
     }),
     cancel: this.existApp,
     autoCancel: true,
+    onWillDismiss:(dismissDialog: DismissDialog)=> {
+      console.info("reason=" + JSON.stringify(dismissDialog.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialog.reason == DismissReason.PRESS_BACK) {
+        dismissDialog.dismiss()
+      }
+      if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialog.dismiss()
+      }
+    },
     alignment: DialogAlignment.Center,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,

@@ -57,7 +57,11 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 **示例：**
 
 ```ts
+//默认构造
 let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
+```
+
+```ts
 //使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
 let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue < secondValue});
 treeSet.add("a");
@@ -68,6 +72,23 @@ let numbers = Array.from(treeSet.values())
 for (let item of numbers) {
   console.log("TreeSet:" + item);
 }
+```
+
+```ts
+//当插入自定义类型时，则必须要提供比较函数。
+class TestEntry{
+  public id: number = 0;
+}
+let ts1: TreeSet<TestEntry> = new TreeSet<TestEntry>((t1: TestEntry, t2: TestEntry): boolean => {return t1.id > t2.id;});
+let entry1: TestEntry = {
+  id: 0
+};
+let entry2: TestEntry = {
+  id: 1
+}
+ts1.add(entry1);
+ts1.add(entry2);
+console.log("treeSet: ", ts1.length);
 ```
 
 

@@ -5,9 +5,7 @@
 
 The **PhotoOutput_Callbacks** struct defines the callbacks used for photo output.
 
-**See**
-
-[OH_PhotoOutput_RegisterCallback](_o_h___camera.md#oh_photooutput_registercallback)
+For details, see [OH_PhotoOutput_RegisterCallback](_o_h___camera.md#oh_photooutput_registercallback).
 
 **Since**: 11
 
@@ -21,10 +19,10 @@ The **PhotoOutput_Callbacks** struct defines the callbacks used for photo output
 
 | Name| Description| 
 | -------- | -------- |
-| [onFrameStart](#onframestart) | Callback to report photo output frame start events.| 
-| [onFrameShutter](#onframeshutter) | Callback to report frame shutter events.| 
-| [onFrameEnd](#onframeend) | Callback to report photo output frame end events.| 
-| [onError](#onerror) | Callback to report photo output errors.| 
+| [OH_PhotoOutput_OnFrameStart](_o_h___camera.md#oh_photooutput_onframestart) [onFrameStart](#onframestart) | Callback to report photo output frame start events.| 
+| [OH_PhotoOutput_OnFrameShutter](_o_h___camera.md#oh_photooutput_onframeshutter) [onFrameShutter](#onframeshutter) | Callback to report frame shutter events.| 
+| [OH_PhotoOutput_OnFrameEnd](_o_h___camera.md#oh_photooutput_onframeend) [onFrameEnd](#onframeend) | Callback to report photo output frame end events.| 
+| [OH_PhotoOutput_OnError](_o_h___camera.md#oh_photooutput_onerror) [onError](#onerror) | Callback to report photo output errors.| 
 
 
 ## Member Variable Description

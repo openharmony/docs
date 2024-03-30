@@ -1827,18 +1827,6 @@ DLP沙箱身份。
 | bundleName | string | 是 | 否 | 表示应用包名。 |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 
-## RetentionSandboxInfo
-
-保留沙箱的沙箱信息。
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
-
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| bundleName | string | 是 | 否 | 表示应用包名。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。 |
-
 ## AccountType
 
 授权帐号类型的枚举。

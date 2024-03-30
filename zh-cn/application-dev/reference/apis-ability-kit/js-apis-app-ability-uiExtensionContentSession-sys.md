@@ -547,7 +547,7 @@ getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
 
 | 类型 | 说明 |
 | -------- | -------- |
-| uiExtensionHost.UIExtensionHostWindowProxy | 窗口对象。 |
+| [uiExtensionHost.UIExtensionHostWindowProxy](../apis-arkui/js-apis-uiExtensionHost-sys.md) | 宿主应用窗口信息。 |
 
 **错误码：**
 
@@ -561,6 +561,8 @@ getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
 import Want from '@ohos.app.ability.Want';
+import uiExtensionHost from '@ohos.uiExtensionHost';
+
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
 
@@ -582,10 +584,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     let extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    let storage: LocalStorage = new LocalStorage({
+    let data: Record<string, UIExtensionContentSession | uiExtensionHost.UIExtensionHostWindowProxy> = {
         'session': session,
         'extensionHostWindow': extensionHostWindow
-    });
+    }
+    let storage: LocalStorage = new LocalStorage(data);
     session.loadContent('pages/extension', storage);
   }
 

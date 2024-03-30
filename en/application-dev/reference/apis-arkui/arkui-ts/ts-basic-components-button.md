@@ -60,17 +60,147 @@ Creates a button component based on text content. In this case, the component ca
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name         | Type          | Description                               |
-| ----------- | ----------- | --------------------------------- |
-| type        | [ButtonType](#buttontype) | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fontSize    | [Length](ts-types.md#length) | Font size of the button.<br>Default value: **'16fp'**|
-| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | Font color of the button.<br>Default value: **'\#ffffff'**|
-| fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| FontWeight.Normal |
-| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | Font style of the button.<br>Default value: **FontStyle.Normal**|
-| stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label style of the button.|
-| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11) | Style and primacy of the button.<br>Default value: **ButtonStyleMode.EMPHASIZED**|
-| controlSize<sup>11+</sup> | [ControlSize](#controlsize11) | Size of the button.<br>Default value: **ControlSize.NORMAL**|
+### type
+
+type(value: ButtonType)
+
+Sets the button type.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description                                       |
+| ------ | --------------------------------- | ---- | ------------------------------------------- |
+| value  | [ButtonType](#buttontype) | Yes  | Button type.<br>Default value: **ButtonType.Capsule**|
+
+### fontSize
+
+fontSize(value: Length)
+
+Sets the font size for the button.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                             |
+| ------ | ---------------------------- | ---- | --------------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Font size of the button.<br>Default value: **'16fp'**|
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+Sets the font color for the button.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                 |
+| ------ | ------------------------------------------ | ---- | ------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the button.<br>Default value: **'\#ffffff'**|
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+Sets the font weight for the button.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight of the button. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400**|
+
+### fontStyle
+
+fontStyle(value: FontStyle)
+
+Sets the font style for the button.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                           |
+| ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
+| value  | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes  | Font style of the button.<br>Default value: **FontStyle.Normal**|
+
+### stateEffect
+
+stateEffect(value: boolean)
+
+Specifies whether to enable the pressed effect on the click of the button.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**|
+
+### labelStyle<sup>10+</sup>
+
+labelStyle(value: LabelStyle)
+
+Sets the label style for the button.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                             |
+| ------ | ----------------------------------- | ---- | --------------------------------- |
+| value  | [LabelStyle](#labelstyle10) | Yes  | Label style of the button.|
+
+### buttonStyle<sup>11+</sup>
+
+buttonStyle(value: ButtonStyleMode)
+
+Sets the style and primacy for the button.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                                        |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ButtonStyleMode](#buttonstylemode11) | Yes  | Style and primacy of the button<br>Default value: **ButtonStyleMode.EMPHASIZED**|
+
+### controlSize<sup>11+</sup>
+
+controlSize(value: ControlSize)
+
+Sets the size for the button.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                            |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [ButtonStyleMode](#buttonstylemode11) | Yes  | Size of the button.<br>Default value: **ControlSize.NORMAL**|
 
 ## ButtonType
 

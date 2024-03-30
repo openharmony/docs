@@ -39,7 +39,7 @@ In the cross-device scenario, before starting a remote PageAbility, you must req
 
 | API| Description|
 | -------- | -------- |
-| requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCode: number, resultCallback: AsyncCallback&lt; PermissionRequestResult&gt;): void | Requests permissions from the system. This API uses an asynchronous callback to return the result. For details, see [API Reference](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7-1).|
+| requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCode: number, resultCallback: AsyncCallback&lt; PermissionRequestResult&gt;): void | Requests permissions from the system. This API uses an asynchronous callback to return the result. For details, see [API Reference](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7-1).|
 
 
 The following sample code shows how to request the data synchronization permission from users:

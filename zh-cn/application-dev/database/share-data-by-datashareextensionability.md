@@ -36,19 +36,13 @@
 [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)提供以下API，根据需要重写对应回调方法。
 
 - **onCreate**：DataShare客户端连接DataShareExtensionAbility服务端时，服务端需要在此回调中实现初始化业务逻辑，该方法可以选择性重写。
-
 - **insert**：业务函数，客户端请求插入数据时回调此接口，服务端需要在此回调中实现插入数据功能，该方法可以选择性重写。
-
 - **update**：业务函数，客户端请求更新数据时回调此接口，服务端需要在此回调中实现更新数据功能，该方法可以选择性重写。
-
+- **batchUpdate**：业务函数，客户端请求批量更新数据时回调此接口，服务端需要在此回调中实现批量更新数据功能，该方法可以选择性重写。
 - **delete**：业务函数，客户端请求删除数据时回调此接口，服务端需要在此回调中实现删除数据功能，该方法可以选择性重写。
-
 - **query**：业务函数，客户端请求查询数据时回调此接口，服务端需要在此回调中实现查询数据功能，该方法可以选择性重写。
-
 - **batchInsert**：业务函数，客户端请求批量插入数据时回调此接口，服务端需要在此回调中实现批量插入数据的功能，该方法可以选择性重写。
-
 - **normalizeUri**：业务函数，客户端给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。
-
 - **denormalizeUri**：业务函数，服务端使用的URI转换为客户端传入的初始URI时服务端回调此接口，该方法可以选择性重写。
 
 开发者在实现一个数据共享服务时，需要在DevEco Studio工程中手动新建一个DataShareExtensionAbility，具体步骤如下。
@@ -58,10 +52,11 @@
 2. 在DataShareAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DataShareExtAbility.ets。
 
 3. 在DataShareExtAbility.ets文件中，导入
-`@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块。
+`@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
    
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
+   import { UpdateOperation } from '@ohos.application.DataShareExtensionAbility';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    import relationalStore from '@ohos.data.relationalStore';
    import Want from '@ohos.app.ability.Want';
@@ -119,6 +114,25 @@
          console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
+     // 重写batchUpdate接口
+     batchUpdate(operations, callback) {
+        let recordOps : Record<string, Array<UpdateOperation>> = operations;
+        let results : Record<string, Array<number>> = {};
+           for (const [key, values] of Object.entries(recordOps)) {
+               let result : number[] = [];
+               for (const value of values) {
+                   await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+                       console.info('Update row count is ' + rows);
+                       result.push(rows);
+                   }).catch((err) => {
+                       console.info("Update failed, err is " + JSON.stringify(err));
+                       result.push(-1);
+                   })
+               }
+               results[key] = result;
+           }
+           callback(null, results);
+       }
      // 可根据应用需求，选择性重写各个接口
    };
    ```
@@ -240,6 +254,23 @@
    let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
+   
+   let record: Record<string, Array<dataShare.UpdateOperation>> = {};
+   let operations1: Array<dataShare.UpdateOperation> = [];
+   let operations2: Array<dataShare.UpdateOperation> = [];
+   let operation1: dataShare.UpdateOperation = {
+     values: valuesBucket,
+     predicates: predicates
+   }
+   operations1.push(operation1);
+   let operation2: dataShare.UpdateOperation = {
+     values: updateBucket,
+     predicates: predicates
+   }
+   operations2.push(operation2);
+   record["uri1"] = operations1;
+   record["uri2"] = operations2;
+   
    if (dsHelper != undefined) {
      // 插入一条数据
      (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
@@ -257,6 +288,18 @@
      (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
        console.info(`dsHelper delete result:${data}`);
      });
+     // 批量更新数据
+     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
+       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
+       for (const [key, values] of Object.entries(data)) {
+           console.info(`Update uri:${key}`);
+           for (const value of values) {
+               console.info(`Update result:${value}`);
+           }
+       }
+     })；
+     // 关闭DataShareHelper实例
+     (dsHelper as dataShare.DataShareHelper).close();
    }
    ```
 

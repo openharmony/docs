@@ -160,7 +160,7 @@ A one- or two-way data synchronization relationship can be set up from an \@Stat
 
    When \@Link **testNum** in **LinkChild** changes:
 
-   1. The changes are first synchronized to its parent component **Parent**, and then from **Parent** to **Siling**.
+   1. The changes are first synchronized to its parent component **Parent**, and then from **Parent** to **Sibling**.
 
    2. The changes are also synchronized to the child components **LinkLinkChild** and **PropLinkChild**.
 

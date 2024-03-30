@@ -26,7 +26,7 @@ Radio(options: RadioOptions)
 
 | 参数名  | 类型                                  | 必填 | 描述               |
 | ------- | ------------------------------------- | ---- | ------------------ |
-| options | [RadioOptions](#radiooptions对象说明) | 否   | 配置单选框的参数。 |
+| options | [RadioOptions](#radiooptions对象说明) | 是   | 配置单选框的参数。 |
 
 ## RadioOptions对象说明
 
@@ -34,23 +34,74 @@ Radio(options: RadioOptions)
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 当前单选框的值。|
 | group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。|
+| indicatorType<sup>12+</sup> | [RadioIndicatorType](#radioindicatortype12枚举说明) | 否 | 配置单选框的选中样式。未设置时按照RadioIndicatorType.TICK进行显示。|
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。indicatorBuilder不是function时，按照RadioIndicatorType.TICK进行显示。|
+
+## RadioIndicatorType<sup>12+</sup>枚举说明
+
+| 名称            | 描述                             |
+| --------------- | -------------------------------- |
+| TICK            | 选中样式为系统默认TICK图标。  |
+| DOT             | 选中样式为系统默认DOT图标。   |
+| CUSTOM          | 选中样式为indicatorBuilder中的内容。|
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle10对象说明) | 设置单选框选中状态和非选中状态的样式。 <br/>从API version 10开始，该接口支持在ArkTS组件中使用。|
+### checked
+
+checked(value: boolean)
+
+设置单选框的选中状态。
+
+从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                 |
+| ------ | ------- | ---- | ------------------------------------ |
+| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false |
+
+### radioStyle<sup>10+</sup>
+
+radioStyle(value?: RadioStyle)
+
+设置单选框选中状态和非选中状态的样式。 
+
+从API version 10开始，该接口支持在ArkTS组件中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                               |
+| ------ | ----------------------------------- | ---- | ---------------------------------- |
+| value  | [RadioStyle](#radiostyle10对象说明) | 否   | 单选框选中状态和非选中状态的样式。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -&nbsp;isChecked为true时，表示从未选中变为选中。<br> -&nbsp;isChecked为false时，表示从选中变为未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### onChange
+
+onChange(callback: (isChecked: boolean) => void)
+
+单选框选中状态改变时触发回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| isChecked | boolean | 是   | 单选框的状态。<br/>为true时，表示从未选中变为选中。为false时，表示从选中变为未选中。 |
 
 ## RadioStyle<sup>10+</sup>对象说明
 
@@ -58,10 +109,11 @@ Radio(options: RadioOptions)
 | ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |
 | checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | #007DFF | 开启状态底板颜色。     |
 | uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | #182431 | 关闭状态描边颜色。     |
-| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | #FFFFFF | 开启状态内部圆饼颜色。 |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | #FFFFFF | 开启状态内部圆饼颜色。从API version 12开始，indicatorType设置为RadioIndicatorType.TICK和RadioIndicatorType.DOT时，支持修改内部颜色。indicatorType设置为RadioIndicatorType.CUSTOM时，不支持修改内部颜色。 |
 
 ## 示例
-
+### 示例1 
+设置开启状态底板颜色。
 ```ts
 // xxx.ets
 @Entry
@@ -110,3 +162,55 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio.gif)
+### 示例2 
+设置选中样式为图片。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RadioExample {
+  @Builder 
+  indicatorBuilder() {
+    Image($r("app.media.star"))
+  }
+  build() {
+    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Column() {
+        Text('Radio1')
+        Radio({ value: 'Radio1', group: 'radioGroup',
+          indicatorType:RadioIndicatorType.TICK
+        }).checked(true)
+          .height(50)
+          .width(80)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio1 status is ' + isChecked)
+          })
+      }
+      Column() {
+        Text('Radio2')
+        Radio({ value: 'Radio2', group: 'radioGroup',
+          indicatorType:RadioIndicatorType.DOT
+        }).checked(false)
+          .height(50)
+          .width(80)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio2 status is ' + isChecked)
+          })
+      }
+      Column() {
+        Text('Radio3')
+        Radio({ value: 'Radio3', group: 'radioGroup',
+          indicatorType:RadioIndicatorType.CUSTOM,
+          indicatorBuilder:()=>{this.indicatorBuilder()}
+        }).checked(false)
+          .height(50)
+          .width(80)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio3 status is ' + isChecked)
+          })
+      }
+    }.padding({ top: 30 })
+  }
+}
+```
+![radio](figures/radio_2.gif)

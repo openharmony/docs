@@ -38,7 +38,7 @@ For details about how to use the APIs of BackupExtensionAbility, see [BackupExte
                "icon": "$media:icon",
                "name": "BackupExtensionAbility",
                "type": "backup",
-               "visible": true,
+               "exported": false,
                "metadata": [
                    {
                        "name": "ohos.extension.backup",
@@ -47,7 +47,7 @@ For details about how to use the APIs of BackupExtensionAbility, see [BackupExte
                ],
                // In the BackupExtension.ts file, inherit from BackupExtensionAbility and override the onBackup and onRestore methods.
                // If there is no special requirement, you do not have to override onBackup and onRestore. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
-               "srcEntrance": "./ets/BackupExtension/BackupExtension.ts", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ts", 
            }      
        ]
    }

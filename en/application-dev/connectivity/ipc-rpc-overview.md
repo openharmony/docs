@@ -3,7 +3,7 @@
 
 ## Basic Concepts
 
-The inter-process communication (IPC) and remote procedure call (RPC) mechanisms are used to implement cross-process communication. The difference between them lies in that IPC uses the Binder driver to implement cross-process communication within a device, whereas RPC uses the DSoftBus driver to implement cross-process communication across devices. The reason why cross-process communication is needed is that each process has its own independent resources and memory space and one process is not allowed to access the resources and memory space of other processes.
+Inter-process communication (IPC) and remote procedure call (RPC) are used to implement cross-process communication. IPC uses the Binder driver to implement cross-process communication within a device, whereas RPC uses the DSoftBus driver to implement cross-process communication across devices. Cross-process communication is required because each process has its own independent resources and memory space and one process is not allowed to access the resources and memory space of other processes.
 
 > **NOTE**
 > The applications in the stage model cannot use IPC or RPC directly, and must use the following capabilities to implement related service scenarios:
@@ -20,8 +20,10 @@ IPC and RPC usually use the client-server model, where the client (service reque
 
 ## Constraints
 
-- A maximum of 1 MB data can be transferred in cross-process communication on a single device. If the amount of data to be transmitted is larger than 1 MB, use [anonymous shared memory](../reference/apis/js-apis-rpc.md#ashmem8).
+- A maximum of 1 MB data can be transferred in cross-process communication on a single device. If the amount of data to be transmitted is larger than 1 MB, use [anonymous shared memory](../reference/apis-ipc-kit/js-apis-rpc.md#ashmem8).
 
 - Subscription to death notifications of anonymous stub objects (not registered with SAMgr) is prohibited in RPC.
 
 - During cross-process communication across processes, a proxy object cannot be passed back to the device that hosts the stub object pointed by the proxy object. That is, the proxy object pointing to the stub object of the remote device cannot be passed across processes twice on the local device.
+
+<!--no_check-->

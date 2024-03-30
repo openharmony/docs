@@ -60,16 +60,19 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
 
+let seService : secureElement.SEService;
+
+// get the service
 try {
-    let nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
+    seService = secureElement.newSEService("serviceState", (state) => {
+    hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
     });
-} catch (e) {
-    console.error("newSEService occurs " + "exception: ${(e : BusinessError).message}");
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
+}
+if (seService == undefined || !seService.isConnected()) {
+    hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+    return;
 }
 ```
 
@@ -90,36 +93,23 @@ getReaders(): Reader[]
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
+let seService : secureElement.SEService;
+let seReaders : omasecureElementpi.Reader[];
 
+// Before use seService, initialization for seService is required
+
+// get readers
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "excpetion: ${(e : BusinessError).message}");
+    seReaders = seService.getReaders();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'getReaders error %{public}s', JSON.stringify(error));
 }
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        console.log("get reader successfully");
-    } else {
-        console.error("get reader failed");
-    }
-} catch (e) {
-    console.error("getReaders " + "exception: ${(e : BusinessError).message}");
+if (seReaders == undefined || seReaders.length == 0) {
+    hilog.error(0x0000, 'testTag', 'no valid reader found.');
+    return;
 }
 ```
 
@@ -140,37 +130,22 @@ isConnected(): boolean
 **示例：**
 
 ```JS
-import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
 
-let nfcSEService : omapi.SEService | null = null;
+let seService : secureElement.SEService;
 
+// get the service
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
+    seService = secureElement.newSEService("serviceState", (state) => {
+    hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
     });
-} catch (e) {
-    console.error("newSEService" + "exception: ${(e : BusinessError).message}");
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
 }
-
-try {
-    let ret: boolean = false;
-    // refer to newSEService for this.nfcSEService 
-    if (nfcSEService != null) {
-        ret = nfcSEService.isConnected();
-    }
-    if (ret) {
-        console.log("get state: connected");
-    } else {
-        console.log("get state: not connected");
-    }
-} catch (e) {
-    console.error("isConnected " + "exception: ${(e : BusinessError).message}");
+if (seService == undefined || !seService.isConnected()) {
+    hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+    return;
 }
 ```
 
@@ -185,32 +160,17 @@ shutdown(): void
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
 
-let nfcSEService : omapi.SEService | null = null;
+let seService : secureElement.SEService;
+
+// Before use seService, initialization for seService is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    // refer to newSEService for this.nfcSEService 
-    if (nfcSEService != null) {
-        nfcSEService.shutdown();
-    }
-    console.log("shutdown successfully");
-} catch (e) {
-    console.error("shutdown exception:" + "exception: ${(e : BusinessError).message}");
+    seService.shutdown();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'shutdown error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -231,31 +191,18 @@ getVersion(): string
 **示例：**
 
 ```JS
-import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
 
-let nfcSEService : omapi.SEService | null = null;
+let seService : secureElement.SEService;
+
+// Before use seService, initialization for seService is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    // refer to newSEService for this.nfcSEService 
-    if (nfcSEService != null) {
-        console.log("version: " + nfcSEService.getVersion());
-    }
-} catch (e) {
-    console.error("getVersion " + "exception: ${(e : BusinessError).message}");
+    let version = seService.getVersion();
+    hilog.error(0x0000, 'testTag', 'version %{public}s', JSON.stringify(version));
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'getVersion error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -276,36 +223,16 @@ getName(): string
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seReaders : omasecureElementpi.Reader[];
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
+// Before use seReaders, initialization for seReaders is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        console.log(nfcOmaReaderList[0].getName());
-    } else {
-        console.error("getName failed");
-    }
-} catch (e) {
-    console.error("getName " + "exception: ${(e : BusinessError).message}");
+    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let name = reader.getName();
+    hilog.info(0x0000, 'testTag', 'name %{public}s', JSON.stringify(name));
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'getName error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -334,41 +261,16 @@ isSecureElementPresent(): boolean
 **示例：**
 
 ```js
+let seReaders : omasecureElementpi.Reader[];
 
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
-
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
+// Before use seReaders, initialization for seReaders is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        if (nfcOmaReaderList[0].isSecureElementPresent()) {
-            console.log("isSecureElementPresent success");
-        } else {
-            console.log("isSecureElementPresent failed");
-        }
-    } else {
-        console.error("isSecureElementPresent failed");
-    }
-} catch (e) {
-    console.error("isSecureElementPresent " + "exception: ${(e : BusinessError).message}");
+    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let isPresent = reader.isSecureElementPresent();
+    hilog.info(0x0000, 'testTag', 'isPresent %{public}s', JSON.stringify(isPresent));
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'isSecureElementPresent error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -398,40 +300,20 @@ try {
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seReaders : omasecureElementpi.Reader[];
+let seSession : secureElement.Session;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
+// Before use seReaders, initialization for seReaders is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    seSession = reader.openSession();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
 }
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        if (nfcOmaReaderList[0].openSession()) {
-            console.log("get session successfully");
-        } else {
-            console.log("get session failed");
-        }
-    } else {
-        console.error("OpenSession failed");
-    }
-} catch (e) {
-    console.error("OpenSession " + "exception: ${(e : BusinessError).message}");
+if (seSession == undefined) {
+    hilog.error(0x0000, 'testTag', 'seSession invalid.');
+    return;
 }
 ```
 
@@ -454,37 +336,26 @@ try {
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seReaders : omasecureElementpi.Reader[];
+let seSession : secureElement.Session;
+let reader : omasecureElementpi.Reader;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
+// Before use seReaders, initialization for seReaders is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+    reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    seSession = reader.openSession();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
 }
-
+if (seSession == undefined) {
+    hilog.error(0x0000, 'testTag', 'seSession invalid.');
+    return;
+}
 try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        nfcOmaReaderList[0].closeSessions();
-        console.log("closeSessions successfully");
-    } else {
-        console.error("closeSessions failed");
-    }
-} catch (e) {
-    console.error("closeSessions " + "exception: ${(e : BusinessError).message}");
+    reader.closeSessions();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'closeSessions error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -505,42 +376,26 @@ getReader(): Reader
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seReaders : omasecureElementpi.Reader[];
+let seSession : secureElement.Session;
+let reader : omasecureElementpi.Reader;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
+// Before use seReaders, initialization for seReaders is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+    reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    seSession = reader.openSession();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
 }
-
+if (seSession == undefined) {
+    hilog.error(0x0000, 'testTag', 'seSession invalid.');
+    return;
+}
 try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession.getReader() != null) {
-            console.log("get reader successfully");
-        } else {
-            console.error("get reader failed");
-        }
-    } else {
-        console.error("getReader failed");
-    }
-} catch (e) {
-    console.error("getReader " + "exception: ${(e : BusinessError).message}");
+    let sessionReader = seSession.getReader();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'getReader error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -569,53 +424,15 @@ getATR(): number[]
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let omaATR : number[] | null = null;
-let str : string = "";
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            omaATR = omaSession.getATR();
-        } else {
-            console.error("getATR failed");
-        }
-    }
-    if (omaATR != null && omaATR.length > 0) {
-        str = 'getATR result:[';
-        for (let i = 0; i < omaATR.length; ++i) {
-            str += omaATR[i];
-            str += ' ';
-        }
-        str += ']';
-        console.log(str);
-    } else {
-        console.error("getATR failed");
-    }
-} catch (e) {
-    console.error("getATR " + "exception: ${(e : BusinessError).message}");
+    let atr = seSession.getATR();
+    hilog.info(0x0000, 'testTag', 'atr %{public}s', JSON.stringify(atr));
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'getATR error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -638,42 +455,15 @@ close(): void
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+    seSession.close();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'close error %{public}s', JSON.stringify(error));
 }
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            omaSession.close();
-        } else {
-            console.error("close failed");
-        }
-    }
-} catch (e) {
-    console.error("close " + "exception: ${(e : BusinessError).message}");
-}
-
 ```
 
 ## Session. isClosed
@@ -697,43 +487,15 @@ isClosed(): boolean
 **示例：**
 
 ```Js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            console.log("openSession success");
-            if (omaSession.isClosed()) {
-                console.log("session is closed");
-            }
-        } else {
-            console.error("openSession failed");
-        }
-    }
-} catch (e) {
-    console.error("isClosed " + "exception: ${(e : BusinessError).message}");
+    let isClosed = seSession.isClosed();
+    hilog.info(0x0000, 'testTag', 'isClosed %{public}s', JSON.stringify(isClosed));
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'isClosed error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -756,41 +518,14 @@ closeChannels(): void
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            omaSession.closeChannels();
-            console.log("closeChannels success");
-        } else {
-            console.error("closeChannels failed");
-        }
-    }
-} catch (e) {
-    console.error("closeChannels " + "exception: ${(e : BusinessError).message}");
+    seSession.closeChannels();
+} catch (error) {
+    hilog.error(0x0000, 'testTag', 'closeChannels error %{public}s', JSON.stringify(error));
 }
 ```
 
@@ -828,45 +563,25 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let aidArray : number[] = [720, 1080];
-let getPromise : Promise<omapi.Channel> | null = null;
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
+    // change the aid value for open channel.
+    seSession.openBasicChannel(aidArray).then((data) => {
+        seChannel = data;
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
     });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
 }
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            getPromise = omaSession.openBasicChannel(aidArray);
-        } else {
-            console.error("openBasicChannel1 failed");
-        }
-    }
-    if (getPromise != null) {
-        console.log("openBasicChannel1 get channel successfully");
-    }
-} catch (e) {
-    console.error("openBasicChannel1 " + "exception: ${(e : BusinessError).message}");
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -899,45 +614,27 @@ try {
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let aidArray : number[] = [720, 1080];
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
+    // change the aid value for open channel.
+    seSession.openBasicChannel(aidArray, (error, data) => {
+        if (error) {
+            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
         } else {
-            console.log("Service state is Connected");
+            seChannel = data;
         }
     });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
 }
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            omaSession.openBasicChannel(aidArray, (error, data) => {
-                if (error) {
-                    console.error("openBasicChannel2 failed:" + JSON.stringify(error));
-                    return;
-                }
-                console.log("openBasicChannel2 get channel successfully");
-            });
-        }
-    }
-} catch (e) {
-    console.error("openBasicChannel2 " + "exception: ${(e : BusinessError).message}");
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -976,46 +673,26 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
-
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let nfcOmaChannel : omapi.Channel | null = null;
-let aidArray : number[] = [720, 1080];
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
+// Before use seSession, initialization for seSession is required
 
 try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openBasicChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            nfcOmaChannel = channel;
-            console.log("openBasicChannel3 get channel successfully");
-        })
-    }
-} catch (e) {
-    console.error("openBasicChannel3 " + "exception: ${(e : BusinessError).message}");
+    // change the aid value for open channel.
+    seSession.openBasicChannel(aidArray, p2).then((data) => {
+        seChannel = data;
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+    });
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+}
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -1049,48 +726,28 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
-
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let nfcOmaChannel : omapi.Channel | null = null;
-let aidArray : number[] = [720, 1080];
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
+// Before use seSession, initialization for seSession is required
 
 try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        omaSession.openBasicChannel(aidArray, p2, (error , data) => {
-            if (error) {
-                console.error("openBasicChannel4 failed:" + JSON.stringify(error));
-                return;
-            }
-            nfcOmaChannel = data;
-            console.log("openBasicChannel4 get channel successfully");
-        });
-    }
-} catch (e) {
-    console.error("openBasicChannel4 " + "exception: ${(e : BusinessError).message}");
+    // change the aid value for open channel.
+    seSession.openBasicChannel(aidArray, p2, (error, data) => {
+        if (error) {
+            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+        } else {
+            seChannel = data;
+        }
+    });
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+}
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -1128,45 +785,25 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let aidArray : number[] = [720, 1080];
-let getPromise : Promise<omapi.Channel> | null = null;
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
+    // change the aid value for open channel.
+    seSession.openLogicalChannel(aidArray).then((data) => {
+        seChannel = data;
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
     });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
 }
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-        if (omaSession != null) {
-            getPromise = omaSession.openLogicalChannel(aidArray);
-        } else {
-            console.error("openLogicalChannel1 failed");
-        }
-    }
-    if (getPromise != null) {
-        console.log("openLogicalChannel1 get channel successfully");
-    }
-} catch (e) {
-    console.error("openLogicalChannel1 " + "exception: ${(e : BusinessError).message}");
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -1199,45 +836,27 @@ try {
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let aidArray : number[] = [720, 1080];
+// Before use seSession, initialization for seSession is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
+    // change the aid value for open channel.
+    seSession.openLogicalChannel(aidArray, (error, data) => {
+        if (error) {
+            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
         } else {
-            console.log("Service state is Connected");
+            seChannel = data;
         }
     });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
 }
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        omaSession.openLogicalChannel(aidArray, (error, data) => {
-            if (error) {
-                console.error("openLogicalChannel2 failed:" + JSON.stringify(error));
-                return;
-            }
-            console.log("openLogicalChannel2 get channel successfully");
-        });
-    }
-} catch (e) {
-    console.error("openLogicalChannel2 " + "exception: ${(e : BusinessError).message}");
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -1260,7 +879,7 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 | **类型** | **说明**       |
 | -------- | -------------- |
-| Channel | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
+| Promise\<Channel> | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
 
 **错误码：**
 
@@ -1276,46 +895,26 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
-
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let nfcOmaChannel : omapi.Channel | null = null;
-let aidArray : number[] = [720, 1080];
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
+// Before use seSession, initialization for seSession is required
 
 try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            nfcOmaChannel = channel;
-            console.log("openLogicalChannel3 get channel successfully");
-        })
-    }
-} catch (e) {
-    console.error("openLogicalChannel3 " + "exception: ${(e : BusinessError).message}");
+    // change the aid value for open channel.
+    seSession.openLogicalChannel(aidArray, p2).then((data) => {
+        seChannel = data;
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+    });
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+}
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -1349,48 +948,28 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
-
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let nfcOmaChannel : omapi.Channel | null = null;
-let aidArray : number[] = [720, 1080];
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
+let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
+// Before use seSession, initialization for seSession is required
 
 try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        omaSession.openLogicalChannel(aidArray, p2, (error, data) => {
-            if (error) {
-                console.error("openLogicalChannel4 failed:" + JSON.stringify(error));
-                return;
-            }
-            nfcOmaChannel = data;
-            console.log("openLogicalChannel4 get channel successfully");
-        });
-    }
-} catch (e) {
-    console.error("openLogicalChannel4 " + "exception: ${(e : BusinessError).message}");
+    // change the aid value for open channel.
+    seSession.openLogicalChannel(aidArray, p2, (error, data) => {
+        if (error) {
+            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+        } else {
+            seChannel = data;
+        }
+    });
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+}
+if (seChannel == undefined) {
+    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+    return;
 }
 ```
 
@@ -1411,51 +990,15 @@ try {
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seSession : secureElement.Session;
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
-let mySession : omapi.Session | null = null;
+// Before use seChannel, initialization for seChannel is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            mySession = channel.getSession();
-            console.log("openLogicalChannel get channel successfully");
-        })
-    }
-    if (mySession != null) {
-        console.log("get session successfully");
-    } else {
-        console.error("get session failed");
-    }
-} catch (e) {
-    console.error("get session " + "exception: ${(e : BusinessError).message}");
+    seSession = seChannel.getSession();
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'getSession exception %{public}s', JSON.stringify(exception));
 }
 ```
 
@@ -1470,45 +1013,14 @@ close(): void
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
+// Before use seChannel, initialization for seChannel is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            channel.close();
-            console.log("channel close successfully");
-        })
-    }
-} catch (e) {
-    console.error("channel close " + "exception: ${(e : BusinessError).message}");
+    seChannel.close();
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'close exception %{public}s', JSON.stringify(exception));
 }
 ```
 
@@ -1529,50 +1041,15 @@ isBasicChannel(): boolean
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
-let ret : boolean = false;
+// Before use seChannel, initialization for seChannel is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            ret = channel.isBasicChannel();
-        })
-    }
-    if (ret) {
-        console.log("isBasicChannel TRUE");
-    } else {
-        console.log("isBasicChannel FALSE");
-    }
-} catch (e) {
-    console.error("isBasicChannel " + "exception: ${(e : BusinessError).message}");
+    let isBasic = seChannel.isBasicChannel();
+    hilog.info(0x0000, 'testTag', 'isBasic = %{public}s', JSON.stringify(isBasic));
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'isBasicChannel exception %{public}s', JSON.stringify(exception));
 }
 ```
 
@@ -1593,56 +1070,21 @@ isClosed(): boolean
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
-let ret : boolean = false;
+// Before use seChannel, initialization for seChannel is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-      nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            ret = channel.isClosed();
-        })
-    }
-    if (ret) {
-        console.log("channel isClosed TRUE");
-    } else {
-        console.log("channel isClosed False");
-    }
-} catch (e) {
-    console.error("isBasicChannel " + "exception: ${(e : BusinessError).message}");
+    let isClosed = seChannel.isClosed();
+    hilog.info(0x0000, 'testTag', 'isClosed = %{public}s', JSON.stringify(isClosed));
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'isClosed exception %{public}s', JSON.stringify(exception));
 }
 ```
 
 ## Channel. getSelectResponse
 
-getSelectResponse():number[]
+getSelectResponse(): number[]
 
 获取SELECT Applet时的响应数据，包含状态字。
 
@@ -1661,57 +1103,15 @@ getSelectResponse():number[]
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
-let responseArray : number[] = [720, 1080];
-let str : string = "";
+// Before use seChannel, initialization for seChannel is required
 
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
-    });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            responseArray = channel.getSelectResponse();
-        })
-    }
-    if (responseArray) {
-        str = "getSelectResponse result:[";
-        for (let i = 0; i < responseArray.length; ++i) {
-            str += responseArray[i];
-            str += ' ';
-        }
-        str += ']';
-        console.log(str);
-    } else {
-        console.error("getSelectResponse result is null");
-    }
-} catch (e) {
-    console.error("isBasicChannel " + "exception: ${(e : BusinessError).message}");
+    let response = seChannel.getSelectResponse();
+    hilog.info(0x0000, 'testTag', 'response = %{public}s', JSON.stringify(response));
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'getSelectResponse exception %{public}s', JSON.stringify(exception));
 }
 ```
 
@@ -1748,52 +1148,19 @@ transmit(command: number[]): Promise\<number[]>
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
-let responseArray : Promise<number[]> | null = null;
+// Before use seChannel, initialization for seChannel is required
 
+var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
+    seChannel.transmit(cmdData).then((response) => {
+        hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
+    }).catch((error : BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'transmit error = %{public}s.', JSON.stringify(error));
     });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            let command: number[] = [100, 200];
-            // refer to Session.openBasicChannel for this.nfcOmaChannel
-            responseArray = channel.transmit(command);
-        })
-    }
-    if (responseArray != null) {
-        console.log("transmit1 success");
-    } else {
-        console.error("transmit1 failed");
-    }
-} catch (e) {
-    console.error("transmit1 " + "exception: ${(e : BusinessError).message}");
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'transmit exception = %{public}s.', JSON.stringify(exception));
 }
 ```
 
@@ -1825,58 +1192,20 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 **示例：**
 
 ```js
-import omapi from '@ohos.secureElement';
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+let seChannel : secureElement.Channel;
 
-let nfcSEService : omapi.SEService | null = null;
-let nfcOmaReaderList : omapi.Reader[] | null = null;
-let omaSession : omapi.Session | null = null;
-let getPromise : Promise<omapi.Channel> | null = null;
-let aidArray : number[] = [720, 1080];
-let p2 : number = 0x00;
-let str : string = "";
+// Before use seChannel, initialization for seChannel is required
 
+var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
 try {
-    nfcSEService = secureElement.newSEService("serviceState", (state) => {
-        if (state == secureElement.ServiceState.DISCONNECTED) {
-            console.log("Service state is Disconnected");
-        } else {
-            console.log("Service state is Connected");
-        }
+    seChannel.transmit(cmdData, (error, response) => {
+    if (error) {
+        hilog.error(0x0000, 'testTag', 'transmit error %{public}s', JSON.stringify(error));
+    } else {
+        hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
+    }
     });
-} catch (e) {
-    console.error("newSEService " + "exception: ${(e : BusinessError).message}");
-}
-
-try {
-    if (nfcSEService != null) {
-        nfcOmaReaderList = nfcSEService.getReaders();
-    }
-    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
-        omaSession = nfcOmaReaderList[0].openSession();
-    }
-    if (omaSession != null) {
-        getPromise = omaSession.openLogicalChannel(aidArray, p2);
-        getPromise.then((channel) => {
-            let command: number[] = [100, 200];
-            // refer to Session.openBasicChannel for this.nfcOmaChannel
-            channel.transmit(command, (error, data) => {
-                if (error) {
-                    console.error("transmit2 exception:" + JSON.stringify(error));
-                    return;
-                }
-                str = "transmit2 result:[";
-                for (let i = 0; i < data.length; ++i) {
-                    str += data[i];
-                    str += " ";
-                }
-                str += "]";
-                console.log(str)
-            });
-        })
-    }
-} catch (e) {
-    console.error("transmit2 " + "exception: ${(e : BusinessError).message}");
+} catch (exception) {
+    hilog.error(0x0000, 'testTag', 'transmit exception %{public}s', JSON.stringify(exception));
 }
 ```

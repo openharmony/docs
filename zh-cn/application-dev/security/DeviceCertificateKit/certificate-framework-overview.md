@@ -68,6 +68,7 @@
 - [证书链校验器对象的创建和校验](create-verify-cerchainvalidator-object.md)
 - [证书集合及证书吊销列表集合对象的创建和获取](create-get-cert-crl-object.md)
 - [证书链对象的创建和校验](create-verify-certchain-object.md)
+- [证书链校验时从p12文件构造TrustAnchor对象数组](create-trustanchor-from-p12.md)
 
 证书算法库框架主要提供了以下类，开发者可以查阅对应API参考，了解以下接口。
 

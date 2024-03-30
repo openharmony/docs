@@ -29,14 +29,16 @@ The table below lists the types of continuous tasks, which are used in various s
 | TASK_KEEPING | Computing task (for specific devices only)| taskKeeping  | Run antivirus software.|
 
 
-- When an application requests a continuous task of the DATA_TRANSFER type, the system increases the priority of the application process to reduce the probability of terminating the process. However, it still suspends the process. To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis/js-apis-request.md) so that the system functions as the agent.
+- When an application requests a continuous task of the DATA_TRANSFER type, the system increases the priority of the application process to reduce the probability of terminating the process. However, it still suspends the process. To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) so that the system functions as the agent.
 - Only audio and video applications that use [AVSession](../media/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
 
 
 ### Constraints
 
 - **Ability restrictions**: In the stage model, only the UIAbility can request continuous tasks. In the FA model, only the ServiceAbility can request continuous tasks.
+
 - **Quantity restrictions**: A UIAbility (ServiceAbility in the FA model) can request only one continuous task at a time. If a UIAbility has a running continuous task, it can request another one only after the running task is finished. If an application needs to request multiple continuous tasks at the same time, it must create multiple UIAbilities. After a UIAbility requests a continuous task, all the processes of the application are not suspended.
+
 - **Running restrictions**: The system verifies continuous tasks on mobile phones.
    - Scenario 1: If an application requests a continuous task but does not execute or has finished the task of the requested type, the system performs certain control. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system terminates the application process.
    - Scenario 2: If an application does not request a continuous task of a given type but executes such a continuous task, the system performs certain control. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system performs control on the application.
@@ -48,13 +50,13 @@ The table below lists the types of continuous tasks, which are used in various s
 
 ## Available APIs
 
-The table below uses promise as an example to describe the APIs used for developing continuous tasks. For details about more APIs and their usage, see [Background Task Management](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md).
+The table below uses promise as an example to describe the APIs used for developing continuous tasks. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md).
 
 **Table 2** Main APIs for continuous tasks
 
 | API| Description|
 | -------- | -------- |
-| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | Requests a continuous task.|
+| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | Requests a continuous task.|
 | stopBackgroundRunning(context: Context): Promise&lt;void&gt; | Cancels a continuous task.|
 
 ## How to Develop
@@ -65,7 +67,7 @@ The following walks you through how to request a continuous task for recording. 
 
 ### Stage Model
 
-1. Request the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. Declare the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 2. Declare the continuous task type.
    
@@ -126,7 +128,7 @@ The following walks you through how to request a continuous task for recording. 
               abilityName: "com.example.myapplication.MainAbility"
             }
           ],
-          // Specify the action to perform (starting the ability) after the notification is clicked.
+          // Specify the action to perform (starting the ability) after the notification message is clicked.
           operationType: wantAgent.OperationType.START_ABILITY,
           // Custom request code.
           requestCode: 0,
@@ -331,7 +333,7 @@ The following walks you through how to request a continuous task for recording. 
 
 2. Configure permissions and declare the continuous task type.
 
-   Configure the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission in the **config.json** file. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file). In addition, declare the continuous task type for the ServiceAbility.
+   Declare the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission in the **config.json** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). In addition, declare the continuous task type for the ServiceAbility.
    
    ```json
    "module": {
@@ -363,7 +365,7 @@ The following walks you through how to request a continuous task for recording. 
     import Want from '@ohos.app.ability.Want';
    ```
 
-4. Request and cancel a continuous task. In the ServiceAbility, call **startBackgroundRunning()** and **startBackgroundRunning()** to request and cancel a continuous task. Use JS code to implement this scenario.
+4. Request and cancel a continuous task. In the ServiceAbility, call **startBackgroundRunning()** and **stopBackgroundRunning()** to request and cancel a continuous task. Use JS code to implement this scenario.
   
    ```js
     function startContinuousTask() {
@@ -467,5 +469,5 @@ The following walks you through how to request a continuous task for recording. 
     }
 
     export default new ServiceAbility();
-   ```
+    ```
 

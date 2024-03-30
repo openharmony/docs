@@ -41,13 +41,83 @@ ListItem(value?: string)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
-| editable<sup>(deprecated)</sup>  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃不再使用，无替代接口。<br/>默认值：false |
-| selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
-| selected<sup>10+</sup> | boolean | 设置当前ListItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**说明：**<br/>该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)前使用才能生效选中态样式。<br/>默认值：false|
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>end?:[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>- start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。<br/> - 滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。 |
+### sticky<sup>(deprecated)</sup>
+
+sticky(value: Sticky)
+
+设置ListItem吸顶效果。
+
+从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#属性)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                                       |
+| ------ | ----------------------------------- | ---- | ------------------------------------------ |
+| value  | [Sticky](#stickydeprecated枚举说明) | 是   | ListItem吸顶效果。<br/>默认值：Sticky.None |
+
+### editable<sup>(deprecated)</sup>
+
+editable(value: boolean | EditMode)
+
+设置当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。
+
+从API version9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                       |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| value  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 是   | ListItem元素是否可编辑。<br/>默认值：false |
+
+### selectable<sup>8+</sup>
+
+selectable(value: boolean)
+
+设置当前ListItem元素是否可以被鼠标框选。外层List容器的鼠标框选开启时，ListItem的框选才生效。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                              |
+| ------ | ------- | ---- | ------------------------------------------------- |
+| value  | boolean | 是   | ListItem元素是否可以被鼠标框选。<br/>默认值：true |
+
+### selected<sup>10+</sup>
+
+selected(value: boolean)
+
+设置当前ListItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)前使用才能生效选中态样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                     |
+| ------ | ------- | ---- | ---------------------------------------- |
+| value  | boolean | 是   | 当前ListItem选中状态。<br/>默认值：false |
+
+### swipeAction<sup>9+</sup>
+
+swipeAction(value: SwipeActionOptions)
+
+用于设置ListItem的划出组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                              | 必填 | 说明                 |
+| ------ | ------------------------------------------------- | ---- | -------------------- |
+| value  | [SwipeActionOptions](#swipeactionoptions对象说明) | 是   | ListItem的划出组件。 |
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
 从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
@@ -71,7 +141,21 @@ ListItem(value?: string)
 |   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
 |   None   |    1    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
 
+## SwipeActionOptions对象说明
+
+start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。
+
+滑动手势只在listItem区域上，如果子组件划出ListItem区域外，在ListItem以外部分不会响应划动手势。所以在多列模式下，建议不要将划出组件设置太宽。
+
+| 名称                         | 类型                                                         | 必填 | 描述                                                         |
+| ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| start                        | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。 |
+| end                          | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。 |
+| edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9枚举说明)                 | 否   | 滑动效果。                                                   |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。                                   |
+
 ## SwipeActionItem<sup>10+</sup>对象说明
+
 List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选项或向左滑动时，item右边的长距离滑动删除选项。
 </br>List水平布局，ListItem向上滑动，item下边的长距离滑动删除选项或向下滑动时，item上边的长距离滑动删除选项。
 
@@ -112,9 +196,21 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 ## 事件
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | ListItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
+### onSelect<sup>8+</sup>
+
+onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
+
+ListItem元素被鼠标框选的状态改变时触发回调。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isSelected | boolean | 是   | 进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
 
 ## 示例
 

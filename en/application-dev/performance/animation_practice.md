@@ -20,7 +20,7 @@ To apply an animation to a component when it appears or disappears, two common m
 **transition** is preferred over **animateTo**, primarily for two reasons:
 
 - **transition** leads to higher performance, in that it involves only one property change with a conditional statement, while **animateTo** involves two property changes, one before the animation and one after.
-- **transition** is easier to implement, with the need for complex logic processing in the animation end callback.  
+- **transition** is easier to implement, without the need for complex logic processing in the animation end callback.  
 
 Avoid: Change a component's opacity property from 1 to 0 to hide the component, and control the disappearance of the component in the animation end callback.
 

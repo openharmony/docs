@@ -12,7 +12,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 | OH_Hid_EmitEvent(int32_t deviceId, const Hid_EmitItem items[], uint16_t length) | 向指定deviceId的HID设备发送事件。 |
 | OH_Hid_DestroyDevice(int32_t deviceId) | 销毁指定deviceId的HID设备。 |
 
-详细的接口说明请参考[HID DDK](../reference/native-apis/_hid_ddk.md)。
+详细的接口说明请参考[HID DDK](../reference/apis-driverdevelopment-kit/_hid_ddk.md)。
 
 ## HID DDK开发步骤
 

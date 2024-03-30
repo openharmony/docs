@@ -25,25 +25,47 @@ HiAppEvent模块提供应用事件打点功能。
 | [hiappevent_param.h](hiappevent__param_8h.md) | 定义所有预定义事件的参数名称。<br/>**引用文件**：<hiappevent/hiappevent_cfg.h><br/>**库**：libhiappevent_ndk.z.so | 
 
 
+### 结构体
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| struct  [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。  | 
+| struct  [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | 具有相同事件名称的事件组。  | 
+
+
 ### 宏定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DISABLE](#disable)   "disable" | 事件打点开关。 | 
-| [MAX_STORAGE](#max_storage)   "max_storage" | 事件文件目录存储配额大小。 | 
-| [EVENT_USER_LOGIN](#event_user_login)   "hiappevent.user_login" | 用户登录事件。 | 
-| [EVENT_USER_LOGOUT](#event_user_logout)   "hiappevent.user_logout" | 用户登出事件。 | 
-| [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start)   "hiappevent.distributed_service_start" | 分布式服务事件。 | 
-| [PARAM_USER_ID](#param_user_id)   "user_id" | 用户ID。 | 
-| [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)   "ds_name" | 分布式服务名称。 | 
-| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id)   "ds_instance_id" | 分布式服务实例ID。 | 
+| [DISABLE](#disable)   "disable" | 事件打点开关。  | 
+| [MAX_STORAGE](#max_storage)   "max_storage" | 事件文件目录存储配额大小。  | 
+| [EVENT_USER_LOGIN](#event_user_login)   "hiappevent.user_login" | 用户登录事件。  | 
+| [EVENT_USER_LOGOUT](#event_user_logout)   "hiappevent.user_logout" | 用户登出事件。  | 
+| [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start)   "hiappevent.distributed_service_start" | 分布式服务事件。  | 
+| [EVENT_APP_CRASH](#event_app_crash)   "APP_CRASH" | 应用崩溃事件。  | 
+| [EVENT_APP_FREEZE](#event_app_freeze)   "APP_FREEZE" | 应用卡顿事件。  | 
+| [EVENT_APP_LAUNCH](#event_app_launch)   "APP_LAUNCH" | 应用加载事件。  | 
+| [EVENT_SCROLL_JANK](#event_scroll_jank)   "SCROLL_JANK" | 应用滑动卡顿事件。  | 
+| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high)   "CPU_USAGE_HIGH" | 应用CPU资源占用高事件。  | 
+| [EVENT_BATTERY_USAGE](#event_battery_usage)   "BATTERY_USAGE" | 应用电源使用率事件。  | 
+| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit)   "RESOURCE_OVERLIMIT" | 应用资源超限事件。  | 
+| [DOMAIN_OS](#domain_os)   "OS" | OS作用域。  | 
+| [PARAM_USER_ID](#param_user_id)   "user_id" | 用户ID。  | 
+| [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)   "ds_name" | 分布式服务名称。  | 
+| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id)   "ds_instance_id" | 分布式服务实例ID。  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct ParamListNode \* [ParamList](#paramlist) | 事件参数列表节点。 | 
+| typedef struct [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) [HiAppEvent_AppEventInfo](#hiappevent_appeventinfo) | 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。  | 
+| typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](#hiappevent_appeventgroup) | 具有相同事件名称的事件组。  | 
+| typedef struct ParamListNode \* [ParamList](#paramlist) | 事件参数列表节点。  | 
+| typedef struct [HiAppEvent_Watcher](#hiappevent_watcher) [HiAppEvent_Watcher](#hiappevent_watcher) | 用于接收app事件的监听器。  | 
+| typedef void(\* [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive)) (const char \*domain, const struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) \*appEventGroups, uint32_t groupLen) | 监听器接收到事件后，将触发该回调，将事件内容传递给调用方。  | 
+| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | 监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。当保存的事件满足通过 OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。  | 
+| typedef void(\* [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake)) (const char \*const \*events, uint32_t eventLen) | 使用OH_HiAppEvent_TakeWatcherData获取监听器接收到的事件时，监听器接收到的事件将通过该回调函数传递给调用者。  | 
 
 
 ### 枚举
@@ -57,26 +79,36 @@ HiAppEvent模块提供应用事件打点功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ParamList](#paramlist) [OH_HiAppEvent_CreateParamList](#oh_hiappevent_createparamlist) (void) | 创建一个指向参数列表对象的指针。 | 
-| void [OH_HiAppEvent_DestroyParamList](#oh_hiappevent_destroyparamlist) ([ParamList](#paramlist) list) | 销毁一个指向参数列表对象的指针，释放其分配内存。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddBoolParam](#oh_hiappevent_addboolparam) ([ParamList](#paramlist) list, const char \*name, bool boolean) | 添加一个布尔参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddBoolArrayParam](#oh_hiappevent_addboolarrayparam) ([ParamList](#paramlist) list, const char \*name, const bool \*booleans, int arrSize) | 添加一个布尔数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt8Param](#oh_hiappevent_addint8param) ([ParamList](#paramlist) list, const char \*name, int8_t num) | 添加一个int8_t参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt8ArrayParam](#oh_hiappevent_addint8arrayparam) ([ParamList](#paramlist) list, const char \*name, const int8_t \*nums, int arrSize) | 添加一个int8_t数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt16Param](#oh_hiappevent_addint16param) ([ParamList](#paramlist) list, const char \*name, int16_t num) | 添加一个int16_t参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt16ArrayParam](#oh_hiappevent_addint16arrayparam) ([ParamList](#paramlist) list, const char \*name, const int16_t \*nums, int arrSize) | 添加一个int16_t数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt32Param](#oh_hiappevent_addint32param) ([ParamList](#paramlist) list, const char \*name, int32_t num) | 添加一个int32_t参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt32ArrayParam](#oh_hiappevent_addint32arrayparam) ([ParamList](#paramlist) list, const char \*name, const int32_t \*nums, int arrSize) | 添加一个int32_t数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt64Param](#oh_hiappevent_addint64param) ([ParamList](#paramlist) list, const char \*name, int64_t num) | 添加一个int64_t参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddInt64ArrayParam](#oh_hiappevent_addint64arrayparam) ([ParamList](#paramlist) list, const char \*name, const int64_t \*nums, int arrSize) | 添加一个int64_t数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddFloatParam](#oh_hiappevent_addfloatparam) ([ParamList](#paramlist) list, const char \*name, float num) | 添加一个float参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddFloatArrayParam](#oh_hiappevent_addfloatarrayparam) ([ParamList](#paramlist) list, const char \*name, const float \*nums, int arrSize) | 添加一个float数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddDoubleParam](#oh_hiappevent_adddoubleparam) ([ParamList](#paramlist) list, const char \*name, double num) | 添加一个double参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddDoubleArrayParam](#oh_hiappevent_adddoublearrayparam) ([ParamList](#paramlist) list, const char \*name, const double \*nums, int arrSize) | 添加一个double数组参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddStringParam](#oh_hiappevent_addstringparam) ([ParamList](#paramlist) list, const char \*name, const char \*str) | 添加一个字符串参数到参数列表中。 | 
-| [ParamList](#paramlist) [OH_HiAppEvent_AddStringArrayParam](#oh_hiappevent_addstringarrayparam) ([ParamList](#paramlist) list, const char \*name, const char \*const \*strs, int arrSize) | 添加一个字符串数组参数到参数列表中。 | 
-| int [OH_HiAppEvent_Write](#oh_hiappevent_write) (const char \*domain, const char \*name, enum [EventType](#eventtype) type, const [ParamList](#paramlist) list) | 实现对参数为列表类型的应用事件打点。 | 
-| bool [OH_HiAppEvent_Configure](#oh_hiappevent_configure) (const char \*name, const char \*value) | 实现应用事件打点的配置功能。 | 
+| [ParamList](#paramlist) [OH_HiAppEvent_CreateParamList](#oh_hiappevent_createparamlist) (void) | 创建一个指向参数列表对象的指针。  | 
+| void [OH_HiAppEvent_DestroyParamList](#oh_hiappevent_destroyparamlist) ([ParamList](#paramlist) list) | 销毁一个指向参数列表对象的指针，释放其分配内存。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddBoolParam](#oh_hiappevent_addboolparam) ([ParamList](#paramlist) list, const char \*name, bool boolean) | 添加一个布尔参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddBoolArrayParam](#oh_hiappevent_addboolarrayparam) ([ParamList](#paramlist) list, const char \*name, const bool \*booleans, int arrSize) | 添加一个布尔数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt8Param](#oh_hiappevent_addint8param) ([ParamList](#paramlist) list, const char \*name, int8_t num) | 添加一个int8_t参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt8ArrayParam](#oh_hiappevent_addint8arrayparam) ([ParamList](#paramlist) list, const char \*name, const int8_t \*nums, int arrSize) | 添加一个int8_t数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt16Param](#oh_hiappevent_addint16param) ([ParamList](#paramlist) list, const char \*name, int16_t num) | 添加一个int16_t参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt16ArrayParam](#oh_hiappevent_addint16arrayparam) ([ParamList](#paramlist) list, const char \*name, const int16_t \*nums, int arrSize) | 添加一个int16_t数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt32Param](#oh_hiappevent_addint32param) ([ParamList](#paramlist) list, const char \*name, int32_t num) | 添加一个int32_t参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt32ArrayParam](#oh_hiappevent_addint32arrayparam) ([ParamList](#paramlist) list, const char \*name, const int32_t \*nums, int arrSize) | 添加一个int32_t数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt64Param](#oh_hiappevent_addint64param) ([ParamList](#paramlist) list, const char \*name, int64_t num) | 添加一个int64_t参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddInt64ArrayParam](#oh_hiappevent_addint64arrayparam) ([ParamList](#paramlist) list, const char \*name, const int64_t \*nums, int arrSize) | 添加一个int64_t数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddFloatParam](#oh_hiappevent_addfloatparam) ([ParamList](#paramlist) list, const char \*name, float num) | 添加一个float参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddFloatArrayParam](#oh_hiappevent_addfloatarrayparam) ([ParamList](#paramlist) list, const char \*name, const float \*nums, int arrSize) | 添加一个float数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddDoubleParam](#oh_hiappevent_adddoubleparam) ([ParamList](#paramlist) list, const char \*name, double num) | 添加一个double参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddDoubleArrayParam](#oh_hiappevent_adddoublearrayparam) ([ParamList](#paramlist) list, const char \*name, const double \*nums, int arrSize) | 添加一个double数组参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddStringParam](#oh_hiappevent_addstringparam) ([ParamList](#paramlist) list, const char \*name, const char \*str) | 添加一个字符串参数到参数列表中。  | 
+| [ParamList](#paramlist) [OH_HiAppEvent_AddStringArrayParam](#oh_hiappevent_addstringarrayparam) ([ParamList](#paramlist) list, const char \*name, const char \*const \*strs, int arrSize) | 添加一个字符串数组参数到参数列表中。  | 
+| int [OH_HiAppEvent_Write](#oh_hiappevent_write) (const char \*domain, const char \*name, enum [EventType](#eventtype) type, const [ParamList](#paramlist) list) | 实现对参数为列表类型的应用事件打点。  | 
+| bool [OH_HiAppEvent_Configure](#oh_hiappevent_configure) (const char \*name, const char \*value) | 实现应用事件打点的配置功能。  | 
+| [HiAppEvent_Watcher](#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](#oh_hiappevent_createwatcher) (const char \*name) | 创建一个用于监听app事件的监听器。  | 
+| void [OH_HiAppEvent_DestroyWatcher](#oh_hiappevent_destroywatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 销毁已创建的监听器。  | 
+| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。  | 
+| int [OH_HiAppEvent_SetAppEventFilter](#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | 用于设置监听器需要监听的事件的类型。  | 
+| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | 用于设置监听器onTrigger回调的接口。  | 
+| int [OH_HiAppEvent_SetWatcherOnReceive](#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive) onReceive) | 用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。  | 
+| int [OH_HiAppEvent_TakeWatcherData](#oh_hiappevent_takewatcherdata) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, uint32_t eventNum, [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake) onTake) | 用于获取监听器收到后保存的事件。  | 
+| int [OH_HiAppEvent_AddWatcher](#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 添加监听器的接口，监听器开始监听系统消息。  | 
+| int [OH_HiAppEvent_RemoveWatcher](#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 移除监听器的接口，监听器停止监听系统消息。  | 
+| void [OH_HiAppEvent_ClearData](#oh_hiappevent_cleardata) (void) | 清除所有监视器保存的所有事件。  | 
 
 
 ## 宏定义说明
@@ -87,12 +119,76 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define DISABLE   "disable"
 ```
-
 **描述**
-
 事件打点开关。
 
 **起始版本：** 8
+
+
+### DOMAIN_OS
+
+```
+#define DOMAIN_OS   "OS"
+```
+**描述**
+OS作用域。
+
+**起始版本：** 12
+
+
+### EVENT_APP_CRASH
+
+```
+#define EVENT_APP_CRASH   "APP_CRASH"
+```
+**描述**
+应用崩溃事件。
+
+**起始版本：** 12
+
+
+### EVENT_APP_FREEZE
+
+```
+#define EVENT_APP_FREEZE   "APP_FREEZE"
+```
+**描述**
+应用卡顿事件。
+
+**起始版本：** 12
+
+
+### EVENT_APP_LAUNCH
+
+```
+#define EVENT_APP_LAUNCH   "APP_LAUNCH"
+```
+**描述**
+应用加载事件。
+
+**起始版本：** 12
+
+
+### EVENT_BATTERY_USAGE
+
+```
+#define EVENT_BATTERY_USAGE   "BATTERY_USAGE"
+```
+**描述**
+应用电源使用率事件。
+
+**起始版本：** 12
+
+
+### EVENT_CPU_USAGE_HIGH
+
+```
+#define EVENT_CPU_USAGE_HIGH   "CPU_USAGE_HIGH"
+```
+**描述**
+应用CPU资源占用高事件。
+
+**起始版本：** 12
 
 
 ### EVENT_DISTRIBUTED_SERVICE_START
@@ -100,12 +196,32 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define EVENT_DISTRIBUTED_SERVICE_START   "hiappevent.distributed_service_start"
 ```
-
 **描述**
-
 分布式服务事件。
 
 **起始版本：** 8
+
+
+### EVENT_RESOURCE_OVERLIMIT
+
+```
+#define EVENT_RESOURCE_OVERLIMIT   "RESOURCE_OVERLIMIT"
+```
+**描述**
+应用资源超限事件。
+
+**起始版本：** 12
+
+
+### EVENT_SCROLL_JANK
+
+```
+#define EVENT_SCROLL_JANK   "SCROLL_JANK"
+```
+**描述**
+应用滑动卡顿事件。
+
+**起始版本：** 12
 
 
 ### EVENT_USER_LOGIN
@@ -113,9 +229,7 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define EVENT_USER_LOGIN   "hiappevent.user_login"
 ```
-
 **描述**
-
 用户登录事件。
 
 **起始版本：** 8
@@ -126,9 +240,7 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define EVENT_USER_LOGOUT   "hiappevent.user_logout"
 ```
-
 **描述**
-
 用户登出事件。
 
 **起始版本：** 8
@@ -139,9 +251,7 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define MAX_STORAGE   "max_storage"
 ```
-
 **描述**
-
 事件文件目录存储配额大小。
 
 **起始版本：** 8
@@ -152,9 +262,7 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID   "ds_instance_id"
 ```
-
 **描述**
-
 分布式服务实例ID。
 
 **起始版本：** 8
@@ -165,9 +273,7 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define PARAM_DISTRIBUTED_SERVICE_NAME   "ds_name"
 ```
-
 **描述**
-
 分布式服务名称。
 
 **起始版本：** 8
@@ -178,9 +284,7 @@ HiAppEvent模块提供应用事件打点功能。
 ```
 #define PARAM_USER_ID   "user_id"
 ```
-
 **描述**
-
 用户ID。
 
 **起始版本：** 8
@@ -189,14 +293,116 @@ HiAppEvent模块提供应用事件打点功能。
 ## 类型定义说明
 
 
+### HiAppEvent_AppEventGroup
+
+```
+typedef struct HiAppEvent_AppEventGroupHiAppEvent_AppEventGroup
+```
+**描述**
+具有相同事件名称的事件组。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+
+### HiAppEvent_AppEventInfo
+
+```
+typedef struct HiAppEvent_AppEventInfoHiAppEvent_AppEventInfo
+```
+**描述**
+单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+
+### HiAppEvent_Watcher
+
+```
+typedef struct HiAppEvent_WatcherHiAppEvent_Watcher
+```
+**描述**
+用于接收app事件的监听器。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+
+### OH_HiAppEvent_OnReceive
+
+```
+typedef void(* OH_HiAppEvent_OnReceive) (const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen)
+```
+**描述**
+监听器接收到事件后，将触发该回调，将事件内容传递给调用方。
+
+注意：回调中的指针所指对象的生命周期仅限于该回调函数内，请勿在该回调函数外直接使用该指针，若需缓存该信息，请对指针指向的内容进行深拷贝。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| domain | 接收到的app事件的领域。  | 
+| appEventGroups | 按照不同事件名称分组的事件组数组。  | 
+| groupLen | 事件组数组的长度。  | 
+
+
+### OH_HiAppEvent_OnTake
+
+```
+typedef void(* OH_HiAppEvent_OnTake) (const char *const *events, uint32_t eventLen)
+```
+**描述**
+使用OH_HiAppEvent_TakeWatcherData获取监听器接收到的事件时，监听器接收到的事件将通过该回调函数传递给调用者。
+
+注意：回调中的指针所指对象的生命周期仅限于该回调函数内，请勿在该回调函数外直接使用该指针，若需缓存该信息，请对指针指向的内容进行深拷贝。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| events | json字符串格式的事件数组。  | 
+| eventLen | 事件数组大小。  | 
+
+
+### OH_HiAppEvent_OnTrigger
+
+```
+typedef void(* OH_HiAppEvent_OnTrigger) (int row, int size)
+```
+**描述**
+监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。当保存的事件满足通过 OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| row | 监听器新接收到的事件消息的数量。  | 
+| size | 监听器新接收的事件消息的大小总和(单个事件大小计算方式为，将消息转换为json字符串后，字符串的长度)。  | 
+
+
 ### ParamList
 
 ```
 typedef struct ParamListNode* ParamList
 ```
-
 **描述**
-
 事件参数列表节点。
 
 **起始版本：** 8
@@ -210,9 +416,7 @@ typedef struct ParamListNode* ParamList
 ```
 enum EventType
 ```
-
 **描述**
-
 事件类型。
 
 建议开发者根据不同的使用场景选择不同的事件类型。
@@ -235,9 +439,7 @@ enum EventType
 ```
 ParamList OH_HiAppEvent_AddBoolArrayParam (ParamList list, const char * name, const bool * booleans, int arrSize )
 ```
-
 **描述**
-
 添加一个布尔数组参数到参数列表中。
 
 **起始版本：** 8
@@ -246,10 +448,10 @@ ParamList OH_HiAppEvent_AddBoolArrayParam (ParamList list, const char * name, co
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| booleans | 需要添加的布尔数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| booleans | 需要添加的布尔数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -261,9 +463,7 @@ ParamList OH_HiAppEvent_AddBoolArrayParam (ParamList list, const char * name, co
 ```
 ParamList OH_HiAppEvent_AddBoolParam (ParamList list, const char * name, bool boolean )
 ```
-
 **描述**
-
 添加一个布尔参数到参数列表中。
 
 **起始版本：** 8
@@ -272,9 +472,9 @@ ParamList OH_HiAppEvent_AddBoolParam (ParamList list, const char * name, bool bo
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| boolean | 需要添加的布尔参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| boolean | 需要添加的布尔参数值。  | 
 
 **返回：**
 
@@ -286,9 +486,7 @@ ParamList OH_HiAppEvent_AddBoolParam (ParamList list, const char * name, bool bo
 ```
 ParamList OH_HiAppEvent_AddDoubleArrayParam (ParamList list, const char * name, const double * nums, int arrSize )
 ```
-
 **描述**
-
 添加一个double数组参数到参数列表中。
 
 **起始版本：** 8
@@ -297,10 +495,10 @@ ParamList OH_HiAppEvent_AddDoubleArrayParam (ParamList list, const char * name, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| nums | 需要添加的double数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| nums | 需要添加的double数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -312,9 +510,7 @@ ParamList OH_HiAppEvent_AddDoubleArrayParam (ParamList list, const char * name, 
 ```
 ParamList OH_HiAppEvent_AddDoubleParam (ParamList list, const char * name, double num )
 ```
-
 **描述**
-
 添加一个double参数到参数列表中。
 
 **起始版本：** 8
@@ -323,9 +519,9 @@ ParamList OH_HiAppEvent_AddDoubleParam (ParamList list, const char * name, doubl
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| num | 需要添加的double参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| num | 需要添加的double参数值。  | 
 
 **返回：**
 
@@ -337,9 +533,7 @@ ParamList OH_HiAppEvent_AddDoubleParam (ParamList list, const char * name, doubl
 ```
 ParamList OH_HiAppEvent_AddFloatArrayParam (ParamList list, const char * name, const float * nums, int arrSize )
 ```
-
 **描述**
-
 添加一个float数组参数到参数列表中。
 
 **起始版本：** 8
@@ -348,10 +542,10 @@ ParamList OH_HiAppEvent_AddFloatArrayParam (ParamList list, const char * name, c
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| nums | 需要添加的float数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| nums | 需要添加的float数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -363,9 +557,7 @@ ParamList OH_HiAppEvent_AddFloatArrayParam (ParamList list, const char * name, c
 ```
 ParamList OH_HiAppEvent_AddFloatParam (ParamList list, const char * name, float num )
 ```
-
 **描述**
-
 添加一个float参数到参数列表中。
 
 **起始版本：** 8
@@ -374,9 +566,9 @@ ParamList OH_HiAppEvent_AddFloatParam (ParamList list, const char * name, float 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| num | 需要添加的float参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| num | 需要添加的float参数值。  | 
 
 **返回：**
 
@@ -388,9 +580,7 @@ ParamList OH_HiAppEvent_AddFloatParam (ParamList list, const char * name, float 
 ```
 ParamList OH_HiAppEvent_AddInt16ArrayParam (ParamList list, const char * name, const int16_t * nums, int arrSize )
 ```
-
 **描述**
-
 添加一个int16_t数组参数到参数列表中。
 
 **起始版本：** 8
@@ -399,10 +589,10 @@ ParamList OH_HiAppEvent_AddInt16ArrayParam (ParamList list, const char * name, c
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| nums | 需要添加的int16_t数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| nums | 需要添加的int16_t数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -414,9 +604,7 @@ ParamList OH_HiAppEvent_AddInt16ArrayParam (ParamList list, const char * name, c
 ```
 ParamList OH_HiAppEvent_AddInt16Param (ParamList list, const char * name, int16_t num )
 ```
-
 **描述**
-
 添加一个int16_t参数到参数列表中。
 
 **起始版本：** 8
@@ -425,9 +613,9 @@ ParamList OH_HiAppEvent_AddInt16Param (ParamList list, const char * name, int16_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| num | 需要添加的int16_t参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| num | 需要添加的int16_t参数值。  | 
 
 **返回：**
 
@@ -439,9 +627,7 @@ ParamList OH_HiAppEvent_AddInt16Param (ParamList list, const char * name, int16_
 ```
 ParamList OH_HiAppEvent_AddInt32ArrayParam (ParamList list, const char * name, const int32_t * nums, int arrSize )
 ```
-
 **描述**
-
 添加一个int32_t数组参数到参数列表中。
 
 **起始版本：** 8
@@ -450,10 +636,10 @@ ParamList OH_HiAppEvent_AddInt32ArrayParam (ParamList list, const char * name, c
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| nums | 需要添加的int32_t数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| nums | 需要添加的int32_t数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -465,9 +651,7 @@ ParamList OH_HiAppEvent_AddInt32ArrayParam (ParamList list, const char * name, c
 ```
 ParamList OH_HiAppEvent_AddInt32Param (ParamList list, const char * name, int32_t num )
 ```
-
 **描述**
-
 添加一个int32_t参数到参数列表中。
 
 **起始版本：** 8
@@ -476,9 +660,9 @@ ParamList OH_HiAppEvent_AddInt32Param (ParamList list, const char * name, int32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| num | 需要添加的int32_t参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| num | 需要添加的int32_t参数值。  | 
 
 **返回：**
 
@@ -490,9 +674,7 @@ ParamList OH_HiAppEvent_AddInt32Param (ParamList list, const char * name, int32_
 ```
 ParamList OH_HiAppEvent_AddInt64ArrayParam (ParamList list, const char * name, const int64_t * nums, int arrSize )
 ```
-
 **描述**
-
 添加一个int64_t数组参数到参数列表中。
 
 **起始版本：** 8
@@ -501,10 +683,10 @@ ParamList OH_HiAppEvent_AddInt64ArrayParam (ParamList list, const char * name, c
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| nums | 需要添加的int64_t数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| nums | 需要添加的int64_t数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -516,9 +698,7 @@ ParamList OH_HiAppEvent_AddInt64ArrayParam (ParamList list, const char * name, c
 ```
 ParamList OH_HiAppEvent_AddInt64Param (ParamList list, const char * name, int64_t num )
 ```
-
 **描述**
-
 添加一个int64_t参数到参数列表中。
 
 **起始版本：** 8
@@ -527,9 +707,9 @@ ParamList OH_HiAppEvent_AddInt64Param (ParamList list, const char * name, int64_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| num | 需要添加的int64_t参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| num | 需要添加的int64_t参数值。  | 
 
 **返回：**
 
@@ -541,9 +721,7 @@ ParamList OH_HiAppEvent_AddInt64Param (ParamList list, const char * name, int64_
 ```
 ParamList OH_HiAppEvent_AddInt8ArrayParam (ParamList list, const char * name, const int8_t * nums, int arrSize )
 ```
-
 **描述**
-
 添加一个int8_t数组参数到参数列表中。
 
 **起始版本：** 8
@@ -552,10 +730,10 @@ ParamList OH_HiAppEvent_AddInt8ArrayParam (ParamList list, const char * name, co
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| nums | 需要添加的int8_t数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| nums | 需要添加的int8_t数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -567,9 +745,7 @@ ParamList OH_HiAppEvent_AddInt8ArrayParam (ParamList list, const char * name, co
 ```
 ParamList OH_HiAppEvent_AddInt8Param (ParamList list, const char * name, int8_t num )
 ```
-
 **描述**
-
 添加一个int8_t参数到参数列表中。
 
 **起始版本：** 8
@@ -578,9 +754,9 @@ ParamList OH_HiAppEvent_AddInt8Param (ParamList list, const char * name, int8_t 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| num | 需要添加的int8_t参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| num | 需要添加的int8_t参数值。  | 
 
 **返回：**
 
@@ -592,9 +768,7 @@ ParamList OH_HiAppEvent_AddInt8Param (ParamList list, const char * name, int8_t 
 ```
 ParamList OH_HiAppEvent_AddStringArrayParam (ParamList list, const char * name, const char *const * strs, int arrSize )
 ```
-
 **描述**
-
 添加一个字符串数组参数到参数列表中。
 
 **起始版本：** 8
@@ -603,10 +777,10 @@ ParamList OH_HiAppEvent_AddStringArrayParam (ParamList list, const char * name, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| strs | 需要添加的字符串数组参数值。 | 
-| arrSize | 需要添加的参数数组大小。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| strs | 需要添加的字符串数组参数值。  | 
+| arrSize | 需要添加的参数数组大小。  | 
 
 **返回：**
 
@@ -618,9 +792,7 @@ ParamList OH_HiAppEvent_AddStringArrayParam (ParamList list, const char * name, 
 ```
 ParamList OH_HiAppEvent_AddStringParam (ParamList list, const char * name, const char * str )
 ```
-
 **描述**
-
 添加一个字符串参数到参数列表中。
 
 **起始版本：** 8
@@ -629,13 +801,49 @@ ParamList OH_HiAppEvent_AddStringParam (ParamList list, const char * name, const
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 需要添加参数的参数列表指针。 | 
-| name | 需要添加的参数名称。 | 
-| str | 需要添加的字符串参数值。 | 
+| list | 需要添加参数的参数列表指针。  | 
+| name | 需要添加的参数名称。  | 
+| str | 需要添加的字符串参数值。  | 
 
 **返回：**
 
 添加参数后的参数列表指针。
+
+
+### OH_HiAppEvent_AddWatcher()
+
+```
+int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher * watcher)
+```
+**描述**
+添加监听器的接口，监听器开始监听系统消息。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+
+**返回：**
+
+0：接口调用成功；-5：watcher入参空指针。
+
+
+### OH_HiAppEvent_ClearData()
+
+```
+void OH_HiAppEvent_ClearData (void )
+```
+**描述**
+清除所有监视器保存的所有事件。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
 
 
 ### OH_HiAppEvent_Configure()
@@ -643,9 +851,7 @@ ParamList OH_HiAppEvent_AddStringParam (ParamList list, const char * name, const
 ```
 bool OH_HiAppEvent_Configure (const char * name, const char * value )
 ```
-
 **描述**
-
 实现应用事件打点的配置功能。
 
 应用事件打点配置接口，用于配置事件打点开关、事件文件目录存储配额大小等功能。
@@ -656,8 +862,8 @@ bool OH_HiAppEvent_Configure (const char * name, const char * value )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 配置项名称。 | 
-| value | 配置项值。 | 
+| name | 配置项名称。  | 
+| value | 配置项值。  | 
 
 **返回：**
 
@@ -669,9 +875,7 @@ bool OH_HiAppEvent_Configure (const char * name, const char * value )
 ```
 ParamList OH_HiAppEvent_CreateParamList (void )
 ```
-
 **描述**
-
 创建一个指向参数列表对象的指针。
 
 **起始版本：** 8
@@ -681,14 +885,37 @@ ParamList OH_HiAppEvent_CreateParamList (void )
 指向参数列表对象的指针。
 
 
+### OH_HiAppEvent_CreateWatcher()
+
+```
+HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher (const char * name)
+```
+**描述**
+创建一个用于监听app事件的监听器。
+
+注意：创建的监听器不再使用后必须通过调用OH_HiAppEvent_DestroyWatcher接口进行销毁。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| name | 监听器名称。  | 
+
+**返回：**
+
+接口调用成功时返回指向的新建监听器的指针，name参数异常时返回nullptr。
+
+
 ### OH_HiAppEvent_DestroyParamList()
 
 ```
 void OH_HiAppEvent_DestroyParamList (ParamList list)
 ```
-
 **描述**
-
 销毁一个指向参数列表对象的指针，释放其分配内存。
 
 **起始版本：** 8
@@ -697,7 +924,181 @@ void OH_HiAppEvent_DestroyParamList (ParamList list)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| list | 参数列表对象指针。 | 
+| list | 参数列表对象指针。  | 
+
+
+### OH_HiAppEvent_DestroyWatcher()
+
+```
+void OH_HiAppEvent_DestroyWatcher (HiAppEvent_Watcher * watcher)
+```
+**描述**
+销毁已创建的监听器。
+
+注意：已创建的监听器不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需将对应指针置空。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+
+
+### OH_HiAppEvent_RemoveWatcher()
+
+```
+int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher * watcher)
+```
+**描述**
+移除监听器的接口，监听器停止监听系统消息。
+
+注意：该接口仅仅使监听器停止监听系统消息，并未销毁该监听器，该监听器依然常驻内存，直至调用OH_HiAppEvent_DestroyWatcher接口，内存才会释放。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+
+**返回：**
+
+0：接口调用成功；-5：watcher入参空指针；-6：还未调用OH_HiAppEvent_AddWatcher，操作顺序有误。
+
+
+### OH_HiAppEvent_SetAppEventFilter()
+
+```
+int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * domain, uint8_t eventTypes, const char *const * names, int namesLen )
+```
+**描述**
+用于设置监听器需要监听的事件的类型。
+
+该函数可以重复调用，可添加多个过滤规则，而非替换，监听器将收到满足任一过滤规则的事件的通知。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+| domain | 需要监听事件的领域。  | 
+| eventTypes | 需要监听事件的事件类型。  | 
+| names | 需要监听的事件名称数组。  | 
+| namesLen | 监听的事件名称的数组长度。  | 
+
+**返回：**
+
+0：接口调用成功；-1：names参数异常；-4：domain参数异常；-5：watcher入参空指针。
+
+
+### OH_HiAppEvent_SetTriggerCondition()
+
+```
+int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, int size, int timeOut )
+```
+**描述**
+用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量，新接收事件大小，onTrigger触发超时时间 设置触发条件，调用方应至少保证从一个方面设置触发条件。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+| row | 当输入值大于0，且新接收事件的数量大于等于该值时，将调用设置的onTrigger回调函数吗，当输入值小于等于0时，不再以接收数量多少为维度 来触发onTrigger回调。  | 
+| size | 当输入值大于0，且新接收事件的大小(单个事件大小计算方式为，将事件转换为json字符串后，字符串的长度)大于等于该值时，将调用设置的 onTrigger回调函数，当输入值小于等于0时，不再以新接收事件大小为维度触发onTrigger回调。  | 
+| timeOut | 单位秒，当输入值大于0，每经过timeout秒，将检查监视器是否存在新接收到的事件，如果存在将触发onTrigger回调。触发onTrigger 后，经过timeOut秒后将再次检查是否存在新接收到的事件。当输入值小于等于0，不以超时时间为维度触发onTrigger回调。  | 
+
+**返回：**
+
+0：接口调用成功；-5：watcher入参空指针。
+
+
+### OH_HiAppEvent_SetWatcherOnReceive()
+
+```
+int OH_HiAppEvent_SetWatcherOnReceive (HiAppEvent_Watcher * watcher, OH_HiAppEvent_OnReceive onReceive )
+```
+**描述**
+用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+| onReceive | 回调函数的函数指针。  | 
+
+**返回：**
+
+0：接口调用成功；-5：watcher入参空指针。
+
+
+### OH_HiAppEvent_SetWatcherOnTrigger()
+
+```
+int OH_HiAppEvent_SetWatcherOnTrigger (HiAppEvent_Watcher * watcher, OH_HiAppEvent_OnTrigger onTrigger )
+```
+**描述**
+用于设置监听器onTrigger回调的接口。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+| onTrigger | 需要设置的回调。  | 
+
+**返回：**
+
+0：接口调用成功；-5：watcher入参空指针。
+
+
+### OH_HiAppEvent_TakeWatcherData()
+
+```
+int OH_HiAppEvent_TakeWatcherData (HiAppEvent_Watcher * watcher, uint32_t eventNum, OH_HiAppEvent_OnTake onTake )
+```
+**描述**
+用于获取监听器收到后保存的事件。
+
+\@SystemCapability.HiviewDFX.HiAppEvent
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
+| eventNum | 当输入值小于等于0时，取全部已保存事件；当输入值大于0时，按照事件发生时间倒序排列，取指定数量的已保存事件。  | 
+| onTake | 回调函数指针，事件通过调用该函数返回事件信息。  | 
+
+**返回：**
+
+0：接口调用成功；-5：watcher入参空指针；-6：还未调用OH_HiAppEvent_AddWatcher，操作顺序有误。
 
 
 ### OH_HiAppEvent_Write()
@@ -705,9 +1106,7 @@ void OH_HiAppEvent_DestroyParamList (ParamList list)
 ```
 int OH_HiAppEvent_Write (const char * domain, const char * name, enum EventType type, const ParamList list )
 ```
-
 **描述**
-
 实现对参数为列表类型的应用事件打点。
 
 在应用事件打点前，该接口会先对该事件的参数进行校验。如果校验成功，则接口会将事件写入事件文件。
@@ -718,10 +1117,10 @@ int OH_HiAppEvent_Write (const char * domain, const char * name, enum EventType 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| domain | 事件领域。您可以根据需要自定义事件领域。 | 
-| name | 事件名称。您可以根据需要自定义事件名称。 | 
-| type | 事件类型，在[EventType](#eventtype)中定义。 | 
-| list | 事件参数列表，每个参数由参数名和参数值组成。 | 
+| domain | 事件领域。您可以根据需要自定义事件领域。  | 
+| name | 事件名称。您可以根据需要自定义事件名称。  | 
+| type | 事件类型，在[EventType](#eventtype)中定义。  | 
+| list | 事件参数列表，每个参数由参数名和参数值组成。  | 
 
 **返回：**
 

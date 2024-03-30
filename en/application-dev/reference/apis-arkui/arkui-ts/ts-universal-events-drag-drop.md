@@ -10,9 +10,9 @@ A drag event is triggered when a component is dragged.
 
 The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their [draggable](ts-universal-attributes-drag-drop.md) attribute to **true**.
 
-- The following component supports drag operations by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
+- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
 
-- The following component supports drop operations by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
+- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
 
 You can also define drag responses by implementing common drag events.
 
@@ -22,7 +22,13 @@ To enable drag and drop for other components, you need to set the **draggable** 
 
 onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
 
-Triggered when the component bound to the event is dragged for the first time. A drag operation is recognized only when the long press time is 500 ms or longer and the dragging distance is 10 vp or longer.
+Triggered when the component bound to the event is dragged for the first time. A drag operation is recognized only when the long press time is 500 ms or longer and the dragging distance is 10 vp or larger.
+
+For components that can serve as the drag source by default, a custom **onDragStart** event, if set, is executed and:
+- If a custom drag preview is returned, it is used in place of the default drag preview.
+- If drag data is set, it is used in place of the default drag data.
+
+No custom drag preview is supported for dragging selected text in the following components: **\<Text>**, **\<Search>**, **\<TextInput>**, **\<TextArea>**
 
 **Event priority**:<br>Long press time < 500 ms: Long press event > Drag event<br>Other cases: Drag event > Long press event
 
@@ -45,7 +51,7 @@ Triggered when the component bound to the event is dragged for the first time. A
 
 onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
-Triggered when the dragged item enters a valid drop target. This event is valid only when a listener for the [onDrop](#ondrop) event is enabled.
+Triggered when the dragged item enters a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +66,7 @@ Triggered when the dragged item enters a valid drop target. This event is valid 
 
 onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
-Triggered when the dragged item moves in a valid drop target. This event is valid only when a listener for the [onDrop](#ondrop) event is enabled.
+Triggered when the dragged item moves in a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -75,7 +81,7 @@ Triggered when the dragged item moves in a valid drop target. This event is vali
 
 onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
-Triggered when the dragged item leaves a valid drop target. This event is valid only when a listener for the [onDrop](#ondrop) event is enabled.
+Triggered when the dragged item leaves a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,8 +126,8 @@ Triggered when the dragging of the component bound to the event ends.
 
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.                    |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this attribute is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](../arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](../arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**.|
+| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.                    |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#attributes) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
 
@@ -133,8 +139,8 @@ Triggered when the dragging of the component bound to the event ends.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
-| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter is valid only in the drag event of the **\<ListItem>** component.|
-| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter is valid only in the drag event of the **\<List>** component.|
+| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<ListItem>** component.|
+| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<List>** component.|
 
 ## DragEvent
 
@@ -149,9 +155,9 @@ Triggered when the dragging of the component bound to the event ends.
 
 | Name    | Return Value Type                           | Description                          |
 | ----------- | ------------------------------- | ------------------------------ |
-| setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | Sets drag-related data in the drag event.|
-| getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.|
-| getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.|
+| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | Sets drag-related data in the drag event.|
+| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.|
+| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.|
 | setResult(dragRect: [DragResult](#dragresult10))<sup>10+</sup> | void | Sets the drag and drop result in the drag event.|
 | getResult()<sup>10+</sup> | [DragResult](#dragresult10) | Obtains the drag and drop result from the drag event.|
 | getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle) | Obtains the rectangle where the preview image is located.|
@@ -168,7 +174,7 @@ Triggered when the dragging of the component bound to the event ends.
 
 **Error codes**
 
-For details about the error codes, see [Drag Event Error Codes](../errorcodes/errorcode-drag-event.md).
+For details about the error codes, see [Drag Event Error Codes](../errorcode-drag-event.md).
 
 | ID  | Error Message|
 | --------- | ------- |

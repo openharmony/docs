@@ -3,7 +3,7 @@
 
 ## Overview
 
-The flex layout, implemented using the [\<Flex>](../reference/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
+The flex layout, implemented using the [\<Flex>](../reference/apis-arkui/arkui-ts/ts-container-flex.md) container component, provides simple and powerful tools for flexibly distributing space and aligning items. The flex layout is widely used in scenarios such as the navigation bar distribution on the page header, page framework setup, and arrangement of multiple lines of data.
 
 By default, the flex container has a main axis and a cross axis, and child elements are arranged along the main axis. The size of a child element along the main axis is referred to as its main axis size. Similarly, the size of a child element along the cross axis is referred to as its cross axis size.
 
@@ -376,7 +376,7 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 ### Setting Alignment on the Cross Axis for Child Elements
 
-Use the [alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#alignself) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
+Use the [alignSelf](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#alignself) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The child elements are aligned with the center of the container.
@@ -408,7 +408,7 @@ In the preceding example, the **alignItems** parameter of the **\<Flex>** contai
 
 ### Content Alignment
 
-Use the [alignContent](../reference/arkui-ts/ts-container-flex.md#apis) parameter to set how space is distributed between and around child elements along the cross axis. This parameter is effective only for a multi-line flex layout. Its available options are as follows:
+Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#apis) parameter to set how space is distributed between and around child elements along the cross axis. This parameter is effective only for a multi-line flex layout. Its available options are as follows:
 
 - **FlexAlign.Start**: The child elements are aligned toward the start edge of the cross axis in the container.
 

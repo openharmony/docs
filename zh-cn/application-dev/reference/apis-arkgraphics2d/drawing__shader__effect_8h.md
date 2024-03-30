@@ -17,11 +17,18 @@
 ## 汇总
 
 
+### 类型定义
+
+| 名称 | 描述 |
+| -------- | -------- |
+| typedef enum [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode)  [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) | 着色器效果平铺模式的枚举。 |
+
+
 ### 枚举
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) {<br/>CLAMP, REPEAT, MIRROR, DECAL<br/>} | 着色器效果平铺模式的枚举。 |
+| [OH_Drawing_TileMode](_drawing.md#oh_drawing_tilemode) { CLAMP, REPEAT, MIRROR, DECAL } | 着色器效果平铺模式的枚举。 |
 
 
 ### 函数

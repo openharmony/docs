@@ -10,7 +10,7 @@ Focus control attributes set whether a component is focusable and how it partici
 
 focusable(value: boolean)
 
-Whether the current component is focusable.
+Specifies whether the current component is focusable.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +24,7 @@ Whether the current component is focusable.
 
 tabIndex(index: number)
 
-Tab order of the component in sequential focus navigation with the **Tab** key.
+Sets the Tab order of the component in sequential focus navigation with the **Tab** key.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,7 +38,7 @@ Tab order of the component in sequential focus navigation with the **Tab** key.
 
 defaultFocus(value: boolean)
 
-Specifies whether to set the component as the default focus of the container.
+Specifies whether to set the component as the default focus of the page.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +66,7 @@ Specifies whether to set the component as the default focus of the container.
 
 focusOnTouch(value: boolean)
 
-Whether the component is focusable on touch.
+Specifies whether the component is focusable on touch.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ Whether the component is focusable on touch.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable or clickable.|
+| value  | boolean | Yes  | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component is focusable only when it is touchable.|
 
 ## focusControl<sup>9+</sup>
 
@@ -90,7 +90,7 @@ Requests the focus to move to the specified component. This API can be used in g
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ---- | ---- |
-| value | string | Yes  | String bound to the target component using the **key(value: string)**.|
+| value | string | Yes  | String bound to the target component using **key(value: string)** or **id(value: string)**.|
 
 **Return value**
 
@@ -276,27 +276,27 @@ struct RequestFocusExample {
       Row({space: 5}) {
         Button("id: " + this.idList[0] + " focusable(false)")
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[0])
+          .id(this.idList[0])
           .focusable(false)
         Button("id: " + this.idList[1])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[1])
+          .id(this.idList[1])
       }
       Row({space: 5}) {
         Button("id: " + this.idList[2])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[2])
+          .id(this.idList[2])
         Button("id: " + this.idList[3])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[3])
+          .id(this.idList[3])
       }
       Row({space: 5}) {
         Button("id: " + this.idList[4])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[4])
+          .id(this.idList[4])
         Button("id: " + this.idList[5])
           .width(200).height(70).fontColor(Color.White)
-          .key(this.idList[5])
+          .id(this.idList[5])
       }
       Row({space: 5}) {
         Select([{value: this.idList[0]},

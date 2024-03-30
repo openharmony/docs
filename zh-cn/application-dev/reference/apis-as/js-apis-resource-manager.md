@@ -45,7 +45,7 @@ getSystemResourceManager(): ResourceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -211,7 +211,7 @@ getStringSync(resId: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -245,7 +245,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -255,7 +255,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------------------------- |
@@ -301,7 +301,7 @@ getStringSync(resource: Resource): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -343,7 +343,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -353,7 +353,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -403,7 +403,7 @@ getStringByNameSync(resName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -437,7 +437,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -447,7 +447,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -486,7 +486,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -535,7 +535,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -579,7 +579,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -636,7 +636,7 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -684,7 +684,7 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -733,7 +733,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -780,7 +780,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -825,7 +825,7 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -874,7 +874,7 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -910,7 +910,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -959,7 +959,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1002,7 +1002,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1059,7 +1059,7 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1107,7 +1107,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1156,7 +1156,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1208,7 +1208,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1258,7 +1258,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1312,7 +1312,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1355,7 +1355,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1409,7 +1409,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1458,7 +1458,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1520,7 +1520,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1573,7 +1573,7 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1627,7 +1627,7 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1675,7 +1675,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1728,7 +1728,7 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1785,7 +1785,7 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1830,7 +1830,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1874,7 +1874,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1922,7 +1922,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1969,7 +1969,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2012,7 +2012,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2064,7 +2064,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2120,7 +2120,7 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2175,7 +2175,7 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2222,7 +2222,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2266,7 +2266,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2314,7 +2314,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2361,7 +2361,7 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2408,7 +2408,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2461,7 +2461,7 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2518,7 +2518,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2563,7 +2563,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2607,7 +2607,7 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2655,7 +2655,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2702,7 +2702,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2745,7 +2745,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2797,7 +2797,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2853,7 +2853,7 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2908,7 +2908,7 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2955,7 +2955,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2999,7 +2999,7 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3047,7 +3047,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3094,7 +3094,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3142,7 +3142,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3202,7 +3202,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3266,7 +3266,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3322,7 +3322,7 @@ getBoolean(resId: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3366,7 +3366,7 @@ getBoolean(resource: Resource): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3415,7 +3415,7 @@ getBooleanByName(resName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3458,7 +3458,7 @@ getNumber(resId: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3511,7 +3511,7 @@ getNumber(resource: Resource): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3560,7 +3560,7 @@ getNumberByName(resName: string): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3611,7 +3611,7 @@ getColorSync(resId: number) : number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3656,7 +3656,7 @@ getColorSync(resource: Resource): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3705,7 +3705,7 @@ getColorByNameSync(resName: string) : number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3743,7 +3743,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3792,7 +3792,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3836,7 +3836,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3893,7 +3893,7 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3941,7 +3941,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -3990,7 +3990,7 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4037,7 +4037,7 @@ getRawFileContentSync(path: string): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4073,7 +4073,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4120,7 +4120,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4169,7 +4169,7 @@ getRawFileListSync(path: string): Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4209,7 +4209,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4260,7 +4260,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4305,7 +4305,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4341,7 +4341,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4391,7 +4391,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4433,7 +4433,7 @@ closeRawFdSync(path: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4469,7 +4469,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4514,7 +4514,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4742,7 +4742,7 @@ addResource(path: string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4778,7 +4778,7 @@ removeResource(path: string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4870,7 +4870,7 @@ getSymbol(resId: number):number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4914,7 +4914,7 @@ getSymbol(resource: Resource): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -4963,7 +4963,7 @@ getSymbolByName(resName: string) : number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](../apis-localization-kit/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |

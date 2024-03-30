@@ -17,8 +17,8 @@ The **Camera_CaptureEndInfo** struct defines the capture end information.
 
 | Name| Description| 
 | -------- | -------- |
-| [captureId](#captureid) | Capture ID.| 
-| [frameCount](#framecount) | Number of frames captured.| 
+| int32_t [captureId](#captureid) | Capture ID. | 
+| int64_t [frameCount](#framecount) | Number of frames captured. | 
 
 
 ## Member Variable Description
@@ -29,7 +29,6 @@ The **Camera_CaptureEndInfo** struct defines the capture end information.
 ```
 int32_t Camera_CaptureEndInfo::captureId
 ```
-
 **Description**
 
 Capture ID.
@@ -40,7 +39,6 @@ Capture ID.
 ```
 int64_t Camera_CaptureEndInfo::frameCount
 ```
-
 **Description**
 
 Number of frames captured.

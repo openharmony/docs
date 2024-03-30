@@ -4,7 +4,7 @@ System environment variables are system settings (for example, the system langua
 
 By subscribing to the changes of system environment variables, the application can detect the changes in a timely manner and process the changes accordingly, providing better user experience. For example, when the system language changes, the application can display the UI in the new language; when the user rotates the device to landscape or portrait mode, the application can re-arrange the UI to adapt to the new screen orientation and size.
 
-The system environment variable changes are usually triggered by options in **Settings** or icons in **Control Panel**. For details about the system environment variables that support subscription, see [Configuration](../reference/apis/js-apis-app-ability-configuration.md).
+The system environment variable changes are usually triggered by options in **Settings** or icons in **Control Panel**.  For details about the system environment variables that support subscription, see [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).
 
 You can subscribe to system environment variable changes in the following ways:
 
@@ -15,7 +15,7 @@ You can subscribe to system environment variable changes in the following ways:
 
 ## Using ApplicationContext for Subscription
 
-[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) provides an API for registering a callback function to subscribe to the system environment variable changes. It also provides an API for deregistration so you can release related resources when they are no longer needed.
+[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides an API for registering a callback function to subscribe to the system environment variable changes. It also provides an API for deregistration so you can release related resources when they are no longer needed.
 
 1. Call **ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)** to subscribe to changes in system environment variables. The code snippet below is used to subscribe to system language changes on a page.
 
@@ -88,14 +88,14 @@ You can subscribe to system environment variable changes in the following ways:
 
 ## Using AbilityStage for Subscription
 
-The AbilityStage component provides the [AbilityStage.onConfigurationUpdate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate) callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis/js-apis-app-ability-configuration.md) object.  
+The AbilityStage component provides the [AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate) callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object.  
 
 > **NOTE**
 >
 > - AbilityStage is not automatically generated in the default project of DevEco Studio. For details about how to create an AbilityStage file, see [AbilityStage Component Container](abilitystage.md).
-> - The callback used to subscribe to system environment variable changes has the same lifecycle as the [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) instance and will be destroyed when the instance is destroyed.
+> - The callback used to subscribe to system environment variable changes has the same lifecycle as the [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) instance and will be destroyed when the instance is destroyed.
 
-The code snippet below uses the [AbilityStage.onConfigurationUpdate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate) callback to subscribe to the system language changes.
+The code snippet below uses the [AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate) callback to subscribe to the system language changes.
 
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -110,7 +110,7 @@ let systemLanguage: string | undefined; // System language in use.
 export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
     systemLanguage = this.context.config.language; // Obtain the system language in use when the AbilityStage instance is loaded for the first time.
-    console.info(`systemLanguage is ${systemLanguage} `);
+    hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage is ${systemLanguage}`);
     //...
   }
 
@@ -128,7 +128,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 ## Using UIAbility for Subscription
 
-The UIAbility component provides the **UIAbility.onConfigurationUpdate()** callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis/js-apis-app-ability-configuration.md) object, without restarting the UIAbility.
+The UIAbility component provides the **UIAbility.onConfigurationUpdate()** callback for subscribing to system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object, without restarting the UIAbility.
 
 > **NOTE**
 >
@@ -169,7 +169,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Using ExtensionAbility for Subscription
 
-The ExtensionAbility component provides the **onConfigurationUpdate()** callback for subscribing system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis/js-apis-app-ability-configuration.md) object.
+The ExtensionAbility component provides the **onConfigurationUpdate()** callback for subscribing system environment variable changes. This callback is invoked when a system environment variable changes. In this callback, the latest system environment configuration is obtained through the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) object.
 
 > **NOTE**
 >

@@ -45,7 +45,7 @@
 - 待匹配应用组件的skills配置，声明其具备的能力（[module.json5配置文件](../quick-start/module-configuration-file.md)中的[skills标签](../quick-start/module-configuration-file.md#skills标签)参数）。
 
 
-系统将调用方传入的want参数（包含action、entities、uri和type属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）依次进行匹配。当四个属性匹配均通过，则此应用才会被应用选择器展示给用户进行选择。
+系统将调用方传入的want参数（包含action、entities、uri和type属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）依次进行匹配。当四个属性匹配均未配置，隐式匹配失败。当四个属性匹配均通过，则此应用才会被应用选择器展示给用户进行选择。
 
 
 ### want参数的action匹配规则

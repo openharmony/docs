@@ -6,7 +6,7 @@ Different devices support different authentication capabilities (facial authenti
 
 ## Available APIs
 
-For details about the parameters, return value, and error codes, see [userIAM_userAuth.getAvailableStatus](../../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9).
+For details about the parameters, return value, and error codes, see [userIAM_userAuth.getAvailableStatus](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9).
 
 | API| Description| 
 | -------- | -------- |
@@ -17,12 +17,13 @@ For details about the parameters, return value, and error codes, see [userIAM_us
 
 1. [Request](prerequisites.md#requesting-permissions) the ohos.permission.ACCESS_BIOMETRIC permission.
 
-2. Use [getAvailableStatus](../../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9) to check whether the device supports the specified authentication type (**UserAuthType**) and authentication trust level (**AuthTrustLevel**).
+2. Use [getAvailableStatus](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#useriam_userauthgetavailablestatus9) to check whether the device supports the specified authentication type (**UserAuthType**) and authentication trust level (**AuthTrustLevel**).
 
 Example: Check whether the device supports facial authentication of ATL1 or higher.
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 // Check whether the specified authentication capabilities are supported.
 try {    
@@ -30,6 +31,6 @@ try {
     console.info('current auth trust level is supported');
 } catch (error) {
     const err: BusinessError = error as BusinessError;
-    console.info('current auth trust level is not supported. Code is ${err.code}, message is ${err.message}');
+    console.info(`current auth trust level is not supported. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
