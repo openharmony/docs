@@ -554,7 +554,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 获取密钥证书，使用Callback方式回调异步返回结果 。
 
-**需要权限**：ohos.permission.ATTEST_KEY
+**需要权限**：ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -696,7 +696,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 获取密钥证书，使用Promise方式异步返回结果 。
 
-**需要权限**：ohos.permission.ATTEST_KEY
+**需要权限**：ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
