@@ -807,7 +807,7 @@ constructor(bundleName: string)
 **示例：**
 
   ```ts
-  let fileSync = new cloudSync.FileSync("path/to/your/file")
+  let fileSync = new cloudSync.FileSync("com.ohos.demo")
   ```
 
 ### on<sup>11+</sup>
@@ -1367,6 +1367,21 @@ getFileSyncState(uri: string): FileSyncState
 | 13900042  | Unknown error. |
 | 14000002  | Invalid uri. |
 
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from '@ohos.file.fileuri';
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  try {
+    let state = fileSync.getFileSyncState(uri)
+  }.catch(err) {
+    let error:BusinessError = err as BusinessError;
+    console.error("getFileSyncStatefailed with error:" + JSON.stringify(error));
+  }
+  ```
+
 ## cloudSync.registerChange<sup>12+</sup>
 
 registerChange(uri: string, forChildUri: boolean, callback: Callback&lt;ChangeData&gt;): void
@@ -1399,6 +1414,24 @@ registerChange(uri: string, forChildUri: boolean, callback: Callback&lt;ChangeDa
 | 13900012  | Permission denied. |
 | 14000002  | Invalid uri. |
 
+**示例：**
+
+  ```ts
+  import fileUri from '@ohos.file.fileuri';
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let onCallback1 = (changeData: ChangeData) => {
+    if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
+      //file had added, do something
+    } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
+      //file had removed, do something
+    }
+	}
+  cloudSync.registerChange(uri, false, onCallback1);
+  // 取消注册监听
+  cloudSync.unRegisterChange(uri);
+  ```
+
 ## cloudSync.unregisterChange<sup>12+</sup>
 
 unregisterChange(uri: string): void
@@ -1427,6 +1460,24 @@ unregisterChange(uri: string): void
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
 | 14000002  | Invalid uri. |
+
+**示例：**
+
+  ```ts
+  import fileUri from '@ohos.file.fileuri';
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let onCallback1 = (changeData: ChangeData) => {
+    if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
+      //file had added, do something
+    } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
+      //file had removed, do something
+    }
+	}
+  cloudSync.registerChange(uri, false, onCallback1);
+  // 取消注册监听
+  cloudSync.unRegisterChange(uri);
+  ```
 
 ## NotifyType<sup>12+</sup>
 
