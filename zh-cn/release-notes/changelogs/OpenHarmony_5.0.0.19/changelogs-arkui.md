@@ -1,6 +1,6 @@
 # ArkUI子系统变更说明
 
-## cl.arkui.1 promptAction.showDialog、promptAction.openCustomDialog、AlertDialog、ActionSheet、DatePickerDialog、TimePickerDialog、TextPickerDialog、CustomDialog 显示样式变更
+## cl.arkui.1 弹窗避让安全区域行为变更
 
 **访问级别**
 
@@ -8,15 +8,15 @@
 
 **变更原因**
 
-该变更为兼容性变更。
+蒙层区域无法覆盖底部导航栏，沉浸式模式下内容无法避让导航栏与状态栏。
 
 **变更影响**
 
-promptAction.showDialog、promptAction.openCustomDialog、AlertDialog、ActionSheet、DatePickerDialog、TimePickerDialog、TextPickerDialog、CustomDialog 显示样式变更。
+该变更为非兼容性变更。
 
-变更前：弹窗蒙层显示区域未延伸至底部导航条；在showInSubwindow为true或应用配置为沉浸式时，未避让顶部状态栏与底部导航条。
+变更前：1.弹窗蒙层显示区域未延伸至底部导航条；2.在showInSubwindow为true或应用配置为沉浸式时，内容未避让顶部状态栏与底部导航条。
 
-变更后：弹窗蒙层显示区域默认延伸至底部导航条；在showInSubwindow为true或应用配置为沉浸式时，默认避让顶部状态栏与底部导航条。
+变更后：1.弹窗蒙层显示区域默认延伸至底部导航条；2.在showInSubwindow为true或应用配置为沉浸式时，内容会避让顶部状态栏与底部导航条。
 
 如下图所示为设置Alignment为Bottom时变更前后效果对比：
 
@@ -30,9 +30,91 @@ AlertDialog、CustomDialog 起始支持版本为 API 7，ActionSheet、DatePicke
 
 从OpenHarmony SDK 5.0.0.19开始。
 
+**变更的接口/组件**
+
+受影响的组件：promptAction.showDialog、promptAction.openCustomDialog、AlertDialog、ActionSheet、DatePickerDialog、TimePickerDialog、TextPickerDialog、CustomDialog。
+
 **适配指导**
 
-默认样式变更调整，无需适配。
+若开发者需要弹窗内容不避让导航条，可设置aligment为DialogAligment.Bottom、offset.dy为导航栏高度, 具体示例代码如下：
+1.EntryAbility页面设置窗口全屏，获取顶部状态栏与底部导航栏高度
+```ts
+// src/main/ets/entryability/EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return;
+      }
+      // 获取应用主窗口
+      let windowClass: window.Window = windowStage.getMainWindowSync();
+      // 设置窗口全屏
+      windowClass.setWindowLayoutFullScreen(true)
+      // 获取状态栏高度
+      let statusArea = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+      AppStorage.setOrCreate('SafeAreaTopHeight', statusArea.topRect.height);
+      // 获取导航栏高度
+      let navigationArea = windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
+      AppStorage.setOrCreate('SafeAreaBottomHeight', navigationArea.bottomRect.height);
+    });
+  }
+}
+```
+
+2.调用弹窗页面设置alignment与offset
+```ts
+// src/main/ets/pages/Index.ets
+let storage = LocalStorage.getShared();
+
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('这是一个弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry(storage)
+@Component
+struct CustomDialogUser {
+  safeAreaTopHeight: string = AppStorage.get<number>('SafeAreaTopHeight') + 'px';
+  safeAreaBottomHeight: string = AppStorage.get<number>('SafeAreaBottomHeight') + 'px';
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: this.safeAreaBottomHeight }
+  })
+
+  build() {
+    Column() {
+      Button('点击打开弹窗')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
 
 ## cl.arkui.2 linearGradient、sweepGradient、radialGradient通用属性及LinearGradient interface中的colors参数类型从Array&lt;any&gt;变更为Array&lt;[ResourceColor, number]&gt;
 
