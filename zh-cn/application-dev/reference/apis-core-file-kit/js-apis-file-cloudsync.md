@@ -250,7 +250,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型   | 非必填 | 说明 |
+| 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
 | needClean | boolean | 否   | 是否删除已下载的文件，默认删除。 |

@@ -57,7 +57,7 @@ import cloudSync from '@ohos.file.cloudSync';
 | BATTERY_LEVEL_WARNING |  4 | 告警电量（低于10%） |
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足 |
-| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 由于设备温度过高，同步中止 |
+| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高 |
 
 ## SyncProgress
 
@@ -1333,23 +1333,23 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 
 getFileSyncState(uri: string): FileSyncState
 
-返回给定文件的同步状态。
+获取文件同步状态。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 **系统接口：** 该接口为系统接口。
-
-**返回值：**
-
-| 类型                  | 说明             |
-| --------------------- | ---------------- |
-| FileSyncState | 返回给定文件的同步状态。 |
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
+
+**返回值：**
+
+| 类型                  | 说明             |
+| --------------------- | ---------------- |
+| [FileSyncState](#filesyncstate12) | 返回给定文件的同步状态。 |
 
 **错误码：**
 
@@ -1386,7 +1386,7 @@ getFileSyncState(uri: string): FileSyncState
 
 registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData&gt;): void
 
-指定uri的注册更改通知。
+订阅监听指定文件的变化通知，true为监听该uri以及子文件和子目录，false为仅监听该uri文件。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -1436,7 +1436,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 
 unregisterChange(uri: string): void
 
-取消注册更改通知到指定的uri。
+取消订阅监听指定文件的变化通知。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -1481,7 +1481,7 @@ unregisterChange(uri: string): void
 
 ## NotifyType<sup>12+</sup>
 
-数据更改，为枚举类型。
+数据变更通知类型。
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -1504,7 +1504,7 @@ unregisterChange(uri: string): void
 
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| type | NotifyType | 是   | 更改的通知类型|
+| type | [NotifyType](#notifytype12) | 是   | 更改的通知类型|
 | isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的uri是否为目录|
 | uris | Array&lt;string&gt; | 是   | 更改的uris|
 
