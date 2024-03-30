@@ -1384,7 +1384,7 @@ getFileSyncState(uri: string): FileSyncState
 
 ## cloudSync.registerChange<sup>12+</sup>
 
-registerChange(uri: string, forChildUri: boolean, callback: Callback&lt;ChangeData&gt;): void
+registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData&gt;): void
 
 指定uri的注册更改通知。
 
@@ -1397,7 +1397,7 @@ registerChange(uri: string, forChildUri: boolean, callback: Callback&lt;ChangeDa
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| forChildUri | boolean | 是   | 是否监控子目录和文件。|
+| recursion | boolean | 是   | 是否监控子目录和文件。|
 | callback | Callback&lt;ChangeData&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
@@ -1524,4 +1524,4 @@ unregisterChange(uri: string): void
 | STOPPED |  3 | 同步已停止 |
 | TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行 |
 | UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行 |
-| UPLOAD_FAILED<sup>12+</sup> |  6 | 文件上行失败 |
+| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败 |
