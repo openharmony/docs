@@ -757,6 +757,20 @@ The scheme of the specified link is not in the querySchemes.
 **处理步骤**<br/>
 检查是否在querySchemes字段下配置了相应的URL scheme。
 
+## 17700059 指定的开发者ID不存在
+
+**错误信息**<br/>
+The specified developerId is invalid.
+
+**错误描述**<br/>
+调用bundleManager模块中的getAllBundleInfoByDeveloperId接口时，指定的developerId无效。
+
+**可能原因**<br/>
+设备上未安装指定开发者ID的应用。
+
+**处理步骤**<br/>
+检查输入的开发者ID有效性。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.
