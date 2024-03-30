@@ -1,20 +1,20 @@
-# \@observed装饰器和\@track装饰器：类属性变化观测
+# \@ObservedV2装饰器和\@Trace装饰器：类属性变化观测
 
-为了增强现有状态管理框架对类对象中属性的观测能力，开发者可以使用\@observed装饰器和\@track装饰器装饰类以及类中的属性。
+为了增强现有状态管理框架对类对象中属性的观测能力，开发者可以使用\@ObservedV2装饰器和\@Trace装饰器装饰类以及类中的属性。
 
 >**说明：**
 >
->@observed与@track装饰器从API version 12开始支持。
+>@ObservedV2与@Trace装饰器从API version 12开始支持。
 
 ## 概述
 
-\@observed装饰器与\@track装饰器用于装饰类以及类中的属性，使得被装饰的类和属性具有深度观测的能力：
+\@ObservedV2装饰器与\@Trace装饰器用于装饰类以及类中的属性，使得被装饰的类和属性具有深度观测的能力：
 
-- \@observed装饰器与\@track装饰器需要配合使用，单独使用\@observed装饰器或\@track装饰器没有任何作用。
-- 被\@track装饰器装饰的属性property变化时，仅会通知property关联的组件进行刷新。
-- 在嵌套类中，嵌套类中的属性property被\@track装饰且嵌套类被\@observed装饰时，才具有触发UI刷新的能力。
-- 在继承类中，父类或子类中的属性property被\@track装饰且该property所在类被\@observed装饰时，才具有触发UI刷新的能力。
-- 在\@observed装饰的类中，只有被\@track装饰的属性才可以用在UI中，未被\@track装饰的属性不可以用在UI中。
+- \@ObservedV2装饰器与\@Trace装饰器需要配合使用，单独使用\@ObservedV2装饰器或\@Trace装饰器没有任何作用。
+- 被\@Trace装饰器装饰的属性property变化时，仅会通知property关联的组件进行刷新。
+- 在嵌套类中，嵌套类中的属性property被\@Trace装饰且嵌套类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
+- 在继承类中，父类或子类中的属性property被\@Trace装饰且该property所在类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
+- 在\@ObservedV2装饰的类中，只有被\@Trace装饰的属性才可以用在UI中，未被\@Trace装饰的属性不可以用在UI中。
 
 ## 现有状态管理框架的局限性
 
@@ -118,26 +118,26 @@ struct Index {
 
 ## 装饰器说明
 
-| \@observed类装饰器 | 说明                                                  |
+| \@ObservedV2类装饰器 | 说明                                                  |
 | ------------------ | ----------------------------------------------------- |
 | 装饰器参数         | 无                                                    |
 | 类装饰器           | 装饰class。需要放在class的定义前，使用new创建类对象。 |
 
-| \@track成员变量装饰器 | 说明                                                         |
+| \@Trace成员变量装饰器 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
 | 装饰器参数            | 无                                                           |
 | 可装饰的变量          | class中成员属性。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。 |
 
 ## 观察变化
 
-使用\@observed装饰的类中被\@track装饰的属性具有被观测变化的能力，当该属性值变化时，会触发该属性绑定的UI组件刷新。
+使用\@ObservedV2装饰的类中被\@Trace装饰的属性具有被观测变化的能力，当该属性值变化时，会触发该属性绑定的UI组件刷新。
 
-- 在嵌套类中使用\@track装饰的属性具有被观测变化的能力。
+- 在嵌套类中使用\@Trace装饰的属性具有被观测变化的能力。
 
 ```ts
-@observed
+@ObservedV2
 class Son {
-  @track age: number = 100;
+  @Trace age: number = 100;
 }
 class Father {
   son: Son = new Son();
@@ -160,12 +160,12 @@ struct Index {
 
 ```
 
-- 在继承类中使用\@track装饰的属性具有被观测变化的能力。
+- 在继承类中使用\@Trace装饰的属性具有被观测变化的能力。
 
 ```ts
-@observed
+@ObservedV2
 class Father {
-  @track name: string = "Tom";
+  @Trace name: string = "Tom";
 }
 class Son extends Father {
 }
@@ -186,12 +186,12 @@ struct Index {
 }
 ```
 
-- 类中使用\@track装饰的静态属性具有被观测变化的能力。
+- 类中使用\@Trace装饰的静态属性具有被观测变化的能力。
 
 ```ts
-@observed
+@ObservedV2
 class Manager {
-  @track static count: number = 1;
+  @Trace static count: number = 1;
 }
 @Entry
 @Component
@@ -208,7 +208,7 @@ struct Index {
 }
 ```
 
-- \@track装饰内置类型时，可以观测各自API导致的变化：
+- \@Trace装饰内置类型时，可以观测各自API导致的变化：
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
@@ -219,15 +219,15 @@ struct Index {
 
 ## 使用限制
 
-\@observed与\@track装饰器存在以下使用限制：
+\@ObservedV2与\@Trace装饰器存在以下使用限制：
 
-- 非\@track装饰的成员属性不能用在UI上。
+- 非\@Trace装饰的成员属性不能用在UI上。
 
 ```ts
-@observed
+@ObservedV2
 class Person {
   id: number = 0;
-  @track age: number = 8;
+  @Trace age: number = 8;
 }
 @Entry
 @Component
@@ -236,66 +236,66 @@ struct Index {
 
   build() {
     Column() {
-      // age被@track装饰，可以用在UI中
+      // age被@Trace装饰，可以用在UI中
       Text(`${this.person.age}`)
-      // id未被@track装饰，不可以用在UI中
+      // id未被@Trace装饰，不可以用在UI中
       Text(`${this.person.id}`) // 错误用法
     }
   }
 }
 ```
 
-- \@track不能用在没有被\@observed装饰的class上。
+- \@Trace不能用在没有被\@ObservedV2装饰的class上。
 
 ```ts
 class User {
   id: number = 0;
-  @track name: string = "Tom"; // 错误用法，编译时报错
+  @Trace name: string = "Tom"; // 错误用法，编译时报错
 }
 ```
 
-- \@track是class中属性的装饰器，不能用在struct中。
+- \@Trace是class中属性的装饰器，不能用在struct中。
 
 ```ts
 @Component
 struct Comp {
-  @track message: string = "Hello World"; // 错误用法
+  @Trace message: string = "Hello World"; // 错误用法
 
   build() {
   }
 }
 ```
 
-- \@observed、\@track不能与[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)混合使用。
+- \@ObservedV2、\@Trace不能与[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)混合使用。
 
 ```ts
 @Observed
 class User {
-  @track name: string = "Tom"; // 错误用法，编译时报错
+  @Trace name: string = "Tom"; // 错误用法，编译时报错
 }
 ```
 
-以下写法没有深度观测的能力，@observed装饰器不会生效。
+以下写法没有深度观测的能力，@ObservedV2装饰器不会生效。
 
 ```ts
-@observed
+@ObservedV2
 class Person {
   @Track name: string = "Jack"; // 无深度观测能力
 }
 ```
 
-- 使用\@observed与\@track装饰的类不能和[\@State](arkts-state.md)以及现有框架的装饰器混合使用。
+- 使用\@ObservedV2与\@Trace装饰的类不能和[\@State](arkts-state.md)以及现有框架的装饰器混合使用。
 
 ```ts
 // 以@State装饰器为例
-@observed
+@ObservedV2
 class Job {
-  @track jobName: string = "Teacher";
+  @Trace jobName: string = "Teacher";
 }
-@observed
+@ObservedV2
 class Info {
-  @track name: string = "Tom";
-  @track age: number = 25;
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
   job: Job = new Job();
 }
 @Entry
@@ -328,7 +328,7 @@ struct Index {
 }
 ```
 
-上述示例代码使用\@observed与\@track装饰Info类，并用\@State创建Info类的实例。当点击按钮"change age"时，输出以下日志：
+上述示例代码使用\@ObservedV2与\@Trace装饰Info类，并用\@State创建Info类的实例。当点击按钮"change age"时，输出以下日志：
 
 ```ts
 1 is rendered
@@ -336,24 +336,23 @@ struct Index {
 3 is rendered
 ```
 
-尽管只改变了age的值，但是日志反映出三个Text组件都进行了刷新。这说明被\@observed与\@track装饰的Info类失去了属性级更新的能力，而是使用了\@State的观测能力，因此出现了冗余更新的问题。所以，不能将\@observed与\@track装饰的类和\@State混合使用。
+尽管只改变了age的值，但是日志反映出三个Text组件都进行了刷新。这说明被\@ObservedV2与\@Trace装饰的Info类失去了属性级更新的能力，而是使用了\@State的观测能力，因此出现了冗余更新的问题。所以，不能将\@ObservedV2与\@Trace装饰的类和\@State混合使用。
 
 ## 使用场景
 
 ### 嵌套类场景
 
-在下面的嵌套类场景中，Pencil类是Son类中最里层的类，Pencil类被\@observed装饰且属性length被\@track装饰，此时length的变化能够被观测到。
+在下面的嵌套类场景中，Pencil类是Son类中最里层的类，Pencil类被\@ObservedV2装饰且属性length被\@Trace装饰，此时length的变化能够被观测到。
 
-\@track装饰器与现有状态管理框架的[\@Track](arkts-track.md)与[\@State](arkts-state.md)装饰器的能力不同，@Track使class具有属性级更新的能力，但并不具备深度观测的能力；而\@State只能观测到对象本身以及第一层的变化，对于多层嵌套场景只能通过封装自定义组件，搭配[\@Observed](arkts-observed-and-objectlink.md)和[\@ObjectLink](arkts-observed-and-objectlink.md)来实现观测。
+\@Trace装饰器与现有状态管理框架的[\@Track](arkts-track.md)与[\@State](arkts-state.md)装饰器的能力不同，@Track使class具有属性级更新的能力，但并不具备深度观测的能力；而\@State只能观测到对象本身以及第一层的变化，对于多层嵌套场景只能通过封装自定义组件，搭配[\@Observed](arkts-observed-and-objectlink.md)和[\@ObjectLink](arkts-observed-and-objectlink.md)来实现观测。
 
-* 点击Button("change length")，length是被\@track装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"isRender id: 1"的日志。
+* 点击Button("change length")，length是被\@Trace装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"isRender id: 1"的日志。
 * 自定义组件Page中的son是常规变量，因此点击Button("assign Son")并不会观测到变化。
 * 当点击Button("assign Son")后，再点击Button("change length")并不会引起UI刷新。因为此时son的地址改变，其关联的UI组件并没有关联到最新的son。
-
 ```ts
-@observed
+@ObservedV2
 class Pencil {
-  @track length: number = 21; // 当length变化时，会刷新关联的组件
+  @Trace length: number = 21; // 当length变化时，会刷新关联的组件
 }
 class Bag {
   width: number = 50;
@@ -398,18 +397,17 @@ struct Page {
 
 
 ### 继承类场景
-\@track支持在类的继承场景中使用，无论是在基类还是继承类中，只有被\@track装饰的属性才具有被观测变化的能力。
+\@Trace支持在类的继承场景中使用，无论是在基类还是继承类中，只有被\@Trace装饰的属性才具有被观测变化的能力。
 以下例子中，声明class GrandFather、Father、Uncle、Son、Cousin，继承关系如下图。
 
 ![arkts-old-state-management](figures/arkts-new-observed-and-track-extend-sample.png)
 
 
 * 创建类Son和类Cousin的实例，点击Button('change Son age')和Button('change Cousin age')可以触发UI的刷新。
-
 ```ts
-@observed
+@ObservedV2
 class GrandFather {
-  @track age: number = 0;
+  @Trace age: number = 0;
 
   constructor(age: number) {
     this.age = age;
@@ -473,17 +471,17 @@ struct Index {
 }
 ```
 
-### \@track装饰基础类型的数组
-\@track装饰数组时，使用支持的API能够观测到变化。支持的API见[观察变化](#观察变化)。
-在下面的示例中\@observed装饰的Arr类中的属性numberArr是\@track装饰的数组，当使用数组API操作numberArr时，可以观测到对应的变化。注意使用数组长度进行判断以防越界访问。
+### \@Trace装饰基础类型的数组
+\@Trace装饰数组时，使用支持的API能够观测到变化。支持的API见[观察变化](#观察变化)。
+在下面的示例中\@ObservedV2装饰的Arr类中的属性numberArr是\@Trace装饰的数组，当使用数组API操作numberArr时，可以观测到对应的变化。注意使用数组长度进行判断以防越界访问。
 
 ```ts
 let nextId: number = 0;
 
-@observed
+@ObservedV2
 class Arr {
   id: number = 0;
-  @track numberArr: number[] = [];
+  @Trace numberArr: number[] = [];
 
   constructor() {
     this.id = nextId++;
@@ -575,27 +573,26 @@ struct Index {
   }
 }
 ```
-### \@track装饰对象数组
+### \@Trace装饰对象数组
 
-* \@track装饰对象数组personList以及Person类中的age属性，因此当personList、age改变时均可以观测到变化。
+* \@Trace装饰对象数组personList以及Person类中的age属性，因此当personList、age改变时均可以观测到变化。
 * 点击Text组件更改age时，Text组件会刷新。
-
 ```ts
 let nextId: number = 0;
 
-@observed
+@ObservedV2
 class Person {
-  @track age: number = 0;
+  @Trace age: number = 0;
 
   constructor(age: number) {
     this.age = age;
   }
 }
 
-@observed
+@ObservedV2
 class Info {
   id: number = 0;
-  @track personList: Person[] = [];
+  @Trace personList: Person[] = [];
 
   constructor() {
     this.id = nextId++;
@@ -645,14 +642,13 @@ struct Index {
 
 ```
 
-### \@track装饰Map类型
-* 被\@track装饰的Map类型属性可以观测到调用API带来的变化，包括 set、clear、delete。
-* 因为Info类被\@observed装饰且属性memberMap被\@track装饰，点击Button('init map')对memberMap赋值也可以观测到变化。
-
+### \@Trace装饰Map类型
+* 被\@Trace装饰的Map类型属性可以观测到调用API带来的变化，包括 set、clear、delete。
+* 因为Info类被\@ObservedV2装饰且属性memberMap被\@Trace装饰，点击Button('init map')对memberMap赋值也可以观测到变化。
 ```ts
-@observed
+@ObservedV2
 class Info {
-  @track memberMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Trace memberMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 }
 
 @Entry
@@ -698,14 +694,14 @@ struct MapSample {
 }
 ```
 
-### \@track装饰Set类型
-* 被\@track装饰的Set类型属性可以观测到调用API带来的变化，包括 add, clear, delete。
-* 因为Info类被\@observed装饰且属性memberSet被\@track装饰，点击Button('init set')对memberSet赋值也可以观察变化。
+### \@Trace装饰Set类型
+* 被\@Trace装饰的Set类型属性可以观测到调用API带来的变化，包括 add, clear, delete。
+* 因为Info类被\@ObservedV2装饰且属性memberSet被\@Trace装饰，点击Button('init set')对memberSet赋值也可以观察变化。
 
 ```ts
-@observed
+@ObservedV2
 class Info {
-  @track memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
+  @Trace memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
 }
 
 @Entry
@@ -746,14 +742,14 @@ struct SetSample {
 ```
 
 
-### \@track装饰Date类型
-* \@track装饰的Date类型属性可以观测调用API带来的变化，包括 setFullYear、setMonth、setDate、setHours、setMinutes、setSeconds、setMilliseconds、setTime、setUTCFullYear、setUTCMonth、setUTCDate、setUTCHours、setUTCMinutes、setUTCSeconds、setUTCMilliseconds。
-* 因为Info类被\@observed装饰且属性selectedDate被\@track装饰，点击Button('set selectedDate to 2023-07-08')对selectedDate赋值也可以观测到变化。
+### \@Trace装饰Date类型
+* \@Trace装饰的Date类型属性可以观测调用API带来的变化，包括 setFullYear、setMonth、setDate、setHours、setMinutes、setSeconds、setMilliseconds、setTime、setUTCFullYear、setUTCMonth、setUTCDate、setUTCHours、setUTCMinutes、setUTCSeconds、setUTCMilliseconds。
+* 因为Info类被\@ObservedV2装饰且属性selectedDate被\@Trace装饰，点击Button('set selectedDate to 2023-07-08')对selectedDate赋值也可以观测到变化。
 
 ```ts
-@observed
+@ObservedV2
 class Info {
-  @track selectedDate: Date = new Date('2021-08-08')
+  @Trace selectedDate: Date = new Date('2021-08-08')
 }
 
 @Entry
