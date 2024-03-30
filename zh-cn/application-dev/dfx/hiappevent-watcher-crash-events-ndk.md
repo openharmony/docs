@@ -2,20 +2,20 @@
 
 ## 接口说明
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
 
 **订阅接口功能介绍：**
 
 | 接口名                                                       | 描述                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int [OH_HiAppEvent_AddWatcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent_watcher) \*watcher) | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| int [OH_HiAppEvent_RemoveWatcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent_watcher)) | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher)   | 添加应用事件观察者，以添加对应用事件的订阅。 |
+| int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher \*watcher) | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
 ## 开发步骤
 
 以实现对用户点击按钮触发崩溃场景生成的崩溃事件订阅为例，说明开发步骤。
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下。
+1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
 
    ```yml
    entry:
@@ -38,7 +38,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库。
+2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -60,7 +60,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 4. 订阅应用事件：
 
-   - onReceive类型观察者:
+   - onReceive类型观察者：
 
      编辑"hello.cpp"文件，定义onReceive类型观察者相关方法：
 
@@ -125,9 +125,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
      
-   - onTrigger类型观察者:
+   - onTrigger类型观察者：
 
-     编辑"hello.cpp"文件，定义OnTrigger类型观察者相关方法:
+     编辑"hello.cpp"文件，定义OnTrigger类型观察者相关方法：
 
      ```c++
      //定义一变量，用来缓存创建的观察者的指针。
@@ -199,9 +199,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 将RegisterWathcer注册为napi接口。
+5. 将RegisterWathcer注册为ArkTS接口：
 
-   编辑"hello.cpp"文件，将RegisterWatcher注册为napi接口:
+   编辑"hello.cpp"文件，将RegisterWatcher注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -214,13 +214,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-   编辑"index.d.ts"文件，定义ArkTs接口:
+   编辑"index.d.ts"文件，定义ArkTS接口：
 
    ```typescript
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用:
+6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
    import testNapi from 'libentry.so'
@@ -232,7 +232,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-7. 编辑"Index.ets"文件，新增按钮触发崩溃事件:
+7. 编辑"Index.ets"文件，新增按钮触发崩溃事件：
 
    ```typescript
    Button("appCrash").onClick(() => {
@@ -242,7 +242,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 8. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。
 
-9. 应用工程崩溃退出后再次运行可以在Log窗口看到对系统事件数据的处理日志:
+9. 应用工程崩溃退出后再次运行可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
@@ -272,7 +272,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者:
+11. 销毁应用事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

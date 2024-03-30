@@ -8,7 +8,6 @@
   - [HiAppEvent介绍](hiappevent-intro.md)
   - 事件订阅
     - 应用事件
-      - [应用事件介绍](hiappevent-watcher-app-events.md)
       - [订阅应用事件（ArkTS）](hiappevent-watcher-app-events-arkts.md)
       - [订阅应用事件（C/C++）](hiappevent-watcher-app-events-ndk.md)
     - 系统事件

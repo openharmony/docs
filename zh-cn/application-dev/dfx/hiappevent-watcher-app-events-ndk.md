@@ -1,26 +1,28 @@
 # 订阅应用事件（C/C++）
 
+HiAppEvent提供了事件订阅接口，用于本地获取应用事件。
+
 ## 接口说明
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
 
 **打点接口功能介绍：**
 
-| 接口名                                              | 描述                |
-| --------------------------------------------------- | ----------------- |
-| int [OH_HiAppEvent_Write](../reference/apis-performance-analysis-kit/_hi_app_event.md#oh_hiappevent_write) (const char \*domain, const char \*name, enum [EventType](../reference/apis-performance-analysis-kit/_hi_app_event.md#eventtype) type, const [ParamList](../reference/apis-performance-analysis-kit/_hi_app_event.md#paramlist) list) | 实现对参数为列表类型的应用事件打点。|
+| 接口名                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| int OH_HiAppEvent_Write(const char \*domain, const char \*name, enum EventType type, const ParamList list) | 实现对参数为列表类型的应用事件打点。 |
 
 **订阅接口功能介绍：**
 
 | 接口名                                                       | 描述                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int [OH_HiAppEvent_AddWatcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent_watcher) \*watcher) | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| int [OH_HiAppEvent_RemoveWatcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent_watcher)) | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher \*watcher)  | 添加应用事件观察者，以添加对应用事件的订阅。 |
+| int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher \*watcher) | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
 ## 开发步骤
 
-以实现对用户点击按钮行为的事件打点及订阅为例，说明开发步骤。
+以实现对用户点击按钮行为的事件打点及订阅为例，说明开发步骤：
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下。
+1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
 
    ```yml
    entry:
@@ -43,7 +45,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库。
+2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -65,7 +67,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 4. 订阅应用事件：
 
-   - onReceive类型观察者:
+   - onReceive类型观察者：
 
      编辑"hello.cpp"文件，定义onReceive类型观察者相关方法：
 
@@ -106,9 +108,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       }
      ```
      
-   - onTrigger类型观察者:
+   - onTrigger类型观察者：
 
-     编辑"hello.cpp"文件，定义OnTrigger类型观察者相关方法:
+     编辑"hello.cpp"文件，定义OnTrigger类型观察者相关方法：
 
      ```c++
      //定义一变量，用来缓存创建的观察者的指针。
@@ -158,7 +160,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 编辑"hello.cpp"文件，添加button事件打点接口。
+5. 编辑"hello.cpp"文件，添加button事件打点接口：
 
    ```c++
    static napi_value WriteAppEvent(napi_env env, napi_callback_info info) {
@@ -170,7 +172,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 编辑"hello.cpp"文件，将RegisterWatcher和WriteAppEvent注册为napi接口:
+6. 编辑"hello.cpp"文件，将RegisterWatcher和WriteAppEvent注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
@@ -185,14 +187,14 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-   编辑"index.d.ts"文件，定义ArkTs接口:
+   编辑"index.d.ts"文件，定义ArkTS接口：
 
    ```typescript
    export const registerWatcher: () => void;
    export const writeAppEvent: () => void;
    ```
 
-7. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用:
+7. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
 
    ```typescript
    import testNapi from 'libentry.so'
@@ -204,7 +206,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-8. 编辑"Index.ets"文件，新增按钮触发打点事件:
+8. 编辑"Index.ets"文件，新增按钮触发打点事件：
 
    ```typescript
    Button("button_click").onClick(() => {
@@ -212,7 +214,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    })
    ```
 
-9. 可以在Log窗口看到对应用事件数据的处理日志:
+9. 可以在Log窗口看到对应用事件数据的处理日志：
 
    ```text
    08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.domain=button
@@ -231,7 +233,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者:
+11. 销毁应用事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
