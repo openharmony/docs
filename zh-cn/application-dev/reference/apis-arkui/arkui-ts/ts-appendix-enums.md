@@ -760,7 +760,7 @@ Nullable\<T> {
 | FAST           |   在目标图像上按顺序混合视图的内容。                        |
 | OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
-## ChainStyle<sup>11+</sup>
+## ChainStyle<sup>12+</sup>
 
 定义链的风格。
 
@@ -770,16 +770,16 @@ Nullable\<T> {
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
 | PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
 
-## BarrierDirection<sup>11+</sup>
+## BarrierDirection<sup>12+</sup>
 
 定义屏障线的方向。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最左侧。    |
-| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最右侧。   |
-| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最上方。    |
-| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最下方。 |
+| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
+| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最右侧。   |
+| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最上方。    |
+| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最下方。 |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
