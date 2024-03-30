@@ -6,9 +6,13 @@
 因仅需在传统视频编码流程中开放参考关系指定能力就能实现**时域可分级视频编码**，时域可分级在主流芯片厂商的硬件编码器上支持度远高于空域分级和质量域分级。**API12仅支持时域分级视频编码。**
 
 主流时域可分级编码有分级B编码和分级P编码。
+
 *分级B编码：可按需丢弃帧上图中B帧，不影响视频正常播放：3（7）-> 1（5）-> 2（6）*
+
 ![Temporal scalability b frame](figures/temporal-scalability-b-frame.png)
+
 *分级P编码：可按需丢弃上图中小P帧，不影响视频正常播放：3（7）-> 2（6）-> 1（5）*
+
 ![Temporal scalability p frame](figures/temporal-scalability-p-frame-gop4-adjacent.png)
 
 其中分级B编码依赖芯片厂商支持基础B帧编码，**API12仅支持时域分级P编码。**
@@ -25,11 +29,14 @@ API12提供两套独立设置时域分级编码的接口。
 在configure阶段配置使能参数`OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY`，并按需配置时域图片组参数，包括时域图片组大小`OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE`，以及时域图片组内的参考方式`OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE`。
 时域图片组大小参数，可在[2, GopSize)范围内配置，影响时域关键帧之间的间隔，用户需要基于自身业务场景下抽帧需求自定义关键帧密度。
 时域图片组参考方式参数，影响非关键帧参考方式。包括相邻参考`ADJACENT_REFERENCE`压和跨帧参考`JUMP_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度。
-*时域Gop4，相邻参考模式：*
-![Temporal gop 4 adjacent reference](figures/temporal-scalability-p-frame-gop4-adjacent.png)
-*时域Gop5，跨帧参考模式：*
-![Temporal gop 5 jump reference](figures/temporal-scalability-p-frame-gop5-jump.png)
 
+*时域Gop4，相邻参考模式：*
+
+![Temporal gop 4 adjacent reference](figures/temporal-scalability-p-frame-gop4-adjacent.png)
+
+*时域Gop5，跨帧参考模式：*
+
+![Temporal gop 5 jump reference](figures/temporal-scalability-p-frame-gop5-jump.png)
 
 ### 2）长期参考帧特性
 **从灵活维度设计了一套长期参考帧(long_term_reference)特性的动态配置，适用于灵活和复杂的时域分级结构，逐帧配置**。在configure阶段除配置使能参数`OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT`外，还需要开启随帧参数配置通路，其中surface输入场景需要注册随帧参数回调`OH_VideoEncoder_OnNeedInputParameter`，buffer模式需要使用用`AVBuffer`接口配置。在输入回调轮转中，配置并下发随帧参数，动态控制编码结构。
@@ -41,12 +48,19 @@ API12提供两套独立设置时域分级编码的接口。
 ### 1）时域可分级特性开发指导
 在surface输入和buffer输入两种模式下无差别，以surface输入模式H.264编码为例介绍：
 1. 添加头文件。
+
     *和基础视频编码一致*
+
 2. 创建编码器实例对象。
+
     *和基础视频编码一致*
+
 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
+
     *和基础视频编码一致*
+
 4. 调用OH_VideoEncoder_Configure()配置编码器。
+
     除基础视频编码配置外，您还需要通过如下流程配置时域可分级特性
     ```c++
     // 1. 基础配置，此处只列举必选以及和时域分级编码相关参数
@@ -77,28 +91,50 @@ API12提供两套独立设置时域分级编码的接口。
     }
     OH_AVFormat_Destroy(format);
     ```
+
 5. 调用OH_VideoEncoder_Prepare()编码器就绪。
+
     *和基础视频编码一致*
+
 6. 获取Surface。
+   
     *和基础视频编码一致*
+
 7. 调用OH_VideoEncoder_Start()启动编码器。
     *和基础视频编码一致*
+
 8. （可选）在运行过程中动态配置编码器参数。
+
     *注意：时域分级编码特性使能后，不能通过`OH_VideoEncoder_SetParameter`接口配置`OH_MD_KEY_REQUEST_I_FRAME`，否则因生效时间随机，参考帧关系可能会错乱。如需使用请求动态IDR帧，请使用随帧参数通路随帧配置，参考xxx，此处不做详述。*
+
 9.  写出编码码流。
+
     *和基础视频编码一致*
+
 10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器码流结束。
+
     *和基础视频编码一致*
+
 11. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧。
+
     *和基础视频编码一致*
+
 12. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
+
     *和基础视频编码一致*
+
 13. （可选）调用OH_VideoEncoder_Reset()重置编码器。
+
     *和基础视频编码一致*
+
 14. （可选）调用OH_VideoEncoder_Stop()停止编码器。
+
     *和基础视频编码一致*
+
 15. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
+
     *和基础视频编码一致*
+
 
 
 ### 2）长期参考帧特性开发指导
