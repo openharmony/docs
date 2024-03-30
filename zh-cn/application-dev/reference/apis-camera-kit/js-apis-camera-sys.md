@@ -2354,6 +2354,158 @@ function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## SceneFeatureType<sup>12+</sup>
+
+枚举，场景特性枚举。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                     | 值        | 说明         |
+| ----------------------- | --------- | ------------ |
+| MOON_CAPTURE_BOOST       | 0      | 月亮场景。**系统接口：** 此接口为系统接口。            |
+
+## SceneFeatureDetectionResult<sup>12+</sup>
+
+场景检测结果信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| featureType |   camera.SceneFeatureType   |   是     |    是    | 特性类型。 |
+| detected |   boolean   |   是     |    是    | 检测结果。true为检测到 |
+
+
+### isSceneFeatureSupported<sup>12+</sup>
+
+isSceneFeatureSupported(featureType: camera.SceneFeatureType): boolean
+
+查询是否支持指定特性
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回是否支持指定特性。 |
+
+**示例：**
+
+```ts
+function isSceneFeatureSupported(featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+  return isSupported;
+}
+```
+
+### enableSceneFeature<sup>12+</sup>
+
+enableSceneFeature(featureType: camera.SceneFeatureType, enabled: boolean): void
+
+使能指定特性，该接口需要在Session调用CommitConfig之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| featureType | camera.SceneFeatureType | 是 | 指定需要开启或关闭的特性。|
+| enabled | boolean | 是 | true表明开启指定特性，false表明关闭指定特性。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103         |  Session not config.                      |
+| 202             |  Not System Application.                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableSceneFeature(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType, enabled: boolean): void {
+  try {
+    photoSession.beginConfig();
+    photoSession.addInput(cameraInput);
+    photoSession.addOutput(previewOutput);
+    photoSession.commitConfig();
+    photoSession.enableSceneFeature(featureType, enabled);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableSceneFeature call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### on('featureDetectionStatus')<sup>12+</sup>
+
+on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，photoSession创建成功可监听。 |
+| featureType     | camera.SceneFeatureType      | 是   | 监听指定特性。 |
+| callback | AsyncCallback\<camera.SceneFeatureDetectionResult\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult): void {
+  console.info(`feature type: ${result.featureType}`);
+  console.info(`feature status: ${result.detected}`);
+}
+
+function registerFeatureDetectionStatus(photoSession: camera.PhotoSession): void {
+  photoSession.on('featureDetectionStatus', callback);
+}
+```
+
+### off('featureDetectionStatus')<sup>11+</sup>
+
+off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+注销监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | ------------------------ |
+| type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
+| featureType     | camera.SceneFeatureType      | 是   | 指定特性。 |
+| callback | AsyncCallback\<camera.SceneFeatureDetectionResult\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
+
+**示例：**
+
+```ts
+function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession): void {
+  photoSession.off('featureDetectionStatus');
+}
+```
+
 ## VideoSessionForSys<sup>11+</sup>
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
