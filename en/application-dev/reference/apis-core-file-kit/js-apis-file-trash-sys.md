@@ -7,7 +7,8 @@ You can use **delete()** of [@ohos.file.fileAccess](js-apis-fileAccess-sys.md) t
 >**NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and can be called only by the file manager.
+> - The APIs provided by this module are system APIs.
+> - Currently, the APIs of this module can be called only by **FileManager**.
 
 ## Modules to Import
 
@@ -37,7 +38,7 @@ Lists the files and folders in the **Recently deleted** list.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 **Example**
 
@@ -76,7 +77,7 @@ Recovers a file or folder from the trash.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 **Example**
 
@@ -108,7 +109,7 @@ Permanently deletes a file or folder from the **Recently deleted** list.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 **Example**
 
