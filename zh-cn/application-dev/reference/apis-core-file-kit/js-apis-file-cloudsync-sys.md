@@ -1386,7 +1386,7 @@ getFileSyncState(uri: string): FileSyncState
 
 registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData&gt;): void
 
-订阅监听指定文件的变化通知，true为监听该uri以及子文件和子目录，false为仅监听该uri文件。
+订阅监听指定文件的变化通知。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -1397,7 +1397,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| recursion | boolean | 是   | 是否监控子目录和文件。|
+| recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
 | callback | Callback&lt;ChangeData&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
