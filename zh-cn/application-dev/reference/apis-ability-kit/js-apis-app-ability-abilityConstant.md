@@ -16,7 +16,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.LaunchParam
 
-启动参数。
+启动参数。Ability启动时由系统自动传入，开发者无需修改。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
