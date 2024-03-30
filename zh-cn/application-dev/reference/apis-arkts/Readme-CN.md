@@ -1,9 +1,8 @@
 # ArkTS API参考 
 
 - ArkTS API 
-  - [@arkts.collections (Array)](arkts-collections-array.md)
-  - [@arkts.collections (Map)](arkts-collections-map.md)
-  - [@arkts.collections (Set)](arkts-collections-set.md)
+  - [@arkts.collections (ArkTS容器)](js-apis-arkts-collections.md)
+  - [@arkts.lang (ArkTS语言基础库)](js-apis-arkts-lang.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.process (获取进程相关的信息)](js-apis-process.md)
