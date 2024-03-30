@@ -372,20 +372,6 @@ maxLines(value: number)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
 
-### wordBreak<sup>12+</sup>
-
-wordBreak(value: WordBreak)
-
-设置文本断行规则。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
-
 ### customKeyboard<sup>10+</sup>
 
 customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
@@ -562,6 +548,24 @@ fontFeature(value: string)
 
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+
+### wordBreak<sup>12+</sup>
+
+wordBreak(value: WordBreak)
+
+设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 内联输入风格编辑态时断行规则。 <br />默认值：WordBreak.BREAK_WORD |
+
+>  **说明：**
+>
+>  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
