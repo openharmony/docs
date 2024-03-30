@@ -261,10 +261,10 @@ export class AVPlayerDemo {
   async preDownloadDemo() {
     // 创建avPlayer实例对象
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"aa" : "bb", "cc" : "dd"});
+    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"User-Agent" : "User-Agent-Value"});
     let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
     // 设置媒体来源和播放策略
-    avPlayer.setMediaSource(mediaSource, playbackStrategy)
+    avPlayer.setMediaSource(mediaSource, playbackStrategy);
   }
 }
 ```
