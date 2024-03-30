@@ -230,6 +230,134 @@ struct AnimateToExample {
 }
 ```
 
+### getSharedLocalStorage<sup>12+</sup>
+
+getSharedLocalStorage(): LocalStorage
+
+获取当前stage共享的LocalStorage实例。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型                             | 描述                |
+| ------------------------------ | ----------------- |
+| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) | 返回LocalStorage实例。 |
+
+**示例：**
+
+```ts
+// index.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct SharedLocalStorage {
+  localStorage = this.getUIContext().getSharedLocalStorage()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Change Local Storage to 47")
+          .onClick(() => {
+            this.localStorage?.setOrCreate("propA",47)
+          })
+        Button("Get Local Storage")
+          .onClick(() => {
+            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+          })
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/GetSharedLocalStorage'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+// GetSharedLocalStorage.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct GetSharedLocalStorage {
+  localStorage = this.getUIContext().getSharedLocalStorage()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Change Local Storage to 100")
+          .onClick(() => {
+            this.localStorage?.setOrCreate("propA",100)
+          })
+        Button("Get Local Storage")
+          .onClick(() => {
+            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+### getHostContext<sup>12+</sup>
+
+getHostContext(): common.Context
+
+获得当前元能力的Context。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型 | 说明                             |
+| ------ | ------------------------------- |
+| [common.Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  uiContext: UIContext | null | undefined = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = this.uiContext?.getHostContext();
+            console.info("CacheDir:" + context?.cacheDir)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
 ### getFrameNodeById<sup>12+</sup>
 
 getFrameNodeById(id: string): FrameNode | null
