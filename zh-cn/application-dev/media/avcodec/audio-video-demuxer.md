@@ -108,7 +108,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    enum MediaDataSourceError : int32_t {
       SOURCE_ERROR_IO = -2,
       SOURCE_ERROR_EOF = -1
-   }
+   };
 
    int32_t readAt(OH_AVBuffer *data, int32_t length, int64_t pos)
    {
