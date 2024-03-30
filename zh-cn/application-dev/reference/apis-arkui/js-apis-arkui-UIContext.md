@@ -153,6 +153,26 @@ getPromptAction(): PromptAction
 uiContext.getPromptAction();
 ```
 
+### getOverlayManager<sup>12+</sup>
+
+getOverlayManager(): OverlayManager
+
+获取OverlayManager对象。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                           | 说明                 |
+| ----------------------------- | ------------------- |
+| [OverlayManager](#overlaymanager12) | 返回OverlayManager实例对象。 |
+
+**示例：**
+
+```ts
+uiContext.getOverlayManager();
+```
+
 ### animateTo
 
 animateTo(value: AnimateParam, event: () => void): void
@@ -3682,6 +3702,210 @@ struct DragControllerPage {
   }
 }
 ```
+
+## OverlayManager<sup>12+</sup>
+
+以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
+> **说明：**
+>
+> OverlayManager上节点的层级在Page页面层级之上，在Dialog、Popup、Menu、BindSheet、BindContentCover和Toast等之下。
+>
+> OverlayManager上节点安全区域内外的绘制方式与Page一致，键盘避让方式与Page一致。
+>
+> 与OverlayManager相关的属性推荐采用AppStorage来进行应用全局存储，以免切换页面后属性值发生变化从而导致业务错误。
+
+### addComponentContent<sup>12+</sup>
+
+addComponentContent(content: ComponentContent, index?: number): void
+
+在OverlayManager上新增指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中，按层级堆叠。|
+| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，若index的值越大，则ComponentContent的层级越高；当多个ComponentContent的index相同时，若ComponentContent添加的时间越晚，则层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。<br/>
+
+**示例：**
+
+```ts
+import { OverlayManager } from '@ohos.arkui.UIContext';
+import { ComponentContent } from '@ohos.arkui.node';
+import router from '@ohos.router';
+
+class Params {
+  text: string = ""
+  offset: Position
+  constructor(text: string, offset: Position) {
+    this.text = text
+    this.offset = offset
+  }
+}
+@Builder
+function builderText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }.offset(params.offset)
+}
+
+@Entry
+@Component
+struct OverlayExample {
+  @State message: string = 'ComponentContent';
+  private uiContext: UIContext = this.getUIContext()
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0
+  @StorageLink('arrayIndex') arrayIndex: number = 0
+  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+
+  build() {
+    Column() {
+      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+        ++this.componentContentIndex
+      })
+      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+        --this.componentContentIndex
+      })
+      Button("增加ComponentContent" + this.contentArray.length).onClick(()=>{
+        let componentContent = new ComponentContent(
+          this.uiContext, wrapBuilder<[Params]>(builderText),
+          new Params(this.message + (this.contentArray.length), this.componentOffset)
+        )
+        this.contentArray.push(componentContent)
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+      })
+      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
+        ++this.arrayIndex
+      })
+      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
+        --this.arrayIndex
+      })
+      Button("删除ComponentContent" + this.arrayIndex).onClick(()=>{
+        if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
+          this.overlayNode.removeComponentContent(componentContent.pop())
+        } else {
+          console.log("arrayIndex有误")
+        }
+      })
+      Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
+        if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+          let componentContent = this.contentArray[this.arrayIndex]
+          this.overlayNode.showComponentContent(componentContent)
+        } else {
+          console.log("arrayIndex有误")
+        }
+      })
+      Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
+        if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+          let componentContent = this.contentArray[this.arrayIndex]
+          this.overlayNode.hideComponentContent(componentContent)
+        } else {
+          console.log("arrayIndex有误")
+        }
+      })
+      Button("显示所有ComponentContent").onClick(()=>{
+          this.overlayNode.showAllComponentContents()
+      })
+      Button("隐藏所有ComponentContent").onClick(()=>{
+        this.overlayNode.hideAllComponentContents()
+      })
+
+      Button("跳转页面").onClick(()=>{
+        router.pushUrl({
+          url: 'pages/Second'
+        })
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### removeComponentContent<sup>12+</sup>
+
+removeComponentContent(content: ComponentContent): void
+
+在overlay上删除指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上删除此content。 |
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### showComponentContent<sup>12+</sup>
+
+showComponentContent(content: ComponentContent): void
+
+在OverlayManager上显示指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上显示此content。|
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### hideComponentContent<sup>12+</sup>
+
+hideComponentContent(content: ComponentContent): void
+
+在OverlayManager上显示指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上隐藏此content。 |
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### showAllComponentContents<sup>12+</sup>
+
+showAllComponentContents(): void
+
+显示OverlayManager上所有的ComponentContent。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### hideAllComponentContents<sup>12+</sup>
+
+hideAllComponentContents(): void
+
+隐藏OverlayManager上的所有ComponentContent。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
 
 ## AtomicServiceBar<sup>11+</sup>
 
