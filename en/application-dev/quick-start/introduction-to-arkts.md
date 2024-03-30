@@ -1699,6 +1699,51 @@ function main() {
 }
 ```
 
+## Keywords
+
+### this
+
+The keyword `this` can only be used in instance methods of a class.
+
+**Example**
+
+```typescript
+class A {
+  count: string = 'a'
+  m(i: string): void {
+    this.count = i;
+  }
+}
+```
+
+Constraints:
+
+* Type Notation Using `this` Is Not Supported
+* Using `this` Inside Stand-Alone Functions Is Not Supported
+
+**Example**
+
+```typescript
+class A {
+  n: number = 0
+  f1(arg1: this) {} // Compile-time error, type notation using this is not supported
+  static f2(arg1: number) {
+    this.n = arg1;  // Compile-time error, using this inside stand-alone functions is not supported
+  }
+}
+
+function foo(arg1: number) {
+  this.n = i;       // Compile-time error, using this inside stand-alone functions is not supported
+}
+```
+
+The keyword `this` used as a primary expression denotes a value that is a reference to the following:
+
+* Object for which the instance method is called; or
+* Object being constructed.
+
+The value denoted by this in a lambda body and in the surrounding context is the same.
+
 ## Support for ArkUI
 
 This section demonstrates mechanisms that ArkTS provides for creating graphical user interface (GUI) programs. The section is based on the ArkUI declarative framework. ArkUI provides a set of extensions of the standard TypeScript to declaratively describe the GUI of the applications and the interaction between the GUI components.
