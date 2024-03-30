@@ -57,6 +57,7 @@ import cloudSync from '@ohos.file.cloudSync';
 | BATTERY_LEVEL_WARNING |  4 | 告警电量（低于10%） |
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足 |
+| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 由于设备温度过高，同步中止 |
 
 ## SyncProgress
 
@@ -1356,16 +1357,19 @@ getFileSyncState(uri: string): FileSyncState
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
+| 13900004  | Interrupted system call. |
+| 13900010  | Try again. |
+| 13900012  | Permission denied by the file system. |
+| 13900031  | Function not implemented. |
+| 13900042  | Unknown error. |
 | 14000002  | Invalid uri. |
 
 ## cloudSync.registerChange<sup>12+</sup>
 
-registerChange(uri: string, forChildUri: boolean, callback: Callback&gtChangeData&gt): void
+registerChange(uri: string, forChildUri: boolean, callback: Callback&lt;ChangeData&gt;): void
 
 指定uri的注册更改通知。
 
@@ -1379,7 +1383,7 @@ registerChange(uri: string, forChildUri: boolean, callback: Callback&gtChangeDat
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
 | forChildUri | boolean | 是   | 是否监控子目录和文件。|
-| callback | Callback&gtChangeData&gt | 是   | 返回更改的数据。 |
+| callback | Callback&lt;ChangeData&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
 
@@ -1387,11 +1391,12 @@ registerChange(uri: string, forChildUri: boolean, callback: Callback&gtChangeDat
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
 | 13600001  | IPC error. |
+| 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
+| 13900012  | Permission denied. |
 | 14000002  | Invalid uri. |
 
 ## cloudSync.unregisterChange<sup>12+</sup>
@@ -1416,11 +1421,11 @@ unregisterChange(uri: string): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
+| 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
+| 13900012  | Permission denied. |
 | 14000002  | Invalid uri. |
 
 ## NotifyType<sup>12+</sup>
@@ -1433,10 +1438,10 @@ unregisterChange(uri: string): void
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| NOTIFY_ADD |  0 | 文件已新建 |
-| NOTIFY_UPDATE |  1 | 文件已修改 |
-| NOTIFY_REMOVE |  2 | 文件已被删除 |
-| NOTIFY_RENAME |  3 | 文件被重命名或者移动 |
+| NOTIFY_ADDED |  0 | 文件已新建 |
+| NOTIFY_MODIFIED |  1 | 文件已修改 |
+| NOTIFY_DELETED |  2 | 文件已被删除 |
+| NOTIFY_RENAMED |  3 | 文件被重命名或者移动 |
 
 ## ChangeData<sup>12+</sup>
 
@@ -1449,8 +1454,8 @@ unregisterChange(uri: string): void
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | type | NotifyType | 是   | 更改的通知类型|
-| isDir | Boolean | 是   | 指示更改的uri是否为目录|
-| uris | Array&gtstring&gt | 是   | 更改的uris|
+| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的uri是否为目录|
+| uris | Array&lt;string&gt; | 是   | 更改的uris|
 
 ## FileSyncState<sup>11+</sup>
 
