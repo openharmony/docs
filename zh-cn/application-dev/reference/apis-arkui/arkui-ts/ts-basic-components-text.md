@@ -451,6 +451,31 @@ bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长�
 >
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。
 
+### fontFeature<sup>12+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
@@ -1046,3 +1071,32 @@ function MenuStyles() {
 ```
 
 ![](figures/textBindSelectionMenu.gif)
+
+### 示例9
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+
+```ts
+@Entry
+@Component
+struct text {
+  @State text1: string = 'This is ss01 on : 0123456789'
+  @State text2: string = 'This is ss01 off: 0123456789'
+
+  build() {
+    Column(){
+      Text(this.text1)
+        .fontSize(20)
+        .margin({top:200})
+        .fontFeature("\"ss01\" on")
+      Text(this.text2)
+        .margin({top:10})
+        .fontSize(20)
+        .fontFeature("\"ss01\" off")
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![fontFeature](figures/textFontFeature.png)
