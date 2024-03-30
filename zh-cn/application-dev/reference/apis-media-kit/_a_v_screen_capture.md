@@ -788,7 +788,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init (struct OH_AVScreenCapture *
 
 初始化OH_AVScreenCapture相关参数，包括下发的音频麦克风采样信息参数，音频内录相关参数(可选)，视频分辨率相关参数。
 
-调用此函数，需要申请麦克风权限（ohos.permission.MICROPHONE）和截屏权限（ohos.permission.CAPTURE_SCREEN）,否则会初始化失败导致无法正常录屏。
+调用此函数，需要申请麦克风权限（ohos.permission.MICROPHONE）和截屏权限（ohos.permission.CAPTURE_SCREEN，仅系统应用可申请）,否则会初始化失败导致无法正常录屏。
 
 **参数：**
 
