@@ -277,13 +277,13 @@
 * COMMON_EVENT_USER_SWITCHED
 提示用户正在切换。
   - 值：usual.event.USER_SWITCHED
-  - 订阅者所需权限：  - 订阅者所需权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_USER_STARTING
 （预留事件，暂未支持）提示用户正在启动。
   - 值：usual.event.USER_STARTING
-  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_USER_UNLOCKED
@@ -295,7 +295,7 @@
 * COMMON_EVENT_USER_STOPPING
 （预留事件，暂未支持）提示要停止用户。
   - 值：usual.event.USER_STOPPING
-  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_USER_STOPPED
@@ -655,13 +655,13 @@
 * COMMON_EVENT_USER_ADDED
 提示用户已添加到系统中。
   - 值：usual.event.USER_ADDED
-  - 订阅者所需权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_USER_REMOVED
 提示用户已从系统中删除。
   - 值：usual.event.USER_REMOVED
-  - 订阅者所需权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_ABILITY_ADDED
@@ -793,79 +793,79 @@
 * COMMON_EVENT_DISK_REMOVED
 （预留事件，暂未支持）提示外部存储设备状态变更为移除。
   - 值：usual.event.data.DISK_REMOVED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_DISK_UNMOUNTED
 （预留事件，暂未支持）提示外部存储设备状态变更为卸载。
   - 值：usual.event.data.DISK_UNMOUNTED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_DISK_MOUNTED
 （预留事件，暂未支持）提示外部存储设备状态变更为挂载。
   - 值：usual.event.data.DISK_MOUNTED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_DISK_BAD_REMOVAL
 （预留事件，暂未支持）提示外部存储设备在挂载状态下被移除。
   - 值：usual.event.data.DISK_BAD_REMOVAL
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_DISK_UNMOUNTABLE
 （预留事件，暂未支持）提示外部存储设备在插卡情况下无法挂载。
   - 值：usual.event.data.DISK_UNMOUNTABLE
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_DISK_EJECT
 （预留事件，暂未支持）提示用户已作出弹出外部存储介质的操作（系统软件层面的交互操作，非直接物理弹出）。
   - 值：usual.event.data.DISK_EJECT
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup>
 提示已移除外部存储设备。
   - 值：usual.event.data.VOLUME_REMOVED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup>
 提示已卸载外部存储设备。
   - 值：usual.event.data.VOLUME_UNMOUNTED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup>
 提示已挂载外部存储设备。
   - 值：usual.event.data.VOLUME_MOUNTED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup>
 提示外部存储设备在挂载状态下被移除。
   - 值：usual.event.data.VOLUME_BAD_REMOVAL
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_VOLUME_EJECT<sup>9+</sup>
 提示用户已作出弹出外部存储介质的操作（系统软件层面的交互操作，非直接物理弹出）。
   - 值：usual.event.data.VOLUME_EJECT
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 （预留事件，暂未支持）提示帐户发生可见性的更改。
   - 值：usual.event.data.VISIBLE_ACCOUNTS_UPDATED
-  - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_ACCOUNT_DELETED
 （预留事件，暂未支持）提示有帐户被删除。
   - 值：usual.event.data.ACCOUNT_DELETED
-  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 
 * COMMON_EVENT_FOUNDATION_READY
