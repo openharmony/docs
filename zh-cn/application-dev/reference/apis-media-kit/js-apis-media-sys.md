@@ -97,6 +97,47 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
+## media.reportAVScreenCaptureUserChoice<sup>12+</sup>
+
+reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<void>
+
+上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“取消”则不进行录屏，如果用户选择“确定”则开始录屏。
+
+此接口提供给创建弹窗的系统应用调用。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 名称      | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
+| choice    | string | 是   | 用户的选择内容，“取消”为“false”，“确定”为“true“。            |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | Input parameter invalid. Return by promise. |
+| 5400101  | No memory. Return by promise.               |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+
+let sessionId: number = 0; // 替换成拉起此进程的sessionId
+let choice: string = 'false'; // 替换成用户的选择内容
+
+try {
+    await media.reportAVScreenCaptureUserChoice(sessionId, choice);
+} catch (error: BusinessError) {
+    console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+}
+```
+
 ## AVImageQueryOptions<sup>11+</sup>
 
 需要获取的缩略图时间点与视频帧的对应关系。
