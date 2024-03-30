@@ -1,4 +1,4 @@
-# AVSession Provider (ArkTS)
+# AVSession Provider
 
 An audio and video application needs to access the AVSession service as a provider in order to display media information in the controller (for example, Media Controller) and respond to playback control commands delivered by the controller.
 

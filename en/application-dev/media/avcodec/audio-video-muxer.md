@@ -1,4 +1,4 @@
-# Audio and Video Muxing (C/C++)
+# Audio and Video Muxing
 
 You can call the native APIs provided by the **AVMuxer** module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 

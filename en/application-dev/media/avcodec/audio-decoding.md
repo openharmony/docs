@@ -1,4 +1,4 @@
-# Audio Decoding (C/C++)
+# Audio Decoding
 
 You can call the native APIs provided by the audio codec module to decode audio, that is, to decode media data into PCM streams.
 

@@ -1,4 +1,4 @@
-# Audio and Video Demuxing (C/C++)
+# Audio and Video Demuxing
 
 You can call the native APIs provided by the **AVDemuxer** module to demux audio and video, that is, to extract audio and video frame data from bit stream data.
 
