@@ -303,7 +303,7 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
