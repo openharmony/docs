@@ -89,10 +89,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 为自定义数据源创建 source 资源对象(可选)
    // 当使用OH_AVSource_CreateWithDataSource时需要补充g_filePath
    // g_filePath = filePath ;
-   // OH_AVDataSource dataSource = {fileSize, readAt};
+   // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
    // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
 
-   // 使用定义数据源创建 source 资源对象时，需要先将readAt接口函数实现
+   // 使用定义数据源创建 source 资源对象时，需要先将AVSourceReadAt接口函数实现
    ```
    readAt接口函数，需要放在创建资源管理实例对象前实现：:
 
@@ -110,22 +110,24 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       SOURCE_ERROR_EOF = -1
    };
 
-   int32_t readAt(OH_AVBuffer *data, int32_t length, int64_t pos)
+   int32_t AVSourceReadAt(OH_AVBuffer *data, int32_t length, int64_t pos)
    {
       if (data == nullptr) {
          printf("AVSourceReadAt : data is nullptr!\n");
-         return MediaDataSourceError::SOURCE_ERROR_IO;
+         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_IO;
       }
 
       std::ifstream infile(g_filePath, std::ofstream::binary);
       if (!infile.is_open()) {
-         return MediaDataSourceError::SOURCE_ERROR_IO;  // 打开文件失败
+         printf("AVSourceReadAt : open file failed! file:%s\n", g_filePath.c_str());
+         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_IO;  // 打开文件失败
       }
 
       infile.seekg(0, std::ios::end);
       int64_t fileSize = infile.tellg();
       if (pos >= fileSize) {
-         return MediaDataSourceError::SOURCE_ERROR_EOF;  // pos已经是文件末尾位置，无法读取
+         printf("AVSourceReadAt : pos over or equals file size!\n");
+         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_EOF;  // pos已经是文件末尾位置，无法读取
       }
 
       if (pos + length > fileSize) {
@@ -134,7 +136,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
       infile.seekg(pos, std::ios::beg);
       if (length <= 0) {
-         return MediaDataSourceError::SOURCE_ERROR_IO;
+         printf("AVSourceReadAt : raed length less than zero!\n");
+         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_IO;
       }
       char* buffer = new char[length];
       infile.read(buffer, length);
