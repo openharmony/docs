@@ -2,9 +2,9 @@
 
 本模块提供的ArkTS容器集，可以用于并发场景下的高性能数据传递。功能与JavaScript内建的对应容器类似，但ArkTS容器实例无法通过\.或者\[\]添加或更新属性。
 
-ArkTS容器在多个并发实例间传递时，其默认行为是引用传递，支持多个并发实例可以同时操作同一个容器实例。另外，也支持拷贝传递，即每个并发实例一个ArkTS容器实例。
+ArkTS容器在多个并发实例间传递时，其默认行为是引用传递，支持多个并发实例可以同时操作同一个容器实例。另外，也支持拷贝传递，即每个并发实例持有一个ArkTS容器实例。
 
-ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）机制：当检测多个并发实例同时对容器进行结构性改变时，会触发异常。因此，在改场景下，容器使用方需要使用ArkTS提供的异步锁机制保证来保证ArkTS容器的安全访问。
+ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）机制：当检测多个并发实例同时对容器进行结构性改变时，会触发异常。因此，在修改场景下，容器使用方需要使用ArkTS提供的异步锁机制保证ArkTS容器的安全访问。
 
 当前ArkTS容器集主要包含以下几种容器：[Array](#collectionsarray)、[Map](#collectionsmap)、[Set](#collectionsset)。
 
@@ -392,6 +392,7 @@ sort(compareFn?: (a: T, b: T) => number): Array\<T>
 | -------- | -------------------------------- |
 | 10200011 | The sort method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
+
 **示例：**
 
 ```ts
@@ -584,7 +585,7 @@ let reducedValue = array.reduce((accumulator, value) => accumulator + value); //
 
 reduce\<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U, initialValue: U): U
 
-与 reduce方法类似，但它接受一个初始值作为第三个参数，用于在Array遍历开始前初始化累加器。
+与 reduce方法类似，但它接受一个初始值作为第二个参数，用于在Array遍历开始前初始化累加器。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -667,7 +668,7 @@ entries(): IterableIterator<[number, T]>
 
 | 类型                          | 说明                                       |
 | ----------------------------- | ------------------------------------------ |
-| IterableIterator<[number, T]> | 包含Array中每个元素的键值对的可迭代迭代器。 |
+| IterableIterator<[number, T]> | 包含Array中每个元素的键值对的迭代器。 |
 
 **错误码：**
 
@@ -785,7 +786,7 @@ find(predicate: (value: T, index: number, obj: Array\<T>) => boolean): T | undef
 
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
-let foundValue = array.find((value: number) => value % 2 === 0); // 返回4，第一个偶数元素
+let foundValue = array.find((value: number) => value % 2 === 0); // 返回2，第一个偶数元素
 ```
 
 ### includes
@@ -1322,7 +1323,7 @@ get(key: K): V | undefined
 const myMap = new collections.Map<string, string>([
   ["hello", "world"],
 ]);
-// Expected output: "foo"
+// Expected output: "world"
 console.info(myMap.get("hello"));
 // Expected output: undefined
 console.info(myMap.get("world"));
