@@ -386,3 +386,94 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.7 LocalStorage实例对象作为参数传入@Entry装饰器的LocalStorage对象返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+LocalStorage实例对象属性通过@Entry传入时，值不生效。
+
+**变更影响**
+
+通过对象属性传入的LocalStorage实例对象值，对页面UI的变化从不生效到变成生效。
+
+变更前：this.parentLinkNumber的返回值为1。
+
+变更后：this.parentLinkNumber的返回值为47。
+
+示例1：
+
+```ts
+let param_47: Record<string, number> = { 'PropA': 47 };
+let customStorage: LocalStorage = new LocalStorage(param_47);
+const objEntryOp: EntryOptions = {
+  storage: customStorage
+}
+interface InterfaceObj {
+  EntOpt: EntryOptions
+}
+const obj: InterfaceObj = {
+  EntOpt: objEntryOp
+}
+@Entry(obj.EntOpt)
+@Component
+struct ChainCallStorage {
+  @LocalStorageLink('PropA') parentLinkNumber: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      Button(`点击=== ${this.parentLinkNumber}`)
+        .onClick(() => {
+          this.parentLinkNumber += 1;
+        })
+    }
+  }
+}
+```
+
+示例2：
+
+```ts
+let param_47: Record<string, number> = { 'PropA': 47 };
+let customStorage8: LocalStorage = new LocalStorage(param_47);
+
+interface InterfaceObj {
+  storage: LocalStorage
+}
+const obj: InterfaceObj = {
+  storage: customStorage8
+}
+
+@Entry(obj.storage)
+@Component
+struct ChainCallStorage1 {
+  @LocalStorageLink('PropA') parentLinkNumber: number = 1;
+
+  build() {
+    Column({ space: 15 }) {
+      Button(`点击=== ${this.parentLinkNumber}`)
+        .onClick(() => {
+          this.parentLinkNumber += 1;
+        })
+    }
+  }
+}
+```
+
+**API Level**
+
+起始支持版本为 API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.18开始。
+
+**适配指导**
+
+请参考相关文档规范，做相应适配整改，LocalStorage实例对象的赋值优先级高于本地默认值。
+
+[@LocalStorageProp初始化规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-localstorage.md)
