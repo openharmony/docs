@@ -131,6 +131,25 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 | pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 |
 | pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 |
 
+### getConfigInRouteMap<sup>12+</sup>
+
+getConfigInRouteMap(): RouteMapConfig |undefined
+
+**返回值**
+
+| 类型 | 说明 |
+| --- | --- |
+| [RouteMapConfig](#routemapconfig12类型说明) | 当前页面路由配置信息。 |
+| undefined | 当该页面不是通过路由表配置时返回undefined。 |
+
+## RouteMapConfig<sup>12+</sup>类型说明
+
+| 名称   | 类型   | 描述 |
+| ----  | ---   | ----- |
+| name  | string | 页面名称。|
+| pageSourceFile| string | 页面在当前包中的路径。|
+| data | object | 页面自定义字段信息。|
+
 ## 示例
 
 NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
