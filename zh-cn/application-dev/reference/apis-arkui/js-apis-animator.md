@@ -268,7 +268,7 @@ animatorResult.onrepeat = ()=> {
 
 ### setExpectedFrameRateRange<sup>12+</sup>
 
-setExpectedFrameRateRange: (rateRange: ExpectedFrameRateRange): void
+setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 
 设置期望的帧率范围。
 

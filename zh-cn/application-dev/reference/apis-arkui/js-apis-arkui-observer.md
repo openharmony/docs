@@ -17,23 +17,14 @@ import observer from '@ohos.arkui.observer'
 
 NavDestination组件状态。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 值  | 说明                     |
 | --------- | --- | ------------------------ |
 | ON_SHOWN  | 0   | NavDestination组件显示。 |
 | ON_HIDDEN | 1   | NavDestination组件隐藏。 |
-
-## ScrollEventType<sup>12+</sup>
-
-滚动事件的类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称      | 值  | 说明                     |
-| --------- | --- | ------------------------ |
-| SCROLL_START  | 0   | 滚动事件开始。 |
-| SCROLL_STOP   | 1   | 滚动事件结束。 |
 
 ## RouterPageState
 
@@ -60,18 +51,6 @@ NavDestination组件信息。
 | navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
 | state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。                   |
-
-## ScrollEventInfo<sup>12+</sup>
-
-ScrollEvent滚动信息。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称         | 类型                                               | 必填 | 说明                                         |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| id           | string                                             | 是   | 滚动组件的id。                               |
-| eventType    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
 
 ## RouterPageInfo
 
@@ -186,145 +165,6 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 ```ts
 observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
-
-## observer.on('scrollEvent')<sup>12+</sup>
-
-on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
-
-监听滚动事件的开始和结束。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                  | 必填 | 说明                                                                     |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
-
-**示例：**
-
-请参考[offscrollevent示例](#observeroffscrollevent12-1)
-
-## observer.off('scrollEvent')<sup>12+</sup>
-
-off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
-
-取消监听滚动事件的开始和结束。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                  | 必填 | 说明                                                                     |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
-
-**示例：**
-
-请参考[offscrollevent示例](#observeroffscrollevent12-1)
-
-## observer.on('scrollEvent')<sup>12+</sup>
-
-on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEventInfo\>): void
-
-监听滚动事件的开始和结束。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
-| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
-| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
-
-**示例：**
-
-请参考[offscrollevent示例](#observeroffscrollevent12-1)
-
-## observer.off('scrollEvent')<sup>12+</sup>
-
-off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEventInfo\>): void
-
-取消监听滚动事件的开始和结束。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
-| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
-| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
-
-**示例：**
-
-```ts
-import observer from '@ohos.arkui.observer'
-
-@Entry
-@Component
-struct Index {
-  scroller: Scroller = new Scroller();
-  options: observer.ObserverOptions = { id:"testId" };
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
-
-  build() {
-    Row() {
-      Column() {
-        Scroll(this.scroller) {
-          Column() {
-            ForEach(this.arr, (item: number) => {
-              Text(item.toString())
-                .width('90%')
-                .height(150)
-                .backgroundColor(0xFFFFFF)
-                .borderRadius(15)
-                .fontSize(16)
-                .textAlign(TextAlign.Center)
-                .margin({ top: 10 })
-            }, (item: string) => item)
-          }.width('100%')
-        }
-        .id("testId")
-        .height('80%')
-      }
-      .width('100%')
-
-      Row() {
-        Button('UIObserver on')
-          .onClick(() => {
-            observer.on('scrollEvent', (info) => {
-              console.info('scrollEventInfo', JSON.stringify(info));
-            });
-          })
-        Button('UIObserver off')
-          .onClick(() => {
-            observer.off('scrollEvent');
-          })
-      }
-
-      Row() {
-        Button('UIObserverWithId on')
-          .onClick(() => {
-            observer.on('scrollEvent', this.options, (info) => {
-              console.info('scrollEventInfo', JSON.stringify(info));
-            });
-          })
-        Button('UIObserverWithId off')
-          .onClick(() => {
-            observer.off('scrollEvent', this.options);
-          })
-      }
-    }
-    .height('100%')
-  }
-}
 ```
 
 ## observer.on('routerPageUpdate')<sup>11+</sup>
