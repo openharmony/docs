@@ -492,9 +492,9 @@ The following describes how to use the two types of APIs to implement text drawi
     OH_Drawing_FontSetTextSize(font, 40);
     // Create the characters to be displayed.
     size_t size = 19;
-    const char16_t* buffer = "Hello World Drawing";
+    const char16_t* buffer = u"Hello World Drawing";
     // Create the text blob based on the characters and corresponding encoding format.
-    OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobCreateFromText(buffer, size, font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF16);
+    OH_Drawing_TextBlob* textBlob = OH_Drawing_TextBlobCreateFromText(buffer, size * sizeof(char16_t), font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF16);
     ```
 
 4. **Set the pen and brush styles.**
