@@ -387,7 +387,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.7 LocalStorage实例对象作为参数传入@Entry装饰器的UI显示变更
+## cl.arkui.7 LocalStorage实例对象作为参数传入@Entry装饰器的LocalStorage对象返回值变更
 
 **访问级别**
 
