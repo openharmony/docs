@@ -86,7 +86,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // 为 uri 资源文件创建 source 资源对象(可选)
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
 
-   // 为自定义数据源创建 source 资源对象(可选)
+   // 为自定义数据源创建 source 资源对象(可选)。使用该方式前，需要先实现AVSourceReadAt接口函数实现。
    // 当使用OH_AVSource_CreateWithDataSource时需要补充g_filePath
    // g_filePath = filePath ;
    // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
@@ -94,7 +94,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    // 使用定义数据源创建 source 资源对象时，需要先将AVSourceReadAt接口函数实现
    ```
-   readAt接口函数，需要放在创建资源管理实例对象前实现：:
+
+   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：:
 
    ```c++
    // 添加头文件
@@ -102,7 +103,6 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
    ```c++
-   // readAt接口函数
    static std::string g_filePath;
 
    enum MediaDataSourceError : int32_t {
