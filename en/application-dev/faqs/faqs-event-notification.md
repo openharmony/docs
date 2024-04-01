@@ -1,8 +1,7 @@
 # Event and Notification Development
 
-## How do I encapsulate a commonEvent utility class?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+## How do I encapsulate a commonEvent utility class? (API version 9)
 
 **Problem**
 
@@ -110,11 +109,9 @@ struct Faq10_1 {
 
 **Reference**
 
-[@ohos.commonEventManager (Common Event)](../reference/apis/js-apis-commonEventManager.md)
+[@ohos.commonEventManager (Common Event)](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 
-## How do I make events be transferred in only one UIAbility instance?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I make events be transferred in only one UIAbility instance? (API version 9)
 
 **Problem**
 
@@ -129,8 +126,11 @@ Use the API in the **EventHub** module of the UIAbility to subscribe to events. 
 ```
 import UIAbility from '@ohos.app.ability.UIAbility';
  export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onDestroy() {
         // Result
         // eventFunc is called,undefined,undefined
         this.context.eventHub.emit('myEvent');
@@ -141,6 +141,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
         // eventFunc is called,1,2
         this.context.eventHub.emit('myEvent', 1, 2);
     }
+
      eventFunc(argOne, argTwo) {
         console.log('eventFunc is called, ${argOne}, ${argTwo}');
     }}
@@ -150,9 +151,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 [Using EventHub for Data Synchronization](../application-models/uiability-data-sync-with-ui.md#using-eventhub-for-data-synchronization).
 
-## How do I implement a click-to-open-application feature in the notification?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+## How do I implement a click-to-open-application feature in the notification? (API version 9)
 
 **Solution**
 
@@ -193,11 +193,10 @@ async function publishNotification() {
 
 **Reference**
 
-[Notification](../reference/apis/js-apis-notificationManager.md) and [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)
+[Notification](../reference/apis-notification-kit/js-apis-notificationManager.md) and [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
+
 
 ## What should I do if calling notificationManager.publish fails?
-
-Applicable to: OpenHarmony 3.2 Beta5
 
 **Problem**
 
@@ -209,4 +208,4 @@ Before publishing a notification, you must enable the notification feature for y
 
 To manually enable the notification feature, choose **Settings** > **Notification & status bar** > *Application name* > **Allow notifications**.
 
-You can also call the **notificationManager.requestEnableNotification\(\)** API to display a dialog box (only once) to prompt the user to enable the feature.
+You can also call the **notificationManager.requestEnableNotification()** API to display a dialog box (only once) to prompt the user to enable the feature.
