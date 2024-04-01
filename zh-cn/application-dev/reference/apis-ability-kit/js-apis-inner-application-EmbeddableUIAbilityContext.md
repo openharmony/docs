@@ -1,12 +1,13 @@
-# UIAbilityContext
+# EmbeddableUIAbilityContext
 
-UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbility.md)所对应的context，继承自[Context](js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法，如启动UIAbility，停止当前UIAbilityContext所属的UIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
+EmbeddableUIAbilityContext是需要保存状态的[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)所对应的context，继承自[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)，提供EmbeddableUIAbility的相关配置信息以及操作EmbeddableUIAbility和ServiceExtensionAbility的方法，如启动EmbeddableUIAbility，停止当前EmbeddableUIAbilityContext所属的EmbeddableUIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
 
 > **说明：**
 >
->  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
+>  - 本模块接口仅可在元服务中使用。
 
 ## 导入模块
 
@@ -24,15 +25,15 @@ import common from '@ohos.app.ability.common';
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
 
-> **关于示例代码的说明：**
+> **说明：**
 >
-> 在本文档的示例中，通过`this.context`来获取`UIAbilityContext`，其中`this`代表继承自`UIAbility`的`UIAbility`实例。如需要在页面中使用`UIAbilityContext`提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在本文档的示例中，通过`this.context`来获取`EmbeddableUIAbilityContext`，其中`this`代表继承自`EmbeddableUIAbility`的`EmbeddableUIAbility`实例。
 
-## UIAbilityContext.startAbility
+## EmbeddableUIAbilityContext.startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。
 
 > **说明：**
 >
@@ -45,7 +46,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -72,12 +73,12 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-  
+export default class EntryAbility extends EmbeddableUIAbility {
+
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -104,11 +105,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbility
+## EmbeddableUIAbilityContext.startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability跳转启动。使用callback异步回调。
 
 > **说明：**
 >
@@ -122,7 +123,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 |  回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -149,12 +150,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -186,11 +187,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbility
+## EmbeddableUIAbilityContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability（promise形式）。
+启动Ability。使用Promise异步回调。
 
 > **说明：**
 >
@@ -209,7 +210,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回启动结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -236,12 +237,12 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -272,14 +273,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityForResult
+## EmbeddableUIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
- - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+启动一个Ability。使用callback异步回调。
+Ability被启动后，有如下情况:
+ - 正常情况下可通过调用[terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -292,7 +294,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，返回执行结果。 |
 
 **错误码：**
 
@@ -319,12 +321,12 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -335,15 +337,15 @@ export default class EntryAbility extends UIAbility {
 
     try {
       this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) { 
+        if (err.code) {
           // 处理业务逻辑错误
           console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // 执行正常业务
         console.info('startAbilityForResult succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -353,14 +355,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityForResult
+## EmbeddableUIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
- - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+启动一个Ability。使用callback异步回调。
+Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -374,7 +377,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，返回执行结果。 |
 
 **错误码：**
 
@@ -401,13 +404,13 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -440,14 +443,15 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.startAbilityForResult
+## EmbeddableUIAbilityContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-启动一个Ability。Ability被启动后，有如下情况(promise形式):
- - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+启动一个Ability。使用Promise异步回调。
+Ability被启动后，有如下情况:
+ - 正常情况下可通过调用[terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -467,7 +471,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise形式返回执行结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，返回执行结果。 |
 
 **错误码：**
 
@@ -494,13 +498,13 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -531,11 +535,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.terminateSelf
+## EmbeddableUIAbilityContext.terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-停止Ability自身（callback形式）。
+停止Ability自身跳转启动。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -543,7 +547,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 停止Ability自身的回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -561,10 +565,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     try {
@@ -588,11 +592,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.terminateSelf
+## EmbeddableUIAbilityContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
-停止Ability自身（promise形式）。
+停止Ability自身。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -600,7 +604,7 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 停止Ability自身的回调函数。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -618,10 +622,10 @@ terminateSelf(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     try {
@@ -645,11 +649,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.terminateSelfWithResult
+## EmbeddableUIAbilityContext.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#embeddableuiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#embeddableuiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者跳转启动。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -658,7 +662,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -676,12 +680,12 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -716,11 +720,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## UIAbilityContext.terminateSelfWithResult
+## EmbeddableUIAbilityContext.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#embeddableuiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#embeddableuiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -734,7 +738,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | promise形式返回停止结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -752,12 +756,12 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -791,7 +795,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.connectServiceExtensionAbility
+## EmbeddableUIAbilityContext.connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -832,13 +836,13 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -872,11 +876,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.disconnectServiceExtensionAbility
+## EmbeddableUIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
-断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -890,7 +894,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -904,11 +908,11 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
@@ -935,11 +939,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.disconnectServiceExtensionAbility
+## EmbeddableUIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
-断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空跳转启动。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -948,7 +952,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 连接的ServiceExtensionAbility的数字代码，即connectServiceExtensionAbility返回的connectionId。 |
-| callback | AsyncCallback\<void> | 是 | callback形式返回断开连接的结果。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当断开连接成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -962,11 +966,11 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
@@ -995,21 +999,21 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.startAbilityByCall
+## EmbeddableUIAbilityContext.startAbilityByCall
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
+跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。使用Promise异步回调。
 
-> **说明：**
->
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 > **说明：**
 >
-> API version 11之前的版本，该接口需要申请权限ohos.permission.ABILITY_BACKGROUND_COMMUNICATION（该权限仅系统应用可申请）。从API version 11开始，该接口需要申请的权限变更为ohos.permission.DISTRIBUTED_DATASYNC权限。
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1023,7 +1027,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 
@@ -1048,12 +1052,12 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 后台启动：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let caller: Caller;
@@ -1089,12 +1093,12 @@ export default class EntryAbility extends UIAbility {
 前台启动：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import { Caller } from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let caller: Caller;
@@ -1130,20 +1134,24 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionLabel
+## EmbeddableUIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置UIAbility在任务中显示的名称（callback形式）。
+设置UIAbility在任务中显示的名称跳转启动。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | label | string | 是 | 显示名称。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当接口调用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1157,12 +1165,12 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
@@ -1172,13 +1180,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionLabel
+## EmbeddableUIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-设置UIAbility在任务中显示的名称（promise形式）。
+设置UIAbility在任务中显示的名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
@@ -1190,7 +1202,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1204,12 +1216,12 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
@@ -1223,20 +1235,24 @@ export default class EntryAbility extends UIAbility {
 }
   ```
 
-## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+## EmbeddableUIAbilityContext.setMissionContinueState
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
-设置UIAbility任务中流转状态（callback形式）。
+设置UIAbility任务中流转状态跳转启动。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当接口调用成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1250,11 +1266,11 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
       console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
@@ -1263,13 +1279,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+## EmbeddableUIAbilityContext.setMissionContinueState
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
-设置UIAbility任务中流转状态（promise形式）。
+设置UIAbility任务中流转状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
@@ -1281,7 +1301,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1295,11 +1315,11 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
       console.info('success');
@@ -1310,13 +1330,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.restoreWindowStage
+## EmbeddableUIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage): void
 
 恢复UIAbility中的WindowStage数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
@@ -1336,9 +1360,9 @@ restoreWindowStage(localStorage: LocalStorage): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     let storage = new LocalStorage();
     this.context.restoreWindowStage(storage);
@@ -1346,13 +1370,17 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.isTerminating
+## EmbeddableUIAbilityContext.isTerminating
 
 isTerminating(): boolean
 
 查询UIAbility是否在terminating状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **返回值：**
 
@@ -1371,9 +1399,9 @@ isTerminating(): boolean
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     let isTerminating: boolean = this.context.isTerminating();
     console.info(`ability state is ${isTerminating}`);
@@ -1381,11 +1409,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestDialogService
+## EmbeddableUIAbilityContext.requestDialogService
 
 requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
-启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。使用callback异步回调。
 
 > **说明：**
 >
@@ -1393,12 +1421,16 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 执行结果回调函数。 |
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 回调函数。当接口调用成功，err为undefined，data为获取到的模态弹框请求结果，否则为错误对象。 |
 
 **错误码：**
 
@@ -1425,12 +1457,12 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -1458,17 +1490,21 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-  ## UIAbilityContext.requestDialogService
+  ## EmbeddableUIAbilityContext.requestDialogService
 
 requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
-启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者（promise形式）。
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。使用Promise异步回调。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
@@ -1481,7 +1517,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise形式返回执行结果。
+| Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise对象，返回模态弹框请求结果。|
 
 **错误码：**
 
@@ -1508,12 +1544,12 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
 
   onForeground() {
     let want: Want = {
@@ -1541,19 +1577,18 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
+## EmbeddableUIAbilityContext.reportDrawnCompleted
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
-当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+当页面加载完成（loadContent成功）时，为开发者提供打点功能跳转启动。使用callback异步回调。
+ **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 页面加载完成打点的回调函数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当打点成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1567,11 +1602,11 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 **示例：**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
+export default class EntryAbility extends EmbeddableUIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -1599,7 +1634,7 @@ export default class EntryAbility extends UIAbility {
 };
   ```
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
@@ -1608,6 +1643,10 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1615,7 +1654,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1633,7 +1672,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
   ```ts
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
   let wantParam: Record<string, Object> = {
     'time':'2023-10-23 20:45',
   };
@@ -1651,7 +1690,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   });
   ```
 
-## UIAbilityContext.startAbilityByType<sup>11+</sup>
+## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
@@ -1659,6 +1698,10 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 通过type隐式启动UIExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
 
 **参数：**
 
@@ -1691,7 +1734,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   ```ts
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
   let wantParam: Record<string, Object> = {
     'time':'2023-10-23 20:45',
   };
@@ -1706,3 +1749,147 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
+## EmbeddableUIAbilityContext.showAbility
+
+showAbility() : Promise\<void>
+
+显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+
+调用此接口要求当前Ability必须通过[EmbeddableUIAbilityContext.startAbility](#embeddableuiabilitycontextstartability)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
+  context.showAbility().then(() => {
+    console.log(`showAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+## EmbeddableUIAbilityContext.hideAbility
+
+hideAbility() : Promise\<void>
+
+隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+
+调用此接口要求当前Ability必须通过[EmbeddableUIAbilityContext.startAbility](#embeddableuiabilitycontextstartability)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.EmbeddableUIAbilityContext;
+  context.hideAbility().then(() => {
+    console.log(`hideAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+
+## EmbeddableUIAbilityContext.moveAbilityToBackground
+moveAbilityToBackground(): Promise\<void>
+
+将处于前台的Ability移动到后台。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000061 | Operation not supported. |
+| 16000065 | The interface can be called only when ability is foreground. |
+| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct Index {
+  @State moveAbilityToBackground: string = 'Move To Background'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.moveAbilityToBackground)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.EmbeddableUIAbilityContext;
+            context.moveAbilityToBackground().then(() => {
+              console.log(`moveAbilityToBackground success.`);
+            }).catch((err: BusinessError) => {
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`)
+            });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
