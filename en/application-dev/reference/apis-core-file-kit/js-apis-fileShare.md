@@ -1,6 +1,6 @@
 # @ohos.fileshare (File Sharing)
 
-The **fileShare** module provides APIs for granting the access permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can access the file by using the [@ohos.file.fs](js-apis-file-fs.md) APIs.
+The **fileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can call [@ohos.file.fs](js-apis-file-fs.md) APIs to access the file.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ import fileShare from '@ohos.fileshare';
 
 ## OperationMode<sup>11+</sup>
 
-Enumerates the modes for accessing a URI.
+Enumerates the permissions on a URI.
 
 **System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -34,6 +34,7 @@ Enumerates the error codes for a permission policy.
 | PERSISTENCE_FORBIDDEN  | 1   | The permission on the URI cannot be persisted.|
 | INVALID_MODE  | 2   | Invalid mode.    |
 | INVALID_PATH  | 3   | Invalid path.    |
+| PERMISSION_NOT_PERSISTED<sup>12+</sup>  | 4   | The permission is not persisted.|
 
 ## PolicyErrorResult<sup>11+</sup>
 
@@ -55,8 +56,8 @@ Represents a permission policy, that is, a policy for granting or activating the
 
 | Name           | Type      | Mandatory | Description                                                                                                                                               |
 |---------------| ---------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| uri           | string     | Yes  | URI of the file.                                                                                                           |
-| operationMode | number  | Yes  | Mode for accessing the URI. For details, see [OperationMode](#operationmode11).<br>For example, **fileShare.OperationMode.READ_MODE** indicates the read permission on the file.<br>**fileShare.OperationMode.READ_MODE\|fileShare.OperationMode.WRITE_MODE** indicates the read and write permissions on the file. |
+| uri           | string     | Yes  | URI of the file, on which the permission is to be granted or activated.                                                                                                                                   |
+| operationMode | number  | Yes  | Permissions on the URI. For details, see [OperationMode](#operationmode11).<br>For example, **fileShare.OperationMode.READ_MODE** indicates the read permission on the file.<br>**fileShare.OperationMode.READ_MODE\|fileShare.OperationMode.WRITE_MODE** indicates the read/write permission. |
 
 ## fileShare.persistPermission<sup>11+</sup>
 
@@ -72,7 +73,7 @@ Persists the permissions granted to multiple files or folders. This API uses a p
 
 | Name| Type                                   | Mandatory| Description                     |
 | -------- |---------------------------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to persist.          |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. The maximum number of policies is 500.|
 
 **Return value**
 
@@ -142,7 +143,7 @@ Revokes permissions from multiple files or folders. This API uses a promise to r
 
 | Name| Type                | Mandatory| Description                     |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to revoke. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. The maximum number of policies is 500.|
 
 **Return value**
 
@@ -212,7 +213,7 @@ Activates the permissions that have been persisted on multiple files or folders.
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to activate. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. The maximum number of policies is 500.|
 
 **Return value**
 
@@ -256,6 +257,9 @@ If the permission activation of some URIs fails, error code 13900001 will be ret
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
+              if(err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
+                await fileshare.persistPermission(policies);
+              }
             }
           }
       });
@@ -280,7 +284,7 @@ Deactivates the permissions on multiple files or folders. This API uses a promis
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to deactivate. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. The maximum number of policies is 500.|
 
 **Return value**
 
@@ -330,6 +334,78 @@ If the permission deactivation of some URIs fails, error code 13900001 will be r
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+## fileShare.checkPersistentPermission<sup>12+</sup>
+
+checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;boolean&gt;&gt;
+
+Checks persistent permissions. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
+
+**System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                     |
+| -------- |---------------------------------------| -------- |-------------------------|
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. The maximum number of policies is 500.|
+
+**Return value**
+
+|              Type                  |               Description                   |
+| ----------------------------------- | ------------------------------------- |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** means the permission is persistent.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID   | Error Message      |
+|----------| --------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 401      | Parameter error. |
+| 801      | Capability not supported. |
+| 13900042 | Unknown error                          |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import picker from '@ohos.file.picker';
+  
+  async function checkPersistentPermissionExample() {
+    try {
+      let documentSelectOptions = new picker.DocumentSelectOptions();
+      let documentPicker = new picker.DocumentViewPicker();
+      let uris = await documentPicker.select(documentSelectOptions);
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uris[0], 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.checkPersistentPermission(policies).then(async (data) => {
+        let result: Array<boolean> = data;
+        for (let i = 0; i < result.length; i++) {
+          console.log("checkPersistentPermission result: " + JSON.stringify(result[i]));
+          if(!result[i]){
+            let info: fileShare.PolicyInfo = {
+              uri: policies[i].uri, 
+              operationMode: policies[i].operationMode,
+            };
+            let policy : Array<fileShare.PolicyInfo> = [info];
+            await fileShare.persistPermission(policy);
+          }
+        }
+      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+        console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
     }
   }
   ```
