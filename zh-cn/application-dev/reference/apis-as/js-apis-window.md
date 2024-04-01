@@ -1784,8 +1784,7 @@ import { BusinessError } from '@ohos.base';
 let isPrivacyMode: boolean = true;
 try {
   windowClass.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
+    if (err) {
       console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
       return;
     }

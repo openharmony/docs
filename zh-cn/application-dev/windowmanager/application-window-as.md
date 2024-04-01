@@ -81,7 +81,7 @@ export default class EntryAbility extends UIAbility {
         });
       } catch (exception) {
         console.error('Failed to set the window to privacy mode. Cause:' +
-      JSON.stringify(err));
+      JSON.stringify(exception));
       }
     })
     // 3.为主窗口加载对应的目标页面。
