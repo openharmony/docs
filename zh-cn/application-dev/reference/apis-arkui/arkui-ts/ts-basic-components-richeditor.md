@@ -54,10 +54,10 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 **参数：** 
 
-| 参数名                | 类型                                        | 必填 | 说明                                 |
-| --------------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                         |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置是否可以支持自定义键盘触发避让。 |
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### bindSelectionMenu
 
@@ -189,7 +189,7 @@ enterKeyType(enterKeyType: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| enterKeyType  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| enterKeyType  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 
 ## 事件
@@ -300,7 +300,7 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
 ### onEditingChange<sup>12+</sup>
 
-onEditingChange(callback: Callback<boolean>)
+onEditingChange(callback:&nbsp;(value:&nbsp;boolean) => void)
 
 文本编辑状态发生改变时触发该回调函数。
 
@@ -324,8 +324,8 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&n
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| enterKey  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event  | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。 |
+| enterKey  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event  | [SubmitEvent](ts-types.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。 |
 
 ## RichEditorInsertValue
 
@@ -405,6 +405,7 @@ Span类型信息。
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
 | lineHeight<sup>12+</sup> | number       | 否    | 文本行高。          |
 | letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
+| fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。 |
 
 ## RichEditorImageSpanResult
 
@@ -999,11 +1000,11 @@ onLongPress(callback: (event?: GestureEvent) => void )
 
 ## KeyboardOptions<sup>12+</sup>
 
-设置自定义键盘是否支持避让属性。
+设置自定义键盘是否支持避让功能。
 
 | 名称            | 类型              | 必填   | 描述                               |
 | --------------- | ---------------  |---- | ------------------------------------  |
-| supportAvoidance |  boolean      | 否 | 设置是否可以支持自定义键盘触发避让；默认值为false不支持避让，true为支持避让。 |
+| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ## 示例
 
@@ -3093,7 +3094,7 @@ struct RichEditorExample {
 @Component
 struct RichEditorExample {
   controller: RichEditorController = new RichEditorController()
-  @State height1:string|number = '20%'
+  @State height1:string|number = '80%'
   @State height2:number = 100
   @State supportAvoidance:boolean = true;
 
@@ -3136,18 +3137,22 @@ struct RichEditorExample {
     Column() {
       Row(){
         Button("20%")
-          .fontSize(12)
+          .fontSize(24)
           .onClick(()=>{
             this.height1 = "20%"
           })
         Button("80%")
-          .fontSize(12)
+          .fontSize(24)
+          .margin({left:20})
           .onClick(()=>{
             this.height1 = "80%"
           })
       }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
+      .padding({bottom:50})
       RichEditor({ controller: this.controller })
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
@@ -3159,3 +3164,44 @@ struct RichEditorExample {
 }
 ```
 ![CustomRichEditorType](figures/Custom_Rich_Editor.gif)
+
+### 示例16
+
+onEditingChange，isEditing使用示例。
+
+```ts
+@Entry
+@Component
+struct RichEditor_onEditingChange {
+  controller: RichEditorController = new RichEditorController()
+  @State controllerIsEditing: boolean = false
+  @Builder
+
+  build() {
+    Column() {
+      Row() {
+        Button("点击查看编辑状态isEditing()：").onClick(() => {
+          this.controllerIsEditing = this.controller.isEditing()
+        })
+          .padding(5)
+        Text('' + this.controllerIsEditing)
+          .width('100%')
+          .padding(5)
+          .fontColor(Color.Orange)
+          .fontSize(20)
+      }
+      RichEditor({ controller: this.controller })
+        .onEditingChange((isEditing: boolean) => {
+          console.log("Current Editing Status:" + isEditing)
+        })
+        .height(400)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+    }
+  }
+}
+```
+
+![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
+

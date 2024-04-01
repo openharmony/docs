@@ -274,10 +274,10 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 **参数：** 
 
-| 参数名                | 类型                                        | 必填 | 说明                                 |
-| --------------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                         |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置是否可以支持自定义键盘触发避让。 |
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### type<sup>11+</sup>
 
@@ -303,9 +303,9 @@ enterKeyType(value: EnterKeyType)
 
 **参数：** 
 
-| 参数名 | 类型                                    | 必填 | 说明                                                 |
-| ------ | --------------------------------------- | ---- | ---------------------------------------------------- |
-| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
+| 参数名 | 类型                                             | 必填 | 说明                                                 |
+| ------ | ------------------------------------------------ | ---- | ---------------------------------------------------- |
+| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
 
 >  **说明：**
 >
@@ -495,9 +495,9 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+| 参数名   | 类型                                             | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
 
 ## TextAreaController<sup>8+</sup>
 
@@ -638,11 +638,11 @@ getCaretOffset(): CaretOffset
 
 ## KeyboardOptions<sup>12+</sup>
 
-设置自定义键盘是否支持避让属性。
+设置自定义键盘是否支持避让功能。
 
 | 名称            | 类型              | 必填   | 描述                               |
 | --------------- | ---------------  |---- | ------------------------------------  |
-| supportAvoidance |  boolean      | 否 |         设置是否可以支持自定义键盘触发避让。|
+| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ## 示例
 
@@ -976,7 +976,7 @@ struct textArea {
 struct TextAreaExample {
   controller: TextAreaController = new TextAreaController()
   @State inputValue: string = ""
-  @State height1:string|number = '20%'
+  @State height1:string|number = '80%'
   @State height2:number = 100
   @State supportAvoidance:boolean = true;
 
@@ -1006,18 +1006,22 @@ struct TextAreaExample {
     Column() {
       Row(){
         Button("20%")
-          .fontSize(12)
+          .fontSize(24)
           .onClick(()=>{
             this.height1 = "20%"
           })
         Button("80%")
-          .fontSize(12)
+          .fontSize(24)
+          .margin({left:20})
           .onClick(()=>{
             this.height1 = "80%"
           })
       }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
+      .padding({bottom:50})
       TextArea({ controller: this.controller, text: this.inputValue})
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
