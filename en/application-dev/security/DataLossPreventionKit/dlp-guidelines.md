@@ -264,17 +264,3 @@ For an application in the DLP sandbox state, the permissions granted to the appl
       console.error('error', err.code, err.message); // Report an error upon a failure.
     }
     ```
-
-14. Check whether the current system provides the DLP feature.
-    ```ts
-    import dlpPermission from '@ohos.dlpPermission';
-    import { BusinessError } from '@ohos.base';
-
-    async checkIsDLPFeatureProvided() {
-      dlpPermission.isDLPFeatureProvided().then((res) => {git
-        console.info('res', JSON.stringify(res));
-      }).catch((err: BusinessError) => {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Report an error upon a failure.
-      });
-    }
-    ```
