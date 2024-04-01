@@ -114,20 +114,20 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    {
       if (data == nullptr) {
          printf("AVSourceReadAt : data is nullptr!\n");
-         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_IO;
+         return MediaDataSourceError::SOURCE_ERROR_IO;
       }
 
       std::ifstream infile(g_filePath, std::ofstream::binary);
       if (!infile.is_open()) {
          printf("AVSourceReadAt : open file failed! file:%s\n", g_filePath.c_str());
-         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_IO;  // 打开文件失败
+         return MediaDataSourceError::SOURCE_ERROR_IO;  // 打开文件失败
       }
 
       infile.seekg(0, std::ios::end);
       int64_t fileSize = infile.tellg();
       if (pos >= fileSize) {
          printf("AVSourceReadAt : pos over or equals file size!\n");
-         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_EOF;  // pos已经是文件末尾位置，无法读取
+         return MediaDataSourceError::SOURCE_ERROR_EOF;  // pos已经是文件末尾位置，无法读取
       }
 
       if (pos + length > fileSize) {
@@ -137,7 +137,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       infile.seekg(pos, std::ios::beg);
       if (length <= 0) {
          printf("AVSourceReadAt : raed length less than zero!\n");
-         return OHOS::Media::MediaDataSourceError::SOURCE_ERROR_IO;
+         return MediaDataSourceError::SOURCE_ERROR_IO;
       }
       char* buffer = new char[length];
       infile.read(buffer, length);
