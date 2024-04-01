@@ -74,7 +74,7 @@
 
 - [获取应用文件路径](#获取应用文件路径)
 - [获取和修改加密分区](#获取和修改加密分区)
-- [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
+- [获取本应用中其他module的context](#获取本应用中其他module的context)
 - [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
 
 
