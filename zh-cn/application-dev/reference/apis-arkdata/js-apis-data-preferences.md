@@ -1066,7 +1066,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 **返回值：**
 
-| 类型                                | 说明   |
+| 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
 | Promise<[ValueType](#valuetype)&gt; | Promise对象，返回键对应的值。 |
 
