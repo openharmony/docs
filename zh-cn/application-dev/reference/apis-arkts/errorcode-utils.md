@@ -549,7 +549,7 @@ Timeout exceeded.
 
 检查锁之间是否存在循环依赖。尝试在[lockAsync](js-apis-arkts-utils.md#lockasync)调用中添加catch语句，并查看错误信息。错误信息将包含有关现有异步锁实例和可能的死锁警告的信息。
 
-## 10200201 Concurrent 修改错误
+## 10200201 Concurrent修改错误
 
 **错误信息**
 
@@ -565,4 +565,4 @@ Concurrent modification error.
 
 **处理步骤**
 
-使用collections提供的非并发安全的容器时，使用异步锁进行保护 (TODO: link to async lock's doc)
+使用collections提供的非并发安全的容器时，使用异步锁进行保护。

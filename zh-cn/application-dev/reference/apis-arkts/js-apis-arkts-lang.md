@@ -1,6 +1,6 @@
-# @arkts.lang (ArkTS 语言基础能力)
+# @arkts.lang (ArkTS语言基础能力)
 
-本模块提供的ArkTS语言的基础类型定义。当前提供 ISendable接口
+本模块提供的ArkTS语言的基础类型定义。当前提供ISendable接口。
 
 > **说明：**
 >
@@ -13,16 +13,17 @@ import { lang } from '@kit.ArkTS';
 ```
 
 ## lang.ISendable
-是所有Sendable类型(除`null`和`undefined`)的父类型。自身没有任何必须的方法和属性。
+是所有Sendable类型（除`null`和`undefined`）的父类型。自身没有任何必须的方法和属性。
 
 ISendable类型的对象是ArkTS中的Object类型的实例。
 
-ISendable主要用在开发者自定义Sendable数据结构的场景中，ArkTS语言标准库中的容器类型隐式地继承并实现了ISendable
+ISendable主要用在开发者自定义Sendable数据结构的场景中，ArkTS语言标准库中的容器类型隐式地继承并实现了ISendable。
 
 **示例：**
 
 ```ts
 // 构造一个用户自定义的Sendable数据结构
+@Sendable
 class CustomData implements lang.ISendable {
     data1: number;
     data2: string;
