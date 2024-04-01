@@ -110,7 +110,7 @@ clearFocus(): void
 
 >  **说明：**
 >
->  调用该接口需要先获取[UIContext](../js-apis-arkui-UIContext.md)，具体使用方式可以参考[示例3](./ts-universal-attributes-focus.md#示例3)。
+>  调用该接口需要先获取[FocusController](../js-apis-arkui-UIContext.md)，具体使用方式可以参考[示例3](./ts-universal-attributes-focus.md#示例3)。
 
 ## 示例
 
