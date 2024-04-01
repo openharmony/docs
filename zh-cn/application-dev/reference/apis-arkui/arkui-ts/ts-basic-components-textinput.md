@@ -388,7 +388,7 @@ wordBreak(value: WordBreak)
 
 ### customKeyboard<sup>10+</sup>
 
-customKeyboard(value: CustomBuilder)
+customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 设置自定义键盘。
 
@@ -408,9 +408,10 @@ customKeyboard(value: CustomBuilder)
 
 **参数：** 
 
-| 参数名 | 类型                                        | 必填 | 说明         |
-| ------ | ------------------------------------------- | ---- | ------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。 |
+| 参数名                | 类型                                        | 必填 | 说明                                 |
+| --------------------- | ------------------------------------------- | ---- | ------------------------------------ |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                         |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置是否可以支持自定义键盘触发避让。 |
 
 ### enableAutoFill<sup>11+</sup>
 
@@ -536,6 +537,31 @@ letterSpacing(value: number | string | Resource)
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
+
+### fontFeature<sup>12+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -881,6 +907,14 @@ getCaretOffset(): CaretOffset
 | normal  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 | error   | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
 | disable | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+
+## KeyboardOptions<sup>12+</sup>
+
+设置自定义键盘是否支持避让属性。
+
+| 名称            | 类型              | 必填   | 描述                               |
+| --------------- | ---------------  |---- | ------------------------------------  |
+| supportAvoidance |  boolean      | 否 |         设置是否可以支持自定义键盘触发避让。|
 
 ## 示例
 
