@@ -70,7 +70,7 @@ promise?.then(()=> {
 })
 ```
 
-### setWaterMark
+### setWaterMarkFlag
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 

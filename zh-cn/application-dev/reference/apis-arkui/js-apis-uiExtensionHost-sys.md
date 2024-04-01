@@ -331,7 +331,7 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
   })
 ```
 
-### setWaterMark<sup>12+<sup>
+### setWaterMarkFlag<sup>12+<sup>
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
