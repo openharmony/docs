@@ -122,6 +122,7 @@
         - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
         - [背景设置 (系统接口)](arkui-ts/ts-universal-attributes-background-sys.md)
         - [组件内容模糊 (系统接口)](arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
+        - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
