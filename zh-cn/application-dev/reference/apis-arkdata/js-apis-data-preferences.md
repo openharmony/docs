@@ -1258,7 +1258,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 | 参数名 | 类型                    | 必填 | 说明                         |
 | ------ | ----------------------- | ---- |--------------------------|
 | key    | string                  | 是   | 要修改的存储的Key，不能为空。                                                                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、bigint类型。 |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。 |
 
 **返回值：**
 
