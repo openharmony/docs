@@ -1,6 +1,6 @@
 # @ohos.resourceschedule.systemload (性能功耗热融合档位)
 
-本模块提供性能功耗热融合档位的接口。根据系统当前温度、负载以及是否处于高负载场景等信息决策出系统负载综合档位，并在档位变化时通知给已注册应用。
+系统根据当前温度、负载以及是否处于高负载场景等信息决策出系统负载融合档位，并在档位变化时通知已注册的应用。
 
 > **说明：**
 >
@@ -14,9 +14,9 @@ import systemload from '@ohos.resourceschedule.systemload';
 
 ## systemload.on('systemLoadChange')
 
-on(type: 'systemLoadChange', callback: Callback<[SystemLoadLevel](#systemloadlevel)>): void
+on(type: 'systemLoadChange', callback: Callback<SystemLoadLevel>): void
 
-注册系统负载回调，感知系统负载变化，使用callback异步回调。
+注册系统负载回调，感知系统负载融合档位变化，使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.SystemLoad
 
@@ -24,8 +24,8 @@ on(type: 'systemLoadChange', callback: Callback<[SystemLoadLevel](#systemloadlev
 
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| type | string                      | 是    | 系统负载变化类型，固定参数。                               |
-| callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | 是    | 回调函数，返回本次注册系统负载是否成功。 |
+| type | string                      | 是    | 固定取值'systemLoadChange'，系统负载变化类型。                               |
+| callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | 是    | 回调函数，返回本次注册系统负载时的系统融合档位。 |
 
 **示例**：
 
@@ -46,9 +46,9 @@ try {
 
 ## systemload.off('systemLoadChange')
 
-off(type: 'systemLoadChange', callback?: Callback<[SystemLoadLevel](#systemloadlevel)>): void
+off(type: 'systemLoadChange', callback?: Callback<SystemLoadLevel>): void
 
-取消注册系统负载回调，感知系统负载变化，使用callback异步回调。
+取消注册系统负载回调，使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.SystemLoad
 
@@ -56,8 +56,8 @@ off(type: 'systemLoadChange', callback?: Callback<[SystemLoadLevel](#systemloadl
 
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| type | string                      | 是    | 系统负载变化类型，固定参数。                               |
-| callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | 否    | 回调函数，返回本次解注册系统负载是否成功。 |
+| type | string                      | 是    | 固定取值'systemLoadChange'，系统负载变化类型。                               |
+| callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | 否    | 回调函数，返回本次取消注册系统负载时的系统融合档位。 |
 
 **示例**：
 
@@ -80,7 +80,7 @@ try {
 
 getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
 
-获取系统融合档位，使用promise异步回调。
+获取系统负载融合档位，使用promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.SystemLoad
 
@@ -88,7 +88,7 @@ getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt; | Promise对象，返回系统融合档位。 |
+| Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt; | Promise对象，返回系统负载融合档位。 |
 
 **示例**：
 
@@ -105,13 +105,13 @@ systemload.getLevel.then((res: systemload.SystemLoadLevel) => {
 
 ## SystemLoadLevel
 
-性能功耗热融合档位。
+系统负载融合档位。
 
 **系统能力:** SystemCapability.ResourceSchedule.Systemload
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| LOW          | 0    | 设备当前温度、负载都比较低，无叠加场景。                  |
+| LOW          | 0    | 设备当前温度、负载比较低，无叠加场景。                  |
 | NORMAL       | 1    | 设备温度、负载正常，但邻近中等状态，无感知业务应降低规格和负载。                  |
 | MEDIUM       | 2    | 设备温度、负载有一项或多项稍高，或者当前处于叠加场景，无感知业务应暂停或延迟运行。                    |
 | HIGH         | 3    | 设备当前发热明显或负载比较高，或处于负载温度中等但处于叠加场景，无感知业务应停止，非关键业务应降低规格及负载。                  |
