@@ -581,7 +581,8 @@ reduce(callbackFn: (previousValue: T, currentValue: T, currentIndex: number, arr
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let reducedValue = array.reduce((accumulator, value) => accumulator + value); // 返回15，累加所有元素
 ```
-### reduce\<U>
+
+### reduce
 
 reduce\<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U, initialValue: U): U
 
@@ -631,7 +632,7 @@ at(index: number): T | undefined
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 要返回的Array元素的索引（从零开始），取值为整数。负数索引从Array末尾开始计数——如果`index < 0`，则会访问`index + array.length`位置的元素。 |
+| index  | number | 是   | 要返回的Array元素的索引（从零开始），取值为整数。负数索引从Array末尾开始计数，如果`index < 0`，则会访问`index + array.length`位置的元素。 |
 
 
 **返回值：**
@@ -904,7 +905,7 @@ array.fill(0, 1, 3); // 返回[1, 0, 0, 4, 5]，因为1到3的索引范围内的
 
 shrinkTo(arrayLength: number): void
 
-使Array收缩到arrayLenth大小
+使Array收缩到指定长度。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -926,15 +927,18 @@ shrinkTo(arrayLength: number): void
 **示例：**
 
 ```ts
-let array = new collections.Array(1, 2, 3, 4, 5);
-array.shrinkTo(1); // array内容变为：[1]
+let array1 = new collections.Array(1, 2, 3, 4, 5);
+array1.shrinkTo(1); // array内容变为：[1]
+
+let array2 = new collections.Array(1, 2, 3, 4, 5);
+array2.shrinkTo(10); // array内容不变
 ```
 
 ### extendTo
 
 extendTo(arrayLength: number, initialValue: T): void
 
-使Array扩展到arrayLenth大小，扩展的部分使用initialValue填充
+使Array扩展到指定长度，扩展的部分使用给定值填充。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -943,7 +947,7 @@ extendTo(arrayLength: number, initialValue: T): void
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | arrayLength  | number  | 是   | Array的新长度。如果arrayLength <= array.length，则Array不变。 |
-| initialValue  | T  | 是   | 扩展的部分的填充值 |
+| initialValue  | T  | 是   | 扩展的部分的填充值。 |
 
 **错误码：**
 
@@ -957,8 +961,11 @@ extendTo(arrayLength: number, initialValue: T): void
 **示例：**
 
 ```ts
-let array = new collections.Array(1, 2, 3);
-array.extendTo(5, 10); // array内容变为：[1, 2, 3, 10, 10]
+let array1 = new collections.Array(1, 2, 3);
+array1.extendTo(5, 10); // array内容变为：[1, 2, 3, 10, 10]
+
+let array2 = new collections.Array(1, 2, 3);
+array2.extendTo(1, 10); // array内容不变
 ```
 
 ## collections.Map
@@ -992,7 +999,7 @@ constructor(entries?: readonly (readonly [K, V])[] | null)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| entries | [K, V][] \| null | 否   | 键值对Array或其它可迭代对象。默认值为null，创建一个空Map对象。 |
+| entries | [K, V][] \| null | 否   | 键值对数组或其它可迭代对象。默认值为null，创建一个空Map对象。 |
 
 **错误码：**
 
@@ -1430,7 +1437,7 @@ constructor(values?: readonly T[] | null)
 
 | 参数名 | 类型 | 必填 | 说明                                                      |
 | ------ | ---- | ---- | --------------------------------------------------------- |
-| values | T[] \| null | 否 | Array或其它可迭代对象。默认值为null，创建一个空Set对象。 |
+| values | T[] \| null | 否 | 数组或其它可迭代对象。默认值为null，创建一个空Set对象。 |
 
 **错误码：**
 
