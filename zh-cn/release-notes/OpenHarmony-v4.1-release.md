@@ -509,12 +509,13 @@ MindSpore Lite轻量化端侧学习能力开放C API。
 **表4** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 | 
+| -------- | -------- |
 | I8PEOF | 进程com.ohos.mms有一定概率出现因为LIFECYCLE_TIMEOUT导致的sysfreeze问题。 |
 | I8QET3 | 进程bluetooth_servi下的OS_IPC_10_25363线程有一定概率出现因libbluetooth_server.z.so导致的cppcrash。 |
 | I8QH9S | 进程com.ohos.settingsdata下的os.settingsdata线程小概率出现因libnative_appdatafwk.z.so导致的cppcrash。 |
 | I8QNI7 | 进程foundation由于SERVICE_BLOCK小概率出现因netsysnative导致的sysfreeze。 |
 | I8QSZ1 | 进程com.ohos.systemui有一定概率出现由于THREAD_BLOCK_6S卡在libsamgr_proxy.z.so导致的appfreeze。 |
-| I7TYTF等43个开源组件漏洞 | 内核errseq_set函数protection_fault 等43个开源组件漏洞 |
+| I7TYTF等43个开源组件漏洞 | 内核errseq_set函数protection_fault 等43个开源组件漏洞。 |
 | I78THF | RK3568 kernel patch中的maligpu版本过旧（11.29），存在大量未修复CVE漏洞。 |
 | I83D6I | 进入设置反复打开关闭蓝牙，有一定概率会导致设置出现appfreeze。 |
 | I827LU | 进入设置反复打开关闭蓝牙开关会出现内存泄漏，经测试一个小时泄露15MB。 |
