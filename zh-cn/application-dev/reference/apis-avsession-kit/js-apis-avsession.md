@@ -2797,6 +2797,74 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 ```ts
 currentAVSession.off('toggleCallMute');
 ```
+
+### on('castDisplayChange')<sup>12+</sup>
+
+on(type: 'castDisplayChange', callback: Callback<[CastDisplayInfo](#castdisplayinfo12)>): void;
+
+设置可扩展投播设备变更监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏状态变化时触发事件。 |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 是   | 回调函数。参数是可投播的设备信息。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
+    if (display.state === avSession.CastDisplayState.STATE_ON) {
+        castDisplay = display;
+        console.info('castDisplayChange display : ${display.id} ON');
+    } else if (display.state === avSession.CastDisplayState.STATE_OFF){
+        console.info('castDisplayChange display : ${display.id} OFF');
+    }
+});
+```
+### off('castDisplayChange')<sup>12+</sup>
+
+ off(type: 'castDisplayChange', callback?: Callback<[CastDisplayInfo](#castdisplayinfo12)>): void;
+
+取消可扩展投播设备变更事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | 是   | 关闭对应的监听事件，支持的事件是`'castDisplayChange'` |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.off('castDisplayChange');
+```
+
 ### stopCasting<sup>10+</sup>
 
 stopCasting(callback: AsyncCallback\<void>): void
@@ -2901,6 +2969,47 @@ try {
   let error = err as BusinessError;
   console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
+```
+### getAllCastDisplays<sup>12+</sup>
+
+getAllCastDisplays(): Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>
+
+获取当前系统中所有支持扩展屏投播的设备。通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**返回值：**
+
+| 类型                                            | 说明                              |
+| ----------------------------------------------- | --------------------------------- |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID   | 错误信息 |
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.getAllCastDisplays()
+  .then((data: Array< avSession.CastDisplayInfo >) => {
+    if (data.length >= 1) {
+       castDisplay =  data[0];
+     } else {
+       console.info('There is not a cast display');
+     }
+   })
+   .catch((error: BusinessError) => {
+     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+   });
 ```
 
 ## AVCastControlCommandType<sup>10+</sup>
@@ -4030,6 +4139,32 @@ off(type: 'error'): void
 ```ts
 aVCastController.off('error')
 ```
+
+## CastDisplayState<sup>12+</sup>
+
+投播显示设备状态。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| STATE_OFF      | 1    | 设备断开，扩展屏被回收    |
+| STATE_ON      | 2    | 设备连接成功，可以在扩展屏绘制 |
+
+
+## CastDisplayInfo<sup>12+</sup>
+
+投播显示设备相关属性。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| 名称            | 类型                      | 必填 | 说明                                                                  |
+| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
+| id            | string                  | 是    | 可投播设备的ID，该参数应为整数  |
+| name     | string                  | 是    | 可投播设备的名称           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 是    |可投播状态            |
+| width          | number          | 是    | 可投播设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 是    | 可投播设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
