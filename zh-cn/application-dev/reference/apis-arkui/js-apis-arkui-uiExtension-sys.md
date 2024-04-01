@@ -98,7 +98,6 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display.           |
 
 **示例**
 
