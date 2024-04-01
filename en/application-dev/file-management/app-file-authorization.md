@@ -1,26 +1,27 @@
 # Authorizing Access to Application Files
 
 The system prevents unauthorized access to application files. An application can access a file or folder after obtaining the path to the file or folder. You can implement authorized access to application files in the following scenarios:
-Obtain the access to a user directory by declaring the permission.
-Obtain a temporary permission on a file or folder using FilePicker and persist the temporary permission.
-Obtain the URI of a file or folder using APIs.
-Obtain user directories and the directory of a built-in or external card using APIs.
 
-Only some devices support the access authorization operations.
+- Obtain the access to a user directory by declaring the permission.
+- Obtain a temporary permission on a file or folder using FilePicker and persist the temporary permission.
+- Obtain the URI of a file or folder using APIs.
+- Obtain user directories and the directory of a built-in or external card using APIs.
 
-## Development Example
+Only certain devices support the access authorization operations.
 
 The following walks you through common file operations.
 
-### Declaring the Permission on the Download Directory
+## Declaring the Permission on the Download Directory
 
 1. Set the permission on the **Download** directory.
 
-    "requestPermissions" : [
+    ```json
+   "requestPermissions" : [
         "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY"
     ]
+   ```
 
-2. Use the [ohos.file.environment](../reference/apis/js-apis-file-environment.md) API to obtain the path to **Download**. After obtaining the directory path, the application can access the directory and perform operations.
+2. Use the [ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md) API to obtain the path to **Download**. After obtaining the directory path, the application can access the directory and perform operations.
   ```ts
   import { BusinessError } from '@ohos.base';
   import environment from '@ohos.file.environment';
@@ -40,11 +41,13 @@ The following walks you through common file operations.
   }
   ```
 
-### Persisting a Temporary Permission Obtained by FilePicker
+## Persisting a Temporary Permission Obtained by FilePicker
 
-Use FilePicker to select a file or folder, and set permanent authorization for your application on the file or folder. When the application restarts, the permission needs to be activated. You can use [ohos.fileshare](../reference/apis/js-apis-fileShare.md) to implement file authorization.
+Use FilePicker to select a file or folder, and set permanent authorization for your application on the file or folder. When the application restarts, the permission needs to be activated. You can use [ohos.fileshare](../reference/apis-core-file-kit/js-apis-fileShare.md) to implement file authorization.
 
-1. Use the **select()** API of FilePicker to select and save an URI. After the file or folder corresponding to the URI is selected and saved by the user, the application obtains a temporary permission to access the file or folder. The following sample code demonstrates how to obtain the URI of a folder.
+1. Use the **select()** API of FilePicker to select and save an URI. After the file or folder corresponding to the URI is selected and saved by the user, the application obtains a temporary permission to access the file or folder. 
+
+   The following sample code demonstrates how to obtain the URI of a folder.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -63,7 +66,9 @@ Use FilePicker to select a file or folder, and set permanent authorization for y
   }
   ```
 
-2. Persist the permission on the path as required. The parameter **uri** is the path obtained by FilePicker in step 1. The following sample code demonstrates how to persist a permission on a URI.
+2. Persist the permission on the path as required. The parameter **uri** is the path obtained by FilePicker in step 1. 
+
+   The following sample code demonstrates how to persist a permission on a URI.
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -94,7 +99,9 @@ Use FilePicker to select a file or folder, and set permanent authorization for y
   }
   ```
 
-3. Revoke the persistent permission on the path as required. The parameter **uri** is the path obtained by FilePicker in step 1. The following sample code demonstrates how to revoke a persistent permission from a URI.
+3. Revoke the persistent permission on the path as required. The parameter **uri** is the path obtained by FilePicker in step 1. 
+
+   The following sample code demonstrates how to revoke a persistent permission from a URI.
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -127,7 +134,8 @@ Use FilePicker to select a file or folder, and set permanent authorization for y
 
 4. Activate the persistent permission on the URI when the application restarts. The **activatePermission** method must be used with **persistPermission()** together.
 
-The following sample code demonstrates how to activate the persistent permission on a URI when the application restarts. The parameter **uri** specifies a recently accessed file to be read after the application is restarted.
+   The following sample code demonstrates how to activate the persistent permission on a URI when the application restarts. The parameter **uri** specifies a recently accessed file to be read after the application is restarted.
+
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -155,7 +163,9 @@ The following sample code demonstrates how to activate the persistent permission
   }
   ```
 
-5. Deactivate a persistent permission as required. The parameter **uri** specifies a recently accessed file read after the application is restarted. The following sample code demonstrates how to deactivate a persistent permission.
+5. Deactivate a persistent permission as required. The parameter **uri** specifies a recently accessed file read after the application is restarted. 
+
+   The following sample code demonstrates how to deactivate a persistent permission.
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileshare from '@ohos.fileshare';
@@ -183,10 +193,12 @@ The following sample code demonstrates how to activate the persistent permission
   }
   ```
 
-### Obtaining the URI of a File or Folder
+## Obtaining the URI of a File or Folder
 
 Use the [ohos.file.fileuri](../reference/apis/js-apis-file-fileuri.md) API to obtain the URI of a file or folder. If **FileUri** points to a file, the URI of the directory where the file is located is returned. If **FileUri** points to a folder, the URI of the current directory is returned.
+
 The following sample code demonstrates how to obtain the parent directory of a file.
+
   ```ts
   import { BusinessError } from '@ohos.base';
   import fileUri from '@ohos.file.fileuri';
@@ -203,10 +215,12 @@ The following sample code demonstrates how to obtain the parent directory of a f
   }
   ```
 
-### Obtaining a User Directory or Directory of a Built-in or External Card
+## Obtaining a User Directory or Directory of a Built-in or External Card
 
 A common application can obtain the following user directories: **Download**, **Desktop**, and **Document**. Only the **Files** application can obtain the root directory of an external card and the built-in card directory in the sandbox directory of the current user using the [ohos.file.environment](../reference/apis/js-apis-file-environment.md) APIs.
+
 The following sample code demonstrates how to obtain these directories.
+
   ```ts
   import { BusinessError } from '@ohos.base';
   import environment from '@ohos.file.environment';
