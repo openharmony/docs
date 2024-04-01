@@ -135,6 +135,33 @@ import window from '@ohos.window';
 | width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
 | height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
 
+## RectChangeReason<sup>12+</sup>
+
+窗口矩形（窗口位置及窗口大小）变化的原因。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                  | 值   | 说明                                                         |
+| --------------------- | ---- | ------------------------------------------------------------ |
+| UNDEFINED                 | 0    | 默认值。                                                   |
+| MAXIMIZE                | 1    | 窗口最大化。                                                   |
+| RECOVER              | 2    | 窗口恢复到上一次的状态。                                                   |
+| MOVE | 3    | 窗口拖拽移动。 |
+| DRAG  | 4    | 窗口拖拽缩放。 |
+| DRAG_START  | 5    | 窗口开始拖拽缩放。 |
+| DRAG_END  | 6    | 窗口结束拖拽缩放。 |
+
+## RectChangeOptions<sup>12+</sup>
+
+窗口矩形（窗口位置及窗口大小）变化返回的值及变化原因。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称       | 类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
+| reason    | [RectChangeReason](#rectchangereason12) | 是   | 是   | 窗口矩形变化的原因。 |
+
 ## WindowProperties
 
 窗口属性。
@@ -3047,6 +3074,50 @@ try {
 } catch (exception) {
   console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
 }
+```
+
+### on('windowRectChange')<sup>12+</sup>
+
+on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
+
+开启窗口矩形（窗口位置及窗口大小）变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。 |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 是   | 回调函数。返回当前窗口矩形变化值及变化原因。                           |
+
+**示例：**
+
+```ts
+windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+    console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+});
+```
+
+### off('windowRectChange')<sup>12+</sup>
+
+off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
+
+关闭窗口矩形（窗口位置及窗口大小）变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。     |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 否   | 回调函数。返回当前的窗口矩形及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口矩形变化的监听。 |
+
+**示例：**
+
+```ts
+windowClass.off('windowRectChange');
 ```
 
 ### isWindowSupportWideGamut<sup>9+</sup>
