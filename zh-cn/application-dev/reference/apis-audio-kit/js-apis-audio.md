@@ -8119,6 +8119,60 @@ audioCapturer.off('readData', (data: ArrayBuffer) => {
 });
 ```
 
+### getOverflowCount<sup>12+</sup>
+
+getOverflowCount(): Promise&lt;number&gt;
+
+获取当前录制音频流的过载音频帧数量。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt;| Promise对象，返回音频流的过载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+audioCapturer.getOverflowCount().then((value: number) => {
+  console.info(`Get overflow count Success! ${value}`);
+}).catch((err: BusinessError) => {
+  console.error(`Get overflow count Fail: ${err}`);
+});
+```
+
+### getOverflowCountSync<sup>12+</sup>
+
+getOverflowCountSync(): number
+
+获取当前录制音频流的过载音频帧数量，同步返回数据。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| number| 返回音频流的过载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioCapturer.getOverflowCountSync();
+  console.info(`Get overflow count Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get overflow count Fail: ${error}`);
+}
+```
+
 ## ActiveDeviceType<sup>(deprecated)</sup>
 
 枚举，活跃设备类型。
