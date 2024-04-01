@@ -196,6 +196,111 @@ struct CustomDialogUser {
 
 ![openAnimator](figures/openAnimator.gif)
 
+## 嵌套自定义弹窗
+当我们通过第一个弹窗打开第二个弹窗时，最好将第二个弹窗定义在第一个弹窗的父组件处，通过父组件传给第一个弹窗的回调来打开第二个弹窗。
+
+```
+@CustomDialog
+struct CustomDialogExampleTwo {
+  controllerTwo?: CustomDialogController
+  @State message: string = "I'm the second dialog box."
+  @State showIf: boolean = false;
+  build() {
+    Column() {
+      if (this.showIf) {
+        Text("Text")
+          .fontSize(30)
+          .height(100)
+      }
+      Text(this.message)
+        .fontSize(30)
+        .height(100)
+      Button("Create Text")
+        .onClick(()=>{
+          this.showIf = true;
+        })
+      Button ('Close Second Dialog Box')
+        .onClick(() => {
+          if (this.controllerTwo != undefined) {
+            this.controllerTwo.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@CustomDialog
+struct CustomDialogExample {
+  openSecondBox?: ()=>void
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Button ('Open Second Dialog Box and close this box')
+        .onClick(() => {
+          this.controller!.close();
+          this.openSecondBox!();
+        })
+        .margin(20)
+    }.borderRadius(10)
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  @State inputValue: string = 'Click Me'
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+      openSecondBox: ()=>{
+        if (this.dialogControllerTwo != null) {
+          this.dialogControllerTwo.open()
+        }
+      }
+    }),
+    cancel: this.exitApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false
+  })
+  dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExampleTwo(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -25 } })
+
+  aboutToDisappear() {
+    this.dialogController = null // Set dialogController to null.
+    this.dialogControllerTwo = null
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked')
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked')
+  }
+
+  exitApp() {
+    console.info('Click the callback in the blank area')
+  }
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![nested_dialog](figures/nested_dialog.gif)
+
+由于自定义弹窗在状态管理侧有父子关系，如果我们将第二个弹窗定义在第一个弹窗内，那么当父组件（第一个弹窗）被销毁（关闭）时，子组件（第二个弹窗）内无法再继续创建新的组件。
+
 ## 完整示例
 
 ```ts
