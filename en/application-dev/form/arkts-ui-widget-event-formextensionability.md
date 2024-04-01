@@ -4,7 +4,7 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
 
 > **NOTE**
 >
-> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/arkui-ts/ts-container-formlink.md).
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
 - On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the message event to start the FormExtensionAbility. Use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to decorate the widget data to be updated.
   
@@ -62,7 +62,7 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
   }
   ```
   
-- Call the [updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
+- Call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
   
   ```ts
   import type Base from '@ohos.base';

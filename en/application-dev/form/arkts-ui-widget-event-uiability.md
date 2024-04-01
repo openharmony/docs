@@ -1,15 +1,15 @@
 # Updating Widget Content Through the router or call Event
 
 
-On the widget page, the [postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
+On the widget page, the [postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 > **NOTE**
 >
-> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/arkui-ts/ts-container-formlink.md).
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the [postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction) API in the callback to trigger the router event to start the UIAbility.
+- On the widget page, register the **onClick** event callback of the button and call the [postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API in the callback to trigger the router event to start the UIAbility.
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
@@ -64,7 +64,7 @@ On the widget page, the [postCardAction()](../reference/apis/js-apis-postCardAct
   }
   ```
   
-- In the **onCreate()** or **onNewWant()** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform) API to update the widget.
+- In the **onCreate()** or **onNewWant()** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget.
   
   ```ts
   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -223,7 +223,7 @@ On the widget page, the [postCardAction()](../reference/apis/js-apis-postCardAct
   }
   ```
   
-- Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform) API in the corresponding method to update the widget.
+- Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API in the corresponding method to update the widget.
   
   ```ts
   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';

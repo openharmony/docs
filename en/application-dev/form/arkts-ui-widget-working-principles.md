@@ -11,9 +11,9 @@
 
 - Widget provider: an application that provides the widget content to display and controls how widget components are laid out and how they interact with users.
 
-- Widget Manager: a resident agent that manages widgets in the system. It provides the [formProvider](../reference/apis/js-apis-app-form-formProvider.md) and [formHost](../reference/apis/js-apis-app-form-formHost.md) APIs as well as the APIs for widget management, usage, and periodic updates. 
+- Widget Manager: a resident agent that manages widgets in the system. It provides the formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md) and [formHost](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md) APIs as well as the APIs for widget management, usage, and periodic updates. 
 
-- Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) on the widget host.
+- Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the [FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding [FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) on the widget host.
 
   **Figure 2** Working principles of the ArkTS widget rendering service
 
@@ -36,8 +36,8 @@ As a quick entry to applications, ArkTS widgets outperform JS widgets in the fol
   ![WidgetProject](figures/WidgetProject.png)
   
 - More widget features
-  - Animation: ArkTS widgets support the [property animation](../reference/arkui-ts/ts-animatorproperty.md) and [explicit animation](../reference/arkui-ts/ts-explicit-animation.md) capabilities, which can be leveraged to deliver a more engaging experience.
-  - Custom drawing: ArkTS widgets allow you to draw graphics with the [\<Canvas>](../reference/arkui-ts/ts-components-canvas-canvas.md) component to present information more vividly.
+  - Animation: ArkTS widgets support the [property animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md) and [explicit animation](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) capabilities, which can be leveraged to deliver a more engaging experience.
+  - Custom drawing: ArkTS widgets allow you to draw graphics with the [\<Canvas>](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) component to present information more vividly.
   - Logic code execution: The capability to run logic code in widgets means that service logic can be self-closed in widgets, expanding the use cases of widgets.
 
 ## Constraints on ArkTS Widgets
@@ -50,7 +50,7 @@ Compared with JS widgets, ArkTS widgets provide more capabilities, but they are 
 
 - The native programming language cannot be used for development.
 
-- Only partial components, events, animations, data management, state management, and API capabilities of the [declarative paradigm](../reference/arkui-ts/ts-components-summary.md) are supported.
+- Only partial components, events, animations, data management, state management, and API capabilities of the [declarative paradigm](../reference/apis-arkui/arkui-ts/ts-components-summary.md) are supported.
 
 - The event processing of the widget is independent of that of the widget host. To prevent gesture conflicts, avoid using swipers in the widget when the widget host supports left and right swipes.
 
