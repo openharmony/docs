@@ -1,4 +1,4 @@
-# HidDdk
+# HID DDK
 
 
 ## Overview
@@ -7,8 +7,9 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 **System capability**: SystemCapability.Driver.HID.Extension
 
-**Since**: 11
+**Since**
 
+11
 
 ## Summary
 
@@ -25,28 +26,28 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 | Name| Description| 
 | -------- | -------- |
-| [Hid_EmitItem](_hid___emit_item.md) | Defines event information. |
-| [Hid_Device](_hid___device.md) | Defines basic device information. |
-| [Hid_EventTypeArray](_hid___event_type_array.md) | Defines an array of event types. |
-| [Hid_KeyCodeArray](_hid___key_code_array.md) | Defines an array of key codes. |
-| [Hid_AbsAxesArray](_hid___abs_axes_array.md) | Defines an array of absolute coordinates. |
-| [Hid_RelAxesArray](_hid___rel_axes_array.md) | Defines an array of relative coordinates. |
-| [Hid_MscEventArray](_hid___msc_event_array.md) | Defines an array of miscellaneous events. |
-| [Hid_EventProperties](_hid___event_properties.md) | Defines the event properties of a device. |
+| [Hid_EmitItem](_hid___emit_item.md) | Defines event information. | 
+| [Hid_Device](_hid___device.md) | Defines basic device information. | 
+| [Hid_EventTypeArray](_hid___event_type_array.md) | Defines an array of event types. | 
+| [Hid_KeyCodeArray](_hid___key_code_array.md) | Defines an array of key codes. | 
+| [Hid_AbsAxesArray](_hid___abs_axes_array.md) | Defines an array of absolute coordinates. | 
+| [Hid_RelAxesArray](_hid___rel_axes_array.md) | Defines an array of relative coordinates. | 
+| [Hid_MscEventArray](_hid___msc_event_array.md) | Defines an array of miscellaneous events. | 
+| [Hid_EventProperties](_hid___event_properties.md) | Defines the event properties of a device. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| [Hid_EmitItem](#hid_emititem) | Defines a struct for event information. |
-| [Hid_Device](#hid_device) | Defines a struct for basic device information. |
-| [Hid_EventTypeArray](#hid_eventtypearray) | Defines a struct for an array of event types. |
-| [Hid_KeyCodeArray](#hid_keycodearray) | Defines a struct for an array of key codes. |
-| [Hid_AbsAxesArray](#hid_absaxesarray) | Defines a struct for an array of absolute coordinates. |
-| [Hid_RelAxesArray](#hid_relaxesarray) | Defines a struct for an array of relative coordinates. |
-| [Hid_MscEventArray](#hid_msceventarray) | Defines a struct for an array of miscellaneous events. |
-| [Hid_EventProperties](#hid_eventproperties) | Defines a struct for the event properties of a device. |
+| [Hid_EmitItem](#hid_emititem) | Defines a struct for event information. | 
+| [Hid_Device](#hid_device) | Defines a struct for basic device information. | 
+| [Hid_EventTypeArray](#hid_eventtypearray) | Defines a struct for an array of event types. | 
+| [Hid_KeyCodeArray](#hid_keycodearray) | Defines a struct for an array of key codes. | 
+| [Hid_AbsAxesArray](#hid_absaxesarray) | Defines a struct for an array of absolute coordinates. | 
+| [Hid_RelAxesArray](#hid_relaxesarray) | Defines a struct for an array of relative coordinates. | 
+| [Hid_MscEventArray](#hid_msceventarray) | Defines a struct for an array of miscellaneous events. | 
+| [Hid_EventProperties](#hid_eventproperties) | Defines a struct for the event properties of a device. | 
 
 
 ### Enums
@@ -67,44 +68,44 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Hid_CreateDevice](#oh_hid_createdevice) ([Hid_Device](_hid___device.md) \*hidDevice, [Hid_EventProperties](_hid___event_properties.md) \*hidEventProperties) | Creates a device. |
-| [OH_Hid_EmitEvent](#oh_hid_emitevent) (int32_t deviceId, const [Hid_EmitItem](_hid___emit_item.md) items[], uint16_t length) | Sends an event list to a device. |
-| [OH_Hid_DestroyDevice](#oh_hid_destroydevice) (int32_t deviceId) | Destroys a device. |
+| [OH_Hid_CreateDevice](#oh_hid_createdevice) ([Hid_Device](_hid___device.md) \*hidDevice, [Hid_EventProperties](_hid___event_properties.md) \*hidEventProperties) | Creates a device. | 
+| [OH_Hid_EmitEvent](#oh_hid_emitevent) (int32_t deviceId, const [Hid_EmitItem](_hid___emit_item.md) items[], uint16_t length) | Sends an event list to a device. | 
+| [OH_Hid_DestroyDevice](#oh_hid_destroydevice) (int32_t deviceId) | Destroys a device. | 
 
 
 ### Variables
 
 | Name| Description| 
 | -------- | -------- |
-| [Hid_EmitItem::type](#type) | Event type. |
-| [Hid_EmitItem::code](#code) | Event code. |
-| [Hid_EmitItem::value](#value) | Event value. |
-| [Hid_Device::deviceName](#devicename) | Device name. |
-| [Hid_Device::vendorId](#vendorid) | Vendor ID. |
-| [Hid_Device::productId](#productid) | Product ID. |
-| [Hid_Device::version](#version) | Version number. |
-| [Hid_Device::bustype](#bustype) | Bus type. |
-| [Hid_Device::properties](#properties) | Device properties. |
-| [Hid_Device::propLength](#proplength) | Number of device properties. |
-| [Hid_EventTypeArray::hidEventType](#hideventtype) | Event type. |
+| [Hid_EmitItem::type](#type) | Event type. | 
+| [Hid_EmitItem::code](#code) | Event code. | 
+| [Hid_EmitItem::value](#value) | Event value. | 
+| [Hid_Device::deviceName](#devicename) | Device name. | 
+| [Hid_Device::vendorId](#vendorid) | Vendor ID. | 
+| [Hid_Device::productId](#productid) | Product ID. | 
+| [Hid_Device::version](#version) | Version number. | 
+| [Hid_Device::bustype](#bustype) | Bus type. | 
+| [Hid_Device::properties](#properties) | Device properties. | 
+| [Hid_Device::propLength](#proplength) | Number of device properties. | 
+| [Hid_EventTypeArray::hidEventType](#hideventtype) | Event type. | 
 | [Hid_EventTypeArray::length](#length-15) | Length of the event type array. |
-| [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | key code. |
+| [Hid_KeyCodeArray::hidKeyCode](#hidkeycode) | key code. | 
 | [Hid_KeyCodeArray::length](#length-25) | Length of the key code array. |
-| [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | Absolute coordinates. |
+| [Hid_AbsAxesArray::hidAbsAxes](#hidabsaxes) | Array of absolute coordinates. | 
 | [Hid_AbsAxesArray::length](#length-35) | Length of the absolute coordinate array. |
-| [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | Relative coordinates. |
+| [Hid_RelAxesArray::hidRelAxes](#hidrelaxes) | Array of relative coordinates. | 
 | [Hid_RelAxesArray::length](#length-45) | Length of the relative coordinate array. |
-| [Hid_MscEventArray::hidMscEvent](#hidmscevent) | Miscellaneous event. |
+| [Hid_MscEventArray::hidMscEvent](#hidmscevent) | Miscellaneous event. | 
 | [Hid_MscEventArray::length](#length-55) | Length of the miscellaneous event array. |
-| [Hid_EventProperties::hidEventTypes](#hideventtypes) | Array of event types. |
-| [Hid_EventProperties::hidKeys](#hidkeys) | Array of key codes. |
-| [Hid_EventProperties::hidAbs](#hidabs) | Array of absolute coordinates. |
-| [Hid_EventProperties::hidRelBits](#hidrelbits) | Array of relative coordinates. |
-| [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | Array of miscellaneous events. |
-| [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | Maximum values of the absolute coordinates. |
-| [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | Minimum values of the absolute coordinates. |
-| [Hid_EventProperties::hidAbsFuzz](#hidabsfuzz) [64] | Fuzzy values of the absolute coordinates. |
-| [Hid_EventProperties::hidAbsFlat](#hidabsflat) [64] | Fixed values of the absolute coordinates. |
+| [Hid_EventProperties::hidEventTypes](#hideventtypes) | Array of event types. | 
+| [Hid_EventProperties::hidKeys](#hidkeys) | Array of key codes. | 
+| [Hid_EventProperties::hidAbs](#hidabs) | Array of absolute coordinates. | 
+| [Hid_EventProperties::hidRelBits](#hidrelbits) | Array of relative coordinates. | 
+| [Hid_EventProperties::hidMiscellaneous](#hidmiscellaneous) | Array of miscellaneous events. | 
+| [Hid_EventProperties::hidAbsMax](#hidabsmax) [64] | Maximum values of the absolute coordinates. | 
+| [Hid_EventProperties::hidAbsMin](#hidabsmin) [64] | Minimum values of the absolute coordinates. | 
+| [Hid_EventProperties::hidAbsFuzz](#hidabsfuzz) [64] | Fuzzy values of the absolute coordinates. | 
+| [Hid_EventProperties::hidAbsFlat](#hidabsflat) [64] | Fixed values of the absolute coordinates. | 
 
 
 ## Type Description
