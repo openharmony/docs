@@ -7328,3 +7328,48 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
+### setDefaultDensityEnabled()<sup>12+</sup>
+
+setDefaultDensityEnabled(enabled: boolean): void
+
+设置应用使用系统默认Density。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| enabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.setDefaultDensityEnabled(true);
+    } catch (exception) {
+      console.error('Failed to set default density enabled. Cause:' + JSON.stringify(exception));
+    }
+  }
+};
+```
