@@ -11,7 +11,7 @@
 * COMMON_EVENT_LOCKED_BOOT_COMPLETED
 （预留事件，暂未支持）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
   - 值：usual.event.LOCKED_BOOT_COMPLETED
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 * [COMMON_EVENT_SHUTDOWN](../common_event/commonEvent-powermgr.md#common_event_shutdown)
 表示设备正在关闭的公共事件的操作。
@@ -647,7 +647,7 @@ Wi-Fi P2P群组信息已更改。
 * COMMON_EVENT_FOUNDATION_READY
 （预留事件，暂未支持）表示foundation已准备好的公共事件的动作。
   - 值：usual.event.data.FOUNDATION_READY
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 * COMMON_EVENT_AIRPLANE_MODE_CHANGED
 表示设备飞行模式已更改的公共事件的动作。
