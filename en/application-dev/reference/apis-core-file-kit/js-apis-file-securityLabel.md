@@ -31,7 +31,6 @@ Before using the APIs provided by this module to perform operations on a file or
 
 For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-
 ## securityLabel.setSecurityLabel
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
@@ -49,13 +48,13 @@ Sets a security label for a file. This API uses a promise to return the result.
 
 **Return value**
 
-| Type               | Description            |
-| ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type               | Description            |
+  | ------------------- | ---------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -98,7 +97,7 @@ Sets a security label for a file. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -142,7 +141,7 @@ Sets a security label for a file. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -172,19 +171,19 @@ Obtains the security label of a file. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description    |
-| ------ | ------ | ---- | -------- |
-| path   | string | Yes  | Path of the target file.|
+  | Name| Type  | Mandatory| Description    |
+  | ------ | ------ | ---- | -------- |
+  | path   | string | Yes  | Path of the target file.|
 
 **Return value**
 
-| Type                 | Description        |
-| --------------------- | ------------ |
-| Promise&lt;string&gt; | Security label obtained.|
+  | Type                 | Description        |
+  | --------------------- | ------------ |
+  | Promise&lt;string&gt; | Security label obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -219,14 +218,14 @@ Obtains the security label of a file. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                      |
-| -------- | --------------------------- | ---- | -------------------------- |
-| path     | string                      | Yes  | Path of the target file.                  |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the security label obtained.|
+  | Name  | Type                       | Mandatory| Description                      |
+  | -------- | --------------------------- | ---- | -------------------------- |
+  | path     | string                      | Yes  | Path of the target file.                  |
+  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the security label obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -275,7 +274,7 @@ Obtains the security label of a file. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
