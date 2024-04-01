@@ -4,8 +4,8 @@ The **\<GridItem>** component provides a single item in a grid.
 
 >  **NOTE**
 >
->  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->  - This component can be used only as a child of [\<Grid>](ts-container-grid.md).
+>  * This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  * This component can be used only as a child of [\<Grid>](ts-container-grid.md).
 
 
 ## Child Components
@@ -13,8 +13,6 @@ The **\<GridItem>** component provides a single item in a grid.
 This component can contain a single child component.
 
 ## APIs
-
-### GridItem
 
 GridItem(value?: GridItemOptions)
 
@@ -26,17 +24,65 @@ GridItem(value?: GridItemOptions)
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| rowStart | number | Start row number of the component.|
-| rowEnd | number | End row number of the component.|
-| columnStart | number | Start column number of the component.|
-| columnEnd | number | End column number of the component.|
-| forceRebuild<sup>(deprecated)</sup> | boolean | Whether to re-create the component when it is being built.<br>This API is deprecated since API version 9. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.<br>Default value: **false**|
-| selectable<sup>8+</sup> | boolean | Whether the grid item is selectable by the mouse.<br>> **NOTE**<br>> This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true**|
-| selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.<br>Default value: **false**|
+### rowStart
+
+rowStart(value: number)
+
+Sets the start row number of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | Yes  | Start row number of the component.|
+
+### rowEnd
+
+rowEnd(value: number)
+
+Sets the end row number of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | Yes  | End row number of the component.|
+
+### columnStart
+
+columnStart(value: number)
+
+Sets the start column number of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | Yes  | Start column number of the component.|
+
+### columnEnd
+
+columnEnd(value: number)
+
+Sets the end column number of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| value  | number | Yes  | End column number of the component.|
 
 >  **NOTE**
+>
+>  When a grid is used with [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), the layout of the last grid item must be restricted. In this case, you are advised to use the [layoutOptions](ts-container-grid.md) parameter of the grid. For details, see [Example 3 in Grid](ts-container-grid.md#example-3).
 >
 >  Rules for setting **rowStart**, **rowEnd**, **columnStart**, and **columnEnd**:
 >
@@ -56,6 +102,54 @@ GridItem(value?: GridItemOptions)
 >
 >  In the grid that has neither **columnTemplate** nor **rowTemplate** set, the row and column number attributes do not work.
 
+### forceRebuild<sup>(deprecated)</sup>
+
+forceRebuild(value: boolean)
+
+Whether to re-create the component when it is being built. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.
+
+This API is deprecated since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                   |
+| ------ | ------- | ---- | ------------------------------------------------------- |
+| value  | boolean | Yes  | Sets whether to re-create the component when it is being built.<br>Default value: **false**|
+
+### selectable<sup>8+</sup>
+
+selectable(value: boolean)
+
+Sets whether the grid item is selectable for multiselect. This attribute takes effect only when multiselect is enabled for the parent **\<Grid>** container.
+
+This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                 |
+| ------ | ------- | ---- | ----------------------------------------------------- |
+| value  | boolean | Yes  | Whether the grid item is selectable for multiselect.<br>Default value: **true**|
+
+### selected<sup>10+</sup>
+
+selected(value: boolean)
+
+Sets whether the grid item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+
+This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                    |
+| ------ | ------- | ---- | ---------------------------------------- |
+| value  | boolean | Yes  | Whether the grid item is selected.<br>Default value: **false**|
+
 ## GridItemOptions<sup>11+</sup>
 
 | Name | Type                                 | Mandatory| Description                                                        |
@@ -73,12 +167,21 @@ GridItem(value?: GridItemOptions)
 >
 > To set the focused style for the grid item, the grid container must have paddings of greater than 4 vp for accommodating the focus frame of the grid item.
 
-
 ## Events
 
-| Name| Description|
-| -------- | -------- |
-| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise.|
+### onSelect<sup>8+</sup>
+
+onSelect(event: (isSelected: boolean) =&gt; void)
+
+Triggered when the selected state of the grid item changes.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type   | Mandatory| Description                                                        |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isSelected | boolean | Yes  | Returns **true** if the grid item is selected for multselect; returns **false** otherwise.|
 
 ## Example
 
