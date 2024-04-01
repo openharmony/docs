@@ -48,8 +48,8 @@ CustomDialogController(value: CustomDialogControllerOptions)
 | borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
 | borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
 | borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
-| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。<br /> 百分比参数方式：以父元素宽的百分比来设置弹窗的宽度。 |
-| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br /> 百分比参数方式：以父元素高的百分比来设置弹窗的高度。|
+| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。<br />**说明：**<br /> 弹窗的宽度百分比是相对主窗口或子窗口(showInSubWindow)的宽度。<br />非showInSubWindow弹窗宽度的最大尺寸是主窗口宽度，showInSubWindow弹窗宽度的最大尺寸是子窗口宽度。|
+| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br />**说明：**<br /> 弹窗的高度百分比是相对主窗口或子窗口(showInSubWindow)的高度。<br />当高度设置100%，非showInSubWindow弹窗高度的最大尺寸是主窗口高度，showInSubWindow弹窗高度的最大尺寸是子窗口高度。<br />设置弹窗对齐方式，弹出的显示区域不足，会剪裁弹窗。|
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
 
 > **说明：**
