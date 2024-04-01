@@ -47,6 +47,20 @@ type(value: InputType)
 | ------ | ------------------------------- | ---- | ----------------------------------------- |
 | value  | [InputType](#inputtype枚举说明) | 是   | 输入框类型。<br/>默认值：InputType.Normal |
 
+### contentType<sup>12+</sup>
+
+contentType(value: ContentType)
+
+设置自动填充类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| value  | [ContentType](#contenttype12枚举说明) | 是   | 自动填充类型。 |
+
 ### placeholderColor
 
 placeholderColor(value: ResourceColor)
@@ -610,6 +624,31 @@ fontFeature(value: string)
 | NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。 |
 | NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
 
+## ContentType<sup>12+</sup>枚举说明
+
+自动填充类型。
+
+| 名称                | 值   | 描述                                                         |
+| ------------------- | ---- | ------------------------------------------------------------ |
+| USER_NAME           | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| PASSWORD            | 1    | 【密码】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| NEW_PASSWORD        | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
+| FULL_STREET_ADDRESS | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
+| HOUSE_NUMBER        | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
+| DISTRICT_ADDRESS    | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
+| CITY_ADDRESS        | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
+| PROVINCE_ADDRESS    | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
+| COUNTRY_ADDRESS     | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
+| PERSON_FULL_NAME    | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
+| PERSON_LAST_NAME    | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
+| PERSON_FIRST_NAME   | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
+| PHONE_NUMBER        | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_COUNTRY_CODE  | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER   | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| EMAIL_ADDRESS       | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
+| BANK_CARD_NUMBER    | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
+| ID_CARD_NUMBER      | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+
 ## TextInputStyle<sup>9+</sup>枚举说明
 
 | 名称      | 描述                                       |
@@ -966,6 +1005,13 @@ struct TextInputExample {
         .type(InputType.Password)
         .maxLength(9)
         .showPasswordIcon(true)
+      // 邮箱地址自动填充类型
+      TextInput({ placeholder: 'input your email...' })
+        .width('95%')
+        .height(40)
+        .margin(20)
+        .contentType(ContentType.EMAIL_ADDRESS)
+        .maxLength(9)
       // 内联风格输入框
       TextInput({ text: 'inline style' })
         .width('95%')
