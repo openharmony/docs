@@ -2787,7 +2787,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片。
+获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2833,7 +2833,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片。
+获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
