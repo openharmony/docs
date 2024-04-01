@@ -8,12 +8,12 @@
 * COMMON_EVENT_BOOT_COMPLETED
 提示用户已完成引导并加载系统。
   - 值：usual.event.BOOT_COMPLETED
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 * COMMON_EVENT_LOCKED_BOOT_COMPLETED
 （预留事件，暂未支持）提示用户已完成引导，系统已加载，但屏幕仍锁定。
   - 值：usual.event.LOCKED_BOOT_COMPLETED
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 * COMMON_EVENT_SHUTDOWN
 提示设备正在关闭并将继续直至最终关闭。
@@ -876,7 +876,7 @@
 * COMMON_EVENT_FOUNDATION_READY
 （预留事件，暂未支持）提示foundation已准备好。
   - 值：usual.event.data.FOUNDATION_READY
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 
 * COMMON_EVENT_AIRPLANE_MODE_CHANGED
