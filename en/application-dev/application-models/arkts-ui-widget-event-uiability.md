@@ -1,7 +1,7 @@
 # Updating Widget Content Through the router or call Event
 
 
-On the widget page, the **postCardAction** API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
+On the widget page, the [postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 > **NOTE**
 >
@@ -9,14 +9,14 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility.
+- On the widget page, register the **onClick** event callback of the button and call the [postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction) API in the callback to trigger the router event to start the UIAbility.
   
   ```ts
-  let storageUpdtRouter = new LocalStorage();
+  let storageUpdateRouter = new LocalStorage();
   
-  @Entry(storageUpdtRouter)
+  @Entry(storageUpdateRouter)
   @Component
-  struct WidgetUpdtRouterCard {
+  struct WidgetUpdateRouterCard {
     @LocalStorageProp('routerDetail') routerDetail: ResourceStr = $r('app.string.init');
   
     build() {
@@ -92,7 +92,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          routerDetail: message + 'UIAbility.', // It matches the widget layout.
+          'routerDetail': message + 'UIAbility.', // It matches the widget layout.
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -111,7 +111,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          routerDetail: message + 'onNewWant UIAbility.', // It matches the widget layout.
+          'routerDetail': message + 'onNewWant UIAbility.', // It matches the widget layout.
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -147,7 +147,6 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import type Want from '@ohos.app.ability.Want';
   
   export default class WidgetCalleeFormAbility extends FormExtensionAbility {
@@ -171,9 +170,9 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
 - On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the call event to start the UIAbility.
   
   ```ts
-  let storageUpdtCall = new LocalStorage();
+  let storageUpdateCall = new LocalStorage();
   
-  @Entry(storageUpdtCall)
+  @Entry(storageUpdateCall)
   @Component
   struct WidgetUpdateCallCard {
     @LocalStorageProp('formId') formId: string = '12400633174999288';
@@ -228,6 +227,7 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
   
   ```ts
   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type Base from '@ohos.base';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
@@ -272,12 +272,12 @@ On the widget page, the **postCardAction** API can be used to trigger a router o
       let message: string = params.calleeDetail;
       hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
       let formData: Record<string, string> = {
-        calleeDetail: message
+        'calleeDetail': message
       };
       let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(curFormId, formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, `updateForm success. ${JSON.stringify(data)}`);
-      }).catch((error) => {
+      }).catch((error: Base.BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `updateForm failed: ${JSON.stringify(error)}`);
       });
     }

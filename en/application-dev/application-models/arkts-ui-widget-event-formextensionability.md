@@ -65,12 +65,11 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
 - Call the [updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
   
   ```ts
-  import formInfo from '@ohos.app.form.formInfo';
+  import type Base from '@ohos.base';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
-  import type Want from '@ohos.app.ability.Want';
   
   const TAG: string = 'EntryFormAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -89,9 +88,9 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
         hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-      }).catch((error) => {
+      }).catch((error: Base.BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
-      });
+      })
     }
     ...
   }

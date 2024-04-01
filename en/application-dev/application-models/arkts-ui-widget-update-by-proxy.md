@@ -5,7 +5,6 @@ A widget can be updated through a proxy – a system application that has data s
 ## Implementation Principles
 
 **Figure 1** Updating widget content through a proxy
-
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
 Compared with the [implementation of the ArkTS widget](../application-models/arkts-ui-widget-working-principles.md#implementation-principles) alone, updating through a proxy involves the data management service and data provider.
@@ -81,7 +80,6 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   >
   > The value of **key** can be a URI or a simple string. The default value of **subscriberId** is the value of **formId**. The actual value depends on the definition of the data provider.
   ```ts
-  import formInfo from '@ohos.app.form.formInfo';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import hilog from '@ohos.hilog';
@@ -172,7 +170,6 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   import dataShare from '@ohos.data.dataShare';
   import type formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import type Want from '@ohos.app.ability.Want';
   
   export default class PersistentDataFormAbility extends FormExtensionAbility {

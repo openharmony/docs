@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-Progress(options: {value: number, total?: number, type?: ProgressType})
+Progress(options: ProgressOptions\<Type\>)
 
 Creates a progress indicator.
 
@@ -22,24 +22,30 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  ProgressOptions\<Type\> | Yes| Parameters of the progress indicator.|
+
+## ProgressOptions\<Type\>
+
 | Name                       | Type                               | Mandatory  | Description                                    |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
 | value                      | number                              | Yes   | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | total                      | number                              | No   | Total progress.<br>Default value: **100**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| type<sup>8+</sup>          | [ProgressType](#progresstype)   | No   | Style of the progress indicator.<br>Default value: **ProgressType.Linear**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| type<sup>8+</sup>          | [ProgressType](#progresstype8)   | No   | Style of the progress indicator.<br>Default value: **ProgressType.Linear**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle) | No   | Style of the progress indicator.<br>This parameter is deprecated since API version 8. You are advised to use **type** instead.<br>Default value: **ProgressStyle.Linear**|
 
-## ProgressType
+## ProgressType<sup>8+</sup>
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
 | Linear                 | Linear style. Since API version 9, the progress indicator adaptively switches to vertical layout if the height is greater than the width.  |
-| Ring<sup>8+</sup>      | Indeterminate ring style. The ring fills up as the progress increases.                |
-| Eclipse<sup>8+</sup>   | Eclipse style, which visualizes the progress in a way similar to the moon waxing from new to full.        |
-| ScaleRing<sup>8+</sup> | Determinate ring style, which is similar to the clock scale. Since API version 9, when the outer circles of scales overlap, the progress indicator is automatically converted to the **Ring** style.|
-| Capsule<sup>8+</sup>   | Capsule style. At both ends, the progress indicator works in a same manner as the eclipse style. In the middle part of the capsule, the progress indicator works in a same manner as the linear style. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
+| Ring      | Indeterminate ring style. The ring fills up as the progress increases.                |
+| Eclipse  | Eclipse style, which visualizes the progress in a way similar to the moon waxing from new to full.        |
+| ScaleRing | Determinate ring style, which is similar to the clock scale. Since API version 9, when the outer circles of scales overlap, the progress indicator is automatically converted to the **Ring** style.|
+| Capsule   | Capsule style. At both ends, the progress indicator works in a same manner as the eclipse style. In the middle part of the capsule, the progress indicator works in a same manner as the linear style. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
 
 ##  ProgressStyle
 
@@ -48,10 +54,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
 | Linear    | Linear style.                                   |
-| Ring      | Indeterminate ring style. The ring fills up as the progress increases.                |
+| Ring<sup>8+</sup>      | Indeterminate ring style. The ring fills up as the progress increases.                |
 | Eclipse   | Eclipse style, which visualizes the progress in a way similar to the moon waxing from new to full.        |
-| ScaleRing | Determinate ring style, which is similar to the clock scale.              |
-| Capsule   | Capsule style. At both ends, the progress indicator works in a same manner as the eclipse style. In the middle part of the capsule, the progress indicator works in a same manner as the linear style. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
+| ScaleRing<sup>8+</sup> | Determinate ring style, which is similar to the clock scale.              |
+| Capsule<sup>8+</sup>   | Capsule style. At both ends, the progress indicator works in a same manner as the eclipse style. In the middle part of the capsule, the progress indicator works in a same manner as the linear style. If the height is greater than the width, the progress indicator adaptively switches to vertical layout.|
 
 ## Attributes
 
@@ -60,11 +66,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name              | Type                                                    | Description                                                        |
 | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | value              | number                                                       | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used. Invalid values do not take effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Background color of the progress indicator.<br>Since API version 10, this attribute can be set to **LinearGradient** for the **Ring** style.<br>Default value (API version 9): **'\#ff007dff'**<br>Default value (API version 10):<br>- Capsule: **'\#33006cde'**<br>- Ring: starting point: **'\#ff3b61f7'**, ending point: **'\#ff6591bf'**<br>- Other styles: **'\#ff007dff'**<br>Since API version 9, this API is supported in ArkTS widgets, except that **LinearGradient** is not supported.|
-| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the progress indicator.<br>Default value (API version 9): **'\#19182431'**<br>Default value (API version 10):<br>- Capsule: **'\#33ffffff'**<br>- Ring: **'\#08182431'**<br>- Other styles: **'\#19182431'**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the progress indicator instead of the entire **\<Progress>** component.|
-| style<sup>8+</sup> | [ProgressStyleOptions](#progressstyleoptions) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) \| [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10) \| [ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10) \| [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | Component style.<br>Since API version 10, the following types are supported:<br>- **CapsuleStyleOptions**: capsule style.<br>- **RingStyleOptions**: ring style.<br>- **LinearStyleOptions**: linear style.<br>- **ScaleRingStyleOptions**: determinate ring style.<br>- **EclipseStyleOptions**: eclipse style.<br>- **ProgressStyleOptions**: basic style.<br>Since API version 9, this API is supported in ArkTS widgets, but only the **ProgressStyleOptions** type is available.|
+| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Background color of the progress indicator.<br>Since API version 10, this attribute can be set to **LinearGradient** for the **Ring** style.<br>Default value (API version 9): **'\#ff007dff'**<br>Default value (API version 10):<br>- Capsule: **'\#33006cde'**<br>- Ring: starting point: **'\#ff86c1ff'**, ending point: **\#ff254ff7'**<br>- Other styles: **'\#ff007dff'**<br>Since API version 9, this API is supported in ArkTS widgets, except that **LinearGradient** is not supported.|
+| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the progress indicator.<br>Default value:<br>- Capsule:<br>   API version 9 or earlier: **'\#19182431'**<br>   API version 10 or later: **'\#33ffffff'**<br>- Ring:<br>   API version 9 or earlier: **'\#19182431'**<br>   API version 10: **'\#08182431'**<br>   API version 11 or later: **'\#0c182431'**<br>- Other styles: **'\#19182431'**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the progress indicator instead of the entire **\<Progress>** component.|
+| style<sup>8+</sup> | [ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) \| [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10) \| [ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10) \| [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | Component style.<br>Since API version 10, the following types are supported:<br>- **CapsuleStyleOptions**: capsule style.<br>- **RingStyleOptions**: ring style.<br>- **LinearStyleOptions**: linear style.<br>- **ScaleRingStyleOptions**: determinate ring style.<br>- **EclipseStyleOptions**: eclipse style.<br>- **ProgressStyleOptions**: basic style.<br>Since API version 9, this API is supported in ArkTS widgets, but only the **ProgressStyleOptions** type is available.|
 
-## ProgressStyleOptions
+## ProgressStyleOptions<sup>8+</sup>
 | Name         | Type                     | Mandatory| Description                                                                                       |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
@@ -75,7 +81,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 ## CapsuleStyleOptions<sup>10+</sup>
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
-| borderColor | [ResourceColor](ts-types.md#resourcecolor) | No| Border color.<br>Default value: **'\#33006cde'**|
+| borderColor | [ResourceColor](ts-types.md#resourcecolor) | No| Border color.<br>Default value:<br>API version 10: **'\#33006cde'**<br>API version 11 or later: **'\#33007dff'**|
 | borderWidth | [Length](ts-types.md#length) | No| Border width. It cannot be set in percentage.<br>Default value: **1vp**|
 | content | string | No| Text content, which can be customized .|
 | font | [Font](ts-types.md#font) | No| Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12fp**<br>- Other attributes: following the settings of the **\<Text>** component.|

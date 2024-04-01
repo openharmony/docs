@@ -8,12 +8,9 @@ The **\<Video>** component is used to play a video and control its playback. It 
 
 You can create a **\<Video>** component by calling the following API:
 
+Video(value: VideoOptions)
 
-```ts
-Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController})
-```
-
-In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video).
+A **VideoOptions** object contains the **src**, **currentProgressRate**, **previewUri**, and **controller** parameters. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video). For details about **VideoOptions**, see [VideoOptions](../reference/arkui-ts/ts-media-components-video.md#videooptions).
 
 
 ## Loading Video
@@ -34,18 +31,18 @@ The **\<Video>** component supports both local and online videos.
   ```ts
   @Component
   export struct VideoPlayer{
-     private controller:VideoController | undefined;
-     private previewUris: Resource = $r ('app.media.preview');
-     private innerResource: Resource = $rawfile('videoTest.mp4');
-     build(){
-       Column() {
-         Video({
-           src: this.innerResource,
-           previewUri: this.previewUris,
-           controller: this.controller
-         })
-     }
-   }
+    private controller:VideoController | undefined;
+    private previewUris: Resource = $r ('app.media.preview');
+    private innerResource: Resource = $rawfile('videoTest.mp4');
+    build(){
+      Column() {
+        Video({
+          src: this.innerResource,
+          previewUri: this.previewUris,
+          controller: this.controller
+        })
+      }
+    }
   }
   ```
 
@@ -57,11 +54,11 @@ The **\<Video>** component supports both local and online videos.
   export struct VideoPlayer{
      private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
-     private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
+     private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
        Column() {
          Video({
-           src: this.videosrc,
+           src: this.videoSrc,
            previewUri: this.previewUris,
            controller: this.controller
          })
@@ -78,12 +75,12 @@ To load a video in the application sandbox, use a string with the **file:///data
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {
       Video({
-        src: this.videosrc,
+        src: this.videoSrc,
         controller: this.controller
       })
     }
@@ -100,18 +97,18 @@ To load online videos, you must apply for the **ohos.permission.INTERNET** permi
 ```ts
 @Component
 export struct VideoPlayer{
-   private controller:VideoController | undefined;
-   private previewUris: Resource = $r ('app.media.preview');
-   private videosrc: string= 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
-   build(){
-     Column() {
-       Video({
-         src: this.videosrc,
-         previewUri: this.previewUris,
-         controller: this.controller
-       })
-   }
- }
+  private controller:VideoController | undefined;
+  private previewUris: Resource = $r ('app.media.preview');
+  private videoSrc: string= 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
+  build(){
+    Column() {
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUris,
+       controller: this.controller
+      })
+    }
+  }
 }
 ```
 
@@ -190,7 +187,7 @@ The video controller is used to control video playback. For details, see [VideoC
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-      build() {
+    build() {
       Row() {
         Column() {
           Video({

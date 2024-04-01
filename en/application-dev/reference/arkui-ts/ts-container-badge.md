@@ -20,13 +20,20 @@ This component supports only one child component.
 
 ### Badge
 
-Badge(value: {count: number, position?: BadgePosition \| Position, maxCount?: number, style: BadgeStyle})
+Badge(value: BadgeParamWithNumber)
 
 Creates a badge.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value |  [BadgeParamWithNumber](#badgeparamwithnumber)| Yes| Parameter of the numbered badge.|
+
+
+## BadgeParamWithNumber
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -37,13 +44,20 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ### Badge
 
-Badge(value: {value: string, position?: BadgePosition \| Position, style: BadgeStyle})
+Badge(value: BadgeParamWithString)
 
 Creates a badge based on the given string.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
+
+| Name| Type                                             | Mandatory| Description            |
+| ------ | ----------------------------------------------------- | ---- | -------------------- |
+| value  | [BadgeParamWithString](#badgeparamwithstring) | Yes  | Parameter of the string-type badge.|
+
+
+## BadgeParamWithString
 
 | Name| Type| Mandatory| Default Value| Description|
 | -------- | -------- | -------- | -------- | -------- |
