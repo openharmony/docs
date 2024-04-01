@@ -1059,14 +1059,14 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
  **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                                                                               |
+| 参数名   | 类型                    | 必填 | 说明  |
 | -------- | ----------------------- | ---- |--------|
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
 | defValue | [ValueType](#valuetype) | 是   | 默认返回值。 |
 
 **返回值：**
 
-| 类型                                | 说明                          |
+| 类型                                | 说明   |
 | ----------------------------------- | ----------------------------- |
 | Promise<[ValueType](#valuetype)&gt; | Promise对象，返回键对应的值。 |
 
@@ -1257,7 +1257,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 | 参数名 | 类型                    | 必填 | 说明                         |
 | ------ | ----------------------- | ---- |--------------------------|
-| key    | string                  | 是   | 要修改的存储的Key，不能为空。                                                                                |
+| key    | string                  | 是   | 要修改的存储的Key，不能为空。  |
 | value  | [ValueType](#valuetype) | 是   | 存储的新值。 |
 
 **返回值：**
