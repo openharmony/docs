@@ -1029,11 +1029,11 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                                       | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。 |
+| 参数名   | 类型                                         | 必填 | 说明               |
+| -------- | -------------------------------------------- | ---- |---------------------------|
+| key      | string                                       | 是   | 要获取的存储Key名称，不能为空。   |
+| defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。 |
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。   |
 
 **示例：**
 
@@ -1059,10 +1059,10 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
  **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
+| 参数名   | 类型                    | 必填 | 说明  |
+| -------- | ----------------------- | ---- |--------|
+| key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。 |
 
 **返回值：**
 
@@ -1093,10 +1093,10 @@ getSync(key: string, defValue: ValueType): ValueType
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
+| 参数名   | 类型                    | 必填 | 说明            |
+| -------- | ----------------------- | ---- |---------------------|
+| key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。 |
 
 **返回值：**
 
@@ -1224,11 +1224,11 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                    | 是   | 要修改的存储的Key，不能为空。                                |
-| value    | [ValueType](#valuetype)   | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。   |
+| 参数名   | 类型                      | 必填 | 说明                       |
+| -------- | ------------------------- | ---- |-------------------------|
+| key      | string                    | 是   | 要修改的存储的Key，不能为空。 |
+| value    | [ValueType](#valuetype)   | 是   | 存储的新值。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -1255,10 +1255,10 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型                    | 必填 | 说明                                                         |
-| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
+| 参数名 | 类型                    | 必填 | 说明                         |
+| ------ | ----------------------- | ---- |--------------------------|
+| key    | string                  | 是   | 要修改的存储的Key，不能为空。  |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。 |
 
 **返回值：**
 
@@ -1291,9 +1291,9 @@ putSync(key: string, value: ValueType): void
 **参数：**
 
 | 参数名 | 类型                    | 必填 | 说明                                                         |
-| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
+| ------ | ----------------------- | ---- | ------------------------ |
+| key    | string                  | 是   | 要修改的存储的Key，不能为空。 |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。 |
 
 **示例：**
 
@@ -1856,13 +1856,14 @@ preferences.off('dataChange', keys, observer);
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 类型            | 说明                              |
-| --------------- | --------------------------------- |
-| number          | 表示值类型为数字。                |
-| string          | 表示值类型为字符串。              |
-| boolean         | 表示值类型为布尔值。              |
-| Array\<number>  | 表示值类型为数字类型的数组。      |
-| Array\<boolean> | 表示值类型为布尔类型的数组。      |
-| Array\<string>  | 表示值类型为字符串类型的数组。    |
-| Uint8Array<sup>11+</sup>      | 表示值类型为8位无符号整型的数组。 |
-| object<sup>12+</sup> | 表示值类型为对象。 |
+| 类型                       | 说明                |
+|--------------------------|-------------------|
+| number                   | 表示值类型为数字。         |
+| string                   | 表示值类型为字符串。        |
+| boolean                  | 表示值类型为布尔值。        |
+| Array\<number>           | 表示值类型为数字类型的数组。    |
+| Array\<boolean>          | 表示值类型为布尔类型的数组。    |
+| Array\<string>           | 表示值类型为字符串类型的数组。   |
+| Uint8Array<sup>11+</sup> | 表示值类型为8位无符号整型的数组。 |
+| object<sup>12+</sup>     | 表示值类型为对象。 |
+| bigint<sup>12+</sup>     | 表示值类型为任意精度格式的整数。  |
