@@ -200,11 +200,12 @@ static napi_value StartTimerTest(napi_env env, napi_callback_info info)
    std::thread mythread([]() {
        std::thread::id this_id = std::this_thread::get_id();
        OH_LOG_INFO(LOG_APP, " my thread is %{public}d", this_id);
-       uv_loop_t *loop = uv_default_loop();
+       uv_loop_t *loop = uv_loop_new();
        uv_timer_t *timer = new uv_timer_t;
        uv_timer_init(loop, timer);
        uv_timer_start(timer, timer_handle, 0, 0);
        uv_run(loop, UV_RUN_DEFAULT);
+       uv_loop_delete(loop);
    });
    mythread.detach();
    return 0;
