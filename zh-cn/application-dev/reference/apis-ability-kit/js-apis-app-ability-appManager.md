@@ -233,11 +233,9 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取当前运行进程的有关信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 > **说明：**
 >
-> 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
+> API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

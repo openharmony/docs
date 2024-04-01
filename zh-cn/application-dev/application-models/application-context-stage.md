@@ -273,83 +273,9 @@ struct Page_Context {
 ```
 
 
-### 创建其他应用或其他Module的Context
+### 获取本应用中其他Module的Context
 
-基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context-sys.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用文件路径](#获取应用文件路径)信息）。
-
-- 调用`createBundleContext(bundleName:string)`方法，创建其他应用的Context信息。
-  > **说明：**
-  >
-  > 当获取的是其他应用的Context时：
-  >
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
-  >
-  > - 接口为系统接口，三方应用不支持调用。
-  
-  例如在桌面上显示的应用信息，包括应用名称和应用图标等，桌面应用可以通过调用上述的方法获取相应应用的Context信息从而获取到相应的应用名称、图标等资源信息。
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
-    build() {
-      Button()
-        .onClick(() => {
-          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
-          let bundleContext: Context = this.context.createBundleContext(bundleName2);
-          let label2: string = bundleContext.applicationInfo.label;
-          if (bundleContext && label2 !== null) {
-            promptAction.showToast({
-              message: ('成功获取Context')
-            });
-          }
-        })
-    }
-  }
-  ```
-  
-- 调用`createModuleContext(bundleName:string, moduleName:string)`方法，获取指定应用指定Module的上下文信息。获取到指定应用指定Module的Context之后，即可获取到相应应用Module的资源信息。
-  > **说明：**
-  >
-  > 当获取的是其他应用的指定Module的Context时：
-  >
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
-  >
-  > - 接口为系统接口，三方应用不支持调用。
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
-    build() {
-      Button()
-        .onClick(() => {
-          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
-          let moduleName2: string  = 'entry';
-          let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('成功获取Context')
-            });
-          }
-        })
-    }
-  }
-  ```
-  
-- 调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
   import promptAction from '@ohos.promptAction';
