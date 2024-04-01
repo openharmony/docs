@@ -91,7 +91,7 @@ endAngle(angle: number)
 
 ### colors
 
-colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient, number]>)
+colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient | number]>)
 
 设置量规图的颜色。
 
@@ -135,7 +135,7 @@ strokeWidth(length: Length)
 
 description(value: CustomBuilder)
 
-设置环形量规图的环形厚度。
+设置说明内容。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,7 +143,7 @@ description(value: CustomBuilder)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 说明文本。<br/>**说明：** <br/>@Builder中的内容由开发者自定义，建议使用文本或者图片。<br/>若自定义部分的宽高为百分比形式，则基准范围为圆环直径的44.4%*25.4%的矩形（图片为28.6%*28.6%），距离圆环底部0vp，左右居中。<br/>设置null则不显示内容。<br/>不设置则依赖是否设置数据最大最小值。<br/>若设置最大最小值或者只设置其中一个，则显示最大最小值。<br/>若未设置最大最小值，则不显示内容。<br/>最大最小值显示在圆环底部，位置不可移动，若圆环开口角度设置不恰当，存在圆环遮挡文字的情况。 |
+| value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 说明内容。<br/>**说明：** <br/>@Builder中的内容由开发者自定义，建议使用文本或者图片。<br/>若自定义部分的宽高为百分比形式，则基准范围为圆环直径的44.4%*25.4%的矩形（图片为28.6%*28.6%），距离圆环底部0vp，左右居中。<br/>设置null则不显示内容。<br/>不设置则依赖是否设置数据最大最小值。<br/>若设置最大最小值或者只设置其中一个，则显示最大最小值。<br/>若未设置最大最小值，则不显示内容。<br/>最大最小值显示在圆环底部，位置不可移动，若圆环开口角度设置不恰当，存在圆环遮挡文字的情况。 |
 
 ### trackShadow<sup>11+</sup>
 
