@@ -198,23 +198,24 @@
     ```
 
 15. 设置环境变量。
+
     > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-    >   如果直接采用编译好的riscv32 gcc包，请先执行以下命令将压缩包解压到根目录：
+    >   
+    > 如果直接采用编译好的riscv32 gcc包，请先执行以下命令将压缩包解压到根目录：
     >   
     >  ```
     >  tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
     >  ```
-    >  注意之后设置和生效环境变量时，所设置的路径为根目录。
-    >
+    > 注意之后设置和生效环境变量时，所设置的路径为根目录。
 
-​     
+    打开`.bashrc`文件。 
+    
     ```
     vim /opt/.bashrc
     ```
 
-    将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
-
-
+    将以下命令拷贝到的最后一行，保存并退出。
+    
     ```
     export PATH=/opt/gcc_riscv32/bin:$PATH
     ```
