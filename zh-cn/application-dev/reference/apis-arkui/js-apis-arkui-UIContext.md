@@ -1034,7 +1034,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 ### on('scrollEvent')<sup>12+</sup>
 
-on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.ScrollEventInfo\>): void
+on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
 
 监听滚动事件的开始和结束。
 
@@ -1054,7 +1054,7 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.Sc
 
 ### off('scrollEvent')<sup>12+</sup>
 
-off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.ScrollEventInfo\>): void
+off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
 
