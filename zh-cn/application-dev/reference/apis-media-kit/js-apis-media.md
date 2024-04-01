@@ -670,11 +670,11 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 ```ts
 import media from '@ohos.multimedia.media'
 
-let player = await media.createAVPlayer()
-let header: Record<string, string> = {"aa" : "bb", "cc" : "dd"};
+let player = await media.createAVPlayer();
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
-player.setMediaSource(mediaSource, playStrategy)
+player.setMediaSource(mediaSource, playStrategy);
 ```
 
 ### prepare<sup>9+</sup>
@@ -6029,8 +6029,8 @@ createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSo
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、Dash、Https。  |
-| header | Record\<string, string> | 是   | 流媒体预下载媒体来源header。 |
+| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。  |
+| header | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
 
 **返回值：**
 
@@ -6052,7 +6052,7 @@ createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSo
 ```ts
 import media from '@ohos.multimedia.media'
 
-let header: Record<string, string> = {"aa" : "bb", "cc" : "dd"};
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
 ```
 
@@ -6073,4 +6073,4 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 | preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。 |
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
-| preferredHdr | boolean | 否   | 播放策略首选hdr，true是hdr，false不是hdr。 |
+| preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。 |

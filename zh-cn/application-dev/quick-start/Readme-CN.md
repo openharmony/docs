@@ -80,7 +80,7 @@
     - 状态管理（推荐）
       - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
       - 状态管理（推荐）所属装饰器
-        - [\@observed装饰器和\@track装饰器：类属性变化观测](arkts-new-observed-and-track.md)
+        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-ObservedV2-and-Trace.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

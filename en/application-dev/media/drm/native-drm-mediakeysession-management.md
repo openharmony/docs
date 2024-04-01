@@ -1,4 +1,4 @@
-# DRM Session Management (C/C++)
+# Media Key Session Management (C/C++)
 
 Using the **MediaKeySession** class of the DRM module, you can manage **MediaKeySession** instances, generate media key requests, and process responses to these requests.
 

@@ -5,9 +5,13 @@
 
 Defines event information.
 
-**Since**: 11
+**Since**
 
-**Related module**: [HidDdk](_hid_ddk.md)
+11
+
+**Related module**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## Summary
@@ -17,6 +21,45 @@ Defines event information.
 
 | Name| Description| 
 | -------- | -------- |
-| [type](_hid_ddk.md#type) | uint16_t | 
-| [code](_hid_ddk.md#code) | uint16_t | 
-| [value](_hid_ddk.md#value) | uint32_t | 
+| [type](#type) | Event type.| 
+| [code](#code) | Event code.| 
+| [value](#value) | Event value.| 
+
+
+## Member Variable Description
+
+
+### type
+
+
+```
+uint16_t Hid_EmitItem::type
+```
+
+**Description**
+
+Event type.
+
+
+### code
+
+
+```
+uint16_t Hid_EmitItem::code
+```
+
+**Description**
+
+Event code.
+
+
+### value
+
+
+```
+uint32_t Hid_EmitItem::value
+```
+
+**Description**
+
+Event value.
