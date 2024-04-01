@@ -152,6 +152,7 @@
    ```
 
 7. 添加riscv-gcc-7.3.0补丁。
+   
    访问gcc官方补丁链接[89411](https://gcc.gnu.org/git/?p=gcc.git;a=commitdiff;h=026216a753ef0a757a9e368a59fa667ea422cf09;hp=2a23a1c39fb33df0277abd4486a3da64ae5e62c2)，[86724](https://gcc.gnu.org/git/?p=gcc.git;a=blobdiff;f=gcc/graphite.h;h=be0a22b38942850d88feb159603bb846a8607539;hp=4e0e58c60ab83f1b8acf576e83330466775fac17;hb=b1761565882ed6a171136c2c89e597bc4dd5b6bf;hpb=fbd5f023a03f9f60c6ae36133703af5a711842a3)，按照补丁链接中要求的修改，手动将变更添加到对应的.c和.h文件中，注意由于patch版本与下载的gcc版本有所偏差，行数有可能对应不上，请自行查找patch中的关键字定位到对应行。
 
 8. 下载[GMP 6.1.2](https://gmplib.org/download/gmp/gmp-6.1.2.tar.bz2)，并解压安装。
@@ -197,35 +198,35 @@
     ```
 
 15. 设置环境变量。
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   >   如果直接采用编译好的riscv32 gcc包，请先执行以下命令将压缩包解压到根目录：
-   >   
-   >  ```
-   >  tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
-   >  ```
-   >  注意之后设置和生效环境变量时，所设置的路径为根目录。
-   >
+    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+    >   如果直接采用编译好的riscv32 gcc包，请先执行以下命令将压缩包解压到根目录：
+    >   
+    >  ```
+    >  tar -xvf gcc_riscv32-linux-7.3.0.tar.gz -C ~
+    >  ```
+    >  注意之后设置和生效环境变量时，所设置的路径为根目录。
+    >
 
 ​     
-   ```
-   vim /opt/.bashrc
-   ```
+    ```
+    vim /opt/.bashrc
+    ```
 
-   将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
+    将以下命令拷贝到.bashrc文件的最后一行，保存并退出。
 
 
-   ```
-   export PATH=/opt/gcc_riscv32/bin:$PATH
-   ```
+    ```
+    export PATH=/opt/gcc_riscv32/bin:$PATH
+    ```
 
 16. 生效环境变量。
     
-   ```
-   source /opt/.bashrc
-   ```
+    ```
+    source /opt/.bashrc
+    ```
 
 17. Shell命令行中输入如下命令，如果能正确显示编译器版本号，表明编译器安装成功。
-    
-   ```
-   riscv32-unknown-elf-gcc -v
-   ```
+     
+    ```
+    riscv32-unknown-elf-gcc -v
+    ```
