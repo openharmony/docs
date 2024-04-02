@@ -232,7 +232,7 @@ struct AnimateToExample {
 
 ### getSharedLocalStorage<sup>12+</sup>
 
-getSharedLocalStorage(): LocalStorage
+getSharedLocalStorage(): LocalStorage | undefined
 
 获取当前stage共享的LocalStorage实例。
 
@@ -245,6 +245,7 @@ getSharedLocalStorage(): LocalStorage
 | 类型                             | 描述                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) | 返回LocalStorage实例。 |
+| undefined | 共享的LocalStorage实例不存在时返回undefined。|
 
 **示例：**
 
@@ -314,7 +315,7 @@ struct GetSharedLocalStorage {
 
 ### getHostContext<sup>12+</sup>
 
-getHostContext(): common.Context
+getHostContext(): Context | undefined
 
 获得当前元能力的Context。
 
@@ -326,7 +327,8 @@ getHostContext(): common.Context
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [common.Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+| [Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+| undefined | ability上下文不存在时返回undefined。|
 
 **示例：**
 
@@ -335,20 +337,13 @@ getHostContext(): common.Context
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-
-  uiContext: UIContext | null | undefined = this.getUIContext();
+  uiContext = this.getUIContext();
 
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            let context = this.uiContext?.getHostContext();
-            console.info("CacheDir:" + context?.cacheDir)
-          })
+        Text("cacheDir="+this.uiContext?.getHostContext().cacheDir).fontSize(25)
+        Text("bundleCodeDir="+this.uiContext?.getHostContext().bundleCodeDir).fontSize(25)
       }
       .width('100%')
     }
