@@ -43,7 +43,7 @@ TabContent()
 
 ### constructor
 
-constructor(content: string | Resource)
+constructor(content: ResourceStr)
 
 SubTabBarStyle的构造函数。
 
@@ -51,7 +51,7 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### of<sup>10+</sup>
 
@@ -117,7 +117,7 @@ SubTabBarStyle的静态构造函数。
 
 ### constructor
 
-constructor(icon: string | Resource, text: string | Resource)
+constructor(icon: ResourceStr, text: ResourceStr)
 
 BottomTabBarStyle的构造函数。
 
@@ -125,8 +125,8 @@ BottomTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | string \| [Resource](ts-types.md#resource) | 是 | 页签内的图片内容。从API version 10开始，icon类型为ResourceStr。 |
-| text | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。从API version 10开始，text类型为ResourceStr。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的图片内容。 |
+| text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### of<sup>10+</sup>
 
@@ -670,39 +670,67 @@ struct TabsTextOverflow {
   @State message: string = 'Hello World'
   private controller: TabsController = new TabsController()
   @State subTabOverflowOpaque: boolean = true;
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
-          Column(){
+          Column() {
             Text('单行省略号截断').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(SubTabBarStyle.of('开始【单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断】结束')
-          .labelStyle({ overflow: TextOverflow.Ellipsis, maxLines: 1, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('开始【单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断】结束')
+          .labelStyle({
+            overflow: TextOverflow.Ellipsis,
+            maxLines: 1,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
-          Column()
-          {
+          Column() {
             Text('先缩小再截断').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(SubTabBarStyle.of('开始【先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断】结束')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 1, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('开始【先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断】结束')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 1,
+            minFontSize: 15,
+            maxFontSize: 15,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
-          Column(){
+          Column() {
             Text('先缩小再换行再截断').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(SubTabBarStyle.of('开始【先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断】结束')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 2, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('开始【先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断】结束')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 15,
+            maxFontSize: 15,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
           Column() {
             Text('换行').fontSize(30).fontColor(0xFF000000)
           }
           .width('100%').height('100%').backgroundColor(Color.Pink)
         }.tabBar(SubTabBarStyle.of('开始【换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行】结束')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 10, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
-            font: { size: 20 } }))
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 }
+          }))
       }
       .vertical(true).scrollable(true)
       .barMode(BarMode.Fixed)
