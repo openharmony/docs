@@ -11,7 +11,7 @@ You can use the APIs provided by the **spp** module to:
 
 ## Available APIs
 
-For details about the APIs and sample code, see [@ohos.bluetooth.socket](../../reference/apis/js-apis-bluetooth-socket.md).
+For details about the APIs and sample code, see [@ohos.bluetooth.socket](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md).
 
 The following table describes the related APIs.
 
@@ -112,7 +112,8 @@ console.info('sppCloseServerSocket success');
 socket.sppCloseClientSocket(clientNumber);
 console.info('sppCloseClientSocket success');
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 ### Connecting to the Peer Device over a Socket
 1. Import the **socket** module.
@@ -143,4 +144,5 @@ socket.sppConnect(deviceId, {
   console.info('sppConnect success, socketId = ' + socketID);
 })
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
