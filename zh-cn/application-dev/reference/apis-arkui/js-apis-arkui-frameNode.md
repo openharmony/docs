@@ -302,43 +302,6 @@ getParent(): FrameNode | null;
 
 请参考[节点操作示例](#节点操作示例)。
 
-### getPositionToWindow<sup>12+</sup> 
-
-  getPositionToWindow(): Position
-
-获取FrameNode相对于窗口的位置偏移。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明                            |
-| -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
-
-**示例：**
-
-请参考[节点操作示例](#节点操作示例)。
-
-
-### getPositionToParent<sup>12+</sup>
-
-getPositionToParent(): Position
-
-获取FrameNode相对于父组件的位置偏移。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                                                           | 说明                                                                  |
-| -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
-
-**示例：**
-
-请参考[节点操作示例](#节点操作示例)。
-
 ### dispose<sup>12+</sup>
 
 dispose(): void
