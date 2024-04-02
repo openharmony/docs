@@ -125,7 +125,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 **示例：**
 
-```js
+```ts
 import { BusinessError } from '@ohos.base';
 
 let sessionId: number = 0; // 替换成拉起此进程的sessionId
