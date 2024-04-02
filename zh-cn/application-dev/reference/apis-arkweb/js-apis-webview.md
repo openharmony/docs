@@ -5363,7 +5363,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
