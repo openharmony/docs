@@ -36,7 +36,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                libentry:
                  - index.d.ts
            - CMakeLists.txt
-           - hello.cpp
+           - napi_init.cpp
            - jsoncpp.cpp
          ets:
            - entryability:
@@ -49,12 +49,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
-   add_library(entry SHARED hello.cpp jsoncpp.cpp)
+   add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
    # 新增动态库依赖libhiappevent_ndk.z.so和libhilog_ndk.z.so(日志输出)
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑"hello.cpp"文件，导入依赖的文件，并定义LOG_TAG：
+3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
    #include "json/json.h"
@@ -69,7 +69,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    - onReceive类型观察者：
 
-     编辑"hello.cpp"文件，定义onReceive类型观察者相关方法：
+     编辑"napi_init.cpp"文件，定义onReceive类型观察者相关方法：
 
      ```c++
      static HiAppEvent_Watcher *appEventWatcher;
@@ -110,7 +110,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      
    - onTrigger类型观察者：
 
-     编辑"hello.cpp"文件，定义OnTrigger类型观察者相关方法：
+     编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
 
      ```c++
      //定义一变量，用来缓存创建的观察者的指针。
@@ -160,7 +160,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 编辑"hello.cpp"文件，添加button事件打点接口：
+5. 编辑"napi_init.cpp"文件，添加button事件打点接口：
 
    ```c++
    static napi_value WriteAppEvent(napi_env env, napi_callback_info info) {
@@ -172,7 +172,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 编辑"hello.cpp"文件，将RegisterWatcher和WriteAppEvent注册为ArkTS接口：
+6. 编辑"napi_init.cpp"文件，将RegisterWatcher和WriteAppEvent注册为ArkTS接口：
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
