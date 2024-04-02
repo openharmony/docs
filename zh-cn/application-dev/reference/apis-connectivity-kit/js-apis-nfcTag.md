@@ -156,6 +156,8 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -206,6 +208,8 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 获取NFC B类型Tag对象，通过该对象可访问NfcB技术类型的Tag。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -258,6 +262,8 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -309,6 +315,8 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -336,6 +344,8 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 获取IsoDep类型Tag对象，通过该对象可访问支持IsoDep技术类型的Tag。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -365,6 +375,8 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -392,6 +404,8 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 获取MIFARE Classic类型Tag对象，通过该对象访问支持MIFARE Classic技术类型的Tag。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -421,6 +435,8 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
@@ -448,6 +464,8 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型**                                                  | **说明**                                                                  |
@@ -469,6 +487,8 @@ getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): 
 从Want中获取TagInfo，Want是被NFC服务初始化，包含了TagInfo所需的属性值。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -492,6 +512,8 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
@@ -513,6 +535,8 @@ unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-a
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -595,6 +619,8 @@ on(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bu
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
@@ -625,6 +651,8 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -716,6 +744,8 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                              |
@@ -754,6 +784,8 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 根据输入的文本数据和编码类型，构建NDEF标签的Record。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -797,6 +829,8 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                    |
@@ -836,6 +870,8 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 根据应用程序特定的外部数据，构建NDEF标签的Record。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -880,6 +916,8 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名      | 类型                                           | 必填 | 说明               |
@@ -915,6 +953,8 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | **参数名** | **类型** | **必填** | **说明**                                                                           |
@@ -947,6 +987,8 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 使用NDEF Records列表，创建NDEF Message。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
