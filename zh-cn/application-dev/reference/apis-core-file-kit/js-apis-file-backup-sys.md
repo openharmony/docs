@@ -325,6 +325,47 @@ onBackupServiceDied : Callback&lt;undefined&gt;
   }
   ```
 
+### onResultReport
+
+onResultReport : AsyncCallback&lt;string&gt;
+
+回调函数。当应用恢复结束后，如果成功触发回调，返回恢复数量或应用异常信息
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**返回值：**
+
+| 参数名     | 类型          | 必填 | 说明                                                        |
+| ---------- | ------------- | ---- | ----------------------------------------------------------- |
+| result     | string        | 是   | json格式返回的应用名称及应用信息                                          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | The input parameter is invalid. |
+| 13500003 | Backup or restore timed out     |
+| 13500004 | Application extension death     |
+| 13600001 | IPC error                       |
+| 13900005 | I/O error                       |
+| 13900011 | Out of memory                   |
+| 13900020 | Invalid argument                |
+| 13900025 | No space left on device         |
+| 13900042 | Unknown error                   |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  onResultReport: (err: BusinessError, result: string) => {
+    console.info('onResultReport success, result:' + result);
+  }
+  ```
+
+
 ## backup.getLocalCapabilities
 
 getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
@@ -514,6 +555,99 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+## backup.getBackupInfo
+
+getBackupInfo(bundleToBackup: string): string;
+
+获取需要备份的应用信息。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleToBackup | string | 是   | 需要备份的应用名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| string | 返回应用上报的信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
+**示例：**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      console.info('onResultReport success, result:' + result);
+    }
+  };
+  function getBackupInfo() {
+    try {
+      let sessionBackup = new backup.SessionBackup(generalCallbacks);
+      let backupApp = "com.example.hiworld"；
+      let result = backup.getBackupInfo(backupApp);
+      console.info('getBackupInfo success， result: ' + result);
+      sessionBackup.release();
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('getBackupInfo failed with err: ' + JSON.stringify(err));
     }
   }
   ```
