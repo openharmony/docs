@@ -107,6 +107,8 @@ shape(value: CheckBoxShape)
 
 设置CheckBox组件形状, 包括圆形和圆角方形。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
