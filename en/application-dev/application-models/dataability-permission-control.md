@@ -29,15 +29,19 @@ The client permission is configured in **reqPermissions** under **module** in th
 
 ```json
 {
+  ...
   "module": {
-    "reqPermissions":{
+    ...
+    "reqPermissions": [
       {
-        "name":"ohos.permission.READ_CONTACTS"
+        "name": "ohos.permission.READ_CONTACTS"
       },
       {
-        "name":"ohos.permission.WRITE_CONTACTS"
-      }
-    }
+        "name": "ohos.permission.WRITE_CONTACTS"
+      },
+      ...
+    ],
+    ...
   }
 }
 ```
