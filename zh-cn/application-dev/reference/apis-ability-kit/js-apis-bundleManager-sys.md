@@ -3975,6 +3975,38 @@ try {
 }
 ```
 
+### bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
+
+getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo\>\>
+
+以异步的方法获取所有预置应用信息，使用promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise对象，返回Array\<PreinstalledApplicationInfo>。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import Base from '@ohos.base';
+
+bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
+    console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
+
+}).catch((err: Base.BusinessError) => {
+    console.error("GetAllPreinstalledApplicationInfo success errCode is :" + JSON.stringify(err.code));
+});
+```
+
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>
