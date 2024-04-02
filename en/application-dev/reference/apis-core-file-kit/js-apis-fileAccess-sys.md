@@ -2119,7 +2119,7 @@ async function UnregisterObserver03() {
 
 Example 4: Unregistger the device online/offline status.
 
-```
+```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
   try {

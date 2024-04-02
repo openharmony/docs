@@ -1,11 +1,12 @@
-# @ohos.file.recent (Recent File List) (System API)
+# @ohos.file.recent (Latest Access List) (System API)
 
 The **file.recent** module provides APIs for managing the list of recently accessed files.
 
 >**NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by **FileManager**.
+> - The APIs provided by this module are system APIs.
+> - Currently, the APIs of this module can be called only by **FileManager**.
 
 ## Modules to Import
 
@@ -35,7 +36,7 @@ Adds the file of the specified URI to the recent file list.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 **Example**
 
@@ -66,7 +67,7 @@ Removes the file of the specified URI from the recent file list.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 **Example**
 
@@ -97,7 +98,7 @@ Lists the files that are accessed recently.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 **Example**
 
