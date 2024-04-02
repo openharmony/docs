@@ -85,9 +85,9 @@ enterKeyType(value: EnterKeyType)
 
 **参数：** 
 
-| 参数名 | 类型                                  | 必填 | 说明                                             |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Done |
+| 参数名 | 类型                                             | 必填 | 说明                                             |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------ |
+| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Done |
 
 ### caretColor
 
@@ -388,7 +388,7 @@ wordBreak(value: WordBreak)
 
 ### customKeyboard<sup>10+</sup>
 
-customKeyboard(value: CustomBuilder)
+customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 设置自定义键盘。
 
@@ -408,9 +408,10 @@ customKeyboard(value: CustomBuilder)
 
 **参数：** 
 
-| 参数名 | 类型                                        | 必填 | 说明         |
-| ------ | ------------------------------------------- | ---- | ------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。 |
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### enableAutoFill<sup>11+</sup>
 
@@ -537,14 +538,30 @@ letterSpacing(value: number | string | Resource)
 | ------ | -------------------------- | ---- | -------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
 
-## SubmitEvent<sup>11+</sup>
+### fontFeature<sup>12+</sup>
 
-定义用户提交事件。
+fontFeature(value: string)
 
-| 名称                | 类型            | 必填   | 描述                           |
-| ----------------- | ------------- | ---- | ---------------------------- |
-| keepEditableState | () => void | 否    | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
-| text              | string        | 否    | 输入框文本内容。                     |
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -557,18 +574,6 @@ letterSpacing(value: number | string | Resource)
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
-
-## EnterKeyType枚举说明
-
-| 名称                     | 描述        |
-| ---------------------- | --------- |
-| Go                     | 显示为开始样式。  |
-| Search                 | 显示为搜索样式。  |
-| Send                   | 显示为发送样式。  |
-| Next                   | 显示为下一个样式。 |
-| Done                   | 显示为完成样式。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一个样式。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。  |
 
 ## InputType枚举说明
 
@@ -634,10 +639,10 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 
 **参数：** 
 
-| 参数名              | 类型                                  | 必填 | 说明                                                         |
-| ------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
-| event<sup>11+</sup> | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
+| 参数名              | 类型                                             | 必填 | 说明                                                         |
+| ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+| event<sup>11+</sup> | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 提交事件。                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -773,10 +778,12 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。               |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />在RichEditor组件中已有定义。<br />默认值：MenuPolicy::DEFAULT。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
+>
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
 ##  SelectionOptions<sup>12+</sup>
 
 setTextSelection选中文字时的配置。
@@ -879,6 +886,14 @@ getCaretOffset(): CaretOffset
 | normal  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 | error   | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
 | disable | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+
+## KeyboardOptions<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称            | 类型              | 必填   | 描述                               |
+| --------------- | ---------------  |---- | ------------------------------------  |
+| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ## 示例
 
@@ -1325,3 +1340,98 @@ struct TextInputExample {
 ```
 
 ![TextInputDecoration](figures/textinput_decoration.png)
+
+### 示例10
+
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+
+```ts
+@Entry
+@Component
+struct textInput {
+  @State text1: string = 'This is ss01 on : 0123456789'
+  @State text2: string = 'This is ss01 off: 0123456789'
+
+
+  build() {
+    Column(){
+      TextInput({text: this.text1})
+        .fontSize(20)
+        .margin({top:200})
+        .fontFeature("\"ss01\" on")
+      TextInput({text : this.text2})
+        .margin({top:10})
+        .fontSize(20)
+        .fontFeature("\"ss01\" off")
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![fontFeature](figures/textInputFontFeature.png)
+
+### 示例11
+
+自定义键盘弹出发生避让示例
+
+```ts
+@Entry
+@Component
+struct Input {
+  controller: TextInputController = new TextInputController()
+  @State inputValue: string = ""
+  @State height1:string|number = '80%'
+  @State supportAvoidance:boolean = true;
+  // 自定义键盘组件
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Row(){
+        Button('x').onClick(() => {
+          // 关闭自定义键盘
+          this.controller.stopEditing()
+        }).margin(10)
+      }
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.inputValue += item
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+  build() {
+    Column() {
+      Row(){
+        Button("20%")
+          .fontSize(24)
+          .onClick(()=>{
+            this.height1 = "20%"
+          })
+        Button("80%")
+          .fontSize(24)
+          .margin({left:20})
+          .onClick(()=>{
+            this.height1 = "80%"
+          })
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
+      .height(this.height1)
+      .width("100%")
+      .padding({bottom:50})
+      TextInput({ controller: this.controller, text: this.inputValue })
+        // 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+
+    }
+  }
+}
+```
+
+![CustomTextInputType](figures/Custom_Text_Input.gif)

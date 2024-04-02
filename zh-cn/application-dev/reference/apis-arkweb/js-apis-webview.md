@@ -4974,7 +4974,7 @@ struct WebComponent {
 
 static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
 
-根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存密钥和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4984,8 +4984,8 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
 | request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
-| cacheKey          | string                          | 否   | 预获取请求的内存缓存key。默认取url作为key。                                |
-| cacheValidTime    | number                          | 否   | 预获取请求的内存缓存有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。|
+| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的密钥。仅支持字母和数字，未传入或传入空则取默认值url作为密钥。 |
+| cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
 
 **错误码：**
 

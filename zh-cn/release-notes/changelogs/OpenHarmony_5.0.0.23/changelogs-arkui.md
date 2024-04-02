@@ -94,7 +94,11 @@ AlphabetIndexer组件
 
 API version 11及以前，不允许用户自定义AlphabetIndexer索引项背板圆角、提示弹窗索引项背板圆角、提示弹窗首个索引项背板颜色、提示弹窗背板模糊风格。
 
+![AlphabetIndexerBefore](figures/AlphabetIndexerBefore.gif)
+
 API version 12及以后，允许用户自定义AlphabetIndexer索引项背板圆角、提示弹窗索引项背板圆角、提示弹窗首个索引项背板颜色、提示弹窗背板模糊风格。
+
+![AlphabetIndexerAfter](figures/AlphabetIndexerAfter.gif)
 
 **API Level**
 

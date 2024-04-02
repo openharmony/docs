@@ -60,7 +60,7 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 ## dragPreviewOptions<sup>11+</sup>
 
-dragPreviewOptions(value: DragPreviewOptions)
+dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 设置拖拽过程中背板图处理模式，仅在onDragStart拖拽方式有效。
 
@@ -68,9 +68,10 @@ dragPreviewOptions(value: DragPreviewOptions)
 
 **参数：**
 
-| 参数名 | 类型                                                      | 必填 | 说明                                                         |
-| ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：空 |
+| 参数名 | 类型                                                            | 必填 | 说明                                                         |
+| ------ | -------------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup>      | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：空 |
+| options<sup>12+</sup>| [DragInteractionOptions](#draginteractionoptions12)<sup>12+</sup>| 否   | 设置拖拽过程中背板图浮起的交互模式。<br/>默认值：空|
 
 ## DragPreviewOptions<sup>11+</sup>
 
@@ -84,6 +85,13 @@ dragPreviewOptions(value: DragPreviewOptions)
 | -------- | ------- | -------- |
 | AUTO  | 1 | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。 |
 | DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。 |
+
+## DragInteractionOptions<sup>12+</sup>
+
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- |
+| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中设置isShown为true的模式。<br/>默认值：false<br/> |
+| defaultAnimationBeforeLifting | boolean | 否 | 表示是否执行长按浮起发起前组件自身的默认缩小动效。<br/>默认值：false <br/> |
 
 ## 示例
 ### 示例1
@@ -293,3 +301,72 @@ struct dragPreviewOptionsDemo{
 ```
 
 ![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)
+
+
+### 示例4
+DragInteractionOptions属性中isMultiSelectionEnabled参数使用方法用例。
+```ts
+@Entry
+@Component
+struct Example {
+  @State numbers: number[] = [0, 1, 2, 3, 4 , 5, 6, 7, 8]
+  build() {
+    Column({ space: 5}) {
+      Grid() {
+        ForEach(this.numbers, (item: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(Color.Red)
+              .width(90)
+              .height(90)
+          }
+          .selectable(true)
+          .selected(true)
+          .dragPreviewOptions({}, {isMultiSelectionEnabled:true})
+          .onDragStart(()=>{
+
+          })
+    }, (item: string) => item)
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr')
+      .height(300)
+    }
+    .width('100%')
+  }
+}
+```
+
+### 示例5
+DragInteractionOptions属性中defaultAnimationBeforeLifting参数使用方法用例。
+```ts
+@Entry
+@Component
+struct Example {
+  @State numbers: number[] = [0, 1, 2, 3, 4 , 5, 6, 7, 8]
+  build() {
+    Column({ space: 5}) {
+      Grid() {
+        ForEach(this.numbers, (item: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(Color.Red)
+              .width(90)
+              .height(90)
+          }
+          .selectable(true)
+          .selected(true)
+          .dragPreviewOptions({}, {isMultiSelectionEnabled:true, defaultAnimationBeforeLifting:true})
+          .onDragStart(()=>{
+
+          })
+    }, (item: string) => item)
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr')
+      .height(300)
+    }
+    .width('100%')
+  }
+}
+```

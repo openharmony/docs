@@ -188,7 +188,89 @@ reverse(): void
 animator.reverse();
 ```
 
-### onframe
+### onFrame<sup>12+</sup>
+
+onFrame: (progress: number) => void
+
+接收到帧时回调。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型     | 必填   | 说明       |
+| -------- | ------ | ---- | -------- |
+| progress | number | 是    | 动画的当前进度。 |
+
+**示例：**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onFrame = (value)=> {
+  console.info("onFrame callback")
+}
+```
+
+### onFinish<sup>12+</sup>
+
+onFinish: () => void
+
+动画完成时回调。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onFinish = ()=> {
+  console.info("onFinish callback")
+}
+```
+
+### onCancel<sup>12+</sup>
+
+onCancel: () => void
+
+动画被取消时回调。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onCancel = ()=> {
+  console.info("onCancel callback")
+}
+```
+
+### onRepeat<sup>12+</sup>
+
+onRepeat: () => void
+
+动画重复时回调。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onRepeat = ()=> {
+  console.info("onRepeat callback")
+}
+```
+
+### onframe<sup>(deprecated)</sup>
+
+> **说明：**
+>
+> 从API version 12开始废弃，推荐使用[onFrame](#onframe12)。
 
 onframe: (progress: number) => void
 
@@ -212,7 +294,11 @@ animatorResult.onframe = (value)=> {
 }
 ```
 
-### onfinish
+### onfinish<sup>(deprecated)</sup>
+
+> **说明：**
+>
+> 从API version 12开始废弃，推荐使用[onFinish](#onfinish12)。
 
 onfinish: () => void
 
@@ -230,7 +316,12 @@ animatorResult.onfinish = ()=> {
 }
 ```
 
-### oncancel
+### oncancel<sup>(deprecated)</sup>
+
+> **说明：**
+>
+> 从API version 12开始废弃，推荐使用[onCancel](#oncancel12)。
+
 
 oncancel: () => void
 
@@ -248,7 +339,11 @@ animatorResult.oncancel = ()=> {
 }
 ```
 
-### onrepeat
+### onrepeat<sup>(deprecated)</sup>
+
+> **说明：**
+>
+> 从API version 12开始废弃，推荐使用[onRepeat](#onrepeat12)。
 
 onrepeat: () => void
 
@@ -268,7 +363,7 @@ animatorResult.onrepeat = ()=> {
 
 ### setExpectedFrameRateRange<sup>12+</sup>
 
-setExpectedFrameRateRange: (rateRange: ExpectedFrameRateRange): void
+setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 
 设置期望的帧率范围。
 
@@ -397,7 +492,7 @@ class DateT{
     }
     let _this = DataTmp;
     if(DataTmp.animator){
-      DataTmp.animator.onframe = (value:number)=> {
+      DataTmp.animator.onFrame = (value:number)=> {
         _this.divWidth = value;
         _this.divHeight = value;
       };
@@ -435,17 +530,17 @@ struct AnimatorTest {
       begin: 100,
       end: 200
     })
-    this.backAnimator.onfinish = ()=> {
+    this.backAnimator.onFinish = ()=> {
       _this.flag = true
       console.info(_this.TAG, 'backAnimator onfinish')
     }
-    this.backAnimator.onrepeat = ()=> {
+    this.backAnimator.onRepeat = ()=> {
       console.info(_this.TAG, 'backAnimator repeat')
     }
-    this.backAnimator.oncancel = ()=> {
+    this.backAnimator.onCancel = ()=> {
       console.info(_this.TAG, 'backAnimator cancel')
     }
-    this.backAnimator.onframe = (value:number)=> {
+    this.backAnimator.onFrame = (value:number)=> {
       _this.wid = value
       _this.hei = value
     }

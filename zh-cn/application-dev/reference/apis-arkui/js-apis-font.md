@@ -24,7 +24,7 @@ registerFont(options: FontOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型                          | 必填   | 说明          |
 | ------- | --------------------------- | ---- | ----------- |
@@ -86,7 +86,7 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
-      
+
       // 使用iconFont的两种方式
       Text(this.unicode)
         .align(Alignment.Center)
@@ -100,7 +100,7 @@ struct FontExample {
   }
 }
 ```
-> **说明：** 
+> **说明：**
 >
 > 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
 >
@@ -110,7 +110,7 @@ struct FontExample {
 
 getSystemFontList(): Array\<string>
 
-获取系统支持的字体名称列表。
+获取风格字体列表。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -151,7 +151,7 @@ getFontByName(fontName: string): FontInfo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型      | 必填    | 说明          |
 | ---------- | --------- | ------- | ------------ |
@@ -195,7 +195,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)

@@ -1,4 +1,4 @@
-# Using SoundPool for Audio Playback (ArkTS)
+# Using SoundPool for Audio Playback
 
 The **SoundPool** class provides APIs to implement low-latency playback of short sounds.
 

@@ -230,6 +230,129 @@ struct AnimateToExample {
 }
 ```
 
+### getSharedLocalStorage<sup>12+</sup>
+
+getSharedLocalStorage(): LocalStorage | undefined
+
+获取当前stage共享的LocalStorage实例。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型                             | 描述                |
+| ------------------------------ | ----------------- |
+| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) | 返回LocalStorage实例。 |
+| undefined | 共享的LocalStorage实例不存在时返回undefined。|
+
+**示例：**
+
+```ts
+// index.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct SharedLocalStorage {
+  localStorage = this.getUIContext().getSharedLocalStorage()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Change Local Storage to 47")
+          .onClick(() => {
+            this.localStorage?.setOrCreate("propA",47)
+          })
+        Button("Get Local Storage")
+          .onClick(() => {
+            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+          })
+        Button("To Page")
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/GetSharedLocalStorage'
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+// GetSharedLocalStorage.ets
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct GetSharedLocalStorage {
+  localStorage = this.getUIContext().getSharedLocalStorage()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Change Local Storage to 100")
+          .onClick(() => {
+            this.localStorage?.setOrCreate("propA",100)
+          })
+        Button("Get Local Storage")
+          .onClick(() => {
+            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+          })
+
+        Button("Back Index")
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+### getHostContext<sup>12+</sup>
+
+getHostContext(): Context | undefined
+
+获得当前元能力的Context。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型 | 说明                             |
+| ------ | ------------------------------- |
+| [Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+| undefined | ability上下文不存在时返回undefined。|
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  uiContext = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Text("cacheDir="+this.uiContext?.getHostContext().cacheDir).fontSize(25)
+        Text("bundleCodeDir="+this.uiContext?.getHostContext().bundleCodeDir).fontSize(25)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
 ### getFrameNodeById<sup>12+</sup>
 
 getFrameNodeById(id: string): FrameNode | null
@@ -1026,7 +1149,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。      |
-| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 是   | 回调函数。返回滚动事件的信息。   |
+| callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | 否   | 回调函数。返回滚动事件的信息。   |
 
 **示例：**
 
@@ -1034,7 +1157,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 ### on('scrollEvent')<sup>12+</sup>
 
-on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.ScrollEventInfo\>): void
+on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
 
 监听滚动事件的开始和结束。
 
@@ -1045,7 +1168,7 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.Sc
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
-| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | Observer选项，包含指定监听的滚动组件的id。                    |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 是   | 回调函数。返回滚动事件的信息。                 |
 
 **示例：**
@@ -1054,7 +1177,7 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<observer.Sc
 
 ### off('scrollEvent')<sup>12+</sup>
 
-off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.ScrollEventInfo\>): void
+off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
 
@@ -1065,7 +1188,7 @@ off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<observer.
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。 |
-| options  | { id: string } | 是   | 指定监听的滚动组件的id。                                   |
+| options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | 是   | Observer选项，包含指定监听的滚动组件的id。                    |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | 否   | 回调函数。返回滚动事件的信息。                 |
 
 **示例：**
