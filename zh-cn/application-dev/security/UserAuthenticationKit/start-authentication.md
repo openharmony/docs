@@ -71,7 +71,7 @@
 4. 调用[UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10)接口发起认证，通过[IAuthCallback](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#iauthcallback10)回调返回认证结果[UserAuthResult](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthresult10)。
    当认证成功时返回认证通过类型（[UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)）和令牌信息（AuthToken）。
 
-**示例1：**
+**示例：**
 
  发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
 
@@ -108,47 +108,4 @@ try {
   const err: BusinessError = error as BusinessError;
   console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
-```
-**示例2：**
 
-发起用户认证，采用认证可信等级≥ATL3的人脸 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
-
-```ts
-import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-// 设置认证参数
-let reuseUnlockResult: userIAM_userAuth.ReuseUnlockResult = {
-  reuseMode: userIAM_userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
-  reuseDuration: 300000,
-}
-const authParam: userIAM_userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
-  reuseUnlockResult: reuseUnlockResult,
-};
-// 配置认证界面
-const widgetParam: userIAM_userAuth.WidgetParam = {
-  title: '请进行身份认证',
-};
-try {
-  // 获取认证对象
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
-  // 订阅认证结果
-  userAuthInstance.on('result', {
-    onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
-      // 可在认证结束或其他业务需要场景，取消订阅认证结果
-      userAuthInstance.off('result');
-    }
-  });
-  console.log('auth on success');
-  userAuthInstance.start();
-  console.log('auth start success');
-} catch (error) {
-  const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
-}
-```
