@@ -416,7 +416,7 @@ OpenHarmony 4.1 Beta1版本开始提供首批API Level 11接口。
 
 - 应用或后台Service Ability重启后可以继续操作上传下载任务。
 
-- 支持优先级策略：高优先级应用（焦点应用）的高优先级任务优先执行并且占据跟多网络带宽资源。
+- 支持优先级策略：高优先级应用（焦点应用）的高优先级任务优先执行并且占据更多网络带宽资源。
 
 
 ### 输入法框架
@@ -569,9 +569,9 @@ OpenHarmony 4.1 Beta1版本开始提供首批API Level 11接口。
 
 ### API变更
 
-OpenHarmony 4.1 Beta1相比4.0 Release的API差异请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.1-Beta1/zh-cn/release-notes/api-diff/v4.1-beta1/Readme-CN.md)。
+OpenHarmony 4.1 Beta1相比4.0 Release的API差异请[点击这里查看](./api-diff/v4.1-beta1/Readme-CN.md)。
 
-此外，从4.0 Release至今，有少量接口变更可能影响此前应用工程的兼容性或需要您关注，详细的变更说明请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.1-Beta1/zh-cn/release-notes/changelogs/v4.1-beta1/Readme-CN.md)。
+此外，从4.0 Release至今，有少量接口变更可能影响此前应用工程的兼容性或需要您关注，详细的变更说明请[点击这里查看](./changelogs/v4.1-beta1/Readme-CN.md)。
 
 
 ### 芯片及开发板适配

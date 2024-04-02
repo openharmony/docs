@@ -1,0 +1,13 @@
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
+| ---- | ------ | ------ | -------- |
+|属性变更|文件名：api\@ohos.calendarManager.d.ts；<br>类名：CalendarConfig；<br>API声明：color?: (number \| string);<br>差异内容：(number \| string)|文件名：api\@ohos.calendarManager.d.ts；<br>类名：CalendarConfig；<br>API声明：color?: number \| string;<br>差异内容：number,string|api\@ohos.calendarManager.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明：function getValue(context: Context, name: string, domainName: string): Promise\<string>;<br>差异内容：function getValue(context: Context, name: string, domainName: string): Promise\<string>;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明：function setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>;<br>差异内容：function setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明：function getValueSync(context: Context, name: string, defValue: string, domainName: string): string;<br>差异内容：function getValueSync(context: Context, name: string, defValue: string, domainName: string): string;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明：function setValueSync(context: Context, name: string, value: string, domainName: string): boolean;<br>差异内容：function setValueSync(context: Context, name: string, value: string, domainName: string): boolean;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明： namespace domainName<br>差异内容： namespace domainName|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：domainName；<br>API声明：const DEVICE_SHARED: string;<br>差异内容：const DEVICE_SHARED: string;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：domainName；<br>API声明：const USER_PROPERTY: string;<br>差异内容：const USER_PROPERTY: string;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：domainName；<br>API声明：const USER_SECURITY: string;<br>差异内容：const USER_SECURITY: string;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明：function registerKeyObserver(context: Context, name: string, domainName: string, observer: AsyncCallback\<void>): boolean;<br>差异内容：function registerKeyObserver(context: Context, name: string, domainName: string, observer: AsyncCallback\<void>): boolean;|api\@ohos.settings.d.ts|
+|新增API|NA|文件名：api\@ohos.settings.d.ts；<br>类名：settings；<br>API声明：function unregisterKeyObserver(context: Context, name: string, domainName: string): boolean;<br>差异内容：function unregisterKeyObserver(context: Context, name: string, domainName: string): boolean;|api\@ohos.settings.d.ts|
