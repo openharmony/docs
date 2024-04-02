@@ -579,7 +579,6 @@ class EntryAbility extends UIAbility {
 | Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
-| Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
 
 ## ValuesBucket
 
