@@ -212,23 +212,23 @@
     - Ability Access Control
       - [Access Control Overview](security/AccessToken/access-token-overview.md)
       - Application Permission Management
-        - [Application Permission Management Overview](security/AccessToken/aapp-permission-mgmt-overview.md)
+        - [Application Permission Management Overview](security/AccessToken/app-permission-mgmt-overview.md)
         - Requesting Application Permissions
-          - [Workflow for Using Permissions](security/AccessToken/adetermine-application-mode.md)
-          - [Declaring Permissions](security/AccessToken/adeclare-permissions.md)
-          - [Declaring Permissions in ACL](security/AccessToken/adeclare-permissions-in-acl.md)
-          - [Requesting User Authorization](security/AccessToken/arequest-user-authorization.md)
+          - [Workflow for Using Permissions](security/AccessToken/determine-application-mode.md)
+          - [Declaring Permissions](security/AccessToken/declare-permissions.md)
+          - [Declaring Permissions in ACL](security/AccessToken/declare-permissions-in-acl.md)
+          - [Requesting User Authorization](security/AccessToken/request-user-authorization.md)
         - Application Permissions
-          - [Permissions for All Applications](security/AccessToken/apermissions-for-all.md)
-          - [Permissions for System Applications](security/AccessToken/apermissions-for-system-apps.md)
-          - [Permissions for MDM Applications](security/AccessToken/apermissions-for-mdm-apps.md)
-        - [Application Permission Groups](security/AccessToken/aapp-permission-group-list.md)
-      - [Using System Pickers](security/AccessToken/ause-picker.md)
+          - [Permissions for All Applications](security/AccessToken/permissions-for-all.md)
+          - [Permissions for System Applications](security/AccessToken/permissions-for-system-apps.md)
+          - [Permissions for MDM Applications](security/AccessToken/permissions-for-mdm-apps.md)
+        - [Application Permission Groups](security/AccessToken/app-permission-group-list.md)
+      - [Using System Pickers](security/AccessToken/use-picker.md)
       - Using Security Components
-        - [Security Component Overview](security/AccessToken/asecurity-component-overview.md)
-        - [Using \<PasteButton>](security/AccessToken/apastebutton.md)
-        - [Using \<SaveButton>](security/AccessToken/asavebutton.md)
-        - [Using \<LocationButton>](security/AccessToken/alocationbutton.md)  
+        - [Security Component Overview](security/AccessToken/security-component-overview.md)
+        - [Using \<PasteButton>](security/AccessToken/pastebutton.md)
+        - [Using \<SaveButton>](security/AccessToken/savebutton.md)
+        - [Using \<LocationButton>](security/AccessToken/locationbutton.md)  
   - Application Test
     - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
     - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
@@ -504,18 +504,20 @@
   - Device Usage Statistics (for System Applications Only)
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
     - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
+  - Sensor Service Kit
+    - [Introduction to Sensor Service Kit](device/sensor/sensorservice-kit-intro.md)
+    - Sensor
+        - [Sensor Overview](device/sensor/sensor-overview.md)
+        - [Sensor Development](device/sensor/sensor-guidelines.md)
+    - Vibrator
+        - [Vibrator Overview](device/sensor/vibrator-overview.md)
+        - [Vibrator Development](device/sensor/vibrator-guidelines.md)
   - Device Management
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
       - [USB Service Development](device/usb-guidelines.md)
     - Location
       - [Location Service Development](device/location-guidelines.md)
-    - Sensor
-      - [Sensor Overview](device/sensor-overview.md)
-      - [Sensor Development](device/sensor-guidelines.md)
-    - Vibrator
-      - [Vibrator Overview](device/vibrator-overview.md)
-      - [Vibrator Development](device/vibrator-guidelines.md)
     - Multimodal Input
       - [Input Device Development](device/inputdevice-guidelines.md)
       - [Mouse Pointer Development](device/pointerstyle-guidelines.md)
@@ -527,7 +529,7 @@
       - [Sample Server Overview](device/sample-server-overview.md)
       - [Sample Server Development](device/sample-server-guidelines.md)
     - Stationary
-      - [Stationary Development](device/stationary-guidelines.md)
+      - [Stationary Development](device/stationary/stationary-guidelines.md)
     - Peripheral
       - [Peripheral Management Development](device/externaldevice-guidelines.md)
   - DFX
@@ -771,12 +773,12 @@
       - [Screen Capture (for System Applications Only)(C/C++)](media/media/avscreen-capture.md)
       - [Obtaining Video Thumbnails](media/media/avimagegenerator.md)
   - Media Library Kit (Media File Management Service)
-    - [Introduction to Media Library Kit](media/media/library/photoAccessHelper-overview.md)
-    - [Before You Start](media/media/library/photoAccessHelper-preparation.md)
-    - [Managing Media Assets](media/media/library/photoAccessHelper-resource-guidelines.md)
-    - [Managing User Albums](media/media/library/photoAccessHelper-userAlbum-guidelines.md)
-    - [Managing System Albums](media/media/library/photoAccessHelper-systemAlbum-guidelines.md)
-    - [Observing Media Assets](media/media/library/photoAccessHelper-notify-guidelines.md) 
+    - [Introduction to Media Library Kit](media/medialibrary/photoAccessHelper-overview.md)
+    - [Before You Start](media/medialibrary/photoAccessHelper-preparation.md)
+    - [Managing Media Assets](media/medialibrary/photoAccessHelper-resource-guidelines.md)
+    - [Managing User Albums](media/medialibrary/photoAccessHelper-userAlbum-guidelines.md)
+    - [Managing System Albums](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
+    - [Observing Media Assets](media/medialibrary/photoAccessHelper-notify-guidelines.md) 
   - Node-API
     - [Getting Started with the NDK](napi/ndk-development-overview.md)
     - [Creating an NDK Project](napi/create-with-ndk.md)
@@ -1225,7 +1227,6 @@
       - [Ability Error Codes](reference/apis-ability-kit/errorcode-ability.md)
       - [Distributed Scheduler Error Codes](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
       - [Bundle Error Codes](reference/apis-ability-kit/errorcode-bundle.md)
-      - [zlib Error Codes](reference/apis-ability-kit/errorcode-zlib.md)
       - [Access Control Error Codes](reference/apis-ability-kit/errorcode-access-token.md)
   - Accessibility Kit API Reference
     - ArkTS APIs
@@ -1414,8 +1415,6 @@
       - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
     - ArkTS Components
       - [Web](reference/apis-arkweb/ts-basic-components-web.md)
-    - C APIs
-      - [OHWebJSBridge](reference/apis-arkweb/native_interface_arkweb.md)
     - Error Codes
       - [Webview Error Codes](reference/apis-arkweb/errorcode-webview.md)
   - Audio Kit API Reference
@@ -1521,39 +1520,20 @@
             - [@ohos.account.distributedAccount (Distributed Account Management) (System API)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
             - [@ohos.account.osAccount (System Account Management) (System API)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
         - Device Management
-            - [@ohos.batteryInfo (Battery Information)](reference/apis-basic-services-kit/js-apis-battery-info.md)
             - [@ohos.deviceInfo (Device Information)](reference/apis-basic-services-kit/js-apis-device-info.md)
-            - [@ohos.power (System Power Management)](reference/apis-basic-services-kit/js-apis-power.md)
-            - [@ohos.runningLock (Running Lock)](reference/apis-basic-services-kit/js-apis-runninglock.md)
-            - [@ohos.thermal (Thermal Management)](reference/apis-basic-services-kit/js-apis-thermal.md)
             - [@ohos.screenLock (Screen Lock)](reference/apis-basic-services-kit/js-apis-screen-lock.md)      
-            - [@ohos.usbManager (USB Manager)](reference/apis-basic-services-kit/js-apis-usbManager.md)
-            - [@ohos.batteryInfo (Battery Information) (System API)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
-            - [@ohos.batteryStatistics (Battery Statistics) (System API)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
-            - [@ohos.brightness (Screen Brightness) (System API)](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
-            - [@ohos.charger (Charging Type) (System API)](reference/apis-basic-services-kit/js-apis-charger-sys.md)
-            - [@ohos.deviceAttest (Device Attestation) (System API)](reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md)
-            - [@ohos.enterprise.usbManager (USB Management) (System API)](reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md)
-            - [@ohos.power (Power Management) (System API)](reference/apis-basic-services-kit/js-apis-power-sys.md)
-            - [@ohos.systemCapability (SystemCapability) (System API)](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
             - [@ohos.systemParameterEnhance (System Parameter) (System API)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
             - [@ohos.screenLock (Screen Lock) (System API)](reference/apis-basic-services-kit/js-apis-screen-lock-sys.md)
-            - [@ohos.usbManager (USB Management) (System API)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
-            - [@ohos.update (Update) (System API)](reference/apis-basic-services-kit/js-apis-update-sys.md)
         - Data File Processing
             - [@ohos.pasteboard (Pasteboard)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (Print)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (Upload and Download)](reference/apis-basic-services-kit/js-apis-request.md)
-            - [@ohos.zlib (Zip)](reference/apis-basic-services-kit/js-apis-zlib.md)
             - [@ohos.app.ability.PrintExtensionAbility (Print Extension Ability) (System API)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
             - [@ohos.print (Print) (System API)](reference/apis-basic-services-kit/js-apis-print-sys.md)
             - [@ohos.request (Upload and Download) (System API)](reference/apis-basic-services-kit/js-apis-request-sys.md)
         - Process and Thread Communication
             - [@ohos.commonEventManager (Common Event)](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
-            - [@ohos.events.emitter (Emitter)](reference/apis-basic-services-kit/js-apis-emitter.md)
             - [@ohos.commonEventManager (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md)
-            - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility) (System API)](reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)
-            - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext) (System API)](reference/apis-basic-services-kit/js-apis-application-StaticSubscriberExtensionContext-sys.md)
             - commonEvent
                 - [CommonEventData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventData.md)
                 - [CommonEventPublishData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)
@@ -1574,7 +1554,6 @@
                 - [Common Events of the Wi-Fi Subsystem](reference/apis-basic-services-kit/common_event/commonEvent-wifi.md)
                 - [Common Events of the USB Subsystem](reference/apis-basic-services-kit/common_event/commonEvent-usb.md)
                 - [Common Events of the File Management Subsystem](reference/apis-basic-services-kit/common_event/commonEvent-filemanagement.md)
-                - [Common Events of the Theme Framework - Lock Screen](reference/apis-basic-services-kit/commonEvent-screenlock.md)
                 - [Common Events of the Time and Time Zone Subsystem](reference/apis-basic-services-kit/common_event/commonEvent-time.md)
                 - [Common Events of the Account Subsystem](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
                 - [Common Events of the Language Subsystem](reference/apis-basic-services-kit/common_event/commonEvent-locale.md)
@@ -1590,31 +1569,15 @@
             - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)](reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md)
             - [@ohos.systemTimer (System Timer) (System API)](reference/apis-basic-services-kit/js-apis-system-timer-sys.md)
         - APIs No Longer Maintained
-            - [System Common Events](reference/apis-basic-services-kit/commonEvent-definitions.md)
             - [@ohos.commonEvent (Common Event)](reference/apis-basic-services-kit/js-apis-commonEvent.md)
-            - [@ohos.usb (USB)](reference/apis-basic-services-kit/js-apis-usb-deprecated.md)
-            - [@system.brightness (Screen Brightness)](reference/apis-basic-services-kit/js-apis-system-brightness.md)
-            - [@system.battery (Battery Information)](reference/apis-basic-services-kit/js-apis-system-battery.md)
-            - [@system.request (Upload and Download)](reference/apis-basic-services-kit/js-apis-system-request.md)
             - [@ohos.commonEvent (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
-            - [@ohos.usb (USB) (System API)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
-            - [@ohos.systemTime (System Time and Time Zone)](reference/apis-basic-services-kit/js-apis-system-time.md)
     - Error Codes
-        - [USB Error Codes](reference/apis-basic-services-kit/errorcode-usb.md)
-        - [Running Lock Error Codes](reference/apis-basic-services-kit/errorcode-runninglock.md)
         - [zlib Error Codes](reference/apis-basic-services-kit/errorcode-zlib.md) 
-        - [Battery Info Error Codes](reference/apis-basic-services-kit/errorcode-battery-info.md)
-        - [Power Consumption Statistics Error Codes](reference/apis-basic-services-kit/errorcode-batteryStatistics.md)
         - [Pasteboard Error Codes](reference/apis-basic-services-kit/errorcode-pasteboard.md)
-        - [Brightness Error Codes](reference/apis-basic-services-kit/errorcode-brightness.md)
-        - [Thermal Manager Error Codes](reference/apis-basic-services-kit/errorcode-thermal.md)
         - [Upload and Download Error Codes](reference/apis-basic-services-kit/errorcode-request.md)
         - [Event Error Codes](reference/apis-basic-services-kit/errorcode-CommonEventService.md)
         - [System Parameter Error Codes](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
-        - [Power Manager Error Codes](reference/apis-basic-services-kit/errorcode-power.md)
         - [Account Management Error Codes](reference/apis-basic-services-kit/errorcode-account.md)
-        - [Enterprise Device Management Error Codes](reference/apis-basic-services-kit/errorcode-enterpriseDeviceManager.md)
-        - [Update Error Codes](reference/apis-basic-services-kit/errorcode-update.md)
     <!--no_check-->
   - Calendar Kit API Reference
     - ArkTS APIs
@@ -1678,8 +1641,6 @@
       - [@ohos.bluetooth.map (Bluetooth MAP Module) (Recommended)](reference/apis-connectivity-kit/js-apis-bluetooth-map.md)
       - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (Active Tags)](reference/apis-connectivity-kit/js-apis-connectedTag.md)
-      - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](reference/apis-connectivity-kit/js-apis-cardEmulation.md)
-      - [@ohos.nfc.controller (Standard NFC)](reference/apis-connectivity-kit/js-apis-nfcController.md)
       - [@ohos.nfc.tag (Standard NFC Tags)](reference/apis-connectivity-kit/js-apis-nfcTag.md)
       - [@ohos.wifiManager (WLAN) (Recommended)](reference/apis-connectivity-kit/js-apis-wifiManager.md)
       - [@ohos.wifiManagerExt (WLAN Extension) (Recommended)](reference/apis-connectivity-kit/js-apis-wifiManagerExt.md)
@@ -1696,7 +1657,6 @@
       - [@ohos.bluetooth.wearDetection (Bluetooth Wear Detection module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md)
       - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated) (System API)](reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md)
       - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation) (System API)](reference/apis-connectivity-kit/js-apis-cardEmulation-sys.md)
-      - [@ohos.nfc.tag (Standard NFC Tags) (System API)](reference/apis-connectivity-kit/js-apis-nfcTag-sys.md)
       - [@ohos.wifiManager (WLAN) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-wifiManager-sys.md)
       - tag
         - [nfctech (Standard NFC Technologies)](reference/apis-connectivity-kit/js-apis-nfctech.md)
@@ -1708,11 +1668,8 @@
       - [SE Error Codes](reference/apis-connectivity-kit/errorcode-se.md)
     - APIs No Longer Maintained
       - [@ohos.bluetooth (Bluetooth) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
-      - [@ohos.wifi (WLAN) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-wifi.md)
-      - [@ohos.wifiext (WLAN Extension) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-wifiext.md)
       - [@system.bluetooth (Bluetooth)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
       - [@ohos.bluetooth (Bluetooth) (To Be Deprecated) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-sys.md)
-      - [@ohos.wifi (WLAN) (To Be Deprecated) (System API)](reference/apis-connectivity-kit/js-apis-wifi-sys.md)
   - Contacts Kit API Reference
     - ArkTS API 
       - [@ohos.contact (Contact)](reference/apis-contacts-kit/js-apis-contact.md)
@@ -1774,7 +1731,6 @@
       - [@ohos.distributedDeviceManager (Device Management)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
       - [@ohos.deviceAttest (Device Attestation) (System API)](reference/apis-distributedservice-kit/js-apis-deviceAttest-sys.md)
       - [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
-      - [@ohos.distributedDeviceManager (Device Management) (System API)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
       - [@ohos.cooperate (Screen Hopping) (System API)](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md)
       - APIs No Longer Maintained
         - [@ohos.distributedHardware.deviceManager (Device Management) (System API) (To be Deleted)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
@@ -1790,24 +1746,10 @@
     - C APIs
       - Modules
         - [HID DDK](reference/apis-driverdevelopment-kit/_hid_ddk.md)
-        - [USB DDK](reference/apis-driverdevelopment-kit/_usb_ddk.md)
       - Header Files
-        - [usb_ddk_api.h](reference/apis-driverdevelopment-kit/usb__ddk__api_8h.md)
-        - [usb_ddk_types.h](reference/apis-driverdevelopment-kit/usb__ddk__types_8h.md)
         - [hid_ddk_api.h](reference/apis-driverdevelopment-kit/hid__ddk__api_8h.md)
         - [hid_ddk_types.h](reference/apis-driverdevelopment-kit/hid__ddk__types_8h.md)
       - Structs
-        - [UsbConfigDescriptor](reference/apis-driverdevelopment-kit/_usb_config_descriptor.md)
-        - [UsbControlRequestSetup](reference/apis-driverdevelopment-kit/_usb_control_request_setup.md)
-        - [UsbDdkConfigDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_config_descriptor.md)
-        - [UsbDdkEndpointDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_endpoint_descriptor.md)
-        - [UsbDdkInterface](reference/apis-driverdevelopment-kit/_usb_ddk_interface.md)
-        - [UsbDdkInterfaceDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_interface_descriptor.md)
-        - [UsbDeviceDescriptor](reference/apis-driverdevelopment-kit/_usb_device_descriptor.md)
-        - [UsbDeviceMemMap](reference/apis-driverdevelopment-kit/_usb_device_mem_map.md)
-        - [UsbEndpointDescriptor](reference/apis-driverdevelopment-kit/_usb_endpoint_descriptor.md)
-        - [UsbInterfaceDescriptor](reference/apis-driverdevelopment-kit/_usb_interface_descriptor.md)
-        - [UsbRequestPipe](reference/apis-driverdevelopment-kit/_usb_request_pipe.md)
         - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/_hid___abs_axes_array.md)
         - [Hid_Device](reference/apis-driverdevelopment-kit/_hid___device.md)
         - [Hid_EmitItem](reference/apis-driverdevelopment-kit/_hid___emit_item.md)
@@ -1816,7 +1758,6 @@
         - [Hid_KeyCodeArray](reference/apis-driverdevelopment-kit/_hid___key_code_array.md)
         - [Hid_MscEventArray](reference/apis-driverdevelopment-kit/_hid___msc_event_array.md)
         - [Hid_RelAxesArray](reference/apis-driverdevelopment-kit/_hid___rel_axes_array.md)
-    <!--no_check-->
   - DRM Kit API Reference
     - ArkTS APIs
       - [@ohos.multimedia.drm (Digital Rights Management)](reference/apis-drm-kit/js-apis-drm.md)
@@ -2154,7 +2095,6 @@
   - [DFX Development](faqs/faqs-dfx.md)
   - [Pan-Sensor Development](faqs/faqs-sensor.md)
   - [Startup Development](faqs/faqs-startup.md)
-  - [Distributed Device Development](faqs/faqs-distributed-device-profile.md)
   - [SDK Usage](faqs/faqs-sdk.md)
   - [NDK Usage](faqs/faqs-ndk.md)
   - [Compiler and Runtime](faqs/faqs-compiler-runtime.md)
