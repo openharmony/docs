@@ -3054,6 +3054,275 @@ try {
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+
+### openCustomDialog<sup>12+</sup>
+
+openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    |   弹窗样式。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 103301 | the ComponentContent is incorrect. |
+| 103302 | the ComponentContent has already been opened. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import { ComponentContent } from "@ohos.arkui.node";
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+            .onClick(() => {
+                let uiContext = this.getUIContext();
+                let promptAction = uiContext.getPromptAction();
+                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+                try {
+                  promptAction.openCustomDialog(contentNode);
+                } catch (error) {
+                  let message = (error as BusinessError).message;
+                  let code = (error as BusinessError).code;
+                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
+                };
+            })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### closeCustomDialog<sup>12+</sup>
+
+closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
+
+关闭已弹出的dialogContent对应的自定义弹窗，使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import { ComponentContent } from "@ohos.arkui.node";
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+            .onClick(() => {
+                let uiContext = this.getUIContext();
+                let promptAction = uiContext.getPromptAction();
+                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+                try {
+                  promptAction.openCustomDialog(contentNode);
+                } catch (error) {
+                  let message = (error as BusinessError).message;
+                  let code = (error as BusinessError).code;
+                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
+                };
+
+                setTimeout(() => {
+                  try {
+                    promptAction.closeCustomDialog(contentNode);
+                  } catch (error) {
+                    let message = (error as BusinessError).message;
+                    let code = (error as BusinessError).code;
+                    console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
+                  };
+                }, 2000);     //2秒后自动关闭
+            })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### updateCustomDialog<sup>12+</sup>
+
+updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+
+更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import { ComponentContent } from "@ohos.arkui.node";
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+            .onClick(() => {
+                let uiContext = this.getUIContext();
+                let promptAction = uiContext.getPromptAction();
+                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+                try {
+                  promptAction.openCustomDialog(contentNode);
+                } catch (error) {
+                  let message = (error as BusinessError).message;
+                  let code = (error as BusinessError).code;
+                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
+                };
+
+                setTimeout(() => {
+                  try {
+                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
+                  } catch (error) {
+                    let message = (error as BusinessError).message;
+                    let code = (error as BusinessError).code;
+                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
+                  };
+                }, 2000);   //2秒后自动更新弹窗位置
+            })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## DragController<sup>11+</sup>
 以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
