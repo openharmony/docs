@@ -4259,56 +4259,6 @@ try {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
-###  setWindowMask<sup>12+</sup>
-
-setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
-
-设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名       | 类型                          | 必填 | 说明                           |
-| :----------- | :---------------------------- | :--- | :----------------------------- |
-| windowMask | Array&lt;Array&lt;number&gt;&gt; | 是   | 异形窗口的掩码，该参数仅支持宽高为窗口宽高、取值为整数0和整数1的二维数组输入，整数0代表所在像素透明，整数1代表所在像素不透明，宽高不符合的二维数组或二维数组取值不为整数0和整数1的二维数组为非法参数。 |
-
-**返回值：**
-
-| 类型                                         | 说明                                |
-| :------------------------------------------- | :---------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                      |
-| :------- | :-------------------------------------------- |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-try {
-  let windowMask: Array<Array<number>> = [
-      [0, 0, 0, 1, 0, 0, 0],
-      [0, 0, 1, 1, 1, 0, 0],
-      [0, 1, 1, 0, 1, 1, 0],
-      [1, 1, 0, 0, 0, 1, 1]
-    ];
-  let promise = windowClass.setWindowMask(windowMask);
-    promise.then(() => {
-    console.info('Succeeded in setting the window mask.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the window mask. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the window mask. Cause:' + JSON.stringify(exception));
-}
-```
 
 ### keepKeyboardOnFocus<sup>11+</sup>
 
