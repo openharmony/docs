@@ -125,6 +125,8 @@ isNfcOpen(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                            |
@@ -138,6 +140,8 @@ getNfcState(): [NfcState](#nfcstate)
 查询NFC状态。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -153,6 +157,8 @@ on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): voi
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数**
   
 | **参数名** | **类型** | **必填** | **说明** |
@@ -167,6 +173,8 @@ off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 取消NFC开关状态事件的注册，取消后NFC状态变化时，就不会再收到Callback的通知。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数**
 
