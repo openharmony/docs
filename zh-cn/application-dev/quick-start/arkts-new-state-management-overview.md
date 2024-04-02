@@ -29,14 +29,14 @@
 
 新的状态管理框架提供了一套全新的装饰器。
 
-- [\@observed](arkts-new-observed-and-track.md)：\@observed装饰器装饰class，使得被装饰的class具有深度监听的能力。\@observed和\@track配合使用可以使class中的属性具有深度观测的能力。
-- [\@track](arkts-new-observed-and-track.md)：\@track装饰器装饰被\@observed装饰的class中的属性，被装饰的属性具有深度观测的能力。
+- [\@ObservedV2](arkts-new-ObservedV2-and-Trace.md)：\@ObservedV2装饰器装饰class，使得被装饰的class具有深度监听的能力。\@ObservedV2和\@Trace配合使用可以使class中的属性具有深度观测的能力。
+- [\@Trace](arkts-new-ObservedV2-and-Trace.md)：\@Trace装饰器装饰被\@ObservedV2装饰的class中的属性，被装饰的属性具有深度观测的能力。
 
 ## 使用限制
 
 由于新的状态管理框架采用了和现有状态管理框架不同的实现，因此不能将新的状态管理框架和现有状态管理框架混合使用，这项限制包括如下场景：
 
 - 将新装饰器装饰的变量传递给现有装饰器装饰的变量。
-- 将现有装饰器[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)与新装饰器[\@observed](arkts-new-observed-and-track.md)、[\@track](arkts-new-observed-and-track.md)混合使用。
+- 将现有装饰器[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)与新装饰器[\@ObservedV2](arkts-new-ObservedV2-and-Trace.md)、[\@Trace](arkts-new-ObservedV2-and-Trace.md)混合使用。
 
 将新装饰器与现有装饰器混合使用，会出现未定义行为，表现为冗余刷新、失去深度观测能力、失去自身属性观测能力、失去属性级更新能力等。因此，不能将新的状态管理框架与现有状态管理框架混合使用。

@@ -887,14 +887,73 @@ import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContent
 
 export default class UiExtAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string,
+    let sessionId:string = '';
+    if(want.parameters){
+      sessionId  = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
+    }
     let status = abilityManager.UserStatus.ASSERT_TERMINATE;
     abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
-      console.log(TAG, 'notifyDebugAssertResult success.');
+      console.log('notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
-      console.error(TAG, `notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
+      console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
     });
   }
 }
 
+```
+
+## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+
+isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
+
+判断是否允许嵌入式拉起[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 嵌入式拉起EmbeddableUIAbility的调用方Context。 |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<boolean> | Promise对象。返回true表示允许嵌入式启动，返回false表示不允许嵌入式启动。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let appId: string = '6918661953712445909';
+
+    try {
+      abilityManager.isEmbeddedOpenAllowed(this.context, appId).then((data) => {
+        console.info(`isEmbeddedOpenAllowed data: ${JSON.stringify(data)}`);
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`isEmbeddedOpenAllowed failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
 ```

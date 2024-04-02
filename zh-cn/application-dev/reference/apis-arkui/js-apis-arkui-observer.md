@@ -17,6 +17,8 @@ import observer from '@ohos.arkui.observer'
 
 NavDestination组件状态。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 值  | 说明                     |
@@ -72,6 +74,16 @@ ScrollEvent滚动信息。
 | id           | string                                             | 是   | 滚动组件的id。                               |
 | eventType    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
 | offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
+
+## ObserverOptions<sup>12+</sup>
+
+Observer选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                         |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| id           | string                                             | 是   | 组件的id。                               |
 
 ## RouterPageInfo
 
@@ -201,7 +213,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                                     |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | 否   | 回调函数。返回滚动事件的信息。                                           |
+| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | 是   | 回调函数。返回滚动事件的信息。                                           |
 
 **示例：**
 
@@ -228,7 +240,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 ## observer.on('scrollEvent')<sup>12+</sup>
 
-on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEventInfo\>): void
+on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEventInfo\>): void
 
 监听滚动事件的开始和结束。
 
@@ -239,8 +251,8 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEvent
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
-| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
+| options  | [ObserverOptions](#observeroptions12)                                  | 是   | 指定监听的滚动组件的id。                                                 |
+| callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 是   | 回调函数。返回滚动事件的信息。                                            |
 
 **示例：**
 
@@ -248,7 +260,7 @@ on(type: 'scrollEvent', options: { id: string }, callback: Callback\<ScrollEvent
 
 ## observer.off('scrollEvent')<sup>12+</sup>
 
-off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEventInfo\>): void
+off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
 
@@ -259,7 +271,7 @@ off(type: 'scrollEvent', options: { id: string }, callback?: Callback\<ScrollEve
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                               | 是   | 监听事件，固定为'scrollEvent'，即滚动事件的开始和结束。                   |
-| options  | { id: string }                                                       | 是   | 指定监听的滚动组件的id。                                                 |
+| options  | [ObserverOptions](#observeroptions12)                                  | 是   | 指定监听的滚动组件的id。                                                 |
 | callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>                      | 否   | 回调函数。返回滚动事件的信息。                                            |
 
 **示例：**
@@ -389,7 +401,7 @@ observer.off('routerPageUpdate', this.uiContext, callBackFunc);
 
 ## observer.on('densityUpdate')<sup>12+</sup>
 
-on(type: 'densityUpdate', context: UIContext, callback: Callback<DensityInfo>): void
+on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>): void
 
 监听屏幕像素密度变化。
 
@@ -436,7 +448,7 @@ struct Index {
 
 ## observer.off('densityUpdate')<sup>12+</sup>
 
-off(type: 'densityUpdate', context: UIContext, callback?: Callback<DensityInfo>): void
+off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\>): void
 
 取消监听屏幕像素密度的变化。
 
@@ -444,11 +456,11 @@ off(type: 'densityUpdate', context: UIContext, callback?: Callback<DensityInfo>)
 
 **参数：** 
 
-| 参数名   | 类型                                      | 必填 | 说明                                                  |
-| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
-| type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                    |
-| callback | Callback\<[DensityInfo](#densityinfo12)\>   | 否   | 需要被注销的回调函数。                                |
+| 参数名   | 类型                                      | 必填 | 说明                                                                                           |
+| -------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。                                          |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                                                             |
+| callback | Callback\<[DensityInfo](#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销指定UIContext下所有densityUpdate事件监听。 |
 
 ```ts
 import observer from '@ohos.arkui.observer';
@@ -478,6 +490,164 @@ struct Index {
         .onClick(() => {
           this.message = '未注册监听'
           observer.off('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.on('willDraw')<sup>12+</sup>
+
+on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
+
+监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发");
+  }
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.off('willDraw')<sup>12+</sup>
+
+off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
+
+取消监听每一帧绘制指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                                  |
+| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'willDraw'，即是否将要绘制。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。                    |
+| callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  willDrawCallback = () => {
+    console.log("willDraw指令下发")
+  }
+
+  build() {
+    Column() {
+      Button('注册绘制指令下发监听')
+        .onClick(() => {
+          observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
+        })
+      Button('解除注册绘制指令下发监听')
+        .onClick(() => {
+          observer.off('willDraw', this.getUIContext(), this.willDrawCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.on('didLayout')<sup>12+</sup>
+
+on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
+
+监听每一帧布局完成情况
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
+| callback | Callback\<void\>        | 是   | 回调函数。                 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("Layout布局完成");
+  }
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
+        })
+    }
+  }
+}
+```
+
+## observer.off('didLayout')<sup>12+</sup>
+
+off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
+
+取消监听每一帧布局完成情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                                  |
+| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。                    |
+| callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct Index {
+  didLayoutCallback = () => {
+    console.log("Layout布局完成")
+  }
+
+  build() {
+    Column() {
+      Button('注册布局完成监听')
+        .onClick(() => {
+          observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
+        })
+      Button('解除布局完成s监听')
+        .onClick(() => {
+          observer.off('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
     }
   }

@@ -10,7 +10,7 @@ For example, delete a 256-bit HKDF key.
 
 2. Initialize the key property set to specify the properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.
 
-3. Use [deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9) to delete the key.
+3. Use [deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9) to delete the key.
 
 ```ts
 /*

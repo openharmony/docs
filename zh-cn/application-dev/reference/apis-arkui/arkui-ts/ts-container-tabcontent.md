@@ -137,6 +137,8 @@ SubTabBarStyle的静态构造函数。
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。||
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。                              |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。      |
+| unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 |
+| selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF |
 
 ## BottomTabBarStyle<sup>9+</sup>
 
@@ -180,6 +182,7 @@ BottomTabBarStyle的静态构造函数。
 | symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。 |
 | id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| iconStyle<sup>12+</sup> | [IconStyle](#iconstyle12对象说明) | 设置底部页签的label图标的样式。 |
 
 ## LayoutMode<sup>10+</sup>枚举说明
 
@@ -188,6 +191,13 @@ BottomTabBarStyle的静态构造函数。
 | AUTO        | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
 | VERTICAL    | 页签内容上下排布。 |
 | HORIZONAL   | 页签内容左右排布。 |
+
+## IconStyle<sup>12+</sup>对象说明
+
+| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label图标未选中时的颜色。<br/>默认值:#33182431 <br/>**说明：** <br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label图标选中时的颜色。<br/>默认值:#FF007DFF <br/>**说明：** <br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
 
 ## 事件
 
@@ -912,3 +922,97 @@ struct TabContentExample6 {
 ```
 
 ![tabContent4](figures/tabContent5.gif)
+
+### 示例7
+
+本示例通过labelStyle中的unselectedColor和selectedColor改变底部页签以及子页签的文本颜色。
+通过iconStyle中的unselectedColor和selectedColor改变底部页签的图标颜色。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column({ space: 5 }) {
+      Text("子页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new SubTabBarStyle('Pink')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new SubTabBarStyle('Yellow')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new SubTabBarStyle('Blue')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green }))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new SubTabBarStyle('Green')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+
+      Text("底部页签样式")
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }
+          .tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'pink')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'Yellow')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'Blue')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle('/common/public_icon_off.svg', 'Green')
+            .labelStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+            .iconStyle({ unselectedColor: Color.Red, selectedColor: Color.Green })
+          )
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+    }
+  }
+}
+```
+
+![tabContent](figures/tabContent6.gif)

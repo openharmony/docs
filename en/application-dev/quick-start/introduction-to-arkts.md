@@ -1548,10 +1548,10 @@ y = c.value! + 1; // ok，2
 
 ### Null-Coalescing Operator
 
-The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to null.
+The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to `null` or `undefined`.
 If it is, then the result of the expression is the right-hand-side expression; otherwise, it is the left-hand-side expression.
 
-In other words, `a ?? b` equals the ternary operator `a != null ? a : b`.
+In other words, `a ?? b` equals the ternary operator `(a != null && a != undefined) ? a : b`.
 
 In the following example, the method `getNick` returns a nickname if it is set; otherwise, an empty string is returned:
 

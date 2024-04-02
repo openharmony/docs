@@ -28,7 +28,7 @@ When creating a **kDF** instance, you need to specify the algorithm specificatio
 
 ## How to Develop
 
-1. Create a [PBKDF2Spec](../../reference/apis/js-apis-cryptoFramework.md#pbkdf2spec11) object and use it as a parameter for key derivation.
+1. Create a [PBKDF2Spec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pbkdf2spec11) object and use it as a parameter for key derivation.
    
    **PBKDF2Spec** is a child class of **KdfSpec**. You need to specify the following:
 
@@ -39,9 +39,9 @@ When creating a **kDF** instance, you need to specify the algorithm specificatio
    - **iterations**: number of iterations. The value must be a positive integer.
    - **keySize**: length of the derived key, in bytes. The value must be a positive integer.
 
-2. Use [cryptoFramework.createKdf](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object.
+2. Use [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object.
 
-3. Use [Kdf.generateSecret](../../reference/apis/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
+3. Use [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
    
    The following table lists how **Kdf.generateSecret** delivers the return value.
    

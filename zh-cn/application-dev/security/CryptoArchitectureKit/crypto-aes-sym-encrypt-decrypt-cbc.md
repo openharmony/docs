@@ -80,7 +80,6 @@
     } else {
       console.error('decrypt failed');
     }
-    console.info('main step success');
   }
   ```
 
@@ -138,6 +137,5 @@
     } else {
       console.error('decrypt failed');
     }
-    console.info('main step success');
   }
   ```

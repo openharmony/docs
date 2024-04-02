@@ -60,24 +60,20 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
-        console.log('addPermissionUsedRecord success');
-    }).catch((err: BusinessError) => {
-        console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-    // with options param
-    let optons: privacyManager.AddPermissionUsedRecordOptions = {
-        .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
-    };
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
-        console.log('addPermissionUsedRecord success');
-    }).catch((err: BusinessError) => {
-        console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
+  console.log('addPermissionUsedRecord success');
+}).catch((err: BusinessError) => {
+  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
+// with options param
+let optons: privacyManager.AddPermissionUsedRecordOptions = {
+  .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
+};
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
+  console.log('addPermissionUsedRecord success');
+}).catch((err: BusinessError) => {
+  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.addPermissionUsedRecord
@@ -120,17 +116,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('addPermissionUsedRecord success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('addPermissionUsedRecord success');
+  }
+});
 ```
 
 ## privacyManager.getPermissionUsedRecord
@@ -183,15 +175,12 @@ let request: privacyManager.PermissionUsedRequest = {
     'endTime': 1,
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-try {
-    privacyManager.getPermissionUsedRecord(request).then((data) => {
-        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+
+privacyManager.getPermissionUsedRecord(request).then((data) => {
+  console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.getPermissionUsedRecord
@@ -239,17 +228,14 @@ let request: privacyManager.PermissionUsedRequest = {
     'endTime': 1,
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-try {
-    privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
-        if (err) {
-            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+
+privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
+  if (err) {
+    console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+  }
+});
 ```
 
 ## privacyManager.startUsingPermission
@@ -295,15 +281,11 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-        console.log('startUsingPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
+  console.log('startUsingPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.startUsingPermission
@@ -344,17 +326,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('startUsingPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('startUsingPermission success');
+  }
+});
 ```
 
 ## privacyManager.stopUsingPermission
@@ -400,15 +378,11 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-        console.log('stopUsingPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
+  console.log('stopUsingPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.stopUsingPermission
@@ -449,17 +423,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('stopUsingPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('stopUsingPermission success');
+  }
+});
 ```
 
 ## privacyManager.on
@@ -597,34 +567,30 @@ import { BusinessError } from '@ohos.base';
 
 let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId
 let permissionName: Permissions = 'ohos.permission.CAMERA';
-try {
-    // without any param
-    privacyManager.getPermissionUsedTypeInfos().then(() => {
-        console.log('getPermissionUsedTypeInfos success');
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
-    });
-    // only tokenId
-    privacyManager.getPermissionUsedTypeInfos(tokenId).then(() => {
-        console.log('getPermissionUsedTypeInfos success');
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
-    });
-    // only permissionName
-    privacyManager.getPermissionUsedTypeInfos(null, permissionName).then(() => {
-        console.log('getPermissionUsedTypeInfos success');
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
-    });
-    // tokenId and permissionName
-    privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
-        console.log('getPermissionUsedTypeInfos success');
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+// without any param
+privacyManager.getPermissionUsedTypeInfos().then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// only tokenId
+privacyManager.getPermissionUsedTypeInfos(tokenId).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// only permissionName
+privacyManager.getPermissionUsedTypeInfos(null, permissionName).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// tokenId and permissionName
+privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## PermissionUsageFlag

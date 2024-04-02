@@ -5,7 +5,7 @@
 表示通知渠道或通知开关发生变化。
 
 - 常量值："usual.event.SLOT_CHANGE"
-- 订阅方需要的权限：ohos.permission.NOTIFICATION_CONTROLLER
+- 订阅方需要的权限：ohos.permission.NOTIFICATION_CONTROLLER（该权限仅系统应用可申请）
 
 通知设置里修改应用的渠道参数、渠道开关，或者开启、关闭通知使能开关时，都会触发通知服务发布这个系统公共事件。
 

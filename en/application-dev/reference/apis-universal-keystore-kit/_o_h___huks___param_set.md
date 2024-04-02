@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure of the parameter set.
+Defines the struct of a parameter set.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,41 +15,41 @@ Defines the structure of the parameter set.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [paramSetSize](#paramsetsize) | Memory size of the parameter set.  | 
-| [paramsCnt](#paramscnt) | Number of parameters in the parameter set.  | 
-| [params](#params) [] | Parameter array.  | 
+| uint32_t [paramSetSize](#paramsetsize) | Memory size of the parameter set. |
+| uint32_t [paramsCnt](#paramscnt) | Number of parameters in the parameter set. |
+| struct [OH_Huks_Param](_o_h___huks___param.md) [params](#params) [] | Array of parameters. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
-### params
+### params[]
 
-  
 ```
 struct OH_Huks_Param OH_Huks_ParamSet::params[]
 ```
-**Description**<br>
-Parameter array.
+**Description**
+
+Array of parameters.
 
 
 ### paramsCnt
 
-  
 ```
 uint32_t OH_Huks_ParamSet::paramsCnt
 ```
-**Description**<br>
+**Description**
+
 Number of parameters in the parameter set.
 
 
 ### paramSetSize
 
-  
 ```
 uint32_t OH_Huks_ParamSet::paramSetSize
 ```
-**Description**<br>
+**Description**
+
 Memory size of the parameter set.

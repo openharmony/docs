@@ -26,6 +26,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_AVSource](_a_v_source.md#oh_avsource) \* [OH_AVSource_CreateWithDataSource](_a_v_source.md#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | 为用户自定义数据源的资源对象创建OH_AVSource实例对象，可以通过调用OH_AVSource_Destroy释放实例。  | 
 | [OH_AVSource](_a_v_source.md#oh_avsource) \* [OH_AVSource_CreateWithURI](_a_v_source.md#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的的资源对象创建OH_AVSource实例对象。 | 
 | [OH_AVSource](_a_v_source.md#oh_avsource) \* [OH_AVSource_CreateWithFD](_a_v_source.md#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | 为文件描述符对应的资源对象创建OH_AVSource实例对象。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](_a_v_source.md#oh_avsource_destroy) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 销毁OH_AVSource实例并清理内部资源。 | 

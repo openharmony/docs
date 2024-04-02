@@ -608,7 +608,7 @@ async function ImportWrappedKey() {
 
 ## Verification
 
-Use [huks.isKeyItemExist](../../reference/apis/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.
+Use [huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.
 
 ```ts
 import huks from '@ohos.security.huks';

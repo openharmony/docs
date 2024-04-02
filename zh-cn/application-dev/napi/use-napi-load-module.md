@@ -1,9 +1,21 @@
-# 使用NAPI接口在主线程中进行模块加载
+# 使用Node-API接口在主线程中进行模块加载
 
 ## 场景介绍
 Node-API中的napi_load_module接口的功能是在主线程中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，目前支持以下场景：
 - 加载系统模块，例如@ohos.hilog
 - 加载ets目录下文件中的模块
+
+## 函数说明
+```cpp
+napi_status napi_load_module(napi_env env,
+                             const char* path,
+                             napi_value* result);
+```
+| 参数            | 说明          |
+| :------------- | :----------------------------- | 
+| env            | 当前的虚拟机环境       | 
+| path          | 加载的文件路径或者模块名          | 
+| result         | 加载的模块          | 
 
 ## 加载系统模块使用示例
 使用napi_load_module导出系统模块hilog，并调用info函数

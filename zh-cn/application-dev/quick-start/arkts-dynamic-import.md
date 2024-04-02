@@ -81,9 +81,9 @@ import('harlibrary').then((ns:ESObject) => {
 | 本地工程模块   | 动态import HAR模块文件路径     | 暂不支持动态import变量表达式 |
 | 远程包         | 动态import远程HAR模块名        | -                            |
 | 远程包         | 动态import ohpm包名            | -                            |
-| 系统API        | 动态import @system.*           | -                            |
-| 系统API        | 动态import @ohos.*             | -                            |
-| 系统API        | 动态import @arkui-x.*          | -                            |
+| API        | 动态import @system.*           | -                            |
+| API        | 动态import @ohos.*             | -                            |
+| API        | 动态import @arkui-x.*          | -                            |
 | 模块Native库   | 动态import libNativeLibrary.so | -                            |
 
 注：
@@ -100,7 +100,7 @@ DevEco IDE中模块间的依赖关系通过oh-package.json5中的dependencies进
 
 1. **runtimeOnly字段schema配置格式**
 
-在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import系统API时也无需配置runtimeOnly。
+在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。
 如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
 
 ```typescript
@@ -321,7 +321,7 @@ import(soName).then((ns:ESObject) => {
 }
 ```
 
-- **HAP变量动态import系统API**
+- **HAP变量动态import加载API**
 
 ```typescript
 // HAP's Index.ets
@@ -336,7 +336,7 @@ import(packageName).then((ns:ESObject) => { ns.default.identity(); });
 packageName = '@ohos.hilog';
 import(packageName).then((ns:ESObject) => { ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.'); });
 ```
-变量动态import系统API时无需配置runtimeOnly。
+变量动态import加载API时无需配置runtimeOnly。
 
 ### HAR模块间动态import依赖解耦
 当应用包含多个HAR包，且HAR包之间依赖关系比较复杂。在IDE中配置依赖关系时，可能会形成循环依赖。这时，如果HAR之间的依赖关系中仅有变量动态import，可以将HAR包之间直接依赖关系转移到HAP/HSP中配置，HAR包之间无需配置依赖关系，从而达到HAR包间依赖解耦的目的。如下示意图：

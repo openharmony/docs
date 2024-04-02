@@ -27,14 +27,4 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName         | Action of obtaining the DLP module name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName        | Action of obtaining the DLP ability name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | DLP_PARAMS_INDEX        | ohos.dlp.params.index              | Action of obtaining the DLP index.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-
-
-## wantConstant.Flags
-
- Enumerates the flags that specify how the Want will be handled.
-
-**System capability**: SystemCapability.Ability.AbilityBase
-
-| Name                                | Value      | Description                                                        |
-| ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>10+</sup> | 0x00000040 | Indicates the permanent permission of the URI. This flag is valid only for 2-in-1 applications.<br>**System API**: This is a system API and cannot be called by third-party applications.<br>If this flag is used together with **FLAG_AUTH_READ_URI_PERMISSION**, the permanent read permission is granted.<br>If this flag is used together with **FLAG_AUTH_WRITE_URI_PERMISSION**, the permanent write permission is granted.<br>The flag takes effect only when the **PERMISSION_PROXY_AUTHORIZATION_URI** permission is configured for the application.|
+| ASSERT_FAULT_SESSION_ID<sup>12+</sup>  | ohos.ability.params.asssertFaultSessionId      | Session ID of the AssertFault.<br>**System API**: This is a system API and cannot be called by third-party applications.|

@@ -10,7 +10,7 @@ For example, delete a 256-bit HKDF key.
 
 1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes. **paramSet** is a reserved parameter. Leave it empty.
 
-2. Use [OH_Huks_DeleteKeyItem](../../reference/native-apis/_huks_key_api.md#oh_huks_deletekeyitem) to delete the key.
+2. Use [OH_Huks_DeleteKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_deletekeyitem) to delete the key.
 
 ```c++
 #include "huks/native_huks_api.h"

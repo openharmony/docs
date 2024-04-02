@@ -25,12 +25,14 @@
     - [Encryption and Decryption with an SM4 Symmetric Key (ECB Mode)](crypto-sm4-sym-encrypt-decrypt-ecb.md)
     - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1)](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
     - [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
-    - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
+    - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
     - [Encryption and Decryption with an SM2 Asymmetric Key Pair](crypto-sm2-asym-encrypt-decrypt.md)
+    - [Converting SM2 Ciphertext](crypto-sm2-ciphertext-conversion.md)
 - Signing and Signature Verification
   - [Signing and Signature Verification Overview and Algorithm Specifications](crypto-sign-sig-verify-overview.md)
   - Signing and Signature Verification Development
     - [Signing and Signature Verification with an RSA Key Pair (PKCS1 Mode)](crypto-rsa-sign-sig-verify-pkcs1.md)
+    - [Signing and Signature Recovery Using an RSA Key Pair (PKCS1 Mode)](crypto-rsa-sign-sig-verify-recover-pkcs1.md)
     - [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
     - [Signing and Signature Verification with an RSA Key Pair (PSS Mode)](crypto-rsa-sign-sig-verify-pss.md)
     - [Signing and Signature Verification with an ECDSA Key Pair](crypto-ecdsa-sign-sig-verify.md)

@@ -10,7 +10,7 @@
 
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
-| getEnrolledState(authType : UserAuthType): EnrolledStated | 根据指定的认证类型，查询用户注册凭据的状态，感知注册凭据变化。 | 
+| getEnrolledState(authType : UserAuthType): EnrolledState | 根据指定的认证类型，查询用户注册凭据的状态，用于感知注册凭据变化。 | 
 
 
 ## 开发步骤

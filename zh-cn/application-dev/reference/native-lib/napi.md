@@ -8,7 +8,7 @@ Node-API是用于封装JavaScript能力为Native插件的API，独立于底层Ja
 
 Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的接口。
 
-OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
+OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
 ## 已从Node-API组件标准库中导出的符号列表
 
@@ -178,3 +178,8 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_create_object_with_properties|使用给定的napi_property_descriptor创建js `Object`。descriptor的键名必须为 string，且不可转为number。|11|
 |FUNC|napi_create_object_with_named_properties|使用给定的napi_value和键名创建js `Object`。键名必须为 string，且不可转为number。|11|
 |FUNC|napi_coerce_to_native_binding_object|强制将js `Object`和Native对象绑定。|11|
+|FUNC|napi_create_ark_runtime|创建基础运行时环境。|12|
+|FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
+|FUNC|napi_run_event_loop|触发底层的事件循环。|12|
+|FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。|12|

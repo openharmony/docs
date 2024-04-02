@@ -10,7 +10,7 @@ The topic uses a 128-bit AES key as an example to describe how to encrypt and de
 
 2. Initialize the key property set.
 
-3. Use [generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
+3. Use [generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
 
 Alternatively, you can [import a key](huks-key-import-overview.md).
 
@@ -20,12 +20,12 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 2. Obtain the data to be encrypted.
 
-3. Obtain the [algorithm parameters](../../reference/apis/js-apis-huks.md#huksparam) for encryption.<br>
+3. Obtain the [algorithm parameters](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) for encryption.<br>
    If AES is used for encryption, the cipher mode and padding mode must be specified. In the following example, the cipher mode is **CBC** and the padding mode is **PKCS7**. In this case, the IV must be set.
 
-4. Use [initSession](../../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
+4. Use [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
 
-5. Use [finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9) with the session handle to obtain the ciphertext.
+5. Use [finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9) with the session handle to obtain the ciphertext.
 
 **Decryption**
 
@@ -33,18 +33,18 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 2. Obtain the ciphertext to be decrypted.
 
-3. Obtain the [algorithm parameters](../../reference/apis/js-apis-huks.md#huksparam) for decryption.<br>
+3. Obtain the [algorithm parameters](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) for decryption.<br>
    The parameters vary with the decryption algorithm to be used. For details, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
    If AES is used for decryption, the cipher mode and padding mode must be specified. In the following example, the cipher mode is **CBC** and the padding mode is **PKCS7**. In this case, the IV must be set.
 
-4. Use [initSession](../../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
+4. Use [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
 
-5. Use [finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9) to obtain the data decrypted.
+5. Use [finishSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9) to obtain the data decrypted.
 
 **Key Deletion**
 
-Use [deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9) to delete the key that is not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
+Use [deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9) to delete the key that is not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
 
 ```ts
 /*

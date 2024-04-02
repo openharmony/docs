@@ -3015,6 +3015,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 > **说明：**
 > 
 > 分析类型不支持动态修改。
+> 当检测到画面有变化时，分析结果将自动销毁，可重新调用本接口启动分析。
 > 该特性依赖设备能力，不支持该能力的情况下，将返回错误码。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -3039,6 +3040,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 | -------- | -------------------------------------------- |
 | 110001 | AI analysis is unsupported.               |
 | 110002 | AI analysis is ongoing.  |
+| 110003 | AI analysis is stopped.  |
 
 ### stopImageAnalyzer<sup>12+</sup>
 

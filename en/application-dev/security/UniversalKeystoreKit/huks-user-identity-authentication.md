@@ -7,7 +7,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
 ## How to Develop
 
 1. Generate a key, enable fingerprint authentication for key access, and set related parameters.
-   When a key is generated or imported, set [HuksUserAuthType](../../reference/apis/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../../reference/apis/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../../reference/apis/js-apis-huks.md#hukschallengetype9) in **HuksParam**.
+   When a key is generated or imported, set [HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9).
 
    ```ts
    import huks from '@ohos.security.huks';
@@ -111,7 +111,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    /*
     * Set the key alias and encapsulate the key property set.
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
+   let srcKeyAlias = 'test_sm4_key_alias';
    let handle : number;
    let challenge : Uint8Array;
    let fingerAuthToken : Uint8Array;
@@ -125,7 +125,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    }
    properties[1] = {
        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
    }
    properties[2] = {
        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -138,6 +138,10 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    properties[4] = {
        tag: huks.HuksTag.HUKS_TAG_PADDING,
        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+   }
+   properties[5] = {
+       tag: huks.HuksTag.HUKS_TAG_IV,
+       value: StringToUint8Arry(IV),
    }
    let huksOptions : huks.HuksOptions = {
        properties: properties,
@@ -240,9 +244,8 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    import huks from '@ohos.security.huks';
    import { BusinessError } from '@ohos.base';
    /*
-   * Set the key alias and encapsulate the key property set.
+   * Determine the key property set to be encapsulated.
    */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
    let IV = '1234567890123456';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
    let handle: number;
@@ -369,7 +372,6 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
        encryptOptions.inData = StringToUint8Array(cipherInData);
        /* Pass in AuthToken. */
        await publicUpdateFunc(handle, fingerAuthToken, encryptOptions);
-       encryptOptions.inData = new Uint8Array(new Array());
        /* Pass in AuthToken. */
        await publicFinishFunc(handle, fingerAuthToken, encryptOptions);
        if (finishOutData === StringToUint8Array(cipherInData)) {

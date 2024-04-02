@@ -593,6 +593,10 @@ constructor(webTag?: string)
 
 用于创建 WebviewController 对象的构造函数。
 
+> **说明：**
+>
+> webTag是需要开发者自定义的一个标记，即开发者给web的一个字符串形式参数，用来做标记。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -600,6 +604,76 @@ constructor(webTag?: string)
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | webTag   | string | 否   | 指定了 Web 组件的名称，默认为 Empty。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class WebObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  @State webTestObj: WebObj = new WebObj();
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: '', controller: this.controller })
+        .javaScriptAccess(true)
+        .onControllerAttached(() => {
+          this.controller.loadUrl($rawfile("index.html"));
+          this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+        })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
 
 ### initializeWebEngine
 
@@ -4896,6 +4970,58 @@ struct WebComponent {
 }
 ```
 
+### prefetchResource<sup>12+</sup>
+
+static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
+
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存密钥和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型                             |  必填  | 说明                                                              |
+| ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
+| request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
+| additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
+| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的密钥。仅支持字母和数字，未传入或传入空则取默认值url作为密钥。 |
+| cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
+        // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+        web_webview.WebviewController.prefetchResource(
+          {url:"https://www.example1.com/post?e=f&g=h",
+          method:"POST",
+          formData:"a=x&b=y",},
+          [{headerKey:"c",
+            headerValue:"z",},],
+          "KeyX", 500);
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
+    }
+}
+```
+
 ### prepareForPageLoad<sup>10+</sup>
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
@@ -8993,6 +9119,18 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 是 | 是 | 请求/响应头的key。   |
 | headerValue | string | 是 | 是 | 请求/响应头的value。 |
 
+## RequestInfo<sup>12+</sup>
+
+Web组件发送的资源请求信息。
+
+**系统能力：**: SystemCapability.Web.Webview.Core
+
+| 名称      | 类型   | 可读 | 可写 |说明        |
+| ---------| ------ | -----|------|--------  |
+| url      | string | 是 | 是 | 请求的链接。    |
+| method   | string | 是 | 是 | 请求的方法。    |
+| formData | string | 是 | 是 | 请求的表单数据。 |
+
 ## WebHitTestType
 
 [getHitTest](#gethittest)接口用于指示游标节点。
@@ -9618,7 +9756,7 @@ struct WebComponent {
 | isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置ARKWEB_SCHEME_OPTION_STANDARD时，不应设置此值。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
 
 ## SecureDnsMode<sup>10+</sup>
 

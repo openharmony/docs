@@ -46,7 +46,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [AVPlayerState](#avplayerstate) {<br/>AV_IDLE = 0, AV_INITIALIZED = 1, AV_PREPARED = 2, AV_PLAYING = 3,<br/>AV_PAUSED = 4, AV_STOPPED = 5, AV_COMPLETED = 6, AV_RELEASED = 7,<br/>AV_ERROR = 8<br/>} | 播放状态 | 
-| [AVPlayerSeekMode](#avplayerseekmode) { AV_SEEK_NEXT_SYNC = 0, AV_SEEK_PREVIOUS_SYNC } | 跳转模式 | 
+| [AVPlayerSeekMode](#avplayerseekmode) { <br/>AV_SEEK_NEXT_SYNC = 0, <br/>AV_SEEK_PREVIOUS_SYNC, <br/>AV_SEEK_CLOSEST = 2<br/>} | 跳转模式 | 
 | [AVPlaybackSpeed](#avplaybackspeed) {<br/>AV_SPEED_FORWARD_0_75_X, AV_SPEED_FORWARD_1_00_X, AV_SPEED_FORWARD_1_25_X, AV_SPEED_FORWARD_1_75_X,<br/>AV_SPEED_FORWARD_2_00_X<br/>} | 播放速度 | 
 | [AVPlayerOnInfoType](#avplayeroninfotype) {<br/>AV_INFO_TYPE_SEEKDONE = 0, AV_INFO_TYPE_SPEEDDONE = 1, AV_INFO_TYPE_BITRATEDONE = 2, AV_INFO_TYPE_EOS = 3,<br/>AV_INFO_TYPE_STATE_CHANGE = 4, AV_INFO_TYPE_POSITION_UPDATE = 5, AV_INFO_TYPE_MESSAGE = 6, AV_INFO_TYPE_VOLUME_CHANGE = 7,<br/>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, AV_INFO_TYPE_BUFFERING_UPDATE = 9, AV_INFO_TYPE_BITRATE_COLLECT = 10, AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br/>AV_INFO_TYPE_DURATION_UPDATE = 12, AV_INFO_TYPE_IS_LIVE_STREAM = 13, AV_INFO_TYPE_TRACKCHANGE = 14, AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br/>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br/>} | OnInfo类型 | 
 
@@ -99,7 +99,7 @@
 ### AVPlaybackSpeed
 
 ```
-typedef enum AVPlaybackSpeedAVPlaybackSpeed
+typedef enum AVPlaybackSpeed AVPlaybackSpeed
 ```
 
 **描述**
@@ -114,7 +114,7 @@ typedef enum AVPlaybackSpeedAVPlaybackSpeed
 ### AVPlayerCallback
 
 ```
-typedef struct AVPlayerCallbackAVPlayerCallback
+typedef struct AVPlayerCallback AVPlayerCallback
 ```
 
 **描述**
@@ -129,7 +129,7 @@ OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到
 ### AVPlayerOnInfoType
 
 ```
-typedef enum AVPlayerOnInfoTypeAVPlayerOnInfoType
+typedef enum AVPlayerOnInfoType AVPlayerOnInfoType
 ```
 
 **描述**
@@ -144,7 +144,7 @@ OnInfo类型
 ### AVPlayerSeekMode
 
 ```
-typedef enum AVPlayerSeekModeAVPlayerSeekMode
+typedef enum AVPlayerSeekMode AVPlayerSeekMode
 ```
 
 **描述**
@@ -159,7 +159,7 @@ typedef enum AVPlayerSeekModeAVPlayerSeekMode
 ### AVPlayerState
 
 ```
-typedef enum AVPlayerStateAVPlayerState
+typedef enum AVPlayerState AVPlayerState
 ```
 
 **描述**
@@ -241,6 +241,8 @@ enum AVPlaybackSpeed
 | AV_SPEED_FORWARD_1_25_X | 1.25倍速播放 | 
 | AV_SPEED_FORWARD_1_75_X | 1.75倍速播放 | 
 | AV_SPEED_FORWARD_2_00_X | 2.0倍速播放 | 
+| AV_SPEED_FORWARD_0_50_X | 0.5倍速播放<br>**起始版本：** 12 | 
+| AV_SPEED_FORWARD_1_50_X | 1.5倍速播放<br>**起始版本：** 12 | 
 
 
 ### AVPlayerOnInfoType
@@ -297,6 +299,7 @@ enum AVPlayerSeekMode
 | -------- | -------- |
 | AV_SEEK_NEXT_SYNC | 同步到时间点之后的关键帧。 | 
 | AV_SEEK_PREVIOUS_SYNC | 同步到时间点之前的关键帧。 | 
+| AV_SEEK_CLOSEST | 同步到距离指定时间点最近的帧。<br/>**起始版本：** 12 | 
 
 
 ### AVPlayerState

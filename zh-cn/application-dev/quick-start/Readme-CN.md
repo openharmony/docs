@@ -31,10 +31,13 @@
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
+  - [方舟字节码文件格式](arkts-bytecode-file-format.md)
+  - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
   - 从TypeScript到ArkTS的适配指导
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+  - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -78,7 +81,7 @@
     - 状态管理（推荐）
       - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
       - 状态管理（推荐）所属装饰器
-        - [\@observed装饰器和\@track装饰器：类属性变化观测](arkts-new-observed-and-track.md)
+        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-ObservedV2-and-Trace.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

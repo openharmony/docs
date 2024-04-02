@@ -7,6 +7,8 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 当前不支持在预览器中使用FrameNode节点。
+>
+> FrameNode节点暂不支持拖拽。
 
 ## 导入模块
 
@@ -446,6 +448,9 @@ get commonAttribute(): CommonAttribute
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。|
 
+**说明：**
+FrameNode的基础属性支持范围和效果参考对齐方式为顶部起始端的[Stack](./arkui-ts/ts-container-stack.md)容器组件。
+
 **示例：**
 
 请参考[基础事件示例](#基础事件示例)。
@@ -688,36 +693,39 @@ class MyNodeController extends NodeController {
     return this.rootNode;
   }
 
-  addCommonEvent(buttonNode : FrameNode)
+  addCommonEvent(frameNode : FrameNode)
   {
-    buttonNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
+    frameNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
       console.log( `isHover FrameNode: ${isHover}`);
       console.log( `isHover FrameNode: ${JSON.stringify(event)}`);
       event.stopPropagation();
     }))
-    buttonNode.commonEvent.setOnClick((event)=>{
+    frameNode.commonEvent.setOnClick((event)=>{
       console.log(`Click FrameNode: ${JSON.stringify(event)}`)
     })
-    buttonNode.commonEvent.setOnTouch((event)=>{
+    frameNode.commonEvent.setOnTouch((event)=>{
       console.log(`touch FrameNode: ${JSON.stringify(event)}`)
     })
-    buttonNode.commonEvent.setOnAppear(()=>{
+    frameNode.commonEvent.setOnAppear(()=>{
       console.log(`on Appear FrameNode`)
     })
-    buttonNode.commonEvent.setOnDisappear(()=>{
+    frameNode.commonEvent.setOnDisappear(()=>{
       console.log(`onDisAppear FrameNode`)
     })
-    buttonNode.commonEvent.setOnFocus(()=>{
+    frameNode.commonEvent.setOnFocus(()=>{
       console.log(`onFocus FrameNode`)
     })
-    buttonNode.commonEvent.setOnBlur(()=>{
+    frameNode.commonEvent.setOnBlur(()=>{
       console.log(`onBlur FrameNode`)
     })
-    buttonNode.commonEvent.setOnKeyEvent((event)=>{
-      console.log(`Key FrameNode : ${JSON.stringify(event)}`)
+    frameNode.commonEvent.setOnKeyEvent((event)=>{
+      console.log(`Key FrameNode: ${JSON.stringify(event)}`)
     })
-    buttonNode.commonEvent.setOnMouse((event)=>{
-      console.log(`Mouse FrameNode : ${JSON.stringify(event)}`)
+    frameNode.commonEvent.setOnMouse((event)=>{
+      console.log(`Mouse FrameNode: ${JSON.stringify(event)}`)
+    })
+    frameNode.commonEvent.setOnSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
+      console.info(`onSizeChange FrameNode: oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
     })
   }
 }
@@ -765,6 +773,9 @@ struct Index {
         .onMouse((event)=>{
           console.log(`Mouse Text : ${JSON.stringify(event)}`)
         })
+        .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
+          console.info(`onSizeChange Text: oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
+        })
       NodeContainer(this.myNodeController)
         .borderWidth(1)
         .width(300)
@@ -773,4 +784,3 @@ struct Index {
   }
 }
 ```
-

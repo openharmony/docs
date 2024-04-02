@@ -148,6 +148,7 @@ struct ParentComponent {
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | 否 | 表示作为命名路由页面的名字。 |
   | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
+  | useSharedStorage | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的[LocalStorage](arkts-localstorage.md)实例对象。 |
 
   ```ts
   @Entry({ routeName : 'myPage' })
