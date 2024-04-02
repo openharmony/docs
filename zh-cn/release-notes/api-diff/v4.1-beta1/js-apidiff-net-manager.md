@@ -1,0 +1,16 @@
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
+| ---- | ------ | ------ | -------- |
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function addCustomDnsRule(host: string, ip: Array\<string>, callback: AsyncCallback\<void>): void;<br>差异内容：function addCustomDnsRule(host: string, ip: Array\<string>, callback: AsyncCallback\<void>): void;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function addCustomDnsRule(host: string, ip: Array\<string>): Promise\<void>;<br>差异内容：function addCustomDnsRule(host: string, ip: Array\<string>): Promise\<void>;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function removeCustomDnsRule(host: string, callback: AsyncCallback\<void>): void;<br>差异内容：function removeCustomDnsRule(host: string, callback: AsyncCallback\<void>): void;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function removeCustomDnsRule(host: string): Promise\<void>;<br>差异内容：function removeCustomDnsRule(host: string): Promise\<void>;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function clearCustomDnsRules(callback: AsyncCallback\<void>): void;<br>差异内容：function clearCustomDnsRules(callback: AsyncCallback\<void>): void;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function clearCustomDnsRules(): Promise\<void>;<br>差异内容：function clearCustomDnsRules(): Promise\<void>;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.connection.d.ts；<br>类名：connection；<br>API声明：function factoryReset(): Promise\<void>;<br>差异内容：function factoryReset(): Promise\<void>;|api\@ohos.net.connection.d.ts|
+|新增API|NA|文件名：api\@ohos.net.ethernet.d.ts；<br>类名：IPSetMode；<br>API声明：LAN_STATIC = 2<br>差异内容：LAN_STATIC = 2|api\@ohos.net.ethernet.d.ts|
+|新增API|NA|文件名：api\@ohos.net.ethernet.d.ts；<br>类名：IPSetMode；<br>API声明：LAN_DHCP = 3<br>差异内容：LAN_DHCP = 3|api\@ohos.net.ethernet.d.ts|
+|新增API|NA|文件名：api\@ohos.net.statistics.d.ts；<br>类名：statistics；<br>API声明：function getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;<br>差异内容：function getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;|api\@ohos.net.statistics.d.ts|
+|新增API|NA|文件名：api\@ohos.net.statistics.d.ts；<br>类名：statistics；<br>API声明：function getSockfdRxBytes(sockfd: number): Promise\<number>;<br>差异内容：function getSockfdRxBytes(sockfd: number): Promise\<number>;|api\@ohos.net.statistics.d.ts|
+|新增API|NA|文件名：api\@ohos.net.statistics.d.ts；<br>类名：statistics；<br>API声明：function getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;<br>差异内容：function getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;|api\@ohos.net.statistics.d.ts|
+|新增API|NA|文件名：api\@ohos.net.statistics.d.ts；<br>类名：statistics；<br>API声明：function getSockfdTxBytes(sockfd: number): Promise\<number>;<br>差异内容：function getSockfdTxBytes(sockfd: number): Promise\<number>;|api\@ohos.net.statistics.d.ts|
+|起始版本有变化|文件名：api\@system.network.d.ts；<br>类名：global；<br>API声明： export interface NetworkResponse<br>差异内容：3|文件名：api\@system.network.d.ts；<br>类名：global；<br>API声明： export interface NetworkResponse<br>差异内容：-1|api\@system.network.d.ts|
