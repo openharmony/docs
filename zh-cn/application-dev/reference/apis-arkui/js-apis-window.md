@@ -1706,62 +1706,6 @@ try {
 }
 ```
 
-### getWindowSystemBarProperties<sup>12+</sup>
-
-getWindowSystemBarProperties(): SystemBarProperties
-
-主窗口获取导航栏、状态栏的属性。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------------------------- | ------------- |
-| [SystemBarProperties](#systembarproperties) | 当前导航栏、状态栏属性。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      windowClass = data;
-      try {
-        let systemBarProperty = windowClass.getWindowSystemBarProperties();
-        console.info('Success in obtaining system bar properties. Property: ' + JSON.stringify(systemBarProperty));
-      } catch (err) {
-        console.error('Failed to get system bar properties. Code: ' + JSON.stringify(err));
-      }
-    });
-  }
-};
-```
-
 ### setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
