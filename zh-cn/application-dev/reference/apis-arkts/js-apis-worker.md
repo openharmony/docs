@@ -153,6 +153,71 @@ let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
 
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+宿主线程向Worker线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+// index.ets
+// 新建SendableObject实例并通过宿主线程传递至worker线程
+
+import worker from '@ohos.worker';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+let object: SendableObject = new SendableObject();
+workerInstance.postMessageWithSharedSendable(object);
+```
+
+```ts
+// sendable.ets
+// 定义SendableObject
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// worker文件路径为：entry/src/main/ets/workers/Worker.ets
+// Worker.ets
+// 接收宿主线程传递至worker线程的数据并访问
+
+import { SendableObject } from '../pages/sendable'
+import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable obj is: " + obj.a);
+}
+```
+
+
 ### on<sup>9+</sup>
 
 on(type: string, listener: WorkerEventListener): void
@@ -936,6 +1001,74 @@ workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
 }
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。默认值为空数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+// worker文件路径为：entry/src/main/ets/workers/Worker.ets
+// Worker.ets
+// 新建SendableObject实例并通过worker线程传递至宿主线程
+
+import { SendableObject } from '../pages/sendable'
+import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let object: SendableObject = new SendableObject();
+  workerPort.postMessageWithSharedSendable(object);
+}
+```
+
+```ts
+// sendable.ets
+// 定义SendableObject
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// Index.ets
+// 接收worker线程传递至宿主线程的数据并访问其属性
+
+import worker, { MessageEvents } from '@ohos.worker';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+workerInstance.postMessage(1);
+workerInstance.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable index obj is: " + obj.a);
+}
+```
+
 
 ### callGlobalCallObjectMethod<sup>11+</sup>
 
