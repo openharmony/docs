@@ -41,7 +41,7 @@ In the following table, the options included in the square brackets ([]) are mut
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| API Version| 
 | -------- | -------- | -------- | -------- |
-| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384] | 9+ | 
+| RSA512 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256] | 9+ | 
 | RSA768 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA1024 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 
 | RSA2048 | PKCS1 | [MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 9+ | 

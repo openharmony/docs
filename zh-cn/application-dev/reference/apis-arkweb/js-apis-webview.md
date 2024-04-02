@@ -593,6 +593,10 @@ constructor(webTag?: string)
 
 用于创建 WebviewController 对象的构造函数。
 
+> **说明：**
+>
+> webTag是需要开发者自定义的一个标记，即开发者给web的一个字符串形式参数，用来做标记。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -600,6 +604,76 @@ constructor(webTag?: string)
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | webTag   | string | 否   | 指定了 Web 组件的名称，默认为 Empty。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class WebObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  @State webTestObj: WebObj = new WebObj();
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: '', controller: this.controller })
+        .javaScriptAccess(true)
+        .onControllerAttached(() => {
+          this.controller.loadUrl($rawfile("index.html"));
+          this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+        })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
 
 ### initializeWebEngine
 
@@ -5659,7 +5733,12 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-为指定url设置单个cookie的值。
+为指定url设置cookie的值。
+
+> **说明：**
+>
+>configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>同步cookie的时机建议在webview组件加载之前完成。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5697,7 +5776,8 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+            // 设置多个cookie值时用','隔开，设置单个cookie值时不需要。
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);

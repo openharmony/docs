@@ -3,11 +3,11 @@
 
 ## Overview
 
-Defines a struct for the device-cloud synchronization statistics of a database table.
+Defines a struct for the device-cloud sync statistics of a database table.
 
 **Since**: 11
 
-**Related modules**: [RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary
@@ -15,9 +15,9 @@ Defines a struct for the device-cloud synchronization statistics of a database t
 
 ### Member Variables
 
-| Name| Description |
+| Name| Description|
 | -------- | -------- |
 | [total](_r_d_b.md#total) | Total number of rows to be synchronized between the device and cloud in the database table.|
 | [successful](_r_d_b.md#successful) | Number of rows that are successfully synchronized between the device and cloud in the database table.|
 | [failed](_r_d_b.md#failed) | Number of rows that failed to be synchronized between the device and cloud in the database table.|
-| [remained](_r_d_b.md#remained) | Number of rows that are not executed for device-cloud synchronization in the database table.|
+| [remained](_r_d_b.md#remained) | Number of rows that are not executed for device-cloud sync in the database table.|

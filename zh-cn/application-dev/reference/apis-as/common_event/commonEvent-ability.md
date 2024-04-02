@@ -6,7 +6,7 @@
 指示用户已完成引导并加载系统的公共事件操作。
 
 - 常量值："usual.event.BOOT_COMPLETED"
-- 订阅方需要的权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+- 订阅方需要的权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 在设备上指定用户已完成引导并加载系统，将会触发事件通知服务发布该系统公共事件。
 

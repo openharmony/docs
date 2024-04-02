@@ -5643,8 +5643,8 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5652,7 +5652,7 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5662,7 +5662,7 @@ let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsTwoWay.connect(tlsTwoWayConnectOptions, (err: BusinessError) => {
+tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 ```
@@ -5748,8 +5748,8 @@ tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect failed " + JSON.stringify(err));
 });
 
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5757,7 +5757,7 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5767,7 +5767,7 @@ let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsTwoWay.connect(tlsTwoWayConnectOptions).then(() => {
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));

@@ -84,7 +84,7 @@ buffer数组，提供blob数据类型。
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参GcmParamsSpec中的的authTag。 |
 
 > **说明：**
 >
@@ -150,15 +150,15 @@ buffer数组，提供blob数据类型。
 | RSA_N_BN | 301 | RSA算法中的模数n。 |
 | RSA_SK_BN | 302 | RSA算法中的私钥sk（即私钥指数d）。 |
 | RSA_PK_BN | 303 | RSA算法中的公钥pk（即公钥指数e）。 |
-| DH_P_BN<sup>11+</sup> | 401 | DH算法中的素数p |
-| DH_G_BN<sup>11+</sup> | 402 | DH算法中的参数g |
-| DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bit. |
-| DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk |
-| DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk |
-| ED25519_SK_BN<sup>11+</sup> | 501 | ED25519算法中的私钥sk |
-| ED25519_PK_BN<sup>11+</sup> | 502 | ED25519算法中的公钥pk |
-| X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk |
-| X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk |
+| DH_P_BN<sup>11+</sup> | 401 | DH算法中的素数p。 |
+| DH_G_BN<sup>11+</sup> | 402 | DH算法中的参数g。 |
+| DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bit。 |
+| DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk。 |
+| DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk。 |
+| ED25519_SK_BN<sup>11+</sup> | 501 | ED25519算法中的私钥sk。 |
+| ED25519_PK_BN<sup>11+</sup> | 502 | ED25519算法中的公钥pk。 |
+| X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk。 |
+| X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk。 |
 
 ## AsyKeySpecType<sup>10+</sup>
 
@@ -756,7 +756,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)”一节中的“字符串参数”。 |
+| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)一节中的“字符串参数”。 |
 
 **返回值：**
 
@@ -858,6 +858,7 @@ generateSymKey(): Promise\<SymKey>
 **示例：**
 
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
@@ -1053,6 +1054,8 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 **示例：**
 
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 asyKeyGenerator.generateKeyPair((err, keyPair) => {
   if (err) {
@@ -1128,6 +1131,8 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 **示例：**
 
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
 let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // 公钥二进制数据
@@ -1820,7 +1825,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 （1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
 
-- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
+- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
 - 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次update和doFinal的结果拼接起来，得到完整的明文/密文。
 
 （2）在RSA、SM2非对称加解密中，doFinal加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
@@ -3465,6 +3470,7 @@ getMacLength(): number
 **示例：**
 
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 let mac = cryptoFramework.createMac('SHA256');

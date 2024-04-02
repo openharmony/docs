@@ -12,11 +12,11 @@ The **HarmonyAppProvision** file consists of several parts, which are described 
 | type | Type of the **HarmonyAppProvision** file. The value can be **debug** (for application debugging) or **release** (for application release). The recommended value is **debug**.| String    | Yes| No|
 | app-distribution-type | Distribution type of the application. The value can be any of the following:<br>- **app_gallery**: application distributed by AppGallery.<br>- **enterprise**: enterprise application that can be installed on personal devices.<br>- **enterprise_mdm**: enterprise mobile device management (MDM) application, which can be installed only on enterprise devices. The applications of this type must have device management privileges, such as remote locking devices and installing common enterprise applications on devices.<br>- **enterprise_normal**: common enterprise application, which can be installed on enterprise devices only through an enterprise MDM application. The applications of this type do not require device management privileges.<br>- **os_integration**: preset application in the system.<br>- **crowdtesting**: crowdtesting application.<br>- **none**: other applications. | String| Yes| No|
 | issuer | Issuer of the **HarmonyAppProvision** file.       | String    | Yes| No|
-| validity    | Validity period of the **HarmonyAppProvision** file. For details, see [Internal Structure of the validity Object](#internal-structure-of-the-validity-object). | Object    | Yes| No |
-| bundle-info | Information about the application bundle and developer. For details, see [Internal Structure of the bundle-info Object](#internal-structure-of-the-bundle-info-object).        | Object    | Yes| No |
-| acls        | Information about the Access Control Lists (ACLs). For details, see [Internal Structure of the acls Object](#internal-structure-of-the-acls-object).                          | Object    | No| Yes   |
-| permissions | Permissions required for your application. For details, see [Internal Structure of the permissions Object](#internal-structure-of-the-permissions-object).     | Object    | No| Yes   |
-| debug-info  | Additional information for application debugging. For details, see [Internal Structure of the debug-info Object](#internal-structure-of-the-debug-info-object).         | Object    | No| Yes        |
+| validity    | Validity period of the **HarmonyAppProvision** file. For details, see [validity](#validity). | Object    | Yes| No |
+| bundle-info | Information about the application bundle and developer. For details, see [bundle-info](#bundle-info).        | Object    | Yes| No |
+| acls        | Information about the permissions authorized via the Access Control List (ACL). For details, see [acls](#acls). | Object    | No| Yes   |
+| permissions | Permissions required for your application. For details, see [permissions](#permissions).     | Object    | No| Yes   |
+| debug-info  | Additional information for application debugging. For details, see [debug-info](#debug-info).         | Object    | No| Yes        |
 | app-privilege-capabilities | Privilege information required by the application bundle. For details, see the [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).  | String array| No| Yes        |
 
 An example of the **HarmonyAppProvision** file is as follows:
@@ -55,16 +55,16 @@ An example of the **HarmonyAppProvision** file is as follows:
 
 ```
 
-### Internal Structure of the validity Object
+### validity
 
 | Name   | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ---------- | ------------------------------- | ------- | ------- | --------- |
 | not-before | Start time of the file validity period. The value is a Unix timestamp, which is a non-negative integer.| Number   | Yes| No  |
 | not-after  | End time of the file validity period. The value is a Unix timestamp, which is a non-negative integer.| Number   | Yes| No  |
 
-### Internal Structure of the bundle-info Object
+### bundle-info
 
-**NOTE**<br>The value of **bundle-name** in the **bundle-info** object in the HarmonyAppProvision file must be the same as the value of **bundleName** (in **config.json** or **module.json5**) of the signed application. To prevent a HarmonyAppProvision file from being used for signatures of different applications, the system checks whether the value of **bundleName** in the HAP signature is the same as that in the HAP configuration file during application installation. If they are different, the HAP cannot be installed.
+> **NOTE**<br>The value of **bundle-name** in the **bundle-info** object in the HarmonyAppProvision file must be the same as the value of **bundleName** (in **config.json** or **module.json5**) of the signed application. To prevent a HarmonyAppProvision file from being used for signatures of different applications, the system checks whether the value of **bundleName** in the HAP signature is the same as that in the HAP configuration file during application installation. If they are different, the HAP cannot be installed.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | -------- | --------- |
@@ -76,21 +76,21 @@ An example of the **HarmonyAppProvision** file is as follows:
 | app-feature  | Type of your application. The value can be **hos_system_app** (system application) or **hos_normal_app** (normal application). Only system applications are allowed to call system APIs. If a normal application calls a system API, the call cannot be successful or the application may run abnormally.| String   | Yes| No  |
 
 
-### Internal Structure of the acls Object
-The **acls** object contains the permissions authorized via the [ACL](AccessToken/permissions-for-system-apps.md). It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
+### acls
+The **acls** object contains the [permissions authorized via the ACL](AccessToken/permissions-for-system-apps.md). It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| allowed-acls | Permissions authorized via the [ACL](AccessToken/permissions-for-system-apps.md).| String array   | No| No  |
+| allowed-acls | [Permissions authorized via the ACL](AccessToken/permissions-for-system-apps.md).| String array   | No| No  |
 
-### Internal Structure of the permissions Object
+### permissions
 The **permissions** object contains restricted permissions required for your application. Different from the ACLs set in the **acls** object, these permissions need user authorization during the running of your application. It should be noted that you still need to add the ACL information to the [**requestPermissions**](../quick-start/module-configuration-file.md#requestpermissions) attribute in the application configuration file.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
 | restricted-permissions | [user_grant permissions](AccessToken/permissions-for-all.md#user_grant-permissions) that can be used.| String array   | No| No  |
 
-### Internal Structure of the debug-info Object
+### debug-info
 The **debug-info** object contains debugging information of your application, mainly device management and control information.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
@@ -108,7 +108,8 @@ To enable the application to use system APIs, you need to change the **app-featu
 To modify the HarmonyAppProvision configuration file, perform the following steps:
 
 1. Open the directory where the OpenHarmony SDK is located. (You can choose **File** > **Settings** > **OpenHarmony SDK** on the menu bar of DevEco Studio to query the directory.)
-2. In the SDK directory, go to the **Toolchains** > {Version} > **lib** directory and open the **UnsgnedReleasedProfileTemplate.json** file.
+2. In the SDK directory, go to the **Toolchains** > {Version} > **lib** directory and open the **UnsignedReleasedProfileTemplate.json** file.
 3. Modify the related fields as required.
 
 After modifying the configuration file, [sign the application](hapsigntool-guidelines.md).
+

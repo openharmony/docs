@@ -11,14 +11,14 @@
 
 本文将从以下两个方面介绍。
 
-- [设置任务快照的图标（仅对系统应用开放）](#设置任务快照的图标（仅对系统应用开放）)
+- [设置任务快照的图标（仅对系统应用开放）](#设置任务快照的图标仅对系统应用开放)
 - [设置任务快照的名称](#设置任务快照的名称)
 
 ## 设置任务快照的图标（仅对系统应用开放）
 
 通过调用[`UIAbilityContext.setMissionIcon()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon)方法修改任务快照的图标。
 
-示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。示例中的`pixelMap`的获取方式请参见[图片解码](../media/image-decoding.md)。
+示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。示例中的`pixelMap`的获取方式请参见[图片解码](../media/image/image-decoding.md)。
 
 ```ts
 import common from '@ohos.app.ability.common';

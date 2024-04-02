@@ -1,6 +1,6 @@
 # @ohos.deviceInfo (设备信息)
 
-本模块提供产品信息。
+本模块提供终端设备信息查询，开发者不可配置。
 
 > **说明：**
 >
@@ -14,6 +14,8 @@ import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## 属性
+> **说明：**
+> 未特殊说明的字段，数据长度最大值为96字节。
 
 **系统能力**：SystemCapability.Startup.SystemInfo。
 
@@ -29,7 +31,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | productModel | string | 是 | 否 | 认证型号。 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
-| hardwareProfile | string | 是 | 否 | 硬件Profile。 |
+| hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
 | serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）列表。 |
@@ -50,7 +52,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称。 |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |

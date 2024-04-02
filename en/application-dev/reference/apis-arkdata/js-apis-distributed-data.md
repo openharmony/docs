@@ -7,7 +7,7 @@ This module provides the following functions:
 - [KVManager](#kvmanager): provides a **KVManager** instance to manage key-value (KV) stores.
 - [KvStoreResultSet<sup>8+</sup>](#kvstoreresultset8): provides APIs to obtain the KV store result set and query or move the data read position.
 - [Query<sup>8+</sup>](#query8): provides APIs to query data from the database through a **Query** instance by using predicates.
-- [KVStore](#kvstore): provides APIs to add data, delete data, and observe data changes and data synchronization through a **KVStore** instance.
+- [KVStore](#kvstore): provides APIs to add data, delete data, and observe data changes and data sync through a **KVStore** instance.
 - [SingleKVStore](#singlekvstore): provides APIs to query and synchronize data in a single KV store. This class inherits from [KVStore](#kvstore), and data is not distinguished by device.
 - [DeviceKVStore<sup>8+</sup>](#devicekvstore8): provides APIs to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore), and data is distinguished by device.
 
@@ -2073,7 +2073,7 @@ try {
 
 ## KVStore
 
-Provides APIs to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization.
+Provides APIs to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data sync.
 
 Before calling any method in **KVStore**, you must use [getKVStore](#getkvstore) to obtain a **KVStore** object.
 
@@ -2262,7 +2262,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2270,8 +2270,8 @@ Subscribes to synchronization complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a synchronization complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
 
 **Example**
 
@@ -2324,7 +2324,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from synchronization complete events.
+Unsubscribes from sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2332,8 +2332,8 @@ Unsubscribes from synchronization complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the synchronization complete event will be unregistered.|
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered.|
 
 **Example**
 
@@ -2775,7 +2775,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
+Sets data sync, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2783,7 +2783,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses an as
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| enabled  |boolean | Yes   |Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite. |
+| enabled  |boolean | Yes   |Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
 | callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
@@ -2808,7 +2808,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-Sets data synchronization, which can be enabled or disabled. This API uses a promise to return the result.
+Sets data sync, which can be enabled or disabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2816,7 +2816,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses a pro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| enabled  |boolean | Yes   |Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite. |
+| enabled  |boolean | Yes   |Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
 
 **Return value**
 
@@ -2844,7 +2844,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Sets the data synchronization range. This API uses an asynchronous callback to return the result.
+Sets the data sync range. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2852,8 +2852,8 @@ Sets the data synchronization range. This API uses an asynchronous callback to r
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| localLabels  |string[] | Yes   |Synchronization labels set for the local device. |
-| remoteSupportLabels  |string[] | Yes   |Synchronization labels set for remote devices. |
+| localLabels  |string[] | Yes   |Sync labels set for the local device. |
+| remoteSupportLabels  |string[] | Yes   |Sync labels set for remote devices. |
 | callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
 
 **Example**
@@ -2876,7 +2876,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;
 
-Sets the data synchronization range. This API uses a promise to return the result.
+Sets the data sync range. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2884,8 +2884,8 @@ Sets the data synchronization range. This API uses a promise to return the resul
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| localLabels  |string[] | Yes   |Synchronization labels set for the local device. |
-| remoteSupportLabels  |string[] | Yes   |Synchronization labels set for remote devices. |
+| localLabels  |string[] | Yes   |Sync labels set for the local device. |
+| remoteSupportLabels  |string[] | Yes   |Sync labels set for remote devices. |
 
 
 **Return value**
@@ -3779,7 +3779,7 @@ Synchronizes the KV store manually.
 | Name   | Type                 | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Example**
@@ -3851,7 +3851,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3859,8 +3859,8 @@ Subscribes to synchronization complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a synchronization complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
 
 **Example**
 
@@ -3922,7 +3922,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from synchronization complete events.
+Unsubscribes from sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3930,8 +3930,8 @@ Unsubscribes from synchronization complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the synchronization complete event will be unregistered. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered. |
 
 **Example**
 
@@ -3958,7 +3958,7 @@ class KvstoreModel {
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the default delay allowed for KV store synchronization. This API uses an asynchronous callback to return the result.
+Sets the default delay allowed for KV store sync. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3966,7 +3966,7 @@ Sets the default delay allowed for KV store synchronization. This API uses an as
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database synchronization, in ms.   |
+| defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database sync, in ms.   |
 | callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback invoked to return the result.  |
 
 **Example**
@@ -3988,7 +3988,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-Sets the default delay allowed for KV store synchronization. This API uses a promise to return the result.
+Sets the default delay allowed for KV store sync. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3996,7 +3996,7 @@ Sets the default delay allowed for KV store synchronization. This API uses a pro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database synchronization, in ms.   |
+| defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database sync, in ms.   |
 
 
 **Return value**
@@ -5257,7 +5257,7 @@ Synchronizes the KV store manually.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | Yes   |**networkId**s of the devices to be synchronized.|
-| mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
+| mode            |[SyncMode](#syncmode)  | Yes   |Sync mode. |
 | delayMs  |number                 | No   |Delay time allowed, in ms. The default value is **0**. |
 
 **Example**
@@ -5329,7 +5329,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5337,8 +5337,8 @@ Subscribes to synchronization complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a synchronization complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
 
 **Example**
 
@@ -5400,7 +5400,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from synchronization complete events.
+Unsubscribes from sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5408,8 +5408,8 @@ Unsubscribes from synchronization complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the synchronization complete event will be unregistered. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered. |
 
 **Example**
 
@@ -5434,7 +5434,7 @@ class KvstoreModel {
 
 ## SyncMode
 
-Enumerates the synchronization modes.
+Enumerates the sync modes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 

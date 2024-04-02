@@ -3,41 +3,46 @@
 - [NDK开发导读](ndk-development-overview.md)
 - [创建NDK工程](create-with-ndk.md)
 - 构建NDK工程
-    - [NDK工程构建概述](build-with-ndk-overview.md)
-    - [使用DevEco Studio模板构建NDK工程](build-with-ndk-ide.md)
-    - [使用命令行CMake构建NDK工程](build-with-ndk-cmake.md)
-    - [在NDK工程中使用预构建库](build-with-ndk-prebuilts.md)
+  - [NDK工程构建概述](build-with-ndk-overview.md)
+  - [使用DevEco Studio模板构建NDK工程](build-with-ndk-ide.md)
+  - [使用命令行CMake构建NDK工程](build-with-ndk-cmake.md)
+  - [在NDK工程中使用预构建库](build-with-ndk-prebuilts.md)
 - 代码开发
-    - [代码开发概述](develop-code-overview.md)
-    - 使用Node-API实现跨语言交互
-        - [OpenHarmony Node-API简介](napi-introduction.md)
-        - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
-        - [Node-API开发规范](napi-guidelines.md)
-        - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
-        - Node-API典型使用场景
-            - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
-            - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
-            - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
-            - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
-        - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
-    - 资源管理
-        - [Rawfile开发指导](rawfile-guidelines.md)
-    - 资源调度
-        - [FFRT开发指导](ffrt-guidelines.md)
-    - 内存管理
-        - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
-    - 设备管理
-        - [USB DDK开发指导](usb-ddk-guidelines.md)
-        - [HID DDK开发指导](hid-ddk-guidelines.md)
-    - 包管理
-        - [NativeBundle开发指导](native-bundle-guidelines.md)
+  - [代码开发概述](develop-code-overview.md)
+  - 使用Node-API实现跨语言交互
+    - [Node-API简介](napi-introduction.md)
+    - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
+    - [Node-API开发规范](napi-guidelines.md)
+    - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
+    - Node-API典型使用场景
+      - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
+      - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
+      - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
+      - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+      - [使用Node-API接口在C++新创建的线程中进行模块加载](use-napi-load-module-with-info.md)
+    - [Node-API常见问题](use-napi-faqs.md)
+  - 使用JSVM-API实现JS与C/C++语言交互
+    - [Node-API简介](jsvm-introduction.md)
+    - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
+    - [JSVM-API开发规范](jsvm-guidelines.md)
+  - 资源管理
+    - [Rawfile开发指导](rawfile-guidelines.md)
+  - 资源调度
+    - [FFRT开发指导](ffrt-guidelines.md)
+  - 内存管理
+    - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
+  - 设备管理
+    - [USB DDK开发指导](usb-ddk-guidelines.md)
+    - [HID DDK开发指导](hid-ddk-guidelines.md)
+  - 包管理
+    - [NativeBundle开发指导](native-bundle-guidelines.md)
 - 调试和性能分析
-    - [调试和性能分析概述](debug-performance-profiling-overview.md)
-    - [通过DevEco Studio调试](debug-ide.md)
-    - [LLDB高性能调试器](debug-lldb.md)
-    - [C/C++内存错误检测](debug-asan.md)
+  - [调试和性能分析概述](debug-performance-profiling-overview.md)
+  - [通过DevEco Studio调试](debug-ide.md)
+  - [LLDB高性能调试器](debug-lldb.md)
+  - [C/C++内存错误检测](debug-asan.md)
 - 硬件兼容性
-    - [硬件兼容性简介](hw-guide.md)
-    - [OpenHarmony ABI](ohos-abi.md)
-    - [CPU特性](cpu-features.md)
-    - [使用Neon指令扩展](neon-guide.md)
+  - [硬件兼容性简介](hw-guide.md)
+  - [OpenHarmony ABI](ohos-abi.md)
+  - [CPU特性](cpu-features.md)
+  - [使用Neon指令扩展](neon-guide.md)

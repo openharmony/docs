@@ -119,8 +119,9 @@ The following table lists the APIs used for persisting user preference data. For
    let val = preferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // If the value is a string containing special characters, it is stored in the Uint8Array format. Conver the obtained Uint8Array into a string.
-   let uInt8Array : data_preferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
-   val = new util.TextDecoder().decode(uInt8Array as Uint8Array);
+   let uInt8Array : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   let textDecoder = util.TextDecoder.create('utf-8');
+   val = textDecoder.decodeWithStream(uInt8Array as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
@@ -186,15 +187,16 @@ The following table lists the APIs used for persisting user preference data. For
    > - The deleted data and files cannot be restored.
 
    Example:
-
-
+   
    ```ts
    let options: dataPreferences.Options = { name: 'myStore' };
-     dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-           return;
-       }
-       console.info('Succeeded in deleting preferences.');
-   })
+        dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+          if (err) {
+            console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+              return;
+          }
+          console.info('Succeeded in deleting preferences.');
+      })
    ```
+   
+   

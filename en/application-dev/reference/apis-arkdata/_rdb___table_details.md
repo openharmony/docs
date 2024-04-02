@@ -7,7 +7,7 @@ Defines a struct for statistics of device-cloud upload and download tasks of a d
 
 **Since**: 11
 
-**Related modules**: [RDB](_r_d_b.md)
+**Related module**: [RDB](_r_d_b.md)
 
 
 ## Summary

@@ -25,6 +25,14 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 | RENDER_TYPE_DISPLAY | 0   | 表示该节点将被显示到屏幕上。 |
 | RENDER_TYPE_TEXTURE | 1   | 表示该节点将被导出为纹理。   |
 
+> **说明：**
+>
+> RENDER_TYPE_TEXTURE类型目前除[XComponentNode](./js-apis-arkui-xcomponentNode.md)外只支持以自定义组件为根节点的纹理导出。
+>
+> 目前在该自定义组件下支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不支持原生的全屏模式）、Web、XComponent。
+>
+> 使用方式可参考[同层渲染绘制XComponent+AVPlayer和Button组件](../../web/web-same-layer.md)。
+
 ## RenderOptions
 
 创建BuilderNode时的可选参数。

@@ -273,7 +273,12 @@ import { BusinessError } from '@ohos.base';
 import statistics from '@ohos.net.statistics';
 
 let uidInfo: statistics.UidInfo = {
-  uid: 20010037
+  uid: 20010037,
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(
@@ -344,7 +349,12 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 import statistics from '@ohos.net.statistics'
 
 let uidInfo: statistics.UidInfo = {
-  uid: 20010037
+  uid: 20010037,
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
