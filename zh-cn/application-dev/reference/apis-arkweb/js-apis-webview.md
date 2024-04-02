@@ -6450,7 +6450,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 | 类型                                        | 说明                                                      |
 | ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOP。 |
+| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
 
 **错误码：**
 
@@ -9225,7 +9225,7 @@ Web组件发送的资源请求信息。
 | NONE    | 0    | 页面无音视频启播。 |
 | PLAYING | 1    | 页面音视频播放中。 |
 | PAUSED  | 2    | 页面音视频暂停。   |
-| STOP    | 3    | 页面音视频停止。   |
+| STOPPED | 3    | 页面音视频停止。   |
 
 ## JsMessageExt<sup>10+</sup>
 
