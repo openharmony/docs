@@ -99,12 +99,10 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 
 ```ts
 async function example() {
-  let fileKeyObj = mediaLibrary.FileKey;
-  let imageType = mediaLibrary.MediaType.IMAGE;
-  // Create options for fetching the files of the image type.
+  // Create a MediaFetchOptions instance to obtain images.
   let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [imageType.toString()],
+    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
   };
   // Obtain the files in asynchronous callback mode.
   media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
@@ -179,12 +177,10 @@ Obtains file assets. This API uses a promise to return the result.
 import { BusinessError } from '@ohos.base';
 
 async function example() {
-  let fileKeyObj = mediaLibrary.FileKey;
-  let imageType = mediaLibrary.MediaType.IMAGE;
-  // Create options for fetching the files of the image type.
+  // Create a MediaFetchOptions instance to obtain images.
   let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
-    selections: fileKeyObj.MEDIA_TYPE + '= ?',
-    selectionArgs: [imageType.toString()],
+    selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+    selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
   };
   // Obtain the files in promise mode.
   media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {

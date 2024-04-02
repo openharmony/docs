@@ -2995,11 +2995,11 @@ async function example() {
 
 getExif(): Promise&lt;string&gt;
 
-Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+Obtains the exchangeable image file format (EXIF) data from a JPG image. This API uses a promise to return the result.
 
-The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
+The EXIF data is provided by the [image](js-apis-image.md) module. For details about the EXIF data, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF data. The complete EXIF data consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys), which are passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -3055,11 +3055,11 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+Obtains the EXIF data from a JPG image. This API uses an asynchronous callback to return the result.
 
-The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
+The EXIF data is provided by the [image](js-apis-image.md) module. For details about the EXIF data, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF data. The complete EXIF data consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys), which are passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
