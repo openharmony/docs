@@ -12,7 +12,7 @@
 
 ## DatePickerDialog.show
 
-show(options?: DatePickerDialogOptions)
+static show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
 
