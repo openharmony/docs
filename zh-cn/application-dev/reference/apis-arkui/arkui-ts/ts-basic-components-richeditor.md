@@ -816,7 +816,7 @@ SymbolSpan样式选项。
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 | lineHeight<sup>12+</sup>    | number \| string \| Resource | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 | 
-| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距。设置该值为百分比时，按默认值显示。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，不支持设置百分比字符串。|
+| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，不支持设置百分比字符串。|
 ## PlaceholderStyle<sup>12+</sup>
 
 添加提示文本的字体样式。
