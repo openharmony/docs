@@ -23,8 +23,8 @@
    * 当容器在某个方向的size声明为“auto”时，该方向上guideline的位置只能使用start的方式声明(不可使用百分比)。
    * 垂直方向的guideline和barrier只能作为组件水平方向的锚点，作为垂直方向的锚点时取0；水平方向的guideline和barrier只能作为组件垂直方向的锚点，作为水平方向的锚点时取0。
    * 链的形成依靠组件间的依赖关系。以一个组件A、组件B组成的最小水平链为例，需要有锚点1 <-- 组件A <---> 组件B --> 锚点2的依赖关系，即A具有left锚点，B具有right锚点，同时A的right锚点是B的HorizontalAlign.Start，B的left锚点是A的HorizontalAlign.End。
-   * 链的方向和格式声明在链头组件的[chainMode](ts-universal-attributes-location.md#chainmode11)接口；链内元素的bias属性全部失效，链头元素的bias作为整个链的bias生效。
-   * 链内所有元素的size如果超出链的锚点约束，超出的部分将均分在链的两侧。在[Packed](ts-appendix-enums.md#chainstyle11)链中，超出部分的分布可以通过[bias](ts-universal-attributes-location.md#bias对象说明)来设置。
+   * 链的方向和格式声明在链头组件的[chainMode](ts-universal-attributes-location.md#chainmode12)接口；链内元素的bias属性全部失效，链头元素的bias作为整个链的bias生效。
+   * 链内所有元素的size如果超出链的锚点约束，超出的部分将均分在链的两侧。在[Packed](ts-appendix-enums.md#chainstyle12)链中，超出部分的分布可以通过[bias](ts-universal-attributes-location.md#bias对象说明)来设置。
  * 特殊情况
    * 根据约束条件和子组件本身的size属性无法确定子组件大小，则子组件不绘制。
    * 互相依赖、环形依赖时容器内子组件全部不绘制。
@@ -33,7 +33,6 @@
 ## 子组件
 
 支持多个子组件。
-
 
 ## 接口
 
@@ -47,11 +46,10 @@ RelativeContainer()
 
 | 名称       | 参数类型      |  必填   | 描述                   |
 | -------- | ------- |  ---- | -------------------- |
-| guideLine<sup>11+</sup> | Array<[GuideLineStyle](#guidelinestyle11)> | 否    | 声明RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。 |
-| barrier<sup>11+</sup> | Array<[BarrierStyle](#barrierstyle11)> | 否    | 声明RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。 |
+| guideLine<sup>12+</sup> | Array<[GuideLineStyle](#guidelinestyle12)> | 否    | 声明RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。 |
+| barrier<sup>12+</sup> | Array<[BarrierStyle](#barrierstyle12)> | 否    | 声明RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。 |
 
-
-## GuideLineStyle<sup>11+</sup>
+## GuideLineStyle<sup>12+</sup>
 
 guideLine参数，用于定义一条guideline的id、方向和位置。
 
@@ -61,9 +59,9 @@ guideLine参数，用于定义一条guideline的id、方向和位置。
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | guideline的id，必须是唯一的并且不可与容器内组件重名。   |
 | direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。<br />默认值：Axis.Vertical |
-| position | [GuideLinePosition](#guidelineposition11) | 是    | 指定guideline的位置。<br />默认值：<br />{<br />start: 0<br />} |
+| position | [GuideLinePosition](#guidelineposition12) | 是    | 指定guideline的位置。<br />默认值：<br />{<br />start: 0<br />} |
 
-## GuideLinePosition<sup>11+</sup>
+## GuideLinePosition<sup>12+</sup>
 
 guideLine位置参数，用于定义guideline的位置。
 
@@ -74,7 +72,7 @@ guideLine位置参数，用于定义guideline的位置。
 | start  | [Dimension](ts-types.md#dimension10)  | 否    | guideline距离容器左侧或者顶部的距离。   |
 | end | [Dimension](ts-types.md#dimension10) | 否    | guideline距离容器右侧或者底部的距离。 |
 
-## BarrierStyle<sup>11+</sup>
+## BarrierStyle<sup>12+</sup>
 
 barrier参数，用于定义一条barrier的id、方向和生成时所依赖的组件。
 
@@ -83,7 +81,7 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection11) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
+| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection12) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
 | referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
 
 ## 示例
