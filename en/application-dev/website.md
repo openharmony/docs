@@ -1572,7 +1572,6 @@
             - [@ohos.commonEvent (Common Event)](reference/apis-basic-services-kit/js-apis-commonEvent.md)
             - [@ohos.commonEvent (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
     - Error Codes
-        - [zlib Error Codes](reference/apis-basic-services-kit/errorcode-zlib.md) 
         - [Pasteboard Error Codes](reference/apis-basic-services-kit/errorcode-pasteboard.md)
         - [Upload and Download Error Codes](reference/apis-basic-services-kit/errorcode-request.md)
         - [Event Error Codes](reference/apis-basic-services-kit/errorcode-CommonEventService.md)
