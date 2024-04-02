@@ -2371,12 +2371,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称         | 值   | 说明        |
-| --------------- | ---- | ----------- |
-| BEARER_CELLULAR | 0    | 蜂窝网络。  |
-| BEARER_WIFI     | 1    | Wi-Fi网络。 |
-| BEARER_ETHERNET | 3    | 以太网网络。 |
-| BEARER_VPN      | 4    | VPN网络。   |
+|            名称         | 值   | 说明        |
+| ----------------------- | ---- | ---------- |
+| BEARER_CELLULAR         | 0    | 蜂窝网络。  |
+| BEARER_WIFI             | 1    | Wi-Fi网络。 |
+| BEARER_ETHERNET         | 3    | 以太网网络。|
+| BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
 
