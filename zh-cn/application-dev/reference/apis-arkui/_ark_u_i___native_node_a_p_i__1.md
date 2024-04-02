@@ -567,30 +567,6 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | eventReceiver | 事件回调统一入口函数。  | 
 
 
-### registerNodeEventReceiver
-
-```
-void(* ArkUI_NativeNodeAPI_1::registerNodeEventReceiver) (void(*eventReceiver)(ArkUI_NodeEvent *event))
-```
-**描述：**
-
-注册事件回调统一入口函数。
-
-ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventReceiver函数回调给开发者。
-
-重复调用时会覆盖前一次注册的函数。
-
-避免直接保存ArkUI_NodeEvent对象指针，数据会在回调结束后销毁。
-
-如果需要和组件实例绑定，可以使用addNodeEventReceiver函数接口。
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| eventReceiver | 事件回调统一入口函数。  | 
-
-
 ### unregisterNodeEventReceiver
 
 ```
