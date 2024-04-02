@@ -4405,53 +4405,6 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setSubWindowModal<sup>12+</sup>
-
-setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
-
-设置子窗的模态属性是否启用，使用Promise异步回调。
-
-子窗口调用该接口时，设置子窗口模态属性是否启用。启用子窗口模态属性后，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态属性被禁用。
-
-子窗口之外的窗口调用该接口时，会报错。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名    | 类型    | 必填 | 说明                                          |
-| --------- | ------- | ---- | --------------------------------------------- |
-| isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。 |
-
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------- | ------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let promise = windowClass.setSubWindowModal(true);
-promise.then(() => {
-  console.info('Succeeded in setting subwindow modal');
-}).catch((err: BusinessError) => {
-  console.error('Failed to set subwindow modal. Cause:' +  JSON.stringify(err));
-})
-```
-
 ###  setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
@@ -6393,7 +6346,6 @@ WindowStage生命周期。
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | 否 | 是 | 子窗口标题。       |
 | decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
 
 ## WindowStage<sup>9+</sup>
 
