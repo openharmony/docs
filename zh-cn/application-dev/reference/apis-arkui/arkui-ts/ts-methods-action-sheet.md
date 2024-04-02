@@ -12,7 +12,7 @@
 
 ## ActionSheet.show
 
-show(value: ActionSheetOptions)
+static show(value: ActionSheetOptions)
 
 定义列表弹窗并弹出。
 

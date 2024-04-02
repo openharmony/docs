@@ -12,7 +12,7 @@
 
 ## TimePickerDialog.show
 
-show(options?: TimePickerDialogOptions)
+static show(options?: TimePickerDialogOptions)
 
 定义时间滑动选择器弹窗并弹出。
 
