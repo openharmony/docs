@@ -630,12 +630,12 @@ util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): str
 
 result = asp.foo('123');
 // Output: execute instead
-// Output: foo arg is 123
+// Output: arg is 123
 // Output: msg is changed to msg111
 console.info('result is ' + result);
 // Output: result is msg222
 console.info('asp.msg is ' + asp.msg);
-//Output: asp.msg is msg111
+// Output: asp.msg is msg111
 ```
 
 ## TextDecoder
@@ -668,7 +668,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: TextDecoderOptions): TextDecoder
+static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -1139,7 +1139,7 @@ Checks whether this **RationalNumber** object equals the given object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| object | Object | Yes| Object used to compare with this **RationalNumber** object.|
+| obj | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
@@ -2622,7 +2622,7 @@ let result = range.clamp(tempMiDF);
 
 ## Base64Helper<sup>9+</sup>
 
-Provides encoding and decoding for Base64 and Base64URL. The Base64 encoding table contains 64 characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). During encoding, the original data is divided into groups of three bytes, and each group contains a 6-bit number. Then, the corresponding characters in the Base64 encoding table are used to represent these numbers. If the last group contains only one or two bytes, the equal sign (=) is used for padding. The Base64URL encoding table contains 64 characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). The Base64URL encoding result does not contain equal signs (=).
+Provides encoding and decoding for Base64 and Base64URL. The Base64 encoding table contains 64 characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). During encoding, the original data is divided into groups of three bytes, and each group contains a 6-bit number. Then, the corresponding characters in the Base64 encoding table are used to represent these numbers. If the last group contains only one or two bytes, the equal sign (=) is used for padding.
 
 ### constructor<sup>9+</sup>
 
@@ -2635,12 +2635,12 @@ A constructor used to create a **Base64Helper** instance.
 **Example**
 
   ```ts 
-  let base64 = new util.Base64Helper();
+  let base64 = new  util.Base64Helper();
   ```
 
 ### encodeSync<sup>9+</sup>
 
-encodeSync(src: Uint8Array, options?: Type): Uint8Array
+encodeSync(src: Uint8Array): Uint8Array
 
 Encodes the input content into a Uint8Array object.
 
@@ -2651,7 +2651,6 @@ Encodes the input content into a Uint8Array object.
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>**util.Type.BASIC** (default): Base64 encoding.<br>**util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
@@ -2681,7 +2680,7 @@ Encodes the input content into a string. This API returns the result synchronous
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2711,7 +2710,7 @@ Decodes a string into a Uint8Array object. This API returns the result synchrono
 | Name| Type                          | Mandatory| Description                         |
 | ------ | ------------------------------ | ---- | ----------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2730,7 +2729,7 @@ Decodes a string into a Uint8Array object. This API returns the result synchrono
 
 ### encode<sup>9+</sup>
 
-encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
+encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 Encodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
@@ -2741,7 +2740,6 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
@@ -2776,7 +2774,7 @@ Encodes the input content into a string. This API uses a promise to return the r
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2808,7 +2806,7 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 | Name| Type                          | Mandatory| Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
-| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
@@ -2837,8 +2835,6 @@ Enumerates the Base64 encoding formats.
 | ----- |---| ----------------- |
 | BASIC | 0 | Basic format.|
 | MIME  | 1 | MIME format.|
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | BASIC_URL_SAFE format.<br>This value is supported since API version 12.|
-| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12.|
 
 
 ## types<sup>8+</sup>
