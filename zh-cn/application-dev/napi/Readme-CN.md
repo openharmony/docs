@@ -32,8 +32,8 @@
     - [使用JSVM-API进行JS代码的调试调优](jsvm-debugger-cpuprofiler-heapsnapshot.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
-  - 资源调度
-    - [FFRT开发指导](ffrt-guidelines.md)
+  - 线程调度
+    - [QOS开发指导](qos-guidelines.md)
   - 内存管理
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
   - 设备管理
