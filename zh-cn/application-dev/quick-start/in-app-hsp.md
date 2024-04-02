@@ -57,7 +57,7 @@ export struct MyTitleBar {
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { MyTitleBar } from './components/MyTitleBar';
 ```
 
@@ -82,7 +82,7 @@ export function minus(a: number, b: number): number {
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { Log, add, minus } from './utils/test';
 ```
 ### 导出native方法
@@ -99,7 +99,7 @@ export function nativeMulti(a: number, b: number): number {
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { nativeMulti } from './utils/nativeTest';
 ```
 
@@ -145,7 +145,7 @@ export class ResManager{
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { ResManager } from './ResManager';
 ```
 
@@ -160,7 +160,7 @@ export { ResManager } from './ResManager';
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { Log, add, minus } from './utils/test';
 export { MyTitleBar } from './components/MyTitleBar';
 export { ResManager } from './ResManager';
