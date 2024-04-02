@@ -101,7 +101,7 @@ In the following example, two copies of the weather widget are added to the home
         .position({ y: 12 })
   
         Column() {
-          Row() {// Content that is updated only in state A
+          Row() { // Content that is updated only in state A
             Text($r('app.string.status_a'))
               .fontColor('#000000')
               .opacity(0.4)
@@ -157,7 +157,7 @@ In the following example, two copies of the weather widget are added to the home
       if (want.parameters) {
         formId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
         isTempCard = want.parameters[formInfo.FormParam.TEMPORARY_KEY] as boolean;
-        if (isTempCard === false) {// If the widget is a normal one, the widget information is persisted.
+        if (isTempCard === false) { // If the widget is a normal one, the widget information is persisted.
           hilog.info(DOMAIN_NUMBER, TAG, 'Not temp card, init db for:' + formId);
           let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
           promise.then(async (storeDB: dataPreferences.Preferences) => {
@@ -254,4 +254,4 @@ In the following example, two copies of the weather widget are added to the home
 
 > **NOTE**
 >
-> When the local database is used for widget information persistence, it is recommended that [TEMPORARY_KEY](../reference/apis/js-apis-app-form-formInfo.md#formparam) be used in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) lifecycle callback to determine whether the currently added widget is a normal one. If the widget is a normal one, the widget information is directly persisted. If the widget is a temporary one, the widget information is persisted when the widget is converted to a normal one ([onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)). In addition, the persistent widget information needs to be deleted when the widget is destroyed ([onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)), preventing the database size from continuously increasing due to repeated widget addition and deletion.
+> When the local database is used for widget information persistence, it is recommended that [TEMPORARY_KEY](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam) be used in the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) lifecycle callback to determine whether the currently added widget is a normal one. If the widget is a normal one, the widget information is directly persisted. If the widget is a temporary one, the widget information is persisted when the widget is converted to a normal one ([onCastToNormalForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)). In addition, the persistent widget information needs to be deleted when the widget is destroyed ([onRemoveForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onremoveform)), preventing the database size from continuously increasing due to repeated widget addition and deletion.

@@ -14,7 +14,11 @@ Typically, a widget includes local images or online images downloaded from the n
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
    import fs from '@ohos.file.fs';
+   import hilog from '@ohos.hilog';
    import type Want from '@ohos.app.ability.Want';
+   
+   const TAG: string = 'WgtImgUpdateEntryFormAbility';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
      // When the widget is added, a local image is opened and transferred to the widget page for display.
@@ -30,7 +34,7 @@ Typically, a widget includes local images or online images downloaded from the n
            'imgBear': file.fd
          };
        } catch (e) {
-         console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
        }
    
        class FormDataClass {
@@ -45,7 +49,6 @@ Typically, a widget includes local images or online images downloaded from the n
        // Encapsulate the FD in formData and return it to the widget page.
        return formBindingData.createFormBindingData(formData);
      }
-   
      ...
    }
    ```
@@ -60,7 +63,7 @@ Typically, a widget includes local images or online images downloaded from the n
    import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
    import hilog from '@ohos.hilog';
-   import request from '@ohos.request';
+   import http from '@ohos.net.http';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -72,16 +75,26 @@ Typically, a widget includes local images or online images downloaded from the n
        };
        let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
        formProvider.updateForm(formId, formInfo);
+   
        // Note: After being started with the triggering of the lifecycle callback, the FormExtensionAbility can run in the background for only 5 seconds.
        // When possible, limit the size of the image to download. If an image cannot be downloaded within 5 seconds, it will not be updated to the widget page.
        let netFile = 'https://cn-assets.gitee.com/assets/mini_app-e5eee5a21c552b69ae6bf2cf87406b59.jpg'; // Specify the URL of the image to download.
        let tempDir = this.context.getApplicationContext().tempDir;
        let fileName = 'file' + Date.now();
        let tmpFile = tempDir + '/' + fileName;
-       request.downloadFile(this.context, {
-         url: netFile, filePath: tmpFile, enableMetered: true, enableRoaming: true
-       }).then((task) => {
-         task.on('complete', () => {
+   
+       let httpRequest = http.createHttp()
+       httpRequest.request(netFile, (err, data) => {
+         if (!err && data.responseCode == http.ResponseCode.OK) {
+           let imgFile = fs.openSync(tmpFile, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+           fs.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
+             hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
+           }).catch((err: Base.BusinessError) => {
+             hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
+           }).finally(() => {
+             fs.closeSync(imgFile);
+           });
+   
            hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
            let file: fileFs.File;
            let fileInfo: Record<string, string | number> = {};
@@ -89,7 +102,7 @@ Typically, a widget includes local images or online images downloaded from the n
              file = fs.openSync(tmpFile);
              fileInfo[fileName] = file.fd;
            } catch (e) {
-             console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+             hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
            }
    
            class FormDataClass {
@@ -106,24 +119,22 @@ Typically, a widget includes local images or online images downloaded from the n
            }).catch((error: Base.BusinessError) => {
              hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
            });
-         });
-         task.on('fail', (err: number) => {
-           hilog.info(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed. Cause: ${JSON.stringify(err)}`);
+         } else {
+           hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed. Cause: ${JSON.stringify(err)}`);
            let param: Record<string, string> = {
              'text':'Update failed.'
            };
            let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
            formProvider.updateForm(formId, formInfo);
-         });
-       }).catch((err: Base.BusinessError) => {
-         hilog.error(DOMAIN_NUMBER, TAG, `Failed to request the download. Cause: ${JSON.stringify(err)}`);
-       });
+         }
+         httpRequest.destroy();
+       })
      }
      ...
    }
    ```
 
-4. On the widget page, use the  **backgroundImage** attribute to display the widget content passed from the EntryFormAbility.
+4. On the widget page, use the **backgroundImage** attribute to display the widget content passed from the EntryFormAbility.
 
    ```ts
    let storageWidgetImageUpdate = new LocalStorage();
@@ -221,4 +232,4 @@ Typically, a widget includes local images or online images downloaded from the n
 >
 > - The **\<Image>** component determines whether to update the image by comparing the values of **imgName** consecutively passed by the EntryFormAbility. It updates the image only when the values are different.
 >
-> - To avoid memory leak, when a file is not in used, close it by calling [fs.closeSync](../reference/apis/js-apis-file-fs.md#fsclosesync). The system does not automatically close files.
+> - To avoid memory leak, when a file is not in used, close it by calling [fs.closeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsclosesync). The system does not automatically close files.
