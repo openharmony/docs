@@ -178,7 +178,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示注册主线程消息处理耗时监听器。 |
-| timeout | number | 是 |  表示事件执行阈值。 阈值必须大于0|
+| timeout | number | 是 |  表示事件执行阈值（单位：毫秒）。 阈值必须大于0。 |
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
 
 **示例：**
@@ -253,7 +253,7 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
-| observer | LoopObserver | 否 | 应用主线程观察器标志。 |
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观察器标志。 |
 
 **示例：**
     
@@ -262,6 +262,8 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 errorManager.off("loopObserver");
 ```
+
+## ErrorManager.off<sup>12+</sup>
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
