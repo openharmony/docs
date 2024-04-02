@@ -79,17 +79,30 @@ static setImageCacheCount(value: number): void
 **示例：**
 
 ```ts
-// app.ets
+// xxx.ets
 import app, { AppResponse } from '@system.app'
 
-export default class OnC {
-  onCreate() {
-    app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张
-    console.info('Application onCreate')
-  },
+@Entry
+@Component
+struct Index {
+  //app.setImageCacheCount方法需要在由@Entry标记的页面，onPageShow或aboutToAppear里面设置才生效
+  onPageShow() {
+    // 设置解码后图片内存缓存上限为100张
+    app.setImageCacheCount(100) 
+    console.info('Application onPageShow')
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
+
+  build() {
+    Row(){
+      // xxxxxxxxxxxxx为图片地址
+      Image('xxxxxxxxxxxxx')
+        .width(200)
+        .height(50)
+    }.width('100%')
+  }
 }
 ```
 
@@ -110,18 +123,30 @@ static setImageRawDataCacheSize(value: number): void
 **示例：**
 
 ```ts
-// app.ets
+// xxx.ets
 import app, { AppResponse } from '@system.app'
 
-export default class OnC {
-  onCreate() {
-    app.setImageRawDataCacheSize(104857600)
+@Entry
+@Component
+struct Index {
+  //app.setImageRawDataCacheSize方法需要在由@Entry标记的页面，onPageShow或aboutToAppear里面设置才生效
+  onPageShow() {
     // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
-    console.info('Application onCreate')
-  },
+    app.setImageRawDataCacheSize(104857600) 
+    console.info('Application onPageShow')
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
+
+  build() {
+    Row(){
+      // xxxxxxxxxxxxx为图片地址
+      Image('xxxxxxxxxxxxx')
+        .width(200)
+        .height(50)
+    }.width('100%')
+  }
 }
 ```
 

@@ -27,57 +27,11 @@
 
 支持多个子组件。
 
-
 ## 接口
 
 RelativeContainer()
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-## 属性
-
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持如下属性：
-
-| 名称       | 参数类型      |  必填   | 描述                   |
-| -------- | ------- |  ---- | -------------------- |
-| guideLine<sup>11+</sup> | Array<[GuideLineStyle](#guidelinestyle11)> | 否    | 声明RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。 |
-| barrier<sup>11+</sup> | Array<[BarrierStyle](#barrierstyle11)> | 否    | 声明RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。 |
-
-
-## GuideLineStyle<sup>11+</sup>
-
-guideLine参数，用于定义一条guideline的id、方向和位置。
-
-**参数：**
-
-| 名称    | 类型      | 必填   | 描述                    |
-| ----- | ------- | ---- | --------------------- |
-| id  | string  | 是    | guideline的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。<br />默认值：Axis.Vertical |
-| position | [GuideLinePosition](#guidelineposition11) | 是    | 指定guideline的位置。<br />默认值：<br />{<br />start: 0<br />} |
-
-## GuideLinePosition<sup>11+</sup>
-
-guideLine位置参数，用于定义guideline的位置。
-
-**参数：**
-
-| 名称    | 类型      | 必填   | 描述                    |
-| ----- | ------- | ---- | --------------------- |
-| start  | [Dimension](ts-types.md#dimension10)  | 否    | guideline距离容器左侧或者顶部的距离。   |
-| end | [Dimension](ts-types.md#dimension10) | 否    | guideline距离容器右侧或者底部的距离。 |
-
-## BarrierStyle<sup>11+</sup>
-
-barrier参数，用于定义一条barrier的id、方向和生成时所依赖的组件。
-
-**参数：**
-
-| 名称    | 类型      | 必填   | 描述                    |
-| ----- | ------- | ---- | --------------------- |
-| id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection11) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
-| referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
 
 ## 示例
 
