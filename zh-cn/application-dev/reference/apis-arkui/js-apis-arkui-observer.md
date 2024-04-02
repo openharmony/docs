@@ -17,6 +17,8 @@ import observer from '@ohos.arkui.observer'
 
 NavDestination组件状态。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 值  | 说明                     |
