@@ -24,16 +24,7 @@ ohos.permission.REQUIRE_FORM, ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 ## 接口
 
-FormComponent(value: {
-    id: number;
-    name: string;
-    bundle: string;
-    ability: string;
-    module: string;
-    dimension?: FormDimension;
-    temporary?: boolean;
-    renderingMode?: FormRenderingMode;
-  })
+FormComponent (value: FormInfo)
 
 创建卡片组件，用于显示提供的卡片。
 
@@ -41,14 +32,31 @@ FormComponent(value: {
 
 | 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| id        | number                          | 是   | 卡片标识（新建卡片填0）。<br/>**说明：**<br>不同使用方不可使用相同id。<br/>同一使用方使用相同id时，显示后添加的卡片。                                        |
+| value        | [FormInfo](#forminfo12)                 | 是   | 卡片信息。   |
+
+## FormInfo<sup>12+</sup>
+
+卡片信息。
+
+| 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
+| --------- | ------------------------------- | ---- |-------|
+| id        | number \| string                    | 是   | 卡片标识（新建卡片填0）。<br/>**说明：**<br>不同使用方不可使用相同id。<br/>同一使用方使用相同id时，显示后添加的卡片。                                        |
 | name      | string                          | 是   | 卡片名称。                                                              |
 | bundle    | string                          | 是   | 目标卡片包名。                                                          |
 | ability   | string                          | 是   | 目标卡片Ability名称。                                                   |
 | module    | string                          | 是   | 卡片模块名称。                                                          |
 | dimension | [FormDimension](#formdimension) | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
 | temporary | boolean                         | 否   | 卡片是否为临时卡片。                                                    |
-| renderingMode<sup>11+</sup> | [FormRenderingMode](#formrenderingmode11) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
+| renderingMode | [FormRenderingMode](#formrenderingmode11) | 否   | 卡片渲染模式。取值如下，默认值为 FULL_COLOR。<br>- FULL_COLOR：代表全色模式，卡片框架不会对卡片效果做出修改，保持和卡片开发者设置的效果不变。<br>- SINGLE_COLOR：代表单色模式，卡片框架会把卡片背景设为透明，开发者需按最佳实践设置卡片风格。<br>**说明：**<br/>如果系统不支持统一渲染模式，卡片框架在单色模式下也不会把卡片背景设为透明。 |
+
+## FormCallbackInfo<sup>12+</sup>
+
+卡片查询或者卸载时获取formId的参数。
+
+| 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
+| --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
+| id        | number                 | 是   | 卡片标识（number类型）。<br/>**说明：**<br>如果获取到的id为-1，说明id大于等于2^53，需要使用idString获取。                                        |
+| idString      | string                          | 是   | 卡片标识（string类型）。<br/>                                                              |
 
 ## FormDimension
 
@@ -154,7 +162,7 @@ visibility(value: Visibility)
 
 ### onAcquired
 
-onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onAcquired(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12)):&nbsp;FormComponentAttribute
 
 获取到卡片后触发，返回卡片的id。
 
@@ -166,7 +174,7 @@ onAcquired(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| info   | &nbsp;{&nbsp;id:&nbsp;number&nbsp;} | 是   | 卡片的id。 |
+| Callback | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
 
 ### onError
 
@@ -202,7 +210,7 @@ onRouter(callback:&nbsp;(info:&nbsp;any)&nbsp;=&gt;&nbsp;void)
 
 ### onUninstall
 
-onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onUninstall(callback:&nbsp;Callback[\<FormCallbackInfo>](#formcallbackinfo12)):&nbsp;FormComponentAttribute
 
 组件卸载回调，返回卸载卡片的id。
 
@@ -214,17 +222,20 @@ onUninstall(callback:&nbsp;(info:&nbsp;{&nbsp;id:&nbsp;number&nbsp;})&nbsp;=&gt;
 
 | 参数名 | 类型                                | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | ---------- |
-| info   | &nbsp;{&nbsp;id:&nbsp;number&nbsp;} | 是   | 卡片的id。 |
+| Callback   | [FormCallbackInfo](#formcallbackinfo12) | 是   | 卡片的id。 |
 
 
 ## 示例
 
+卡片示例。
+
+该示例创建一张2 * 2尺寸大小的卡片，并注册事件回调。
 ```ts
 //card.ets
 @Entry
 @Component
 struct CardExample {
-   @State formId:number = 0;
+  @State formId:string = '0';
   build() {
     Column() {
       Text('this is a card')
@@ -242,14 +253,27 @@ struct CardExample {
         .allowUpdate(true)
         .size({width:360,height:360})
         .visibility(Visibility.Visible)
-        .onAcquired((form)=>{
+        .onAcquired((form: FormCallbackInfo)=>{
           console.log(`form info : ${JSON.stringify(form)}`);
-          this.formId = form.id;
+          // Invalid form id
+          if (form.id == -1) {
+            this.formId = form.idString;
+          } else {
+            this.formId = form.id.toString();
+          }
         })
         .onError((err)=>{
           console.log(`fail to add form, err: ${JSON.stringify(err)}`);
         })
-
+        .onUninstall((form: FormCallbackInfo)=>{
+          console.log(`uninstall form success : ${JSON.stringify(form)}`);
+          // Invalid form id
+          if (form.id == -1) {
+            this.formId = form.idString;
+          } else {
+            this.formId = form.id.toString();
+          }
+        })
     }
     .width('100%')
     .height('100%')
