@@ -1250,10 +1250,10 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@ohos.base';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1283,9 +1283,9 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
   import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
 
@@ -1318,10 +1318,10 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1352,9 +1352,9 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
   import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
 
@@ -3899,7 +3899,7 @@ email.email = "xxx@email.com";
 
 | 名称        | 类型   | 可读 | 可写 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | 是   | 否   | Bundle名称。 |
+| bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
 | displayName | string | 是   | 否   | 应用名称。   |
 | holderId    | number | 是   | 是   | 应用ID。     |
 
