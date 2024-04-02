@@ -261,7 +261,7 @@ zh-cn/application-dev/telephony/contacts-intro.md @jiayanhong-hw @zhang_yixin13 
 
 
 [开发-Core File Kit]
-zh-cn/application-dev/file-management/ @zengyawen
+zh-cn/application-dev/file-management/ @foryourself
 
 
 [开发-Driverdevelopment kit]
@@ -278,10 +278,7 @@ zh-cn/application-dev/application-models/widget*.md @arondave @songzhenlei @nezh
 
 
 [开发-DFX]
-zh-cn/application-dev/dfx/ @zengyawen
-zh-cn/application-dev/dfx/errormanager-guidelines.md  @huipeizi @lixiaogang30  @Maplestorys
-zh-cn/application-dev/dfx/apprecovery-guidelines.md   @huipeizi @lixiaogang30  @Maplestorys
-
+zh-cn/application-dev/dfx/ @foryourself
 
 [开发-IDL]
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
@@ -848,8 +845,8 @@ zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageSt
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md @zengyawen
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
@@ -971,11 +968,11 @@ zh-cn/application-dev/reference/apis-contacts-kit/ @jiayanhong-hw @zhang_yixin13
 
 
 [API参考-Core File Kit]
-zh-cn/application-dev/reference/apis-core-file-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-core-file-kit/ @foryourself
 
 
 [API参考-DFX]
-zh-cn/application-dev/reference/apis-performance-analysis-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 
 
