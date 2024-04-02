@@ -121,7 +121,7 @@ alignRules(value: AlignRuleOption)
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | Bias  | { horizontal?: number, vertical?: number } | &nbsp;否 | 组件在锚点约束下的偏移参数。<br/>-&nbsp;horizontal：水平方向上的bias值。<br/>-&nbsp;vertical：垂直方向上的bias值。<br/>-&nbsp;当子组件的width可以确定并且有2个水平方向的锚点时生效。<br/>-&nbsp;当子组件的height可以确定并且有2个垂直方向的锚点时生效。<br/>默认值：{<br/>horizontal:&nbsp;0.5,<br/>vertical:&nbsp;0.5<br/>}。 |
 
-## chainMode<sup>11+</sup>
+## chainMode<sup>12+</sup>
 
 chainMode(direction: Axis, style: ChainStyle)
 
@@ -134,7 +134,7 @@ chainMode(direction: Axis, style: ChainStyle)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](ts-appendix-enums.md#chainstyle11) | 是   | 链的样式。 |
+| style  | [ChainStyle](ts-appendix-enums.md#chainstyle12) | 是   | 链的样式。 |
 
 ## 示例
 ### 示例1
