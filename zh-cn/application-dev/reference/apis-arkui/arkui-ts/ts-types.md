@@ -459,3 +459,24 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
+
+## SubmitEvent<sup>11+</sup>
+
+定义用户提交事件。
+
+| 名称              | 类型       | 必填 | 描述                                               |
+| ----------------- | ---------- | ---- | -------------------------------------------------- |
+| keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text              | string     | 否   | 输入框文本内容。                                   |
+
+## EnterKeyType枚举说明
+
+| 名称                   | 描述               |
+| ---------------------- | ------------------ |
+| Go                     | 显示为开始样式。   |
+| Search                 | 显示为搜索样式。   |
+| Send                   | 显示为发送样式。   |
+| Next                   | 显示为下一个样式。 |
+| Done                   | 显示为完成样式。   |
+| PREVIOUS<sup>11+</sup> | 显示为上一个样式。 |
+| NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
