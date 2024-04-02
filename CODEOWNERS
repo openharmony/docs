@@ -806,7 +806,6 @@ zh-cn/application-dev/reference/apis-arkui/errorcode-window.md @ge-yafang @zhouy
 zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @achao @zhouyaoying @zxg-gitee @nobuggers
 
 
->>>>>>> 4f9dff06dfa5044c604e5f9b24fb77a4a3ad6fea
 
 [API参考-ArkWeb]
 zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
@@ -1050,19 +1049,7 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-permissionrequestresult
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zengyawen
 
 
-<<<<<<< HEAD
-[sensor-service-kit]
-zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-=======
 [API参考-Sensor Service Kit]
->>>>>>> 4f9dff06dfa5044c604e5f9b24fb77a4a3ad6fea
 zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
