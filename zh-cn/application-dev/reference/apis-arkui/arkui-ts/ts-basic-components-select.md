@@ -77,6 +77,14 @@ controlSize(value: ControlSize)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | value  | [ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup> | 是   | Select组件的尺寸。<br/>默认值:ControlSize.NORMAL |
 
+controlSize、width、height接口作用优先级：
+
+   1）如果开发者只设置了width和height，当文字大小设置的是比较大的值的时候，文字超出组件大小，且以省略号方式显示；
+
+   2）如果开发者只设置了controlSize，没有设置width和height，组件宽高自适应文字，文字不超出组件，并设置最小宽度minWidth和最小高度minHeight；
+
+   3）如果controlSize、width、height接口都设置了，width和height设置的值生效，但如果width和height设置的值小于controlSize设置的最小宽度minWidth和最小高度minHeight，width和height设置的值不生效，宽高仍保持controlSize设置的最小宽度minWidth和最小高度minHeight。
+
 ### menuItemContentModifier<sup>12+</sup>
 
 menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
@@ -103,7 +111,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>从API Version 12以后，<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是'14fp'，否则还是'16fp'。|
 
 ### fontColor
 
