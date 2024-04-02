@@ -468,7 +468,7 @@ setCaretOffset(offset: number): boolean
 
 addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
-添加文本内容。
+添加文本内容，如果组件光标闪烁，插入后光标位置更新为新插入文本的后面。
 
 **参数：**
 
@@ -487,7 +487,7 @@ addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
 addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions): number
 
-添加图片内容。
+添加图片内容，如果组件光标闪烁，插入后光标位置更新为新插入图片的后面。
 
 **参数：**
 
@@ -517,6 +517,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - 对此builder节点进行复制或粘贴不生效。
 > - builder的布局约束由RichEditor传入，如果builder里最外层组件不设置大小，则会用RichEditor的大小作为maxSize。
 > - builder的手势相关事件机制与通用手势事件相同，如果builder中未设置透传，则仅有builder中的子组件响应。
+> - 如果组件光标闪烁，插入后光标位置更新为新插入builder的后面。
 
 通用属性仅支持[size](ts-universal-attributes-size.md#size)、[padding](ts-universal-attributes-size.md#padding)、[margin](ts-universal-attributes-size.md#margin)、[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)、[opacity](ts-universal-attributes-opacity.md)、[blur](ts-universal-attributes-image-effect.md#blur)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[grayscale](ts-universal-attributes-image-effect.md#grayscale)、[brightness](ts-universal-attributes-image-effect.md#brightness)、[saturate](ts-universal-attributes-image-effect.md#saturate)、
 [contrast](ts-universal-attributes-image-effect.md#contrast)、[invert](ts-universal-attributes-image-effect.md#invert)、[sepia](ts-universal-attributes-image-effect.md#sepia)、[hueRotate](ts-universal-attributes-image-effect.md#huerotate)、[colorBlend](ts-universal-attributes-image-effect.md#colorblend7)、[linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur10)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)、[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup)、[accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext)、[accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription)、[accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)、[sphericalEffect](ts-universal-attributes-image-effect-sys.md#sphericaleffect10)、[lightUpEffect](ts-universal-attributes-image-effect-sys.md#lightupeffect10)、[pixelStretchEffect](ts-universal-attributes-image-effect-sys.md#pixelstretcheffect10)。
@@ -538,7 +539,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
-在Richeditor中添加SymbolSpan。
+在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
 
 暂不支持手势处理。
 
