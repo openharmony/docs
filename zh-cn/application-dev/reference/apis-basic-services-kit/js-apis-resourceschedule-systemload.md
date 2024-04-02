@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```
-import systemload from '@ohos.resourceschedule.systemload';
+import systemLoad from '@ohos.resourceschedule.systemload';
 ```
 
-## systemload.on('systemLoadChange')
+## systemLoad.on('systemLoadChange')
 
 on(type: 'systemLoadChange', callback: Callback<SystemLoadLevel>): void
 
@@ -30,21 +30,21 @@ on(type: 'systemLoadChange', callback: Callback<SystemLoadLevel>): void
 **示例**：
 
 ```ts
-import { systemload } from '@ohos.resourceschedule.systemload';
+import systemLoad from '@ohos.resourceschedule.systemload';
 
-function onSystemLoadChange(res: systemload.SystemLoadLevel) {
+function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
 }
 
 try {
-    systemload.on('systemloadChange', onSystemLoadChange);
+    systemLoad.on('systemloadChange', onSystemLoadChange);
     console.log(`register systemload callback succeeded. `);
 } catch (err) {
     console.error(`register systemload callback failed: ` + JSON.stringify(err));
 }
 ```
 
-## systemload.off('systemLoadChange')
+## systemLoad.off('systemLoadChange')
 
 off(type: 'systemLoadChange', callback?: Callback<SystemLoadLevel>): void
 
@@ -62,21 +62,21 @@ off(type: 'systemLoadChange', callback?: Callback<SystemLoadLevel>): void
 **示例**：
 
 ```ts
-import { systemload } from '@ohos.resourceschedule.systemload';
+import systemLoad from '@ohos.resourceschedule.systemload';
 
-function onSystemLoadChange(res: systemload.SystemLoadLevel) {
+function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
 }
 
 try {
-    systemload.off('systemloadChange', onSystemLoadChange);
+    systemLoad.off('systemloadChange', onSystemLoadChange);
     console.log(`unregister systemload callback succeeded:. `);
 } catch (err) {
     console.error(`unregister systemload callback failed: ` + JSON.stringify(err));
 }
 ```
 
-## systemload.getLevel
+## systemLoad.getLevel
 
 getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
 
@@ -94,9 +94,9 @@ getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import { systemload } from '@ohos.resourceschedule.systemload';
+import systemLoad from '@ohos.resourceschedule.systemload';
 
-systemload.getLevel.then((res: systemload.SystemLoadLevel) => {
+systemLoad.getLevel().then((res: systemLoad.SystemLoadLevel) => {
     console.log(`getLevel promise succeeded. result: ` + JSON.stringify(res));
 }).catch((err: BusinessError) => {
     console.error(`getLevel promise failed. code is ${err.code} message is ${err.message}`);
