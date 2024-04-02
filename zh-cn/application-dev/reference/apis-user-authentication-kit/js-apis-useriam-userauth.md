@@ -12,16 +12,6 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
-## 常量
-
-表示复用设备解锁结果最大有效时长。
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-| 名称        | 值   | 说明       |
-| ----------- | ---- | ---------- |
-| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | 复用设备解锁结果最大有效时长，值为300000毫秒。 |
-
 ## EnrolledState<sup>12+</sup>
 
 表示用户注册凭据的状态。
@@ -32,33 +22,6 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | ------------ | ---------- | ---- | ---- | -------------------- |
 | credentialDigest       | number | 是   |  否 | 注册的凭据摘要，在凭据增加时随机生成。|
 | credentialCount        | number | 是   |  否 | 注册的凭据数量。       |
-
-## ReuseMode<sup>12+</sup>
-
-表示复用设备解锁结果的模式。
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-| 名称        | 值   | 说明       |
-| ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
-| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。 |
-
-## ReuseUnlockResult<sup>12+</sup>
-
-表示复用设备解锁结果。
-> **说明**：
->
-> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
-> 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
-
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-| 名称         | 类型   | 必填 | 说明                 |
-| ------------ | ---------- | ---- | -------------------- |
-| reuseMode        | [ReuseMode](#reusemode12) | 是   | 复用设备解锁结果的模式。       |
-| reuseDuration    | number | 是   | 允许复用设备解锁结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
 
 ## userAuth.getEnrolledState<sup>12+</sup>
 
@@ -118,7 +81,6 @@ try {
 | challenge      | Uint8Array                         | 是   | 挑战值，用来防重放攻击。最大长度为32字节，可传Uint8Array([])。 |
 | authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。           |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。                                               |
-| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用设备解锁结果。|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -162,7 +124,7 @@ onResult(result: UserAuthResult): void
 | ------ | ----------------------------------- | ---- | ---------- |
 | result | [UserAuthResult](#userauthresult10) | 是   | 认证结果。 |
 
-**示例1：**
+**示例：**
 
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
@@ -171,39 +133,6 @@ const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
   authType: [userAuth.UserAuthType.PIN],
   authTrustLevel: userAuth.AuthTrustLevel.ATL1,
-};
-const widgetParam :userAuth.WidgetParam = {
-  title: '请输入密码',
-};
-try {
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
-  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
-  userAuthInstance.on('result', {
-    onResult (result) {
-      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
-    }
-  });
-  console.log('auth on success');
-} catch (error) {
-  console.error('auth catch error: ' + JSON.stringify(error));
-}
-```
-
-**示例2：**
-
-```ts
-import userAuth from '@ohos.userIAM.userAuth';
-
-let reuseUnlockResult: userAuth.ReuseUnlockResult = {
-  reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
-  reuseDuration: 300000,
-}
-const authParam : userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.PIN],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
-  reuseUnlockResult: reuseUnlockResult,
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
