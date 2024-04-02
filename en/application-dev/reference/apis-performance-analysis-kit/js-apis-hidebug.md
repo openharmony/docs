@@ -281,12 +281,6 @@ Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` a
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**Parameters**
-
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
-
 **Example**
 
 ```ts
