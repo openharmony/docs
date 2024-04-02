@@ -31,7 +31,7 @@ ArkUI提供的Native侧Node类型接口集合。
 | int32_t(\* [registerNodeEvent](#registernodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType, int32_t eventId, void \*extraParam) | 注册节点事件函数。  | 
 | void(\* [unregisterNodeEvent](#unregisternodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType) | 反注册节点事件函数。  | 
 | void(\* [registerNodeEventReceiver](#registernodeeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___node_event.md) \*event)) | 注册事件回调统一入口函数。  | 
-|  void(\* unregisterNodeEventReceiver )() | 反注册事件回调统一入口函数。  | 
+|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册事件回调统一入口函数。  | 
 | void(\* [markDirty](#markdirty) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeDirtyFlag](_ark_u_i___native_module.md#arkui_nodedirtyflag) dirtyFlag) | 强制标记当前节点需要重新测算，布局或者绘制。  | 
 
 
@@ -258,6 +258,16 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | 名称 | 描述 | 
 | -------- | -------- |
 | eventReceiver | 事件回调统一入口函数。  | 
+
+
+### unregisterNodeEventReceiver
+
+```
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
+```
+**描述：**
+
+反注册事件回调统一入口函数。
 
 
 ### removeChild
