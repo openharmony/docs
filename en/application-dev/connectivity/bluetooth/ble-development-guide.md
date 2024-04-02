@@ -11,7 +11,7 @@ You can use the APIs provided by the **ble** module to:
 
 ## Available APIs
 
-For details about the APIs and sample code, see [@ohos.bluetooth.ble](../../reference/apis/js-apis-bluetooth-ble.md).
+For details about the APIs and sample code, see [@ohos.bluetooth.ble](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md).
 
 The following table describes the related APIs.
 
@@ -68,7 +68,8 @@ let serviceDataUnit: ble.ServiceData = {
 let advData: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
   manufactureData: [manufactureDataUnit],
-  serviceData: [serviceDataUnit]
+  serviceData: [serviceDataUnit],
+  includeDeviceName: false // Indicates whether the device name is carried. This parameter is optional. Note that the length of a broadcast packet including the device name cannot exceed 31 bytes.
 };
 let advResponse: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb"],
@@ -83,24 +84,19 @@ console.info('startAdvertising success');
 ble.stopAdvertising();
 console.info('stopAdvertising success');
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 **Verification**
 
 1. Execute the code for starting BLE advertising. 
 
    "startAdvertising success" is logged. 
-
 2. Start scanning on another device that has the nrfConnect software installed.
-
    If the device obtains the following information, the BLE advertising is started:
-
    Manufacturer data: 0x01020304, Service Data: 0x05060708
-
 3. Stop BLE advertising.
-
    The peer device will not receive that advertisement.
-
 ### Starting and Stop BLE Scanning
 1. Import the **ble** module.
 2. Enable Bluetooth on the device.
@@ -138,16 +134,13 @@ ble.on('BLEDeviceFind', (data) => {
 ble.stopBLEScan();
 console.info('stopBleScan success');
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 **Verification**
 
 1. Install the nrfConnect software on device B, configure BLE advertising, change the device name to **Jackistang**, and start BLE advertising. 
-
 2. Start scanning on device A. 
-
    If "BLE scan result = = Jackistang" is logged every 0.5 seconds on device A, the scanning is started. 
-
 3. Stop scanning on device A.
-
    Device A will not receive "BLE scan result = = Jackistang".
