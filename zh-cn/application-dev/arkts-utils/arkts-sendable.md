@@ -224,7 +224,7 @@ class A {
 class A {
   constructor() {
   }
-  a: number = 0；
+  a: number = 0;
 }
 ```
 
@@ -315,6 +315,19 @@ function bar(): B {
 
 **反例：**
 ```ts
+import lang from '@arkts.lang';
+
+type ISendable = lang.ISendable;
+
+interface I extends ISendable {}
+
+@Sendable
+class B implements I {}
+
+function bar(): B {
+  return new B();
+}
+
 @Sendable
 class C {
   v: I = new B();
@@ -504,7 +517,7 @@ import { Test } from './sendable'
 // 在并发函数中模拟数据处理
 @Concurrent
 async function taskFunc(obj: Test) {
-  console.info("test task data1 is: " + obj.add(5) + " data2 is: " + obj. printStr("taskFunc"));
+  console.info("test task data1 is: " + obj.add(5) + " data2 is: " + obj.printStr("taskFunc"));
 }
 async function test() {
   // 使用taskpool传递数据
@@ -528,8 +541,8 @@ export class Test {
   add(arg: number): number {
     return this.data1 + arg;
   }
-  printStr(str: string): void {
-    console.info(this.data2 + "log is " + str);
+  printStr(str: string): string {
+    return this.data2 + str;
   }
 }
 ```
