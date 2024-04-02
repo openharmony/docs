@@ -197,7 +197,7 @@ struct CustomDialogUser {
 ![openAnimator](figures/openAnimator.gif)
 
 ## 嵌套自定义弹窗
-当我们通过第一个弹窗打开第二个弹窗时，最好将第二个弹窗定义在第一个弹窗的父组件处，通过父组件传给第一个弹窗的回调来打开第二个弹窗。
+通过第一个弹窗打开第二个弹窗时，最好将第二个弹窗定义在第一个弹窗的父组件处，通过父组件传给第一个弹窗的回调来打开第二个弹窗。
 
 ```
 @CustomDialog
@@ -270,7 +270,7 @@ struct CustomDialogUser {
     offset: { dx: 0, dy: -25 } })
 
   aboutToDisappear() {
-    this.dialogController = null // Set dialogController to null.
+    this.dialogController = null
     this.dialogControllerTwo = null
   }
 
@@ -299,7 +299,7 @@ struct CustomDialogUser {
 ```
 ![nested_dialog](figures/nested_dialog.gif)
 
-由于自定义弹窗在状态管理侧有父子关系，如果我们将第二个弹窗定义在第一个弹窗内，那么当父组件（第一个弹窗）被销毁（关闭）时，子组件（第二个弹窗）内无法再继续创建新的组件。
+由于自定义弹窗在状态管理侧有父子关系，如果将第二个弹窗定义在第一个弹窗内，那么当父组件（第一个弹窗）被销毁（关闭）时，子组件（第二个弹窗）内无法再继续创建新的组件。
 
 ## 完整示例
 
