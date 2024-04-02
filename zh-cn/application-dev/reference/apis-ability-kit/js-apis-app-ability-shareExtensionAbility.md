@@ -24,7 +24,7 @@ import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | 上下文。 |
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 是 | 上下文。 |
 
 ## ShareExtensionAbility.onCreate
 
