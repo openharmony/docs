@@ -264,17 +264,3 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
       console.error('error', err.code, err.message); // 失败报错
     }
     ```
-
-14. 查询当前系统是否提供DLP特性。
-    ```ts
-    import dlpPermission from '@ohos.dlpPermission';
-    import { BusinessError } from '@ohos.base';
-
-    async checkIsDLPFeatureProvided() {
-      dlpPermission.isDLPFeatureProvided().then((res) => {git
-        console.info('res', JSON.stringify(res));
-      }).catch((err: BusinessError) => {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-      });
-    }
-    ```
