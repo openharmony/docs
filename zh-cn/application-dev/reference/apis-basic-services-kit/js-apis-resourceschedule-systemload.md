@@ -37,7 +37,7 @@ function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
 }
 
 try {
-    systemLoad.on('systemloadChange', onSystemLoadChange);
+    systemLoad.on('systemLoadChange', onSystemLoadChange);
     console.log(`register systemload callback succeeded. `);
 } catch (err) {
     console.error(`register systemload callback failed: ` + JSON.stringify(err));
@@ -69,7 +69,7 @@ function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
 }
 
 try {
-    systemLoad.off('systemloadChange', onSystemLoadChange);
+    systemLoad.off('systemLoadChange', onSystemLoadChange);
     console.log(`unregister systemload callback succeeded:. `);
 } catch (err) {
     console.error(`unregister systemload callback failed: ` + JSON.stringify(err));
