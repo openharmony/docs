@@ -229,7 +229,7 @@ observer.off('routerPageUpdate', this.uiContext, callBackFunc);
 
 ## observer.on('densityUpdate')<sup>12+</sup>
 
-on(type: 'densityUpdate', context: UIContext, callback: Callback<DensityInfo>): void
+on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>): void
 
 监听屏幕像素密度变化。
 
@@ -276,7 +276,7 @@ struct Index {
 
 ## observer.off('densityUpdate')<sup>12+</sup>
 
-off(type: 'densityUpdate', context: UIContext, callback?: Callback<DensityInfo>): void
+off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\>): void
 
 取消监听屏幕像素密度的变化。
 
@@ -284,11 +284,11 @@ off(type: 'densityUpdate', context: UIContext, callback?: Callback<DensityInfo>)
 
 **参数：** 
 
-| 参数名   | 类型                                      | 必填 | 说明                                                  |
-| -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
-| type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                    |
-| callback | Callback\<[DensityInfo](#densityinfo12)\>   | 否   | 需要被注销的回调函数。                                |
+| 参数名   | 类型                                      | 必填 | 说明                                                                                           |
+| -------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
+| type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。                                          |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                                                             |
+| callback | Callback\<[DensityInfo](#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销指定UIContext下所有densityUpdate事件监听。 |
 
 ```ts
 import observer from '@ohos.arkui.observer';
