@@ -3057,7 +3057,7 @@ try {
 ## DragController<sup>11+</sup>
 以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
-### executeDrag
+### executeDrag<sup>11+</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
 
@@ -3133,7 +3133,7 @@ struct DragControllerPage {
 }
 ```
 
-### executeDrag
+### executeDrag<sup>11+</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
 
@@ -3240,7 +3240,7 @@ struct DragControllerPage {
 }
 ```
 
-### createDragAction
+### createDragAction<sup>11+</sup>
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
