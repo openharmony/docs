@@ -6,15 +6,16 @@
 
 ## 使用方式
 
-系统提供的过度绘制调试功能，可通过shell进行开启或者关闭：
+系统提供的过度绘制调试功能，可通过shell进行开启或者关闭。
 
-- 使用前提：需在系统设置中开启开发者模式
+- 使用前提：需在系统设置中开启开发者模式。
 
 - 开启过度绘制调试功能：
 
   ```
   param set debug.graphic.overdraw true
   ```
+
   ![](figures/overdraw-enable.png)
 
 - 关闭过度绘制调试功能：
@@ -22,13 +23,17 @@
   ```
   param set debug.graphic.overdraw false
   ```
+
   ![](figures/overdraw-disable.png)
 
 - 查看是否开启了过度绘制调试功能：
 
+  true表示开启了过度绘制功能，false则表示未开启。
+
   ```
   param get debug.graphic.overdraw
   ```
+
   ![](figures/overdraw-check.png)
 
 
@@ -85,7 +90,7 @@ struct Index {
 
 ![开启过度绘制功能后的示例程序界面](figures/overdraw-demo-enable.png)
 
-编译安装后打开过度绘制调试功能，应用界面如图所示。
+编译安装后打开过度绘制调试功能，应用界面如上图所示。
 
 可以发现，从Hello World文字组件开始，由内到外的这几个Column组件在界面上分别显示为深红色-浅红色-绿色-蓝紫色-原色。这种现象说明，随着嵌套程度的加深，每一个Column组件的背景颜色绘制都会带来一次过度绘制。
 
