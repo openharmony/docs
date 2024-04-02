@@ -3,9 +3,9 @@
 > **NOTE**
 >
 > - The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
-> - This API is deprecated since API version 9 and will be retained until API version 13.
-> - Certain functionalities are changed as system APIs and can be used only by system applications. To use these functionalities, call [@ohos.filemanagement.userFileManager](js-apis-userFileManager.md).
-> - The functionalities for selecting and storing media assets are still open to common applications. To use these functionalities, call [@ohos.file.picker](js-apis-file-picker.md).
+> - This APIs of this module are deprecated since API version 9 and will be retained until API version 13.
+> - Some APIs are changed as system APIs and can be called only by system applications. You can use [@ohos.filemanagement.userFileManager](js-apis-userFileManager.md).
+> - The APIs for selecting and saving media assets are still open to common applications. Use [@ohos.file.picker](js-apis-file-picker.md).
 
 ## Modules to Import
 ```js
@@ -96,12 +96,10 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    // Create options for fetching the files. The options are used to obtain files of the image type.
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
+    // Create a MediaFetchOptions instance to obtain images.
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
     };
     // Obtain the files in asynchronous callback mode.
     media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
@@ -168,13 +166,13 @@ Obtains file assets. This API uses a promise to return the result.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    // Create options for fetching the files. The options are used to obtain files of the image type.
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
+    // Create a MediaFetchOptions instance to obtain images.
+    let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
+        selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
+        selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
     };
     // Obtain the files in promise mode.
     media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {
@@ -201,11 +199,11 @@ async function example() {
             }
             // Release the FetchFileResult instance and invalidate it. Other APIs can no longer be called.
             fetchFileResult.close();
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             // Calling getFirstObject fails.
             console.error('get first object failed with error: ' + error);
         });
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         // Calling getFileAssets fails.
         console.error('get file assets failed with error: ' + error);
     });
@@ -247,7 +245,7 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Media type.<br>'deviceChange': registered device change<br>'albumChange': album change<br>'imageChange': image file change<br>'audioChange': audio file change<br>'videoChange': video file change<br>'fileChange': file change<br>'remoteFileChange': file change on the registered device|
-| callback | Callback&lt;void&gt; | No   | Void callback.                                   |
+| callback | Callback&lt;void&gt; | No   | Callback that returns no vlaue.                                   |
 
 **Example**
 
@@ -1161,7 +1159,7 @@ Commits the modification in this file asset to the database. This API uses an as
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no vlaue.|
 
 **Example**
 
@@ -1311,7 +1309,7 @@ Closes this file asset. This API uses an asynchronous callback to return the res
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
 | fd       | number                    | Yes   | File descriptor.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no vlaue.|
 
 **Example**
 
@@ -1533,7 +1531,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
 | isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Void callback.                             |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no vlaue.                             |
 
 **Example**
 
@@ -1698,7 +1696,7 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 | Name     | Type                       | Mandatory  | Description       |
 | -------- | ------------------------- | ---- | --------- |
 | isTrash  | boolean                   | Yes   | Whether to move the file asset to the trash. The value **true** means to move the file asset to the trash, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Void callback.    |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no vlaue.    |
 
 **Example**
 
@@ -2366,7 +2364,7 @@ Commits the modification in the album attributes to the database. This API uses 
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Void callback.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no vlaue.|
 
 **Example**
 
