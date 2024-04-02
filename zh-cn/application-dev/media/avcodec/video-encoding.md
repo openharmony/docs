@@ -241,10 +241,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-9. 写入编码码流。
+9. 写入编码图像。
     在之前的第6步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
 
-10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器码流结束。
+10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器结束。
 
     ```c++
     int32_t ret;
@@ -504,7 +504,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-8. 调用OH_VideoEncoder_PushInputBuffer()写入编码码流。
+8. 调用OH_VideoEncoder_PushInputBuffer()写入编码图像。
 
     送入输入队列进行编码，以下示例中：
 
@@ -557,11 +557,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         }
     ```
 
-9. 通知编码器码流结束。
+9. 通知编码器结束。
 
     以下示例中：index：回调函数OnNeedInputBuffer传入的参数，数据队列的索引。
 
-    与“8. 写入编码码流”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
+    与“8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
     ```c++
     int32_t ret;
