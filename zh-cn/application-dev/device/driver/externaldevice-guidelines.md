@@ -12,7 +12,7 @@
 
 扩展外设管理主要提供的功能有：查询扩展外设列表、绑定和解绑查询到的设备。
 
-扩展外设管理开放能力如下，具体请查阅[API参考文档](../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
+扩展外设管理开放能力如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)。
 
 **表1** 扩展外设管理开放能力接口
 
