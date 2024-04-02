@@ -85,7 +85,7 @@ push(section: SectionOptions): boolean
 
 ### update<sup>12+</sup>
 
-update(sectionIndex:number, section: SectionOptions): boolean
+update(sectionIndex: number, section: SectionOptions): boolean
 
 修改指定索引分组的配置信息。
 

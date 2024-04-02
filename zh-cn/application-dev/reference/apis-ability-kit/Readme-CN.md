@@ -137,6 +137,7 @@
       - [UIAbilityContext(系统接口)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext(系统接口)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData(系统接口)](js-apis-inner-application-viewData-sys.md)
+      - [AutoFillRect(系统接口)](js-apis-inner-application-autoFillRect-sys.md)
     - bundleManager
       - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
       - [applicationInfo](js-apis-bundleManager-applicationInfo.md)

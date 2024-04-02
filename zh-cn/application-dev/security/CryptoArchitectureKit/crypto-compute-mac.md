@@ -71,6 +71,8 @@ async function doHmac() {
   await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let macResult = await mac.doFinal();
   console.info('HMAC result:' + macResult.data);
+  let macLen = mac.getMacLength();
+  console.info('HMAC len:' + macLen);
 }
 ```
 
@@ -121,5 +123,7 @@ async function doLoopHmac() {
   }
   let macOutput = await mac.doFinal();
   console.info("HMAC result: " + macOutput.data);
+  let macLen = mac.getMacLength();
+  console.info('HMAC len:' + macLen);
 }
 ```

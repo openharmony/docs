@@ -184,7 +184,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
-7. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM使用指导](../../reference/apis-drm-kit)。此接口需在Prepare前调用。
+7. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
     添加头文件
 
