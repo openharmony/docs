@@ -4084,61 +4084,6 @@ promise.then(() => {
 });
 ```
 
-### maximize<sup>12+</sup>
-
-maximize(): Promise&lt;void&gt;
-
-主窗口调用，实现最大化功能，使用Promise异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300005 | This window stage is abnormal. |
-
-**示例：**
-
-```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-        return;
-      }
-      windowClass = data;
-      let promise = windowClass.maximize();
-      promise.then(() => {
-        console.info('Succeeded in maximizing the window.');
-      }).catch((err: BusinessError) => {
-        console.error('Failed to maximize the window. Cause: ' + JSON.stringify(err));
-      });
-    });
-  }
-};
-```
-
 ### recover<sup>11+</sup>
 
 recover(): Promise&lt;void&gt;
