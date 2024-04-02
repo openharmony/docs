@@ -788,6 +788,7 @@ class EntryAbility extends UIAbility {
 | LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
 | RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
 | NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
+| BLOCKED_BY_NETWORK_STRATEGY<sup>12+</sup>    | 7    | 表示端云同步被网络策略限制。                     |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -3141,7 +3142,7 @@ if(store != undefined) {
 
 ### execute<sup>12+</sup>
 
-execute(sql: string, txId: number, args?: Array<ValueType>): Promise&lt;ValueType&gt;
+execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，使用Promise异步回调。
 该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
