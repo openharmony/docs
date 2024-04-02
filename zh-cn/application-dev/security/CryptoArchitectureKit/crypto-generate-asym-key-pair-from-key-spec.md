@@ -1,6 +1,6 @@
 # 指定密钥参数生成非对称密钥对
 
-以RSA、ECC为例，根据指定的密钥参数，生成非对称密钥对（KeyPair），并获取密钥参数属性。
+以RSA、ECC、SM2为例，根据指定的密钥参数，生成非对称密钥对（KeyPair），并获取密钥参数属性。
 
 该对象可用于后续的加解密等操作。获取的密钥参数属性可用于存储或运输。
 
@@ -72,16 +72,16 @@
     let rsaPubKeySpec = genRsa2048PubKeySpec();
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
     rsaGeneratorSpec.generatePubKey((error, key) => {
+      if (error) {
+        console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
+      }
       let pubKey = key;
       let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
       let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
       if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-        AlertDialog.show({ message: 'error pub key big number' });
+        console.error('error pub key big number');
       } else {
         console.info('n, e in the pubKey are same as the spec.');
-      }
-      if (error) {
-        console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
       }
     });
   }
@@ -139,7 +139,7 @@
         let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
         let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
         if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-          AlertDialog.show({ message: 'error pub key big number' });
+          console.error('error pub key big number');
         } else {
           console.info('n, e in the pubKey are same as the spec.');
         }
