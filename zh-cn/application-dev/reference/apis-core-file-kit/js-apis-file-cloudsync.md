@@ -238,9 +238,9 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>11+</sup>
+### stop<sup>12+</sup>
 
-stop(uri: string): Promise&lt;void&gt;
+stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 异步方法停止云盘文件缓存, 以Promise形式返回结果。
 
@@ -253,6 +253,7 @@ stop(uri: string): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
+| needClean | boolean | 否   | 是否删除已下载的文件，默认删除。 |
 
 **返回值：**
 
@@ -280,7 +281,7 @@ stop(uri: string): Promise&lt;void&gt;
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.stop(uri).then(() => {
+  fileCache.stop(uri, true).then(() => {
     console.info("stop download successfully");
   }).catch((err: BusinessError) => {
     console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);

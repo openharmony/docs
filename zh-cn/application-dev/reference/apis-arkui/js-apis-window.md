@@ -135,6 +135,33 @@ import window from '@ohos.window';
 | width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
 | height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
 
+## RectChangeReason<sup>12+</sup>
+
+窗口矩形（窗口位置及窗口大小）变化的原因。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                  | 值   | 说明                                                         |
+| --------------------- | ---- | ------------------------------------------------------------ |
+| UNDEFINED                 | 0    | 默认值。                                                   |
+| MAXIMIZE                | 1    | 窗口最大化。                                                   |
+| RECOVER              | 2    | 窗口恢复到上一次的状态。                                                   |
+| MOVE | 3    | 窗口拖拽移动。 |
+| DRAG  | 4    | 窗口拖拽缩放。 |
+| DRAG_START  | 5    | 窗口开始拖拽缩放。 |
+| DRAG_END  | 6    | 窗口结束拖拽缩放。 |
+
+## RectChangeOptions<sup>12+</sup>
+
+窗口矩形（窗口位置及窗口大小）变化返回的值及变化原因。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称       | 类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
+| reason    | [RectChangeReason](#rectchangereason12) | 是   | 是   | 窗口矩形变化的原因。 |
+
 ## WindowProperties
 
 窗口属性。
@@ -183,7 +210,7 @@ import window from '@ohos.window';
 
 ## WindowLimits<sup>11+</sup>
 
-窗口尺寸限制参数。
+窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2858,6 +2885,77 @@ try {
 }
 ```
 
+### on('noInteractionDetected')<sup>12+</sup>
+
+on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
+
+开启本窗口在指定超时时间内无交互事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
+| timeout     | number                    | 是   | 指定本窗口在多长时间内无交互即回调，单位为秒(s)。 |
+| callback | Callback&lt;void&gt;      | 是   | 回调函数。当本窗口在指定超时时间内无交互事件时的回调。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('noInteractionDetected', 60, () => {
+    console.info('no interaction in 60s');
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('noInteractionDetected')<sup>12+</sup>
+
+off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
+
+关闭本窗口在指定超时时间内无交互事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
+| callback | Callback&lt;void&gt;    | 否   | 回调函数，当本窗口在指定超时时间内无交互事件时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口在指定超时时间内无交互事件的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.off('noInteractionDetected');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### on('windowStatusChange')<sup>11+</sup>
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
@@ -2976,6 +3074,50 @@ try {
 } catch (exception) {
   console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
 }
+```
+
+### on('windowRectChange')<sup>12+</sup>
+
+on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
+
+开启窗口矩形（窗口位置及窗口大小）变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。 |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 是   | 回调函数。返回当前窗口矩形变化值及变化原因。                           |
+
+**示例：**
+
+```ts
+windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+    console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+});
+```
+
+### off('windowRectChange')<sup>12+</sup>
+
+off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
+
+关闭窗口矩形（窗口位置及窗口大小）变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。     |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 否   | 回调函数。返回当前的窗口矩形及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口矩形变化的监听。 |
+
+**示例：**
+
+```ts
+windowClass.off('windowRectChange');
 ```
 
 ### isWindowSupportWideGamut<sup>9+</sup>
@@ -3760,7 +3902,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最大高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
 
 **返回值：**
 
@@ -7253,6 +7395,51 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       console.error('Failed to disable the listener for window stage event changes. Cause:' +
       JSON.stringify(exception));
+    }
+  }
+};
+```
+
+### setDefaultDensityEnabled()<sup>12+</sup>
+
+setDefaultDensityEnabled(enabled: boolean): void
+
+设置应用使用系统默认Density。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| enabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.setDefaultDensityEnabled(true);
+    } catch (exception) {
+      console.error('Failed to set default density enabled. Cause:' + JSON.stringify(exception));
     }
   }
 };

@@ -1,4 +1,4 @@
-# Image Tool (ArkTS)
+# Image Tool
 
 The image tool provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data of an image.
 

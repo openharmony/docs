@@ -36,4 +36,11 @@ getData()/剪贴板服务（pasteboard_service）
 
 **适配指导**
 
-业务需要按需申请ohos.permission.READ_PASTEBOARD权限以访问剪贴板。
+在module.json5中按需声明ohos.permission.READ_PASTEBOARD权限以访问剪贴板，示例代码片段如下：
+```ts
+"requestPermisssions": [
+  {
+    "name": "ohos.permission.READ_PASTEBOARD"
+  }
+]
+```

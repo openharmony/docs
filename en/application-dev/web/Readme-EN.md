@@ -7,6 +7,7 @@
   - [Uploading Files](web-file-upload.md)
   - [Opening Pages in a New Window](web-open-in-new-window.md)
   - [Managing Location Permissions](web-geolocation-permission.md)
+  - [Using Incognito Mode](web-incognito-mode.md)
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
 - Using Frontend Page JavaScript Code on the Application
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)

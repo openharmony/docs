@@ -801,9 +801,11 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 待录制的播放音频流的筛选信息。
 
-**需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+**需要权限：**
 
-在API 10时，支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO。从API 11开始，直接不再支持此枚举，所以当前接口不再涉及此枚举值或对应权限。
+- 在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。
+
+- 从API version 11开始，CaptureFilterOptions不再支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，所以当前接口不再涉及此权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -2809,7 +2811,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从 API version 9开始支持，从API version 11 开始废弃。替代接口仅面向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2844,7 +2846,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 >
 > 从 API version 9开始支持，从API version 11 开始废弃。替代接口仅面向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -6023,6 +6025,33 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
   console.info('setVolume Success!');
 });
 ```
+### getVolume<sup>12+</sup>
+
+getVolume(): number
+
+获取音频渲染器的当前音量值，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| number | 返回音量大小，音量范围[0.0-1.0]。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioRenderer.getVolume();
+  console.info(`Indicate that the volume is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the volume, error ${error}.`);
+}
+```
 
 ### getMinStreamVolume<sup>10+</sup>
 
@@ -8088,6 +8117,60 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 audioCapturer.off('readData', (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
 });
+```
+
+### getOverflowCount<sup>12+</sup>
+
+getOverflowCount(): Promise&lt;number&gt;
+
+获取当前录制音频流的过载音频帧数量。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt;| Promise对象，返回音频流的过载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+audioCapturer.getOverflowCount().then((value: number) => {
+  console.info(`Get overflow count Success! ${value}`);
+}).catch((err: BusinessError) => {
+  console.error(`Get overflow count Fail: ${err}`);
+});
+```
+
+### getOverflowCountSync<sup>12+</sup>
+
+getOverflowCountSync(): number
+
+获取当前录制音频流的过载音频帧数量，同步返回数据。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| number| 返回音频流的过载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioCapturer.getOverflowCountSync();
+  console.info(`Get overflow count Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get overflow count Fail: ${error}`);
+}
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>

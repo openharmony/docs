@@ -349,7 +349,7 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\)
 | 参数名   | 类型                    | 必填 | 说明                                     |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。如果设备没有注册任何网络，接口返回空字符串。|
 
 **错误码：**
 
@@ -397,7 +397,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
+| Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。如果设备没有注册任何网络，接口返回空字符串。|
 
 **错误码：**
 
@@ -442,7 +442,7 @@ getISOCountryCodeForNetworkSync\(slotId: number\): string
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| string | 返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
+| string | 返回注册网络所在国家的ISO国家码，例如CN（中国）。如果设备没有注册任何网络，接口返回空字符串。|
 
 **示例：**
 
@@ -545,7 +545,7 @@ getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInfo
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回[SignalInformation](#signalinformation)对象的数组。 |
+| callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回从[SignalInformation](#signalinformation)中派生出的子类对象的数组。|
 
 **错误码：**
 
@@ -593,7 +593,7 @@ getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
+| Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)子类对象的数组。|
 
 **错误码：**
 
@@ -638,7 +638,7 @@ getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Array\<[SignalInformation](#signalinformation)\>| 返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
+| Array\<[SignalInformation](#signalinformation)\>| 返回网络信号强度[SignalInformation](#signalinformation)子类对象的数组。|
 
 
 **示例：**
@@ -649,7 +649,7 @@ let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(
 console.log(`signal information size is:` + signalInfo.length);
 ```
 
-## radio.isNrSupported<sup>(deprecated)</sup>
+## radio.isNrSupported<sup>8+(deprecated)</sup>
 
 isNrSupported\(\): boolean
 

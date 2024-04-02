@@ -3560,7 +3560,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAllAccounts](#getallaccounts9)替代。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3591,7 +3591,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAllAccounts](#getallaccounts9-1)替代。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3623,7 +3623,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAccountsByOwner](#getaccountsbyowner9)替代。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3656,7 +3656,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAccountsByOwner](#getaccountsbyowner9-1)替代。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，仅系统应用可用。
+**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.AppAccount
 

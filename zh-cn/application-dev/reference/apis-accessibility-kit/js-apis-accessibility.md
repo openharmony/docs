@@ -57,6 +57,7 @@ import accessibility from '@ohos.accessibility';
 | capabilities                   | Array&lt;[Capability](#capability)&gt;   | 是    | 否    | 辅助应用能力列表。        |
 | description                    | string                                   | 是    | 否    | 辅助应用描述。          |
 | eventTypes                     | Array&lt;[EventType](#eventtype)&gt;     | 是    | 否    | 辅助应用关注的无障碍事件列表。  |
+| needHide<sup>12+</sup>                     | boolean     | 是    | 否    | 辅助应用是否在已安装的扩展服务列表中被隐藏，true表示隐藏服务，false表示显示服务。  |
 
 ## Action
 

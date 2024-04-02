@@ -1,4 +1,4 @@
-# Using AudioRenderer for Audio Playback (ArkTS)
+# Using AudioRenderer for Audio Playback
 
 The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the AVPlayer, the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
 

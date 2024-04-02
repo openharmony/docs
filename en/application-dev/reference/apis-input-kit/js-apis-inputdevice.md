@@ -181,7 +181,7 @@ Enables listening for device hot swap events. When performing this operation, yo
 
 | Name      | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| type     | string                                   | Yes   | Event type of the input device. |
+| type     | string                                   | Yes   | Event type of the input device, such as the mouse, keyboard, or touchscreen. |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | Yes   | Listener for events of the input device.|
 
 **Example**

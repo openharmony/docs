@@ -788,6 +788,7 @@ class EntryAbility extends UIAbility {
 | LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
 | RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
 | NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
+| BLOCKED_BY_NETWORK_STRATEGY<sup>12+</sup>    | 7    | 表示端云同步被网络策略限制。                     |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -3141,7 +3142,7 @@ if(store != undefined) {
 
 ### execute<sup>12+</sup>
 
-execute(sql: string, txId: number, args?: Array<ValueType>): Promise&lt;ValueType&gt;
+execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，使用Promise异步回调。
 该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
@@ -4757,6 +4758,202 @@ if(store != undefined) {
         console.info('clean dirty data  succeeded');
     }).catch ((err: BusinessError) => {
         console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### attach<sup>12+</sup>
+
+attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+将一个数据库文件附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
+
+数据库文件来自文件，且此API不支持附加加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| fullPath | string | 是   | 表示要附加的数据库的路径。 |
+| attachName | string | 是   | 表示附加后的数据库的别名。 |
+| waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise对象。返回附加数据库的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+| 14800010     | Invalid database path.               |
+| 14800011     | Database corrupted.                 |
+| 14800015     | The database does not respond.                 |
+| 14800016     | The database is already attached.                |
+
+**示例：**
+
+```ts
+// 非加密数据库附加非加密数据库。
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
+        console.info('attach succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### attach<sup>12+</sup>
+
+attach(context: Context, config: StoreConfig, attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+将一个当前应用的数据库附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
+
+此API不支持加密数据库附加非加密数据库的场景。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
+| attachName | string | 是   | 表示附加后的数据库的别名。 |
+| waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise对象。返回附加数据库的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+| 14800010     | Invalid database path.               |
+| 14800011     | Database corrupted.                 |
+| 14800015     | The database does not respond.                 |
+| 14800016     | The database is already attached.                |
+| 14801001     | Only supported in stage mode.                 |
+| 14801002     | The data group id is not valid.                |
+
+**示例1：非加密数据库附加非加密数据库**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let attachStore: relationalStore.RdbStore= undefined;
+
+const STORE_CONFIG1: relationalStore.StoreConfig = {
+    name: "rdbstore1.db",
+    securityLevel: relationalStore.SecurityLevel.S1,
+}
+
+await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+    attachStore = rdbStore;
+    console.info('Get RdbStore successfully.')
+}).catch((err: BusinessError) => {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+        console.info(`attach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+**示例2：非加密数据库附加加密数据库**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let attachStore: relationalStore.RdbStore= undefined;
+
+
+const STORE_CONFIG2: relationalStore.StoreConfig = {
+    name: "rdbstore2.db",
+    encrypt: true,
+    securityLevel: relationalStore.SecurityLevel.S1,
+}
+
+await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+    attachStore = rdbStore;
+    console.info('Get RdbStore successfully.')
+}).catch((err: BusinessError) => {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+        console.info(`attach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### detach<sup>12+</sup>
+
+将附加的数据库从当前数据库中分离。
+
+当所有的附加的数据库被分离后，数据库会重新切换为WAL模式。
+
+detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| attachName | string | 是   | 表示附加后的数据库的别名。 |
+| waitTime | number | 否   | 表示分离数据库的等待时长。默认值2s，最小值1s，最大值300s。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise对象。返回分离后剩余附加的数据库的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.|
+| 14800011     | Database corrupted. |
+| 14800015     | The database does not respond.|
+
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
+        console.info(`detach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`detach failed, code is ${err.code},message is ${err.message}`);
     })
 }
 ```

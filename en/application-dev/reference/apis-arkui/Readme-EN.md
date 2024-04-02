@@ -264,7 +264,7 @@
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
   - Animation
     - [Property Animation (animation)](arkui-ts/ts-animatorproperty.md)
-    - [Explicit Animation](arkui-ts/ts-explicit-animation.md)
+    - [Explicit Animation (animateTo)](arkui-ts/ts-explicit-animation.md)
     - [Keyframe Animation (keyframeAnimateTo)](arkui-ts/ts-keyframeAnimateTo.md)
     - Transition Animation
       - [Page Transition (pageTransition)](arkui-ts/ts-page-transition-animation.md)

@@ -1,4 +1,4 @@
-# Video Encoding (C/C++)
+# Video Encoding
 
 You can call the native APIs provided by the VideoEncoder module to encode a video, that is, to compress video data into a video stream.
 
@@ -172,12 +172,12 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     int32_t quality = 0;
     // Configure the bit rate.
     int64_t bitRate = 3000000;
-    
+
     OH_AVFormat *format = OH_AVFormat_Create();
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
-    
+
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_COLOR_PRIMARIES, primary);
@@ -202,8 +202,8 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-   
+    ```
+    
 6. Obtain a surface.
 
     Obtain the OHNativeWindow in surface mode. The surface must be obtained before the encoder starts.
@@ -212,7 +212,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
     int32_t ret;
     // Obtain the surface used for data input.
     OHNativeWindow *nativeWindow;
-    ret =  OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
+    ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
@@ -246,109 +246,109 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
 9. Write the stream to encode.
    
    In step 6, you have configured the **OHNativeWindow*** variable type returned by **OH_VideoEncoder_GetSurface**. The data required for encoding is continuously input by the surface. Therefore, you do not need to process the **OnNeedInputBuffer** callback function or use **OH_VideoEncoder_PushInputBuffer** to input data.
-   
-11. Call **OH_VideoEncoder_NotifyEndOfStream()** to notify the encoder of EOS.
 
-     ```c++
-     int32_t ret;
-     // In surface mode, you only need to call this API to notify the encoder of EOS.
-     // In buffer mode, you need to set the AVCODEC_BUFFER_FLAGS_EOS flag and then call OH_VideoEncoder_PushInputBuffer to notify the encoder of EOS.
-     ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+10. Call **OH_VideoEncoder_NotifyEndOfStream()** to notify the encoder of EOS.
 
-12. Call **OH_VideoEncoder_FreeOutputBuffer()** to release encoded frames.
+    ```c++
+    int32_t ret;
+    // In surface mode, you only need to call this API to notify the encoder of EOS.
+    // In buffer mode, you need to set the AVCODEC_BUFFER_FLAGS_EOS flag and then call OH_VideoEncoder_PushInputBuffer to notify the encoder of EOS.
+    ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
-     In the code snippet below, the following variables are used:
+11. Call **OH_VideoEncoder_FreeOutputBuffer()** to release encoded frames.
 
-     - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
-     - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    In the code snippet below, the following variables are used:
 
-     ```c++
-     int32_t ret;
-     // Obtain the encoded information.
-     OH_AVCodecBufferAttr info;
-     ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Write the encoded frame data (specified by buffer) to the output file.
-     outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), info.size);
-     // Free the output buffer. index is the index of the buffer.
-     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
+    - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
 
-13. (Optional) Call **OH_VideoEncoder_Flush()** to refresh the encoder.
+    ```c++
+    int32_t ret;
+    // Obtain the encoded information.
+    OH_AVCodecBufferAttr info;
+    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Write the encoded frame data (specified by buffer) to the output file.
+    outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), info.size);
+    // Free the output buffer. index is the index of the buffer.
+    ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
+
+12. (Optional) Call **OH_VideoEncoder_Flush()** to refresh the encoder.
 
     After **OH_VideoEncoder_Flush()** is called, the encoder remains in the running state, but the current queue is cleared and the buffer storing the encoded data is freed.
 
     To continue encoding, you must call **OH_VideoEncoder_Start()** again.
 
-     ```c++
-     int32_t ret;
-     // Refresh the encoder.
-     ret = OH_VideoEncoder_Flush(videoEnc);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Start encoding again.
-     ret = OH_VideoEncoder_Start(videoEnc);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    int32_t ret;
+    // Refresh the encoder.
+    ret = OH_VideoEncoder_Flush(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Start encoding again.
+    ret = OH_VideoEncoder_Start(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
-14. (Optional) Call **OH_VideoEncoder_Reset()** to reset the encoder.
+13. (Optional) Call **OH_VideoEncoder_Reset()** to reset the encoder.
 
     After **OH_VideoEncoder_Reset()** is called, the encoder returns to the initialized state. To continue encoding, you must call **OH_VideoEncoder_Configure()** and then **OH_VideoEncoder_Start()**.
 
-     ```c++
-     int32_t ret;
-     // Reset the encoder.
-     ret = OH_VideoEncoder_Reset(videoEnc);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Reconfigure the encoder.
-     ret = OH_VideoEncoder_Configure(videoEnc, format);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    int32_t ret;
+    // Reset the encoder.
+    ret = OH_VideoEncoder_Reset(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Reconfigure the encoder.
+    ret = OH_VideoEncoder_Configure(videoEnc, format);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
-15. (Optional) Call **OH_VideoEncoder_Stop()** to stop the encoder.
+14. (Optional) Call **OH_VideoEncoder_Stop()** to stop the encoder.
 
-     ```c++
-     int32_t ret;
-     // Stop the encoder.
-     ret = OH_VideoEncoder_Stop(videoEnc);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    int32_t ret;
+    // Stop the encoder.
+    ret = OH_VideoEncoder_Stop(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
-16. Call **OH_VideoEncoder_Destroy()** to destroy the encoder instance and release resources.
+15. Call **OH_VideoEncoder_Destroy()** to destroy the encoder instance and release resources.
 
-     > **NOTE**
-     >
-     > This API cannot be called in the callback function.
-     > After the call, you must set a null pointer to the encoder to prevent program errors caused by wild pointers.
-     >
+    > **NOTE**
+    >
+    > This API cannot be called in the callback function.
+    > After the call, you must set a null pointer to the encoder to prevent program errors caused by wild pointers.
+    >
 
-     ```c++
-     int32_t ret;
-     // Call OH_VideoEncoder_Destroy to destroy the encoder.
-     ret = OH_VideoEncoder_Destroy(videoEnc);
-     videoEnc = nullptr;
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    int32_t ret;
+    // Call OH_VideoEncoder_Destroy to destroy the encoder.
+    ret = OH_VideoEncoder_Destroy(videoEnc);
+    videoEnc = nullptr;
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 ### Buffer Input
 
@@ -474,8 +474,8 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-   
+    ```
+    
 6. Call **OH_VideoEncoder_Start()** to start the encoder.
 
     As soon as the encoder starts, the callback functions will be triggered to respond to events. Therefore, you must configure the input file and output file first.
@@ -584,9 +584,8 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
 
 10. Call **OH_VideoEncoder_FreeOutputBuffer()** to release encoded frames.
     
+    The procedure is the same as that in surface mode and is not described here.
 
-The procedure is the same as that in surface mode and is not described here.
-    
     ```c++
     int32_t ret;
     // Obtain the encoded information.

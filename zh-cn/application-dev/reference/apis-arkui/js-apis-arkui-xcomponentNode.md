@@ -50,7 +50,7 @@ XComponentNode加载完成时触发该回调。
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| event  | object | 否   | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
+| event  | Object | 否   | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
 
 ### onDestroy
 

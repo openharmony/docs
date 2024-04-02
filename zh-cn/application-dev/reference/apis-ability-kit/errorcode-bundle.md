@@ -771,6 +771,20 @@ Failed to uninstall updates because the HAP is not pre-installed.
 **处理步骤**<br/>
 确认指定的应用是否为预置应用。
 
+## 17700059 指定的开发者ID不存在
+
+**错误信息**<br/>
+The specified developerId is invalid.
+
+**错误描述**<br/>
+调用bundleManager模块中的getAllBundleInfoByDeveloperId接口时，指定的developerId无效。
+
+**可能原因**<br/>
+设备上未安装指定开发者ID的应用。
+
+**处理步骤**<br/>
+检查输入的开发者ID有效性。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.
