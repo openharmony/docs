@@ -43,7 +43,7 @@ TabContent()
 
 ### constructor
 
-constructor(content: string | Resource)
+constructor(content: ResourceStr)
 
 SubTabBarStyle的构造函数。
 
@@ -51,7 +51,7 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### of<sup>10+</sup>
 
@@ -117,7 +117,7 @@ SubTabBarStyle的静态构造函数。
 
 ### constructor
 
-constructor(icon: string | Resource, text: string | Resource)
+constructor(icon: ResourceStr, text: ResourceStr)
 
 BottomTabBarStyle的构造函数。
 
@@ -125,8 +125,8 @@ BottomTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | string \| [Resource](ts-types.md#resource) | 是 | 页签内的图片内容。从API version 10开始，icon类型为ResourceStr。 |
-| text | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。从API version 10开始，text类型为ResourceStr。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的图片内容。 |
+| text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### of<sup>10+</sup>
 
@@ -167,15 +167,31 @@ BottomTabBarStyle的静态构造函数。
 
 ### onWillShow<sup>12+</sup>
 
-onWillShow(event: [VoidCallback](ts-types.md#voidcallback12))
+onWillShow(event: VoidCallback)
 
 逻辑回调，TabContent将要显示的时候触发该回调。场景包括TabContent首次显示，TabContent切换，页面切换，窗口前后台切换。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | TabContent将要显示的回调函数。        |
+
 ### onWillHide<sup>12+</sup>
 
-onWillHide(event: [VoidCallback](ts-types.md#voidcallback12))
+onWillHide(event: VoidCallback)
 
 逻辑回调，TabContent将要隐藏的时候触发该回调。场景包括TabContent切换，页面切换，窗口前后台切换。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | TabContent将要隐藏的回调函数。        |
 
 ## 示例
 
@@ -356,18 +372,42 @@ struct TabBarStyleExample {
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Pink)
           }.tabBar(new SubTabBarStyle('Pink'))
+          .onWillShow(() => {
+            console.info("Pink will show")
+          })
+          .onWillHide(() => {
+            console.info("Pink will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Yellow)
           }.tabBar(new SubTabBarStyle('Yellow'))
+          .onWillShow(() => {
+            console.info("Yellow will show")
+          })
+          .onWillHide(() => {
+            console.info("Yellow will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue)
           }.tabBar(new SubTabBarStyle('Blue'))
+          .onWillShow(() => {
+            console.info("Blue will show")
+          })
+          .onWillHide(() => {
+            console.info("Blue will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Green)
           }.tabBar(new SubTabBarStyle('Green'))
+          .onWillShow(() => {
+            console.info("Green will show")
+          })
+          .onWillHide(() => {
+            console.info("Green will hide")
+          })
         }
         .vertical(false)
         .scrollable(true)
@@ -383,19 +423,43 @@ struct TabBarStyleExample {
         Tabs({ barPosition: BarPosition.End }) {
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Pink)
-          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Pink'))
+          .onWillShow(() => {
+            console.info("Pink will show")
+          })
+          .onWillHide(() => {
+            console.info("Pink will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Yellow)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+          .onWillShow(() => {
+            console.info("Yellow will show")
+          })
+          .onWillHide(() => {
+            console.info("Yellow will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+          .onWillShow(() => {
+            console.info("Blue will show")
+          })
+          .onWillHide(() => {
+            console.info("Blue will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Green)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+          .onWillShow(() => {
+            console.info("Green will show")
+          })
+          .onWillHide(() => {
+            console.info("Green will hide")
+          })
         }
         .vertical(false)
         .scrollable(true)
@@ -411,19 +475,43 @@ struct TabBarStyleExample {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Pink)
-          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Pink'))
+          .onWillShow(() => {
+            console.info("Pink will show")
+          })
+          .onWillHide(() => {
+            console.info("Pink will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Yellow)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+          .onWillShow(() => {
+            console.info("Yellow will show")
+          })
+          .onWillHide(() => {
+            console.info("Yellow will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+          .onWillShow(() => {
+            console.info("Blue will show")
+          })
+          .onWillHide(() => {
+            console.info("Blue will hide")
+          })
 
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Green)
           }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+          .onWillShow(() => {
+            console.info("Green will show")
+          })
+          .onWillHide(() => {
+            console.info("Green will hide")
+          })
         }
         .vertical(true).scrollable(true).barMode(BarMode.Fixed)
         .onChange((index: number) => {
@@ -685,39 +773,67 @@ struct TabsTextOverflow {
   @State message: string = 'Hello World'
   private controller: TabsController = new TabsController()
   @State subTabOverflowOpaque: boolean = true;
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
-          Column(){
+          Column() {
             Text('单行省略号截断').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(SubTabBarStyle.of('开始【单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断】结束')
-          .labelStyle({ overflow: TextOverflow.Ellipsis, maxLines: 1, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('开始【单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断单行省略号截断】结束')
+          .labelStyle({
+            overflow: TextOverflow.Ellipsis,
+            maxLines: 1,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
-          Column()
-          {
+          Column() {
             Text('先缩小再截断').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(SubTabBarStyle.of('开始【先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断】结束')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 1, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('开始【先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断先缩小再截断】结束')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 1,
+            minFontSize: 15,
+            maxFontSize: 15,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
-          Column(){
+          Column() {
             Text('先缩小再换行再截断').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(SubTabBarStyle.of('开始【先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断】结束')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 2, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('开始【先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断先缩小再换行再截断】结束')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 15,
+            maxFontSize: 15,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
           Column() {
             Text('换行').fontSize(30).fontColor(0xFF000000)
           }
           .width('100%').height('100%').backgroundColor(Color.Pink)
         }.tabBar(SubTabBarStyle.of('开始【换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行】结束')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 10, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
-            font: { size: 20 } }))
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 }
+          }))
       }
       .vertical(true).scrollable(true)
       .barMode(BarMode.Fixed)
