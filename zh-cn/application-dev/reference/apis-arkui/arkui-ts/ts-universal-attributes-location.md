@@ -52,7 +52,7 @@ position(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 绝对定位，设置子元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不参与父容器布局，即不占位，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md)时不生效。 |
+| value  | [Position](ts-types.md#position) | 是   | 绝对定位，设置子元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不参与父容器布局，即不占位，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md)时不生效。 |
 
 ## markAnchor
 
@@ -68,7 +68,7 @@ markAnchor(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| value  | [Position](ts-types.md#position) | 是   | 设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## offset
 
@@ -84,7 +84,7 @@ offset(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 相对定位，设置子元素相对于自身的额外偏移量。设置该属性后，子组件正常参与父容器布局，依然会占位，在绘制时基于父容器给予的offset做一次额外的偏移。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| value  | [Position](ts-types.md#position) | 是   | 相对定位，设置子元素相对于自身的额外偏移量。设置该属性后，子组件正常参与父容器布局，依然会占位，在绘制时基于父容器给予的offset做一次额外的偏移。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## alignRules<sup>9+</sup>
 
@@ -120,21 +120,6 @@ alignRules(value: AlignRuleOption)
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | Bias  | { horizontal?: number, vertical?: number } | &nbsp;否 | 组件在锚点约束下的偏移参数。<br/>-&nbsp;horizontal：水平方向上的bias值。<br/>-&nbsp;vertical：垂直方向上的bias值。<br/>-&nbsp;当子组件的width可以确定并且有2个水平方向的锚点时生效。<br/>-&nbsp;当子组件的height可以确定并且有2个垂直方向的锚点时生效。<br/>默认值：{<br/>horizontal:&nbsp;0.5,<br/>vertical:&nbsp;0.5<br/>}。 |
-
-## chainMode<sup>11+</sup>
-
-chainMode(direction: Axis, style: ChainStyle)
-
-指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                        | 必填 | 说明                     |
-| ------ | ------------------------------------------- | ---- | ------------------------ |
-| direction  | [Axis](ts-appendix-enums.md#Axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](ts-appendix-enums.md#ChainStyle) | 是   | 链的样式。 |
 
 ## 示例
 ### 示例1
