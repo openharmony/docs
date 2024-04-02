@@ -85,6 +85,68 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    // 为 uri 资源文件创建 source 资源对象(可选)
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
+
+   // 为自定义数据源创建 source 资源对象(可选)。使用该方式前，需要先实现AVSourceReadAt接口函数实现。
+   // 当使用OH_AVSource_CreateWithDataSource时需要补充g_filePath
+   // g_filePath = filePath ;
+   // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
+   // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
+   ```
+
+   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：:
+
+   ```c++
+   // 添加头文件
+   #include <fstream>
+   ```
+
+   ```c++
+   static std::string g_filePath;
+
+   enum MediaDataSourceError : int32_t {
+      SOURCE_ERROR_IO = -2,
+      SOURCE_ERROR_EOF = -1
+   };
+
+   int32_t AVSourceReadAt(OH_AVBuffer *data, int32_t length, int64_t pos)
+   {
+      if (data == nullptr) {
+         printf("AVSourceReadAt : data is nullptr!\n");
+         return MediaDataSourceError::SOURCE_ERROR_IO;
+      }
+
+      std::ifstream infile(g_filePath, std::ofstream::binary);
+      if (!infile.is_open()) {
+         printf("AVSourceReadAt : open file failed! file:%s\n", g_filePath.c_str());
+         return MediaDataSourceError::SOURCE_ERROR_IO;  // 打开文件失败
+      }
+
+      infile.seekg(0, std::ios::end);
+      int64_t fileSize = infile.tellg();
+      if (pos >= fileSize) {
+         printf("AVSourceReadAt : pos over or equals file size!\n");
+         return MediaDataSourceError::SOURCE_ERROR_EOF;  // pos已经是文件末尾位置，无法读取
+      }
+
+      if (pos + length > fileSize) {
+         length = fileSize - pos;    // pos+length长度超过文件大小时，读取从pos到文件末尾的数据
+      }
+
+      infile.seekg(pos, std::ios::beg);
+      if (length <= 0) {
+         printf("AVSourceReadAt : raed length less than zero!\n");
+         return MediaDataSourceError::SOURCE_ERROR_IO;
+      }
+      char* buffer = new char[length];
+      infile.read(buffer, length);
+      infile.close();
+
+      memcpy(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)),
+         buffer, length);
+      delete[] buffer;
+
+      return length;
+   }
    ```
 3. 创建解封装器实例对象。
    ```c++
