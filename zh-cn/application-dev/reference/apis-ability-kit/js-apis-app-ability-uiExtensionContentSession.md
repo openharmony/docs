@@ -153,7 +153,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
+| wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 | callback | AsyncCallback\<void> | 是 |回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
@@ -183,7 +183,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: Object} | 是 | 表示扩展参数。 |
+| wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 
 **返回值：**
