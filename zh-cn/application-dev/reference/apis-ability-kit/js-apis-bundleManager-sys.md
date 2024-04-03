@@ -108,7 +108,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | 参数名  | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。|
 | userId      | number | 是   | 表示用户ID。  |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
 
@@ -189,7 +189,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。|
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
 
 **错误码：**
@@ -244,7 +244,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](js-apis-bundleManager.md
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。       |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。       |
 | userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
@@ -493,7 +493,7 @@ getAllBundleInfo(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), use
 
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。                    |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。                    |
 | userId      | number | 是   | 表示用户ID。                      |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
 
@@ -544,7 +544,7 @@ getAllBundleInfo(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), cal
 
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。   |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。   |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
 
 **示例：**
@@ -585,7 +585,7 @@ getAllBundleInfo(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), use
 
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。                   |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。                   |
 | userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                      |
 
 **返回值：**
@@ -1515,7 +1515,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](js-apis-bundleMa
 | 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ----------------------------------------------------------- |
 | hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径。 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
 
 **错误码：**
@@ -1566,7 +1566,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](js-apis-bundleM
 | 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径。 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
 
 **返回值：**
 
@@ -1620,7 +1620,7 @@ getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo
 | 参数名       | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | hapFilePath | string | 是   | 表示存储HAP的路径，路径应该是当前应用程序数据目录的相对路径。 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定要返回的BundleInfo对象中包含的信息的标志。       |
 
 **返回值：**
 
@@ -3109,7 +3109,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](js-apis-bundleManage
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
 | userId      | number | 是   | 表示用户ID。                                             |
 
 **返回值：**
@@ -3164,7 +3164,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: [number](js-apis-bundleManage
 | 参数名      | 类型                  | 必填 | 说明                                                   |
 | ----------- | --------------------- | ---- | ------------------------------------------------------ |
 | bundleName  | string                | 是   | 表示应用程序的bundleName。                             |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
 
 **返回值：**
 
