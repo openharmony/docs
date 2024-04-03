@@ -64,8 +64,8 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 **属性支持范围:**
 
 不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
-## 通用属性支持自定义Modifier
-开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
+## 自定义Modifier
+从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
 
 **自定义Modifier支持范围:**  
 
