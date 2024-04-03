@@ -480,7 +480,7 @@ class MyNodeController extends NodeController {
     this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
     this.builderNode.build(new WrappedBuilder(buildComponent));
 
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.size = { width: 200, height: 200 };
       rootRenderNode.backgroundColor = 0xff00ff00;
@@ -491,11 +491,13 @@ class MyNodeController extends NodeController {
   }
 
   dispose() {
-    this.builderNode.dispose();
+    if (this.builderNode !== null) {
+      this.builderNode.dispose();
+    }
   }
 
   removeBuilderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
       rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
     }
