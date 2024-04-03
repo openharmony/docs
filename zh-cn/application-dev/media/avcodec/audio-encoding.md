@@ -233,7 +233,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. 调用OH_AudioCodec_Prepare()，编码器就绪。
 
     ```cpp
-    ret = OH_AudioCodec_Prepare(audioDec_);
+    ret = OH_AudioCodec_Prepare(audioEnc_);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
