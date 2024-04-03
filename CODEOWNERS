@@ -271,10 +271,10 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 
 
 [开发-Form Kit]
-zh-cn/application-dev/application-models/formkit-overview.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/widget*.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/application-models/formkit-overview.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/widget*.md @arondave @hehe9876 @nezha-father
 
 
 [开发-DFX]
@@ -657,7 +657,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepick
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md	@zhangfanfan2	@zhanghaibo0	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @songzhenlei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md @HelloCrease
@@ -670,7 +670,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@cc5
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @songzhenlei			@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @hehe9876			@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
@@ -784,7 +784,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent.md    @seasid
 zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md    @niulihua  @zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-router.md   @raulnaruto_admin  @pangxinyu10128 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-getContext.md   @zhangshuang-xiaohuihui	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @songzhenlei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md   @ileft2019   @crazyracing0726  @pangxinyu10128 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md   @lushi1202  @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @tomatodevboy	@HelloCrease
@@ -986,13 +986,13 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @warehouse12
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @arondave  @songzhenlei  @nezha-fathe
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-form-kit/  @arondave  @hehe9876  @nezha-fathe
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @hehe9876 @nezha-father
 
 
 [API参考-IME kit]
