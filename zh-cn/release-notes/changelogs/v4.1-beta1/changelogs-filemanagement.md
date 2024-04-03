@@ -2,7 +2,7 @@
 
 ## cl.file.1 picker PhotoViewPicker.save 接口兼容性变更
 
-[PhotoViewPicker.save](../../../application-dev/reference/apis/js-apis-file-picker.md#save)接口兼容性变更。
+[PhotoViewPicker.save](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-file-picker.md#save)接口兼容性变更。
 
 **变更影响**
 

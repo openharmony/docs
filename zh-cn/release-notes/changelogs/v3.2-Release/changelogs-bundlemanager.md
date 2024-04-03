@@ -11,7 +11,7 @@
 删除@ohos.bundle.bundleManager.d.ts中的getAbilityIcon接口。
 
 **适配指导**<br>
-使用@ohos.bundle.bundleManager.d.ts下面的getAbilityIcon，需要修改为@ohos.resourceManager.d.ts中的getMediaContent。需要提前获取到图标的资源ID值，可参考该接口的[使用指导](../../../application-dev/reference/apis/js-apis-resource-manager.md#getmediacontent9)。
+使用@ohos.bundle.bundleManager.d.ts下面的getAbilityIcon，需要修改为@ohos.resourceManager.d.ts中的getMediaContent。需要提前获取到图标的资源ID值，可参考该接口的[使用指导](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getmediacontent9)。
 
 ## cl.bundlemanager.2 包管理底层能力变更，仅支持系统资源HAP自定义权限，其它HAP均不支持自定义权限。
 

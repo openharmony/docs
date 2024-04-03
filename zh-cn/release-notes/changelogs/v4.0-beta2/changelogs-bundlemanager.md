@@ -61,9 +61,9 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 2. 该权限为user_grant类型的，安装时默认不会授权，需要应用调用弹框接口由用户选择是否授权或者使用预授权进行授权。
 
-3. 使用弹框授权方式可以参考[向用户申请授权](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-guides/accesstoken-guidelines-0000001630265341#ZH-CN_TOPIC_0000001607716650__%E5%90%91%E7%94%A8%E6%88%B7%E7%94%B3%E8%AF%B7%E6%8E%88%E6%9D%83)。
+3. 使用弹框授权方式可以参考向用户申请授权。
 
-4. 使用预授权方式可以参考[权限预授权](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-guides/accesstoken-guidelines-0000001630265341#ZH-CN_TOPIC_0000001607716650__user_grant%E6%9D%83%E9%99%90%E9%A2%84%E6%8E%88%E6%9D%83)。
+4. 使用预授权方式可以参考权限预授权。
 
 
 ## cl.bundlemanager.4 包管理\@ohos.bundle.bundleManager.d.ts中getAllApplicationInfo接口权限变更。
@@ -86,9 +86,9 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 2. 该权限为user_grant类型的，安装时默认不会授权，需要应用调用弹框接口由用户选择是否授权或者使用预授权进行授权。
 
-3. 使用弹框授权方式可以参考[向用户申请授权](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-guides/accesstoken-guidelines-0000001630265341#ZH-CN_TOPIC_0000001607716650__%E5%90%91%E7%94%A8%E6%88%B7%E7%94%B3%E8%AF%B7%E6%8E%88%E6%9D%83)。
+3. 使用弹框授权方式可以参考向用户申请授权。
 
-4. 使用预授权方式可以参考[权限预授权](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-guides/accesstoken-guidelines-0000001630265341#ZH-CN_TOPIC_0000001607716650__user_grant%E6%9D%83%E9%99%90%E9%A2%84%E6%8E%88%E6%9D%83)。
+4. 使用预授权方式可以参考权限预授权。
 
 
 ## cl.bundlemanager.5 包管理\@ohos.bundle.installer.d.ts中getSpecifiedDistributionType接口移动到\@ohos.bundle.bundleManager.d.ts中。

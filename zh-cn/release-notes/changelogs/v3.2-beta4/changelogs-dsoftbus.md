@@ -142,4 +142,4 @@ try {
     console.info("create meassageParcel failed, errorMessage = " + error.errorMessage);
 }
 ```
-更多接口的示例代码可参考[RPC通信API文档](../../../application-dev/reference/apis/js-apis-rpc.md)。
+更多接口的示例代码可参考[RPC通信API文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-rpc.md)。

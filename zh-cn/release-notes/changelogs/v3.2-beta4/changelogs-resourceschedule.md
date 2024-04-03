@@ -60,7 +60,7 @@
 ```
 import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 ```
-此外还需要适配异常处理，具体参考[backgroundTaskManager接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)。
+此外还需要适配异常处理，具体参考[backgroundTaskManager接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-resourceschedule-backgroundTaskManager.md)。
 
 ## c2.resourceschedule.usageStatistics 
 对资源调度子系统deviceUsageStatistics仓原有接口进行整改，原有API8及之前的接口全部废弃，原有API9接口删除，需要使用新的API9接口。新的API9接口符合错误码规范。
@@ -167,7 +167,7 @@ import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 ```
 import bundle form '@ohos.resourceschedule.usageStatistics'
 ```
-此外还需要适配异常处理，具体参考[usageStatistics接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)。
+此外还需要适配异常处理，具体参考[usageStatistics接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-resourceschedule-deviceUsageStatistics.md)。
 
 
 ## c3.resourceschedule.workScheduler 
@@ -238,7 +238,7 @@ import bundle form '@ohos.resourceschedule.usageStatistics'
 ```
 import bundle form '@ohos.resourceschedule.workScheduler'
 ```
-此外还需要适配异常处理，具体参考[workScheduler接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md)。
+此外还需要适配异常处理，具体参考[workScheduler接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-resourceschedule-workScheduler.md)。
 
 
 ## c4.resourceschedule.reminderAgent
@@ -311,6 +311,6 @@ import bundle form '@ohos.resourceschedule.workScheduler'
 ```
 import bundle form '@ohos.reminderAgentManager'
 ```
-此外还需要适配异常处理，具体参考[reminderAgentManager接口文档](../../../application-dev/reference/apis/js-apis-reminderAgentManager.md)。
+此外还需要适配异常处理，具体参考[reminderAgentManager接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-reminderAgentManager.md)。
 
 

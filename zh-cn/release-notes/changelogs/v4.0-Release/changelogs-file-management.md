@@ -2,7 +2,7 @@
 
 ## cl.file.1 @ohos.file.storageStatistics和@ohos.file.volumeManager 文档错误码变更
 
-[@ohos.file.storageStatistics](../../../application-dev/reference/apis/js-apis-file-storage-statistics.md#)和[@ohos.file.volumeManager](../../../application-dev/reference/apis/js-apis-file-volumemanager.md#)两个模块中所有接口Unknown error错误码变更, d.ts中记录的错误码与实际功能代码中返回的不相符。
+[@ohos.file.storageStatistics](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-file-storage-statistics.md#)和[@ohos.file.volumeManager](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-file-volumemanager.md#)两个模块中所有接口Unknown error错误码变更, d.ts中记录的错误码与实际功能代码中返回的不相符。
 
 变更前每个接口Unknown error的错误码为13900032。
 
@@ -24,7 +24,7 @@
 
 ## cl.file.2 userFileManager FileAsset属性变更
 
-[userFileManager.FileAsset](../../../application-dev/reference/apis/js-apis-userFileManager.md#fileasset)属性变更。
+[userFileManager.FileAsset](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md#fileasset)属性变更。
 
 变更前uri的格式为：
 
@@ -81,7 +81,7 @@ async function example() {
 
 ## cl.file.3 photoAccessHelper PhotoAsset属性变更
 
-[photoAccessHelper.PhotoAsset](../../../application-dev/reference/apis/js-apis-photoAccessHelper.md#photoasset)属性变更。
+[photoAccessHelper.PhotoAsset](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-photoAccessHelper.md#photoasset)属性变更。
 
 变更前uri的格式为：
 
@@ -174,9 +174,9 @@ async function example() {
 
 fileAccess的接口调用无变化，但接口返回的uri可访问的资源发生变化。
 
-如需获取文件名、路径等属性，请使用[fileuri接口](../../../application-dev/reference/apis/js-apis-file-fileuri.md)。
+如需获取文件名、路径等属性，请使用[fileuri接口](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-file-fileuri.md)。
 
-使用文件访问框架的接口获取的uri，推荐使用[fs接口](../../../application-dev/reference/apis/js-apis-file-fs.md)打开。
+使用文件访问框架的接口获取的uri，推荐使用[fs接口](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)打开。
 
 
 ## cl.file.5 补充PhotoAccessHelper模块错误码

@@ -53,7 +53,7 @@ try {
 }
 ```
 
-更多接口的示例代码可参考[用户认证API文档](../../../application-dev/reference/apis/js-apis-useriam-userauth.md)和[人脸认证API文档](../../../application-dev/reference/apis/js-apis-useriam-faceauth.md)。
+更多接口的示例代码可参考[用户认证API文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-useriam-userauth.md)和[人脸认证API文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-useriam-faceauth.md)。
 
 ## cl.useriam.2 接口调用权限变更
 

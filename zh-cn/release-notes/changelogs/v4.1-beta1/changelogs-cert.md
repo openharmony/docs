@@ -56,7 +56,7 @@ function createX509CRL(inStream: EncodingBlob): Promise<X509CRL>;
 
 **适配指导**
 
-接口使用的示例代码可参考[证书开发指导](../../../application-dev/security/cert-guidelines.md)和[API参考](../../../application-dev/reference/apis/js-apis-cert.md)。
+接口使用的示例代码可参考[证书开发指导](../../../application-dev/security/cert-guidelines.md)和[API参考](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-cert.md)。
 
 ##  cl.cert.2 X509CrlEntry接口变更
 
@@ -102,4 +102,4 @@ interface X509CRLEntry {
 
 **适配指导**
 
-接口使用的示例代码可参考[证书开发指导](../../../application-dev/security/cert-guidelines.md)和[API参考](../../../application-dev/reference/apis/js-apis-cert.md)。
+接口使用的示例代码可参考[证书开发指导](../../../application-dev/security/cert-guidelines.md)和[API参考](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-cert.md)。

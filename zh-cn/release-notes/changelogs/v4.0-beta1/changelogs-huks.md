@@ -46,4 +46,4 @@ attestKeyItem是基于设备证书链封装业务公钥对用户指定的密钥�
 
 **适配指导**
 
-接口使用的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](../../../application-dev/reference/apis/js-apis-huks.md)。
+接口使用的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-huks.md)。

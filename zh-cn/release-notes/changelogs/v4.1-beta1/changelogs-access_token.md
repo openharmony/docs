@@ -11,7 +11,7 @@
 
 **变更影响**
 
-变更前，通过调用[requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口申请位置权限，如下两种申请情况都可以顺利拉起弹窗：
+变更前，通过调用[requestPermissionsFromUser](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口申请位置权限，如下两种申请情况都可以顺利拉起弹窗：
 
 1、在未申请模糊权限[ohos.permission.APPROXIMATELY_LOCATION](../../../application-dev/security/permission-list.md#ohospermissionapproximately_location)的情况下，请求后台位置权限[ohos.permission.LOCATION_IN_BACKGROUND](../../../application-dev/security/permission-list.md#ohospermissionlocation_in_background)
 
@@ -110,7 +110,7 @@
 
 **适配指导**
 
-修改EntryAbility.ets和导入GlobalThis等步骤参考[requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
+修改EntryAbility.ets和导入GlobalThis等步骤参考[requestPermissionsFromUser](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
 
 ```ts
     let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
@@ -125,15 +125,15 @@
 
 **变更影响**
 
-变更前，通过调用[getPermissionUsedRecord](../../../application-dev/reference/apis/js-apis-privacyManager.md#privacymanagergetpermissionusedrecord)接口获取权限访问记录时的返回结果，包括访问时的前后台状态、访问时的时间戳、访问时长数据。
+变更前，通过调用[getPermissionUsedRecord](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-privacyManager.md#privacymanagergetpermissionusedrecord)接口获取权限访问记录时的返回结果，包括访问时的前后台状态、访问时的时间戳、访问时长数据。
 
 变更后，获取权限访问记录时的返回结果中将新增一条可选结果，访问时的锁屏状态。
 
-具体变更内容参考[UsedRecordDetail](../../../application-dev/reference/apis/js-apis-privacyManager.md#usedrecorddetail)单条权限访问记录新增访问时的锁屏状态。
+具体变更内容参考[UsedRecordDetail](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-privacyManager.md#usedrecorddetail)单条权限访问记录新增访问时的锁屏状态。
 
 **适配指导**
 
-使用和接口描述等信息参考[getPermissionUsedRecord](../../../application-dev/reference/apis/js-apis-privacyManager.md#privacymanagergetpermissionusedrecord)
+使用和接口描述等信息参考[getPermissionUsedRecord](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-privacyManager.md#privacymanagergetpermissionusedrecord)
 
 调用getPermissionUsedRecord获取权限访问记录，解析对应权限访问记录的锁屏状态。
 
@@ -289,4 +289,4 @@ c) 应用同时申请前台和后台权限
 
 **适配指导**
 
-接口使用的示例代码可参考[requestPermissionsFromUser接口指导](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
+接口使用的示例代码可参考[requestPermissionsFromUser接口指导](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)

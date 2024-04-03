@@ -4,11 +4,11 @@
 
 下列API使用业务逻辑返回值表示错误信息，不符合OpenHarmony接口错误码规范。从API9进行变更。
 
-- 耗电统计：[@ohos.batteryStatistics](../../../application-dev/reference/apis/js-apis-batteryStatistics.md)
- - 屏幕亮度：[@ohos.brightness](../../../application-dev/reference/apis/js-apis-brightness.md)
- - 系统电源管理：[@ohos.power](../../../application-dev/reference/apis/js-apis-power.md)
- - Runninglock锁：[@ohos.runningLock](../../../application-dev/reference/apis/js-apis-runninglock.md)
- - 热管理：[@ohos.thermal](../../../application-dev/reference/apis/js-apis-thermal.md)
+- 耗电统计：[@ohos.batteryStatistics](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-batteryStatistics.md)
+ - 屏幕亮度：[@ohos.brightness](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-brightness.md)
+ - 系统电源管理：[@ohos.power](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-power.md)
+ - Runninglock锁：[@ohos.runningLock](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-runninglock.md)
+ - 热管理：[@ohos.thermal](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-thermal.md)
 
 异步接口：通过AsyncCallback或Promise的error对象返回错误信息。
 
@@ -65,4 +65,4 @@
 
 #### 适配指导
 
-请参考系统电源管理[@ohos.power](../../../application-dev/reference/apis/js-apis-power.md)的API参考。
+请参考系统电源管理[@ohos.power](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-power.md)的API参考。
