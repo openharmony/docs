@@ -16,7 +16,6 @@
     - [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md)
     - [avplayer.h](avplayer_8h.md)
     - [avplayer_base.h](avplayer__base_8h.md)
-    - [native_averrors.h](native__averrors_8h.md)
   - 结构体
     - [AVPlayerCallback](_a_v_player_callback.md)
     - [OH_AudioBuffer](_o_h___audio_buffer.md)

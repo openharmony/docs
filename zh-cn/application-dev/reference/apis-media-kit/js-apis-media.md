@@ -2070,20 +2070,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
 
-```ts
-import { BusinessError } from '@ohos.base';
-let avRecorder: media.AVRecorder;
-
-media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-  if (recorder != null) {
-    avRecorder = recorder;
-    console.info('createAVRecorder success');
-  } else {
-    console.error(`createAVRecorder fail, error message:${error.message}`);
-  }
-});
-```
-
 音视频录制demo可参考：[音频录制开发指导](../../media/media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/media/video-recording.md)。
 
 > **说明：**
@@ -3492,26 +3478,12 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// 获取元数据
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
-      if (error) {
-        console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
+  if (error) {
+    console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
+    return;
   }
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
 });
 ```
 
@@ -3541,24 +3513,10 @@ fetchMetadata(): Promise\<AVMetadata>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// 获取元信息
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
-    }).catch((error: BusinessError) => {
-      console.error(`fetchMetadata catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  }
+avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
+}).catch((error: BusinessError) => {
+  console.error(`fetchMetadata catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -3588,28 +3546,17 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 import image from '@ohos.multimedia.image';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// 获取专辑封面
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
-      if (error) {
-        console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
-        return;
-      }
-      pixel_map = pixelMap;
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+
+avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
+  if (error) {
+    console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
+    return;
+  }
+  pixel_map = pixelMap;
 });
 ```
 
@@ -3639,26 +3586,14 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 import image from '@ohos.multimedia.image';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// 获取专辑封面
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
-      pixel_map = pixelMap;
-    }).catch((error: BusinessError) => {
-      console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
+  pixel_map = pixelMap;
+}).catch((error: BusinessError) => {
+  console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -3687,26 +3622,12 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-//释放资源
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.release((error: BusinessError) => {
-      if (error) {
-        console.error(`release failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`release success.`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.release((error: BusinessError) => {
+  if (error) {
+    console.error(`release failed, err = ${JSON.stringify(error)}`);
+    return;
+  }
+  console.info(`release success.`);
 });
 ```
 
@@ -3735,24 +3656,10 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-//释放资源
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.release().then(() => {
-      console.info(`release success.`);
-    }).catch((error: BusinessError) => {
-      console.error(`release catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.release().then(() => {
+  console.info(`release success.`);
+}).catch((error: BusinessError) => {
+  console.error(`release catchCallback, error message:${error.message}`);
 });
 ```
 
