@@ -48,9 +48,9 @@ Before you get started, be sure to understand the following concepts:
 
   For signing and signature verification, the private key is used to sign the plaintext, and the public key is used to verify the signature.
 
-## Related Kits
+## Related Modules
 
-Crypto Architecture Kit provides cryptographic operations, but not key management. It is used when temporary session keys are used only in the memory or the applications implement secure key storage.
+Crypto framework provides cryptographic operations, but not key management. It is used when temporary session keys are used only in the memory or the applications implement secure key storage.
 
-If key management (such as key storage) is required, use [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md).
+If key management (such as key storage) is required, use [HUKS](../UniversalKeystoreKit/huks-overview.md).
 
