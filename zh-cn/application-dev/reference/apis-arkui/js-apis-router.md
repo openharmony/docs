@@ -1038,17 +1038,19 @@ getStateByIndex(index: number): RouterState | undefined
 **示例：** 
 
 ```ts
-let options:router.RouterState = router.getStateByIndex(1);
-console.log('index = ' + options.index);
-console.log('name = ' + options.name);
-console.log('path = ' + options.path);
-console.log('params = ' + options.params);
+let options:router.RouterState | undefined = router.getStateByIndex(1);
+if (options != undefined) {
+  console.log('index = ' + options.index);
+  console.log('name = ' + options.name);
+  console.log('path = ' + options.path);
+  console.log('params = ' + options.params);
+}
 ```
 ## router.getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<[RouterState](#routerstate)>
+getStateByUrl(url: string): Array<RouterState>
 
-通过url获取当前页面的状态信息。
+通过url获取对应页面的状态信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
