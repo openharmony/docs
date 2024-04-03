@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 ```
 
 ## WindowModeType<sup>10+</sup>

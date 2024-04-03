@@ -225,10 +225,10 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 **参数：**
 
-| 参数名                | 类型                                        | 必填 | 说明                                 |
-| --------------------- | ------------------------------------------- | ---- | ------------------------------------ |
-| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                         |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置是否可以支持自定义键盘触发避让。 |
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### type<sup>11+</sup>
 
@@ -268,9 +268,9 @@ enterKeyType(value: EnterKeyType)
 
 **参数：**
 
-| 参数名 | 类型                                  | 必填 | 说明                                             |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
+| 参数名 | 类型                                             | 必填 | 说明                                               |
+| ------ | ------------------------------------------------ | ---- | -------------------------------------------------- |
+| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
 
 ### lineHeight<sup>12+</sup>
 
@@ -549,11 +549,11 @@ getTextContentRect(): RectResult
 
 ## KeyboardOptions<sup>12+</sup>
 
-设置自定义键盘是否支持避让属性。
+设置自定义键盘是否支持避让功能。
 
 | 名称            | 类型              | 必填 | 描述                               |
 | --------------- | ---------------  |---- | ---------------------------------   |
-| supportAvoidance |  boolean        | 否  |    设置是否可以支持自定义键盘触发避让。|
+| supportAvoidance |  boolean        | 否  | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 
 ### getTextContentLineCount<sup>10+</sup>
@@ -872,13 +872,12 @@ struct search {
 自定义键盘弹出发生避让示例
 
 ```ts
-
 @Entry
 @Component
 struct SearchExample {
   controller: SearchController = new SearchController()
   @State inputValue: string = ""
-  @State height1:string|number = '20%'
+  @State height1:string|number = '80%'
   @State supportAvoidance:boolean = true;
   // 自定义键盘组件
   @Builder CustomKeyboardBuilder() {
@@ -907,18 +906,22 @@ struct SearchExample {
     Column() {
       Row(){
         Button("20%")
-          .fontSize(12)
+          .fontSize(24)
           .onClick(()=>{
             this.height1 = "20%"
           })
         Button("80%")
-          .fontSize(12)
+          .fontSize(24)
+          .margin({left:20})
           .onClick(()=>{
             this.height1 = "80%"
           })
       }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
+      .padding({bottom:50})
       Search({ controller: this.controller, value: this.inputValue})
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })

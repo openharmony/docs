@@ -55,12 +55,6 @@ struct FontExample {
   @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
-    // familyName和familySrc都支持string
-    font.registerFont({
-      familyName: 'medium',
-      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
-    })
-
     // familyName和familySrc都支持系统Resource
     font.registerFont({
       familyName: $r('app.string.font_name'),
@@ -77,6 +71,12 @@ struct FontExample {
     font.registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
+    })
+
+    // familyName和familySrc都支持string
+    font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
     })
   }
 
@@ -103,6 +103,8 @@ struct FontExample {
 > **说明：**
 >
 > 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+>
+> 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[HSP资源引用](../../quick-start/in-app-hsp.md#通过$r访问hsp中的资源)。
 
 ## font.getSystemFontList<sup>10+</sup>
 
