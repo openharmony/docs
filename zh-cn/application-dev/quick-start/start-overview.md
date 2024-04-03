@@ -33,7 +33,7 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 
 - **FA（Feature Ability）模型：** OpenHarmony API 7开始支持的模型，已经不再主推。FA模型开发可见[FA模型开发概述](../application-models/fa-model-development-overview.md)。**快速入门章节不再对此展开提供开发指导。**
 
-FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应用模型解读](../application-models/application-model-description.md)。
+FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应用模型解读](../application-models/application-models.md)。
 
 快速入门提供了一个含有两个页面的开发实例，并基于Stage模型构建第一个ArkTS应用，以便开发者理解以上基本概念及应用开发流程。
 

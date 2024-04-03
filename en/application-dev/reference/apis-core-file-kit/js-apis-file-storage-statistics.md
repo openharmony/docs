@@ -91,6 +91,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | Name     | Type  | Readable| Writable| Description          |
 | --------- | ------ | --- | ---- | -------------- |
-| appSize   | number | Yes| No| Size of the application, in bytes.   |
+| appSize   | number | Yes| No| Size of the application (excluding empty folders), in bytes.   |
 | cacheSize | number | Yes| No| Size of the cache data, in bytes.  |
 | dataSize  | number | Yes| No| Total size of the application, in bytes.|

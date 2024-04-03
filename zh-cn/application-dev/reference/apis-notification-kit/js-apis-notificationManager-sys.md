@@ -2894,6 +2894,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
 | 1600012  | No memory space.                    |
+| 1600017  | There is no corresponding agent relationship configuration.    |
 
 **示例：**
 
@@ -3857,6 +3858,7 @@ setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600012  | No memory space.                    |
+| 1600017  | There is no corresponding agent relationship configuration.     |
 | 17700001 | The specified bundle name was not found.   |
 
 **示例：**

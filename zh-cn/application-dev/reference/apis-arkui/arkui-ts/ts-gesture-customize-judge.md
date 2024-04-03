@@ -97,7 +97,8 @@ struct Index {
   build() {
     Column() {
       Row({ space: 20 }) {
-        Text(this.message).width(100).height(40).backgroundColor(Color.Pink)
+        Text(this.message).width(200).height(80).backgroundColor(Color.Pink)
+          .fontSize(25)
       }.margin(20)
     }
     .width('100%')
@@ -110,6 +111,9 @@ struct Index {
     .gesture(
       TapGesture()
         .tag("tap1")// 设置点击手势标志
+        .onAction(() => {
+          this.message = 'tap1'
+        })
     )
     .gesture(
       LongPressGesture()
@@ -121,10 +125,16 @@ struct Index {
     .gesture(
       SwipeGesture()
         .tag("swipe1")// 设置滑动手势标志
+        .onAction(() => {
+          this.message = 'swipe1'
+        })
     )
     .gesture(
       PanGesture()
         .tag("pan1")// 设置拖动手势标志
+        .onActionStart(() => {
+          this.message = 'pan1'
+        })
     )
     .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
       // 若该手势类型为长按手势，转换为长按手势事件
@@ -155,6 +165,7 @@ struct Index {
   }
 }
 ```
+![gestures1](figures/gestures1.gif)
 ### 示例2
 ```ts
 // xxx.ets
@@ -178,6 +189,7 @@ struct Index {
           }.width('200vp').height('200vp')
           // Stack的下半区是绑定了拖动手势的图像区域。
           Image($r('sys.media.ohos_app_icon'))
+            .draggable(true)
             .onDragStart(()=>{
               promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
             })
@@ -195,7 +207,7 @@ struct Index {
             }
             console.log("gestureInfo Type " + gestureInfo.type.toString() + " isSystemGesture " + gestureInfo.isSystemGesture);
             console.log("pressure " + event.pressure + " fingerList.length " + event.fingerList.length
-              + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
+            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
             // 如果是长按类型手势，判断点击的位置是否在上半区
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
               if (event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
@@ -220,3 +232,4 @@ struct Index {
   }
 }
 ```
+![gestures2](figures/gestures2.gif)

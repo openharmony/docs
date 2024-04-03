@@ -69,7 +69,7 @@ Cross-device migration supports the following features:
 
 2. Implement [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) in the UIAbility on the source device.
 
-   When a migration is triggered for the UIAbility, [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can save the data in this method to implement application compatibility check and migration decision.
+   When a migration is triggered for the UIAbility, [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this method to implement application compatibility check and migration decision.
 
    - Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
    - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback and compare it with the application version on the source device.
@@ -109,49 +109,48 @@ Cross-device migration supports the following features:
 
 3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data.
    
-
    The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
-
+   
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   export default class MigrationAbility extends UIAbility {
-     storage : LocalStorage = new LocalStorage();
-   
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // Restore the saved data from want.parameters.
-         let continueInput = '';
-         if (want.parameters !== undefined) {
-           continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
-         }
-         // Trigger page restoration.
-         this.context.restoreWindowStage(this.storage);
-       }
-     }
-   
-     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-          // Restore the saved data from want.parameters.
-          let continueInput = '';
-          if (want.parameters !== undefined) {
-            continueInput = JSON.stringify(want.parameters.data);
-            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+      import hilog from '@ohos.hilog';
+      import UIAbility from '@ohos.app.ability.UIAbility';
+      import type Want from '@ohos.app.ability.Want';
+      
+      const TAG: string = '[MigrationAbility]';
+      const DOMAIN_NUMBER: number = 0xFF00;
+      
+      export default class MigrationAbility extends UIAbility {
+        storage : LocalStorage = new LocalStorage();
+      
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+          if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+            // Restore the saved data from want.parameters.
+            let continueInput = '';
+            if (want.parameters !== undefined) {
+              continueInput = JSON.stringify(want.parameters.data);
+              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+            }
+            // Trigger page restoration.
+            this.context.restoreWindowStage(this.storage);
           }
-          // Trigger page restoration. 
-          this.context.restoreWindowStage(this.storage);
         }
+      
+        onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+           hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+           if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+             // Restore the saved data from want.parameters.
+             let continueInput = '';
+             if (want.parameters !== undefined) {
+               continueInput = JSON.stringify(want.parameters.data);
+               hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+             }
+             // Trigger page restoration. 
+             this.context.restoreWindowStage(this.storage);
+           }
+         }
       }
-   }
    ```
 
 ## Configuring Optional Migration Features
@@ -447,7 +446,7 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
 2. Complete the signature, build, and installation.
 
-   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
+   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. ​Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
 
    1. Choose **File > Project Structure**.
 
@@ -481,4 +480,3 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
 
- <!--no_check--> 

@@ -1,4 +1,4 @@
-# DRM System Management (ArkTS)
+# Media Key System Management (ArkTS)
 
 Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests, process responses to these requests, create media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information.
 

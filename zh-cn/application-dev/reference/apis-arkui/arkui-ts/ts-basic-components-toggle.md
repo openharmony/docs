@@ -89,12 +89,12 @@ switchStyle(value: SwitchStyle)
 
 ### SwitchStyle<sup>12+</sup>对象说明
 
-| 名称              | 类型                                        | 必填 | 说明                               |
-| ----------------- | ------------------------------------------- | ---- | ---------------------------------- |
-| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径。     |
-| unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型关闭状态的背景颜色。 |
-| pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型的圆形滑块颜色。     |
-| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角。       |
+| 名称              | 类型                                        | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pointRadius       | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的圆形滑块半径。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于等于0时按照设定值设置。<br/>未设定此属性时，圆形滑块半径根据默认算法设置。<br/>默认算法：（组件高度（单位：vp） / 2） - （2vp * 组件高度（单位：vp） / 20vp）。 |
+| unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型关闭状态的背景颜色。<br />默认值：0x337F7F7F。 |
+| pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 设置Switch类型的圆形滑块颜色。<br />默认值：'#FFFFFFFF'。    |
+| trackBorderRadius | number \|  [Resource](ts-types.md#resource) | 否   | 设置Switch类型的滑轨的圆角。<br />**说明：**<br/>不支持百分比，设定值小于0时按照默认算法设置，设定值大于组件高度一半时按照组件高度一半设置，其他场合按照设定值设置。<br/>未设定此属性时，滑轨圆角根据默认算法设置。<br/>默认算法：组件高度（单位：vp） / 2。 |
 
 ## 事件
 
@@ -116,8 +116,9 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | isOn   | boolean | 是   | 为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -184,3 +185,45 @@ struct ToggleExample {
 ```
 
 ![toggle](figures/toggle.gif)
+
+### 示例2
+
+该示例实现了自定义设置Toggle组件Switch样式的圆形滑块半径、关闭状态的背景颜色、圆形滑块颜色、滑轨的圆角。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ToggleExample {
+  build() {
+    Column({ space: 10 }) {
+      Text('type: Switch').fontSize(12).fontColor(0xcccccc).width('90%')
+      Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) {
+        Toggle({ type: ToggleType.Switch, isOn: false })
+          .selectedColor('#007DFF')
+          .switchStyle({
+            pointRadius: 15,
+            trackBorderRadius: 10,
+            pointColor: '#D2B48C',
+            unselectedColor: Color.Pink })
+          .onChange((isOn: boolean) => {
+            console.info('Component status:' + isOn)
+          })
+
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .selectedColor('#007DFF')
+          .switchStyle({
+            pointRadius: 15,
+            trackBorderRadius: 10,
+            pointColor: '#D2B48C',
+            unselectedColor: Color.Pink })
+          .onChange((isOn: boolean) => {
+            console.info('Component status:' + isOn)
+          })
+      }
+    }.width('100%').padding(24)
+  }
+}
+```
+
+![toggle](figures/toggleSwitchStyle.gif)

@@ -12,7 +12,7 @@
 
 ## ActionSheet.show
 
-show(value: ActionSheetOptions)
+static show(value: ActionSheetOptions)
 
 定义列表弹窗并弹出。
 
@@ -47,10 +47,10 @@ show(value: ActionSheetOptions)
 | borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
 | borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
 | borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
-| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br /> 百分比参数方式：以父元素宽的百分比来设置弹窗的宽度。|
-| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br /> 百分比参数方式：以父元素高的百分比来设置弹窗的高度。|
+| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br />**说明：**<br />弹窗的宽度百分比是相对主窗口或子窗口(showInSubWindow)的宽度。<br />非showInSubWindow弹窗宽度的最大尺寸是主窗口宽度，showInSubWindow弹窗宽度的最大尺寸是子窗口宽度。|
+| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br />**说明：**<br />弹窗的高度百分比是相对主窗口或子窗口(showInSubWindow)的高度。<br />当高度设置100%，非showInSubWindow弹窗高度的最大尺寸是主窗口高度，showInSubWindow弹窗高度的最大尺寸是子窗口高度。<br />设置弹窗对齐方式，弹出的显示区域不足，会剪裁弹窗。|
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。 |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。 |
 ## SheetInfo接口说明
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述          |

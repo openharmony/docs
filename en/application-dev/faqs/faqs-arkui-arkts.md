@@ -29,7 +29,7 @@ ForEach(this.nums,(item) => {
 
 **Solution**
 
-The @Builder decorated method allows for use of a custom component, while regular methods do not. If a custom component is used in an @Builder decorated method, it is re-created each time the method is called.
+The \@Builder decorated method allows for use of a custom component, while regular methods do not. If a custom component is used in an @Builder decorated method, it is re-created each time the method is called.
 
 **Reference**
 
@@ -40,13 +40,13 @@ The @Builder decorated method allows for use of a custom component, while regula
 
 **Solution**
 
--   Without parameters
+- Without parameters
 
-    If no parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **content: this.specificParam**), define the type of the attribute as a function without a return value (for example, **@BuilderParam content: \(\) =\> void**).
+  If no parameter is passed when you assign a value to the \@BuilderParam decorated attribute (for example, content: this.specificParam), define the type of the attribute as a function without a return value (for example, **\@BuilderParam content: () =&gt; void**).
 
--   With parameters
+- With parameters
 
-    If any parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **callContent: this.specificParam1\("111"\)**), define the type of the attribute as **any** (for example, **@BuilderParam callContent: any**).
+  If any parameter is passed when you assign a value to the \@BuilderParam decorated attribute (for example, **callContent: this.specificParam1("111")**), define the type of the attribute as **any** (for example, **\@BuilderParam callContent: any**).
 
 **Reference**
 
@@ -57,218 +57,213 @@ The @Builder decorated method allows for use of a custom component, while regula
 
 **Solution**
 
-
-To listen for object changes in an array, use the @Observed and @ObjectLink decorators. **@Observed** applies to classes, and **@ObjectLink** applies to variables.
+To listen for object changes in an array, use the \@Observed and \@ObjectLink decorators. \@Observed applies to classes, and \@ObjectLink applies to variables.
 
 **Example**
 
-1.  Use @Observed on a class.
+1. Use \@Observed on a class.
 
-    ```
-    @Observed
-    class ClassA {
-      public name: string
-      public c: number
-      public id: number
-    
-      constructor(c: number, name: string = 'OK') {
-        this.name = name
-        this.c = c
-      }
-    }
-    ```
+   ```
+   @Observed
+   class ClassA {
+     public name: string
+     public c: number
+     public id: number
+   
+     constructor(c: number, name: string = 'OK') {
+       this.name = name
+       this.c = c
+     }
+   }
+   ```
 
-2.  Use @ObjectLink on a component variable.
+2. Use \@ObjectLink on a component variable.
 
-    ```
-    @Component
-    struct ViewA {
-      label: string = 'ViewA1'
-      @ObjectLink a: ClassA
-    
-      build() {
-        Row() {
-          Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
-            .onClick(() => {
-              this.a.c += 1
-            })
-        }.margin({ top: 10 })
-      }
-    }
-    ```
-
+   ```
+   @Component
+   struct ViewA {
+     label: string = 'ViewA1'
+     @ObjectLink a: ClassA
+   
+     build() {
+       Row() {
+         Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
+           .onClick(() => {
+             this.a.c += 1
+           })
+       }.margin({ top: 10 })
+     }
+   }
+   ```
 
 **Reference**
 
 [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](../quick-start/arkts-observed-and-objectlink.md)
 
 
-## How do I transfer values through the parent component to @Link decorated varaibles in a child component? (API version 9)
+## How do I transfer values through the parent component to \@Link decorated variables in a child component? (API version 9)
 
 **Solution**
 
-To enable a child component to receive the value from the parent component through @Link, '**\$**' must be used to first establish a reference relationship between variables in the child and parent components.  
+To enable a child component to receive the value from the parent component through \@Link, **'$'** must be used to first establish a reference relationship between variables in the child and parent components.  
 
 **Example**
 
-The **@Link** semantics are derived from the '**$**' operator. In other words, **\$isPlaying** is the two-way binding of the internal state **this.isPlaying**. When the button in the **PlayButton** child component is touched, the value of the @Link decorated variable is changed, and **PlayButton** together with the **\<Image>** and **\<Text>** components of the parent component is refreshed. Similarly, when the button in the parent component is touched, the value of **this.isPlaying** is changed, and **PlayButton** together with the **\<Text>** and **\<Button>** components of the parent component is refreshed.
+The \@Link semantics are derived from the **'$'** operator. In other words, **\$isPlaying** enables two-way binding of the internal state **this.isPlaying**. When the button in the **PlayButton** child component is touched, the value of the @Link decorated variable is changed, and **PlayButton** together with the **\<Image>** and **\<Text>** components of the parent component is refreshed. Similarly, when the button in the parent component is touched, the value of **this.isPlaying** is changed, and **PlayButton** together with the **\<Text>** and **\<Button>** components of the parent component is refreshed.
 
-1.  Use the @State decorator in the parent component and use the '**\$**' operator to create a reference for transferring data.
+1. Use the \@State decorator in the parent component and use the **'$'** operator to create a reference for transferring data.
 
-    ```
-    @Entry
-    @Component
-    struct Player {
-      @State isPlaying: boolean = false
-      build() {
-        Column() {
-          PlayButton({ buttonPlaying: $isPlaying })
-          Text(`Player is ${this.isPlaying ? '' : 'not'} playing`).fontSize(18)
-          Button('Parent:' + this.isPlaying)
-            .margin(15)
-            .onClick(() => {
-              this.isPlaying = !this.isPlaying
-            })
-        }
-      }
-    }
-    
-    
-    ```
+   ```
+   @Entry
+   @Component
+   struct Player {
+     @State isPlaying: boolean = false
+     build() {
+       Column() {
+         PlayButton({ buttonPlaying: $isPlaying })
+         Text(`Player is ${this.isPlaying ? '' : 'not'} playing`).fontSize(18)
+         Button('Parent:' + this.isPlaying)
+           .margin(15)
+           .onClick(() => {
+             this.isPlaying = !this.isPlaying
+           })
+       }
+     }
+   }
+   
+   ```
 
-2.  Use @Link in the child component to receive data.
+2. Use @Link in the child component to receive data.
 
-    ```
-    @Component
-    struct PlayButton {
-      @Link buttonPlaying: boolean
-    
-      build() {
-        Column() {
-          Button(this.buttonPlaying ? 'pause' : 'play')
-            .margin(20)
-            .onClick(() => {
-              this.buttonPlaying = !this.buttonPlaying
-            })
-        }
-      }
-    }
-    ```
-
+   ```
+   @Component
+   struct PlayButton {
+     @Link buttonPlaying: boolean
+   
+     build() {
+       Column() {
+         Button(this.buttonPlaying ? 'pause' : 'play')
+           .margin(20)
+           .onClick(() => {
+             this.buttonPlaying = !this.buttonPlaying
+           })
+       }
+     }
+   }
+   ```
 
 **Reference**
 
 [@Link](../quick-start/arkts-link.md)
 
-## How does a component synchronize state with its grandchild components?
+
+## How does a component synchronize state with its grandchild components? (API version 9)
 
 **Solution**
 
--   Method 1 (recommended): Use the @Provide and @Consume decorators. Specifically, use @Provide in the component and @Consume in the grandchild component to implement two-way data binding between the components.
+- Method 1 (recommended): Use the \@Provide and \@Consume decorators. Specifically, use \@Provide in the component and \@Consume in the grandchild component to implement two-way data binding between the components.
 
--   Method 2: Use the @State and @Link decorators. Specifically, use @State in the parent component and @Link in each layer of child components (child and grandchild components).
+- Method 2: Use the \@State and \@Link decorators. Specifically, use \@State in the parent component and \@Link in each layer of child components (child and grandchild components).
 
 **Example 1**
 
-1.  Include a child component in the component. Employ @Provide in the component to provide the **reviewVote** parameter to its grandchild component.
+1. Include a child component in the component. Employ @Provide in the component to provide the **reviewVote** parameter to its grandchild component.
 
-    ```
-    @Entry
-    @Component
-    struct Father{
-      @Provide("reviewVote") reviewVotes: number = 0;
-    
-      build() {
-        Column() {
-          Son()
-          Button(`Father: ${this.reviewVotes}`)
-            ...
-        }
-      }
-    }
-    ```
+   ```
+   @Entry
+   @Component
+   struct Father{
+     @Provide("reviewVote") reviewVotes: number = 0;
+   
+     build() {
+       Column() {
+         Son()
+         Button(`Father: ${this.reviewVotes}`)
+           ...
+       }
+     }
+   }
+   ```
 
-2.  Include the grandchild component in the child component.
+2. Include the grandchild component in the child component.
 
-    ```
-    @Component
-    struct Son{
-      build() {
-        Column() {
-          GrandSon()
-        }
-      }
-    }
-    ```
+   ```
+   @Component
+   struct Son{
+     build() {
+       Column() {
+         GrandSon()
+       }
+     }
+   }
+   ```
 
-3.  Employ @Consume in the grandchild component to receive the **reviewVote** parameter.
+3. Employ @Consume in the grandchild component to receive the **reviewVote** parameter.
 
-    ```
-    @Component
-    struct GrandSon{
-      @Consume("reviewVote") reviewVotes: number
-    
-      build() {
-        Column() {
-          Button(`GrandSon: ${this.reviewVotes}`)
-            ...
-        }.width('100%')
-      }
-    }
-    ```
-
+   ```
+   @Component
+   struct GrandSon{
+     @Consume("reviewVote") reviewVotes: number
+   
+     build() {
+       Column() {
+         Button(`GrandSon: ${this.reviewVotes}`)
+           ...
+       }.width('100%')
+     }
+   }
+   ```
 
 **Example 2**
 
-1.  Employ @State in the component **Father** to decorate **reviewVote**.
+1. Decorate **reviewVote** with @State in the component **Father**.
 
-    ```
-    @Entry
-    @Component
-    struct Father {
-      @State reviewVotes: number = 0;
-    
-      build() {
-        Column() {
-          Son({reviewVotes:$reviewVotes})
-          Button(`Father: ${this.reviewVotes}`)
-            ...
-        }
-      }
-    }
-    ```
+   ```
+   @Entry
+   @Component
+   struct Father {
+     @State reviewVotes: number = 0;
+   
+     build() {
+       Column() {
+         Son({reviewVotes:$reviewVotes})
+         Button(`Father: ${this.reviewVotes}`)
+           ...
+       }
+     }
+   }
+   ```
 
-2.  Employ @Link in the child component **Son** to receive the **reviewVote** parameter passed from **Father**.
+2. Decorate **reviewVote** with \@Link in the child component **Son** to receive the value passed from **Father**.
 
-    ```
-    @Component
-    struct Son{
-      @Link reviewVotes: number;
-      build() {
-        Column() {
-          Grandson({reviewVotes:$reviewVotes})
-        }
-      }
-    }
-    
-    
-    ```
+   ```
+   @Component
+   struct Son{
+     @Link reviewVotes: number;
+     build() {
+       Column() {
+         Grandson({reviewVotes:$reviewVotes})
+       }
+     }
+   }
+   
+   ```
 
-3.  Employ @Link in the grandchild component **GrandSon** to receive the **reviewVote** parameter passed from **Son**.
+3. Decorate **reviewVote** with \@Link in the grandchild component **GrandSon** to receive the value passed from **Son**.
 
-    ```
-    @Component
-    struct Grandson{
-      @Link reviewVotes: number;
-    
-      build() {
-        Column() {
-          Button(`Grandson: ${this.reviewVotes}`)
-            ...
-        }.width('100%')
-      }
-    }
-    ```
+   ```
+   @Component
+   struct Grandson{
+     @Link reviewVotes: number;
+   
+     build() {
+       Column() {
+         Button(`Grandson: ${this.reviewVotes}`)
+           ...
+       }.width('100%')
+     }
+   }
+   ```
 
 
 ## How is a callback function defined in JS? (API version 9)
@@ -277,29 +272,30 @@ The **@Link** semantics are derived from the '**$**' operator. In other words, *
 
 The following is an example to illustrate how to define a callback function:
 
-1.  Define the callback function.
+1. Define the callback function.
 
-    ```
-    // Define a callback function that contains two parameters and returns void.
-    myCallback: (a:number,b:string) => void
-    ```
+   ```
+   // Define a callback function that contains two parameters and returns void.
+   myCallback: (a:number,b:string) => void
+   ```
 
-2.  Initialize the callback function by assigning values.
+2. Initialize the callback function by assigning values.
 
-    ```
-    aboutToAppear() {
-      // Initialize the callback function.
-      this.myCallback= (a,b)=>{
-        console.info(`handle myCallback a=${a},b=${b}`)
-      }}
-    ```
+   ```
+   aboutToAppear() {
+     // Initialize the callback function.
+     this.myCallback= (a,b)=>{
+       console.info(`handle myCallback a=${a},b=${b}`)
+     }}
+   ```
 
 
-## How do I maximize performance in cases when a component needs to be updated for multiple times? (API version 9)
+## How do I maximize performance in cases when a component needs to be updated multiple times? (API version 9)
 
 **Solution**
 
 Use the state management module for the purpose. Currently, the minimum update is supported. When the data dependency changes, instead of updating the entire custom component, only the view content that depends on the data is updated.
+
 
 ## How does this of a function in an object point to the outer layer? (API version 9)
 
@@ -317,15 +313,16 @@ const obj = {
 }
 ```
 
+
 ## How do I obtain data through an API before page loading? (API version 9)
 
 **Symptom**
 
-Data needs to be obtained before page rendering so as to be rendered when needed.
+Data needs to be obtained before page rendering so that the page can be rendered in time when needed.
 
 **Solution**
 
-In the **aboutToAppear** function, use an asynchronous API to obtain page data and @State to decorate related variables. After the data is obtained, the page is automatically refreshed based on the variables.
+In the **aboutToAppear** function, use an asynchronous API to obtain page data. After the data is obtained, the page is automatically refreshed with the \@State decorated variable.
 
 **Example**
 
@@ -355,11 +352,13 @@ struct Test6Page {
 }
 ```
 
-## How do I display sensor data in the \<Text> component on the UI in real time? (API version 9)
+
+## How do I display sensor data in the \<Text> component on the UI? (API version 9)
 
 **Solution**
 
 The type of data returned by the sensor is double. To display it in the \<Text> component, first convert the data from double to string.
+
 
 ## How do I listen for screen rotation events? (API version 9)
 
@@ -383,7 +382,8 @@ listener.off('change', onPortrait) // Deregister a callback.
 
 **Reference**
 
-[@ohos.mediaquery (Media Query)](../reference/apis/js-apis-mediaquery.md)
+[Media Query](../reference/apis-arkui/js-apis-mediaquery.md)
+
 
 ## What should I do if a singleton does not take effect after the page is changed? (API version 9)
 
@@ -397,11 +397,12 @@ A JS file is generated for each page, and a defined singleton is generated in ea
 
 To share an instance across pages, it must be created at the UIAbility or application level.
 
-## How do I convert a string in time format to a date object? (API version 9)
+
+## How do I convert a string in time format to a Date object? (API version 9)
 
 **Solution**
 
-If the string is in the yyyy-MM-dd format, you can convert it to a date object by calling **new Date\("yyyy-MM-dd"\)**.
+If the string is in the yyyy-MM-dd format, you can convert it to a Date object by calling **new Date("yyyy-MM-dd"\)**.
 
 ```
 new Date("2021-05-23");
@@ -410,7 +411,7 @@ new Date("2020-14-03");
 new Date("14-02-2021");
 ```
 
-If the string is in other formats, you can convert it to a date object by calling **new Date\(year:number,month:number,day?:number,hour?:number,minute?:number,second?:number,ms?:number\)**.
+If the string is in any other format, you can convert it to a Date object by calling **new Date(year:number,month:number,day?:number,hour?:number,minute?:number,second?:number,ms?:number)**.
 
 ```
 // Syntax for creating a date based on parameters:
@@ -419,12 +420,18 @@ new Date(yearValue, IndexOfMonth, dayValue, hours, minutes, seconds)
 
 Pass the date parameters as arguments.
 
--   **yearValue**: the year in the ISO 8061 YYYY format, for example, **2021**. If we specify a value in YY format, it will be incorrectly accepted. For example, the value **21** would be considered the year 1921 rather than 2021.
--   **IndexOfMonth**: index of the month, which starts from 0. It is obtained by subtracting 1 from the month value. For example, for March, the month value is 3, but the value of **IndexOfMonth** will be 2 (that is, 3 – 1 = 2). The value should typically be within the 0–11 range.
--   **dayValue**: day of the month. It should range from 1 to 31 depending on the number of days in the month. For example, for 21-05-2021, the day value is **21**.
--   **hours**: hour of the day. For example, **10** for 10 o'clock.
--   **minutes**: number of minutes that have elapsed in the hour.
--   **seconds**: number of seconds past a minute.
+- **yearValue**: the year in the ISO 8061 YYYY format, for example, **2021**. If we specify a value in YY format, it may be incorrectly accepted. For example, the value **21** would be regarded as the year 1921 rather than 2021.
+
+- **IndexOfMonth**: index of the month, which starts from 0. It is obtained by subtracting 1 from the month value. For example, for March, the month value is 3, but the value of **IndexOfMonth** will be 2 (that is, 3 – 1 = 2). The value should typically be within the 0–11 range.
+
+- **dayValue**: day of the month. It should range from 1 to 31 depending on the number of days in the month. For example, for 21-05-2021, the day value is **21**.
+
+- **hours**: hour of the day. For example, **10** for 10 o'clock.
+
+- **minutes**: number of minutes that have elapsed in the hour.
+
+- **seconds**: number of seconds past a minute.
+
 
 ## How do I convert a string to a byte array in ArkTS? (API version 9)
 
@@ -442,6 +449,7 @@ stringToArray(str:string) {
 }
 ```
 
+
 ## How do I implement string encoding and decoding in ArkTS? (API version 9)
 
 **Solution**
@@ -450,7 +458,8 @@ You can use **TextEncoder** and **TextDecoder** provided by the **util** module.
 
 **Reference**
 
-[TextEncoder](../reference/apis/js-apis-util.md#textencoder), [TextDecoder](../reference/apis/js-apis-util.md#textdecoder)
+[TextEncoder](../reference/apis-arkts/js-apis-util.md#textencoder), [TextDecoder](../reference/apis-arkts/js-apis-util.md#textdecoder)
+
 
 ## How do I import and export namespaces? (API version 9)
 
@@ -458,40 +467,44 @@ You can use **TextEncoder** and **TextDecoder** provided by the **util** module.
 
 Use **import** and **export** statements.
 
--   Exporting namespaces from the database:
+- Exporting namespaces from the database:
 
-    ```
-    namespace Util{
-        export function getTime(){
-            return Date.now()
-        }
-    }
-    export default Util
-    ```
+  ```
+  namespace Util{
+      export function getTime(){
+          return Date.now()
+      }
+  }
+  export default Util
+  ```
 
--   Importing namespaces
+- Importing namespaces
 
-    ```
-    import Util from './util'
-    Util.getTime()
-    ```
+  ```
+  import Util from './util'
+  Util.getTime()
+  ```
+
 
 ## Can relational database operations be performed in the Worker thread? (API version 9)
 
 Currently, the relational database (RDB) object in the UI main thread cannot be sent to the Worker thread for operations. To use the RDB in the Worker thread, you must obtain a new RDB object.
 
+
 ## How do I obtain files in the resource directory of an application? (API version 9)
 
 **Solution**
 
--   Method 1: Use **\$r** or **\$rawfile**. This method applies to static access, during which the **resource** directory remains unchanged when the application is running.
--   Method 2: Use **ResourceManager**. This method applies to dynamic access, during which the **resource** directory dynamically changes when the application is running.
+- Method 1: Use **$r** or **$rawfile**. This method applies to static access, during which the **resource** directory remains unchanged when the application is running.
+
+- Method 2: Use **ResourceManager**. This method applies to dynamic access, during which the **resource** directory dynamically changes when the application is running.
 
 **Reference**
 
-[Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [@ohos.resourceManager (Resource Manager)](../reference/apis/js-apis-resource-manager.md)
+[Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [@ohos.resourceManager (Resource Management)](../reference/apis-localization-kit/js-apis-resource-manager.md)
 
-## How do I convert the XML format to the JSON format? (API version 9)
+
+## How do I convert data from XML to JSON? (API version 9)
 
 **Symptom**
 
@@ -570,19 +583,27 @@ struct Faq_4_31 {
 }
 ```
 
+
 ## What are the restrictions on using generator functions in TypeScript? (API version 9)
 
 **Solution**
 
 Below are the restrictions on using generator functions in TypeScript:
 
--   Expressions can be used only in character strings (in the \(\$\{expression\}\) format), **if** conditions, **ForEach** parameters, and component parameters.
--   No expressions should cause any application state variables (**@State**, **@Link**, and **@Prop**) to change. Otherwise, undefined and potentially unstable framework behavior may occur.
--   The generator function cannot contain local variables.
+- Expressions can be used only in strings (in the ${expression} format), **if** statements, **ForEach** parameters, and component parameters.
+
+- No expressions should cause any application state variables (including those decorated by \@State, \@Link, and \@Prop) to change. Otherwise, undefined and potentially unstable framework behavior may occur.
+
+- The generator function cannot contain local variables.
 
 None of the above restrictions apply to anonymous function implementations of event handlers (such as **onClick**).
 
+
 ## How do I set a badge for each of the four corners of an image? (API version 9)
+
+**Symptom**
+
+ 
 
 **Solution**
 
@@ -614,15 +635,17 @@ struct PositionExample2 {
 }
 ```
 
+
 ## How do I use the util.generateRandomUUID parameter? (API version 9)
 
 **Solution**
 
-The bottom layer of **generateRandomUUID** uses the **Node.js crypto.randomUUID\(\)** API. If the parameter passed in is **false**, a new UUID is generated and cached in the system. If the parameter passed in is **true**, the existing cached UUID is used.
+The **generateRandomUUID** API is based on the Node.js function **crypto.randomUUID()**. If the parameter passed in is **false**, a new UUID is generated and cached in the system. If the parameter passed in is **true**, a cached UUID is used.
 
 **Reference**
 
-[util.generateRandomUUID](../reference/apis/js-apis-util.md#utilgeneraterandomuuid9)
+[util.generateRandomUUID](../reference/apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)
+
 
 ## Do the Worker thread and the main thread run in the same global context? (API version 9)
 
@@ -632,9 +655,14 @@ No. The Worker thread and the main thread are not in the same context. They inte
 
 **Reference**
 
-[@ohos.worker (Worker Startup)](../reference/apis/js-apis-worker.md)
+[@ohos.worker (Starting the Worker)](../reference/apis-arkts/js-apis-worker.md)
+
 
 ## How do I set one application icon for different device types? (API version 9)
+
+**Symptom**
+
+ 
 
 **Solution**
 
@@ -671,19 +699,30 @@ To configure your application icon to show on different device types, use resour
    .height('100%') } }
 ```
 
-## How do I prevent "this" in a method from changing to "undefined" when the method is called? (API version 9)
+**Reference**
+
+ 
+
+
+## How do I prevent this in a method from changing to 'undefined' when the method is called? (API version 9)
+
+**Symptom**
+
+ 
 
 **Solution**
 
-Method 1: Add **.bind\(this\)** when calling the method.
+Method 1: Add **.bind(this)** when calling the method.
 
 Method 2: Use the arrow function.
 
-## Is there any difference between the systemTime.getCurrentTime\(\) API of OpenHarmony and the new Date\(\).getTime\(\) API of JS? (API version 9)
+
+## How does the systemTime.getCurrentTime() API differ from the new Date().getTime() API of JS? (API version 9)
 
 **Solution**
 
-**systemTime.getCurrentTime\(false\)** is equivalent to **new Date\(\).getTime\(\)**, returning the number of milliseconds since January 1, 1970. **systemTime.getCurrentTime\(true\)** returns the number of nanoseconds since January 1, 1970. The system time is used in both APIs.
+**systemTime.getCurrentTime(false)** is equivalent to **new Date().getTime()**, returning the number of milliseconds since January 1, 1970. **systemTime.getCurrentTime(true)** returns the number of nanoseconds since January 1, 1970. The system time is used in both APIs.
+
 
 ## How do I implement the ArkTS counterpart of the JS slot feature? (API version 9)
 
@@ -693,9 +732,10 @@ Use @Build and @BuilderParam in ArkTS.
 
 **Reference**
 
-[\@BuilderParam: @Builder Function Reference](../quick-start/arkts-builderparam.md).
+[@BuilderParam Decorator: @Builder Function Reference](../quick-start/arkts-builderparam.md)
 
-## Why is the text not centered vertically when lineHeight is set? (API version 9)
+
+## Why is text not centered vertically when lineHeight is set? (API version 9)
 
 **Cause**
 
@@ -703,7 +743,7 @@ Text in the **\<Text>** component is centered by default. You do not need to set
 
 **Reference**
 
-[Text](../reference/arkui-ts/ts-basic-components-text.md#example-1)
+[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#example-1)
 
 
 ## Which API is used for URL encoding? (API version 9)
@@ -717,6 +757,7 @@ let a = encodeURI(" ")
 console.log(a) // %20
 ```
 
+
 ## How do I parse XML files? (API version 9)
 
 **Solution**
@@ -725,7 +766,8 @@ You can use the **convert** API of the **ConvertXML** module to parse XML text i
 
 **Reference**
 
-[@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis/js-apis-convertxml.md)
+[@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis-arkts/js-apis-convertxml.md)
+
 
 ## What should I do if the .stateStyles doesn't conform standard error is reported with the use of the @Styles decorator? (API version 9)
 
@@ -737,17 +779,18 @@ The @Styles decorator is used for non-universal attributes.
 
 Use the @Styles decorator only for non-universal attributes. Alternatively, use Builder to extract common components.
 
-## How do I use \$\$ for the \<Radio> component? (API version 9)
+
+## When do I use $$ for the \<Radio> component? (API version 9)
 
 **Solution**
 
-When the **\<Radio>** component uses a variable bound to **\$\$**, changes to the variable trigger re-render of only the owning component, improving the rendering speed.
+You can use **$$** for two-way binding of a variable for the **\<Radio>** component. In this way, changes to the variable trigger re-render of only the owning component, improving the rendering speed.
 
 When the state of the **\<Radio>** component changes, the bound variable is not automatically updated.
 
 **Reference**
 
-[$ Syntax: Two-Way Synchronization of Built-in Components](../quick-start/arkts-two-way-sync.md)
+[$$ Syntax: Two-Way Synchronization of Built-in Components](../quick-start/arkts-two-way-sync.md)
 
 ## What should I do if ForEach does not work on a real device?
 
@@ -776,3 +819,62 @@ Add the **metadata** configuration item to the **module.json5** file.
   }
 }
 ```
+
+## Does AppStorage allow for object sharing between threads? If not, what's the workaround? (API version 10)
+
+**Solution**
+
+AppStorage provides central storage for application UI state attributes. It is bound to the application process and is created by the UI framework at application startup.
+
+AppStorage supports state sharing among multiple UIAbility instances in the main thread of an application.
+
+As AppStorage must run on the UI thread, it does not allow for object sharing with other threads. Currently, no workaround is available.
+
+**Reference**
+
+[AppStorage: Application-wide UI State Storage](../quick-start/arkts-appstorage.md)
+
+## How do I register custom fonts? Where can I find the recommended font resources? How do I obtain them? (API version 10)
+
+**Solution**
+
+Store your custom resource files in the project directory. In the code, call **registerFont** to register a custom font. The registered font can then be used for text components through the **fontFamily** attribute.
+To reference custom font resources, the $rawfile mode is recommended. The resources can be stored in the **resources/rawfile** directory.
+
+**Reference**
+
+[@ohos.font (Custom Font Registration)](../reference/apis-arkui/js-apis-font.md)
+
+## How does the \<Text> component load Unicode characters? (API version 10)
+
+**Solution**
+
+Pass a string to the **content** parameter of the **\<Text>** component, with Unicode escape sequence in the string. The sample code is as follows:
+
+```ts
+@Entry
+@Component
+struct text {
+  build() {
+  Column(){
+    Text("\u{1F468}\u200D\u{1F468}\u200D\u{1F467}\u200D\u{1F466}")
+      .width(100)
+      .height(100)
+      .fontSize(50)
+  }
+  }
+}
+```
+
+## How do I implement the ArkTS counterpart of the JS slot feature? (API version 10)
+
+**Solution**
+
+ArkUI provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purposes as the **build** function. The \@Builder decorated function follows the same syntax rules as the **build()** function. You can abstract reusable UI elements into a method and call the method in **build**.
+ArkUI also provides @BuilderParam, a decorator used to decorate a custom component variable of type Reference to an \@Builder method. When initializing a custom component, you can add the specific feature to it by assigning a value to the variable. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
+ 
+
+**Reference**
+
+1. [@Builder Decorator: Custom Builder Function](../quick-start/arkts-builder.md)
+2. [@BuilderParam Decorator: @Builder Function Reference](../quick-start/arkts-builderparam.md)

@@ -58,7 +58,7 @@ typedef struct {
 
 - 用于表示Node-API执行时的上下文，Native侧函数入参，并传递给函数中的Node-API接口。
 
-- 退出Native侧插件时，napi_env将失效，该事件通过回调传递给napi_add_env_cleanup_hook和napi_set_instance_data。
+- napi_env与JS线程绑定，JS线程退出后，napi_env将失效。
 
 - 禁止缓存napi_env，禁止在不同Worker中传递napi_env。
 
@@ -456,7 +456,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
 | napi_run_script_path | 运行指定abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
-| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的线程中使用 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTs基础运行时环境中使用。 |
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |

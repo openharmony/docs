@@ -166,6 +166,8 @@ minFontSize(value: number | string | Resource)
 
 自适应字号生效时，fontSize设置不生效。
 
+minFontSize小于或等于0时，自适应字号不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -441,6 +443,31 @@ bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长�
 | responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
 | options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | 否   | 选择菜单的选项。                                             |
 
+### fontFeature<sup>12+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+
 >  **说明：**
 >
 >  不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。
@@ -448,6 +475,8 @@ bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长�
 >  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，在Text组件中，默认值为true，即文本内容大于组件内容时，文本会截断。如果需要显示超出的部分，可以设置clip为false。
 >
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。
+>
+>  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -1044,3 +1073,32 @@ function MenuStyles() {
 ```
 
 ![](figures/textBindSelectionMenu.gif)
+
+### 示例9
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+
+```ts
+@Entry
+@Component
+struct text {
+  @State text1: string = 'This is ss01 on : 0123456789'
+  @State text2: string = 'This is ss01 off: 0123456789'
+
+  build() {
+    Column(){
+      Text(this.text1)
+        .fontSize(20)
+        .margin({top:200})
+        .fontFeature("\"ss01\" on")
+      Text(this.text2)
+        .margin({top:10})
+        .fontSize(20)
+        .fontFeature("\"ss01\" off")
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![fontFeature](figures/textFontFeature.png)

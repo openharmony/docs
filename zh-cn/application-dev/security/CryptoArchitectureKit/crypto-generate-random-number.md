@@ -39,9 +39,9 @@
 
 1. 调用[cryptoFramework.createRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreaterandom)，生成随机数操作实例。
 
-2. 设置DataBlob数据，调用[Random.setSeed](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setseed)，为随机数生成池设置种子。
+2. (可选)设置DataBlob数据，调用[Random.setSeed](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setseed)，为随机数生成池设置种子。
 
-3. 设置指定字节长度，调用[Random.generateRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandom)，生成安全随机数。
+3. 设置指定字节长度，调用[Random.generateRandom](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandom)或[Random.generateRandomSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generaterandomsync10)，生成安全随机数。
    
    指定字节长度范围为1~INT_MAX。
 

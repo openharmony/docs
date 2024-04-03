@@ -16,7 +16,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-Obtains the total heap memory size of this application.
+Obtains the size of heap memory (including the allocator metadata) held by a process, which is measured by the memory allocator.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -24,7 +24,7 @@ Obtains the total heap memory size of this application.
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| bigint | Total heap memory size of the application, in bytes.|
+| bigint | Size of the heap memory (including the allocator metadata) held by the process, in bytes.|
 
 **Example**
 
@@ -36,7 +36,7 @@ Obtains the total heap memory size of this application.
 
 getNativeHeapAllocatedSize(): bigint
 
-Obtains the allocated heap memory size of this application.
+Obtains the size of the heap memory allocated to a process service, which is measured by the memory allocator.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -44,7 +44,7 @@ Obtains the allocated heap memory size of this application.
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| bigint | Allocated heap memory of the application, in bytes.|
+| bigint | Size of the heap memory allocated to a process service, in bytes.|
 
 
 **Example**
@@ -56,7 +56,7 @@ Obtains the allocated heap memory size of this application.
 
 getNativeHeapFreeSize(): bigint
 
-Obtains the free heap memory size of this application.
+Obtains the size of the cache memory held by the memory allocator.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -64,7 +64,7 @@ Obtains the free heap memory size of this application.
 
 | Type  | Description                           |
 | ------ | ------------------------------- |
-| bigint | Free heap memory size of the application, in bytes.|
+| bigint | Size of the cache memory held by the memory allocator, in bytes.|
 
 **Example**
   ```ts
@@ -177,7 +177,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 Obtains system service information.
 
-**Required permissions**: ohos.permission.DUMP
+**Required permissions**: ohos.permission.DUMP (available only for system applications)
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -281,12 +281,6 @@ Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` a
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**Parameters**
-
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
-
 **Example**
 
 ```ts
@@ -341,7 +335,8 @@ try {
 
 startProfiling(filename : string) : void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9).
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9).
 
 Starts the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
@@ -367,7 +362,8 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9).
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9).
 
 Stops the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
@@ -387,7 +383,8 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9).
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9).
 
 Exports the heap data.
 
@@ -422,7 +419,7 @@ Obtains VM memory information.
 **Example**
 
   ```ts
-let vmMemory: VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
@@ -447,7 +444,7 @@ Obtains the CPU usage of application threads.
 **Example**
 
   ```ts
-let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
+let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
     appThreadCpuUsage[ii].cpuUsage);
@@ -458,7 +455,7 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-Starts application trace. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
+Starts application trace collection. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
 
 **startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
 
@@ -470,7 +467,7 @@ Starts application trace. **startAppTraceCapture()** and **[stopAppTraceCapture(
 | -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
 | tags     | number[] | Yes  | For details, see [tags](#tags12).                                                     |
 | flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).         |
-| limitSize| number   | Yes  | Limit on the size of the trace file, in bytes.                                                      |
+| limitSize| number   | Yes  | Limit on the trace file size, in bytes. The maximum size of a single file is 500 MB.                                                      |
 
 **Return value**
 
@@ -492,10 +489,10 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 **Example**
 
 ```ts
-let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
-let flag = hidebug.TraceFlag.MAIN_THREAD;
-let limitSize = 1024 * 1024;
-let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
 // code block
 // ...
 // code block
@@ -506,7 +503,7 @@ hidebug.stopAppTraceCapture();
 
 stopAppTraceCapture() : void
 
-Stops application trace. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
+Stops application trace collection. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
 
 **startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
 
@@ -524,10 +521,10 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 **Example**
 
 ```ts
-let tags = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ACE];
-let flag = hidebug.TraceFlag.MAIN_THREAD;
-let limitSize = 1024 * 1024;
-let fileName = hidebug.startAppTraceCapture(tags, flag, limitSize);
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
 // code block
 // ...
 // code block
@@ -561,9 +558,9 @@ Defines the memory limit of the application process.
 
 | Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  Yes | Limit on the resident set of the application process, in bytes    |
-| vssLimit  | bigint |  Yes | Limit on the Virtual memory of the application process, in bytes.      |
-| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in bytes.     |
+| rssLimit    | bigint |  Yes | Limit on the resident set size, in KB.    |
+| vssLimit  | bigint |  Yes | Limit on the virtual memory size, in KB.      |
+| vmHeapLimit | bigint |  Yes | Limit on the JS VM heap size of the calling thread, in KB.     |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -573,9 +570,9 @@ Describes the VM memory information.
 
 | Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in bytes.   |
-| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in bytes. |
-| allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in bytes.|
+| totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.   |
+| heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB. |
+| allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in KB.|
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -675,7 +672,7 @@ Obtains the memory information of the application process.
 **Example**
 
 ```ts
-let nativeMemInfo: NativeMemInfo = hidebug.getAppNativeMemInfo();
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
 
@@ -724,7 +721,7 @@ Obtains system memory information.
 **Example**
 
 ```ts
-let systemMemInfo: SystemMemInfo = hidebug.getSystemMemInfo();
+let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
 hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
 
@@ -746,7 +743,7 @@ Describes the system memory information.
 
 ## TraceFlag<sup>12+</sup>
 
-Defines the type of the trace thread.
+Defines the type of the trace collection thread.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 

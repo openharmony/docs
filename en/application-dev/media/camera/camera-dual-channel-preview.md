@@ -8,7 +8,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 ## Constraints
 
--  Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11) to add streams without calling [session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11) first.
+- Currently, streams cannot be dynamically added. In other words, you cannot call [addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11) to add streams without calling [session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11) first.
 - After an **ImageReceiver** object processes image data obtained, it must release the image buffer so that the buffer queue of the surface properly rotates.
 
 ## API Calling Process

@@ -80,6 +80,17 @@ updateColor(value: ResourceColor): void
 | ------ | ------------------------------------------ | ---- | ---------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度遮罩的颜色。 |
 
+### enableBreathingAnimation<sup>12+</sup>
+
+enableBreathingAnimation(value: boolean): void
+
+进度满时的呼吸光晕动画开关。默认关闭呼吸光晕动画。
+
+**参数：**
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述         |
+| ------ | ------------------------------------------ | ---- | ---------------- |
+| value  | boolean | 是   | 设置为true则开启呼吸光晕动画。默认值：false |
 
 
 ## 示例
@@ -132,6 +143,7 @@ struct ProgressMaskExample {
   @State progressflag1: boolean = true;
   @State color: Color = 0x01006CDE;
   @State value: number = 10.0;
+  @State enableBreathingAnimation: boolean = false;
   @State progress: ProgressMask = new ProgressMask(10.0, 100.0, Color.Gray);
   build() {
     Column({ space: 15 }) {
@@ -164,6 +176,13 @@ struct ProgressMaskExample {
             this.progress.updateColor(0x9f0000ff);
           }
           this.progressflag1 = !this.progressflag1
+        }).width(200).height(50).margin(20)
+      
+      // 开关呼吸光晕动画
+      Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
+        .onClick((event?: ClickEvent) => {
+          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
         }).width(200).height(50).margin(20)
 
       // 恢复进度遮罩

@@ -398,7 +398,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 打开自定义弹窗。
 
-不支持在[ServiceExtension](../../application-models/serviceextensionability.md)中使用。
+不支持在ServiceExtension中使用。
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
@@ -536,8 +536,8 @@ closeCustomDialog(dialogId: number): void
 | borderWidth<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
 | borderColor<sup>12+</sup> | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](arkui-ts/ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
 | borderStyle<sup>12+</sup> | [BorderStyle](arkui-ts/ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](arkui-ts/ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
-| width<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br /> 百分比参数方式：以父元素宽的百分比来设置弹窗的宽度。|
-| height<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br /> 百分比参数方式：以父元素高的百分比来设置弹窗的高度。|
+| width<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br />**说明：**<br />弹窗的宽度百分比是相对主窗口或子窗口(showInSubWindow)的宽度。<br />非showInSubWindow弹窗宽度的最大尺寸是主窗口宽度，showInSubWindow弹窗宽度的最大尺寸是子窗口宽度。|
+| height<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br />**说明：**<br />弹窗的高度百分比是相对主窗口或子窗口(showInSubWindow)的高度。<br />当高度设置100%，非showInSubWindow弹窗高度的最大尺寸是主窗口高度，showInSubWindow弹窗高度的最大尺寸是子窗口高度。<br />设置弹窗对齐方式，弹出的显示区域不足，会剪裁弹窗。|
 | shadow<sup>12+</sup>| [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
 
 ## BaseDialogOptions<sup>11+</sup>
@@ -554,6 +554,13 @@ closeCustomDialog(dialogId: number): void
 | isModal         | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 | showInSubWindow | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。 |
 | onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](arkui-ts/ts-methods-alert-dialog-box.md#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+|  autoCancel<sup>12+</sup> |       boolean                                   | 否   | 点击遮障层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。<br/>默认值：true |
+|  maskColor<sup>12+</sup> |        [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值: 0x33000000              |
+| transition<sup>12+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10) | 否   | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/> 1.如果不设置，则使用默认的显示/退出动效。<br/> 2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/> 3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。                               |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。 |
+| OnDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。 |
+| OnWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在OnWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
+| OnWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。 |
 
 ## ActionMenuSuccessResponse
 

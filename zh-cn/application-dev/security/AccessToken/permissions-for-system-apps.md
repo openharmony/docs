@@ -1589,6 +1589,18 @@
 
 **起始版本**：11
 
+### ohos.permission.GET_BLUETOOTH_PEERS_MAC
+
+允许应用获取外设的蓝牙真实MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.USE_USER_IDM
 
 允许应用访问系统身份凭据信息。
@@ -1877,6 +1889,30 @@
 
 **起始版本**：11
 
+### ohos.permission.LAUNCH_SPAMSHIELD_PAGE
+
+允许应用访问骚扰拦截页面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SPAMSHIELD_SERVICE
+
+允许应用访问骚扰拦截能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER
 
 允许业务接入安全隐私中心。
@@ -1924,6 +1960,54 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.GET_PRIVACY_INDICATOR
+
+允许系统应用获取隐私权限事件提醒信息详情。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_PRIVACY_INDICATOR
+
+允许系统应用控制隐私权限事件提醒的呈现状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_SUPER_PRIVACY
+
+允许获取超级隐私模式的状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_SUPER_PRIVACY
+
+允许设置超级隐私模式的状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
@@ -2393,6 +2477,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_PROTOCOL_DFX_STATE
+
+允许系统应用打开或关闭通信协议相关的开关。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
 允许系统应用及系统SA调用账号服务。
@@ -2432,6 +2528,30 @@
 ### ohos.permission.hsdr.REQUEST_HSDR
 
 允许系统应用访问安全检测响应框架安全策略云查功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.WRITE_GTOKEN_POLICY
+
+允许系统应用写入应用管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.READ_GTOKEN_POLICY
+
+允许系统应用读取应用管控策略。
 
 **权限级别**：system_basic
 

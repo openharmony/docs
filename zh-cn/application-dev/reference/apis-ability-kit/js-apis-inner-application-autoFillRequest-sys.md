@@ -24,10 +24,21 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 是   | 自动填充类型。          |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+| isPopup<sup>12+</sup>    | boolean               | 是   | 自动填充服务是否拉起popup窗口。<br>true：当前拉起popup窗口。<br>false：当前拉起模态窗。              |
 
 ## SaveRequest
 
 自动保存请求信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称        | 类型                 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+
+## UpdateRequest<sup>12+</sup>
+
+自动填充更新信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

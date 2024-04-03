@@ -102,6 +102,7 @@
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
+      - [LoopObserver](js-apis-inner-application-loopObserver.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
@@ -136,6 +137,7 @@
       - [UIAbilityContext(系统接口)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext(系统接口)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData(系统接口)](js-apis-inner-application-viewData-sys.md)
+      - [AutoFillRect(系统接口)](js-apis-inner-application-autoFillRect-sys.md)
     - bundleManager
       - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
       - [applicationInfo](js-apis-bundleManager-applicationInfo.md)

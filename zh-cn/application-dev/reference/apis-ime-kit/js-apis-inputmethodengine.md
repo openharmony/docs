@@ -1307,7 +1307,7 @@ import { BusinessError } from '@ohos.base';
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2')then(() => {
+  panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
@@ -1724,7 +1724,7 @@ setPrivacyMode(isPrivacyMode: boolean): void
 
 ```ts
 try {
-    boolean isPrivacyMode = true;
+    let isPrivacyMode = true;
     panel.setPrivacyMode(isPrivacyMode);
 } catch(err) {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
@@ -3436,7 +3436,7 @@ try {
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](js-apis-keycode.md#keycode)。 |
+| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
 
 ## PanelFlag<sup>10+</sup>

@@ -24,6 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) | 用户提供的native函数的回调函数指针和数据，这些函数通过JSVM-API接口暴露给JavaScript。  | 
+| struct&nbsp;&nbsp;[JSVM_HeapStatistics](_j_s_v_m___heap_statistics.md) | Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。  | 
 | struct&nbsp;&nbsp;[JSVM_InitOptions](_j_s_v_m___init_options.md) | 初始化选项，用于初始化JavaScript虚拟机。  | 
 | struct&nbsp;&nbsp;[JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md) | 创建JavaScript虚拟机的选项。  | 
 | struct&nbsp;&nbsp;[JSVM_VMInfo](_j_s_v_m___v_m_info.md) | JavaScript虚拟机信息。  | 
@@ -42,6 +43,7 @@
 | typedef struct JSVM_EnvScope__ \* [JSVM_EnvScope](_j_s_v_m.md#jsvm_envscope) | 表示用于控制附加到当前虚拟机实例的环境。只有当线程通过 OH_JSVM_OpenEnvScope进入该环境的JSVM_EnvScope后，该环境才 对线程的虚拟机实例可用。  | 
 | typedef struct JSVM_Script__ \* [JSVM_Script](_j_s_v_m.md#jsvm_script) | 表示一段JavaScript代码。  | 
 | typedef struct JSVM_Env__ \* [JSVM_Env](_j_s_v_m.md#jsvm_env) | 表示虚拟机特定状态的上下文环境，需要在调用native函数时作为参数传递， 并且传递给后续任何的JSVM-API嵌套调用。  | 
+| typedef struct JSVM_CpuProfiler__ \* [JSVM_CpuProfiler](_j_s_v_m.md#jsvm_cpuprofiler) | 表示一个JavaScript CPU时间性能分析器。  | 
 | typedef struct JSVM_Value__ \* [JSVM_Value](_j_s_v_m.md#jsvm_value) | 表示JavaScript值。  | 
 | typedef struct JSVM_Ref__ \* [JSVM_Ref](_j_s_v_m.md#jsvm_ref) | 表示JavaScript值的引用。  | 
 | typedef struct JSVM_HandleScope__ \* [JSVM_HandleScope](_j_s_v_m.md#jsvm_handlescope) | 表示JavaScript值的作用域，用于控制和修改在特定范围内创建的对象的生命周期。 通常，JSVM-API值是在JSVM_HandleScope的上下文中创建的。当从JavaScript调用native方法时， 将存在默认JSVM_HandleScope。如果用户没有显式创建新的JSVM_HandleScope，将在默认 JSVM_HandleScope中创建JSVM-API值。对于native方法执行之外的任何代码调用（例如，在libuv回调调用期间）， 模块需要在调用任何可能导致创建JavaScript值的函数之前创建一个作用域。JSVM_HandleScope是使用 OH_JSVM_OpenHandleScope创建的，并使用OH_JSVM_CloseHandleScope销毁的。 关闭作用域代表向GC指示在JSVM_HandleScope作用域的生命周期内创建的所有JSVM_Value将不再从当前堆的栈帧中引用。  | 
@@ -50,6 +52,7 @@
 | typedef struct JSVM_Deferred__ \* [JSVM_Deferred](_j_s_v_m.md#jsvm_deferred) | 表示Promise延迟对象。  | 
 | typedef [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) \* [JSVM_Callback](_j_s_v_m.md#jsvm_callback) | 用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。  | 
 | typedef void(JSVM_CDECL \* [JSVM_Finalize](_j_s_v_m.md#jsvm_finalize)) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, void \*finalizeData, void \*finalizeHint) | 函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。  | 
+| typedef bool(JSVM_CDECL \* [JSVM_OutputStream](_j_s_v_m.md#jsvm_outputstream)) (const char \*data, int size, void \*streamData) | ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。  | 
 
 
 ### 枚举

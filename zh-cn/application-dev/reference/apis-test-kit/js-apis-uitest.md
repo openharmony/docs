@@ -2354,13 +2354,17 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2826,24 +2830,28 @@ setPoint(finger: number, step: number, point: Point): void
 
 **参数：**
 
-| 参数名 | 类型             | 必填 | 说明             |
-| ------ | ---------------- | ---- | ---------------- |
-| finger | number           | 是   | 手指的序号。     |
-| step   | number           | 是   | 步骤的序号。     |
-| point  | [Point](#point9) | 是   | 该行为的坐标点。 |
+| 参数名 | 类型             | 必填 | 说明                                                       |
+| ------ | ---------------- | ---- | ---------------------------------------------------------- |
+| finger | number           | 是   | 手指的序号。                                               |
+| step   | number           | 是   | 步骤的序号。                                               |
+| point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10至80像素点范围内。 |
 
 **示例：**
 
 ```ts
 import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
 }
 ```
 

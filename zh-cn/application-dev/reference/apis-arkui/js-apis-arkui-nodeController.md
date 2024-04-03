@@ -39,7 +39,7 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 | 类型             | 说明                                                                                                                                                                                                                                                        |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的占位节点上。若返回null对象，将清空对应[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的子节点。 |  |
+| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的占位节点上。若返回null对象，将清空对应[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的子节点。 |
 
 ### aboutToAppear
 

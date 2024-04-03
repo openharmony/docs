@@ -24,15 +24,17 @@
       - [使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
       - [使用Node-API接口在主线程中进行模块加载](use-napi-load-module.md)
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
-      - [使用Node-API接口在C++新创建的线程中进行模块加载](use-napi-load-module-with-info.md)
+      - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
     - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
+    - [Node-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
     - [JSVM-API开发规范](jsvm-guidelines.md)
+    - [使用JSVM-API进行JS代码的调试调优](jsvm-debugger-cpuprofiler-heapsnapshot.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
-  - 资源调度
-    - [FFRT开发指导](ffrt-guidelines.md)
+  - 线程调度
+    - [QOS开发指导](qos-guidelines.md)
   - 内存管理
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
   - 设备管理

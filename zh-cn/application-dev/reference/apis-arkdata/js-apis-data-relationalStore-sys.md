@@ -28,6 +28,7 @@ import relationalStore from '@ohos.data.relationalStore';
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| vector<sup>12+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。向量数据库目前支持[execute](js-apis-data-relationalStore.md#execute12-1)，[querySql](js-apis-data-relationalStore.md#querysql-1)，[beginTrans](js-apis-data-relationalStore.md#begintrans12)，[commit](js-apis-data-relationalStore.md#commit12)，[rollback](js-apis-data-relationalStore.md#rollback12)以及[ResultSet](js-apis-data-relationalStore.md#resultset)类型操作接口。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## Reference<sup>11+</sup>
 
@@ -715,4 +716,46 @@ if(store != undefined) {
   })
 }
 
+```
+
+## ResultSet
+
+提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
+
+### getFloat32Array<sup>12+</sup>
+
+getFloat32Array(columnIndex: number): Float32Array
+
+以浮点数组的形式获取当前行中指定列的值，仅可在[向量数据库](#storeconfig)下可用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| Float32Array | 以浮点数组的形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800011     | Failed to open database by database corrupted. |
+| 14800013     | The column value is null or the column type is incompatible. |
+
+**示例：**
+
+```ts
+let resultSet: relationalStore.ResultSet | undefined;
+if(resultSet != undefined) {
+  const id = (resultSet as relationalStore.ResultSet).getFloat32Array(0);
+}
 ```
