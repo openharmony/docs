@@ -38,3 +38,5 @@ USB模块接口增加权限控制，新开放的接口包含旧的系统级接�
 应用配置文件xxx.cfg中的apl字段是system_basic 或者 system_core。
 变更后
 配置文件中的permission 字段需要添加ohos.permission.MANAGE_USB_CONFIG权限。
+
+<!--no_check-->

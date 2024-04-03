@@ -198,3 +198,6 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<A
 **适配指导**
 
 正确使用API，无需适配。如发现抛出异常，则说明没有传递足够的必选参数，或是传递的参数类型错误，需要按照API定义传入参数。
+
+
+<!--no_check-->

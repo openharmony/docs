@@ -357,3 +357,4 @@ import missionManager from '@ohos.app.ability.missionManager';
 | application/ServiceExtensionContext       | ServiceExtensionContext | disconnectServiceExtensionAbility(connection: **number**, callback: AsyncCallback<**void**>): **void**; | 新增     |
 | application/ServiceExtensionContext       | ServiceExtensionContext | disconnectServiceExtensionAbility(connection: **number**): Promise<**void**>; | 新增     |
 
+<!--no_check-->

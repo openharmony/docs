@@ -151,3 +151,5 @@ async function example() {
 **FileAsset.commitModify接口获取相册兼容性影响：**
 
 在API version 10的SDK上去掉了针对audio无意义的orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。
+
+<!--no_check-->

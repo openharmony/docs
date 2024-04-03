@@ -232,3 +232,4 @@ ACTION_APP_ACCOUNT_AUTH = "ohos.appAccount.action.auth"
 }
 
 ```
+<!--no_check-->

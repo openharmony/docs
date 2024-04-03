@@ -71,3 +71,5 @@ WindowFilter<sup>9+</sup>
 **适配指导**
 
 需要使用isActive()来替换isActived().
+
+<!--no_check-->

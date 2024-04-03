@@ -55,3 +55,5 @@ try {
   console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
 }
 ```
+
+<!--no_check-->

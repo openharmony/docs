@@ -270,3 +270,5 @@ medialibrary以下废弃接口由于功能管控，不对三方应用开放，�
 | medialibrary   |  **interface** Size  | 废弃     |
 | medialibrary   |  **interface** MediaAssetOption | 废弃     |
 | medialibrary   |  **interface** MediaSelectOption | 废弃     |
+
+<!--no_check-->

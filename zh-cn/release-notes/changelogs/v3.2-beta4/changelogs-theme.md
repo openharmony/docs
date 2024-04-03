@@ -146,3 +146,5 @@ try {
    console.error(`Failed to register the system event which related to screenlock, because: ${err.message}`)
 }
 ```
+
+<!--no_check-->

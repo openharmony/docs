@@ -194,3 +194,5 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, client
   - interface InputMethodAbility：
     - on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => void): void;
     - off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void;
+
+<!--no_check-->

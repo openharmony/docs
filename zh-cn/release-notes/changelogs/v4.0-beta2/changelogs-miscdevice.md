@@ -78,3 +78,5 @@ try {
 // 关闭振动文件资源
 closeResource(FILE_NAME);
 ```
+
+<!--no_check-->

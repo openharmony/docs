@@ -113,3 +113,5 @@ import wifiManagerExt from '@ohos.wifiManagerExt';
 import wifiManagerExt from '@ohos.wifiManagerExt';
 
 对于其他接口无影响
+
+<!--no_check-->

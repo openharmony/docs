@@ -104,3 +104,5 @@ try {
   console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
+
+<!--no_check-->

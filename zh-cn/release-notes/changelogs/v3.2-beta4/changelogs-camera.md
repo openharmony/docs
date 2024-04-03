@@ -779,3 +779,5 @@ cameraInput.open().then(() => {
     枚举值名称由FACE变更为FACE_DETECTION;
 
 17. 接口Camera名称更改为CameraDevice
+
+<!--no_check-->

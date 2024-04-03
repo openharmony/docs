@@ -45,3 +45,5 @@ privacyManager.off
 不允许存在交集的permissionList订阅相同callback。
 
 取消订阅不传callback时，批量删除permissionList下面的所有callback。
+
+<!--no_check-->

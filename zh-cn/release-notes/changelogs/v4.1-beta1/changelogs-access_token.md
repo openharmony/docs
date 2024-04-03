@@ -290,3 +290,5 @@ c) 应用同时申请前台和后台权限
 **适配指导**
 
 接口使用的示例代码可参考[requestPermissionsFromUser接口指导](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
+
+<!--no_check-->

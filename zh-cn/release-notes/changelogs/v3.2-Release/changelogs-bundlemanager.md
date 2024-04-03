@@ -287,3 +287,5 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 
 **适配指导**<br>
 删除[HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)结构体中的atomicServiceModuleType字段。判断atomicServiceModuleType字段的部分，用[HapModuleInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts)结构体中的moduleType代替。
+
+<!--no_check-->

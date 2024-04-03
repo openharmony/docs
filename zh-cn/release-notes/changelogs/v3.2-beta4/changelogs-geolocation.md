@@ -114,3 +114,6 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 如果是存量应用（使用的API版本小于9），则无影响。
 
 如果使用的API版本大于等于9，则在使用@ohos.geolocation和@ohos.geoLocationManager中需要ohos.permission.LOCATION权限的接口时，都需要按照上文所述方式申请对应权限。
+
+
+<!--no_check-->

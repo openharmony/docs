@@ -476,3 +476,5 @@ OH_Rdb_DeleteStore(“”)
 ```
 OH_Rdb_DeleteStore(config)
 ```
+
+<!--no_check-->

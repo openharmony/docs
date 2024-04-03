@@ -314,3 +314,5 @@ import bundle form '@ohos.reminderAgentManager'
 此外还需要适配异常处理，具体参考[reminderAgentManager接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-reminderAgentManager.md)。
 
 
+
+<!--no_check-->

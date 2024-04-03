@@ -143,3 +143,5 @@ try {
 }
 ```
 更多接口的示例代码可参考[RPC通信API文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-rpc.md)。
+
+<!--no_check-->

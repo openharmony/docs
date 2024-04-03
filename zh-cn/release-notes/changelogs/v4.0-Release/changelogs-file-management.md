@@ -186,3 +186,5 @@ fileAccess的接口调用无变化，但接口返回的uri可访问的资源发�
 **变更影响**
 
 本次补充了@ohos.file.photoAccessHelper.d.ts中部分接口可能抛出的错误码。只涉及补充jsdoc，不涉及代码逻辑修改。因此兼容性无影响。
+
+<!--no_check-->

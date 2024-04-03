@@ -120,3 +120,5 @@ continuationManager.off 设备取消选择事件
   - continuationManager.unregisterContinuation;
   - continuationManager.updateContinuationState;
   - continuationManager.startContinuationDeviceManager;
+
+<!--no_check-->

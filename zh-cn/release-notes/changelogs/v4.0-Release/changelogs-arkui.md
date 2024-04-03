@@ -578,3 +578,5 @@ struct Index {
 **适配指导**
 
 请参考[ @ohos.uiAppearance(用户界面外观)](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-uiappearance.md)接口的API参考。
+
+<!--no_check-->

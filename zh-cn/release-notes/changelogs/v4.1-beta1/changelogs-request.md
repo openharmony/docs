@@ -28,3 +28,5 @@ OpenHarmony 4.1.2.3版本相较于OpenHarmony 4.0 版本，request子系统的AP
 **适配指导**
 
 本次修改仅涉及错误码修改，其余行为不变。
+
+<!--no_check-->

@@ -109,3 +109,5 @@ import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 import bundle form '@ohos.resourceschedule.workScheduler'
 ```
 此外还需要适配异常处理，具体参考[workScheduler接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md)。
+
+<!--no_check-->

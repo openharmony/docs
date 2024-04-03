@@ -155,3 +155,6 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
 **适配指导**
 
 调用以上接口，需要申请相应的权限才能正常调用。
+
+
+<!--no_check-->

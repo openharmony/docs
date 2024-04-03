@@ -52,3 +52,5 @@ import screenlock from '@ohos.screenLock';
 ```js
 import screenLock from '@ohos.screenLock';
 ```
+
+<!--no_check-->

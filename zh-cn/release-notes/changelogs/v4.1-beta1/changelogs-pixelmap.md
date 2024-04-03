@@ -62,3 +62,5 @@ for (int i = 0; i < imageInfo_.size.height; ++i) {
     dst += rowDataSize_;
 }
 ```
+
+<!--no_check-->

@@ -98,3 +98,5 @@ P2P相关接口在API10 Beta1进行了改名，现恢复API9 release的命名。
 | **function** stopDiscoverP2pDevices(): **void**;                | 停止P2P扫描     |
 | **function** deletePersistentP2pGroup(netId: number): **void**;                | 删除P2P永久组     |
 | **function** setP2pDeviceName(devName: string): **void**;                | 设置P2P设备名称     |
+
+<!--no_check-->

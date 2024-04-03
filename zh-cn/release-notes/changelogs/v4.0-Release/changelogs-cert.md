@@ -33,3 +33,5 @@ interface X509Cert {
 **适配指导**
 
 接口使用的示例代码可参考[证书开发指导](../../../application-dev/security/cert-guidelines.md)和[API参考](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-cert.md)。
+
+<!--no_check-->

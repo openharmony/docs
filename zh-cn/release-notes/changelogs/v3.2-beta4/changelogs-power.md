@@ -66,3 +66,6 @@
 #### 适配指导
 
 请参考系统电源管理[@ohos.power](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta4/zh-cn/application-dev/referenceapis/js-apis-power.md)的API参考。
+
+
+<!--no_check-->

@@ -62,3 +62,5 @@ import commonEvent from '@ohos.commonEventManager';
 | @ohos.notification        | notification        | **function** enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<**void**>; | 废弃     |
 | @ohos.notificationManager | notificationManager | **function** setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback<**void**>): **void**; | 新增     |
 | @ohos.notificationManager | notificationManager | **function** setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise<**void**>; | 新增     |
+
+<!--no_check-->

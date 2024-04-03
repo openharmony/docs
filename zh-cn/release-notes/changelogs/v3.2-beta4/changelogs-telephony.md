@@ -63,3 +63,5 @@ promise.then(data => {
     console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+<!--no_check-->

@@ -253,3 +253,5 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise<AudioEffectInfoArray>;
 | Media.AVPlayer | getCurrentTrack(trackType:&nbsp;MediaType):&nbsp;Promise&lt;number&gt; | 
 | Media.AVPlayer | on(type:&nbsp;'trackChange',&nbsp;callback:&nbsp;(index:&nbsp;number,&nbsp;isSelect:&nbsp;boolean)&nbsp;=&gt;&nbsp;void):&nbsp;void; | 
 | Media.AVPlayer | off(type:&nbsp;'trackChange'):&nbsp;void | 
+
+<!--no_check-->

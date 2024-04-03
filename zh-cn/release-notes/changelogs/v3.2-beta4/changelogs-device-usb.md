@@ -25,3 +25,4 @@ usbV9.getDevices(); // 如果给该接口传入不合适的参数，则会抛出
 console.error("getDevices errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
+<!--no_check-->

@@ -145,3 +145,5 @@ let callback = function(data) {
 formHost.on('formAdd', callback);
 formHost.on('formAdd', bundleName, callback);
 ```
+
+<!--no_check-->

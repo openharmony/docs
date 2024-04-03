@@ -260,3 +260,5 @@ VideoRecorder接口未发生变更，返回的错误码发生变更。
 异常处理具体参考接口文档。
 https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-media.md
 https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-media.md
+
+<!--no_check-->
