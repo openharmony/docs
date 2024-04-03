@@ -271,3 +271,46 @@ struct Index {
 **Reference**
 
 [accessStep](../reference/apis/js-apis-webview.md#accessstep)
+## Does WebView support same-layer rendering (API version 10)?
+
+**Solution**
+
+1. **WebView**, **Video**, **Map**, **Camera**, **Canvas**, and **WebGL** all support same-layer rendering.
+2. The **id**, **type**, **src**, **width**, **height**, and **url** attributes of web embedded tags can be transferred to native components.
+
+
+## What debugging tools does WebView provide? How do I use them? (API version 10)
+
+**Solution**
+
+The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
+
+**Reference**
+
+[Debugging Frontend Pages by Using DevTools](../web/web-debugging-with-devtools.md)
+
+
+## How do I use WebView to implement request interception? (API version 10)
+
+**Solution**
+
+You can call **onInterceptRequest()** to customize web page responses, file resource responses, and more. When a resource loading request is initiated on a web page, the application layer will receive the request. The application layer then constructs a local resource response and sends it to the web kernel. On receiving the response, the web kernel parses the response and loads page resources accordingly.
+
+**Reference**
+
+[Customizing Page Request Responses](../web/web-resource-interception-request-mgmt.md)
+
+
+## How does WebView communicate with the native side? (API version 10)
+
+**Solution**
+
+1. For communication from the native side to the HTML5 side, use the **runJavaScript** API. For communication from the HTML5 side to the native side, use the **registerJavaScriptProy** API. Register the native method with the HTML5 side, and then from the HTML5 side call the frontend method to communicate with the native side.
+2. Both **runJavaScript** and **registerJavaScriptProy** are exposed in the C API on the NDK side.
+3. The **onInterceptrequest** API is used to intercept requests from the HTML5 side and return native data as a response to the HTML5 side. In this way, the implement communication between the native side and HTML5 side is implemented.
+
+**Reference**
+
+[runJavaScript](../reference/apis/js-apis-webview.md#runjavascriptext10), [registerJavaScriptProxy](../reference/apis/js-apis-webview.md#registerjavascriptproxy), [javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy), [onInterceptRequest](../reference/arkui-ts/ts-basic-components-web.md#oninterceptrequest9)
+
+
