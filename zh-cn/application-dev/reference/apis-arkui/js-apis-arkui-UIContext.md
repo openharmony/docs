@@ -1571,6 +1571,120 @@ struct Index {
 }
 ```
 
+### on('navDestinationSwitch')<sup>12+</sup>
+
+on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('navDestinationSwitch', callback);
+```
+
+### off('navDestinationSwitch')<sup>12+</sup>
+
+off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+取消监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('navDestinationSwitch', callback);
+```
+
+### on('navDestinationSwitch')<sup>12+</sup>
+
+on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+```
+
+### off('navDestinationSwitch')<sup>12+</sup>
+
+off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback?: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+取消监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+```
+
 ## MediaQuery
 
 以下API需先使用UIContext中的[getMediaQuery()](#getmediaquery)方法获取到MediaQuery对象，再通过该对象调用对应方法。
