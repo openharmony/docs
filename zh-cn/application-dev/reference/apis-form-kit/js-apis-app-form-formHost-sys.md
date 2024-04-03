@@ -377,65 +377,6 @@ try {
 
 ```
 
-## requestFormWithParams<sup>12+</sup>
-
-requestFormWithParams(formId: string, wantParams?: Record<string, Object>): Promise&lt;void&gt;
-
-携带参数请求卡片更新。使用Promise异步回调。
-
-**需要权限：** ohos.permission.REQUIRE_FORM
-
-**系统能力：** SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| formId | string | 是   | 卡片标识。 |
-| wantParams | Record<string, Object> | 否   | 更新参数。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-| 16501000 | An internal functional error occurred. |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
-
-**示例：**
-
-```ts
-import Base from '@ohos.base';
-
-try {
-  let formId: string = '12400633174999288';
-  let params: Record<string, Object> = {
-    'ohos.extra.param.key.host_bg_inverse_color': '#ff000000' as Object
-  };
-  formHost.requestFormWithParams(formId, params).then(() => {
-    console.log('formHost requestFormWithParams success');
-  }).catch((error: Base.BusinessError) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-}
-
-```
-
 ## castToNormalForm
 
 castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1264,65 +1205,6 @@ try {
   });
 } catch(error) {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-}
-```
-
-## getFormsInfo<sup>12+</sup>
-
-getFormsInfo(filter: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
-
-获取设备上指定应用程序提供的卡片信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | 是 | 卡片信息过滤器。 |
-
-**返回值：**
-
-| 类型          | 说明                                |
-| :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象。返回查询到符合条件的卡片信息。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application.  |
-| 401 | If the input parameter is not valid parameter.  |
-| 16500050 | An IPC connection error happened.  |
-| 16500060 | A service connection error happened, please try again later.  |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
-
-**示例：**
-
-```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formHost from '@ohos.app.form.formHost';
-
-const filter: formInfo.FormInfoFilter = {
-  bundleName: 'ohos.samples.FormApplication',
-  moduleName: 'entry',
-  supportedDimensions: [FormDimension.Dimension_1_2, FormDimension.Dimension_2_2, FormDimension.Dimension_2_4]
-};
-try {
-  formHost.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
-    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
-    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
-  });
-} catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
 }
 ```
 
