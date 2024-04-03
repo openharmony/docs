@@ -278,7 +278,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 ### on<sup>8+</sup>
 
-on(type: "hceCmd", callback: AsyncCallback\<number[]>): void
+on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 订阅回调，用于接收对端读卡设备发送的APDU数据。应用程序需要在HCE卡模拟页面的onCreate函数里面调用该订阅函数。
 
