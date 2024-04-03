@@ -949,6 +949,8 @@ export function pageTwoTmp(info: Pages) {
 
 ### 示例3
 
+该示例主要演示设置每个NavDestination子页面的自定义转场动画。
+
 ```ts
 // Index.ets
 import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
@@ -995,8 +997,10 @@ struct NavigationExample {
           console.log(`current transition result is ${isSuccess}`);
         },
         timeout: 700,
+        // 转场开始时系统调用该方法，并传入转场上下文代理对象
         transition: (transitionProxy: NavigationTransitionProxy)=>{
           console.log("trigger transition callback");
+          // 从封装类CustomTransition中根据子页面的序列获取对应的转场动画回调
           let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.index);
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.index);
           if (fromParam.start != undefined) {
@@ -1127,6 +1131,7 @@ export struct PageTwoTemp {
 ```
 ```ts
 // CustomNavigationUtils.ts
+// 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -1145,6 +1150,11 @@ export class CustomTransition {
     return CustomTransition.delegate;
   }
 
+  // 注册某个页面的动画回调
+  // startCallback：用来设置动画开始时页面的状态
+  // endCallback：用来设置动画结束时页面的状态
+  // onFinish：用来执行动画结束后页面的其他操作
+  // timeout：转场结束的超时时间
   registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
                    endCallback:(operation: boolean, isExit: boolean) => void,
                    onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
