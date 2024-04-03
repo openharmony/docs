@@ -2800,7 +2800,7 @@ currentAVSession.off('toggleCallMute');
 
 ### on('castDisplayChange')<sup>12+</sup>
 
-on(type: 'castDisplayChange', callback: Callback<[CastDisplayInfo](#castdisplayinfo12)>): void;
+on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 设置可扩展投播设备变更监听事件。
 
@@ -2837,7 +2837,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 ```
 ### off('castDisplayChange')<sup>12+</sup>
 
- off(type: 'castDisplayChange', callback?: Callback<[CastDisplayInfo](#castdisplayinfo12)>): void;
+ off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
 
 取消可扩展投播设备变更事件监听，关闭后，不再进行该事件回调。
 
@@ -2972,7 +2972,7 @@ try {
 ```
 ### getAllCastDisplays<sup>12+</sup>
 
-getAllCastDisplays(): Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>
+getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
 获取当前系统中所有支持扩展屏投播的设备。通过Promise异步回调方式返回。
 
@@ -4142,29 +4142,29 @@ aVCastController.off('error')
 
 ## CastDisplayState<sup>12+</sup>
 
-投播显示设备状态。
+投屏显示屏幕状态。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| STATE_OFF      | 1    | 设备断开，扩展屏被回收    |
-| STATE_ON      | 2    | 设备连接成功，可以在扩展屏绘制 |
+| STATE_OFF      | 1    | 设备断开，扩展屏不再显示内容。    |
+| STATE_ON      | 2    | 设备连接成功，扩展屏可用。 |
 
 
 ## CastDisplayInfo<sup>12+</sup>
 
-投播显示设备相关属性。
+系统镜像投屏场景下，投屏显示屏幕相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| 名称            | 类型                      | 必填 | 说明                                                                  |
-| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| id            | string                  | 是    | 可投播设备的ID，该参数应为整数  |
-| name     | string                  | 是    | 可投播设备的名称           |
-| state          | [CastDisplayState](#castdisplaystate12)          | 是    |可投播状态            |
-| width          | number          | 是    | 可投播设备的屏幕宽度，单位为px，该参数应为整数。          |  
-| height          | number          | 是    | 可投播设备的屏幕高度，单位为px，该参数应为整数。            |  
+| 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| id            | number                  | 是    | 否    | 投屏显示屏幕的ID，该参数应为整数。  |
+| name     | string                  | 是    | 否    | 投屏显示屏幕的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投屏显示屏幕状态。            |
+| width          | number          | 是    | 否    | 投屏显示屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 是    | 否    | 投屏显示屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
