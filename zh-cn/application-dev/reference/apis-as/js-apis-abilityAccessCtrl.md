@@ -59,7 +59,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -107,7 +107,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -152,7 +152,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -205,7 +205,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -265,7 +265,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -318,7 +318,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -377,7 +377,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -461,7 +461,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -515,7 +515,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -609,7 +609,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -665,7 +665,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -761,7 +761,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
