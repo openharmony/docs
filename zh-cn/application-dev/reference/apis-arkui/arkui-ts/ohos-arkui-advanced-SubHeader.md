@@ -191,7 +191,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_2023072902.png)
+![子标题5](figures/zh-cn_image_subheader_example03.png)
 
 ### 示例4
 
