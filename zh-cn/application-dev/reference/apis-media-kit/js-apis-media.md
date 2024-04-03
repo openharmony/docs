@@ -689,7 +689,7 @@ prepare(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 准备播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 准备播放的回调方法。 |
 
 **错误码：**
 
@@ -761,7 +761,7 @@ play(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 开始播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 开始播放的回调方法。 |
 
 **错误码：**
 
@@ -831,7 +831,7 @@ pause(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 暂停播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 暂停播放的回调方法。 |
 
 **错误码：**
 
@@ -901,7 +901,7 @@ stop(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 停止播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 停止播放的回调方法。 |
 
 **错误码：**
 
@@ -971,7 +971,7 @@ reset(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 重置播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 重置播放的回调方法。 |
 
 **错误码：**
 
@@ -1041,7 +1041,7 @@ release(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 销毁播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 销毁播放的回调方法。 |
 
 **错误码：**
 
@@ -1195,7 +1195,7 @@ let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm')
 // 创建MediaKeySession解密会话
 let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 // 安全视频通路标志
-var secureVideoPath:boolean = false;
+let secureVideoPath:boolean = false;
 // 设置解密配置
 avPlayer.setDecryptionConfig(keySession, secureVideoPath);
 ```
@@ -1221,7 +1221,7 @@ import drm from '@ohos.multimedia.drm'
 
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
-for (var i = 0; i < infos.length; i++) {
+for (let i = 0; i < infos.length; i++) {
   console.info('GetMediaKeySystemInfos uuid: ' + infos[i]["uuid"]);
   console.info('GetMediaKeySystemInfos pssh: ' + infos[i]["pssh"]);
 }
@@ -1391,7 +1391,7 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | setBitrate生效的事件回调类型，支持的事件：'bitrateDone'，每次调用setBitrate后都会回调此事件。 |
-| callback | function | 是   | setBitrate生效的事件回调方法，上报生效的比特率。             |
+| callback | Callback\<number> | 是   | setBitrate生效的事件回调方法，上报生效的比特率。             |
 
 **示例：**
 
@@ -1487,7 +1487,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.M
 import drm from './@ohos.multimedia.drm';
 
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
-    for (var i = 0; i < mediaKeySystemInfo.length; i++) {
+    for (let i = 0; i < mediaKeySystemInfo.length; i++) {
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
@@ -1549,7 +1549,7 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | setVolume生效的事件回调类型，支持的事件：'volumeChange'，每次调用setVolume后都会回调此事件。 |
-| callback | function | 是   | setVolume生效的事件回调方法，上报生效的媒体音量。            |
+| callback | Callback\<number> | 是   | setVolume生效的事件回调方法，上报生效的媒体音量。            |
 
 **示例：**
 
@@ -1636,7 +1636,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                           |
 | -------- | -------- | ---- | ---------------------------------------------- |
 | type     | string   | 是   | 时间更新的回调类型，支持的事件：'timeUpdate'。 |
-| callback | function | 是   | 当前时间。                                     |
+| callback | Callback\<number> | 是   | 当前时间。                                     |
 
 **示例：**
 
@@ -1681,7 +1681,7 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                               |
 | -------- | -------- | ---- | -------------------------------------------------- |
 | type     | string   | 是   | 时长更新的回调类型，支持的事件：'durationUpdate'。 |
-| callback | function | 是   | 资源时长。                                         |
+| callback | Callback\<number> | 是   | 资源时长。                                         |
 
 **示例：**
 
@@ -1898,7 +1898,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
-| callback | Callback\<[AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+| callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
 
@@ -1929,7 +1929,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
-| callback | Callback\<[AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+| callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
 
@@ -2069,6 +2069,20 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 ## AVRecorder<sup>9+</sup>
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
+
+```ts
+import { BusinessError } from '@ohos.base';
+let avRecorder: media.AVRecorder;
+
+media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
+  if (recorder != null) {
+    avRecorder = recorder;
+    console.info('createAVRecorder success');
+  } else {
+    console.error(`createAVRecorder fail, error message:${error.message}`);
+  }
+});
+```
 
 音视频录制demo可参考：[音频录制开发指导](../../media/media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/media/video-recording.md)。
 
