@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
+import { BuilderNode, RenderOptions, NodeRenderType } from "kit.ArkUI";
 ```
 
 ## NodeRenderType
@@ -102,8 +102,7 @@ getFrameNode(): FrameNode | null
 BuilderNode作为NodeContainer的根节点返回。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -165,8 +164,7 @@ struct Index {
 BuilderNode的RenderNode挂到其它RenderNode下。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -249,8 +247,7 @@ update(arg: Object): void
 
 **示例：**
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -363,8 +360,7 @@ postTouchEvent(event: TouchEvent): boolean
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -443,7 +439,7 @@ dispose(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { RenderNode, FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
 
 @Component
 struct TestComponent {
