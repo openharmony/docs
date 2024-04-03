@@ -239,7 +239,7 @@ struct GridExample {
 struct GridExample {
   @State numbers: String[] = ['0', '1', '2', '3', '4']
   scroller: Scroller = new Scroller()
-  @State Position: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+  @State gridPosition: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   build() {
     Column({ space: 5 }) {
@@ -291,11 +291,11 @@ struct GridExample {
         console.info("XXX" + "Grid onScrollStop")
       })
       .onReachStart(() => {
-        this.Position = 0
+        this.gridPosition = 0
         console.info("XXX" + "Grid onReachStart")
       })
       .onReachEnd(() => {
-        this.Position = 2
+        this.gridPosition = 2
         console.info("XXX" + "Grid onReachEnd")
       })
 
