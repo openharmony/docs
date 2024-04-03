@@ -19,9 +19,9 @@ Defines a file metadata object, which includes the application name and file URI
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
-| Name      | Type  | Mandatory| Description                                                                                          |
-| ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
-| bundleName | string | Yes  | Bundle name, which can be obtained by using the method provided in [bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md).         |
+| Name      | Type  | Mandatory| Description                                                                                               |
+| ---------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
+| bundleName | string | Yes  | Application name, which can be obtained from [bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md).|
 | uri        | string | Yes  | URI of the file in the application sandbox.<br>Currently, the URI is not in the standard format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.|
 
 ## FileData
@@ -59,7 +59,7 @@ Provides callbacks to be used in the backup or restore process. The backup servi
 
 onFileReady : AsyncCallback&lt;File&gt;
 
-Called when the server sends a file to the client. If the file is sent successfully, **err** is **undefined**. Otherwise, **err** is an error object.
+Called when the server sends a file to the client. If the callback is invoked successfully, [File](#file) is returned. Otherwise, an **err** object is returned.
 
 > **NOTE**
 >
@@ -69,7 +69,7 @@ Called when the server sends a file to the client. If the file is sent successfu
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -89,6 +89,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   onFileReady: (err: BusinessError, file: backup.File) => {
     if (err) {
       console.error('onFileReady failed with err: ' + JSON.stringify(err));
+      return;
     }
     console.info('onFileReady success with file: ' + file.bundleName + ' ' + file.uri);
     fs.closeSync(file.fd);
@@ -99,13 +100,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 onBundleBegin : AsyncCallback&lt;string&gt;
 
-Called when the backup or restore of an application begins. If the backup or restore begins, **err** is undefined. Otherwise, **err** is an error object.
+Called when the backup or restore of an application begins. If the backup or restore begins, **bundleName** is returned. Otherwise, an **err** object is returned. Since API version 12, **err** and **bundleName** are returned.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -124,6 +125,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+      return;
     }
     console.info('onBundleBegin success with bundleName: ' + bundleName);
   }
@@ -133,13 +135,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 onBundleEnd : AsyncCallback&lt;string&gt;
 
-Called when the backup or restore of an application ends. If the backup or restore ends successfully, **err** is undefined. Otherwise, **err** is an error object.
+Called when the application backup or restore ends. If the callback is successfully invoked, **bundleName** is returned. If the callback fails to be invoked, an **err** object is returned.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -158,6 +160,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+      return;
     }
     console.info('onBundleEnd success with bundleName: ' + bundleName);
   }
@@ -167,13 +170,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
-Called when the backup or restore of all bundles ends. If the backup or restore of all bundles ends, **err** is **undefined**. Otherwise, **err** is an error object.
+Called when the backup or restore of all applications ends. If the callback fails to be invoked, an **err** object is returned.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -192,6 +195,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   onAllBundlesEnd: (err: BusinessError) => {
     if (err) {
       console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+      return;
     }
     console.info('onAllBundlesEnd success');
   }
@@ -201,7 +205,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 onBackupServiceDied : Callback&lt;undefined&gt;
 
-Called when the backup service is suspended.
+Called when the backup service is suspended. If the callback fails to be invoked, an **err** object is returned.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -225,13 +229,13 @@ Obtains a JSON file that describes local capabilities. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                                                  |
-| -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
+| Name  | Type                                      | Mandatory| Description                                              |
+| -------- | ------------------------------------------ | ---- | -------------------------------------------------- |
 | callback | AsyncCallback&lt;[FileData](#filedata)&gt; | Yes  | Callback invoked to return the **FileData** object obtained.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -251,6 +255,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     backup.getLocalCapabilities((err: BusinessError, fileData: backup.FileData) => {
       if (err) {
         console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('getLocalCapabilities success');
       console.info('fileData info:' + fileData.fd);
@@ -292,13 +297,13 @@ Obtains a JSON file that describes local capabilities. This API uses a promise t
 
 **Return value**
 
-| Type                                | Description                                               |
-| ------------------------------------ | --------------------------------------------------- |
+| Type                                | Description                           |
+| ------------------------------------ | ------------------------------- |
 | Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** object obtained.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -375,6 +380,7 @@ A constructor used to create a **SessionBackup** instance.
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -382,12 +388,14 @@ A constructor used to create a **SessionBackup** instance.
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
@@ -401,7 +409,7 @@ A constructor used to create a **SessionBackup** instance.
       console.info('service died');
     }
   };
-  let sessionBackup = new backup.SessionBackup(generalCallbacks);
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   ```
 
 ### appendBundles
@@ -416,14 +424,14 @@ Appends the applications whose data needs to be backed up. Currently, the obtain
 
 **Parameters**
 
-| Name         | Type                     | Mandatory| Description                                                          |
-| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                    |
+| Name         | Type                     | Mandatory| Description                        |
+| --------------- | ------------------------- | ---- | ---------------------------- |
+| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.  |
 | callback        | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -445,6 +453,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -452,18 +461,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -471,7 +483,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     }
   };
-  let sessionBackup = new backup.SessionBackup(generalCallbacks);
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   try {
     let backupApps: Array<string> = [
       "com.example.hiworld",
@@ -479,6 +491,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     sessionBackup.appendBundles(backupApps, (err: BusinessError) => {
       if (err) {
         console.error('appendBundles failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('appendBundles success');
     });
@@ -506,13 +519,13 @@ Appends the applications whose data needs to be backed up. Currently, the obtain
 
 **Return value**
 
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
+| Type               | Description                   |
+| ------------------- | ----------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -534,6 +547,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -541,18 +555,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -560,7 +577,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     }
   };
-  let sessionBackup = new backup.SessionBackup(generalCallbacks);
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   async function appendBundles() {
     try {
       let backupApps: Array<string> = [
@@ -605,6 +622,7 @@ A constructor used to create a **SessionRestore** instance.
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -612,18 +630,21 @@ A constructor used to create a **SessionRestore** instance.
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -631,7 +652,7 @@ A constructor used to create a **SessionRestore** instance.
       console.info('service died');
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   ```
 
 ### appendBundles
@@ -651,15 +672,15 @@ Appends the applications whose data needs to be restored. Currently, the obtaine
 
 **Parameters**
 
-| Name              | Type                     | Mandatory| Description                                                          |
-| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| remoteCapabilitiesFd | number                    | Yes  | FD of the file containing the capabilities to be restored.                            |
-| bundlesToBackup      | string[]                  | Yes  | Array of the application names to append.                                    |
+| Name              | Type                     | Mandatory| Description                              |
+| -------------------- | ------------------------- | ---- | ---------------------------------- |
+| remoteCapabilitiesFd | number                    | Yes  | FD of the file containing the capabilities to be restored.|
+| bundlesToBackup      | string[]                  | Yes  | Array of the application names to append.        |
 | callback             | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -681,6 +702,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -688,18 +710,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -707,7 +732,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   async function appendBundles() {
     try {
       let fileData = await backup.getLocalCapabilities();
@@ -718,6 +743,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       sessionRestore.appendBundles(fileData.fd, restoreApps, (err: BusinessError) => {
         if (err) {
           console.error('appendBundles failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('appendBundles success');
       });
@@ -754,13 +780,13 @@ Appends the applications whose data needs to be restored. Currently, the obtaine
 
 **Return value**
 
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
+| Type               | Description                   |
+| ------------------- | ----------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -782,6 +808,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -789,18 +816,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -808,7 +838,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   async function appendBundles() {
     try {
       let fileData = await backup.getLocalCapabilities();
@@ -846,14 +876,14 @@ Obtains the handle of the shared file from the service. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                          |
-| -------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| fileMeta | [FileMeta](#filemeta)     | Yes  | Metadata of the file to restore.                                            |
+| Name  | Type                     | Mandatory| Description                            |
+| -------- | ------------------------- | ---- | -------------------------------- |
+| fileMeta | [FileMeta](#filemeta)     | Yes  | Metadata of the file to restore.              |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -872,6 +902,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -879,18 +910,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -898,7 +932,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   let fileMeta: backup.FileMeta = {
     bundleName: "com.example.hiworld",
     uri: "test.txt"
@@ -936,13 +970,13 @@ Obtains the handle of the shared file from the service. This API uses a promise 
 
 **Return value**
 
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
+| Type               | Description                   |
+| ------------------- | ----------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -961,6 +995,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onFileReady success');
       fs.closeSync(file.fd);
@@ -968,18 +1003,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleBegin success');
     },
     onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onBundleEnd success');
     },
     onAllBundlesEnd: (err: BusinessError) => {
       if (err) {
         console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
       }
       console.info('onAllBundlesEnd success');
     },
@@ -987,7 +1025,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('service died');
     }
   };
-  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   async function getFileHandle() {
     try {
       let fileMeta: backup.FileMeta = {
@@ -1021,14 +1059,14 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                      |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| fileMeta | [FileMeta](#filemeta)     | Yes  | Metadata of the file to restore.                                          |
+| Name  | Type                     | Mandatory| Description                        |
+| -------- | ------------------------- | ---- | ---------------------------- |
+| fileMeta | [FileMeta](#filemeta)     | Yes  | Metadata of the file to restore.            |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -1049,6 +1087,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
@@ -1059,6 +1098,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         g_session.publishFile(fileMeta, (err: BusinessError) => {
           if (err) {
             console.error('publishFile failed with err: ' + JSON.stringify(err));
+            return;
           }
           console.info('publishFile success');
         });
@@ -1066,18 +1106,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
           console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onAllBundlesEnd success');
       },
@@ -1085,7 +1128,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         console.info('service died');
       }
     };
-    let sessionRestore = new backup.SessionRestore(generalCallbacks);
+    let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
     return sessionRestore;
   }
   g_session = createSessionRestore();
@@ -1115,13 +1158,13 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 
 **Return value**
 
-| Type               | Description                                  |
-| ------------------- | -------------------------------------- |
+| Type               | Description                   |
+| ------------------- | ----------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID| Error Message               |
 | -------- | ----------------------- |
@@ -1149,6 +1192,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.error('onFileReady failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
@@ -1158,18 +1202,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
           console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
         }
         console.info('onAllBundlesEnd success');
       },
@@ -1177,9 +1224,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         console.info('service died');
       }
     };
-    let sessionRestore = new backup.SessionRestore(generalCallbacks);
+    let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
     return sessionRestore;
   }
   g_session = createSessionRestore();
   ```
-<!--no_check-->
