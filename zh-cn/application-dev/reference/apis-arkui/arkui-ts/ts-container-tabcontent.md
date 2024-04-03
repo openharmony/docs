@@ -66,7 +66,7 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 ## SubTabBarStyle<sup>9+</sup>
 
-子页签样式。
+子页签样式。打开后在切换页签时会播放跳转动画。
 
 ### constructor
 
