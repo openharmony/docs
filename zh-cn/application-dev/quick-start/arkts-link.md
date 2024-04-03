@@ -482,16 +482,16 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: ClassA = new ClassA(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum.c += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum[0].c })
+      LinkChild({ testNum: this.testNum.c })
     }
   }
 }
@@ -513,26 +513,29 @@ class ClassA {
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA[];
+  @Link testNum: ClassA;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum[0]?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: ClassA = new ClassA(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum.c += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: $testNum })
+      LinkChild({ testNum: this.testNum })
     }
   }
 }
