@@ -405,7 +405,7 @@ NavDestination作为子页面的根容器，用于显示Navigation的内容区�
       }
     ```
 
-2. 也可以将上述配置项配置在资源文件中，通过资源管理[@ohos.resourceManager](../reference/apis-as/js-apis-resource-manager.md)将文件读取后解析出对应字段。
+2. 也可以将上述配置项配置在资源文件中，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)将文件读取后解析出对应字段。
 
 3. 将路由表中的页面配置到Navigation定义页所在工程的依赖配置文件oh_packages.json5中。
 

@@ -4239,7 +4239,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ## FocusController<sup>12+</sup>
 以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
 
-### clearFocus
+### clearFocus<sup>12+</sup>
 
 clearFocus(): void
 
