@@ -19,7 +19,7 @@
 | -------- | -------- |
 | [avplayer.h](avplayer_8h.md) | 定义avplayer接口。使用AVPlayer提供的Native API播放媒体源。<br> **引用文件：** <br> <multimedia/player_framework/avplayer.h> <br> **库：** <text>libavplayer.z.so</text> | 
 | [avplayer_base.h](avplayer__base_8h.md) | 定义AVPlayer的结构体和枚举。<br> **引用文件：** <br> <multimedia/player_framework/avplayer_base.h> <br> **库：** <text>libavplayer.z.so</text> | 
-| [native_averrors.h](native__averrors_8h.md) | 声明了播放框架的错误码OH_AVErrCode的定义。<br> **引用文件：** <br> <multimedia/player_framework/native_averrors.h> <br> **库：** <text>libnative_media_core.z.so</text> | 
+| [native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md) | 声明了播放框架的错误码OH_AVErrCode的定义。<br> **引用文件：** <br> <multimedia/player_framework/native_averrors.h> <br> **库：** <text>libnative_media_core.z.so</text> | 
 
 
 ### 结构体
@@ -418,7 +418,7 @@ OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer * player, int32_t index )
 
 **返回：**
 
-如果成功返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果成功返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetCurrentTime()
@@ -444,7 +444,7 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTime (OH_AVPlayer * player, int32_t * current
 
 **返回：**
 
-如果获取当前位置，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果获取当前位置，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetCurrentTrack()
@@ -473,7 +473,7 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer * player, int32_t trackTyp
 
 **返回：**
 
-成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetDuration()
@@ -499,7 +499,7 @@ OH_AVErrCode OH_AVPlayer_GetDuration (OH_AVPlayer * player, int32_t * duration )
 
 **返回：**
 
-如果获取当前时长，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果获取当前时长，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetPlaybackSpeed()
@@ -525,7 +525,7 @@ OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed (OH_AVPlayer * player, AVPlaybackSpeed
 
 **返回：**
 
-获取播放速率成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+获取播放速率成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetState()
@@ -551,7 +551,7 @@ OH_AVErrCode OH_AVPlayer_GetState (OH_AVPlayer * player, AVPlayerState * state )
 
 **返回：**
 
-如果获取当前播放状态，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果获取当前播放状态，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetVideoHeight()
@@ -577,7 +577,7 @@ OH_AVErrCode OH_AVPlayer_GetVideoHeight (OH_AVPlayer * player, int32_t * videoHe
 
 **返回：**
 
-如果获取视频高度，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果获取视频高度，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_GetVideoWidth()
@@ -603,7 +603,7 @@ OH_AVErrCode OH_AVPlayer_GetVideoWidth (OH_AVPlayer * player, int32_t * videoWid
 
 **返回：**
 
-如果获取视频宽度，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果获取视频宽度，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_IsLooping()
@@ -678,7 +678,7 @@ OH_AVErrCode OH_AVPlayer_Pause (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Pause**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果成功将**Pause**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_Play()
@@ -705,7 +705,7 @@ OH_AVErrCode OH_AVPlayer_Play (OH_AVPlayer * player)
 
 **返回：**
 
-如果开始播放，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果开始播放，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_Prepare()
@@ -732,7 +732,7 @@ OH_AVErrCode OH_AVPlayer_Prepare (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Prepare**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码
+如果成功将**Prepare**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码
 
 
 ### OH_AVPlayer_Release()
@@ -759,7 +759,7 @@ OH_AVErrCode OH_AVPlayer_Release (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Release**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果成功将**Release**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_ReleaseSync()
@@ -786,7 +786,7 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer * player)
 
 **返回：**
 
-如果播放被释放返回**AV_ERR_OK**，否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果播放被释放返回**AV_ERR_OK**，否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_Reset()
@@ -813,7 +813,7 @@ OH_AVErrCode OH_AVPlayer_Reset (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**reset**添加到任务队列，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果成功将**reset**添加到任务队列，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_Seek()
@@ -864,7 +864,7 @@ OH_AVErrCode OH_AVPlayer_SelectBitRate (OH_AVPlayer * player, uint32_t bitRate )
 
 **返回：**
 
-设置码率成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+设置码率成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_SelectTrack()
@@ -892,7 +892,7 @@ OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer * player, int32_t index )
 
 **返回：**
 
-如果成功选择返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果成功选择返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_SetFDSource()
@@ -920,7 +920,7 @@ OH_AVErrCode OH_AVPlayer_SetFDSource (OH_AVPlayer * player, int32_t fd, int64_t 
 
 **返回：**
 
-如果fd设置成功返回**AV_ERR_OK**，否则返回[native_averrors.h](native__averrors_8h.md)中定义的错误码。
+如果fd设置成功返回**AV_ERR_OK**，否则返回[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误码。
 
 
 ### OH_AVPlayer_SetLooping()
@@ -946,7 +946,7 @@ OH_AVErrCode OH_AVPlayer_SetLooping (OH_AVPlayer * player, bool loop )
 
 **返回：**
 
-如果设置了循环，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果设置了循环，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_SetPlaybackSpeed()
@@ -992,7 +992,7 @@ OH_AVErrCode OH_AVPlayer_SetPlayerCallback (OH_AVPlayer * player, AVPlayerCallba
 
 **返回：**
 
-如果设置了播放器回调，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果设置了播放器回调，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ### OH_AVPlayer_SetURLSource()
@@ -1018,7 +1018,7 @@ OH_AVErrCode OH_AVPlayer_SetURLSource (OH_AVPlayer * player, const char * url )
 
 **返回：**
 
-如果url设置成功返回**AV_ERR_OK**，否则返回[native_averrors.h](native__averrors_8h.md)中定义的错误码。
+如果url设置成功返回**AV_ERR_OK**，否则返回[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误码。
 
 
 ### OH_AVPlayer_SetVideoSurface()
@@ -1067,7 +1067,7 @@ OH_AVErrCode OH_AVPlayer_SetVolume (OH_AVPlayer * player, float leftVolume, floa
 
 **返回：**
 
-如果设置了音量，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码，
+如果设置了音量，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码，
 
 
 ### OH_AVPlayer_Stop()
@@ -1092,7 +1092,7 @@ OH_AVErrCode OH_AVPlayer_Stop (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**stop**添加到任务队列，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](native__averrors_8h.md)中定义的错误代码。
+如果成功将**stop**添加到任务队列，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](..\apis-avcodec-kit\native__averrors_8h.md)中定义的错误代码。
 
 
 ## 变量说明
