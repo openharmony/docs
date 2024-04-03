@@ -56,7 +56,7 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
         case AV_INFO_TYPE_STATE_CHANGE:
             switch (extra) {
                 case AV_IDLE: // 成功调用reset接口后触发该状态机上报
-                    *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3"
+                    url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
                     ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
                     if (ret != AV_ERR_OK) {
                     // 处理异常
