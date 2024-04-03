@@ -191,20 +191,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_Destroy(format);
     ```
 
-5. 调用OH_VideoEncoder_Prepare()编码器就绪。
+5. 获取Surface。
 
-    该接口将在编码器运行前进行一些数据的准备工作。
-
-    ```c++
-    ret = OH_VideoEncoder_Prepare(videoEnc);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
-    }
-    ```
-
-6. 获取Surface。
-
-    获取编码器Surface模式的OHNativeWindow输入，获取Surface需要在启动编码器之前完成。
+    获取编码器Surface模式的OHNativeWindow输入，获取Surface需要在准备编码器之前完成。
 
     ```c++
     int32_t ret;
@@ -214,10 +203,20 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 通过OHNativeWindow*变量类型，配置输入数据的Surface
+    // 通过OHNativeWindow*变量类型，可通过生产者接口获取带填充数据地址。
     ```
-
     OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
+
+6. 调用OH_VideoEncoder_Prepare()编码器就绪。
+
+    该接口将在编码器运行前进行一些数据的准备工作。
+
+    ```c++
+    ret = OH_VideoEncoder_Prepare(videoEnc);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
 
 7. 调用OH_VideoEncoder_Start()启动编码器。
 
