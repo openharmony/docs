@@ -16,21 +16,36 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 ### ArkUI
 
-- 支持自定义组件扩展需求：框架提供基础组件的Modifier，开发者可继承实现自定义的Modifier，然后通过Modifier实现链式调用和参数传递。Modifier和自定义组件配合使用解决自定义组件传参的问题。Modifier机制支持单点属性更新。
+- 新增NodeContainer开放命令式的渲染节点，提升自定义绘制能力。
 
-- Canvas支持图形GraphicContext，提升自绘制能力和性能。
+- 文本和容器类组件能力增强：
+   - TextInput/Text支持按字符截断;
+   - TextInput和TextArea提供获取光标位置接口；
+   - 支持智能分词、新增依据分词结果插入光标逻辑以及替换分词算法；
+   - ImageSpan支持自定义长按菜单事件、控件支持缩进/对齐;
+   - List：ScrollToIndex支持滚动到ListItemGroup中指定ListItem的能力；
 
-- 文本类控制支持属性字符串
+- 控件接入AI能力增强：
+   - TextInput及相关文本输入控件支持视觉输入。
+   - Text/RichEditor相关文本控件支持文本实体识别。
 
-- 控件接入AI增强能力，包括：Image、Video、XCopmonent和Canvas控件支持实体识别；文本内容信息识别支持提取时间（日程）、地理位置。 
+- 状态管理功能增强：
+   - 支持undefined和null，以及联合类型。
+   - ListItem组件在ForEach/LazyForEach中属性可更新方法。
+   - 支持@LocalStorageLink/LocalStorageProp 在非激活状态不更新。
 
-- 弹窗类组件自定义能力增强：
-  - 通过调用promptAction提供的接口，支持自定义显示/退出动效；
-  - 配置弹框样式：设置背景色、圆角、宽度、高度、边框（颜色、宽度）、阴影（偏移、圆角、透明度、颜色）、气泡箭头大小设置；
-  - 显示/退出交互：所有弹框将要弹出/退出时提供回调，以及对是否允许弹框退出提供回调。
+- 新增Chips操作块组件，TextInput、TextArea、List、Grid、Search、CheckBox、Slider、Image、Menu、半模态弹窗等组件的样式、交互和动效增强。
 
-- 滑动场景，优化单帧平均耗时。
+- 弹窗类和导航类组件自定义能力增强：
+   - 支持开发者自定义弹出菜单的圆角、阴影、气泡箭头；
+   - bindContextMenu支持isShow参数控制显隐；
+   - Navigation支持隐藏NavBar；
+   - Navigation组件提供获取路由栈每个页面详细信息，支持根据页面信息销毁或显示页面。
 
+- 提供全新Style样式对象和组件Style样式属性方法，支持样式复用和动态切换能力，包括：
+   - 通用属性样式支持Style样式对象；
+   - 组件特有属性样式支持Style样式派生对象；
+   - 多态样式切换到Style样式对象。 
 
 ### 应用框架
 
