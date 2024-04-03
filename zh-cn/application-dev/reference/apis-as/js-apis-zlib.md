@@ -31,7 +31,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+以下错误码的详细介绍请参见[ohos.zlib错误码](../apis-ability-kit/errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -90,7 +90,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+以下错误码的详细介绍请参见[ohos.zlib错误码](../apis-ability-kit/errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ------------------------------------- |
@@ -144,7 +144,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+以下错误码的详细介绍请参见[ohos.zlib错误码](../apis-ability-kit/errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -202,7 +202,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+以下错误码的详细介绍请参见[ohos.zlib错误码](../apis-ability-kit/errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
@@ -254,7 +254,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+以下错误码的详细介绍请参见[ohos.zlib错误码](../apis-ability-kit/errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -282,6 +282,340 @@ try {
     let message = (errData as BusinessError).message;
     console.error(`decompressFile failed. code is ${code}, message is ${message}`);
 }
+```
+
+## zlib.createChecksum<sup>12+</sup>
+
+createChecksum(): Promise&lt;Checksum&gt;
+
+创建校验能力实例，Promise异步返回。成功时返回Checksum，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                                   | 说明                        |
+| -------------------------------------- | --------------------------- |
+| Promise&lt;[Checksum](#checksum12)&gt; | Promise对象。返回校验对象。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+
+zlib.createChecksum().then((data)=>{
+   console.info('createChecksum success');
+})
+```
+
+## zlib.createChecksumSync<sup>12+</sup>
+
+createChecksumSync():  Checksum
+
+创建校验能力实例。成功时返回Checksum，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                    | 说明       |
+| ----------------------- | ---------- |
+| [Checksum](#checksum12) | 校验实例。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+
+let checksum = zlib.createChecksumSync()
+```
+
+## Checksum<sup>12+</sup>
+
+管理访问控制模块的实例。
+
+### adler32<sup>12+</sup>
+
+adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
+
+更新Adler-32校验和，Promise异步返回。成功时返回更新后的Adler-32校验和，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                     |
+| ------ | ----------- | ---- | ------------------------ |
+| adler  | number      | 是   | Adler-32校验和的初始值。 |
+| buf    | ArrayBuffer | 是   | 计算校验和数据缓冲区。   |
+
+**返回值：**
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回更新后的Adler-32校验和。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+
+let str = 'hello world!';
+let arrayBufferIn = new ArrayBuffer(12);
+let data = new Uint8Array(arrayBufferIn);
+for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+}
+let checksum = zlib.createChecksumSync()
+checksum.adler32(0, arrayBufferIn).then(data => {
+    console.info('adler32 success', data);
+})
+```
+
+### adler32Combine<sup>12+</sup>
+
+adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&gt;
+
+将两个Adler-32校验和合并，Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                 |
+| ------ | ------ | ---- | ------------------------------------ |
+| adler1 | number | 是   | 第一个要合并的Adler-32校验和。       |
+| adler2 | number | 是   | 第二个要合并的Adler-32校验和。       |
+| len2   | number | 是   | 第二个Adler-32校验和的数据块的长度。 |
+
+**返回值：**
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回合并后的Adler-32校验和。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(12);
+    let data = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        data[i] = str.charCodeAt(i);
+    }
+    let checksum = zlib.createChecksumSync()
+    let adler1 = 0;
+    let adler2 = 1;
+    await checksum.adler32(0, arrayBufferIn).then(data => {
+        console.info('adler32 success', data);
+        adler1 = data;
+    })
+    await checksum.adler32(1, arrayBufferIn).then(data => {
+        console.info('adler32 success', data);
+        adler2 = data;
+    })
+    await checksum.adler32Combine(adler1, adler2, 12).then((data) => {
+        console.info('adler32Combine success', data);
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### crc32<sup>12+</sup>
+
+crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
+
+更新CRC-32校验，Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                   |
+| ------ | ----------- | ---- | ---------------------- |
+| crc    | number      | 是   | CRC-32校验和的初始值。 |
+| buf    | ArrayBuffer | 是   | 计算校验数据缓冲区。   |
+
+**返回值：**
+
+| 类型                  | 说明                                  |
+| --------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回更新后的CRC-32校验。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+let str = 'hello world!';
+let arrayBufferIn = new ArrayBuffer(12);
+let data = new Uint8Array(arrayBufferIn);
+for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+}
+let checksum = zlib.createChecksumSync()
+checksum.crc32(0, arrayBufferIn).then((data) => {
+    console.info('crc32 success', data);
+}).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+})
+```
+
+### crc32Combine<sup>12+</sup>
+
+crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
+
+将两个CRC-32校验合并，Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                             |
+| ------ | ------ | ---- | -------------------------------- |
+| adler1 | number | 是   | 第一个要合并的CRC-32校验。       |
+| adler2 | number | 是   | 第二个要合并的CRC-32校验。       |
+| len2   | number | 是   | 第二个CRC-32校验的数据块的长度。 |
+
+**返回值：**
+
+| 类型                  | 说明                                    |
+| --------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回合并后的CRC-32校验和。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(12);
+    let data = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        data[i] = str.charCodeAt(i);
+    }
+    let checksum = zlib.createChecksumSync()
+    let crc1 = 0;
+    let crc2 = 1;
+    await checksum.crc32(0, arrayBufferIn).then(data => {
+        console.info('crc32 success', data);
+        crc1 = data;
+    })
+    await checksum.crc32(1, arrayBufferIn).then(data => {
+        console.info('crc32 success', data);
+        crc2 = data;
+    })
+    await checksum.crc32Combine(crc1, crc2, 12).then((data) => {
+        console.info('crc32Combine success', data);
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### crc64<sup>12+</sup>
+
+crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
+
+更新CRC-64校验，Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                   |
+| ------ | ----------- | ---- | ---------------------- |
+| crc    | number      | 是   | CRC-64校验和的初始值。 |
+| buf    | ArrayBuffer | 是   | 计算校验数据缓冲区。   |
+
+**返回值：**
+
+| 类型                  | 说明                                  |
+| --------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回更新后的CRC-64校验。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+let str = 'hello world!';
+let arrayBufferIn = new ArrayBuffer(12);
+let data = new Uint8Array(arrayBufferIn);
+for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+}
+let checksum = zlib.createChecksumSync()
+checksum.crc64(0, arrayBufferIn).then((data) => {
+    console.info('crc64 success', data);
+}).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+})
+```
+
+### getCrcTable<sup>12+</sup>
+
+getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
+
+输出CRC-32校验表，Promise异步返回。成功时返回CRC-32校验表，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                               | 说明                            |
+| ---------------------------------- | ------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回CRC-32校验表。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+let checksum = zlib.createChecksumSync()
+checksum.getCrcTable().then((data) => {
+    console.info('getCrcTable success');
+}).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+})
+```
+
+### getCrc64Table<sup>12+</sup>
+
+getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
+
+输出CRC-64校验表，Promise异步返回。成功时返回CRC-64校验表，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                               | 说明                            |
+| ---------------------------------- | ------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回CRC-64校验表。 |
+
+**示例：**
+
+```typescript
+import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
+let checksum = zlib.createChecksumSync()
+checksum.getCrc64Table().then((data) => {
+    console.info('getCrc64Table success');
+}).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+})
 ```
 
 ## Options
