@@ -11,7 +11,7 @@ You can use the APIs provided by the **gatt** module to:
 
 ## Available APIs
 
-For details about the APIs and sample code, see [@ohos.bluetooth.ble](../../reference/apis/js-apis-bluetooth-ble.md).
+For details about the APIs and sample code, see [@ohos.bluetooth.ble](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md).
 
 The following table describes the related APIs.
 
@@ -38,7 +38,7 @@ The following table describes the related APIs.
 | off(type: 'BLEMtuChange')                  | Unsubscribes from MTU status changes for the client.                                                                           |
 | addService()                               | Adds a service to this server.                                                                                          |
 | removeService()                            | Removes a service from this server.                                                                                          |
-| close()                                    | Closes this server to unregister it from the protocol stack. After this API is called, the **GattServer** instance cannot be used any longer.                            |   
+| close()                                    | Closes this server to unregister it from the protocol stack. After this API is called, the **GattServer** instance cannot be used any longer.                            |
 | notifyCharacteristicChanged()              | Notifies a connected client device when a characteristic value changes.                                                          |
 | sendResponse()                             | Sends a response to a read or write request from the client.                                                                            |
 | on(type: 'characteristicRead')             | Subscribes to the characteristic read request event for the server.                                                                              |
@@ -64,7 +64,9 @@ The following table describes the related APIs.
 5. Read characteristics and descriptors from the server.
 6. Write characteristics and descriptors to the server.
 7. Disconnect from the server and close the **gattClient** instance.
+
 Example:
+
 ```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
@@ -216,7 +218,8 @@ console.info('disconnect success')
 clientDevice.close();
 console.info('close gattClientDevice success');
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 
 ### Managing Services on the Server and Notifying the Client
@@ -226,7 +229,9 @@ For details about the error codes, see [Bluetooth Error Codes](../../reference/e
 4. Notify the client after a characteristic is written to the server.
 5. Remove services.
 6. Close the gattServer instance.
+
 Example:
+
 ```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
@@ -243,7 +248,7 @@ let string2ArrayBuffer: (str: string) => ArrayBuffer = (str: string): ArrayBuffe
   return array.buffer;
 }
 
-let characteristicsArray: Array<ble.BLECharacteristic> = new Array(8);
+let characteristicsArray: Array<ble.BLECharacteristic> = new Array<ble.BLECharacteristic>();
 let descriptorsArray: Array<ble.BLEDescriptor> = new Array<ble.BLEDescriptor>();
 let characteristics1: ble.BLECharacteristic = {
   serviceUuid: '0000aaaa-0000-1000-8000-00805f9b34fb',
@@ -325,4 +330,5 @@ console.info('removeService success')
 gattServerInstance.close();
 console.info('close gattServerInstance success');
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

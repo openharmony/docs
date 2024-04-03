@@ -4,13 +4,11 @@
 This topic walks you through on how to implement basic Bluetooth settings, including enabling and disabling Bluetooth and obtaining Bluetooth status.
 
 ## When to Use
-You can use the APIs provided by the **access** module to:
-
-- Enable and disable Bluetooth.
+You can use the APIs provided by the **access** module to enable and disable Bluetooth.
 
 ## Available APIs
 
-For details about the APIs and sample code, see [@ohos.bluetooth.access](../../reference/apis/js-apis-bluetooth-ble.md).
+For details about the APIs and sample code, see [@ohos.bluetooth.access](../../reference/apis-connectivity-kit/js-apis-bluetooth-access.md).
 
 The following table describes the related APIs.
 
@@ -109,7 +107,8 @@ access.on('stateChange', (data) => {
   console.info("bluetooth statues: " + btStateMessage);
 })
 ```
-For details about the error codes, see [Bluetooth Error Codes](../../reference/errorcodes/errorcode-bluetoothManager.md).
+
+For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 **Verification**
 
