@@ -24,12 +24,6 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 - 控件接入AI增强能力，包括：Image、Video、XCopmonent和Canvas控件支持实体识别；文本内容信息识别支持提取时间（日程）、地理位置。 
 
-- 状态管理能力优化：
-  - 新增接口在保留当前接口基本功能的情况下，无需调用aboutToBeDeleted进行解注册，且不会导致内存泄漏问题；
-  - \@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp支持undefined、null和联合类型；
-  - private的普通变量或状态变量处理策略增强；
-  - 支持深度观察，可对类中的属性进行观察。
-
 - 弹窗类组件自定义能力增强：
   - 通过调用promptAction提供的接口，支持自定义显示/退出动效；
   - 配置弹框样式：设置背景色、圆角、宽度、高度、边框（颜色、宽度）、阴影（偏移、圆角、透明度、颜色）、气泡箭头大小设置；
