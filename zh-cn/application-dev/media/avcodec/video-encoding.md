@@ -93,6 +93,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 设置 OnError 回调函数
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
+        // 回调的错误码由用户判断处理
         (void)codec;
         (void)errorCode;
         (void)userData;
@@ -101,6 +102,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 设置 OnStreamChanged 回调函数
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
+        // surface模式下，该回调函数无作用
         (void)codec;
         (void)format;
         (void)userData;
@@ -109,10 +111,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 设置 OH_AVCodecOnNeedInputBuffer 回调函数，编码输入帧送入数据队列
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
+        // surface模式下，该回调函数无作用，用户通过获取的surface输入数据
         (void)userData;
         (void)index;
         (void)buffer;
-        // surface模式下，该回调函数无作用，用户通过获取的surface输入数据
     }
 
     // 设置 OH_AVCodecOnNewOutputBuffer 回调函数，编码完成帧送入输出队列
@@ -196,14 +198,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     获取编码器Surface模式的OHNativeWindow输入，获取Surface需要在准备编码器之前完成。
 
     ```c++
-    int32_t ret;
     // 获取需要输入的Surface，以进行编码
     OHNativeWindow *nativeWindow;
-    ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
+    int32_t ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 通过OHNativeWindow*变量类型，可通过生产者接口获取带填充数据地址。
+    // 通过OHNativeWindow*变量类型，可通过生产者接口获取待填充数据地址。
     ```
     OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
 
@@ -212,7 +213,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     该接口将在编码器运行前进行一些数据的准备工作。
 
     ```c++
-    ret = OH_VideoEncoder_Prepare(videoEnc);
+    int32_t ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -221,9 +222,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 7. 调用OH_VideoEncoder_Start()启动编码器。
 
     ```c++
-    int32_t ret;
+    // 配置待编码文件路径
+    std::string_view outputFilePath = "/*yourpath*.h264";
+    std::unique_ptr<std::ofstream> outputFile = std::make_unique<std::ofstream>();
+    outputFile->open(outputFilePath.data(), std::ios::out | std::ios::binary | std::ios::ate);
     // 启动编码器，开始编码
-    ret = OH_VideoEncoder_Start(videoEnc);
+    int32_t ret = OH_VideoEncoder_Start(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -246,10 +250,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器结束。
 
     ```c++
-    int32_t ret;
     // surface模式：通知视频编码器输入流已结束，只能使用此接口进行通知
     // 不能像buffer模式中将flag设为AVCODEC_BUFFER_FLAGS_EOS，再调用OH_VideoEncoder_PushInputBuffer接口通知编码器输入结束
-    ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
+    int32_t ret = OH_VideoEncoder_NotifyEndOfStream(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -263,10 +266,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
 
     ```c++
-    int32_t ret;
     // 获取解码后信息
     OH_AVCodecBufferAttr info;
-    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -286,9 +288,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     此时需要调用OH_VideoEncoder_Start()重新开始编码。
 
     ```c++
-    int32_t ret;
     // 刷新编码器videoEnc
-    ret = OH_VideoEncoder_Flush(videoEnc);
+    int32_t ret = OH_VideoEncoder_Flush(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -304,9 +305,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
 
     ```c++
-    int32_t ret;
     // 重置编码器videoEnc
-    ret = OH_VideoEncoder_Reset(videoEnc);
+    int32_t ret = OH_VideoEncoder_Reset(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -320,9 +320,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 14. （可选）调用OH_VideoEncoder_Stop()停止编码器。
 
     ```c++
-    int32_t ret;
     // 终止编码器videoEnc
-    ret = OH_VideoEncoder_Stop(videoEnc);
+    int32_t ret = OH_VideoEncoder_Stop(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -337,9 +336,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     >
 
     ```c++
-    int32_t ret;
     // 调用OH_VideoEncoder_Destroy，注销编码器
-    ret = OH_VideoEncoder_Destroy(videoEnc);
+    int32_t ret = OH_VideoEncoder_Destroy(videoEnc);
     videoEnc = nullptr;
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -397,6 +395,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
+        // 回调的错误码由用户判断处理
         (void)codec;
         (void)errorCode;
         (void)userData;
@@ -405,6 +404,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
+        // surface模式下，该回调函数无作用
         (void)codec;
         (void)format;
         (void)userData;
@@ -459,7 +459,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-        OH_AVFormat_Destroy(format);
+    OH_AVFormat_Destroy(format);
     ```
 
 5. 调用OH_VideoEncoder_Prepare()编码器就绪。
@@ -563,13 +563,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     与“8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
     ```c++
-    int32_t ret;
     OH_AVCodecBufferAttr info;
     info.size = 0;
     info.offset = 0;
     info.pts = 0;
     info.flags = AVCODEC_BUFFER_FLAGS_EOS;
-    ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -583,10 +582,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     与surface模式相同，此处不再赘述。
 
     ```c++
-    int32_t ret;
     // 获取解码后信息
     OH_AVCodecBufferAttr info;
-    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
