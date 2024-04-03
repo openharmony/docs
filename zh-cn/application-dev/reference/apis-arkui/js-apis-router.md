@@ -1048,7 +1048,7 @@ if (options != undefined) {
 ```
 ## router.getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<RouterState>
+getStateByUrl(url: string): Array&lt;RouterState&gt;
 
 通过url获取对应页面的状态信息。
 
