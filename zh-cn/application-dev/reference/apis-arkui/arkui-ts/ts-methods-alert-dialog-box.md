@@ -10,11 +10,19 @@
 >
 > 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)来明确UI的执行上下文。
 
-## 属性
+## AlertDialog.show
 
-| 名称    | 参数类型  | 参数描述 |
-| ---- | --------------- | -------- |
-| show | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](#alertdialogparamwithoptions10对象说明)<sup>10+</sup> | 定义并显示AlertDialog组件。 |
+static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions)
+
+定义警告弹窗并弹出。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型  | 必填 | 描述 |
+| ---- | --------------- | -------- | -------- |
+| value | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](#alertdialogparamwithoptions10对象说明)<sup>10+</sup> | 是 | 定义并显示AlertDialog组件。 |
 
 ## AlertDialogParam对象说明
 
@@ -42,6 +50,24 @@
 | 参数名       | 参数类型     | 必填     | 参数描述         |
 | ---------- | ---------------- | ---------- | ------------------------------- |
 | confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
+
+confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
+
+| backgroundColor | fontColor | style                       | defaultFocus | 效果     |
+| --------------- | --------- | --------------------------- | ------------ | -------- |
+| 绿底            | 红字      | -                           | -            | 绿底红字 |
+| 绿底            | -         | DialogButtonStyle.HIGHLIGHT | -            | 绿底白字 |
+| 绿底            | -         | DialogButtonStyle.DEFAULT   | -            | 绿底蓝字 |
+| 绿底            | -         | -                           | TRUE         | 绿底白字 |
+| 绿底            | -         | -                           | FALSE/-      | 绿底蓝字 |
+| -               | 红字      | DialogButtonStyle.HIGHLIGHT | -            | 蓝底红字 |
+| -               | 红字      | DialogButtonStyle.DEFAULT   | -            | 白底红字 |
+| -               | 红字      | -                           | TRUE         | 蓝底红字 |
+| -               | 红字      | -                           | FALSE/-      | 白底红字 |
+| -               | -         | DialogButtonStyle.HIGHLIGHT | -            | 蓝底白字 |
+| -               | -         | DialogButtonStyle.DEFAULT   | -            | 白底蓝字 |
+| -               | -         | -                           | TRUE         | 蓝底白字 |
+| -               | -         | -                           | FALSE/-      | 白底蓝字 |
 
 ## AlertDialogParamWithButtons对象说明
 
@@ -78,24 +104,6 @@
 | AUTO                      | 两个及以下按钮水平排布，两个以上为竖直排布。 |
 | HORIZONTAL                      | 按钮水平布局。 |
 | VERTICAL                      | 按钮竖直布局。 |
-
-confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
-
-| backgroundColor | fontColor | style                       | defaultFocus | 效果     |
-| --------------- | --------- | --------------------------- | ------------ | -------- |
-| 绿底            | 红字      | -                           | -            | 绿底红字 |
-| 绿底            | -         | DialogButtonStyle.HIGHLIGHT | -            | 绿底白字 |
-| 绿底            | -         | DialogButtonStyle.DEFAULT   | -            | 绿底蓝字 |
-| 绿底            | -         | -                           | TRUE         | 绿底白字 |
-| 绿底            | -         | -                           | FALSE/-      | 绿底蓝字 |
-| -               | 红字      | DialogButtonStyle.HIGHLIGHT | -            | 蓝底红字 |
-| -               | 红字      | DialogButtonStyle.DEFAULT   | -            | 白底红字 |
-| -               | 红字      | -                           | TRUE         | 蓝底红字 |
-| -               | 红字      | -                           | FALSE/-      | 白底红字 |
-| -               | -         | DialogButtonStyle.HIGHLIGHT | -            | 蓝底白字 |
-| -               | -         | DialogButtonStyle.DEFAULT   | -            | 白底蓝字 |
-| -               | -         | -                           | TRUE         | 蓝底白字 |
-| -               | -         | -                           | FALSE/-      | 白底蓝字 |
 
 ## DialogAlignment枚举说明
 
