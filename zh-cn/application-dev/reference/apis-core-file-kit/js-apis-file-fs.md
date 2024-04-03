@@ -3547,7 +3547,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 ### 属性
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | 是    | 否    | 发生监听事件的文件名。 |
 | event | number | 是    | 否    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文件或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。 |
@@ -3559,7 +3559,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | processedSize | number | 是    | 否    | 已拷贝的数据大小。 |
 | totalSize | number | 是    | 否    | 待拷贝的数据总大小。 |
@@ -3603,7 +3603,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 ### 属性
 
-| 名称     | 类型   | 可读   | 可写   | 说明                                       |
+| 名称     | 类型   | 只读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |                        
 | ino    | bigint | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。|                 |
 | mode   | number | 是    | 否    | 表示文件权限，各特征位的含义如下：<br/>**说明：** 以下值为八进制，取得的返回值为十进制，请换算后查看。<br/>-&nbsp;0o400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。 |
@@ -4235,7 +4235,7 @@ readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 ### 属性
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | 是    | 否    | 打开的文件描述符。 |
 | path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
@@ -4403,7 +4403,7 @@ unlock(): void
 
 ### 属性
 
-| 名称         | 类型   | 可读  | 可写  | 说明              |
+| 名称         | 类型   | 只读  | 可写  | 说明              |
 | ----------- | ------ | ----  | ----- | ---------------- |
 | fd          | number | 是    | 否    | 打开的文件描述符。 |
 | filePointer | number | 是    | 是    | RandomAccessFile对象的偏置指针。 |
