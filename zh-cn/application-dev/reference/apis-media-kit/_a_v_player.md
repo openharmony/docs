@@ -876,7 +876,7 @@ OH_AVErrCode OH_AVPlayer_SetFDSource (OH_AVPlayer * player, int32_t fd, int64_t 
 
 **返回：**
 
-如果fd设置成功返回**AV_ERR_OK**，否则返回[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误码。
+如果fd设置成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
 
 
 ### OH_AVPlayer_SetLooping()
@@ -974,7 +974,7 @@ OH_AVErrCode OH_AVPlayer_SetURLSource (OH_AVPlayer * player, const char * url )
 
 **返回：**
 
-如果url设置成功返回**AV_ERR_OK**，否则返回[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误码。
+如果url设置成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
 
 
 ### OH_AVPlayer_SetVideoSurface()

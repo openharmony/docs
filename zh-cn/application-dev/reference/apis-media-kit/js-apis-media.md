@@ -3478,6 +3478,8 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
   if (error) {
     console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
@@ -3513,6 +3515,8 @@ fetchMetadata(): Promise\<AVMetadata>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
   console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
 }).catch((error: BusinessError) => {
@@ -3546,10 +3550,10 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 
 let pixel_map : image.PixelMap | undefined = undefined;
-
 
 avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
   if (error) {
@@ -3586,6 +3590,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -3622,6 +3627,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avMetadataExtractor.release((error: BusinessError) => {
   if (error) {
     console.error(`release failed, err = ${JSON.stringify(error)}`);
@@ -3656,6 +3663,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 avMetadataExtractor.release().then(() => {
   console.info(`release success.`);
 }).catch((error: BusinessError) => {
