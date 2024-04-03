@@ -490,12 +490,13 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 ### 调测验证
 
-驱动开发完成后，开发者可以通过[用户认证API接口](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)开发JS应用，JS应用通过Fingerprint_auth服务调用Fingerprint_auth驱动，从而验证驱动开发是否符合预期。基于RK3568平台验证，认证和取消功能验证的JS测试代码如下：
+驱动开发完成后，开发者可以通过[用户认证API接口](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)开发HAP应用，基于RK3568平台验证。认证和取消功能验证的测试代码如下：
 
-1.发起认证并获取认证结果的JS测试代码如下：
+1.发起认证并获取认证结果的测试代码如下：
 
-```js
-  import type { BusinessError } from '@ohos.base';
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
   
   // 设置认证参数
@@ -513,27 +514,27 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
   try {
     // 获取认证对象
     let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
+    console.info('get userAuth instance success');
     // 订阅认证结果
     userAuthInstance.on('result', {
       onResult(result) {
-        console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+        console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
         // 可在认证结束或其他业务需要场景，取消订阅认证结果
         userAuthInstance.off('result');
       }
     });
-    console.log('auth on success');
+    console.info('auth on success');
     userAuthInstance.start();
-    console.log('auth start success');
+    console.info('auth start success');
   } catch (error) {
     const err: BusinessError = error as BusinessError;
     console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
   }
 ```
     
-2.取消认证的JS测试代码如下：
+2.取消认证的测试代码如下：
 
-```js
+```ts
   // API version 10
   import type {BusinessError} from '@ohos.base';
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -551,13 +552,13 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
   try {
     // 获取认证对象
     let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
+    console.info('get userAuth instance success');
     // 开始认证
     userAuthInstance.start();
-    console.log('auth start success');
+    console.info('auth start success');
     // 取消认证
     userAuthInstance.cancel();
-    console.log('auth cancel success');
+    console.info('auth cancel success');
   } catch (error) {
     const err: BusinessError = error as BusinessError;
     console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
