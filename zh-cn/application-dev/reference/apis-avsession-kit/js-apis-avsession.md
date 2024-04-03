@@ -398,7 +398,7 @@ setAVCallState(state: AVCallState): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE ,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
