@@ -93,7 +93,8 @@ function foo(): void {
 指令*tryldglobalbyname 0x0, a*：将名称为a的全局变量加载进acc，不存在名称为a的全局变量时，抛出异常；<br>
 指令*trystglobalbyname 0x2, a*：将acc中的值存放到名称为a的全局变量上，不存在名称为a的全局变量时，抛出异常；<br>
 指令*trystglobalbyname 0x3, b*：将acc中的值存放到名称为b的全局变量上，不存在名称为b的全局变量时，抛出异常。<br>
-注意：上述指令中出现的0x0，0x2，0x3是方舟运行时内部使用的保留数字，开发者无需关注。
+**注意：**<br>
+上述指令中出现的0x0，0x2，0x3是方舟运行时内部使用的保留数字，开发者无需关注。
 
 #### 模块命名空间和模块变量
 源文件中所有使用到的[模块命名空间](https://262.ecma-international.org/12.0/#module-namespace-exotic-object)（module namespace）都会被编译进一个数组中，指令中使用索引来引用一个模块命名空间。例如，指令*getmodulenamespace 0x1*引用了索引*0x1*处的模块命名空间。<br>
@@ -104,7 +105,8 @@ function foo(): void {
 * ```import { }```：module variable
 * ```export```：local export
 
-请注意，模块相关的逻辑是编译器的内部实现，随着方舟编译器的后续演进，可能会出现新的涉及模块指令的场景；另一方面，现有的模块命名空间和模块变量指令的相关场景，也可能会随着需求演进和代码重构，不再涉及产生模块相关指令。<br>
+**注意：**<br>
+模块相关的逻辑是编译器的内部实现，随着方舟编译器的后续演进，可能会出现新的涉及模块指令的场景；另一方面，现有的模块命名空间和模块变量指令的相关场景，也可能会随着需求演进和代码重构，不再涉及产生模块相关指令。<br>
 
 示例代码：
 ```ts
@@ -152,7 +154,8 @@ a + b + d;
 
 |xxx|xxx|xxx|xxx|   <-- 当前词法环境
 ```
-请注意，lexical相关的逻辑是编译器的内部实现。随着方舟编译器的后续演进，可能会出现新的涉及lexical指令的场景；另一方面，现有的lexical指令的相关场景，也可能会随着需求演进和代码重构，不再涉及产生lexical相关指令。
+**注意：**<br>
+lexical相关的逻辑是编译器的内部实现。随着方舟编译器的后续演进，可能会出现新的涉及lexical指令的场景；另一方面，现有的lexical指令的相关场景，也可能会随着需求演进和代码重构，不再涉及产生lexical相关指令。
 示例代码：
 ```ts
 function foo(): void {
@@ -319,15 +322,15 @@ function foo(a: number, b: number): void {}
 |  0x15	|  IMM8_V8	|  shl2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A << acc`，并将计算结果存放到acc中。   |
 |  0x16	|  IMM8_V8	|  shr2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A >>> acc`，并将计算结果存放到acc中。   |
 |  0x17	|  IMM8_V8	|  ashr2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A >> acc`，并将计算结果存放到acc中。   |
-|  0x18	|  IMM8_V8	|  and2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A && acc`，并将计算结果存放到acc中。   |
-|  0x19	|  IMM8_V8	|  or2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A \|\| acc`，并将计算结果存放到acc中。   |
+|  0x18	|  IMM8_V8	|  and2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A & acc`，并将计算结果存放到acc中。   |
+|  0x19	|  IMM8_V8	|  or2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A \| acc`，并将计算结果存放到acc中。   |
 |  0x1a	|  IMM8_V8	|  xor2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A ^ acc`，并将计算结果存放到acc中。
 |  0x1b	|  IMM8_V8	|  exp RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A ** acc`，并将计算结果存放到acc中。   |
 |  0x1c	|  IMM8	|  typeof RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  计算`typeof acc`，并将计算结果存放到acc中。   |
 |  0x1d	|  IMM8	|  tonumber RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  以acc作为参数，执行[ToNumber](https://262.ecma-international.org/12.0/#sec-tonumber)，将结果存放到acc中。   |
 |  0x1e	|  IMM8	|  tonumeric RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  以acc作为参数，执行[ToNumeric](https://262.ecma-international.org/12.0/#sec-tonumeric)，将结果存放到acc中。   |
 |  0x1f	|  IMM8	|  neg RR	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`-acc`，并将计算结果存放到acc中。   |
-|  0x20	|  IMM8	|  not RR	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`!acc`，并将计算结果存放到acc中。   |
+|  0x20	|  IMM8	|  not RR	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`~acc`，并将计算结果存放到acc中。   |
 |  0x21	|  IMM8	|  inc RR	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`acc + 1`，并将计算结果存放到acc中。   |
 |  0x22	|  IMM8	|  dec RR	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`acc - 1`，并将计算结果存放到acc中。   |
 |  0x23	|  NONE	|  istrue	|  默认入参：acc：对象	|  计算`acc == true`，并将计算结果存放到acc中。   |

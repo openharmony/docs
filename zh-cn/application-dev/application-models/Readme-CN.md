@@ -15,6 +15,7 @@
       - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
     - [ExtensionAbility组件](extensionability-overview.md)
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
