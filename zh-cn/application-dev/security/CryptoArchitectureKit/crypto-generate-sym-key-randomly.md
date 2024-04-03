@@ -17,38 +17,23 @@
 
 3. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
-- 以使用Promise方式随机生成AES密钥为例：
+以使用Promise方式随机生成AES密钥为例：
 
-  ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
-  function testGenerateAesKey() {
-    // 创建SymKeyGenerator实例
-    let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
-    // 使用密钥生成器随机生成对称密钥
-    let promiseSymKey = symKeyGenerator.generateSymKey();
-    promiseSymKey.then(key => {
-      // 获取对称密钥的二进制数据，输出256位密钥。长度为32字节
-      let encodedKey = key.getEncoded();
-      console.info('key hex:' + encodedKey.data);
-    });
-  }
-  ```
-
-- 同步方法（调用方法[generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12)）：
-  ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-
-  function testSyncGenerateAesKey() {
-    // 创建SymKeyGenerator实例
-    let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
-    // 使用密钥生成器随机生成对称密钥
-    let promiseSymKey = symKeyGenerator.generateSymKeySync();
+function testGenerateAesKey() {
+  // 创建SymKeyGenerator实例
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
+  // 使用密钥生成器随机生成对称密钥
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
     // 获取对称密钥的二进制数据，输出256位密钥。长度为32字节
-    let encodedKey = promiseSymKey.getEncoded();
+    let encodedKey = key.getEncoded();
     console.info('key hex:' + encodedKey.data);
-  }
-  ```
+  });
+}
+```
 
 
 ## 随机生成SM4密钥
@@ -62,35 +47,20 @@
 
 3. 调用[SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，获取密钥对象的二进制数据。
 
-- 以使用Promise方式随机生成SM4密钥为例：
+以使用Promise方式随机生成SM4密钥为例：
 
-  ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
-  function testGenerateSM4Key() {
-    // 创建SymKeyGenerator实例
-    let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
-    // 使用密钥生成器随机生成对称密钥
-    let promiseSymKey = symKeyGenerator.generateSymKey();
-    promiseSymKey.then(key => {
-      // 获取对称密钥的二进制数据，输出128位字节流。长度为16字节
-      let encodedKey = key.getEncoded();
-      console.info('key hex:' + encodedKey.data);
-    });
-  }
-  ```
-
-- 同步方法（调用方法[generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12)）：
-  ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-
-  function testSyncGenerateAesKey() {
-    // 创建SymKeyGenerator实例
-    let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
-    // 使用密钥生成器随机生成对称密钥
-    let promiseSymKey = symKeyGenerator.generateSymKeySync();
+function testGenerateSM4Key() {
+  // 创建SymKeyGenerator实例
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
+  // 使用密钥生成器随机生成对称密钥
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then(key => {
     // 获取对称密钥的二进制数据，输出128位字节流。长度为16字节
-    let encodedKey = promiseSymKey.getEncoded();
+    let encodedKey = key.getEncoded();
     console.info('key hex:' + encodedKey.data);
-  }
-  ```
+  });
+}
+```
