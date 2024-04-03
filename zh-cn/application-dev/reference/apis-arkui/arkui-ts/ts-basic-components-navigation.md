@@ -415,7 +415,7 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 
 pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
-将info指定的NavDestination页面信息入栈，支持返回接口调用结果。
+将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
 **参数：**
 
@@ -445,7 +445,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&lt;void&gt;
 
-将name指定的NavDestination页面信息入栈，传递的数据为param，支持返回接口调用结果。
+将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
 **参数：**
 
@@ -476,7 +476,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
-将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，支持返回接口调用结果。
+将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
 
 **参数：**
 
