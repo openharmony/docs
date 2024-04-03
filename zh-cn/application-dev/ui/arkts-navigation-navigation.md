@@ -191,7 +191,7 @@ Navigation() {
 
 ## 设置工具栏
 
-工具栏位于Navigation组件的底部，开发者可以通过toolBar属性进行设置。
+工具栏位于Navigation组件的底部，开发者可以通过toolbarConfiguration属性进行设置。
 
 
   **图7** 工具栏  
