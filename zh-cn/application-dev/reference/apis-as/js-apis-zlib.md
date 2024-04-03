@@ -608,7 +608,7 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 
 ```typescript
 import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
 checksum.getCrc64Table().then((data) => {
