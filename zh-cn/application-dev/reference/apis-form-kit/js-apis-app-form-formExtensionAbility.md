@@ -90,9 +90,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onUpdateForm
 
-onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
+onUpdateForm(formId: string): void
 
-卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+卡片提供方接收更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -101,7 +101,6 @@ onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | formId | string | 是   | 请求更新的卡片ID。 |
-| wantParams<sup>12+</sup> | Record<string, Object> | 否   | 更新参数。 |
 
 **示例：**
 
@@ -112,9 +111,8 @@ import formProvider from '@ohos.app.form.formProvider';
 import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
-    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId},
-        wantPara: ${wantParams?.['ohos.extra.param.key.host_bg_inverse_color']}`);
+  onUpdateForm(formId: string) {
+    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId}`);
     let param: Record<string, string> = {
       'temperature': '22c',
       'time': '22:00'
