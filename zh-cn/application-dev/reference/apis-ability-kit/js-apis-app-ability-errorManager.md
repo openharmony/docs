@@ -213,7 +213,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16200001 | Invalid caller. |
+| 16200001 | If the caller is invalid. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
