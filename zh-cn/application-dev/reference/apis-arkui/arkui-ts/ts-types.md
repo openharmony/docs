@@ -476,7 +476,7 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | Go                     | 显示为开始样式。   |
 | Search                 | 显示为搜索样式。   |
 | Send                   | 显示为发送样式。   |
-| Next                   | 显示为下一个样式。 |
+| Next                   | 显示为下一步样式。 |
 | Done                   | 显示为完成样式。   |
-| PREVIOUS<sup>11+</sup> | 显示为上一个样式。 |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
