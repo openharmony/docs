@@ -176,7 +176,7 @@ string.json文件的内容如下：
             "value":"We will arrive at %1$s."
         },
   {
-            "name":"lable",
+            "name":"message_notification",
             "value":"Hello, %1$s!,You have %2$d new messages."
   }
     ]
