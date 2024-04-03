@@ -630,7 +630,6 @@ try {
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
-    console.info('data dialogShownResults:' + data.dialogShownResults);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -687,7 +686,6 @@ try {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);
-        console.info('data dialogShownResults:' + data.dialogShownResults);
     }).catch((err: BusinessError) => {
         console.info('data:' + JSON.stringify(err));
     })

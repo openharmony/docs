@@ -215,7 +215,6 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: 
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
-    console.info('data dialogShownResults:' + data.dialogShownResults);
   }
 });
 ```
@@ -271,7 +270,6 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((
   console.info('data:' + JSON.stringify(data));
   console.info('data permissions:' + data.permissions);
   console.info('data authResults:' + data.authResults);
-  console.info('data dialogShownResults:' + data.dialogShownResults);
 }).catch((err: BusinessError) => {
   console.info('data:' + JSON.stringify(err));
 });
