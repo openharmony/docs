@@ -17,7 +17,7 @@ General application privileges are privileges available to applications on all t
 | Privilege| Description                                                      |
 | ---------------- | ------------------------------------------------------------ |
 | AllowAppDataNotCleared | Prevents deletion of application data.|
-| AllowAppMultiProcess | Allows an application to run on multiple processes.|
+| AllowAppMultiProcess | Allows multiple instances for an application.|
 | AllowAppDesktopIconHide | Allows the application icon to be hidden from the home screen.|
 | AllowAbilityPriorityQueried | Allows the ability priority to be queried.    |
 | AllowAbilityExcludeFromMissions | Allows an ability to be hidden in the mission stack.|
@@ -59,7 +59,7 @@ In addition to general application privileges, device vendors can define device-
 | --------------------- | -------- | ------ | ------------------------------------------------- |
 | removable             | bool     | true   | Allows an application to be uninstalled. This privilege takes effect only for preset applications.              |
 | keepAlive             | bool     | false  | Allows an application to keep running in the background.                                 |
-| singleton             | bool     | false  | Allows an application to be installed for a single user (User 0).                   |
+| singleton             | bool     | false  | Allows an application to be installed for a single user (user 0).                   |
 | allowCommonEvent      | string[] | -      | Allows an application to be started by a static broadcast.                             |
 | associatedWakeUp      | bool     | false  | Allows an application in the FA model to be woken up by an associated application.                     |
 | runningResourcesApply | bool     | false  | Allows an application to apply for running resources, such as the CPU, event notifications, and Bluetooth. |
