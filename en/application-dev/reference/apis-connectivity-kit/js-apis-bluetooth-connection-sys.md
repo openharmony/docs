@@ -724,7 +724,6 @@ try {
 }
 ```
 
-
 ## PinRequiredParam
 
 Represents the pairing request parameters.
@@ -734,8 +733,6 @@ Represents the pairing request parameters.
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
 | pinType | [PinType](#pintype) | Yes   | No   | Type of the device to pair.<br>This is a system API.  |
-
-
 
 ## PinType
 
@@ -755,3 +752,4 @@ Enumerates the Bluetooth pairing types.
 | PIN_TYPE_DISPLAY_PIN_CODE    | 5 | The user needs to enter the PIN displayed on the peer device for Bluetooth 2.0 devices.<br>This is a system API. |
 | PIN_TYPE_OOB_CONSENT    | 6 | The user needs to accept or reject the out of band (OOB) pairing request.<br>This is a system API. |
 | PIN_TYPE_PIN_16_DIGITS    | 7 | The user needs to enter the 16-digit PIN displayed on the peer device.<br>This is a system API. |
+
