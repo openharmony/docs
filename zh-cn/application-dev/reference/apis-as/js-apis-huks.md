@@ -778,7 +778,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | updateSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession操作的参数集合。                       |
-| token    | Uint8Array                                           | 是   | updateSession操作的token。                          |
+| token    | Uint8Array                                           | 是   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)制的用户鉴权证明(AuthToken)                   |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
@@ -816,7 +816,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ------- | ---------------------------------------------- | ---- | -------------------------------------------- |
 | handle  | number                                         | 是   | updateSession操作的handle。                         |
 | options | [HuksOptions](#huksoptions)                    | 是   | updateSession操作的参数集合。                       |
-| token   | Uint8Array                                     | 否   | updateSession操作的token。                          |
+| token   | Uint8Array                                     | 否   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)制的用户鉴权证明(AuthToken)， 不填表示不进行二次认证密钥访问控制。                          |
 
 **返回值**：
 
