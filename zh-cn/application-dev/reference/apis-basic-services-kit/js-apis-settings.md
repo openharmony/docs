@@ -211,7 +211,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -244,7 +244,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -280,7 +280,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -493,7 +493,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -531,7 +531,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
