@@ -339,6 +339,242 @@ getPositionToParent(): Position
 
 请参考[节点操作示例](#节点操作示例)。
 
+
+### getMeasuredSize<sup>12+</sup>
+
+getMeasuredSize(): Size
+
+获取FrameNode测量后的大小。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getLayoutPosition<sup>12+</sup>
+
+getLayoutPosition(): Position
+
+获取FrameNode布局后相对于父组件的位置偏移。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getUserConfigBorderWidth<sup>12+</sup>
+
+getUserConfigBorderWidth(): Edges\<LengthMetric\>
+
+获取用户设置的边框宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的边框宽度。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getUserConfigPadding<sup>12+</sup>
+
+getUserConfigPadding(): Edges\<LengthMetric\>
+
+获取用户设置的内边距。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的内边距。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getUserConfigMargin<sup>12+</sup>
+
+getUserConfigMargin(): Edges\<LengthMetric\>
+
+获取用户设置的外边距。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的外边距。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getUserConfigSize<sup>12+</sup>
+
+getUserConfigSize(): SizeT\<LengthMetric\>
+
+获取用户设置的宽高。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的宽高。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getId<sup>12+</sup>
+
+getId(): string
+
+获取用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| string | 用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)） |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getNodeType<sup>12+</sup>
+
+getNodeType(): string
+
+获取节点的类型。内置组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| string | 节点的类型。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getOpacity<sup>12+</sup>
+
+getOpacity(): number
+
+获取节点的不透明度，最小值为0，最大值为1。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| number | 节点的不透明度。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### isVisible<sup>12+</sup>
+
+isVisible(): boolean
+
+获取节点是否可见。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| boolean | 节点是否可见。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### isClipToFrame<sup>12+</sup>
+
+isClipToFrame(): boolean
+
+获取节点是否是剪裁到组件区域。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| boolean | 节点是否是剪裁到页面。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### isAttached<sup>12+</sup>
+
+isAttached(): boolean
+
+获取节点是否被挂载到主节点树上。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| boolean | 节点是否被挂载到主节点树上。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getInspectorInfo<sup>12+</sup>
+
+getInspectorInfo(): Object
+
+获取节点的结构信息，该信息和[DevEco Studio](../../quick-start/deveco-studio-user-guide-for-openharmony.md)内置ArkUI Inspector工具里面的一致。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Object | 节点的结构信息。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 ### dispose<sup>12+</sup>
 
 dispose(): void
@@ -579,6 +815,71 @@ class MyNodeController extends NodeController {
     let positionToParent = this.frameNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
+  getMeasuredSize()
+  {
+    let measuredSize = this.frameNode?.getMeasuredSize();
+    console.log(TEST_TAG + JSON.stringify(measuredSize));
+  }
+  getLayoutPosition()
+  {
+    let layoutPosition = this.frameNode?.getLayoutPosition();
+    console.log(TEST_TAG + JSON.stringify(layoutPosition));
+  }
+  getUserConfigBorderWidth()
+  {
+    let userConfigBorderWidth = this.frameNode?.getUserConfigBorderWidth();
+    console.log(TEST_TAG + JSON.stringify(userConfigBorderWidth));
+  }
+  getUserConfigPadding()
+  {
+    let userConfigPadding = this.frameNode?.getUserConfigPadding();
+    console.log(TEST_TAG + JSON.stringify(userConfigPadding));
+  }
+  getUserConfigMargin()
+  {
+    let userConfigMargin = this.frameNode?.getUserConfigMargin();
+    console.log(TEST_TAG + JSON.stringify(userConfigMargin));
+  }
+  getUserConfigSize()
+  {
+    let userConfigSize = this.frameNode?.getUserConfigSize();
+    console.log(TEST_TAG + JSON.stringify(userConfigSize));
+  }
+  getId()
+  {
+    let id = this.frameNode?.getId();
+    console.log(TEST_TAG + id);
+  }
+  getNodeType()
+  {
+    let nodeType = this.frameNode?.getNodeType();
+    console.log(TEST_TAG + nodeType);
+  }
+  getOpacity()
+  {
+    let opacity = this.frameNode?.getOpacity();
+    console.log(TEST_TAG + JSON.stringify(opacity));
+  }
+  isVisible()
+  {
+    let visible = this.frameNode?.isVisible();
+    console.log(TEST_TAG + JSON.stringify(visible));
+  }
+  isClipToFrame()
+  {
+    let clipToFrame = this.frameNode?.isClipToFrame();
+    console.log(TEST_TAG + JSON.stringify(clipToFrame));
+  }
+  isAttached()
+  {
+    let attached = this.frameNode?.isAttached();
+    console.log(TEST_TAG + JSON.stringify(attached));
+  }
+  getInspectorInfo()
+  {
+    let inspectorInfo = this.frameNode?.getInspectorInfo();
+    console.log(TEST_TAG + JSON.stringify(inspectorInfo));
+  }
 
   throwError()
   {
@@ -658,6 +959,71 @@ struct Index {
         .width(300)
         .onClick(()=>{
           this.myNodeController.getPositionToParent();
+        })
+      Button("getMeasuredSize")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getMeasuredSize();
+        })
+      Button("getLayoutPosition")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getLayoutPosition();
+        })
+      Button("getUserConfigBorderWidth")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUserConfigBorderWidth();
+        })
+      Button("getUserConfigPadding")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUserConfigPadding();
+        })
+      Button("getUserConfigMargin")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUserConfigMargin();
+        })
+      Button("getUserConfigSize")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUserConfigSize();
+        })
+      Button("getId")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getId();
+        })
+      Button("getNodeType")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getNodeType();
+        })
+      Button("getOpacity")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getOpacity();
+        })
+      Button("isVisible")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.isVisible();
+        })
+      Button("isClipToFrame")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.isClipToFrame();
+        })
+      Button("isAttached")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.isAttached();
+        })
+      Button("getInspectorInfo")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getInspectorInfo();
         })
       Button("throwError")
         .width(300)
