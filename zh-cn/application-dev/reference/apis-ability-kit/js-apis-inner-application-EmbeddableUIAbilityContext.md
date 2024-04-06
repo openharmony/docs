@@ -7,7 +7,6 @@ EmbeddableUIAbilityContext是需要保存状态的[EmbeddableUIAbility](js-apis-
 >  - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
->  - 本模块接口仅可在元服务中使用。
 
 ## 导入模块
 
@@ -18,6 +17,8 @@ import common from '@ohos.app.ability.common';
 ## 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -41,6 +42,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -119,6 +122,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -132,20 +137,21 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16200003 | The target application is not self application. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -202,6 +208,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -233,7 +241,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16200003 | The target application is not self application. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -292,6 +303,8 @@ Ability被启动后，有如下情况:
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -376,6 +389,8 @@ Ability被启动后，有如下情况(callback形式):
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -389,13 +404,11 @@ Ability被启动后，有如下情况(callback形式):
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -464,6 +477,8 @@ Ability被启动后，有如下情况:
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -549,6 +564,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -559,9 +576,6 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -606,6 +620,8 @@ terminateSelf(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -616,9 +632,6 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -663,6 +676,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -674,9 +689,6 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -734,6 +746,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -750,9 +764,6 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -832,10 +843,10 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -1042,14 +1053,12 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -1148,6 +1157,8 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 > **说明：**
 >
 > EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
@@ -1193,6 +1204,8 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 设置UIAbility在任务中显示的名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 > **说明：**
 >
@@ -1249,6 +1262,8 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 > **说明：**
 >
 > EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
@@ -1292,6 +1307,8 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 设置UIAbility任务中流转状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 > **说明：**
 >
@@ -1344,6 +1361,8 @@ restoreWindowStage(localStorage: LocalStorage): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 > **说明：**
 >
 > EmbeddableUIAbilityContext仅在跳转启动时具备该方法。
@@ -1383,6 +1402,8 @@ isTerminating(): boolean
 查询UIAbility是否在terminating状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 > **说明：**
 >
@@ -1590,7 +1611,10 @@ export default class EntryAbility extends EmbeddableUIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能跳转启动。使用callback异步回调。
- **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1645,11 +1669,13 @@ export default class EntryAbility extends EmbeddableUIAbility {
 ## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
 
 通过type隐式启动UIExtensionAbility。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 > **说明：**
 >
@@ -1701,11 +1727,13 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 ## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback) : Promise\<void>
+    abilityStartCallback: AbilityStartCallback): Promise\<void>
 
 通过type隐式启动UIExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 > **说明：**
 >
@@ -1759,7 +1787,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   ```
 ## EmbeddableUIAbilityContext.showAbility
 
-showAbility() : Promise\<void>
+showAbility(): Promise\<void>
 
 显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。
 
@@ -1800,7 +1828,7 @@ showAbility() : Promise\<void>
   ```
 ## EmbeddableUIAbilityContext.hideAbility
 
-hideAbility() : Promise\<void>
+hideAbility(): Promise\<void>
 
 隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。
 
@@ -1846,6 +1874,8 @@ moveAbilityToBackground(): Promise\<void>
 将处于前台的Ability移动到后台。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 > **说明：**
 >
