@@ -104,6 +104,7 @@
         - [点击回弹效果](arkui-ts/ts-universal-attributes-click-effect.md)
         - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
+        - [动态手势设置](arkui-ts/ts-universal-attributes-gesture-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - 触摸交互控制
@@ -134,6 +135,7 @@
           - [SwipeGesture](arkui-ts/ts-basic-gestures-swipegesture.md)
         - [组合手势](arkui-ts/ts-combined-gestures.md)
         - [自定义手势判定](arkui-ts/ts-gesture-customize-judge.md)
+        - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
     - 基础组件
       - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](arkui-ts/ts-basic-components-blank.md)
