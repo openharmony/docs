@@ -42,7 +42,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 应用可以使用系统提供的默认组件样式，当前仅提供默认的系统音量条样式。
 
 ```ts
-import {AVVolume} from '@ohos.multimedia.avVolumeComponent';
+import AVVolume from '@ohos.multimedia.avVolumeComponent';
 
 @Entry
 @Component
