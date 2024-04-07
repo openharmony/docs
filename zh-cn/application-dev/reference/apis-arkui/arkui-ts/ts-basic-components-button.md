@@ -265,14 +265,6 @@ controlSize(value: ControlSize)
 | SMALL | 小尺寸按钮。 |
 | NORMAL  | 正常尺寸按钮。              |
 
-## ButtonRole<sup>12+</sup>枚举说明
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-| 名称      | 描述                 |
-| ------- | ------------------ |
-| NORMAL | 正常按钮。 |
-| ERROR  | 警示按钮。              |
 
 ## 事件
 
