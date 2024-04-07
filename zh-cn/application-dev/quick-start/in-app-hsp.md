@@ -24,11 +24,12 @@ library
 ├── src
 │   └── main
 │       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
+│       │   └── pages
+│       │       └── index.ets
 │       ├── resources
 │       └── module.json5
-└── oh-package.json5
+├── oh-package.json5
+└── index.ets
 ```
 
 ## 开发
@@ -58,7 +59,7 @@ export struct MyTitleBar {
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/index.ets
-export { MyTitleBar } from './components/MyTitleBar';
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
@@ -83,7 +84,7 @@ export function minus(a: number, b: number): number {
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/index.ets
-export { Log, add, minus } from './utils/test';
+export { Log, add, minus } from './src/main/ets/utils/test';
 ```
 ### 导出native方法
 在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`liblibrary.so`的乘法接口`multi`为例：
@@ -99,7 +100,7 @@ export function nativeMulti(a: number, b: number): number {
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/index.ets
+// library/src/main/ets/index.ets
 export { nativeMulti } from './utils/nativeTest';
 ```
 
@@ -146,7 +147,7 @@ export class ResManager{
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/index.ets
-export { ResManager } from './ResManager';
+export { ResManager } from './src/main/ets/ResManager';
 ```
 
 
@@ -161,10 +162,10 @@ export { ResManager } from './ResManager';
 
 ```ts
 // library/index.ets
-export { Log, add, minus } from './utils/test';
-export { MyTitleBar } from './components/MyTitleBar';
-export { ResManager } from './ResManager';
-export { nativeMulti } from './utils/nativeTest';
+export { Log, add, minus } from './src/main/ets/utils/test';
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
+export { ResManager } from './src/main/ets/ResManager';
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 在使用方的代码中，可以这样使用：
 ```ts
