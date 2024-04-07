@@ -79,8 +79,7 @@ struct Index {
 
   build() {
     Row() {
-      Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
-        buildTest: this.buildTest, initbuildTest: this.buildTest })
+      Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, initbuildTest: this.buildTest })
     }
   }
 }
@@ -103,10 +102,7 @@ struct Child {
     Column() {
       Text(this.initMessage)
         .fontSize(30)
-      Text(this.message)
-        .fontSize(30)
       this.initbuildTest();
-      this.buildTest();
     }
     .width('100%')
     .height('100%')
@@ -184,7 +180,7 @@ struct ComponentsChild {
 }
 ```
 
-2.当成员变量被public访问限定符和@StorageLink/@StorageProp/@LocalStorageLink/@LocalStorageLink/@Consume装饰器同时修饰时，因为@StorageLink/@StorageProp/@LocalStorageLink/@LocalStorageLink/@Consume装饰器只支持被私有成员变量改变，所以ArkTS会进行校验并产生告警日志。
+2.当成员变量被public访问限定符和@StorageLink/@StorageProp/@LocalStorageLink/@Consume装饰器同时修饰时，因为@StorageLink/@StorageProp/@LocalStorageLink/@Consume装饰器只支持被私有成员变量改变，所以ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry
