@@ -3403,11 +3403,11 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
-    fs.closeSync(file);
+    stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
-    stream.closeSync();
+    fs.closeSync(file);
   });
   ```
 
