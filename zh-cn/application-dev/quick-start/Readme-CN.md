@@ -21,9 +21,6 @@
       - [共享包概述](shared-guide.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-    - 应用程序包快速修复
-      - [快速修复概述](quickfix-principles.md)
-      - [快速修复命令行调试开发指导](quickfix-debug.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
