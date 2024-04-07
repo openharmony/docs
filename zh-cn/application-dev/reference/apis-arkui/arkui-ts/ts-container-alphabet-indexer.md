@@ -210,7 +210,7 @@ popupPosition(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
+| value  | [Position](ts-types.md#position) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
 
 ### popupSelectedColor<sup>10+</sup>
 
