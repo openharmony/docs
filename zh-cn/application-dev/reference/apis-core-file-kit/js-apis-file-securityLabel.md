@@ -31,7 +31,7 @@ import securityLabel from '@ohos.file.securityLabel';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-## securityLabel.DataLevel
+## DataLevel
 
 type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4' |
 
