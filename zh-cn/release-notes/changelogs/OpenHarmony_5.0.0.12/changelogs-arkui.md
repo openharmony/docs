@@ -79,7 +79,8 @@ struct Index {
 
   build() {
     Row() {
-      Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, initbuildTest: this.buildTest })
+      Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
+        buildTest: this.buildTest, initbuildTest: this.buildTest })
     }
   }
 }
@@ -95,14 +96,19 @@ struct Child {
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
+  @Require @BuilderParam buildTest: () => void;
   @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
   @Require @Prop initMessage: string = 'Hello';
+  @Require @Prop message: string;
 
   build() {
     Column() {
       Text(this.initMessage)
         .fontSize(30)
+      Text(this.message)
+        .fontSize(30)
       this.initbuildTest();
+      this.buildTest();
     }
     .width('100%')
     .height('100%')
