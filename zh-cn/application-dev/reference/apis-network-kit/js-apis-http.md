@@ -950,13 +950,13 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
+class DataReceiveProgressInfo {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -985,13 +985,13 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
+class DataReceiveProgressInfo {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1017,13 +1017,13 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
+class DataSendProgressInfo {
   sendSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1052,13 +1052,13 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
+class DataSendProgressInfo {
   sendSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
