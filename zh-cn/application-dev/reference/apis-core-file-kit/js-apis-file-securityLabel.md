@@ -44,7 +44,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 | 参数名    | 类型       | 必填 | 说明                                         |
 | --------- | ------    | ---- | -------------------------------------------- |
 | path      | string    | 是   | 文件路径                                     |
-| type      | DataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | [DataLevel](#datalevel11) | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **返回值：**
 
