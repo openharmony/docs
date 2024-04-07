@@ -717,7 +717,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
-    if (err && err.code == 13900015) {
+    if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
@@ -760,7 +760,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
-    if (err && err.code == 13900015) {
+    if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
@@ -2775,7 +2775,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
-    if (err && err.code == 13900015) {
+    if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
@@ -2818,7 +2818,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
-    if (err && err.code == 13900015) {
+    if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
         console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
@@ -2863,7 +2863,7 @@ try {
   console.info("move directory succeed");
 } catch (error) {
   let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
-  if (err.code == 13900015) {
+  if (err.code == 13900015 && err.data?.length !== undefined) {
     for (let i = 0; i < err.data.length; i++) {
       console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
     }
