@@ -4798,14 +4798,14 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| suffix | Array&lt;string&gt;     | 文件后缀名完全匹配，各个关键词OR关系。           |
-| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
-| mimeType    | Array&lt;string&gt; | mime类型完全匹配，各个关键词OR关系。       |
-| fileSizeOver    | number | 文件大小匹配，大于等于指定大小的文件。       |
-| lastModifiedAfter    | number | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
-| excludeMedia    | boolean | 是否排除Media中已有的文件。       |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| suffix | Array&lt;string&gt;     | 否 | 文件后缀名完全匹配，各个关键词OR关系。           |
+| displayName    | Array&lt;string&gt;     | 否 | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
+| mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。       |
+| fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。       |
+| lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
+| excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。       |
 
 ## ConflictFiles<sup>10+</sup>
 
@@ -4864,7 +4864,7 @@ open接口flags参数常量。文件打开标签。
 
 ## ReadTextOptions<sup>11+</sup>
 
-可选项类型，支持readText接口使用。
+可选项类型，支持readText接口使用，ReadTextOptions继承至ReadOptions。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4876,7 +4876,7 @@ open接口flags参数常量。文件打开标签。
 
 ## WriteOptions<sup>11+</sup>
 
-可选项类型，支持write接口使用。
+可选项类型，支持write接口使用，WriteOptions继承至Options。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
