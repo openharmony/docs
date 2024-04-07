@@ -101,7 +101,7 @@ export function nativeMulti(a: number, b: number): number {
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest';
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 
 ### 通过$r访问HSP中的资源
