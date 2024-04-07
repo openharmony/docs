@@ -147,7 +147,7 @@ export class ResManager{
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
 // library/index.ets
-export { ResManager } from './ResManager';
+export { ResManager } from './src/main/ets/ResManager';
 ```
 
 
