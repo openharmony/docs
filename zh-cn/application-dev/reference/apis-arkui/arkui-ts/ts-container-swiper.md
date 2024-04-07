@@ -15,7 +15,7 @@
 >
 >  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
 >
->  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AutoLinear或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+>  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AUTO_LINEAR或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
 >
 >  Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
@@ -185,7 +185,7 @@ displayMode(value: SwiperDisplayMode)
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 是   | 主轴方向上元素排列的模式。<br/>默认值：SwiperDisplayMode.Stretch |
+| value  | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 是   | 主轴方向上元素排列的模式。<br/>默认值：SwiperDisplayMode.STRETCH |
 
 ### cachedCount<sup>8+</sup>
 
@@ -255,7 +255,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 设置Swiper视窗内元素显示个数。
 
-字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。
+字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AUTO_LINEAR。
 
 使用number类型且设置小于等于0时，按默认值1显示。
 
