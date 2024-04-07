@@ -302,7 +302,7 @@ TextInput起始支持版本为 API 7，TextArea、Search起始支持版本为 AP
 
 **变更影响**
 
-该变更为不兼容性变更，影响如下：
+该变更为非兼容性变更，影响如下：
 
 原有使用@observed装饰器装饰的类需要更改为使用@ObservedV2装饰。
 
