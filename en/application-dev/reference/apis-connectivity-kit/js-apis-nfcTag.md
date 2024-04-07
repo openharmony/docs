@@ -498,7 +498,7 @@ Registers a listener for the NFC tag read event so that the tag can be preferent
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
-| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A] (#technology-type-definition), [NFC_B] (#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
+| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the tag information read. It cannot be empty.|
 
 **Example**
@@ -602,7 +602,7 @@ Subscribes to the NFC tag read event to implement dispatch of the tag to a foreg
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | type    | string  | Yes  | Event type, which has a fixed value of **readerMode**.|
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
-| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A] (#technology-type-definition), [NFC_B] (#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
+| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback invoked to return the tag information read. It cannot be empty.|
 
 **Error codes**
