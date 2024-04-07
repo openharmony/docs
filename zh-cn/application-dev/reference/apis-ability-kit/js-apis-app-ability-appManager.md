@@ -16,7 +16,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -53,7 +53,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -89,7 +89,7 @@ appManager.isRunningInStabilityTest().then((flag) => {
 
 isRamConstrainedDevice(): Promise\<boolean>
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -124,7 +124,7 @@ appManager.isRamConstrainedDevice().then((data) => {
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -160,7 +160,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>
 
-获取当前应用程序可以使用的内存的值。
+获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -195,7 +195,7 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取当前应用程序可以使用的内存的值。
+获取当前应用程序可以使用的内存的值。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
