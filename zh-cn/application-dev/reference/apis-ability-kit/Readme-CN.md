@@ -210,5 +210,4 @@
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
-  - [zlib子系统错误码](errorcode-zlib.md)
   - [访问控制错误码](errorcode-access-token.md)
