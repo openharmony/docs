@@ -25,7 +25,11 @@ If the style of each component needs to be set separately, this will result in a
   }
   ```
 
-- \@Styles can be defined inside or outside a component declaration. When it is defined outside a component declaration, the component name must be preceded by the keyword **function**.
+- \@Styles can be defined inside or outside a component declaration. When it is defined outside a component declaration, the method name must be preceded by the keyword **function**.
+
+> **NOTE**
+>
+> This decorator can be used only in the current file and cannot be exported.
 
   ```ts
   // Global (outside a component declaration)
@@ -92,7 +96,7 @@ struct FancyUse {
     Column({ space: 10 }) {
       // Use the \@Styles decorated method defined outside a component declaration.
       Text('FancyA')
-        .globalFancy ()
+        .globalFancy()
         .fontSize(30)
       // Use the \@Styles decorated method defined outside a component declaration.
       Text('FancyB')

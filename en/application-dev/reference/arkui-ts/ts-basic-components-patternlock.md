@@ -22,7 +22,7 @@ PatternLock(controller?: PatternLockController)
 
 ## Attributes
 
-Except for **backgroundColor**, the universal attributes are not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name           | Type                             | Description                                                        |
 | --------------- | ------------------------------------- | ------------------------------------------------------------ |

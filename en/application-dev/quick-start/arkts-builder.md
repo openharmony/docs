@@ -78,13 +78,13 @@ In by-reference parameter passing, state variables can be passed, and the change
 
 
 ```ts
-ABuilder( $$ : { paramA1: string, paramB1 : string } );
+overBuilder( $$ : { paramA1: string, paramB1 : string } );
 ```
 
 
 
 ```ts
-@Builder function ABuilder($$: { paramA1: string }) {
+@Builder function overBuilder($$: { paramA1: string }) {
   Row() {
     Text(`UseStateVarByReference: ${$$.paramA1} `)
   }
@@ -95,8 +95,8 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
-      ABuilder({ paramA1: this.label })
+      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
@@ -113,7 +113,7 @@ By default, parameters in the \@Builder decorated functions are passed by value.
 
 
 ```ts
-@Builder function ABuilder(paramA1: string) {
+@Builder function overBuilder(paramA1: string) {
   Row() {
     Text(`UseStateVarByValue: ${paramA1} `)
   }
@@ -124,7 +124,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      ABuilder(this.label)
+      overBuilder(this.label)
     }
   }
 }
