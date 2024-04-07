@@ -17,9 +17,6 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
-      - 应用程序包快速修复
-        - [快速修复概述](quick-start/quickfix-principles.md)
-        - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
