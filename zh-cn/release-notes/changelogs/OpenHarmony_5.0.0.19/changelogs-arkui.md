@@ -386,3 +386,33 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.7 RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan，光标位置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan，光标位置显示异常
+
+**变更影响**
+
+当RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan光标位置逻辑统一
+
+变更前：RichEditor处于获焦时，调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan时，生效后光标位置会根据offset信息与插入前光标位置信息进行确定光标不会动或进行移动
+
+变更后：RichEditor处于获焦时，调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan后，光标位置信息一律在所插内容之后显示
+
+**起始API Level**
+
+addTextSpan，addImageSpan 起始支持版本为10，addBuilderSpan，addSymbolSpan 起始支持版本为11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19开始。
+
+**适配指导**
+
+在获焦时RichEditor调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan后，光标位置调整，开发者无需后续对光标位置信息做适配。
