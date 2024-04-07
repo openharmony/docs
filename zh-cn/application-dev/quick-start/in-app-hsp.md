@@ -11,11 +11,12 @@ library
 ├── src
 │   └── main
 │       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
+│       │   └── pages
+│       │       └── index.ets
 │       ├── resources
 │       └── module.json5
-└── oh-package.json5
+├── oh-package.json5
+└── index.ets
 ```
 模块`module.json5`中的`"type"`标识模块类型，`HSP`的`"type"`是`"shared"`。
 ```json
