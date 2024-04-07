@@ -34,7 +34,7 @@ int32_t OH_AudioEncInfo::audioBitrate
 
 **描述**
 
-音频录制比特率。
+音频编码比特率。
 
 
 ### audioCodecformat
