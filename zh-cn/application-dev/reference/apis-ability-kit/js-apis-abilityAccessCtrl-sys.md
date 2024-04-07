@@ -412,49 +412,6 @@ promise.then((data: number) => {
 });
 ```
 
-### getPermissionsStatus<sup>12+</sup>
-
-getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;): Promise&lt;Array&lt;PermissionStatus&gt;&gt;
-
-获取指定应用权限状态列表。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS，仅系统应用可用。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-**返回值：**
-
-| 类型          | 说明                                |
-| :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise对象。返回查询到的权限状态列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
-| 12100002 | The specified tokenID does not exist. |
-| 12100007 | Service is abnormal. |
-
-**示例：**
-
-```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
-
-let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
-  console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
-});
-```
-
 ### on<sup>9+</sup>
 
 on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void
@@ -599,19 +556,3 @@ try {
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 是   | 权限授权状态变化类型。        |
 | tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。 |
 | permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
-
-### PermissionStatus<sup>12+</sup>
-
-表示权限状态的枚举。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-| 名称               |    值 | 说明        |
-| ------------------ | ----- | ----------- |
-| DENIED  | -1    | 表示未授权。 |
-| GRANTED | 0     | 表示已授权。 |
-| NOT_DETERMINED | 1     | 表示未操作。 |
-| INVALID | 2     | 表示无效。 |
-| RESTRICTED | 3     | 表示受限。 |

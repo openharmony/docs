@@ -1456,6 +1456,8 @@ getData(): Promise&lt;PasteData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1831,8 +1833,6 @@ try {
 getDataSource(): string
 
 获取数据来源。
-
-**需要权限**：ohos.permission.READ_PASTEBOARD
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 

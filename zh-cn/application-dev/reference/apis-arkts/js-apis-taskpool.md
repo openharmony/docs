@@ -10,7 +10,8 @@
 
 taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -534,7 +535,8 @@ function inspectStatus(arg: number): number {
 }
 ```
 
-> **说明：**<br/>
+> **说明：**
+>
 > isCanceled方法需要和taskpool.cancel方法搭配使用，如果不调用cancel方法，isCanceled方法默认返回false。
 
 **示例：**
@@ -575,7 +577,8 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 设置任务的传输列表。使用该方法前需要先构造Task。不调用该接口，则传给任务的数据中的ArrayBuffer默认transfer转移。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。若ArrayBuffer为空，则不会transfer转移。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -636,8 +639,9 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 设置任务的拷贝列表。使用该方法前需要先构造Task。
 
-> **说明：**<br/>
-> 当前仅支持拷贝，[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)需搭配该接口使用，否则会抛异常。
+> **说明：**
+>
+> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器声明并校验sendable-class)使用，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -645,7 +649,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#基本概念)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[sendable数据](../../arkts-utils/arkts-sendable.md#sendable数据)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
@@ -658,11 +662,10 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
-
+// sendable.ets
+// 定义两个Sendable class：BaseClass及其子类DeriveClass
 @Sendable
-class BaseClass {
+export class BaseClass {
   private str: string = "sendable: BaseClass";
   static num :number = 10;
   str1: string = "sendable: this is BaseClass's string";
@@ -701,7 +704,7 @@ class BaseClass {
 }
 
 @Sendable
-class DeriveClass extends BaseClass {
+export class DeriveClass extends BaseClass {
   name: string = "sendable: this is DeriveClass";
   printName() {
     console.info(this.name);
@@ -710,6 +713,15 @@ class DeriveClass extends BaseClass {
     super();
   }
 }
+```
+
+
+```ts
+// index.ets
+// 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
+import taskpool from '@ohos.taskpool'
+import { BusinessError } from '@ohos.base'
+import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -820,7 +832,8 @@ onReceiveData(callback?: Function): void
 
 为任务注册回调函数，以接收和处理来自任务池工作线程的数据。使用该方法前需要先构造Task。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 不支持给同一个任务定义多种回调函数，如果重复赋值只有最后一个会生效。
 
 **系统能力：** SystemCapability.Utils.Lang

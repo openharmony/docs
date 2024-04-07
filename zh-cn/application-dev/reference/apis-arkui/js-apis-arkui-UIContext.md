@@ -718,6 +718,26 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
 | keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
 
+### getFocusController<sup>12+</sup>
+
+getFocusController(): FocusController
+
+获取FocusController对象，可通过该对象控制焦点。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[FocusController](js-apis-arkui-UIContext.md#FocusController12)| 获取FocusController对象。|
+
+**示例：**
+
+```ts
+uiContext.getFocusController();
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -1020,9 +1040,9 @@ function callBackFunc(info:observer.RouterPageInfo) {};
 observer.off('routerPageUpdate', callBackFunc);
 ```
 
-### observer.on('densityUpdate')<sup>12+</sup>
+### on('densityUpdate')<sup>12+</sup>
 
-on(type: 'densityUpdate', callback: Callback<DensityInfo>): void
+on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 
 监听屏幕像素密度变化。
 
@@ -1033,7 +1053,7 @@ on(type: 'densityUpdate', callback: Callback<DensityInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
 
 ```ts
 import observer from '@ohos.arkui.observer';
@@ -1064,9 +1084,9 @@ struct Index {
 }
 ```
 
-### observer.off('densityUpdate')<sup>12+</sup>
+### off('densityUpdate')<sup>12+</sup>
 
-off(type: 'densityUpdate', callback?: Callback<DensityInfo>): void
+off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 
 取消监听屏幕像素密度的变化。
 
@@ -1074,10 +1094,10 @@ off(type: 'densityUpdate', callback?: Callback<DensityInfo>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| callback | Callback\<[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 否   | 需要被注销的回调函数。                  |
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                                         |
+| -------- | -------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------- |
+| type     | string                                                               | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。                                        |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该UIContext下所有densityUpdate事件监听。 |
 
 ```ts
 import observer from '@ohos.arkui.observer';
@@ -2749,7 +2769,7 @@ try {
 ## DragController<sup>11+</sup>
 以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
-### executeDrag
+### executeDrag<sup>11+</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
 
@@ -2825,7 +2845,7 @@ struct DragControllerPage {
 }
 ```
 
-### executeDrag
+### executeDrag<sup>11+</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
 
@@ -2932,7 +2952,7 @@ struct DragControllerPage {
 }
 ```
 
-### createDragAction
+### createDragAction<sup>11+</sup>
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
@@ -3320,3 +3340,61 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
 
+
+## FocusController<sup>12+</sup>
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
+
+### clearFocus<sup>12+</sup>
+
+clearFocus(): void
+
+清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct ClearFocusExample {
+  @State inputValue: string = ''
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('button1')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(Color.Blue)
+        Button('button2')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .defaultFocus(true)
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+        Button('clearFocus')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .backgroundColor(Color.Blue)
+          .onClick(() => {
+            this.getUIContext().getFocusController().clearFocus()
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

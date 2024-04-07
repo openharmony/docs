@@ -60,7 +60,6 @@ FormComponent(value: {
 | Dimension_4_4              | 4*4 卡片 |
 | Dimension_2_1<sup>9+</sup> | 2*1 卡片 |
 | Dimension_1_1<sup>11+</sup> | 1*1 卡片 |
-| Dimension_6_4<sup>12+</sup> | 6*4 卡片 |
 
 ## FormRenderingMode<sup>11+</sup>
 | 名称                       | 描述     |

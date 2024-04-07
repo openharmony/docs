@@ -421,10 +421,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SAMPLE_RATE_44100 | 44100  | 采样率为44100。 |
 | SAMPLE_RATE_48000 | 48000  | 采样率为48000。 |
 | SAMPLE_RATE_64000 | 64000  | 采样率为64000。 |
-| SAMPLE_RATE_88200<sup>12+</sup> | 88200  | 采样率为88200。 |
 | SAMPLE_RATE_96000 | 96000  | 采样率为96000。 |
-| SAMPLE_RATE_176400<sup>12+</sup> | 176400  | 采样率为176400。 |
-| SAMPLE_RATE_192000<sup>12+</sup> | 192000  | 采样率为192000。 |
 
 ## AudioEncodingType<sup>8+</sup>
 
@@ -6024,33 +6021,6 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
   }
   console.info('setVolume Success!');
 });
-```
-### getVolume<sup>12+</sup>
-
-getVolume(): number
-
-获取音频渲染器的当前音量值，同步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**返回值：**
-
-| 类型             | 说明                        |
-| ---------------- | --------------------------- |
-| number | 返回音量大小，音量范围[0.0-1.0]。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-try {
-  let value: number = audioRenderer.getVolume();
-  console.info(`Indicate that the volume is obtained ${value}.`);
-} catch (err) {
-  let error = err as BusinessError;
-  console.error(`Failed to obtain the volume, error ${error}.`);
-}
 ```
 
 ### getMinStreamVolume<sup>10+</sup>

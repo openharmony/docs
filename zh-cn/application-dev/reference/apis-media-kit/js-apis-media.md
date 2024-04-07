@@ -635,48 +635,6 @@ off(type: 'error'): void
 avPlayer.off('error')
 ```
 
-### setMediaSource<sup>12+</sup>
-
-setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
-
-流媒体预下载资源设置，下载url对应的流媒体数据，并暂存在内存中。[视频播放开发指导](../../media/media/video-playback.md)。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| src | [MediaSource](#mediasource12) | 是   | 流媒体预下载媒体来源。 |
-| strategy | [PlaybackStrategy](#playbackstrategy12) | 否   | 流媒体预下载播放策略。 |
-
-**返回值：**
-
-| 类型           | 说明                                       |
-| -------------- | ------------------------------------------ |
-| Promise\<void> | Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
-
-**示例：**
-
-```ts
-import media from '@ohos.multimedia.media'
-
-let player = await media.createAVPlayer();
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
-let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
-player.setMediaSource(mediaSource, playStrategy);
-```
-
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
@@ -689,7 +647,7 @@ prepare(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 准备播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 准备播放的回调方法。 |
 
 **错误码：**
 
@@ -761,7 +719,7 @@ play(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 开始播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 开始播放的回调方法。 |
 
 **错误码：**
 
@@ -831,7 +789,7 @@ pause(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 暂停播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 暂停播放的回调方法。 |
 
 **错误码：**
 
@@ -901,7 +859,7 @@ stop(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 停止播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 停止播放的回调方法。 |
 
 **错误码：**
 
@@ -971,7 +929,7 @@ reset(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 重置播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 重置播放的回调方法。 |
 
 **错误码：**
 
@@ -1041,7 +999,7 @@ release(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | 是   | 销毁播放的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 销毁播放的回调方法。 |
 
 **错误码：**
 
@@ -1195,7 +1153,7 @@ let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm')
 // 创建MediaKeySession解密会话
 let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 // 安全视频通路标志
-var secureVideoPath:boolean = false;
+let secureVideoPath:boolean = false;
 // 设置解密配置
 avPlayer.setDecryptionConfig(keySession, secureVideoPath);
 ```
@@ -1221,7 +1179,7 @@ import drm from '@ohos.multimedia.drm'
 
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
-for (var i = 0; i < infos.length; i++) {
+for (let i = 0; i < infos.length; i++) {
   console.info('GetMediaKeySystemInfos uuid: ' + infos[i]["uuid"]);
   console.info('GetMediaKeySystemInfos pssh: ' + infos[i]["pssh"]);
 }
@@ -1391,7 +1349,7 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | setBitrate生效的事件回调类型，支持的事件：'bitrateDone'，每次调用setBitrate后都会回调此事件。 |
-| callback | function | 是   | setBitrate生效的事件回调方法，上报生效的比特率。             |
+| callback | Callback\<number> | 是   | setBitrate生效的事件回调方法，上报生效的比特率。             |
 
 **示例：**
 
@@ -1487,7 +1445,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.M
 import drm from './@ohos.multimedia.drm';
 
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
-    for (var i = 0; i < mediaKeySystemInfo.length; i++) {
+    for (let i = 0; i < mediaKeySystemInfo.length; i++) {
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
@@ -1549,7 +1507,7 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | setVolume生效的事件回调类型，支持的事件：'volumeChange'，每次调用setVolume后都会回调此事件。 |
-| callback | function | 是   | setVolume生效的事件回调方法，上报生效的媒体音量。            |
+| callback | Callback\<number> | 是   | setVolume生效的事件回调方法，上报生效的媒体音量。            |
 
 **示例：**
 
@@ -1636,7 +1594,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                           |
 | -------- | -------- | ---- | ---------------------------------------------- |
 | type     | string   | 是   | 时间更新的回调类型，支持的事件：'timeUpdate'。 |
-| callback | function | 是   | 当前时间。                                     |
+| callback | Callback\<number> | 是   | 当前时间。                                     |
 
 **示例：**
 
@@ -1681,7 +1639,7 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 | 参数名   | 类型     | 必填 | 说明                                               |
 | -------- | -------- | ---- | -------------------------------------------------- |
 | type     | string   | 是   | 时长更新的回调类型，支持的事件：'durationUpdate'。 |
-| callback | function | 是   | 资源时长。                                         |
+| callback | Callback\<number> | 是   | 资源时长。                                         |
 
 **示例：**
 
@@ -1898,7 +1856,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
-| callback | Callback\<[AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+| callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
 
@@ -1929,7 +1887,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
-| callback | Callback\<[AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
+| callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
 
@@ -1995,7 +1953,6 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | -------------- | ---- | ------------------------------------------------------------ |
 | SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。 |
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。 |
-| SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。 |
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -2010,8 +1967,6 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。 |
 | SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。 |
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
-| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。 |
-| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。 |
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -2307,53 +2262,6 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
   surfaceID = surfaceId;
 }).catch((err: BusinessError) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
-});
-```
-
-### updateRotation<sup>12+</sup>
-
-updateRotation(rotation: number): Promise\<void>
-
-更新视频旋转角度。
-
-当且仅当[prepare()](#prepare9-3)事件成功触发后，且在[start()](#start9)之前，才能调用updateRotation方法。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                        |
-| -------- | -------------------- | ---- | --------------------------- |
-| rotation | number | 是   | 旋转角度，取值仅支持0、90、180、270度。 |
-
-**返回值：**
-
-| 类型             | 说明                             |
-| ---------------- | -------------------------------- |
-| Promise\<void> | 异步返回函数执行结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                               |
-| -------- | -------------------------------------- |
-|   401    | Parameter error. Return by callback.   |
-| 5400102  | Operate not permit. Return by promise. |
-| 5400103  | IO error. Return by promise.           |
-| 5400105  | Service died. Return by promise.       |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let rotation = 90
-
-avRecorder.updateRotation(rotation).then(() => {
-  console.info('updateRotation success');
-}).catch((err: BusinessError) => {
-  console.error('updateRotation failed and catch error is ' + err.message);
 });
 ```
 
@@ -3479,25 +3387,13 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// 获取元数据
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
-      if (error) {
-        console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
+  if (error) {
+    console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
+    return;
   }
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
 });
 ```
 
@@ -3528,23 +3424,11 @@ fetchMetadata(): Promise\<AVMetadata>
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// 获取元信息
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
-    }).catch((error: BusinessError) => {
-      console.error(`fetchMetadata catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  }
+avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
+}).catch((error: BusinessError) => {
+  console.error(`fetchMetadata catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -3575,27 +3459,16 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 import image from '@ohos.multimedia.image';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// 获取专辑封面
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
-      if (error) {
-        console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
-        return;
-      }
-      pixel_map = pixelMap;
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
+  if (error) {
+    console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
+    return;
+  }
+  pixel_map = pixelMap;
 });
 ```
 
@@ -3626,25 +3499,14 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 import image from '@ohos.multimedia.image';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// 获取专辑封面
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
-      pixel_map = pixelMap;
-    }).catch((error: BusinessError) => {
-      console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
+  pixel_map = pixelMap;
+}).catch((error: BusinessError) => {
+  console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -3674,25 +3536,13 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-//释放资源
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.release((error: BusinessError) => {
-      if (error) {
-        console.error(`release failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`release success.`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.release((error: BusinessError) => {
+  if (error) {
+    console.error(`release failed, err = ${JSON.stringify(error)}`);
+    return;
+  }
+  console.info(`release success.`);
 });
 ```
 
@@ -3722,23 +3572,11 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-//释放资源
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.release().then(() => {
-      console.info(`release success.`);
-    }).catch((error: BusinessError) => {
-      console.error(`release catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.release().then(() => {
+  console.info(`release success.`);
+}).catch((error: BusinessError) => {
+  console.error(`release catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -5765,7 +5603,7 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -6016,61 +5854,3 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  是   |  是   |  输出的缩略图宽度。         |
 | height | number |  是   |  是   | 输出的缩略图高度。 |
-
-## media.createMediaSourceWithUrl<sup>12+</sup>
-
-createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSource
-
-创建流媒体预下载媒体来源实例方法。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。  |
-| header | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
-
-**返回值：**
-
-| 类型           | 说明                                       |
-| -------------- | ------------------------------------------ |
-| [MediaSource](#mediasource12) | MediaSource返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400101  | No memory. Return by callback. |
-
-**示例：**
-
-```ts
-import media from '@ohos.multimedia.media'
-
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
-```
-
-## MediaSource<sup>12+</sup>
-
-媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-## PlaybackStrategy<sup>12+</sup>
-
-播放策略。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-| 名称  | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。 |
-| preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
-| preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
-| preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。 |
