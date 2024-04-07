@@ -3,7 +3,7 @@
 
 ## 概述
 
-视频录制参数。
+视频信息。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
