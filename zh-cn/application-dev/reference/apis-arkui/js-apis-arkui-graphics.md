@@ -238,7 +238,7 @@ Corners\<T>
 
 ## CornerRadius<sup>12+</sup>
 
-类型定义为[Corners](#corners12)[<Vector2>](#vector2)，用于设置四个角的圆角度数。
+类型定义为[Corners](#corners12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
