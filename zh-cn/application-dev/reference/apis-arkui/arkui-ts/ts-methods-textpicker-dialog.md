@@ -43,10 +43,6 @@ static show(options?: TextPickerDialogOptions)
 | onChange | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 |  滑动弹窗中的选择器使当前选中项改变时触发该回调。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
-| onDidAppear<sup>12+</sup> | () => void | 否 | 对话框弹出时的事件回调。 |
-| onDidDisappear<sup>12+</sup> | () => void | 否 | 对话框消失时的事件回调。 |
-| onWillAppear<sup>12+</sup> | () => void | 否 | 对话框显示动效前的事件回调。 |
-| onWillDisappear<sup>12+</sup> | () => void | 否 | 对话框退出动效前的事件回调。 |
 
 ## TextPickerResult对象说明
 
@@ -91,18 +87,6 @@ struct TextPickerDialogExample {
               },
               onChange: (value: TextPickerResult) => {
                 console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
-              },
-              onDidAppear: () => {
-                console.info("TextPickerDialog:onDidAppear()")
-              },
-              onDidDisappear: () => {
-                console.info("TextPickerDialog:onDidDisappear()")
-              },
-              onWillAppear: () => {
-                console.info("TextPickerDialog:onWillAppear()")
-              },
-              onWillDisappear: () => {
-                console.info("TextPickerDialog:onWillDisappear()")
               }
             })
           })
