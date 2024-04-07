@@ -233,7 +233,7 @@
    let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
 
-4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
+4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。被拉起方加入组网时，如果它的数据与组网中的数据不同，它会刷新组网中的数据。若希望它加入组网时不刷新组网中的数据，并且得到组网中的数据，可以将属性设置为undefined。
 
    ```ts
    // 设备1加入sessionId
@@ -249,10 +249,6 @@
    // 收到status上线后remoteObject同步数据，即name变成jack，age变成18
    remoteObject.setSessionId(sessionId);
    ```
-
-   > **说明：**
-   > 
-   > 一个分布式对象加入组网时，如果它的数据与组网中的数据不同，它会刷新组网中的数据。若希望加入组网时不刷新组网中的数据，并且得到组网中的数据，可以将属性设置为undefined。
 
 5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
 
