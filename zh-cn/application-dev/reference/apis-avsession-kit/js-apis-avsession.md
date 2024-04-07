@@ -2802,7 +2802,7 @@ currentAVSession.off('toggleCallMute');
 
 on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
-设置可扩展投播设备变更监听事件。
+设置扩展屏投播显示设备变化的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -2810,8 +2810,8 @@ on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string                                                       | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏状态变化时触发事件。 |
-| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 是   | 回调函数。参数是可投播的设备信息。                            |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏投播显示设备变化时触发事件。 |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 是   | 回调函数。参数是扩展屏投播显示设备信息。                            |
 
 **错误码：**
 
@@ -2839,7 +2839,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 
  off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
 
-取消可扩展投播设备变更事件监听，关闭后，不再进行该事件回调。
+取消扩展屏投播显示设备变化事件监听，关闭后，不再进行该事件回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -2974,7 +2974,7 @@ try {
 
 getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
-获取当前系统中所有支持扩展屏投播的设备。通过Promise异步回调方式返回。
+获取当前系统中所有支持扩展屏投播的显示设备。通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -2982,7 +2982,7 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备。 |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备属性。 |
 
 **错误码：**
 
@@ -4142,7 +4142,7 @@ aVCastController.off('error')
 
 ## CastDisplayState<sup>12+</sup>
 
-投屏显示屏幕状态。
+投播显示设备状态。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -4154,17 +4154,17 @@ aVCastController.off('error')
 
 ## CastDisplayInfo<sup>12+</sup>
 
-系统镜像投屏场景下，投屏显示屏幕相关属性。
+扩展屏投播显示设备相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
 | 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| id            | number                  | 是    | 否    | 投屏显示屏幕的ID，该参数应为整数。  |
-| name     | string                  | 是    | 否    | 投屏显示屏幕的名称。           |
-| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投屏显示屏幕状态。            |
-| width          | number          | 是    | 否    | 投屏显示屏幕宽度，单位为px，该参数应为整数。          |  
-| height          | number          | 是    | 否    | 投屏显示屏幕高度，单位为px，该参数应为整数。            |  
+| id            | number                  | 是    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 是    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投播显示设备状态。            |
+| width          | number          | 是    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 是    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
