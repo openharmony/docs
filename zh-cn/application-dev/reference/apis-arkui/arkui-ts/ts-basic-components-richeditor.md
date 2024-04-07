@@ -147,33 +147,6 @@ placeholder(value: ResourceStr, style?: PlaceholderStyle)
 | value  | [ResourceStr](ts-types.md#resourcestr)  | 是   | 无输入时的提示文本。                                    |
 | style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 添加提示文本的字体样式。<br />style缺省时默认跟随主题。 |
 
-### caretColor<sup>12+</sup>
-
-caretColor(value: ResourceColor)
-
-设置输入框光标、手柄颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                       | 必填 | 说明                                   |
-| ------ | ------------------------------------------ | ---- | -------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标、手柄颜色。<br/>默认值：'#007DFF' |
-
-### selectedBackgroundColor<sup>12+</sup>
-
-selectedBackgroundColor(value: ResourceColor)
-
-设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                       | 必填 | 说明                                       |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
 ## 事件
 
@@ -323,7 +296,6 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 | offsetInSpan                  | [number, number]                         | 是    | 文本Span内容里有效内容的起始和结束位置。 |
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | 否    | 组件SymbolSpan内容。        |
 | SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件SymbolSpan样式信息。      |
-| paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。 |
 
 
 ## RichEditorSpanPosition
@@ -357,8 +329,6 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        |
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
-| lineHeight<sup>12+</sup> | number       | 否    | 文本行高。          |
-| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
 
 ## RichEditorImageSpanResult
 
@@ -381,7 +351,6 @@ Span类型信息。
 | size          | [number, number]                         | 是    | 图片的宽度和高度。 |
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 |
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | 是    | 图片缩放类型。   |
-| layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | 否   | 图片布局风格。 |
 
 ## RichEditorLayoutStyle<sup>11+</sup> 
 |名称	|类型	|必填|	描述|
@@ -397,23 +366,6 @@ RichEditor初始化参数。
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorController](#richeditorcontroller) | 是    | 富文本控制器。 |
 
-## SelectionOptions<sup>12+</sup>
-
-setSelection的选择项配置。
-
-| 名称         | 类型                                       | 必填   | 说明      |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否    | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
-| NEVER | 始终不弹出菜单。 |
-| ALWAYS | 始终弹出菜单。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>
 
@@ -661,7 +613,7 @@ closeSelectionMenu(): void
 
 ### setSelection<sup>11+</sup>
 
-setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions)
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)
 
 支持设置文本选中，选中部分背板高亮。
 
@@ -683,7 +635,6 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选择项配置。 |
 
 ### getSelection<sup>11+</sup>
 
@@ -771,7 +722,6 @@ SymbolSpan样式选项。
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
-| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -815,8 +765,7 @@ SymbolSpan样式选项。
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
-| lineHeight<sup>12+</sup>    | number \| string \| Resource | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 | 
-| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距。当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，不支持设置百分比字符串。|
+
 ## PlaceholderStyle<sup>12+</sup>
 
 添加提示文本的字体样式。
@@ -930,6 +879,8 @@ onLongPress(callback: (event?: GestureEvent) => void )
 | 参数名   | 参数类型                                     | 必填   | 描述      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
+
+
 
 ## 示例
 
@@ -2779,160 +2730,8 @@ struct TextExample7 {
   }
 }
 ```
+
 ### 示例11
-caretColor和selectedBackgroundColor使用示例
-``` ts
-@Entry
-@Component
-struct RichEditorDemo {
-  @State color: Color|string = ""
-  controller: RichEditorController = new RichEditorController();
-  build() {
-    Column() {
-      Row(){
-        Button("改为红色").onClick(() => {
-          this.color = Color.Red
-        })
-      }.margin({top:50})
-      RichEditor({ controller: this.controller })
-        .onReady(()=>{
-          this.controller.addTextSpan('测试文字测试文字测试文字测试文字测试文字测试文字')
-        })
-        .width("100%")
-        .border({ width: 1, radius: 5 })
-        .key('RichEditor')
-        .caretColor(this.color)  //光标颜色
-        .selectedBackgroundColor(this.color)  //选中背景色
-        .margin({top:50})
-    }
-    .width('100%')
-  }
-}
-```
-![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
-
-### 示例12
-lineHeight和letterSpacing使用示例
-```ts
-@Entry
-@Component
-struct RichEditorDemo03 {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  @State start: number = -1;
-  @State end: number = -1;
-  @State LH:number = 50
-  @State LS:number = 20
-
-  build() {
-    Column() {
-      Scroll(){
-        Column(){
-          Row() {
-            Button("行高++").onClick(()=>{
-              this.LH = this.LH + 5
-              this.controller.updateSpanStyle({
-                start: this.start,
-                end: this.end,
-                textStyle:
-                {
-                  lineHeight: this.LH
-                }
-              })
-            })
-            Button("行高--").onClick(()=>{
-              this.LH = this.LH - 5
-              this.controller.updateSpanStyle({
-                start: this.start,
-                end: this.end,
-                textStyle:
-                {
-                  lineHeight: this.LH
-                }
-              })
-            })
-            Button("字符间距++").onClick(()=>{
-              this.LS = this.LS + 5
-              this.controller.updateSpanStyle({
-                start: this.start,
-                end: this.end,
-                textStyle:
-                {
-                  letterSpacing: this.LS
-                }
-              })
-            })
-            Button("字符间距--").onClick(()=>{
-              this.LS = this.LS - 5
-              this.controller.updateSpanStyle({
-                start: this.start,
-                end: this.end,
-                textStyle:
-                {
-                  letterSpacing: this.LS
-                }
-              })
-            })
-          }
-        }
-      }.borderWidth(1)
-      .borderColor(Color.Red)
-      .width("100%")
-      .height("20%")
-      .margin({top: 20})
-
-      Scroll(){
-        Column() {
-          Text("LineHeight:" + this.LH).width("100%")
-          Text("LetterSpacing:" + this.LS).width("100%")
-        }
-      }
-      .borderWidth(1)
-      .borderColor(Color.Red)
-      .width("100%")
-      .height("20%")
-      .margin({bottom: 20})
-
-      Column() {
-        RichEditor(this.options).clip(true).padding(10)
-          .onReady(() => {
-            this.controller.addTextSpan("012345",
-              {
-                style:
-                {
-                  fontColor: Color.Orange,
-                  fontSize: 30,
-                  lineHeight: this.LH,
-                  letterSpacing: this.LS
-                }
-              })
-            this.controller.addTextSpan("6789",
-              {
-                style:
-                {
-                  fontColor: Color.Black,
-                  fontSize: 30,
-                  lineHeight: this.LH,
-                  letterSpacing: this.LS
-                }
-              })
-          })
-          .borderWidth(1)
-          .borderColor(Color.Green)
-          .width(400)
-          .height(400)
-      }
-      .borderWidth(1)
-      .borderColor(Color.Red)
-      .width("100%")
-      .height("60%")
-    }
-  }
-}
-```
-![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
-
-### 示例13
 preventDefault使用示例
 ```ts
 @Entry
