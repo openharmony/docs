@@ -26,3 +26,4 @@
 - [webRTC拉起摄像头和麦克风](web-rtc.md)
 - [解决Web组件本地资源跨域问题](web-cross-origin.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+- [使用crashpad收集web组件崩溃信息](web-crashpad.md)
