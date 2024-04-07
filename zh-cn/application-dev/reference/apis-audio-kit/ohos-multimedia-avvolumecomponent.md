@@ -47,7 +47,7 @@ AVVolumeComponent()
 音量组件功能的示例说明参考如下。
 
 ```ts
-import { AVVolume } from '@ohos.multimedia.avVolumeComponent'
+import AVVolume from '@ohos.multimedia.avVolumeComponent'
 
 @Entry
 @Component
