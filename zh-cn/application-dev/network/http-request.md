@@ -60,9 +60,9 @@ httpRequest.request(
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
-    header: [{
+    header: {
       'Content-Type': 'application/json'
-    }],
+    },
     // 当使用POST请求时此字段用于传递内容
     extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
@@ -157,9 +157,11 @@ httpRequest.on('dataReceiveProgress', (data: Data) => {
 let streamInfo: http.HttpRequestOptions = {
   method: http.RequestMethod.POST,  // 可选，默认为http.RequestMethod.GET
   // 开发者根据自身业务需要添加header字段
-  header: ['Content-Type', 'application/json'],
+  header: {
+    'Content-Type': 'application/json'
+  },
   // 当使用POST请求时此字段用于传递内容
-  extraData: ["data", "data to send"],
+  extraData: "data to send",
   expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型
   usingCache: true, // 可选，默认为true
   priority: 1, // 可选，默认为1
