@@ -2157,7 +2157,7 @@ imageSourceApi.getImageInfo(0)
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG and PNG formats and contain EXIF information.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2212,7 +2212,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG and PNG formats and contain EXIF information.
 
 > **NOTE**
 >
@@ -2250,7 +2250,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG and PNG formats and contain EXIF information.
 
 > **NOTE**
 >
@@ -2283,7 +2283,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG and PNG formats and contain EXIF information.
 
 > **NOTE**
 >

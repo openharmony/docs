@@ -2159,7 +2159,7 @@ imageSourceApi.getImageInfo(0)
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2214,7 +2214,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 > **说明：**
 >
@@ -2252,7 +2252,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 > **说明：**
 >
@@ -2285,7 +2285,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-获取图片指定属性键的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片指定属性键的值，callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 > **说明：**
 >
