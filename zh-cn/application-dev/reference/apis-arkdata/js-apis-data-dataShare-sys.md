@@ -472,7 +472,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
 
 **示例：**
 
@@ -503,7 +503,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 | event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。如果不为空，传入的callback必须和注册为同一个。|
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| 否   | 表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。如果不为空，传入的callback必须和注册为同一个。|
 
 **示例：**
 
