@@ -99,7 +99,7 @@
 ### AVPlaybackSpeed
 
 ```
-typedef enum AVPlaybackSpeedAVPlaybackSpeed
+typedef enum AVPlaybackSpeed AVPlaybackSpeed
 ```
 
 **描述**
@@ -114,7 +114,7 @@ typedef enum AVPlaybackSpeedAVPlaybackSpeed
 ### AVPlayerCallback
 
 ```
-typedef struct AVPlayerCallbackAVPlayerCallback
+typedef struct AVPlayerCallback AVPlayerCallback
 ```
 
 **描述**
@@ -129,7 +129,7 @@ OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到
 ### AVPlayerOnInfoType
 
 ```
-typedef enum AVPlayerOnInfoTypeAVPlayerOnInfoType
+typedef enum AVPlayerOnInfoType AVPlayerOnInfoType
 ```
 
 **描述**
@@ -144,7 +144,7 @@ OnInfo类型
 ### AVPlayerSeekMode
 
 ```
-typedef enum AVPlayerSeekModeAVPlayerSeekMode
+typedef enum AVPlayerSeekMode AVPlayerSeekMode
 ```
 
 **描述**
@@ -159,7 +159,7 @@ typedef enum AVPlayerSeekModeAVPlayerSeekMode
 ### AVPlayerState
 
 ```
-typedef enum AVPlayerStateAVPlayerState
+typedef enum AVPlayerState AVPlayerState
 ```
 
 **描述**

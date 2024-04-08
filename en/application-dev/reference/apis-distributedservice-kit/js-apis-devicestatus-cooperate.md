@@ -486,7 +486,7 @@ Defines a screen hopping status change event.
 
 
 
-## CooperateState<sup>11+</sup>
+## CooperateState<sup>10+</sup>
 
 Screen hopping status.
 
@@ -498,9 +498,9 @@ Screen hopping status.
 | COOPERATE_UNPREPARE            | number | Yes  | No  | The preparation for screen hopping is cancelled.|
 | COOPERATE_ACTIVATE             | number | Yes  | No  | Screen hopping starts.    |
 | COOPERATE_ACTIVATE_SUCCESS     | number | Yes  | No  | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAIL     | number | Yes  | No  | Starting screen hopping fails.|
+| COOPERATE_ACTIVATE_FAILURE     | number | Yes  | No  | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS   | number | Yes  | No  | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAIL   | number | Yes  | No  | Stopping screen hopping fails.|
+| COOPERATE_DEACTIVATE_FAILURE   | number | Yes  | No  | Stopping screen hopping fails.|
 | COOPERATE_SESSION_DISCONNECTED | number | Yes  | No  | The screen hopping session is disconnected.|
 
 
@@ -929,7 +929,7 @@ Enables listening for screen hopping status change events.
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](##cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
 
 
 

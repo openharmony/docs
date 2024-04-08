@@ -1,0 +1,36 @@
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
+| ---- | ------ | ------ | -------- |
+|API跨平台权限变更|文件名：api\@ohos.worker.d.ts；<br>类名：WorkerEventTarget；<br>API声明：addEventListener(type: string, listener: WorkerEventListener): void;<br>差异内容：NA|文件名：api\@ohos.worker.d.ts；<br>类名：WorkerEventTarget；<br>API声明：addEventListener(type: string, listener: WorkerEventListener): void;<br>差异内容：crossplatform|api\@ohos.worker.d.ts|
+|新增API|NA|文件名：api\@ohos.taskpool.d.ts；<br>类名：Task；<br>API声明：static sendData(...args: Object[]): void;<br>差异内容：static sendData(...args: Object[]): void;|api\@ohos.taskpool.d.ts|
+|新增API|NA|文件名：api\@ohos.taskpool.d.ts；<br>类名：Task；<br>API声明：onReceiveData(callback?: Function): void;<br>差异内容：onReceiveData(callback?: Function): void;|api\@ohos.taskpool.d.ts|
+|新增API|NA|文件名：api\@ohos.taskpool.d.ts；<br>类名：Task；<br>API声明：addDependency(...tasks: Task[]): void;<br>差异内容：addDependency(...tasks: Task[]): void;|api\@ohos.taskpool.d.ts|
+|新增API|NA|文件名：api\@ohos.taskpool.d.ts；<br>类名：Task；<br>API声明：removeDependency(...tasks: Task[]): void;<br>差异内容：removeDependency(...tasks: Task[]): void;|api\@ohos.taskpool.d.ts|
+|新增API|NA|文件名：api\@ohos.taskpool.d.ts；<br>类名：Task；<br>API声明：name: String;<br>差异内容：name: String;|api\@ohos.taskpool.d.ts|
+|新增API|NA|文件名：api\@ohos.taskpool.d.ts；<br>类名：TaskGroup；<br>API声明：name: String;<br>差异内容：name: String;|api\@ohos.taskpool.d.ts|
+|新增API|NA|文件名：api\@ohos.worker.d.ts；<br>类名：ThreadWorkerGlobalScope；<br>API声明：callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object;<br>差异内容：callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object;|api\@ohos.worker.d.ts|
+|新增API|NA|文件名：api\@ohos.worker.d.ts；<br>类名：ThreadWorker；<br>API声明：registerGlobalCallObject(instanceName: string, globalCallObject: Object): void;<br>差异内容：registerGlobalCallObject(instanceName: string, globalCallObject: Object): void;|api\@ohos.worker.d.ts|
+|新增API|NA|文件名：api\@ohos.worker.d.ts；<br>类名：ThreadWorker；<br>API声明：unregisterGlobalCallObject(instanceName?: string): void;<br>差异内容：unregisterGlobalCallObject(instanceName?: string): void;|api\@ohos.worker.d.ts|
+|新增API|NA|文件名：api\@ohos.worker.d.ts；<br>类名：worker；<br>API声明： class RestrictedWorker<br>差异内容： class RestrictedWorker|api\@ohos.worker.d.ts|
+|起始版本有变化|文件名：api\@ohos.buffer.d.ts；<br>类名：global；<br>API声明： declare namespace buffer<br>差异内容：9|文件名：api\@ohos.buffer.d.ts；<br>类名：global；<br>API声明： declare namespace buffer<br>差异内容：-1|api\@ohos.buffer.d.ts|
+|起始版本有变化|文件名：api\@ohos.convertxml.d.ts；<br>类名：global；<br>API声明： declare namespace xml<br>差异内容：8|文件名：api\@ohos.convertxml.d.ts；<br>类名：global；<br>API声明： declare namespace xml<br>差异内容：-1|api\@ohos.convertxml.d.ts|
+|起始版本有变化|文件名：api\@ohos.process.d.ts；<br>类名：global；<br>API声明： declare namespace process<br>差异内容：7|文件名：api\@ohos.process.d.ts；<br>类名：global；<br>API声明： declare namespace process<br>差异内容：-1|api\@ohos.process.d.ts|
+|起始版本有变化|文件名：api\@ohos.taskpool.d.ts；<br>类名：global；<br>API声明： declare namespace taskpool<br>差异内容：9|文件名：api\@ohos.taskpool.d.ts；<br>类名：global；<br>API声明： declare namespace taskpool<br>差异内容：-1|api\@ohos.taskpool.d.ts|
+|起始版本有变化|文件名：api\@ohos.uri.d.ts；<br>类名：global；<br>API声明： declare namespace uri<br>差异内容：8|文件名：api\@ohos.uri.d.ts；<br>类名：global；<br>API声明： declare namespace uri<br>差异内容：-1|api\@ohos.uri.d.ts|
+|起始版本有变化|文件名：api\@ohos.url.d.ts；<br>类名：global；<br>API声明： declare namespace url<br>差异内容：7|文件名：api\@ohos.url.d.ts；<br>类名：global；<br>API声明： declare namespace url<br>差异内容：-1|api\@ohos.url.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.ArrayList.d.ts；<br>类名：global；<br>API声明： declare class ArrayList<br>差异内容：8|文件名：api\@ohos.util.ArrayList.d.ts；<br>类名：global；<br>API声明： declare class ArrayList<br>差异内容：-1|api\@ohos.util.ArrayList.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.d.ts；<br>类名：global；<br>API声明： declare namespace util<br>差异内容：7|文件名：api\@ohos.util.d.ts；<br>类名：global；<br>API声明： declare namespace util<br>差异内容：-1|api\@ohos.util.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.Deque.d.ts；<br>类名：global；<br>API声明： declare class Deque<br>差异内容：8|文件名：api\@ohos.util.Deque.d.ts；<br>类名：global；<br>API声明： declare class Deque<br>差异内容：-1|api\@ohos.util.Deque.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.HashMap.d.ts；<br>类名：global；<br>API声明： declare class HashMap<br>差异内容：8|文件名：api\@ohos.util.HashMap.d.ts；<br>类名：global；<br>API声明： declare class HashMap<br>差异内容：-1|api\@ohos.util.HashMap.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.HashSet.d.ts；<br>类名：global；<br>API声明： declare class HashSet<br>差异内容：8|文件名：api\@ohos.util.HashSet.d.ts；<br>类名：global；<br>API声明： declare class HashSet<br>差异内容：-1|api\@ohos.util.HashSet.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.LightWeightMap.d.ts；<br>类名：global；<br>API声明： declare class LightWeightMap<br>差异内容：8|文件名：api\@ohos.util.LightWeightMap.d.ts；<br>类名：global；<br>API声明： declare class LightWeightMap<br>差异内容：-1|api\@ohos.util.LightWeightMap.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.LightWeightSet.d.ts；<br>类名：global；<br>API声明： declare class LightWeightSet<br>差异内容：8|文件名：api\@ohos.util.LightWeightSet.d.ts；<br>类名：global；<br>API声明： declare class LightWeightSet<br>差异内容：-1|api\@ohos.util.LightWeightSet.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.LinkedList.d.ts；<br>类名：global；<br>API声明： declare class LinkedList<br>差异内容：8|文件名：api\@ohos.util.LinkedList.d.ts；<br>类名：global；<br>API声明： declare class LinkedList<br>差异内容：-1|api\@ohos.util.LinkedList.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.List.d.ts；<br>类名：global；<br>API声明： declare class List<br>差异内容：8|文件名：api\@ohos.util.List.d.ts；<br>类名：global；<br>API声明： declare class List<br>差异内容：-1|api\@ohos.util.List.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.PlainArray.d.ts；<br>类名：global；<br>API声明： declare class PlainArray<br>差异内容：8|文件名：api\@ohos.util.PlainArray.d.ts；<br>类名：global；<br>API声明： declare class PlainArray<br>差异内容：-1|api\@ohos.util.PlainArray.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.Queue.d.ts；<br>类名：global；<br>API声明： declare class Queue<br>差异内容：8|文件名：api\@ohos.util.Queue.d.ts；<br>类名：global；<br>API声明： declare class Queue<br>差异内容：-1|api\@ohos.util.Queue.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.Stack.d.ts；<br>类名：global；<br>API声明： declare class Stack<br>差异内容：8|文件名：api\@ohos.util.Stack.d.ts；<br>类名：global；<br>API声明： declare class Stack<br>差异内容：-1|api\@ohos.util.Stack.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.TreeMap.d.ts；<br>类名：global；<br>API声明： declare class TreeMap<br>差异内容：8|文件名：api\@ohos.util.TreeMap.d.ts；<br>类名：global；<br>API声明： declare class TreeMap<br>差异内容：-1|api\@ohos.util.TreeMap.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.TreeSet.d.ts；<br>类名：global；<br>API声明： declare class TreeSet<br>差异内容：8|文件名：api\@ohos.util.TreeSet.d.ts；<br>类名：global；<br>API声明： declare class TreeSet<br>差异内容：-1|api\@ohos.util.TreeSet.d.ts|
+|起始版本有变化|文件名：api\@ohos.util.Vector.d.ts；<br>类名：global；<br>API声明： declare class Vector<br>差异内容：8|文件名：api\@ohos.util.Vector.d.ts；<br>类名：global；<br>API声明： declare class Vector<br>差异内容：-1|api\@ohos.util.Vector.d.ts|
+|起始版本有变化|文件名：api\@ohos.worker.d.ts；<br>类名：global；<br>API声明： export interface WorkerOptions<br>差异内容：7|文件名：api\@ohos.worker.d.ts；<br>类名：global；<br>API声明： export interface WorkerOptions<br>差异内容：-1|api\@ohos.worker.d.ts|
+|起始版本有变化|文件名：api\@ohos.xml.d.ts；<br>类名：global；<br>API声明： declare namespace xml<br>差异内容：8|文件名：api\@ohos.xml.d.ts；<br>类名：global；<br>API声明： declare namespace xml<br>差异内容：-1|api\@ohos.xml.d.ts|

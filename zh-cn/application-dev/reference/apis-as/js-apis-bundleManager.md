@@ -136,7 +136,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
 
@@ -146,7 +146,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag)): Promise\<[BundleInfo](
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
@@ -175,7 +175,7 @@ try {
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
+getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
 
@@ -185,7 +185,7 @@ getBundleInfoForSelf(bundleFlags: [number](#bundleflag), callback: AsyncCallback
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
 
 **示例：**
@@ -607,7 +607,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
@@ -631,47 +631,3 @@ try {
 }
 ```
 
-### bundleManager.canOpenLink<sup>12+</sup>
-
-canOpenLink(link: string): boolean
-
-查询给定的链接是否可以打开。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                |
-| ----------- | ------ | ---- | --------------------- |
-| link | string | 是   | 表示需要查询的链接。 |
-
-**返回值：**
-
-| 类型                                              | 说明                 |
-| ------------------------------------------------- | -------------------- |
-| boolean | 返回true表示给定的链接可以打开，返回false表示给定的链接不能打开。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../apis-ability-kit/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17700055 | The specified link is invalid.                      |
-| 17700056 | The scheme of the specified link is not in the querySchemes.        |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-try {
-    let link = 'welink://';
-    let data = bundleManager.canOpenLink(link);
-    hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(data));
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
-}
-```

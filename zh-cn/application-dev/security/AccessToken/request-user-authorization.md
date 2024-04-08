@@ -99,6 +99,8 @@
 
    可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
 
+   UIExtensionAbility应用申请授权时，需要在onWindowStageCreate函数执行结束后或在onWindowStageCreate函数回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)，否则在ablility加载完成前，requestPermissionsFromUser会调用失败。
+
    - 在UIAbility中向用户申请授权。
       
       ```ts

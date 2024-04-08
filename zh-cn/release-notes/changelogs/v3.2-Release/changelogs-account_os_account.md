@@ -20,3 +20,5 @@
   - setCustomData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void;
   - setAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void;
   - setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+<!--no_check-->

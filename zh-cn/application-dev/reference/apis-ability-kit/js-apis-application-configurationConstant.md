@@ -14,7 +14,7 @@ import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 
 ## ConfigurationConstant.ColorMode
 
-使用时通过ConfigurationConstant.ColorMode获取。
+表示颜色模式的枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 

@@ -15,3 +15,5 @@
 **适配指导**
 
 需要修改返回值调用类名从 ResultCodeV9 改为 UserAuthResultCode
+
+<!--no_check-->

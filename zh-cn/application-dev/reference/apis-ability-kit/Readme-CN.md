@@ -33,8 +33,6 @@
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](js-apis-app-ability-serviceExtensionAbility-sys.md)
     - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](js-apis-app-ability-startOptions-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](js-apis-app-ability-uiExtensionContentSession-sys.md)
-    - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
-    - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)(系统接口)](js-apis-application-staticSubscriberExtensionAbility-sys.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -90,8 +88,6 @@
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
-      - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
-      - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
@@ -104,7 +100,6 @@
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
-      - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys)
@@ -209,5 +204,4 @@
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
-  - [zlib子系统错误码](errorcode-zlib.md)
   - [访问控制错误码](errorcode-access-token.md)

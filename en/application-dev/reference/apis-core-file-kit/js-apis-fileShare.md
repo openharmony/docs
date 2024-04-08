@@ -1,6 +1,6 @@
 # @ohos.fileshare (File Sharing)
 
-The **fileShare** module provides APIs for granting the access permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can access the file by using the [@ohos.file.fs](js-apis-file-fs.md) APIs.
+The **fileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can call [@ohos.file.fs](js-apis-file-fs.md) APIs to access the file.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ import fileShare from '@ohos.fileshare';
 
 ## OperationMode<sup>11+</sup>
 
-Enumerates the modes for accessing a URI.
+Enumerates the permissions on a URI.
 
 **System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -55,8 +55,8 @@ Represents a permission policy, that is, a policy for granting or activating the
 
 | Name           | Type      | Mandatory | Description                                                                                                                                               |
 |---------------| ---------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| uri           | string     | Yes  | URI of the file.                                                                                                           |
-| operationMode | number  | Yes  | Mode for accessing the URI. For details, see [OperationMode](#operationmode11).<br>For example, **fileShare.OperationMode.READ_MODE** indicates the read permission on the file.<br>**fileShare.OperationMode.READ_MODE\|fileShare.OperationMode.WRITE_MODE** indicates the read and write permissions on the file. |
+| uri           | string     | Yes  | URI of the file, on which the permission is to be granted or activated.                                                                                                                                   |
+| operationMode | number  | Yes  | Permissions on the URI. For details, see [OperationMode](#operationmode11).<br>For example, **fileShare.OperationMode.READ_MODE** indicates the read permission on the file.<br>**fileShare.OperationMode.READ_MODE\|fileShare.OperationMode.WRITE_MODE** indicates the read/write permission. |
 
 ## fileShare.persistPermission<sup>11+</sup>
 
@@ -72,7 +72,7 @@ Persists the permissions granted to multiple files or folders. This API uses a p
 
 | Name| Type                                   | Mandatory| Description                     |
 | -------- |---------------------------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to persist.          |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies.  |
 
 **Return value**
 
@@ -142,7 +142,7 @@ Revokes permissions from multiple files or folders. This API uses a promise to r
 
 | Name| Type                | Mandatory| Description                     |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to revoke. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies.  |
 
 **Return value**
 
@@ -212,7 +212,7 @@ Activates the permissions that have been persisted on multiple files or folders.
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to activate. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies.  |
 
 **Return value**
 
@@ -280,7 +280,7 @@ Deactivates the permissions on multiple files or folders. This API uses a promis
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permissions to deactivate. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. |
 
 **Return value**
 

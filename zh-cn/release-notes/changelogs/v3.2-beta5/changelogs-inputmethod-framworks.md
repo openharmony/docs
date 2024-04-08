@@ -27,4 +27,4 @@
 import inputMethodEngine from '@ohos.inputMethodEngine';
 ```
  
- 
+<!--no_check-->

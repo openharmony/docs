@@ -192,7 +192,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](#region7)  | Yes  | Size of the image after cropping.                        |
+| region                 | [Region](#region7)  | Yes  | Size of the image.                        |
 
 **Return value**
 | Type                            | Description                 |
@@ -226,7 +226,7 @@ async function Demo(surfaceId: string) {
 
 ## PixelMap<sup>7+</sup>
 
-Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
+Provides APIs to read or write pixel map data and obtain pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
 Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](../apis-arkts/js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
 
@@ -245,7 +245,7 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -253,7 +253,7 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 
 | Name| Type       | Mandatory| Description                                                                                                 |
 | ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
+| dst    | ArrayBuffer | Yes  | Buffer to which the pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
 
 **Return value**
 
@@ -268,11 +268,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-        console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
-    }).catch((error: BusinessError) => {
-        console.error('Failed to read image pixel data.'); // Called if no condition is met.
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+            console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
+        }).catch((error: BusinessError) => {
+            console.error('Failed to read image pixel data.'); // Called if no condition is met.
+        })
+    }
 }
 ```
 
@@ -280,7 +282,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -288,7 +290,7 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 
 | Name  | Type                | Mandatory| Description                                                                                                 |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
+| dst      | ArrayBuffer          | Yes  | Buffer to which the pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                                                                       |
 
 **Example**
@@ -298,14 +300,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
-        if(err) {
-            console.error('Failed to read image pixel data.');  // Called if no condition is met.
-            return;
-        } else {
-            console.info('Succeeded in reading image pixel data.');  // Called if the condition is met.
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
+            if(err) {
+                console.error('Failed to read image pixel data.');  // Called if no condition is met.
+                return;
+            } else {
+                console.info('Succeeded in reading image pixel data.');  // Called if the condition is met.
+            }
+        })
+    }
 }
 ```
 
@@ -313,7 +317,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads image pixel map data in an area. This API uses a promise to return the result.
+Reads the pixel map data in an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -321,7 +325,7 @@ Reads image pixel map data in an area. This API uses a promise to return the res
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](#positionarea7) | Yes  | Area from which the image pixel map data will be read.|
+| area   | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.|
 
 **Return value**
 
@@ -341,11 +345,13 @@ async function Demo() {
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area).then(() => {
-        console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
-    }).catch((error: BusinessError) => {
-        console.error('Failed to read the image data in the area.'); // Called if no condition is met.
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixels(area).then(() => {
+            console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+        }).catch((error: BusinessError) => {
+            console.error('Failed to read the image data in the area.'); // Called if no condition is met.
+        })
+    }
 }
 ```
 
@@ -353,7 +359,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data in an area. This API uses an asynchronous callback to return the result.
+Reads the pixel map data in an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -361,7 +367,7 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 
 | Name  | Type                          | Mandatory| Description                          |
 | -------- | ------------------------------ | ---- | ------------------------------ |
-| area     | [PositionArea](#positionarea7) | Yes  | Area from which the image pixel map data will be read.      |
+| area     | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.      |
 | callback | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -376,14 +382,16 @@ async function Demo() {
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error('Failed to read pixelmap from the specified area.');
-            return;
-        } else {
-            console.info('Succeeded to read pixelmap from the specified area.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixels(area, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error('Failed to read pixelmap from the specified area.');
+                return;
+            } else {
+                console.info('Succeeded to read pixelmap from the specified area.');
+            }
+        })
+    }
 }
 ```
 
@@ -391,7 +399,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Writes image pixel map data to an area. This API uses a promise to return the result.
+Writes the pixel map data to an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -399,7 +407,7 @@ Writes image pixel map data to an area. This API uses a promise to return the re
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.|
+| area   | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.|
 
 **Return value**
 
@@ -423,11 +431,13 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writePixels(area).then(() => {
-        console.info('Succeeded to write pixelmap into the specified area.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writePixels(area).then(() => {
+            console.info('Succeeded to write pixelmap into the specified area.');
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        })
+    }
 }
 ```
 
@@ -435,7 +445,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes image pixel map data to an area. This API uses an asynchronous callback to return the result.
+Writes the pixel map data to an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -443,7 +453,7 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 
 | Name   | Type                          | Mandatory| Description                          |
 | --------- | ------------------------------ | ---- | ------------------------------ |
-| area      | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.          |
+| area      | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.          |
 | callback  | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -461,14 +471,16 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writePixels(area, (error : BusinessError) => {
-        if (error != undefined) {
-            console.error('Failed to write pixelmap into the specified area.');
-            return;
-        } else {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writePixels(area, (error : BusinessError) => {
+            if (error != undefined) {
+                console.error('Failed to write pixelmap into the specified area.');
+                return;
+            } else {
+                console.info('Succeeded to write pixelmap into the specified area.');
+            }
+        })
+    }
 }
 ```
 
@@ -503,11 +515,13 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color).then(() => {
-        console.info("Succeeded in writing data from a buffer to a PixelMap.");
-    }).catch((error: BusinessError) => {
-        console.error("Failed to write data from a buffer to a PixelMap.");
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixels(color).then(() => {
+            console.info("Succeeded in writing data from a buffer to a PixelMap.");
+        }).catch((error: BusinessError) => {
+            console.error("Failed to write data from a buffer to a PixelMap.");
+        })
+    }
 }
 ```
 
@@ -537,14 +551,16 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to write data from a buffer to a PixelMap.");
-            return;
-        } else {
-            console.info("Succeeded in writing data from a buffer to a PixelMap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to write data from a buffer to a PixelMap.");
+                return;
+            } else {
+                console.info("Succeeded in writing data from a buffer to a PixelMap.");
+            }
+        })
+    }
 }
 ```
 
@@ -568,14 +584,16 @@ Obtains pixel map information of this image. This API uses a promise to return t
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-        if (imageInfo == undefined) {
-            console.error("Failed to obtain the image pixel map information.");
-        }
-        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.info("Succeeded in obtaining the image pixel map information.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+            if (imageInfo == undefined) {
+                console.error("Failed to obtain the image pixel map information.");
+            }
+            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+                console.info("Succeeded in obtaining the image pixel map information.");
+            }
+        })
+    }
 }
 ```
 
@@ -599,15 +617,17 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-        if (imageInfo == undefined) {
-            console.error("Failed to obtain the image pixel map information.");
-            return;
-        }
-        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.info("Succeeded in obtaining the image pixel map information.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
+            if (imageInfo == undefined) {
+                console.error("Failed to obtain the image pixel map information.");
+                return;
+            }
+            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+                console.info("Succeeded in obtaining the image pixel map information.");
+            }
+        })
+    }
 }
 ```
 
@@ -615,7 +635,7 @@ async function Demo() {
 
 getBytesNumberPerRow(): number
 
-Obtains the number of bytes per row of this image pixel map.
+Obtains the number of bytes per row of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -635,7 +655,7 @@ let rowCount: number = pixelMap.getBytesNumberPerRow();
 
 getPixelBytesNumber(): number
 
-Obtains the total number of bytes of this image pixel map.
+Obtains the total number of bytes of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -655,7 +675,7 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 
 getDensity():number
 
-Obtains the density of this image pixel map.
+Obtains the density of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -663,7 +683,7 @@ Obtains the density of this image pixel map.
 
 | Type  | Description           |
 | ------ | --------------- |
-| number | Density of the image pixel map.|
+| number | Density of the image.|
 
 **Example**
 
@@ -675,7 +695,7 @@ let getDensity: number = pixelMap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-Sets an opacity rate for this image pixel map. This API uses an asynchronous callback to return the result.
+Sets an opacity rate for this image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -693,14 +713,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate: number = 0.5;
-    pixelMap.opacity(rate, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to set opacity.");
-            return;
-        } else {
-            console.info("Succeeded in setting opacity.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.opacity(rate, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to set opacity.");
+                return;
+            } else {
+                console.info("Succeeded in setting opacity.");
+            }
+        })
+    }
 }
 ```
 
@@ -708,7 +730,7 @@ async function Demo() {
 
 opacity(rate: number): Promise\<void>
 
-Sets an opacity rate for this image pixel map. This API uses a promise to return the result.
+Sets an opacity rate for this image. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -731,11 +753,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate: number = 0.5;
-    await pixelMap.opacity(rate).then(() => {
-        console.info('Sucessed in setting opacity.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to set opacity.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.opacity(rate).then(() => {
+            console.info('Sucessed in setting opacity.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to set opacity.');
+        })
+    }
 }
 ```
 
@@ -759,11 +783,13 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
-        console.info('Succeeded in creating alpha pixelmap.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to create alpha pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+            console.info('Succeeded in creating alpha pixelmap.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to create alpha pixelmap.');
+        })
+    }
 }
 ```
 
@@ -787,14 +813,16 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
-        if (alphaPixelMap == undefined) {
-            console.error('Failed to obtain new pixel map.');
-            return;
-        } else {
-            console.info('Succeed in obtaining new pixel map.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
+            if (alphaPixelMap == undefined) {
+                console.error('Failed to obtain new pixel map.');
+                return;
+            } else {
+                console.info('Succeed in obtaining new pixel map.');
+            }
+        }) 
+    }
 }
 ```
 
@@ -822,14 +850,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
-    pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to scale pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in scaling pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to scale pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in scaling pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -862,11 +892,13 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
-    await pixelMap.scale(scaleX, scaleY).then(() => {
-        console.info('Sucessed in scaling pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to scale pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.scale(scaleX, scaleY).then(() => {
+            console.info('Sucessed in scaling pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to scale pixelmap.');
+        })   
+    }
 }
 ```
 
@@ -894,14 +926,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
-    pixelMap.translate(translateX, translateY, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to translate pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in translating pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.translate(translateX, translateY, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to translate pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in translating pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -934,11 +968,13 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
-    await pixelMap.translate(translateX, translateY).then(() => {
-        console.info('Sucessed in translating pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to translate pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.translate(translateX, translateY).then(() => {
+            console.info('Sucessed in translating pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to translate pixelmap.');
+        })
+    }
 }
 ```
 
@@ -963,15 +999,17 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    let angle: number = 90.0;
-    pixelMap.rotate(angle, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to rotate pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in rotating pixelmap.");
-        }
-    })
+    let angle: number = 90.0;]
+    if (pixelMap != undefined) {
+        pixelMap.rotate(angle, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to rotate pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in rotating pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1002,11 +1040,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    await pixelMap.rotate(angle).then(() => {
-        console.info('Sucessed in rotating pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to rotate pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.rotate(angle).then(() => {
+            console.info('Sucessed in rotating pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to rotate pixelmap.');
+        })
+    }
 }
 ```
 
@@ -1034,14 +1074,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
-    pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to flip pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in flipping pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to flip pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in flipping pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1074,11 +1116,13 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
-    await pixelMap.flip(horizontal, vertical).then(() => {
-        console.info('Sucessed in flipping pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to flip pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.flip(horizontal, vertical).then(() => {
+            console.info('Sucessed in flipping pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to flip pixelmap.');
+        })
+    }
 }
 ```
 
@@ -1104,14 +1148,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    pixelMap.crop(region, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to crop pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in cropping pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.crop(region, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to crop pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in cropping pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1142,11 +1188,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await pixelMap.crop(region).then(() => {
-        console.info('Sucessed in cropping pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to crop pixelmap.');
-    });
+    if (pixelMap != undefined) {
+        await pixelMap.crop(region).then(() => {
+            console.info('Sucessed in cropping pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to crop pixelmap.');
+        });
+    }
 }
 ```
 
@@ -1178,7 +1226,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 async function Demo() {
-    let csm = pixelMap.getColorSpace();
+    if (pixelMap != undefined) {
+        let csm = pixelMap.getColorSpace();
+    }
 }
 ```
 
@@ -1212,7 +1262,9 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelMap.setColorSpace(csm);
+    if (pixelMap != undefined) {
+        pixelMap.setColorSpace(csm);
+    }
 }
 ```
 
@@ -1251,14 +1303,16 @@ import { BusinessError } from '@ohos.base'
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
-        if (err) {
-            console.error('Failed to apply color space for pixelmap object.');
-            return;
-        } else {
-            console.info('Succeeded in applying color space for pixelmap object.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
+            if (err) {
+                console.error('Failed to apply color space for pixelmap object.');
+                return;
+            } else {
+                console.info('Succeeded in applying color space for pixelmap object.');
+            }
+        })
+    }
 }
 ```
 
@@ -1302,11 +1356,13 @@ import { BusinessError } from '@ohos.base'
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace).then(() => {
-        console.info('Succeeded in applying color space for pixelmap object.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to apply color space for pixelmap object.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.applyColorSpace(targetColorSpace).then(() => {
+            console.info('Succeeded in applying color space for pixelmap object.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to apply color space for pixelmap object.');
+        })
+    }
 }
 ```
 
@@ -1499,11 +1555,13 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.release().then(() => {
-        console.info('Succeeded in releasing pixelmap object.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to release pixelmap object.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.release().then(() => {
+            console.info('Succeeded in releasing pixelmap object.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to release pixelmap object.');
+        })
+    }
 }
 ```
 
@@ -1527,14 +1585,16 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.release((err: BusinessError) => {
-        if (err != undefined) {
-            console.error('Failed to release pixelmap object.');
-            return;
-        } else {
-            console.info('Succeeded in releasing pixelmap object.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.release((err: BusinessError) => {
+            if (err != undefined) {
+                console.error('Failed to release pixelmap object.');
+                return;
+            } else {
+                console.info('Succeeded in releasing pixelmap object.');
+            }
+        })
+    }
 }
 ```
 
@@ -1550,7 +1610,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>. |
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 
 **Return value**
 
@@ -1578,8 +1638,8 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>. |
-| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1633,7 +1693,7 @@ Creates an **ImageSource** instance based on the file descriptor.
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | fd      | number                          | Yes  | File descriptor.                     |
-| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1689,7 +1749,7 @@ Creates an **ImageSource** instance based on the buffers.
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | buf    | ArrayBuffer                      | Yes  | Array of image buffers.                    |
-| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1718,7 +1778,7 @@ Creates an **ImageSource** instance by using the raw file descriptor of the imag
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
-| options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1781,7 +1841,7 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 | Name | Type                           | Mandatory| Description                                |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
 | buf     | ArrayBuffer                     | Yes  | Incremental data.                          |
-| options | [SourceOptions](#sourceoptions9) | No  | Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | No  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -3961,8 +4021,8 @@ Describes the size of an image.
 
 | Name  | Type  | Readable| Writable| Description          |
 | ------ | ------ | ---- | ---- | -------------- |
-| height | number | Yes  | Yes  | Image height.|
-| width  | number | Yes  | Yes  | Image width.|
+| height | number | Yes  | Yes  | Image height, in px.|
+| width  | number | Yes  | Yes  | Image width, in px.|
 
 ## PixelMapFormat<sup>7+</sup>
 
@@ -4046,7 +4106,7 @@ Defines image decoding options.
 | editable           | boolean                            | Yes  | Yes  | Whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.|
 | index              | number                             | Yes  | Yes  | Index of the image to decode.  |
 | fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Image pixel density, in ppi.  |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Yes  | Target color space.|
@@ -4240,5 +4300,3 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1. 
 - textPath
 - tspan
 - use
-
- <!--no_check--> 

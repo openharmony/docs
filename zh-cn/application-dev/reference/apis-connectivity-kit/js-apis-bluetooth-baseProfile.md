@@ -41,7 +41,7 @@ getConnectedDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回当前已连接设备的地址。 |
+| Array&lt;string&gt; | 返回当前已连接设备的地址。基于信息安全考虑，此处获取的设备地址为随机MAC地址。 |
 
 **错误码**：
 

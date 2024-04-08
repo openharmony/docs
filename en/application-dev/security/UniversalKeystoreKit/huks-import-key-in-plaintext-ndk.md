@@ -9,11 +9,11 @@ This topic walks you through on how to import an ECC key. For details about the 
 1. Set the alias **keyAlias** of the key to import.
    The key alias cannot exceed 64 bytes.
 
-2. Encapsulate the key property set and key material. Construct the key property set **paramSet** by using [OH_Huks_InitParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams) and [OH_Huks_BuildParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset).
-   - **paramSet** must contain [OH_Huks_KeyAlg](../../reference/native-apis/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/native-apis/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/native-apis/_huks_type_api.md#oh_huks_keypurpose).
+2. Encapsulate the key property set and key material. Construct the key property set **paramSet** using [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset).
+   - ** paramSet** must contain [OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose).
    - The key material must comply with the [HUKS key material format](huks-concepts.md#key-material-format).
 
-3. Use [OH_Huks_ImportKeyItem](../../reference/native-apis/_huks_key_api.md#oh_huks_importkeyitem) to import the key.
+3. Use [OH_Huks_ImportKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_importkeyitem) to import the key.
 
 ```c++
 /* Import an ECC key in plaintext. */

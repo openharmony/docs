@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](../apis-arkdata/js-apis-data-ability.md)和[dataShare模块](../apis-arkdata/js-apis-data-dataShare-sys.md)。
+> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[FileAccessHelper.openFile](../apis-core-file-kit/js-apis-fileAccess-sys.md#openfile-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -66,7 +66,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[FileAccessHelper.openFile](../apis-core-file-kit/js-apis-fileAccess-sys.md#openfile)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -104,7 +104,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.on('dataChange')](../apis-arkdata/js-apis-data-dataShare-sys.md#ondatachange)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -141,7 +141,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.off('dataChange')](../apis-arkdata/js-apis-data-dataShare-sys.md#offdatachange)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -326,7 +326,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.normalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#normalizeuri)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -361,7 +361,7 @@ normalizeUri(uri: string): Promise\<string>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.normalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#normalizeuri-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -397,7 +397,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.denormalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#denormalizeuri)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -432,7 +432,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.denormalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#denormalizeuri-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -468,7 +468,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.notifyChange](../apis-arkdata/js-apis-data-dataShare-sys.md#notifychange)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -503,7 +503,7 @@ notifyChange(uri: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.notifyChange](../apis-arkdata/js-apis-data-dataShare-sys.md#notifychange-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -539,7 +539,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.insert](../apis-arkdata/js-apis-data-dataShare-sys.md#insert)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -582,7 +582,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.insert](../apis-arkdata/js-apis-data-dataShare-sys.md#insert-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -626,8 +626,7 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.batchInsert](../apis-arkdata/js-apis-data-dataShare-sys.md#batchinsert)。
-
+**模型约束**：此接口仅可在FA模型下使用。
 **参数：**
 
 | 参数名         | 类型                    | 必填 | 说明                             |
@@ -666,7 +665,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.batchInsert](../apis-arkdata/js-apis-data-dataShare-sys.md#batchinsert-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -707,7 +706,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -745,7 +744,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -784,7 +783,7 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -819,7 +818,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -865,7 +864,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -912,7 +911,7 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -955,7 +954,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -995,7 +994,7 @@ query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -1030,7 +1029,7 @@ query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -1067,7 +1066,7 @@ query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asyn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -1105,7 +1104,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 

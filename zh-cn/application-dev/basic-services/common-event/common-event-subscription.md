@@ -34,9 +34,9 @@
    ```ts
    // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
    let subscriber: commonEventManager.CommonEventSubscriber | null = null;
-   // 订阅者信息
+   // 订阅者信息，其中的event字段需要替换为实际的事件名称。
    let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-       events: ['usual.event.SCREEN_OFF'], // 订阅灭屏公共事件
+       events: ['event'], // 订阅灭屏公共事件
    };
    ```
 

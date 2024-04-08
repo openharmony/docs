@@ -1428,7 +1428,7 @@ allowWindowOpenMethod(flag: boolean)
 
 设置网页是否可以通过JavaScript自动打开新窗口。
 
-该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指用户在5秒内请求打开新窗口（window.open）。
+该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指，在用户对Web组件进行点击等操作后，同时在5秒内请求打开新窗口（window.open）的行为。
 
 该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
 
@@ -2165,19 +2165,38 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Button('onconsole message')
+          .onClick(() => {
+            this.controller.runJavaScript('myFunction()');
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage())
-              console.log('getSourceId:' + event.message.getSourceId())
-              console.log('getLineNumber:' + event.message.getLineNumber())
-              console.log('getMessageLevel:' + event.message.getMessageLevel())
+              console.log('getMessage:' + event.message.getMessage());
+              console.log('getSourceId:' + event.message.getSourceId());
+              console.log('getLineNumber:' + event.message.getLineNumber());
+              console.log('getMessageLevel:' + event.message.getMessageLevel());
             }
-            return false
+            return false;
           })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      function myFunction() {
+          console.log("onconsole printf");
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onDownloadStart
@@ -5314,7 +5333,7 @@ WebContextMenuParam有图片内容则复制图片。
 
 copy(): void
 
-执行与此上下文菜单相关的拷贝操作。
+执行与此上下文菜单相关的拷贝文本操作。
 
 ### paste<sup>9+</sup>
 
@@ -5440,8 +5459,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称                          | 值 | 描述            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | undefined | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | undefined | 音频捕获资源，例如麦克风。 |                            |
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 

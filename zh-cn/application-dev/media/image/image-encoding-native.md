@@ -47,7 +47,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // 使用napi_value 承接创建的编码器对象
    napi_value packer;
    // 通过 napi_env 创建编码器，返回result为 IMAGE_RESULT_SUCCESS则创建成功
-   int32_t result = OH_ImagePacker_Create(env, packer);
+   int32_t result = OH_ImagePacker_Create(env, &packer);
    ```
 3. 初始化资源。
 
@@ -73,7 +73,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    例向缓存区（内存）输出：
    ```cpp
    // 编码参数
-   struct ImagePacker_Opts opts;
+   struct ImagePacker_Opts_ opts;
    // 配置编码格式（必须）
    opts.format = "image/jpeg";
    // 配置编码质量（必须）
@@ -88,7 +88,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    例向文件输出：
    ```cpp
    // 编码参数
-   struct ImagePacker_Opts opts;
+   struct ImagePacker_Opts_ opts;
    // 配置编码格式（必须）
    opts.format = "image/jpeg";
    // 配置编码质量（必须）

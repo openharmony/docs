@@ -494,7 +494,7 @@ struct Index {
       Button('getNextSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const nextSibling = child.getNextSibling()
+          const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
             console.log('the child or nextChild is null');
           } else {

@@ -289,3 +289,5 @@ wantConstant接口有两个类似的枚举，合并成一个。
 import wantConstant from '@ohos.app.ability.wantConstant';
 let backToOtherMissionStack: wantConstant.Params = wantParam.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK;
 ```
+
+<!--no_check-->

@@ -31,7 +31,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
-| info       | [NotificationSubscribeInfo](js-apis-notification-sys.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -141,7 +141,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](js-apis-notification-sys.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空（当为空时，表示订阅当前用户下所有应用的通知，否则表示订阅通知并指定订阅信息）。   |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空（当为空时，表示订阅当前用户下所有应用的通知，否则表示订阅通知并指定订阅信息）。   |
 
 **返回值：**
 

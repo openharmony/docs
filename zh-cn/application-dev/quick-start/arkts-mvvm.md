@@ -1120,7 +1120,6 @@ export class ObservedArray<T> extends Array<T> {
 
 
 ```ts
-
 // ViewModel classes
 let nextId = 0;
 
@@ -1191,7 +1190,7 @@ struct PersonView {
   @ObjectLink phones: ObservedArray<string>;
   @Link selectedPerson: Person;
 
-  build() {
+  build() { 
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
       Text(this.person.name)
       if (this.phones.length) {
@@ -1206,16 +1205,37 @@ struct PersonView {
   }
 }
 
+@Component
+struct phonesNumber {
+  @ObjectLink phoneNumber: ObservedArray<string>
+
+  build() {
+    Column() {
+
+      ForEach(this.phoneNumber,
+        (phone: ResourceStr, index?: number) => {
+          TextInput({ text: phone })
+            .width(150)
+            .onChange((value) => {
+              console.log(`${index}. ${value} value has changed`)
+              this.phoneNumber[index!] = value;
+            })
+        },
+        (phone: ResourceStr, index: number) => `${this.phoneNumber[index] + index}`
+      )
+    }
+  }
+}
+
+
 // 渲染Person的详细信息
 // @Prop装饰的变量从父组件AddressBookView深拷贝数据，将变化保留在本地, TextInput的变化只会在本地副本上进行修改。
 // 点击 "Save Changes" 会将所有数据的复制通过@Prop到@Link, 同步到其他组件
 @Component
 struct PersonEditView {
   @Consume addrBook: AddressBook;
-
   /* 指向父组件selectedPerson的引用 */
   @Link selectedPerson: Person;
-
   /*在本地副本上编辑，直到点击保存*/
   @Prop name: string = "";
   @Prop address: Address = new Address("", 0, "");
@@ -1248,17 +1268,7 @@ struct PersonEditView {
         })
 
       if (this.phones.length > 0) {
-        ForEach(this.phones,
-          (phone: ResourceStr, index?:number) => {
-            TextInput({ text: phone })
-              .width(150)
-              .onChange((value) => {
-                console.log(`${index}. ${value} value has changed`)
-                this.phones[index!] = value;
-              })
-          },
-          (phone: ResourceStr, index?:number) => `${index}`
-        )
+        phonesNumber({ phoneNumber: this.phones })
       }
 
       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
@@ -1316,13 +1326,15 @@ struct AddressBookView {
       Divider().height(8)
 
       ForEach(this.contacts, (contact: Person) => {
-        PersonView({ 
-          person: contact, 
-          phones: contact.phones as ObservedArray<string>, 
-          selectedPerson: this.selectedPerson 
+        PersonView({
+          person: contact,
+          phones: contact.phones as ObservedArray<string>,
+          selectedPerson: this.selectedPerson
         })
       },
-        (contact: Person): string => { return contact.id_; }
+        (contact: Person): string => {
+          return contact.id_;
+        }
       )
 
       Divider().height(8)
@@ -1345,9 +1357,9 @@ struct PageEntry {
   @Provide addrBook: AddressBook = new AddressBook(
     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
     [
-      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["11*********", "12*********"]),
+      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["13*********", "14*********"]),
+      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["15*********", "168*********"]),
     ]);
 
   build() {
