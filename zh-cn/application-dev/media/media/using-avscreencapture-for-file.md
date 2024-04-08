@@ -227,6 +227,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
 
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
+    // 内外同录的规格是必定有内录，麦克风可选。
     OH_AudioCaptureInfo innerCapInfo = {
         .audioSampleRate = 48000, 
         .audioChannels = 2, 
