@@ -255,6 +255,7 @@
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
       - [@ohos.arkui.advanced.Dialog (弹出框)](arkui-ts/ohos-arkui-advanced-Dialog.md)
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
+      - [@ohos.arkui.advanced.EmbeddedAtomicServiceComponent (嵌入式元服务组件)](arkui-ts/ohos-arkui-advanced-EmbeddedAtomicServiceComponent.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
