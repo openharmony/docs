@@ -922,22 +922,22 @@ struct Zoo {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Commodity {
+  public price: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(price: number) {
+    this.price = price;
   }
 }
 
 @Component
 struct PropChild {
-  @Prop testNum: ClassA; // 未进行本地初始化
+  @Prop fruit: Commodity; // 未进行本地初始化
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
@@ -945,15 +945,15 @@ struct PropChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent fruit ${this.fruit[0].price}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.fruit[0].price += 1;
         })
-        
+
       // @Prop本地没有初始化，也没有从父组件初始化
       PropChild()
     }
@@ -965,34 +965,34 @@ struct Parent {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Commodity {
+  public price: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(price: number) {
+    this.price = price;
   }
 }
 
 @Component
 struct PropChild1 {
-  @Prop testNum: ClassA; // 未进行本地初始化
+  @Prop fruit: Commodity; // 未进行本地初始化
 
   build() {
-    Text(`PropChild1 testNum ${this.testNum.c}`)
+    Text(`PropChild1 fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
 
 @Component
 struct PropChild2 {
-  @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
+  @Prop fruit: Commodity = new Commodity(1); // 进行本地初始化
 
   build() {
-    Text(`PropChild2 testNum ${this.testNum.c}`)
+    Text(`PropChild2 fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
@@ -1000,20 +1000,20 @@ struct PropChild2 {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent fruit ${this.fruit[0].price}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.fruit[0].price += 1;
         })
 
       // @PropChild1本地没有初始化，必须从父组件初始化
-      PropChild1({ testNum: this.testNum[0] })
+      PropChild1({ fruit: this.fruit[0] })
       // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
       PropChild2()
-      PropChild2({ testNum: this.testNum[0] })
+      PropChild2({ fruit: this.fruit[0] })
     }
   }
 }

@@ -17,6 +17,7 @@
 TextInput(value?: TextInputOptions)
 
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 | value | [TextInputOptions](#textinputoptions对象说明) | 否  | TextInput组件参数。 |
@@ -45,6 +46,20 @@ type(value: InputType)
 | 参数名 | 类型                            | 必填 | 说明                                      |
 | ------ | ------------------------------- | ---- | ----------------------------------------- |
 | value  | [InputType](#inputtype枚举说明) | 是   | 输入框类型。<br/>默认值：InputType.Normal |
+
+### contentType<sup>12+</sup>
+
+contentType(value: ContentType)
+
+设置自动填充类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| value  | [ContentType](#contenttype12枚举说明) | 是   | 自动填充类型。 |
 
 ### placeholderColor
 
@@ -84,9 +99,9 @@ enterKeyType(value: EnterKeyType)
 
 **参数：** 
 
-| 参数名 | 类型                                  | 必填 | 说明                                             |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Done |
+| 参数名 | 类型                                             | 必填 | 说明                                             |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------ |
+| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Done |
 
 ### caretColor
 
@@ -101,6 +116,9 @@ caretColor(value: ResourceColor)
 | 参数名 | 类型                                       | 必填 | 说明                                   |
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#007DFF' |
+
+>  **说明：**     
+>   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
 
 ### maxLength
 
@@ -137,7 +155,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制或剪切，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。
 
 copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
@@ -208,6 +226,9 @@ selectedBackgroundColor(value: ResourceColor)
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
+>  **说明：**     
+>   从API version 12开始，如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
 
 ### caretStyle<sup>10+</sup>
 
@@ -281,6 +302,18 @@ showUnderline(value: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | value  | boolean | 是   | 是否开启下划线。<br/>默认值：false |
 
+### underlineColor<sup>12+</sup>
+
+underlineColor(value: ResourceColor|UnderlineColor|undefined)
+
+开启下划线时，支持配置下划线颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor)\| [UnderlineColor](#underlinecolor12对象说明)\|undefined | 否   | 设置下划线颜色。<br/>当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。 |
+
 ### passwordIcon<sup>10+</sup>
 
 passwordIcon(value: PasswordIcon)
@@ -299,7 +332,7 @@ passwordIcon(value: PasswordIcon)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextArea通过点击以外的方式获焦时，是否绑定输入法。
+设置TextInput通过点击以外的方式获焦时，是否绑定输入法。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -351,11 +384,11 @@ maxLines(value: number)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
+| value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
 
 ### customKeyboard<sup>10+</sup>
 
-customKeyboard(value: CustomBuilder)
+customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 设置自定义键盘。
 
@@ -367,7 +400,7 @@ customKeyboard(value: CustomBuilder)
 
 自定义键盘无法获取焦点，但是会拦截手势事件。
 
-默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextAreaController](ts-basic-components-textarea.md#textareacontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。
+默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextInputController](#textinputcontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
@@ -375,9 +408,10 @@ customKeyboard(value: CustomBuilder)
 
 **参数：** 
 
-| 参数名 | 类型                                        | 必填 | 说明         |
-| ------ | ------------------------------------------- | ---- | ------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。 |
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
 
 ### enableAutoFill<sup>11+</sup>
 
@@ -460,32 +494,104 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
+### lineHeight<sup>12+</sup>
 
-## SubmitEvent<sup>11+</sup>
+lineHeight(value: number | string | Resource)
 
-定义用户提交事件。
+设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
 
-| 名称                | 类型            | 必填   | 描述                           |
-| ----------------- | ------------- | ---- | ---------------------------- |
-| keepEditableState | () => void | 否    | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
-| text              | string        | 否    | 输入框文本内容。                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
+
+### decoration<sup>12+</sup>
+
+decoration(value: TextDecorationOptions)
+
+设置文本装饰线样式及其颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+
+### letterSpacing<sup>12+</sup>
+
+letterSpacing(value: number | string | Resource)
+
+设置文本字符间距。设置该值为百分比时，按默认值显示。
+
+当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                       | 必填 | 说明           |
+| ------ | -------------------------- | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
+
+### fontFeature<sup>12+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+
+### wordBreak<sup>12+</sup>
+
+wordBreak(value: WordBreak)
+
+设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 内联输入风格编辑态时断行规则。 <br />默认值：WordBreak.BREAK_WORD |
+
+>  **说明：**
+>
+>  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
 | width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
 
-## EnterKeyType枚举说明
+## TextDecorationOptions<sup>12+</sup>对象说明
 
-| 名称                     | 描述        |
-| ---------------------- | --------- |
-| Go                     | 显示为开始样式。  |
-| Search                 | 显示为搜索样式。  |
-| Send                   | 显示为发送样式。  |
-| Next                   | 显示为下一个样式。 |
-| Done                   | 显示为完成样式。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一个样式。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。  |
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
+| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 
 ## InputType枚举说明
 
@@ -500,6 +606,31 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 | NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
 | NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。 |
 | NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
+
+## ContentType<sup>12+</sup>枚举说明
+
+自动填充类型。
+
+| 名称                | 值   | 描述                                                         |
+| ------------------- | ---- | ------------------------------------------------------------ |
+| USER_NAME           | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| PASSWORD            | 1    | 【密码】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| NEW_PASSWORD        | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
+| FULL_STREET_ADDRESS | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
+| HOUSE_NUMBER        | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
+| DISTRICT_ADDRESS    | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
+| CITY_ADDRESS        | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
+| PROVINCE_ADDRESS    | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
+| COUNTRY_ADDRESS     | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
+| PERSON_FULL_NAME    | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
+| PERSON_LAST_NAME    | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
+| PERSON_FIRST_NAME   | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
+| PHONE_NUMBER        | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_COUNTRY_CODE  | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER   | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| EMAIL_ADDRESS       | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
+| BANK_CARD_NUMBER    | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
+| ID_CARD_NUMBER      | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
@@ -551,10 +682,10 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 
 **参数：** 
 
-| 参数名              | 类型                                  | 必填 | 说明                                                         |
-| ------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
-| event<sup>11+</sup> | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
+| 参数名              | 类型                                             | 必填 | 说明                                                         |
+| ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+| event<sup>11+</sup> | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 提交事件。                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -680,7 +811,7 @@ caretPosition(value:&nbsp;number): void
 | value | number | 是    | 从字符串开始到光标所在位置的字符长度。 |
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
+setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions): void
 
 设置文本选择区域并高亮显示。
 
@@ -690,9 +821,30 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number): void
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。               |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
+>
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+##  SelectionOptions<sup>12+</sup>
+
+setTextSelection选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
+
 ### stopEditing<sup>10+</sup>
 
 stopEditing(): void
@@ -769,6 +921,23 @@ getCaretOffset(): CaretOffset
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
 
+## UnderlineColor<sup>12+</sup>对象说明
+
+| 参数名  | 类型                                                        | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| typing  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| normal  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| error   | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
+| disable | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+
+## KeyboardOptions<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称            | 类型              | 必填   | 描述                               |
+| --------------- | ---------------  |---- | ------------------------------------  |
+| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+
 ## 示例
 
 ### 示例1
@@ -819,6 +988,13 @@ struct TextInputExample {
         .type(InputType.Password)
         .maxLength(9)
         .showPasswordIcon(true)
+      // 邮箱地址自动填充类型
+      TextInput({ placeholder: 'input your email...' })
+        .width('95%')
+        .height(40)
+        .margin(20)
+        .contentType(ContentType.EMAIL_ADDRESS)
+        .maxLength(9)
       // 内联风格输入框
       TextInput({ text: 'inline style' })
         .width('95%')
@@ -1091,3 +1267,221 @@ struct phone_example {
 
 ```
 ![phone_example](figures/phone_number.jpeg)
+
+### 示例7
+
+本示例展示如何在下划线开启时，设置下划线颜色。
+
+```ts
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({placeholder:'提示文本内容'})
+          .showUnderline(true)
+          .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
+        TextInput({placeholder:'提示文本内容'})
+          .showUnderline(true)
+          .underlineColor(Color.Gray);
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![UnderlineColor](figures/UnderlineColor.png)
+
+
+### 示例8
+示例展示设置不同wordBreak属性的TextArea样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  build() {
+    Column() {
+      Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
+      TextInput({
+        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+      })
+        .fontSize(16)
+        .style(TextInputStyle.Inline) // Inline模式
+        .wordBreak(WordBreak.NORMAL) // 非Inline模式该属性无效
+
+      Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
+      TextInput({
+        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+      })
+        .fontSize(16)
+        .style(TextInputStyle.Inline)
+        .wordBreak(WordBreak.BREAK_ALL)
+
+      Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
+      TextInput({
+        text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
+      })
+        .fontSize(16)
+        .style(TextInputStyle.Inline)
+        .wordBreak(WordBreak.BREAK_ALL)
+
+      Text("TextInput为inline模式，WordBreakType属性为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
+      TextInput({
+        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
+      })
+        .fontSize(16)
+        .style(TextInputStyle.Inline)
+        .wordBreak(WordBreak.BREAK_WORD)
+    }
+  }
+}
+```
+![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
+
+### 示例9
+
+该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+
+```ts
+@Entry
+@Component
+struct TextInputExample {
+  build() {
+    Row() {
+      Column() {
+        Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
+        TextInput({text: 'lineHeight unset'})
+          .border({ width: 1 }).padding(10).margin(5)
+        TextInput({text: 'lineHeight 15'})
+          .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
+        TextInput({text: 'lineHeight 30'})
+          .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
+
+        Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
+        TextInput({text: 'letterSpacing 0'})
+          .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
+        TextInput({text: 'letterSpacing 3'})
+          .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
+        TextInput({text: 'letterSpacing -1'})
+          .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
+
+        Text('decoration').fontSize(9).fontColor(0xCCCCCC)
+        TextInput({text: 'LineThrough, Red'})
+          .border({ width: 1 }).padding(5).margin(5)
+          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
+        TextInput({text: 'Overline, Red'})
+          .border({ width: 1 }).padding(5).margin(5)
+          .decoration({type: TextDecorationType.Overline, color: Color.Red})
+        TextInput({text: 'Underline, Red'})
+          .border({ width: 1 }).padding(5).margin(5)
+          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![TextInputDecoration](figures/textinput_decoration.png)
+
+### 示例10
+
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+
+```ts
+@Entry
+@Component
+struct textInput {
+  @State text1: string = 'This is ss01 on : 0123456789'
+  @State text2: string = 'This is ss01 off: 0123456789'
+
+
+  build() {
+    Column(){
+      TextInput({text: this.text1})
+        .fontSize(20)
+        .margin({top:200})
+        .fontFeature("\"ss01\" on")
+      TextInput({text : this.text2})
+        .margin({top:10})
+        .fontSize(20)
+        .fontFeature("\"ss01\" off")
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![fontFeature](figures/textInputFontFeature.png)
+
+### 示例11
+
+自定义键盘弹出发生避让示例
+
+```ts
+@Entry
+@Component
+struct Input {
+  controller: TextInputController = new TextInputController()
+  @State inputValue: string = ""
+  @State height1:string|number = '80%'
+  @State supportAvoidance:boolean = true;
+  // 自定义键盘组件
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Row(){
+        Button('x').onClick(() => {
+          // 关闭自定义键盘
+          this.controller.stopEditing()
+        }).margin(10)
+      }
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.inputValue += item
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+  build() {
+    Column() {
+      Row(){
+        Button("20%")
+          .fontSize(24)
+          .onClick(()=>{
+            this.height1 = "20%"
+          })
+        Button("80%")
+          .fontSize(24)
+          .margin({left:20})
+          .onClick(()=>{
+            this.height1 = "80%"
+          })
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
+      .height(this.height1)
+      .width("100%")
+      .padding({bottom:50})
+      TextInput({ controller: this.controller, text: this.inputValue })
+        // 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+
+    }
+  }
+}
+```
+
+![CustomTextInputType](figures/Custom_Text_Input.gif)

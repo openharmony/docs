@@ -6,16 +6,16 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 
 ## Available APIs
 
-| Name                                                      | Description                                    |
+| API                                                      | Description                                    |
 | :----------------------------------------------------------- | :--------------------------------------- |
 | NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr) | Initializes the native resource manager.         |
 | RawDir *OH_ResourceManager_OpenRawDir(const NativeResourceManager *mgr, const char *dirName) | Opens a raw file directory.                   |
-| int OH_ResourceManager_GetRawFileCount(RawDir *rawDir)       | Obtains the number of raw files in the specified directory.|
+| int OH_ResourceManager_GetRawFileCount(RawDir *rawDir)       | Obtains the number of raw files in a directory.|
 | const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index) | Obtains the name of a raw file.                       |
 | RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName) | Opens a raw file.                   |
 | long OH_ResourceManager_GetRawFileSize(RawFile *rawFile)     | Obtains the size of a raw file.                   |
 | int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence) | Seeks a read/write position in a raw file based on the specified offset.                   |
-| long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile) | Obtains the offset.                     |
+| long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile) | Obtains the offset of a raw file.                     |
 | int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | Reads a raw file.                   |
 | int64_t OH_ResourceManager_GetRawFileRemainingLength(const RawFile *rawFile) | Obtains the remaining length of a raw file.                   |
 | void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | Closes a raw file to release resources.               |
@@ -26,13 +26,13 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 
 ## Using C++ Functions
 
-1. Call **OH_ResourceManager_OpenRawDir** to obtain a **RawDir** instance based on the **NativeResourceManager** instance.
+1. Call **OH_ResourceManager_OpenRawDir** to open a raw file directory based on a **NativeResourceManager** instance.
 
     ```c++
     RawDir* rawDir = OH_ResourceManager_OpenRawDir(nativeResourceManager, path.c_str());
     ```
 
-2. Call **OH_ResourceManager_GetRawFileCount** to obtain the total number of raw files in the directory based on the **RawDir** instance.
+2. Call **OH_ResourceManager_GetRawFileCount** to obtain the total number of raw files in the directory.
 
     ```c++
     int count = OH_ResourceManager_GetRawFileCount(rawDir);
@@ -46,7 +46,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     }
     ```
 
-4. Call **OH_ResourceManager_OpenRawFile** to obtain a **RawFile** instance with the specified file name.
+4. Call **OH_ResourceManager_OpenRawFile** to open a raw file with the specified file name.
 
     ```c++
     RawFile* rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, fileName.c_str());
@@ -85,7 +85,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     int64_t rawFileRemainingSize = OH_ResourceManager_GetRawFileRemainingLength(rawFile);
     ```
 
-10. Call **OH_ResourceManager_CloseRawFile** to close the file to release resources.
+10. Call **OH_ResourceManager_CloseRawFile** to close the raw file.
 
     ```c++
     OH_ResourceManager_CloseRawFile(rawFile);
@@ -126,7 +126,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 
 2. Add dependencies.
 
-After a project is created, the **cpp** directory is created under the project. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
+After the project is created, the **cpp** directory is created under the project. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
 
 1. Open the **src/main/cpp/CMakeLists.txt** file, and add **librawfile.z.so** and **libhilog_ndk.z.so** to **target_link_libraries**.
 
@@ -163,7 +163,7 @@ After a project is created, the **cpp** directory is created under the project. 
     EXTERN_C_END
     ```
 
-2. Add the three functions to the **src/main/cpp/hello.cpp** file.
+2. Add the three C++ native functions to the **src/main/cpp/hello.cpp** file.
 
     ```c++
     static napi_value GetFileList(napi_env env, napi_callback_info info)
@@ -188,7 +188,7 @@ After a project is created, the **cpp** directory is created under the project. 
         // Obtain arguments of the native API.
         napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
 
-        // Obtain argv[0], which specifies conversion of the JavaScript resource object (that is, OH_ResourceManager_InitNativeResourceManager) to a native object.
+        // Obtain argv[0], which specifies conversion of the JavaScript resource object (OH_ResourceManager_InitNativeResourceManager) to a native object.
         NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
 
         // Obtain argv[1], which specifies the relative path of the raw file.
@@ -224,7 +224,7 @@ After a project is created, the **cpp** directory is created under the project. 
         return fileList;
     }
 
-    // Example 2: Use rawDir pointer object to obtain the content of the raw file.
+    // Example 2: Use GetRawFileContent to obtain the content of the raw file.
     napi_value CreateJsArrayValue(napi_env env, std::unique_ptr<uint8_t[]> &data, long length)
     {
         napi_value buffer;
@@ -254,7 +254,7 @@ After a project is created, the **cpp** directory is created under the project. 
         // Obtain arguments of the native API.
         napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
 
-        // Obtain argv[0], which specifies conversion of the JavaScript resource object (that is, OH_ResourceManager_InitNativeResourceManager) to a native object.
+        // Obtain argv[0], which specifies conversion of the JavaScript resource object (OH_ResourceManager_InitNativeResourceManager) to a native object.
         NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
         size_t strSize;
         char strBuf[256];
@@ -364,11 +364,11 @@ After a project is created, the **cpp** directory is created under the project. 
 
 1. Open **src\main\ets\pages\index.ets**, and import **libentry.so**.
 
-2. Obtain intra-package resources and cross-package resources within an application and cross-application package resources.<br>Call **.context().resourceManager** to obtain the **resourceManager** object for intra-package resources within the application.<br>Call **.context().createModuleContext().resourceManager** to obtain the **resourceManager** object for cross-package resources within the application.<br>Call **.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager** to obtain the **resourceManager** object for cross-application package resources. This API can be used only by system applications.<br>For details about **Context**, see [Context (Stage Model)](../application-models/application-context-stage.md).
+2. Obtain intra-package resources and cross-package resources within an application and cross-application package resources.<br>Use **.context().resourceManager** to obtain a **resourceManager** object for intra-package resources within the application.<br>Use **.context().createModuleContext().resourceManager** to obtain a **resourceManager** object for cross-package resources within the application.<br>Use **.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager** to obtain a **resourceManager** object for cross-application package resources. This API can be used only by system applications.<br>For details about **Context**, see [Context (Stage Model)](../application-models/application-context-stage.md).
     
-3. Call **getFileList**, that is, the native API declared in **src/main/cpp/types/libentry/index.d.ts**. When calling the API, pass the JavaScript resource object and the relative path of the raw file.
+3. Call **getFileList**, that is, the native API declared in **src/main/cpp/types/libentry/index.d.ts**. When calling the API, pass in the JavaScript resource object and the relative path of the raw file.
 
-   The following provides an example of the **resourceManager** object for intra-package resources within the application:
+   Example: Obtain a **resourceManager** object for intra-package resources within the application.
 
     ```js
     import hilog from '@ohos.hilog';
@@ -386,7 +386,7 @@ After a project is created, the **cpp** directory is created under the project. 
                 .fontWeight(FontWeight.Bold)
                 .onClick(() => {
                     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-                    let rawfilelist = testNapi.getFileList(this.resmgr, ""); // Pass the JavaScript resource object and the relative path of the raw file.
+                    let rawfilelist = testNapi.getFileList(this.resmgr, ""); // Pass in the JavaScript resource object and the relative path of the raw file.
                     console.log("rawfilelist" + rawfilelist);
                     let rawfileContet = testNapi.getRawFileContent(this.resmgr, "rawfile1.txt");
                     console.log("rawfileContet" + rawfileContet);

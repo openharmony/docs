@@ -297,7 +297,9 @@
                console.info(`Update result:${value}`);
            }
        }
-     })
+     })；
+     // 关闭DataShareHelper实例
+     (dsHelper as dataShare.DataShareHelper).close();
    }
    ```
 

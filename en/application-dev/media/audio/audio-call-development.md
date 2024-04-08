@@ -1,4 +1,4 @@
-# Developing Audio Call (ArkTS)
+# Developing Audio Call
 
 During an audio call, audio output (playing the peer voice) and audio input (recording the local voice) are carried out simultaneously. You can use the AudioRenderer to implement audio output and the AudioCapturer to implement audio input.
 

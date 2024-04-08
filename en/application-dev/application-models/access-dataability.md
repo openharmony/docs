@@ -45,7 +45,7 @@ The sample code for accessing a DataAbility is as follows:
    private predicates = new ohos_data_ability.DataAbilityPredicates();
    ```
 
-   For details about DataAbilityPredicates, see [DataAbility Predicates](../reference/apis/js-apis-data-ability.md).
+   For details about DataAbilityPredicates, see [DataAbility Predicates](../reference/apis-arkdata/js-apis-data-ability.md).
    
 3. Use **insert** to insert data to the DataAbility.
    
@@ -370,4 +370,4 @@ The sample code for accessing a DataAbility is as follows:
    ```
 
 
-The APIs for operating a DataAbility are provided by **DataAbilityHelper**. For details about the APIs, see [DataAbilityHelper](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md).
+The APIs for operating a DataAbility are provided by **DataAbilityHelper**. For details about the APIs, see [DataAbilityHelper](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md).

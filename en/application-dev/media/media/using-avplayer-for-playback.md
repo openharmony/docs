@@ -40,7 +40,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
    > 
-   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../../file-management/app-sandbox-directory.md).
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
    > 
    > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../../security/AccessToken/declare-permissions.md).
    > 
@@ -122,7 +122,7 @@ export class AVPlayerDemo {
           break;
         case 'stopped': // This state is reported upon a successful callback of stop().
           console.info('AVPlayer state stopped called.');
-          avPlayer.reset(); // Call reset() to reset the AVPlayer state.
+          avPlayer.reset(); // Call reset() to reset the AVPlayer.
           break;
         case 'released':
           console.info('AVPlayer state released called.');

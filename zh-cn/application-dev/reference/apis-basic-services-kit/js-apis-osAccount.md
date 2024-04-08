@@ -132,7 +132,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -180,7 +180,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -274,7 +274,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -324,7 +324,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -569,7 +569,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -617,7 +617,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -700,7 +700,7 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -740,7 +740,7 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -975,7 +975,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 根据域帐号信息，获取与其关联的系统帐号ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1018,7 +1018,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1068,7 +1068,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1116,7 +1116,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1241,7 +1241,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1282,7 +1282,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1391,7 +1391,7 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1428,7 +1428,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1700,7 +1700,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 >
 > 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1736,7 +1736,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1775,7 +1775,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1813,7 +1813,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1916,7 +1916,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1948,9 +1948,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1984,9 +1984,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-2)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2024,7 +2024,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2058,7 +2058,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2223,7 +2223,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2259,7 +2259,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2298,7 +2298,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2325,13 +2325,13 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
+获取指定系统帐号的全部约束。使用Promise异步回调。
+
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-获取指定系统帐号的全部约束。使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2432,7 +2432,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2463,7 +2463,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2554,7 +2554,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2585,7 +2585,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2836,7 +2836,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | constraint.autofill | 禁止使用自动填充服务 |
 | constraint.content.capture | 禁止捕获用户屏幕 |
 | constraint.content.suggestions | 禁止接收内容建议 |
-| constraint.os.account.start | 禁止切换用户 |
+| constraint.os.account.activate | 禁止前台启动用户 |
 | constraint.location.set | 禁止配置位置服务 |
 | constraint.airplane.mode.set | 禁止飞行模式 |
 | constraint.brightness.set | 禁止配置亮度 |

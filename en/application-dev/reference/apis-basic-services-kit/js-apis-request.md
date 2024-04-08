@@ -1989,7 +1989,7 @@ The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** 
 
 You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
-For details about event configuration information, see [Subscribing to Common Events in Static Mode](../../application-models/common-event-static-subscription.md).
+For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2004,7 +2004,7 @@ Provides the file information of a table item.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| path | string | Yes| Relative path in the cache folder of the invoker.|
+| path | string | Yes| File path:<br>- Relative path in the cache folder of the caller.<br>- User public file, for example, **file://media/Photo/path/to/file.img**. Only frontend tasks are supported.|
 | mimeType | string | No| MIME type of the file, which is obtained from the file name.|
 | filename | string | No| File name. The default value is obtained from the file path.|
 | extras | Object | No| Additional information of the file.|
@@ -2140,6 +2140,18 @@ Defines the data structure of the task information for query. The fields availab
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
 | extras | string | No| Extra information of the task|
 
+
+## HttpResponse<sup>12+</sup> 
+Data structure of the task response header.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| version | string | Yes| HTTP version.|
+| statusCode | number | Yes| HTTP response status code.|
+| reason | string | Yes| HTTP response cause.|
+| headers | Map&lt;string, Array&lt;string&gt;&gt; | Yes| HTTP response header.|
 
 ## Task<sup>10+</sup> 
 Implements an upload or download task. Before using this API, you must obtain a **Task** object, from a promise through [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) or from a callback through [request.agent.create<sup>10+</sup>](#requestagentcreate10).
@@ -2559,6 +2571,73 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **NOTE**
+>
+> For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+### on('response')<sup>12+</sup>
+
+on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
+
+Subscribes to task response headers. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **response**, which indicates the task response.|
+  | callback | function | Yes| Callback used to return the data structure of the task response header.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+
+**Example**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (response: request.agent.HttpResponse) => {
+    console.info('upload task response.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('response', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3031,11 +3110,86 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+### off('response')<sup>12+</sup>
+
+off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
+
+Unsubscribes from task response headers.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | event | string | Yes| Type of the event to subscribe to.<br>The value is **response**, which indicates the task response.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+
+**Example**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback1 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task response.');
+  };
+  let createOffCallback2 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task response.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('response', createOffCallback1);
+    task.on('response', createOffCallback2);
+    // Unsubscribe from createOffCallback1.
+    task.off('response', createOffCallback1);
+    // Unsubscribe from all callbacks of the task removal event.
+    task.off('response');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **NOTE**
+>
+> For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ### start<sup>10+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-Starts this task. This API cannot be used to start an initialized task. This API uses an asynchronous callback to return the result.
+Starts this task. This API cannot be used to start an initialized task. You can use this API to resume a download task from where it was paused. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3103,7 +3257,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
 start(): Promise&lt;void&gt;
 
-Starts this task. This API cannot be used to start an initialized task. This API uses a promise to return the result.
+Starts this task. This API cannot be used to start an initialized task. You can use this API to resume a download task from where it was paused. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -4096,3 +4250,4 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
   });
   ```
+<!--no_check-->

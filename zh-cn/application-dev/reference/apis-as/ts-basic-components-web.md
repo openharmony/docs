@@ -1727,6 +1727,80 @@ struct WebComponent {
 </html>
 ```
 
+### metaViewport<sup>12+</sup>
+
+metaViewport(enable: boolean)
+
+设置mete标签的viewport属性是否可用。
+
+> **说明：**
+>
+> - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
+> - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
+> - 如果设置为异常值将无效。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
+| ------ | -------- | ---- | ------ | -------------------------------- |
+| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .metaViewport(true)
+    }
+  }
+}
+  ```
+
+```html
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<p>hello world, 你好世界!</p>
+</body>
+</html>
+```
+### textAutosizing<sup>12+</sup>
+设置使能文本自动调整大小。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textAutosizing | boolean | 是    | true   | 文本自动调整大小。 |
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textAutosizing(false)
+      }
+    }
+  }
+  ```
 ## 事件
 
 通用事件仅支持onAppear、onDisAppear、onBlur、onFocus、onDragEnd、onDragEnter、onDragStart、onDragMove、onDragLeave、onDrop、onHover、onMouse、onKeyEvent、onTouch、onVisibleAreaChange。
@@ -4366,7 +4440,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 POST请求不会触发该回调。
 
-子frame和非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+子frame且非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
 
 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 

@@ -14,11 +14,29 @@
 
 @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch。
 
-此次修改为非兼容性修改。
-
 **变更影响**
 
 @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
+
+该变更为非兼容性修改。
+
+**起始API Level**
+
+@LocalStorageLink：API9，
+
+@LocalStorageProp：API9，
+
+@StorageProp：API7，
+
+@StorageLink：API7，
+
+@Provide：API7，
+
+@Consume：API7，
+
+@Watch：API7。
+
+
 
 **变更发生版本**
 
@@ -142,9 +160,42 @@ struct TestPage {
 }
 ```
 
-**API Level**
+**变更涉及接口**
 
-12 
+AppStorage：set，setOrCreate，setAndLink，setAndProp
+
+LocalStorage：set，setOrCreate，setAndLink，setAndProp
+
+PersistentStorage：persistProp
+
+
+**起始API Level**
+
+该变更从API12开始生效，API11及之前不受影响。
+
+AppStorage
+
+set：API10，
+
+setOrCreate：API10，
+
+setAndLink：API10，
+
+setAndProp：API10
+
+LocalStorage
+
+set：API9，
+
+setOrCreate：API9，
+
+setAndLink：API9，
+
+setAndProp：API9
+
+PersistentStorage
+
+persistProp：API10
 
 **变更发生版本**
 

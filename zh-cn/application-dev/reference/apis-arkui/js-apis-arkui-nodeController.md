@@ -25,7 +25,7 @@ import { NodeController } from "@ohos.arkui.node";
 abstract makeNode(uiContext : UIContext): FrameNode | null
 
 当实例绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)创建的时候进行回调。回调方法将返回一个节点，将该节点挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)。
-或者可以通过NodeConroller的rebuild()方法进行回调的触发。
+或者可以通过NodeController的rebuild()方法进行回调的触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -33,13 +33,13 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的时候，绑定[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的UI上下文。 |
 
 **返回值：**
 
 | 类型             | 说明                                                                                                                                                                                                                                                        |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的占位节点上。若返回null对象，将会将对应[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的子节点清空。 |  |
+| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的占位节点上。若返回null对象，将清空对应[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的子节点。 |
 
 ### aboutToAppear
 

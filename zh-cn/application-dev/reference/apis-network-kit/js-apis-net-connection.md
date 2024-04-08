@@ -2371,11 +2371,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称         | 值   | 说明        |
-| --------------- | ---- | ----------- |
-| BEARER_CELLULAR | 0    | 蜂窝网络。  |
-| BEARER_WIFI     | 1    | Wi-Fi网络。 |
-| BEARER_ETHERNET | 3 | 以太网网络。 |
+|            名称         | 值   | 说明        |
+| ----------------------- | ---- | ---------- |
+| BEARER_CELLULAR         | 0    | 蜂窝网络。  |
+| BEARER_WIFI             | 1    | Wi-Fi网络。 |
+| BEARER_ETHERNET         | 3    | 以太网网络。|
+| BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
 
@@ -2421,8 +2422,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，0表示无法评估当前网络带宽。  |
-| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
+| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
+| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。      |
 

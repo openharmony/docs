@@ -41,7 +41,7 @@ import window from '@ohos.window';
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | 是 | 窗口名字。                                                                       |
 | windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                                                                       |
-| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
+| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 
@@ -135,6 +135,33 @@ import window from '@ohos.window';
 | width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
 | height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
 
+## RectChangeReason<sup>12+</sup>
+
+窗口矩形（窗口位置及窗口大小）变化的原因。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                  | 值   | 说明                                                         |
+| --------------------- | ---- | ------------------------------------------------------------ |
+| UNDEFINED                 | 0    | 默认值。                                                   |
+| MAXIMIZE                | 1    | 窗口最大化。                                                   |
+| RECOVER              | 2    | 窗口恢复到上一次的状态。                                                   |
+| MOVE | 3    | 窗口拖拽移动。 |
+| DRAG  | 4    | 窗口拖拽缩放。 |
+| DRAG_START  | 5    | 窗口开始拖拽缩放。 |
+| DRAG_END  | 6    | 窗口结束拖拽缩放。 |
+
+## RectChangeOptions<sup>12+</sup>
+
+窗口矩形（窗口位置及窗口大小）变化返回的值及变化原因。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称       | 类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
+| reason    | [RectChangeReason](#rectchangereason12) | 是   | 是   | 窗口矩形变化的原因。 |
+
 ## WindowProperties
 
 窗口属性。
@@ -183,7 +210,7 @@ import window from '@ohos.window';
 
 ## WindowLimits<sup>11+</sup>
 
-窗口尺寸限制参数。
+窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1706,6 +1733,62 @@ try {
 }
 ```
 
+### getWindowSystemBarProperties<sup>12+</sup>
+
+getWindowSystemBarProperties(): SystemBarProperties
+
+主窗口获取导航栏、状态栏的属性。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------------------------- | ------------- |
+| [SystemBarProperties](#systembarproperties) | 当前导航栏、状态栏属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      try {
+        let systemBarProperty = windowClass.getWindowSystemBarProperties();
+        console.info('Success in obtaining system bar properties. Property: ' + JSON.stringify(systemBarProperty));
+      } catch (err) {
+        console.error('Failed to get system bar properties. Code: ' + JSON.stringify(err));
+      }
+    });
+  }
+};
+```
+
 ### setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
@@ -2802,6 +2885,77 @@ try {
 }
 ```
 
+### on('noInteractionDetected')<sup>12+</sup>
+
+on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
+
+开启本窗口在指定超时时间内无交互事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
+| timeout     | number                    | 是   | 指定本窗口在多长时间内无交互即回调，单位为秒(s)。 |
+| callback | Callback&lt;void&gt;      | 是   | 回调函数。当本窗口在指定超时时间内无交互事件时的回调。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('noInteractionDetected', 60, () => {
+    console.info('no interaction in 60s');
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('noInteractionDetected')<sup>12+</sup>
+
+off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
+
+关闭本窗口在指定超时时间内无交互事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'noInteractionDetected'，即本窗口在指定超时时间内无交互的事件。 |
+| callback | Callback&lt;void&gt;    | 否   | 回调函数，当本窗口在指定超时时间内无交互事件时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口在指定超时时间内无交互事件的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.off('noInteractionDetected');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### on('windowStatusChange')<sup>11+</sup>
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
@@ -2920,6 +3074,50 @@ try {
 } catch (exception) {
   console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
 }
+```
+
+### on('windowRectChange')<sup>12+</sup>
+
+on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
+
+开启窗口矩形（窗口位置及窗口大小）变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。 |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 是   | 回调函数。返回当前窗口矩形变化值及变化原因。                           |
+
+**示例：**
+
+```ts
+windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+    console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+});
+```
+
+### off('windowRectChange')<sup>12+</sup>
+
+off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
+
+关闭窗口矩形（窗口位置及窗口大小）变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。     |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 否   | 回调函数。返回当前的窗口矩形及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口矩形变化的监听。 |
+
+**示例：**
+
+```ts
+windowClass.off('windowRectChange');
 ```
 
 ### isWindowSupportWideGamut<sup>9+</sup>
@@ -3157,7 +3355,7 @@ private SetUIContent(windowClass: window.Window) {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置屏幕亮度值，使用callback异步回调。
+允许应用窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -3203,7 +3401,7 @@ try {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-设置屏幕亮度值，使用Promise异步回调。
+允许应用窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -3704,7 +3902,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最大高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
 
 **返回值：**
 
@@ -4132,6 +4330,56 @@ try {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
+###  setWindowMask<sup>12+</sup>
+
+setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
+
+设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                           |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| windowMask | Array&lt;Array&lt;number&gt;&gt; | 是   | 异形窗口的掩码，该参数仅支持宽高为窗口宽高、取值为整数0和整数1的二维数组输入，整数0代表所在像素透明，整数1代表所在像素不透明，宽高不符合的二维数组或二维数组取值不为整数0和整数1的二维数组为非法参数。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                |
+| :------------------------------------------- | :---------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| :------- | :-------------------------------------------- |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let windowMask: Array<Array<number>> = [
+      [0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 1, 1, 1, 0, 0],
+      [0, 1, 1, 0, 1, 1, 0],
+      [1, 1, 0, 0, 0, 1, 1]
+    ];
+  let promise = windowClass.setWindowMask(windowMask);
+    promise.then(() => {
+    console.info('Succeeded in setting the window mask.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the window mask. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the window mask. Cause:' + JSON.stringify(exception));
+}
+```
 
 ### keepKeyboardOnFocus<sup>11+</sup>
 
@@ -4228,6 +4476,53 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+###  setSubWindowModal<sup>12+</sup>
+
+setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
+
+设置子窗的模态属性是否启用，使用Promise异步回调。
+
+子窗口调用该接口时，设置子窗口模态属性是否启用。启用子窗口模态属性后，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态属性被禁用。
+
+子窗口之外的窗口调用该接口时，会报错。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise = windowClass.setSubWindowModal(true);
+promise.then(() => {
+  console.info('Succeeded in setting subwindow modal');
+}).catch((err: BusinessError) => {
+  console.error('Failed to set subwindow modal. Cause:' +  JSON.stringify(err));
+})
+```
+
 ###  setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
@@ -4240,7 +4535,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
 
 **错误码：**
 
@@ -4273,7 +4568,7 @@ getWindowDecorHeight(): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
 
 **错误码：**
 
@@ -4324,6 +4619,82 @@ try {
 } catch (exception) {
   console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
+```
+
+###  enableLandscapeMultiWindow<sup>12+</sup>
+
+enableLandscapeMultiWindow(): Promise&lt;void&gt;
+
+在开启多窗动态布局下，配置支持横向悬浮窗。
+
+此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise = windowClass.enableLandscapeMultiWindow();
+promise.then(() => {
+    console.info('Succeeded in making multi-window become landscape.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to make multi-window become landscape. Cause: ' + JSON.stringify(err));
+});
+```
+
+###  disableLandscapeMultiWindow<sup>12+</sup>
+
+disableLandscapeMultiWindow(): Promise&lt;void&gt;
+
+在开启多窗动态布局下，配置支持竖向悬浮窗。
+
+此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise = windowClass.disableLandscapeMultiWindow();
+promise.then(() => {
+    console.info('Succeeded in making multi-window become not landscape.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to make multi-window become not landscape. Cause: ' + JSON.stringify(err));
+});
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -5839,7 +6210,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。
-> 
+>
 > 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5880,7 +6251,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。
-> 
+>
 > 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -6093,7 +6464,7 @@ WindowStage生命周期。
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | 否 | 是 | 子窗口标题。       |
 | decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-
+| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
 
 ## WindowStage<sup>9+</sup>
 
@@ -7024,6 +7395,51 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       console.error('Failed to disable the listener for window stage event changes. Cause:' +
       JSON.stringify(exception));
+    }
+  }
+};
+```
+
+### setDefaultDensityEnabled()<sup>12+</sup>
+
+setDefaultDensityEnabled(enabled: boolean): void
+
+设置应用使用系统默认Density。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| enabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    try {
+      windowStage.setDefaultDensityEnabled(true);
+    } catch (exception) {
+      console.error('Failed to set default density enabled. Cause:' + JSON.stringify(exception));
     }
   }
 };

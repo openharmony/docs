@@ -14,6 +14,9 @@ hid模块提供了访问蓝牙hid相关功能的方法。
 import hid from '@ohos.bluetooth.hid';
 ```
 
+## HidHostProfile
+
+使用HidHostProfile方法之前需要创建该类的实例进行操作，通过createHidHostProfile()方法构造此实例。
 
 ### connect
 

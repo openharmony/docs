@@ -34,8 +34,8 @@
       // 获取非对称密钥对的二进制数据
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
-      AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-      AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+      console.info('pk bin data' + pkBlob.data);
+      console.info('sk bin data' + skBlob.data);
     });
   }
   ```
@@ -56,8 +56,8 @@
         // 获取非对称密钥对的二进制数据
         let pkBlob = pubKey.getEncoded();
         let skBlob = priKey.getEncoded();
-        AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-        AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+        console.info('pk bin data' + pkBlob.data);
+        console.info('sk bin data' + skBlob.data);
       } else {
         console.error("[Sync]: get key pair result fail!");
       }
@@ -95,8 +95,8 @@
       // 获取非对称密钥对的二进制数据
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
-      AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-      AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+      console.info('pk bin data' + pkBlob.data);
+      console.info('sk bin data' + skBlob.data);
     });
   }
   ```
@@ -117,8 +117,8 @@
         // 获取非对称密钥对的二进制数据
         let pkBlob = pubKey.getEncoded();
         let skBlob = priKey.getEncoded();
-        AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-        AlertDialog.show({ message: 'sk bin data' + skBlob.data });
+        console.info('pk bin data' + pkBlob.data);
+        console.info('sk bin data' + skBlob.data);
       } else {
         console.error("[Sync]: get key pair result fail!");
       }

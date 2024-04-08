@@ -36,19 +36,19 @@ The process for implementing AVSession access is as follows:
 Refer to the code snippet below:
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
 
-  // Start to create and activate an AVSession object.
-  // Create an AVSession object.
-  let context: Context = getContext(this);
-  async function createSession() {
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
+// Start to create and activate an AVSession object.
+// Create an AVSession object.
+let context: Context = getContext(this);
+async function createSession() {
+let type: AVSessionManager.AVSessionType = 'audio';
+let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
 
-  // Call activate() after the metadata and control commands are registered.
-  await session.activate();
-    console.info(`session create done : sessionId : ${session.sessionId}`);
-  }
+// Call activate() after the metadata and control commands are registered.
+await session.activate();
+  console.info(`session create done : sessionId : ${session.sessionId}`);
+}
 ```
 
 ## Creating a Background Task
@@ -65,80 +65,83 @@ Media playback applications must request a continuous task of the [AUDIO_PLAYBAC
 The application can call **setAVMetadata()** to set AVSession metadata to the system so that the metadata can be displayed in the controller. The metadata includes the IDs of the current media asset (assetId), previous media asset (previousAssetId), and next media asset (nextAssetId), title, author, album, writer, and duration.
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
-  import { BusinessError } from '@ohos.base';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setSessionInfo() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-    // Set necessary AVSession metadata.
-    let metadata: AVSessionManager.AVMetadata = {
-      assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
-      title: 'TITLE',
-      artist: 'ARTIST'
-    };
-    session.setAVMetadata(metadata).then(() => {
-      console.info(`SetAVMetadata successfully`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-    });
-   }
+let context: Context = getContext(this);
+async function setSessionInfo() {
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+  // Set necessary AVSession metadata.
+  let metadata: AVSessionManager.AVMetadata = {
+    assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
+    title: 'TITLE',
+    artist: 'ARTIST'
+  };
+  session.setAVMetadata(metadata).then(() => {
+    console.info(`SetAVMetadata successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+  });
+ }
 ```
+
 ### Setting Lyrics
 
 The controller provides the UI to show lyrics. The application only needs to set the lyrics content. The controller parses the lyrics content and displays it based on the playback progress.
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+let context: Context = getContext(this);
+async function setListener() {
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // Set the lyric to AVSession.
-    let metadata: AVSessionManager.AVMetadata = {
-      assetId: '0',
-      lyric: 'http://www.test.lyric',
-    };
-    session.setAVMetadata(metadata).then(() => {
-      console.info(`SetAVMetadata successfully`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-    });
+  // Set the lyric to AVSession.
+  let metadata: AVSessionManager.AVMetadata = {
+    assetId: '0',
+    lyric: 'http://www.test.lyric',
+  };
+  session.setAVMetadata(metadata).then(() => {
+    console.info(`SetAVMetadata successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+  });
 
-  }
+}
 ```
 
 ### Display Tags of Media Assets
+
 The controller displays a special type identifier for long-duration media assets. Currently, only the AudioVivid identifier is displayed.
 
 The application notifies the system of the display tag of the media asset through the AVMetadata during the access, and the controller displays the tag when the media asset is being played.
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+let context: Context = getContext(this);
+async function setListener() {
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // Set the media audio source information to AVSession.
-    let metadata: AVSessionManager.AVMetadata = {
-      assetId: '0',
-      // The display tag of the audio source is AudioVivid.
-      displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
-    };
-    session.setAVMetadata(metadata).then(() => {
-      console.info(`SetAVMetadata successfully`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-    });
-
-  }
+  // Set the media audio source information to AVSession.
+  let metadata: AVSessionManager.AVMetadata = {
+    assetId: '0',
+    // The display tag of the audio source is AudioVivid.
+    displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
+  };
+  session.setAVMetadata(metadata).then(() => {
+    console.info(`SetAVMetadata successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+  });
+}
 ```
 
 ## Setting Playback State Information
@@ -150,28 +153,28 @@ The application can call [setAVPlaybackState()](../../reference/apis-avsession-k
 Generally, the playback state information includes the playback state, position, speed, buffered time, loop mode, media item being played (activeItemId), custom media data (extras), and whether the media asset is favorited (isFavorite). It changes during the playback.
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
-  import { BusinessError } from '@ohos.base';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setSessionInfo() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+let context: Context = getContext(this);
+async function setSessionInfo() {
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
 
-    // The player logic that triggers changes in the AVSession metadata and playback state information is omitted here.
-    // Set the playback state to paused and set isFavorite to false.
-    let playbackState: AVSessionManager.AVPlaybackState = {
-      state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
-      isFavorite:false
-    };
-    session.setAVPlaybackState(playbackState, (err) => {
-     if (err) {
-        console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info(`SetAVPlaybackState successfully`);
-      }
-    });
-  }
+  // The player logic that triggers changes in the AVSession metadata and playback state information is omitted here.
+  // Set the playback state to paused and set isFavorite to false.
+  let playbackState: AVSessionManager.AVPlaybackState = {
+    state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
+    isFavorite:false
+  };
+  session.setAVPlaybackState(playbackState, (err: BusinessError) => {
+   if (err) {
+      console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`SetAVPlaybackState successfully`);
+    }
+  });
+}
 ```
 
 ### Setting the Progress Bar
@@ -179,33 +182,33 @@ Generally, the playback state information includes the playback state, position,
 To display a progress bar in the controller, the application must set the duration, playback state (pause or play), playback position, and playback speed. The controller displays the progress bar based on the information.
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+let context: Context = getContext(this);
+async function setListener() {
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // Set the playback state information, including the playback state, position, speed, buffered time, and duration.
-    let playbackState: AVSessionManager.AVPlaybackState = {
-      state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY, // Playing state.
-      position: {
-        elapsedTime: 1000, // Playback position, in milliseconds.
-        updateTime: 30000, // Timestamp when the application updates the current position, in milliseconds.
-      }
-      speed: 1.0, // Optional. The default value is 1.0. The playback speed is set based on the speed supported by the application. The system does not verify the speed.
-      bufferedTime: 14000, // Optional. Buffered time, in milliseconds.
-      duration: 23000, // Duration of the media asset, in milliseconds.
-    };
-    session.setAVPlaybackState(playbackState, (err) => {
-      if (err) {
-        console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info(`SetAVPlaybackState successfully`);
-      }
-    });
-  }
+  // Set the playback state information, including the playback state, position, speed, buffered time, and duration.
+  let playbackState: AVSessionManager.AVPlaybackState = {
+    state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY, // Playing state.
+    position: {
+      elapsedTime: 1000, // Playback position, in milliseconds.
+      updateTime: 30000, // Timestamp when the application updates the current position, in milliseconds.
+    },
+    speed: 1.0, // Optional. The default value is 1.0. The playback speed is set based on the speed supported by the application. The system does not verify the speed.
+    bufferedTime: 14000, // Optional. Buffered time, in milliseconds.
+    duration: 23000, // Duration of the media asset, in milliseconds.
+  };
+  session.setAVPlaybackState(playbackState, (err) => {
+    if (err) {
+      console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`SetAVPlaybackState successfully`);
+    }
+  });
+}
 ```
 
 The controller calculates the playback progress based on the information set by the application. The application does not need to update the playback progress in real time.
@@ -296,6 +299,7 @@ The application can call APIs to set the fast-forward or rewind intervals in thr
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function unregisterSessionListener() {
@@ -330,29 +334,30 @@ async function unregisterSessionListener() {
 To implement favoriting, a music application must call [on('toggleFavorite')](../../reference/apis-avsession-kit/js-apis-avsession.md#ontogglefavorite10) to register the **toggleFavorite** control command.
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-    session.on('toggleFavorite', (assetId) => {
-      console.info(`on toggleFavorite `);
-      // The application receives the toggleFavorite command and favorites or unfavorites the media asset.
+let context: Context = getContext(this);
+async function setListener() {
+ // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+ let type: AVSessionManager.AVSessionType = 'audio';
+ let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+ session.on('toggleFavorite', (assetId) => {
+   console.info(`on toggleFavorite `);
+   // The application receives the toggleFavorite command and favorites or unfavorites the media asset.
 
-      // Set the new state to AVSession after the application finishes favoriting or unfavoriting.
-      let playbackState: avSession.AVPlaybackState = {
-        isFavorite:true,
-      };
-      session.setAVPlaybackState(playbackState).then(() => {
-        console.info(`SetAVPlaybackState successfully`);
-      }).catch((err: BusinessError) => {
-        console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-      });
+   // Set the new state to AVSession after the application finishes favoriting or unfavoriting.
+   let playbackState: AVSessionManager.AVPlaybackState = {
+     isFavorite:true,
+   };
+   session.setAVPlaybackState(playbackState).then(() => {
+     console.info(`SetAVPlaybackState successfully`);
+   }).catch((err: BusinessError) => {
+     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+   });
 
-    });
-  }
+ });
+}
 ```
 
 ### Setting the Loop Mode
@@ -362,32 +367,32 @@ For music applications, the controller displays control operations in loop mode 
 Refer to the code snippet below:
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+let context: Context = getContext(this);
+async function setListener() {
+ // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+ let type: AVSessionManager.AVSessionType = 'audio';
+ let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    // When the application starts, it sets the loop mode to AVSession.
-    let metadata: AVSessionManager.AVMetadata = {
-      assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
-      loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
-    };
-    session.setAVMetadata(metadata).then(() => {
-      console.info(`SetAVMetadata successfully`);
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-    });
+ // When the application starts, it sets the loop mode to AVSession.
+ let playBackState: AVSessionManager.AVPlayBackState = {
+   loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+ };
+ session.setAVPlayBackState(playBackState).then(() => {
+   console.info(`set AVPlayBackState successfully`);
+ }).catch((err: BusinessError) => {
+   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+ });
 
-    // The application listens for loop mode changes.
-    session.on('setLoopMode', (mode) => {
-      console.info(`on setLoopMode ${mode}`);
-      // After receiving the setLoopMode command, the application switches to the corresponding loop mode.
-    });
+ // The application listens for loop mode changes.
+ session.on('setLoopMode', (mode) => {
+   console.info(`on setLoopMode ${mode}`);
+   // After receiving the setLoopMode command, the application switches to the corresponding loop mode.
+ });
 
-  }
+}
 ```
 
 ### Performing Progress Control
@@ -395,47 +400,47 @@ Refer to the code snippet below:
 An application that supports progress display can further supports progress control. To support progress control, the application must respond to the **seek** control command. When users drag the progress bar in the controller, the application receives a callback. Refer to the code snippet below:
 
 ```ts
-  import AVSessionManager from '@ohos.multimedia.avsession';
+import AVSessionManager from '@ohos.multimedia.avsession';
 
-  let context: Context = getContext(this);
-  async function setListener() {
-    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-    let type: AVSessionManager.AVSessionType = 'audio';
-    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+let context: Context = getContext(this);
+async function setListener() {
+ // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+ let type: AVSessionManager.AVSessionType = 'audio';
+ let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-    session.on('seek', (time: number) => {
-      console.info(`on seek , the time is ${JSON.stringify(time)}`);
+ session.on('seek', (time: number) => {
+   console.info(`on seek , the time is ${JSON.stringify(time)}`);
 
-      // The seek operation may trigger a long buffering time. Generally, set the playback state to PLAYBACK_STATE_BUFFERING.
-      let playbackState: AVSessionManager.AVPlaybackState = {
-        state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // Buffering state.
-      };
-      session.setAVPlaybackState(playbackState, (err) => {
-        if (err) {
-          console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-        } else {
-          console.info(`SetAVPlaybackState successfully`);
-        }
-      });
+   // The seek operation may trigger a long buffering time. Generally, set the playback state to PLAYBACK_STATE_BUFFERING.
+   let playbackState: AVSessionManager.AVPlaybackState = {
+     state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // Buffering state.
+   };
+   session.setAVPlaybackState(playbackState, (err) => {
+     if (err) {
+       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+     } else {
+       console.info(`SetAVPlaybackState successfully`);
+     }
+   });
 
-      // The application responds to the seek command and seeks to the specified position.
+   // The application responds to the seek command and seeks to the specified position.
 
-      // After seeking to the specified position, the application synchronizes the new position to the system.
-      playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // Playing state.
-      playbackState.position = {
-        elapsedTime: 4000, // Playback position, in milliseconds.
-        updateTime: 34000, // Timestamp when the application updates the current position, in milliseconds.
-      }
-      session.setAVPlaybackState(playbackState, (err) => {
-        if (err) {
-          console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-        } else {
-          console.info(`SetAVPlaybackState successfully`);
-        }
-      });
+   // After seeking to the specified position, the application synchronizes the new position to the system.
+   playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // Playing state.
+   playbackState.position = {
+     elapsedTime: 4000, // Playback position, in milliseconds.
+     updateTime: 34000, // Timestamp when the application updates the current position, in milliseconds.
+   }
+   session.setAVPlaybackState(playbackState, (err) => {
+     if (err) {
+       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+     } else {
+       console.info(`SetAVPlaybackState successfully`);
+     }
+   });
 
-    });
-  }
+ });
+}
 ```
 
 ## Adapting to Media Notification

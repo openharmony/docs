@@ -148,7 +148,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -193,7 +193,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability with the start options specified and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -237,7 +237,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
+Starts an ability and obtains the result when the ability is terminated. This API uses a promise to return the result. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
@@ -290,7 +290,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
+Connects this ability to a ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -305,7 +305,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 
@@ -378,3 +378,123 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+## UIExtensionContext.terminateSelf<sup>12+</sup>
+
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
+
+Stops the window object corresponding to this UIExtensionContext. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
+
+## UIExtensionContext.terminateSelf<sup>12+</sup>
+
+terminateSelf(): Promise&lt;void&gt;
+
+Stops the window object corresponding to this UIExtensionContext. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+
+terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
+
+Stops the window object corresponding to this UIExtensionContext and returns the result to the UIExtensionComponent. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name   | Type                                                   | Mandatory| Description                                                  |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes  | Result returned to the UIExtensionComponent.                |
+| callback  | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
+
+## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+
+terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
+
+Stops the window object corresponding to this UIExtensionContext and returns the result to the UIExtensionComponent. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name   | Type                                                   | Mandatory| Description                                  |
+| --------- | ------------------------------------------------------- | ---- | -------------------------------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes  | Result returned to the UIExtensionComponent.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+## UIExtensionContext.reportDrawnCompleted
+
+reportDrawnCompleted(callback: AsyncCallback\<void>): void
+
+Reports an event indicating that page loading is complete (**onSessionCreate()** is successfully called). This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the event is reported, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  const TAG: string = '[testTag] UIExtAbility';
+
+  export default class UIExtAbility extends UIExtensionAbility {
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      let storage: LocalStorage = new LocalStorage({
+        'session': session
+      });
+      session.loadContent('pages/extension', storage);
+      try {
+        this.context.reportDrawnCompleted((err) => {
+          if (err.code) {
+            // Process service logic errors.
+            console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('reportDrawnCompleted succeed');
+        });
+      } catch (err) {
+        // Capture the synchronization parameter error.
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```

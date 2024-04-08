@@ -1447,7 +1447,7 @@ allowWindowOpenMethod(flag: boolean)
 
 设置网页是否可以通过JavaScript自动打开新窗口。
 
-该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指用户在5秒内请求打开新窗口（window.open）。
+该属性为true时，可通过JavaScript自动打开新窗口。该属性为false时，用户行为仍可通过JavaScript自动打开新窗口，但非用户行为不能通过JavaScript自动打开新窗口。此处的用户行为是指，在用户对Web组件进行点击等操作后，同时在5秒内请求打开新窗口（window.open）的行为。
 
 该属性仅在[javaScriptAccess](#javascriptaccess)开启时生效。
 
@@ -1737,7 +1737,8 @@ nestedScroll(value: NestedScrollOptions)
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
-> - 目前支持嵌套滚动的容器为：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 
 **参数：**
 
@@ -1844,8 +1845,80 @@ struct WebComponent {
 </body>
 </html>
 ```
+### metaViewport<sup>12+</sup>
 
+metaViewport(enable: boolean)
 
+设置mete标签的viewport属性是否可用。
+
+> **说明：**
+>
+> - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
+> - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
+> - 如果设置为异常值将无效。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
+| ------ | -------- | ---- | ------ | -------------------------------- |
+| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .metaViewport(true)
+    }
+  }
+}
+  ```
+
+```html
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<p>hello world, 你好世界!</p>
+</body>
+</html>
+```
+### textAutosizing<sup>12+</sup>
+设置使能文本自动调整大小。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| textAutosizing | boolean | 是    | true   | 文本自动调整大小。 |
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textAutosizing(false)
+      }
+    }
+  }
+  ```
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2235,19 +2308,38 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Button('onconsole message')
+          .onClick(() => {
+            this.controller.runJavaScript('myFunction()');
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage())
-              console.log('getSourceId:' + event.message.getSourceId())
-              console.log('getLineNumber:' + event.message.getLineNumber())
-              console.log('getMessageLevel:' + event.message.getMessageLevel())
+              console.log('getMessage:' + event.message.getMessage());
+              console.log('getSourceId:' + event.message.getSourceId());
+              console.log('getLineNumber:' + event.message.getLineNumber());
+              console.log('getMessageLevel:' + event.message.getMessageLevel());
             }
-            return false
+            return false;
           })
       }
     }
   }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      function myFunction() {
+          console.log("onconsole printf");
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onDownloadStart
@@ -2962,7 +3054,8 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 
 onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
 
-通知用户加载资源时发生SSL错误。
+通知用户加载资源时发生SSL错误，只支持主资源。
+如果需要支持子资源，请使用[OnSslErrorEvent](#onsslerrorevent12)接口。
 
 **参数：**
 
@@ -2987,6 +3080,64 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
           .onSslErrorEventReceive((event) => {
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.handleConfirm()
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.handleCancel()
+                }
+              },
+              cancel: () => {
+                event.handler.handleCancel()
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
+
+### onSslErrorEvent<sup>12+</sup>
+
+onSslErrorEvent(callback: OnSslErrorEventCallback)
+
+通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用isMainFrame字段进行区分。
+
+**参数：**
+
+| 参数名     | 参数类型                                 | 参数描述           |
+| ------- | ------------------------------------ | -------------- |
+| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | 通知用户加载资源时发生SSL错误。 |
+|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onSslErrorEvent((event: SslErrorEvent) => {
+            console.log("onSslErrorEvent url: " + event.url)
+            console.log("onSslErrorEvent error: " + event.error)
+            console.log("onSslErrorEvent originalUrl: " + event.originalUrl)
+            console.log("onSslErrorEvent referrer: " + event.referrer)
+            console.log("onSslErrorEvent isFatalError: " + event.isFatalError)
+            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame)
+            AlertDialog.show({
+              title: 'onSslErrorEvent',
               message: 'text',
               primaryButton: {
                 value: 'confirm',
@@ -4572,54 +4723,149 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
-当手指触摸到Embed标签时触发该回调。
+当手指触摸到同层渲染标签时触发该回调。
 
 **参数：**
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembeddatainfo11) | 手指触摸到Embed标签时触发该回调。 |
+| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | 手指触摸到同层渲染标签时触发该回调。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import {UIContext} from '@ohos.arkui.UIContext';
+  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
 
+  declare class Params {
+    text : string
+    width : number
+    height : number
+  }
+  declare class nodeControllerParams {
+    surfaceId : string
+    renderType : NodeRenderType
+    width : number
+    height : number
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_ : string = "";
+    private renderType_ :NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_ : number = 0;
+    private height_ : number = 0;
+
+    setRenderOption(params : nodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null{
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
+      this.rootNode.build(wrapBuilder(ButtonBuilder), {text: "myButton", width : this.width_, height : this.height_});
+      return this.rootNode.getFrameNode();
+    }
+
+    postEvent(event: TouchEvent | undefined) : boolean {
+      return this.rootNode?.postTouchEvent(event) as boolean
+    }
+  }
+
+@Component
+struct ButtonComponent {
+  @Prop params: Params
+  @State bkColor: Color = Color.Red
+
+  build() {
+    Column() {
+      Button(this.params.text)
+        .height(50)
+        .width(200)
+        .border({ width: 2, color: Color.Red})
+        .backgroundColor(this.bkColor)
+
+    }
+    .width(this.params.width)
+    .height(this.params.height)
+  }
+}
+
+@Builder
+function ButtonBuilder(params: Params) {
+  ButtonComponent({ params: params })
+    .backgroundColor(Color.Green)
+}
   @Entry
   @Component
   struct WebComponent {
     @State eventType: string = ''
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private nodeController: MyNodeController = new MyNodeController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedGestureEvent((event) => {
-          if (event && event.touchEvent){
-            if (event.touchEvent.type == TouchType.Down) {
-              this.eventType = 'Down'
+        Stack(){
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile("test.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .onNativeEmbedLifecycleChange((embed) => {
+            if (embed.status == NativeEmbedStatus.CREATE) {
+              this.nodeController.setRenderOption({surfaceId : embed.surfaceId as string, renderType : NodeRenderType.RENDER_TYPE_TEXTURE, width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
+              this.nodeController.rebuild()
             }
-            if (event.touchEvent.type == TouchType.Up) {
-              this.eventType = 'Up'
+          })
+          .onNativeEmbedGestureEvent((event) => {
+            if (event && event.touchEvent){
+              if (event.touchEvent.type == TouchType.Down) {
+                this.eventType = 'Down'
+              }
+              if (event.touchEvent.type == TouchType.Up) {
+                this.eventType = 'Up'
+              }
+              if (event.touchEvent.type == TouchType.Move) {
+                this.eventType = 'Move'
+              }
+              if (event.touchEvent.type == TouchType.Cancel) {
+                this.eventType = 'Cancel'
+              }
+              let ret = this.nodeController.postEvent(event.touchEvent)
+              if (event.result) {
+                event.result.setGestureEventResult(ret);
+              }
+              console.log("embedId = " + event.embedId);
+              console.log("touchType = " + this.eventType);
+              console.log("x = " + event.touchEvent.touches[0].x);
+              console.log("y = " + event.touchEvent.touches[0].y);
+              console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+              console.log("width = " + event.touchEvent.target.area.width);
+              console.log("height = " + event.touchEvent.target.area.height);
             }
-            if (event.touchEvent.type == TouchType.Move) {
-              this.eventType = 'Move'
-            }
-            if (event.touchEvent.type == TouchType.Cancel) {
-              this.eventType = 'Cancel'
-            }
-            console.log("embedId = " + event.embedId);
-            console.log("touchType = " + this.eventType);
-            console.log("x = " + event.touchEvent.touches[0].x);
-            console.log("y = " + event.touchEvent.touches[0].y);
-            console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-            console.log("width = " + event.touchEvent.target.area.width);
-            console.log("height = " + event.touchEvent.target.area.height);
-          }
-        })
+          })
+        }
       }
     }
   }
+  ```
+加载的html文件
+  ```
+  <!Document>
+<html>
+<head>
+    <title>同层渲染测试html</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <div id="bodyId">
+        <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+    </div>
+</div>
+</body>
+</html>
   ```
 
 ### onIntelligentTrackingPreventionResult<sup>12+</sup>
@@ -4675,7 +4921,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 POST请求不会触发该回调。
 
-子frame和非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
+子frame且非HTTP(s)协议的跳转也会触发该回调。但是调用loadUrl(String)主动触发的跳转不会触发该回调。
 
 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
 
@@ -5356,6 +5602,24 @@ grant(config: ScreenCaptureConfig): void
 | ------ | ---------------------------------------- | ---- | ---- | ------- |
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
 
+## EventResult<sup>12+</sup>
+
+通知Web组件事件消费结果，支持的事件参考[触摸事件的类型](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype)。如果应用不消费该事件，则设置为false，事件被Web组件消费。应用消费了该事件，设置为true，Web组件不消费。示例代码参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
+
+### setGestureEventResult<sup>12+</sup>
+
+setGestureEventResult(result: boolean): void
+
+**参数：**
+
+| 参数名     | 参数类型   | 必填   | 参数描述    |
+| ------- | ------ | ---- | ------- |
+| result | boolean | 是    | 是否消费该手势事件。 |
+
+**示例：**
+
+请参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
+
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
 
 | 名称       | 值 | 描述         |
@@ -5560,7 +5824,7 @@ WebContextMenuParam有图片内容则复制图片。
 
 copy(): void
 
-执行与此上下文菜单相关的拷贝操作。
+执行与此上下文菜单相关的拷贝文本操作。
 
 ### paste<sup>9+</sup>
 
@@ -5686,8 +5950,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称                          | 值 | 描述            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | undefined | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | undefined | 音频捕获资源，例如麦克风。 |                            |
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -6630,6 +6894,31 @@ Web组件进入全屏时触发的回调。
 | ---------- | ---------------------------- | ------------------- |
 | event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
 
+## SslErrorEvent<sup>12+</sup>
+
+用户加载资源时发生SSL错误时触发的回调详情。
+
+| 参数名     | 参数类型                                 | 参数描述           |
+| ------- | ------------------------------------ | -------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
+| error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
+| url   | string           | url地址。           |
+| originalUrl   | string          | 请求的原始url地址。           |
+| referrer   | string          | referrer url地址。           |
+| isFatalError   | boolean           | 是否是致命错误。           |
+| isMainFrame   | boolean          | 是否是主资源。           |
+
+
+## OnSslErrorEventCallback<sup>12+</sup>
+
+type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
+
+用户加载资源时发生SSL错误时触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | 用户加载资源时发生SSL错误时触发的回调详情。 |
+
 ## NativeEmbedStatus<sup>11+</sup>
 
 定义Embed标签生命周期。
@@ -6670,6 +6959,7 @@ Web组件进入全屏时触发的回调。
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。 |
+| result<sup>12+</sup>     | [EventResult](#eventresult12)   | 是    | 通知Web组件手势事件的消费结果。 |
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 

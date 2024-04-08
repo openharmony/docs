@@ -65,6 +65,7 @@
 6. 向gattServer写入特征值和描述符。
 7. 断开连接，销毁gattClient实例。
 8. 示例代码:
+
 ```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
@@ -216,6 +217,7 @@ console.info('disconnect success')
 clientDevice.close();
 console.info('close gattClientDevice success');
 ```
+
 9. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 
 
@@ -227,6 +229,7 @@ console.info('close gattClientDevice success');
 5. 移除services信息。
 6. 注销gattServer实例。
 7. 示例代码:
+
 ```ts
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
@@ -325,4 +328,5 @@ console.info('removeService success')
 gattServerInstance.close();
 console.info('close gattServerInstance success');
 ```
+
 8. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。

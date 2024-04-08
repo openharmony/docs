@@ -27,7 +27,7 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 是 | 瀑布流组件参数。 |
+| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 否 | 瀑布流组件参数。 |
 
 
 ## WaterFlowOptions对象说明
@@ -85,7 +85,7 @@ push(section: SectionOptions): boolean
 
 ### update<sup>12+</sup>
 
-update(sectionIndex:number, section: SectionOptions): boolean
+update(sectionIndex: number, section: SectionOptions): boolean
 
 修改指定索引分组的配置信息。
 

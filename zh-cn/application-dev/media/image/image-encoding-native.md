@@ -73,7 +73,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    例向缓存区（内存）输出：
    ```cpp
    // 编码参数
-   struct ImagePacker_Opts opts;
+   struct ImagePacker_Opts_ opts;
    // 配置编码格式（必须）
    opts.format = "image/jpeg";
    // 配置编码质量（必须）

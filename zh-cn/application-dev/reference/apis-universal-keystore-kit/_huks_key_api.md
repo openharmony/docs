@@ -110,7 +110,7 @@ struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlia
 获取密钥证书链。
 
 **需要权限：**
-ohos.permission.ATTEST_KEY
+ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
 **起始版本：** 9
 

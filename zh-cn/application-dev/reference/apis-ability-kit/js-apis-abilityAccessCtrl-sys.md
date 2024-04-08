@@ -64,15 +64,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-        console.log('grantUserGrantedPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
+  console.log('grantUserGrantedPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### grantUserGrantedPermission
@@ -117,17 +113,13 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('grantUserGrantedPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('grantUserGrantedPermission success');
+  }
+});
 ```
 
 ### revokeUserGrantedPermission
@@ -177,15 +169,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-        console.log('revokeUserGrantedPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
+  console.log('revokeUserGrantedPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### revokeUserGrantedPermission
@@ -230,17 +218,13 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
-try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('revokeUserGrantedPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('revokeUserGrantedPermission success');
+  }
+});
 ```
 
 ### getPermissionFlags
@@ -288,15 +272,116 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-try {
-    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
-        console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
+  console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
+});
+```
+
+### setPermissionRequestToggleStatus<sup>12+</sup>
+
+setPermissionRequestToggleStatus(permissionName: Permissions, status: PermissionRequestToggleStatus): Promise&lt;void&gt;
+
+设置当前用户指定权限的弹窗开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.DISABLE_PERMISSION_DIALOG。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                          |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| permissionName | Permissions              | 是   | 待设置弹窗开关状态的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+| status | [PermissionRequestToggleStatus](#permissionrequesttogglestatus12)    | 是   | 指定权限的弹窗开关状态值。             |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256, or the status value is invalid. |
+| 12100003 | The specified permission does not exist. |
+| 12100007 | Service is abnormal. |
+
+**示例：**
+
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let permission: Permissions = 'ohos.permission.CAMERA';
+
+atManager.setPermissionRequestToggleStatus(permission, abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED).then((err) => {
+  console.info('toggle_status: Set closed successful');
+}).catch((err: BusinessError) => {
+  console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+});
+```
+
+### getPermissionRequestToggleStatus<sup>12+</sup>
+
+getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;PermissionRequestToggleStatus&gt;
+
+获取当前用户指定权限的弹窗开关状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                          |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| permissionName | Permissions              | 是   | 待查询弹窗开关状态的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;[PermissionRequestToggleStatus](#permissionrequesttogglestatus12)&gt; | Promise对象。返回指定权限的弹窗开关状态值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256. |
+| 12100003 | The specified permission does not exist. |
+| 12100007 | Service is abnormal. |
+
+**示例：**
+
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let permission: Permissions = 'ohos.permission.CAMERA';
+
+atManager.getPermissionRequestToggleStatus(permission).then((res) => {
+  if (res == abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED) {
+    console.info('toggle_status: The toggle status is close');
+  } else {
+    console.info('toggle_status: The toggle status is open');
+  }
+}).catch((err: BusinessError) => {
+console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+});
 ```
 
 ### getVersion<sup>9+</sup>
@@ -363,15 +448,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-try {
-    atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
-        console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
+  console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### on<sup>9+</sup>
@@ -493,6 +574,17 @@ try {
 | ----------------------- | ------ | ----------------- |
 | PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
 | PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
+
+### PermissionRequestToggleStatus<sup>12+</sup>
+
+表示指定权限对应的弹窗开关状态的枚举。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称               |    值 | 说明        |
+| ------------------ | ----- | ----------- |
+| CLOSED  | 0    | 表示关闭状态。 |
+| OPEN | 1     | 表示开启状态。 |
 
 ### PermissionStateChangeInfo<sup>9+</sup>
 

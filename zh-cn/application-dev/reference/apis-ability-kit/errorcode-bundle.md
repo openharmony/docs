@@ -757,6 +757,34 @@ The scheme of the specified link is not in the querySchemes.
 **处理步骤**<br/>
 检查是否在querySchemes字段下配置了相应的URL scheme。
 
+## 17700057 指定的应用不是预置应用
+
+**错误信息**<br/>
+Failed to uninstall updates because the HAP is not pre-installed.
+
+**错误描述**<br/>
+调用installer模块中的uninstallUpdates接口时，指定的应用不是预置应用。
+
+**可能原因**<br/>
+指定的应用不是预置应用，无法调用uninstallUpdates接口。
+
+**处理步骤**<br/>
+确认指定的应用是否为预置应用。
+
+## 17700059 指定的开发者ID不存在
+
+**错误信息**<br/>
+The specified developerId is invalid.
+
+**错误描述**<br/>
+调用bundleManager模块中的getAllBundleInfoByDeveloperId接口时，指定的developerId无效。
+
+**可能原因**<br/>
+设备上未安装指定开发者ID的应用。
+
+**处理步骤**<br/>
+检查输入的开发者ID有效性。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.
@@ -782,3 +810,81 @@ Failed to delete abc.
 
 **处理步骤**<br/>
 请传递有效的.abc文件的路径。
+
+## 17700301 扩展资源添加失败
+**错误信息**<br/>
+AddExtResource failed.
+
+**错误描述**<br/>
+扩展资源添加失败。
+
+**可能原因**<br/>
+hsp文件不存在或者不可信。
+
+**处理步骤**<br/>
+请传递正确且可信hsp文件路径。
+
+## 17700302 扩展资源删除失败
+**错误信息**<br/>
+RemoveExtResource failed.
+
+**错误描述**<br/>
+扩展资源删除失败。
+
+**可能原因**<br/>
+moduleName对应的hsp不存在。
+
+**处理步骤**<br/>
+请传递有效的moduleName。
+
+## 17700303 扩展资源查询失败
+**错误信息**<br/>
+GetExtResource failed.
+
+**错误描述**<br/>
+扩展资源查询失败。
+
+**可能原因**<br/>
+bundleName没有hsp。
+
+**处理步骤**<br/>
+请传递有效的bundleName。
+
+## 17700304 动态图标使能失败
+**错误信息**<br/>
+EnableDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标使能失败。
+
+**可能原因**<br/>
+hsp包没有正确的图标资源。
+
+**处理步骤**<br/>
+使能动态图标前确保moduleName对应的hsp有效且包含图标资源。
+
+## 17700305 动态图标去使能失败
+**错误信息**<br/>
+DisableDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标去使能失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+去使能动态图标前确保bundleName存在动态图标。
+
+## 17700306 动态图标查询失败
+**错误信息**<br/>
+GetDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标查询失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+查询动态图标前确保bundleName存在动态图标。

@@ -32,7 +32,7 @@ zh-cn/application-dev/quick-start/in-app-hsp.md @nezha-father  @changzheng6  @ho
 zh-cn/application-dev/quick-start/quickfix*.md @nezha-father  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 
 [入门-资源分类与访问]
-zh-cn/application-dev/quick-start/resource-categories-and-access.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/quick-start/resource-categories-and-access.md @Buda-Liu @ningningW @wangyong @yangqing3
 
 [入门-学习Arkts语言]
 zh-cn/application-dev/quick-start/arkts-get-started.md @zhang_yixin13 @flyingwolf
@@ -240,6 +240,10 @@ zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny  @s
 zh-cn/application-dev/device/usb-overview.md @warehouse12 @Kevin-Lau @liuhonggang123
 zh-cn/application-dev/device/usb-guidelines.md @warehouse12 @Kevin-Lau @liuhonggang123
 
+[开发-Basic Services Kit-升级服务]
+zh-cn/application-dev/basic-services/update/Readme-CN.md @hu-zhiqiong 
+zh-cn/application-dev/basic-services/update/sample-server-overview.md @hu-zhiqiong 
+zh-cn/application-dev/basic-services/update/sample-server-guidelines.md @hu-zhiqiong 
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/kit-readme/Readme-CalendarManager-Kit.md @hu-zhiqiong @jt_123456 @edollar
@@ -257,7 +261,7 @@ zh-cn/application-dev/telephony/contacts-intro.md @jiayanhong-hw @zhang_yixin13 
 
 
 [开发-Core File Kit]
-zh-cn/application-dev/file-management/ @zengyawen
+zh-cn/application-dev/file-management/ @foryourself
 
 
 [开发-Driverdevelopment kit]
@@ -267,17 +271,14 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 
 
 [开发-Form Kit]
-zh-cn/application-dev/application-models/formkit-overview.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/widget*.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/application-models/formkit-overview.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/widget*.md @arondave @hehe9876 @nezha-father
 
 
 [开发-DFX]
-zh-cn/application-dev/dfx/ @zengyawen
-zh-cn/application-dev/dfx/errormanager-guidelines.md  @huipeizi @lixiaogang30  @Maplestorys
-zh-cn/application-dev/dfx/apprecovery-guidelines.md   @huipeizi @lixiaogang30  @Maplestorys
-
+zh-cn/application-dev/dfx/ @foryourself
 
 [开发-IDL]
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
@@ -285,6 +286,12 @@ zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 [开发-IME kit]
 zh-cn/application-dev/inputmethod/ @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 
 [开发-Input kit]
 zh-cn/application-dev/device/inputdevice-guidelines.md @houpengfei @ningningW @mayunteng
@@ -378,7 +385,9 @@ zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @hellohyh001 @b
 zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-
+zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
 
 
 [开发-Telephony Kit]
@@ -648,7 +657,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepick
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md	@zhangfanfan2	@zhanghaibo0	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @songzhenlei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md @HelloCrease
@@ -661,7 +670,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@cc5
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @songzhenlei			@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @hehe9876			@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
@@ -775,7 +784,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent.md    @seasid
 zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md    @niulihua  @zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-router.md   @raulnaruto_admin  @pangxinyu10128 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-getContext.md   @zhangshuang-xiaohuihui	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @songzhenlei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md   @ileft2019   @crazyracing0726  @pangxinyu10128 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md   @lushi1202  @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @tomatodevboy	@HelloCrease
@@ -836,8 +845,8 @@ zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageSt
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md @zengyawen
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
@@ -959,11 +968,11 @@ zh-cn/application-dev/reference/apis-contacts-kit/ @jiayanhong-hw @zhang_yixin13
 
 
 [API参考-Core File Kit]
-zh-cn/application-dev/reference/apis-core-file-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-core-file-kit/ @foryourself
 
 
 [API参考-DFX]
-zh-cn/application-dev/reference/apis-performance-analysis-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 
 
@@ -977,13 +986,13 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @warehouse12
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @arondave  @songzhenlei  @nezha-fathe
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-form-kit/  @arondave  @hehe9876  @nezha-fathe
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @hehe9876 @nezha-father
 
 
 [API参考-IME kit]

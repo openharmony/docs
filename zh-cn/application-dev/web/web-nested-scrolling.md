@@ -7,6 +7,11 @@ nestedScroll入参为一个[NestedScrollOptions](../reference/apis-arkweb/ts-bas
 
 当Web组件被多个可滚动容器组件嵌套时，未被Web组件消费的与父组件方向一致的偏移量、速度值将被传递给距Web组件最近且方向一致的父组件，使得父组件可以继续滚动。一次手势滑动只能沿X轴或Y轴一个方向嵌套滚动，当手势斜向滑动时，滚动方向为偏移量或速度在X轴、Y轴绝对值较大的方向；当偏移量或速度绝对值在X轴、Y轴绝对值相同时，滚动方向为距Web组件最近的可滚动组件的方向。
 
+> **说明：**
+>
+> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
+
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';

@@ -102,9 +102,9 @@ objectFit(value: ImageFit)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                             |
-| ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | 是   | 视频显示模式。<br/>默认值：Cover |
+| 参数名 | 类型                                      | 必填 | 说明                             |
+| ------ | ----------------------------------------- | ---- | -------------------------------- |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
 
 ### loop
 
@@ -153,6 +153,14 @@ onFinish(event:()&nbsp;=&gt;&nbsp;void)
 onError(event:()&nbsp;=&gt;&nbsp;void)
 
 播放失败时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onStop<sup>12+</sup>
+
+onStop(event:()&nbsp;=&gt;&nbsp;void)
+
+播放停止时触发该事件(当stop()方法被调用后触发)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -346,6 +354,9 @@ struct VideoCreateComponent {
         })
         .onError(() => {
           console.info('onError')
+        })
+        .onStop(() => {
+          console.info('onStop')
         })
         .onPrepared((e?: DurationObject) => {
           if (e != undefined) {

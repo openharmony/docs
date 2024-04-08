@@ -33,16 +33,16 @@
    import fs from '@ohos.file.fs';
 
    async function getUserDownloadDirExample() {
-    try {
-      let path = environment.getUserDownloadDir();
-      console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
-      await fs.mkdir(path + "/brower");
-      let fd = await fs.open(path + "/brower/1.txt", fs.OpenMode.CREATE);
-      await fs.close(fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`failed to getUserDownloadDir because: ${JSON.stringify(err)}`);
-    }
+     try {
+       let path = environment.getUserDownloadDir();
+       console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
+       await fs.mkdir(path + "/brower");
+       let fd = await fs.open(path + "/brower/1.txt", fs.OpenMode.CREATE);
+       await fs.close(fd);
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error(`failed to getUserDownloadDir because: ${JSON.stringify(err)}`);
+     }
    }
    ```
 
@@ -51,7 +51,7 @@
 通过FilePicker选择文件或文件夹后设置永久授权，以及应用重启后的激活权限过程如下所示，通过文件分享接口（[ohos.fileshare](../reference/apis-core-file-kit/js-apis-fileShare.md)）实现文件授权能力。
 
 1. 应用调用picker的select接口，通过FilePicker选择和保存路径URI，此时应用获得该路径的临时访问权限。
-   
+
    以下示例代码演示了获取文件夹URI的过程：
 
    ```ts
@@ -59,20 +59,20 @@
    import picker from '@ohos.file.picker';
 
    async function selectExample() {
-    try {
-      let DocumentSelectOptions = new picker.DocumentSelectOptions();
-      DocumentSelectOptions.selectMode = picker.DocumentSelectMode.FOLDER;
-      let documentPicker = new picker.DocumentViewPicker();
-      let uris = await documentPicker.select(DocumentSelectOptions);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('select failed with err: ' + JSON.stringify(err));
-    }
+     try {
+       let DocumentSelectOptions = new picker.DocumentSelectOptions();
+       DocumentSelectOptions.selectMode = picker.DocumentSelectMode.FOLDER;
+       let documentPicker = new picker.DocumentViewPicker();
+       let uris = await documentPicker.select(DocumentSelectOptions);
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error('select failed with err: ' + JSON.stringify(err));
+     }
    }
    ```
 
 2. 应用按需对路径设置持久化授权，检查是否对URI有持久化权限，如果没有权限则进行第3步持久化权限，参数uri为第1步FilePicker应用获取的选择路径。
-   
+
    以下示例代码演示了检查持久化权限过程：
 
    ```ts
@@ -81,40 +81,40 @@
    import fileshare from '@ohos.fileshare';
 
    async function checkPersistentPermissionExample() {
-    try {
-      let documentSelectOptions = new picker.DocumentSelectOptions();
-      let documentPicker = new picker.DocumentViewPicker();
-      let uris = await documentPicker.select(documentSelectOptions);
-      let policyInfo: fileshare.PolicyInfo = {
-        uri: uris[0],
-        operationMode: fileshare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-      fileshare.checkPersistentPermission(policies).then(async (data) => {
-        let results: Array<boolean> = data;
-        for (let i = 0; i < results.length; i++) {
-          console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
-          if (!results[i]) {
-            let info: fileshare.PolicyInfo = {
-              uri: policies[i].uri,
-              operationMode: policies[i].operationMode,
-            };
-            let policy: Array<fileshare.PolicyInfo> = [info];
-            await fileshare.persistPermission(policy);
-          }
-        }
-      }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
-        console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
-      });
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
-    }
+     try {
+       let documentSelectOptions = new picker.DocumentSelectOptions();
+       let documentPicker = new picker.DocumentViewPicker();
+       let uris = await documentPicker.select(documentSelectOptions);
+       let policyInfo: fileshare.PolicyInfo = {
+         uri: uris[0],
+         operationMode: fileshare.OperationMode.READ_MODE,
+       };
+       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+       fileshare.checkPersistentPermission(policies).then(async (data) => {
+         let results: Array<boolean> = data;
+         for (let i = 0; i < results.length; i++) {
+           console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
+           if (!results[i]) {
+             let info: fileshare.PolicyInfo = {
+               uri: policies[i].uri,
+               operationMode: policies[i].operationMode,
+             };
+             let policy: Array<fileshare.PolicyInfo> = [info];
+             await fileshare.persistPermission(policy);
+           }
+         }
+       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+         console.info("checkPersistentPermission failed with error message: " + err.message + ", error code: " + err.code);
+       });
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error('checkPersistentPermission failed with err: ' + JSON.stringify(err));
+     }
    }
    ```
 
 3. 应用按需对路径设置持久化授权，参数uri为第1步FilePicker应用获取的选择路径。
-   
+
    以下示例代码演示了持久化授权过程：
 
    ```ts
@@ -123,27 +123,27 @@
    import fs from '@ohos.file.fs';
 
    async function persistPermissionExample() {
-    try {
-      let uri = "file://docs/storage/Users/username/1.txt";
-      let policyInfo: fileshare.PolicyInfo = {
-        uri: uri,
-        operationMode: fileshare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-      fileshare.persistPermission(policies).then(() => {
-        console.info("persistPermission successfully");
-      }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
-        console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
-        if (err.code == 13900001 && err.data) {
-          console.log("error data : " + JSON.stringify(err.data));
-        }
-      });
-      let fd = await fs.open(uri);
-      await fs.close(fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('persistPermission failed with err: ' + JSON.stringify(err));
-    }
+     try {
+       let uri = "file://docs/storage/Users/username/1.txt";
+       let policyInfo: fileshare.PolicyInfo = {
+         uri: uri,
+         operationMode: fileshare.OperationMode.READ_MODE,
+       };
+       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+       fileshare.persistPermission(policies).then(() => {
+         console.info("persistPermission successfully");
+       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+         console.info("persistPermission failed with error message: " + err.message + ", error code: " + err.code);
+         if (err.code == 13900001 && err.data) {
+           console.log("error data : " + JSON.stringify(err.data));
+         }
+       });
+       let fd = await fs.open(uri);
+       await fs.close(fd);
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error('persistPermission failed with err: ' + JSON.stringify(err));
+     }
    }
    ```
 
@@ -157,33 +157,33 @@
    import fs from '@ohos.file.fs';
 
    async function revokePermissionExample() {
-    try {
-      let uri = "file://docs/storage/Users/username/1.txt";
-      let policyInfo: fileshare.PolicyInfo = {
-        uri: uri,
-        operationMode: fileshare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-      await fileshare.persistPermission(policy);
-      fileshare.revokePermission(policies).then(() => {
-        console.info("revokePermission successfully");
-      }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
-        console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
-        if (err.code == 13900001 && err.data) {
-          console.log("error data : " + JSON.stringify(err.data));
-        }
-      });
-      let fd = await fs.open(uri);
-      await fs.close(fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('revokePermission failed with err: ' + JSON.stringify(err));
-    }
+     try {
+       let uri = "file://docs/storage/Users/username/1.txt";
+       let policyInfo: fileshare.PolicyInfo = {
+         uri: uri,
+         operationMode: fileshare.OperationMode.READ_MODE,
+       };
+       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+       await fileshare.persistPermission(policy);
+       fileshare.revokePermission(policies).then(() => {
+         console.info("revokePermission successfully");
+       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+         console.info("revokePermission failed with error message: " + err.message + ", error code: " + err.code);
+         if (err.code == 13900001 && err.data) {
+           console.log("error data : " + JSON.stringify(err.data));
+         }
+       });
+       let fd = await fs.open(uri);
+       await fs.close(fd);
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error('revokePermission failed with err: ' + JSON.stringify(err));
+     }
    }
    ```
 
 5. 应用获得的持久化权限需要在重启后进行激活，应用重启后及访问URI之前首先检查对URI是否有持久化权限，有权限则激活已经持久化的授权URI，持久化授权的接口需要与激活持久化权限的接口配套使用。
-   
+
    以下示例代码演示了应用激活持久化授权的过程，其中参数URI为应用重启后需要激活权限的路径：
 
    ```ts
@@ -192,32 +192,32 @@
    import fs from '@ohos.file.fs';
 
    async function activatePermissionExample01() {
-    try {
-      let uri = "file://docs/storage/Users/username/tmp.txt";
-      let policyInfo: fileshare.PolicyInfo = {
-        uri: uri,
-        operationMode: fileshare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-      let results = await fileshare.checkPersistentPermission(policies);
-      for (let i = 0; i < results.length; i++) {
-        console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
-        if (results[i]) {
-          let info: fileshare.PolicyInfo = {
-            uri: policies[i].uri,
-            operationMode: policies[i].operationMode,
-          };
-          let policy: Array<fileshare.PolicyInfo> = [info];
-          await fileshare.activatePermission(policy);
-          console.info("activatePermission successfully");
-        }
-      }
-      let fd = await fs.open(uri);
-      await fs.close(fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('activatePermission failed with err: ' + JSON.stringify(err));
-    }
+     try {
+       let uri = "file://docs/storage/Users/username/tmp.txt";
+       let policyInfo: fileshare.PolicyInfo = {
+         uri: uri,
+         operationMode: fileshare.OperationMode.READ_MODE,
+       };
+       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+       let results = await fileshare.checkPersistentPermission(policies);
+       for (let i = 0; i < results.length; i++) {
+         console.log("checkPersistentPermission result: " + JSON.stringify(results[i]));
+         if (results[i]) {
+           let info: fileshare.PolicyInfo = {
+             uri: policies[i].uri,
+             operationMode: policies[i].operationMode,
+           };
+           let policy: Array<fileshare.PolicyInfo> = [info];
+           await fileshare.activatePermission(policy);
+           console.info("activatePermission successfully");
+         }
+       }
+       let fd = await fs.open(uri);
+       await fs.close(fd);
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error('activatePermission failed with err: ' + JSON.stringify(err));
+     }
    }
    ```
 
@@ -231,28 +231,28 @@
    import fs from '@ohos.file.fs';
 
    async function deactivatePermissionExample01() {
-    try {
-      let uri = "file://docs/storage/Users/username/tmp.txt";
-      let policyInfo: fileshare.PolicyInfo = {
-        uri: uri,
-        operationMode: fileshare.OperationMode.READ_MODE,
-      };
-      let policies: Array<fileshare.PolicyInfo> = [policyInfo];
-      await fileshare.activatePermission(policies);
-      fileshare.deactivatePermission(policies).then(() => {
-        console.info("deactivatePermission successfully");
-      }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
-        console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
-        if (err.code == 13900001 && err.data) {
-          console.log("error data : " + JSON.stringify(err.data));
-        }
-      });
-      let fd = await fs.open(uri);
-      await fs.close(fd);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
-    }
+     try {
+       let uri = "file://docs/storage/Users/username/tmp.txt";
+       let policyInfo: fileshare.PolicyInfo = {
+         uri: uri,
+         operationMode: fileshare.OperationMode.READ_MODE,
+       };
+       let policies: Array<fileshare.PolicyInfo> = [policyInfo];
+       await fileshare.activatePermission(policies);
+       fileshare.deactivatePermission(policies).then(() => {
+         console.info("deactivatePermission successfully");
+       }).catch((err: BusinessError<Array<fileshare.PolicyErrorResult>>) => {
+         console.info("deactivatePermission failed with error message: " + err.message + ", error code: " + err.code);
+         if (err.code == 13900001 && err.data) {
+           console.log("error data : " + JSON.stringify(err.data));
+         }
+       });
+       let fd = await fs.open(uri);
+       await fs.close(fd);
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
+       console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+     }
    }
    ```
 
@@ -267,14 +267,14 @@ import { BusinessError } from '@ohos.base';
 import fileUri from '@ohos.file.fileuri';
 
 function getFullDirectoryUriExample01() {
- try {
-   let uri = "file://docs/storage/Users/100/tmp/1.txt";
-   let fileObject = new fileUri.FileUri(uri);
-   let directoryUri = fileObject.getFullDirectoryUri();
- } catch (error) {
-   let err: BusinessError = error as BusinessError;
-   console.error('getFullDirectoryUri failed with err: ' + JSON.stringify(err));
- }
+  try {
+    let uri = "file://docs/storage/Users/100/tmp/1.txt";
+    let fileObject = new fileUri.FileUri(uri);
+    let directoryUri = fileObject.getFullDirectoryUri();
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getFullDirectoryUri failed with err: ' + JSON.stringify(err));
+  }
 }
 ```
 
@@ -289,20 +289,20 @@ import { BusinessError } from '@ohos.base';
 import environment from '@ohos.file.environment';
 
 function getDirectoryExample01() {
- try {
-   //获取公共下载目录
-   let downloadPath = environment.getUserDownloadDir();
-   //获取公共桌面目录
-   let desktopPath = environment.getUserDesktopDir();
-   //获取公共文档目录
-   let documentPath = environment.getUserDocumentDir();
-   //获取外卡根目录
-   let externalStoragePath = environment.getExternalStorageDir();
-   //获取当前用户下应用沙箱路径的内卡目录
-   let userHomePath = environment.getUserHomeDir();
- } catch (error) {
-   let err: BusinessError = error as BusinessError;
-   console.error('getDirectory failed with err: ' + JSON.stringify(err));
- }
+  try {
+    //获取公共下载目录
+    let downloadPath = environment.getUserDownloadDir();
+    //获取公共桌面目录
+    let desktopPath = environment.getUserDesktopDir();
+    //获取公共文档目录
+    let documentPath = environment.getUserDocumentDir();
+    //获取外卡根目录
+    let externalStoragePath = environment.getExternalStorageDir();
+    //获取当前用户下应用沙箱路径的内卡目录
+    let userHomePath = environment.getUserHomeDir();
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('getDirectory failed with err: ' + JSON.stringify(err));
+  }
 }
 ```

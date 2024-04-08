@@ -52,7 +52,7 @@ Binds the IP address and port number. The port number can be specified or random
 | Name  | Type                              | Mandatory| Description                                                  |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [NetAddress](#netaddress) | Yes  | Destination address. For details, see [NetAddress](#netaddress).|
-| callback | AsyncCallback\<void\>              | Yes  | Callback used to return the result.                                            |
+| callback | AsyncCallback\<void\>              | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.       |
 
 **Error codes**
 
@@ -145,7 +145,7 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
-| callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                                                 |
 
 **Error codes**
 
@@ -245,7 +245,7 @@ Closes a UDP socket connection. This API uses an asynchronous callback to return
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -310,7 +310,7 @@ Obtains the status of the UDP socket connection. This API uses an asynchronous c
 
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -407,7 +407,7 @@ Sets other properties of the UDP socket connection. This API uses an asynchronou
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPExtraOptions](#udpextraoptions) | Yes  | Other properties of the UDP socket connection. For details, see [UDPExtraOptions](#udpextraoptions).|
-| callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                   |
 
 **Error codes**
 
@@ -529,7 +529,7 @@ Subscribes to **message** events of the UDP socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.        |
 
 **Example**
 
@@ -538,12 +538,8 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-udp.on('message', (value: SocketInfo) => {
+udp.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -571,20 +567,16 @@ Unsubscribes from **message** events of the UDP socket connection. This API uses
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                              |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result.                               |
 
 **Example**
 
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -613,7 +605,7 @@ Subscribes to **listening** events or **close** events of the UDP socket connect
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **listening**: data packet message event.<br>- **close**: close event.|
-| callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback\<void\> | Yes  | Callback used to return the result.            |
 
 **Example**
 
@@ -645,7 +637,7 @@ Unsubscribes from **listening** events or **close** events of the UDP socket con
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **listening**: data packet message event.<br>- **close**: close event.|
-| callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
+| callback | Callback\<void\> | No  | Callback used to return the result.      |
 
 **Example**
 
@@ -682,7 +674,7 @@ Subscribes to **error** events of the UDP socket connection. This API uses an as
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result.                       |
 
 **Example**
 
@@ -711,7 +703,7 @@ Unsubscribes from **error** events of the UDP socket connection. This API uses a
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result.       |
 
 **Example**
 
@@ -850,7 +842,7 @@ Adds a member to a multicast group. This API uses an asynchronous callback to re
 | Name            | Type                          | Mandatory| Description                                      |
 | ----------------- | ----------------------------- | ---- | ----------------------------------------- |
 | multicastAddress  | [NetAddress](#netaddress)     |  Yes | Destination address. For details, see [NetAddress](#netaddress).|
-| callback          | AsyncCallback\<void\>         |  Yes | Callback used to return the result.                                 |
+| callback          | AsyncCallback\<void\>         |  Yes | Callback used to return the result. If the operation fails, an error message is returned.                                |
 
 **Error codes**
 
@@ -871,7 +863,7 @@ let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
 }
-multicast.addMembership(addr, (err) => {
+multicast.addMembership(addr, (err: Object) => {
   if (err) {
     console.log('add membership fail, err: ' + JSON.stringify(err));
     return;
@@ -926,7 +918,7 @@ let addr: socket.NetAddress = {
 }
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('addMembership fail');
 });
 ```
@@ -950,7 +942,7 @@ Drops a member from a multicast group. This API uses an asynchronous callback to
 | Name            | Type                          | Mandatory| Description                                        |
 | ----------------- | ----------------------------- | ---- | ------------------------------------------- |
 | multicastAddress  | [NetAddress](#netaddress)     |  Yes | Destination address. For details, see [NetAddress](#netaddress).  |
-| callback          | AsyncCallback\<void\>         |  Yes | Callback used to return the result.                                   |
+| callback          | AsyncCallback\<void\>         |  Yes | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -970,7 +962,7 @@ let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
 }
-multicast.dropMembership(addr, (err) => {
+multicast.dropMembership(addr, (err: Object) => {
   if (err) {
     console.log('drop membership fail, err: ' + JSON.stringify(err));
     return;
@@ -1025,7 +1017,7 @@ let addr: socket.NetAddress = {
 }
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('drop membership fail');
 });
 ```
@@ -1049,7 +1041,7 @@ Sets the time to live (TTL) for multicast packets. This API uses an asynchronous
 | Name        | Type                  | Mandatory| Description                        |
 | ------------- | --------------------- | ---- | ----------------------------- |
 | ttl           | number                |  Yes | TTL value. The value is of the number type.|
-| callback      | AsyncCallback\<void\> |  Yes | Callback used to return the result.                    |
+| callback      | AsyncCallback\<void\> |  Yes | Callback used to return the result. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -1065,7 +1057,7 @@ Sets the time to live (TTL) for multicast packets. This API uses an asynchronous
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let ttl = 8
-multicast.setMulticastTTL(ttl, (err) => {
+multicast.setMulticastTTL(ttl, (err: Object) => {
   if (err) {
     console.log('set ttl fail, err: ' + JSON.stringify(err));
     return;
@@ -1115,7 +1107,7 @@ import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set ttl failed');
 });
 ```
@@ -1138,7 +1130,7 @@ Obtains the TTL for multicast packets. This API uses an asynchronous callback to
 
 | Name        | Type                    | Mandatory| Description                        |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result.                   |
+| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result. If the operation fails, an error message is returned. |
 
 **Error codes**
 
@@ -1152,7 +1144,7 @@ Obtains the TTL for multicast packets. This API uses an asynchronous callback to
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getMulticastTTL((err, value) => {
+multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
     console.log('set ttl fail, err: ' + JSON.stringify(err));
     return;
@@ -1193,9 +1185,9 @@ Obtains the TTL for multicast packets. This API uses a promise to return the res
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getMulticastTTL().then((value) => {
+multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set ttl failed');
 });
 ```
@@ -1218,7 +1210,7 @@ Sets the loopback mode flag for multicast communication. This API uses an asynch
 | Name        | Type                 | Mandatory| Description                        |
 | ------------- | --------------------- | ---- | ---------------------------- |
 | flag          | boolean               |  Yes | Loopback mode flag. The value is of the Boolean type. |
-| callback      | AsyncCallback\<void\> |  Yes | Callback used to return the result.                   |
+| callback      | AsyncCallback\<void\> |  Yes | Callback used to return the result. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -1232,7 +1224,7 @@ Sets the loopback mode flag for multicast communication. This API uses an asynch
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.setLoopbackMode(false, (err) => {
+multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
     console.log('set loopback mode fail, err: ' + JSON.stringify(err));
     return;
@@ -1280,7 +1272,7 @@ import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set loopback mode failed');
 });
 ```
@@ -1302,7 +1294,7 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 
 | Name        | Type                    | Mandatory| Description                        |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result.                   |
+| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result. If the operation fails, an error message is returned. |
 
 **Error codes**
 
@@ -1316,7 +1308,7 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getLoopbackMode((err, value) => {
+multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
     console.log('get loopback mode fail, err: ' + JSON.stringify(err));
     return;
@@ -1356,9 +1348,9 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getLoopbackMode().then((value) => {
+multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('get loopback mode failed');
 });
 ```
@@ -1381,7 +1373,7 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over a UDP socket connection. For details, see [UDPSendOptions](#udpsendoptions).|
-| callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -1402,7 +1394,7 @@ let sendOptions: socket.UDPSendOptions = {
     port: 8080
   }
 }
-multicast.send(sendOptions, (err) => {
+multicast.send(sendOptions, (err: Object) => {
   if (err) {
     console.log('send fail: ' + JSON.stringify(err));
     return;
@@ -1456,7 +1448,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 multicast.send(sendOptions).then(() => {
   console.log('send success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('send fail, ' + JSON.stringify(err));
 });
 ```
@@ -1506,8 +1498,7 @@ Unsubscribes to **message** events of a **MulticastSocket** object. This API use
 | Name  | Type                                                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                                                              | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                           |
-
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result.  |
 **Example**
 
 ```ts
@@ -1571,7 +1562,7 @@ Binds an IP address and a port number. The port number can be specified or rando
 | Name  | Type                              | Mandatory| Description                                                  |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [NetAddress](#netaddress) | Yes  | Destination address. For details, see [NetAddress](#netaddress).|
-| callback | AsyncCallback\<void\>              | Yes  | Callback used to return the result.                                            |
+| callback | AsyncCallback\<void\>              | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                  |
 
 **Error codes**
 
@@ -1668,7 +1659,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPConnectOptions](#tcpconnectoptions) | Yes  | TCP socket connection parameters. For details, see [TCPConnectOptions](#tcpconnectoptions).|
-| callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                     |
 
 **Error codes**
 
@@ -1771,7 +1762,7 @@ Sends data over a TCP socket connection. This API uses an asynchronous callback 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over a TCP socket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
-| callback | AsyncCallback\<void\>                   | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>                   | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                          |
 
 **Error codes**
 
@@ -1882,7 +1873,7 @@ Closes a TCP socket connection. This API uses an asynchronous callback to return
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -1958,7 +1949,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 | Name  | Type                                             | Mandatory| Description      |
 | -------- | ------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2060,7 +2051,7 @@ Obtains the status of the TCP socket connection. This API uses an asynchronous c
 
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TCP socket is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2243,7 +2234,7 @@ Sets other properties of the TCP socket connection. This API uses an asynchronou
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCP socket connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
-| callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.              |
 
 **Error codes**
 
@@ -2365,7 +2356,7 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | Yes  | Callback used to return the result.                              |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.                           |
 
 **Example**
 
@@ -2373,12 +2364,8 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-tcp.on('message', (value: SocketInfo) => {
+tcp.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -2406,7 +2393,7 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                              |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result.                              |
 
 **Example**
 
@@ -2414,12 +2401,8 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -2448,7 +2431,7 @@ Subscribes to connection or close events of the TCP socket connection. This API 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
-| callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback\<void\> | Yes  | Callback used to return the result.             |
 
 **Example**
 
@@ -2480,7 +2463,7 @@ Unsubscribes from connection or close events of the TCP socket connection. This 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
-| callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
+| callback | Callback\<void\> | No  | Callback used to return the result.                         |
 
 **Example**
 
@@ -2517,7 +2500,7 @@ Subscribes to **error** events of the TCP socket connection. This API uses an as
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -2546,7 +2529,7 @@ Unsubscribes from **error** events of the TCP socket connection. This API uses a
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result.                            |
 
 **Example**
 
@@ -2645,7 +2628,7 @@ Binds the IP address and port number. The port number can be specified or random
 | Name  | Type                     | Mandatory| Description                                         |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
 | address  | [NetAddress](#netaddress) | Yes  | Destination address.|
-| callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.                                   |
+| callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -2751,7 +2734,7 @@ Obtains the status of a TCP socket server connection. This API uses an asynchron
 
 | Name  | Type                                              | Mandatory| Description      |
 | -------- | -------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2859,7 +2842,7 @@ Sets other properties of a TCP socket server connection. This API uses an asynch
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of a TCP socket server connection.|
-| callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>               | Yes  | Callback used to return the result. If the operation fails, an error message is returned.               |
 
 **Error codes**
 
@@ -2994,7 +2977,7 @@ Subscribes to **connect** events of a **TCPSocketServer** object. This API uses 
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
-| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | Yes  | Callback used to return the result.                           |
+| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.      |
 
 **Error codes**
 
@@ -3028,7 +3011,7 @@ Unsubscribes from **connect** events of a **TCPSocketServer** object. This API u
 | Name  | Type                           | Mandatory| Description                                 |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | Yes  | Event type.<br/> **connect**: connection event.|
-| callback | Callback<[TCPSocketConnection](#tcpsocketconnection10)> | No  | Callback used to return the result.                           |
+| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | No  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -3066,7 +3049,7 @@ Subscribes to **error** events of a **TCPSocketServer** object. This API uses an
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -3101,7 +3084,7 @@ Unsubscribes from **error** events of a **TCPSocketServer** object. This API use
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result. If the operation fails, an error message is returned.                          |
 
 **Error codes**
 
@@ -3157,7 +3140,7 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Defines the parameters for sending data over a TCP socket connection.|
-| callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result.                                                  |
+| callback | AsyncCallback\<void\>             | Yes  | Callback used to return the result. If the operation fails, an error message is returned.            |
 
 **Error codes**
 
@@ -3249,7 +3232,7 @@ Closes a TCP socket connection. This API uses an asynchronous callback to return
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -3331,7 +3314,7 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 
 | Name  | Type                                    | Mandatory| Description      |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -3414,7 +3397,7 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | Yes  | Callback used to return the result.                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.        |
 
 **Error codes**
 
@@ -3429,12 +3412,8 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
-  client.on('message', (value: SocketInfo) => {
+  client.on('message', (value: socket.SocketMessageInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
       let uint8Array = new Uint8Array(value.message) 
@@ -3464,7 +3443,7 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                             |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result. If the operation fails, an error message is returned.       |
 
 **Error codes**
 
@@ -3478,11 +3457,7 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
@@ -3514,7 +3489,7 @@ Subscribes to **close** events of a **TCPSocketConnection** object. This API use
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | Yes  | Event type.<br/> **close**: close event.|
-| callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
+| callback | Callback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.       |
 
 **Error codes**
 
@@ -3551,7 +3526,7 @@ Unsubscribes from **close** events of a **TCPSocketConnection** object. This API
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | Yes  | Event type.<br/> **close**: close event.|
-| callback | Callback\<void\> | No  | Callback used to return the result.                         |
+| callback | Callback\<void\> | No  | Callback used to return the result. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -3588,7 +3563,7 @@ Subscribes to **error** events of a **TCPSocketConnection** object. This API use
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -3625,7 +3600,7 @@ Unsubscribes from **error** events of a **TCPSocketConnection** object. This API
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result. If the operation fails, an error message is returned. |
 
 **Error codes**
 
@@ -3714,7 +3689,7 @@ Binds the address of a local socket file. This API uses a promise to return the 
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -3764,7 +3739,7 @@ Connects to the specified socket file. This API uses a promise to return the res
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3814,7 +3789,7 @@ Sends data over a local socket connection. This API uses a promise to return the
 import socket from "@ohos.net.socket"
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3891,7 +3866,7 @@ Obtains the local socket connection status. This API uses a promise to return th
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3933,7 +3908,7 @@ Obtains the file descriptor of the **LocalSocket** object. This API uses a promi
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3987,7 +3962,7 @@ Sets other properties of the local socket connection. This API uses a promise to
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -4039,7 +4014,7 @@ Obtains other properties of the local socket connection. This API uses a promise
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -4082,7 +4057,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -4117,7 +4092,7 @@ let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -4261,7 +4236,7 @@ Subscribes to **error** events of a **LocalSocket** object. This API uses an asy
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-client.on('error', (err) => {
+client.on('error', (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4289,7 +4264,7 @@ Unsubscribes from **error** events of a **LocalSocket** object. This API uses an
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let callback = (err) => {
+let callback = (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 client.on('error', callback);
@@ -4418,7 +4393,7 @@ Binds the address of the local socket file. The server listens to and accepts lo
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4451,7 +4426,7 @@ Obtains the status of a local socket server connection. This API uses a promise 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4502,7 +4477,7 @@ Sets other properties of the local socket server connection. This API uses a pro
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -4552,7 +4527,7 @@ Obtains other properties of a local socket server connection. This API uses a pr
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4561,7 +4536,7 @@ server.listen(listenAddr).then(() => {
 }).catch((err: Object) => {
   console.error("listen fail: " + JSON.stringify(err));
 })
-server.getExtraOptions().then((options) => {
+server.getExtraOptions().then((options: socket.ExtraOptionsBase) => {
   console.log('options: ' + JSON.stringify(options));
 }).catch((err: Object) => {
   console.error('getExtraOptions fail: ' + JSON.stringify(err));
@@ -4673,7 +4648,7 @@ Subscribes to **error** events of a **LocalSocketServer** object. This API uses 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-server.on('error', (err) => {
+server.on('error', (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4707,7 +4682,7 @@ Unsubscribes from **error** events of a **LocalSocketServer** object. This API u
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let callback = (err) => {
+let callback = (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err));
 }
 server.on('error', callback);
@@ -4841,7 +4816,7 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4855,7 +4830,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
-      messageView = String.fromCharCode(uintArray[i]);
+      messageView += String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
     console.log('message infomation: ' + messageView);
@@ -4896,7 +4871,7 @@ let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -5009,7 +4984,7 @@ Subscribes to **error** events of a **LocalSocketConnection** object. This API u
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
-  connection.on('error', (err) => {
+  connection.on('error', (err: Object) => {
     console.error("on error, err:" + JSON.stringify(err))
   });
 });
@@ -5043,7 +5018,7 @@ Unsubscribes from **error** events of a **LocalSocketConnection** object. This A
 
 ```ts
 import socket from "@ohos.net.socket";
-let callback = (err) => {
+let callback = (err: Object) => {
   console.error("on error, err: " + JSON.stringify(err));
 }
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
@@ -5191,7 +5166,7 @@ Obtains the status of the TLS socket connection. This API uses an asynchronous c
 
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -5407,7 +5382,7 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -5415,12 +5390,8 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-tls.on('message', (value: SocketInfo) => {
+tls.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -5448,7 +5419,7 @@ Unsubscribes from **message** events of a **TLSSocket** object. This API uses an
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.|
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result.  |
 
 **Example**
 
@@ -5456,12 +5427,8 @@ Unsubscribes from **message** events of a **TLSSocket** object. This API uses an
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -5488,7 +5455,7 @@ Subscribes to **connect** or **close** events of the TLS socket connection. This
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
-| callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
+| callback | Callback\<void\> | Yes  | Callback used to return the result.                                                    |
 
 **Example**
 
@@ -5520,7 +5487,7 @@ Unsubscribes from **connect** or **close** events of a **TLSSocket** object. Thi
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
-| callback | Callback\<void\> | No  | Callback used to return the result.                                                  |
+| callback | Callback\<void\> | No  | Callback used to return the result.           |
 
 **Example**
 
@@ -5556,7 +5523,7 @@ Subscribes to **error** events of the TLS socket connection. This API uses an as
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result.         |
 
 **Example**
 
@@ -5585,7 +5552,7 @@ Unsubscribes from **error** events of a **TLSSocket** object. This API uses an a
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result.                            |
 
 **Example**
 
@@ -5675,8 +5642,8 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 
-let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind(bindAddr, (err: BusinessError) => {
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5684,7 +5651,7 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5694,7 +5661,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
+tlsTwoWay.connect(tlsTwoWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 ```
@@ -5780,8 +5747,8 @@ tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect failed " + JSON.stringify(err));
 });
 
-let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind(bindAddr, (err: BusinessError) => {
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5789,7 +5756,7 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5799,7 +5766,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
+tlsTwoWay.connect(tlsTwoWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));
@@ -6619,7 +6586,7 @@ Obtains the status of the TLS socket server connection upon successful listening
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -7146,7 +7113,7 @@ Subscribes to TLS socket server connection events. This API uses an asynchronous
 | Name  | Type                                                   | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                                  | Yes  | Event type.<br/> **connect**: connection event.|
-| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | Yes  | Callback used to return the result.                           |
+| callback | Callback\<[TLSSocketConnection](#tlssocketconnection10)\> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -7204,7 +7171,7 @@ Unsubscribes from **connect** events of a **TLSSocketServer** object. This API u
 | Name  | Type                                                   | Mandatory| Description                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                                  | Yes  | Event type.<br/> **connect**: connection event.|
-| callback | Callback<[TLSSocketConnection](#tlssocketconnection10)> | No  | Callback used to return the result.                           |
+| callback | Callback\<[TLSSocketConnection](#tlssocketconnection10)\> | No  | Callback used to return the result. If the operation fails, an error message is returned.     |
 
 **Error codes**
 
@@ -7266,7 +7233,7 @@ Subscribes to **error** events of a **TLSSocketServer** object. This API uses an
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result. If the operation fails, an error message is returned.    |
 
 **Error codes**
 
@@ -7324,7 +7291,7 @@ Unsubscribes from **error** events of a **TLSSocketServer** object. This API use
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result. If the operation fails, an error message is returned.    |
 
 **Error codes**
 
@@ -8145,7 +8112,7 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | Yes  | Callback used to return the result.                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result. If the operation is successful, the TLS socket connection information is returned. If the operation fails, an error message is returned.                              |
 
 **Error codes**
 
@@ -8182,12 +8149,8 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  client.on('message', (value: SocketInfo) => {
+  client.on('message', (value: socket.SocketMessageInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
       let uint8Array = new Uint8Array(value.message) 
@@ -8217,7 +8180,7 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
-| callback | Callback<[SocketMessageInfo](#socketmessageinfo11)> | No  | Callback used to return the result.                               |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result. If the operation is successful, the TLS socket connection information is returned. If the operation fails, an error message is returned. |
 
 **Error codes**
 
@@ -8254,11 +8217,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
@@ -8290,7 +8249,7 @@ Subscribes to **close** events of a **TLSSocketConnection** object. This API use
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | Yes  | Event type.<br/> **close**: close event.|
-| callback | Callback\<void\> | Yes  | Callback used to return the result.                         |
+| callback | Callback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.   |
 
 **Error codes**
 
@@ -8349,7 +8308,7 @@ Unsubscribes from **close** events of a **TLSSocketConnection** object. This API
 | Name  | Type            | Mandatory| Description                               |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | Yes  | Event type.<br/> **close**: close event.|
-| callback | Callback\<void\> | No  | Callback used to return the result.                         |
+| callback | Callback\<void\> | No  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                        |
 
 **Error codes**
 
@@ -8410,7 +8369,7 @@ Subscribes to **error** events of a **TLSSocketConnection** object. This API use
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | Yes  | Callback used to return the result.                          |
+| callback | ErrorCallback | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                       |
 
 **Error codes**
 
@@ -8470,7 +8429,7 @@ Unsubscribes from **error** events of a **TLSSocketConnection** object. This API
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
-| callback | ErrorCallback | No  | Callback used to return the result.                          |
+| callback | ErrorCallback | No  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.                       |
 
 **Error codes**
 

@@ -146,9 +146,9 @@ The following table illustrates the composition of the ECC key parameters.
 | sk | - | - | √ | √ | 
 
 > **NOTE**
-> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**, which supports only [ECFieldFp](../../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10) currently.
+> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
 > 
-> - **g** and **pk** are points on the ECC curve and are of the [Point](../../reference/apis/js-apis-cryptoFramework.md#point10) type. You need to specify the X and Y coordinates.
+> - **g** and **pk** are points of the [Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10) type on the ECC curve. You need to specify their X and Y coordinates.
 
 
 ### Curve Name
@@ -250,7 +250,7 @@ The SM2 key in the **Fp** field includes the following properties:
 
 - **sk**: private key, which is a random integer less than **n**.
 
-- **pk**: public key, which is a point on the elliptic curve. pk = sk x g.
+- **pk**: public key, which is a point on the elliptic curve. **pk** = **sk** x **g**.
 
 The following table illustrates the composition of the SM2 key parameters.
 
@@ -269,9 +269,9 @@ The following table illustrates the composition of the SM2 key parameters.
 | sk | - | - | √ | √ | 
 
 > **NOTE**
-> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**, which supports only [ECFieldFp](../../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10) currently.
+> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
 > 
-> - **g** and **pk** are points on the SM2 curve and are of the [Point](../../reference/apis/js-apis-cryptoFramework.md#point10) type. You need to specify the X and Y coordinates.
+> - **g** and **pk** are points of the [Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10) type on the SM2 curve. You need to specify their X and Y coordinates.
 
 
 ### Curve Name

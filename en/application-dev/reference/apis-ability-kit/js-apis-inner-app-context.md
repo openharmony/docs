@@ -532,7 +532,7 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 **Parameters**
 
-| Type                                      | Type                                      | Mandatory  | Description                                      |
+| Name                                      | Type                                      | Mandatory  | Description                                      |
 | ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
 | orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Callback used to return the display orientation.                               |
 

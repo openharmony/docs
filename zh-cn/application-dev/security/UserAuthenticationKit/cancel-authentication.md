@@ -28,19 +28,19 @@
 
 ```ts
 import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam: userIAM_userAuth.AuthParam = {
+const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
 };
-const widgetParam: userIAM_userAuth.WidgetParam = {
+const widgetParam: userAuth.WidgetParam = {
   title: '请进行身份认证',
 };
 try {
   // 获取认证对象
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // 开始认证
   userAuthInstance.start();
@@ -50,6 +50,6 @@ try {
   console.log('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

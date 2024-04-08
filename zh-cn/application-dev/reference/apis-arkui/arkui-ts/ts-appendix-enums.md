@@ -310,7 +310,7 @@
 | Start    | 元素在Flex容器中，交叉轴方向首部对齐。                    |
 | Center   | 元素在Flex容器中，交叉轴方向居中对齐。                    |
 | End      | 元素在Flex容器中，交叉轴方向底部对齐。                    |
-| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况在元素未设置尺寸时，拉伸到容器尺寸。 |
+| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况下，无论元素尺寸是否设置，均拉伸到容器尺寸。 |
 | Baseline | 元素在Flex容器中，交叉轴方向文本基线对齐。                  |
 
 ## FlexDirection
@@ -748,7 +748,7 @@ Nullable\<T> {
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
-| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。 |
+| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|
 |  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
 
 ## BlendApplyType<sup>11+</sup>
@@ -760,7 +760,7 @@ Nullable\<T> {
 | FAST           |   在目标图像上按顺序混合视图的内容。                        |
 | OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
-## ChainStyle<sup>11+</sup>
+## ChainStyle<sup>12+</sup>
 
 定义链的风格。
 
@@ -770,16 +770,16 @@ Nullable\<T> {
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
 | PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
 
-## BarrierDirection<sup>11+</sup>
+## BarrierDirection<sup>12+</sup>
 
 定义屏障线的方向。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最左侧。    |
-| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最右侧。   |
-| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最上方。    |
-| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最下方。 |
+| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
+| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最右侧。   |
+| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最上方。    |
+| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最下方。 |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
@@ -790,3 +790,9 @@ Nullable\<T> {
 | NO_FORCE_ROUND | 不取整计算。|
 | FORCE_CEIL | 取上整计算。|
 | FORCE_FLOOR | 取下整计算。|
+
+## StyledStringKey<sup>12+</sup>
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|

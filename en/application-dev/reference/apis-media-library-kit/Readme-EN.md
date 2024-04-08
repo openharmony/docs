@@ -6,5 +6,3 @@
   - APIs No Longer Maintained
     - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
     - [@ohos.multimedia.medialibrary (Media Library Management) (System API)](js-apis-medialibrary-sys.md)
-- Error Codes
-  - [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md)

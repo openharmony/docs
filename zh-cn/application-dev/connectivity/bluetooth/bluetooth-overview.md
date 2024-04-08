@@ -6,9 +6,6 @@
 ## 实现原理
 蓝牙的实现原理是基于无线电技术的短距离通信协议，使用2.4GHz频段的无线电波进行通信，使用频率跳跃技术（Frequency Hopping Spread Spectrum，FHSS）来避免与其他无线设备的干扰。在通信过程中，蓝牙设备会发送和接收数据包，并且使用不同的蓝牙协议来控制通信流程和数据传输。
 
-## 约束
-- 开发语言：C++、C
-- 系统：linux内核
 
 ## 模块介绍
 - a2dp模块（高级音频分发配置文件）：A2DP是Advanced Audio Distribution Profile的缩写，即高级音频分发配置文件。它是一种蓝牙协议，允许无线传输高品质音频流，例如音乐或语音通话，同时支持双向通信，因此可以用于耳机、扬声器、汽车音响等设备。详情请参考[@ohos.bluetooth.a2dp API参考](../../reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)。

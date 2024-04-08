@@ -8,7 +8,7 @@
 
 ## onTouch
 
-onTouch(event: (event: TouchEvent) => void)
+onTouch(event: (event: TouchEvent) => void): T
 
 手指触摸动作触发该回调。
 
@@ -21,6 +21,12 @@ onTouch(event: (event: TouchEvent) => void)
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [TouchEvent](#touchevent对象说明) | 是   | 获得TouchEvent对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## TouchEvent对象说明
 
@@ -70,7 +76,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | touchObject | [TouchObject](#touchobject对象说明)  | 历史点对应触摸事件的基础信息。                                                   |
 | size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
 | force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，压力越大值越大。<br/>此接口根据硬件设备不同，支持情况不同。当前只支持Tablet。|
-| timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：纳秒           |
+| timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
 ## 示例
 
 ```ts
