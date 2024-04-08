@@ -112,7 +112,13 @@ import window from '@ohos.window';
 
 ## AvoidArea<sup>7+</sup>
 
-窗口内容规避区域。
+窗口内容规避区域。如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。在规避区无法响应用户点击事件。 
+ 
+除此之外还需注意规避区域的如下约束，具体为：  
+
+- 手势导航区域不支持拖拽事件，只支持点按事件。 
+ 
+- 导航条区域不支持拖拽和长按事件。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
