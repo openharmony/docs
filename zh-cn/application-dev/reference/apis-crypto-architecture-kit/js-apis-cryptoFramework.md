@@ -84,7 +84,7 @@ buffer数组，提供blob数据类型。
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)或[initSync()](#initsync12)方法的入参GcmParamsSpec中的的authTag。 |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
 
 > **说明：**
 >
@@ -104,7 +104,7 @@ buffer数组，提供blob数据类型。
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节。                              |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)或[initSync()](#initsync12)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
 
 > **说明：**
 >
@@ -680,49 +680,6 @@ let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
 ```
 
-### getEncodedDer<sup>12+</sup>
-
-getEncodedDer(format: string): DataBlob
-
-支持根据指定的密钥格式（如采用哪个规范、是否压缩等），获取满足ASN.1语法、DER编码的公钥数据。当前仅支持获取ECC压缩/非压缩格式的公钥数据。
-
-> **说明：**
->
-> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
-> 1. 本接口可根据入参决定数据的输出格式。
-> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名 | 类型                  | 必填 | 说明                 |
-| ---- | --------------------- | ---- | -------------------- |
-| format  | string | 是   | 用于指定当前密钥格式，取值仅支持"X509\|COMPRESSED"和"X509\|UNCOMPRESSED"。 |
-
-**返回值：**
-
-| 类型                        | 说明                              |
-| --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的公钥数据。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters. |
-| 17620001 | memory error. |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-let key: cryptoFramework.PubKey; // Key is a public key object. The generation process is omitted here.
-let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
-console.info('returnBlob data：' + returnBlob.data);
-```
-
 ## PriKey
 
 私钥，是[Key](#key)的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。
@@ -930,44 +887,6 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
     });
 ```
 
-### generateSymKeySync<sup>12+</sup>
-
-generateSymKeySync(): SymKey
-
-同步获取对称密钥生成器随机生成的密钥。
-
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
-目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
-
-> **说明：**
->
-> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKeySync](#convertkeysync12)方式生成对称密钥数据。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17620001 | memory error. |
-
-**示例：**
-
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
-function testGenerateSymKeySync() {
-  // 创建SymKeyGenerator实例
-  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
-  // 使用密钥生成器随机生成对称密钥
-  let key = symKeyGenerator.generateSymKeySync();
-  let encodedKey = key.getEncoded();
-  console.info('key hex:' + encodedKey.data);
-}
-```
-
 ### convertKey
 
 convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
@@ -1074,52 +993,6 @@ function testConvertKey() {
     }).catch((error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
-}
-```
-
-### convertKeySync<sup>12+</sup>
-
-convertKeySync(key: DataBlob): SymKey
-
-同步根据指定数据生成对称密钥。
-
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
-
-> **说明：**
->
-> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名     | 类型          | 必填 | 说明                       |
-| -------- | ------------------- | ---- | ---------------------|
-| key      | [DataBlob](#datablob)             | 是   | 指定的对称密钥材料。                                         |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息                                               |
-| -------- | --------------------------------------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.                                       |
-
-**示例：**
-
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
-function testConvertKeySync() {
-  // 对称密钥长度为64字节，512比特
-  let keyMessage = '87654321abcdefgh87654321abcdefgh87654321abcdefgh87654321abcdefgh';
-  let keyBlob: cryptoFramework.DataBlob = {
-    data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
-  }
-  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
-  let key = symKeyGenerator.convertKeySync(keyBlob);
-  let encodedKey = key.getEncoded();
-  console.info('key encoded data：' + encodedKey.data);
 }
 ```
 
@@ -1247,47 +1120,6 @@ keyGenPromise.then(keyPair => {
 });
 ```
 
-### generateKeyPairSync<sup>12+</sup>
-
-generateKeyPairSync(): KeyPair
-
-同步获取该非对称密钥生成器随机生成的密钥。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | 非对称密钥。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error.          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
-try {
-  let keyPairData = asyKeyGenerator.generateKeyPairSync();
-  if (keyPairData != null) {
-    console.info('[Sync]: key pair success');
-  } else {
-    console.error("[Sync]: get key pair result fail!");
-  }
-} catch (e) {
-  console.error(`sync error, ${e.code}, ${e.message}`);
-}
-```
-
 ### convertKey
 
 convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCallback\<KeyPair\>): void
@@ -1378,58 +1210,6 @@ keyGenPromise.then(keyPair => {
 }).catch((error: BusinessError) => {
   console.error("convertKey error.");
 });
-```
-
-### convertKeySync<sup>12+</sup>
-
-convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
-
-同步获取指定数据生成非对称密钥。详情请看下方**密钥转换说明**。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名   | 类型    | 必填 | 说明             |
-| ------ | -------- | ---- | ---------------- |
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
-| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | 非对称密钥。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error.          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
-let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // 公钥二进制数据
-let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // 私钥二进制数据
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
-try {
-  let keyPairData = asyKeyGenerator.convertKeySync(pubKeyBlob, priKeyBlob);
-  if (keyPairData != null) {
-    console.info('[Sync]: key pair success');
-  } else {
-    console.error("[Sync]: convert key pair result fail!");
-  }
-} catch (e) {
-  console.error(`sync error, ${e.code}, ${e.message}`);
-}
 ```
 
 **密钥转换说明**
@@ -1592,51 +1372,6 @@ keyGenPromise.then(keyPair => {
 });
 ```
 
-### generateKeyPairSync<sup>12+</sup>
-
-generateKeyPairSync(): KeyPair
-
-同步获取该非对称密钥生成器生成的密钥。
-
-当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| [KeyPair](#keypair) | 非对称密钥。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
-let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-try {
-  let keyPairData = asyKeyGeneratorBySpec.generateKeyPairSync();
-  if (keyPairData != null) {
-    console.info('[Sync]: key pair success');
-  } else {
-    console.error("[Sync]: get key pair result fail!");
-  }
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`sync error, ${e.code}, ${e.message}`);
-}
-```
-
 ### generatePriKey
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
@@ -1714,50 +1449,6 @@ keyGenPromise.then(priKey => {
 }).catch((error: BusinessError) => {
   console.error("generatePriKey error.");
 });
-```
-
-### generatePriKeySync<sup>12+</sup>
-
-generatePriKeySync(): PriKey
-
-同步获取该非对称密钥生成器生成的密钥。
-
-当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| [PriKey](#prikey) | 非对称密钥。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
-let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-try {
-  let priKeyData = asyKeyGeneratorBySpec.generatePriKeySync();
-  if (priKeyData != null) {
-    console.info('[Sync]: pri key success');
-  } else {
-    console.error("[Sync]: get pri key result fail!");
-  }
-} catch (e) {
-  console.error(`sync error, ${e.code}, ${e.message}`);
-}
 ```
 
 ### generatePubKey
@@ -1839,50 +1530,6 @@ keyGenPromise.then(pubKey => {
 });
 ```
 
-### generatePubKeySync<sup>12+</sup>
-
-generatePubKeySync(): PubKey
-
-同步获取该非对称密钥生成器生成的密钥。
-
-当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| [PubKey](#pubkey) | 非对称密钥。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters.          |
-| 17620001 | memory error.          |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
-let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-try {
-  let pubKeyData = asyKeyGeneratorBySpec.generatePubKeySync();
-  if (pubKeyData != null) {
-    console.info('[Sync]: pub key success');
-  } else {
-    console.error("[Sync]: get pub key result fail!");
-  }
-} catch (e) {
-  console.error(`sync error, ${e.code}, ${e.message}`);
-}
-```
-
 ## ECCKeyUtil<sup>11+</sup>
 
 根据椭圆曲线名生成相应的非对称公共密钥参数。
@@ -1928,100 +1575,6 @@ try {
     let e: BusinessError = err as BusinessError;
     console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
 }
-```
-
-### convertPoint<sup>12+</sup>
-
-static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
-
-根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，将指定的点数据转换为Point对象。当前支持压缩/非压缩格式的点数据。  
-
-> **说明：**
->
-> 根据RFC5480规范中第2.2节的描述：<br/>
-> 1. 非压缩的点数据，表示为：前缀0x04\|x坐标\|y坐标；
-> 2. 压缩的点数据，对于Fp素数域上的点（当前暂不支持F2m域），表示为：前缀0x03\|x坐标 (坐标y是奇数时)，前缀0x02\|x坐标 (坐标y是偶数时)。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名       | 类型        | 必填 | 说明                                           |
-| ------------ | ---------- | ---- | ---------------------------------------------- |
-| curveName    | string     | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
-| encodedPoint | Uint8Array | 是   | 指定的ECC椭圆曲线上的点的数据。 |
-
-**返回值：**
-
-| 类型              | 说明                 |
-| ----------------- | ------------------- |
-| [Point](#point10) | 返回ECC的Point对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters. |
-| 17620001 | memory error. |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-// 随机生成的非压缩点数据
-let pkData = new Uint8Array([4, 143, 39, 57, 249, 145, 50, 63, 222, 35, 70, 178, 121, 202, 154, 21, 146, 129, 75, 76, 63, 8, 195, 157, 111, 40, 217, 215, 148, 120, 224, 205, 82, 83, 92, 185, 21, 211, 184, 5, 19, 114, 33, 86, 85, 228, 123, 242, 206, 200, 98, 178, 184, 130, 35, 232, 45, 5, 202, 189, 11, 46, 163, 156, 152]);
-let returnPoint = cryptoFramework.ECCKeyUtil.convertPoint('NID_brainpoolP256r1', pkData);
-console.info('returnPoint: ' + returnPoint.x.toString(16));
-```
-
-### getEncodedPoint<sup>12+</sup>
-
-static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
-
-根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为点数据。当前支持压缩/非压缩格式的点数据。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名       | 类型               | 必填 | 说明                                           |
-| ------------ | ----------------- | ---- | ---------------------------------------------- |
-| curveName    | string            | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
-| point        | [Point](#point10) | 是   | 椭圆曲线上的Point点对象。 |
-| format       | string            | 是   | 需要获取的点数据格式，当前支持"COMPRESSED"或"UNCOMPRESSED"。 |
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| Uint8Array | 返回指定格式的点数据。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters. |
-| 17620001 | memory error. |
-| 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
-let keyPair = await generator.generateKeyPair();
-let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
-let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
-console.info('ECC_PK_X_BN 16：' + eccPkX.toString(16));
-console.info('ECC_PK_Y_BN 16：' + eccPkY.toString(16));
-// 将eccPkX.toString(16)结果放入x，eccPkY.toString(16)结果放入y
-let returnPoint: cryptoFramework.Point = {
-  x: BigInt('0x' + eccPkX.toString(16)),
-  y: BigInt('0x' + eccPkY.toString(16))
-};
-let returnData = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
-console.info('returnData: ' + returnData);
 ```
 
 ## DHKeyUtil<sup>11+</sup>
@@ -2303,34 +1856,6 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
 
-### initSync<sup>12+</sup>
-
-initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
-
-初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。initSync、updateSync、doFinalSync为三段式接口，需要成组使用。其中initSync和doFinalSync必选，updateSync可选。
-
-必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名 | 类型                                            | 必填 | 说明                                                         |
-| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| opMode | [CryptoMode](#cryptomode)                       | 是   | 加密或者解密模式。                                           |
-| key    | [Key](#key)                                     | 是   | 指定加密或解密的密钥。                                       |
-| params | [ParamsSpec](#paramsspec)  | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息                |
-| -------- | ----------------------- |
-| 401      | invalid parameters.     |
-| 17620001 | memory error.           |
-| 17620002 | runtime error.          |
-| 17630001 | crypto operation error. |
-
 ### update
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
@@ -2406,34 +1931,6 @@ update(data: DataBlob): Promise\<DataBlob>
 | 17620001 | memory error.                                |
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
-
-### updateSync<sup>12+</sup>
-
-updateSync(data: DataBlob): void
-
-分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。
-
-必须在对[Cipher](#cipher)实例使用[initSync()](#initsync12)初始化后，才能使用本函数。
-
-其他注意事项同上异步接口说明。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名 | 类型                  | 必填 | 说明                                                         |
-| ------ | --------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data: Uint8Array(空) }。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息                |
-| -------- | ----------------------- |
-| 401      | invalid parameters.     |
-| 17620001 | memory error.           |
-| 17620002 | runtime error.          |
-| 17630001 | crypto operation error. |
 
 ### doFinal
 
@@ -2603,81 +2100,6 @@ async function cipherByPromise() {
   gcmParams.authTag = await cipher.doFinal(null);
   console.info('encryptUpdate plainText: ' + encryptUpdate.data);
 }
-```
-
-### doFinalSync<sup>12+</sup>
-
-doFinalSync(data: DataBlob | null): void
-
-（1）在对称加解密中，doFinalSync加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync；如果在本次加解密流程中，已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。<br/>根据对称加解密的模式不同，doFinalSync的输出有如下区别：
-
-- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次updateSync和doFinalSync的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinalSync的data参数传入null，则doFinalSync的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
-- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次updateSync和doFinalSync的结果拼接起来，得到完整的明文/密文。
-
-（2）在RSA、SM2非对称加解密中，doFinalSync加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinalSync，拼接结果得到完整的明文/密文。
-
-其他注意事项同接口[doFinal()](#dofinal)说明。
-
-**系统能力：** SystemCapability.Security.CryptoFramework
-
-**参数：**
-
-| 参数名 | 类型                                        | 必填 | 说明                                                         |
-| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob)  | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息                |
-| -------- | ----------------------- |
-| 401      | invalid parameters.     |
-| 17620001 | memory error.           |
-| 17620002 | runtime error.          |
-| 17630001 | crypto operation error. |
-
-**以AES GCM模式加密为例：**
-
-此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
-
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
-
-function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
-  let dataAad = new Uint8Array(arr);
-  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataTag = new Uint8Array(arr);
-  let tagBlob: cryptoFramework.DataBlob = {
-    data: dataTag
-  };
-  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
-    iv: ivBlob,
-    aad: aadBlob,
-    authTag: tagBlob,
-    algName: "GcmParamsSpec"
-  };
-  return gcmParamsSpec;
-}
-
-async function cipherBySync() {
-  let gcmParams = genGcmParamsSpec();
-  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
-  let symKey = await symKeyGenerator.generateSymKey();
-  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
-  let message = "This is a test";
-  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-  let encryptUpdate = cipher.updateSync(plainText);
-  gcmParams.authTag = cipher.doFinalSync(null);
-  console.info('encryptUpdate plainText: ' + encryptUpdate.data);
-}
-
 ```
 
 ### setCipherSpec<sup>10+</sup>
