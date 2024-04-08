@@ -257,64 +257,6 @@ maxLength(value: number)
 | ------ | ----------------------------------- | ---- | ---------------------- |
 | value  | number | 是   | 文本的最大输入字符数。 |
 
-### enterKeyType<sup>12+</sup>
-
-enterKeyType(value: EnterKeyType)
-
-设置输入法回车键类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                  | 必填 | 说明                                             |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
-
-### lineHeight<sup>12+</sup>
-
-lineHeight(value: number | string | Resource)
-
-设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明             |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
-
-### decoration<sup>12+</sup>
-
-decoration(value: TextDecorationOptions)
-
-设置文本装饰线样式及其颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
-
-### letterSpacing<sup>12+</sup>
-
-letterSpacing(value: number | string | Resource)
-
-设置文本字符间距。设置该值为百分比时，按默认值显示。
-
-当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                       | 必填 | 说明           |
-| ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
-
 ## IconOptions<sup>10+</sup>对象说明
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述    |
@@ -336,13 +278,6 @@ letterSpacing(value: number | string | Resource)
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
-
-## TextDecorationOptions<sup>12+</sup>对象说明
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
-| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -553,43 +488,6 @@ getCaretOffset(): CaretOffset
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
 > - 在当前帧更新光标位置同时调用该接口，该接口不生效。
 
-### setTextSelection<sup>12+</sup>
-
-setTextSelection(selectionStart: number, selectionEnd: number, options?: SelectionOptions): void;
-
-组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
-
-**参数：**
-
-| 参数名         | 参数类型 | 必填 | 参数描述                                                     |
-| -------------- | -------- | ---- | ------------------------------------------------------------ |
-| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
-| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
-| options | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
->  **说明：**
->
->  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
->
->  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
-
-##  SelectionOptions<sup>12+</sup>
-
-setTextSelection的选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
-
 ##  示例
 
 ### 示例1
@@ -726,83 +624,3 @@ struct SearchExample {
 ```
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
-
-### 示例4
-```ts
-// xxx.ets
-@Entry
-@Component
-struct SearchExample {
-  @State Text: string = ''
-  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
-  @State index: number = 0
-  build() {
-    Column({ space: 20 }) {
-      Search({ placeholder: '请输入文本', value: this.Text })
-        .width(380)
-        .enterKeyType(this.enterTypes[this.index])
-        .onChange((value: string) => {
-          this.Text = value
-        })
-        .onSubmit((value: String) => {
-          console.log("trigger search onsubmit" + value);
-        })
-
-      Button('改变EnterKeyType').onClick(() => {
-        this.index = (this.index + 1) % this.enterTypes.length;
-      })
-    }.width('100%')
-  }
-}
-```
-
-![searchEnterKeyType](figures/searchEnterKey.gif)
-
-### 示例5
-
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct SearchExample {
-  build() {
-    Row() {
-      Column() {
-        Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        Search({value: 'lineHeight unset'})
-          .border({ width: 1 }).padding(10)
-        Search({value: 'lineHeight 15'})
-          .border({ width: 1 }).padding(10).lineHeight(15)
-        Search({value: 'lineHeight 30'})
-          .border({ width: 1 }).padding(10).lineHeight(30)
-
-        Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        Search({value: 'letterSpacing 0'})
-          .border({ width: 1 }).padding(5).letterSpacing(0)
-        Search({value: 'letterSpacing 3'})
-          .border({ width: 1 }).padding(5).letterSpacing(3)
-        Search({value: 'letterSpacing -1'})
-          .border({ width: 1 }).padding(5).letterSpacing(-1)
-
-        Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        Search({value: 'LineThrough, Red'})
-          .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        Search({value: 'Overline, Red'})
-          .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        Search({value: 'Underline, Red'})
-          .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
-      }.height('90%')
-    }
-    .width('90%')
-    .margin(10)
-  }
-}
-
-```
-
-![SearchDecoration](figures/search_decoration.png)

@@ -238,19 +238,6 @@ maxLines(value: number)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
 
-### wordBreak<sup>12+</sup>
-
-wordBreak(value: WordBreak)
-
-设置文本断行规则。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -309,50 +296,6 @@ enterKeyType(value: EnterKeyType)
 >  **说明：**
 >
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }  <br>从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
-
-### lineHeight<sup>12+</sup>
-
-lineHeight(value: number | string | Resource)
-
-设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明             |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
-
-### decoration<sup>12+</sup>
-
-decoration(value: TextDecorationOptions)
-
-设置文本装饰线样式及其颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
-
-### letterSpacing<sup>12+</sup>
-
-letterSpacing(value: number | string | Resource)
-
-设置文本字符间距。设置该值为百分比时，按默认值显示。
-
-当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                       | 必填 | 说明           |
-| ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
 
 ## 事件
 
@@ -507,28 +450,11 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 | -------------- | -------- | ---- | ------------------------------------------------------------ |
 | selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
 | selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+
 >  **说明：**
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
 
-##  SelectionOptions<sup>12+</sup>
-
-setTextSelection选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
 
 ### stopEditing<sup>10+</sup>
 
@@ -594,12 +520,6 @@ getCaretOffset(): CaretOffset
 >
 > - 在当前帧更新光标位置同时调用该接口，该接口不生效。
 
-## TextDecorationOptions<sup>12+</sup>对象说明
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
-| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 
 ## TextAreaType<sup>11+</sup>枚举说明
 
@@ -806,100 +726,3 @@ struct TextInputExample {
 
 ![TextAreaEnterKeyType](figures/area_enterkeytype.gif)
 
-
-### 示例6
-示例展示设置不同wordBreak属性的TextInput样式。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextAreaExample {
-  build() {
-    Column() {
-      Text("属性WordBreakType为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextArea({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .border({ width: 1 })
-        .maxLines(2)
-        .wordBreak(WordBreak.NORMAL)
-      Text("英文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextArea({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .border({ width: 1 })
-        .maxLines(2)
-        .wordBreak(WordBreak.BREAK_ALL)
-      Text("中文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextArea({
-        text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
-      })
-        .fontSize(16)
-        .border({ width: 1 })
-        .maxLines(2)
-        .wordBreak(WordBreak.BREAK_ALL)
-      Text("属性WordBreakType为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
-      TextArea({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .border({ width: 1 })
-        .maxLines(2)
-        .wordBreak(WordBreak.BREAK_WORD)
-    }
-  }
-}
-```
-
-![TextAreaWordBreak](figures/TextAreaWordBreak.jpeg)
-
-### 示例7
-
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextAreaExample {
-  build() {
-    Row() {
-      Column() {
-        Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'lineHeight unset'})
-          .border({ width: 1 }).padding(10).margin(5)
-        TextArea({text: 'lineHeight 15'})
-          .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextArea({text: 'lineHeight 30'})
-          .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
-
-        Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'letterSpacing 0'})
-          .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextArea({text: 'letterSpacing 3'})
-          .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextArea({text: 'letterSpacing -1'})
-          .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
-
-        Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'LineThrough, Red\nsecond line'})
-          .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextArea({text: 'Overline, Red\nsecond line'})
-          .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        TextArea({text: 'Underline, Red\nsecond line'})
-          .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
-      }.height('90%')
-    }
-    .width('90%')
-    .margin(10)
-  }
-}
-```
-
-![TextAreaDecoration](figures/textarea_decoration.png)
