@@ -4416,6 +4416,126 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this attribute is read-only.           |
 | FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this attribute is read-only.                 |
 | FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this attribute is read-only.                 |
+| COMPRESSION <sup>12+</sup> | "Compression" | The scheme used for image compression. |
+| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | Pixel composition, such as RGB or YCbCr. |
+| STRIP_OFFSETS <sup>12+</sup> | "StripOffsets" | For each strip, the byte offset of that strip. |
+| SAMPLES_PER_PIXEL <sup>12+</sup> | "SamplesPerPixel" | The number of components per pixel. |
+| ROWS_PER_STRIP <sup>12+</sup> | "RowsPerStrip" | The number of rows per strip of image data. |
+| STRIP_BYTE_COUNTS <sup>12+</sup> | "StripByteCounts"      | The total number of bytes in each strip of image data.                             |
+| X_RESOLUTION <sup>12+</sup> | "XResolution"      | The image resolution in the width direction.                             |
+| Y_RESOLUTION <sup>12+</sup> | "YResolution"      | The image resolution in the height direction.                             |
+| PLANAR_CONFIGURATION <sup>12+</sup> | "PlanarConfiguration"      | Indicates whether pixel components are recorded in a chunky or planar format.                             |
+| RESOLUTION_UNIT <sup>12+</sup> | "ResolutionUnit"      | The unit used to measure XResolution and YResolution.                             |
+| TRANSFER_FUNCTION <sup>12+</sup> | "TransferFunction"      | The transfer function for the image, typically used for color correction.                             |
+| SOFTWARE <sup>12+</sup> | "Software"      | The name and version of the software used to generate the image.                             |
+| ARTIST <sup>12+</sup> | "Artist"      | The name of the person who created the image.                             |
+| WHITE_POINT <sup>12+</sup> | "WhitePoint"      | The chromaticity of the white point of the image.                             |
+| PRIMARY_CHROMATICITIES <sup>12+</sup> | "PrimaryChromaticities"      | The chromaticity of the primary colors of the image.                             |
+| YCBCR_COEFFICIENTS <sup>12+</sup> | "YCbCrCoefficients"      | The matrix coefficients for transformation from RGB to YCbCr image data.                             |
+| YCBCR_SUB_SAMPLING <sup>12+</sup> | "YCbCrSubSampling"      | The sampling ratio of chrominance components to the luminance component.                             |
+| YCBCR_POSITIONING <sup>12+</sup> | "YCbCrPositioning"      | The position of chrominance components in relation to the luminance component.                             |
+| REFERENCE_BLACK_WHITE <sup>12+</sup> | "ReferenceBlackWhite"      | The reference black point value and reference white point value.                             |
+| COPYRIGHT <sup>12+</sup> | "Copyright"      | Copyright information for the image.                             |
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup> | "JPEGInterchangeFormat" | The offset to the start byte (SOI) of JPEG compressed thumbnail data. |
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | The number of bytes of JPEG compressed thumbnail data. |
+| EXPOSURE_PROGRAM <sup>12+</sup> | "ExposureProgram" | The class of the program used by the camera to set exposure when the picture is taken. |
+| SPECTRAL_SENSITIVITY <sup>12+</sup> | "SpectralSensitivity" | Indicates the spectral sensitivity of each channel of the camera used. |
+| OECF <sup>12+</sup> | "OECF" | Indicates the Opto-Electric Conversion Function (OECF) specified in ISO 14524. |
+| EXIF_VERSION <sup>12+</sup> | "ExifVersion" | The version of the Exif standard supported. |
+| DATE_TIME_DIGITIZED <sup>12+</sup> | "DateTimeDigitized" | The date and time when the image was stored as digital data. |
+| COMPONENTS_CONFIGURATION <sup>12+</sup> | "ComponentsConfiguration" | Information specific to compressed data. |
+| SHUTTER_SPEED <sup>12+</sup> | "ShutterSpeedValue" | The shutter speed, expressed as an APEX (Additive System of Photographic Exposure) value. |
+| BRIGHTNESS_VALUE <sup>12+</sup> | "BrightnessValue" | The brightness value of the image, in APEX units. |
+| MAX_APERTURE_VALUE <sup>12+</sup> | "MaxApertureValue" | The smallest F number of lens. |
+| SUBJECT_DISTANCE <sup>12+</sup> | "SubjectDistance" | The distance to the subject, measured in meters. |
+| SUBJECT_AREA <sup>12+</sup> | "SubjectArea" | This tag indicate the location and area of the main subject in the overall scene. |
+| MAKER_NOTE <sup>12+</sup> | "MakerNote" | A tag for manufacturers of Exif/DCF writers to record any desired infomation. |
+| SUBSEC_TIME <sup>12+</sup> | "SubsecTime" | A tag for record fractions of seconds for the DateTime tag. |
+| SUBSEC_TIME_ORIGINAL <sup>12+</sup> | "SubsecTimeOriginal" | A tag used to record fractions of seconds for the DateTimeOriginal tag. |
+| SUBSEC_TIME_DIGITIZED <sup>12+</sup> | "SubsecTimeDigitized" | A tag used to record fractions of seconds for the DateTimeDigitized tag. |
+| FLASHPIX_VERSION <sup>12+</sup> | "FlashpixVersion" | This tag denotes the Flashpix format version supported by an FPXR file, enhancing device compatibility. |
+| COLOR_SPACE <sup>12+</sup> | "ColorSpace" | The color space information tag, often recorded as the color space specifier. |
+| RELATED_SOUND_FILE <sup>12+</sup> | "RelatedSoundFile" | The name of an audio file related to the image data. |
+| FLASH_ENERGY <sup>12+</sup> | "FlashEnergy" | Strobe energy at image capture, in BCPS. |
+| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse" | Camera or input device spatial frequency table. |
+| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup> | "FocalPlaneXResolution" | Pixels per FocalPlaneResolutionUnit in the image width. |
+| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup> | "FocalPlaneYResolution" | Pixels per FocalPlaneResolutionUnit in the image height. |
+| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit" | Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution. |
+| SUBJECT_LOCATION <sup>12+</sup> | "SubjectLocation" | Location of the main subject, relative to the left edge. |
+| EXPOSURE_INDEX <sup>12+</sup> | "ExposureIndex" | Selected exposure index at capture. |
+| SENSING_METHOD <sup>12+</sup> | "SensingMethod" | Image sensor type on the camera. |
+| FILE_SOURCE <sup>12+</sup> | "FileSource" | Indicates the image source. |
+| CFA_PATTERN <sup>12+</sup> | "CFAPattern" | Color filter array (CFA) geometric pattern of the image sensor. |
+| CUSTOM_RENDERED <sup>12+</sup> | "CustomRendered"      | Indicates special processing on image data.                             |
+| EXPOSURE_MODE <sup>12+</sup> | "ExposureMode"      | Exposure mode set when the image was shot.                             |
+| DIGITAL_ZOOM_RATIO <sup>12+</sup> | "DigitalZoomRatio"      | Digital zoom ratio at the time of capture.                             |
+| SCENE_CAPTURE_TYPE <sup>12+</sup> | "SceneCaptureType"      | Type of scene captured.                             |
+| GAIN_CONTROL <sup>12+</sup> | "GainControl"      | Degree of overall image gain adjustment.                             |
+| CONTRAST <sup>12+</sup> | "Contrast"      | Direction of contrast processing applied by the camera.                             |
+| SATURATION <sup>12+</sup> | "Saturation"      | Direction of saturation processing applied by the camera.                             |
+| SHARPNESS <sup>12+</sup> | "Sharpness"      | The direction of sharpness processing applied by the camera.                             |
+| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"      | Information on picture-taking conditions for a specific camera model.                             |
+| SUBJECT_DISTANCE_RANGE <sup>12+</sup> | "SubjectDistanceRange"      | Indicates the distance range to the subject.                             |
+| IMAGE_UNIQUE_ID <sup>12+</sup> | "ImageUniqueID"      | An identifier uniquely assigned to each image.                             |
+| GPS_VERSION_ID <sup>12+</sup> | "GPSVersionID"      | The version of the GPSInfoIFD.                             |
+| GPS_ALTITUDE_REF <sup>12+</sup> | "GPSAltitudeRef"      | Reference altitude used for GPS altitude.                             |
+| GPS_ALTITUDE <sup>12+</sup> | "GPSAltitude"      | The altitude based on the reference in GPSAltitudeRef.                             |
+| GPS_SATELLITES <sup>12+</sup> | "GPSSatellites"      | The GPS satellites used for measurements.                             |
+| GPS_STATUS <sup>12+</sup> | "GPSStatus"      | The status of the GPS receiver when the image is recorded.                             |
+| GPS_MEASURE_MODE <sup>12+</sup> | "GPSMeasureMode"      | The GPS measurement mode.                             |
+| GPS_DOP <sup>12+</sup> | "GPSDOP"      | The GPS DOP (data degree of precision).                             |
+| GPS_SPEED_REF <sup>12+</sup> | "GPSSpeedRef"      | The unit used to express the GPS receiver speed of movement.                             |
+| GPS_SPEED <sup>12+</sup> | "GPSSpeed"      | The speed of GPS receiver movement.                             |
+| GPS_TRACK_REF <sup>12+</sup> | "GPSTrackRef"      | The reference for giving the direction of GPS receiver movement.                             |
+| GPS_TRACK <sup>12+</sup> | "GPSTrack"      | The direction of GPS receiver movement.                             |
+| GPS_IMG_DIRECTION_REF <sup>12+</sup> | "GPSImgDirectionRef"      | The reference for the image's direction.                             |
+| GPS_IMG_DIRECTION <sup>12+</sup> | "GPSImgDirection"      | The direction of the image when captured.                             |
+| GPS_MAP_DATUM <sup>12+</sup> | "GPSMapDatum"      | Geodetic survey data used by the GPS receiver.                             |
+| GPS_DEST_LATITUDE_REF <sup>12+</sup> | "GPSDestLatitudeRef"      | Indicates the latitude reference of the destination point.                             |
+| GPS_DEST_LATITUDE <sup>12+</sup> | "GPSDestLatitude"      | The latitude of the destination point.                             |
+| GPS_DEST_LONGITUDE_REF <sup>12+</sup> | "GPSDestLongitudeRef"      | Indicates the longitude reference of the destination point.                             |
+| GPS_DEST_LONGITUDE <sup>12+</sup> | "GPSDestLongitude"      | The longitude of the destination point.                             |
+| GPS_DEST_BEARING_REF <sup>12+</sup> | "GPSDestBearingRef"      | The reference for the bearing to the destination point.                             |
+| GPS_DEST_BEARING <sup>12+</sup> | "GPSDestBearing" | The bearing to the destination point. |
+| GPS_DEST_DISTANCE_REF <sup>12+</sup> | "GPSDestDistanceRef" | The measurement unit for the distance to the target point. |
+| GPS_DEST_DISTANCE <sup>12+</sup> | "GPSDestDistance" | The distance to the destination point. |
+| GPS_PROCESSING_METHOD <sup>12+</sup> | "GPSProcessingMethod" | A character string recording the name of the method used for location finding. |
+| GPS_AREA_INFORMATION <sup>12+</sup> | "GPSAreaInformation" | A character string recording the name of the GPS area. |
+| GPS_DIFFERENTIAL <sup>12+</sup> | "GPSDifferential" | This field denotes if differential correction was applied to GPS data, crucial for precise location accuracy. |
+| BODY_SERIAL_NUMBER <sup>12+</sup> | "BodySerialNumber" | The serial number of the camera body. |
+| CAMERA_OWNER_NAME <sup>12+</sup> | "CameraOwnerName" | The name of the camera owner. |
+| COMPOSITE_IMAGE <sup>12+</sup> | "CompositeImage" | Indicates whether the image is a composite image. |
+| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup> | "CompressedBitsPerPixel" | The compression mode used for a compressed image, in unit bits per pixel. |
+| DNG_VERSION <sup>12+</sup> | "DNGVersion" | The DNGVersion tag encodes the four-tier version number for DNG specification compliance.
+| DEFAULT_CROP_SIZE <sup>12+</sup> | "DefaultCropSize" | DefaultCropSize specifies the final image size in raw coordinates, accounting for extra edge pixels.
+| GAMMA <sup>12+</sup> | "Gamma" | Indicates the value of coefficient gamma.
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup> | "ISOSpeedLatitudeyyy" | The tag indicate the ISO speed latitude yyy value of the camera or input device that is defined in ISO 12232.
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup> | "ISOSpeedLatitudezzz" | The tag indicate the ISO speed latitude zzz value of the camera or input device that is defined in ISO 12232.
+| LENS_MAKE <sup>12+</sup> | "LensMake" | The manufacturer of the lens.
+| LENS_MODEL <sup>12+</sup> | "LensModel" | The model name of the lens.
+| LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | The serial number of the lens.
+| LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | Specifications of the lens used.
+| NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | This tag provides a broad description of the data type in this subfile.
+| OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | This tag records the UTC offset for the DateTime tag, ensuring accurate timestamps regardless of location.                             |
+| OFFSET_TIME_DIGITIZED <sup>12+</sup> | "OffsetTimeDigitized"      | This tag records the UTC offset when the image was digitized, aiding in accurate timestamp adjustment.                             |
+| OFFSET_TIME_ORIGINAL <sup>12+</sup> | "OffsetTimeOriginal"      | This tag records the UTC offset when the original image was created, crucial for time-sensitive applications.                             |
+| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"      | Exposure times of source images for a composite image.                             |
+| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceImageNumberOfCompositeImage"      | The number of source images used for a composite image.                             |
+| SUBFILE_TYPE <sup>12+</sup> | "SubfileType"      | This deprecated tag indicates the data type in this subfile. Use NewSubfileType instead.                             |
+| GPS_H_POSITIONING_ERROR <sup>12+</sup> | "GPSHPositioningError"      | This tag indicates horizontal positioning errors in meters.                             |
+| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup> | "PhotographicSensitivity"      | This tag indicates the sensitivity of the camera or input device when the image was shot.                             |
+| BURST_NUMBER <sup>12+</sup> | "HwMnoteBurstNumber"      | Burst Number.                             |
+| FACE_CONF <sup>12+</sup> | "HwMnoteFaceConf"      | Face Conf.                             |
+| FACE_LEYE_CENTER <sup>12+</sup> | "HwMnoteFaceLeyeCenter" | Face Leye Center. |
+| FACE_MOUTH_CENTER <sup>12+</sup> | "HwMnoteFaceMouthCenter" | Face Mouth Center. |
+| FACE_POINTER <sup>12+</sup> | "HwMnoteFacePointer" | Face Pointer. |
+| FACE_RECT <sup>12+</sup> | "HwMnoteFaceRect" | Face Rect. |
+| FACE_REYE_CENTER <sup>12+</sup> | "HwMnoteFaceReyeCenter" | Face Reye Center. |
+| FACE_SMILE_SCORE <sup>12+</sup> | "HwMnoteFaceSmileScore" | Face Smile Score. |
+| FACE_VERSION <sup>12+</sup> | "HwMnoteFaceVersion" | Face Version. |
+| FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | Front Camera. |
+| SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | Scene Pointer. |
+| SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | Scene Version. |
 
 ## ImageFormat<sup>9+</sup>
 
