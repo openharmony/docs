@@ -47,19 +47,15 @@ struct Index {
 
   build() {
     Column(){
-      Button("test").onClick(()=>{
-        this.getUIContext().setDynamicDimming("test",1)
-        animateTo({duration:5000 },()=>{
-          this.getUIContext().setDynamicDimming("test",0)
-        })
-      })
-      Image($r('app.media.app_icon')).width(100).height(100).id("test")
-
+      Image($r('app.media.testImage')).width(500).height(800).id("test")
     }.width("100%").height("100%").onClick(()=>{
-
+      this.getUIContext().setDynamicDimming("test",1)
+      animateTo({duration:5000 },()=>{
+        this.getUIContext().setDynamicDimming("test",0)
+      })
     })
-
   }
 }
-
 ```
+![api-switch-overview](../apis-arkui/figures/dynamicDinning.gif)
+
