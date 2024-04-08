@@ -2364,6 +2364,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
 | NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。 |
 
 ## NetBearType
 
