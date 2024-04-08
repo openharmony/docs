@@ -435,27 +435,3 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 ## VoidCallback<sup>12+</sup>
 
 函数回调：() => void
-
-## Callback<sup>12+</sup>
-
-Callback<T,V = void> = (T) => V;
-
-带参数的函数回调。
-
-## HoverCallback<sup>12+</sup>
-
-hover事件的回调类型。
-
-HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
-
-| 名称            | 类型定义                   | 描述                                       |
-| ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
-
-## StyledStringValue<sup>12+</sup>
-
-样式对象类型，用于设置属性字符串的样式。
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| TextStyle | 文本字体样式。 |
