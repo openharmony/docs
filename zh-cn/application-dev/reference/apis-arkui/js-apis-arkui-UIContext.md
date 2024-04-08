@@ -1705,6 +1705,214 @@ let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
 ```
 
+### on('willClick')<sup>12+</sup>
+
+on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('willClick', callback);
+```
+
+### off('willClick')<sup>12+</sup>
+
+off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('willClick', callback);
+```
+
+### on('didClick')<sup>12+</sup>
+
+on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('didClick', callback);
+```
+
+### off('didClick')<sup>12+</sup>
+
+off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('didClick', callback);
+```
+
+### on('willClick')<sup>12+</sup>
+
+on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('willClick', callback);
+```
+
+### off('willClick')<sup>12+</sup>
+
+off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('willClick', callback);
+```
+
+### on('didClick')<sup>12+</sup>
+
+on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('didClick', callback);
+```
+
+### off('didClick')<sup>12+</sup>
+
+off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('didClick', callback);
+```
+
 ## MediaQuery
 
 以下API需先使用UIContext中的[getMediaQuery()](#getmediaquery)方法获取到MediaQuery对象，再通过该对象调用对应方法。
