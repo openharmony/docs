@@ -76,6 +76,7 @@
  发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
 
 ```ts
+// API version 10
 import type {BusinessError} from '@ohos.base';
 import userAuth from '@ohos.userIAM.userAuth';
 
@@ -92,18 +93,18 @@ const widgetParam: userAuth.WidgetParam = {
 try {
   // 获取认证对象
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
     onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
       // 可在认证结束或其他业务需要场景，取消订阅认证结果
       userAuthInstance.off('result');
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -114,6 +115,7 @@ try {
 发起用户认证，采用认证可信等级≥ATL3的人脸 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
 
 ```ts
+// API version 10
 import type {BusinessError} from '@ohos.base';
 import userAuth from '@ohos.userIAM.userAuth';
 
@@ -135,18 +137,18 @@ const widgetParam: userAuth.WidgetParam = {
 try {
   // 获取认证对象
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
     onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
       // 可在认证结束或其他业务需要场景，取消订阅认证结果
       userAuthInstance.off('result');
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

@@ -1,4 +1,4 @@
-# Data Share Error Codes
+# DataShare Error Codes
 
 > **NOTE**
 >

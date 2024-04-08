@@ -398,14 +398,16 @@ class MyNodeController extends NodeController {
   }
 
   disposeFrameNode() {
-    this.rootNode.removeChild(this.builderNode.getFrameNode());
-    this.builderNode.dispose();
+    if (this.rootNode !== null && this.builderNode !== null) {
+      this.rootNode.removeChild(this.builderNode.getFrameNode());
+      this.builderNode.dispose();
 
-    this.rootNode.dispose();
+      this.rootNode.dispose();
+    }
   }
 
   removeBuilderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
       rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
     }

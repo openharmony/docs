@@ -2477,6 +2477,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_PROTOCOL_DFX_STATE
+
+允许系统应用打开或关闭通信协议相关的开关。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
 允许系统应用及系统SA调用账号服务。

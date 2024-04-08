@@ -200,6 +200,55 @@ getXComponentSurfaceRect(): SurfaceRect
 | ------------------------------------ | ------------------------------------- |
 | [SurfaceRect](#surfacerect12类型说明) | 获取XComponent持有Surface的显示区域。 |
 
+### onSurfaceCreated<sup>12+</sup>
+
+onSurfaceCreated(surfaceId: string): void
+
+当XComponent持有的Surface创建后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名    | 参数类型 | 必填 | 描述                                              |
+| --------- | -------- | ---- | ------------------------------------------------- |
+| surfaceId | string   | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。 |
+
+> **说明：**
+>
+> 仅当XComponent组件未设置libraryname参数时，会进行该回调。
+
+### onSurfaceChanged<sup>12+</sup>
+
+onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
+
+当XComponent持有的Surface大小改变后（包括首次创建时的大小改变）进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名    | 参数类型                              | 必填 | 描述                                                    |
+| --------- | ------------------------------------- | ---- | ------------------------------------------------------- |
+| surfaceId | string                                | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。       |
+| rect      | [SurfaceRect](#surfacerect12类型说明) | 是   | 回调该方法的时候，绑定XComponent持有Surface的显示区域。 |
+
+> **说明：**
+>
+> 仅当XComponent组件未设置libraryname参数时，会进行该回调。
+
+### onSurfaceDestroyed<sup>12+</sup>
+
+onSurfaceDestroyed(surfaceId: string): void
+
+当XComponent持有的Surface销毁后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名    | 参数类型 | 必填 | 描述                                              |
+| --------- | -------- | ---- | ------------------------------------------------- |
+| surfaceId | string   | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。 |
+
+> **说明：**
+>
+> 仅当XComponent组件未设置libraryname参数时，会进行该回调。
+
 ### SurfaceRect<sup>12+</sup>类型说明
 
 用于描述XComponent持有Surface的显示区域。
@@ -264,6 +313,8 @@ stopImageAnalyzer(): void
 ### 示例1
 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -299,7 +350,53 @@ struct PreviewArea {
 ```
 
 ### 示例2
-图像分析功能使用示例，示例效果请以真机运行为准，当前IDE预览器不支持。
+
+```ts
+// xxx.ets
+class CustomXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
+  }
+}
+
+@Entry
+@Component
+struct SurfaceCallbackDemo {
+  xComponentController: XComponentController = new CustomXComponentController()
+  @State xcWidth: string = "320px"
+  @State xcHeight: string = "480px"
+
+  build() {
+    Column() {
+      Button("change size")
+        .onClick(() => {
+          this.xcWidth = "640px"
+          this.xcHeight = "960px"
+        })
+      XComponent({
+        id: 'xcomponent',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+      })
+        .width(this.xcWidth)
+        .height(this.xcHeight)
+    }
+    .width("100%")
+  }
+}
+```
+
+### 示例3
+
+图像分析功能使用示例。
 
 ```ts
 // xxx.ets
@@ -336,13 +433,11 @@ struct ImageAnalyzerExample {
         type: XComponentType.SURFACE,
         controller: this.xComponentController
       })
-        .onLoad(() => {
-        })
         .enableAnalyzer(true)
         .width('640px')
         .height('480px')
     }
-    .position({ x: 0, y: 48 })
+    .width("100%")
   }
 }
 ```

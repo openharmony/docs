@@ -514,11 +514,11 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 
 ### 调测验证
 
-驱动开发完成后，通过[用户认证API接口](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)开发JS应用，基于RK3568平台验证。
+驱动开发完成后，通过[用户认证API接口](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)开发HAP应用，基于RK3568平台验证。
 
-1.发起认证并获取认证结果的JS测试代码如下：
+1.发起认证并获取认证结果的测试代码如下：
 
-```js
+```ts
   // API version 10
   import type {BusinessError} from '@ohos.base';
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
@@ -554,9 +554,9 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
   }
 ```
 
-2.取消认证的JS测试代码如下：
+2.取消认证的测试代码如下：
 
-```js
+```ts
   // API version 10
   import type {BusinessError} from '@ohos.base';
   import userIAM_userAuth from '@ohos.userIAM.userAuth';
