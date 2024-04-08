@@ -1017,6 +1017,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
+| cause<sup>12+</sup>| UnbondCause | 是 | 否 | 表示配对失败的原因。|
 
 
 ## PinRequiredParam
@@ -1084,3 +1085,18 @@ try {
 | BOND_STATE_INVALID | 0    | 无效的配对。 |
 | BOND_STATE_BONDING | 1    | 正在配对。  |
 | BOND_STATE_BONDED  | 2    | 已配对。   |
+
+
+## UnbondCause<sup>12+</sup>
+
+枚举，配对失败原因。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                 | 值  | 说明     |
+| ------------------ | ---- | ------ |
+| USER_REMOVED        | 0    | 用户主动移除设备。|
+| REMOTE_DEVICE_DOWN  | 1    | 远端设备关闭。|
+| AUTH_FAILURE        | 2    | PIN码错误。|
+| AUTH_REJECTED       | 3    | 远端设备鉴权拒绝。|
+| INTERNAL_ERROR      | 4    | 内部错误。|
