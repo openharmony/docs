@@ -3379,3 +3379,37 @@ struct RichEditorExample {
   }
 }
 ```
+### 示例18
+
+enterKeyType，onSubmit，stopEditing使用示例。
+
+```ts
+@Entry
+@Component
+struct SoftKeyboardEnterTypeExample {
+  controller: RichEditorController = new RichEditorController()
+
+    build() {
+    Column() {
+      Button("停止编辑").onClick(()=>{
+        this.controller.stopEditing()
+      })
+      RichEditor({ controller: this.controller })
+        .margin(10)
+        .border({ width: 1 })
+        .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+        .enterKeyType(EnterKeyType.Search)
+        .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+          console.log("trigger richeditor onsubmit" + enterKey);
+          this.controller.addTextSpan(" type["+ enterKey +"] triggerred")
+          event.keepEditableState();
+        })
+    }.height("100%").justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![SoftKeyboardEnterType](figures/richeditorentertype.gif)
