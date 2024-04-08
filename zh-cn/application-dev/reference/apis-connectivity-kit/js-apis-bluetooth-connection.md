@@ -1017,7 +1017,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
-| cause<sup>12+</sup>| UnbondCause | 是 | 否 | 表示配对失败的原因。|
+| cause<sup>12+</sup>| [UnbondCause](#unbondcause12) | 是 | 否 | 表示配对失败的原因。|
 
 
 ## PinRequiredParam
