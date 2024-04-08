@@ -129,6 +129,23 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp;\|&nbsp;[CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10)&nbsp;\|&nbsp;<br/>[RingStyleOptions<sup>10+</sup>](#ringstyleoptions10)&nbsp;\|&nbsp;[LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10)&nbsp;\|&nbsp;<br/>[ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10)&nbsp;\|&nbsp;[EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | 是   | 组件的样式。<br/>- CapsuleStyleOptions：设置Capsule的样式。<br/>- RingStyleOptions：设置Ring的样式。<br/>- LinearStyleOptions：设置Linear的样式。<br/>- ScaleRingStyleOptions：设置ScaleRing的样式。<br/>- EclipseStyleOptions：设置Eclipse的样式。<br/>- ProgressStyleOptions：仅可设置各类型进度条的基本样式。<br/>ProgressStyleOptions，暂不支持其它的参数类型。 |
 
+### contentModifier<sup>12+</sup>
+contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
+
+定制progress内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+## ProgressConfiguration<sup>12+</sup>
+| 名称 | 参数类型   | 必填 | 描述         |
+| ------ | ------ | ---- | ------------ |
+| value  | number | 是   | 当前进度值。 |
+| total  | number | 是   | 进度总长。   |
 ## ProgressStyleOptions<sup>8+</sup>
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
@@ -372,3 +389,80 @@ struct Index {
 
 ```
 ![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)
+
+### 示例6
+
+该示例实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度被填充自定义颜色。
+
+```ts
+// xxx.ets
+class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
+  color: Color = Color.White
+
+
+  constructor(color:Color) {
+    this.color = color
+  }
+  applyContent() : WrappedBuilder<[ProgressConfiguration]>
+  {
+    return wrapBuilder(myProgress)
+  }
+}
+
+@Builder function myProgress(config: ProgressConfiguration ) {
+
+  Column({space:30}) {
+    Text("当前进度：" + config.value + "/" + config.total).fontSize(20)
+    Row() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+        Path()
+          .width('30%')
+          .height('30%')
+          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
+          .fill(config.enabled && config.value >=1 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width('30%')
+          .height('30%')
+          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
+          .fill(config.enabled && config.value >=2 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width('30%')
+          .height('30%')
+          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
+          .fill(config.enabled && config.value >=3 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+      }.width('100%')
+    }
+  }.margin({bottom:100})
+}
+
+@Entry
+@Component
+struct Index {
+  @State currentValue: number = 0
+  modifier = new MyProgressModifier(Color.Red)
+  @State myModifier:(MyProgressModifier | undefined)  = this.modifier
+  build() {
+    Column() {
+        Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring}).contentModifier(this.modifier)
+        Button('Progress++').onClick(()=>{
+          if (this.currentValue < 3) {
+            this.currentValue += 1
+          }
+        }).width('30%')
+        Button('addProgress--').onClick(()=>{
+          if (this.currentValue > 0) {
+            this.currentValue -= 1
+          }
+        }).width('30%')
+    }.width('100%').height('100%')
+  }
+}
+
+```
+![progressCustom](figures/arkts-progressCustom.gif)
