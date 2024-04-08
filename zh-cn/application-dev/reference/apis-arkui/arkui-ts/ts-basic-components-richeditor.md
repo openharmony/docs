@@ -327,6 +327,68 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&n
 | enterKey  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
 | event  | [SubmitEvent](ts-types.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。 |
 
+### onWillChange<sup>12+</sup>
+
+onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
+
+文本变化前，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                                            | 必填 | 说明                     |
+| ----------------------------------------------- | ---- | ------------------------ |
+| [RichEditorChangeValue](#richeditorchangevalue12) | 是   | 文本变化信息。 |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | true：允许文本被更改。false：不允许文本被更改。 |
+
+### onDidChange<sup>12+</sup>
+
+onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
+
+文本变化后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                                            | 必填 | 说明                     |
+| ----------------------------------------------- | ---- | ------------------------ |
+| Array<[RichEditorTextSpanResult>](#richeditortextspanresult)> | 是   | 文本变化后信息。与RichEditorChangeValue中的replacedSpans相同。 |
+
+### onCut<sup>12+</sup>
+
+onCut(callback: Callback\<CutEvent\>)
+
+完成剪切前，触发回调。系统的默认剪切行为，只支持纯文本的剪切。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                        | 必填 | 说明               |
+| --------------------------- | ---- | ------------------ |
+| [CutEvent](#cutevent12) | 否   | 定义用户剪切事件。 |
+
+### onCopy<sup>12+</sup>
+
+onCopy(callback: Callback\<CopyEvent\>)
+
+完成复制前，触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                        | 必填 | 说明               |
+| --------------------------- | ---- | ------------------ |
+| [CopyEvent](#copyevent12) | 否   | 定义用户复制事件。 |
+
 ## RichEditorInsertValue
 
 插入文本信息。
@@ -470,6 +532,13 @@ setSelection的选择项配置。
 | ---------- |-----------------------------------------------------------------------| ---- | ------- |
 | types | [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11)[] | 是    | 文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate | (result:&nbsp;string)&nbsp;=&gt;&nbsp;void                            | 否    | 文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
+
+## RichEditorChangeValue<sup>12+</sup>
+
+| 名称                    | 类型                                       | 必填   | 说明                  |
+| --------------------- | ---------------------------------------- | ---- | ------------------- |
+| originalSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换前文本Span的具体信息。 |
+| replacedSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后文本Span的具体信息。 |
 
 ## RichEditorController
 
@@ -973,6 +1042,22 @@ SymbolSpan样式选项。
 | 名称             | 类型          | 必填   | 描述                            |
 | -------------- | ----------- | ---- | ----------------------------- |
 | preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
+
+## CutEvent<sup>12+</sup>
+
+定义用户剪切事件。
+
+| 名称             | 类型          | 必填   | 描述                            |
+| -------------- | ----------- | ---- | ----------------------------- |
+| preventDefault | () => void | 否    | 阻止系统默认剪切事件。 |
+
+## CopyEvent<sup>12+</sup>
+
+定义用户拷贝事件。
+
+| 名称             | 类型          | 必填   | 描述                            |
+| -------------- | ----------- | ---- | ----------------------------- |
+| preventDefault | () => void | 否    | 阻止系统默认拷贝事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -3210,3 +3295,87 @@ struct RichEditor_onEditingChange {
 
 ![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
 
+### 示例17
+
+onWillChange，onDidChange，onCut，onCopy使用示例。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+        .onReady(() => {
+          this.controller.addTextSpan('测试文字TestWord', { style: { fontColor: Color.Orange, fontSize: 30 } })
+          this.controller.updateSpanStyle({
+            start: -1,
+            end: -1,
+            textStyle:
+            {
+              fontWeight: FontWeight.Bolder
+            }
+          })
+        })
+        .onWillChange((value: RichEditorChangeValue)=>{
+          console.log('测试log：onWillChange'+JSON.stringify(value))
+          value.originalSpans.forEach((item: RichEditorTextSpanResult) => {
+            console.log("spanPosition:" + JSON.stringify(item.spanPosition))
+            console.log("value:" + item.value)
+            console.log("textStyle:" + JSON.stringify(item.textStyle))
+            console.log("offsetInSpan:" + item.offsetInSpan)
+            console.log("valueResource:" + item.valueResource)
+            console.log("symbolSpanStyle:" +JSON.stringify( item.symbolSpanStyle))
+            console.log("paragraphStyle:" + JSON.stringify(item.paragraphStyle))
+          })
+          value.replacedSpans.forEach((item: RichEditorTextSpanResult) => {
+            console.log("spanPosition:" + JSON.stringify(item.spanPosition))
+            console.log("value:" + item.value)
+            console.log("textStyle:" + JSON.stringify(item.textStyle))
+            console.log("offsetInSpan:" + item.offsetInSpan)
+            console.log("valueResource:" + item.valueResource)
+            console.log("symbolSpanStyle:" +JSON.stringify( item.symbolSpanStyle))
+            console.log("paragraphStyle:" + JSON.stringify(item.paragraphStyle))
+          })
+          return true
+        })
+        .onDidChange((value: Array<RichEditorTextSpanResult>)=>{
+          console.log('测试log：onDidChange'+JSON.stringify(value))
+          value.forEach((item: RichEditorTextSpanResult) => {
+            console.log("spanPosition:" + JSON.stringify(item.spanPosition))
+            console.log("value:" + item.value)
+            console.log("textStyle:" + JSON.stringify(item.textStyle))
+            console.log("offsetInSpan:" + item.offsetInSpan)
+            console.log("valueResource:" + item.valueResource)
+            console.log("symbolSpanStyle:" +JSON.stringify( item.symbolSpanStyle))
+            console.log("paragraphStyle:" + JSON.stringify(item.paragraphStyle))
+          })
+        })
+        .onCut((event:CutEvent) => {
+          event.preventDefault!()
+          console.log('测试log：onCut')
+        })
+        .onCopy((event:CopyEvent) => {
+          event.preventDefault!()
+          console.log('测试log：onCopy')
+        })
+        .onPaste(()=>{
+          console.log('测试log：onPaste')
+        })
+      Text('测试文字去Hellow')
+        .lineHeight(50)
+        .fontSize(24)
+        .draggable(true)
+        .onDragStart(()=>{})
+      TextInput({text:'测试文字NiHao'})
+        .draggable(true)
+        .margin(20)
+    }
+  }
+}
+```
