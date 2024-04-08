@@ -146,9 +146,15 @@ API version 12及以后：
 
 a)当前Text组件长按出现菜单时，旋转屏幕，隐藏菜单，保持选中态。
 
-b)当前TextInput/TextArea/Search/RichEditor组件长按出现菜单时，隐藏菜单，保持选中态。
+b)当前TextInput/TextArea/Search/RichEditor组件长按出现菜单时，进行复制行为，隐藏菜单，保持选中态。
 
 c)当前TextInput/TextArea/Search/RichEditor组件在手机和平板设备上通过代码选区，出现选中态和手柄，用户可自定义出现菜单。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/text_before.png) | ![](figures/text_after.png) |
+| ![](figures/copy_before.png) | ![](figures/copy_after.png) |
+| ![](figures/selection_before.png) | ![](figures/select_after.png) |
 
 **API Level**
 
