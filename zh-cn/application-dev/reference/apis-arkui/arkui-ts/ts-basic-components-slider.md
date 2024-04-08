@@ -367,6 +367,20 @@ minResponsiveDistance(value: number)
 | ------ | ------- | ---- | ------------------------------------------ |
 | value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数min和max一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
 
+## contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<SliderConfiguration>)
+
+定制Slider内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
 Slider组件滑块形状参数。
@@ -431,6 +445,29 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | Moving | 1 | 正在拖动滑块过程中。 |
 | End | 2 | 手势/鼠标离开滑块。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
+
+## SliderConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    | 说明              |
+| ------ | ------ | ---------------- |
+| value | number | 当前进度值。 |
+| min | number | 最小值。 |
+| max | number | 最大值。 |
+| step | number | Slider滑动步长。 |
+| triggerChange | [SliderTriggerChangeCallback](#slidertriggerchangecallback12对象说明) | 触发Slider变化。 |
+
+## SliderTriggerChangeCallback<sup>12+</sup>对象说明
+
+定义SliderConfiguration中使用的回调类型。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| value | number | 是 | 设置当前的进度值。 |
+| mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
+
+
 
 ## 示例
 
@@ -665,3 +702,90 @@ struct SliderExample {
 ```
 
 ![slider_2](figures/slider_2.png)
+
+
+
+### 示例3
+
+```ts
+// xxx.ets
+//该示例实现了Slider组件通过样式Builder定制内容区，使用了进度条组件，按钮和文本框。点击增加按钮，进度条会按照原Slider设置的步长增加，反之点减少按钮进度条会减少，并触发原组件的onChange事件。
+@Builder function buildSlider(config: SliderConfiguration) {
+  Row() {
+    Column({space: 30}) {
+      Progress({value: config.value, total: config.max, type:(config.contentModifier as MySliderStyle).progressType})
+        .margin(30)
+
+      Button('增加').onClick(() => {
+        config.value=config.value+config.step
+        config.triggerChange(config.value, SliderChangeMode.Click)
+      })
+        .width(100)
+        .height(30)
+        .fontSize(12)
+
+      Button('减少').onClick(() => {
+        config.value=config.value-config.step
+        config.triggerChange(config.value, SliderChangeMode.Click)
+      })
+        .width(100)
+        .height(30)
+        .fontSize(12)
+
+      Text('进度值：'+ config.value)
+        .fontSize(12)
+        .margin({top: 10})
+      Text('最小值：'+ config.min)
+        .fontSize(12)
+      Text('最大值：'+ config.max)
+        .fontSize(12)
+      Text('步长：'+ config.step)
+        .fontSize(12)
+    }
+    .width('80%')
+    .height('100%')
+
+  }
+  .width('100%')
+}
+
+class MySliderStyle implements ContentModifier<SliderConfiguration> {
+  progressType:number=0
+  constructor(progressType: number) {
+    this.progressType = progressType
+  }
+  applyContent() : WrappedBuilder<[SliderConfiguration]> {
+    return wrapBuilder(buildSlider)
+  }
+}
+
+
+@Entry
+@Component
+struct SliderExample {
+  @State sliderValue: number = 40
+
+  build() {
+    Column({ space: 8 }) {
+      Row() {
+        Slider({
+          value: this.sliderValue,
+          min: 0,
+          max: 100,
+          step:10
+        })
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.sliderValue = value
+            console.info('【SliderLog】value:' + value + 'mode:' + mode.toString())
+          })
+          .contentModifier(new MySliderStyle(0))
+      }
+      .width('50%')
+
+    }.width('100%')
+  }
+}
+```
+
+![slider_3](figures/slider_builder.gif)
+
