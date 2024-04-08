@@ -78,9 +78,9 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 从API version 12开始，type为SURFACE("surface")或TEXTURE时，满足以下条件时支持[通用事件](ts-universal-events-click.md)：
 
-- 白名单内通用事件，与NDK对应接口互斥，仅未配置libraryname时生效。
+- 以下通用事件与NDK对应接口互斥，仅未配置libraryname时生效。
 
-  > **白名单事件：**
+  > **以下事件配置libraryname字段时无效：**
   >
   > [点击事件](ts-universal-events-click.md)
   > [触摸事件](ts-universal-events-touch.md)
@@ -89,7 +89,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
   > [焦点事件](ts-universal-focus-event.md)
   > [鼠标事件](ts-universal-mouse-key.md)
 
-- 非白名单事件，无对应NDK接口，无论是否配置libraryname都能生效。
+- 其他通用事件无对应NDK接口，无论是否配置libraryname都能生效。
 
 仅type为SURFACE("surface")或TEXTURE时以下事件有效。
 
