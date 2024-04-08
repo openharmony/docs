@@ -1887,6 +1887,8 @@ getPreferredOrientation(): Orientation
 
 主窗口调用，获取窗口的显示方向属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
