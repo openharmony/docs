@@ -1899,7 +1899,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 readLongArray(): number[]
 
-Reads the long array from this **MessageSequence** object.
+Reads the long integer array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3851,7 +3851,7 @@ Moves the read pointer to the specified position.
 
   | Type   | Description                                             |
   | ------- | ------------------------------------------------- |
-| boolean | Returns **true** if the read position changes; returns **false** otherwise.|
+  | boolean | Returns **true** if the read position changes; returns **false** otherwise.|
 
 **Example**
 
@@ -3886,7 +3886,7 @@ Moves the write pointer to the specified position.
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-| boolean | Returns **true** if the write position changes; returns **false** otherwise.|
+  | boolean | Returns **true** if the write position changes; returns **false** otherwise.|
 
 **Example**
 
@@ -6262,7 +6262,6 @@ Defines the response to the request.
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
 
-
 ## IRemoteObject
 
 Provides methods to query of obtain interface descriptors, add or delete death notifications, dump object status to specific files, and send messages.
@@ -6563,6 +6562,8 @@ Checks whether this object is dead.
   | Type   | Description                              |
   | ------- | ---------------------------------- |
   | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
+
+
 
 ## RemoteProxy
 
@@ -6943,7 +6944,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7630,7 +7631,7 @@ Checks whether the **RemoteObject** is dead.
 
   | Type   | Description                                             |
   | ------- | ------------------------------------------------- |
-  | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
+  | boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
@@ -7689,7 +7690,7 @@ Defines the options used to construct the **MessageOption** object.
   | TF_SYNC       | 0 (0x00)  | Synchronous call.                                             |
   | TF_ASYNC      | 1 (0x01)  | Asynchronous call.                                             |
   | TF_ACCEPT_FDS | 16 (0x10) | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter is not used in IPC.                                    |
+  | TF_WAIT_TIME  | 4 (0x4)   | RPC wait time, in seconds. This parameter cannot be used in IPC.                                    |
 
 ### constructor<sup>9+</sup>
 
@@ -8192,7 +8193,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 static resetCallingIdentity(): string
 
-Changes the UID and PID of the remote user to the UID and PID of the local user. This API is a static method. You can use it in scenarios such as identity authentication.
+Resets the UID and PID of the remote user to those of the local user. This API is a static method and is used in scenarios such as identity authentication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8220,7 +8221,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 static restoreCallingIdentity(identity: string): void
 
-Restores the UID and PID of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
+Restores the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8251,7 +8252,7 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 static setCallingIdentity(identity: string): boolean
 
-Sets the UID and PID to that of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
+Sets the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8562,7 +8563,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
