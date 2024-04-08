@@ -8,6 +8,7 @@
 - [Ads Kit API参考](apis-ads-kit/Readme-CN.md)
 - [ArkData API参考](apis-arkdata/Readme-CN.md)
 - [ArkGraphics 2D API参考](apis-arkgraphics2d/Readme-CN.md)
+- [ArkGraphics 3D API参考](apis-arkgraphics3d/Readme-CN.md)
 - [ArkTS API参考](apis-arkts/Readme-CN.md)
 - [ArkUI API参考](apis-arkui/Readme-CN.md)
 - [ArkWeb API参考](apis-arkweb/Readme-CN.md)
