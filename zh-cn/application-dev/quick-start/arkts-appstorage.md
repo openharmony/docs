@@ -460,7 +460,6 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
   private index: number = 0;
   private uri: Resource = {
     id: 0,
