@@ -46,6 +46,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。 |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
 | onHeightDidChange<sup>12+</sup> | (value: number) => void | 否 | 半模态页面高度变化回调函数。<br/>**说明：**<br/>底部弹窗时，只有挡位变化和拖拽跟手才返回每一帧高度，拉起半模态和避让软键盘只返回最后的高度，其他弹窗只在半模态拉起返回最后高度。<br/>返回值为px。 |
+| onDetentsDidChange<sup>12+</sup> | (value: number) => void | 否 | 半模态页面挡位变化回调函数。<br/>**说明：**<br/>底部弹窗时，拉起半模态和挡位变化返回最后的高度。<br/>返回值为px。 |
 
 ## SheetSize枚举说明
 
