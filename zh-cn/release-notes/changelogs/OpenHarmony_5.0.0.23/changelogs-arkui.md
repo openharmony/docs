@@ -208,3 +208,34 @@ Image组件
 **适配指导**
 
 若应用侧需要Image组件同步加载pixelmap，则需要设置syncLoad为true。
+
+## cl.arkui.4 bindMenu新增指向性菜单样式
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：在bindMenu的MenuOptions中将enableArrow属性设为true时，不展示指向性菜单样式。
+
+变更后：在bindMenu的MenuOptions中将enableArrow属性设为true且菜单的大小和位置足以放置箭头时，会展示指向性菜单样式。
+
+**API Level**
+
+enableArrow、arrowOffset属性的起始支持版本为API version 10。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+如果不需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中不设置enableArrow属性或将enableArrow属性设置为false；
+如果需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中将enableArrow属性设置为true，并根据需要决定是否设置arrowOffset属性值。
