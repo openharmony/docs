@@ -24,20 +24,8 @@ Canvas(context?: CanvasRenderingContext2D)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+支持[通用属性](ts-universal-attributes-size.md)。
 
-### enableAnalyzer<sup>12+</sup>
-
-设置组件支持AI分析，需要搭配[context](ts-canvasrenderingcontext2d.md)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer)一起使用。
-不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false |
 
 ## 事件
 

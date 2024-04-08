@@ -790,9 +790,3 @@ Nullable\<T> {
 | NO_FORCE_ROUND | 不取整计算。|
 | FORCE_CEIL | 取上整计算。|
 | FORCE_FLOOR | 取下整计算。|
-
-## StyledStringKey<sup>12+</sup>
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
