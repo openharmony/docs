@@ -72,7 +72,7 @@ try {
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
-注销错误观测器。
+注销错误观测器。使用callback异步返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -118,7 +118,7 @@ try {
 
 off(type: 'error', observerId: number): Promise\<void>
 
-注销错误观测器。
+注销错误观测器。使用Promise异步返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,7 +133,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -178,7 +178,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示注册主线程消息处理耗时监听器。 |
-| timeout | number | 是 |  表示事件执行阈值。 阈值必须大于0|
+| timeout | number | 是 |  表示事件执行阈值（单位：毫秒）。 阈值必须大于0。 |
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
 
 **示例：**
@@ -213,7 +213,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16200001 | Invalid caller. |
+| 16200001 | If the caller is invalid. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -253,7 +253,7 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
-| observer | LoopObserver | 否 | 应用主线程观察器标志。 |
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观察器标志。 |
 
 **示例：**
     
@@ -262,6 +262,8 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 errorManager.off("loopObserver");
 ```
+
+## ErrorManager.off<sup>12+</sup>
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 

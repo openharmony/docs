@@ -322,8 +322,8 @@ let p: Promise<void> = lock.lockAsync<void, string>(
 
 | 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                               |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------ |
-| isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true表示如果无法立即获取锁，则操作将被取消。默认为 false。                                   |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。如果signal.aborted为true，则不会调用回调。默认为 null。                                    |
+| isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true表示如果无法立即获取锁，则操作将被取消；为false时表示将等待当前锁被释放。默认为 false。                                   |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。如果signal.aborted为true，则不会调用回调；为null时表示会调用回调。默认为 null。                                    |
 | timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回拒绝的Promise。默认为 0。 |
 
 ### AsyncLockState

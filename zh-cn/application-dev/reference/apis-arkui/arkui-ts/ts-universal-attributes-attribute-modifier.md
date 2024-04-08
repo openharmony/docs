@@ -63,10 +63,25 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
+不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
+## 自定义Modifier
+从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
+
+**自定义Modifier支持范围:**  
+
+CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitModifier、SideBarContainerModifier、BlankModifier、DividerModifier、GridColModifier、GridRowModifier、NavDestinationModifier、NavigatorModifier、StackModifier、NavigationModifier、NavRouterModifier、StepperItemModifier、TabsModifier、GridModifier、GridItemModifier、ListModifier、ListItemModifier、ListItemGroupModifier、ScrollModifier、SwiperModifier、WaterFlowModifier、ButtonModifier、CounterModifier、TextPickerModifier、TimePickerModifier、ToggleModifier、CalendarPickerModifier、CheckboxModifier、CheckboxGroupModifier、DatePickerModifier、RadioModifier、RatingModifier、SelectModifier、SliderModifier、PatternLockModifier、SpanModifier、RichEditorModifier、SearchModifier、TextAreaModifier、TextModifier、TextInputModifier、ImageSpanModifier、ImageAnimatorModifier、ImageModifier、VideoModifier、DataPanelModifier、GaugeModifier、LodingProgressModifier、MarqueeModifier、ProgressModifier、QRCodeModifier、TextClockModifier、TextTimerModifier、LineModifier、PathModifier、PolygonModifier、PolylineModifier、RectModifier、ShapeModifier、AlphabetIndexerModifier、FormComponentModifier、HyperlinkModifier、MenuModifier、MenuItemModifier、PanelModifier。  
+未暴露的组件Modifier可以使用CommonModifier。 
+
+**注意事项**
+1. 设置自定义Modifier给一个组件，该组件对应属性生效。  
+2. 自定义Modifier属性值变化，组件对应属性也会变化。自定义Modifier类型为基类，构造的对象为子类对象，使用时要通过as进行类型断言为子类。  
+3. 一个自定义Modifier设置给两个组件，Modifier属性变化的时候对两个组件同时生效。  
+4. 一个Modifier设置了属性A和属性B，再设置属性C和属性D，4个属性同时在组件上生效。  
+5. 自定义Modifier不支持@State标注的状态数据的变化感知，见示例2。  
+6. 多次通过attributeModifier设置属性时，生效的属性为所有属性的并集，相同属性按照设置顺序生效。   
 
 ## 示例
-
+### 示例1
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -134,3 +149,111 @@ struct attributePressedDemo {
 }
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
+
+### 示例2
+自定义Modifier不支持@State标注的状态数据的变化感知。
+```ts
+import {CommonModifier} from "@ohos.arkui.modifier"
+
+class MyModifier extends CommonModifier {
+  applyNormalAttribute(instance: CommonAttribute) : void{
+    super.applyNormalAttribute?.(instance);
+  }
+}
+
+@Component
+struct MyImage1 {
+  @Link modifier : CommonModifier
+
+  build(){
+    Image($r("app.media.testImage")).attributeModifier(this.modifier as MyModifier)
+  }
+}
+@Entry
+@Component
+struct Index {
+  index : number = 0;
+  @State width1 : number = 100;
+  @State height1 : number = 100;
+  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10)
+
+  build() {
+    Column() {
+      Button($r("app.string.EntryAbility_label"))
+        .margin(10)
+        .onClick(() => {
+          console.log("Modifier","onClick")
+          this.index ++;
+          if(this.index %2 === 1){
+            this.width1 = 10;
+            console.log("Modifier","setGroup1")
+          }else{
+            this.width1 = 10;
+            console.log("Modifier","setGroup2")
+          }
+        })
+      MyImage1({modifier:this.myModifier})
+    }
+    .width('100%')
+  }
+}
+```
+![attributeModifier2](figures/attributeModifier2.gif)  
+### 示例3
+自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
+```ts
+import {CommonModifier} from "@ohos.arkui.modifier"
+
+class MyModifier extends CommonModifier {
+  applyNormalAttribute(instance: CommonAttribute) : void{
+    super.applyNormalAttribute?.(instance);
+  }
+
+  public setGroup1() : void {
+    this.borderStyle(BorderStyle.Dotted)
+    this.borderWidth(8)
+  }
+
+  public setGroup2() : void {
+    this.borderStyle(BorderStyle.Dashed)
+    this.borderWidth(8)
+  }
+}
+
+@Component
+struct MyImage1 {
+  @Link modifier : CommonModifier
+
+  build(){
+    Image($r("app.media.testImage")).attributeModifier(this.modifier as MyModifier)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10)
+  index : number = 0;
+
+  build() {
+    Column() {
+      Button($r("app.string.EntryAbility_label"))
+        .margin(10)
+        .onClick(() => {
+          console.log("Modifier","onClick")
+          this.index ++;
+          if(this.index %2 === 1){
+            (this.myModifier as MyModifier).setGroup1()
+            console.log("Modifier","setGroup1")
+          }else{
+            (this.myModifier as MyModifier).setGroup2()
+            console.log("Modifier","setGroup2")
+          }
+        })
+      MyImage1({modifier:this.myModifier})
+    }
+    .width('100%')
+  }
+}
+```
+![attributeModifier](figures/attributeModifier.gif)

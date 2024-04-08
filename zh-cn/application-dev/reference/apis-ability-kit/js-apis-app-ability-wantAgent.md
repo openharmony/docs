@@ -815,7 +815,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
+| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
 
 **示例：**
 
@@ -905,7 +905,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
 
 **示例：**
 
@@ -1153,6 +1153,8 @@ try {
 
 ## WantAgentFlags
 
+表示使用WantAgent类型的枚举。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                                      |
@@ -1172,6 +1174,8 @@ try {
 
 ## OperationType
 
+表示操作WantAgent类型的枚举。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称              | 值            | 说明                      |
@@ -1185,6 +1189,8 @@ try {
 
 
 ## CompleteData 
+
+表示主动激发WantAgent返回的数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

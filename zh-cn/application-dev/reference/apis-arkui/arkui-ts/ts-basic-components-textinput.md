@@ -288,18 +288,6 @@ showUnderline(value: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | value  | boolean | 是   | 是否开启下划线。<br/>默认值：false |
 
-### underlineColor<sup>12+</sup>
-
-underlineColor(value: ResourceColor|UnderlineColor|undefined)
-
-开启下划线时，支持配置下划线颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\| [UnderlineColor](#underlinecolor12对象说明)\|undefined | 否   | 设置下划线颜色。<br/>当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。 |
-
 ### passwordIcon<sup>10+</sup>
 
 passwordIcon(value: PasswordIcon)
@@ -372,19 +360,6 @@ maxLines(value: number)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
 
-### wordBreak<sup>12+</sup>
-
-wordBreak(value: WordBreak)
-
-设置文本断行规则。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -493,49 +468,6 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
-### lineHeight<sup>12+</sup>
-
-lineHeight(value: number | string | Resource)
-
-设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明             |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
-
-### decoration<sup>12+</sup>
-
-decoration(value: TextDecorationOptions)
-
-设置文本装饰线样式及其颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
-
-### letterSpacing<sup>12+</sup>
-
-letterSpacing(value: number | string | Resource)
-
-设置文本字符间距。设置该值为百分比时，按默认值显示。
-
-当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                       | 必填 | 说明           |
-| ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -551,12 +483,6 @@ letterSpacing(value: number | string | Resource)
 | ------ | -------- | ---- | ------------------------------------------- |
 | width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
 
-## TextDecorationOptions<sup>12+</sup>对象说明
-
-| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
-| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 
 ## EnterKeyType枚举说明
 
@@ -565,9 +491,9 @@ letterSpacing(value: number | string | Resource)
 | Go                     | 显示为开始样式。  |
 | Search                 | 显示为搜索样式。  |
 | Send                   | 显示为发送样式。  |
-| Next                   | 显示为下一个样式。 |
+| Next                   | 显示为下一步样式。 |
 | Done                   | 显示为完成样式。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一个样式。 |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。  |
 
 ## InputType枚举说明
@@ -773,29 +699,13 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。               |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
-##  SelectionOptions<sup>12+</sup>
 
-setTextSelection选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
 
 ### stopEditing<sup>10+</sup>
 
@@ -872,15 +782,6 @@ getCaretOffset(): CaretOffset
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
-
-## UnderlineColor<sup>12+</sup>对象说明
-
-| 参数名  | 类型                                                        | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| typing  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| normal  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| error   | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
-| disable | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
 ## 示例
 
@@ -1205,125 +1106,3 @@ struct phone_example {
 ```
 ![phone_example](figures/phone_number.jpeg)
 
-### 示例7
-
-本示例展示如何在下划线开启时，设置下划线颜色。
-
-```ts
-@Entry
-@Component
-struct Index {
-
-  build() {
-    Row() {
-      Column() {
-        TextInput({placeholder:'提示文本内容'})
-          .showUnderline(true)
-          .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
-        TextInput({placeholder:'提示文本内容'})
-          .showUnderline(true)
-          .underlineColor(Color.Gray);
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![UnderlineColor](figures/UnderlineColor.png)
-
-
-### 示例8
-示例展示设置不同wordBreak属性的TextArea样式。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  build() {
-    Column() {
-      Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline) // Inline模式
-        .wordBreak(WordBreak.NORMAL) // 非Inline模式该属性无效
-
-      Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
-
-      Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
-
-      Text("TextInput为inline模式，WordBreakType属性为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_WORD)
-    }
-  }
-}
-```
-![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
-
-### 示例9
-
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
-
-```ts
-@Entry
-@Component
-struct TextInputExample {
-  build() {
-    Row() {
-      Column() {
-        Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'lineHeight unset'})
-          .border({ width: 1 }).padding(10).margin(5)
-        TextInput({text: 'lineHeight 15'})
-          .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextInput({text: 'lineHeight 30'})
-          .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
-
-        Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'letterSpacing 0'})
-          .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextInput({text: 'letterSpacing 3'})
-          .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextInput({text: 'letterSpacing -1'})
-          .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
-
-        Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'LineThrough, Red'})
-          .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextInput({text: 'Overline, Red'})
-          .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        TextInput({text: 'Underline, Red'})
-          .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
-      }.height('90%')
-    }
-    .width('90%')
-    .margin(10)
-  }
-}
-```
-
-![TextInputDecoration](figures/textinput_decoration.png)

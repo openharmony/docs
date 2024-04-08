@@ -55,7 +55,7 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
 | versionCode | number | 是   | 否   | 标识当前共享包的版本号。   |
 
-## RouterItem
+## RouterItem<sup>12+</sup>
 
 描述模块配置的路由表信息。
 
@@ -67,9 +67,9 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | pageModule    | string | 是   | 是   | 标识页面所在的模块名称。 |
 | pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
 | buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
-| data          | Array\<[DataItem](#dataitem)> | 是   | 是   | 标识自定义数据。   |
+| data          | Array\<[DataItem](#dataitem12)> | 是   | 是   | 标识自定义数据。   |
 
-## DataItem
+## DataItem<sup>12+</sup> 
 
 描述模块配置的路由表中的自定义数据。
 

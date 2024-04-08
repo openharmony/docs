@@ -156,14 +156,6 @@ onError(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### onStop<sup>12+</sup>
-
-onStop(event:()&nbsp;=&gt;&nbsp;void)
-
-播放停止时触发该事件(当stop()方法被调用后触发)。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ### onPrepared
 
 onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
@@ -354,9 +346,6 @@ struct VideoCreateComponent {
         })
         .onError(() => {
           console.info('onError')
-        })
-        .onStop(() => {
-          console.info('onStop')
         })
         .onPrepared((e?: DurationObject) => {
           if (e != undefined) {
