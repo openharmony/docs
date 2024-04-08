@@ -25,6 +25,9 @@ NavDestination组件状态。
 | --------- | --- | ------------------------ |
 | ON_SHOWN  | 0   | NavDestination组件显示。 |
 | ON_HIDDEN | 1   | NavDestination组件隐藏。 |
+| ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。 |
+| ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 |
+| ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>
 
