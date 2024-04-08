@@ -310,6 +310,8 @@ stopImageAnalyzer(): void
 
 ## 示例
 
+示例效果请以真机运行为准，当前IDE预览器不支持。
+
 ### 示例1
 
 ```ts
