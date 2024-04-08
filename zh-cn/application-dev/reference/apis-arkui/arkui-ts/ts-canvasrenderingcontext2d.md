@@ -3059,6 +3059,8 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
+@Entry
+@Component
 struct ImageAnalyzerExample {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
