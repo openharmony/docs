@@ -5717,7 +5717,7 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 | largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
 | largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
 | largestImageLoadEndTime   | number | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
-| imageBPP                  | number | 否   | 图片像素位数。                           |
+| imageBPP                  | number | 否   | 最大图片像素位数。                           |
 
 ## OnLargestContentfulPaintCallback<sup>12+</sup>
 
