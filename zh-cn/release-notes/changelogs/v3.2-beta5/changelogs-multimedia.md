@@ -51,3 +51,5 @@
 | LoopMode  | enum | 是 |
 | PlaybackState  | enum | 是 |
 | AVSessionErrorCode  | enum | 是 |
+
+<!--no_check-->

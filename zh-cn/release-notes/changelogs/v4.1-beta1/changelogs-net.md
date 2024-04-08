@@ -15,3 +15,5 @@ vpn.createVpnConnection变更为systemapi。
 **适配指导**
 
 如果需要使用vpn相关能力，需使用full-SDK；并修改HarmonyAppProvision配置文件中的app-feature字段为hos_system_app（系统应用）。
+
+<!--no_check-->

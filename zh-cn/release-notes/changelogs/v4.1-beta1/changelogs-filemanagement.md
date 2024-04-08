@@ -2,7 +2,7 @@
 
 ## cl.file.1 picker PhotoViewPicker.save 接口兼容性变更
 
-[PhotoViewPicker.save](../../../application-dev/reference/apis/js-apis-file-picker.md#save)接口兼容性变更。
+[PhotoViewPicker.save](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-file-picker.md#save)接口兼容性变更。
 
 **变更影响**
 
@@ -131,3 +131,5 @@ ALLOW_PERSISTENCE = 0b1
 **适配指导**
 
 该接口为API11授权方案新增接口，当前还未有相应版本发布，所以不存在存量应用使用，目前无需开发者适配。
+
+<!--no_check-->

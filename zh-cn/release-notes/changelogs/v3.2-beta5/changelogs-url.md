@@ -66,3 +66,5 @@ let params = that.URLParams
 var result = params.toString()
 console.log(result) //%E4%BD%A0%E5%A5%BD=china
 ```
+
+<!--no_check-->

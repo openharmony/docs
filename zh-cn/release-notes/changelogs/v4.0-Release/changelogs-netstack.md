@@ -41,3 +41,5 @@
 **适配指导**
 
 将原有业务代码中request2接口名称和dataProgress事件名称分别替换为requestInStream和dataReceiveProgress即可正常使用。
+
+<!--no_check-->

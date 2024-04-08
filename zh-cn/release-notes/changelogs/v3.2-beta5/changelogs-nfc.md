@@ -57,3 +57,4 @@ NFC部分API6到API8部分JS接口不支持抛出错误码，需要删除废弃�
 [TagSession-API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-tagSession.md)
 ```
 
+<!--no_check-->

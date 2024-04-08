@@ -399,7 +399,7 @@ let signOptions = {
 huks.initSession(keyAlias, signOptions);
 ```
 
-更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](../../../application-dev/reference/apis/js-apis-huks.md)。
+更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-huks.md)。
 
 ## cl.security.22 HUKS支持在密钥使用时指定密钥运算参数
 
@@ -472,4 +472,6 @@ try {
 }
 ```
 
-更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](../../../application-dev/reference/apis/js-apis-huks.md)。
+更多接口的示例代码可参考[HUKS-guidelines](../../../application-dev/security/huks-guidelines.md)和[HUKS API](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-huks.md)。
+
+<!--no_check-->

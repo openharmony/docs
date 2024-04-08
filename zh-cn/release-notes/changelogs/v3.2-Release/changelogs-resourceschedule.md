@@ -19,3 +19,5 @@
 **适配指导**<br>
 
 parameters属性使用{[key: string]: number | string | boolean}数据类型。
+
+<!--no_check-->

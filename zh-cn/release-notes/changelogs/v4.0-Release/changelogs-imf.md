@@ -23,4 +23,7 @@
 
 **适配指导**
 
-请参考接口说明：[@ohos.inputMethodEngine.d.ts](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md)
+请参考接口说明：[@ohos.inputMethodEngine.d.ts](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md)
+
+
+<!--no_check-->

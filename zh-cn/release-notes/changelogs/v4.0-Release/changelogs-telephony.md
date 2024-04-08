@@ -123,3 +123,5 @@ module.json中申请权限需要更换或者添加ohos.permission.GET_PHONE_NUMB
        }
 ]
 ```
+
+<!--no_check-->

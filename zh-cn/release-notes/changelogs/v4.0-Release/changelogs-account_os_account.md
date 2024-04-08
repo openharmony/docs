@@ -166,3 +166,5 @@ interface/sdk-js/api/@ohos.account.appAccount.AuthorizationExtensionAbility.d.ts
 }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
 ```
+
+<!--no_check-->
