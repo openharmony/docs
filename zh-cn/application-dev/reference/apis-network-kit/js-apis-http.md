@@ -1400,7 +1400,7 @@ httpRequest.request("EXAMPLE_URL").then(data => {
     }
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```
