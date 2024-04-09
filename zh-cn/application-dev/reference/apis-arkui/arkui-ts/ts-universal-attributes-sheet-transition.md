@@ -140,10 +140,8 @@ struct SheetTransitionExample {
         .bindSheet($$this.isShow, this.myBuilder(), {
           height: this.sheetHeight, 
           dragBar: this.showDragBar, 
-          backgroundColor: Color.Green,
-          onWillAppear: () => {console.log("BindSheet onWillAppear.")}, 
+          backgroundColor: Color.Green, 
           onAppear: () => {console.log("BindSheet onAppear.")}, 
-          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")}, 
           onDisappear: () => {console.log("BindSheet onDisappear.")}
         })
     }

@@ -104,7 +104,6 @@
         - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
-        - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - 触摸交互控制
           - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
           - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -300,7 +299,6 @@
     - [类型定义](arkui-ts/ts-types.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
-    - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
       - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
