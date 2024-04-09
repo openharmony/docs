@@ -58,8 +58,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format)            | 视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 |
 | [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate)                | 视频帧率的键，值类型为double。该键是可选的。                 |
 | [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。该键是可选的。 |
-| [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval)    | 关键帧间隔的键，值类型为int32_t，单位为毫秒。该键是可选的。  |
-| [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | 表面旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键是可选的。 |
+| [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval)    | 关键帧间隔的键，值类型为int32_t，单位为毫秒。该键用于视频编码场景。该键是可选的。 |
+| [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | 表面旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键用于视频解码场景。该键是可选的。 |
 | [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag)                | 视频YUV值域标志的键，值类型为bool，true表示full range，false表示limited range。该键是可选的。 |
 | [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries)      | 视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。该键是可选的。 |
 | [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。该键是可选的。 |
