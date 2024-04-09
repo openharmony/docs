@@ -88,15 +88,15 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count)  | 音频通道计数键，值类型为uint32_t。                           |
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate)      | 音频采样率键，值类型为uint32_t。                             |
 | [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout)        | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。  |
-| [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample)。 |
-| [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts)              | aac格式的键，值类型为uint32_t,aac解码器支持。                |
-| [OH_MD_KEY_SBR](#oh_md_key_sbr)                              | aac sbr模式的键，值类型为uint32_t,aac编码器支持。            |
-| [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | flac合规性级别的键，值类型为int32_t。                        |
-| [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。    |
-| [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header)            | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。    |
-| [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为uint32_t。                   |
-| [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键. 值类型为int32_t。                          |
-| [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。                   |
+| [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample)。该键是可选的。 |
+| [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts)              | aac格式的键，值类型为uint32_t,aac解码器支持。该键是可选的。  |
+| [OH_MD_KEY_SBR](#oh_md_key_sbr)                              | aac sbr模式的键，值类型为uint32_t,aac编码器支持。该键是可选的。 |
+| [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | flac合规性级别的键，值类型为int32_t。该键是可选的。          |
+| [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。该键是可选的。 |
+| [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header)            | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。该键是可选的。 |
+| [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为uint32_t。该键是可选的。     |
+| [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键. 值类型为int32_t。该键是可选的。            |
+| [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。该键是可选的。     |
 
 封装/解封装专有的键值对：
 
