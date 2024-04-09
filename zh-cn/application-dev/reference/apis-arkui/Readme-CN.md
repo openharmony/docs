@@ -297,14 +297,16 @@
         - [时间滑动选择器弹窗 (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](arkui-ts/ts-methods-menu.md)
-    - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
-    - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
-    - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+    - 自定义组件
+      - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
+      - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
+      - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+    - 类型定义
+      - [基础类型定义](arkui-ts/ts-types.md)
+      - [图像类型定义](arkui-ts/ts-image-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
-    - [类型定义](arkui-ts/ts-types.md)
-    - [图像类型定义](arkui-ts/ts-image-common.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件
