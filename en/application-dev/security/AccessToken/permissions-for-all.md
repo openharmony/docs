@@ -190,7 +190,7 @@ Allows an application to read and write NFC tags.
 
 Allows an application to set screens that cannot be captured or recorded.
 
-**Permission level**: system_basic
+**Permission level**: system_basic for API versions 9 to 10; normal for API version 11 and later
 
 **Authorization mode**: system_grant
 
@@ -209,18 +209,6 @@ Allows an application to use agent-powered reminders.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.SET_NETWORK_INFO
-
-Allows an application to set data network information.
-
-**Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.SET_WIFI_INFO
 
@@ -444,7 +432,7 @@ Allows an application to use the camera.
 
 ### ohos.permission.DISTRIBUTED_DATASYNC
 
-Allows an application to exchange data with other devices.
+Allows the application data to be exchanged between devices.
 
 **Permission level**: normal
 
@@ -458,11 +446,11 @@ Allows an application to exchange data with other devices.
 
 Allows an application running in the background to obtain the device location.
 
-For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, direct the user to manually grant this permission on the **Settings** screen.
+For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, guide the user to manually grant this permission on the **Settings** screen.
 
 **Procedure**:
 
-1. Request the front-end location permissions in the dialog box. You can request either of the following permissions:
+1. Request the foreground location permissions in the dialog box. You can request either of the following permissions:
    - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location).
    - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) and [ohos.permission.LOCATION](#ohospermissionlocation).
 2. After the user grants the foreground location permissions, display a message to direct the user to go to the **Settings** screen to grant the ohos.permission.LOCATION_IN_BACKGROUND permission.

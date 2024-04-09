@@ -19,7 +19,11 @@
 | Maximum task execution duration| 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, the time consumed by I/O tasks such as network download and file read/write)| There is no restriction.|
 | Task priority setting| Supported.| Not supported.|
 | Task cancellation| Supported.| Not supported.|
-| Thread reuse| Supported| Not supported.|
+| Thread reuse| Supported.| Not supported.|
+| Delayed task execution| Supported.| Not supported.|
+| Setting task dependencies| Supported.| Not supported.|
+| Serial queue| Supported.| Not supported.|
+| Task group| Supported.| Not supported.|
 
 
 ## Use Case Comparison

@@ -8,7 +8,7 @@
 
 ## onKeyEvent
 
-onKeyEvent(event: (event: KeyEvent) => void)
+onKeyEvent(event: (event: KeyEvent) => void): T
 
 绑定该方法的组件获焦后，按键动作触发该回调。
 
@@ -20,20 +20,25 @@ onKeyEvent(event: (event: KeyEvent) => void)
 | ------ | ----------------------------- | ---- | ------------------ |
 | event  | [KeyEvent](#keyevent对象说明) | 是   | 获得KeyEvent对象。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## KeyEvent对象说明
 
 | 名称                                    | 类型                                       | 描述                         |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。                     |
-| [keyCode](../../apis/js-apis-keycode.md#keycode) | number                                   | 按键的键码。                     |
+| [keyCode](../../apis-input-kit/js-apis-keycode.md#keycode) | number                                   | 按键的键码。                     |
 | keyText                               | string                                   | 按键的键值。                     |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
 | deviceId                              | number                                   | 触发当前按键的输入设备ID。             |
 | metaKey                               | number                                   | 按键发生时元键（即Windows键盘的WIN键、Mac键盘的Command键）的状态，1表示按压态，0表示未按压态。 |
-| timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
+| timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。 |
 | stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
-| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis/js-apis-intentioncode.md) | 按键对应的意图。        |
+| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。        |
 
 
 ## 示例

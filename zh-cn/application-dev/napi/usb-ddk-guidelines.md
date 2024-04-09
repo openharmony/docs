@@ -23,7 +23,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | 创建缓冲区。请在缓冲区使用完后，调用OH_Usb_DestroyDeviceMemMap()销毁缓冲区，否则会造成资源泄露。 |
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
 
-详细的接口说明请参考[USB DDK](../reference/native-apis/_usb_ddk.md)。
+详细的接口说明请参考[USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md)。
 
 ## USB DDK开发步骤
 

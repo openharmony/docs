@@ -3,9 +3,7 @@
 
 ## 概述
 
-DRM度量统计信息。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
+MediaKeySystem的度量信息。
 
 **起始版本：** 11
 
@@ -19,5 +17,6 @@ DRM度量统计信息。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [statisticsCount](_drm.md#statisticscount) | 度量信息数组长度 | 
-| [DRM_CharBufferPair](_d_r_m___char_buffer_pair.md)[info](_drm.md#info) [0] | 度量信息数组 | 
+| uint32_t [statisticsCount](_drm.md#statisticscount) | 度量计数。 | 
+| char [statisticsName](_drm.md#statisticsname) [[MAX_STATISTICS_COUNT](_drm.md#max_statistics_count)][[MAX_STATISTICS_NAME_LEN](_drm.md#max_statistics_name_len)] | 度量信息名称集合。 | 
+| char [statisticsDescription](_drm.md#statisticsdescription) [[MAX_STATISTICS_COUNT](_drm.md#max_statistics_count)][[MAX_STATISTICS_BUFFER_LEN](_drm.md#max_statistics_buffer_len)] | 度量信息描述集合。 | 

@@ -1,6 +1,6 @@
 # ApplicationStateObserver (系统接口)
 
-定义应用状态监听，可以作为[registerApplicationStateObserver](../apis/js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver)的入参监听当前应用的生命周期变化。
+定义应用状态监听，可以作为[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)的入参监听当前应用的生命周期变化。
 
 > **说明：**
 > 
@@ -21,11 +21,11 @@ import appManager from '@ohos.app.ability.appManager';
 
 | 名称                             | 类型                    | 可读 | 可写 | 说明   |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onForegroundApplicationChanged   | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。传入参数类型是[AppStateData](../apis/js-apis-inner-application-appStateData.md)。 |
-| onAbilityStateChanged            | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。传入参数类型是[AppStateData](../apis/js-apis-inner-application-appStateData.md)。   |
-| onProcessCreated                 | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。传入参数类型是[ProcessData](../apis/js-apis-inner-application-processData.md)。          |
-| onProcessDied                     | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。传入参数类型是[ProcessData](../apis/js-apis-inner-application-processData.md)。          |
-| onProcessStateChanged<sup>9+</sup> | AsyncCallback\<void>   | 是   | 否   | 进程状态更新时执行的回调函数。传入参数类型是[ProcessData](../apis/js-apis-inner-application-processData.md)。        |
+| onForegroundApplicationChanged   | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。 |
+| onAbilityStateChanged            | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)。   |
+| onProcessCreated                 | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。          |
+| onProcessDied                     | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。          |
+| onProcessStateChanged<sup>9+</sup> | AsyncCallback\<void>   | 是   | 否   | 进程状态更新时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。        |
 
 **示例：**
 ```ts

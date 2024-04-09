@@ -80,8 +80,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data " + JSON.stringify(data));
 });
 ```
 
@@ -115,7 +118,7 @@ getDefaultNet(): Promise\<NetHandle>
 ```ts
 import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -344,8 +347,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
-  console.info(JSON.stringify(error));
-  console.info(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get default http proxy. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.log("Succeeded to get data" + JSON.stringify(data));
 });
 ```
 
@@ -414,8 +420,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get app net. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -519,8 +528,11 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -604,8 +616,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get all nets. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 }); 
 ```
 
@@ -640,7 +655,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 import connection from '@ohos.net.connection';
 
 connection.getAllNets().then((data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -712,8 +727,11 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -757,7 +775,7 @@ import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -838,8 +856,11 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -883,7 +904,7 @@ import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -1334,8 +1355,11 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -1376,7 +1400,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 ```ts
 import connection from '@ohos.net.connection';
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -1414,8 +1438,11 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get add custom dns rule. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1457,10 +1484,10 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 ```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
-connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
-    console.log("success");
+connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
+    console.info("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1497,8 +1524,11 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to remove custom dns rule. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1578,8 +1608,11 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.clearCustomDnsRules((error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to clear custom dns rules. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1737,7 +1770,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netAvailable', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1778,12 +1811,8 @@ netCon.register((error: BusinessError) => {
 });
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-class Value {
-    netHandle: NetHandle = connection.NetHandle
-    blocked: boolean = false
-}
-netCon.on('netBlockStatusChange', (data: Value) => {
-  console.log(JSON.stringify(data));
+netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1825,7 +1854,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
 netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1865,14 +1894,9 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-class Value {
-    netHandle: NetHandle = connection.NetHandle
-    connectionProperties: ConnectionProperties = connection.ConnectionProperties
-}
-
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
-netCon.on('netConnectionPropertiesChange', (data: Value) => {
-  console.log(JSON.stringify(data));
+netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1914,7 +1938,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netLost', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // 使用unregister接口取消订阅
@@ -1956,7 +1980,7 @@ netCon.register((error: BusinessError) => {
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
 netCon.on('netUnavailable', () => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get unavailable net event");
 });
 
 // 使用unregister接口取消订阅
@@ -2029,9 +2053,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2043,17 +2067,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
       if (error) {
-        console.log('bind fail');
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
         return;
       }
       udp.on('message', (data: Data) => {
-        console.log(JSON.stringify(data));
+        console.info("Succeeded to get data: " + JSON.stringify(data));
       });
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2115,9 +2139,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2129,17 +2153,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
     if (error) {
-      console.log('bind fail');
+      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
       return;
     }
     udp.on('message', (data: Data) => {
-      console.log(JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
     });
     netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
       if (error) {
-        console.log(JSON.stringify(error));
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);;
       } else {
-        console.log(JSON.stringify(data));
+        console.info(JSON.stringify(data));
       }
     });
   });
@@ -2183,8 +2207,11 @@ import { BusinessError } from "@ohos.base";
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2229,7 +2256,7 @@ import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2270,8 +2297,11 @@ import { BusinessError } from "@ohos.base";
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get address. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2316,7 +2346,7 @@ import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2334,6 +2364,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
 | NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。 |
 
 ## NetBearType
 
@@ -2341,11 +2372,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称         | 值   | 说明        |
-| --------------- | ---- | ----------- |
-| BEARER_CELLULAR | 0    | 蜂窝网络。  |
-| BEARER_WIFI     | 1    | Wi-Fi网络。 |
-| BEARER_ETHERNET | 3 | 以太网网络。 |
+|            名称         | 值   | 说明        |
+| ----------------------- | ---- | ---------- |
+| BEARER_CELLULAR         | 0    | 蜂窝网络。  |
+| BEARER_WIFI             | 1    | Wi-Fi网络。 |
+| BEARER_ETHERNET         | 3    | 以太网网络。|
+| BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
 
@@ -2355,9 +2387,11 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| host  | string | 否  |  代理服务器主机名。 |
-| port  | number | 否  |  主机端口。 |
-| exclusionList  | Array<string> | 否  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。 |
+| host  | string | 是  |  代理服务器主机名。 |
+| port  | number | 是  |  主机端口。 |
+| exclusionList  | Array<string> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。 |
+| username<sup>12+</sup>  | string | 否 |  使用代理的用户名。|
+| password<sup>12+</sup>  | string | 否 |  使用代理的用户密码。|
 
 ## NetSpecifier
 
@@ -2389,10 +2423,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，0表示无法评估当前网络带宽。  |
-| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
+| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
+| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。      |
 
 ## NetConnectionPropertyInfo<sup>11+</sup>
 
@@ -2407,7 +2441,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | netHandle            | [NetHandle](#nethandle)                             | 是   |数据网络句柄(netHandle)。       |
 | connectionProperties | [ConnectionProperties](#connectionproperties)                  | 是   |网络连接属性。 |
 
-站## NetBlockStatusInfo<sup>11+</sup>
+## NetBlockStatusInfo<sup>11+</sup>
 
 获取网络状态信息
 

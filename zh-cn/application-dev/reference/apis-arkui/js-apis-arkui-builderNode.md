@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
+import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 ```
 
 ## NodeRenderType
@@ -25,6 +25,14 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 | RENDER_TYPE_DISPLAY | 0   | 表示该节点将被显示到屏幕上。 |
 | RENDER_TYPE_TEXTURE | 1   | 表示该节点将被导出为纹理。   |
 
+> **说明：**
+>
+> RENDER_TYPE_TEXTURE类型目前除[XComponentNode](./js-apis-arkui-xcomponentNode.md)外只支持以自定义组件为根节点的纹理导出。
+>
+> 目前在该自定义组件下支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不支持原生的全屏模式）、Web、XComponent。
+>
+> 使用方式可参考[同层渲染绘制XComponent+AVPlayer和Button组件](../../web/web-same-layer.md)。
+
 ## RenderOptions
 
 创建BuilderNode时的可选参数。
@@ -35,7 +43,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                             |
 | type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                             |
-| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage)。 |
+| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage)。 |
 
 ## BuilderNode
 
@@ -94,8 +102,7 @@ getFrameNode(): FrameNode | null
 BuilderNode作为NodeContainer的根节点返回。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -157,8 +164,7 @@ struct Index {
 BuilderNode的RenderNode挂到其它RenderNode下。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -229,7 +235,7 @@ struct Index {
 
 update(arg: Object): void
 
-根据提供的参数更新BuilderNode，该参数为[build](###build)方法调用时传入的参数类型相同。对自定义组件进行updaete的时候需要在自定义组件中使用的变量定义为@Prop类型。
+根据提供的参数更新BuilderNode，该参数为[build](#build)方法调用时传入的参数类型相同。对自定义组件进行updaete的时候需要在自定义组件中使用的变量定义为@Prop类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -237,12 +243,11 @@ update(arg: Object): void
 
 | 参数名 | 类型   | 必填 | 说明                                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| arg    | Object | 是   | 用于更新BuilderNode的参数，和[build](###build)调用时传入的参数类型一致。 |
+| arg    | Object | 是   | 用于更新BuilderNode的参数，和[build](#build)调用时传入的参数类型一致。 |
 
 **示例：**
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -355,8 +360,7 @@ postTouchEvent(event: TouchEvent): boolean
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -421,6 +425,95 @@ struct MyComponent {
             this.nodeController.postTouchEvent(event);
           }
         })
+    }
+  }
+}
+```
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+立即释放当前BuilderNode。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildComponent));
+
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+
+    return this.rootNode;
+  }
+
+  dispose() {
+    if (this.builderNode !== null) {
+      this.builderNode.dispose();
+    }
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('BuilderNode dispose')
+        .onClick(() => {
+          this.myNodeController.removeBuilderNode();
+          this.myNodeController.dispose();
+        })
+        .width('100%')
     }
   }
 }

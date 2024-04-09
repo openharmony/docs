@@ -72,6 +72,16 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
 };
 ```
 
+## UpdateOperation<sup>12+</sup>
+
+批量更新操作的参数结构。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
+
+| 名称            | 类型                                                         | 必填 | 说明           |
+| --------------- | ------------------------------------------------------------ | ---- | -------------- |
+| UpdateOperation | [dataShare.UpdateOperation](js-apis-data-dataShare-sys.md#updateoperation12) | 是   | 要更新的数据。 |
+
 ## insert
 
 insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
@@ -151,6 +161,53 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
       }
     });
   }
+};
+```
+
+## batchUpdate<sup>12+</sup>
+
+batchUpdate?( operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt; , callback:  AsyncCallback&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;): void
+
+在数据库批量更新时服务端回调此接口，该方法可以选择性重写。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                   |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------ |
+| operations | Record&lt;string, Array&lt;[UpdateOperation](#updateoperation12)&gt;&gt; | 是   | 要更新数据的路径、筛选条件和数据集合。                 |
+| callback   | AsyncCallback&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;  | 是   | 回调函数。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。 |
+
+**示例：**
+
+```ts
+import relationalStore from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+
+let TBL_NAME = 'TBL00';
+let rdbStore: relationalStore.RdbStore;
+
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+  batchUpdate(operations, callback) {
+        let recordOps : Record<string, Array<UpdateOperation>> = operations;
+        let results : Record<string, Array<number>> = {};
+        for (const [key, values] of Object.entries(recordOps)) {
+            let result : number[] = [];
+            for (const value of values) {
+                await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+                    console.info('Update row count is ' + rows);
+                    result.push(rows);
+                }).catch((err) => {
+                    console.info('Update failed, err is ' + JSON.stringify(err));
+                    result.push(-1)
+                })
+            }
+            results[key] = result;
+        }
+        callback(null, results);
+    }
 };
 ```
 

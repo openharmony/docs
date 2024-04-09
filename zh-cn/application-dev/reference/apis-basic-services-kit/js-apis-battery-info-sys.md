@@ -40,7 +40,7 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[电量信息错误码](../errorcodes/errorcode-battery-info.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -82,7 +82,7 @@ getBatteryConfig(sceneName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[电量信息错误码](../errorcodes/errorcode-battery-info.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -123,7 +123,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[电量信息错误码](../errorcodes/errorcode-battery-info.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

@@ -809,7 +809,7 @@ writeLong(val: number): void
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | 是   | 要写入的长整数值 |
+  | val    | number | 是   | 要写入的长整数值。 |
 
 **错误码：**
 
@@ -3331,7 +3331,9 @@ getRawDataCapacity(): number
   hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
   ```
 
-### writeRawData
+### writeRawData<sup>(deprecated)</sup>
+
+>从API version 11 开始不再维护，建议使用[writeRawDataBuffer](#writerawdatabuffer11)类替代。
 
 writeRawData(rawData: number[], size: number): void
 
@@ -3371,7 +3373,54 @@ writeRawData(rawData: number[], size: number): void
   }
   ```
 
-### readRawData
+### writeRawDataBuffer<sup>11+</sup>
+
+writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
+
+将原始数据写入MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名  | 类型     | 必填 | 说明                               |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | ArrayBuffer | 是   | 要写入的原始数据。                 |
+  | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
+
+**示例：**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(64 * 1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let sequence = new rpc.MessageSequence();
+  try {
+    sequence.writeRawDataBuffer(buffer, size);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readRawData<sup>(deprecated)</sup>
+
+>从API version 11 开始不再维护，建议使用[readRawDataBuffer](#readrawdatabuffer11)类替代。
 
 readRawData(size: number): number[]
 
@@ -3417,6 +3466,65 @@ readRawData(size: number): number[]
   try {
     let result = sequence.readRawData(5);
     hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + result);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readRawDataBuffer<sup>11+</sup>
+
+readRawDataBuffer(size: number): ArrayBuffer
+
+从MessageSequence读取原始数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                     |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | 是   | 要读取的原始数据的大小。 |
+
+**返回值：**
+
+  | 类型     | 说明                           |
+  | -------- | ------------------------------ |
+  | ArrayBuffer | 返回原始数据（以字节为单位）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
+
+**示例：**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(64 * 1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let sequence = new rpc.MessageSequence();
+  try {
+    sequence.writeRawDataBuffer(buffer, size);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
+  }
+  try {
+    let result = sequence.readRawDataBuffer(size);
+    let readInt32View = new Int32Array(result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + readInt32View);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
@@ -7629,7 +7737,7 @@ isObjectDead(): boolean
 
   | 类型    | 说明                                              |
   | ------- | ------------------------------------------------- |
-  | boolean | true：对应的对象已经死亡，false：对应的对象未死亡 |
+  | boolean | true：对应的对象已经死亡，false：对应的对象未死亡。 |
 
 **示例：**
 
@@ -9207,10 +9315,10 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
   | 名称       | 值  | 说明               |
   | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | 映射的内存可执行   |
-  | PROT_NONE  | 0   | 映射的内存不可访问 |
-  | PROT_READ  | 1   | 映射的内存可读     |
-  | PROT_WRITE | 2   | 映射的内存可写     |
+  | PROT_EXEC  | 4   | 映射的内存可执行。   |
+  | PROT_NONE  | 0   | 映射的内存不可访问。 |
+  | PROT_READ  | 1   | 映射的内存可读。     |
+  | PROT_WRITE | 2   | 映射的内存可写。     |
 
 ### create<sup>9+</sup>
 
@@ -9665,7 +9773,56 @@ setProtection(protectionType: number): boolean
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 
-### writeAshmem<sup>9+</sup>
+### writeDataToAshmem<sup>11+</sup>
+
+writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
+
+将数据写入此Ashmem对象关联的共享文件。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型     | 必填 | 说明                                               |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | ArrayBuffer | 是   | 写入Ashmem对象的数据。                             |
+  | size   | number   | 是   | 要写入的数据大小。                                 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 1900003  | write to ashmem failed |
+
+**示例：**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  ashmem.mapReadWriteAshmem();
+  try {
+    ashmem.writeDataToAshmem(buffer, size, 0);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
+  }
+  ```
+
+### writeAshmem<sup>9+(deprecated)</sup>
+
+>从API version 11 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
@@ -9709,7 +9866,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9)类替代。
+>从API version 9 开始不再维护，建议使用[writeAshmem](#writeashmem9deprecated)类替代。
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9723,7 +9880,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | number[] | 是   | 写入Ashmem对象的数据。                             |
   | size   | number   | 是   | 要写入的数据大小。                                 |
-  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 
@@ -9744,7 +9901,70 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
   hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   ```
 
-### readAshmem<sup>9+</sup>
+### readDataFromAshmem<sup>11+</sup>
+
+readDataFromAshmem(size: number, offset: number): ArrayBuffer
+
+从此Ashmem对象关联的共享文件中读取数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型   | 必填 | 说明                                               |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | 是   | 要读取的数据的大小。                               |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置。 |
+
+**返回值：**
+
+  | 类型     | 说明             |
+  | -------- | ---------------- |
+  | ArrayBuffer | 返回读取的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 1900004  | read from ashmem failed |
+
+**示例：**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  ashmem.mapReadWriteAshmem();
+  try {
+    ashmem.writeDataToAshmem(buffer, size, 0);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
+  }
+  try {
+    let readResult = ashmem.readDataFromAshmem(size, 0);
+    let readInt32View = new Int32Array(readResult);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readInt32View);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readAshmem<sup>9+(deprecated)</sup>
+
+>从API version 11 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
 
 readAshmem(size: number, offset: number): number[]
 
@@ -9757,7 +9977,7 @@ readAshmem(size: number, offset: number): number[]
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
   | size   | number | 是   | 要读取的数据的大小。                               |
-  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 
@@ -9795,7 +10015,7 @@ readAshmem(size: number, offset: number): number[]
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9)类替代。
+>从API version 9 开始不再维护，建议使用[readAshmem](#readashmem9deprecated)类替代。
 
 readFromAshmem(size: number, offset: number): number[]
 
@@ -9808,7 +10028,7 @@ readFromAshmem(size: number, offset: number): number[]
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
   | size   | number | 是   | 要读取的数据的大小。                               |
-  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number | 是   | 要读取的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **返回值：**
 

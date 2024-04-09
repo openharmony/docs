@@ -25,13 +25,13 @@ job可以在init.cfg中配置，也可以在模块的自定义cfg中配置。ini
   一般情况可按如下示例配置：
 
   ```
-  "condition"："sys.usb.config = none && sys.usb.configfs = 0"。
+  "condition" : "sys.usb.config = none && sys.usb.configfs = 0",
   ```
 
   如果特殊情况需要在boot阶段对参数做检查可按下面示例配置：
 
   ```
-  "condition": "boot && const.debuggable=1"。
+  "condition" : "boot && const.debuggable=1",
   ```
 
   并且jobs在定义命令时，按照下面的规则"param:xxx"命名, 可以根据不同的属性自行组合。

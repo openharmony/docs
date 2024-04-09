@@ -579,6 +579,7 @@ class EntryAbility extends UIAbility {
 | Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
+| Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
 
 ## ValuesBucket
 
@@ -588,7 +589,7 @@ class EntryAbility extends UIAbility {
 
 | 键类型 | 值类型                   |
 | ------ | ----------------------- |
-| number | 主键的类型可以是number |
+| number | 主键的类型可以是number。 |
 | string | 主键的类型可以是string。 |
 
 ## PRIKeyType<sup>10+</sup> 
@@ -787,6 +788,7 @@ class EntryAbility extends UIAbility {
 | LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
 | RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
 | NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
+| BLOCKED_BY_NETWORK_STRATEGY<sup>12+</sup>    | 7    | 表示端云同步被网络策略限制。                     |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -1705,7 +1707,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
-向目标表中插入一行数据，使用callback异步回调。
+向目标表中插入一行数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1731,22 +1733,33 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, (err: BusinessError, rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, (err: BusinessError, rowId: number) => {
     if (err) {
       console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -1760,7 +1773,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
-向目标表中插入一行数据，使用callback异步回调。
+向目标表中插入一行数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1787,22 +1800,33 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
     (err: BusinessError, rowId: number) => {
       if (err) {
         console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1817,7 +1841,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
-向目标表中插入一行数据，使用Promise异步回调。
+向目标表中插入一行数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1849,22 +1873,33 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket).then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1876,7 +1911,7 @@ if(store != undefined) {
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
 
-向目标表中插入一行数据，使用Promise异步回调。
+向目标表中插入一行数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1909,22 +1944,33 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1962,10 +2008,6 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1978,23 +2020,24 @@ let value9 = "Tom";
 let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
 const valueBucket1: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 const valueBucket2: ValuesBucket = {
-  key1: value5,
-  key2: value6,
-  key3: value7,
-  key4: value8,
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
 };
 const valueBucket3: ValuesBucket = {
-  key1: value9,
-  key2: value10,
-  key3: value11,
-  key4: value12,
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2045,10 +2088,6 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -2061,23 +2100,24 @@ let value9 = "Tom";
 let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
 const valueBucket1: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 const valueBucket2: ValuesBucket = {
-  key1: value5,
-  key2: value6,
-  key3: value7,
-  key4: value8,
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
 };
 const valueBucket3: ValuesBucket = {
-  key1: value9,
-  key2: value10,
-  key3: value11,
-  key4: value12,
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2094,7 +2134,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2120,24 +2160,35 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates,(err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates,(err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -2151,7 +2202,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2178,24 +2229,35 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -2209,7 +2271,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2241,24 +2303,35 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2270,7 +2343,7 @@ if(store != undefined) {
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2303,24 +2376,35 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2417,7 +2501,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2466,7 +2550,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2516,7 +2600,7 @@ if(store != undefined) {
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-根据指定条件查询数据库中的数据，使用Promise异步回调。
+根据指定条件查询数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2870,6 +2954,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -2908,6 +2994,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2949,6 +3037,8 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
 
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -2985,6 +3075,132 @@ if(store != undefined) {
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
   })
+}
+```
+
+### execute<sup>12+</sup>
+
+execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
+
+执行包含指定参数的SQL语句，返回值类型为ValueType，使用Promise异步回调。
+
+该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise对象，返回sql执行后的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Database corrupted.
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+// 校验数据库完整性
+if(store != undefined) {
+  const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
+  (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
+    console.info(`check result: ${data}`);
+  }).catch((err) => {
+    console.error(`check failed, code is ${err.code}, message is ${err.message}`);
+  })
+}
+
+// 删除表中所有数据
+if(store != undefined) {
+  const SQL_DELETE_TABLE = 'DELETE FROM test';
+  (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
+    console.info(`delete result: ${data}`);
+  }).catch((err) => {
+    console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
+  })
+}
+
+// 删表
+if(store != undefined) {
+  const SQL_DROP_TABLE = 'DROP TABLE test';
+  (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
+    console.info(`drop result: ${data}`);
+  }).catch((err) => {
+    console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
+  })
+}
+```
+
+### execute<sup>12+</sup>
+
+execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
+
+执行包含指定参数的SQL语句，使用Promise异步回调。
+
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID，如果传0，该语句默认在单独事务内。                                      |
+| args | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。该参数不填，或者填null或undefined，都认为是sql参数语句完整。 |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise对象，返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Database corrupted.
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
 }
 ```
 
@@ -3099,10 +3315,6 @@ beginTransaction():void
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3110,13 +3322,58 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 store.beginTransaction();
 const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 store.insert("test", valueBucket);
 store.commit();
+```
+
+### beginTrans<sup>12+</sup>
+
+beginTrans(): Promise&lt;number&gt;
+
+在开始执行SQL语句之前，开始事务，使用Promise异步回调。
+与[beginTransaction](#begintransaction)的区别在于：该接口会返回事务ID，[execute](#execute12-1)可以指定不同事务ID达到事务隔离目的。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回事务ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
 ```
 
 ### commit
@@ -3133,10 +3390,6 @@ commit():void
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3144,13 +3397,61 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 store.beginTransaction();
 const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 store.insert("test", valueBucket);
 store.commit();
+```
+
+### commit<sup>12+</sup>
+
+commit(txId : number):Promise&lt;void&gt;
+
+提交已执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID。                                        |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
 ```
 
 ### rollBack
@@ -3167,10 +3468,6 @@ rollBack():void
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3179,10 +3476,10 @@ let value4 = new Uint8Array([1, 2, 3]);
 try {
   store.beginTransaction()
   const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
   };
   store.insert("test", valueBucket);
   store.commit();
@@ -3191,6 +3488,54 @@ try {
   let message = (err as BusinessError).message
   console.error(`Transaction failed, code is ${code},message is ${message}`);
   store.rollBack();
+}
+```
+
+### rollback<sup>12+</sup>
+
+rollback(txId : number):Promise&lt;void&gt;
+
+回滚已经执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
+该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| txId      | number                               | 是   | 通过[beginTrans](#begintrans12)获取的事务ID。                                        |
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
 }
 ```
 
@@ -4425,6 +4770,202 @@ if(store != undefined) {
         console.info('clean dirty data  succeeded');
     }).catch ((err: BusinessError) => {
         console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### attach<sup>12+</sup>
+
+attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+将一个数据库文件附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
+
+数据库文件来自文件，且此API不支持附加加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| fullPath | string | 是   | 表示要附加的数据库的路径。 |
+| attachName | string | 是   | 表示附加后的数据库的别名。 |
+| waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise对象。返回附加数据库的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+| 14800010     | Invalid database path.               |
+| 14800011     | Database corrupted.                 |
+| 14800015     | The database does not respond.                 |
+| 14800016     | The database is already attached.                |
+
+**示例：**
+
+```ts
+// 非加密数据库附加非加密数据库。
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
+        console.info('attach succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### attach<sup>12+</sup>
+
+attach(context: Context, config: StoreConfig, attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+将一个当前应用的数据库附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
+
+此API不支持加密数据库附加非加密数据库的场景。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+| config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
+| attachName | string | 是   | 表示附加后的数据库的别名。 |
+| waitTime | number | 否   | 表示附加数据库文件的等待时长。默认值2s，最小值1s，最大值300s。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise对象。返回附加数据库的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+| 14800010     | Invalid database path.               |
+| 14800011     | Database corrupted.                 |
+| 14800015     | The database does not respond.                 |
+| 14800016     | The database is already attached.                |
+| 14801001     | Only supported in stage mode.                 |
+| 14801002     | The data group id is not valid.                |
+
+**示例1：非加密数据库附加非加密数据库**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let attachStore: relationalStore.RdbStore= undefined;
+
+const STORE_CONFIG1: relationalStore.StoreConfig = {
+    name: "rdbstore1.db",
+    securityLevel: relationalStore.SecurityLevel.S1,
+}
+
+await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+    attachStore = rdbStore;
+    console.info('Get RdbStore successfully.')
+}).catch((err: BusinessError) => {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+        console.info(`attach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+**示例2：非加密数据库附加加密数据库**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let attachStore: relationalStore.RdbStore= undefined;
+
+
+const STORE_CONFIG2: relationalStore.StoreConfig = {
+    name: "rdbstore2.db",
+    encrypt: true,
+    securityLevel: relationalStore.SecurityLevel.S1,
+}
+
+await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+    attachStore = rdbStore;
+    console.info('Get RdbStore successfully.')
+}).catch((err: BusinessError) => {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+        console.info(`attach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### detach<sup>12+</sup>
+
+将附加的数据库从当前数据库中分离。
+
+当所有的附加的数据库被分离后，数据库会重新切换为WAL模式。
+
+detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名        | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| attachName | string | 是   | 表示附加后的数据库的别名。 |
+| waitTime | number | 否   | 表示分离数据库的等待时长。默认值2s，最小值1s，最大值300s。 |
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise对象。返回分离后剩余附加的数据库的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.|
+| 14800011     | Database corrupted. |
+| 14800015     | The database does not respond.|
+
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
+        console.info(`detach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`detach failed, code is ${err.code},message is ${err.message}`);
     })
 }
 ```

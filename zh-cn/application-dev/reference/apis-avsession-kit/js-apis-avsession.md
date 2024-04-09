@@ -134,7 +134,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | ----- | ------ | ---- |
 | audio | string | 音频 |
 | video | string | 视频 |
-| voice_call | string | 通话 |
+| voice_call<sup>11+<sup> | string | 通话 |
 
 ## AVSession<sup>10+</sup>
 
@@ -152,8 +152,6 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let sessionId: string = currentAVSession.sessionId;
 let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
@@ -190,7 +188,6 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -243,7 +240,6 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -303,7 +299,6 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.CallMetadata = {
@@ -345,21 +340,27 @@ setCallMetadata(data: CallMetadata, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
-};
-currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
-  if (err) {
-    console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`setCallMetadata successfully`);
-  }
-});
+async function setCallMetadata() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource= await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+  let calldata: avSession.CallMetadata = {
+    name: "xiaoming",
+    phoneNumber: "111xxxxxxxx",
+    avatar: imagePixel,
+  };
+  currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
+    if (err) {
+      console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`setCallMetadata successfully`);
+    }
+  });
+}
 ```
 
 ### setAVCallState<sup>11+</sup>
@@ -394,11 +395,10 @@ setAVCallState(state: AVCallState): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
@@ -435,7 +435,6 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avcalldata: avSession.AVCallState = {
@@ -483,7 +482,6 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let playbackState: avSession.AVPlaybackState = {
@@ -528,7 +526,6 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let PlaybackState: avSession.AVPlaybackState = {
@@ -702,7 +699,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的会话事件键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的会话事件内容。 |
 
 > **说明：**
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。
@@ -725,7 +722,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -762,7 +758,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的会话事件键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的会话事件内容。 |
 | callback | AsyncCallback\<void>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
 
 > **说明：**
@@ -781,7 +777,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -840,7 +835,6 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -909,7 +903,6 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -1067,7 +1060,6 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1121,7 +1113,6 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1867,7 +1858,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playFromAssetId'`。 |
-| callback | callback: (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+| callback | callback: (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
 
 **错误码：**
 
@@ -2139,7 +2130,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
@@ -2806,6 +2797,74 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 ```ts
 currentAVSession.off('toggleCallMute');
 ```
+
+### on('castDisplayChange')<sup>12+</sup>
+
+on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
+
+设置扩展屏投播显示设备变化的监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏投播显示设备变化时触发事件。 |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 是   | 回调函数。参数是扩展屏投播显示设备信息。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
+    if (display.state === avSession.CastDisplayState.STATE_ON) {
+        castDisplay = display;
+        console.info('castDisplayChange display : ${display.id} ON');
+    } else if (display.state === avSession.CastDisplayState.STATE_OFF){
+        console.info('castDisplayChange display : ${display.id} OFF');
+    }
+});
+```
+### off('castDisplayChange')<sup>12+</sup>
+
+ off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
+
+取消扩展屏投播显示设备变化事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | 是   | 关闭对应的监听事件，支持的事件是`'castDisplayChange'`。 |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.off('castDisplayChange');
+```
+
 ### stopCasting<sup>10+</sup>
 
 stopCasting(callback: AsyncCallback\<void>): void
@@ -2911,6 +2970,47 @@ try {
   console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
+### getAllCastDisplays<sup>12+</sup>
+
+getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
+
+获取当前系统中所有支持扩展屏投播的显示设备。通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**返回值：**
+
+| 类型                                            | 说明                              |
+| ----------------------------------------------- | --------------------------------- |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID   | 错误信息 |
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.getAllCastDisplays()
+  .then((data: Array< avSession.CastDisplayInfo >) => {
+    if (data.length >= 1) {
+       castDisplay =  data[0];
+     } else {
+       console.info('There is not a cast display');
+     }
+   })
+   .catch((error: BusinessError) => {
+     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+   });
+```
 
 ## AVCastControlCommandType<sup>10+</sup>
 
@@ -2996,7 +3096,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回远端播放状态。。 |
+| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回远端播放状态。 |
 
 **错误码：**
 
@@ -3052,7 +3152,6 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3092,7 +3191,6 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3132,7 +3230,6 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3197,7 +3294,6 @@ prepare(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3252,7 +3348,6 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3317,7 +3412,6 @@ start(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3989,7 +4083,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)以及[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4028,7 +4122,7 @@ off(type: 'error'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)以及[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4045,6 +4139,32 @@ off(type: 'error'): void
 ```ts
 aVCastController.off('error')
 ```
+
+## CastDisplayState<sup>12+</sup>
+
+投播显示设备状态。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| STATE_OFF      | 1    | 设备断开，扩展屏不再显示内容。    |
+| STATE_ON      | 2    | 设备连接成功，扩展屏可用。 |
+
+
+## CastDisplayInfo<sup>12+</sup>
+
+扩展屏投播显示设备相关属性。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| id            | number                  | 是    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 是    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投播显示设备状态。            |
+| width          | number          | 是    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 是    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
@@ -4066,17 +4186,17 @@ aVCastController.off('error')
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。                                                               |
+| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。                                     |
 | title           | string                  | 否   | 标题。                                                                 |
 | artist          | string                  | 否   | 艺术家。                                                                |
 | author          | string                  | 否   | 专辑作者。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
 | album           | string                  | 否   | 专辑名称。                                                               |
 | writer          | string                  | 否   | 词作者。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
 | duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
-| mediaImage      | image.PixelMap &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
 | publishDate     | Date                    | 否   | 发行日期。                                                               |
 | subtitle        | string                  | 否   | 子标题。                                                                |
 | description     | string                  | 否   | 媒体描述。                                                               |
@@ -4142,11 +4262,12 @@ aVCastController.off('error')
 | isFavorite   | boolean                               | 否   | 是否收藏 |
 | activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
 | volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 | maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
 | muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
 | videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
 | videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -4169,7 +4290,7 @@ aVCastController.off('error')
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
 | phoneNumber     | string                  | 否    | 来电电话号码            |                                                   
-| avatar          | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
 
@@ -4179,8 +4300,8 @@ aVCastController.off('error')
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------  | ---- |---------------------------------------------------------------------|
-| state           | CallState[AVCallState](#avcallstate11)                 | 是    | 通话状态。      |                                                                                                                      
-| muted           | boolean                   | 是    | 通话mic是否静音|                                                                  
+| state           | [CallState](#callstate11)                 | 是    | 当前通话状态。      |                                                                                                                      
+| muted           | boolean                   | 是    | 通话mic是否静音。 <br>true：静音。 <br>false：不是静音。|                                                                  
  
 ## CallState<sup>11+</sup>
 
@@ -5224,7 +5345,6 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5270,7 +5390,6 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5323,7 +5442,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5392,7 +5510,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5453,7 +5570,6 @@ getExtras(): Promise\<{[key: string]: Object}>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5514,7 +5630,6 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6093,7 +6208,6 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6304,7 +6418,6 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;

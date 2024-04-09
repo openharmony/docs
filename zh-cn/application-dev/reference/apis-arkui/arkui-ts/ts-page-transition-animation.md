@@ -51,7 +51,7 @@ PageTransitionExit(value: PageTransitionOptions)
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [RouteType](#routetype枚举说明)                              | 否   | 页面转场效果生效的路由类型。<br/>默认值：RouteType.None。    |
 | duration | number                                                       | 否   | 动画的时长。<br/>单位：毫秒<br/>默认值：1000                 |
-| curve    | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../../apis/js-apis-curve.md#icurve)<sup>10+</sup> | 否   | 动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear |
+| curve    | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | 否   | 动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear |
 | delay    | number                                                       | 否   | 动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
 
 

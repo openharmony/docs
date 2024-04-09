@@ -28,7 +28,8 @@
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
-   } catch (err: BusinessError) {
+   } catch (error: BusinessError) {
+    let err: BusinessError = error as BusinessError;
     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
    }
 
@@ -43,10 +44,12 @@
     fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
-    }).catch((err: BusinessError)=>{
+    }).catch((error: BusinessError)=>{
+      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err) {
+   } catch (error: BusinessError) {
+    let err: BusinessError = error as BusinessError;
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -84,10 +87,12 @@
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((err: BusinessError)=>{
+    }).catch((error: BusinessError)=>{
+      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err) {
+   } catch (error: BusinessError) {
+    let err: BusinessError = error as BusinessError;
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
    ```

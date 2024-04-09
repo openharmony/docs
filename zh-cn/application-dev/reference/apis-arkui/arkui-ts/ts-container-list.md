@@ -50,27 +50,350 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                                    | 参数类型                                     | 描述                                       |
-| ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| listDirection                         | [Axis](ts-appendix-enums.md#axis)        | 设置List组件排列方向。<br/>默认值：Axis.Vertical<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| divider                               | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 设置ListItem分割线样式，默认无分割线。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin会置0。 <br/>strokeWidth, startMargin和endMargin不支持设置百分比。<br/>List的分割线画在主轴方向两个子组件之间，第一个子组件上方和最后一个子组件下方不会绘制分割线。<br/>多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。 |
-| scrollBar                             | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
-| cachedCount                           | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
-| editMode<sup>(deprecated)</sup>       | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃不再使用，无替代接口。<br/>可参考[示例3](#示例3)实现删除选中的list项。<br/>默认值：false |
-| edgeEffect                            | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br/>options?:[EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明)<sup>11+</sup>   | 设置边缘滑动效果。<br/>\- value：设置List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| chainAnimation                        | boolean                                  | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>链式动效生效后，List的分割线不显示。<br>链式动效生效需要满足以下前提条件：<br> -&nbsp; List边缘效果为Spring类型<br> -&nbsp; List没有启用多列模式 |
-| multiSelectable<sup>8+</sup>          | boolean                                  | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| lanes<sup>9+</sup>                    | number \| [LengthConstrain](ts-types.md#lengthconstrain),<br/>gutter<sup>10+</sup>?:[Dimension](ts-types.md#dimension10) | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局。<br/>默认值：1<br/>规则如下：<br/>-&nbsp;lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。<br/>-&nbsp;lanes设置了{minLength，maxLength}，如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算<br/>-&nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。<br/>-&nbsp;lanes设置了{minLength，maxLength}时，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。<br/>gutter为列间距，当列数大于1时生效。<br />默认值为 0<br/>该接口支持在ArkTS卡片中使用。 |
-| alignListItem<sup>9+</sup>            | [ListItemAlign](#listitemalign9枚举说明)     | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为首部对齐。<br/>默认值：ListItemAlign.Start<br/>该接口支持在ArkTS卡片中使用。 |
-| sticky<sup>9+</sup>                   | [StickyStyle](#stickystyle9枚举说明)         | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。<br/>默认值：StickyStyle.None<br/>该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。 |
-| scrollSnapAlign<sup>10+</sup>         | [ScrollSnapAlign](#scrollsnapalign10枚举说明) | 设置列表项滚动结束对齐效果。<br/>默认值：ScrollSnapAlign.NONE<br/>**说明：**<br/>只支持ListItem等高情况下，设置列表项滚动结束对齐效果。<br/>触控板和鼠标滑动List结束后不支持对齐效果。 |
-| enableScrollInteraction<sup>10+</sup> | boolean                                  | 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true |
-| nestedScroll<sup>10+</sup>            | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。   |
-| friction<sup>10+</sup>                | number \| [Resource](ts-types.md#resource) | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
-| scrollBarWidth<sup>11+</sup>   | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
-| scrollBarColor<sup>11+</sup>   | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
-| contentStartOffset<sup>11+</sup>   | number         | 设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。<br/>默认值：0<br/>单位：vp<br/>|
-| contentEndOffset<sup>11+</sup>   | number   | 设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。<br/>默认值：0<br/>单位：vp<br/>|
+### listDirection
+
+listDirection(value: Axis)
+
+设置List组件排列方向。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                                       |
+| ------ | --------------------------------- | ---- | ------------------------------------------ |
+| value  | [Axis](ts-appendix-enums.md#axis) | 是   | 组件的排列方向。<br/>默认值：Axis.Vertical |
+
+### divider
+
+divider(<br/>
+    value: {<br/>
+      strokeWidth: Length;<br/>
+      color?: ResourceColor;<br/>
+      startMargin?: Length;<br/>
+      endMargin?: Length;<br/>
+    } | null,<br/>
+  )
+
+设置ListItem分割线样式，默认无分割线。
+
+endMargin + startMargin 超过列宽度后startMargin和endMargin会置0。
+
+strokeWidth, startMargin和endMargin不支持设置百分比。
+
+List的分割线画在主轴方向两个子组件之间，第一个子组件上方和最后一个子组件下方不会绘制分割线。
+
+多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
+
+### scrollBar
+
+scrollBar(value: BarState)
+
+设置滚动条状态。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
+
+### cachedCount
+
+cachedCount(value: number)
+
+设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。
+
+单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。
+
+多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                               |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1 |
+
+### editMode<sup>(deprecated)</sup>
+
+editMode(value: boolean)
+
+设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3)实现删除选中的list项。
+
+从API version9开始废弃不再使用，无替代接口。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                               |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false |
+
+### edgeEffect
+
+edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
+
+设置边缘滑动效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+
+### chainAnimation
+
+chainAnimation(value: boolean)
+
+设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。
+
+链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。
+
+链式动效生效后，List的分割线不显示。
+
+链式动效生效需要满足以下前提条件：
+
+ 1、List边缘效果为Spring类型。
+
+ 2、List没有启用多列模式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否启用链式联动动效。<br/>默认值：false，不启用链式联动。true，启用链式联动。 |
+
+### multiSelectable<sup>8+</sup>
+
+multiSelectable(value: boolean)
+
+设置是否开启鼠标框选。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否开启鼠标框选。<br/>默认值：false，关闭框选。true，开启框选。 |
+
+### lanes<sup>9+</sup>
+
+lanes(value: number | LengthConstrain, gutter?: Dimension)
+
+设置List组件的布局列数或行数。gutter为列间距，当列数大于1时生效。
+
+规则如下：
+
+- lanes为指定的数量时，根据指定的数量与List组件的交叉轴尺寸除以列数作为列的宽度。
+- lanes设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的交叉轴尺寸符合最小限制。
+- lanes设置了{minLength，maxLength}，如果父组件交叉轴方向尺寸约束为无穷大时，固定按一列排列，列宽度按显示区域内最大的ListItem计算。
+- &nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。
+- lanes设置了{minLength，maxLength}时，计算列数会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名               | 类型                                                         | 必填 | 说明                                     |
+| -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------- |
+| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 |
+| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0                  |
+
+### alignListItem<sup>9+</sup>
+
+alignListItem(value: ListItemAlign)
+
+设置List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                     | 必填 | 说明                                                   |
+| ------ | ---------------------------------------- | ---- | ------------------------------------------------------ |
+| value  | [ListItemAlign](#listitemalign9枚举说明) | 是   | 交叉轴方向的布局方式。<br/>默认值：ListItemAlign.Start |
+
+### sticky<sup>9+</sup>
+
+sticky(value: StickyStyle)
+
+配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                 | 必填 | 说明                                                       |
+| ------ | ------------------------------------ | ---- | ---------------------------------------------------------- |
+| value  | [StickyStyle](#stickystyle9枚举说明) | 是   | ListItemGroup吸顶或吸底效果。<br/>默认值：StickyStyle.None |
+
+### scrollSnapAlign<sup>10+</sup>
+
+scrollSnapAlign(value: ScrollSnapAlign)
+
+设置列表项滚动结束对齐效果。
+
+只支持ListItem等高情况下，设置列表项滚动结束对齐效果。
+
+触控板和鼠标滑动List结束后不支持对齐效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                                      |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------------------- |
+| value  | [ScrollSnapAlign](#scrollsnapalign10枚举说明) | 是   | 列表项滚动结束对齐效果。<br/>默认值：ScrollSnapAlign.NONE |
+
+### enableScrollInteraction<sup>10+</sup>
+
+enableScrollInteraction(value: boolean)
+
+设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                |
+| ------ | ------- | ---- | ----------------------------------- |
+| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+
+### nestedScroll<sup>10+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+
+### friction<sup>10+</sup>
+
+friction(value: number | Resource)
+
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
+
+### scrollBarWidth<sup>11+</sup>
+
+scrollBarWidth(value: number | string)
+
+设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                                      |
+| ------ | -------------------------- | ---- | ----------------------------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+
+### scrollBarColor<sup>11+</sup>
+
+scrollBarColor(color: Color | number | string)
+
+设置滚动条的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
+
+### contentStartOffset<sup>11+</sup>
+
+contentStartOffset(value: number)
+
+设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| value  | number | 是   | 内容区域起始偏移量。<br/>默认值：0<br/>单位：vp |
+
+### contentEndOffset<sup>11+</sup>
+
+contentEndOffset(value: number)
+
+设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                          |
+| ------ | ------ | ---- | --------------------------------------------- |
+| value  | number | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp |
+
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
 ## ListItemAlign<sup>9+</sup>枚举说明
 
@@ -118,22 +441,297 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 ## 事件
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onItemDelete<sup>(deprecated)</sup>(event: (index: number) => boolean) | 当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。<br/>从API version9开始废弃不再使用，无替代接口。<br/>- index: 被删除的列表项的索引值。 |
-| onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate枚举说明)) => void) | 列表滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。<br/>- scrollState: 当前滑动状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onScrollIndex(event: (start: number, end: number, center<sup>10+</sup>: number) => void) | 有子组件划入或划出List显示区域时触发。从API version 10开始，List显示区域中间位置子组件变化时也会触发。<br/>计算索引值时，ListItemGroup作为一个整体占一个索引值，不计算ListItemGroup内部ListItem的索引值。<br/>- start: List显示区域内第一个子组件的索引值。<br/>- end: List显示区域内最后一个子组件的索引值。<br/>- center: List显示区域内中间位置子组件的索引值。<br/>触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。从API version 10开始，List显示区域中间位置子组件变化时也会触发。<br/>List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollIndex事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onReachStart(event: () => void)                              | 列表到达起始位置时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br>List初始化时如果initialIndex为0会触发一次，List滚动到起始位置时触发一次。List边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
-| onReachEnd(event: () => void)                                | 列表到底末尾位置时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: [ScrollState](#scrollstate枚举说明)) => { offsetRemain：number }) | 列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。<br/>该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
-| onScrollStart<sup>9+</sup>(event: () => void)                | 列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。<br/>该接口支持在ArkTS卡片中使用。 |
-| onScrollStop(event: () => void)                              | 列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onItemMove(event: (from: number, to: number) => boolean)     | 列表元素发生移动时触发。<br/>- from: 移动前索引值。<br/>- to: 移动后索引值。 |
-| onItemDragStart<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void) | 开始拖拽列表元素时触发。<br/>- event: 见[ItemDragInfo对象说明](ts-container-grid.md#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽列表元素索引值。 |
-| onItemDragEnter<sup>8+</sup>(event: (event: ItemDragInfo) => void) | 拖拽进入列表元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](ts-container-grid.md#itemdraginfo对象说明)。 |
-| onItemDragMove<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在列表元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](ts-container-grid.md#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
-| onItemDragLeave<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开列表元素时触发。<br/>- event: 见[ItemDragInfo对象说明](ts-container-grid.md#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的列表元素索引值。 |
-| onItemDrop<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](ts-container-grid.md#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。<br/>**说明：** <br/>跨List拖拽时，当拖拽释放的位置绑定了onItemDrop时会返回true，否则为false。List内部拖拽时，isSuccess为onItemMove事件的返回值。 |
+### onItemDelete<sup>(deprecated)</sup>
+
+onItemDelete(event: (index: number) => boolean)
+
+当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。
+
+从API version9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| index  | number | 是   | 被删除的列表项的索引值。 |
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否已经删除。 |
+
+### onScrollIndex
+
+onScrollIndex(event: (start: number, end: number, center: number) => void)
+
+有子组件划入或划出List显示区域时触发。计算索引值时，ListItemGroup作为一个整体占一个索引值，不计算ListItemGroup内部ListItem的索引值。
+
+List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollIndex事件。
+
+触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
+
+从API version 10开始，List显示区域中间位置子组件变化时也会触发该事件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名               | 类型   | 必填 | 说明                                   |
+| -------------------- | ------ | ---- | -------------------------------------- |
+| start                | number | 是   | List显示区域内第一个子组件的索引值     |
+| end                  | number | 是   | List显示区域内最后一个子组件的索引值。 |
+| center<sup>10+</sup> | number | 是   | List显示区域内中间位置子组件的索引值。 |
+
+### onReachStart
+
+onReachStart(event: () => void)
+
+列表到达起始位置时触发。
+
+List初始化时如果initialIndex为0会触发一次，List滚动到起始位置时触发一次。List边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onReachEnd
+
+onReachEnd(event: () => void)
+
+列表到底末尾位置时触发。
+
+List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollFrameBegin<sup>9+</sup>
+
+onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain：number })
+
+列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
+
+当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。
+
+触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                       |
+| ------ | ----------------------------------- | ---- | -------------------------- |
+| offset | number                              | 是   | 即将发生的滑动量，单位vp。 |
+| state  | [ScrollState](#scrollstate枚举说明) | 是   | 当前滑动状态。             |
+
+**返回值：** 
+
+| 类型                     | 说明                 |
+| ------------------------ | -------------------- |
+| { offsetRemain: number } | 实际滑动量，单位vp。 |
+
+### onScrollStart<sup>9+</sup>
+
+onScrollStart(event: () => void)
+
+列表滑动开始时触发。手指拖动列表或列表的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollStop
+
+onScrollStop(event: () => void)
+
+列表滑动停止时触发。手拖动列表或列表的滚动条触发的滑动，手离开屏幕并且滑动停止时会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onItemMove
+
+onItemMove(event: (from: number, to: number) => boolean)
+
+列表元素发生移动时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| from   | number | 是   | 移动前索引值。 |
+| to     | number | 是   | 移动后索引值。 |
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否已经移动。 |
+
+### onItemDragStart<sup>8+</sup>
+
+onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void))
+
+开始拖拽列表元素时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                      | 必填 | 说明                   |
+| --------- | --------------------------------------------------------- | ---- | ---------------------- |
+| event     | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。         |
+| itemIndex | number                                                    | 是   | 被拖拽列表元素索引值。 |
+
+### onItemDragEnter<sup>8+</sup>
+
+onItemDragEnter(event: (event: ItemDragInfo) => void)
+
+拖拽进入列表元素范围内时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明           |
+| ------ | --------------------------------------------------------- | ---- | -------------- |
+| event  | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+
+### onItemDragMove<sup>8+</sup>
+
+onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void)
+
+拖拽在列表元素范围内移动时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                                                      | 必填 | 说明           |
+| ----------- | --------------------------------------------------------- | ---- | -------------- |
+| event       | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| itemIndex   | number                                                    | 是   | 拖拽起始位置。 |
+| insertIndex | number                                                    | 是   | 拖拽插入位置。 |
+
+### onItemDragLeave<sup>8+</sup>
+
+onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
+
+拖拽离开列表元素时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                      | 必填 | 说明                       |
+| --------- | --------------------------------------------------------- | ---- | -------------------------- |
+| event     | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。             |
+| itemIndex | number                                                    | 是   | 拖拽离开的列表元素索引值。 |
+
+### onItemDrop<sup>8+</sup>
+
+onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
+
+绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发。
+
+跨List拖拽时，当拖拽释放的位置绑定了onItemDrop时会返回true，否则为false。List内部拖拽时，isSuccess为onItemMove事件的返回值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                                                      | 必填 | 说明           |
+| ----------- | --------------------------------------------------------- | ---- | -------------- |
+| event       | [ItemDragInfo](ts-container-grid.md#itemdraginfo对象说明) | 是   | 拖拽点的信息。 |
+| itemIndex   | number                                                    | 是   | 拖拽起始位置。 |
+| insertIndex | number                                                    | 是   | 拖拽插入位置。 |
+| isSuccess   | boolean                                                   | 是   | 是否成功释放   |
+
+
+### onScroll<sup>(deprecated)</sup>
+onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate枚举说明)) => void)
+
+列表滑动时触发。
+
+从API version 12开始废弃不再使用，推荐使用[onDidScroll](#ondidscroll12)事件替代。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+
+### onWillScroll<sup>12+</sup>
+onWillScroll(handler: OnScrollCallback)
+
+列表滑动前触发。返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
+
+> **说明：** 
+> 
+> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
+
+### onDidScroll<sup>12+</sup>
+onDidScroll(handler: OnScrollCallback)
+
+列表滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
+
+### onScrollVisibleContentChange<sup>12+</sup>
+onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
+
+有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem/ListItemGroup中的header/ListItemGroup中的footer都算一个子组件。
+
+触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12对象说明) | 是 | 当前显示内容发生改变的时候触发回调。 |
+
+## OnScrollCallback对象说明
+列表滑动时触发的回调  
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
 ## ScrollState枚举说明
 
@@ -248,10 +846,35 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 >
 > - ListScroller必须绑定到List组件上。
 
+## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
+有子组件划入或划出List显示区域时触发。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| start | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面第一个ListItem或ListItemGroup的详细信息。 |
+| end | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面最后一个ListItem或ListItemGroup的详细信息。 |
+
+## VisibleListContentInfo<sup>12+</sup>
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| index | number | 是 | List显示区域内ListItem或ListItemGroup的索引值。 |
+| itemGroupArea | [ListItemGroupArea](#listitemgrouparea12枚举说明) | 否 | 如果当前可视页面的上边或下边在某个ListItemGroup之中，将会显示它所处的位置。 |
+| itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
+
+## ListItemGroupArea<sup>12+</sup>枚举说明
+
+| 名称     |  枚举值  | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| NONE |  0  | 当前页面可视边处于none位置。例如，ListItemGroup中既没有header、footer，也没有ListItem。 |
+| IN_LIST_ITEM_AREA |  1  | 当前页面可视边处于ListItem位置。 |
+| IN_HEADER_AREA |  2  | 当前页面可视边处于header位置。 |
+| IN_FOOTER_AREA |  3  | 当前页面可视边处于footer位置。 |
+
 ## 示例
 
 ### 示例1
-
+该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
 ```ts
 // xxx.ets
 @Entry
@@ -279,6 +902,14 @@ struct ListExample {
         console.info('first' + firstIndex)
         console.info('last' + lastIndex)
         console.info('center' + centerIndex)
+      })
+      .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
+        console.log(' start index: ' + start.index +
+                    ' start item group area: ' + start.itemGroupArea +
+                    ' start index in group: ' + start.itemIndexInGroup)
+        console.log(' end index: ' + end.index +
+                    ' end item group area: ' + end.itemGroupArea +
+                    ' end index in group: ' + end.itemIndexInGroup)
       })
       .onScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)

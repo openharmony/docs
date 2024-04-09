@@ -34,16 +34,16 @@ An application can request to be notified whenever the value of the \@Watch deco
 
 1. When a state variable change (including the change of the named attribute in AppStorage or LocalStorage) is observed, the corresponding \@Watch callback is triggered.
 
-2. \@The Watch callback is executed synchronously after the variable change in the custom component.
+2. The \@Watch callback is executed synchronously after the variable change in the custom component.
 
 3. If the \@Watch callback mutates other watched variables, their variable @Watch callbacks in the same and other custom components as well as state updates are triggered.
 
-4. A \@Watch function is not called upon custom component variable initialization, because initialization is not considered as variable mutation. A \@Watch function is called upon updating of the custom component variable.
+4. A \@Watch function is not called upon custom component variable initialization, because initialization is not considered as variable mutation. A \@Watch function is called upon change of the custom component variable.
 
 
 ## Restrictions
 
-- Pay attention to the risk of infinite loops. Loops can be caused by the \@Watch callback directly or indirectly mutating the same variable. To avoid loops, avoid mutating the \@Watch decorated state variable inside the callback handler.
+- Pay attention to the risk of infinite loops. Loops can be caused by the \@Watch callback directly or indirectly mutating the same variable. To avoid loops, do not mutate the \@Watch decorated state variable inside the callback handler.
 
 - Pay attention to performance. The attribute value update function delays component re-render (see the preceding behavior description). The callback should only perform quick computations.
 
@@ -93,7 +93,7 @@ Processing steps:
 
 1. The click event **Button.onClick** of the **CountModifier** custom component increases the value of **count**.
 
-2. In response to the change of the @State decorated variable **count**, \@Prop in the child component **TotalView** is updated, and its **\@Watch('onCountUpdated')** callback is triggered, which updates the **total** variable in **TotalView**.
+2. In response to the change of the @State decorated variable **count**, \@Prop in the child component **TotalView** is updated, and its **\@Watch('onCountUpdated')** callback is invoked, which updates the **total** variable in **TotalView**.
 
 3. The **Text** component in the child component **TotalView** is re-rendered.
 
@@ -136,10 +136,10 @@ struct BasketViewer {
   build() {
     Column() {
       ForEach(this.shopBasket,
-        (item:PurchaseItem) => {
+        (item: PurchaseItem) => {
           Text(`Price: ${item.price.toFixed(2)} €`)
         },
-        (item:PurchaseItem) => item.id.toString()
+        (item: PurchaseItem) => item.id.toString()
       )
       Text(`Total: ${this.totalPurchase.toFixed(2)} €`)
     }
@@ -163,7 +163,7 @@ struct BasketModifier {
 }
 ```
 
-The processing procedure is as follows:
+Processing steps:
 
 1. **Button.onClick** of the **BasketModifier** component adds an item to **BasketModifier shopBasket**.
 
@@ -171,4 +171,4 @@ The processing procedure is as follows:
 
 3. The state management framework calls the \@Watch callback **BasketViewer onBasketUpdated** to update the value of **BasketViewer TotalPurchase**.
 
-4. Because \@Link decorated shopBasket changes (a new item is added), the ForEach component executes the item Builder to render and build the new item. Because the @State decorated totalPurchase variables changes, the **Text** component is also re-rendered. Re-rendering happens asynchronously.
+4. Because \@Link decorated shopBasket changes (a new item is added), the **ForEach** component executes the item Builder to render and build the new item. Because the @State decorated **totalPurchase** variable changes, the **Text** component is also re-rendered. Re-rendering happens asynchronously.

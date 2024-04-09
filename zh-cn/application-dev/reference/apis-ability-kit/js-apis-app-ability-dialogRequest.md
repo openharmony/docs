@@ -18,6 +18,10 @@ import dialogRequest from '@ohos.app.ability.dialogRequest';
 
 getRequestInfo(want: Want): RequestInfo
 
+> **说明：**
+>
+>  该接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则能从Want中获取请求方的RequestInfo。其他场景使用该接口，均无法获取返回值。
+
 从Want中获取请求方的RequestInfo。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -58,6 +62,10 @@ export default class EntryAbility extends UIAbility {
 getRequestCallback(want: Want): RequestCallback
 
 从Want中获取请求方的RequestCallback。
+
+> **说明：**
+>
+>  该接口可以在ServiceExtensionAbility下使用，如果ServiceExtensionAbility实现了模态弹框，则能从Want中获取请求方的RequestCallback。其他场景使用该接口，均无法获取返回值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -192,7 +200,7 @@ setRequestResult(result: RequestResult): void
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

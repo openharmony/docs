@@ -72,35 +72,38 @@ I/O型任务不需要单独开启线程，而是在当前线程（可以是TaskP
 
 **解决方案**
 
-当前支持设置任务优先级，示例如下
+当前支持设置任务优先级，同一任务重复执行的顺序和优先级没关系，主要看任务执行的顺序，不同任务指定不同优先级示例如下：
 
 **代码示例**
 
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-  console.log("printArgs: " + args);
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) { // 1000: delay 1s
+    continue;
+  }
+  console.info("printArgs: " + args);
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
-    lowCount++;
-    console.log("taskpool lowCount is :" + lowCount);
-  });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
-    mediumCount++;
-    console.log("taskpool mediumCount is :" + mediumCount);
-  });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-    highCount++;
-    console.log("taskpool highCount is :" + highCount);
-  });
+let allCount = 100; // 100: test number
+let taskArray: Array<taskpool.Task> = [];
+// 创建300个任务并添加至taskArray
+for (let i: number = 1; i < allCount; i++) {
+  let task1: taskpool.Task = new taskpool.Task(printArgs, i);
+  taskArray.push(task1);
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  taskArray.push(task2);
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  taskArray.push(task3);
+}
+
+// 从taskArray中获取不同的任务并给定不同优先级执行
+for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+  taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
+  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
 }
 ```
 
@@ -519,7 +522,7 @@ function test(param: User | number, flag?: boolean) {
 TaskPool的任务支持通过sendData接口触发主线程的onReceiveData回调。  
 当前多个线程之间支持通过SharedArrayBuffer进行同一块内存的操作。
 
-##  对于多线程操作首选项和数据库是不是线程安全的？还是每一个线程独立的？(API 10)
+##  对于多线程操作首选项和数据库是不是线程安全的？(API 10)
 
 **解决方案**
 
@@ -547,8 +550,116 @@ ArkTS层接口的异步如果不涉及I/O操作，则异步任务会在主线程
 
 并不会。await会挂起当前异步任务，等异步任务满足条件后再唤醒执行，主线程可以处理其他任务。
 
-##  当使用C/C++进行开发时，如何实现在子线程中直接调用H系统 SDK提供的TS接口，而不是post到主线程上？请提供实现步骤和代码示例。（API 10）
+##  当使用C/C++进行开发时，如何实现在子线程中直接调用H系统SDK提供的TS接口，而不是post到主线程上？（API 10）
 
 **解决方案**
 
 当前还不支持。
+
+## 系统使用了ArkTS作为开发语言，那这些代码的在底层的解释运行的环境是自研的还是用的开源的？另外系统也适配了React Native引擎，是不是也是复用的这个运行环境？（API 10）
+
+**解决方案**
+
+1. 系统ArkTS语言运行在自研的方舟编译运行时，运行的是应用包中经过方舟编译工具链编译ArkTS/TS/JS源码后生成的字节码。
+2. 系统适配的React Native引擎目前仍是运行JS源码，运行在系统提供的V8引擎。
+
+## ArkTS里的数据类型转换方法有哪些？和TS是一致的吗？（API 10）
+
+**解决方案**
+
+ArkTS支持TS语义的as类型转换，不支持使用<>运算符进行类型转换。当前as类型转换只用在编译时，无法通过as在运行时进行类型转换。
+ArkTS支持内置的类型转换函数，例如Number(), String(), Boolean()等。
+
+**参考资料**
+
+1. [从TypeScript到ArkTS的适配规则](../quick-start/typescript-to-arkts-migration-guide.md)
+
+## TaskPool后台I/O任务池，应用能否自行做管控？有无方法开放管理机制？（API 10）
+
+**解决方案**
+
+1. TaskPool后台线程是根据负载及硬件决定的，无法开放管理，只能支持串行队列，任务组等机制进行任务管控。
+2. I/O任务池有底层进行调度，无法自行管控。
+
+## 操作系统对TS文件开发后续还支持吗？（API 10）
+
+**问题描述**
+
+基础库实现基于TS实现后续能否兼容？比如TS支持any，以及运行时动态类型转换，但是ets文件不支持。
+
+**解决方案**
+
+操作系统将持续支持标准TS语法，兼容现有TS实现的三方库。
+
+## 是否支持模块的动态加载？如何实现？（API 10）
+
+**解决方案**
+
+当前不支持动态加载设备侧的二进制包；可以使用动态import进行异步加载，达到类似于Class.forName()反射的效果。
+实例如下，hap动态import harlibrary，并调用静态成员函数staticAdd()、实例成员函数instanceAdd()，以及全局方法addHarLibrary()  
+
+```ts
+// harlibrary的src/main/ets/utils/Calc.ets
+export class Calc {
+  public constructor() {}
+  public static staticAdd(a: number, b: number): number {
+    let c = a + b;
+    console.log("DynamicImport I'm harLibrary in staticAdd, %d + %d = %d", a, b, c);
+    return c;
+  }
+  public instanceAdd(a: number, b: number): number {
+    let c = a + b;
+    console.log("DynamicImport I'm harLibrary in instanseAdd, %d + %d = %d", a, b, c);
+    return c;
+  }
+}
+
+export function addHarLibrary(a: number, b: number): number {
+  let c = a + b;
+  console.log("DynamicImport I'm harLibrary in addHarLibrary, %d + %d = %d", a, b, c);
+  return c;
+}
+
+// harlibrary的index.ets
+export { Calc, addHarLibrary } from './src/main/ets/utils/Calc';
+
+// hap的index.ets
+let harLibrary = 'harlibrary';
+import(harLibrary).then((ns: ESObject) => {  // 动态import变量是新增特性，入参换成字符串'harlibrary'是现有特性。也可使用await import方式。
+  ns.Calc.staticAdd(7, 8);  // 反射调用静态成员函数staticAdd()
+  let calc: ESObject = new ns.Calc();  // 实例化类Calc
+  calc.instanceAdd(8, 9);  // 调用实例成员函数instanceAdd()
+  ns.addHarLibrary(6, 7);  // 调用全局方法addHarLibrary()
+});
+```
+
+## ArkTS是否可以开发AST数据结构或者接口？(API 11)
+
+**解决方案**
+
+AST属于编译器编译过程中间数据结构，该数据本身不稳定，可能会随着语言或者编译器的演进发生变化，暂无计划开放给开发者。
+
+开发者如果有二进制扫描相关需求，可以参考下方链接。
+
+**参考资料**
+
+1. [基于方舟字节码文件的安全扫描接口](https://gitee.com/openharmony/arkcompiler_runtime_core/blob/master/libark_defect_scan_aux/README.md)
+
+## 目前系统的多线程内存占用大，每个线程需要一个ArkTS引擎，意味着更多的内存占用。如何解决应用需要避免开辟过多线程，并发处理任务数量受限，无法充分发挥设备性能的问题？
+
+**原理澄清**
+
+当前ArkTS创建线程(worker)会创建一个新的ArkTS引擎实例，会占用额外的内存。
+
+同时，ArkTS提供了TaskPool并发API，类似GCD的线程池能力，可以执行任务，而且不需要开发者进行线程生命周期管理。Task会被调度到有限数量的工作线程执行，多个task会共享这些工作线程（ArkTS引擎实例），系统会根据负载情况扩容/缩容工作线程的数量，充分发挥硬性性能。
+
+**解决方案**
+
+因此针对需要大量线程的问题，应用的开发建议如下:
+1. 将多线程任务转变为并发任务，通过TaskPool分发执行。
+2. I/O型任务不需要单独开启线程，而是在当前线程（可以是TaskPool线程）执行。
+3. 少量需要常驻的CPU密集型任务，采用Worker，并且需要控制在8个及以下。
+
+**参考链接**
+
+1. [TaskPool和Worker的对比 (TaskPool和Worker)](../arkts-utils/taskpool-vs-worker.md)

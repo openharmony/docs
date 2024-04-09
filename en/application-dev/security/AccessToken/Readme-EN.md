@@ -1,4 +1,4 @@
-# Access Control
+# Application Access Control
 
 - [Access Control Overview](access-token-overview.md)
 - Application Permission Management

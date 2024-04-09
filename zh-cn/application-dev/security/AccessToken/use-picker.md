@@ -46,7 +46,7 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 使用联系人Picker（Contacts Picker）可读取、写入联系人数据。
 
-在应用需要申请权限**ohos.permission.READ_CONTACTS**以读取联系人数据时，可以使用Contacts Picker替代，使用方式请参考：[contact.selectContacts](../../reference/apis-contacts-kit/js-apis-contact.md##contactselectcontacts10)。
+在应用需要申请权限**ohos.permission.READ_CONTACTS**以读取联系人数据时，可以使用Contacts Picker替代，使用方式请参考：[contact.selectContacts](../../reference/apis-contacts-kit/js-apis-contact.md#contactselectcontacts10)。
 
 ## 相机Picker
 

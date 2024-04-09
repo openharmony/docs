@@ -3,7 +3,7 @@
 
 ## 概述
 
-为网络协议栈模块提供c接口。
+为网络协议栈模块提供C接口。
 
 **起始版本：** 11
 
@@ -55,7 +55,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | OH_NetStack_WebsocketClient客户端的构造函数。  | 
+| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Websocket客户端的构造函数。  | 
 | [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | 将header头信息添加到client客户端request中。  | 
 | [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | 客户端连接服务端。  | 
 | [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | 客户端向服务端发送数据。  | 
@@ -69,10 +69,10 @@
 | [NetStack_CertBlob::type](#type) | 证书类型。 | 
 | [NetStack_CertBlob::size](#size) | 证书内容长度。 | 
 | [NetStack_CertBlob::data](#data) | 证书内容。 | 
-| [WebSocket_CloseResult::code](#code-13) | 关闭的错误码。  | 
-| [WebSocket_CloseResult::reason](#reason-13) | 关闭的错误原因。  | 
-| [WebSocket_CloseOption::code](#code-23) | 关闭的错误码。  | 
-| [WebSocket_CloseOption::reason](#reason-23) | 关闭的错误原因。  | 
+| [WebSocket_CloseResult::code](#code-13) | 关闭值。  | 
+| [WebSocket_CloseResult::reason](#reason-13) | 关闭原因。  | 
+| [WebSocket_CloseOption::code](#code-23) | 关闭值。  | 
+| [WebSocket_CloseOption::reason](#reason-23) | 关闭原因。  | 
 | [WebSocket_ErrorResult::errorCode](#errorcode) | 错误码。  | 
 | [WebSocket_ErrorResult::errorMessage](#errormessage) | 错误的消息。  | 
 | [WebSocket_OpenResult::code](#code-33) | websocket客户端连接成功码。  | 
@@ -81,11 +81,11 @@
 | [WebSocket_Header::fieldValue](#fieldvalue) | header头的字段内容。  | 
 | [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | header头链表的next指针。  | 
 | [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | header头信息。 | 
-| [WebSocket_OnOpenCallback](#websocket_onopencallback)[WebSocket::onOpen](#onopen) | 客户端接收连接消息的回调指针。  | 
-| [WebSocket_OnMessageCallback](#websocket_onmessagecallback)[WebSocket::onMessage](#onmessage) | 客户端接收消息的回调指针。  | 
-| [WebSocket_OnErrorCallback](#websocket_onerrorcallback)[WebSocket::onError](#onerror) | 客户端接收错误消息的回调指针。  | 
-| [WebSocket_OnCloseCallback](#websocket_onclosecallback)[WebSocket::onClose](#onclose) | 客户端接收关闭消息的回调指针。  | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md)[WebSocket::requestOptions](#requestoptions) | 客户端建立连接请求内容。 | 
+| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | 客户端接收连接消息的回调指针。  | 
+| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | 客户端接收消息的回调指针。  | 
+| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | 客户端接收错误消息的回调指针。  | 
+| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | 客户端接收关闭消息的回调指针。  | 
+| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | 客户端建立连接请求内容。 | 
 
 
 ## 类型定义说明
@@ -301,9 +301,6 @@ int OH_WebSocketClient_AddHeader (struct WebSocket * client, struct WebSocket_He
 
 返回值为0表示执行成功。返回错细信息可以查看**OH_Websocket_ErrCode**。
 
-**Permission：**
-
-ohos.permission.INTERNET
 
 
 ### OH_WebSocketClient_Close()
@@ -370,7 +367,7 @@ ohos.permission.INTERNET
 struct WebSocket* OH_WebSocketClient_Constructor (WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose )
 ```
 **描述**
-OH_NetStack_WebsocketClient客户端的构造函数。
+Websocket客户端的构造函数。
 
 **系统能力：** SystemCapability.Communication.NetStack
 
@@ -389,9 +386,6 @@ OH_NetStack_WebsocketClient客户端的构造函数。
 
 成功返回客户端指针，失败返回为NULL。
 
-**Permission：**
-
-ohos.permission.INTERNET
 
 
 ### OH_WebSocketClient_Destroy()
@@ -495,7 +489,7 @@ uint32_t WebSocket_CloseResult::code
 
 **描述**
 
-关闭的错误码。
+关闭值。
 
 
 ### code [2/3]
@@ -506,7 +500,7 @@ uint32_t WebSocket_CloseOption::code
 
 **描述**
 
-关闭的错误码。
+关闭值。
 
 
 ### code [3/3]
@@ -627,7 +621,7 @@ const char* WebSocket_CloseResult::reason
 
 **描述**
 
-关闭的错误原因。
+关闭原因。
 
 
 ### reason [2/3]
@@ -638,7 +632,7 @@ const char* WebSocket_CloseOption::reason
 
 **描述**
 
-关闭的错误原因。
+关闭原因。
 
 
 ### reason [3/3]

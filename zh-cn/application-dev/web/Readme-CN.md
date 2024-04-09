@@ -1,6 +1,6 @@
-# ArkWeb
-
+# ArkWeb（方舟Web）
 - [ArkWeb简介](web-component-overview.md)
+- [Web组件的生命周期](web-event-sequence.md)
 - [默认UserAgent定义](web-default-userAgent.md)
 - [使用Web组件加载页面](web-page-loading-with-web-components.md)
 - 设置基本属性和事件
@@ -19,6 +19,11 @@
 - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
 - [使用Web组件打印前端页面](web-print.md)
 - [使用Web组件的下载能力](web-download.md)
-- [使用预连接和预加载能力加速web页面的访问](web-predictor.md)
-- [同层渲染绘制Video和Button组件](web-same-layer.md)
+- [加速Web页面的访问](web-predictor.md)
+- [拦截Web组件发起的网络请求](web-scheme-handler.md)
+- [同层渲染绘制XComponent+AVPlayer和Button组件](web-same-layer.md)
+- [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
+- [webRTC拉起摄像头和麦克风](web-rtc.md)
+- [解决Web组件本地资源跨域问题](web-cross-origin.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+- [使用crashpad收集web组件崩溃信息](web-crashpad.md)

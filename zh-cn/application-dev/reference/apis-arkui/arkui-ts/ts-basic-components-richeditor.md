@@ -5,8 +5,6 @@
 >  **说明：**
 >
 >  该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
->  RichEditor[仅支持通过onDragStart事件](ts-universal-events-drag-drop.md)实现浮起等拖拽效果。
 
 
 ## 子组件
@@ -27,35 +25,369 @@ RichEditor(value: RichEditorOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 >  **说明：**
 >
 >  其中clip属性默认值为true。
 >  align属性只支持上方丶中间和下方位置的对齐方式。
 
-| 名称                               | 参数类型                                     | 描述                                       |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| customKeyboard                   | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
-| bindSelectionMenu                | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType.TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。 |
-| copyOptions                      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。 |
-| enableDataDetector<sup>11+</sup> | boolean                                  | 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOptions`设置为CopyOptions.None时，该功能不会生效。<br/>对`addBuilderSpan`的节点文本，该功能不会生效。 |
-| dataDetectorConfig<sup>11+</sup> | [TextDataDetectorConfig](#textdatadetectorconfig11) | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/> |
+### customKeyboard
+
+customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
+
+设置自定义键盘。
+
+当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。
+
+自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
+
+自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。
+
+自定义键盘无法获取焦点，但是会拦截手势事件。
+
+默认在输入控件失去焦点时，关闭自定义键盘。
+
+如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+
+### bindSelectionMenu
+
+bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, responseType: ResponseType | RichEditorResponseType,
+    options?: SelectionMenuOptions)
+
+设置自定义选择菜单。自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型                                                         | 必填 | 说明                                                      |
+| ------------ | ------------------------------------------------------------ | ---- | --------------------------------------------------------- |
+| spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/> 默认值：<br/>RichEditorSpanType.TEXT    |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
+| responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\|&nbsp;[RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
+| options      | [SelectionMenuOptions](#selectionmenuoptions11)              | 否   | 菜单的选项。                                              |
+
+### copyOptions
+
+copyOptions(value: CopyOptions)
+
+设置组件是否支持文本内容可复制粘贴。
+
+copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
+
+设置copyOptions为CopyOptions.None，复制、剪切功能不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice |
+
+### enableDataDetector<sup>11+</sup>
+
+enableDataDetector(enable: boolean)
+
+设置使能文本识别。
+
+所识别实体的fontColor和decoration会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}
+
+该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
+
+当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
+
+当copyOptions设置为CopyOptions.None时，该功能不会生效。
+
+对addBuilderSpan的节点文本，该功能不会生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| value  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+
+### dataDetectorConfig<sup>11+</sup>
+
+dataDetectorConfig(config: TextDataDetectorConfig)
+
+设置文本识别配置。需配合[enableDataDetector](#enabledatadetector11)一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| config | [TextDataDetectorConfig](#textdatadetectorconfig11) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
+
+### placeholder<sup>12+</sup>
+
+placeholder(value: ResourceStr, style?: PlaceholderStyle)
+
+设置无输入时的提示文本。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明                                                    |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------- |
+| value  | [ResourceStr](ts-types.md#resourcestr)  | 是   | 无输入时的提示文本。                                    |
+| style  | [PlaceholderStyle](#placeholderstyle12) | 否   | 添加提示文本的字体样式。<br />style缺省时默认跟随主题。 |
+
+### caretColor<sup>12+</sup>
+
+caretColor(value: ResourceColor)
+
+设置输入框光标、手柄颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                   |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标、手柄颜色。<br/>默认值：'#007DFF' |
+
+### selectedBackgroundColor<sup>12+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
+
+### enterKeyType<sup>12+</sup>
+
+enterKeyType(enterKeyType: EnterKeyType)
+
+设置软键盘输入法回车键类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                |
+| ------ | ------ | ---- | ----------------------------------- |
+| enterKeyType  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 富文本组件初始化完成后，触发回调。                        |
-| onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
-| aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。 |
-| onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
-| aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本Span信息。 |
-| onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。                           |
-| onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。 |
-| onSelectionChange<sup>12+</sup>(callback:&nbsp;(value:&nbsp;[RichEditorRange](#richeditorrange)) => void) | 文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。<br />- value：文本选择区域起始和终止位置。<br />**说明：**<br/>光标位置发生变化回调时，选择区域的起始位置等于终止位置。|
+### onReady
+
+onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+富文本组件初始化完成后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onSelect
+
+onSelect(callback:&nbsp;(value:&nbsp;RichEditorSelection&nbsp;=&gt;&nbsp;void)
+
+鼠标左键按下选择，松开左键后触发回调。
+
+用手指选择时，松开手指触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                 |
+| ------ | ------------------------------------------- | ---- | -------------------- |
+| value  | [RichEditorSelection](#richeditorselection) | 是   | 选中的所有span信息。 |
+
+### aboutToIMEInput
+
+aboutToIMEInput(callback:&nbsp;(value:&nbsp;RichEditorInsertValue)&nbsp;=&gt;&nbsp;boolean)
+
+输入法输入内容前，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                     |
+| ------ | ----------------------------------------------- | ---- | ------------------------ |
+| value  | [RichEditorInsertValue](#richeditorinsertvalue) | 是   | 输入法将要输入内容信息。 |
+
+### onIMEInputComplete
+
+onIMEInputComplete(callback:&nbsp;(value:&nbsp;RichEditorTextSpanResult)&nbsp;=&gt;&nbsp;void)
+
+输入法完成输入后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                  | 必填 | 说明                             |
+| ------ | ----------------------------------------------------- | ---- | -------------------------------- |
+| value  | [RichEditorTextSpanResult](#richeditortextspanresult) | 是   | 输入法完成输入后的文本Span信息。 |
+
+### aboutToDelete
+
+aboutToDelete(callback:&nbsp;(value:&nbsp;RichEditorDeleteValue)&nbsp;=&gt;&nbsp;boolean)
+
+输入法删除内容前，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                               |
+| ------ | ----------------------------------------------- | ---- | ---------------------------------- |
+| value  | [RichEditorDeleteValue](#richeditordeletevalue) | 是   | 准备删除的内容所在的文本Span信息。 |
+
+### onDeleteComplete
+
+onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+输入法完成删除后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPaste<sup>11+</sup>
+
+onPaste(callback: (event?: PasteEvent) => void)
+
+完成粘贴前，触发回调。系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                        | 必填 | 说明               |
+| ------ | --------------------------- | ---- | ------------------ |
+| event  | [PasteEvent](#pasteevent11) | 否   | 定义用户粘贴事件。 |
+
+### onSelectionChange<sup>12+</sup>
+
+onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
+
+文本选择区域发生变化或编辑状态下光标位置发生变化时触发该回调。光标位置发生变化回调时，选择区域的起始位置等于终止位置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [RichEditorRange](#richeditorrange) | 否   | 文本选择区域起始和终止位置。 |
+
+### onEditingChange<sup>12+</sup>
+
+onEditingChange(callback:&nbsp;(value:&nbsp;boolean) => void)
+
+文本编辑状态发生改变时触发该回调函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| value  | boolean | 是   | true为编辑态，fasle为非编辑态。 |
+
+### onSubmit<sup>12+</sup>
+
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void)
+
+按下软键盘输入法回车键触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| enterKey  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event  | [SubmitEvent](ts-types.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。 |
+
+### onWillChange<sup>12+</sup>
+
+onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
+
+文本变化前，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                                            | 必填 | 说明                     |
+| ----------------------------------------------- | ---- | ------------------------ |
+| [RichEditorChangeValue](#richeditorchangevalue12) | 是   | 文本变化信息。 |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | true：允许文本被更改。false：不允许文本被更改。 |
+
+### onDidChange<sup>12+</sup>
+
+onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
+
+文本变化后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                                            | 必填 | 说明                     |
+| ----------------------------------------------- | ---- | ------------------------ |
+| Array<[RichEditorTextSpanResult>](#richeditortextspanresult)> | 是   | 文本变化后信息。与RichEditorChangeValue中的replacedSpans相同。 |
+
+### onCut<sup>12+</sup>
+
+onCut(callback: Callback\<CutEvent\>)
+
+完成剪切前，触发回调。系统的默认剪切行为，只支持纯文本的剪切。开发者可以通过该方法，覆盖系统默认行为，实现图文的剪切。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                        | 必填 | 说明               |
+| --------------------------- | ---- | ------------------ |
+| [CutEvent](#cutevent12) | 否   | 定义用户剪切事件。 |
+
+### onCopy<sup>12+</sup>
+
+onCopy(callback: Callback\<CopyEvent\>)
+
+完成复制前，触发回调。系统的默认复制行为，只支持纯文本的复制。开发者可以通过该方法，覆盖系统默认行为，实现图文的复制。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 类型                        | 必填 | 说明               |
+| --------------------------- | ---- | ------------------ |
+| [CopyEvent](#copyevent12) | 否   | 定义用户复制事件。 |
 
 ## RichEditorInsertValue
 
@@ -99,6 +431,7 @@ RichEditor(value: RichEditorOptions)
 | offsetInSpan                  | [number, number]                         | 是    | 文本Span内容里有效内容的起始和结束位置。 |
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | 否    | 组件SymbolSpan内容。        |
 | SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件SymbolSpan样式信息。      |
+| paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。 |
 
 
 ## RichEditorSpanPosition
@@ -132,6 +465,9 @@ Span类型信息。
 | fontWeight | number                                   | 是    | 字体粗细。        |
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
+| lineHeight<sup>12+</sup> | number       | 否    | 文本行高。          |
+| letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
+| fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。 |
 
 ## RichEditorImageSpanResult
 
@@ -154,6 +490,13 @@ Span类型信息。
 | size          | [number, number]                         | 是    | 图片的宽度和高度。 |
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 |
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | 是    | 图片缩放类型。   |
+| layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | 否   | 图片布局风格。 |
+
+## RichEditorLayoutStyle<sup>11+</sup> 
+|名称	|类型	|必填|	描述|
+| -------------  | -----------------------            | ---- | ------------------------------------------------------------ |
+|margin	         |  [Dimension](ts-types.md#dimension10) \| [Margin](ts-types.md#margin)	                       |  否  |	外边距类型，用于描述组件不同方向的外边距。<br/>参数为Dimension类型时，四个方向外边距同时生效。|
+|borderRadius	   |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)  |  否  |	圆角类型，用于描述组件边框圆角半径。|
 
 ## RichEditorOptions
 
@@ -163,6 +506,24 @@ RichEditor初始化参数。
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorController](#richeditorcontroller) | 是    | 富文本控制器。 |
 
+## SelectionOptions<sup>12+</sup>
+
+setSelection的选择项配置。
+
+| 名称         | 类型                                       | 必填   | 说明      |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否    | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
+| NEVER | 始终不弹出菜单。 |
+| ALWAYS | 始终弹出菜单。 |
+
 ## TextDataDetectorConfig<sup>11+</sup>
 
 文本识别配置参数。
@@ -171,6 +532,13 @@ RichEditor初始化参数。
 | ---------- |-----------------------------------------------------------------------| ---- | ------- |
 | types | [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11)[] | 是    | 文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate | (result:&nbsp;string)&nbsp;=&gt;&nbsp;void                            | 否    | 文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
+
+## RichEditorChangeValue<sup>12+</sup>
+
+| 名称                    | 类型                                       | 必填   | 说明                  |
+| --------------------- | ---------------------------------------- | ---- | ------------------- |
+| originalSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换前文本Span的具体信息。 |
+| replacedSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后文本Span的具体信息。 |
 
 ## RichEditorController
 
@@ -216,7 +584,7 @@ setCaretOffset(offset: number): boolean
 
 addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
-添加文本内容。
+添加文本内容，如果组件光标闪烁，插入后光标位置更新为新插入文本的后面。
 
 **参数：**
 
@@ -235,7 +603,7 @@ addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
 addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions): number
 
-添加图片内容。
+添加图片内容，如果组件光标闪烁，插入后光标位置更新为新插入图片的后面。
 
 **参数：**
 
@@ -265,6 +633,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - 对此builder节点进行复制或粘贴不生效。
 > - builder的布局约束由RichEditor传入，如果builder里最外层组件不设置大小，则会用RichEditor的大小作为maxSize。
 > - builder的手势相关事件机制与通用手势事件相同，如果builder中未设置透传，则仅有builder中的子组件响应。
+> - 如果组件光标闪烁，插入后光标位置更新为新插入builder的后面。
 
 通用属性仅支持[size](ts-universal-attributes-size.md#size)、[padding](ts-universal-attributes-size.md#padding)、[margin](ts-universal-attributes-size.md#margin)、[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)、[opacity](ts-universal-attributes-opacity.md)、[blur](ts-universal-attributes-image-effect.md#blur)、[backdropBlur](ts-universal-attributes-image-effect.md#backdropblur)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[grayscale](ts-universal-attributes-image-effect.md#grayscale)、[brightness](ts-universal-attributes-image-effect.md#brightness)、[saturate](ts-universal-attributes-image-effect.md#saturate)、
 [contrast](ts-universal-attributes-image-effect.md#contrast)、[invert](ts-universal-attributes-image-effect.md#invert)、[sepia](ts-universal-attributes-image-effect.md#sepia)、[hueRotate](ts-universal-attributes-image-effect.md#huerotate)、[colorBlend](ts-universal-attributes-image-effect.md#colorblend7)、[linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur10)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)、[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup)、[accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext)、[accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription)、[accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)、[sphericalEffect](ts-universal-attributes-image-effect-sys.md#sphericaleffect10)、[lightUpEffect](ts-universal-attributes-image-effect-sys.md#lightupeffect10)、[pixelStretchEffect](ts-universal-attributes-image-effect-sys.md#pixelstretcheffect10)。
@@ -286,7 +655,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
-在Richeditor中添加SymbolSpan。
+在Richeditor中添加SymbolSpan，如果组件光标闪烁，插入后光标位置更新为新插入Symbol的后面。
 
 暂不支持手势处理。
 
@@ -409,21 +778,25 @@ closeSelectionMenu(): void
 
 ### setSelection<sup>11+</sup>
 
-setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions)
 
 支持设置文本选中，选中部分背板高亮。
 
 selectionStart和selectionEnd均为-1时表示全选。
 
-接口调用前有带手柄菜单弹出时则调用后不主动关闭菜单，且调整菜单位置。
-
-接口调用前有不带手柄菜单弹出时则调用后不主动关闭菜单，且保持菜单原来位置。
-
-接口调用前无菜单弹出，则调用后也无菜单弹出。
-
 未获焦时调用该接口不产生选中效果。
 
-使用[示例](ts-composite-components-selectionmenu.md#示例)。
+从API version 12开始，在2in1设备中，无论options取何值，调用setSelection接口都不会弹出菜单，此外，如果组件中已经存在菜单，调用setSelection接口会关闭菜单。
+
+在非2in1设备中，options取值为MenuPolicy.DEFAULT时，遵循以下规则：
+
+1. 组件内有手柄菜单时，接口调用后不关闭菜单，并且调整菜单位置。
+
+2. 组件内有不带手柄的菜单时，接口调用后不关闭菜单，并且菜单位置不变。
+
+3. 组件内无菜单时，接口调用后也无菜单显示。
+
+使用[示例](ohos-arkui-advanced-SelectionMenu.md#示例)。
 
 **参数：**
 
@@ -431,20 +804,37 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选择项配置。 |
 
 ### getSelection<sup>11+</sup>
 
 getSelection(): RichEditorSelection
 
-获取选中文本内容。
-
-使用[示例](ts-composite-components-selectionmenu.md#示例)。
+获取选中文本内容。如果未选中内容，返回光标所在span信息。
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | [RichEditorSelection](#richeditorselection) | 选中内容信息。 |
+
+### isEditing<sup>12+</sup>
+
+isEditing(): boolean
+
+获取当前富文本的编辑状态。
+
+**返回值：**
+
+| 类型    | 说明                          |
+| ------- | ----------------------------- |
+| boolean | true为编辑态，false为非编辑态。 |
+
+### stopEditing<sup>12+</sup>
+
+stopEditing(): void
+
+退出编辑态。
 
 ## RichEditorSelection
 
@@ -520,10 +910,11 @@ SymbolSpan样式选项。
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
+| wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
-前导边距跨度。
+前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
 | 名称       | 类型                                       | 必填   | 描述             |
 | -------- | ---------------------------------------- | ---- | -------------- |
@@ -537,7 +928,7 @@ SymbolSpan样式选项。
 | 名称    | 类型                                       | 必填   | 描述      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 段落样式。   |
-| range | \[number, number\]                       | 是    | 段落起始位置。 |
+| range | \[number, number\]                       | 是    | 段落起始和结束位置。 |
 
 ## RichEditorTextSpanOptions
 
@@ -562,8 +953,19 @@ SymbolSpan样式选项。
 | fontWeight               | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
 | decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
-| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
+| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
+| lineHeight<sup>12+</sup>    | number \| string \| Resource | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 | 
+| letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，不支持设置百分比字符串。|
+| fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/ |
 
+## PlaceholderStyle<sup>12+</sup>
+
+添加提示文本的字体样式。
+
+| 名称                           | 类型                                       | 必填   | 描述                         |
+| ---------------------------- | ---------------------------------------- | ---- | -------------------------- |
+| font                         | [Font](ts-types.md#font)                    | 否    | 设置placeholder文本样式。<br/>默认值跟随主题。|
+| fontColor                    | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 设置placeholder文本颜色。<br/>默认值跟随主题。|
 
 ## RichEditorImageSpanOptions
 
@@ -584,7 +986,7 @@ SymbolSpan样式选项。
 | size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。                                 |
 | verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否    | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | 否    | 图片缩放类型。<br/> 默认值:ImageFit.Cover。         |
-| layoutStyle<sup>11+</sup> | {<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>} | 否    | 图片布局风格。<br/>                             |
+| layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | 否    | 图片布局风格。<br/>                             |
 
 ## RichEditorSymbolSpanOptions<sup>11+</sup>
 
@@ -639,7 +1041,23 @@ SymbolSpan样式选项。
 
 | 名称             | 类型          | 必填   | 描述                            |
 | -------------- | ----------- | ---- | ----------------------------- |
-| preventDefault | () => void | 否    | 用户自定义粘贴事件。<br/> 存在时会覆盖系统粘贴事件。 |
+| preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
+
+## CutEvent<sup>12+</sup>
+
+定义用户剪切事件。
+
+| 名称             | 类型          | 必填   | 描述                            |
+| -------------- | ----------- | ---- | ----------------------------- |
+| preventDefault | () => void | 否    | 阻止系统默认剪切事件。 |
+
+## CopyEvent<sup>12+</sup>
+
+定义用户拷贝事件。
+
+| 名称             | 类型          | 必填   | 描述                            |
+| -------------- | ----------- | ---- | ----------------------------- |
+| preventDefault | () => void | 否    | 阻止系统默认拷贝事件。 |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -669,6 +1087,14 @@ onLongPress(callback: (event?: GestureEvent) => void )
 | 参数名   | 参数类型                                     | 必填   | 描述      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
+
+## KeyboardOptions<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称            | 类型              | 必填   | 描述                               |
+| --------------- | ---------------  |---- | ------------------------------------  |
+| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ## 示例
 
@@ -821,6 +1247,15 @@ struct Index {
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
+          })
+          .placeholder("input...", {
+            fontColor: Color.Gray,
+            font: {
+              size: 16,
+              weight: FontWeight.Normal,
+              family: "HarmonyOS Sans",
+              style: FontStyle.Normal
+            }
           })
           .borderWidth(1)
           .borderColor(Color.Green)
@@ -2505,6 +2940,441 @@ struct TextExample7 {
           .width('100%')
       }
       .width('100%')
+    }
+  }
+}
+```
+### 示例11
+caretColor和selectedBackgroundColor使用示例
+``` ts
+@Entry
+@Component
+struct RichEditorDemo {
+  @State color: Color|string = ""
+  controller: RichEditorController = new RichEditorController();
+  build() {
+    Column() {
+      Row(){
+        Button("改为红色").onClick(() => {
+          this.color = Color.Red
+        })
+      }.margin({top:50})
+      RichEditor({ controller: this.controller })
+        .onReady(()=>{
+          this.controller.addTextSpan('测试文字测试文字测试文字测试文字测试文字测试文字')
+        })
+        .width("100%")
+        .border({ width: 1, radius: 5 })
+        .key('RichEditor')
+        .caretColor(this.color)  //光标颜色
+        .selectedBackgroundColor(this.color)  //选中背景色
+        .margin({top:50})
+    }
+    .width('100%')
+  }
+}
+```
+![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
+
+### 示例12
+lineHeight和letterSpacing使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State start: number = -1;
+  @State end: number = -1;
+  @State LH:number = 50
+  @State LS:number = 20
+
+  build() {
+    Column() {
+      Scroll(){
+        Column(){
+          Row() {
+            Button("行高++").onClick(()=>{
+              this.LH = this.LH + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("行高--").onClick(()=>{
+              this.LH = this.LH - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  lineHeight: this.LH
+                }
+              })
+            })
+            Button("字符间距++").onClick(()=>{
+              this.LS = this.LS + 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+            Button("字符间距--").onClick(()=>{
+              this.LS = this.LS - 5
+              this.controller.updateSpanStyle({
+                start: this.start,
+                end: this.end,
+                textStyle:
+                {
+                  letterSpacing: this.LS
+                }
+              })
+            })
+          }
+        }
+      }.borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({top: 20})
+
+      Scroll(){
+        Column() {
+          Text("LineHeight:" + this.LH).width("100%")
+          Text("LetterSpacing:" + this.LS).width("100%")
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+      .margin({bottom: 20})
+
+      Column() {
+        RichEditor(this.options).clip(true).padding(10)
+          .onReady(() => {
+            this.controller.addTextSpan("012345",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+            this.controller.addTextSpan("6789",
+              {
+                style:
+                {
+                  fontColor: Color.Black,
+                  fontSize: 30,
+                  lineHeight: this.LH,
+                  letterSpacing: this.LS
+                }
+              })
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width(400)
+          .height(400)
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("60%")
+    }
+  }
+}
+```
+![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
+
+### 示例13
+preventDefault使用示例
+```ts
+@Entry
+@Component
+struct RichEditorDemo {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column({ space: 2 }) {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('RichEditor preventDefault')
+        })
+        .onPaste((event?: PasteEvent) => {
+          if (event != undefined && event.preventDefault) {
+            event.preventDefault();
+          }
+        })
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('100%')
+        .height('40%')
+    }
+  }
+}
+```
+![PreventDefaultExample](figures/richEditorPreventDefault.gif)
+
+### 示例14
+
+当添加“ss01”特性的FontFeature属性时，数字“0”由原来的椭圆形改变为带有倒圆角形。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
+  build() {
+    Row() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('This is ss01 off :' + '0000' + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('This is ss01 on :' + '0000' + '\n',
+              {
+                style:
+                {
+                  fontSize: 30,
+                  fontFeature: "\"ss01\" 1"
+                }
+              })
+          })
+          .copyOptions(CopyOptions.InApp)
+          .enableDataDetector(this.enableDataDetector)
+          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .borderWidth(1)
+          .padding(10)
+          .width('100%')
+      }
+      .width('100%')
+      .margin({top:150})
+    }
+  }
+}
+```
+![FontFeatureExample](figures/richEditorFontFeature.png)
+
+### 示例15
+
+自定义键盘弹出发生避让示例。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  @State height1:string|number = '80%'
+  @State height2:number = 100
+  @State supportAvoidance:boolean = true;
+
+  // 自定义键盘组件
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Row(){
+        Button('增加特表情包').onClick(() => {
+          this.controller.addTextSpan("\uD83D\uDE0A",
+            {
+              style:
+              {
+                fontColor: Color.Orange,
+              }
+            })
+        })
+      }
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.controller.addTextSpan(item + '', {
+                offset: this.controller.getCaretOffset(),
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+              this.controller.setCaretOffset(this.controller.getCaretOffset() + item.toString().length)
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }.backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      Row(){
+        Button("20%")
+          .fontSize(24)
+          .onClick(()=>{
+            this.height1 = "20%"
+          })
+        Button("80%")
+          .fontSize(24)
+          .margin({left:20})
+          .onClick(()=>{
+            this.height1 = "80%"
+          })
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
+      .height(this.height1)
+      .width("100%")
+      .padding({bottom:50})
+      RichEditor({ controller: this.controller })
+        // 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+    }
+  }
+}
+```
+![CustomRichEditorType](figures/Custom_Rich_Editor.gif)
+
+### 示例16
+
+onEditingChange，isEditing使用示例。
+
+```ts
+@Entry
+@Component
+struct RichEditor_onEditingChange {
+  controller: RichEditorController = new RichEditorController()
+  @State controllerIsEditing: boolean = false
+  @Builder
+
+  build() {
+    Column() {
+      Row() {
+        Button("点击查看编辑状态isEditing()：").onClick(() => {
+          this.controllerIsEditing = this.controller.isEditing()
+        })
+          .padding(5)
+        Text('' + this.controllerIsEditing)
+          .width('100%')
+          .padding(5)
+          .fontColor(Color.Orange)
+          .fontSize(20)
+      }
+      RichEditor({ controller: this.controller })
+        .onEditingChange((isEditing: boolean) => {
+          console.log("Current Editing Status:" + isEditing)
+        })
+        .height(400)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+    }
+  }
+}
+```
+
+![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
+
+### 示例17
+
+onWillChange，onDidChange，onCut，onCopy使用示例。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+        .onReady(() => {
+          this.controller.addTextSpan('测试文字TestWord', { style: { fontColor: Color.Orange, fontSize: 30 } })
+          this.controller.updateSpanStyle({
+            start: -1,
+            end: -1,
+            textStyle:
+            {
+              fontWeight: FontWeight.Bolder
+            }
+          })
+        })
+        .onWillChange((value: RichEditorChangeValue)=>{
+          console.log('测试log：onWillChange'+JSON.stringify(value))
+          value.originalSpans.forEach((item: RichEditorTextSpanResult) => {
+            console.log("spanPosition:" + JSON.stringify(item.spanPosition))
+            console.log("value:" + item.value)
+            console.log("textStyle:" + JSON.stringify(item.textStyle))
+            console.log("offsetInSpan:" + item.offsetInSpan)
+            console.log("valueResource:" + item.valueResource)
+            console.log("symbolSpanStyle:" +JSON.stringify( item.symbolSpanStyle))
+            console.log("paragraphStyle:" + JSON.stringify(item.paragraphStyle))
+          })
+          value.replacedSpans.forEach((item: RichEditorTextSpanResult) => {
+            console.log("spanPosition:" + JSON.stringify(item.spanPosition))
+            console.log("value:" + item.value)
+            console.log("textStyle:" + JSON.stringify(item.textStyle))
+            console.log("offsetInSpan:" + item.offsetInSpan)
+            console.log("valueResource:" + item.valueResource)
+            console.log("symbolSpanStyle:" +JSON.stringify( item.symbolSpanStyle))
+            console.log("paragraphStyle:" + JSON.stringify(item.paragraphStyle))
+          })
+          return true
+        })
+        .onDidChange((value: Array<RichEditorTextSpanResult>)=>{
+          console.log('测试log：onDidChange'+JSON.stringify(value))
+          value.forEach((item: RichEditorTextSpanResult) => {
+            console.log("spanPosition:" + JSON.stringify(item.spanPosition))
+            console.log("value:" + item.value)
+            console.log("textStyle:" + JSON.stringify(item.textStyle))
+            console.log("offsetInSpan:" + item.offsetInSpan)
+            console.log("valueResource:" + item.valueResource)
+            console.log("symbolSpanStyle:" +JSON.stringify( item.symbolSpanStyle))
+            console.log("paragraphStyle:" + JSON.stringify(item.paragraphStyle))
+          })
+        })
+        .onCut((event:CutEvent) => {
+          event.preventDefault!()
+          console.log('测试log：onCut')
+        })
+        .onCopy((event:CopyEvent) => {
+          event.preventDefault!()
+          console.log('测试log：onCopy')
+        })
+        .onPaste(()=>{
+          console.log('测试log：onPaste')
+        })
+      Text('测试文字去Hellow')
+        .lineHeight(50)
+        .fontSize(24)
+        .draggable(true)
+        .onDragStart(()=>{})
+      TextInput({text:'测试文字NiHao'})
+        .draggable(true)
+        .margin(20)
     }
   }
 }

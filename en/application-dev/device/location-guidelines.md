@@ -33,7 +33,7 @@ For details about how to request for a continuous task, see [Continuous Task](..
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md).
 
-For details about the permissions required for each API of Location Kit, see [Location Kit](../reference/apis/js-apis-geoLocationManager.md).
+For details about the permissions required for each API of Location Kit, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 ### How to Develop
 
@@ -50,7 +50,7 @@ Real-time location of the device is recommended for location-sensitive services.
 
 ### Available APIs
 
-The following table lists the APIs used to obtain the device location information. For details, see [Location Kit](../reference/apis/js-apis-geoLocationManager.md).
+The following table lists the APIs used to obtain the device location information. For details, see (../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 **Table 2** APIs for obtaining device location information
 
@@ -193,7 +193,7 @@ The geocoding information describes a location using several attributes, includi
 
 ### Available APIs
 
-The following table lists the APIs used for mutual conversion between coordinates and geographic descriptions. For details, see [Location Kit](../reference/apis/js-apis-geoLocationManager.md).
+The following table lists the APIs used for mutual conversion between coordinates and geographic descriptions. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 **Table 3** APIs for geocoding and reverse geocoding conversion
 
@@ -247,7 +247,7 @@ The following table lists the APIs used for mutual conversion between coordinate
       }
       ```
 
-      The application can access the **GeoAddress** list that matches the specified coordinates for the corresponding geographic descriptions. For details, see [Location Kit](../reference/apis/js-apis-geoLocationManager.md).
+      The application can access the **GeoAddress** list that matches the specified coordinates for the corresponding geographic descriptions. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
    - Call **getAddressesFromLocationName** to convert geographic descriptions into coordinates.
      
       ```ts
@@ -265,7 +265,7 @@ The following table lists the APIs used for mutual conversion between coordinate
       }
       ```
 
-      The application can access the **GeoAddress** list that matches the specified geographic descriptions for the corresponding coordinates. For details, see [Location Kit](../reference/apis/js-apis-geoLocationManager.md).
+      The application can access the **GeoAddress** list that matches the specified geographic descriptions for the corresponding coordinates. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
       To improve the accuracy of location results, you can set the longitude and latitude ranges in **GeoCodeRequest**.
 
@@ -282,7 +282,7 @@ A typical application of geofencing is to create a geofence around an enterprise
 
 ### Available APIs
 
-Geo-fencing uses the following interfaces. For details, see [Location Kit](../reference/apis/js-apis-geoLocationManager.md).
+Geo-fencing uses the following interfaces. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 **Table 4** Geofencing APIs
 
@@ -295,7 +295,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../re
 
 1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
 
-2. Import the [geoLocationManager](../reference/apis/js-apis-geoLocationManager.md), [wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md), and [BusinessError](../reference/apis/js-apis-base.md) modules.
+2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
    
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
@@ -303,7 +303,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../re
    import BusinessError from "@ohos.base";
    ```
 
-3. Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object.
+3. Create a **WantAgentInfo** object.
 
    Scenario 1: Create a **WantAgentInfo** object for starting an ability. 
 
@@ -329,7 +329,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../re
    };
    ```
 
-   Scenario 2: Create a **WantAgentInfo** object for publishing [common events](../application-models/common-event-overview.md).
+   Scenario 2: Create a **WantAgentInfo** object for releasing a public event.
 
    ```ts
    let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
@@ -348,9 +348,9 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../re
    }
    ```
 
-4. Call [getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) to create a **WantAgent** object.
+4. Call **getWantAgent()** to create a **WantAgent** object.
 
-call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
+Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
    ```ts
    // Create a WantAgent object.
@@ -369,9 +369,3 @@ call the geofencing API to add a geofence after obtaining the **WantAgent** obje
        }
    });
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop location services:
-
-- [`Location`: Location (ArkTS) (API9)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)

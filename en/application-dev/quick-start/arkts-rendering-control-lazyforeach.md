@@ -20,11 +20,11 @@ LazyForEach(
 
 | Name       | Type                                              | Mandatory| Description                                                    |
 | ------------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dataSource    | [IDataSource](#description-of-idatasource)                    | Yes  | **LazyForEach** data source. You need to implement related APIs.                 |
+| dataSource    | [IDataSource](#idatasource)                    | Yes  | **LazyForEach** data source. You need to implement related APIs.                 |
 | itemGenerator | (item: any, index?:number) =&gt; void | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
 | keyGenerator  | (item: any, index?:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
 
-## Description of IDataSource
+## IDataSource
 
 ```ts
 interface IDataSource {
@@ -39,10 +39,10 @@ interface IDataSource {
 | ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | totalCount(): number                                    | -                                                 | Obtains the total number of data items.                                             |
 | getData(index: number): any                        | number                                            | Obtains the data item that matches the specified index.<br>**index**: index of the data item to obtain.|
-| registerDataChangeListener(listener:[DataChangeListener](#description-of-datachangelistener)): void | [DataChangeListener](#description-of-datachangelistener) | Registers a listener for data changes.<br>**listener**: listener for data changes.        |
-| unregisterDataChangeListener(listener:[DataChangeListener](#description-of-datachangelistener)): void | [DataChangeListener](#description-of-datachangelistener) | Deregisters the listener for data changes.<br>**listener**: listener for data changes.        |
+| registerDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Registers a listener for data changes.<br>**listener**: listener for data changes.        |
+| unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Deregisters the listener for data changes.<br>**listener**: listener for data changes.        |
 
-## Description of DataChangeListener
+## DataChangeListener
 
 ```ts
 interface DataChangeListener {
@@ -71,9 +71,9 @@ interface DataChangeListener {
 | onDataChanged(index: number): void<sup>(deprecated)</sup> | number                                 | Invoked when data in the position indicated by the specified index is changed.<br>This API is deprecated since API version 8. You are advised to use **onDataChange** instead.<br>**index**: listener for data changes.|
 
 
-## Restrictions
+## Constraints
 
-- LazyForEach must be used in the container component. Only the [\<List>](../reference/arkui-ts/ts-container-list.md), [\<Grid>](../reference/arkui-ts/ts-container-grid.md), [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md), and [\<WaterFlow>](../reference/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at the same time.
+- LazyForEach must be used in a container component. Only the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md), [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [\<Swiper>](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [\<WaterFlow>](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
 - **LazyForEach** must create one and only one child component in each iteration.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
 - **LazyForEach** can be included in an **if/else** statement, and can also contain such a statement.
@@ -585,7 +585,7 @@ struct MyComponent {
 }
 ```
 
-When the child component of **LazyForEach** is clicked, the **deleteData** method of the data source is called first. This method deletes data that matches the specified index from the data source and then calls the **notifyDatDelete** method. In the **notifyDataDelete** method, the **listener.onDataDelete** method is called to notify **LazyForEach** that data is deleted, and **LazyForEach** deletes the child component at the position indicated by the specified index.
+When the child component of **LazyForEach** is clicked, the **deleteData** method of the data source is called first. This method deletes data that matches the specified index from the data source and then calls the **notifyDataDelete** method. In the **notifyDataDelete** method, the **listener.onDataDelete** method is called to notify **LazyForEach** that data is deleted, and **LazyForEach** deletes the child component at the position indicated by the specified index.
 
 The figure below shows the effect.
 

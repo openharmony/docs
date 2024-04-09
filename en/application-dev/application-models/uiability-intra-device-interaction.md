@@ -28,7 +28,7 @@ This scenario is possible when an application contains multiple UIAbility compon
 
 Assume that your application has two UIAbility components: EntryAbility and FuncAbility, either in the same module or different modules. To start FuncAbility from EntryAbility, proceed as follows:
 
-1. In EntryAbility, call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) and pass the [want](../reference/apis/js-apis-app-ability-want.md) parameter to start the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module from EntryAbility; **parameters** is used to carry custom information. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) and pass the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter to start the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module from EntryAbility; **parameters** is used to carry custom information. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -70,7 +70,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    }
    ```
 
-2. In FuncAbility, use [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to receive the parameters passed in by EntryAbility.
+2. In FuncAbility, use [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to receive the parameters passed in by EntryAbility.
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -91,7 +91,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    >
    > In FuncAbility started, you can obtain the PID and bundle name of the UIAbility through **parameters** in the passed **want** parameter.
 
-3. To stop the **UIAbility** instance after the FuncAbility service is not needed, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
+3. To stop the **UIAbility** instance after the FuncAbility service is not needed, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -122,16 +122,16 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 
    > **NOTE**
    >
-   > When [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
+   > When [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
 
-4. To stop all UIAbility instances of the application, call [killAllProcesses()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md).
+4. To stop all UIAbility instances of the application, call [killAllProcesses()](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md).
 
 
 ## Starting UIAbility in the Same Application and Obtaining the Return Result
 
 When starting FuncAbility from EntryAbility, you may want the result to be returned after the FuncAbility service is finished. For example, after the sign-in operation is finished in the sign-in UIAbility of your application, you want the sign-in result to be returned to the entry UIAbility.
 
-1. In EntryAbility, call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -169,7 +169,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    }
    ```
 
-2. Call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
+2. Call [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -208,7 +208,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
    }
    ```
 
-3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as that specified in the preceding step.
+3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as that specified in the preceding step.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -269,7 +269,7 @@ There are two ways to start **UIAbility**: [explicit and implicit](want-overview
 
 - Explicit Want launch is used to start a determined UIAbility component of an application. You need to set **bundleName** and **abilityName** of the target application in the **want** parameter.
 
-- Implicit Want launch is used to start a UIAbility based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the **want** parameter specifies a series of parameters such as **entities** and **actions**. **entities** provides category information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing and sharing. Then the system analyzes the **want** parameter to find the right UIAbility to start. If you are not sure about whether the target application is installed and what **bundleName** and **abilityName** of the target application are, consider using implicit Want launch.
+- Implicit Want launch is used to start a UIAbility based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the **want** parameter specifies a series of parameters such as **entities** and **actions**. **entities** provides category information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing and sharing. Then the system analyzes the **want** parameter to find the right UIAbility to start. If you are not sure about whether the target application is installed and what **bundleName** and **abilityName** of the target application are, consider using implicit Want launch.
 
 The following example describes how to start the UIAbility of another application through implicit Want.
 
@@ -339,7 +339,7 @@ The following example describes how to start the UIAbility of another applicatio
    The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use.
    ![](figures/uiability-intra-device-interaction.png)
 
-3. To stop the **UIAbility** instance when the document application is not in use, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
+3. To stop the **UIAbility** instance when the document application is not in use, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -373,7 +373,7 @@ The following example describes how to start the UIAbility of another applicatio
 
 ## Starting UIAbility of Another Application and Obtaining the Return Result
 
-If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult). An example scenario is that your application needs to start a third-party payment application and obtain the payment result.
+If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult). An example scenario is that your application needs to start a third-party payment application and obtain the payment result.
 
 1. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility corresponding to the payment application, set **entities** and **actions** under **skills**.
 
@@ -401,7 +401,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    }
    ```
 
-2. Call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select.
+2. Call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -439,7 +439,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    }
    ```
 
-3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
+3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -478,7 +478,7 @@ If you want to obtain the return result when using implicit Want to start the UI
    }
    ```
 
-4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
+4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -538,7 +538,7 @@ In floating window mode, an application is displayed on the screen as a floating
 
 In split-screen mode, two applications occupy the entire screen, side by side, horizontally or vertically. This mode helps users improve multi-task processing efficiency.
 
-The window mode is specified by the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter of [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+The window mode is specified by the **windowMode** field in the [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md) parameter of [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
 
 > **NOTE**
 >
@@ -547,8 +547,8 @@ The window mode is specified by the **windowMode** field in the [StartOptions](.
 
 The following describes how to start the FuncAbility from the EntryAbility page and display it in floating window mode.
 
-1. Add the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
-2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**. This setting applies only to a system application.
+1. Add the [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md) parameter in [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+2. Set the **windowMode** field in the [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**. This setting applies only to a system application.
 3. In the case of a third-party application, set the **displayId** field instead.
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
@@ -704,7 +704,7 @@ An example scenario is as follows:
 
 The development procedure is as follows:
 
-1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis/js-apis-arkui-UIContext.md).
+1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/js-apis-window.md#getuicontext10) in the **onWindowStageCreate()** lifecycle callback to obtain the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
 
    ```ts
    import hilog from '@ohos.hilog';
@@ -749,7 +749,7 @@ The development procedure is as follows:
    }
    ```
 
-2. Parse the **want** parameter passed in the **onNewWant()** callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis/js-apis-arkui-UIContext.md#getrouter) in the **UIContext** class to obtain a [Router](../reference/apis/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
+2. Parse the **want** parameter passed in the **onNewWant()** callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) in the **UIContext** class to obtain a [Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -786,7 +786,7 @@ The development procedure is as follows:
 
 > **NOTE**
 >
-> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **multiton**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
+> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **multiton**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
 ## Using Call to Implement UIAbility Interaction (for System Applications Only)
@@ -834,13 +834,13 @@ The following figure shows the call process.
 
 ### Available APIs
 
-The following table describes the main APIs used for the call. For details, see [AbilityContext](../reference/apis/js-apis-app-ability-uiAbility.md#caller).
+The following table describes the main APIs used for the call. For details, see [AbilityContext](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller).
 
 **Table 2** Call APIs
 
 | API| Description|
 | -------- | -------- |
-| startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
+| startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
 | on(method: string, callback: CalleeCallBack): void | Callback invoked when the CalleeAbility registers a method.|
 | off(method: string): void | Callback invoked when the CalleeAbility deregisters a method.|
 | call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the CalleeAbility.|

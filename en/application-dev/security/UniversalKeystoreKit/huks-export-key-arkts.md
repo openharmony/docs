@@ -8,10 +8,10 @@ This topic walks you through on how to export the public key of a persistently s
 
 1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
 
-2. Use [exportKeyItem](../../reference/apis/js-apis-huks.md#huksexportkeyitem9) to export a key based on the specified **keyAlias** and **options**.
+2. Use [exportKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksexportkeyitem9) to export the key based on the specified **keyAlias** and **options**.
    **options** is a reserved parameter and is left empty currently.
 
-3. In the [HuksReturnResult](../../reference/apis/js-apis-huks.md#huksreturnresult9) obtained returned, the public key is in the **outData** field in the DER format defined in X.509. For details about the format, see [Public Key Material Format](huks-concepts.md#public-key-material-format).
+3. In the [HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9) object returned, the public key is in the **outData** field in the DER format defined in X.509. For details about the format, see [Public Key Material Format](huks-concepts.md#public-key-material-format).
 
 ```ts
 import huks from '@ohos.security.huks';

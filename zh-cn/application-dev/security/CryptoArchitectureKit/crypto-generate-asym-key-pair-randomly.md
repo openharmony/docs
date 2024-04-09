@@ -19,27 +19,53 @@
 
 3. 调用[PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
 
-以使用Promise方式随机生成RSA密钥对为例：
+- 以使用Promise方式随机生成RSA密钥对为例：
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+  function generateAsyKey() {
+    // 创建一个AsyKeyGenerator实例
+    let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
+    // 使用密钥生成器随机生成非对称密钥对
+    let keyGenPromise = rsaGenerator.generateKeyPair();
+    keyGenPromise.then(keyPair => {
+      let pubKey = keyPair.pubKey;
+      let priKey = keyPair.priKey;
+      // 获取非对称密钥对的二进制数据
+      let pkBlob = pubKey.getEncoded();
+      let skBlob = priKey.getEncoded();
+      console.info('pk bin data' + pkBlob.data);
+      console.info('sk bin data' + skBlob.data);
+    });
+  }
+  ```
 
-function generateAsyKey() {
-  // 创建一个AsyKeyGenerator实例
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
-  // 使用密钥生成器随机生成非对称密钥对
-  let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then(keyPair => {
-    let pubKey = keyPair.pubKey;
-    let priKey = keyPair.priKey;
-    // 获取非对称密钥对的二进制数据
-    let pkBlob = pubKey.getEncoded();
-    let skBlob = priKey.getEncoded();
-    AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-    AlertDialog.show({ message: 'sk bin data' + skBlob.data });
-  });
-}
-```
+- 同步返回结果（调用方法[generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)）：
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+
+  function generateAsyKeySync() {
+    // 创建一个AsyKeyGenerator实例
+    let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
+    // 使用密钥生成器随机生成非对称密钥对
+    try {
+      let keyPair = rsaGenerator.generateKeyPairSync();
+      if (keyPair != null) {
+        let pubKey = keyPair.pubKey;
+        let priKey = keyPair.priKey;
+        // 获取非对称密钥对的二进制数据
+        let pkBlob = pubKey.getEncoded();
+        let skBlob = priKey.getEncoded();
+        console.info('pk bin data' + pkBlob.data);
+        console.info('sk bin data' + skBlob.data);
+      } else {
+        console.error("[Sync]: get key pair result fail!");
+      }
+    } catch (e) {
+      console.error(`get key pair failed, ${e.code}, ${e.message}`);
+    }
+  }
+  ```
 
 
 ## 随机生成SM2密钥对
@@ -54,24 +80,50 @@ function generateAsyKey() {
 
 3. 调用[PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
 
-以使用Promise方式随机生成SM2密钥对为例：
+- 以使用Promise方式随机生成SM2密钥对为例：
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+  function generateSM2Key() {
+    // 创建一个AsyKeyGenerator实例
+    let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
+    // 使用密钥生成器随机生成非对称密钥对
+    let keyGenPromise = sm2Generator.generateKeyPair();
+    keyGenPromise.then(keyPair => {
+      let pubKey = keyPair.pubKey;
+      let priKey = keyPair.priKey;
+      // 获取非对称密钥对的二进制数据
+      let pkBlob = pubKey.getEncoded();
+      let skBlob = priKey.getEncoded();
+      console.info('pk bin data' + pkBlob.data);
+      console.info('sk bin data' + skBlob.data);
+    });
+  }
+  ```
 
-function generateSM2Key() {
-  // 创建一个AsyKeyGenerator实例
-  let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
-  // 使用密钥生成器随机生成非对称密钥对
-  let keyGenPromise = sm2Generator.generateKeyPair();
-  keyGenPromise.then(keyPair => {
-    let pubKey = keyPair.pubKey;
-    let priKey = keyPair.priKey;
-    // 获取非对称密钥对的二进制数据
-    let pkBlob = pubKey.getEncoded();
-    let skBlob = priKey.getEncoded();
-    AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-    AlertDialog.show({ message: 'sk bin data' + skBlob.data });
-  });
-}
-```
+- 同步返回结果（调用方法[generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)）：
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+
+  function generateSM2KeySync() {
+    // 创建一个AsyKeyGenerator实例
+    let rsaGenerator = cryptoFramework.createAsyKeyGenerator('SM2_256');
+    // 使用密钥生成器随机生成非对称密钥对
+    try {
+      let keyPair = rsaGenerator.generateKeyPairSync();
+      if (keyPair != null) {
+        let pubKey = keyPair.pubKey;
+        let priKey = keyPair.priKey;
+        // 获取非对称密钥对的二进制数据
+        let pkBlob = pubKey.getEncoded();
+        let skBlob = priKey.getEncoded();
+        console.info('pk bin data' + pkBlob.data);
+        console.info('sk bin data' + skBlob.data);
+      } else {
+        console.error("[Sync]: get key pair result fail!");
+      }
+    } catch (e) {
+      console.error(`get key pair failed, ${e.code}, ${e.message}`);
+    }
+  }
+  ```

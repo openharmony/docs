@@ -1003,7 +1003,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
     } finally {
-      fs.closeSync(fieldData.fd);
+      fs.closeSync(fileData.fd);
     }
   }
   ```
@@ -1104,7 +1104,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
     } finally {
-      fs.closeSync(fieldData.fd);
+      fs.closeSync(fileData.fd);
     }
   }
   ```

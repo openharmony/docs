@@ -29,15 +29,81 @@ Menu()
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性:
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称     | 参数类型                  | 描述                                                             |
-| -------- | ------------------------- | ---------------------------------------------------------------- |
-| fontSize<sup>(deprecated)</sup> | [Length](ts-types.md#length) | 统一设置Menu中所有文本的尺寸，Length为number类型时，使用fp单位。<br/>从API Version 10开始废弃，建议使用font代替。 |
-| font<sup>10+</sup> | [Font](ts-types.md#font) | 统一设置Menu中所有文本的字体样式。 |
-| fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 统一设置Menu中所有文本的颜色。 |
-| radius<sup>10+</sup> | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 设置Menu边框圆角半径。<br/> 默认值跟随主题。数值高于menu宽度的一半时，走默认值。 |
-| width<sup>10+</sup> | [Length](ts-types.md#length) | 设置Menu边框宽度。<br/> 支持设置的最小宽度为64vp。 |
+### fontSize<sup>(deprecated)</sup>
+
+fontSize(value: Length)
+
+统一设置Menu中所有文本的尺寸。
+
+从API Version 10开始废弃，建议使用[font](#font10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明                                                     |
+| ------ | ---------------------------- | ---- | -------------------------------------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | Menu中所有文本的尺寸，Length为number类型时，使用fp单位。 |
+
+### font<sup>10+</sup>
+
+font(value: Font)
+
+统一设置Menu中所有文本的尺寸。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明                   |
+| ------ | ------------------------ | ---- | ---------------------- |
+| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的尺寸。 |
+
+### fontColor<sup>10+</sup>
+
+fontColor(value: ResourceColor)
+
+统一设置Menu中所有文本的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                   |
+| ------ | ------------------------------------------ | ---- | ---------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。 |
+
+### radius<sup>10+</sup>
+
+radius(value: Dimension | BorderRadiuses)
+
+设置Menu边框圆角半径。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/> 默认值跟随主题。数值高于menu宽度的一半时，走默认值。 |
+
+### width<sup>10+</sup>
+
+width(value: Length)
+
+设置Menu边框宽度，支持设置的最小宽度为64vp。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明           |
+| ------ | ---------------------------- | ---- | -------------- |
+| value  | [Length](ts-types.md#length) | 是   | Menu边框宽度。 |
 
 ## 示例
 

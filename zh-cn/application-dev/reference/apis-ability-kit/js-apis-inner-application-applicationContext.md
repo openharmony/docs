@@ -21,7 +21,7 @@ import common from '@ohos.app.ability.common';
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-注册监听应用内生命周期
+注册监听应用内生命周期。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -30,7 +30,7 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
 | type | 'abilityLifecycle' | 是   | 监听事件的类型。 |
-| callback | [AbilityLifecycleCallback](../apis/js-apis-app-ability-abilityLifecycleCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
+| callback | [AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
 
 **返回值：**
 
@@ -95,7 +95,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消监听应用内生命周期
+取消监听应用内生命周期。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
         console.log(`stage applicationContext: ${applicationContext}`);
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
             if (error) {
-                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);    
+                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);
             } else {
                 console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
             }
@@ -133,7 +133,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-取消监听应用内生命周期
+取消监听应用内生命周期。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -170,7 +170,7 @@ export default class MyAbility extends Ability {
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
-注册对系统环境变化的监听。使用callback异步回调。
+注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -179,7 +179,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
 | type | 'environment' | 是   | 监听事件的类型。 |
-| callback | [EnvironmentCallback](../apis/js-apis-app-ability-environmentCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
+| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
 
 **返回值：**
 
@@ -219,7 +219,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消对系统环境变化的监听。使用callback异步回调。
+取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -256,7 +256,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-取消对系统环境变化的监听。
+取消对系统环境变化的监听。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -292,7 +292,7 @@ export default class MyAbility extends Ability {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-注册对当前应用前后台变化的监听。使用callback异步回调。
+注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -301,7 +301,7 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | type     | 'applicationStateChange'                                     | 是   | 监听事件类型。 |
-| callback | [ApplicationStateChangeCallback](../apis/js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
 
@@ -334,7 +334,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。
+取消当前应用注册的前后台变化的全部监听。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -343,7 +343,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
-| callback | [ApplicationStateChangeCallback](../apis/js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
 
@@ -370,7 +370,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -379,7 +379,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -411,7 +411,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>>   | 是   | 获取有关运行进程的信息的回调。 |
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | 是   | 获取有关运行进程的信息的回调。 |
 
 **错误码**：
 
@@ -420,7 +420,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -461,7 +461,7 @@ killAllProcesses(): Promise\<void\>
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -496,7 +496,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -526,7 +526,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -535,7 +535,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -572,7 +572,7 @@ setLanguage(language: string): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -608,7 +608,7 @@ clearUpApplicationData(): Promise\<void\>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -643,7 +643,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -658,5 +658,49 @@ export default class MyAbility extends UIAbility {
             }
         });
     }
+}
+```
+
+## ApplicationContext.restartApp<sup>12+</sup>
+
+restartApp(want: Want): void
+
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的UIAbility的信息，Bundle名称不做校验。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000064 | Restart too frequently. Try again at least 10s later. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    let want : Want = {
+      bundleName: 'com.example.myapp',
+      abilityName: 'EntryAbility'
+    };
+    try {
+      applicationContext.restartApp(want);
+    } catch (error) {
+      console.error(`restartApp fail, error: ${JSON.stringify(error)}`);
+    }
+  }
 }
 ```

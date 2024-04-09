@@ -92,7 +92,7 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyAbilityStage extends AbilityStage {
     onConfigurationUpdate(config: Configuration) {
-        console.log('onConfigurationUpdate, language: ${config.language}');
+        console.log(`onConfigurationUpdate, language: ${config.language}`);
     }
 }
 ```

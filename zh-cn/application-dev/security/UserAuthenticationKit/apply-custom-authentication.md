@@ -40,21 +40,22 @@
 当前示例仅展示如何配置界面、选择切换到自定义认证界面，具体拉起的页面及对应页面的实现，请开发者自行实现，代码插入位置可参考注释提示。
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth'; 
+import type {BusinessError} from '@ohos.base';
+import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam: userIAM_userAuth.AuthParam = {
+const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  authType: [userAuth.UserAuthType.FACE],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
 };
 // 配置认证界面需设置navigationButtonText
-const widgetParam: userIAM_userAuth.WidgetParam = {
+const widgetParam: userAuth.WidgetParam = {
   title: '请验证身份',
   navigationButtonText: '使用密码',
 };
 try {
   // 获取认证对象
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
@@ -72,6 +73,6 @@ try {
   console.log('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log('auth catch error. Code is ${err.code}, message is ${err.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

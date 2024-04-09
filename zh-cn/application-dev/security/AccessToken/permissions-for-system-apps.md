@@ -37,6 +37,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+允许系统应用访问和修改媒体库数据库。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.AGENT_REQUIRE_FORM
 
 允许应用代理请求卡片。
@@ -48,6 +60,18 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.MANAGE_VPN
+
+允许系统应用启动或停止VPN功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：API version 10-11为false；从API version 12开始为true
+
+**起始版本**：10
 
 ### ohos.permission.WAKEUP_VISION
 
@@ -1009,6 +1033,8 @@
 
 **起始版本**：7
 
+**废弃版本**：9
+
 ### ohos.permission.BUNDLE_ACTIVE_INFO
 
 允许系统应用查询其他应用在前台或后台的运行时间。
@@ -1501,6 +1527,8 @@
 
 **起始版本**：7
 
+**废弃版本**：9
+
 ### ohos.permission.START_INVISIBLE_ABILITY
 
 无论Ability是否可见，都允许应用进行调用。
@@ -1561,6 +1589,18 @@
 
 **起始版本**：11
 
+### ohos.permission.GET_BLUETOOTH_PEERS_MAC
+
+允许应用获取外设的蓝牙真实MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.USE_USER_IDM
 
 允许应用访问系统身份凭据信息。
@@ -1588,6 +1628,18 @@
 ### ohos.permission.ACCESS_PIN_AUTH
 
 允许注册口令认证过程获取口令数据的回调。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：8
+
+### ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+允许调用统一身份认证服务的系统内部接口。
 
 **权限级别**：system_basic
 
@@ -1837,6 +1889,30 @@
 
 **起始版本**：11
 
+### ohos.permission.LAUNCH_SPAMSHIELD_PAGE
+
+允许应用访问骚扰拦截页面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SPAMSHIELD_SERVICE
+
+允许应用访问骚扰拦截能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER
 
 允许业务接入安全隐私中心。
@@ -1884,6 +1960,54 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.GET_PRIVACY_INDICATOR
+
+允许系统应用获取隐私权限事件提醒信息详情。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_PRIVACY_INDICATOR
+
+允许系统应用控制隐私权限事件提醒的呈现状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_SUPER_PRIVACY
+
+允许获取超级隐私模式的状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_SUPER_PRIVACY
+
+允许设置超级隐私模式的状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
@@ -2028,6 +2152,18 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.READ_FINDSERVICE
+
+允许系统应用读取“查找我的设备”开关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.MANAGE_USB_CONFIG
 
@@ -2305,6 +2441,18 @@
 
 **起始版本**：12
 
+### ohos.permission.GET_NEARLINK_PEER_MAC
+
+允许应用获取对端设备的星闪MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
@@ -2320,6 +2468,198 @@
 ### ohos.permission.ACCESS_PROTOCOL_DFX_DATA
 
 允许系统应用读取通讯故障及系统统计信息等数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_PROTOCOL_DFX_STATE
+
+允许系统应用打开或关闭通信协议相关的开关。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_USER_ACCOUNT_INFO
+
+允许系统应用及系统SA调用账号服务。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_AI_ABILITY
+
+允许应用和系统SA调用语音视觉服务的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.READ_HEALTH_MOTION
+
+允许系统应用读取步数及运动三环信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.hsdr.REQUEST_HSDR
+
+允许系统应用访问安全检测响应框架安全策略云查功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.WRITE_GTOKEN_POLICY
+
+允许系统应用写入应用管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.READ_GTOKEN_POLICY
+
+允许系统应用读取应用管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+允许应用设置断言调试结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_PASSWORD_VAULT_DATA
+
+允许应用获取密码保险箱帐号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
+
+允许用户帐号往数据管理服务写入自己的登录状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
+
+允许应用订阅通知面板显示或收起时发送的广播。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHANGE_DISPLAYMODE
+
+允许系统应用改变屏幕模式。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MIGRATE_DATA
+
+允许应用迁移传入路径下的数据到指定目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DYNAMIC_ICON
+
+允许应用使用动态图标。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE
+
+允许系统应用改变指定应用的可卸载状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_STYLUS_EVENT
+
+允许系统应用使用手写笔系统能力。
 
 **权限级别**：system_basic
 
@@ -2394,18 +2734,6 @@
 **ACL使能**：false
 
 **起始版本**：10
-
-### ohos.permission.ACCESS_USER_AUTH_INTERNAL
-
-允许调用统一身份认证服务的系统内部接口。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：8
 
 ### ohos.permission.ACCESS_AUTH_RESPOOL
 
@@ -2482,18 +2810,6 @@
 ### ohos.permission.GET_NETWORK_STATS
 
 允许系统应用获取历史流量。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：false
-
-**起始版本**：10
-
-### ohos.permission.MANAGE_VPN
-
-允许系统应用启动或停止VPN功能。
 
 **权限级别**：system_basic
 

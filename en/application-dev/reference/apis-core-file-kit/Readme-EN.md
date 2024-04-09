@@ -1,0 +1,48 @@
+# Core File Kit API Reference
+
+- ArkTS APIs
+  - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
+  - [@ohos.file.cloudSync (Device-Cloud Synchronization)](js-apis-file-cloudsync.md)
+  - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
+  - [@ohos.file.fileuri (File URI)](js-apis-file-fileuri.md)
+  - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
+  - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
+  - [@ohos.file.picker (Picker)](js-apis-file-picker.md)
+  - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
+  - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
+  - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
+  - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
+  - [@ohos.file.backup (Backup and Restore) (System API)](js-apis-file-backup-sys.md)
+  - [@ohos.file.cloudSync (Device-Cloud Synchronization) (System API)](js-apis-file-cloudsync-sys.md)
+  - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management) (System API)](js-apis-file-cloudsyncmanager-sys.md)
+  - [@ohos.file.environment (Directory Environment Capability) (System API)](js-apis-file-environment-sys.md)
+  - [@ohos.file.fileAccess (User File Access and Management) (System API)](js-apis-fileAccess-sys.md)
+  - [@ohos.file.fileExtensionInfo (User File Extension Information) (System API)](js-apis-fileExtensionInfo-sys.md)
+  - [@ohos.file.recent (Latest Access List) (System API)](js-apis-file-recent-sys.md)
+  - [@ohos.file.storageStatistics (Application Space Statistics) (System API)](js-apis-file-storage-statistics-sys.md)
+  - [@ohos.file.trash (Trash) (System API)](js-apis-file-trash-sys.md)
+  - [@ohos.file.volumeManager (volume Management) (System API)](js-apis-file-volumemanager-sys.md)
+  - [@ohos.filemanagement.userFileManager (User Data Management) (System API)](js-apis-userFileManager-sys.md)
+  - [@ohos.fileshare (File Sharing) (System API)](js-apis-fileShare-sys.md)
+  - APIs No Longer Maintained
+    - [@ohos.document (File Operation)](js-apis-document.md)
+    - [@ohos.fileio (File Management)](js-apis-fileio.md)
+    - [@ohos.statfs (statfs)](js-apis-statfs.md)
+    - [@system.file (File Storage)](js-apis-system-file.md)
+- C APIs
+  - Modules
+    - [Environment](_environment.md)
+    - [FileIO](_file_i_o.md)
+    - [FileShare](file_share.md)
+    - [Fileuri](fileuri.md)
+  - Header Files
+    - [error_code.h](error__code_8h.md)
+    - [oh_environment.h](oh__environment_8h.md)
+    - [oh_file_share.h](oh__file__share_8h.md)
+    - [oh_file_uri.h](oh__file__uri_8h.md)
+    - [oh_fileio.h](oh__fileio_8h.md)
+  - Structs
+    - [FileShare_PolicyErrorResult](_file_share___policy_error_result.md)
+    - [FileShare_PolicyInfo](_file_share___policy_info.md)
+- Error Codes
+  - [File Management Error Codes](errorcode-filemanagement.md)

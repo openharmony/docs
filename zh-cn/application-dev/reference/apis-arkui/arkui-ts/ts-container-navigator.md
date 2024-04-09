@@ -31,15 +31,62 @@ Navigator(value?: {target: string, type?: NavigationType})
 | Replace | 2 | 用应用内的某个页面替换当前页面，并销毁被替换的页面。 |
 | Back    | 3 | 返回到指定的页面。指定的页面不存在栈中时不响应。未传入指定的页面时返回上一页。 |
 
-
 ## 属性
 
-| 名称   | 参数    | 描述                                                         |
-| ------ | ------- | ------------------------------------------------------------ |
-| active | boolean | 当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。 |
-| params | object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../../apis/js-apis-router.md#routergetparams)获得。 |
-| target | string         | 设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。                         |
-| type   | [NavigationType](#navigationtype枚举说明)  | 设置路由方式。<br/>默认值：NavigationType.Push |
+### active
+
+active(value: boolean)
+
+设置当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                       |
+| ------ | ------- | ---- | -------------------------- |
+| value  | boolean | 是   | 路由组件是否处于激活状态。 |
+
+### params
+
+params(value: object)
+
+设置跳转时传递到目标页面的数据。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | object | 是   | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../js-apis-router.md#routergetparams)获得。 |
+
+### target
+
+target(value: string)
+
+设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| value  | object | 是   | 转目标页面的路径。 |
+
+### type
+type(value: NavigationType)
+
+设置路由跳转方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                           |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| value  | object | 是   | 路由跳转方式。<br/>默认值：NavigationType.Push |
 
 
 ## 示例

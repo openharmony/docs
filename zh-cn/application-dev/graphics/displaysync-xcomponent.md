@@ -7,13 +7,15 @@
 | 函数名称  | 说明     |
 |-----|--------|
 | OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) |设置帧期望的帧率范围。 
-| H_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | 设置每帧回调函数，同时启动每帧回调。 |
+| OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | 设置每帧回调函数，同时启动每帧回调。 |
 | OH_NativeXComponent_UnRegisterOnFrameCallback (OH_NativeXComponent *component) | 取消注册的每帧回调函数，同时停止调用回调函数。 |
 
 ## 开发步骤
+
    > **说明：**
    >
-   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](../napi/drawing-guidelines.md)。
+   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](drawing-guidelines.md)。
+
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
    export default interface XComponentContext {

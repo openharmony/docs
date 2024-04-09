@@ -55,17 +55,22 @@ onFailure(): void
       console.log("save request on failure");
     }
   }
-  ...
-  Button('requestAutoSave')
-    .onClick(() => {
-      try {
-        // 发起保存请求
-        autoFillManager.requestAutoSave(uiContext, callback);
-      } catch (error) {
-        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-      }
-    })
-  ...
+  
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      Button('requestAutoSave')
+        .onClick(() => {
+          try {
+            // 发起保存请求
+            autoFillManager.requestAutoSave(uiContext, callback);
+          } catch (error) {
+            console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+          }
+        })
+    }
+  }
   ```
 
 > **说明：**
@@ -84,7 +89,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | [UIContext](../apis/js-apis-arkui-UIContext.md) | 是 | 将在其中执行保存操作的UI上下文。 |
+| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | 是 | 将在其中执行保存操作的UI上下文。 |
 | callback | [AutoSaveCallback](#autosavecallback)  | 否 | 保存请求的回调函数。 |
 
 **错误码：**
@@ -93,7 +98,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

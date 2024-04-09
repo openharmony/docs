@@ -18,4 +18,5 @@
 | moduleName    | string              | 是   | 模块名称。                               |
 | abilityName    | string        | 是   | Ability名称。    |
 | pageUrl    | string              | 是   | 页面的url。                               |
-| pageNodeInfos    | Array&lt;[PageNodeInfo](../apis/js-apis-inner-application-pageNodeInfo.md)&gt;     | 是   | 页面节点的信息。                |
+| pageNodeInfos    | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;     | 是   | 页面节点的信息。                |
+| pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | 是   | 页面的坐标和宽高信息。                |

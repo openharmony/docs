@@ -140,9 +140,9 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
   为删除操作创建一个按钮。
 
   ```ts
-  let MarLeft:Record<string,number> = {'left':20}
+  let MarLeft: Record<string, number> = { 'left': 20 }
   Button({ type: ButtonType.Circle, stateEffect: true }) {
-  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+    Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
   }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 

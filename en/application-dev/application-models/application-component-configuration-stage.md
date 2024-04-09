@@ -15,7 +15,7 @@ The application icon and application label are used to identify an application, 
 * Notification messages displayed in the status bar
 
 
-The entry icon and entry label aredisplayed on the device's home screen after an application is installed, as shown below. The entry icon maps to a [UIAbility](uiability-overview.md) component. Therefore, an application can have multiple entry icons and entry labels. When you touch one of them, the corresponding UIAbility page is displayed. Example scenarios are as follows:
+The entry icon and entry label are displayed on the device's home screen after an application is installed, as shown below. The entry icon maps to a [UIAbility](uiability-overview.md) component. Therefore, an application can have multiple entry icons and entry labels. When you touch one of them, the corresponding UIAbility page is displayed. Example scenarios are as follows:
 * Applications displayed on the device's home screen
 * Applications displayed in Recents
 
@@ -108,4 +108,4 @@ To configure the device types supported by the module, set the [deviceTypes](../
 
 ## Configuring the Module Permission
 
-The requestPermissions field in the [module.json5 file](../quick-start/module-configuration-file.md) is used to configure the permission information required by the module to access the protected part of the system or other applications. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used.
+The [requestPermissions](../quick-start/module-configuration-file.md#requestpermissions) field in the [module.json5 file](../quick-start/module-configuration-file.md) is used to configure the permission information required by the module to access the protected part of the system or other applications. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used.

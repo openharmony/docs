@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcodes/errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 16000001 指定的Ability名称不存在
 
@@ -47,7 +47,7 @@ Incorrect Ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -84,7 +84,25 @@ Can not start invisible component.
 **处理步骤**
 
 1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
-2. 若应用需要拉起exported为false的ability，请申请[ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability)权限。
+2. 若应用需要拉起exported为false的ability，请申请ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用可申请）。
+
+## 16000005 指定的进程权限校验失败
+
+**错误信息**
+
+The specified process does not have the permission.
+
+**错误描述**
+
+当指定的进程权限校验失败时，方法将返回该错误码。
+
+**可能原因**
+
+指定的进程权限校验失败。
+
+**处理步骤**
+
+确认指定进程的权限是否正确。
 
 ## 16000006 不允许跨用户操作
 
@@ -220,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../apis/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../apis-mdm-kit/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -501,6 +519,159 @@ The number of child process exceeds upper bound.
 **处理步骤**
 
 确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
+
+## 16000063 重启应用指定组件无效
+
+**错误信息**
+
+The target to restart does not belong to the current app or is not a UIAbility.
+
+**错误描述**
+
+当重启应用拉起指定组件时，指定组件名称或类型无效，返回该错误码。
+
+**可能原因**
+
+指定组件名称或类型无效。
+
+**处理步骤**
+
+确认指定组件名称为当前应用组件，且类型为UIAbility。
+
+## 16000064 重启应用频繁
+
+**错误信息**
+
+Restart too frequently. Try again at least 10s later.
+
+**错误描述**
+
+当重启应用拉起指定组件时，10s内再次调用，返回该错误码。
+
+**可能原因**
+
+调用接口频繁。
+
+**处理步骤**
+
+间隔10s后再次调用。
+
+## 16000065 接口只支持Ability在前台时调用
+
+**错误信息**
+
+The interface can be called only when ability is foreground.
+
+**错误描述**
+
+当Ability不在前台时，方法将返回该错误码。
+
+**可能原因**
+
+调用接口时，Ability不在前台。
+
+**处理步骤**
+
+将Ability切换到前台后，再调用接口。
+
+## 16000066  wukong模式，不允许移动Ability到前台/后台
+
+**错误信息**
+
+An ability cannot move to foreground or background in Wukong mode.
+
+**错误描述**
+
+当wukong模式下，移动Ability到前台/后台时，方法将返回该错误码。
+
+**可能原因**
+
+wukong模式，不允许移动Ability到前台/后台。
+
+**处理步骤**
+
+退出wukong模式后，再尝试移动Ability到前台/后台。请勿在wukong模式下移动Ability到前台/后台。
+
+## 16000067 Ability启动参数校验失败
+
+**错误信息**
+
+Start options check failed.
+
+**错误描述**
+
+当StartOptions相关的参数校验失败时，返回该错误码。
+
+**可能原因**
+
+1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
+2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
+
+**处理步骤**
+
+确认StartOptions参数配置，以及相应的约束条件是否满足。
+
+## 16000068 Ability已经在运行中
+
+**错误信息**
+
+Ability already running.
+
+**错误描述**
+
+当目标Ability已经在运行中时，返回该错误码。
+
+**可能原因**
+
+调用startAbility时，指定了processMode和startupVisibility，目标Ability的launchType是singleton或者specified，并且目标Ability正在运行中，则返回该错误码。
+
+**处理步骤**
+
+当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
+
+## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
+
+**错误信息**
+
+ - AddAbilityMonitor failed.
+
+ - AddAbilityMonitorSync failed.
+
+ - RemoveAbilityMonitor failed.
+
+ - RemoveAbilityMonitorSync failed.
+
+ - WaitAbilityMonitor failed.
+
+ - GetCurrentTopAbility failed.
+
+ - DoAbilityForeground failed.
+
+ - DoAbilityBackground failed.
+
+ - FinishTest failed.
+
+ - AddAbilityStageMonitor failed.
+
+ - AddAbilityStageMonitorSync failed.
+
+ - RemoveAbilityStageMonitor failed.
+
+ - RemoveAbilityStageMonitorSync failed.
+
+ - WaitAbilityStageMonitor failed.
+
+**错误描述**
+
+当监听指定Ability的生命周期变化的AbilityMonitor方法执行失败时，返回该错误码。
+
+**可能原因**
+
+创建AbilityDelegatorRegistry实例执行失败。
+
+**处理步骤**
+
+检查是否成功创建了AbilityDelegatorRegistry实例。
 
 ## 16000101 执行shell命令失败
 
@@ -925,3 +1096,21 @@ The application has a apply quick fix task that is being processed.
 **处理步骤**
 
 等待快速修复任务处理完成。
+
+## 16300004 指定的observer不存在
+
+**错误信息**
+
+observer not found.
+
+**错误描述**
+
+当监听器不存在时，方法将返回该错误码。
+
+**可能原因**
+
+当前监听器不存在或者已注销。
+
+**处理步骤**
+
+请检查是否有重复注销监听器。

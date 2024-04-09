@@ -5,16 +5,16 @@
 
 If complex services are involved in cross-application data access, you can use **DataShareExtensionAbility** to start the application of the data provider to implement data access.
 
-You need to implement flexible service logics via callbacks of the service provider.  
+You need to implement flexible service logics via callbacks of the service provider.
 
 
 ## Working Principles
 
 There are two roles in **DataShare**:
 
-- Data provider: implements operations, such as adding, deleting, modifying, and querying data, and opening a file, using [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md).
+- Data provider: implements operations, such as adding, deleting, modifying, and querying data, and opening a file, using [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md).
 
-- Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper).
+- Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper).
 
 **Figure 1** Data sharing mechanism
 
@@ -34,7 +34,7 @@ There are two roles in **DataShare**:
 
 ### Data Provider Application Development (Only for System Applications)
 
-[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
+The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) provides the following APIs. You can override these APIs as required.
 
 - **onCreate**: called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server.
 
@@ -58,7 +58,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
 2. Right-click the **DataShareAbility** directory, and choose **New > ArkTS File** to create a file named **DataShareExtAbility.ets**.
 
-3. In the **DataShareExtAbility.ets** file, import the **@ohos.application.DataShareExtensionAbility** module. You can override the service implementation as required. For example, if the data provider provides only the data insertion, deletion, and query services, you can override only these APIs.
+3. In the **DataShareExtAbility.ets** file, import the **@ohos.application.DataShareExtensionAbility** module. You can override the service implementation as required. For example, if the data provider provides only the insert, delete, and query services, you can override only these APIs and import the dependency modules. If permission verification is required, override the callbacks using [getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid), [getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid), and [getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8) provided by the IPC module to obtain the data consumer information for permission verification.
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
@@ -68,7 +68,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    import { BusinessError } from '@ohos.base'
    ```
    
-4. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
+4. Implement the data provider services. For example, implement data storage of the data provider by creating and using a database, reading and writing files, or accessing the network.
    
    ```ts
    const DB_NAME = 'DB00.db';
@@ -130,12 +130,12 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field| Description| Mandatory|
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
-   | type | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template.| Yes|
-   | uri | URI used for communication. It is the unique identifier for the data consumer to connect to the provider.| Yes|
+   | type | Ability type. The value **dataShare** indicates the development is based on the **datashare** template. | Yes|
+   | uri | Unique identifier for the data consumer to access the data provider. | Yes|
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
-   | readPermission | Permission required for accessing data. If this parameter is not set, the read permission is not verified by default.| No|
-   | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.| No|
-   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
+   | readPermission | Permission required for data access. If this parameter is not set, read permission verification is not performed by default. | No|
+   | writePermission | Permission required for data modificiation. If this parameter is not set, write permission verification is not performed by default. | No|
+   | metadata   | Silent access configuration, which includes the following:<br>- **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>- **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
    
@@ -159,9 +159,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field           | Description                                                    | Mandatory|
    | ------------------- | ------------------------------------------------------------ | ---- |
    | tableConfig         | Label configuration.                                                  | Yes  |
-   | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes  |
-   | crossUserMode       | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
-   | isSilentProxyEnable | Whether silent access is disabled for the ExtensionAbility.<br>The value **false** means to disable silent access; the value **true** means the opposite. The default value is **true**.<br>If the application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect. | No  |
+   | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect.| Yes  |
+   | crossUserMode       | Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes  |
+   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** (default) means to enable silent access; the value **false** means the opposite.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect. | No  |
    
    **data_share_config.json Example**
 

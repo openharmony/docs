@@ -13,10 +13,8 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
+      - [动态import](arkts-dynamic-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
-    - 应用程序包快速修复
-      - [快速修复概述](quickfix-principles.md)
-      - [快速修复命令行调试开发指导](quickfix-debug.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
@@ -30,10 +28,13 @@
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
+  - [方舟字节码文件格式](arkts-bytecode-file-format.md)
+  - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
   - 从TypeScript到ArkTS的适配指导
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+  - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -41,7 +42,9 @@
       - 自定义组件
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+        - [自定义组件的自定义布局](arkts-page-custom-components-layout.md)
         - [自定义组件冻结功能](arkts-custom-components-freeze.md)
+        - [自定义组件成员属性访问限定符使用限制](arkts-custom-components-access-restrictions.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
       - [wrapBuilder：封装全局@Builder](arkts-wrapBuilder.md)
@@ -72,6 +75,10 @@
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
+    - 状态管理（推荐）
+      - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
+      - 状态管理（推荐）所属装饰器
+        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-ObservedV2-and-Trace.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

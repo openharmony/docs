@@ -31,7 +31,7 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
-| callback  | [AutoStartupCallback](../apis/js-apis-inner-application-autoStartupCallback.md)   | 是    | 监听应用组件开机自启动状态变化的回调对象。      |
+| callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | 是    | 监听应用组件开机自启动状态变化的回调对象。      |
 
 **示例**：
 
@@ -68,7 +68,7 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string              | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
-| callback | [AutoStartupCallback](../apis/js-apis-inner-application-autoStartupCallback.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
 
 **示例**：
 
@@ -104,7 +104,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| info | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md) | 是    | 要设置的开机自启动应用组件信息。 |
+| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | 是    | 要设置的开机自启动应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是 | 回调函数。当设置应用组件开机自启动成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -115,7 +115,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -148,7 +148,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 | 参数名 | 类型            | 必填 | 说明                         |
 | ------ | --------------- | ---- | ---------------------------- |
-| info   | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md) | 是   | 要设置的开机自启动应用组件信息。 |
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | 是   | 要设置的开机自启动应用组件信息。 |
 
 **返回值：**
 
@@ -164,7 +164,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -200,7 +200,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| info | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)   | 是 | 要取消的开机自启动应用组件信息。 |
+| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | 是 | 要取消的开机自启动应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是    | 回调函数。当取消应用组件开机自启动成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -211,7 +211,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -244,7 +244,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| info | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)   | 是 | 要取消的开机自启动应用组件信息。 |
+| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | 是 | 要取消的开机自启动应用组件信息。 |
 
 **返回值：**
 
@@ -260,7 +260,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -296,7 +296,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)\>\> | 是    | 回调函数。当查询自启动应用组件信息成功，err为undefined，data为获取到的Array\<[AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)\>；否则为错误对象。      |
+| callback  | AsyncCallback\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>\> | 是    | 回调函数。当查询自启动应用组件信息成功，err为undefined，data为获取到的Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>；否则为错误对象。      |
 
 **错误码**：
 
@@ -304,7 +304,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -334,7 +334,7 @@ try {
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)\>\> | Promise对象，返回自启动应用组件信息。 |
+| Promise\<Array\<[AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)\>\> | Promise对象，返回自启动应用组件信息。 |
 
 **错误码**：
 
@@ -342,7 +342,7 @@ try {
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 

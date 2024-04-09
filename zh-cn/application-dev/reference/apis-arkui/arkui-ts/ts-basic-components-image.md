@@ -1,6 +1,6 @@
 # Image
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](../../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp和gif类型的图片格式。
+Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp和gif类型的图片格式。
 
 > **说明：**
 >
@@ -25,36 +25,287 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 Image组件加载图片失败或图片尺寸为0时，图片组件大小自动为0，不跟随父组件的布局约束。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名  | 参数类型                                     | 必填   | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../../apis/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。<br/>- 如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。 |
+| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。<br/>- 如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。 |
 
 ## 属性
 
 属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                           | 参数类型                                     | 描述                                       |
-| ---------------------------- | ---------------------------------------- | ---------------------------------------- |
-| alt                          | string \| [Resource](ts-types.md#resource类型) | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| objectFit                    | [ImageFit](ts-appendix-enums.md#imagefit) | 设置图片的填充效果。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| objectRepeat                 | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 设置图片的重复样式。从中心点向两边重复，剩余空间不足放下一张图片时会截断。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| interpolation                | [ImageInterpolation](#imageinterpolation) | 设置图片的插值效果，即缓解图片在缩放时的锯齿问题。<br/>默认值：ImageInterpolation.Low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
-| renderMode                   | [ImageRenderMode](#imagerendermode)      | 设置图片的渲染模式为原色或黑白。<br/>默认值：ImageRenderMode.Original<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>svg类型图源不支持该属性。 |
-| sourceSize                   | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 设置图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：vp<br>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>仅在目标尺寸小于图源尺寸时生效。<br>svg类型图源不支持该属性。<br>PixelMap资源不支持该属性。 |
-| matchTextDirection           | boolean                                  | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fitOriginalSize              | boolean                                  | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| fillColor                    | [ResourceColor](ts-types.md#resourcecolor) | 设置填充颜色，设置后填充颜色会覆盖在图片上。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：** <br>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
-| autoResize                   | boolean                                  | 设置图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br>**说明：** <br>降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果。 |
-| syncLoad<sup>8+</sup>        | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 |
-| copyOption<sup>9+</sup>      | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
-| colorFilter<sup>9+</sup>     | [ColorFilter](ts-types.md#colorfilter9)  | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>svg类型图源不支持该属性。 |
-| draggable<sup>9+</sup>       | boolean                                  | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
-| enableAnalyzer<sup>11+</sup> | boolean                                  | 设置组件支持AI分析，设置为true时，组件可进行AI分析。<br>不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。<br/>默认值：false<br>**说明：**<br/> 该特性依赖设备能力。 <br/> 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。 <br/> alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。<br/> 基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。<br/> copyOption属性不影响AI分析功能。 |
-| resizable<sup>11+</sup>      | [ResizableOptions](#resizableoptions11)  | 设置图像拉伸时可调整大小的图像选项。<br> **说明：**<br /> 1. 拉伸对拖拽缩略图以及占位图有效。<br>2. 设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。<br>3. 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。<br/> |
+### alt
+
+alt(value:&nbsp;string&nbsp;|&nbsp;Resource)
+
+设置图片加载时显示的占位图。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                     | 必填 | 说明                                                         |
+| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br/>默认值：null |
+
+### objectFit
+
+objectFit(value: ImageFit)
+
+设置图片的填充效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                        |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------- |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
+
+### objectRepeat
+
+objectRepeat(value: ImageRepeat)
+
+设置图片的重复样式，从中心点向两边重复，剩余空间不足放下一张图片时会截断。svg类型图源不支持该属性。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                                              |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------- |
+| value  | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 是   | 图片的重复样式。<br/>默认值：ImageRepeat.NoRepeat |
+
+### interpolation
+
+interpolation(value: ImageInterpolation)
+
+设置图片的插值效果，即缓解图片在缩放时的锯齿问题。svg类型图源不支持该属性。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                |
+| ------ | ----------------------------------------- | ---- | --------------------------------------------------- |
+| value  | [ImageInterpolation](#imageinterpolation) | 是   | 图片的插值效果。<br/>默认值：ImageInterpolation.Low |
+
+### renderMode
+
+renderMode(value: ImageRenderMode)
+
+设置图片的渲染模式。svg类型图源不支持该属性。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                                                         |
+| ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ImageRenderMode](#imagerendermode) | 是   | 图片的渲染模式为原色或黑白。<br/>默认值：ImageRenderMode.Original |
+
+### sourceSize
+
+sourceSize(value: { width:&nbsp;number;&nbsp;height:&nbsp;number&nbsp;})
+
+设置图片解码尺寸。仅在目标尺寸小于图源尺寸时生效。svg类型图源和PixelMap资源不支持该属性。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                    | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 是   | 图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：vp |
+
+### matchTextDirection
+
+matchTextDirection(value: boolean)
+
+设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                         |
+| ------ | ------- | ---- | -------------------------------------------- |
+| value  | boolean | 是   | 图片是否跟随系统语言方向。<br/>默认值：false |
+
+### fitOriginalSize
+
+fitOriginalSize(value: boolean)
+
+设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                             |
+| ------ | ------- | ---- | ------------------------------------------------ |
+| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false |
+
+### fillColor
+
+fillColor(value: ResourceColor)
+
+设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的填充颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | -------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 |
+
+### autoResize
+
+autoResize(value: boolean)
+
+设置图片解码过程中是否对图源自动缩放。降采样解码时图片的部分信息丢失，因此可能会导致图片质量的下降（如：出现锯齿），这时可以选择把autoResize设为false，按原图尺寸解码，提升显示效果，但会增加内存占用。
+
+原图尺寸和显示尺寸不匹配时，图片都会出现些许的失真、模糊。最佳清晰度配置建议：
+
+图片缩小显示时：.autoResize(false) + .interpolation(.Medium)
+
+图片放大显示时：.interpolation(.High)
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 图片解码过程中是否对图源自动缩放。设置为true时，组件会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。如原图大小为1920x1080，而显示区域大小为200x200，则图片会降采样解码到200x200的尺寸，大幅度节省图片占用的内存。<br/>默认值：false |
+
+### syncLoad<sup>8+</sup>
+
+syncLoad(value: boolean)
+
+设置是否同步加载图片。建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
+
+### copyOption<sup>9+</sup>
+
+copyOption(value: CopyOptions)
+
+设置图片是否可复制。当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。svg图片不支持复制。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                          |
+| ------ | ------------------------------------------------ | ---- | --------------------------------------------- |
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 图片是否可复制。<br/>默认值：CopyOptions.None |
+
+### colorFilter<sup>9+</sup>
+
+colorFilter(value: ColorFilter)
+
+为图像设置颜色滤镜效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明                                                         |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ColorFilter](ts-types.md#colorfilter9) | 是   | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>**说明：** <br/>svg类型图源不支持该属性。 |
+
+### draggable<sup>9+</sup>
+
+draggable(value: boolean)
+
+设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽。<br/>默认值：false<br/>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
+
+### enableAnalyzer<sup>11+</sup>
+
+edgeAntialiasing(value:&nbsp;boolean)
+
+设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
+
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。  
+
+alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。 
+
+基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。 copyOption属性不影响AI分析功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
+
+### resizable<sup>11+</sup>
+
+resizable(value: ResizableOptions)
+
+设置图像拉伸时可调整大小的图像选项。拉伸对拖拽缩略图以及占位图有效。
+
+设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。
+
+当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| value  | [ResizableOptions](#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
 
 >  **说明：**
 >
@@ -93,10 +344,12 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |           
-|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
-|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
-|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0。<br>单位：vp。 |
+|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+
+![edgewidths](figures/edgewidths.png)
 
 ## 事件
 
@@ -108,36 +361,40 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名                          | 类型     | 说明                                       |
-| ---------------------------- | ------ | ---------------------------------------- |
-| width                        | number | 图片的宽。<br/>单位：像素                          |
-| height                       | number | 图片的高。<br/>单位：像素                          |
-| componentWidth               | number | 组件的宽。<br/>单位：像素                          |
-| componentHeight              | number | 组件的高。<br/>单位：像素                          |
-| loadingStatus                | number | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
-| contentWidth<sup>10+</sup>   | number | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentHeight<sup>10+</sup>  | number | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetX<sup>10+</sup> | number | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetY<sup>10+</sup> | number | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| 参数名                       | 类型   | 必填 | 说明                                                         |
+| ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
+| width                        | number | 是   | 图片的宽。<br/>单位：像素                                    |
+| height                       | number | 是   | 图片的高。<br/>单位：像素                                    |
+| componentWidth               | number | 是   | 组件的宽。<br/>单位：像素                                    |
+| componentHeight              | number | 是   | 组件的高。<br/>单位：像素                                    |
+| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
+| contentWidth<sup>10+</sup>   | number | 是   | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight<sup>10+</sup>  | number | 是   | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
 ### onError<sup>9+</sup>
 
-onError(callback: [ImageErrorCallback](#imageerrorcallback9))
+onError(callback: ImageErrorCallback)
 
 图片加载异常时触发该回调。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名      | 类型                                       | 说明            |
-| -------- | ---------------------------------------- | ------------- |
-| callback | [ImageErrorCallback](#imageerrorcallback9) | 图片加载异常时触发的回调。 |
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。 |
 
 ### onFinish
 
@@ -147,27 +404,29 @@ onFinish(event: () =&gt; void)
 
 仅支持svg格式的图片。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ImageErrorCallback<sup>9+</sup>
 
-type ImageErrorCallback = (error: [ImageError](#imageerror9)) => void
+type ImageErrorCallback = (error: ImageError) => void
 
 图片加载异常时触发的回调。
 
-| 参数名   | 类型                         | 说明                |
-| ----- | -------------------------- | ----------------- |
-| error | [ImageError](#imageerror9) | 图片加载异常时触发回调的返回对象。 |
+| 参数名 | 类型                       | 必填 | 说明                               |
+| ------ | -------------------------- | ---- | ---------------------------------- |
+| error  | [ImageError](#imageerror9) | 是   | 图片加载异常时触发回调的返回对象。 |
 
 ## ImageError<sup>9+</sup>
 
 图片加载异常时触发回调的返回对象。
 
-| 参数名             | 类型     | 说明              |
-| --------------- | ------ | --------------- |
-| componentWidth  | number | 组件的宽。<br/>单位：像素 |
-| componentHeight | number | 组件的高。<br/>单位：像素 |
-| message         | string | 报错信息。           |
+| 参数名          | 类型   | 必填 | 说明                      |
+| --------------- | ------ | ---- | ------------------------- |
+| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素 |
+| componentHeight | number | 是   | 组件的高。<br/>单位：像素 |
+| message         | string | 是   | 报错信息。                |
 
 ## 示例
 
@@ -210,7 +469,7 @@ struct ImageExample1 {
 
 ### 加载网络图片
 
-加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用[HTTP](../../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../../media/image-overview.md)。
+加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用[HTTP](../../../network/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../../media/image/image-overview.md)。
 
 使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
 

@@ -15,7 +15,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 ## 属性
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -27,7 +27,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 卡片提供方接收创建卡片的通知接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -68,7 +68,7 @@ onCastToNormalForm(formId: string): void
 
 卡片提供方接收临时卡片转常态卡片的通知接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -90,17 +90,18 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onUpdateForm
 
-onUpdateForm(formId: string): void
+onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-卡片提供方接收更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | formId | string | 是   | 请求更新的卡片ID。 |
+| wantParams<sup>12+</sup> | Record<string, Object> | 否   | 更新参数。 |
 
 **示例：**
 
@@ -111,8 +112,9 @@ import formProvider from '@ohos.app.form.formProvider';
 import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onUpdateForm(formId: string) {
-    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId}`);
+  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
+    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId},
+        wantPara: ${wantParams?.['ohos.extra.param.key.host_bg_inverse_color']}`);
     let param: Record<string, string> = {
       'temperature': '22c',
       'time': '22:00'
@@ -134,7 +136,7 @@ onChangeFormVisibility(newStatus: Record\<string, number>): void
 卡片提供方接收修改可见性的通知接口。
 该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -184,9 +186,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-卡片提供方接收处理卡片事件的通知接口（此方法仅可在JS卡片中使用）。
+卡片提供方接收处理卡片事件的通知接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -213,7 +215,7 @@ onRemoveForm(formId: string): void
 
 卡片提供方接收销毁卡片的通知接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -240,7 +242,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 当系统配置更新时调用。  
 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -269,7 +271,7 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态(该方法可以选择性重写)。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -290,4 +292,24 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     return formInfo.FormState.UNKNOWN;
   }
 };
+```
+
+## onStop<sup>12+</sup>
+
+onStop?(): void
+
+当卡片提供方的卡片进程退出时，触发该回调。
+  
+**系统能力：** SystemCapability.Ability.Form
+
+**示例：**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onStop() {
+    console.log(`FormExtensionAbility onStop`);
+  }
+}
 ```

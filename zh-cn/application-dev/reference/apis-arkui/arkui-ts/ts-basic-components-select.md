@@ -31,25 +31,270 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                    | 参数类型                              | 描述                                          |
-| ----------------------- | ------------------------------------- | --------------------------------------------- |
-| selected                | number \| [Resource](ts-types.md#resource)<sup>11+</sup>    | 设置下拉菜单初始选项的索引，第一项的索引为0。<br>当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| value                   | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| font                    | [Font](ts-types.md#font)          | 设置下拉按钮本身的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>**说明：**<br/>当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。|
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉按钮本身的文本颜色。<br/>默认值：'\#E5182431' |
-| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的背景色。<br/>默认值：'\#33007DFF' |
-| selectedOptionFont      | [Font](ts-types.md#font)          | 设置下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} <br/>**说明：**<br/>当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。|
-| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的文本颜色。<br/>默认值：'\#ff007dff' |
-| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的背景色。<br/>默认值：'\#ffffffff' |
-| optionFont              | [Font](ts-types.md#font)          | 设置下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>}<br/>**说明：**<br/>当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。 |
-| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的文本颜色。<br/>默认值：'\#ff182431' |
-| space<sup>10+</sup>         | [Length](ts-types.md#length)               | 设置下拉菜单项的文本与箭头之间的间距。<br/>**说明：** <br/>不支持设置百分比。 |
-| arrowPosition<sup>10+</sup> | [ArrowPosition](#arrowposition10枚举说明)                  | 设置下拉菜单项的文本与箭头之间的对齐方式。<br/>默认值：ArrowPosition.END |
-| menuAlign<sup>10+</sup> | alignType: [MenuAlignType](#menualigntype10枚举说明),<br/> offset?: [Offset](ts-types.md#offset)    | 设置下拉按钮与下拉菜单间的对齐方式。<br/> -alignType: 对齐方式类型，必填。<br/>默认值：MenuAlignType.START <br/> -offset: 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。<br/> 默认值：{dx: 0, dy: 0}|
-| optionWidth<sup>11+</sup> | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](#optionwidthmode11枚举说明) | 设置下拉菜单项的宽度。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。<br/>当设置为undefined、null、负数时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。<br/>当菜单项设置宽度小于最小宽度56vp时，菜单宽度回弹至2栅格。正常值范围大于等于0。<br/>**说明：**<br/>不支持设置百分比。 |
-| optionHeight<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | 设置下拉菜单显示的最大高度。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。<br/>当设置为undefined、null、负数与零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。<br/>正常值范围大于0。如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。<br/>**说明：**<br/>不支持设置百分比。 |
-| menuBackgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单的背景色。<br/>默认值：Color.Transparent |
-| menuBackgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) |  设置下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
+### selected
+
+selected(value: number | Resource)
+
+设置下拉菜单初始选项的索引，第一项的索引为0。当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。
+
+从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<sup>11+</sup> | 是   | 下拉菜单初始选项的索引。 |
+
+### value
+
+value(value: ResourceStr)
+
+设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。
+
+从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                     |
+| ------ | ---------------------------------------------------- | ---- | ------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 是   | 下拉按钮本身的文本内容。 |
+
+### controlSize<sup>12+</sup>
+
+controlSize(value: ControlSize)
+
+设置Select组件的尺寸。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup> | 是   | Select组件的尺寸。<br/>默认值:ControlSize.NORMAL |
+
+### font
+
+font(value: Font)
+
+设置下拉按钮本身的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} |
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+设置下拉按钮本身的文本颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉按钮本身的文本颜色。<br/>默认值：'\#E5182431' |
+
+### selectedOptionBgColor
+
+selectedOptionBgColor(value: ResourceColor)
+
+设置下拉菜单选中项的背景色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的背景色。<br/>默认值：'\#33007DFF' |
+
+### selectedOptionFont
+
+selectedOptionFont(value: Font)
+
+设置下拉菜单选中项的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+
+### selectedOptionFontColor
+
+selectedOptionFontColor(value: ResourceColor)
+
+设置下拉菜单选中项的文本颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                |
+| ------ | ------------------------------------------ | ---- | --------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的文本颜色。<br/>默认值：'\#ff007dff' |
+
+### optionBgColor
+
+optionBgColor(value: ResourceColor)
+
+设置下拉菜单项的背景色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                          |
+| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的背景色。<br/>默认值：'\#ffffffff' |
+
+### optionFont
+
+optionFont(value: Font)
+
+设置下拉菜单项的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+
+### optionFontColor
+
+optionFontColor(value: ResourceColor)
+
+设置下拉菜单项的文本颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                            |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的文本颜色。<br/>默认值：'\#ff182431' |
+
+### space<sup>10+</sup>
+
+space(value: Length)
+
+设置下拉菜单项的文本与箭头之间的间距。不支持设置百分比。设置为null、undefined，或者小于等于8的值，取默认值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                             |
+| ------ | ---------------------------- | ---- | ------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 下拉菜单项的文本与箭头之间的间距。<br/>默认值：8 |
+
+### arrowPosition<sup>10+</sup>
+
+arrowPosition(value: ArrowPosition)
+
+设置下拉菜单项的文本与箭头之间的对齐方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ArrowPosition](#arrowposition10枚举说明) | 是   | 下拉菜单项的文本与箭头之间的对齐方式。<br/>默认值：ArrowPosition.END |
+
+### menuAlign<sup>10+</sup>
+
+menuAlign(alignType: MenuAlignType, offset?: Offset)
+
+设置下拉按钮与下拉菜单间的对齐方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| alignType | [MenuAlignType](#menualigntype10枚举说明) | 是   | 对齐方式类型。<br/>默认值：MenuAlignType.START               |
+| offset    | [Offset](ts-types.md#offset)              | 否   | 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。<br/> 默认值：{dx: 0, dy: 0} |
+
+### optionWidth<sup>11+</sup>
+
+optionWidth(value: Dimension | OptionWidthMode )
+
+设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。
+
+当设置为undefined、null、负数时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。
+
+当菜单项设置宽度小于最小宽度56vp时，菜单宽度回弹至2栅格。正常值范围大于等于0。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](#optionwidthmode11枚举说明) | 是   | 下拉菜单项的宽度。 |
+
+### optionHeight<sup>11+</sup>
+
+optionHeight(value: Dimension)
+
+设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。
+
+当设置为undefined、null、负数与零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
+
+正常值范围大于0。如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                 | 必填 | 说明                     |
+| ------ | ------------------------------------ | ---- | ------------------------ |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 下拉菜单显示的最大高度。 |
+
+### menuBackgroundColor<sup>11+</sup>
+
+menuBackgroundColor(value: ResourceColor)
+
+设置下拉菜单的背景色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单的背景色。<br/>默认值：Color.Transparent |
+
+### menuBackgroundBlurStyle<sup>11+</sup>
+
+menuBackgroundBlurStyle(value: BlurStyle)
+
+设置下拉菜单的背景模糊材质。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                         | 必填 | 说明                                                         |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | 下拉菜单的背景模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 
 ## OptionWidthMode<sup>11+</sup>枚举说明
 
@@ -76,9 +321,20 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 ## 事件
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelect(callback: (index: number, value?:&nbsp;string) => void) | 下拉菜单选中某一项的回调。<br/>index：选中项的索引。<br/>value：选中项的值。 |
+### onSelect
+
+onSelect(callback: (index: number, value:&nbsp;string) => void)
+
+下拉菜单选中某一项的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| index  | number | 是   | 选中项的索引。 |
+| value  | string | 是   | 选中项的值。   |
 
 ##  示例
 
@@ -107,7 +363,7 @@ struct SelectExample {
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, {dx:0, dy:0})
         .optionWidth(200)
-        .optionHeight(100)
+        .optionHeight(300)
         .onSelect((index:number, text?: string | undefined)=>{
           console.info('Select:' + index)
           this.index = index;
@@ -120,4 +376,4 @@ struct SelectExample {
 }
 ```
 
-![](figures/selectExample.jpg)
+![](figures/selectExample.png)

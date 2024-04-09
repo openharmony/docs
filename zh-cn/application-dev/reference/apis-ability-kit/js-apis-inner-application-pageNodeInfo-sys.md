@@ -16,9 +16,11 @@
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | id    | number               | 是   | 页面节点的ID。                               |
 | depth    | number              | 是   | 页面节点的深度。                               |
-| autoFillType    | [AutoFillType](../apis/js-apis-inner-application-autoFillType.md)        | 是   | 页面节点的自动填充类型。    |
+| autoFillType    | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)        | 是   | 页面节点的自动填充类型。    |
 | tag    | string              | 是   | 页面节点的标签。                               |
 | value    | string              | 是   | 页面节点的值。                               |
 | placeholder    | string              | 否   | 页面节点的占位符。                               |
 | passwordRules    | string              | 否   | 生成密码的规则。                               |
 | enableAutoFill    | boolean              | 是   | 自动填充标志。                               |
+| rect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md) | 是   | 当前节点的坐标和宽高信息。  |
+| isFocus<sup>12+</sup>    | boolean              | 是   | 当前节点是否获焦。                               |

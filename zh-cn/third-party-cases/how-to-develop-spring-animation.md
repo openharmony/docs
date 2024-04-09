@@ -17,9 +17,9 @@
 
 ## 实现思路
 本例主要用到以下三种弹簧动画曲线：
-- [curves.springCurve](../application-dev/reference/apis/js-apis-curve.md#curvesspringcurve9)：通过设置弹簧的初始速度、质量、刚度和阻尼来控制弹簧动画的效果。对应本例中springCurve按钮触发的动画。
-- [curves.springMotion](../application-dev/reference/apis/js-apis-curve.md#curvesspringmotion9)：通过设置弹簧震动时间和阻尼来控制弹簧动画的效果。对应本例中springMotion按钮触发的动画。
-- [curves.responsiveSpringMotion](../application-dev/reference/apis/js-apis-curve.md#curvesresponsivespringmotion9)：构造弹性跟手动画曲线对象，是springMotion的一种特例，仅默认参数不同，可与springMotion混合使用。用来实现拖拽动画。
+- [curves.springCurve](../application-dev/reference/apis-arkui/js-apis-curve.md#curvesspringcurve9)：通过设置弹簧的初始速度、质量、刚度和阻尼来控制弹簧动画的效果。对应本例中springCurve按钮触发的动画。
+- [curves.springMotion](../application-dev/reference/apis-arkui/js-apis-curve.md#curvesspringmotion9)：通过设置弹簧震动时间和阻尼来控制弹簧动画的效果。对应本例中springMotion按钮触发的动画。
+- [curves.responsiveSpringMotion](../application-dev/reference/apis-arkui/js-apis-curve.md#curvesresponsivespringmotion9)：构造弹性跟手动画曲线对象，是springMotion的一种特例，仅默认参数不同，可与springMotion混合使用。用来实现拖拽动画。
 
 ## 开发步骤
 1. 搭建UI框架。
@@ -277,5 +277,5 @@ struct ImageComponent {
 }
 ```
 ## 参考
-- [显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)
-- [插值计算](../application-dev/reference/apis/js-apis-curve.md)
+- [显示动画](../application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
+- [插值计算](../application-dev/reference/apis-as/js-apis-curve.md)

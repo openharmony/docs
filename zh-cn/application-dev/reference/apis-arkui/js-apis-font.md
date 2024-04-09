@@ -24,7 +24,7 @@ registerFont(options: FontOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型                          | 必填   | 说明          |
 | ------- | --------------------------- | ---- | ----------- |
@@ -55,12 +55,6 @@ struct FontExample {
   @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
-    // familyName和familySrc都支持string
-    font.registerFont({
-      familyName: 'medium',
-      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
-    })
-
     // familyName和familySrc都支持系统Resource
     font.registerFont({
       familyName: $r('app.string.font_name'),
@@ -78,6 +72,12 @@ struct FontExample {
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
+
+    // familyName和familySrc都支持string
+    font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
+    })
   }
 
   build() {
@@ -86,7 +86,7 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
-      
+
       // 使用iconFont的两种方式
       Text(this.unicode)
         .align(Alignment.Center)
@@ -100,11 +100,17 @@ struct FontExample {
   }
 }
 ```
+> **说明：**
+>
+> 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+>
+> 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[HSP资源引用](../../quick-start/in-app-hsp.md#通过$r访问hsp中的资源)。
+
 ## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
 
-获取系统支持的字体名称列表。
+获取风格字体列表。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,7 +151,7 @@ getFontByName(fontName: string): FontInfo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型      | 必填    | 说明          |
 | ---------- | --------- | ------- | ------------ |
@@ -168,8 +174,8 @@ getFontByName(fontName: string): FontInfo
 | fullName       | string  | 是 | 系统字体的名称。           |
 | family         | string  | 是 | 系统字体的字体家族。       |
 | subfamily      | string  | 是 | 系统字体的子字体家族。      |
-| weight         | number  | 是 | 系统字体的粗细程度。        |
-| width          | number  | 是 | 系统字体的宽窄风格属性。    |
+| weight         | number  | 是 | 系统字体的粗细程度，单位px。        |
+| width          | number  | 是 | 系统字体的宽窄风格属性，单位px。    |
 | italic         | boolean | 是 | 系统字体是否倾斜。          |
 | monoSpace      | boolean | 是 | 系统字体是否紧凑。         |
 | symbolic       | boolean | 是 | 系统字体是否支持符号字体。  |
@@ -189,7 +195,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)

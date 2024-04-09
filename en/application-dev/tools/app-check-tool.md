@@ -52,51 +52,6 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 }]
 ```
 
-**Detection report in HTML format**
-
-<div id="box">
-        <table>
-            <tr>
-                <td>taskType</td>
-                <td colspan="2">1</td>
-            </tr>
-            <tr>
-                <td>taskDesc</td>
-                <td colspan="2">find the duplicated files</td>
-            </tr>
-            <tr>
-                <td>param</td>
-                <td colspan="2">--stat-duplicate</td>
-            </tr>
-            <tr>
-                <td>startTime</td>
-                <td colspan="2">2023-11-17 14:48:01:265</td>
-            </tr>
-            <tr>
-                <td>stopTime</td>
-                <td colspan="2">2023-11-17 14:48:01:434</td>
-            </tr>
-            <tr>
-                <td rowspan="5">result</td>
-            </tr>
-            <tr>
-                <td>md5</td>
-                <td>975c41f5727b416b1ffefa5bb0f073b</td>
-            </tr>
-            <tr>
-                <td>size</td>
-                <td>1108880</td>
-            </tr>
-            <tr>
-                <td rowspan="2">files</td>
-                <td>/application-entry-default.hap/libs/armeabi-v7a/example.so</td>
-            </tr>
-            <tr>
-                <td>/entry-default.hap/libs/armeabi-v7a/example.so</td>
-            </tr>
-        </table>
-</div>
-
 **Fields of the output**
 
 | Field     | Type  | Description                       |
@@ -106,7 +61,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | param     | String | Parameter passed in by the scanning program.         |
 | startTime | String | Start time of the task.             |
 | stopTime  | String | End time of the task.             |
-| result    | Struct | [Fields of result](#section1).      |
+| result    | Struct | [Fields of result](#section1).       |
 
 **Fields of result**<a name="section1"></a>
 
@@ -147,42 +102,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
     }]
 }]
 ```
-**Detection report in HTML format**
 
-<div id="box">
-    <table>
-        <tr>
-            <td>taskType</td>
-            <td colspan="2">2</td>
-        </tr>
-        <tr>
-            <td>taskDesc</td>
-            <td colspan="2">find files whose size exceed the limit size</td>
-        </tr>
-        <tr>
-            <td>param</td>
-            <td colspan="2">--stat-file-size 4</td>
-        </tr>
-        <tr>
-            <td>startTime</td>
-            <td colspan="2">2023-11-17 14:48:01:458</td>
-        </tr>
-        <tr>
-            <td>stopTime</td>
-            <td colspan="2">2023-11-17 14:48:01:491</td>
-        </tr>
-        <tr>
-            <td rowspan="4">result</td>
-        </tr>
-        <tr>
-            <td>file</td> <td>size</td>
-        </tr>
-        <tr>
-            <td>/application-entry-default.hap/libs/x86_64/example.so</td>
-            <td>1292840</td>
-        </tr>
-    </table>
-</div>
 
 **Fields of the output**
 
@@ -193,7 +113,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | param     | String | Parameter passed in by the scanning program.                 |
 | startTime | String | Start time of the task.                     |
 | stopTime  | String | End time of the task.                     |
-| result    | Struct | [Fields of result](#section2).              |
+| result    | Struct | [Fields of result](#section2).               |
 
 **Fields of result**<a name="section2"></a>
 
@@ -216,7 +136,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | ------------- | ---------- | ------------------------------------------------------------------------- |
 | --input       | Yes        | Path of the HAP, HSP, or APP file.                                      |
 | --out-path    | Yes        | Path of the detection reports.                                                 |
-| --stat-suffix | No        | Whether to collect statistics on the size and proportion of each type of file. The default value is **false**.<br>- **true**: Statistics collection is enabled.<br>- **false**: Statistics collection is disabled. |
+| --stat-suffix | No        | Whether to collect statistics on the size and proportion of each type of file. The default value is **false**.<br>- **true**: Statistics collection is enabled.<br>- **false**: Statistics collection is disabled.|
 
 **Detection report in JSON format**
 
@@ -255,69 +175,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 }]
 ```
 
-**Detection report in HTML format**
 
-<div>
-  <table  >
-        <tr>
-            <td>taskType</td>
-            <td colspan="2">3</td>
-        </tr>
-        <tr>
-            <td>taskDesc</td>
-            <td colspan="2">show files group by file type[.suffix]</td>
-        </tr>
-        <tr>
-            <td>param</td>
-            <td colspan="2">--stat-suffix</td>
-        </tr>
-        <tr>
-            <td>startTime</td>
-            <td colspan="2">2023-11-17 14:48:01:497</td>
-        </tr>
-        <tr>
-            <td>stopTime</td>
-            <td colspan="2">2023-11-17 14:48:01:537</td>
-        </tr>
-        <tr>
-			<td >pathList</td>
-			<td colspan="2">
-                test.app/application-entry-default.hap<br>test.app/entry-default.hap
-			</td>
-		</tr>
-        <tr >
-            <td rowspan="30" width="10%">result</td>
-            <td width="10%">suffix</td>
-            <td width="50%">so</td>
-        </tr>
-        <tr>
-            <td>totalSize</td>
-            <td>1292840</td>
-        </tr>
-        <tr>
-            <td rowspan="2">files</td>
-        </tr>
-        <tr>
-            <td>compress:false<br>size:1292840<br>file:/application-entry-default.hap/libs/x86_64/example.so </td>
-        </tr>
-        <tr>
-            <td width="10%">suffix</td>
-            <td width="50%">abc</td>
-        </tr>
-        <tr>
-            <td>totalSize</td>
-            <td>84852</td>
-        </tr>
-        <tr>
-            <td rowspan="2">files</td>
-        </tr>
-        <tr>
-            <td>            
-                size:8548<br>file:/entry-default.hap/ets/modules.abc<br>size:76304<br>file:/application-entry-default.hap/ets/modules.abc<br>
-            </td>
-        </tr>
-    </table>
-</div>
 
 **Fields of the output**
 
@@ -329,19 +187,19 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | startTime | String          | Start time of the task.                                                                        |
 | stopTime  | String          | End time of the task.                                                                        |
 | pathList  | Vector\<String> | Paths of multiple HAP and HSP files.                                                                 |
-| result    | Struct          | [Fields of result](#section3).                                                                |
+| result    | Struct          | [Fields of result](#section3).                                                                  |
 
 **Fields of result**<a name="section3"></a>
 
 | Field     | Type  | Description                                      |
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | File name extension.                        |
-| totalSize | int    | Total size of the files with the same file name extension, in bytes. |
-| files     | Stuct  | [Fields of files](#section4).                     |
+| totalSize | int    | Total size of the files with the same file name extension, in bytes.|
+| files     | Stuct  | [Fields of files](#section4).                      |
 
 **Fields of files**<a name="section4"></a>
 | Field    | Type  | Description                                                               |
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | Path of a file.                                                         |
 | size     | int    | Size of the file.                                                       |
-| compress | bool   | Whether the file is compressed. This field is displayed only for .so files.<br>- **true**: The file is compressed.<br>- **false**: The file is not compressed. |
+| compress | bool   | Whether the file is compressed. This field is displayed only for .so files.<br>- **true**: The file is compressed.<br>- **false**: The file is not compressed.|

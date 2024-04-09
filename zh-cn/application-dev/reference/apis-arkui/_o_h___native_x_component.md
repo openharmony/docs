@@ -3,12 +3,11 @@
 
 ## 概述
 
-描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[XComponent开发指导](../../napi/xcomponent-guidelines.md)。
+描述ArkUI XComponent持有的surface和触摸事件，该事件可用于EGL/OpenGLES和媒体数据输入，并显示在ArkUI XComponent上，具体使用请参考[Native XComponent](../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
 > 该模块从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 
 ## 汇总
 
@@ -18,7 +17,7 @@
 | 名称                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- |
 | [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native&nbsp;XComponent的API。<br/>**引用文件：** &lt;ace/xcomponent/native_interface_xcomponent.h&gt;<br>**库：** libace_ndk.z.so |
-| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。<br/>**引用文件：** &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**库：**libace_ndk.z.so |
+| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。<br/>**引用文件：** &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**库：** libace_ndk.z.so |
 
 
 ### 结构体
@@ -83,7 +82,14 @@
 | [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | 设置期望帧率范围。                                           |
 | [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。 |
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。 |
-
+| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。  | 
+| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的native组件从当前XComponent上卸载.  | 
+| int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | 为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。  | 
+| int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。  |
+| int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  | 
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。|
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。|
+| int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触摸事件的输入设备类型。  |
 
 ### 变量
 
@@ -706,6 +712,56 @@ enum OH_NativeXComponent_TouchPointToolType
 
 ## 函数说明
 
+### OH_NativeXComponent_AttachNativeRootNode()
+
+```
+int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * component, ArkUI_NodeHandle root )
+```
+**描述：**
+
+将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| root | 指向Native接口创建的组件实例的指针。  | 
+
+**返回：**
+
+0：成功。 
+
+401：参数异常。
+
+
+### OH_NativeXComponent_DetachNativeRootNode()
+
+```
+int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * component, ArkUI_NodeHandle root )
+```
+**描述：**
+
+将ArkUI的native组件从当前XComponent上卸载.
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| root | 指向Native接口创建的组件实例的指针。  | 
+
+**返回：**
+
+0：成功。 
+
+401：参数异常。
+
+
 
 ### OH_NativeXComponent_GetKeyEvent()
 
@@ -1215,7 +1271,7 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 ```
 int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* component, void (*callback)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp))
 ```
-**描述**
+**描述：**
 
 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。
 
@@ -1234,13 +1290,57 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 
 11
 
+### OH_NativeXComponent_RegisterOnTouchInterceptCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponent * component, HitTestMode(*callback)(OH_NativeXComponent *component, ArkUI_UIInputEvent *event))
+```
+**描述：**
+
+为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| callback | 指示指向自定义事件拦截回调的指针。  | 
+
+**返回：**
+
+0 - 成功。 401 - 参数异常。
+
+### OH_NativeXComponent_RegisterUIInputEventCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, ArkUI_UIInputEvent *event, ArkUI_UIInputEvent_Type type), ArkUI_UIInputEvent_Type type )
+```
+**描述：**
+
+为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| callback | 指示指向UI输入事件回调的指针。  | 
+| type | 指示当前UI输入事件的类型。  | 
+
+**返回：**
+
+返回执行的状态代码。
 
 ### OH_NativeXComponent_SetExpectedFrameRateRange()
 
 ```
 int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * component, OH_NativeXComponent_ExpectedRateRange * range )
 ```
-**描述**
+**描述：**
 
 设置期望帧率范围。
 
@@ -1265,7 +1365,7 @@ int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * com
 ```
 int32_t OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent * component)
 ```
-**描述**
+**描述：**
 
 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。
 
@@ -1282,6 +1382,112 @@ int32_t OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent * com
 **起始版本：** 
 
 11
+
+### OH_NativeXComponent_SetNeedSoftKeyboard()
+
+```
+int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool isNeedSoftKeyboard)
+```
+
+**描述：**
+
+为此OH_NativeXComponent实例设置是否需要软键盘。
+
+**参数:**
+
+| 名称               | 描述                                          |
+| ------------------ | --------------------------------------------- |
+| component          | 表示指向OH_NativeXComponent实例的指针。       |
+| isNeedSoftKeyboard | 表示此OH_NativeXComponent实例是否需要软键盘。 |
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：** 
+
+12
+
+### OH_NativeXComponent_RegisterSurfaceShowCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**描述:**
+
+为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| callback  | 指示指向surface显示回调的指针。                |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+### OH_NativeXComponent_RegisterSurfaceHideCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**描述:**
+
+为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| callback  | 指示指向surface隐藏回调的指针。                |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+### OH_NativeXComponent_GetTouchEventSourceType()
+
+```
+int32_t OH_NativeXComponent_GetTouchEventSourceType (OH_NativeXComponent* component, int32_t pointId, OH_NativeXComponent_EventSourceType* sourceType);
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸事件的输入设备类型。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| pointId  | 表示触摸点的id。<br/>**说明：**<br/>仅当传入的id为触发该touch事件的触点id时，可正确返回输入设备类型，否则返回OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER。 |
+| sourceType  | 指示指向返回设备类型的指针。 |
+
+**返回:**
+
+OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 成功。
+
+OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 参数异常。
+
+OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。
+
+**起始版本：**
+
+12
+
 <!--  -->
 
 ## 变量说明

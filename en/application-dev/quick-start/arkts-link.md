@@ -25,7 +25,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Decorator parameters                                                  | None.                                                          |
 | Synchronization type                                                    | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
-| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Link a: string \| undefined**. The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
+| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined**. The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
 | Initial value for the decorated variable                                          | Forbidden.                                        |
 
 
@@ -103,7 +103,7 @@ struct ParentComponent {
         selected: this.parentSelectedDate
       })
 
-      DateComponent({selectedDate:this.parentSelectedDate})
+      DateComponent({ selectedDate:this.parentSelectedDate })
     }
   }
 }
@@ -270,7 +270,7 @@ struct Parent {
       Child({ items: $arr })
         .margin(12)
       ForEach(this.arr,
-        (item: void) => {
+        (item: number) => {
           Button(`${item}`)
             .margin(12)
             .width(312)
@@ -303,25 +303,25 @@ struct Child {
   @Link value: Map<number, string>
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.value.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('child init map').onClick(() =>{
+      Button('child init map').onClick(() => {
         this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('child set new one').onClick(() =>{
+      Button('child set new one').onClick(() => {
         this.value.set(4, "d")
       })
-      Button('child clear').onClick(() =>{
+      Button('child clear').onClick(() => {
         this.value.clear()
       })
-      Button('child replace the first one').onClick(() =>{
+      Button('child replace the first one').onClick(() => {
         this.value.set(0, "aa")
       })
-      Button('child delete the first one').onClick(() =>{
+      Button('child delete the first one').onClick(() => {
         this.value.delete(0)
       })
     }
@@ -337,7 +337,7 @@ struct MapSample2 {
   build() {
     Row() {
       Column() {
-        Child({value:this.message})
+        Child({ value: this.message })
       }
       .width('100%')
     }
@@ -365,16 +365,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('set new one').onClick(() =>{
+      Button('set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('clear').onClick(() =>{
+      Button('clear').onClick(() => {
         this.message.clear()
       })
-      Button('delete the first one').onClick(() =>{
+      Button('delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -386,12 +386,12 @@ struct Child {
 @Entry
 @Component
 struct SetSample1 {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Child({message:this.message})
+        Child({ message: this.message })
       }
       .width('100%')
     }
@@ -405,7 +405,6 @@ struct SetSample1 {
 @Link supports **undefined**, **null**, and union types. In the following example, the type of **name** is string | undefined. If the attribute or type of **name** is changed when the button in the parent component **Index** is clicked, the change will be synced to the child component.
 
 ```ts
-
 @Component
 struct Child {
   @Link name: string | undefined
@@ -430,13 +429,13 @@ struct Child {
 @Entry
 @Component
 struct Index {
-  @State name: string | undefined  = "mary"
+  @State name: string | undefined = "mary"
 
   build() {
     Column() {
       Text(`The name is  ${this.name}`).fontSize(30)
 
-      Child({name: this.name})
+      Child({ name: this.name })
 
       Button('Parents change name to Peter')
         .onClick(() => {

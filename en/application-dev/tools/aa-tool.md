@@ -28,13 +28,21 @@ The ability assistant enables you to start applications and test cases. It provi
   
   Starts an application component. The target component can be the PageAbility and ServiceAbility components of the FA model or the UIAbility and ServiceExtensionAbility components of the Stage model. The **exported** tag in the configuration file of the target component cannot be set to **false**.
 
-  | Name| Description|
-  | -------- | -------- |
-  | -h/--help | Help information.|
-  | -d | Device ID. Optional.|
-  | -a | Ability name. Mandatory.|
-  | -b | Bundle name. Mandatory.|
-  | -D | Debugging mode. Optional.|
+  | Name| Description             |
+  | -------- |-------------------|
+  | -h/--help | Help information.            |
+  | -d | Device ID. Optional.   |
+  | -a | Ability name. Optional.|
+  | -b | Bundle name. Optional. |
+  | -U  | URI. Optional.        |
+  | -A  | Action. Optional.     |
+  | -e  | Entity. Optional.     |
+  | -t  | Type. Optional.       |
+  | --pi  | Key-value pair of the integer type. Optional.    |
+  | --pb  | Key-value pair of the Boolean type. Optional.    |
+  | --ps  | Key-value pair of the string type. Optional.   |
+  | --psn | Keyword of an empty string. Optional.    |
+  | -D | Debugging mode. Optional.       |
 
   **Return value**
 
@@ -44,7 +52,11 @@ The ability assistant enables you to start applications and test cases. It provi
 
   
   ```bash
-  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D]
+  # Display the ability displayed.
+  aa start [-d <deviceId>] -a <abilityName> -b <bundleName> [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f, case insensitive] [--ps <key> <value>] [--psn <key>]
+  
+  # Implicitly start an ability. If none of the parameters in the command is set, the startup fails.
+  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f, case insensitive] [--ps <key> <value>] [--psn <key>]
   ```
 
 - stop-service

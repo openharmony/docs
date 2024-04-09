@@ -34,7 +34,7 @@ isSupported(type: RunningLockType): boolean;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](../errorcodes/errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -270,7 +270,7 @@ hold(timeout: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](../errorcodes/errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
@@ -306,7 +306,7 @@ unhold(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](../errorcodes/errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
@@ -346,7 +346,7 @@ isHolding(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](../errorcodes/errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

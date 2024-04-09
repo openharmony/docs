@@ -24,13 +24,15 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVDemuxer \* [OH_AVDemuxer_CreateWithSource](#oh_avdemuxer_createwithsource) (OH_AVSource \*source) | 通过source实例对象创建OH_AVDemuxer实例对象。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVDemuxer_Destroy](#oh_avdemuxer_destroy) (OH_AVDemuxer \*demuxer) | 销毁OH_AVDemuxer实例并清理内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 选中指定轨道，解封装器将会从该轨道中读取数据。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVDemuxer_UnselectTrackByID](#oh_avdemuxer_unselecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 取消选择指定轨道，未选中的轨道的数据不会被解封装器读取。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVDemuxer_ReadSample](#oh_avdemuxer_readsample) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, OH_AVMemory \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*info) | 从选中轨道中获取当前位置压缩帧及相关信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVDemuxer_ReadSampleBuffer](#oh_avdemuxer_readsamplebuffer) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, OH_AVBuffer \*sample) | 从选中轨道中获取当前位置压缩帧及相关信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVDemuxer_SeekToTime](#oh_avdemuxer_seektotime) (OH_AVDemuxer \*demuxer, int64_t millisecond, [OH_AVSeekMode](_codec_base.md#oh_avseekmode) mode) | 根据设定的跳转模式，将所有选中的轨道到指定时间附近。 | 
+| OH_AVDemuxer \* [OH_AVDemuxer_CreateWithSource](#oh_avdemuxer_createwithsource) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 通过source实例对象创建OH_AVDemuxer实例对象。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_Destroy](#oh_avdemuxer_destroy) (OH_AVDemuxer \*demuxer) | 销毁OH_AVDemuxer实例并清理内部资源。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 选中指定轨道，解封装器将会从该轨道中读取数据。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_UnselectTrackByID](#oh_avdemuxer_unselecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 取消选择指定轨道，未选中的轨道的数据不会被解封装器读取。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSample](#oh_avdemuxer_readsample) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*info) | 从选中轨道中获取当前位置压缩帧及相关信息。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSampleBuffer](#oh_avdemuxer_readsamplebuffer) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | 从选中轨道中获取当前位置压缩帧及相关信息。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SeekToTime](#oh_avdemuxer_seektotime) (OH_AVDemuxer \*demuxer, int64_t millisecond, [OH_AVSeekMode](_codec_base.md#oh_avseekmode) mode) | 根据设定的跳转模式，将所有选中的轨道到指定时间附近。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback) (OH_AVDemuxer \*demuxer, DRM_MediaKeySystemInfoCallback callback) | 设置异步DRM信息回调函数。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_GetMediaKeySystemInfo](#oh_avdemuxer_getmediakeysysteminfo) (OH_AVDemuxer \*demuxer, DRM_MediaKeySystemInfo \*mediaKeySystemInfo) | 获取DRM信息。  | 
 
 
 ## 函数说明
@@ -82,6 +84,31 @@ OH_AVErrCode OH_AVDemuxer_Destroy (OH_AVDemuxer *demuxer)
 | 名称 | 描述 | 
 | -------- | -------- |
 | demuxer | 指向OH_AVDemuxer实例的指针。 | 
+
+**返回：**
+
+执行成功返回AV_ERR_OK, 否则返回具体错误码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)
+
+
+### OH_AVDemuxer_GetMediaKeySystemInfo()
+
+```
+OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
+```
+**描述**
+
+获取DRM信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.Spliter
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| demuxer | 指向OH_AVDemuxer实例的指针。  | 
+| mediaKeySystemInfo | 指向DRM信息的指针，请参阅[DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md)。  | 
 
 **返回：**
 
@@ -200,6 +227,31 @@ OH_AVErrCode OH_AVDemuxer_SelectTrackByID (OH_AVDemuxer *demuxer, uint32_t track
 | -------- | -------- |
 | demuxer | 指向OH_AVDemuxer实例的指针。 | 
 | trackIndex | 需选择的轨道的索引。 | 
+
+**返回：**
+
+执行成功返回AV_ERR_OK, 否则返回具体错误码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+
+### OH_AVDemuxer_SetMediaKeySystemInfoCallback()
+
+```
+OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfoCallback callback)
+```
+**描述**
+
+设置异步DRM信息回调函数。
+
+**系统能力：** SystemCapability.Multimedia.Media.Spliter
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| demuxer | 指向OH_AVDemuxer实例的指针。  | 
+| callback | 回调函数，详见[DRM_MediaKeySystemInfoCallback](../apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)。  | 
 
 **返回：**
 

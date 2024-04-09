@@ -126,6 +126,35 @@ buffer数组的列表。
 | count          | number                            | 是   | 是   | 传入的数据中，包含的证书数量。                               |
 | encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。                                           |
 
+## GeneralNameType<sup>12+</sup>
+
+表示证书主体用途的枚举。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 值                              | 说明               |
+| -------------- | --------------------------------- | ------------------ |
+| GENERAL_NAME_TYPE_OTHER_NAME | 0 |  表示其他名称。  |
+| GENERAL_NAME_TYPE_RFC822_NAME | 1 |  表示电子邮件地址。  |
+| GENERAL_NAME_TYPE_DNS_NAME | 2 |  表示一个DNS名称。  |
+| GENERAL_NAME_TYPE_X400_ADDRESS | 3 |  表示X.400地址。  |
+| GENERAL_NAME_TYPE_DIRECTORY_NAME | 4 |  表示一个目录名称。  |
+| GENERAL_NAME_TYPE_EDI_PARTY_NAME | 5 |  表示特定的EDI实体。  |
+| GENERAL_NAME_TYPE_UNIFORM_RESOURCE_ID | 6 |  表示一个统一资源标识符。  |
+| GENERAL_NAME_TYPE_IP_ADDRESS | 7 |  表示一个IP地址。  |
+| GENERAL_NAME_TYPE_REGISTERED_ID | 8 |  表示一个已注册的对象标识符。  |
+
+## GeneralName<sup>12+</sup>
+
+用于表示证书主体信息对象。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| type | [GeneralNameType](#generalname12)    | 是 |  指定具体的证书主体类型。  |
+| name | Uint8Array    | 是  |  指定具体的证书主体DER格式内容。  |
+
 ## X509CertMatchParameters<sup>11+</sup>
 
 用于匹配证书的过滤参数。如果参数中任一项都未指定，则匹配所有证书。
@@ -137,23 +166,80 @@ buffer数组的列表。
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
 | issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
-| keyUsage | Array\<boolean> | 否  | 指定密钥用途。 |
+| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。 |
 | serialNumber | bigint    | 否  |  指定证书的序列号。  |
 | subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
 | publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
+| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | bool | 否  | 指定是否需要匹配证书主体名称。 |
+| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
+| minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
+| extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
+| nameConstraints<sup>12+</sup> | Uint8Array | 否  | 指定证书的使用者名称。 |
+| certPolicy<sup>12+</sup> | Array\<string> | 否  | 指定证书策略。 |
+| privateKeyValid<sup>12+</sup> | string | 否  | 指定证书私钥有效期。 |
+| subjectKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书公钥。 |
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
 用于匹配证书吊销列表的过滤参数。如果参数中任一项都未指定，则匹配所有证书吊销列表。
-
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | issuer | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
-| x509Cert | [X509Cert](#x509cert)        | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
+| x509Cert | [X509Cert](#x509cert) | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
+| updateDateTime<sup>12+</sup> | string | 否  | 指定证书更新时间。 |
+| maxCRL<sup>12+</sup> | bigint | 否  | 指定CRL个数最大值。 |
+| minCRL<sup>12+</sup> | bigint | 否  | 指定CRL个数最小值。 |
+
+## CertChainBuildParameters<sup>12+</sup>
+
+用于指定证书链创建参数。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
+| maxlength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
+| validateParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
+
+## CertChainValidateResult<sup>12+</sup>
+
+用于指定证书链验证结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是  | 信任锚点。 |
+| entityCert | [X509Cert](#x509cert) | 是  | 实体证书。 |
+
+## CertChainBuildResult<sup>12+</sup>
+
+用于指定证书链创建结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
+| validateResult | [CertChainValidateResult](#certchainvalidateresult12) | 是  | 指定最终证书链的最大长度。 |
+
+## CertChainValidateParameters<sup>11+</sup>
+
+用于指定证书链验证参数。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称           | 类型                              | 必填 | 说明               |
+| -------------- | --------------------------------- | ---- | ------------------ |
+| date | string | 是  | 证书链有效期的日期时间。 |
+| trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)> | 是  | 信任的证书颁发机构CA。 |
+| certCRLs | Array\<[CertCRLCollection](#certcrlcollection11)> | 是  | 用于验证证书链吊销状态的CRL列表。 |
 
 ## X509TrustAnchor<sup>11+</sup>
 
@@ -1948,7 +2034,7 @@ match(param: X509CertMatchParameters): boolean
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| boolean | 当参数匹配时，该方法返回true；否则返回false。 |
+| boolean | 当参数匹配时，该方法返回true，否则返回false。 |
 
 **错误码：**
 
@@ -2429,7 +2515,7 @@ hasUnsupportedCriticalExtension(): boolean
 
 | 类型    | 说明                                                    |
 | ------- | ------------------------------------------------------- |
-| boolean | 当存在不支持的关键扩展时，该方法返回true；否则返回false |
+| boolean | 当存在不支持的关键扩展时，该方法返回true，否则返回false。 |
 
 **错误码：**
 
@@ -3473,7 +3559,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getLastUpdate() : string
 
-表示获取X509证书吊销列表最后一次更新日期。
+表示获取X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
 
 > **说明：**
 >
@@ -3485,7 +3571,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表最后一次更新日期 |
+| string | 表示X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -3547,7 +3633,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期。
+表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
 
 > **说明：**
 >
@@ -3559,7 +3645,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表下一次更新的日期 |
+| string | 表示X509证书吊销列表下一次更新的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -4928,7 +5014,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getLastUpdate() : string
 
-表示获取X509证书吊销列表最后一次更新日期。
+表示获取X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4936,7 +5022,7 @@ getLastUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表最后一次更新日期 |
+| string | 表示X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -4998,7 +5084,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getNextUpdate() : string
 
-表示获取证书吊销列表下一次更新的日期。
+表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5006,7 +5092,7 @@ getNextUpdate() : string
 
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
-| string | 表示X509证书吊销列表下一次更新的日期 |
+| string | 表示X509证书吊销列表下一次更新的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -5811,7 +5897,7 @@ match(param: X509CRLMatchParameters): boolean
 
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
-| boolean | 当参数匹配时，该方法返回true；否则返回false。 |
+| boolean | 当参数匹配时，该方法返回true，否则返回false。 |
 
 **错误码：**
 
@@ -6438,7 +6524,7 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期。
+表示获取证书被吊销的日期，日期为ASN.1时间格式。
 
 > **说明：**
 >
@@ -6450,7 +6536,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| string | 表示证书被吊销的日期 |
+| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -6816,7 +6902,7 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期。
+表示获取证书被吊销的日期，日期为ASN.1时间格式。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6824,7 +6910,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书被吊销的日期 |
+| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -7881,6 +7967,164 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
 }
 
 createX509CertChain();
+```
+
+## cryptoCert.buildX509CertChain<sup>12+</sup>
+
+buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise<CertChainBuildResult>
+
+表示使用CertChainBuildParameters对象方式创建X509证书链对象，并用Promise方式返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                       |
+| -------- | -------------------- | ---- | -------------------------- |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 |
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [CertChainBuildResult](#certchainbuildresult12) | 表示X509证书链对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
+
+**示例：**
+
+```ts
+import cert from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509Cert(): Promise<cert.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return x509Cert;
+}
+
+async function buildX509CertChain(): Promise<cert.CertChainBuildParameters> {
+  const x509Cert = await createX509Cert();
+  let certChainResult: cert.CertChainBuildParameters = {} as cert.CertChainBuildParameters;
+  let param: cert.CertChainBuildParameters = {
+      certCollection: [x509Cert,x509Cert],
+      certMatchParameters: {validDate:'20130212080000Z'},
+      maxlength: 3,
+      validateParameters: {
+        date: '20130212080000Z',
+        trustAnchors: [{CACert:x509Cert}]}
+  }
+  try {
+    certChainResult = cert.buildX509CertChain();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return certChainResult;
+}
+
+buildX509CertChain();
+```
+
+## cryptoCert.createTrustAnchorsWithKeyStore<sup>11+</sup>
+
+createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<[X509TrustAnchor](#x509trustanchor11)>>
+
+表示从P12文件中读取ca证书来构造[TrustAnchor](#x509trustanchor11)对象数组，并用Promise方式返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                       |
+| -------- | -------------------- | ---- | -------------------------- |
+| keystore | Uint8Array | 是 | p12文件，DER格式。 |
+| pwd | string | 是 | p12文件的密码。 |
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| Array\<[X509TrustAnchor](#x509trustanchor11)> | 表示X509TrustAnchor对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
+
+**示例：**
+
+```ts
+import cert from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+try {
+  cert.createTrustAnchorsWithKeyStore(
+    new Uint8Array([0x04,0x14,0xAF,0x32,0x84,0xC3,0x94,0x50,0x74,0x69,0x58]),
+    '123456').then((data) => {
+      console.log('createTrustAnchorsWithKeyStore sucess, number of the result is: ' + JSON.stringify(data.length))
+  }).cache((err) => {
+    console.err('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(err))
+  })
+} catch (error) {
+  console.err('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(error))
+}
 ```
 
 ## X509CertChain<sup>11+</sup>

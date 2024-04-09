@@ -1,5 +1,4 @@
-# OpenHarmony Node-API常见问题
-
+# Node-API常见问题
 
 ## ArkTS/JS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable
 
@@ -7,16 +6,22 @@
    如模块名为entry，则so的名字为libentry.so，napi_module中nm_modname字段应为entry，大小写与模块名保持一致。
 
 2. 排查so是否加载成功。
-   应用启动时过滤模块加载相关日志，重点搜索"dlopen"关键字，确认是否有相关报错信息；常见加载失败原因有权限不足、依赖so加载失败以及加载路径错误等。
+   应用启动时过滤模块加载相关日志，重点搜索"dlopen"关键字，确认是否有相关报错信息；常见加载失败原因有权限不足、so文件不存在以及so已拉入黑名单等，可根据以下关键错误日志确认问题。其中，多线程场景(worker、taskpool等)下优先检查模块实现中nm_modname是否与模块名一致，区分大小写。
 
 3. 排查依赖的so是否加载成功。
-   确定所依赖的其它so是否打包到应用中以及是否有权限打开。
+   确定所依赖的其它so是否打包到应用中以及是否有权限打开。常见加载失败原因有权限不足、so文件不存在等，可根据以下关键错误日志确认问题。
 
 4. 排查模块导入方式与so路径是否对应。
    若JS侧导入模块的形式为： import xxx from '\@ohos.yyy.zzz'，则该so将在/system/lib/module/yyy中找libzzz.z.so或libzzz_napi.z.so，若so不存在或名称无法对应，则报错日志中会出现dlopen相关日志。
 
    注意，32位系统路径为/system/lib，64位系统路径为/system/lib64。
 
+| **已知关键错误日志** | **修改建议** |
+| -------- | -------- |
+| module $SO is not allowed to load in restricted runtime | $SO表示模块名。该模块不在受限worker线程的so加载白名单，不允许加载，建议用户删除该模块。 |
+| module $SO is in blocklist, loading prohibited | $SO表示模块名。受卡片或者Extension管控，该模块在黑名单内，不允许加载，建议用户删除该模块。 |
+| load module failed. $ERRMSG | 动态库加载失败。$ERRMSG表示加载失败原因，一般常见原因是so文件不存在、依赖的so文件不存在或者符号未定义，需根据加载失败原因具体分析。 |
+| try to load abc file from $FILEPATH failed. | 通常加载动态库和abc文件为二选一：如果是要加载动态库并且加载失败，该告警可以忽略；如果是要加载abc文件，则该错误打印的原因是abc文件不存在，$FILEPATH表示模块路径。 |
 
 ## 接口执行结果非预期，日志显示occur exception need return
 
@@ -30,32 +35,33 @@
 - 将该异常继续向上抛到ArkTS层，在ArkTS层进行捕获。
   发生异常时，可以选择走异常分支， 确保不再走多余的Native逻辑 ，直接返回到ArkTS层。
 
-
 ## napi_value和napi_ref的生命周期有何区别
 
 - native_value由HandleScope管理，一般开发者不需要自己加HandleScope（uv_queue_work的complete callback除外）。
 
 - napi_ref由开发者自己管理，需要手动delete。
 
-
 ## Node-API接口返回值不是napi_ok时，如何排查定位
 
 Node-API接口正常执行后，会返回一个napi_ok的状态枚举值，若napi接口返回值不为napi_ok，可从以下几个方面进行排查。
 
 - Node-API接口执行前一般会进行入参校验，首先进行的是判空校验。在代码中体现为：
-  ```
+
+  ```cpp
   CHECK_ENV： env判空校验
   CHECK_ARG：其它入参判空校验
   ```
 
 - 某些Node-API接口还有入参类型校验。比如napi_get_value_double接口是获取JS number对应的C double值，首先就要保证的是：JS value类型为number，因此可以看到相关校验。
-  ```
+
+  ```cpp
   RETURN_STATUS_IF_FALSE(env, nativeValue->TypeOf() == NATIVE_NUMBER, napi_number_expected);
   ```
 
 - 还有一些接口会对其执行结果进行校验。比如napi_call_function这个接口，其功能是执行一个JS function，当JS function中出现异常时，Node-API将会返回napi_pending_exception的状态值。
-  ```
-  auto resultValue = engine->CallFunction(nativeRecv, nativeFunc, nativeArgv, argc); 
+
+  ```cpp
+  auto resultValue = engine->CallFunction(nativeRecv, nativeFunc, nativeArgv, argc);
   RETURN_STATUS_IF_FALSE(env, resultValue != nullptr, napi_pending_exception)
   ```
 

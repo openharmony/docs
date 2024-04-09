@@ -26,3 +26,76 @@ import contextConstant from '@ohos.app.ability.contextConstant';
 | EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。                                                                                        |
 | EL3<sup>11+<sup> | 2 | 用户级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，可读写；解锁后，可读写。<br/>未打开文件：锁屏时，不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，可创建、可打开、可写不可读；解锁后，可创建、可打开、可读写。 |
 | EL4<sup>11+<sup> | 3 | 用户级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，FEB2.0可读写、FEB3.0不可读写；解锁后，可读写。<br/>未打开文件：锁屏时，不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，不可创建；解锁后，可创建、可打开、可读写。        |
+
+
+## ContextConstant.ProcessMode<sup>12+</sup>
+
+进程模式。该功能仅在平板类设备上生效。
+
+ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效，用来指定目标Ability的进程模式。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称  | 值 | 说明                                                                                                                   |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| NEW_PROCESS_ATTACH_TO_PARENT | 1 | 创建一个新进程，并在该进程上启动Ability。该进程会跟随父进程退出。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用。                     |
+| NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | 创建一个新进程，并在该进程上启动Ability。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
+
+**示例：**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import contextConstant from '@ohos.app.ability.contextConstant';
+  import { BusinessError } from '@ohos.base';
+
+  export default class EntryAbility extends UIAbility {
+
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'MainAbility2'
+      };
+      let options: StartOptions = {
+        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+        startupVisibility: contextConstant.StartupVisibility.STARTUP_HIDE
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // 处理入参错误异常
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```
+
+## ContextConstant.StartupVisibility<sup>12+</sup>
+
+Ability在新进程中启动后的可见性。该功能仅在平板类设备上生效。
+
+StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效，用来指定目标Ability在新进程中启动后的可见性。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称  | 值 | 说明                                                                                                                   |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| STARTUP_HIDE | 0 | 目标Ability启动后，进入隐藏状态。不会调用Ability的onForeground生命周期。        |
+| STARTUP_SHOW | 1 | 目标Ability启动后，正常显示。     |
+
+**示例：**
+
+  参见[ContextConstant.ProcessMode](#contextconstantprocessmode12)。

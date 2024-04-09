@@ -70,8 +70,8 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)；对低时延模式，音频资源支持可参考[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)。           |
-| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源支持可参考[vibrator](../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10)。         |
+| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源格式和路径格式的支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)；对低时延模式，音频资源格式支持可参考[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)，路径格式需满足[文件管理模块open函数](../apis-core-file-kit/js-apis-file-fs.md#fsopen)的要求。对两种时延模式，均建议传入文件的绝对路径。           |
+| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源格式支持可参考[vibrator](../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10)，路径格式需满足[文件管理模块open函数](../apis-core-file-kit/js-apis-file-fs.md#fsopen)的要求。建议传入文件的绝对路径。         |
 
 **返回值：**
 

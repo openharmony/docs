@@ -42,26 +42,180 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                               | 参数类型                                     | 描述                                       |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| vertical                         | boolean                                  | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
-| scrollable                       | boolean                                  | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
-| barMode                          | [BarMode](#barmode枚举说明),[ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | TabBar布局模式，BarMode为必选项，ScrollableBarModeOptions为可选项，具体描述见BarMode枚举说明、ScrollableBarModeOptions对象说明。从API version 10开始，支持ScrollableBarModeOptions参数。其中ScrollableBarModeOptions参数仅Scrollable模式下有效，非必填参数。<br/>默认值：BarMode.Fixed |
-| barWidth                         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
-| barHeight                        | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>**说明：** <br/>设置为小于0或大于Tabs高度值时，按默认值显示。 |
-| animationDuration                | number                                   | 点击TabBar页签切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0ms，即点击TabBar页签切换TabContent无动画。设置为小于0或undefined时，默认值为300ms。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0ms。设置TabBar为其他样式时，默认值为300ms。<br/>**说明：**<br/>该参数不支持百分比设置。 |
-| divider<sup>10+</sup>            | [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
-| fadingEdge<sup>10+</sup>         | boolean                                  | 设置页签超过容器宽度时是否渐隐消失。<br />默认值：true <br/>**说明：** <br/>建议配合barBackgroundColor属性一起使用，如果barBackgroundColor属性没有定义，会默认显示页签末端为白色的渐隐效果。 |
-| barOverlap<sup>10+</sup>         | boolean                                  | 设置TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
-| barBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置TabBar的背景颜色。<br />默认值：透明               |
-| barBackgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 设置TabBar的背景模糊材质。<br />默认值：NONE              |
-| barGridAlign<sup>10+</sup> | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。              |
+### vertical
+
+vertical(value: boolean)
+
+设置是否为纵向Tab。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否为纵向Tab。<br/>默认值：false，横向Tabs，为true时纵向Tabs。<br/>当横向Tabs设置height为auto时，Tabs组件高度自适应子组件高度。<br/>当纵向Tabs设置width为auto时，Tabs组件宽度自适应子组件宽度。 |
+
+### scrollable
+
+scrollable(value: boolean)
+
+设置是否可以通过滑动页面进行页面切换。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否可以通过滑动页面进行页面切换。<br/>默认值：true，可以通过滑动页面进行页面切换。为false时不可滑动切换页面。 |
+
+### barMode
+
+barMode(value: BarMode, options?: ScrollableBarModeOptions)
+
+设置TabBar布局模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。<br/>默认值：BarMode.Fixed                                                 |
+| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable模式下有效 |
+
+### barWidth
+
+barWidth(value: Length)
+
+设置TabBar的宽度值。设置为小于0或大于Tabs宽度值时，按默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。 |
+
+### barHeight
+
+barHeight(value: Length)
+
+设置TabBar的高度值。设置为小于0或大于Tabs高度值时，按默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。 |
+
+### animationDuration
+
+animationDuration(value: number)
+
+设置点击TabBar页签切换TabContent的动画时长。该参数不支持百分比设置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 点击TabBar页签切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0ms，即点击TabBar页签切换TabContent无动画。设置为小于0或undefined时，默认值为300ms。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0ms。设置TabBar为其他样式时，默认值为300ms。 |
+
+### divider<sup>10+</sup>
+
+divider(value: DividerStyle | null)
+
+设置区分TabBar和TabContent的分割线样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线样式，默认不显示分割线。<br/>DividerStyle: 分割线的样式；<br/>null: 不显示分割线。 |
+
+### fadingEdge<sup>10+</sup>
+
+fadingEdge(value: boolean)
+
+设置页签超过容器宽度时是否渐隐消失。建议配合barBackgroundColor属性一起使用，如果barBackgroundColor属性没有定义，会默认显示页签末端为白色的渐隐效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                               |
+| ------ | ------- | ---- | -------------------------------------------------- |
+| value  | boolean | 是   | 页签超过容器宽度时是否渐隐消失。<br />默认值：true |
+
+### barOverlap<sup>10+</sup>
+
+barOverlap(value: boolean)
+
+设置TabBar是否背后变模糊并叠加在TabContent之上。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
+
+### barBackgroundColor<sup>10+</sup>
+
+barBackgroundColor(value: ResourceColor)
+
+设置TabBar的背景颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                 |
+| ------ | ------------------------------------------ | ---- | ------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | TabBar的背景颜色。<br />默认值：透明 |
+
+### barBackgroundBlurStyle<sup>11+</sup>
+
+barBackgroundBlurStyle(value: BlurStyle)
+
+设置TabBar的背景模糊材质。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                         | 必填 | 说明                                     |
+| ------ | -------------------------------------------- | ---- | ---------------------------------------- |
+| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：NONE |
+
+### barGridAlign<sup>10+</sup>
+
+barGridAlign(value: BarGridColumnOptions)
+
+以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                    | 必填 | 说明                               |
+| ------ | ------------------------------------------------------- | ---- | ---------------------------------- |
+| value  | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 是   | 以栅格化方式设置TabBar的可见区域。 |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。                        |
+| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp           |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431                |
 | startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
 | endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
@@ -102,15 +256,147 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。<br>-&nbsp;index：当前显示的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>1、TabContent支持滑动时，组件触发滑动时触发。<br/>2、通过[控制器](#tabscontroller)API接口调用。<br/>3、通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。<br/>4、通过页签处点击触发。 |
-| onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | Tab页签点击后触发的事件。<br>-&nbsp;index：被点击的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>通过页签处点击触发。 |
-| onAnimationStart<sup>11+</sup>(handler: (index: number, targetIndex: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;targetIndex:切换动画目标元素的索引。<br/>-&nbsp;event:动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值）。 |
-| onAnimationEnd<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。<br/>**说明：** <br/>当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。 |
-| onGestureSwipe<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 在页面跟手滑动过程中，逐帧触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
-| customContentTransition<sup>11+</sup>(delegate: (from: number, to: number) => [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition11) \| undefined) | 自定义Tabs页面切换动画。其中，from和to参数为返回给开发者使用的值，代表的含义如下：<br> -&nbsp;from:动画开始时，当前页面的index值。<br/>-&nbsp;to:动画开始时，目标页面的index值。<br> 使用说明：<br>  1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br> 2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br> 3、当前自定义切换动画不支持打断。<br> 4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br> 5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br> 6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br> 7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。 <br/> |
-| onContentWillChange<sup>12+</sup>(handler: (currentIndex: number, comingIndex: number) => boolean) | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。<br>-&nbsp;currentIndex: 当前显示页面的index索引，索引从0开始计算。<br>-&nbsp;comingIndex: 将要显示的新页面的index索引。<br>回调函数handler接收currentIndex和comingIndex两个入参，返回true或false。<br>当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。<br>触发该回调的条件:<br>1、TabContent支持滑动时，滑动组件切换新页面时触发。<br>2、通过TabsController.changeIndex接口切换新页面时触发。<br>3、通过动态修改index属性值切换新页面时触发。<br>4、通过点击TabBar页签切换新页面时触发。<br>5、TabBar页签获焦后，通过键盘左右方向键等切换新页面时触发。<br> |
+### onChange
+
+onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+
+Tab页签切换后触发的事件。
+
+触发该事件的条件：
+
+1、TabContent支持滑动时，组件触发滑动时触发。
+
+2、通过[控制器](#tabscontroller)API接口调用。
+
+3、通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+
+4、通过页签处点击触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| index  | number | 是   | 当前显示的index索引，索引从0开始计算。 |
+
+### onTabBarClick<sup>10+</sup>
+
+onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+
+Tab页签点击后触发的事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                 |
+| ------ | ------ | ---- | ------------------------------------ |
+| index  | number | 是   | 被点击的index索引，索引从0开始计算。 |
+
+### onAnimationStart<sup>11+</sup>
+
+onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimationEvent) => void)
+
+切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                                                   | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index       | number                                                 | 是   | 当前显示元素的索引。                                         |
+| targetIndex | number                                                 | 是   | 切换动画目标元素的索引。                                     |
+| event       | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
+
+### onAnimationEnd<sup>11+</sup>
+
+onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
+
+切换动画结束时触发该回调。当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                   | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | 是   | 当前显示元素的索引。                                         |
+| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+
+### onGestureSwipe<sup>11+</sup>
+
+onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
+
+在页面跟手滑动过程中，逐帧触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                   | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | 是   | 当前显示元素的索引。                                         |
+| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+
+### customContentTransition<sup>11+</sup>
+
+customContentTransition(delegate: (from: number, to: number) => TabContentAnimatedTransition \| undefined)
+
+自定义Tabs页面切换动画。
+
+使用说明：
+
+1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br>2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br>3、当前自定义切换动画不支持打断。<br>4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br>5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br>6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br>7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| from   | number | 是   | 动画开始时，当前页面的index值。 |
+| to     | number | 是   | 动画开始时，目标页面的index值。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
+
+### onContentWillChange<sup>12+</sup>
+
+onContentWillChange(handler: (currentIndex: number, comingIndex: number) => boolean)
+
+自定义Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。
+
+触发该回调的条件：
+
+1、TabContent支持滑动时，滑动组件切换新页面时触发。
+
+2、通过TabsController.changeIndex接口切换新页面时触发。
+
+3、通过动态修改index属性值切换新页面时触发。
+
+4、通过点击TabBar页签切换新页面时触发。
+
+5、TabBar页签获焦后，通过键盘左右方向键等切换新页面时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                                       |
+| ------------ | ------ | ---- | ------------------------------------------ |
+| currentIndex | number | 是   | 当前显示页面的index索引，索引从0开始计算。 |
+| comingIndex  | number | 是   | 将要显示的新页面的index索引。              |
+
+**返回值：** 
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br/>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。 |
 
 
 ## TabsController

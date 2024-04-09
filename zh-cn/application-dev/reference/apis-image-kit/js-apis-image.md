@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 从API version 12开始，本模块接口支持在ArkTS卡片中使用。
 
 ## 导入模块
 
@@ -224,6 +226,47 @@ async function Demo(surfaceId: string) {
 } 
 ```
 
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
+
+通过属性创建PixelMap，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
+| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
+    return pixelMap;
+}
+```
+
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过[createPixelMap](#imagecreatepixelmap8)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
@@ -268,11 +311,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-        console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
-    }).catch((error: BusinessError) => {
-        console.error('Failed to read image pixel data.'); // 不符合条件则进入
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+            console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
+        }).catch((error: BusinessError) => {
+            console.error('Failed to read image pixel data.'); // 不符合条件则进入
+        })
+    }
 }
 ```
 
@@ -298,14 +343,52 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
-        if(err) {
-            console.error('Failed to read image pixel data.');  //不符合条件则进入
-            return;
-        } else {
-            console.info('Succeeded in reading image pixel data.');  //符合条件则进入
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
+            if(err) {
+                console.error('Failed to read image pixel data.');  //不符合条件则进入
+                return;
+            } else {
+                console.info('Succeeded in reading image pixel data.');  //符合条件则进入
+            }
+        })
+    }
+}
+```
+
+### readPixelsToBufferSync<sup>12+</sup>
+
+readPixelsToBufferSync(dst: ArrayBuffer): void
+
+以同步方法读取PixelMap到Buffer里。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                                                                  |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBufferSync(readBuffer);
+    }
 }
 ```
 
@@ -341,11 +424,13 @@ async function Demo() {
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area).then(() => {
-        console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
-    }).catch((error: BusinessError) => {
-        console.error('Failed to read the image data in the area.'); //不符合条件则进入
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixels(area).then(() => {
+            console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+        }).catch((error: BusinessError) => {
+            console.error('Failed to read the image data in the area.'); //不符合条件则进入
+        })
+    }
 }
 ```
 
@@ -376,14 +461,16 @@ async function Demo() {
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error('Failed to read pixelmap from the specified area.');
-            return;
-        } else {
-            console.info('Succeeded to read pixelmap from the specified area.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixels(area, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error('Failed to read pixelmap from the specified area.');
+                return;
+            } else {
+                console.info('Succeeded to read pixelmap from the specified area.');
+            }
+        })
+    }
 }
 ```
 
@@ -423,11 +510,13 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writePixels(area).then(() => {
-        console.info('Succeeded to write pixelmap into the specified area.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writePixels(area).then(() => {
+            console.info('Succeeded to write pixelmap into the specified area.');
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        })
+    }
 }
 ```
 
@@ -461,14 +550,61 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writePixels(area, (error : BusinessError) => {
-        if (error != undefined) {
-            console.error('Failed to write pixelmap into the specified area.');
-            return;
-        } else {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writePixels(area, (error : BusinessError) => {
+            if (error != undefined) {
+                console.error('Failed to write pixelmap into the specified area.');
+                return;
+            } else {
+                console.info('Succeeded to write pixelmap into the specified area.');
+            }
+        })
+    }
+}
+```
+
+ ### writePixelsSync<sup>12+</sup>
+
+writePixelsSync(area: PositionArea): void
+
+以同步方法将PixelMap写入指定区域内。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                 |
+| ------ | ------------------------------ | ---- | -------------------- |
+| area   | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area: image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    if (pixelMap != undefined) {
+        pixelMap.writePixelsSync(area);
+    }
 }
 ```
 
@@ -503,11 +639,13 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color).then(() => {
-        console.info("Succeeded in writing data from a buffer to a PixelMap.");
-    }).catch((error: BusinessError) => {
-        console.error("Failed to write data from a buffer to a PixelMap.");
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixels(color).then(() => {
+            console.info("Succeeded in writing data from a buffer to a PixelMap.");
+        }).catch((error: BusinessError) => {
+            console.error("Failed to write data from a buffer to a PixelMap.");
+        })
+    }
 }
 ```
 
@@ -537,14 +675,16 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to write data from a buffer to a PixelMap.");
-            return;
-        } else {
-            console.info("Succeeded in writing data from a buffer to a PixelMap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to write data from a buffer to a PixelMap.");
+                return;
+            } else {
+                console.info("Succeeded in writing data from a buffer to a PixelMap.");
+            }
+        })
+    }
 }
 ```
 
@@ -568,14 +708,16 @@ getImageInfo(): Promise\<ImageInfo>
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-        if (imageInfo == undefined) {
-            console.error("Failed to obtain the image pixel map information.");
-        }
-        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.info("Succeeded in obtaining the image pixel map information.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+            if (imageInfo == undefined) {
+                console.error("Failed to obtain the image pixel map information.");
+            }
+            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+                console.info("Succeeded in obtaining the image pixel map information.");
+            }
+        })
+    }
 }
 ```
 
@@ -599,15 +741,52 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-        if (imageInfo == undefined) {
-            console.error("Failed to obtain the image pixel map information.");
-            return;
-        }
-        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.info("Succeeded in obtaining the image pixel map information.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
+            if (imageInfo == undefined) {
+                console.error("Failed to obtain the image pixel map information.");
+                return;
+            }
+            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+                console.info("Succeeded in obtaining the image pixel map information.");
+            }
+        })
+    }
+}
+```
+
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(): ImageInfo
+
+以同步方法获取图像像素信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**返回值：**
+
+| 类型                              | 说明                                                        |
+| --------------------------------- | ----------------------------------------------------------- |
+| [ImageInfo](#imageinfo)           | 图像像素信息                                                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
+
+**示例：**
+ 
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    if (pixelMap != undefined) {
+        let imageInfo : image.PixelMap = pixelMap.getImageInfoSync();
+        return imageInfo;
+    }
 }
 ```
 
@@ -693,14 +872,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate: number = 0.5;
-    pixelMap.opacity(rate, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to set opacity.");
-            return;
-        } else {
-            console.info("Succeeded in setting opacity.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.opacity(rate, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to set opacity.");
+                return;
+            } else {
+                console.info("Succeeded in setting opacity.");
+            }
+        })
+    }
 }
 ```
 
@@ -731,11 +912,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate: number = 0.5;
-    await pixelMap.opacity(rate).then(() => {
-        console.info('Sucessed in setting opacity.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to set opacity.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.opacity(rate).then(() => {
+            console.info('Sucessed in setting opacity.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to set opacity.');
+        })
+    }
 }
 ```
 
@@ -759,11 +942,13 @@ createAlphaPixelmap(): Promise\<PixelMap>
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
-        console.info('Succeeded in creating alpha pixelmap.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to create alpha pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+            console.info('Succeeded in creating alpha pixelmap.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to create alpha pixelmap.');
+        })
+    }
 }
 ```
 
@@ -787,14 +972,16 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
-        if (alphaPixelMap == undefined) {
-            console.error('Failed to obtain new pixel map.');
-            return;
-        } else {
-            console.info('Succeed in obtaining new pixel map.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
+            if (alphaPixelMap == undefined) {
+                console.error('Failed to obtain new pixel map.');
+                return;
+            } else {
+                console.info('Succeed in obtaining new pixel map.');
+            }
+        }) 
+    }
 }
 ```
 
@@ -822,14 +1009,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
-    pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to scale pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in scaling pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to scale pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in scaling pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -862,11 +1051,51 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
-    await pixelMap.scale(scaleX, scaleY).then(() => {
-        console.info('Sucessed in scaling pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to scale pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.scale(scaleX, scaleY).then(() => {
+            console.info('Sucessed in scaling pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to scale pixelmap.');
+        })   
+    }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number): void
+
+以同步方法根据输入的宽高对图片进行缩放。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let scaleX: number = 2.0;
+    let scaleY: number = 1.0;
+    if (pixelMap != undefined) {
+        pixelMap.scaleSync(scaleX, scaleY);
+    }
 }
 ```
 
@@ -894,14 +1123,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
-    pixelMap.translate(translateX, translateY, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to translate pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in translating pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.translate(translateX, translateY, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to translate pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in translating pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -934,11 +1165,13 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
-    await pixelMap.translate(translateX, translateY).then(() => {
-        console.info('Sucessed in translating pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to translate pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.translate(translateX, translateY).then(() => {
+            console.info('Sucessed in translating pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to translate pixelmap.');
+        })
+    }
 }
 ```
 
@@ -964,14 +1197,17 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    pixelMap.rotate(angle, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to rotate pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in rotating pixelmap.");
-        }
-    })
+    let angle: number = 90.0;]
+    if (pixelMap != undefined) {
+        pixelMap.rotate(angle, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to rotate pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in rotating pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1002,11 +1238,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    await pixelMap.rotate(angle).then(() => {
-        console.info('Sucessed in rotating pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to rotate pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.rotate(angle).then(() => {
+            console.info('Sucessed in rotating pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to rotate pixelmap.');
+        })
+    }
 }
 ```
 
@@ -1034,14 +1272,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
-    pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to flip pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in flipping pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to flip pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in flipping pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1074,11 +1314,13 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
-    await pixelMap.flip(horizontal, vertical).then(() => {
-        console.info('Sucessed in flipping pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to flip pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        await pixelMap.flip(horizontal, vertical).then(() => {
+            console.info('Sucessed in flipping pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to flip pixelmap.');
+        })
+    }
 }
 ```
 
@@ -1104,14 +1346,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    pixelMap.crop(region, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to crop pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in cropping pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.crop(region, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to crop pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in cropping pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1142,11 +1386,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await pixelMap.crop(region).then(() => {
-        console.info('Sucessed in cropping pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to crop pixelmap.');
-    });
+     if (pixelMap != undefined) {
+        await pixelMap.crop(region).then(() => {
+            console.info('Sucessed in cropping pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to crop pixelmap.');
+        });
+    }
 }
 ```
 
@@ -1178,7 +1424,9 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 ```ts
 async function Demo() {
-    let csm = pixelMap.getColorSpace();
+    if (pixelMap != undefined) {
+        let csm = pixelMap.getColorSpace();
+    }
 }
 ```
 
@@ -1212,7 +1460,9 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelMap.setColorSpace(csm);
+    if (pixelMap != undefined) {
+        pixelMap.setColorSpace(csm);
+    }
 }
 ```
 
@@ -1251,14 +1501,16 @@ import { BusinessError } from '@ohos.base'
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
-        if (err) {
-            console.error('Failed to apply color space for pixelmap object.');
-            return;
-        } else {
-            console.info('Succeeded in applying color space for pixelmap object.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
+            if (err) {
+                console.error('Failed to apply color space for pixelmap object.');
+                return;
+            } else {
+                console.info('Succeeded in applying color space for pixelmap object.');
+            }
+        })
+    }
 }
 ```
 
@@ -1499,11 +1751,13 @@ release():Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.release().then(() => {
-        console.info('Succeeded in releasing pixelmap object.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to release pixelmap object.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.release().then(() => {
+            console.info('Succeeded in releasing pixelmap object.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to release pixelmap object.');
+        })
+    }
 }
 ```
 
@@ -1527,14 +1781,16 @@ release(callback: AsyncCallback\<void>): void
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.release((err: BusinessError) => {
-        if (err != undefined) {
-            console.error('Failed to release pixelmap object.');
-            return;
-        } else {
-            console.info('Succeeded in releasing pixelmap object.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.release((err: BusinessError) => {
+            if (err != undefined) {
+                console.error('Failed to release pixelmap object.');
+                return;
+            } else {
+                console.info('Succeeded in releasing pixelmap object.');
+            }
+        })
+    }
 }
 ```
 
@@ -1550,7 +1806,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -1578,8 +1834,8 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
-| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
 
@@ -1633,7 +1889,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | fd      | number                          | 是   | 文件描述符fd。                      |
-| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
 
@@ -1689,7 +1945,7 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | buf    | ArrayBuffer                      | 是   | 图像缓冲区数组。                     |
-| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
 
@@ -1718,7 +1974,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
-| options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
 
@@ -1781,7 +2037,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                 |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
 | buf     | ArrayBuffer                     | 是   | 增量数据。                           |
-| options | [SourceOptions](#sourceoptions9) | 否   | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 否   | 图片属性，包括图片像素密度、像素格式和图片尺寸。 |
 
 **返回值：**
 
@@ -1807,7 +2063,7 @@ const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSou
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW，dng。 |
 
 ### getImageInfo
 
@@ -3808,6 +4064,7 @@ creator.release().then(() => {
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
+| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。|
 
 ### getComponent<sup>9+</sup>
 
@@ -3952,6 +4209,8 @@ img.release().then(() => {
 | size | [Size](#size) | 是   | 是   | 图片大小。 |
 | density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
 | stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。 |
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。  |
 
 ## Size
 
@@ -3961,8 +4220,8 @@ img.release().then(() => {
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
-| height | number | 是   | 是   | 输出图片的高。 |
-| width  | number | 是   | 是   | 输出图片的宽。 |
+| height | number | 是   | 是   | 输出图片的高，单位：像素。 |
+| width  | number | 是   | 是   | 输出图片的宽，单位：像素。 |
 
 ## PixelMapFormat<sup>7+</sup>
 
@@ -4046,7 +4305,7 @@ PixelMap的初始化选项。
 | editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。  |
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |

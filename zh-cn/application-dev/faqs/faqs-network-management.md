@@ -26,7 +26,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 **参考链接**
 
-[http常见响应码](../reference/apis/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+[http常见响应码](../reference/apis-network-kit/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 
 ## http请求中response错误码返回6是什么意思(API 9)
@@ -41,7 +41,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 **参考链接**
 
-更多错误码参考[http常见响应码](../reference/apis/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+更多错误码参考[http常见响应码](../reference/apis-network-kit/js-apis-http.md#responsecode)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 ## \@ohos/axios三方件post请求queryParams参数场景下如何传参(API 9)
 
@@ -130,7 +130,7 @@ this.options = {
 
 **参考链接**
 
-[上传下载](../reference/apis/js-apis-request.md)
+[上传下载](../reference/apis-basic-services-kit/js-apis-request.md)
 
 
 ## 设备网络正常，调用connection.hasDefaultNet()接口失败(API 9)
@@ -171,21 +171,21 @@ netId的值如0、100分别代表什么含义？
 
 **参考链接**
 
-[http数据请求](../connectivity/http-request.md)
+[http数据请求](../network/http-request.md)
 
 
 ## 如何使用JS封装网络请求(API 9)
 
 **解决措施**
 
-网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis/js-apis-http.md)
+网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis-network-kit/js-apis-http.md)
 
 
 ## 基于JS开发智能手表应用，如何编写网络请求(API 9)
 
 **解决措施**
 
-网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis/js-apis-http.md)
+网络请求支持JS语言开发方式，可直接使用。具体使用参考如下文档：[网络连接](../reference/apis-network-kit/js-apis-http.md)
 
 
 ## 应用增加权限"ohos.permission.NOTIFICATION_CONTROLLER"，编译后无法启动(API 9)
@@ -208,3 +208,37 @@ WiFi模块中使用wifi.getIpInfo().ipAddress，报错Error: assertion (wifiDevi
 **解决措施**
 
 权限不足。请先检查是否申请了相关的操作权限，权限相关信息可参考[权限管理](../security/AccessToken/determine-application-mode.md)。
+
+## 在使用Socket连接相关接口时，NetAddress的address参数只能是IP地址，如果只有host的情况如何处理？(API 11)
+
+**解决方案**
+
+可通过使用getAddressByName接口解析主机名以获取IP地址。
+
+**参考资料**
+
+[@ohos.net.connection (网络连接管理)](../reference/apis-network-kit/js-apis-net-connection.md)
+
+## 如何使用C接口使用网络相关功能？(API 11)
+ 
+**解决方案**
+
+目前提供了C接口的有如下几个模块：  
+自定义DNS解析、证书校验、WebSocket  
+
+没直接提供C接口的可以通过AKI机制调用ArkTS接口。
+
+  
+**参考资料**
+
+https://gitee.com/openharmony/interface_sdk_c/tree/master/network
+
+## Socket下的TLSConnectOptions不配置是否会使用手机上的默认证书？(API 11)
+
+**解决方案**
+
+使用TLSSocket请求需要手动通过代码配置，不会使用手机上的默认证书。TLSConnectOptions部分配置证书需要使用与请求地址相匹配的证书内容，可将证书放至rawfile文件下通过getRawFileContent()方法读取转换为string类型数据放入。  
+
+**参考资料**
+
+[@ohos.net.socket (Socket连接)](../reference/apis-network-kit/js-apis-socket.md)

@@ -14,6 +14,8 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 import request from '@ohos.request';
 ```
 
+
+
 ## Action<sup>10+</sup>  
 
 定义操作选项。
@@ -197,7 +199,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -270,7 +272,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -343,7 +345,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -416,7 +418,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -497,7 +499,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -578,7 +580,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -660,7 +662,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -730,7 +732,7 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -796,7 +798,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -861,7 +863,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -928,7 +930,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -1011,7 +1013,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -1083,7 +1085,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -1127,7 +1129,7 @@ remove(id: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](../apis-basic-services-kit/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |

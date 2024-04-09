@@ -20,7 +20,7 @@
 
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
@@ -44,7 +44,7 @@
 
 #### 横竖屏切换
 ##### 介绍
-本示例展示如何使用媒体查询，通过[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md) 接口完成在不同设备上显示不同的界面效果。  
+本示例展示如何使用媒体查询，通过[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md) 接口完成在不同设备上显示不同的界面效果。  
 ##### 使用
 1.在竖屏设备上，首页展示新闻列表，点击新闻进入详情界面。
 
@@ -61,7 +61,7 @@
 
 #### 状态管理
 ##### 介绍
-本示例通过使用[页面级的状态变量](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fquick-start%2Farkts-localstorage.md%2F) 和[应用级的状态变量](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fquick-start%2Farkts-appstorage.md%2F) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
+本示例通过使用[页面级的状态变量](quick-start/arkts-localstorage.md) 和[应用级的状态变量](quick-start/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
 ##### 使用
 1.点击首页的切换按钮，可切换List和Grid布局。
 
@@ -83,11 +83,11 @@ Grid布局：通过展示食物分类信息，创建Tabs页签展示不同分类
 ##### 介绍
 本示例构建食物分类列表页面和食物详情页，包含：
 
-1.[List](reference/arkui-ts/ts-container-list.md)布局：创建食物数据模型，ForEach循环渲染ListItem。
+1.[List](reference/apis-arkui/arkui-ts/ts-container-list.md)布局：创建食物数据模型，ForEach循环渲染ListItem。
 
-2.[Grid](reference/arkui-ts/ts-container-grid.md)布局：展示食物分类信息，创建Tabs页签展示不同分类的食物。
+2.[Grid](reference/apis-arkui/arkui-ts/ts-container-grid.md)布局：展示食物分类信息，创建Tabs页签展示不同分类的食物。
 
-3.路由机制：[@ohos.router](reference/apis/js-apis-router.md)接口、[Navigator](reference/arkui-ts/ts-container-navigator.md)和页面间数据传递。
+3.路由机制：[@ohos.router](reference/apis-arkui/js-apis-router.md)接口、[Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)和页面间数据传递。
 ##### 使用
 1.点击首页的切换按钮，可切换List和Grid布局。
 
@@ -109,7 +109,7 @@ Grid布局：通过展示食物分类信息，创建Tabs页签展示不同分类
 
 #### JS组件集合
 ##### 介绍
-本示例为ArkUI中组件、通用、动画、全局方法的集合。示例使用 [Tabs容器组件](reference/arkui-js/js-components-container-tabs.md)搭建整体应用框架，每个 [TabContent内容视图](reference/arkui-js/js-components-container-tab-content.md) 使用 [div容器组件](reference/arkui-js/js-components-container-div.md) 嵌套布局，在每个 [div](reference/arkui-js/js-components-container-div.md) 中使用 [循环渲染](reference/arkui-js/js-components-common-attributes.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。通过组件、通用、动画、全局方法四个大类展现了ArkUI的能力，并把四大类中的功能进行了分类，方便开发者查看，每个示例又结合了不同的展现方式，以契合实际应用场景为主生动的体现了ArkUI能力的用法。
+本示例为ArkUI中组件、通用、动画、全局方法的集合。示例使用 [Tabs容器组件](reference/apis-arkui/arkui-js/js-components-container-tabs.md)搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 使用 [div容器组件](reference/apis-arkui/arkui-js/js-components-container-div.md) 嵌套布局，在每个 [div](reference/apis-arkui/arkui-js/js-components-container-div.md) 中使用 [循环渲染](reference/apis-arkui/arkui-js/js-components-common-attributes.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。通过组件、通用、动画、全局方法四个大类展现了ArkUI的能力，并把四大类中的功能进行了分类，方便开发者查看，每个示例又结合了不同的展现方式，以契合实际应用场景为主生动的体现了ArkUI能力的用法。
 ##### 使用
 1.点击组件、通用、动画、全局方法四个按钮或左右滑动切换不同Tab内容。
 
@@ -117,7 +117,8 @@ Grid布局：通过展示食物分类信息，创建Tabs页签展示不同分类
 
 3.若存在三级导航，点击三级导航则跳转详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。  
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-js/js-components-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 使用 [List容器组件](reference/apis-arkui/arkui-js/js-components-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/
+js-components-container-list-item.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。  
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
@@ -186,7 +187,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### 自定义分享
 ##### 介绍
-自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis/js-apis-screenshot.md) 实现屏幕的截取，使用[文件管理](reference/apis/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[媒体库管理](reference/apis/js-apis-medialibrary.md) 获取截取的图片，使用[弹窗](reference/apis/js-apis-promptAction.md) 进行信息的提示。
+自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-arkui/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[媒体库管理](reference/apis-media-library-kit/js-apis-medialibrary.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
 ##### 使用
 使用说明：
 
@@ -216,7 +217,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### Stage模型
 ##### 介绍
-[Stage模型](reference/apis/js-apis-app-ability-abilityStage.md) 的设计，主要是为了解决FA模型无法解决的开发场景问题，基于应用的能力与系统总体功能和功耗的平衡、原生支持组件级的迁移和协同、支持多设备和多窗口形态的特点这三个出发点，从而让开发者更加方便地开发出分布式环境下的复杂应用。  
+[Stage模型](reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) 的设计，主要是为了解决FA模型无法解决的开发场景问题，基于应用的能力与系统总体功能和功耗的平衡、原生支持组件级的迁移和协同、支持多设备和多窗口形态的特点这三个出发点，从而让开发者更加方便地开发出分布式环境下的复杂应用。  
 ##### 使用
 1.点击DataShareExtAbility按钮，跳转到DataShareExtAbility页面；
 
@@ -245,7 +246,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### 蓝牙
 ##### 介绍
-本示例通过使用蓝牙低功耗心率服务，结合[bluetooth](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-bluetooth.md%2F) 来接收BLE心率设备发送的心率数据，并使用画布[Canvas](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Farkui-ts%2Fts-components-canvas-canvas.md%2F) 来绘制实时心率图来展示蓝牙相关API用法。
+本示例通过使用蓝牙低功耗心率服务，结合[bluetooth](reference/apis-connectivity-kit/js-apis-bluetooth.md) 来接收BLE心率设备发送的心率数据，并使用画布[Canvas](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) 来绘制实时心率图来展示蓝牙相关API用法。
 ##### 使用
 1.启动应用后，弹出是否允许应用访问位置信息，点击允许后开始操作。
 2.点击界面中搜索设备，如未开启蓝牙会自动开启并搜索心率设备，如已开启直接搜索设备。
@@ -264,7 +265,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### Http
 ##### 介绍
-本示例通过[@ohos.net.http](reference/apis/js-apis-http.md) 等接口，实现了根据URL地址和相关配置项发起http请求的功能。
+本示例通过[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 等接口，实现了根据URL地址和相关配置项发起http请求的功能。
 ##### 使用
 1.启动应用可配置网络请求，设置网址、请求方式、请求参数；
 
@@ -285,7 +286,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### RPC连接
 ##### 介绍
-本示例使用[@ohos.rpc](reference/apis/js-apis-rpc.md) 相关接口，实现了一个前台选择商品和数目，后台计算总价的功能，使用rpc进行前台和后台的通信。
+本示例使用[@ohos.rpc](reference/apis-ipc-kit/js-apis-rpc.md) 相关接口，实现了一个前台选择商品和数目，后台计算总价的功能，使用rpc进行前台和后台的通信。
 ##### 使用
 1.点击商品种类的空白方框，弹出商品选择列表，选择点击对应的商品，空白方框显示相应内容。
 
@@ -356,7 +357,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例使用[@ohos.request](reference/apis/js-apis-request.md)接口创建上传和下载任务，实现上传、下载功能，hfs作为服务器，实现了文件的上传和下载和任务的查询功能。
+本示例使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)接口创建上传和下载任务，实现上传、下载功能，hfs作为服务器，实现了文件的上传和下载和任务的查询功能。
 
 ##### 使用
 1.本示例功能需要先配置服务器环境后使用，具体配置见[上传下载服务配置](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad/environment)。
@@ -386,11 +387,11 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 * 该示例分为两个模块：
   * 上传模块
-    * 使用[@ohos.request](reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，支持多个文件上传及片段上传。
-    * 参考接口：[@ohos.request](reference/apis/js-apis-request.md)，[@ohos.file.picker](reference/apis/js-apis-file-picker.md)
+    * 使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，支持多个文件上传及片段上传。
+    * 参考接口：[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)，[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
   * 下载模块
-    * 使用[@ohos.request](reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，前台下载任务只支持单个文件下载，后台下载任务支持多文件下载。使用[@ohos.file.fs](reference/apis/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
-    * 参考接口：[@ohos.request](reference/apis/js-apis-request.md)，[@ohos.file.fs](reference/apis/js-apis-file-fs.md)
+    * 使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，失败的任务会调用查询接口获取失败原因并打印在日志中，前台下载任务只支持单个文件下载，后台下载任务支持多文件下载。使用[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
+    * 参考接口：[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)，[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
 
 ##### 约束与限制
 
@@ -404,7 +405,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例展示了[WebSocket](reference/apis/js-apis-webSocket.md)的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。
+本示例展示了[WebSocket](reference/apis-network-kit/js-apis-webSocket.md)的使用，包括客户端与服务端的连接和断开以及客户端数据的接收和发送。
 
 ##### 使用
 
@@ -423,11 +424,11 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 * 本示例分为两大模块
   * 客户端与服务端的连接和断开模块
     * BindServiceIP方法输入服务器IP地址，socket.connect方法绑定服务器，进入消息框页面，socket.on方法连接服务器，socket.off方法断开连接
-    * 接口参考：[@ohos.prompt](reference/apis/js-apis-promptAction.md)，[@ohos.net.webSocket](reference/apis/js-apis-webSocket.md)
+    * 接口参考：[@ohos.prompt](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.net.webSocket](reference/apis-network-kit/js-apis-webSocket.md)
 
   * 客户端数据的接收和发送模块
     * TopBar组件搭建通讯页面，socket.send方法发送信息数据。
-    * 接口参考：[@ohos.prompt](reference/apis/js-apis-promptAction.md)，[@ohos.net.webSocket](reference/apis/js-apis-webSocket.md)
+    * 接口参考：[@ohos.prompt](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.net.webSocket](reference/apis-network-kit/js-apis-webSocket.md)
 
 ##### 约束与限制
 
@@ -436,6 +437,44 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 配套版本：API9版本SDK，版本号：3.2.12.1
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)
+
+#### VPN连接
+
+##### 介绍
+
+本示例使用@ohos.net.vpn接口演示了创建VPN隧道、建立VPN网络、VPN隧道保护、销毁VPN网络以及使用@ohos.net.vpnExtension接口创建三方VPN等功能。实现了使用VPN进行服务器连接，发送数据的功能。
+
+##### 使用
+
+1. 进入应用前请先安装[VPNFoundation](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN/lib)。
+
+2. 进入应用后，主界面有启用VPN和停用VPN的选项,分别对应开启和关闭VPN功能。
+
+3. 在主界面，可以点击启用VPN来创建VPN连接。
+
+4. 在VPN启动界面，可以配置VPN服务器IP地址/隧道IP地址/使用VPN的应用程序。
+
+5. 在VPN启动界面，点击创建对象可以创建VPN隧道，点击隧道保护可以开启隧道保护，点击启动VPN可以进行网络连接。
+
+6. 在主界面，可以点击停用VPN来断开和关闭VPN连接。
+
+7. 以上演示系统VPN，如果使用三方VPN，点击启动vpnExt按钮，弹窗提示VPN使用许可，同意后三方VPN启动并自动连接，尝试用浏览器等hap包访问百度。
+
+##### 基本原理
+
+本示例应用所演示的功能主要封装在StartVpn.ets和StopVpn.ets。
+* 调用StartVpn.CreateTunnel()来创建VPN隧道。
+* 调用StartVpn.SetupVpn()来建立VPN网络。
+* 调用StopVpn.Destroy()来销毁VPN网络。
+* 调用StartVpn.Protect()来开启VPN隧道保护。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.6.5
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN)
 
 ### DFX
 
@@ -503,7 +542,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例通过使用[@ohos.hidebug](reference/apis/js-apis-hidebug.md) 接口来获取应用进程实际使用的物理内存大小、进程的共享脏内存大小、进程的私有脏内存大小等内存使用情况。
+本示例通过使用[@ohos.hidebug](reference/apis-performance-analysis-kit/js-apis-hidebug.md) 接口来获取应用进程实际使用的物理内存大小、进程的共享脏内存大小、进程的私有脏内存大小等内存使用情况。
 
 ##### 使用
 
@@ -528,7 +567,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例展示了在eTS中如何获取应用故障相关信息，测试打点包括应用打点与性能打点两部分，应用打点通过调用[@ohos.hiAppEvent](reference/apis/js-apis-hiappevent.md)接口来记录应用运行过程中发生的各种信息。
+本示例展示了在eTS中如何获取应用故障相关信息，测试打点包括应用打点与性能打点两部分，应用打点通过调用[@ohos.hiAppEvent](reference/apis-performance-analysis-kit/js-apis-hiappevent.md)接口来记录应用运行过程中发生的各种信息。
 
 ##### 使用
 
@@ -541,7 +580,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 ##### 基本原理
 
 * 该示例使用hiAppEvent接口中write方法将事件写入到当天的事件文件中，EventType方法枚举事件类型，configure方法去配置打点开关来实现测试打点。
-* 接口参考：[@ohos.hiAppEvent](reference/apis/js-apis-hiappevent.md)
+* 接口参考：[@ohos.hiAppEvent](reference/apis-performance-analysis-kit/js-apis-hiappevent.md)
 
 ##### 约束与限制
 
@@ -555,7 +594,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例使用了[@ohos.faultLogger](reference/apis/js-apis-faultLogger.md)接口，展示在eTS中如何获取js_crash故障、cpp_crash故障、freeze_crash故障等不同场景下应用故障相关信息。
+本示例使用了[@ohos.faultLogger](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)接口，展示在eTS中如何获取js_crash故障、cpp_crash故障、freeze_crash故障等不同场景下应用故障相关信息。
 
 ##### 使用
 
@@ -564,7 +603,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 基本原理
 
-+ 创造应用故障场景，故障类型枚举值参考[faultType](reference/apis/js-apis-faultLogger.md#faulttype)：
++ 创造应用故障场景，故障类型枚举值参考[faultType](reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype)：
     + js_crash故障：通过数组访问越界构造;
     + cpp_crash故障：通过调用不存在的Api接口构造;
     + freeze_crash故障：通过代码产生死循环构造;
@@ -583,7 +622,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例使用[hilog日志系统](reference/apis/js-apis-hilog.md) ，提供日志打印类，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
+本示例使用[hilog日志系统](reference/apis-performance-analysis-kit/js-apis-hilog.md) ，提供日志打印类，使应用/服务可以按照指定级别、标识和格式字符串输出日志内容，帮助开发者了解应用/服务的运行状态，更好地调试程序。
 
 ##### 使用
 
@@ -595,7 +634,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 + 日志输出功能封装在Logger:
     + 日志输出：Logger类根据Configure的types参数将日志分为三个类型，其中file类型会将日志写入本地文件，console类型调用ConsoleLoggerStrategy类输出，hilog类型调用HilogLoggerStrategy类输出;
-    + 日志文件写入本地：FileLoggerStrategy类使用[@ohos.file.fs](reference/apis/js-apis-file-fs.md) 将日志写入本地文件中，本示例只是展示了文件写入文件操作的使用方法，在实战场景中，建议把耗时操作放入子线程中运行。
+    + 日志文件写入本地：FileLoggerStrategy类使用[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 将日志写入本地文件中，本示例只是展示了文件写入文件操作的使用方法，在实战场景中，建议把耗时操作放入子线程中运行。
 
 ##### 约束与限制
 
@@ -611,7 +650,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 介绍
 
-本示例使用[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md) 接口，展示了使用首选项持久化存储数据的功能。
+本示例使用[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md) 接口，展示了使用首选项持久化存储数据的功能。
 
 ##### 使用
 
@@ -633,6 +672,58 @@ Preferences.flush()保存并刷新文件内容。
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
 
+#### 标准化数据定义与描述
+
+##### 介绍
+
+ 本示例主要使用[@ohos.data.uniformTypeDescriptor](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md) 展示了标准化数据定义与描述的功能。在新增预置媒体文件后，支持对媒体文件的utd标准类型获取、utd类型归属类型查询、获取文件对应的utd类型的默认图标、自定义数据类型等功能。 实现过程中还使用到[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 、[@ohos.router](reference/apis-arkui/js-apis-router.md)等接口。
+
+##### 使用
+
+1. 在主界面，点击“Please select a media file”进入选择媒体类型的主页面。
+
+2. 在选择媒体类型界面，点击“下拉列表”，在展开的列表中可以选择一种媒体类型，如“Audios”，下面的列表中显示预置文件夹中所有归属于Audio的文件。
+
+3. 在选择媒体类型界面，点击文件列表中某个文件，跳转到“显示文件信息”界面，该界面中显示文件归属类型的图标和文件名。
+
+4. 在选择媒体类型界面，点击返回箭头图标，返回到“选择媒体类型”界面。
+
+##### 基本原理
+
+* 新增文件夹和媒体文件功能：
+
+  * 使用fs.accessSync来检查文件或文件夹是否已存在。
+
+  * 使用fs.mkdirSync创建文件夹，文件夹在应用的沙箱目录files下创建。
+
+  * 遍历文件名数组precastFiles，使用fs.accessSync检查文件是否已存在。
+
+  * 使用fs.openSync创建上一步检查结果为不存在的文件。
+    
+* 查找文件归属类型的功能：
+
+  * 使用fs.listFileSync获取指定目录下的所有文件保存在数组中。
+
+  * 遍历数组中每个文件，调用函数lastIndexOf获取文件后缀位置，再使用接口substring获取文件的后缀。
+
+  * 使用getUniformDataTypeByFilenameExtension获取文件的utd。
+
+  * 使用getTypeDescriptor获取标准化数据类型。
+
+  * 使用接口belongsTo检查文件是否归属于选中的媒体类型，如果返回值为true，则将该文件名保存在显示数组中。
+
+  * 通过标准化数据类型的属性iconFile，获取标准化数据类型的默认图标资源ID。
+
+  * 上述接口的使用参考[@ohos.data.uniformTypeDescriptor](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API1版本SDK，版本号：4.1.6.5
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)
+
 ### 设备管理
 
 #### 设备管理合集（非系统特性）
@@ -641,25 +732,25 @@ Preferences.flush()保存并刷新文件内容。
 
 本示例集合设备管理相关（非系统特性）不需要复杂功能展示的模块，展示了各个模块的基础功能，包含：
 
-- [@ohos.batteryInfo (电量信息)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-battery-info.md%2F)
-- [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
-- [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
-- [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
-- [@ohos.runningLock (Runninglock锁)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-runninglock.md%2F)
-- [@ohos.settings (设置数据项名称)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-settings.md%2F)
-- [@ohos.stationary (设备状态感知框架)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-stationary.md%2F)
-- [@ohos.thermal (热管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-thermal.md%2F)
-- [@ohos.usbManager (USB管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-usbManager.md%2F)
-- [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
-- [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
-- [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
-- [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
-- [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
-- [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
-- [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
-- [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
-- [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
-- [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
+- [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info.md)
+- [@ohos.charger (充电类型)](reference/apis-basic-services-kit/js-apis-charger-sys.md)
+- [@ohos.deviceInfo (设备信息)](reference/apis-basic-services-kit/js-apis-device-info.md)
+- [@ohos.power (系统电源管理)](reference/apis-basic-services-kit/js-apis-power.md)
+- [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
+- [@ohos.settings (设置数据项名称)](reference/apis-basic-services-kit/js-apis-settings.md)
+- [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
+- [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
+- [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
+- [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
+- [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
+- [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis-input-kit/js-apis-inputevent.md)
+- [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
+- [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
+- [@ohos.multimodalInput.keyCode (键值)](reference/apis-input-kit/js-apis-keycode.md)
+- [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis-input-kit/js-apis-keyevent.md)
+- [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
+- [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
+- [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
 
 ##### 使用
 
@@ -685,26 +776,26 @@ Preferences.flush()保存并刷新文件内容。
 
 1.首页菜单展示：使用一个module，menuitems完成菜单组件的实现，传入要展示的菜单的strarray类型的资源和菜单点击对应的组件即可。使用Navigation和NavRouter组件实现菜单点击进入功能界面，使用LocalStorage实现应用内Ability内数据共享，点击菜单时标记selectedLabel，在entry中的Capabilities组件中，通过selectedLabel显示对应的功能组件。
 
-2.电量信息：使用[@ohos.batteryInfo.d.ts](reference/apis/js-apis-battery-info.md)
+2.电量信息：使用[@ohos.batteryInfo.d.ts](reference/apis-basic-services-kit/js-apis-battery-info.md)
 接口获取电池和充放电状态信息。
 
-3.RunningLock锁：使用[@ohos.runningLock.d.ts](reference/apis/js-apis-runninglock.md)
+3.RunningLock锁：使用[@ohos.runningLock.d.ts](reference/apis-basic-services-kit/js-apis-runninglock.md)
 实现对Runninglock锁的创建、查询、持锁、释放等操作。
 
-4.系统电源管理：使用[@ohos.power.d.ts](reference/apis/js-apis-power.md)
+4.系统电源管理：使用[@ohos.power.d.ts](reference/apis-basic-services-kit/js-apis-power.md)
 实现获取亮灭屏状态、查询电源模式功能。
 
-5.设置数据项名称：使用[@ohos.settings.d.ts](reference/apis/js-apis-settings.md)
+5.设置数据项名称：使用[@ohos.settings.d.ts](reference/apis-basic-services-kit/js-apis-settings.md)
 实现获取获取数据项uri、开关飞行模式、检查应用是否能以悬浮窗形式显示功能。
 
 6.设备状态感知框架：使用[@ohos.stationary.d.ts](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
 接口提供设备状态感知能力。
 
-7.热管理：使用[@ohos.thermal.d.ts](reference/apis/js-apis-thermal.md)
+7.热管理：使用[@ohos.thermal.d.ts](reference/apis-basic-services-kit/js-apis-thermal.md)
 提供热管理相关的接口，查询热档位以及注册温控等级回调。
 
-8.USB管理：使用[@ohos.usbManager.d.ts](reference/apis/js-apis-usbManager.md)
-实现usb设备列表的获取，使用[@ohos.commonEventManager.d.ts](reference/apis/js-apis-commonEventManager.md)
+8.USB管理：使用[@ohos.usbManager.d.ts](reference/apis-basic-services-kit/js-apis-usbManager.md)
+实现usb设备列表的获取，使用[@ohos.commonEventManager.d.ts](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 订阅USB设备插入和拔出监听。
 
 ##### 约束与限制
@@ -719,7 +810,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [geolocation](reference/apis/js-apis-geolocation.md) 实现获取当前位置的经纬度，然后通过 [http](reference/apis/js-apis-http.md) 将经纬度作为请求参数，获取到该经纬度所在的城市。通过 [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md) 容器组件实现按逻辑结构快速定位容器显示区域。
+本示例使用 [geolocation](reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度，然后通过 [http](reference/apis-arkui/js-apis-http.md) 将经纬度作为请求参数，获取到该经纬度所在的城市。通过 [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) 容器组件实现按逻辑结构快速定位容器显示区域。
 
 ##### 使用
 
@@ -758,11 +849,11 @@ Preferences.flush()保存并刷新文件内容。
 
 * 真实屏幕模块
   * 首字母显示为R，且不能进行删除，点击跳转屏幕属性页面展示真实屏幕属性
-  * 接口参考：[@ohos.display](reference/apis/js-apis-display.md)，[@ohos.router](reference/apis/js-apis-system-router.md)
+  * 接口参考：[@ohos.display](reference/apis-arkui/js-apis-display.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
 * 新增和删除虚拟屏幕模块
   * getAllDisplay获取当前所有的display对象，getDefaultDisplay获取当前默认的display对象,push方法新增虚拟屏幕，增加超过5个虚拟屏幕时，给出警告，pop方法删除虚拟屏幕，全部删除虚拟屏幕后，点击给出警告，点击虚拟屏幕展示虚拟屏幕属性
-  * 接口参考：[@ohos.display](reference/apis/js-apis-display.md)，[@ohos.router](reference/apis/js-apis-system-router.md)
+  * 接口参考：[@ohos.display](reference/apis-arkui/js-apis-display.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
 ##### 约束与限制
 
@@ -776,7 +867,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例模拟倒计时场景，通过[@ohos.vibrator](reference/apis/js-apis-vibrator.md) 等接口来实现振动。
+本示例模拟倒计时场景，通过[@ohos.vibrator](reference/apis-sensor-service-kit/js-apis-vibrator.md) 等接口来实现振动。
 
 ##### 使用
 
@@ -806,7 +897,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[Vibrator模块](reference/apis/js-apis-vibrator.md)展示了振感定制化的基本功能，包括振感与音效、视频协同振动等。
+本示例使用[Vibrator模块](reference/apis-sensor-service-kit/js-apis-vibrator.md)展示了振感定制化的基本功能，包括振感与音效、视频协同振动等。
 
 ##### 使用
 
@@ -820,7 +911,7 @@ Preferences.flush()保存并刷新文件内容。
 + 振动强度设置：可以选择振动的强度等级；
 + 振效库：点击振效库中各项，会调用媒体库AVPlayer播放音效，并同时调用vibrator模块startVibration接口启动振动;
 + 振感视频：使用Video控件全屏播放视频，在开始播放同时调用vibrator模块startVibration接口启动振动；
-+ 自定义振动：使用[Vibrator模块](reference/apis/js-apis-vibrator.md)的startVibration方法播放应用内置的振动资源文件;
++ 自定义振动：使用[Vibrator模块](reference/apis-sensor-service-kit/js-apis-vibrator.md)的startVibration方法播放应用内置的振动资源文件;
 
 ##### 约束与限制
 
@@ -836,7 +927,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[bundleState](reference/apis/js-apis-deviceUsageStatistics.md)相关接口完成设备中应用时长的统计功能。
+本示例使用[bundleState](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics.md)相关接口完成设备中应用时长的统计功能。
 
 ##### 使用
 
@@ -849,7 +940,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 该示例使用bundleState接口中isIdleState方法判断指定bundleName的应用当前是否是空闲状态来分类不常用应用列表，queryBundleStateInfos方法通过指定起始和结束时间查询应用使用时长统计信息来获得每个应用的使用总时长。
-* 接口参考：[@ohos.bundleState](reference/apis/js-apis-deviceUsageStatistics.md)
+* 接口参考：[@ohos.bundleState](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics.md)
 
 ##### 约束与限制
 
@@ -892,7 +983,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md) 、[@ohos.filemanagement.userFileManager](reference/apis/js-apis-userFileManager.md) 、[@ohos.fileio](reference/apis/js-apis-fileio.md) 、[@ohos.file.fs](reference/apis/js-apis-file-fs.md)
+本示例主要展示了文件管理相关的功能，使用[@ohos.multimedia.medialibrary](reference/apis-media-library-kit/js-apis-medialibrary.md) 、[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
 
 等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件和预览图片、监听文件的功能。
 
@@ -925,7 +1016,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-应用使用[@ohos.file.picker](reference/apis/js-apis-file-picker.md)、[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)、[@ohos.file.fs](reference/apis/js-apis-file-fs.md) 等接口，实现了picker拉起文档编辑保存、拉起系统相册图片查看、拉起视频并播放的功能。
+应用使用[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)、[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 等接口，实现了picker拉起文档编辑保存、拉起系统相册图片查看、拉起视频并播放的功能。
 
 ##### 使用
 
@@ -937,16 +1028,16 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 - 拉起picker选择文件、拉起picker保存文件、拉起picker选择图片或视频的功能封装在Index.ets
-  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等）；使用media.getFileAssets来获取文件资源；使用来fetchFileResult.getFirstObject获取文件检索结果中的头一个文件资产，接口参考：[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)
-  * 使用new picker.DocumentViewPicker来创建文件picker实例，使用documentPicker.select来拉起picker选择文件，使用documentPicker.save来拉起picker保存文件，接口参考：[@ohos.file.picker](reference/apis/js-apis-file-picker.md)
-  * 使用new picker.PhotoViewPicker来创建图库picker实例，使用photoPicker.select来拉起picker选择图片或视频，接口参考：[@ohos.file.picker](reference/apis/js-apis-file-picker.md)
+  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等）；使用media.getFileAssets来获取文件资源；使用来fetchFileResult.getFirstObject获取文件检索结果中的头一个文件资产，接口参考：[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)
+  * 使用new picker.DocumentViewPicker来创建文件picker实例，使用documentPicker.select来拉起picker选择文件，使用documentPicker.save来拉起picker保存文件，接口参考：[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
+  * 使用new picker.PhotoViewPicker来创建图库picker实例，使用photoPicker.select来拉起picker选择图片或视频，接口参考：[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
 
 - 编辑文件并保存的功能封装在EditFile.ets
-  * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](reference/apis/js-apis-file-fs.md)
+  * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
 
 - 拉起图片或视频并查看的功能封装在ViewMedia.ets
-  * 使用new picker.PhotoViewPicker来创建图库picker实例，使用photoPicker.save来拉起picker保存图片或视频，接口参考：[@ohos.file.picker](reference/apis/js-apis-file-picker.md)
-  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等），然后使用media.getFileAssets来获取文件资源再使用fileAsset.displayName来获取图片或视频的名称，接口参考：[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)
+  * 使用new picker.PhotoViewPicker来创建图库picker实例，使用photoPicker.save来拉起picker保存图片或视频，接口参考：[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
+  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等），然后使用media.getFileAssets来获取文件资源再使用fileAsset.displayName来获取图片或视频的名称，接口参考：[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)
 
 
 ##### 约束与限制
@@ -961,7 +1052,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了沙箱文件分享相关的功能，使用 [@ohos.file.fileuri](reference/apis/js-apis-file-fileuri.md) 、[@ohos.file.fs](reference/apis/js-apis-file-fs.md)、[@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)、[@ohos.application.Want](reference/apis/js-apis-app-ability-want.md) 等接口，实现了获取文件uri、创建沙箱文件、提供want中操作want常数和解释Flags说、应用组件间的信息传递的功能。
+本示例主要展示了沙箱文件分享相关的功能，使用 [@ohos.file.fileuri](reference/apis-core-file-kit/js-apis-file-fileuri.md) 、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.ability.wantConstant](reference/apis-ability-kit/js-apis-ability-wantConstant.md)、[@ohos.application.Want](reference/apis-ability-kit/js-apis-app-ability-want.md) 等接口，实现了获取文件uri、创建沙箱文件、提供want中操作want常数和解释Flags说、应用组件间的信息传递的功能。
 
 ##### 使用
 
@@ -973,13 +1064,13 @@ Preferences.flush()保存并刷新文件内容。
 
 * 增添文件、查找指定类型文件、获取文件uri、传递want信息启动ability的功能接口封装在fileFs.ts
 
-  * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](reference/apis/js-apis-file-fs.md)
+  * 使用fs.mkdirSync、fs.openSync、fs.writeSync、fs.readSync、fs.closeSync分别用来来创建文件夹、打开文件、写文件、读文件、关闭文件，接口参考：[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
 
-  * 使用fileUri.getUriFromPath来获取文件uri，接口参考：[@ohos.file.fileuri](reference/apis/js-apis-file-fileuri.md) 
+  * 使用fileUri.getUriFromPath来获取文件uri，接口参考：[@ohos.file.fileuri](reference/apis-core-file-kit/js-apis-file-fileuri.md) 
 
   * 分享文件至picker应用打开并编辑：
 
-    调用 implicitStartAbility 方法传递want参数启动新的ability，接口参考：[@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)、[@ohos.application.Want](reference/apis/js-apis-app-ability-want.md)
+    调用 implicitStartAbility 方法传递want参数启动新的ability，接口参考：[@ohos.ability.wantConstant](reference/apis-ability-kit/js-apis-ability-wantConstant.md)、[@ohos.application.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)
 
 
 ##### 约束与限制
@@ -1008,15 +1099,15 @@ Preferences.flush()保存并刷新文件内容。
 
 * 获取音频模块
   * 使用媒体库接口进行音视频的扫描，获取音视频详细信息，重命名和删除操作，使用PixelMap方法读取或写入图像数据以及获取图像信息。
-  * 接口参考：[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)，[@ohos.multimedia.image](reference/apis/js-apis-image.md)，[@ohos.prompt](reference/apis/js-apis-prompt.md)
+  * 接口参考：[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)，[@ohos.prompt](reference/apis-arkui/js-apis-prompt.md)
 
 * 音频，视频操作模块
   * 使用媒体服务进行音视频播放，暂停，seek等操作，其中AudioPlayer方法播放音频，VideoPlayer方法播放视频。
-  * 接口参考：[@ohos.multimedia.media](reference/apis/js-apis-display.md)，[@ohos.multimedia.audio](reference/apis/js-apis-audio.md)
+  * 接口参考：[@ohos.multimedia.media](reference/apis-arkui/js-apis-display.md)，[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md)
 
 * 设备适配模块
   * 使用屏幕管理接口获取设备宽度进行适配。
-  * 接口参考：[@ohos.display](reference/apis/js-apis-display.md)
+  * 接口参考：[@ohos.display](reference/apis-arkui/js-apis-display.md)
 
 ##### 约束与限制
 
@@ -1030,7 +1121,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了相册相关的功能，使用[@ohos.file.photoAccessHelper](reference/apis/js-apis-photoAccessHelper.md) 接口，实现了查看系统相册、创建用户相册、查看相册照片、用户相册文件添加和删除、以及预览图片、最近删除、收藏夹操作等功能。
+本示例主要展示了相册相关的功能，使用[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 接口，实现了查看系统相册、创建用户相册、查看相册照片、用户相册文件添加和删除、以及预览图片、最近删除、收藏夹操作等功能。
 
 ##### 使用
 
@@ -1074,7 +1165,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例展示通过[IDL的方式](IDL/idl-guidelines.md#ts开发步骤) 和 [@ohos.rpc](reference/apis/js-apis-rpc.md) 等接口实现了Ability与ServiceExtensionAbility之间的通信。
+本示例展示通过[IDL的方式](IDL/idl-guidelines.md#ts开发步骤) 和 [@ohos.rpc](reference/apis-ipc-kit/js-apis-rpc.md) 等接口实现了Ability与ServiceExtensionAbility之间的通信。
 
 ##### 使用
 
@@ -1084,7 +1175,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * Ability与ServiceExtensionAbility通信的方法主要封装在idl_weather_service_proxy、idl_weather_service_stub、HomeFeature、ServiceExtAbility中。
     * 建立服务器连接：通过HomeFeature中的this.context.connectAbility(want, this.options)方法来建立服务器连接；
-    * 接收服务端实例并发送请求：连接成功时new IdlWeatherServiceProxy(proxy)来接收服务端实例，通过[@ohos.rpc](reference/apis/js-apis-rpc.md) 接口来执行new rpc.MessageOption(0)、 new rpc.MessageParcel()、 new rpc.MessageParcel()获取 MessageParcel对象和请求的模式，调用idl_weather_service_proxy中的this.proxy.sendRequest()来发送请求；
+    * 接收服务端实例并发送请求：连接成功时new IdlWeatherServiceProxy(proxy)来接收服务端实例，通过[@ohos.rpc](reference/apis-ipc-kit/js-apis-rpc.md) 接口来执行new rpc.MessageOption(0)、 new rpc.MessageParcel()、 new rpc.MessageParcel()获取 MessageParcel对象和请求的模式，调用idl_weather_service_proxy中的this.proxy.sendRequest()来发送请求；
     * 接收远程请求处理数据：在idl_weather_service_stub中接收远程请求并通过ServiceExtAbility中的updateWeather()函数来处理数据进行返回；
     * 获取数据：最后将获得的数据渲染到页面中去；
     * 断开连接：可以通过HomeFeature中的this.context.disconnectAbility(this.connection)方法来断开服务器连接，这里的this.connection是建立连接之后的返回值。
@@ -1103,7 +1194,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了国际化模块的相关功能，使用[@ohos.i18n](reference/apis/js-apis-i18n.md) 接口，实现简单日历展示、字符类型判断、文本断点处理功能。
+本示例主要展示了国际化模块的相关功能，使用[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n.md) 接口，实现简单日历展示、字符类型判断、文本断点处理功能。
 
 ##### 使用
 
@@ -1113,9 +1204,9 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 基本原理
 
-1. 日历功能使用[@ohos.i18n](reference/apis/js-apis-i18n.md)模块中Calendar实现，全部逻辑处于Calendar。
-2. 字符类型判断功能使用[@ohos.i18n](reference/apis/js-apis-i18n.md)模块中Unicode实现，全部逻辑处于TextProcessing。
-3. 文本断点功能使用[@ohos.i18n](reference/apis/js-apis-i18n.md)模块中breakIterator实现，全部逻辑处于TextProcessing。
+1. 日历功能使用[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n.md)模块中Calendar实现，全部逻辑处于Calendar。
+2. 字符类型判断功能使用[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n.md)模块中Unicode实现，全部逻辑处于TextProcessing。
+3. 文本断点功能使用[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n.md)模块中breakIterator实现，全部逻辑处于TextProcessing。
 
 ##### 约束与限制
 
@@ -1131,7 +1222,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要使用@ohos.multimedia.media中的AVRecorder接口实现了录制功能；另外辅助使用@ohos.multimedia.medialibrary接口，实现了创建录制文件功能，接口使用以及权限获取详见[媒体库管理](reference/apis/js-apis-medialibrary.md)。使用@ohos.multimedia.camera接口，实现了相机预览及出流功能，接口使用以及权限获取详见[相机管理](reference/apis/js-apis-camera.md)。
+本示例主要使用@ohos.multimedia.media中的AVRecorder接口实现了录制功能；另外辅助使用@ohos.multimedia.medialibrary接口，实现了创建录制文件功能，接口使用以及权限获取详见[媒体库管理](reference/apis-media-library-kit/js-apis-medialibrary.md)。使用@ohos.multimedia.camera接口，实现了相机预览及出流功能，接口使用以及权限获取详见[相机管理](reference/apis-camera-kit/js-apis-camera.md)。
 
 ##### 使用
 
@@ -1143,8 +1234,8 @@ Preferences.flush()保存并刷新文件内容。
 
 * 录控功能接口调用实现参考工程目录中的音频录制页面和视频录制页面
   * 调用create()、prepare()、getInputSurface()、start()、pause()、resume()、stop()、reset()、release()接口实现录制器的创建、准备、录控操作、重置、销毁实例等功能；
-  * 视频录制调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](reference/apis/js-apis-camera.md)
-* 调用MediaLibrary实现创建录制，实现方法参考[@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)接口说明
+  * 视频录制调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](reference/apis-camera-kit/js-apis-camera.md)
+* 调用MediaLibrary实现创建录制，实现方法参考[@ohos.multimedia.medialibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)接口说明
 
 ##### 约束与限制
 
@@ -1158,7 +1249,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了媒体会话（媒体控制方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体控制方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 ##### 使用
 
@@ -1219,7 +1310,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 ##### 使用
 
@@ -1275,7 +1366,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](reference/apis/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能。
+本示例主要展示了音频的相关功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md)等接口实现音频的发声设备的切换与查询、音频焦点、音效的查询与设置以及音频录制等功能。
 
 ##### 使用
 
@@ -1315,7 +1406,7 @@ Preferences.flush()保存并刷新文件内容。
 32. 在并行录制界面中，点击录制按钮，开始录制，同时开启麦克风录制和屏幕录制，5s内不允许结束
 33. 在并行录制界面中，点击停止录制按钮，停止录制，或者超时30s会自动停止录制，停止后按钮点成不可点击状态
 34. 在并行录制界面中，录制停止后，会生成两个音频播放器，一个是麦克风的录音结果，一个是屏幕录制的结果，点击进行播放，暂停，播放结束自动停止
-35. 点击返回按按钮回到主页
+35. 点击返回按钮回到主页
 
 ##### 基本原理
 
@@ -1337,7 +1428,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-该示例通过[@ohos.multimedia.image](reference/apis/js-apis-image.md)和[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)接口实现获取图片，以及图片裁剪分割的功能。
+该示例通过[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)和[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)接口实现获取图片，以及图片裁剪分割的功能。
 
 ##### 使用
 
@@ -1350,7 +1441,7 @@ Preferences.flush()保存并刷新文件内容。
 
 + 游戏中图片裁剪分割的效果实现在ImageModel中:
   + 获取本地图片：首先使用getMediaLibrary获取媒体库实例，然后使用getFileAssets方法获取文件资源，最后使用getAllObject获取检索结果中的所有文件资产方便展示；
-  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](reference/apis/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请;
+  + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请;
   + 图片编辑：首先使用createImagePacker创建ImagePacker实例，然后使用fileAsset.open打开文件，调用createImageSource接口创建图片源实例方便操作图片，接下来使用getImageInfo方法获取图片大小便于分割，最后使用createPixelMap方法传入每一份的尺寸参数完成图片裁剪。
 
 ##### 约束与限制
@@ -1365,7 +1456,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [TextArea](reference/arkui-ts/ts-basic-components-textarea.md) 实现多文本输入，使用 [@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md) 依赖系统的图库引用，实现在相册中获取图片，使用 [@ohos.multimedia.image](reference/apis/js-apis-image.md) 生成pixelMap，使用pixelMap的scale()，crop()，rotate()接口实现对图片的缩放，裁剪，旋转功能。 使用[@ohos.effectKit](reference/apis/js-apis-effectKit.md) 生成effectKit,使用effectKit.getHighestSaturationColor() 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
+本示例使用 [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) 实现多文本输入，使用 [@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md) 依赖系统的图库引用，实现在相册中获取图片，使用 [@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md) 生成pixelMap，使用pixelMap的scale()，crop()，rotate()接口实现对图片的缩放，裁剪，旋转功能。 使用[@ohos.effectKit](reference/apis-arkgraphics2d/js-apis-effectKit.md) 生成effectKit,使用effectKit.getHighestSaturationColor() 接口实现对图片的高亮调节。添加文字/贴纸，利用组件的组合编辑素材大小和位置，再使用OffscreenCanvasRenderingContext2D进行离屏绘制保存。
 
 ##### 使用
 
@@ -1383,7 +1474,7 @@ Preferences.flush()保存并刷新文件内容。
 + 图片选择功能在GetPictures中实现:
     + 图片选择：首先使用startAbilityForResult()启动系统图库应用，然后将选择的图片用select数组保存路径，展示到页面便于选择，选择完跳转到首页，点击一张图片，进入到编辑删除界面。
 + 图片编辑功能在EditImage中实现:
-    + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](reference/apis/js-apis-inner-application-uiAbilityContext.md)
+    + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)
     申请
     ，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建图片源实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。亮度调节使用effectKit.getHighestSaturationColor()
     接口实现对图片的高亮调节。添加文字/贴纸，编辑模式下，使用组件组合（Image、Shape、Text）进行交互完成素材大小和位置选择；编辑确认后，再使用OffscreenCanvasRenderingContext2D进行离屏绘制，保存为新的pixelMap。
@@ -1400,7 +1491,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [TextArea](reference/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本输入，使用 [mediaLibrary](reference/apis/js-apis-mediaquery.md) 实现从相册选择图片展示在商品评价页面。
+本示例使用 [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) 组件实现多文本输入，使用 [mediaLibrary](reference/apis-arkui/js-apis-mediaquery.md) 实现从相册选择图片展示在商品评价页面。
 
 ##### 使用
 
@@ -1419,15 +1510,15 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分为三个模块：
   * 发表评价页面模块：
     * 使用scroll，TextArea，Grid等组件开发发表评价页面
-    * 参考接口：[@ohos.router](reference/apis/js-apis-router.md)
+    * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)
 
   * 选择图片/照片模块
     * 调用依赖中ChoicePhotos方法打开相册，mediaquery媒体查询相册，getMediaLibrary获取媒体库的实例，访问用户等个人媒体数据信息并选中图片
-    * 参考接口：[@ohos.router](reference/apis/js-apis-router.md)，[@ohos.promptAction](reference/apis/js-apis-promptAction.md)，[@ohos.mediaquery](reference/apis/js-apis-system-mediaquery.md)，[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)，[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
+    * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md)，[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
   
   * 提交模块
     * 选中图片后点击下一步按钮，回到发表评价页面，点击提交按钮进行提交
-    * 参考接口：[@ohos.router](reference/apis/js-apis-router.md)
+    * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)
 
 ##### 约束与限制
 
@@ -1441,7 +1532,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[媒体库管理](reference/apis/js-apis-medialibrary.md)、[相机管理](reference/apis/js-apis-camera.md)、[图片处理](reference/apis/js-apis-image.md)、[文件管理](reference/apis/js-apis-fileio.md)展示二维码扫描功能，包括相机扫描解析二维码和从相册中选择二维码图片解析。
+本示例使用[媒体库管理](reference/apis-media-library-kit/js-apis-medialibrary.md)、[相机管理](reference/apis-camera-kit/js-apis-camera.md)、[图片处理](reference/apis-image-kit/js-apis-image.md)、[文件管理](reference/apis-core-file-kit/js-apis-fileio.md)展示二维码扫描功能，包括相机扫描解析二维码和从相册中选择二维码图片解析。
 
 ##### 使用
 
@@ -1454,13 +1545,13 @@ Preferences.flush()保存并刷新文件内容。
 + 相机功能在CameraServices中
     + 获取相机实例：首先使用getCameraManager方法获取相机管理器，然后使用getSupportedCameras方法得到设备列表；
     + 打开相机：使用createCameraInput方法创建CameraInput实例，调用open方法打开相机；
-    + 获取相机输出流：使用getSupportedOutputCapability查询相机设备在模式下支持的输出能力，然后使用createPreviewOutput创建相机输出流，使用[@ohos.multimedia.image](reference/apis/js-apis-image.md#getreceivingsurfaceid9)接口的createPhotoOutput方法创建相片输出流；
+    + 获取相机输出流：使用getSupportedOutputCapability查询相机设备在模式下支持的输出能力，然后使用createPreviewOutput创建相机输出流，使用[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md#getreceivingsurfaceid9)接口的createPhotoOutput方法创建相片输出流；
     + 获取相片输出：首先使用createCaptureSession方法创建**捕获会话**的实例，然后使用beginConfig方法配置会话，接下来使用addInput方法添加一个摄像头输入流，使用addOutput添加一个摄像头和相机照片的输出流，使用commitConfig方法提交会话配置后，调用start方法开始捕获相片输出。
 + 二维码解析功能在QRCodeParser中
     + 拍照获取图片：使用(
-      cameraService.imageReceiver.on)[reference/apis/js-apis-image.md#on9]接收图片时注册回调，然后调用readNextImage获取处理图片的操作，然后使用getComponent方法根据图像的组件类型从图像中获取组件缓存，然后将获取到的ArrayBuffer写入指定文件中，返回文件uri，然后通过[ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)将uri转化为ImageBitMap格式，具体文件写入方式参考[@ohos.file.fs](reference/apis/js-apis-file-fs.md)。
-    + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
-    + 图片解析：使用[CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)的getImageData方法创建ImageData对象将相册中获取到的图片转化为util8格式的图片，然后调用jsQR库解析图片中的二维码。
+      cameraService.imageReceiver.on)[reference/apis-image-kit/js-apis-image.md#on9]接收图片时注册回调，然后调用readNextImage获取处理图片的操作，然后使用getComponent方法根据图像的组件类型从图像中获取组件缓存，然后将获取到的ArrayBuffer写入指定文件中，返回文件uri，然后通过[ImageBitmap](reference/apis-arkui/arkui-ts/ts-components-canvas-imagebitmap.md)将uri转化为ImageBitMap格式，具体文件写入方式参考[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
+    + 打开相册选取图片：首先需要使用[startAbilityForResult](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)启动相册，将选到的图片通过ImageBitmap转化为ImageBitmap格式。
+    + 图片解析：使用[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)的getImageData方法创建ImageData对象将相册中获取到的图片转化为util8格式的图片，然后调用jsQR库解析图片中的二维码。
 
 ##### 约束与限制
 
@@ -1474,7 +1565,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[audio](reference/apis/js-apis-audio.md)相关接口实现音频录制和播放的功能，使用[mediaLibrary](reference/apis/js-apis-medialibrary.md)实现音频文件的管理。
+本示例使用[audio](reference/apis-audio-kit/js-apis-audio.md)相关接口实现音频录制和播放的功能，使用[mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)实现音频文件的管理。
 
 ##### 使用
 
@@ -1491,15 +1582,15 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分为三个模块：
     * 录音页面模块
         * 使用FileAsset提供封装文件属性的方法，createAudioPlayer同步方式创建音频播放实例实现录音，暂停录音功能
-        * 参考接口：[audio](reference/apis/js-apis-audio.md)，[@ohos.router](reference/apis/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)，[@ohos.multimedia.media](reference/apis/js-apis-media.md)，[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)，[@ohos.window](reference/apis/js-apis-window.md)，[@ohos.promptAction](reference/apis/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
+        * 参考接口：[audio](reference/apis-audio-kit/js-apis-audio.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 录音列表模块
         * getMediaLibraryAPI访问媒体数据信息，renameCallBack，renameDialogController方法对录音进行重命名，deleteFile，deleteDialogShow方法删除某条录音。
-        * 参考接口：[@ohos.router](reference/apis/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)，[@ohos.multimedia.media](reference/apis/js-apis-media.md)，[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)，[@ohos.window](reference/apis/js-apis-window.md)，[@ohos.promptAction](reference/apis/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
+        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
 
     * 播放模块
         * createAudioPlayer方法创建音频播放实例，onPageShow方法播放音频，onPageHide方法暂停播放音频。
-        * 参考接口：[@ohos.router](reference/apis/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)，[@ohos.multimedia.media](reference/apis/js-apis-media.md)，[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)
+        * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)
 
 ##### 约束与限制
 
@@ -1513,7 +1604,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。 本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](reference/apis/js-apis-media.md#bufferinginfotype8),[@ohos.resourceManager](reference/apis/js-apis-resource-manager.md),[@ohos.wifiManager](reference/apis/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能。
+视频播放的主要工作是将视频数据转码并输出到设备进行播放，同时管理播放任务。本文将对视频播放全流程、视频切换、视频循环播放等场景开发进行介绍说明。 本示例主要展示了播放本地视频和网络视频相关功能,使用 [@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md#bufferinginfotype8),[@ohos.resourceManager](reference/apis-localization-kit/js-apis-resource-manager.md),[@ohos.wifiManager](reference/apis-connectivity-kit/js-apis-wifiManager.md)等接口,实现了视频播放、暂停、调节倍速、切换视频的功能。
 
 ##### 使用
 
@@ -1550,7 +1641,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[Video组件](reference/arkui-ts/ts-media-components-video.md)展示了视频组件的基本功能，包括视频组件化，全屏化，窗口化，上下轮播视频等。
+本示例使用[Video组件](reference/apis-arkui/arkui-ts/ts-media-components-video.md)展示了视频组件的基本功能，包括视频组件化，全屏化，窗口化，上下轮播视频等。
 
 ##### 使用
 
@@ -1564,7 +1655,7 @@ Preferences.flush()保存并刷新文件内容。
   + 视频播放：start方法视频开始播放；
   + 全屏播放：再次点击视频进入全屏播放页面，使用setCurrentTime参数设定当前播放时间，pause方法停止播放;
   + 小窗口播放：记录当前播放时间，小窗口页面渲染之前设置视频当前播放时间，页面滚动到固定距离开始展示组件；
-  + 直播：使用[http](reference/apis/js-apis-http.md)接口的request方法获取直播数据;
+  + 直播：使用[http](reference/apis-arkui/js-apis-http.md)接口的request方法获取直播数据;
 
 ##### 约束与限制
 
@@ -1578,7 +1669,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-audio.md%2F) 、[@ohos.net.socket](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-socket.md%2F) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
+本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](reference/apis-audio-kit/js-apis-audio.md) 、[@ohos.net.socket](reference/apis-network-kit/js-apis-socket.md) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
 
 ##### 使用
 
@@ -1591,7 +1682,7 @@ Preferences.flush()保存并刷新文件内容。
 
 3.仅体验语音通话功能时，可以两台设备都手动启动语音通话应用，分别点击接听按钮进入通话页面
 
-4.体验场景所有功能时，需要两台设备启动[聊天应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket/),通过左下方语音按钮发起语音通话
+4.体验场景所有功能时，需要两台设备启动[聊天应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket),通过左下方语音按钮发起语音通话
 
 5.一方发起语音通话请求，对方选择同意或拒绝
 
@@ -1608,9 +1699,9 @@ Preferences.flush()保存并刷新文件内容。
     + 使用@ohos.net.socket 的constructTCPSocketInstance创建TCP socket连接，模拟实现音频流网络传输
     + 3s一次检查网络状态和尝试连接，实现网络异常时的处理逻辑
 + 音频录制：
-    + 使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](media/using-audiocapturer-for-recording.md)
+    + 使用@ohos.multimedia.audio.AudioCapturer完成音频采集 [具体使用参考](media/audio/using-audiocapturer-for-recording.md)
 + 音频播放：
-    + 使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](media/using-audiorenderer-for-playback.md)
+    + 使用@ohos.multimedia.audio.AudioRenderer完成音频播放 [具体使用参考](media/audio/using-audiorenderer-for-playback.md)
 + 麦克风与扬声器以及通话场景控制：
     + 使用@ohos.multimedia.audio.AudioManager的setAudioScene接口切换通话场景
     + 使用@ohos.multimedia.audio.AudioVolumeGroupManager的setMicrophoneMute接口切换麦克风
@@ -1623,6 +1714,208 @@ Preferences.flush()保存并刷新文件内容。
 配套版本：API9版本SDK，版本号：3.2.11.10
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo)
+
+#### 相机示例
+
+##### 介绍
+
+本示例主要展示了相机的相关功能，利用相关接口实现了相机的预览、拍照、录像、前后置摄像头切换进行拍照、录像，以及闪光灯、变焦、对焦、曝光等控制类功能。
+
+##### 使用
+
+(因RK3568设备硬件能力，现仅支持验证1、2、3、9、10、13)
+
+1. 弹出是否允许应用使用相机？点击“允许”。弹出是否允许应用使用麦克风？点击“允许”。弹出是否允许应用访问文件？点击“允许”。
+
+2. 进入预览界面，预览正常，滑动变焦按钮，同一画面远近变焦效果明显。
+
+3. 进入预览界面，预览正常，点击画面模糊处，点击处画面会变得清晰，对焦效果明显。
+
+4. 进入预览界面，预览正常，上下滑动屏幕，屏幕场景亮度发生变化，曝光效果明显。
+
+5. 进入预览界面，预览正常，点击闪光灯按钮，打开闪光灯，闪光灯正常打开。
+
+6. 进入预览界面，预览正常，点击闪光灯按钮，关闭闪光灯，闪光灯关闭。
+
+7. 进入预览界面，预览正常，进入拍照模式，点击拍照按钮，拍照正常。点击左下角生成的缩略图能够跳转到图库，打开图片显示正常。
+
+8. 进入预览界面，预览正常，切换到录像模式，点击开始录像，再点击停止录像按钮，录像成功。点击左下角生成的缩略图能够跳转到图库，播放录像文件正常。
+
+9. 进入预览界面，预览正常，切换到前置摄像头，点击拍照按钮，拍照正常。点击左下角生成的照片缩略图能够跳转到图库，打开图片显示正常。
+
+10. 进入预览界面，预览正常，切换到前置摄像头，切换到录像模式，点击开始录像，再点击停止录像按钮，录像成功。点击左下角生成的缩略图能够跳转到图库，播放录像文件正常。
+
+11. 点击设置按钮，会弹出设置页面，仅验证UI。
+
+##### 基本原理
+
+  * 拍照功能相关接口封装在StartPhoto接口中，主要包含以下流程：
+    * 调用SessionStop关闭session。
+    * 调用SessionBegin做session的一个预置动作。
+    * 调用CreatePhotoOutput创建相机输出。
+    * 调用OH_CaptureSession_AddPhotoOutput将hotoOutput添加至session中。
+    * 调用SessionCommitConfig提交session。然后调用SessionStart开启session。
+    * 调用调用TakePicture接口开启拍照动作。
+
+  * 录像功能相关接口封装在StartVideo接口中，主要包含以下流程：
+    * 调用SessionStop关闭session。
+    * 调用SessionBegin做session的一个预置动作。
+    * 调用OH_CaptureSession_RemovePhotoOutput移除相机拍照输出。
+    * 调用CreatePhotoOutput创建相机输出。
+    * 调用AddPhotoOutput将相机输出添加至session中。然后CreateVideoOutput创建录像输出。
+    * 调用AddVideoOutput将录像输出添加至session中。然后SessionCommitConfig、SessionStart对session进行提交和开启。
+    * 调用VideoOutputRegisterCallback对VideoOutput注册回调。
+
+  * 变焦功能相关接口封装在setZoomRatioFn接口中，主要包含以下流程：
+    * 调用OH_CaptureSession_GetZoomRatioRange获取支持的变焦范围。
+    * 调用OH_CaptureSession_SetZoomRatio设置变焦。
+    * 调用OH_CaptureSession_GetZoomRatio获取当前设备的变焦值。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.15
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Camera)
+
+#### 音振协同
+
+##### 介绍
+
+本示例主要展示了音频播放和振动效果相互协同的能力，使用[@ohos.multimedia.audioHaptic](reference/apis-audio-kit/js-apis-audioHaptic.md)等接口完成播放音频同时伴随振动的功能，可用于同时需要声音与振动的场景。
+
+##### 使用
+
+注意：当选择任意一种类型开始播放时，其它按钮均不可点击
+
+1. 在主界面点击“音振协同”按钮，进入音振协同播放类型选择页面。
+
+2. 在音振协同播放类型选择页面，展示音振协同播放类型。
+
+3. 在音振协同播放类型选择页面，点击通知类型播放器，通知类型开始播放并振动。
+
+4. 在音振协同播放类型选择页面，点击铃声类型播放器，铃声类型开始播放并振动。
+
+5. 在音振协同播放类型选择页面，点击闹钟类型播放器，闹钟类型开始播放并振动。
+
+6. 在音振协同播放类型选择页面，点击“音频静音”（未点击振动静音），选择铃声类型播放器进行播放，铃声类型开始音频静音同时振动播放，直至播放自动结束，恢复暂停状态。
+
+7. 在音振协同播放类型选择页面，点击“振动静音”（未点击音频静音），选择铃声类型播放器进行播放，铃声类型开始无振动同时有声播放，直至播放自动结束，恢复暂停状态。
+
+8. 在音振协同播放类型选择页面，点击“振动静音”，点击“音频静音”，选择铃声类型播放器进行播放，铃声类型开始无振动同时无声播放，直至播放自动结束，恢复暂停状态。
+
+9. 振协同播放选择页面，点击“返回”按钮，可返回主页。
+
+##### 基本原理
+
+* 音振协同功能的具体实现：
+    * 使用audioHaptic.getAudioHapticManager()接口获取音振管理器。
+    * 使用audioHapticManager.registerSource(audioUri, hapticUri)接口注册音频和振动资源的Uri，返回注册资源的source id。
+    * 使用使用audioHapticManager.setStreamUsage()接口给指定source id设置音频使用类型。
+    * 使用audioHapticManager.createPlayer(id, options)创建不同类型资源的音振播放器。
+    * 使用audioHapticManager.setStreamUsage(id, streamUsage)分别设置通知类型、铃声类型和闹钟类型的使用类型。
+    * 对每个player对象都监听AudioHapticPlayer.on('endOfStream'),收到回调时,说明当前类型资源播放结束，恢复暂停播放状态，据此更新UI状态。
+    * 使用audioHapticManager.start()方法进行对指定类型音频开始播放处理。
+    * 使用audioHapticManager.stop()进行指定类型音频的停止播放处理。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.6.5
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)
+
+#### 视频播放
+
+##### 介绍
+
+本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现视频播放的功能。
+
+##### 使用
+
+1. 点击播放按钮，视频开始播放。
+
+2. 点击暂停按钮，视频暂停播放。
+
+3. 点击上一个按钮，界面展示播放列表中的上一个视频的信息。
+
+4. 点击下一下按钮，界面展示播放列表中的下一个视频的信息。
+
+##### 基本原理
+
+* 界面相关的实现都封装在pages/Index.ets下：
+    * 使用`@State`来设置与逻辑代码同步更新的变量，当逻辑代码中对应的变量更新时，界面会同步的刷新。
+
+    * 通过引入逻辑代码对应的类，创建出对象，实现对onClick事件的响应，关键代码段：
+      ```js
+      
+      import media from '@ohos.multimedia.media';     // 引入
+      
+      this.avPlayer = await media.createAVPlayer();  // 创建对象
+      
+      this.controller = await this.session.getController();  // 通过类的对象来调用逻辑代码
+
+      ```
+
+* 逻辑相关的实现都封装在common/MediaController.ets下：
+
+  应用的初始化相关操作
+
+    * 链接变量
+
+      使用`@State`来设置与逻辑代码同步更新，关键代码段：
+
+      ```ets
+      @State session: avSession.AVSession = null;
+      @State controller: avSession.AVSessionController = null;
+      private avPlayer: media.AVPlayer;
+      @State @Watch('playInfoUpdated') currentPlayInfo: avSession.AVMediaDescription = undefined;
+      this.currentPlayInfo = temp;
+      this.avPlayer = await this.audioUtils.init();
+      ```
+
+    * 获取当前设备中会话并创建Controller
+
+      通过接口`audioUtils.init()`获取当前设备中的媒体会话；
+
+      通过接口`session.getController()`创建媒体会话对应的控制器；
+
+      通过接口`on(play | pause | stop | playNext | playPrevious | seek)`开启对远程以及播控中心提供方发送事件的监听，对事件进行处理；
+
+  应用在运行中相关的操作
+
+    * 从远程以及播控中心获取基础控制命令
+
+      基础控制命令可以通过监听事件`setListenerForMesFromController()`。本示例中，从媒体控制方到媒体提供方的基础控制命令主要包括`play, pause, playPrevious, playNext`。发送命令的参考代码如下：
+      ```ets
+      let command : AVSessionManager.AVControlCommand = {
+        command : 'play',
+        parameter : undefined
+      } // 构造AVControlCommand参数
+      async setListenerForMesFromController(); // 媒体会话控制器与媒体会话一一对应
+      ```
+
+    * 获取自定义会话数据（以获取视频为例）
+
+      > 说明：
+      > 
+      > 本示例中，用户点击“下一个视频”的命令，会在将视频信息更新。
+
+      视频使用接口`switchToNextByLoopMode()`更新视频信息，示例代码如下：
+      ```ets
+      this.currentIndex = this.currentIndex  === this.songList.length - 1 ? 0 : this.currentIndex + 1;
+      this.updateCurrentPlayInfo(this.songList[this.currentIndex], this.audioType);
+      ```
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.6.5
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/VideoPlayer)
 
 ### Native
 
@@ -1702,6 +1995,142 @@ Preferences.flush()保存并刷新文件内容。
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
 
+#### 音频管理
+
+##### 介绍
+
+本示例主要展示了音频低时延录制和播放的相关功能：<br>
+    1. [低时延录制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-recording.md)。<br>
+    2. [低时延播放](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-playback.md)。
+
+##### 使用
+
+1. 弹出麦克风权限访问提示框，点击“允许”，如果点击"禁止"则不可进行录制，需要用户去设置页面给应用授权后方可正常录制。
+
+2. 在主界面点击“录制和播放”，进入音频录制界面，音频录制界面默认是普通录制界面，打开低时延录制开关可进行低时延录制。
+
+3. 点击录制按钮，开始录制，开始录制后低时延录制开关变为不可点击状态，录音时间开始计时，5s内不允许结束，30s后会自动结束录制。
+
+4. 点击暂停按钮，暂停录制，录音时间也停止计时。
+
+5. 点击继续按钮，继续录制，录音时间继续计时。
+
+6. 停止录制后，会生成录制结果，界面上有一个低时延播放开关和录制成功的音频播放器。点击低时延播放开关可打开低时延播放功能，点击播放可听到录制的音频，播放未结束之前低时延播放开关为不可点击状态。
+
+7. 点击返回按钮回到主页。
+
+##### 基本原理
+
+音频录制和播放使用到了OHAudio开发音频录制功能。OHAudio是OpenHarmony在API version 10中引入的一套全新Naitve API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
+
+相关API使用可参考以下开发文档：
+  * [低时延录制开发指导文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-recording.md)
+  * [低时延播放开发指导文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/media/audio/using-ohaudio-for-playback.md)
+  * [低时延录制开发示例](https://gitee.com/openharmony/multimedia_audio_framework/blob/master/frameworks/native/ohaudio/test/example/oh_audio_capturer_test.cpp)
+  * [低时延播放开发示例](https://gitee.com/openharmony/multimedia_audio_framework/blob/master/frameworks/native/ohaudio/test/example/oh_audio_renderer_test.cpp)
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.13
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+
+#### Native Drawing
+
+##### 介绍
+
+本示例中主要介绍开发者在利用Native XComponent来获取NativeWindow实例、获取布局/事件信息、注册事件回调并通过Drawing API实现在页面上绘制形状。功能主要包括点击按钮绘制一个五角星和“Hello World Drawing”文字。
+
+##### 使用
+
+1.安装编译生成的hap包，并打开应用。
+
+2.点击页面底部“Draw Path”按钮，页面将绘制一个五角星。
+
+3.点击页面底部“Draw Text”按钮，页面将绘制“Hello World Drawing”。
+
+##### 基本原理
+
+通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口为drawPattern和drawText，在js侧调用该接口可在页面上绘制出一个五角星和“Hello World Drawing”文字。
+
+在XComponent的OnSurfaceCreated回调中获取NativeWindow实例并初始化NativeWindow环境。调用OH_NativeXComponent_GetXComponentSize接口获取XComponent的宽高，并以此为输入调用Drawing相关的绘制接口在NativeWindow上绘制出一个五角星和文字。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.13
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)
+
+#### Native Window
+
+##### 介绍
+
+本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/native__interface__xcomponent_8h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/_native_window.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
+
+##### 使用
+
+1. 安装编译生成的hap包，并打开应用。
+
+2. 点击页面底部“Chaneg Color”按钮，矩形框填充区域将改变颜色，黄蓝切换。
+
+3. 点击页面底部“produce buffer”按钮，NativeWindow将生产数据并发送给NativeImage，页面展示了生产buffer的次数。
+
+4. 点击页面底部“update available buffer count”按钮，将展示NativeImage收到的可用帧回调次数。
+
+##### 基本原理
+
+1. 通过在IDE中创建Native c++ 工程，在c++代码中定义对外接口为DrawColor，在js侧调用该接口可改变窗口颜色。
+2. 从NativeImage中创建NativeWindow，在c++代码中定义对外接口为ProduceBuffer，js调用该接口后，NativeWindow会生产buffer并将该buffer flush给NativeImage。
+3. NativeImage将收到可用帧的回调，js侧调用GetAvailableCount接口，可以获取回调触发次数，并展示在界面上；正常情况下FlushBuffer的次数和可用帧回调触发次数一致。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.3.3
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
+
+#### XComponent3D
+
+##### 介绍
+
+基于XComponent组件调用Native API来创建EGL/GLES环境，从而使用标准OpenGL ES进行图形渲染。本项目实现了两个示例：
+
+1. 使用OpenGL实现2D的图形绘制和动画。
+
+2. 使用OpenGL实现了在主页面绘制两个立方体，光源可以在当前场景中移动，并实现了光照效果。
+
+##### 使用
+
+1. 安装编译生成的hap包，进入主页面（在主页面，默认展示的是3D图形绘制效果）。
+
+2. 点击DrawTransform可以切换展示2D图形绘制效果。
+
+3. 点击DrawCube可以切换展示3D图形绘制效果。
+
+##### 基本原理
+
+* 在主页面显示了一个XComponent控件，默认显示立方体。通过用户点击，触发ChangeShape事件，opengl_draw收到事件，完成绘制内容变更。首页启动时，会触发一个定时器，每40ms触发一次，当opengl_draw收到事件时，进行动画更新。
+
+* 在XComponent初始化完成时，OnSurfaceCreated回调里面，会自动开始图形绘制。源码参考[opengl_draw.cpp](.//entry/src/main/cpp/opengl_draw.cpp) 。在opengl_draw.cpp里面Init方法会创建EglWindow和EGLSurface，然后创建上下文EGLContext，完成baseShape的初始化，默认使用Cube进行初始化。
+
+* 绘制2D图形：rectangle.cpp的Init方法，完成Shader的初始化。Update方法主要是绘制两个图形，一个进行旋转，一个进行缩放。
+
+* 绘制3D物体：cube.cpp的Init方法，完成Shader的初始化，相机的初始化。Update方法绘制了两个立方体，一个在屏幕中间，另一个会围绕中间的物体进行圆周运动。并且设置运动的物体为发光源，在中间物体展示不同角度的光照效果。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.13
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
+
 ### 通知
 
 #### 公共事件的订阅和发布
@@ -1737,22 +2166,22 @@ Preferences.flush()保存并刷新文件内容。
 * 该示例entry部分分为五个模块：
   * 进入模块
     * 使用到应用文上下文，createSubscriber方法创建订阅者，getCurrentTime获取获取自Unix纪元以来经过的时间进行对用户操作行为的监测功能页面开发。
-    * 参考接口：[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)，[@ohos.commonEventManager](reference/apis/js-apis-commonEventManager.md)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)，[@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)，[@ohos.router](reference/apis/js-apis-router.md)，[@ohos.systemTime](reference/apis/js-apis-system-time.md)
+    * 参考接口：[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.commonEventManager](reference/apis-basic-services-kit/js-apis-commonEventManager.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.commonEvent](reference/apis-basic-services-kit/js-apis-commonEvent.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.systemTime](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
   
   * 历史模块
     * 使用到应用文上下文，getPreferences方法获取Preferences实例，组件Header进行历史页面开发。
-    * 参考接口：[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
+    * 参考接口：[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)
   
   * 设置模块
     * 本模块分为三个事件，分别为记录联网事件，记录灭屏事件，记录亮屏事件，进行锁屏事件、进行解锁屏幕事件，每一个事件都可进行一直，仅本次和从不的单项选择，使用到应用文上下文吗，CommonEvent.publish发布公共事件，getPreferences方法获取Preferences实例进行功能页面开发。
-    * 参考接口：[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)，[@ohos.commonEvent](reference/apis/js-apis-commonEvent.md),[@ohos.router](reference/apis/js-apis-router.md)，[@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
+    * 参考接口：[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.commonEvent](reference/apis-basic-services-kit/js-apis-commonEvent.md),[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.commonEvent](reference/apis-basic-services-kit/js-apis-commonEvent.md)
   
   * 关于模块
     * 该模块开发主要介绍了本示例的功能作用以及说明了什么情况下不能使用。
 
   - 设置中订阅事件模块
     - 本模块主要支持指定应用订阅自定义事件。subScribeInfo新增可选属性publisherBundleName,创建订阅对象时可指定PublisherBundlerName，事件发布时，获取订阅者信息，增加校验bundleName是否等于publisherBundlerName，相等则加入事件回调方，达成只接收指定发布方发布的事件的效果。
-    - 参考接口：[@ohos.commonEventManager](reference/apis/commonEventManager-definitions.md)，[@ohos.hilog](reference/apis/js-apis-hilog.md)，[@ohos.app.form.formInfo](reference/apis/js-apis-app-form-formInfo.md)，[@ohos.app.form.formBindingData](reference/apis/js-apis-app-form-formBindingData.md)，[@ohos.app.form.FormExtensionAbility](reference/apis/js-apis-app-form-formExtensionAbility.md)
+    - 参考接口：[@ohos.commonEventManager](reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)，[@ohos.hilog](reference/apis-performance-analysis-kit/js-apis-hilog.md)，[@ohos.app.form.formInfo](reference/apis-form-kit/js-apis-app-form-formInfo.md)，[@ohos.app.form.formBindingData](reference/apis-form-kit/js-apis-app-form-formBindingData.md)，[@ohos.app.form.FormExtensionAbility](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
 
 ##### 约束与限制
 
@@ -1766,7 +2195,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[Emitter](reference/apis/js-apis-emitter.md)实现事件的订阅和发布，使用[自定义弹窗](reference/arkui-ts/ts-methods-custom-dialog-box.md)设置广告信息。
+本示例使用[Emitter](reference/apis-basic-services-kit/js-apis-emitter.md)实现事件的订阅和发布，使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)设置广告信息。
 
 ##### 使用
 
@@ -1796,7 +2225,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.notificationManager](reference/apis/js-apis-notificationManager.md) 等接口，展示了如何初始化不同类型通知的通知内容以及通知的发布、取消及桌面角标的设置，通知类型包括基本类型、长文本类型、多行文本类型、图片类型、带按钮的通知、点击可跳转到应用的通知。
+本示例使用[@ohos.notificationManager](reference/apis-notification-kit/js-apis-notificationManager.md) 等接口，展示了如何初始化不同类型通知的通知内容以及通知的发布、取消及桌面角标的设置，通知类型包括基本类型、长文本类型、多行文本类型、图片类型、带按钮的通知、点击可跳转到应用的通知。
 
 ##### 使用
 
@@ -1858,7 +2287,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了设定应用的桌面图标角标的功能，使用[@ohos.notificationManager](reference/apis/js-apis-notificationManager.md) 接口，进行桌面角标的设置，通知的发送，获取等。
+本示例主要展示了设定应用的桌面图标角标的功能，使用[@ohos.notificationManager](reference/apis-notification-kit/js-apis-notificationManager.md) 接口，进行桌面角标的设置，通知的发送，获取等。
 
 ##### 使用
 
@@ -1898,7 +2327,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了通知过滤回调管理的功能，使用[@ohos.notificationManager](reference/apis/js-apis-notificationManager.md) 接口，进行通知监听回调，决定应用通知是否发送。
+本示例主要展示了通知过滤回调管理的功能，使用[@ohos.notificationManager](reference/apis-notification-kit/js-apis-notificationManager.md) 接口，进行通知监听回调，决定应用通知是否发送。
 
 ##### 使用
 
@@ -1930,7 +2359,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本工程使用[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md) 接口中的AbilityContext类，获取资源管理器resourceManager，使用[@ohos.resourceManager.d.ts](reference/apis/js-apis-resource-manager.md) 中的接口，展示了格式化字符串查询、基于指定屏幕分辨率查询媒体资源、获取系统资源管理对象等基础功能，以及展示了资源静态overlay以及运行时overlay的特性功能。
+本工程使用[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md) 接口中的AbilityContext类，获取资源管理器resourceManager，使用[@ohos.resourceManager.d.ts](reference/apis-localization-kit/js-apis-resource-manager.md) 中的接口，展示了格式化字符串查询、基于指定屏幕分辨率查询媒体资源、获取系统资源管理对象等基础功能，以及展示了资源静态overlay以及运行时overlay的特性功能。
 
 ##### 使用
 
@@ -1983,15 +2412,15 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分为音乐，视频，地图三个模块
   * 音乐模块
     * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面， createAppAccountManager方法创建应用帐号管理器对象
-    * 接口参考：[@ohos.account.appAccount](reference/apis/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)，[@ohos.router](reference/apis/js-apis-system-router.md)
+    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 视频模块
     * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 接口参考：[@ohos.account.appAccount](reference/apis/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)，[@ohos.router](reference/apis/js-apis-system-router.md)
+    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 地图模块
     * 使用Navigation,Button，Text,TextInput组件开发注册，登录，修改信息和切换应用页面，createAppAccountManager方法创建应用帐号管理器对象
-    * 接口参考：[@ohos.account.appAccount](reference/apis/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)，[@ohos.router](reference/apis/js-apis-system-router.md)
+    * 接口参考：[@ohos.account.appAccount](reference/apis-basic-services-kit/js-apis-appAccount.md#account_appaccountcreateappaccountmanager)，[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)，[@ohos.router](reference/apis-arkui/js-apis-system-router.md)
 
 ##### 约束与限制
 
@@ -2005,7 +2434,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用了[@ohos.security.cert](reference/apis/js-apis-cert.md)相关接口实现了对签名数据进行校验的功能。
+本示例使用了[@ohos.security.cert](reference/apis-device-certificate-kit/js-apis-cert.md)相关接口实现了对签名数据进行校验的功能。
 
 实现场景如下：
 
@@ -2028,8 +2457,8 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 使用证书公钥实现签名校验的功能接口Verify封装在CertFrameworkModel中
-    * 获取证书公钥：首先调用[cert.createX509Cert](reference/apis/js-apis-cert.md#cryptocertcreatex509cert)接口生成证书对象certObject，使用certObject对象的[getPublicKey](reference/apis/js-apis-cert.md#getpublickey)能力获取公钥pubKey；然后调用[cryptoFramework.createAsyKeyGenerator](reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)接口创建密钥生成器keyGenerator，使用keyGenerator的[convertKey](reference/apis/js-apis-cryptoFramework.md#convertkey-1)能力将公钥pubKey转换为正确的格式。
-    * 使用公钥校验签名：首先调用[cryptoFramework.createVerify](reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)接口创建验签对象verifier，使用公钥pubKey对验签对象verifier进行初始化[verifier.init](reference/apis/js-apis-cryptoFramework.md#init-6)；然后使用验签对象verifier的[verify](reference/apis/js-apis-cryptoFramework.md#verify-1)能力对签名进行校验。
+    * 获取证书公钥：首先调用[cert.createX509Cert](reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert)接口生成证书对象certObject，使用certObject对象的[getPublicKey](reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey)能力获取公钥pubKey；然后调用[cryptoFramework.createAsyKeyGenerator](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)接口创建密钥生成器keyGenerator，使用keyGenerator的[convertKey](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey)能力将公钥pubKey转换为正确的格式。
+    * 使用公钥校验签名：首先调用[cryptoFramework.createVerify](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify)接口创建验签对象verifier，使用公钥pubKey对验签对象verifier进行初始化[verifier.init](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6)；然后使用验签对象verifier的[verify](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify)能力对签名进行校验。
 
 ##### 约束与限制
 
@@ -2039,13 +2468,13 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CertificateFramework)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/CertificateFramework)
 
 #### 加解密
 
 ##### 介绍
 
-本示例使用[cipher](reference/apis/js-apis-system-cipher.md)相关接口实现了字符串加解密算法，包括RSA加密算法与AES加密算法。
+本示例使用[cipher](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)相关接口实现了字符串加解密算法，包括RSA加密算法与AES加密算法。
 
 ##### 使用
 
@@ -2064,11 +2493,11 @@ Preferences.flush()保存并刷新文件内容。
 * 本示例分成加密与解密两个模块
   * 加密模块
     * 使用到rsaEncrypt(RSA算法加密)与aesEncrypt(AES算法加密)两种加密方法进行加密操作。
-    * 接口参考：[@system.cipher](reference/apis/js-apis-system-cipher.md#cipheraes)，[@ohos.prompt](reference/apis/js-apis-promptAction.md)，[@system.router](reference/apis/js-apis-system-router.md)
+    * 接口参考：[@system.cipher](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)，[@ohos.prompt](reference/apis-arkui/js-apis-promptAction.md)，[@system.router](reference/apis-arkui/js-apis-system-router.md)
 
   * 解密模块
     * 使用到rsaDecrypt(RSA算法解密)与aesDecrypt(AES算法解密)两种解密方法进行解密操作。
-    * 接口参考：[@system.cipher](reference/apis/js-apis-system-cipher.md#cipheraes)，[@ohos.prompt](reference/apis/js-apis-promptAction.md)，[@system.router](reference/apis/js-apis-system-router.md)
+    * 接口参考：[@system.cipher](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)，[@ohos.prompt](reference/apis-arkui/js-apis-promptAction.md)，[@system.router](reference/apis-arkui/js-apis-system-router.md)
 
 ##### 约束与限制
 
@@ -2082,7 +2511,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.security.cryptoFramework](reference/apis/js-apis-cryptoFramework.md) 相关接口实现了对文本文件的加解密、签名验签操作。
+本示例使用[@ohos.security.cryptoFramework](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md) 相关接口实现了对文本文件的加解密、签名验签操作。
 
 实现场景如下：
 
@@ -2124,23 +2553,23 @@ Preferences.flush()保存并刷新文件内容。
 
 * 对文本文件加密：
   文件中依次点击打开文件、选择密钥，通过filePicker选择明文文本文件和密钥文件，点击加密按钮，调用加密函数实现对文本内容进行加密，并将密文文件通过filePicker保存。
-  需要生成密钥文本文件时，可以点击随机生成AES密钥，通过调用[cryptoFramework.symKeyGenerator](reference/apis/js-apis-cryptoFramework.md#symkeygenerator)
+  需要生成密钥文本文件时，可以点击随机生成AES密钥，通过调用[cryptoFramework.symKeyGenerator](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#symkeygenerator)
   生成用于加密的AES密钥，并通过filePicker保存密钥文本文件。
-  对消息加密的过程中采用[cryptoFramework.Cipher](reference/apis/js-apis-cryptoFramework.md#cipher)
+  对消息加密的过程中采用[cryptoFramework.Cipher](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cipher)
   完成加密操作。
 * 对文本文件解密：
   文件中依次点击打开文件、选择密钥，通过filePicker选择密文文本文件和密钥文件，点击解密按钮，调用解密函数实现对文本内容进行解密，并将明文文件通过filePicker保存。
-  对消息解密的过程中采用[cryptoFramework.Cipher](reference/apis/js-apis-cryptoFramework.md#cipher)
+  对消息解密的过程中采用[cryptoFramework.Cipher](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cipher)
   完成解密操作。
 * 对文本文件签名：
   文件中依次点击打开文件、选择密钥，通过filePicker选择待签名文本文件和密钥文件，点击签名按钮，调用签名函数实现对文本内容进行加密，并将签名文件通过filePicker保存。
-  需要生成密钥文本文件时，可以点击随机生成RSA密钥，通过调用[cryptoFramework.asyKeyGenerator](reference/apis/js-apis-cryptoFramework.md#asykeygenerator)
+  需要生成密钥文本文件时，可以点击随机生成RSA密钥，通过调用[cryptoFramework.asyKeyGenerator](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#asykeygenerator)
   生成用于签名的RSA密钥，并通过filePicker保存密钥文本文件。
-  对消息签名的过程中采用[cryptoFramework.Sign](reference/apis/js-apis-cryptoFramework.md#sign)
+  对消息签名的过程中采用[cryptoFramework.Sign](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign)
   完成加密操作。
 * 对文本文件验签：
   文件中依次点击打开文件、选择密钥、选择签名文件，通过filePicker选择密文文本文件、密钥文件和签名文件，点击验签按钮，调用验签函数实现对文本内容进行验签，并显示验签结果。
-  对消息验签的过程中采用[cryptoFramework.Verify](reference/apis/js-apis-cryptoFramework.md#verify)
+  对消息验签的过程中采用[cryptoFramework.Verify](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify)
   完成验签操作。
 
 ##### 约束与限制
@@ -2155,7 +2584,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.security.huks](reference/apis/js-apis-huks.md)相关接口实现了对任意输入内容进行加密和解密的功能。
+本示例使用[@ohos.security.huks](reference/apis-universal-keystore-kit/js-apis-huks.md)相关接口实现了对任意输入内容进行加密和解密的功能。
 
 实现场景如下：
 
@@ -2178,11 +2607,11 @@ Preferences.flush()保存并刷新文件内容。
 
 * 使用新密钥、旧密钥与低安访问控制进行消息的加密和解密的功能接口封装在HuksModel中
     * 使用新密钥加密：在NewKey.ets文件中通过HuksModel.encryptData方式调用加密函数实现对发送的消息内容进行加密，设置好生成密钥和解密密钥的密钥属性信息，加密前会先调用生成密钥接口
-      [huks.generateKeyItem](reference/apis/js-apis-huks.md#huksgeneratekeyitem9-1)
-      生成用于加密的AES密钥，对消息加密的过程中采用三段式接口[huks.initSession,huks.updateSession,huks.finishSession](reference/apis/js-apis-huks.md#huksinitsession9-1)
+      [huks.generateKeyItem](reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9-1)
+      生成用于加密的AES密钥，对消息加密的过程中采用三段式接口[huks.initSession,huks.updateSession,huks.finishSession](reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9-1)
       完成加密操作。
     * 使用新密钥解密：NewKey.ets文件中通过HuksModel.decryptData方式调用解密函数实现对发送消息的解密，设置好解密密钥的密钥属性信息，使用加密时的密钥对消息进行解密，仍然是采用三段式接口完成解密操作，解密动作完成后调用删除密钥接口
-      [huks.deleteKeyItem](reference/apis/js-apis-huks.md#huksdeletekeyitem9-1)清除本地保存的密钥。
+      [huks.deleteKeyItem](reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9-1)清除本地保存的密钥。
     * 使用旧密钥加密：在OldKey.ets文件中通过HuksModel.encryptDataUserOldKey方式调用加密函数对发送的消息内容进行加密，设置好加密密钥的密钥属性信息，采用三段式接口使用本地已保存的旧密钥完成加密操作。
     * 使用旧密钥解密：在OldKey.ets文件中通过HuksModel.decryptDataUserOldKey方式调用解密函数对发送的消息内容进行解密，首先模拟在新设备上导入旧设备的加密密钥，同样采用三段式接口完成解密操作，解密完成后删除密钥。
     * 使用低安访问控制管理密码：在MinAccessControl.ets文件中通过 huksModel.encryptDataUseSm2 方式生成SM2密钥并调用加密函数对发送的消息内容进行加密，设置好加密密钥的密钥属性信息，采用两段式接口使用本地已保存的旧密钥完成加密操作。读取密码时（需先设定系统锁屏密码）调用IAM的PIN码（锁屏密码）接口进行验证。
@@ -2199,7 +2628,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-cryptoFramework.md%2F) 接口，利用RSA非对称加密、ECC数字签名模拟选购支付功能。
+本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md) 接口，利用RSA非对称加密、ECC数字签名模拟选购支付功能。
 
 ##### 使用
 
@@ -2228,13 +2657,73 @@ Preferences.flush()保存并刷新文件内容。
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/PaySecurely)
 
+#### 证书管理
+
+##### 介绍
+
+本示例使用了[@ohos.security.certManager](reference/apis-device-certificate-kit/js-apis-certManager.md)相关接口实现了对签名数据进行校验的功能。
+
+##### 使用
+
+1. 点击**安装**按钮，页面弹出弹窗，提示**安装成功**。
+2. 点击**数据展示**按钮，页面文本框中分别显示正确的证书、原始数据内容。
+3. 点击**数据展示**按钮，页面文本框中分别显示正确的证书、原始数据内容。
+4. 点击**修改原始数据**按钮，页面显示修改后的原始数据和正确的证书、签名数据；点击校验按钮，页面弹出弹窗，提示**校验失败**。
+5. 点击**修改签名数据**按钮，页面显示修改后的签名数据和正确的证书、原始数据；点击校验按钮，页面弹出弹窗，提示**校验失败**。
+6. 点击**校验**按钮，页面弹出弹窗，提示**校验通过**。
+
+##### 基本原理
+
+* 签名校验的功能接口Verify封装在Model中
+    * 安装私有凭据：调用[certManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
+    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口进行初始化，并获取返回结果signHandle。
+    * 填充源数据：调用[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口填充源数据。
+    * 完成签名的操作：调用[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish)接口完成签名，并获取签名结果signResult。
+    * 完成验签的操作：同上，再依次调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口，[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口，[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.5.3
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CertManager)
+
+#### DLPManager
+
+##### 介绍
+
+本示例主要展示了DLP文件管理相关的功能，使用[@ohos.dlpPermission](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)、[@ohos.file.fileAccess](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)、[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)等接口，实现了生成和打开DLP文件、查看原始应用沙箱目录的原始文件打开列表、编辑保存文件、拉取文件夹、查看文件权限和监听DLP文件的功能。
+
+##### 使用
+
+1. 进入界面，显示原始应用沙箱目录获取原始文件打开列表。
+2. 点击右上角的图标，可以设置沙箱保留信息。
+3. 点击右下角的加号图标，可以跳转进入文件夹。
+4. 点击某个文件，可以显示其文件内容。
+5. 在文件显示页面，可以点击下面的编辑图标对文件内容进行编辑，编辑后点击保存图标进行保存；点击更多可以文件另存为，查看权限。
+
+##### 基本原理
+
+* 获取DLP文件和普通文件列表的功能：
+    * 在Index页面中通过onPageShow()调用fs.listFile()、fs.stat()等方法能够查看应用沙箱路径下的原始文件列表，获取列表信息。
+    * 通过context.startAbility(want)对DLP文件进行生成和打开，通过dlpPermission的接口查看DLP文件的权限。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.3.3
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/DLPManager)
+
 ### 任务管理
 
 #### 长时任务
 
 ##### 介绍
 
-本示例展示后台任务的长时任务。通过使用[@ohos.resourceschedule.backgroundTaskManager](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)实现后台播放音乐时避免进入挂起（Suspend）状态。
+本示例展示后台任务的长时任务。通过使用[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)实现后台播放音乐时避免进入挂起（Suspend）状态。
 
 ##### 使用
 
@@ -2247,7 +2736,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 该示例使用startBackgroundRunning方法向系统申请长时任务，stopBackgroundRunning方法向系统申请取消长时任务，getWantAgent方法创建一个WantAgent，createAudioPlayer方法创建一个视频播放实例，createAVSession方法创建一个会话对象，fileIo.open方法打开文件等接口实现后台音乐播放。
-* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis/js-apis-media.md)，[@ohos.multimedia.avsession](reference/apis/js-apis-avsession.md)，[@ohos.fileio](reference/apis/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis/js-apis-app-ability-wantAgent.md)
+* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
 
 ##### 约束与限制
 
@@ -2261,7 +2750,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.app.ability.ServiceExtensionAbility](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)的ServiceExtension接口验证提供的Stage模型， [Canvas组件](reference/arkui-ts/ts-components-canvas-canvas.md)绘制小游戏，[@ohos.resourceschedule.usageStatistics](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)的queryBundleStatsInfos接口通过指定起始和结束时间查询应用使用时长统计信息来统计展示游戏在线时长，[@ohos.backgroundTaskManager](reference/apis/js-apis-backgroundTaskManager.md)的requestSuspendDelay接口申请后台应用延迟挂起来验证短时任务API能否正常执行，[@ohos.rpc](reference/apis/js-apis-rpc.md)提供进程间通信能力，[@ohos.wantAgent](reference/apis/js-apis-wantAgent.md)验证系统能力。
+本示例使用[@ohos.app.ability.ServiceExtensionAbility](reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)的ServiceExtension接口验证提供的Stage模型， [Canvas组件](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)绘制小游戏，[@ohos.resourceschedule.usageStatistics](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)的queryBundleStatsInfos接口通过指定起始和结束时间查询应用使用时长统计信息来统计展示游戏在线时长，[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)的requestSuspendDelay接口申请后台应用延迟挂起来验证短时任务API能否正常执行，[@ohos.rpc](reference/apis-ipc-kit/js-apis-rpc.md)提供进程间通信能力，[@ohos.wantAgent](reference/apis-ability-kit/js-apis-wantAgent.md)验证系统能力。
 
 ##### 使用
 
@@ -2281,7 +2770,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 该示例使用ServiceExtension接口验证提供的Stage模型，Canvas组件绘制小游戏，queryBundleStatsInfos接口通过指定起始和结束时间查询应用使用时长统计信息来统计展示游戏在线时长，requestSuspendDelay接口申请后台应用延迟挂起来验证短时任务API能否正常执行，rpc接口提供进程间通信能力，wantAgent接口验证系统能力。
 
-* 接口参考[@ohos.resourceschedule.usageStatistics](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)，[@ohos.backgroundTaskManager](reference/apis/js-apis-backgroundTaskManager.md)，[@ohos.wantAgent](reference/apis/js-apis-wantAgent.md)，[@ohos.app.ability.ServiceExtensionAbility](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)，[@ohos.rpc](reference/apis/js-apis-rpc.md)
+* 接口参考[@ohos.resourceschedule.usageStatistics](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)，[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)，[@ohos.wantAgent](reference/apis-ability-kit/js-apis-wantAgent.md)，[@ohos.app.ability.ServiceExtensionAbility](reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)，[@ohos.rpc](reference/apis-ipc-kit/js-apis-rpc.md)
 
 ##### 约束与限制
 
@@ -2295,7 +2784,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [Tabs组件](reference/arkui-ts/ts-container-tabs.md) 进行应用布局，使用 [Canvas组件](reference/arkui-ts/ts-components-canvas-canvas.md) 绘制时钟、倒计时，使用 [后台代理提醒](reference/apis/js-apis-reminderAgentManager.md) 发布后台代理提醒，使用 [振动](reference/apis/js-apis-vibrator.md) 设置振动效果。保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。
+本示例使用 [Tabs组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 进行应用布局，使用 [Canvas组件](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) 绘制时钟、倒计时，使用 [后台代理提醒](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md) 发布后台代理提醒，使用 [振动](reference/apis-sensor-service-kit/js-apis-vibrator.md) 设置振动效果。保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。
 
 ##### 使用
 
@@ -2330,15 +2819,15 @@ Preferences.flush()保存并刷新文件内容。
 * 该示例分为闹钟，日历，计时器三个模块 
   * 闹钟模块
     * 使用Canvas组件绘制一个闹钟，SlotType方法获取对应的系统能力内容类型，addNotificationSlot方法添加一个NotificationSlot，ReminderRequestAlarm方法获取闹钟实例对象，用于设置提醒的时间，ReminderType方法设置提醒的类型，ActionButtonType方法设置按钮的类型，VibratorStopMode方法停止的振动。
-    * 接口参考：[@ohos.notification](reference/apis/js-apis-notification.md)，[@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)，[@ohos.vibrator](reference/apis/js-apis-vibrator.md)
+    * 接口参考：[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md)，[@ohos.reminderAgent](reference/apis-backgroundtasks-kit/js-apis-reminderAgent.md)，[@ohos.vibrator](reference/apis-sensor-service-kit/js-apis-vibrator.md)
 
   * 日历模块
     * 使用SlotType方法获取对应的系统能力内容类型，ReminderRequestCalendar方法获取日历实例对象，用于设置提醒的时间，ReminderType方法设置提醒的类型，ActionButtonType方法设置按钮的类型，VibratorStopMode方法停止的振动。
-    * 接口参考：[@ohos.notification](reference/apis/js-apis-notification.md)，[@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)，[@ohos.vibrator](reference/apis/js-apis-vibrator.md)
+    * 接口参考：[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md)，[@ohos.reminderAgent](reference/apis-backgroundtasks-kit/js-apis-reminderAgent.md)，[@ohos.vibrator](reference/apis-sensor-service-kit/js-apis-vibrator.md)
 
   * 计时器模块
     * 使用SlotType方法获取对应的系统能力内容类型，addNotificationSlot方法添加一个NotificationSlot，ReminderRequestTimer方法获取倒计时实例对象，用于设置提醒的时间，ReminderType方法设置提醒的类型，ActionButtonType方法设置按钮的类型，VibratorStopMode方法停止的振动。
-    * 接口参考：[@ohos.notification](reference/apis/js-apis-notification.md)，[@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)，[@ohos.vibrator](reference/apis/js-apis-vibrator.md)
+    * 接口参考：[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md)，[@ohos.reminderAgent](reference/apis-backgroundtasks-kit/js-apis-reminderAgent.md)，[@ohos.vibrator](reference/apis-sensor-service-kit/js-apis-vibrator.md)
 
 ##### 约束与限制
 
@@ -2354,7 +2843,7 @@ Preferences.flush()保存并刷新文件内容。
 
 本示例主要展示后台任务中的短时任务。
 
-通过[@ohos.resourceschedule.backgroundTaskManager](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md) ，[@ohos.app.ability.quickFixManager](reference/apis/js-apis-app-ability-quickFixManager.md) 等接口实现应用热更新的方式去展现短时任务机制。
+通过[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) ，[@ohos.app.ability.quickFixManager](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md) 等接口实现应用热更新的方式去展现短时任务机制。
 
 ##### 使用
 
@@ -2370,7 +2859,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 该示例使用cancelSuspendDelay方法取消延迟挂起，applyQuickFix方法快速修复补丁，createHttp方法创建一个HTTP请求，openSync方法同步打开文件，writeSync方法同步将数据写入文件，closeSync方法同步关闭文件流等接口实现应用热更新的方式去展现短时任务机制。
 
-* 接口参考：[@ohos.backgroundTaskManager](reference/apis/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](reference/apis/js-apis-app-ability-quickFixManager.md)，[@ohos.net.http](reference/apis/js-apis-http.md)，[@ohos.fileio](reference/apis/js-apis-fileio.md)
+* 接口参考：[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)，[@ohos.net.http](reference/apis-arkui/js-apis-http.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)
 
 ##### 约束与限制
 
@@ -2384,7 +2873,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.WorkSchedulerExtensionAbility](reference/apis/js-apis-WorkSchedulerExtensionAbility.md) 、[@ohos.net.http](reference/apis/js-apis-http.md) 、[@ohos.notification](reference/apis/js-apis-notification.md) 、[@ohos.bundle](reference/apis/js-apis-Bundle.md) 、[@ohos.fileio](reference/apis/js-apis-fileio.md) 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。
+本示例使用[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 、[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。
 
 ##### 使用
 
@@ -2424,7 +2913,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[call](reference/apis/js-apis-call.md)相关接口实现了拨打电话并显示电话相关信息的功能。主要展示拨打电话功能，dial方法拨打电话，可设置通话参数，hasCall方法判断是否存在通话，getCallState方法获取当前通话状态，isEmergencyPhoneNumber方法判断是否是紧急电话号码，formatPhoneNumber方法格式化电话号码，formatPhoneNumberToE164方法将电话号码格式化为E.164表示形式。
+本示例使用[call](reference/apis-telephony-kit/js-apis-call.md)相关接口实现了拨打电话并显示电话相关信息的功能。主要展示拨打电话功能，dial方法拨打电话，可设置通话参数，hasCall方法判断是否存在通话，getCallState方法获取当前通话状态，isEmergencyPhoneNumber方法判断是否是紧急电话号码，formatPhoneNumber方法格式化电话号码，formatPhoneNumberToE164方法将电话号码格式化为E.164表示形式。
 
 ##### 使用
 
@@ -2435,7 +2924,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 ##### 基本原理
 
 * 该示例展示拨打电话功能，dial方法拨打电话，可设置通话参数，hasCall方法判断是否存在通话，getCallState方法获取当前通话状态，isEmergencyPhoneNumber方法判断是否是紧急电话号码，formatPhoneNumber方法格式化电话号码，formatPhoneNumberToE164方法将电话号码格式化为E.164表示形式。
-* 接口参考：[@ohos.telephony.call](reference/apis/js-apis-call.md)
+* 接口参考：[@ohos.telephony.call](reference/apis-telephony-kit/js-apis-call.md)
 
 ##### 约束与限制
 
@@ -2449,7 +2938,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.contact](reference/apis/js-apis-contact.md) 接口，实现了对联系人的增删查改功能。
+本示例使用[@ohos.contact](reference/apis-contacts-kit/js-apis-contact.md) 接口，实现了对联系人的增删查改功能。
 
 ##### 使用
 
@@ -2478,7 +2967,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.telephony.sms](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-sms.md) 接口展示了电话服务中发送短信的功能。
+本示例使用[@ohos.telephony.sms](reference/apis-telephony-kit/js-apis-sms.md) 接口展示了电话服务中发送短信的功能。
 
 ##### 使用
 
@@ -2499,13 +2988,13 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Message)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)
 
 #### 蜂窝数据
 
 ##### 介绍
 
-本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
+本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
 
 ##### 使用
 
@@ -2517,7 +3006,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 ##### 基本原理
 
 * 该示例使用蜂窝数据接口，getDefaultCellularDataSlotId方法获取默认移动数据的SIM卡，isCellularDataEnabled方法检查蜂窝数据业务是否启用，isCellularDataRoamingEnabled方法检查蜂窝数据业务是否启用漫游，getCellularDataFlowType方法获取蜂窝数据业务的上下行状态，getCellularDataState方法获取分组交换域（PS域）的连接状态等方法获取SIM卡相关信息，展示打开本应用时网络信息。
-* 接口参考：[@ohos.telephony.data](reference/apis/js-apis-telephony-data.md)
+* 接口参考：[@ohos.telephony.data](reference/apis-telephony-kit/js-apis-telephony-data.md)
 
 ##### 约束与限制
 
@@ -2531,7 +3020,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过[@ohos.telephony.radio](reference/apis/js-apis-radio.md)，[@ohos.telephony.call](reference/apis/js-apis-call.md)，[@ohos.telephony.data](reference/apis/js-apis-telephony-data.md)，[@ohos.telephony.observer](reference/apis/js-apis-observer.md)订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。
+本示例通过[@ohos.telephony.radio](reference/apis-telephony-kit/js-apis-radio.md)，[@ohos.telephony.call](reference/apis-telephony-kit/js-apis-call.md)，[@ohos.telephony.data](reference/apis-telephony-kit/js-apis-telephony-data.md)，[@ohos.telephony.observer](reference/apis-telephony-kit/js-apis-observer.md)订阅网络状态、信号状态、通话状态、蜂窝数据、sim状态等事件，并获取状态变化返回的结果。
 
 ##### 使用
 
@@ -2544,7 +3033,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 ##### 基本原理
 
 * 该示例使用NetworkState方法获取网络注册状态，SignalInformation方法获取网络信号强度信息，RadioTechnology方法获取无线接入技术，CallState方法获取通话状态码，DataConnectState方法描述蜂窝数据链路连接状态，DataFlowType方法描述蜂窝数据流类型，SimStateData方法获取SIM卡类型和状态等方法提供订阅管理功能。
-* 接口参考：[@ohos.telephony.radio](reference/apis/js-apis-radio.md)，[@ohos.telephony.call](reference/apis/js-apis-call.md)，[@ohos.telephony.data](reference/apis/js-apis-telephony-data.md)，[@ohos.telephony.observer](reference/apis/js-apis-observer.md)
+* 接口参考：[@ohos.telephony.radio](reference/apis-telephony-kit/js-apis-radio.md)，[@ohos.telephony.call](reference/apis-telephony-kit/js-apis-call.md)，[@ohos.telephony.data](reference/apis-telephony-kit/js-apis-telephony-data.md)，[@ohos.telephony.observer](reference/apis-telephony-kit/js-apis-observer.md)
 
 ##### 约束与限制
 
@@ -2558,7 +3047,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过[@ohos.telephony.sim](reference/apis/js-apis-sim.md) 、[@ohos.telephony.radio](reference/apis/js-apis-radio.md) 等接口来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。
+本示例通过[@ohos.telephony.sim](reference/apis-telephony-kit/js-apis-sim.md) 、[@ohos.telephony.radio](reference/apis-telephony-kit/js-apis-radio.md) 等接口来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。
 
 ##### 使用
 
@@ -2589,7 +3078,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[sim](reference/apis/js-apis-sim.md)相关接口，展示了电话服务中SIM卡相关功能，包含SIM卡的服务提供商、ISO国家码、归属PLMN号信息，以及默认语音卡功能。
+本示例使用[sim](reference/apis-telephony-kit/js-apis-sim.md)相关接口，展示了电话服务中SIM卡相关功能，包含SIM卡的服务提供商、ISO国家码、归属PLMN号信息，以及默认语音卡功能。
 
 ##### 使用
 
@@ -2601,7 +3090,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 ##### 基本原理
 
 * 该示例主要通过hasSimCard方法获取指定卡槽SIM卡是否插卡，getSimState方法获取指定卡槽的SIM卡状态，SimState方法判断SIM卡状态，isSimActive方法获取指定卡槽SIM卡是否激活，getSimSpn方法获取指定卡槽SIM卡的服务提供商名称，getISOCountryCodeForSim方法获取指定卡槽SIM卡的ISO国家码，getSimOperatorNumeric方法获取指定卡槽SIM卡的归属PLMN号，getDefaultVoiceSlotId方法获取默认语音业务的卡槽ID等开发电话服务的相关功能。
-* 接口参考：[@ohos.telephony.sim](reference/apis/js-apis-sim.md)
+* 接口参考：[@ohos.telephony.sim](reference/apis-telephony-kit/js-apis-sim.md)
 
 ##### 约束与限制
 
@@ -2617,7 +3106,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.systemparameter](reference/apis/js-apis-system-parameter.md)接口和[Web组件](reference/arkui-ts/ts-basic-components-web.md)展示了一个浏览器的基本功能,展示网页，根据页面历史栈前进回退等。
+本示例使用[@ohos.systemparameter](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)接口和[Web组件](reference/apis-arkweb/ts-basic-components-web.md)展示了一个浏览器的基本功能,展示网页，根据页面历史栈前进回退等。
 
 ##### 使用
 
@@ -2644,7 +3133,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例基于H5游戏，通过arkui的[Button](reference/arkui-ts/ts-basic-components-button.md)实现对游戏实现基本控制，展示[@ohos.web.webview](reference/apis/js-apis-webview.md)的JS注入与执行能力，及native应用与H5的通信能力。
+本示例基于H5游戏，通过arkui的[Button](reference/apis-arkui/arkui-ts/ts-basic-components-button.md)实现对游戏实现基本控制，展示[@ohos.web.webview](reference/apis-arkweb/js-apis-webview.md)的JS注入与执行能力，及native应用与H5的通信能力。
 
 ##### 使用
 
@@ -2655,7 +3144,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 * 本示例分成一个模块
   * 通过button实现对游戏的基本控制，WebviewController方法控制Web组件各种行为，使用webview注入JS与执行能力。
-  * 接口参考：[@ohos.window](reference/apis/js-apis-window.md)，[@ohos.web.webview](reference/apis/js-apis-webview.md)
+  * 接口参考：[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.web.webview](reference/apis-arkweb/js-apis-webview.md)
 
 ##### 约束与限制
 
@@ -2671,7 +3160,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本实例使用[窗口管理](reference/apis/js-apis-window.md)，展示了在应用主窗口中创建和拉起子窗口，并对子窗口设置窗口相关属性，以及设置窗口规避区域、窗口沉浸式和小窗口等功能。
+本实例使用[窗口管理](reference/apis-arkui/js-apis-window.md)，展示了在应用主窗口中创建和拉起子窗口，并对子窗口设置窗口相关属性，以及设置窗口规避区域、窗口沉浸式和小窗口等功能。
 
 ##### 使用
 
@@ -2686,14 +3175,14 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 本示例主要分为三个模块
   * 首页入口模块
     * 使用WindowStage实例化一个窗口，引入WindowManger方法设置一个主窗口与子窗口
-    * 接口参考：[@ohos.window](reference/apis/js-apis-window.md)，[@ohos.events.emitter](reference/apis/js-apis-emitter.md)，[@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)，[@ohos.router](reference/apis/js-apis-router.md)
+    * 接口参考：[@ohos.window](reference/apis-arkui/js-apis-window.md)，[@ohos.events.emitter](reference/apis-basic-services-kit/js-apis-emitter.md)，[@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)，[@ohos.router](reference/apis-arkui/js-apis-router.md)
 
   * 窗口视频模块
     * 这里用到依赖window-components中WindowComponent方法来进行视频的播放
 
   * 全屏播放窗口并切换窗口方向模块
     * 通过EventPriority方法表示事件被发送的优先级，emitter.emit方法发送指定的事件进行全屏播放和切换窗口方向
-    * 参考接口：[@ohos.events.emitter](reference/apis/js-apis-emitter.md)
+    * 参考接口：[@ohos.events.emitter](reference/apis-basic-services-kit/js-apis-emitter.md)
 
 ##### 约束与限制
 
@@ -2707,7 +3196,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.window](reference/apis/js-apis-window.md)，主要展示了在子窗口中以悬浮窗模式拉起悬浮应用，并对新的应用设置窗口缩放比例，窗口以设置的比例进行缩放，并在界面显示窗口当前的宽度和高度。
+本示例使用[@ohos.window](reference/apis-arkui/js-apis-window.md)，主要展示了在子窗口中以悬浮窗模式拉起悬浮应用，并对新的应用设置窗口缩放比例，窗口以设置的比例进行缩放，并在界面显示窗口当前的宽度和高度。
 
 ##### 使用
 
@@ -2740,7 +3229,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过[@ohos.taskpool](reference/apis/js-apis-taskpool.md) 和[@ohos.worker](reference/apis/js-apis-worker.md) 接口，展示了如何启动worker线程和taskpool线程。
+本示例通过[@ohos.taskpool](reference/apis-arkts/js-apis-taskpool.md) 和[@ohos.worker](reference/apis-arkts/js-apis-worker.md) 接口，展示了如何启动worker线程和taskpool线程。
 
 ##### 使用
 
@@ -2807,28 +3296,28 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 本示例集合语言基础类库的各个子模块，展示了各个模块的基础功能，包含：
 
-- [@ohos.buffer (Buffer)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-buffer.md)
-- [@ohos.convertxml (xml转换JavaScript)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-convertxml.md)
-- [@ohos.process (获取进程相关的信息)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-process.md)
-- [@ohos.taskpool (启动任务池)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-taskpool.md)
-- [@ohos.uri (URI字符串解析)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-uri.md)
-- [@ohos.url (URL字符串解析)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-url.md)
-- [@ohos.util (util工具函数)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-util.md)
-- [@ohos.util.ArrayList (线性容器ArrayList)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-arraylist.md)
-- [@ohos.util.Deque (线性容器Deque)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-deque.md)
-- [@ohos.util.HashMap (非线性容器HashMap)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-hashmap.md)
-- [@ohos.util.HashSet (非线性容器HashSet)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-hashset.md)
-- [@ohos.util.LightWeightMap (非线性容器LightWeightMap)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md)
-- [@ohos.util.LightWeightSet (非线性容器LightWeightSet)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-lightweightset.md)
-- [@ohos.util.LinkedList (线性容器LinkedList)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-linkedlist.md)
-- [@ohos.util.List (线性容器List)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-list.md)
-- [@ohos.util.PlainArray (非线性容器PlainArray)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-plainarray.md)
-- [@ohos.util.Queue (线性容器Queue)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-queue.md)
-- [@ohos.util.Stack (线性容器Stack)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-stack.md)
-- [@ohos.util.TreeMap (非线性容器TreeMap)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-treemap.md)
-- [@ohos.util.TreeSet (非线性容器TreeSet)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-treeset.md)
-- [@ohos.util.Vector (线性容器Vector)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-vector.md)
-- [@ohos.xml (xml解析与生成)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-xml.md)
+- [@ohos.buffer (Buffer)](reference/apis-arkts/js-apis-buffer.md)
+- [@ohos.convertxml (xml转换JavaScript)](reference/apis-arkts/js-apis-convertxml.md)
+- [@ohos.process (获取进程相关的信息)](reference/apis-arkts/js-apis-process.md)
+- [@ohos.taskpool (启动任务池)](reference/apis-arkts/js-apis-taskpool.md)
+- [@ohos.uri (URI字符串解析)](reference/apis-arkts/js-apis-uri.md)
+- [@ohos.url (URL字符串解析)](reference/apis-arkts/js-apis-url.md)
+- [@ohos.util (util工具函数)](reference/apis-arkts/js-apis-util.md)
+- [@ohos.util.ArrayList (线性容器ArrayList)](reference/apis-arkts/js-apis-arraylist.md)
+- [@ohos.util.Deque (线性容器Deque)](reference/apis-arkts/js-apis-deque.md)
+- [@ohos.util.HashMap (非线性容器HashMap)](reference/apis-arkts/js-apis-hashmap.md)
+- [@ohos.util.HashSet (非线性容器HashSet)](reference/apis-arkts/js-apis-hashset.md)
+- [@ohos.util.LightWeightMap (非线性容器LightWeightMap)](reference/apis-arkts/js-apis-lightweightmap.md)
+- [@ohos.util.LightWeightSet (非线性容器LightWeightSet)](reference/apis-arkts/js-apis-lightweightset.md)
+- [@ohos.util.LinkedList (线性容器LinkedList)](reference/apis-arkts/js-apis-linkedlist.md)
+- [@ohos.util.List (线性容器List)](reference/apis-arkts/js-apis-list.md)
+- [@ohos.util.PlainArray (非线性容器PlainArray)](reference/apis-arkts/js-apis-plainarray.md)
+- [@ohos.util.Queue (线性容器Queue)](reference/apis-arkts/js-apis-queue.md)
+- [@ohos.util.Stack (线性容器Stack)](reference/apis-arkts/js-apis-stack.md)
+- [@ohos.util.TreeMap (非线性容器TreeMap)](reference/apis-arkts/js-apis-treemap.md)
+- [@ohos.util.TreeSet (非线性容器TreeSet)](reference/apis-arkts/js-apis-treeset.md)
+- [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
+- [@ohos.xml (xml解析与生成)](reference/apis-arkts/js-apis-xml.md)
 
 ##### 使用
 
@@ -2860,10 +3349,10 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 ##### 基本原理
 
 1. 首页菜单展示：使用一个module，menuitems完成菜单组件的实现，传入要展示的菜单的strarray类型的资源和菜单点击对应的组件即可。使用Navigation和NavRouter组件实现菜单点击进入功能界面，使用LocalStorage实现应用内Ability内数据共享，点击菜单时标记selectedLabel，在entry中的Capabilities组件中，通过selectedLabel显示对应的功能组件。
-2. Xml & ConvertXml：使用[xml](reference/apis/js-apis-xml.md) 和[convertxml](reference/apis/js-apis-convertxml.md) 实现xml的解析和生成以及xml转换为js对象，点击按钮实现对应的功能。
-3. Process：使用[process](reference/apis/js-apis-process.md) 实现获取进程相关信息的功能，点击按钮实现对应的功能。
-4. TaskPool：使用[taskpool](reference/apis/js-apis-taskpool.md) 实现创建后台任务（Task），并对所创建的任务进行如任务执行、任务取消的操作。
-5. Url：使用[URL](reference/apis/js-apis-url.md) 对URL字符串的查找参数进行了增删改查的一系列操作，使得读者对URL的结构用途更加明了，点击按钮实现对应的功能。
+2. Xml & ConvertXml：使用[xml](reference/apis-arkts/js-apis-xml.md) 和[convertxml](reference/apis-arkts/js-apis-convertxml.md) 实现xml的解析和生成以及xml转换为js对象，点击按钮实现对应的功能。
+3. Process：使用[process](reference/apis-arkts/js-apis-process.md) 实现获取进程相关信息的功能，点击按钮实现对应的功能。
+4. TaskPool：使用[taskpool](reference/apis-arkts/js-apis-taskpool.md) 实现创建后台任务（Task），并对所创建的任务进行如任务执行、任务取消的操作。
+5. Url：使用[URL](reference/apis-arkts/js-apis-url.md) 对URL字符串的查找参数进行了增删改查的一系列操作，使得读者对URL的结构用途更加明了，点击按钮实现对应的功能。
 6. Util，使用util中不同的功能函数实现以下功能：
    * StringCode：字符串编解码。
    * RationnalNumber：有理数比较。
@@ -2898,7 +3387,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过[@ohos.zlib](reference/apis/js-apis-zlib.md) 和[@ohos.fileio](reference/apis/js-apis-fileio.md) 接口，实现添加文件、解压和压缩文件场景。
+本示例通过[@ohos.zlib](reference/apis-basic-services-kit/js-apis-zlib.md) 和[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 接口，实现添加文件、解压和压缩文件场景。
 
 ##### 使用
 
@@ -2932,11 +3421,12 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.taskpool](reference/apis/js-apis-taskpool.md)和[@ohos.worker](reference/apis/js-apis-worker.md) 接口，使用ArkTS编程语言开发了业界编程语言基准测试项目[Benchmarks Game](https://gitee.com/link?target=https%3A%2F%2Fsalsa.debian.org%2Fbenchmarksgame-team%2Fbenchmarksgame%2F)中的[N体问题模拟程序](https://gitee.com/link?target=https%3A%2F%2Fbenchmarksgame-team.pages.debian.net%2Fbenchmarksgame%2Fdescription%2Fnbody.html%23nbody)，实现类木星体轨道计算。
+本示例使用[@ohos.taskpool](reference/apis-arkts/js-apis-taskpool.md)和[@ohos.worker](reference/apis-arkts/js-apis-worker.md) 接口，使用ArkTS编程语言开发了业界编程语言基准测试项目[Benchmarks Game](https://gitee.com/link?target=https%3A//salsa.debian.org/benchmarksgame-team/benchmarksgame)中的[N体问题模拟程序](https://gitee.com/link?target=https%3A//benchmarksgame-team.pages.debian.net/benchmarksgame/description/nbody.html%23nbody)，实现类木星体轨道计算。
 
 ##### 使用
 
 1.点击按钮Calculate By TaskPool，会从任务池创建一个任务，进行N-Body计算。
+
 2.点击按钮Calculate By Worker，会创建一个Worker，进行N-Body计算。
 
 ##### 基本原理
@@ -2956,11 +3446,87 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 开发语言：ArkTS
 
-配套版本：API9版本SDK，版本号：4.0.9.6
+配套版本：API10版本SDK，版本号：4.0.9.6
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/ArkRuntime/NBody)
 
+#### 性能示例
 
+##### 介绍
+
+本示例集成了条件渲染、动态加载以及HiDumper等场景来介绍如何提升应用性能。
+
+##### 使用
+
+1. 点击性能示例主页的**HiDumper**按钮，进入**HiDumper查看组件信息**场景页。
+
+2. 点击HiDumper查看组件信息场景页的**查看应用组件树**进入场景页。
+
+3. 点击HiDumper查看组件信息场景页的**查看if/else组件**按钮，在场景中点击**显隐切换**按钮，查看图片显示隐藏。
+
+4. 点击HiDumper查看组件信息场景页的**查看visibility属性**按钮，在场景中依次点击**Visible**、**Hidden**、**Visible**、**None**，查看图片显示和隐藏。
+
+##### 基本原理
+
+* HiDumper场景模块
+
+  * 查看应用组件树
+    * 在页面上添加Grid，每个GridItem嵌套多个Stack，然后通过HiDumper抓取组件树信息。
+    
+  * 查看if/else组件
+    * 在页面上添加**显隐切换**按钮，添加一张图片，点击按钮后通过HiDumper抓取组件树信息。
+    
+  * 查看visibility属性
+    * 在页面上添加**Visible**、**Hidden**、**None**按钮，添加一张图片，点击按钮后通过HiDumper抓取组件树信息。
+
+* Navigation常规加载页面模块
+
+  * 在Navigation组件加载内容页时，使用`import`常规加载子页面。
+
+* Navigation动态加载页面模块
+
+  * 在Navigation组件加载内容页时，使用`await import`实现动态按需加载。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.9.6
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary)
+
+#### 性能示例（renderGroup接口）
+
+##### 介绍
+
+本示例使用renderGroup接口实现了在单一页面上存在大量应用动效的组件时，使用renderGroup方法来解决卡顿问题，从而提升绘制能力。
+
+##### 使用
+
+1. 点击性能示例主页面的**RenderGroup**按钮，在场景界面中点击**正例场景示例**，进入正例场景页，可以点击renderGroup开关按钮，可以通过Profiler分析性能数据。  
+
+2. 点击性能示例主页面的**RenderGroup**按钮，在场景界面中点击**反例场景示例**，进入反例场景页，可以点击renderGroup开关按钮，可以通过Profiler分析性能数据。
+
+##### 基本原理
+
+首次绘制组件时，若组件被标记为启用renderGroup状态，将对组件和其子组件进行离屏绘制，将绘制结果进行缓存。以后当需要重新绘制组件时，就会优先使用缓存而不必重新绘制了，从而降低绘制负载，优化渲染性能。
+* 本示例分成正例场景与反例场景两个模块  
+  
+  * 正例场景  
+    
+    * 在ProfitScene的IconItem上添加动画，在IconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到收益。
+  
+  * 反例场景  
+    
+    * 在IconView的Image上添加动画，在NonIconView上使用到renderGroup接口(renderGroup(value: boolean): T)得到负收益。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.9.6
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/renderGroup)
 
 ## 工程
 
@@ -2970,7 +3536,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用应用上下文Context接口 [@ohos.app.ability.common](reference/apis/js-apis-app-ability-common.md)和媒体服务接口[@ohos.multimedia.media](reference/apis/js-apis-media.md)，展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 三个模块需要安装三个hap包，最终会在设备上安装一个主entry的hap包。
+本示例使用应用上下文Context接口 [@ohos.app.ability.common](reference/apis-ability-kit/js-apis-app-ability-common.md)和媒体服务接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，展示多HAP开发，简单介绍了多HAP的使用场景，应用包含了一个entry HAP和两个feature HAP，两个feature HAP分别提供了音频和视频播放组件，entry中使用了音频和视频播放组件。 三个模块需要安装三个hap包，最终会在设备上安装一个主entry的hap包。
 
 ##### 使用
 
@@ -3006,7 +3572,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[@ohos.application.abilityManager](reference/apis/js-apis-application-abilityManager.md) 能力，对Ability状态进行修改：其中AbilityManager.updateConfiguration()通过修改colorMode属性来更新配置系统主题颜色，展示多种应用主题切换。通过创建 base 同级资源文件夹 dark 和 light 完成深色浅色主题相关资源配置，实现深色浅色主题切换，在 ThemeConst 文件中配置自定义主题文件，通过控制变量实现多主题切换。
+本示例使用[@ohos.application.abilityManager](reference/apis-ability-kit/js-apis-application-abilityManager-sys.md) 能力，对Ability状态进行修改：其中AbilityManager.updateConfiguration()通过修改colorMode属性来更新配置系统主题颜色，展示多种应用主题切换。通过创建 base 同级资源文件夹 dark 和 light 完成深色浅色主题相关资源配置，实现深色浅色主题切换，在 ThemeConst 文件中配置自定义主题文件，通过控制变量实现多主题切换。
 
 ##### 使用
 
@@ -3055,7 +3621,33 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/Test)
 
+### 流水线预测试工具
 
+##### 介绍
+
+本示例主要展示了流水线预测试工具的使用示例，主要介绍了自动化构建及测试的实现原理。
+
+##### 使用
+
+1. 打开浏览器访问127.0.0.1:3000/swagger。
+
+2. 在`/sn`下点击`Try it out`，再点击`Execute`，即可获得`/sn`接口返回的连接开发板的sn号。
+
+3. 在`/hap-build/{PRId}`下点击`Try it out`，输入想要构建、测试的PRId，再点击`Execute`等待构建、测试任务结束可以看到接口返回构建和测试的结果，同时在PR下方的评论区也会有评论。
+
+##### 基本原理
+
+1. 执行hdc命令`hdc list targets`获取当前连接开发板sn号，[源码参考](./ci/src/app.controller.ts)。
+
+2. 使用gitee官方web hook读取PR修改文件列表并将修改写入本地sample仓中，再根据修改文件路径找出对应的项目，使用[编译工具](./compile-tool)中`compile-ohpm-ci.sh`脚本编译项目中的`entry`及`ohostest`包。
+
+3. [InstallAndTestSpecial_ci.py](./test-tool//InstallAndTestSpecial_ci.py)脚本来安装entry包、ohosTest测试包以及拉起自动化测试用例。
+
+##### 约束与限制
+
+开发语言：TypeScript
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/HapBuild)
 
 ## 行业解决方案
 
@@ -3065,7 +3657,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用使用分布式设备管理能力[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)、分布式数据管理[@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)等接口，结合[Canvas组件](reference/arkui-ts/ts-components-canvas-canvas.md) 实现棋盘、棋子的绘制，使用[分布式数据管理](reference/apis/js-apis-distributed-data.md) 实现两台设备间数据的同步。
+本示例使用使用分布式设备管理能力[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)、分布式数据管理[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)等接口，结合[Canvas组件](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) 实现棋盘、棋子的绘制，使用[分布式数据管理](reference/apis-arkdata/js-apis-distributed-data.md) 实现两台设备间数据的同步。
 
 ##### 使用
 
@@ -3102,7 +3694,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用用户首选项[ohos.data.preferences](reference/apis/js-apis-data-preferences.md) 以及屏幕属性[@ohos.display](reference/apis/js-apis-display.md#displaygetdefaultdisplaydeprecated) 等接口，结合[Grid](reference/arkui-ts/ts-container-grid.md)组件，实现了2048小游戏功能。
+本示例使用用户首选项[ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md) 以及屏幕属性[@ohos.display](reference/apis-arkui/js-apis-display.md#displaygetdefaultdisplaydeprecated) 等接口，结合[Grid](reference/apis-arkui/arkui-ts/ts-container-grid.md)组件，实现了2048小游戏功能。
 
 ##### 使用
 
@@ -3167,7 +3759,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用图片处理能力接口[@ohos.multimedia.image](reference/apis/js-apis-image.md)以及文件存储管理能力接口[@ohos.fileio](reference/apis/js-apis-fileio.md) 。展示一个仿聊天类应用，使用静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
+本示例使用图片处理能力接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)以及文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 。展示一个仿聊天类应用，使用静态布局搭建了不同的页面。为了优化内存与性能体验，在部分list场景使用了懒加载。
 
 ##### 使用
 
@@ -3217,7 +3809,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 * 自绘编辑框
   * 使用输入法框架实现组件绑定输入法应用，监听输入法事件，显示和隐藏输入法，发送光标和编辑框属性到输入法应用功能。
-  * 参考接口：[@ohos.inputMethod](reference/apis/js-apis-inputmethod.md)
+  * 参考接口：[@ohos.inputMethod](reference/apis-ime-kit/js-apis-inputmethod.md)
 
 ##### 约束与限制
 
@@ -3253,7 +3845,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用[inputMethodEngine](reference/apis/js-apis-inputmethodengine.md)实现一个轻量级输入法应用kikaInput，支持在运行OpenHarmony OS的智能终端上。
+本示例使用[inputMethodEngine](reference/apis-ime-kit/js-apis-inputmethodengine.md)实现一个轻量级输入法应用kikaInput，支持在运行OpenHarmony OS的智能终端上。
 
 ##### 使用
 
@@ -3274,10 +3866,10 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 该示例分为两个模块：
   * 键盘布局
     * 在Index中完成键盘的总体布局。在components中自定不同的按键组件。
-    * 参考接口：[ArkTs声明式开发范式](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/arkui-ts)
+    * 参考接口：[ArkTs声明式开发范式](ui/Readme-CN.md)
   * 输入法控制
-    * 使用[@ohos.request](reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，前台任务只支持单文件下载，后台任务支持多文件下载。使用[@ohos.file.fs](reference/apis/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
-    * 参考接口：[@ohos.inputMethodEngine](reference/apis/js-apis-inputmethodengine.md)
+    * 使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，前台任务只支持单文件下载，后台任务支持多文件下载。使用[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
+    * 参考接口：[@ohos.inputMethodEngine](reference/apis-ime-kit/js-apis-inputmethodengine.md)
 ##### 约束与限制
 
 开发语言：ArkTS
@@ -3292,7 +3884,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用权限管理能力[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)、相机模块能力接口[@ohos.multimedia.camera](reference/apis/js-apis-camera.md)、图片处理接口[@ohos.multimedia.image](reference/apis/js-apis-image.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis/js-apis-media.md)、媒体库管理接口[@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)、设备信息能力接口[@ohos.deviceInfo](reference/apis/js-apis-device-info.md)、文件存储管理能力接口[@ohos.fileio](reference/apis/js-apis-fileio.md)、弹窗能力接口[@ohos.prompt](reference/apis/js-apis-prompt.md)，展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。
+本示例使用权限管理能力[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、相机模块能力接口[@ohos.multimedia.camera](reference/apis-camera-kit/js-apis-camera.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)、媒体库管理接口[@ohos.multimedia.medialibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)、设备信息能力接口[@ohos.deviceInfo](reference/apis-basic-services-kit/js-apis-device-info.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、弹窗能力接口[@ohos.prompt](reference/apis-arkui/js-apis-prompt.md)，展示如何在eTS中调用相机拍照和录像，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。
 
 ##### 使用
 
@@ -3332,7 +3924,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
+本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
 
 ##### 使用
 
@@ -3376,7 +3968,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过添加setInterval定时器启动时钟，使用[Canvas组件](reference/arkui-ts/ts-components-canvas-canvas.md)绘制时钟，通过[CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md) 来画表盘背景、时针、分针、秒针、圆心以及表盘下方文本，结合[@ohos.display](reference/apis/js-apis-display.md) 接口来实现一个简单的时钟应用。
+本示例通过添加setInterval定时器启动时钟，使用[Canvas组件](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)绘制时钟，通过[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md) 来画表盘背景、时针、分针、秒针、圆心以及表盘下方文本，结合[@ohos.display](reference/apis-arkui/js-apis-display.md) 接口来实现一个简单的时钟应用。
 
 ##### 使用
 
@@ -3387,7 +3979,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 本示例展示简单时钟的方法主要封装在Index中。
     * 设置表盘大小：通过Index中的display.getDefaultDisplay()方法来获取设备宽高计算表盘大小；
     * 获取当前时间：调用updateTime函数，执行new Date().getHours()、new Date().getMinutes()、new Date().getSeconds()获取当前时间。
-    * 绘制表盘内容：通过[CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md) 来画表盘背景、时针、分针、秒针、圆心以及表盘下方文本；
+    * 绘制表盘内容：通过[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md) 来画表盘背景、时针、分针、秒针、圆心以及表盘下方文本；
     * 启动时钟：添加setInterval定时器，每隔1s执行一次updateTime函数。
 
 ##### 约束与限制
@@ -3403,11 +3995,11 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 ##### 介绍
 
 本示例集中展示了时钟、闹钟、倒计时、设置屏幕亮度相关的场景，
-1、使用[@ohos.reminderAgentManager](reference/apis/js-apis-reminderAgentManager.md)完成闹钟的相关功能，
-2、使用animateTo完成翻页时钟动画，使用[@ohos.runningLock](reference/apis/js-apis-runninglock.md)完成屏幕常亮功能，
-3、设置屏幕亮度，使用[@ohos.brightness](reference/apis/js-apis-brightness.md)系统能力调节屏幕亮度，
-4、后台消息提醒，使用[@ohos.notificationManager](reference/apis/js-apis-notificationManager.md)系统能力做后台代理提醒。
-5、需要系统存储信息，使用用户首选项接口[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)。
+1、使用[@ohos.reminderAgentManager](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)完成闹钟的相关功能，
+2、使用animateTo完成翻页时钟动画，使用[@ohos.runningLock](reference/apis-basic-services-kit/js-apis-runninglock.md)完成屏幕常亮功能，
+3、设置屏幕亮度，使用[@ohos.brightness](reference/apis-basic-services-kit/js-apis-brightness-sys.md)系统能力调节屏幕亮度，
+4、后台消息提醒，使用[@ohos.notificationManager](reference/apis-notification-kit/js-apis-notificationManager.md)系统能力做后台代理提醒。
+5、需要系统存储信息，使用用户首选项接口[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md)。
 
 ##### 使用
 
@@ -3452,7 +4044,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用JS语言编写示例，设置一个定时器（timer），捕捉用户动作，当用户离开首页时（onHide事件）定时器注销（clearInverval）定时器，当用户回到小程序首页时（onShow事件），重新设置一个定时器（timer）setInterval，使用[transform](reference/arkui-js/js-components-svg-animatetransform.md)设置平移/旋转/缩放的属性，实现一个简单时钟应用。
+本示例使用JS语言编写示例，设置一个定时器（timer），捕捉用户动作，当用户离开首页时（onHide事件）定时器注销（clearInverval）定时器，当用户回到小程序首页时（onShow事件），重新设置一个定时器（timer）setInterval，使用[transform](reference/apis-arkui/arkui-js/js-components-svg-animatetransform.md)设置平移/旋转/缩放的属性，实现一个简单时钟应用。
 
 ##### 使用
 
@@ -3485,7 +4077,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用用户首选项接口[@ohos.data.preferences](reference/apis/js-apis-data-preferences.md) 异步获取用户设定过的密码，以宫格图案的方式输入密码，用于密码验证。手指触碰图案密码锁时开始进入输入状态，手指离开屏幕时结束输入状态并向应用返回输入的密码。展示图案密码锁组件的使用，实现了密码设置、验证和重置功能。
+本示例使用用户首选项接口[@ohos.data.preferences](reference/apis-arkdata/js-apis-data-preferences.md) 异步获取用户设定过的密码，以宫格图案的方式输入密码，用于密码验证。手指触碰图案密码锁时开始进入输入状态，手指离开屏幕时结束输入状态并向应用返回输入的密码。展示图案密码锁组件的使用，实现了密码设置、验证和重置功能。
 
 ##### 使用
 
@@ -3523,7 +4115,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用分布式数据管理接口[@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)、媒体查询接口[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)，实现设备之间的kvStore对象的数据传输交互。通过StartAbility实现远端应用的拉起以及DistributedDataKit分布式数据框架实现异端应用的数据同步，实现一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个设备的计算器应用，两个计算器应用进行协同计算。
+本示例使用分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过StartAbility实现远端应用的拉起以及DistributedDataKit分布式数据框架实现异端应用的数据同步，实现一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个设备的计算器应用，两个计算器应用进行协同计算。
 
 ##### 使用
 
@@ -3565,7 +4157,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis/js-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
+本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis-ability-kit/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis-arkui/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
 
 ##### 使用
 
@@ -3603,7 +4195,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用分布式数据管理接口[@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)、媒体查询接口[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)，实现设备之间的kvStore对象的数据传输交互。通过StartAbility实现远端应用的拉起以及DistributedDataKit分布式数据框架实现异端应用的数据同步，实现一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个设备的计算器应用，两个计算器应用进行协同计算。
+本示例使用分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过StartAbility实现远端应用的拉起以及DistributedDataKit分布式数据框架实现异端应用的数据同步，实现一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个设备的计算器应用，两个计算器应用进行协同计算。
 
 ##### 使用
 
@@ -3645,7 +4237,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)、[@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能。
+本示例主要展示了分布式帐号相关的功能，使用[@ohos.account.distributedAccount](reference/apis-basic-services-kit/js-apis-distributed-account.md)、[@ohos.account.osAccount](reference/apis-basic-services-kit/js-apis-osAccount.md)等接口，实现了绑定分布式帐号、解绑分布式帐号、更新分布式帐号信息和管理分布式帐号的功能。
 
 ##### 使用
 
@@ -3668,13 +4260,13 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAccount)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)
 
 #### 设备管理
 
 ##### 介绍
 
-本示例主要展示了设备管理相关的功能，使用[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md) 等接口，实现了包括获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能。
+本示例主要展示了设备管理相关的功能，使用[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) 等接口，实现了包括获取本机设备信息，获取授信设备列表，根据过滤条件扫描设备，设备认证，设备状态订阅，导入凭据，控制设备是否允许被发现等功能。
 
 ##### 使用
 
@@ -3703,13 +4295,13 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
 
 #### 分布式备忘录
 
 ##### 介绍
 
-本示例使用分布式数据管理接口[@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)、权限管理能力[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)以及分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)，实现设备之间的distributedDataObject对象的数据传输交互，展示在eTS中如何使用分布式数据对象实现一个简单的分布式备忘录。
+本示例使用分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、权限管理能力[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)以及分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的distributedDataObject对象的数据传输交互，展示在eTS中如何使用分布式数据对象实现一个简单的分布式备忘录。
 
 ##### 使用
 
@@ -3761,7 +4353,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用[@ohos.data.relationalStore](reference/apis/js-apis-data-relationalStore.md) 接口和[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md) 接口展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步同能。
+本示例使用[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md) 接口和[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) 接口展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步同能。
 
 ##### 使用
 
@@ -3774,10 +4366,10 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 ##### 基本原理
 
 + 数据库的增、删、改、查操作都在RdbModel中，:
-    + 数据库操作：使用[@ohos.data.relationalStore](reference/apis/js-apis-data-relationalStore.md) 接口的getRdbStore获得一个相关的操作型关系数据库RdbStore，通过这个RdbStore调用相关接口进行增删改查，RdbStore.insert数据插入,RdbStore.delete数据删除，RdbStore.update更新数据，RdbStore.query根据条件查询数据;
+    + 数据库操作：使用[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md) 接口的getRdbStore获得一个相关的操作型关系数据库RdbStore，通过这个RdbStore调用相关接口进行增删改查，RdbStore.insert数据插入,RdbStore.delete数据删除，RdbStore.update更新数据，RdbStore.query根据条件查询数据;
     + 数据同步：RdbStore.on注册数据库观察者，使用RdbStore.obtainDistributedTableName根据本地表名获取指定远程设备的分布式表名，数据发生变动时通过RdbStore.sync同步数据，不需要用时删除指定观察者使用RdbStore.off。
 + 连接设备管理在RemoteDeviceModel中:
-    + 设备同步：设备同步数据需要[ohos.permission.DISTRIBUTED_DATASYNC](security/AccessToken/permissions-for-all.md#ohospermissiondistributed_datasync) 权限，在页面渲染前申请权限,使用[@ohos.distributedDeviceManager](reference/apis/js-apis-distributedDeviceManager.md) 接口，首先通过createDeviceManager创建设备管理器实例，然后通过getTrustedDeviceListSync同步获取所有可信设备列表；
+    + 设备同步：设备同步数据需要[ohos.permission.DISTRIBUTED_DATASYNC](security/AccessToken/permissions-for-all.md#ohospermissiondistributed_datasync) 权限，在页面渲染前申请权限,使用[@ohos.distributedDeviceManager](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md) 接口，首先通过createDeviceManager创建设备管理器实例，然后通过getTrustedDeviceListSync同步获取所有可信设备列表；
     + 设备连接：首先通过on方法注册设备状态，例如发现设备，设备连接失败，然后通过startDeviceDiscovery方法发现周边设备，然后选择连接设备，再启动连接设备的应用。
 
 ##### 约束与限制
@@ -3792,7 +4384,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis/js-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
+本示例使用与用户进行交互的Ability的能力接口[@ohos.ability.featureAbility](reference/apis-ability-kit/js-apis-ability-featureAbility.md)、文件存储管理能力接口[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)、屏幕属性接口[@ohos.display](reference/apis-arkui/js-apis-display.md)、媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)、分布式数据管理接口[@ohos.data.distributedData](reference/apis-arkdata/js-apis-distributed-data.md)、音视频相关媒体业务能力接口[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)、分布式设备管理能力接口(设备管理)[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)，实现设备之间的kvStore对象的数据传输交互。通过AudioPlayer实现音频播放能力，调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
 
 ##### 使用
 
@@ -3825,7 +4417,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 本示例展示了在eTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。
 
-通过设备管理接口[@ohos.distributedHardware.deviceManager](reference/apis/js-apis-device-manager.md) ，实现设备之间的kvStore对象的数据传输交互，该对象拥有以下能力[详见](reference/apis/js-apis-device-manager.md) ;
+通过设备管理接口[@ohos.distributedHardware.deviceManager](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) ，实现设备之间的kvStore对象的数据传输交互，该对象拥有以下能力[详见](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) ;
 1、注册和解除注册设备上下线变化监听
 2、发现周边不可信设备
 3、认证和取消认证设备
@@ -3858,6 +4450,84 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/Kvstore)
 
+#### 分布式文件管理
+
+##### 介绍
+
+本示例使用分布式能力实现了一个分布式的文件管理，可以进行文件的跨设备拷贝。
+
+##### 使用
+
+1. 两台设备A、B组网成功。
+
+2. A设备上长按列表出现复选框，选择文件(夹)后点击下方的“复制”按钮。
+
+3. B设备上进入要复制的文件夹目录，点击右上角的“粘贴”图标。
+
+4. A设备上的文件成功拷贝至B设备。
+
+##### 基本原理
+
+本示例用到了文件管理接口[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
+
+分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)。
+
+允许系统应用获取分布式设备的认证组网能力：[ohos.permission.ACCESS_SERVICE_DM](security/AccessToken/permissions-for-system-apps.md#ohospermissionACCESS_SERVICE_DM)
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.3.3
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedFilemanager)
+
+#### 跨端迁移随手记
+
+##### 介绍
+
+本示例主要展示了应用数据跨端迁移的能力，通过跨端迁移的能力实现了一个简单的随手记应用，可以响应系统迁移事件，控制应用的迁移能力、是否迁移页面栈以及迁移后是否退出源端等。同时实现了数据迁移以及ArkUI控件的迁移。
+
+本示例使用了权限管理接口[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)、基础文件操作接口[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 、相册管理模块接口[@ohos.file.photoAccessHelper](https://gitee.com/eileen-dxy/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)等接口，通过分布式数据对象以及分布式文件两种方式实现了图片数据的流转迁移。
+
+##### 使用
+
+1. 启动应用，进入欢迎页，点击允许授权。
+
+2. 进入主页，点击右上角设置图标进入迁移设置页面，可以设置当前应用是否具备迁移能力、是否迁移页面栈以及迁移后是否退出源端。
+
+3. 进入主页，可以点击笔记页、待办事项、图片墙等按钮进入对应页面。
+
+4. 在笔记页，可以编辑笔记标题、笔记内容、选择图片，在打开迁移能力和迁移页面栈的情况下，所编辑的内容和选择的图片可以同步迁移到对端设备。
+
+5. 在待办事项页，勾选多选框，在打开迁移能力和迁移页面栈的情况下，可以迁移当前的勾选状态。
+
+6. 在图片墙页，滑动页面到某个位置，在打开迁移能力和迁移页面栈的情况下，可以迁移当前的瀑布流控件索引位置。
+
+##### 基本原理
+
+* 在跨端迁移随手记应用里，迁移设置的功能在Setting.ets和entryability中的onContinue()实现：
+
+  * 通过[UIAbilityContext](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)可以设置当前应用任务流转的状态，控制当前应用是否具有迁移能力。
+
+  * 通过设置wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY和wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY的值可以控制当前应用是否迁移页面栈以及迁移后源端是否退出。
+
+* 笔记页通过分布式数据对象和分布式文件在Notes.ets中实现大文件（100KB以上）数据的迁移。通过分布式文件的[跨设备文件访问](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md)实现了图片的迁移。
+
+* 从图库中选择图片，使用选择器接口[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)的PhotoViewPicker图库选择器对象选择一张图片并通过writeSrcToDistributedFile(this.uris)将选择的图片的uri写入分布式文件路径filePath。接口参考：[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
+
+* 使用getImage()方法获取从图库中选择的图片资源PixelMap类型，首先使用photoAccessHelper.getPhotoAccessHelper(context)获取相册管理模块的实例，使用phAccessHelper.getAssets()获取图片资源,使用photoAsset.getThumbnail()获取所选的图片的PixelMap类型数据。接口参考：[ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 
+
+* 在对端设备上迁移显示笔记页内容时，在aboutToAppear()钩子中调用readFromDistributedFile()读取分布式路径里存储的图片文件。首先以同步方法fs.accessSync(filePath)检查分布式路径下文件是否存在，通过image.createImageSource(filePath)传入的uri创建图片源实例imageSourceApi,通过imageSourceApi.createPixelMap()来创建PixelMap 并负责流转后展示。接口参考：[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.5.5
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedJotNote)
+
 ### 一次开发多端部署
 
 #### ArkTS多设备自适应能力
@@ -3888,7 +4558,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 ##### 基本原理
 
 * 该示例使用了路由跳转接口，实现了各个不同布局之间的页面跳转，通过MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件。
-* 接口参考：[@ohos.router](reference/apis/js-apis-system-router.md)，[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
+* 接口参考：[@ohos.router](reference/apis-arkui/js-apis-system-router.md)，[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)
 
 ##### 约束与限制
 
@@ -3902,7 +4572,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用媒体查询接口[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)，结合[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，展示应用市场首页，页面中包括Tab栏、运营横幅、精品应用、精品游戏等。
+本示例使用媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)，结合[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，展示应用市场首页，页面中包括Tab栏、运营横幅、精品应用、精品游戏等。
 
 ##### 使用
 
@@ -3919,7 +4589,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 ##### 基本原理
 
 本示例介绍如何使用自适应布局能力和响应式布局能力适配不同尺寸窗口，将页面分拆为5个部分。   
-#### 底部/侧边导航栏
+##### 底部/侧边导航栏
 1、在sm和md断点下，导航栏在底部；在lg断点下，导航栏在左侧。   
 2、通过Tab组件的barPosition和vertical属性控制TabBar的位置在主轴方向起始或结尾位置和水平或垂直方向，同时还可以通过barWidth和barHeight属性控制TabBar的尺寸。
 
@@ -3935,7 +4605,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用了路由跳转[@ohos.router](reference/apis/js-apis-system-router.md)，比如点击食物，可以跳转至相应的食物详情页面，通过[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)，使用其中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，使用[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)的MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件，[@ohos.curves](reference/apis/js-apis-curve.md)的cubicBezierCurve方法构造三阶贝塞尔曲线对象。
+本示例使用了路由跳转[@ohos.router](reference/apis-arkui/js-apis-system-router.md)，比如点击食物，可以跳转至相应的食物详情页面，通过[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)，使用其中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，使用[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)的MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件，[@ohos.curves](reference/apis-arkui/js-apis-curve.md)的cubicBezierCurve方法构造三阶贝塞尔曲线对象。
 
 ##### 使用
 
@@ -3947,7 +4617,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 ##### 基本原理
 
 * 本实例使用了路由跳转，比如点击食物，可以跳转至相应的食物详情页面，通过一次开发多端部署，使用其中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，使用MediaQueryListener方法查询媒体，matchMediaSync方法设置媒体查询的查询条件，cubicBezierCurve方法构造三阶贝塞尔曲线对象。
-* 接口参考：[@ohos.router](reference/apis/js-apis-system-router.md)，[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)，[@ohos.curves](reference/apis/js-apis-curve.md)，[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
+* 接口参考：[@ohos.router](reference/apis-arkui/js-apis-system-router.md)，[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)，[@ohos.curves](reference/apis-arkui/js-apis-curve.md)，[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)
 
 ##### 约束与限制
 
@@ -3997,7 +4667,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例分别展示了多场景下，一多分栏控件的响应式变化效果。分别用到了[SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation](reference/arkui-ts/ts-basic-components-navigation.md)组件，对应使用场景如下：
+本示例分别展示了多场景下，一多分栏控件的响应式变化效果。分别用到了[SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)组件，对应使用场景如下：
 
 - A+B+C：即SideBarContainer组件组合Navigation组件
   1. 预览器窗口宽度>840vp时，显示A、B、C三列，放大缩小时，优先变化C列
@@ -4018,9 +4688,9 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 基本原理
 
-* [SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)组件，自动隐藏侧边栏的功能是由minContentWidth与minSideBarWidth属性实现的。当设置[SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)组件组件的显示类型为SideBarContainerType.Embed,并且窗口宽度达到minContentWidth + minSideBarWidth的边界值时，侧边栏自动隐藏。
+* [SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件，自动隐藏侧边栏的功能是由minContentWidth与minSideBarWidth属性实现的。当设置[SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件组件的显示类型为SideBarContainerType.Embed,并且窗口宽度达到minContentWidth + minSideBarWidth的边界值时，侧边栏自动隐藏。
 
-* [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)组件，自动隐藏侧边栏的功能是由minContentWidth属性实现的。当[Navigation](reference/arkui-ts/ts-basic-components-navigation.md)的内容区域达到minContentWidth设置的值时，navBar自动隐藏。
+* [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)组件，自动隐藏侧边栏的功能是由minContentWidth属性实现的。当[Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的内容区域达到minContentWidth设置的值时，navBar自动隐藏。
 
 ##### 约束与限制
 
@@ -4037,7 +4707,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 本示例展示了导航组件在不同设备形态下的样式。
 
 - 在sm设备上，以tabs形式展示，内容、导航为上下样式布局，通过点击底部tabs切换内容；
-- 在md/lg设备上，以[SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)形式展示，内容、导航为左右布局，通过点击侧边一二级菜单进行内容切换。
+- 在md/lg设备上，以[SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)形式展示，内容、导航为左右布局，通过点击侧边一二级菜单进行内容切换。
 
 本示例使用[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev) 中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，主要通过组件提供窗口断点事件，保证应用在不同设备或不同窗口尺寸下可以正常显示。
 
@@ -4054,7 +4724,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 **整体布局:**
 
-1.通过GridRow组件提供的断点事件，获取到当前窗口的断点，通过visibility属性将[Tabs](reference/arkui-ts/ts-container-tabs.md)组件与[SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)组件分别在sm/(md、lg)
+1.通过GridRow组件提供的断点事件，获取到当前窗口的断点，通过visibility属性将[Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)组件与[SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)组件分别在sm/(md、lg)
 形态下展示/隐藏。
 
 2.同时通过断点，对组件设置不同的样式属性，以最优的效果展示。
@@ -4089,7 +4759,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用媒体查询接口[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)，[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，展示音乐专辑主页。
+本示例使用媒体查询接口[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)，[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示，展示音乐专辑主页。
 
 - 头部返回栏: 因元素单一、位置固定在顶部，因此适合采用自适应拉伸，充分利用顶部区域。
 - 专辑封面: 使用栅格组件控制占比，在小尺寸屏幕下封面图与歌单描述在同一行。
@@ -4135,7 +4805,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 ##### 介绍
 
-本示例使用[Navigation组件](reference/arkui-ts/ts-basic-components-navigation.md)，实现小窗口单栏显示、大窗口双栏显示的效果，结合[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。 实现单/双栏的显示效果、 实现点击跳转或刷新、 实现多级跳转。展示设置应用的典型页面，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。
+本示例使用[Navigation组件](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，实现小窗口单栏显示、大窗口双栏显示的效果，结合[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。 实现单/双栏的显示效果、 实现点击跳转或刷新、 实现多级跳转。展示设置应用的典型页面，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。
 
 ##### 使用
 
@@ -4183,7 +4853,7 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 ##### 介绍
 
-本示例使用[SideBarContainer](reference/arkui-ts/ts-container-sidebarcontainer.md)实现侧边栏功能，[栅格容器组件](reference/arkui-ts/ts-container-gridrow.md)实现界面内容的分割和展示，[Canvas组件](reference/arkui-ts/ts-components-canvas-canvas.md)和[CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md) 完成空气质量和日出月落图的曲线绘制，再结合[一次开发，多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的指导中响应式布局的栅格断点系统实现在不同尺寸窗口界面上不同的显示效果。展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。
+本示例使用[SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)实现侧边栏功能，[栅格容器组件](reference/apis-arkui/arkui-ts/ts-container-gridrow.md)实现界面内容的分割和展示，[Canvas组件](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)和[CanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md) 完成空气质量和日出月落图的曲线绘制，再结合[一次开发，多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)的指导中响应式布局的栅格断点系统实现在不同尺寸窗口界面上不同的显示效果。展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。
 
 ##### 使用
 
@@ -4214,13 +4884,53 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)
 
+#### 一多音乐典型场景
+
+##### 介绍
+
+本示例使用[一次开发多端部署](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/key-features/multi-device-app-dev)中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，展示了一个典型音乐场景示例。通过使用Grid组件提供窗口断点事件，保证音乐应用在不同设备或不同窗口尺寸下可以正常显示。
+
+##### 使用
+
+1. 打开首页，在IDE编辑器中打开预览器查看预览效果。
+
+2. 在预览器中开启窗口拖拽模式，拖动窗口变化，可以查看组件的响应式变化。
+
+3. 手动自由拖拽窗口，将应用窗口在sm/md/lg三种设备形态下进行切换并查看预览效果。
+
+##### 基本原理
+
+**标题栏**
+
+不同容器尺寸下，元素位置不固定，采用[GridRow](reference/apis-arkui/arkui-ts/ts-container-gridrow.md)组件进行栅格布局。在sm/md断点下，标题栏所有元素占两行，在lg断点下，所有元素只占一行。
+
+**轮播图**
+
+使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md)组件，通过动态设置[displaycount](reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性，显示图片数量根据[窗口断点](reference/apis-arkui/arkui-ts/ts-container-gridrow.md#gridrowdirection枚举说明)进行自适应变化。在sm断点下显示一张图片，在md断点下显示两张图片，lg断点下通过if关键字切换成[Row](reference/apis-arkui/arkui-ts/ts-container-row.md)容器进行布局。
+
+**音乐分类**
+
+使用List组件的自带延伸布局能力，元素随容器组件尺寸变化显示或隐藏。
+
+**歌单列表/我的歌单**
+
+使用[Grid](reference/apis-arkui/arkui-ts/ts-container-grid.md)组件进行响应式布局，元素数量根据[窗口断点](reference/apis-arkui/arkui-ts/ts-container-gridrow.md#gridrowdirection枚举说明)进行自适应变化。 
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.10
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)
+
 ### 卡片
 
 #### JS多设备自适应服务卡片
 
 ##### 介绍
 
-本示例使用卡片扩展模块接口[@ohos.app.form.FormExtensionAbility](reference/apis/js-apis-app-form-formExtensionAbility.md) 、卡片信息和状态等相关类型和枚举接口[@ohos.app.form.formInfo](reference/apis/js-apis-app-form-formInfo.md) 、卡片数据绑定的能力接口[@ohos.app.form.formBindingData](reference/apis/js-apis-app-form-formBindingData.md) 。展示Js工程中服务卡片的布局和使用，其中卡片内容显示使用了一次开发，多端部署的能力实现多设备自适应。
+本示例使用卡片扩展模块接口[@ohos.app.form.FormExtensionAbility](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) 、卡片信息和状态等相关类型和枚举接口[@ohos.app.form.formInfo](reference/apis-form-kit/js-apis-app-form-formInfo.md) 、卡片数据绑定的能力接口[@ohos.app.form.formBindingData](reference/apis-form-kit/js-apis-app-form-formBindingData.md) 。展示Js工程中服务卡片的布局和使用，其中卡片内容显示使用了一次开发，多端部署的能力实现多设备自适应。
 
 ##### 使用
 
@@ -4277,7 +4987,7 @@ return formInfo.FormState.READY }。
 本示例展示了如何通过ArkTS卡片的Canvas自定义绘制能力实现一个简单的五子棋游戏卡片。
 
 - 使用Canvas绘制棋盘和黑白棋子的落子。
-- 通过卡片支持的[点击事件](reference/arkui-ts/ts-universal-events-click.md)进行交互，让用户在棋盘上进行黑白棋子的对局。
+- 通过卡片支持的[点击事件](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)进行交互，让用户在棋盘上进行黑白棋子的对局。
 - 通过TS的逻辑代码实现五子棋输赢判定、回退等逻辑计算，整个游戏过程无需拉起FormExtensionAbility。
 
 ##### 使用
@@ -4335,7 +5045,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用卡片扩展模块接口[@ohos.app.form.FormExtensionAbility](reference/apis/js-apis-app-form-formExtensionAbility.md) 、卡片信息和状态等相关类型和枚举接口[@ohos.app.form.formInfo](reference/apis/js-apis-app-form-formInfo.md) 、卡片提供方相关接口的能力接口[@ohos.app.form.formProvider](reference/apis/js-apis-app-form-formProvider.md) 、应用组件间的信息传递接口[@ohos.app.ability.Want](reference/apis/js-apis-app-ability-want.md) 。展示了Stage模型卡片提供方的创建与使用。
+本示例使用卡片扩展模块接口[@ohos.app.form.FormExtensionAbility](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) 、卡片信息和状态等相关类型和枚举接口[@ohos.app.form.formInfo](reference/apis-form-kit/js-apis-app-form-formInfo.md) 、卡片提供方相关接口的能力接口[@ohos.app.form.formProvider](reference/apis-form-kit/js-apis-app-form-formProvider.md) 、应用组件间的信息传递接口[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md) 。展示了Stage模型卡片提供方的创建与使用。
 
 ##### 使用
 
@@ -4343,7 +5053,7 @@ return formInfo.FormState.READY }。
 
 2.卡片的样式如"添加卡片"所示。当卡片更新时，卡片上的温度和时间会产生变化。
 
-3.安装[卡片应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/processProxyForm/)或[formProvider应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/persistentProxyForm/)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
+3.安装[卡片应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/processProxyForm)或[formProvider应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/persistentProxyForm)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
 
 4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
 
@@ -4370,9 +5080,9 @@ return formInfo.FormState.READY }。
 
 本示例展示了如何通过Stage模型实现一个简单的游戏卡片。
 
-- 通过卡片支持的[点击事件](reference/js-service-widget-ui/js-service-widget-common-events.md)进行交互，让用户通过点击的先后顺序把一个乱序的成语排列成正确的成语。
+- 通过卡片支持的[点击事件](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-events.md)进行交互，让用户通过点击的先后顺序把一个乱序的成语排列成正确的成语。
 - 使用了C++和TS的混合编程方式，将获取随机数的能力下沉到C++实现，并通过[NAPI](napi/napi-guidelines.md)的能力将C++实现的能力暴露到TS中。
-- 用到了卡片扩展模块接口，[@ohos.app.form.FormExtensionAbility](reference/apis/js-apis-app-form-formExtensionAbility.md) 。
+- 用到了卡片扩展模块接口，[@ohos.app.form.FormExtensionAbility](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) 。
 
 ##### 使用
 
@@ -4403,7 +5113,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例主要展示了使用[@ohos.app.form.formBindingData](reference/apis/js-apis-app-form-formBindingData.md)、[@ohos.app.form.formProvider](reference/apis/js-apis-app-form-formProvider.md)等接口，实现了在com.ohos.hag.famanager应用上，主动添加数据代理卡片到桌面的功能。
+本示例主要展示了使用[@ohos.app.form.formBindingData](reference/apis-form-kit/js-apis-app-form-formBindingData.md)、[@ohos.app.form.formProvider](reference/apis-form-kit/js-apis-app-form-formProvider.md)等接口，实现了在com.ohos.hag.famanager应用上，主动添加数据代理卡片到桌面的功能。
 
 ##### 使用
 
@@ -4416,9 +5126,9 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 - 发布ArkTs数据代理卡片到桌面
-  - 使用requestPublishForm接口，将应用内的ArkTs数据代理卡片主动添加到桌面上，接口参考：[@ohos.app.form.formProvider](reference/apis/js-apis-app-form-formProvider.md)
+  - 使用requestPublishForm接口，将应用内的ArkTs数据代理卡片主动添加到桌面上，接口参考：[@ohos.app.form.formProvider](reference/apis-form-kit/js-apis-app-form-formProvider.md)
 - 发布Js数据代理卡片到桌面
-  - 使用requestPublishForm接口，将应用内的Js数据代理卡片主动添加到桌面上，接口参考：[@ohos.app.form.formProvider](reference/apis/js-apis-app-form-formProvider.md)
+  - 使用requestPublishForm接口，将应用内的Js数据代理卡片主动添加到桌面上，接口参考：[@ohos.app.form.formProvider](reference/apis-form-kit/js-apis-app-form-formProvider.md)
 
 ##### 约束与限制
 
@@ -4438,12 +5148,12 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例展示了[AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
+本示例展示了[AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)的简单应用，使用多个辅助功能接口，启动或关闭无障碍扩展服务，实现了一些快捷的交互方式。
 
 ##### 使用
 
 1. 在启动无障碍扩展服务前，需退出当前应用保证界面节点正常生成；
-2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](application-models/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
+2. 启动关闭无障碍扩展服务可参考[AccessibilityExtensionAbility开发指南](accessibility/accessibilityextensionability.md), 服务连接状态将显示在屏幕上;
 3. 启动无障碍扩展服务后，在设备屏幕上绘画右划后再下划的手势`rightThenDown`获取当前界面全部节点，之后绘画左划后再下划的手势`leftThenDown`打印所有节点的指定信息；
 4. 在设备屏幕上绘画左划手势`left`对按钮`获焦`进行聚焦，之后可通过绘画右划手势`right`取消对按钮聚焦；
 5. 在设备屏幕上绘画下划手势`down`，触发对按钮`未点击/已点击`的点击动作。
@@ -4451,7 +5161,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 获取界面元素、查询元素指定信息、通过text查找元素和获取元素执行指定动作的功能封装在AccessibilityManager：
-  * 使用 [getWindowRootElement()](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontextgetwindowrootelement) 获取界面根节点；
+  * 使用 [getWindowRootElement()](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md#accessibilityextensioncontextgetwindowrootelement) 获取界面根节点；
   * 获取元素属性值：使用AccessibilityUtils.getAttributeValue()；
   * 获取界面所有元素：基于获取的根元素，使用AccessibilityUtils.createElementArray()获取界面所有元素；
   * 打印界面元素指定信息：使用AccessibilityUtils.getElementWantedInfo()获取元素指定的信息；
@@ -4469,7 +5179,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例通过[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)接口实现了系统管理状态变化通知功能，[@ohos.enterprise.adminManager](reference/apis/js-apis-enterprise-adminManager.md)接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
+本示例通过[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md)接口实现了系统管理状态变化通知功能，[@ohos.enterprise.adminManager](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
 
 ##### 使用
 
@@ -4484,7 +5194,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 该示例通过EnterpriseAdminExtensionAbility接口实现了系统管理状态变化通知功能，adminManager接口中enableAdmin方法去激活当前用户下的指定设备管理员应用，disableSuperAdmin方法去根据bundleName将管理员用户下的超级管理员应用去激活，subscribeManagedEvent方法去指定设备管理员应用订阅系统管理事件，unsubscribeManagedEvent方法去指定设备管理员应用取消订阅系统管理事件来实现应用激活、去激活、应用安装、卸载事件。
-* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)，[@ohos.enterprise.adminManager](reference/apis/js-apis-enterprise-adminManager.md)，[@ohos.app.ability.Want](reference/apis/js-apis-app-ability-want.md)
+* 接口参考：[@ohos.enterprise.EnterpriseAdminExtensionAbility](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md)，[@ohos.enterprise.adminManager](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)，[@ohos.app.ability.Want](reference/apis-ability-kit/js-apis-app-ability-want.md)
 
 ##### 约束与限制
 
@@ -4498,7 +5208,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.bundle.launcherBundleManager](reference/apis/js-apis-launcherBundleManager.md)模块接口，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用[@ohos.bundle](reference/apis/js-apis-Bundle.md)的getBundleInstaller接口获取到，调用uninstall接口实现应用卸载功能。使用[@ohos.app.form.formHost](reference/apis/js-apis-app-form-formHost.md)接口，获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。使用关系型数据库[@ohos.data.relationalStore](reference/apis/js-apis-data-relationalStore.md)接口，实现桌面数据持久化存储，存储应用的位置信息，卡片信息。使用[@ohos.application.missionManager](reference/apis/js-apis-application-missionManager.md)接口，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。使用[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)的startRecentAbility接口，拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。实现了一个简单桌面应用，概括为以下几点：
+本示例使用[@ohos.bundle.launcherBundleManager](reference/apis-ability-kit/js-apis-launcherBundleManager-sys.md)模块接口，获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle-sys.md)的getBundleInstaller接口获取到，调用uninstall接口实现应用卸载功能。使用[@ohos.app.form.formHost](reference/apis-form-kit/js-apis-app-form-formHost-sys.md)接口，获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。使用关系型数据库[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md)接口，实现桌面数据持久化存储，存储应用的位置信息，卡片信息。使用[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md)接口，获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。使用[@ohos.app.ability.ServiceExtensionAbility](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.app.ability.ServiceExtensionAbility.d.ts)的startRecentAbility接口，拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。实现了一个简单桌面应用，概括为以下几点：
 
 1.展示了系统安装的应用，实现点击启动、应用上滑弹出卡片、卡片添加到桌面、卡片移除功能。
 
@@ -4528,23 +5238,23 @@ return formInfo.FormState.READY }。
 
 * 获取应用功能模块
   * 使用launcherBundleManager模块接口（系统能力：SystemCapability.BundleManager.BundleFramework），获取所有应用信息和给定包名获取应用信息，实现桌面展示所有安装的应用。使用on接口监听应用的安装和卸载从而实现应用安装和卸载刷新桌面。
-  * 接口参考：[@ohos.bundle.launcherBundleManager](reference/apis/js-apis-launcherBundleManager.md)
+  * 接口参考：[@ohos.bundle.launcherBundleManager](reference/apis-ability-kit/js-apis-launcherBundleManager-sys.md)
 
 * 应用卸载功能模块
   * 使用bundle模块的getBundleInstaller接口获取到BundleInstaller（系统能力：SystemCapability.BundleManager.BundleFramework），调用uninstall接口实现应用卸载功能。
-  * 接口参考：[@ohos.bundle](reference/apis/js-apis-Bundle.md)
+  * 接口参考：[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle-sys.md)
   
 * 添加卡片功能模块
   * 使用formHost接口（系统能力：SystemCapability.Ability.Form），获取应用卡片信息，使用FormComponent组件展示卡片内容，从而实现添加卡片到桌面的功能。
-  * 接口参考：[@ohos.app.form.formHost](reference/apis/js-apis-app-form-formHost.md)
+  * 接口参考：[@ohos.app.form.formHost](reference/apis-form-kit/js-apis-app-form-formHost-sys.md)
 
 * 桌面数据持久化存储功能模块
   * 使用关系型数据库rdb接口（系统能力：SystemCapability.DistributedDataManager.RelationalStore.Core），实现桌面数据持久化存储，存储应用的位置信息，卡片信息。
-  * 接口参考：[@ohos.data.relationalStore](reference/apis/js-apis-data-relationalStore.md)
+  * 接口参考：[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-relationalStore.md)
 
 * 加锁、解锁、清理后台任务功能模块
   * 使用missionManager模块接口（系统能力：SystemCapability.Ability.AbilityRuntime.Mission），获取最近任务信息，并实现加锁、解锁、清理后台任务的功能。
-  * 接口参考：[@ohos.application.missionManager](reference/apis/js-apis-application-missionManager.md)
+  * 接口参考：[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md)
 
 * 点击桌面应用拉起最近任务至前台功能模块
   * 使用ServiceExtensionContext模块的startRecentAbility接口（系统能力：SystemCapability.Ability.AbilityRuntime.Core），拉起最近任务至前台显示，若应用Ability未启动时，则拉起新创建的应用Ability显示到前台。
@@ -4562,7 +5272,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例通过调用系统任务管理的能力，使用[@ohos.application.missionManager](reference/apis/js-apis-application-missionManager.md) 、[@ohos.multimedia.image](reference/apis/js-apis-image.md) 等接口完成对系统任务执行锁定、解锁、清理、切换到前台等操作。
+本示例通过调用系统任务管理的能力，使用[@ohos.application.missionManager](reference/apis-ability-kit/js-apis-application-missionManager-sys.md) 、[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md) 等接口完成对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 ##### 使用
 
@@ -4596,7 +5306,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例主要展示了静态订阅的创建与使用，以及静态订阅的使能和去使能。通过[CommonEventManager](reference/apis/js-apis-commonEventManager.md)发布自定义事件，使能和去使能静态订阅。通过[StaticSubscriberExtensionAbility](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)、[NotificationManager](reference/apis/js-apis-notificationManager.md)静态订阅已发布的自定义事件，订阅后即可自动收到该事件，收到该事件后，发送通知将自定义事件数据显示在通知栏。
+本示例主要展示了静态订阅的创建与使用，以及静态订阅的使能和去使能。通过[CommonEventManager](reference/apis-basic-services-kit/js-apis-commonEventManager.md)发布自定义事件，使能和去使能静态订阅。通过[StaticSubscriberExtensionAbility](reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)、[NotificationManager](reference/apis-notification-kit/js-apis-notificationManager.md)静态订阅已发布的自定义事件，订阅后即可自动收到该事件，收到该事件后，发送通知将自定义事件数据显示在通知栏。
 
 ##### 使用
 
@@ -4612,15 +5322,15 @@ return formInfo.FormState.READY }。
 
 * 通过CommonEventManager.publish方法发布自定义事件，该自定义事件为数据传输事件。
 
-* 接口参考：[@ohos.commonEventManager](reference/apis/js-apis-commonEventManager.md)
+* 接口参考：[@ohos.commonEventManager](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 
 * 通过CommonEventManager.setStaticSubscriberState方法为当前应用设置静态订阅事件使能或去使能状态。
 
-* 接口参考：[@ohos.commonEventManager](reference/apis/js-apis-commonEventManager.md)
+* 接口参考：[@ohos.commonEventManager](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
 
 * 通过StaticSubscriberExtensionAbility接口静态订阅已发布的自定义事件，订阅后即可自动收到该事件，收到该事件后，setNotificationEnable，ContentType方法发送通知将自定义事件数据显示在通知栏。
 
-* 接口参考：[@ohos.application.StaticSubscriberExtensionAbility](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)，[@ohos.notificationManager](reference/apis/js-apis-notificationManager.md)
+* 接口参考：[@ohos.application.StaticSubscriberExtensionAbility](reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)，[@ohos.notificationManager](reference/apis-notification-kit/js-apis-notificationManager.md)
 
 ##### 约束与限制
 
@@ -4705,7 +5415,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例通过[@ohos.bluetooth](reference/apis/js-apis-bluetooth.md) 接口实现蓝牙设备发现、配对、取消配对功能。
+本示例通过[@ohos.bluetooth](reference/apis-connectivity-kit/js-apis-bluetooth.md) 接口实现蓝牙设备发现、配对、取消配对功能。
 
 ##### 使用
 
@@ -4736,7 +5446,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例通过[@ohos.wifiManager](reference/apis/js-apis-wifiManager.md) 相关API实现wlan激活和关闭、扫描和连接WIFI等功能。
+本示例通过[@ohos.wifiManager](reference/apis-connectivity-kit/js-apis-wifiManager-sys.md) 相关API实现wlan激活和关闭、扫描和连接WIFI等功能。
 
 ##### 使用
 
@@ -4771,7 +5481,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用数据共享扩展能力[@ohos.data.DataShareResultSet](reference/apis/js-apis-application-dataShareExtensionAbility.md)，关系型数据库[@ohos.data.relationalStore](reference/apis/js-apis-data-dataShare.md)，[@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。
+本示例使用数据共享扩展能力[@ohos.data.DataShareResultSet](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)，关系型数据库[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-dataShare-sys.md)，[@ohos.data.rdb](reference/apis-arkdata/js-apis-data-rdb.md)实现了一个跨应用数据共享实例，分为联系人（数据提供方）和联系人助手（数据使用方）两部分：联系人支持联系人数据的增、删、改、查等功能；联系人助手支持同步联系人数据，当联系人与联系人助手数据不一致时，支持合并重复数据。
 
 ##### 使用
 
@@ -4784,7 +5494,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 使用DataShareExtensionAbility实现数据共享，关系型数据库实现数据的增、删、改、查接口，DataShare管理和访问数据库数据变化。
-* 接口参考：[@ohos.data.DataShareResultSet](reference/apis/js-apis-application-dataShareExtensionAbility.md)，[@ohos.data.relationalStore](reference/apis/js-apis-data-dataShare.md)，[@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
+* 接口参考：[@ohos.data.DataShareResultSet](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)，[@ohos.data.relationalStore](reference/apis-arkdata/js-apis-data-dataShare-sys.md)，[@ohos.data.rdb](reference/apis-arkdata/js-apis-data-rdb.md)
 
 ##### 约束与限制
 
@@ -4802,24 +5512,24 @@ return formInfo.FormState.READY }。
 
 本示例集合设备管理相关(系统特性)不需要复杂功能展示的模块，展示了各个模块的基础功能，包含：
 
-- [@ohos.batteryStatistics (耗电统计)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-batteryStatistics.md%2F)
-- [@ohos.brightness (屏幕亮度)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-brightness.md%2F)
-- [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
-- [@ohos.settings (设置数据项名称)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-settings.md%2F)
-- [@ohos.systemCapability (系统能力)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-system-capability.md%2F)
-- [@ohos.systemParameterEnhance (系统参数)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-system-parameterEnhance.md%2F)
-- [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
-- [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
-- [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
-- [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
-- [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
-- [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
-- [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
-- [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
-- [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
-- [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
-- [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
-- [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
+- [@ohos.batteryStatistics (耗电统计)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
+- [@ohos.brightness (屏幕亮度)](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
+- [@ohos.power (系统电源管理)](reference/apis-basic-services-kit/js-apis-power-sys.md)
+- [@ohos.settings (设置数据项名称)](reference/apis-basic-services-kit/js-apis-settings.md)
+- [@ohos.systemCapability (系统能力)](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
+- [@ohos.systemParameterEnhance (系统参数)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
+- [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
+- [@ohos.deviceInfo (设备信息)](reference/apis-basic-services-kit/js-apis-device-info.md)
+- [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
+- [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
+- [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis-input-kit/js-apis-inputevent.md)
+- [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
+- [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
+- [@ohos.multimodalInput.keyCode (键值)](reference/apis-input-kit/js-apis-keycode.md)
+- [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis-input-kit/js-apis-keyevent.md)
+- [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
+- [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
+- [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
 
 ##### 使用
 
@@ -4857,38 +5567,38 @@ return formInfo.FormState.READY }。
 
 1.首页菜单展示：使用一个module，menuitems完成菜单组件的实现，传入要展示的菜单的strarray类型的资源和菜单点击对应的组件即可。使用Navigation和NavRouter组件实现菜单点击进入功能界面，使用LocalStorage实现应用内Ability内数据共享，点击菜单时标记selectedLabel，在entry中的Capabilities组件中，通过selectedLabel显示对应的功能组件。
 
-2.耗电统计：使用[@ohos.batteryStatistics.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md/)
-接口获取硬件和应用的耗电量与百分比，使用[@ohos.bundle.bundleManager.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-bundleManager.md/)
+2.耗电统计：使用[@ohos.batteryStatistics.d.ts](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
+接口获取硬件和应用的耗电量与百分比，使用[@ohos.bundle.bundleManager.d.ts](reference/apis-ability-kit/js-apis-bundleManager.md)
 接口获取系统已安装应用信息。
 
-3.屏幕亮度：使用[@ohos.brightness.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-brightness.md/)
+3.屏幕亮度：使用[@ohos.brightness.d.ts](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
 实现屏幕亮度控制。
 
-4.系统电源管理：使用[@ohos.power.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-power.md/)
+4.系统电源管理：使用[@ohos.power.d.ts](reference/apis-basic-services-kit/js-apis-power-sys.md)
 实现休眠、关机、重启、设置电源模式功能。
 
-5.设置数据项名称：使用[@ohos.settings.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-settings.md/)
+5.设置数据项名称：使用[@ohos.settings.d.ts](reference/apis-basic-services-kit/js-apis-settings.md)
 实现将数据项名称及数据项的值保存到数据库中。
 
-6.系统能力：使用[@ohos.systemCapability.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-system-capability.md/)
+6.系统能力：使用[@ohos.systemCapability.d.ts](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
 实现获取系统能力集合的字符串并显示。
 
-7.系统参数：使用[@ohos.systemParameterEnhance.d.ts](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-system-parameterEnhance.md/)
+7.系统参数：使用[@ohos.systemParameterEnhance.d.ts](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
 实现设置一个系统参数、获取并展示系统参数功能。
 
-8.电量信息：使用[@ohos.batteryInfo.d.ts](reference/apis/js-apis-battery-info.md)接口获取电池和充放电状态信息
+8.电量信息：使用[@ohos.batteryInfo.d.ts](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)接口获取电池和充放电状态信息
 
-9.设备信息：使用[@ohos.deviceInfo](reference/apis/js-apis-device-info.md)获取设备相关信息。
+9.设备信息：使用[@ohos.deviceInfo](reference/apis-basic-services-kit/js-apis-device-info.md)获取设备相关信息。
 
-10.组合按键：使用[@ohos.multimodalInput.inputConsumer](reference/apis/js-apis-inputconsumer.md) 订阅组合按键，当组合按键被触发时展示组合按键回调信息。
+10.组合按键：使用[@ohos.multimodalInput.inputConsumer](reference/apis-input-kit/js-apis-inputconsumer-sys.md) 订阅组合按键，当组合按键被触发时展示组合按键回调信息。
 
-11.输入设备：使用[@ohos.multimodalInput.inputDevice](reference/apis/js-apis-inputdevice.md) 获取输入设备列表，并显示输入设备信息，实现设备的热插拔监听。
+11.输入设备：使用[@ohos.multimodalInput.inputDevice](reference/apis-input-kit/js-apis-inputdevice.md) 获取输入设备列表，并显示输入设备信息，实现设备的热插拔监听。
 
-12.输入事件：使用[@ohos.multimodalInput.inputMonitor](reference/apis/js-apis-inputmonitor.md)开启监听全局触屏事件，当触发触屏事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](reference/apis/js-apis-inputeventclient.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](reference/apis/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
+12.输入事件：使用[@ohos.multimodalInput.inputMonitor](reference/apis-input-kit/js-apis-inputmonitor-sys.md)开启监听全局触屏事件，当触发触屏事件时显示触屏详情，使用[@ohos.multimodalInput.inputEventClient](reference/apis-input-kit/js-apis-inputeventclient-sys.md)模拟返回按键进行按键注入，实现返回功能，在column组件中添加[@ohos.multimodalInput.touchEvent](reference/apis-input-kit/js-apis-touchevent.md)触摸事件，模拟按键被按下效果。
 
-13.鼠标指针：使用[@ohos.multimodalInput.mouseEvent](reference/apis/js-apis-mouseevent.md)监听鼠标事件，并显示鼠标操作回调信息，使用[@ohos.multimodalInput.pointer](reference/apis/js-apis-pointer.md)实现鼠标指针的显示或隐藏状态，设置鼠标移动速度和显示样式。
+13.鼠标指针：使用[@ohos.multimodalInput.mouseEvent](reference/apis-input-kit/js-apis-mouseevent.md)监听鼠标事件，并显示鼠标操作回调信息，使用[@ohos.multimodalInput.pointer](reference/apis-input-kit/js-apis-pointer.md)实现鼠标指针的显示或隐藏状态，设置鼠标移动速度和显示样式。
 
-14.输入按键事件：使用 [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)监听按键输入的信息。
+14.输入按键事件：使用 [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis-input-kit/js-apis-keyevent.md)监听按键输入的信息。
 
 ##### 约束与限制
 
@@ -4902,7 +5612,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例主要展示了屏幕管理相关的功能，使用[@ohos.display](reference/apis/js-apis-display.md)、[@ohos.screen](reference/apis/js-apis-screen.md)接口，[@ohos.display](reference/apis/js-apis-display.md)接口提供获取默认display对象、获取所有display对象，开启监听、关闭监听功能；[@ohos.screen](reference/apis/js-apis-screen.md)接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏幕、镜像屏幕等功能。
+本示例主要展示了屏幕管理相关的功能，使用[@ohos.display](reference/apis-arkui/js-apis-display.md)、[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)接口，[@ohos.display](reference/apis-arkui/js-apis-display.md)接口提供获取默认display对象、获取所有display对象，开启监听、关闭监听功能；[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)接口提供创建虚拟屏幕、销毁虚拟屏幕、扩展屏幕、镜像屏幕等功能。
 
 ##### 使用
 
@@ -4933,7 +5643,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[DataPanel组件](reference/arkui-ts/ts-basic-components-datapanel.md)展示不同种类的应用存储信息，通过[@ohos.bundle.bundleManager](reference/apis/js-apis-Bundle.md)模块来获取不同应用的包名与应用名等信息，使用应用空间统计[@ohos.file.storageStatistics](reference/apis/js-apis-file-storage-statistics.md)来查询当前设备的存储使用情况，使用卷管理[@ohos.file.volumeManager](reference/apis/js-apis-file-volumemanager.md)来查询可用卷存储使用情况。实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。
+本示例使用[DataPanel组件](reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)展示不同种类的应用存储信息，通过[@ohos.bundle.bundleManager](reference/apis-ability-kit/js-apis-Bundle-sys.md)模块来获取不同应用的包名与应用名等信息，使用应用空间统计[@ohos.file.storageStatistics](reference/apis-core-file-kit/js-apis-file-storage-statistics.md)来查询当前设备的存储使用情况，使用卷管理[@ohos.file.volumeManager](reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md)来查询可用卷存储使用情况。实现了查看当前设备存储空间信息、所有安装的应用的存储信息、所有可用卷的存储信息的功能。
 
 ##### 使用
 
@@ -4946,7 +5656,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 本示例使用DataPanel组件展示不同种类的应用存储信息，通过 Bundle模块来获取不同应用的包名与应用名等信息，使用应用空间统计来查询当前设备的存储使用情况，使用卷管理来查询可用卷存储使用情况。
-* 接口参考：[DataPanel组件](reference/arkui-ts/ts-basic-components-datapanel.md)，[@ohos.bundle.bundleManager](reference/apis/js-apis-Bundle.md)，[@ohos.file.storageStatistics](reference/apis/js-apis-file-storage-statistics.md)，[@ohos.file.volumeManager](reference/apis/js-apis-file-volumemanager.md)
+* 接口参考：[DataPanel组件](reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)，[@ohos.bundle.bundleManager](reference/apis-ability-kit/js-apis-Bundle-sys.md)，[@ohos.file.storageStatistics](reference/apis-core-file-kit/js-apis-file-storage-statistics.md)，[@ohos.file.volumeManager](reference/apis-core-file-kit/js-apis-file-volumemanager-sys.md)
 
 ##### 约束与限制
 
@@ -4960,7 +5670,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[鼠标指针](reference/apis/js-apis-pointer.md)，展示了多模输入鼠标外设的五种场景：鼠标样式资源切换、设置鼠标大小及颜色、设置鼠标动画光标样式、通过switch开关切换鼠标滚轮在非激活悬停窗口的滚动操作使能状态、通过switch开关切换鼠标主次键等功能。
+本示例使用[鼠标指针](reference/apis-input-kit/js-apis-pointer.md)，展示了多模输入鼠标外设的五种场景：鼠标样式资源切换、设置鼠标大小及颜色、设置鼠标动画光标样式、通过switch开关切换鼠标滚轮在非激活悬停窗口的滚动操作使能状态、通过switch开关切换鼠标主次键等功能。
 
 ##### 使用
 
@@ -4981,7 +5691,7 @@ return formInfo.FormState.READY }。
 * 本示例主要分为一个模块，
   * 鼠标外设模块
     * 主要展示了鼠标外设的五种功能设置场景
-    * 接口参考：[@ohos.multimodalInput.pointer](reference/apis/js-apis-pointer.md)
+    * 接口参考：[@ohos.multimodalInput.pointer](reference/apis-input-kit/js-apis-pointer.md)
 
 ##### 约束与限制
 
@@ -4997,7 +5707,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例展示如何使用媒体查询，[@ohos.intl](reference/apis/js-apis-intl.md)模块包含国际化能力基础接口，[@ohos.i18n](reference/apis/js-apis-i18n.md)模块包含国际化能力增强接口，资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。三个结合一起实现语言地区设置、时区设置和国际化资源管理相关功能。
+本示例展示如何使用媒体查询，[@ohos.intl](reference/apis-localization-kit/js-apis-intl.md)模块包含国际化能力基础接口，[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n-sys.md)模块包含国际化能力增强接口，资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。三个结合一起实现语言地区设置、时区设置和国际化资源管理相关功能。
 
 ##### 使用
 
@@ -5012,15 +5722,15 @@ return formInfo.FormState.READY }。
 * 本示例分为三个模块：
   * 语言和地区模块
     * 使用i18n接口中getDisplayCountry方法获取指定国家的本地化显示文本，getSystemRegion方法获取系统地区，getSystemLocale方法设置系统Locale，getSystemLanguage方法获取系统支持的语言列表，getPreferredLanguageList方法获取系统偏好语言列表，removePreferredLanguage方法删除系统偏好语言列表中指定位置的偏好语言。
-    * 接口参考：[@ohos.i18n](reference/apis/js-apis-i18n.md)，[@ohos.intl](reference/apis/js-apis-intl.md)
+    * 接口参考：[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n-sys.md)，[@ohos.intl](reference/apis-localization-kit/js-apis-intl.md)
     
   * 日期和时间模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，getTimeZone方法获取日历对象的时区，set24HourClock方法修改系统时间的24小时制设置，setTime方法设置系统时间，setDate方法设置系统日期，getTimezone方法获取系统时区。
-    * 接口参考：[@ohos.i18n](reference/apis/js-apis-i18n.md)，[@ohos.systemTime](reference/apis/js-apis-system-time.md)
+    * 接口参考：[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n-sys.md)，[@ohos.systemTime](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
 
   * 区域格式示例模块
     * 使用i18n接口中is24HourClock方法判断系统时间是否为24小时制，NumberFormat方法创建一个NumberFormat对象，getResourceManager方法获取当前应用的资源管理对。
-    * 接口参考：[@ohos.i18n](reference/apis/js-apis-i18n.md)，[@ohos.intl](reference/apis/js-apis-intl.md)，[@ohos.resourceManager](reference/apis/js-apis-resource-manager.md)
+    * 接口参考：[@ohos.i18n](reference/apis-localization-kit/js-apis-i18n-sys.md)，[@ohos.intl](reference/apis-localization-kit/js-apis-intl.md)，[@ohos.resourceManager](reference/apis-localization-kit/js-apis-resource-manager.md)
 
 ##### 约束与限制
 
@@ -5036,7 +5746,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.multimedia.camera](reference/apis/js-apis-camera.md)接口实现相机示例的主要功能：拍照、录像、参数配置等。使用[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md) 接口实现对媒体文件的存储。同时支持拍照角度旋转以及录制分辨率选择。
+本示例使用[@ohos.multimedia.camera](reference/apis-basic-services-kit/js-apis-settings-sys.md)接口实现相机示例的主要功能：拍照、录像、参数配置等。使用[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md) 接口实现对媒体文件的存储。同时支持拍照角度旋转以及录制分辨率选择。
 
 ##### 使用
 
@@ -5072,7 +5782,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.screen](reference/apis/js-apis-screen.md)管理屏幕的一些基础能力，包括获取屏幕对象，监听屏幕变化，创建和销毁虚拟屏幕等。[@ohos.multimedia.media](reference/apis/js-apis-media.md)和[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)完成视频编码并保存到文件中。[@ohos.display](reference/apis/js-apis-display.md)捕捉屏幕显示图像帧，展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
+本示例使用[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)管理屏幕的一些基础能力，包括获取屏幕对象，监听屏幕变化，创建和销毁虚拟屏幕等。[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)和[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)完成视频编码并保存到文件中。[@ohos.display](reference/apis-arkui/js-apis-display.md)捕捉屏幕显示图像帧，展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
 
 ##### 使用
 
@@ -5089,7 +5799,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 该示例通过Screen方法获取屏幕实例，createVirtualScreen方法创建一个虚拟屏，getAllScreens方法获取获取所有的屏幕，makeMirror方法将屏幕设置为镜像模式，setVirtualScreenSurface方法设置虚拟屏幕的surface，display接口捕获屏幕显示图形帧，media，mediaLibrary接口完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能。
-* 接口参考：[@ohos.screen](reference/apis/js-apis-screen.md)，[@ohos.multimedia.media](reference/apis/js-apis-media.md)，[@ohos.multimedia.mediaLibrary](reference/apis/js-apis-medialibrary.md)，[@ohos.display](reference/apis/js-apis-display.md)
+* 接口参考：[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.multimedia.mediaLibrary](reference/apis-media-library-kit/js-apis-medialibrary.md)，[@ohos.display](reference/apis-arkui/js-apis-display.md)
 
 ##### 约束与限制
 
@@ -5103,7 +5813,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[screenshot](reference/apis/js-apis-screenshot.md)模块实现屏幕截图 ，使用[window](reference/apis/js-apis-window.md#setwindowprivacymode9)模块实现隐私窗口切换，使用[display](reference/apis/js-apis-display.md#displayhasprivatewindow9)模块查询当前隐私窗口。展示全屏截图和屏幕局部截图。
+本示例使用[screenshot](reference/apis-arkui/js-apis-screenshot-sys.md)模块实现屏幕截图 ，使用[window](reference/apis-arkui/js-apis-window.md#setwindowprivacymode9)模块实现隐私窗口切换，使用[display](reference/apis-arkui/js-apis-display-sys.md#displayhasprivatewindow9)模块查询当前隐私窗口。展示全屏截图和屏幕局部截图。
 
 ##### 使用
 
@@ -5113,7 +5823,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 本示例通过screenshot接口实现屏幕截图 ，通过window接口实现隐私窗口切换，通过display接口查询当前隐私窗口。
-* 接口参考：[@ohos.screenshot](reference/apis/js-apis-screenshot.md)，[@ohos.window](reference/apis/js-apis-window.md#setwindowprivacymode9)，[@ohos.display](reference/apis/js-apis-display.md#displayhasprivatewindow9)
+* 接口参考：[@ohos.screenshot](reference/apis-arkui/js-apis-screenshot-sys.md)，[@ohos.window](reference/apis-arkui/js-apis-window.md#setwindowprivacymode9)，[@ohos.display](reference/apis-arkui/js-apis-display-sys.md#displayhasprivatewindow9)
 
 ##### 约束与限制
 
@@ -5123,13 +5833,47 @@ return formInfo.FormState.READY }。
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Screenshot)
 
+#### 音频管理（仅对系统应用开放）
+
+##### 介绍
+
+本示例主要演示了设备外放音频、普通耳机播放音频、支持空间音频和头动追踪的耳机播放音频三种音频播放方式。使用[@ohos.multimedia.audio.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.audio.d.ts)等接口完成相关功能。
+
+##### 使用
+
+1. 启动应用，在主页卡片中选择空间音频卡片，进入空间音频演示。
+
+2. 在上部的两个音乐播放器分别可以播放2.0和5.1的音源，体现了音频框架对多声道播放的支持。
+
+3. 下方的空间音频UX，具体的界面会随音频播放的设备而变化：外放及普通耳机只会启用关闭模式；支持空间音频和头动追踪的耳机会使三个按钮全部可选。
+
+4. 点击三个按钮，分别会启用“关闭空间音频”，“启用空间音频固定模式”，“启用空间音频头动追踪模式”。
+
+5. 当前版本对是否支持空间音频的判断仍简单，即当前发声设备具备不为空的mac地址就会显示三态按钮UX。
+
+##### 基本原理
+
+* 播放立体声多声道音频文件、调用空间音频API查询设置开关状态功能实现：
+    * 在createAudioRenderer(options: AudioRendererOptions)入参AudioRendererOptions中增加AudioChannelLayout字段指明音频文件声道布局，以辅助多声道音频文件播放。
+    * 使用isSpatializationSupported(), isHeadTrackingSupported(), isSpatializationSupportedForDevice(AudioDeviceDescriptor), isHeadTrackingSupportedForDevice(AudioDeviceDescriptor)四个接口查询系统和设备是否支持空间音频和头动跟踪，根据查询结果设置用户UX界面状态:只有系统和设备全都支持某功能，其按钮状态才不会被置灰。
+    * 使用isSpatializationEnabled(), isHeadTrackingEnabled()在每次UX界面出现时查询当前空间音频和头动跟踪是否开启，同步在其他app对开关状态的改动。
+    * 使用setSpatializationEnabled(enable: boolean), setHeadTrackingEnabled(enable: boolean)，在点击UX按钮时设置空间音频和头动跟踪状态。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API11版本SDK，版本号：4.1.6.5
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Audio)
+
 ### 安全
 
 #### 访问权限控制
 
 ##### 介绍
 
-本示例使用[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)接口中abilityAccessCtrl方法获取访问控制模块对象，GrantStatus.PERMISSION_GRANTED方法表示已授权状态，[@ohos.bundle.bundleManager](reference/apis/js-apis-bundleManager.md)接口中getApplicationInfo方法根据包名获取ApplicationInfo等展示应用申请权限场景
+本示例使用[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)接口中abilityAccessCtrl方法获取访问控制模块对象，GrantStatus.PERMISSION_GRANTED方法表示已授权状态，[@ohos.bundle.bundleManager](reference/apis-ability-kit/js-apis-bundleManager.md)接口中getApplicationInfo方法根据包名获取ApplicationInfo等展示应用申请权限场景
 
 ##### 使用
 
@@ -5146,7 +5890,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 该示例使用abilityAccessCtrl接口中abilityAccessCtrl方法获取访问控制模块对象，GrantStatus.PERMISSION_GRANTED方法表示已授权状态，bundleManager接口中getApplicationInfo方法根据包名获取ApplicationInfo等展示应用申请权限场景
-* 接口参考：[@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)，[@ohos.bundle.bundleManager](reference/apis/js-apis-bundleManager.md)
+* 接口参考：[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)，[@ohos.bundle.bundleManager](reference/apis-ability-kit/js-apis-bundleManager.md)
 
 ##### 约束与限制
 
@@ -5156,13 +5900,90 @@ return formInfo.FormState.READY }。
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
 
+#### 安全控件类型的UI控件（仅对系统应用开放）
+
+##### 介绍
+
+本示例提供了安全控件类型的UI控件，支撑应用开发者集成安全控件做临时授权场景，当用户实际点击了某种类型的安全控件时，会对应用进行相应的临时授权，减少权限弹窗对用户的干扰，同时提供更小的授权范围。
+
+##### 使用
+
+1. 在主界面，点击“LocationButton安全控件”按钮，进入“LocationButton安全控件”界面，点击“当前位置”按钮，成功获取当前定位信息，并显示在方框中。
+
+2. 在主界面，点击“PasteButton安全控件”按钮，进入“PasteButton安全控件”界面，点击”复制“按钮，复制下方“天天开心”文本，点击“粘贴”按钮，获取剪贴板内容并显示在其下方框中。
+
+3. 在主界面，点击“SaveButton安全控件”按钮，进入“SaveButton安全控件”界面，点击“下载”按钮，将当前页面中的图片保存到本地图库中。
+
+##### 基本原理
+
+* 本示例分为Location安全控件模块，剪贴板安全控件模块，媒体库安全控件模块
+
+  * Location安全控件模块
+  
+    * 使用SecLocationButton组件开发获取定位信息功能，在其点击回调onclick事件中调用geoLocationManager.getCurrentLocation()得到当前定位信息经纬度。
+    * 接口参考：[@ohos.geoLocationManager](reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)
+
+  * 剪贴板安全控件模块
+  
+    * 使用SecPasteButton组件开发获取剪贴板信息功能，在其点击回调onclick事件中调用ystemPasteboard.setData()将文本复制到剪贴板中，systemPasteboard.getData()得到剪贴板内容。
+    * 接口参考：[@ohos.pasteboard](reference/apis-basic-services-kit/js-apis-pasteboard.md#getdata9)
+
+  * 媒体库安全控件模块
+  
+    * 使用SecSaveButton组件开发保存图片到媒体库功能，在其点击回调onclick事件中调用photoAccessHelper.getPhotoAccessHelper()得到媒体库图片管理器helper；helper.createAsset()得到保存到媒体库图片的uri，resourceManager.getMediaContent()得到存放在Resources/base/media文件下的banner.png图片内容；fs.open()和fs.write()将图片内容通过得到的uri写到媒体库中，最后fs.close()关闭文件。
+    * 接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.15
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AuthorizedButton)
+
+#### DLP
+
+##### 介绍
+
+本示例是一个安全类App，使用[@ohos.dlpPermission](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) 接口展示了普通文件加密受限的过程。
+
+##### 使用
+
+1. 启动应用后点击“**+**”按钮可以添加一个普通文件。
+
+2. 长按点击加密按钮，出现加密权限弹窗，选择需要设置的权限并点击确定。
+
+3. 点击加密文件，跳转到文本编辑应用，如果设置的权限是只读权限，页面置灰，不可编辑。
+
+4. 长按点击删除按钮，删除文件。
+
+##### 基本原理
+
+* 文件的添加和文件列表的获取分别在Index和MediaFileUri中，具体实现为:
+
+  * 文件的添加：首先通过[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)接口的DocumentSaveOptions()自定一个参数，然后通过new picker.DocumentViewPicker()拉起文件管理应用去新建一个普通文件。
+
+  * 文件列表的获取：首先使用[@ohos.file.fileAccess](reference/apis-core-file-kit/js-apis-fileAccess-sys.md) 接口的createFileAccessHelper()方法来创建连接指定wants的helper对象，然后通过getRoots()来获取helper对象连接的文件管理服务类的设备根节点信息，并获取到目录url，最后通过getFileInfoFromUri()得到文件的信息。
+
+* 文件的加密操作在DlpManager中，，具体实现为:
+
+  * 使用dlpPermission接口的generateDLPFile获得一个相关的操作型关系数据库RdbStore，将明文文件加密生成权限受控文件。
+
+##### 约束与限制
+
+开发语言：ArkTS
+
+配套版本：API10版本SDK，版本号：4.0.10.10
+
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/DLP)
+
 ### 窗口管理
 
 #### 窗口扩展应用
 
 ##### 介绍
 
-本示例通过 [窗口扩展能力](reference/apis/js-apis-application-windowExtensionAbility.md) 设置不同Ability，使用 [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md) 组件加载各个Ability。仿设置应用，实现点击设置菜单栏，跳转或加载详情页面。
+本示例通过 [窗口扩展能力](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md) 设置不同Ability，使用 [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) 组件加载各个Ability。仿设置应用，实现点击设置菜单栏，跳转或加载详情页面。
 
 ##### 使用
 
@@ -5173,7 +5994,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 本示例通过窗口扩展能力设置不同Ability，使用AbilityComponent组件加载各个Ability，matchMediaSync方法设置媒体查询的查询条件，RemoteObject方法实现远程对象。
-* 接口参考：[@ohos.application.WindowExtensionAbility](reference/apis/js-apis-application-windowExtensionAbility.md)，[AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)，[@ohos.rpc](reference/apis/js-apis-rpc.md)，[@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
+* 接口参考：[@ohos.application.WindowExtensionAbility](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)，[AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)，[@ohos.rpc](reference/apis-ipc-kit/js-apis-rpc.md)，[@ohos.mediaquery](reference/apis-arkui/js-apis-mediaquery.md)
 
 ##### 约束与限制
 

@@ -3,9 +3,7 @@
 
 ## 概述
 
-密钥信息。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
+媒体密钥信息。
 
 **起始版本：** 11
 
@@ -19,5 +17,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [keysCount](_drm.md#keyscount) | 密钥信息数组长度 | 
-| [DRM_Uint8CharBufferPair](_d_r_m___uint8_char_buffer_pair.md)[keysInfo](_drm.md#keysinfo) [0] | 密钥信息数组 | 
+| uint32_t [keysInfoCount](_drm.md#keysinfocount) | 钥匙计数。 | 
+| uint8_t [keyId](_drm.md#keyid) [[MAX_KEY_INFO_COUNT](_drm.md#max_key_info_count)][[MAX_KEY_ID_LEN](_drm.md#max_key_id_len)] | 密钥ID集合。 | 
+| char [statusValue](_drm.md#statusvalue-12) [[MAX_KEY_INFO_COUNT](_drm.md#max_key_info_count)][[MAX_KEY_STATUS_VALUE_LEN](_drm.md#max_key_status_value_len)] | 关键状态值。 | 

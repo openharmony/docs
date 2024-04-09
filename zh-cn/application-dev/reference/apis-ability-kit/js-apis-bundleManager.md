@@ -44,11 +44,11 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
-| SERVICE          | 3   | [ServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
+| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](js-apis-application-dataShareExtensionAbility-sys.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
-| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility-sys.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
+| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
 | WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md)：数据备份扩展能力，提供应用数据的备份恢复能力。 |
 | WINDOW           |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
@@ -61,6 +61,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
 | ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，当前暂未支持。 |
+| EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md)：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
@@ -97,7 +98,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 |:----------------:|:---:|:---:|
 | SINGLETON        | 0   | ability的启动模式，表示单实例。 |
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
-| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己置顶多实例。 |
+| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
 
 ### AbilityType
 
@@ -172,7 +173,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
 
@@ -182,7 +183,7 @@ getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag))
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
@@ -212,7 +213,7 @@ try {
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
+getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
 
@@ -222,7 +223,7 @@ getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag),
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
 
 **示例：**
@@ -645,7 +646,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
@@ -818,11 +819,220 @@ try {
 }
 ```
 
+### bundleManager.getExtResource<sup>12+</sup>
+
+getExtResource(bundleName: string): Promise\<Array\<string>>;
+
+根据给定的bundleName获得扩展资源对应的moduleNames。使用Promise异步回调。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要查询扩展资源的应用名称。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<Array\<string>> | 以Promise方式返回接口运行结果及扩展资源对应的moduleNames。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700303 | GetExtResource failed due to no extend resource. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+
+try {
+    bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
+        for (let i = 0; i < modules.length; i++>) {
+            hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
+        }
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.enableDynamicIcon<sup>12+</sup>
+
+enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
+
+根据给定的bundleName、moduleName使能动态图标。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ACCESS_DYNAMIC_ICON
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要使能动态图标的应用名称。 |
+| moduleName  | string | 是   | 要使能动态图标的模块名称。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified moduleName is not found. |
+| 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+let moduleName : string = 'moduleTest';
+
+try {
+    bundleManager.enableDynamicIcon(bundleName, moduleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'enableDynamicIcon successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.disableDynamicIcon<sup>12+</sup>
+
+disableDynamicIcon(bundleName: string): Promise\<void>;
+
+根据给定的bundleName禁用动态图标。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ACCESS_DYNAMIC_ICON
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要禁用动态图标的应用名称。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+
+try {
+    bundleManager.disableDynamicIcon(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'disableDynamicIcon successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getDynamicIcon<sup>12+</sup>
+
+getDynamicIcon(bundleName: string): Promise\<string>;
+
+根据给定的bundleName获得动态图标对应的moduleName。使用Promise异步回调。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要查询扩展资源的应用名称。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<string> | 以Promise方式返回接口运行结果及动态图标对应的moduleName。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 17700001 | The specified bundleName is not found. |
+| 17700306 | No dynamic icon. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+
+try {
+    bundleManager.getDynamicIcon(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getDynamicIcon successfully %s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
 ### bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
-查询给定的链接是否可以打开。
+查询给定的链接是否可以打开。指定链接的scheme需要在module.json文件的querySchemes字段下配置。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

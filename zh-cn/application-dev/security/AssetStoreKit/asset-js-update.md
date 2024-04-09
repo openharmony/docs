@@ -1,0 +1,71 @@
+# 更新关键资产(ArkTS)
+
+## 接口介绍
+
+可通过API文档查看更新关键资产的异步接口[update(query: AssetMap, attributesToUpdate: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetupdate)、同步接口[updateSync(query: AssetMap, attributesToUpdate: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetupdatesync12)的详细介绍。
+
+在更新关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
+
+- **query的参数列表：**
+
+  | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                             |
+  | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
+  | ALIAS                 | 类型为Uint8Array，长度为1-256字节。                            | 必选     | 关键资产别名，每条关键资产的唯一索引。           |
+  | ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)。 | 可选     | 基于锁屏状态的访问控制。                                     |
+  | REQUIRE_PASSWORD_SET  | 类型为bool。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。     |
+  | AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)。 | 可选     | 访问关键资产所需的用户认证类型。                   |
+  | SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型                           |
+  | IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。                 |
+  | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-512字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
+  | DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+
+- **attributesToUpdate的参数列表：**
+
+  | 属性名称（Tag）        | 属性内容（Value）                      | 是否必选  | 说明                                                         |
+  | --------------------- | -------------------------------| -------- | ------------------------------- |
+  | SECRET                | 类型为Uint8Array，长度为1-1024字节。                           | 可选     | 关键资产明文。                                                 |
+  | DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+  | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+  | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。            |
+  | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+
+## 代码示例
+
+> **说明：**
+>
+> 本模块提供了异步和同步两套接口，以下为异步接口的使用示例，同步接口详见[API文档](../../reference/apis-asset-store-kit/js-apis-asset.md)。
+
+更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属属性更新成demo_label_new。
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function stringToArray(str: string): Uint8Array {
+  let textEncoder = new util.TextEncoder();
+  return textEncoder.encodeInto(str);
+}
+
+let query: asset.AssetMap = new Map();
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+let attrsToUpdate: asset.AssetMap = new Map();
+attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
+attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new'));
+try {
+  asset.update(query, attrsToUpdate).then(() => {
+    console.info(`Asset updated successfully.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
+  });
+} catch (error) {
+  let err = error as BusinessError;
+  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
+}
+```

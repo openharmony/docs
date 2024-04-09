@@ -32,6 +32,8 @@
 
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 
+- 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗。需要应用引导用户在系统应用“设置”的界面中手动授予权限。
+
 
 ## 开发步骤
 
@@ -96,6 +98,8 @@
    动态向用户申请权限是指在应用程序运行时向用户请求授权的过程。可以通过调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来实现。该方法接收一个权限列表参数，例如位置、日历、相机、麦克风等。用户可以选择授予权限或者拒绝授权。
 
    可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
+
+   UIExtensionAbility应用申请授权时，需要在onWindowStageCreate函数执行结束后或在onWindowStageCreate函数回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)，否则在ablility加载完成前，requestPermissionsFromUser会调用失败。
 
    - 在UIAbility中向用户申请授权。
       

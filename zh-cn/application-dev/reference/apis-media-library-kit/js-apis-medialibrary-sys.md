@@ -24,7 +24,7 @@ deleteAsset(uri: string): Promise\<void>
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteassets-3)替代。
+> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper-sys.md#deleteassetsdeprecated-3)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -81,7 +81,7 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteassets-2)替代。
+> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper-sys.md#deleteassetsdeprecated-2)替代。
 
 **系统接口**：此接口为系统接口。
 

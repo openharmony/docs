@@ -94,6 +94,8 @@
 
 在本设备上允许应用访问通知策略。
 
+仅当控制铃声从静音到非静音时，需要申请该权限。
+
 **权限级别**：normal
 
 **授权方式**：system_grant
@@ -190,7 +192,7 @@
 
 允许应用将窗口设置为隐私窗口，禁止截屏录屏
 
-**权限级别**：system_basic
+**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 
 **授权方式**：system_grant
 
@@ -209,18 +211,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
-### ohos.permission.SET_NETWORK_INFO
-
-允许应用配置数据网络。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
 
 ### ohos.permission.SET_WIFI_INFO
 
@@ -377,6 +367,30 @@
 **ACL使能**：false
 
 **起始版本**：11
+
+### ohos.permission.READ_ACCOUNT_LOGIN_STATE
+
+允许应用读取用户帐号的登录状态。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
+
+允许应用访问导航信息服务。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## user_grant（用户授权）权限列表
 

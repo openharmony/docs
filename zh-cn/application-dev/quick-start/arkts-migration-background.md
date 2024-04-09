@@ -30,7 +30,7 @@ class Person {
 
 let buddy = new Person()
 // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
-console.log(buddy.getName().length); // 运行时异常：name is undefined
+buddy.getName().length; // 运行时异常：name is undefined
 ```
 
 由于ArkTS要求属性显式初始化，代码应该像下面这样写。
@@ -51,7 +51,7 @@ class Person {
 
 let buddy = new Person()
 // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
-console.log(buddy.getName().length); // 0, 没有运行时异常
+buddy.getName().length; // 0, 没有运行时异常
 ```
 
 如果`name`可以是`undefined`，那么它的类型应该在代码中被精确地标注。
@@ -78,14 +78,14 @@ let buddy = new Person()
 // 假设代码中没有对name的赋值，例如没有调用"buddy.setName('John')"
 
 // 编译时错误：编译器认为下一行代码有可能访问"undefined"的属性，报错
-console.log(buddy.getName().length);  // 编译失败
+buddy.getName().length;  // 编译失败
 
-console.log(buddy.getName()?.length); // 编译成功，没有运行时错误
+buddy.getName()?.length; // 编译成功，没有运行时错误
 ```
 
 ## 程序性能
 
-为了保证程序的正确性，动态类型语言不得不在运行时检查对象的类型。例如，JS不允许访问`undefined`的属性。但是检查一个值是否为`undefined`的唯一的办法是在运行时进行一次类型检查。所有的JS引擎都会做如下的事：如果一个值不是`undefined`，那么可以访问其属性，否则抛出异常。现代JS引擎可以很好地对这类操作进行优化，但是总有一些运行时的检查是无法被消除的，这就使得程序变慢了。由于TS总是先被编译成JS，所以在TS代码中，也会面临相同的问题。ArkTS解决了这个问题。由于使能了静态类型检查，ArkTS代码将会被编译成某种可执行的字节码文件，而不是JS代码。因此，ArkTS运行速度更快，更容易被进一步地优化。
+为了保证程序的正确性，动态类型语言不得不在运行时检查对象的类型。例如，JS不允许访问`undefined`的属性。但是检查一个值是否为`undefined`的唯一的办法是在运行时进行一次类型检查。所有的JS引擎都会做如下的事：如果一个值不是`undefined`，那么可以访问其属性，否则抛出异常。现代JS引擎可以很好地对这类操作进行优化，但是总有一些运行时的检查是无法被消除的，这就使得程序变慢了。由于TS总是先被编译成JS，所以在TS代码中，也会面临相同的问题。ArkTS解决了这个问题。由于使能了静态类型检查，ArkTS代码将会被编译成方舟字节码文件，而不是JS代码。因此，ArkTS运行速度更快，更容易被进一步地优化。
 
 
 **Null Safety**
@@ -137,3 +137,15 @@ TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被�
 
   - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
   - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件，以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但是需要完全适配ArkTS语法后方可在标准模式下编译成功。
+
+
+## 兼容TS/JS的约束
+
+在API version 11上，OpenHarmony SDK中的TypeScript版本为4.9.5，target字段为es2017。开发者可以使用ECMA2017+的语法进行应用开发。
+
+应用环境限制
+
+1. 强制使用严格模式（use strict）
+2. 禁止使用`eval()`
+3. 禁止使用`with() {}`
+4. 禁止以字符串为代码创建函数

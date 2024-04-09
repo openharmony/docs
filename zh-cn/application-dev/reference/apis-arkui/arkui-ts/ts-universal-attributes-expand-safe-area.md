@@ -26,6 +26,8 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >设置expandSafeArea属性进行组件绘制扩展时，组件不能设置固定宽高尺寸（百分比除外）。
 >
 >安全区域不会限制内部组件的布局和大小，不会裁剪内部组件。
+>
+>当父容器是滚动容器时，设置expandSafeArea属性不生效。
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
@@ -119,29 +121,30 @@ struct SafeAreaExample {
 ### 示例3
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+    // 设置虚拟键盘抬起时压缩页面大小为减去键盘的高度
+  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+  });
+}
 
 // xxx.ets
 @Entry
 @Component
 struct KeyboardAvoidExample {
-    build() {
+  build() {
     Column() {
       Row().height("30%").width("100%").backgroundColor(Color.Gray)
       TextArea().width("100%").borderWidth(1)
@@ -156,29 +159,30 @@ struct KeyboardAvoidExample {
 ### 示例4
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
-  }
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+    // 设置虚拟键盘抬起时把页面上抬直到露出光标
+  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+  });
+}
 
 // xxx.ets
 @Entry
 @Component
 struct KeyboardAvoidExample {
-    build() {
+  build() {
     Column() {
       Row().height("30%").width("100%").backgroundColor(Color.Gray)
       TextArea().width("100%").borderWidth(1)

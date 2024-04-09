@@ -39,7 +39,7 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -81,7 +81,7 @@ try {
 
 on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 
-订阅输入法软键盘显示事件。使用callback异步回调。
+订阅输入法[Panel](js-apis-inputmethodengine.md#panel10)固定态软键盘显示事件。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -92,7 +92,7 @@ on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---- |
 | type     | string | 是 | 设置监听类型，固定取值为'imeShow'。 |
-| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | 是 | 回调函数，返回输入法固定态软键盘信息。 |
 
 **示例：**
 
@@ -110,7 +110,7 @@ try {
 
 on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 
-订阅输入法软键盘隐藏事件。使用callback异步回调。
+订阅输入法[Panel](js-apis-inputmethodengine.md#panel10)固定态软键盘隐藏事件。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -121,7 +121,7 @@ on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---- |
 | type     | string | 是 | 设置监听类型，固定取值为'imeHide'。 |
-| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | 是 | 回调函数，返回输入法固定态软键盘信息。 |
 
 **示例：**
 
@@ -139,7 +139,7 @@ try {
 
 off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 
-取消订阅输入法软键盘显示事件。
+取消订阅输入法[Panel](js-apis-inputmethodengine.md#panel10)固定态软键盘显示事件。
 
 **系统接口**：此接口为系统接口。
 
@@ -150,7 +150,7 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
 | type     | string | 是 | 设置监听类型，固定取值`imeShow`。 |
-| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -166,7 +166,7 @@ try {
 
 off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 
-取消订阅输入法软键盘隐藏事件。
+取消订阅输入法[Panel](js-apis-inputmethodengine.md#panel10)固定态软键盘隐藏事件。
 
 **系统接口**：此接口为系统接口。
 
@@ -177,7 +177,7 @@ off(type: 'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
 | type     | string | 是 | 设置监听类型，固定取值'imeHide'。 |
-| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
@@ -213,7 +213,7 @@ isPanelShown(panelInfo: PanelInfo): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |

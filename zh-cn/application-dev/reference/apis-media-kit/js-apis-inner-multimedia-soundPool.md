@@ -25,12 +25,11 @@ import audio from '@ohos.multimedia.audio';
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8)。 |
-| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
-| rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
-| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
-| parallelPlayFlag | boolean | 否   | 是否和其它正在播放的音频并行播放的标识，true:不抢占音频焦点和其它正在播放的音频并行播放，false:抢占焦点打断其它正在播放的音频。<br/>此接口为系统接口。|
+| loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。默认值：0。                   |
+| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8)。默认值：0。 |
+| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。默认值：1.0。                                    |
+| rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
+| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。默认值：0。      |
 
 ## SoundPool
 
@@ -41,6 +40,7 @@ import audio from '@ohos.multimedia.audio';
 load(uri: string, callback: AsyncCallback\<number>): void
 
 加载音频资源。使用callback方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
+该方法不支持加载rawfile目录资源，需要通过load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void或者load(fd: number, offset: number, length: number): Promise\<number>实现。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -104,6 +104,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 load(uri: string): Promise\<number>
 
 加载音频资源。使用Promise方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
+该方法不支持加载rawfile目录资源，需要通过load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void或者load(fd: number, offset: number, length: number): Promise\<number>实现。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 

@@ -45,7 +45,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.|
 | Initial value for the decorated variable     | Mandatory.                                   |
 | Support for the **allowOverride** parameter         | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter).|
 
@@ -53,7 +53,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Consume a: string \| undefined.<br>The union types defined by the AkrUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Consume a: string \| undefined.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
 | Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
 
 
@@ -105,7 +105,6 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 ```ts
 @Component
 struct CompD {
-
   @Consume selectedDate: Date;
 
   build() {
@@ -131,7 +130,6 @@ struct CompD {
 @Entry
 @Component
 struct CompA {
-
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -246,25 +244,25 @@ struct Child {
   @Consume message: Map<number, string>
 
   build() {
-    Column(){
+    Column() {
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('Consume init map').onClick(() =>{
+      Button('Consume init map').onClick(() => {
         this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
-      Button('Consume set new one').onClick(() =>{
+      Button('Consume set new one').onClick(() => {
         this.message.set(4, "d")
       })
-      Button('Consume clear').onClick(() =>{
+      Button('Consume clear').onClick(() => {
         this.message.clear()
       })
-      Button('Consume replace the first item').onClick(() =>{
+      Button('Consume replace the first item').onClick(() => {
         this.message.set(0, "aa")
       })
-      Button('Consume delete the first item').onClick(() =>{
+      Button('Consume delete the first item').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -280,7 +278,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        Button('Provide init map').onClick(() =>{
+        Button('Provide init map').onClick(() => {
           this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
         })
         Child()
@@ -311,16 +309,16 @@ struct Child {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })
-      Button('Consume init set').onClick(() =>{
-        this.message = new Set([0, 1, 2 ,3,4 ])
+      Button('Consume init set').onClick(() => {
+        this.message = new Set([0, 1, 2, 3, 4])
       })
-      Button('Consume set new one').onClick(() =>{
+      Button('Consume set new one').onClick(() => {
         this.message.add(5)
       })
-      Button('Consume clear').onClick(() =>{
+      Button('Consume clear').onClick(() => {
         this.message.clear()
       })
-      Button('Consume delete the first one').onClick(() =>{
+      Button('Consume delete the first one').onClick(() => {
         this.message.delete(0)
       })
     }
@@ -329,17 +327,16 @@ struct Child {
 }
 
 
-
 @Entry
 @Component
 struct SetSample {
-  @Provide message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @Provide message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
     Row() {
       Column() {
-        Button('Provide init set').onClick(() =>{
-          this.message = new Set([0, 1, 2 ,3, 4, 5 ])
+        Button('Provide init set').onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4, 5])
         })
         Child()
       }
@@ -432,7 +429,8 @@ struct GrandSon {
 
 @Component
 struct Child {
-  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 10;
+
   build() {
     Row({ space: 5 }) {
       GrandSon()
@@ -442,7 +440,8 @@ struct Child {
 
 @Component
 struct Parent {
-  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 20;
+  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 20;
+
   build() {
     Child()
   }
@@ -475,7 +474,7 @@ In the preceding example:
 
 ### \@Provide Not Defined Error in the Case of a \@BuilderParam Trailing Closure
 
-In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuidlerParam.
+In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuilderParam.
 
 Nonexample:
 
@@ -483,10 +482,10 @@ Nonexample:
 class Tmp {
   a: string = ''
 }
+
 @Entry
 @Component
 struct HomePage {
-
   @Builder
   builder2($$: Tmp) {
     Text(`${$$.a}Test`)
@@ -503,7 +502,7 @@ struct HomePage {
 
 @Component
 struct CustomWidget {
-  @Provide('a') a: string='abc';
+  @Provide('a') a: string = 'abc';
   @BuilderParam
   builder: () => void;
 

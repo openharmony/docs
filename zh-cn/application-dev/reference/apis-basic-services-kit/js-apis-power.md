@@ -22,7 +22,7 @@ isActive(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -55,7 +55,7 @@ getPowerMode(): DevicePowerMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -88,7 +88,7 @@ isStandby(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -109,11 +109,11 @@ try {
 
 rebootDevice(reason: string): void
 
-> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用power.reboot (#powerreboot9)替代，替代接口能力仅对系统应用开放。
+> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用[power.reboot](js-apis-power-sys.md#powerreboot9)替代，替代接口能力仅对系统应用开放。
 
 重启设备。
 
-**需要权限：** ohos.permission.REBOOT
+**需要权限：** ohos.permission.REBOOT，仅对系统应用开放。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

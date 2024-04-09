@@ -13,7 +13,7 @@ As an auxiliary positioning tool, the responsive grid layout is handy in UI desi
 
 4. Completes the wrapping and adaptation automatically when overflow occurs. When the number of page elements exceeds the capacity of a row or column, they automatically wrap to a new row or column and adapt the typesetting to different devices.
 
-The [\<GridRow>](../reference/arkui-ts/ts-container-gridrow.md) component is the responsive grid container component and must be used together with the [\<GridCol>](../reference/arkui-ts/ts-container-gridcol.md) child component.
+The [\<GridRow>](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) component is a responsive grid container and must have [\<GridCol>](../reference/arkui-ts/ts-container-gridcol.md) as its child component.
 
 
 ## GridRow
@@ -21,16 +21,16 @@ The [\<GridRow>](../reference/arkui-ts/ts-container-gridrow.md) component is the
 
 ### Grid Breakpoints
 
-The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width ([screen density pixels](../reference/arkui-ts/ts-pixel-units.md), in vp) of the screens. You can use the breakpoints to meet specific layout requirements. You can use the breakpoints to meet specific layout requirements.
+The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width ([screen density pixels](../reference/apis-arkui/arkui-ts/ts-pixel-units.md), in vp) of the screens. You can use the breakpoints to meet specific layout requirements. You can use the breakpoints to meet specific layout requirements.
 
 By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 
 | Breakpoint| Value Range (vp)       | Device Description     |
 | ---- | --------------- | --------- |
 | xs   | [0, 320)  | Minimum-width device.|
-| sm   | [320,&nbsp;520) | Small-width device. |
-| md   | [520,&nbsp;840) | Medium-width device.|
-| lg   | [840,&nbsp;+∞)  | Large-width device. |
+| sm   | [320, 520) | Small-width device. |
+| md   | [520, 840) | Medium-width device.|
+| lg   | [840, +∞)  | Large-width device. |
 
 In the **\<GridRow>** component, you can use **breakpoints** to customize the value range of breakpoints. A maximum of six breakpoints are supported. In addition to the four default breakpoints, you can also enable the xl and xxl breakpoints for your application window layout.
 
@@ -191,7 +191,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
 
     ![en-us_image_0000001563060689](figures/en-us_image_0000001563060689.gif)
 
-  If **columns** is only set for the sm and md screen size types, screen sizes smaller than sm use the default value **12**, and screen sizes larger than md (lg, xl, and xxl) use the value of **columns** of the md type.
+If **columns** is only set for the sm and md screen size types, screen sizes smaller than sm use the default value **12**, and screen sizes larger than md (lg, xl, and xxl) use the value of **columns** of the md type.
 
 
 ### Alignment
@@ -262,7 +262,6 @@ The **\<GridCol>** component is a child component of the **\<GridRow>** componen
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
-  GridCol(){}.offset(2)
   GridCol(){}.offset(Goffset) 
   ```
 

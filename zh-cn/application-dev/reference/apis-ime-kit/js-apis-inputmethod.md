@@ -57,7 +57,7 @@ getController(): InputMethodController
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
@@ -85,7 +85,7 @@ getDefaultInputMethod(): InputMethodProperty
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -113,11 +113,11 @@ getSystemInputMethodConfigAbility(): ElementName
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [ElementName](../apis/js-apis-bundleManager-elementName.md) | 系统输入法设置界面Ability的ElementName。 |
+| [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md) | 系统输入法设置界面Ability的ElementName。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -149,7 +149,7 @@ getSetting(): InputMethodSetting
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -182,7 +182,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -236,7 +236,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -307,7 +307,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -375,7 +375,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -456,7 +456,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -515,7 +515,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -774,7 +774,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -832,7 +832,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -881,7 +881,7 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -923,7 +923,7 @@ showTextInput(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -965,7 +965,7 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1009,7 +1009,7 @@ hideTextInput(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1045,7 +1045,7 @@ detach(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1082,7 +1082,7 @@ detach(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1122,7 +1122,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1175,7 +1175,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1217,7 +1217,7 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1266,7 +1266,7 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1310,7 +1310,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1360,7 +1360,7 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1401,7 +1401,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1450,7 +1450,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1495,7 +1495,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1544,7 +1544,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1593,7 +1593,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1636,7 +1636,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1677,7 +1677,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1720,7 +1720,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1830,7 +1830,7 @@ on(type: 'insertText', callback: (text: string) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1901,7 +1901,7 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1961,7 +1961,7 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2021,7 +2021,7 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2081,7 +2081,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2141,7 +2141,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | -------------------------------- |
@@ -2201,7 +2201,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2377,7 +2377,7 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2445,7 +2445,7 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2513,7 +2513,7 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2634,7 +2634,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2689,7 +2689,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2736,7 +2736,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2779,7 +2779,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2827,11 +2827,11 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | bundle manager error.               |
+| 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2880,11 +2880,11 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | bundle manager error.               |
+| 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2931,7 +2931,7 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2964,7 +2964,7 @@ getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -3005,11 +3005,11 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3040,11 +3040,11 @@ getAllInputMethodsSync(): Array&lt;InputMethodProperty&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800001 | package manager error.              |
+| 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3073,7 +3073,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -3113,7 +3113,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |

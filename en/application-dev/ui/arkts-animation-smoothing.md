@@ -3,7 +3,7 @@
 
 When running animations, the UI is also interacting with users in real time. It must respond immediately to changes in user behavior. For example, if the user swipes up to exit in the midst of an application launch process, the UI should immediately transit from the startup animation to the exit animation, rather than finishing the startup animation before exiting. In the scenario where the animation triggered when the user lifts their fingers off the screen, the initial velocity of the animation must inherit the gesture speed, so as to avoid pauses caused by speed disconnection. For the preceding and similar scenarios, the system provides efficient APIs for smoothing between animations and between animations and gestures.
 
-Assume that there is a running animation for an animatable property. If the end value of the property changes due to an operation on the UI, just change the property value in the [animateTo](../reference/arkui-ts/ts-explicit-animation.md) closure or change the input parameter value of the [animation](../reference/arkui-ts/ts-animatorproperty.md) API to create an animation. The system then automatically connects the previous animation with the current animation – the created animation.
+Assume that there is a running animation for an animatable property. If the end value of the property changes due to an operation on the UI, you can create a new animation for it, by changing the property value in the [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) closure or by changing the input parameter value of the [animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md) API. The system then automatically connects the previous animation with the new animation.
 
 
 ```ts
@@ -83,11 +83,11 @@ struct AnimationToAnimationDemo {
 
 ## Smoothing Between Gestures and Animations
 
-In scenarios where gestures are used, a property change is generally triggered when the user places or moves their finger (or fingers) on the screen, and continues after the user lifts their finger (or fingers) off the screen until the end value of the propertys is reached.
+In scenarios where gestures are used, a property change is generally triggered when the user places or moves their finger (or fingers) on the screen, and continues after the user lifts their finger (or fingers) off the screen until the end value of the property is reached.
 
-The initial velocity of the property change after the user lifts their finger (or fingers) should be consistent with the velocity of the property change at the moment before the user lifts their finger (or fingers). If the former is **0**, it feels like a running car stops suddenly, an unusual abrupt change not welcomed by users.
+The initial velocity of the property change after the user lifts their finger (or fingers) should be consistent with the velocity of the property change at the moment before the user lifts their finger (or fingers). If the former is **0**, it feels like a running car stops suddenly, an unusual abrupt change not comfortable to users.
 
-In cases where smoothing between gestures and animations is required, for example, when scrolling a list, you can apply a responsive spring curve for the property animation running when the user places or moves their finger (or fingers) on the screen; and apply a spring curve for the property animation running after the user lifts their finger (or fingers) off the screen. For the animation that uses the [springMotion](../reference/apis/js-apis-curve.md#curvesspringmotion9) curve, the property animation running when the user places or moves their finger (or fingers) on the screen automatically inherits the previous velocity and starts from where the previous animation leaves off.
+In cases where smoothing between gestures and animations is critical, for example, when scrolling a list, you can apply a responsive spring curve to the property animation running when the user places or moves their finger (or fingers) on the screen; and apply a spring curve to the property animation running after the user lifts their finger (or fingers) off the screen. For the animation following the [springMotion](../reference/apis-arkui/js-apis-curve.md#curvesspringmotion9) curve, its portion that is running after the user lifts their finger (or fingers) off the screen automatically inherits the previous velocity and starts from where the previous portion leaves off.
 
 
 ```ts

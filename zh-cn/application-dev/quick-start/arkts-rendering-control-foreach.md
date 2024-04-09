@@ -1,7 +1,7 @@
 # ForEach：循环渲染
 
 
-ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/arkui-ts/ts-container-list.md)。
+ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 
 > **说明：**
 >
@@ -13,8 +13,8 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 ```ts
 ForEach(
   arr: Array,
-  itemGenerator: (item: any, index?: number) => void,
-  keyGenerator?: (item: any, index?: number) => string
+  itemGenerator: (item: any, index: number) => void,
+  keyGenerator?: (item: any, index: number) => string
 )
 ```
 
@@ -22,9 +22,9 @@ ForEach(
 
 | 参数名        | 参数类型                                | 是否必填 | 参数描述                                                     |
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array                                   | 是       | 数据源，为`Array`类型的数组。<br/>**说明：**<br/>- 可以设置为空数组，此时不会创建子组件。<br/>- 可以设置返回值为数组类型的函数，例如`arr.slice(1, 3)`，但设置的函数不应改变包括数组本身在内的任何状态变量，例如不应使用`Array.splice()`,`Array.sort()`或`Array.reverse()`这些会改变原数组的函数。 |
-| itemGenerator | `(item: any, index?: number) => void`   | 是       | 组件生成函数。<br/>- 为数组中的每个元素创建对应的组件。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 组件的类型必须是`ForEach`的父容器所允许的。例如，`ListItem`组件要求`ForEach`的父容器组件必须为`List`组件。 |
-| keyGenerator  | `(item: any, index?: number) => string` | 否       | 键值生成函数。<br/>- 为数据源`arr`的每个数组项生成唯一且持久的键值。函数返回值为开发者自定义的键值生成规则。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 如果函数缺省，框架默认的键值生成函数为`(item: T, index: number) => { return index + '__' + JSON.stringify(item); }`<br/>- 键值生成函数不应改变任何组件状态。 |
+| arr           | Array<any>                                   | 是       | 数据源，为`Array`类型的数组。<br/>**说明：**<br/>- 可以设置为空数组，此时不会创建子组件。<br/>- 可以设置返回值为数组类型的函数，例如`arr.slice(1, 3)`，但设置的函数不应改变包括数组本身在内的任何状态变量，例如不应使用`Array.splice()`,`Array.sort()`或`Array.reverse()`这些会改变原数组的函数。 |
+| itemGenerator | `(item: any, index: number) => void`   | 是       | 组件生成函数。<br/>- 为数组中的每个元素创建对应的组件。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 组件的类型必须是`ForEach`的父容器所允许的。例如，`ListItem`组件要求`ForEach`的父容器组件必须为`List`组件。 |
+| keyGenerator  | `(item: any, index: number) => string` | 否       | 键值生成函数。<br/>- 为数据源`arr`的每个数组项生成唯一且持久的键值。函数返回值为开发者自定义的键值生成规则。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 如果函数缺省，框架默认的键值生成函数为`(item: T, index: number) => { return index + '__' + JSON.stringify(item); }`<br/>- 键值生成函数不应改变任何组件状态。 |
 
 > **说明：**
 >
@@ -602,7 +602,7 @@ struct ChildItem {
 **图10**  渲染性能降低案例日志打印图  
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
-插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
+插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：
 
 1. 在`ForEach`首次渲染时，创建的键值依次为`0__one`、`1__two`、`2__three`。
 2. 插入新项后，数据源`simpleList`变为`['one', 'new item', 'two', 'three']`，ArkUI框架监听到`@State`装饰的数据源长度变化触发`ForEach`重新渲染。

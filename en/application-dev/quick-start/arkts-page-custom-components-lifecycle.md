@@ -12,22 +12,22 @@ Before we dive into the page and custom component lifecycle, it would be helpful
 The following lifecycle callbacks are provided for a page, that is, a custom component decorated with \@Entry:
 
 
-- [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow): Invoked each time the page is displayed, for example, during page redirection or when the application is switched to the foreground.
+- [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow): Invoked each time the page is displayed, for example, during page redirection or when the application is switched to the foreground.
 
-- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide): Invoked each time the page is hidden, for example, during page redirection or when the application is switched to the background.
+- [onPageHide](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide): Invoked each time the page is hidden, for example, during page redirection or when the application is switched to the background.
 
-- [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress): Invoked when the user clicks the **Back** button.
+- [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress): Invoked when the user clicks the **Back** button.
 
 
 The following lifecycle callbacks are provided for a custom component decorated with \@Component:
 
 
-- [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after an instance of the custom component is created and before its **build** function is executed.
+- [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear): Invoked when the custom component is about to appear. Specifically, it is invoked after a new instance of the custom component is created and before its **build** function is executed.
 
-- [aboutToDisappear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked when the custom component is about to be destroyed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
+- [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear): Invoked when the custom component is about to be destroyed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
 
-The following figure shows the lifecycle of a component (home page) decorated with \@Entry.
+The following figure shows the lifecycle of a component (page) decorated with \@Entry.
 
 
 ![en-us_image_0000001502372786](figures/en-us_image_0000001502372786.png)
@@ -74,7 +74,7 @@ Re-rending of a custom component is triggered when its state variable is changed
 
 1. The framework observes the state variable change and marks the component for re-rendering.
 
-2. Using the mapping tables – created in step 4 of the custom component creation and rendering process, the framework knows which UI components are managed by the state variable and which update functions are used for these UI components. With this knowledge, the framework executes only the update functions of these UI components.
+2. Using the mapping tables – created in step 4 of the [custom component creation and rendering process](#custom-component-creation-and-rendering), the framework knows which UI components are managed by the state variable and which update functions are used for these UI components. With this knowledge, the framework executes only the update functions of these UI components.
 
 
 ## Custom Component Deletion
@@ -213,7 +213,7 @@ struct page {
 }
 ```
 
-In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page are declared in **MyComponent**. **MyComponent** and its child components also declare the lifecycle callbacks of the respective component.
+In the preceding example, the **Index** page contains two custom components. One is **MyComponent** decorated with \@Entry, which is also the entry component (root node) of the page. The other is **Child**, which is a child component of **MyComponent**. Only components decorated by \@Entry can call the page lifecycle callbacks. Therefore, the lifecycle callbacks of the **Index** page – **onPageShow**, **onPageHide**, and **onBackPress**, are declared in **MyComponent**. In **MyComponent** and its child components, component lifecycle callbacks – **aboutToAppear** and **aboutToDisappear** –  are also declared.
 
 
 - The initialization process of application cold start is as follows: MyComponent aboutToAppear -> MyComponent build -> Child aboutToAppear -> Child build -> Child build execution completed -> MyComponent build execution completed -> Index onPageShow

@@ -34,13 +34,15 @@
    ```ts
    import picker from '@ohos.file.picker';
    
-   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
-   photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
+   // 过滤选择媒体文件类型为IMAGE
+   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+   // 选择媒体文件的最大数目
+   photoSelectOptions.maxSelectNumber = 5;
    ```
 
 4. 创建图库选择器实例，调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../reference/apis-core-file-kit/js-apis-file-picker.md#photoselectresult)结果集。
 
-   </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+   </br>select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    </br>如有获取元数据需求，可以通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
@@ -95,15 +97,20 @@
    ```ts
    import picker from '@ohos.file.picker';
    
-   const documentSelectOptions = new picker.DocumentSelectOptions(); 
-   documentSelectOptions.maxSelectNumber = 5; // 选择文档的最大数目（可选）
-   documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test"; // 指定选择的文件或者目录路径（可选）
-   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选）
+   const documentSelectOptions = new picker.DocumentSelectOptions();
+   // 选择文档的最大数目（可选）
+   documentSelectOptions.maxSelectNumber = 5;
+   // 指定选择的文件或者目录路径（可选）
+   documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
+   // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选）
+   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4'];
+   //选择是否对指定文件或目录授权，true为授权，当为true时，defaultFilePathUri为必选参数，拉起文管授权界面；false为非授权，拉起常规文管界面（可选）
+   documentSelectOptions.authMode = true;
    ```
 
 3. 创建文件选择器实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中文档的uri结果集。
 
-   select返回的uri权限是只读权限，开发者可以根据结果集中uri做进一步的处理。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+   select返回的uri权限是只读权限，开发者可以根据结果集中uri做进一步的处理。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    如有获取元数据需求，可以通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
@@ -112,7 +119,8 @@
    import { BusinessError } from '@ohos.base';
    
    let uris: Array<string> = [];
-   const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
+   // 创建文件选择器实例
+   const documentViewPicker = new picker.DocumentViewPicker();
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
      uris = documentSelectResult;
      console.info('documentViewPicker.select to file succeed and uris are:' + uris);
@@ -166,9 +174,9 @@
 
 3. 创建音频选择器实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中音频的uri结果集。
 
-   select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。注意不能在  picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+   select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
-   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio-playback-overview.md)。
+   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
    ```ts
    import picker from '@ohos.file.picker';

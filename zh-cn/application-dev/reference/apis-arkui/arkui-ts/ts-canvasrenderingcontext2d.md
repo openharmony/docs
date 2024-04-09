@@ -819,7 +819,7 @@ struct WidthExample {
             ctx.filter = 'saturate(30%)';
             ctx.drawImage(img, 0, 100, 100, 100);
 
-            ctx.filter = 'hue-rotate(90degree)';
+            ctx.filter = 'hue-rotate(90deg)';
             ctx.drawImage(img, 100, 100, 100, 100);
 
             ctx.filter = 'invert(100%)';
@@ -851,6 +851,7 @@ struct WidthExample {
 
 ## 方法
 
+以下方法在隐藏页面中调用会产生缓存，应避免在隐藏页面中频繁刷新Canvas。
 
 ### fillRect
 
@@ -1373,10 +1374,10 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 **参数：**
 
-| 参数         | 类型                                       | 必填   | 描述                                       |
-| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | 图源对象，具体参考ImageBitmap对象。                  |
-| repetition | string \| null                            | 是    | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
+| 参数  | 类型  | 必填  | 默认值  | 描述  |
+| ---------- | ---------- | ---- | ---------- | ---------------------------------------- |
+| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是  |     | 图源对象，具体参考ImageBitmap对象。 |
+| repetition | string \| null  | 是    | null    | 设置图像重复的方式：<br>'repeat'：沿x轴和y轴重复绘制图像；<br>'repeat-x'：沿x轴重复绘制图像；<br>'repeat-y'：沿y轴重复绘制图像；<br>'no-repeat'：不重复绘制图像；<br>'clamp'：在原始边界外绘制时，超出部分使用边缘的颜色绘制；<br>'mirror'：沿x轴和y轴重复翻转绘制图像。 |
 
 **返回值：**
 
@@ -1916,6 +1917,46 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
 
 
+### reset<sup>12+</sup>
+
+reset(): void
+
+将CanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Reset {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.fillStyle = '#0000ff'
+            this.context.fillRect(20, 20, 150, 100)
+            this.context.reset()
+            this.context.fillRect(20, 150, 150, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
+
+
 ### resetTransform
 
 resetTransform(): void
@@ -2091,8 +2132,8 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 | 参数   | 类型     | 必填   | 默认值  | 描述                   |
 | ---- | ------ | ---- | ---- | -------------------- |
 | a    | number | 是    | 0    | scaleX: 指定水平缩放值。     |
-| b    | number | 是    | 0    | skewX: 指定垂直倾斜值。      |
-| c    | number | 是    | 0    | skewY: 指定水平倾斜值。      |
+| b    | number | 是    | 0    | skewY: 指定垂直倾斜值。      |
+| c    | number | 是    | 0    | skewX: 指定水平倾斜值。      |
 | d    | number | 是    | 0    | scaleY: 指定垂直缩放值。     |
 | e    | number | 是    | 0    | translateX: 指定水平移动值，单位：vp。 |
 | f    | number | 是    | 0    | translateY: 指定垂直移动值，单位：vp。 |
@@ -2308,7 +2349,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 | 参数    | 类型                                       | 必填   | 默认值  | 描述                                       |
 | ----- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。            |
 | sx    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值，单位：vp。 |
 | sy    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值，单位：vp。 |
 | sw    | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度，单位：vp。 |
@@ -2388,7 +2429,7 @@ createImageData(imageData: ImageData): ImageData
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建[PixelMap](../../apis/js-apis-image.md#pixelmap7)对象。
+以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 **参数：**
 
@@ -2403,7 +2444,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象。 |
+| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 新的PixelMap对象。 |
 
 **示例：**
 
@@ -2411,7 +2452,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   // xxx.ets
   @Entry
   @Component
-  struct GetImageData {
+  struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private img:ImageBitmap = new ImageBitmap("/images/star.png")
@@ -2440,7 +2481,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
+以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3005,6 +3046,102 @@ struct CanvasExample {
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
 
+### startImageAnalyzer<sup>12+</sup>
+
+startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
+
+配置AI分析并启动AI分析功能，使用前需先[使能](ts-components-canvas-canvas.md#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。
+
+> **说明：**
+> 
+> 分析类型不支持动态修改。
+> 当检测到画面有变化时，分析结果将自动销毁，可重新调用本接口启动分析。
+> 该特性依赖设备能力，不支持该能力的情况下，将返回错误码。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
+
+**返回值：**
+
+| 类型              | 说明                                 |
+| ----------------- | ------------------------------------ |
+| Promise\<void>  | Promise对象，用于获取AI分析是否成功执行。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[AI分析类库错误码](../errorcode-image-analyzer.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | -------------------------------------------- |
+| 110001 | AI analysis is unsupported.               |
+| 110002 | AI analysis is ongoing.  |
+| 110003 | AI analysis is stopped.  |
+
+### stopImageAnalyzer<sup>12+</sup>
+
+stopImageAnalyzer(): void
+
+停止AI分析功能，AI分析展示的内容将被销毁。
+
+> **说明：**
+> 
+> 在startImageAnalyzer方法未返回结果时调用本方法，会触发其错误回调。
+> 该特性依赖设备能力。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ImageAnalyzerExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private config: ImageAnalyzerConfig = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+  }
+  private img = new ImageBitmap('page/common/test.jpg')
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('start')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.context.startImageAnalyzer(this.config)
+            .then(() => {
+              console.log("analysis complete")
+            })
+            .catch((error: BusinessError) => {
+              console.log("error code: " + error.code)
+            })
+        })
+      Button('stop')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.context.stopImageAnalyzer()
+        })
+      Canvas(this.context)
+        .width(80)
+        .height(80)
+        .enableAnalyzer(true)
+        .onReady(() => {
+          this.context.drawImage(this.img, 0, 0, 200, 200)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ## CanvasDirection
 

@@ -16,17 +16,17 @@
 
 ## 属性
 
-仅支持[通用属性](../arkui-js/js-components-common-attributes.md)中的id、style和class属性。
+仅支持[通用属性](js-components-common-attributes.md)中的id、style和class属性。
 
 
 ## 样式
 
-仅支持[通用样式](../arkui-js/js-components-common-styles.md)中的display和visibility样式。
+仅支持[通用样式](js-components-common-styles.md)中的display和visibility样式。
 
 
 ## 事件
 
-除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
+除支持[通用事件](js-components-common-events.md)外，还支持如下事件：
 
 | 名称 | 参数 | 描述 |
 | -------- | -------- | -------- |

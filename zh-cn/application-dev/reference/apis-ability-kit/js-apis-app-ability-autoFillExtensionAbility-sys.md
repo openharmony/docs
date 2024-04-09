@@ -24,7 +24,7 @@ import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AutoFillExtensionContext](../apis/js-apis-inner-application-autoFillExtensionContext.md)  | 是 | 否 | AutoFillExtension的上下文环境，继承自ExtensionContext。 |
+| context | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)  | 是 | 否 | AutoFillExtension的上下文环境，继承自ExtensionContext。 |
 
 
 ## AutoFillExtensionAbility.onCreate
@@ -61,8 +61,8 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | AutoFillExtensionAbility界面内容相关信息。 |
-| request | [FillRequest](../apis/js-apis-inner-application-autoFillRequest.md#fillrequest)  | 是 | 自动填充数据。 |
-| callback | [FillRequestCallback](../apis/js-apis-inner-application-autoFillRequest.md#fillrequestcallback)  | 是 | 自动填充请求回调。 |
+| request | [FillRequest](js-apis-inner-application-autoFillRequest-sys.md#fillrequest)  | 是 | 自动填充数据。 |
+| callback | [FillRequestCallback](js-apis-inner-application-autoFillRequest-sys.md#fillrequestcallback)  | 是 | 自动填充请求回调。 |
 
 **示例：**
 
@@ -79,12 +79,12 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
                   callback: autoFillManager.FillRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
       hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
-      hilog.info(0x0000, 'testTag', "get request viewData: ", JSON.stringify(request.viewData));
+      hilog.info(0x0000, 'testTag', 'get request viewData: ', JSON.stringify(request.viewData));
       try {
         let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
           autoFillManager.ViewData | common.AutoFillExtensionContext> = {
           'session': session,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'fillCallback': callback,
           'viewData': request.viewData,
           'context': this.context,
@@ -115,8 +115,8 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | AutoFillExtensionAbility界面内容相关信息。 |
-| request | [SaveRequest](../apis/js-apis-inner-application-autoFillRequest.md#saverequest)  | 是 | 保存请求数据。 |
-| callback | [SaveRequestCallback](../apis/js-apis-inner-application-autoFillRequest.md#saverequestcallback)  | 是 | 保存请求回调。 |
+| request | [SaveRequest](js-apis-inner-application-autoFillRequest-sys.md#saverequest)  | 是 | 保存请求数据。 |
+| callback | [SaveRequestCallback](js-apis-inner-application-autoFillRequest-sys.md#saverequestcallback)  | 是 | 保存请求回调。 |
 
 **示例：**
 
@@ -136,7 +136,7 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
         let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.SaveRequestCallback |
           autoFillManager.ViewData | common.AutoFillExtensionContext> = {
           'session': session,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'fillCallback': callback,
           'viewData': request.viewData,
           'context': this.context,
@@ -150,6 +150,35 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
       } catch (err) {
         hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
       }
+    }
+  }
+  ```
+
+## AutoFillExtensionAbility.onUpdateRequest<sup>12+</sup>
+
+onUpdateRequest(request: UpdateRequest): void
+
+当收到更新请求时触发此回调函数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| request | [UpdateRequest](js-apis-inner-application-autoFillRequest-sys.md#updaterequest12)  | 是 | 更新请求。 |
+
+**示例：**
+
+  ```ts
+  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
+  import autoFillManager from '@ohos.app.ability.autoFillManager';
+  import hilog from '@ohos.hilog';
+
+  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+    onUpdateRequest(request: autoFillManager.UpdateRequest) {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'on update request, view data is: %{public}s',
+        JSON.stringify(request.data));
     }
   }
   ```

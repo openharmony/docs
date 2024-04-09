@@ -1,0 +1,23 @@
+# IME Kit API Reference
+
+- ArkTS APIs
+  - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
+  - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
+  - [@ohos.inputMethod.Panel (Input Method Panel)](js-apis-inputmethod-panel.md)
+  - [@ohos.InputMethodSubtype (Input Method Subtype)](js-apis-inputmethod-subtype.md)
+  - [@ohos.inputMethod (Input Method Framework) (System API)](js-apis-inputmethod-sys.md)
+  - [@ohos.inputMethod (Input Method Framework)](js-apis-inputmethod.md)
+  - [@ohos.inputMethodEngine (Input Method Service)](js-apis-inputmethodengine.md)
+  - [@ohos.inputMethodList (Input Method List)](js-apis-inputmethodlist.md)
+  - APIs No Longer Maintained
+    - [@ohos.inputMethodEngine#getInputMethodEngine](js-apis-inputmethodengine.md)
+    - [@ohos.inputMethodEngine#createKeyboardDelegate](js-apis-inputmethodengine.md)
+    - [@ohos.inputMethodEngine.KeyboardController#hideKeyboard](js-apis-inputmethodengine.md)
+    - [@ohos.inputMethodEngine#TextInputClient](js-apis-inputmethodengine.md)
+    - [@ohos.inputMethod#getInputMethodSetting](js-apis-inputmethod.md)
+    - [@ohos.inputMethod#getInputMethodController](js-apis-inputmethod.md)
+    - [@ohos.inputMethod.InputMethodSetting#listInputMethod](js-apis-inputmethod.md)
+    - [@ohos.inputMethod.InputMethodSetting#displayOptionalInputMethod](js-apis-inputmethod.md)
+    - [@ohos.inputMethod.InputMethodController#stopInput](js-apis-inputmethod.md)
+    - [@ohos.inputMethod.InputMethodProperty#packageName](js-apis-inputmethod.md)
+    - [@ohos.inputMethod.InputMethodProperty#methodId](js-apis-inputmethod.md)

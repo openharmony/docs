@@ -1,4 +1,4 @@
-# XComponent
+# 自定义绘制 (XComponent)
 
 
 [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种绘制组件，通常用于满足开发者较为复杂的自定义绘制需求，例如相机预览流的显示和游戏画面的绘制。
@@ -7,7 +7,7 @@
 其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。
 
 
-对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../napi/native-window-guidelines.md)”来渲染画面。
+对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](../graphics/native-window-guidelines.md)”来渲染画面。
 
 
 对于“component”类型，主要用于实现动态加载显示内容的目的。
@@ -80,6 +80,7 @@ static napi_value Init(napi_env env, napi_value exports)
 {
 	// 定义暴露在模块上的方法
     napi_property_descriptor desc[] ={
+        // 通过DECLARE_NAPI_FUNCTION宏完成方法名的映射，这里就是将native侧的PluginRender::NapiChangeColor方法映射到ets侧的changeColor方法
         DECLARE_NAPI_FUNCTION("changeColor", PluginRender::NapiChangeColor),
     };
     // 通过此接口开发者可在exports上挂载native方法（即上面的PluginRender::NapiChangeColor），exports会通过js引擎绑定到js层的一个js对象
@@ -100,14 +101,14 @@ static napi_module nativerenderModule = {
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
     // 注册so模块
-    napi_module_register(&nativerenderModule);c
+    napi_module_register(&nativerenderModule);
 }
 ```
 
 
 ### 解析XComponent组件的NativeXComponent实例
 
-NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/native-apis/_o_h___native_x_component.md)。
+NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/apis-arkui/_o_h___native_x_component.md)。
 
 
 可以在模块被加载时的回调内（即[Napi模块注册](#napi模块注册)中的Init函数）解析获得NativeXComponent实例
@@ -134,7 +135,7 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
 
 ### 注册XComponent事件回调
 
-依赖[解析XComponent组件的NativeXComponent实例](#解析xcomponent组件的nativexcomponent实例)拿到的NativeXComponent指针，通过OH_NativeXComponent_RegisterCallback接口进行回调注册
+依赖[解析XComponent组件的NativeXComponent实例](#解析xcomponent组件的nativexcomponent实例)拿到的NativeXComponent指针，通过OH_NativeXComponent_RegisterCallback接口进行回调注册。一般的会在模块被加载时的回调内（即[Napi模块注册](#napi模块注册)中的Init函数）进行回调注册。
 
 
 
@@ -186,7 +187,11 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   .onDestroy(() => {})
 ```
 
-- id : 与XComponent组件为一一对应关系，不可重复。通常开发者可以在native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
+- id : 与XComponent组件为一一对应关系，不建议重复。通常开发者可以在native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
+
+  >**说明：**
+  >
+  > 如果id重复，在native侧将无法对多个XComponent进行区分。
 
 - libraryname：加载模块的名称，必须与在native侧Napi模块注册时nm_modname的名字一致。
 
@@ -201,7 +206,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   >    ```
   >
   > 2. 使用XComponent组件加载，本质也是使用了NAPI机制来加载。
-  >    该加载方式和import加载方式的区别在于，在加载动态库是会将XComponent的NativeXComponent实例暴露到应用的native层中，从而让开发者可以使用XComponent的NDK接口。
+  >    该加载方式和import加载方式的区别在于，在加载动态库时会将XComponent的NativeXComponent实例暴露到应用的native层中，从而让开发者可以使用XComponent的NDK接口。
 
 - onLoad事件
   - 触发时刻：XComponent准备好surface后触发。

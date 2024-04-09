@@ -1,5 +1,5 @@
-# Neural Network Runtime Kit API参考 
- 
+# Neural Network Runtime Kit API参考
+
 - C API
   - 模块
     - [NeuralNetworkRuntime](_neural_nework_runtime.md)
@@ -12,4 +12,3 @@
     - [OH_NN_QuantParam](_o_h___n_n___quant_param.md)
     - [OH_NN_Tensor](_o_h___n_n___tensor.md)
     - [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md)
-

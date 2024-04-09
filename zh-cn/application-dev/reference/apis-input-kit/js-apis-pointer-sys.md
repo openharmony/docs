@@ -332,7 +332,7 @@ setMousePrimaryButton(primary: PrimaryButton, callback: AsyncCallback&lt;void&gt
 
 | 参数名    | 类型                      | 必填  | 说明                                    |
 | -------- | ------------------------- | ----  | ------------------------------------- |
-| primary  | [PrimaryButton](#primarybutton10)   | 是    | 鼠标主键id。   |
+| primary  | [PrimaryButton](js-apis-pointer.md#primarybutton10)   | 是    | 鼠标主键id。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -365,7 +365,7 @@ setMousePrimaryButton(primary: PrimaryButton): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| primary | [PrimaryButton](#primarybutton10) | 是    | 鼠标主键id。 |
+| primary | [PrimaryButton](js-apis-pointer.md#primarybutton10) | 是    | 鼠标主键id。 |
 
 **返回值**：
 
@@ -389,7 +389,7 @@ try {
 
 getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 
-获取鼠标主键，使用AsyncCallback异步方式返回结果。
+获取当前鼠标主键，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -399,7 +399,7 @@ getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;[PrimaryButton](#primarybutton10)&gt; | 是    | 回调函数，异步返回鼠标主键。 |
+| callback | AsyncCallback&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | 是    | 回调函数，异步返回鼠标主键。 |
 
 **示例**：
 
@@ -427,7 +427,7 @@ getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;[PrimaryButton](#primarybutton10)&gt; | Promise实例，异步返回鼠标主键。 |
+| Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise实例，异步返回鼠标主键。 |
 
 **示例**：
 
@@ -440,17 +440,6 @@ try {
   console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
-## PrimaryButton<sup>10+</sup>
-
-鼠标主键类型。
-
-**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
-
-| 名称                               | 值    | 说明     |
-| -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | 鼠标左键     |
-| RIGHT                             | 1    | 鼠标右键   |
 
 ## pointer.setMouseScrollRows<sup>10+</sup>
 
@@ -1313,18 +1302,6 @@ try {
 }
 ```
 
-## RightClickType<sup>10+</sup>
-
-右键菜单触发方式。
-
-**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
-
-| 名称                               | 值    | 说明     |
-| -------------------------------- | ---- | ------ |
-| TOUCHPAD_RIGHT_BUTTON            | 1    |触控板右键区域。 |
-| TOUCHPAD_LEFT_BUTTON            | 2    |触控板左键区域。 |
-| TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或按压触控板。|
-
 ## pointer.setTouchpadRightClickType<sup>10+</sup>
 
 setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>): void
@@ -1339,7 +1316,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1372,7 +1349,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| [RightClickType](#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
 
 **返回值**：
 
@@ -1406,7 +1383,7 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
+| callback | AsyncCallback\<[RightClickType](js-apis-pointer.md#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -1434,7 +1411,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<[RightClickType](#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
+| Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
 **示例**：
 

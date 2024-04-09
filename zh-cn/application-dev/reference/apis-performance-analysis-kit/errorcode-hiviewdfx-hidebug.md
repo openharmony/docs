@@ -21,3 +21,70 @@ ServiceId is invalid, systemAbility is not exist.
 
 传入正确的系统服务id。
 
+## 11400102 重复采集
+
+**错误信息**
+
+Have already capture trace.
+
+**错误描述**
+当前进程已经开启了capture trace采集，重复采集。
+
+**可能原因**
+
+上次开启的trace并未关闭。
+
+**处理步骤**
+
+关闭上一次开启的trace。
+
+## 11400103 权限校验失败
+
+**错误信息**
+
+Without write permission on the file.
+
+**错误描述**
+当前目录没有权限写trace文件。
+
+**可能原因**
+
+当前目录可能不存在或者被误删。
+
+**处理步骤**
+
+重新运行采集接口，再次生成正确目录文件。
+
+## 11400104 内部异常
+
+**错误信息**
+
+The status of the trace is abnormal
+
+**错误描述**
+当前trace采集内部状态异常。
+
+**可能原因**
+
+可能由于系统内核崩溃、应用进程卡死等导致，难以定位，建议开发者重启应用或者重启系统。
+
+**处理步骤**
+
+建议开发者重启应用或者重启系统。
+
+## 11400105 没有开启trace
+
+**错误信息**
+
+No capture trace running.
+
+**错误描述**
+当前没有trace正在采集。
+
+**可能原因**
+
+没有开启trace采集。
+
+**处理步骤**
+
+先开启trace采集再停止。

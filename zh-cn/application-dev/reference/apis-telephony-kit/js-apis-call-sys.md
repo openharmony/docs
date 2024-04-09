@@ -1114,7 +1114,7 @@ call.switchCall(1).then(() => {
 });
 ```
 
-## call.combineConference<sup>7+</sup>
+## call.combineConference<sup>11+</sup>
 
 combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
@@ -1143,7 +1143,7 @@ combineConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300007<sup>11+</sup>  | The number of conference calls exceeds the limit. |
+| 8300007  | The number of conference calls exceeds the limit. |
 
 **示例：**
 
@@ -1160,7 +1160,7 @@ call.combineConference(1, (err: BusinessError) => {
 ```
 
 
-## call.combineConference<sup>7+</sup>
+## call.combineConference<sup>11+</sup>
 
 combineConference\(callId: number\): Promise\<void\>
 
@@ -1194,7 +1194,7 @@ combineConference\(callId: number\): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300007<sup>11+</sup>  | The number of conference calls exceeds the limit. |
+| 8300007  | The number of conference calls exceeds the limit. |
 
 **示例：**
 
@@ -2735,7 +2735,7 @@ call.isNewCallAllowed().then((data: boolean) => {
 });
 ```
 
-## call.separateConference<sup>8+</sup>
+## call.separateConference<sup>11+</sup>
 
 separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 
@@ -2763,7 +2763,7 @@ separateConference\(callId: number, callback: AsyncCallback\<void\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300008<sup>11+</sup>  | Conference call is not active. |
+| 8300008  | Conference call is not active. |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -2781,7 +2781,7 @@ call.separateConference(1, (err: BusinessError) => {
 ```
 
 
-## call.separateConference<sup>8+</sup>
+## call.separateConference<sup>11+</sup>
 
 separateConference\(callId: number\): Promise\<void\>
 
@@ -2814,7 +2814,7 @@ separateConference\(callId: number\): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300008<sup>11+</sup>  | Conference call is not active. |
+| 8300008  | Conference call is not active. |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -4632,7 +4632,7 @@ import { BusinessError } from '@ohos.base';
 
 call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
     if (err) {
-        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(error)}`);
+        console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`inputDialerSpecialCode success`);
     }

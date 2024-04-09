@@ -16,7 +16,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -32,7 +32,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -53,7 +53,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -69,7 +69,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -89,7 +89,7 @@ appManager.isRunningInStabilityTest().then((flag) => {
 
 isRamConstrainedDevice(): Promise\<boolean>
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -105,7 +105,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -124,7 +124,7 @@ appManager.isRamConstrainedDevice().then((data) => {
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -140,7 +140,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -160,7 +160,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>
 
-获取应用程序的内存大小。
+获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -168,7 +168,7 @@ getAppMemorySize(): Promise\<number>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | Promise&lt;number&gt; | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。| 
 
 **错误码**：
 
@@ -176,13 +176,13 @@ getAppMemorySize(): Promise\<number>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
-import { BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base';
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
@@ -195,7 +195,7 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取应用程序的内存大小。
+获取当前应用程序可以使用的内存的值。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -203,7 +203,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 |以回调方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 |获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。| 
 
 **错误码**：
 
@@ -211,7 +211,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -231,13 +231,11 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取当前运行进程的有关信息。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
+获取当前运行进程的有关信息。使用Promise异步回调。
 
 > **说明：**
 >
-> 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
+> API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -245,7 +243,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](../apis/js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -253,7 +251,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

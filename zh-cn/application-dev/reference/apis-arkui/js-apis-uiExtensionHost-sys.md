@@ -1,0 +1,579 @@
+# @ohos.uiExtensionHost (系统接口)
+
+仅用于在有进程隔离诉求的UIExtensionComponent组件中为提供方应用提供宿主应用的窗口信息和组件本身的信息。
+
+> **说明**
+>
+> 后续此接口不再新增功能，相关功能在接口[uiExtension](js-apis-arkui-uiExtension.md)中提供。
+>
+> 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 本模块接口为系统接口。
+
+## 导入模块
+
+```
+import uiExtensionHost from '@ohos.uiExtensionHost'
+```
+
+## UIExtensionHostWindowProxy
+
+### getWindowAvoidArea
+
+getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
+
+获取宿主应用窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与宿主窗口内容重叠时，需要宿主窗口内容避让的区域。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 表示规避区类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [window.AvoidArea](js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import window from '@ohos.window';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 获取宿主应用窗口的避让信息
+let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+```
+
+### on('avoidAreaChange')
+
+on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, area: window.AvoidArea }>): void
+
+注册系统规避区变化的监听。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| type     | string | 是   | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 是 | 回调函数：入参用于接收当前规避区的信息，其中，"type"表示窗口规避区类型，"area"表示窗口内容规避区域。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 注册避让区变化的监听
+this.extensionWindow?.on('avoidAreaChange', (info) => {
+  console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
+});
+```
+
+### off('avoidAreaChange')
+
+off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, area: window.AvoidArea }>): void
+
+注销系统规避区变化的监听。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| type     | string | 是   | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 否 | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 注销所有避让区变化的监听
+this.extensionWindow?.off('avoidAreaChange');
+```
+
+### on('windowSizeChange')
+
+on(type: 'windowSizeChange', callback: Callback<window.Size>): void
+
+注册宿主应用窗口尺寸变化的监听。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 参数名   | 类型                  | 必填 | 说明                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 注册避让区变化的监听
+this.extensionWindow?.on('windowSizeChange', (size) => {
+  console.info(`size = ${JSON.stringify(size)}`);
+});
+```
+
+### off('windowSizeChange')
+
+off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
+
+注销宿主应用窗口尺寸变化的监听。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 参数名   | 类型                  | 必填 | 说明                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 注销所有宿主应用窗口大小变化的监听
+this.extensionWindow?.off('windowSizeChange');
+```
+
+### properties
+
+properties: UIExtensionHostWindowProxyProperties
+
+宿主应用窗口和UIExtensionComponent组件的信息。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+| 参数名     | 类型                                 | 说明                             |
+| ---------- | ------------------------------------ | -------------------------------- |
+| properties | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) | UIExtensionComponent组件以及宿主窗口的信息。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 获取UIExtensionComponent位置和大小信息
+let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+```
+
+### hideNonSecureWindows
+
+hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
+
+设置是否隐藏不安全窗口。
+> **说明：**
+>
+> 不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如非系统全局悬浮窗、宿主子窗口。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明       |
+| ----------- | ------------------------- | ---- | ---------- |
+| shouldHide  | boolean                   | 是   | 指示是否隐藏不安全窗口，true表示隐藏，false表示不隐藏。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+// 隐藏非安全窗口
+let promise = this.extensionWindow?.hideNonSecureWindows(true);
+promise?.then(()=> {
+  console.log(`Succeeded in hiding the non-secure windows.`);
+}).catch((err: BusinessError)=> {
+  console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+})
+// 取消隐藏非安全窗口
+let promise = this.extensionWindow?.hideNonSecureWindows(false);
+promise?.then(()=> {
+  console.log(`Succeeded in showing the non-secure windows.`);
+}).catch((err: BusinessError)=> {
+  console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+})
+```
+
+### createSubWindowWithOptions<sup>12+<sup>
+
+createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
+
+创建该UIExtensionHostWindowProxy实例下的子窗口，使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| name   | string | 是   | 子窗口的名字。 |
+| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | 是 | 子窗口参数。 |
+
+**返回值：**
+
+| 类型                             | 说明                                             |
+| -------------------------------- | ------------------------------------------------ |
+| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise对象。返回当前UIExtensionHostWindowProxy下创建的子窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window proxy is abnormal. |
+
+**示例：**
+
+```ts
+import uiExtensionHost from '@ohos.uiExtensionHost';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
+extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+let subWindowOpts: window.SubWindowOptions = {
+  'title': 'This is a subwindow',
+  decorEnabled: true
+};
+// 创建子窗口
+this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+  .then((subWindow: window.Window) => {
+    this.subWindow = subWindow;
+    this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
+      if (err && err.code != 0) {
+        return;
+      }
+      this.subWindow?.resize(300, 300, (err, data)=>{
+        if (err && err.code != 0) {
+          return;
+        }
+        this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
+          if (err && err.code != 0) {
+            return;
+          }
+          this.subWindow?.showWindow((err, data) => {
+            if (err && err.code == 0) {
+              console.info(`The subwindow has been shown!`);
+            } else {
+              console.error(`Failed to show the subwindow!`);
+            }
+          });
+        });
+      });
+    });
+  }).catch((error: BusinessError) => {
+    console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+  })
+```
+
+### setWaterMarkFlag<sup>12+<sup>
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**示例**
+
+```ts
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import uiExtension from '@ohos.arkui.uiExtension';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
+extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
+// 添加安全水印标志
+let promise = this.extensionWindow?.setWaterMarkFlag(true);
+promise?.then(() => {
+  console.log(`Succeeded in setting water mark flag of window.`);
+}).catch((err: BusinessError) => {
+  console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+})
+// 删除安全水印标志
+let promise = this.extensionWindow?.setWaterMarkFlag(false);
+promise?.then(() => {
+  console.log(`Succeeded in deleting water mark flag of window.`);
+}).catch((err: BusinessError) => {
+  console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+})
+```
+
+## UIExtensionHostWindowProxyProperties
+
+用于表示宿主应用窗口和UIExtensionComponent组件的信息。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统接口**：此接口为系统接口
+
+| 属性名                         | 类型        | 说明                             |
+| ------------------------------ | ----------- | -------------------------------- |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | UIExtensionComponent的位置和宽高。 |
+
+## 完整示例
+
+本示例展示文档中所有API在UIExtensionAbility中的基础使用方式，示例应用需采用系统签名，且`bundleName`为"com.example.uiextensiondemo", 被拉起的`UIExtensionAbility`为"ExampleUIExtensionAbility".
+
+- 示例应用中的EntryAbility(UIAbility)加载首页文件：`pages/Index.ets`，其中内容如下：
+
+  ```ts
+  // pages/Index.ets -- UIAbility启动时加载此页面
+  import Want from '@ohos.app.ability.Want'
+
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Message: '
+    private want: Want = {
+      bundleName: "com.example.uiextensiondemo",
+      abilityName: "ExampleUIExtensionAbility",
+      parameters: {
+        "ability.want.params.uiExtensionType": "sys/commonUI"
+      }
+    }
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.message).fontSize(30)
+          UIExtensionComponent(this.want)
+            .width('100%')
+            .height('90%')
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+- UIExtensionComponent拉起的UIExtensionAbility在`ets/extensionAbility/ExampleUIExtensionAbility`文件中实现，内容如下：
+
+  ```ts
+  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+  import Want from '@ohos.app.ability.Want';
+
+  const TAG: string = '[ExampleUIExtensionAbility]'
+  export default class ExampleUIExtensionAbility extends UIExtensionAbility {
+    onCreate() {
+      console.log(TAG, `onCreate`);
+    }
+
+    onForeground() {
+      console.log(TAG, `onForeground`);
+    }
+
+    onBackground() {
+      console.log(TAG, `onBackground`);
+    }
+
+    onDestroy() {
+      console.log(TAG, `onDestroy`);
+    }
+
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      let param: Record<string, UIExtensionContentSession> = {
+        'session': session
+      };
+      let storage: LocalStorage = new LocalStorage(param);
+      session.loadContent('pages/extension', storage);
+    }
+  }
+  ```
+
+- UIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
+
+  ```ts
+  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import uiExtensionHost from '@ohos.uiExtensionHost';
+  import window from '@ohos.window';
+  import { BusinessError } from '@ohos.base';
+
+  let storage = LocalStorage.getShared()
+
+  @Entry(storage)
+  @Component
+  struct Extension {
+    @State message: string = 'UIExtensionAbility Index';
+    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+    private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+    private subWindow: window.Window | undefined = undefined;
+
+    aboutToAppear(): void {
+      this.extensionWindow?.on('windowSizeChange', (size) => {
+          console.info(`size = ${JSON.stringify(size)}`);
+      });
+      this.extensionWindow?.on('avoidAreaChange', (info) => {
+          console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
+      });
+      let promise = this.extensionWindow?.hideNonSecureWindows(true);
+      promise?.then(()=> {
+        console.log(`Succeeded in hiding the non-secure windows.`);
+      }).catch((err: BusinessError)=> {
+        console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      })
+    }
+
+    aboutToDisappear(): void {
+      this.extensionWindow?.off('windowSizeChange');
+      this.extensionWindow?.off('avoidAreaChange');
+      let promise = this.extensionWindow?.hideNonSecureWindows(false);
+      promise?.then(()=> {
+        console.log(`Succeeded in showing the non-secure windows.`);
+      }).catch((err: BusinessError)=> {
+        console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+      })
+    }
+
+    build() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("获取组件大小").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+          let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+          console.info(`UIExtensionComponent的宽高和位置信息: ${JSON.stringify(rect)}`);
+        })
+        Button("获取系统规避区信息").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+          let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+          console.info(`系统规避区: ${JSON.stringify(avoidArea)}`);
+        })
+        Button("创建子窗口").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+          let subWindowOpts: window.SubWindowOptions = {
+            'title': 'This is a subwindow',
+            decorEnabled: true
+          };
+          this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+            .then((subWindow: window.Window) => {
+              this.subWindow = subWindow;
+              this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
+                if (err && err.code != 0) {
+                  return;
+                }
+                this.subWindow?.resize(300, 300, (err, data)=>{
+                  if (err && err.code != 0) {
+                    return;
+                  }
+                  this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
+                    if (err && err.code != 0) {
+                      return;
+                    }
+                    this.subWindow?.showWindow((err, data) => {
+                      if (err && err.code == 0) {
+                        console.info(`The subwindow has been shown!`);
+                      } else {
+                        console.error(`Failed to show the subwindow!`);
+                      }
+                    });
+                  });
+                });
+              });
+            }).catch((error: BusinessError) => {
+              console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+            })
+        })
+      }.width('100%').height('100%')
+    }
+  }
+  ```
+
+- 最后，示例应用的`module.json5`中的"extensionAbilities"中需要增加一项，具体内容如下：
+  ```json
+  {
+    "name": "ExampleUIExtensionAbility",
+    "srcEntry": "./ets/extensionAbility/ExampleUIExtensionAbility.ets",
+    "type": "sys/commonUI",
+  }
+  ```

@@ -8,7 +8,7 @@ URL代表着是统一资源定位符，本模块提供了常用的工具函数�
 
 ## 导入模块
 
-```
+```ts
 import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
@@ -32,11 +32,18 @@ URLParams的构造函数。
 **示例：**
 
 ```ts
+// 通过string[][]方式构造URLParams对象：
 let objectParams = new Url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+// 通过Record<string, string>方式构造URLParams对象：
 let objectParams1 = new Url.URLParams({"fod" : '1' , "bard" : '2'});
+// 通过string方式构造URLParams对象：
 let objectParams2 = new Url.URLParams('?fod=1&bard=2');
+// 通过Url对象的search属性构造URLParams对象：
 let urlObject = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
-let params = new Url.URLParams(urlObject.search);
+let objectParams3 = new Url.URLParams(urlObject.search);
+// 通过Url对象的params属性获取URLParams对象：
+let urlObject1 = Url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
+let objectParams4 = urlObject1.params;
 ```
 
 
@@ -399,6 +406,25 @@ console.log(params.toString());
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。 |
 | username | string | 是 | 是 | 获取和设置URL的用户名部分。 |
 
+**示例：**
+
+```ts
+let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
+console.log("hash " + that.hash) // hash #fragment
+console.log("host " + that.host) // host host:8080
+console.log("hostname " + that.hostname) // hostname host
+console.log("href " + that.href) // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.log("origin " + that.origin) // origin http://host:8080
+console.log("password " + that.password) // password password
+console.log("pathname " + that.pathname) // pathname /directory/file
+console.log("port " + that.port) // port 8080
+console.log("protocol " + that.protocol) // protocol http:
+console.log("search " + that.search) // search ?foo=1&bar=2
+console.log("username " + that.username) // username username
+// that.params 返回值为URLParams对象
+console.log("params: foo " + that.params.get("foo")) // params: foo 1
+```
+
 ### constructor<sup>(deprecated)</sup>
 
 > **说明：**
@@ -456,7 +482,7 @@ URL静态成员函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 入参对象。 |
-| base | string | URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
 
 **错误码：**
 

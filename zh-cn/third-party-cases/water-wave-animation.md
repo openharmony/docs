@@ -291,12 +291,12 @@ struct numBtn {
 }
 ```
 ## 参考
-[Guid](../application-dev/reference/arkui-ts/ts-container-grid.md)
+[Grid](../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md)
 
-[GridItem](../application-dev/reference/arkui-ts/ts-container-griditem.md)
+[GridItem](../application-dev/reference/apis-arkui/arkui-ts/ts-container-griditem.md)
 
-[显式动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)
+[显式动画](../application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
 
-[组件内转场](../application-dev/reference/arkui-ts/ts-transition-animation-component.md)
+[组件内转场](../application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)
 
-[Stack](../application-dev/reference/arkui-ts/ts-container-stack.md)
+[Stack](../application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md)

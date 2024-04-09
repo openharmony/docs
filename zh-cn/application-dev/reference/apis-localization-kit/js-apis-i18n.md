@@ -107,6 +107,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 获取系统支持的语言列表。
 
+**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -294,7 +296,7 @@ static is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -859,10 +861,10 @@ isWeekend(date?: Date): boolean
 **示例：**
   ```ts
   let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
-  calendar.isWeekend(); // false
+  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.isWeekend(); // true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0);
-  calendar.isWeekend(date); // true
+  calendar.isWeekend(date); // false
   ```
 
 
@@ -2247,7 +2249,7 @@ normalize(text: string): string
 **示例：**
   ```ts
   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
-  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
 
@@ -2557,7 +2559,7 @@ set24HourClock(option: boolean): boolean
 
 修改系统时间的24小时制设置。
 
-从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
+从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -2588,7 +2590,7 @@ addPreferredLanguage(language: string, index?: number): boolean
 
 在系统偏好语言列表中的指定位置添加偏好语言。
 
-从API version 8开始支持，从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
+从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
@@ -2622,7 +2624,7 @@ removePreferredLanguage(index: number): boolean
 
 删除系统偏好语言列表中指定位置的偏好语言。
 
-从API version 8开始支持，从API version 9开始不再维护，替代接口为系统接口，仅支持系统应用使用。
+从API version 8开始支持，从API version 9开始不再维护，替代接口仅支持系统应用使用。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 

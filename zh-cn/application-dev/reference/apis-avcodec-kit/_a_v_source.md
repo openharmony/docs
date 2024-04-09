@@ -20,18 +20,63 @@ AVSource模块提供用于构造音视频资源对象功能的函数。
 | [native_avsource.h](native__avsource_8h.md) | 声明用于音视频解封装的Native API。 | 
 
 
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef struct [OH_AVSource](#oh_avsource) [OH_AVSource](#oh_avsource) | 为媒体资源接口定义native层对象。  | 
+
+
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVSource \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的的资源对象创建OH_AVSource实例对象。 | 
-| OH_AVSource \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | 为文件描述符对应的资源对象创建OH_AVSource实例对象。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVSource_Destroy](#oh_avsource_destroy) (OH_AVSource \*source) | 销毁OH_AVSource实例并清理内部资源。 | 
-| OH_AVFormat \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) (OH_AVSource \*source) | 获取媒体资源文件的基础信息。 | 
-| OH_AVFormat \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) (OH_AVSource \*source, uint32_t trackIndex) | 获取轨道的基础信息。 | 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithDataSource](#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | 为用户自定义数据源的资源对象创建OH_AVSource实例对象，可以通过调用OH_AVSource_Destroy释放实例。  | 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的的资源对象创建OH_AVSource实例对象。 | 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | 为文件描述符对应的资源对象创建OH_AVSource实例对象。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | 销毁OH_AVSource实例并清理内部资源。 | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | 获取媒体资源文件的基础信息。 | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | 获取轨道的基础信息。 | 
+
+
+## 类型定义说明
+
+
+### OH_AVSource
+
+```
+typedef struct OH_AVSource OH_AVSource
+```
+**描述**
+为媒体资源接口定义native层对象。
+
+**起始版本：** 10
 
 
 ## 函数说明
+
+
+### OH_AVSource_CreateWithDataSource()
+
+```
+OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
+```
+**描述**
+为用户自定义数据源的资源对象创建OH_AVSource实例对象，可以通过调用OH_AVSource_Destroy释放实例。
+
+**系统能力：** SystemCapability.Multimedia.Media.Spliter
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| dataSource | 用户自定义数据源。  | 
+
+**返回：**
+
+返回一个指向OH_AVSource实例的指针。
 
 
 ### OH_AVSource_CreateWithFD()

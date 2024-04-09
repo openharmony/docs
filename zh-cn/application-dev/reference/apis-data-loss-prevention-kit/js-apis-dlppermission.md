@@ -16,7 +16,7 @@ import dlpPermission from '@ohos.dlpPermission';
 
 isDLPFile(fd: number): Promise&lt;boolean&gt;
 
-根据文件的fd，查询该文件是否是DLP文件，使用Promise方式异步返回结果。
+根据文件的fd，查询该文件是否是DLP文件。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -64,7 +64,7 @@ fs.closeSync(file);
 
 isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-根据文件的fd，查询该文件是否是DLP文件，使用callback方式异步返回结果。
+根据文件的fd，查询该文件是否是DLP文件。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1101,6 +1101,41 @@ try {
   }); // 获取沙箱应用配置信息
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+}
+```
+
+## dlpPermission.isDLPFeatureProvided<sup>12+<sup>
+isDLPFeatureProvided(): Promise&lt;boolean&gt;
+
+查询当前系统是否提供DLP特性，使用Promise方式异步返回结果
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise对象。返回当前系统是否提供DLP特性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 19100011 | System service exception. |
+
+**示例：**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+async checkIsDLPFeatureProvided() {
+  dlpPermission.isDLPFeatureProvided().then((res) => {git
+    console.info('res', JSON.stringify(res));
+  }).catch((err: BusinessError) => {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  });
 }
 ```
 

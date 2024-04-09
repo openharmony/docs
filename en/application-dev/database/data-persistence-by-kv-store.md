@@ -19,7 +19,7 @@ The key-value (KV) database stores data in the form of KV pairs. You can use KV 
 
 ## Available APIs
 
-The following table lists the APIs used for KV data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
+The following table lists the APIs used for KV data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
 | API| Description| 
 | -------- | -------- |
@@ -32,9 +32,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
 
 ## How to Develop
 
-1. Create a **KvManager** instance to manage database objects. 
+1. Create a **KvManager** instance to manage database objects.<br>Example:
 
-   Example:
    Stage model:
 
      
@@ -106,9 +105,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
 
    ```
 
-2. Create and obtain a KV store. 
+2. Create and obtain a KV store.<br>Example:
      
-   Example:
    ```js
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -142,9 +140,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-3. Use **put()** to add data to the KV store. 
+3. Use **put()** to add data to the KV store.<br>Example:
      
-   Example:
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -166,9 +163,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
    >
    > The **put()** method adds a KV pair if the specified key does not exists and changes the value if the the specified key already exists.
 
-4. Use **get()** to obtain the value of a key. 
+4. Use **get()** to obtain the value of a key.<br>Example:
      
-   Example:
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -194,9 +190,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-5. Use **delete()** to delete the data of the specified key. 
+5. Use **delete()** to delete the data of the specified key.<br>Example:
      
-   Example:
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';

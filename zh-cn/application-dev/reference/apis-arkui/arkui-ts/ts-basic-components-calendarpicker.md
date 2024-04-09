@@ -29,17 +29,52 @@ CalendarPicker(options?: CalendarOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称          | 参数类型           | 描述                                |
-| ----------- | ----------- | --------------------------------- |
-| edgeAlign | alignType: [CalendarAlign](#calendaralign枚举说明)，offset?: [Offset](ts-types.md#offset) | 设置选择器与入口组件的对齐方式。<br/>-alignType: 对齐方式类型。<br/>默认值：CalendarAlign .END。<br/>-offset: 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0}。 |
-| textStyle | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 设置入口区的文本颜色、字号、字体粗细。                       |
+### edgeAlign
+
+edgeAlign(alignType: CalendarAlign, offset?: Offset)
+
+设置选择器与入口组件的对齐方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                    | 必填 | 说明                                                         |
+| --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END                |
+| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+
+### textStyle
+
+textStyle(value: PickerTextStyle)
+
+设置选择器与入口组件的对齐方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                          |
+| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------- |
+| value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
 
-| 名称                                      | 功能描述               |
-| ----------------------------------------- | ---------------------- |
-| onChange(callback: (value: Date) => void) | 选择日期时触发该事件。<br/>value：选中的日期值 |
+### onChange
+
+onChange(callback: (value: Date) => void)
+
+选择日期时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| value  | Date | 是   | 选中的日期值。 |
 
 ##  CalendarOptions对象说明
 

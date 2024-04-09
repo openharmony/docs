@@ -3,14 +3,14 @@
 本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
-> 
+>
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 ```
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -20,7 +20,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 申请短时任务。
 
 >  **说明：**
-> 
+>
 > 短时任务的申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
@@ -53,7 +53,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **示例**：
 
-```ts 
+```ts
 import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
@@ -75,7 +75,7 @@ try {
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-获取本次短时任务的剩余时间。使用callback异步回调。
+获取本次短时任务的剩余时间，使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -102,7 +102,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **示例**：
 
-```ts 
+```ts
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -120,7 +120,7 @@ backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: numb
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取本次短时任务的剩余时间。使用promise异步回调。
+获取本次短时任务的剩余时间，使用promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -151,7 +151,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-```ts 
+```ts
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -207,7 +207,7 @@ cancelSuspendDelay(requestId: number): void
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-申请长时任务。使用callback异步回调。
+申请长时任务，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -240,7 +240,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -331,7 +331,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -380,7 +380,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务。使用callback异步回调。
+取消长时任务，使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -409,7 +409,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
@@ -471,7 +471,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
@@ -486,6 +486,160 @@ export default class EntryAbility extends UIAbility {
             });
         } catch (error) {
             console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+
+## backgroundTaskManager.startBackgroundRunning<sup>12+</sup>
+
+startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;void&gt;
+
+申请长时任务，使用promise异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
+| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录音<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。|
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
+
+**返回值**：
+
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
+
+**示例**：
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let wantAgentInfo: wantAgent.WantAgentInfo = {
+            // 点击通知后，将要执行的动作列表
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "EntryAbility"
+                }
+            ],
+            // 点击通知后，动作类型
+            operationType: wantAgent.OperationType.START_ABILITY,
+            // 使用者自定义的一个私有值
+            requestCode: 0,
+            // 点击通知后，动作执行属性
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
+
+        try {
+            // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+                try {
+                    let list: Array<string> = ["audioPlayback", "location"];
+                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error: BusinessError) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
+
+updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt;
+
+更新长时任务，使用promise异步回调。
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**参数**：
+
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
+| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录音<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。
+
+**返回值**：
+
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
+
+**示例**：
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+                try {
+                    // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning。这里假设已经申请过。
+                    let list: Array<string> = ["audioPlayback"];
+                    backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
+                        console.info("Operation updateBackgroundRunning succeeded");
+                    }).catch((error: BusinessError) => {
+                        console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+                }
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -517,4 +671,3 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
-

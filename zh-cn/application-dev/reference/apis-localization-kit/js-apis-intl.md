@@ -22,7 +22,7 @@ import Intl from '@ohos.intl';
 
 ### 属性
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -176,7 +176,8 @@ minimize(): Locale
 表示区域初始化选项。
 
 从API9开始，LocaleOptions中的属性改为可选。
-从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -197,7 +198,7 @@ constructor()
 
 创建时间日期格式化对象。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -335,32 +336,33 @@ resolvedOptions(): DateTimeOptions
 
 ## DateTimeOptions
 
-表示时间日期格式化选项。
+表示时间日期格式化选项，参数取值和实现效果请参考[时间日期国际化](../../internationalization/i18n-time-date.md)。
 
 从API9开始，DateTimeOptions中的属性改为可选。
-从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | ---- |  ---------------------------------------- |
 | locale          | string  | 否    |区域参数，&nbsp;如：zh-Hans-CN。                 |
-| dateStyle       | string  | 否     |日期显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full"。 |
-| timeStyle       | string  | 否     |时间显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full"。 |
+| dateStyle       | string  | 否     |日期显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
+| timeStyle       | string  | 否     |时间显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
 | hourCycle       | string  | 否     |时制格式，取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | timeZone        | string  | 否     |使用的时区（合法的IANA时区ID）。                      |
 | numberingSystem | string  | 否     |数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | hour12          | boolean | 否     | 是否使用12小时制。若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。         |
-| weekday         | string  | 否     | 工作日的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| era             | string  | 否     | 时代的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+| weekday         | string  | 否     | 工作日的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
+| era             | string  | 否     | 时代的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
 | year            | string  | 否     | 年份的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| month           | string  | 否     | 月份的显示格式，取值包括："numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow"。 |
+| month           | string  | 否     | 月份的显示格式，取值包括："numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
 | day             | string  | 否     | 日期的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
 | hour            | string  | 否     | 小时的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
 | minute          | string  | 否     | 分钟的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
 | second          | string  | 否     | 秒钟的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| timeZoneName    | string  | 否     | 时区名称的本地化表示。                              |
-| dayPeriod       | string  | 否     | 时段的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+| timeZoneName    | string  | 否     | 时区名称的本地化表示, 取值包括："long",&nbsp;"short",&nbsp;"auto"。                              |
+| dayPeriod       | string  | 否     | 时段的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
 | localeMatcher   | string  | 否     | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。 |
 | formatMatcher   | string  | 否     | 要使用的格式匹配算法，取值包括："basic",&nbsp;"best&nbsp;fit"。 |
 

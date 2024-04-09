@@ -668,7 +668,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: TextDecoderOptions): TextDecoder
+static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
@@ -829,7 +829,8 @@ console.info("retStr = " + retStr);
 
 ## TextEncoder
 
-TextEncoder用于将字符串编码为字节数组，支持多种编码格式，包括utf-8、utf-16le/be等。需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的。例如，utf-8编码下中文字符通常占3个字节，而utf-16le/be编码下中文字符通常占2个字节。因此，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
+需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
 
 ### 属性
 
@@ -837,7 +838,7 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式，
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式，默认值是'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -872,6 +873,26 @@ TextEncoder的构造函数。
 
 ```ts
 let textEncoder = new util.TextEncoder("utf-8");
+```
+
+### create<sup>12+</sup>
+
+static create(encoding?: string): TextEncoder
+
+创建TextEncoder对象的方法。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ---- | ---- | ---- |
+| encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**示例：**
+
+```ts
+let textEncoder = util.TextEncoder.create("utf-8");
 ```
 
 ### encodeInto<sup>9+</sup>
@@ -1139,7 +1160,7 @@ equals​(obj: Object): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| object | Object | 是 | 其他类型对象。 |
+| obj | Object | 是 | 其他类型对象。 |
 
 **返回值：**
 
@@ -2622,7 +2643,7 @@ let result = range.clamp(tempMiDF);
 
 ## Base64Helper<sup>9+</sup>
 
-Base64编码表包含A-Z、a-z、0-9这62个字符，以及"+"和"/"这两个特殊字符。在编码时，将原始数据按3个字节一组进行划分，得到若干个6位的数字，然后使用Base64编码表中对应的字符来表示这些数字。如果最后剩余1或2个字节，则需要使用"="字符进行补齐。
+Base64Helper类提供Base64编解码和Base64URL编解码功能。Base64编码表包含A-Z、a-z、0-9这62个字符，以及"+"和"/"这两个特殊字符。在编码时，将原始数据按3个字节一组进行划分，得到若干个6位的数字，然后使用Base64编码表中对应的字符来表示这些数字。如果最后剩余1或2个字节，则需要使用"="字符进行补齐。Base64URL编码表包含A-Z、a-z、0-9以及"-"和"_"64个字符，Base64URL编码结果不含"="。
 
 ### constructor<sup>9+</sup>
 
@@ -2635,12 +2656,12 @@ Base64Helper的构造函数。
 **示例：**
 
   ```ts 
-  let base64 = new  util.Base64Helper();
+  let base64 = new util.Base64Helper();
   ```
 
 ### encodeSync<sup>9+</sup>
 
-encodeSync(src: Uint8Array): Uint8Array
+encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
 
@@ -2651,6 +2672,7 @@ encodeSync(src: Uint8Array): Uint8Array
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
+| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC 表示 Base64编码。<br/>util.Type.BASIC_URL_SAFE 表示 Base64URL编码。 |
 
 **返回值：**
 
@@ -2680,7 +2702,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。|
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2710,7 +2732,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64解码。<br/>- 当参数取值为util.Type.MIME，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
 
@@ -2729,7 +2751,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 ### encode<sup>9+</sup>
 
-encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
+encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
 
@@ -2740,6 +2762,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
+| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC 表示 Base64编码。<br/>util.Type.BASIC_URL_SAFE表示 Base64URL编码。 |
 
 **返回值：**
 
@@ -2774,7 +2797,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   |  从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2806,7 +2829,7 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8Array对象或者字符串。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示Base64解码。<br/>- 当参数取值为util.Type.MIME时，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
 
@@ -2824,6 +2847,87 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
   })
   ```
 
+## StringDecoder<sup>12+</sup>
+
+提供将二进制流解码为字符串的能力。支持的编码类型包括：utf-8、iso-8859-2、koi8-r、macintosh、windows-1250、windows-1251、gbk、gb18030、big5、utf-16be、utf-16le等。
+
+### constructor<sup>12+</sup>
+
+constructor(encoding?: string)
+
+StringDecoder的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                              |
+| ------ | ------------------------------ | ---- | --------------------------------- |
+| encoding  | string | 否   | 输入数据的编码类型。默认值：'utf-8'。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder();
+  ```
+
+### write<sup>12+</sup>
+
+write(chunk: string | Uint8Array): string
+
+返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时会正常解码，参数为string类型时会原路返回。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| string | 返回解码后的字符串。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input);
+  console.info("decoder:", decoded);// 你好
+  ```
+
+### end<sup>12+</sup>
+
+end(chunk?: string | Uint8Array): string
+
+结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | 否   | 需要解码的字符串。默认为undefined。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| string | 返回解码后的字符串。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input.slice(0, 5));
+  const decodedend = decoder.end(input.slice(5));
+  console.info("decoded:", decoded);// 你
+  console.info("decodedend:", decodedend);// 好
+  ```
 
 ## Type<sup>10+</sup>
 
@@ -2835,6 +2939,8 @@ Base64编码格式枚举。
 | ----- |---| ----------------- |
 | BASIC | 0 | 表示BASIC编码格式。|
 | MIME  | 1 | 表示MIME编码格式。 |
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
 
 
 ## types<sup>8+</sup>

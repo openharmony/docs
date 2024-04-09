@@ -1,6 +1,6 @@
-# ArkTS语言基础类库
+# ArkTS（方舟编程语言）
 
-- [ArkTS语言基础类库概述](arkts-commonlibrary-overview.md)
+- [ArkTS简介](arkts-commonlibrary-overview.md)
 - 并发
   - [并发概述](concurrency-overview.md)
   - 使用异步并发能力进行开发
@@ -19,7 +19,7 @@
     - [TaskPool和Worker支持的序列化类型](serialization-support-types.md)
     - [多线程安全注意事项](multi-thread-safety.md)
     - [\@Concurrent装饰器：声明并校验并发函数](arkts-concurrent.md)
-    - [\@Sendable装饰器：声明并校验Sendable类](arkts-sendable.md)
+    - [Sendable开发指导](arkts-sendable.md)
 - 容器类库
   - [容器类库概述](container-overview.md)
   - [线性容器](linear-container.md)

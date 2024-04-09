@@ -17,7 +17,7 @@ The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Backgr
 
 ### Create
 
-The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform application initialization operations, for example, defining variables or loading resources.
+The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
 
 
 ```ts
@@ -27,7 +27,7 @@ import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // Initialize the application.
+    // Initialize the page.
   }
   // ...
 }
@@ -35,16 +35,17 @@ export default class EntryAbility extends UIAbility {
 
 > **NOTE**
 >
-> [Want](../reference/apis/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
+> [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
 
 ### WindowStageCreate and WindowStageDestroy
 
 After the UIAbility instance is created but before it enters the **Foreground** state, the system creates a WindowStage instance and triggers the **onWindowStageCreate()** callback. You can set UI loading and WindowStage event subscription in the callback.
 
 **Figure 2** WindowStageCreate and WindowStageDestroy 
+
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
+In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
 
 ```ts
 import Logger from '../utils/Logger';
@@ -92,8 +93,7 @@ export default class EntryAbility extends UIAbility {
 >
 > For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
 
-Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callback is invoked to release UI resources. In this callback, you can unsubscribe from the WindowStage events.
-
+Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callback is invoked to release UI resources.
 
 ```ts
 import Logger from '../utils/Logger';
@@ -112,16 +112,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // Release UI resources.
-    // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
-    try {
-      if (this.windowStage) {
-        this.windowStage.off('windowStageEvent');
-      }
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      Logger.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    };
   }
 }
 ```

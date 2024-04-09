@@ -178,11 +178,6 @@ try {
 }
 ```
 
-**References**
-
-[System time and time zone../reference/apis/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
-
-
 ## How do I obtain the cache directory of the current application? (API version 9)
 
 **Solution**
@@ -202,7 +197,7 @@ When a widget is created, a **FormAblity.ts** file is generated, which contains 
 
 **References**
 
-[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)
+[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
 
 
 ## What should I do when the compilation on DevEco Studio fails while ServiceExtensionAbility and DataShareExtensionAbility APIs are used? (API version 9)

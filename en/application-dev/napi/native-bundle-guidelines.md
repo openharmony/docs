@@ -8,7 +8,9 @@ Use the native bundle APIs to obtain application information.
 
 | API                                                      | Description                                    |
 | :----------------------------------------------------------- | :--------------------------------------- |
-| [OH_NativeBundle_ApplicationInfo OH_NativeBundle_GetCurrentApplicationInfo()](../reference/native-apis/native__interface__bundle.md) | Obtains the information about the current application.         |
+| [OH_NativeBundle_GetCurrentApplicationInfo](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcurrentapplicationinfo) | Obtains the information about the current application.         |
+| [OH_NativeBundle_GetAppId](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappid) | Obtains the appId information about the current application.|
+| [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
 
 ## How to Develop
 
@@ -38,19 +40,19 @@ Use the native bundle APIs to obtain application information.
 
    When the **src/main/cpp/hello.cpp** file is opened, **Init** is called to initialize the API, which is **getCurrentApplicationInfo**.
 
-   ```c++
-   EXTERN_C_START
-   static napi_value Init(napi_env env, napi_value exports)
-   {
-       napi_property_descriptor desc[] = {
-           { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr}
-       };
-   
-       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-       return exports;
-   }
-   EXTERN_C_END
-   ```
+    ```c++
+    EXTERN_C_START
+    static napi_value Init(napi_env env, napi_value exports)
+    {
+        napi_property_descriptor desc[] = {
+            { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr}
+        };
+    
+        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+        return exports;
+    }
+    EXTERN_C_END
+    ```
 
    1. Add the API to the **src/main/cpp/hello.cpp** file.
 
@@ -75,19 +77,23 @@ Use the native bundle APIs to obtain application information.
            napi_value fingerprint;
            napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
            napi_set_named_property(env, result, "fingerprint", fingerprint);
+       
+           char* appId = OH_NativeBundle_GetAppId();
            // Convert the application ID obtained by calling the native API to the appId attribute in the JavaScript object.
-           napi_value appId;
-           napi_create_string_utf8(env, nativeApplicationInfo.appId, NAPI_AUTO_LENGTH, &appId);
-           napi_set_named_property(env, result, "appId", appId);
+           napi_value napi_appId;
+           napi_create_string_utf8(env, appId, NAPI_AUTO_LENGTH, &napi_appId);
+           napi_set_named_property(env, result, "appId", napi_appId);
+       
+           char* appIdentifier = OH_NativeBundle_GetAppIdentifier();
            // Convert the application identifier obtained by calling the native API to the appIdentifier attribute in the JavaScript object.
-           napi_value appIdentifier;
-           napi_create_string_utf8(env, nativeApplicationInfo.appIdentifier, NAPI_AUTO_LENGTH, &appIdentifier);
-           napi_set_named_property(env, result, "appIdentifier", appIdentifier);
-           // To prevent memory leak, manually free the memory.
+           napi_value napi_appIdentifier;
+           napi_create_string_utf8(env, appIdentifier, NAPI_AUTO_LENGTH, &napi_appIdentifier);
+           napi_set_named_property(env, result, "appIdentifier", napi_appIdentifier);
+           // To prevent memory leak, manually release the memory.
            free(nativeApplicationInfo.bundleName);
            free(nativeApplicationInfo.fingerprint);
-           free(nativeApplicationInfo.appId);
-           free(nativeApplicationInfo.appIdentifier);
+           free(appId);
+           free(appIdentifier);
            return result;
        }
        ```
@@ -140,4 +146,4 @@ Use the native bundle APIs to obtain application information.
        }
        ```
 
-For details about the APIs, see [Bundle](../reference/native-apis/_bundle.md).
+For details about the APIs, see [Bundle](../reference/apis-ability-kit/_bundle.md).

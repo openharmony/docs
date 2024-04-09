@@ -33,7 +33,7 @@ animate( keyframes: Keyframes, options: Options)：void
 | opacity            | number                                   | 1                    | 设置到组件上的透明度，介于0到1之间。                      |
 | backgroundPosition | string                                   | -                    | 格式为"x&nbsp;y"，单位为百分号或者px。<br/>第一个值是水平位置，第二个值是垂直位置。<br/>如果仅规定了一个值，另一个值为&nbsp;50%。 |
 | transformOrigin    | string                                   | 'center&nbsp;center' | 变换对象的中心点。<br/>第一个参数表示x轴的值，可以设置为left、center、right、长度值或百分比值。<br/>第二个参数表示y轴的值，可以设置为top、center、bottom、长度值或百分比值。 |
-| transform          | [Transform](../arkui-js/js-components-common-animation.md) | -                    | 设置到变换对象上的类型。                             |
+| transform          | [Transform](js-components-common-animation.md) | -                    | 设置到变换对象上的类型。                             |
 | offset             | number                                   | -                    | -&nbsp;offset值（如果提供）必须在0.0到1.0（含）之间，并以升序排列。<br/>-&nbsp;若只有两帧，可以不填offset。<br/>-&nbsp;若超过两帧，offset必填。 |
 
   **表3** Options说明

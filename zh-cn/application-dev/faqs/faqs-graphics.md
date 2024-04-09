@@ -78,7 +78,7 @@ import effectKit from "@ohos.effectKit";
 ```
 **参考链接：**
 
-[图片添加模糊效果](../reference/apis/js-apis-effectKit.md#blur)
+[图片添加模糊效果](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)
 
 
 ## EGL绘制操作是否只能在主线程，可以放子线程中执行吗(API 10)

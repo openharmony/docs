@@ -5,13 +5,11 @@
 
 描述Input设备业务控制相关的接口声明。
 
-**Since:**
-1.0
-**Version:**
-1.0
-**相关模块:**
+引用：input_type.h
 
-[Input](_input.md)
+**起始版本：** 1.0
+
+**相关模块：**[Input](_input.md)
 
 
 ## 汇总
@@ -19,6 +17,6 @@
 
 ### 类
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [InputController](_input_controller.md) | struct<br/>提供Input设备业务控制相关的接口。&nbsp; | 
+| struct&nbsp;&nbsp;[InputController](_input_controller.md) | 提供Input设备业务控制相关的接口。  | 

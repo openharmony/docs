@@ -1,7 +1,7 @@
 # \@Sendable Decorator: Declaring and Verifying the Sendable Class
 
 ## Overview
-If a concurrent function executed in the [TaskPool](../reference/apis/js-apis-taskpool.md) needs to transfer a class object and use the internal methods of the class, the class must be decorated with \@Sendable. The Sendable class has the following features:
+If a concurrent function executed in the [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) needs to transfer a class object and use the internal methods of the class, the class must be decorated with \@Sendable. The Sendable class has the following features:
 
 - It can be serialized. Objects are allocated to their respective VM memory space and do not compete for access. Different threads can read and write objects simultaneously.
 
@@ -12,7 +12,7 @@ If a concurrent function executed in the [TaskPool](../reference/apis/js-apis-ta
 >
 > Since API version 11, this decorator is supported in ArkTS widgets.
 >
-> Currently, the decorator can only be cloned and must be used together with [setCloneList](../reference/apis/js-apis-taskpool.md#setclonelist11). Otherwise, an exception is thrown.
+> Currently, the decorator can only be cloned and must be used together with [setCloneList](../reference/apis-arkts/js-apis-taskpool.md#setclonelist11). Otherwise, an exception is thrown.
 
 ## Basic Concepts
 

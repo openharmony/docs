@@ -31,14 +31,95 @@ Span(value: string | Resource)
 
 通用属性方法仅支持[文本通用](ts-universal-attributes-text-style.md)。
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| letterSpacing       | number \| string  | 设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。                                |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。|
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
-| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明)                                                                                           | 设置背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**说明：**<br/>作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。 |
+### decoration
+
+decoration(value: { type: TextDecorationType; color?: ResourceColor })
+
+设置文本装饰线样式及其颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {&nbsp;type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype);&nbsp;color:?&nbsp;[ResourceColor](ts-types.md#resourcecolor)&nbsp;} | 是   | 文本装饰线样式及其颜色。<br/>type：文本装饰线样式。color：文本装饰线颜色。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black&nbsp;} |
+
+### letterSpacing
+
+letterSpacing(value: number | string)
+
+设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 描述           |
+| ------ | -------------------------- | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。 |
+
+### textCase
+
+textCase(value: TextCase)
+
+设置文本大小写。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 描述                                     |
+| ------ | ----------------------------------------- | ---- | ---------------------------------------- |
+| value  | [TextCase](ts-appendix-enums.md#textcase) | 是   | 文本大小写。<br/>默认值：TextCase.Normal |
+
+### font<sup>10+</sup>
+
+font(value: Font)
+
+设置文本样式。包括字体大小、字体粗细、字体族和字体风格。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 描述       |
+| ------ | ------------------------ | ---- | ---------- |
+| value  | [Font](ts-types.md#font) | 是   | 文本样式。 |
+
+### textShadow<sup>11+</sup>
+
+textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
+
+设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 描述           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是   | 文字阴影效果。 |
+
+### textBackgroundStyle<sup>11+</sup>
+
+textBackgroundStyle(style: TextBackgroundStyle)
+
+设置背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
 
 ## 事件

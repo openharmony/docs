@@ -111,7 +111,7 @@ Decorators for [component state management](arkts-state.md):
 > Only [\@Observed/\@ObjectLink](arkts-observed-and-objectlink.md) can be used to observe changes of nested attributes. Other decorators can be used to observe changes of attributes at the first layer only. For details, see the "Observed Changes and Behavior" part in each decorator section.
 
 
-Decorators for [application state management](arkts-state.md):
+Decorators for [application state management](arkts-application-state-management-overview.md):
 
 
 - [AppStorage](arkts-appstorage.md): a special [LocalStorage](arkts-localstorage.md) singleton instance. It is an application-wide database bound to the application process and can be linked to components through the [@StorageProp](arkts-appstorage.md#storageprop) and [@StorageLink](arkts-appstorage.md#storagelink) decorators.

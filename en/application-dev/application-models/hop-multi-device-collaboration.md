@@ -59,7 +59,6 @@ On device A, touch the **Start** button provided by the initiator application to
    ```ts
    import deviceManager from '@ohos.distributedDeviceManager';
    import hilog from '@ohos.hilog';
-   import promptAction from '@ohos.promptAction'
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -71,9 +70,6 @@ On device A, touch the **Start** button provided by the initiator application to
      try {
        dmClass = deviceManager.createDeviceManager('com.samples.stagemodelabilitydevelop');
        hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass) ?? '');
-       promptAction.showToast({
-         message: $r('app.string.InitializedSuccessfully')
-       });
      } catch (err) {
        hilog.error(DOMAIN_NUMBER, TAG, 'createDeviceManager err: ' + JSON.stringify(err));
      };
@@ -99,13 +95,12 @@ On device A, touch the **Start** button provided by the initiator application to
    }
    ```
 
-4. Set the target component parameters, and call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility or ServiceExtensionAbility.
+4. Set the target component parameters, and call [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility or ServiceExtensionAbility.
 
    ```ts
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
-   import promptAction from '@ohos.promptAction';
    import deviceManager from '@ohos.distributedDeviceManager';
    import common from '@ohos.app.ability.common';
    
@@ -144,13 +139,14 @@ On device A, touch the **Start** button provided by the initiator application to
            let want: Want = {
              deviceId: getRemoteDeviceId(),
              bundleName: 'com.samples.stagemodelabilityinteraction',
-             abilityName: 'CollaborateAbility'
+             abilityName: 'CollaborateAbility',
+	     moduleName: 'entry', // moduleName is optional.
            }
+   	   // context is the AbilityContext of the initiator UIAbility.
            this.context.startAbility(want).then(() => {
-             promptAction.showToast({
-               message: $r('app.string.SuccessfulCollaboration')
-             });
+       		// ...
            }).catch((err: BusinessError) => {
+       		// ...
              hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
            });
          }
@@ -160,7 +156,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
    ```
 
-5. Call [stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
+5. Call [stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
 
    ```ts
    import Want from '@ohos.app.ability.Want';
@@ -409,7 +405,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 ## Connecting to ServiceExtensionAbility Across Devices
 
-A system application can connect to a service on another device by calling [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability). For example, in the distributed game scenario, a tablet is used as the remote control and a smart TV is used as the display.
+A system application can connect to a service on another device by calling [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability). For example, in the distributed game scenario, a tablet is used as the remote control and a smart TV is used as the display.
 
 
 ### Available APIs
@@ -442,8 +438,6 @@ A system application can connect to a service on another device by calling [conn
       import common from '@ohos.app.ability.common';
       import deviceManager from '@ohos.distributedDeviceManager';
       import hilog from '@ohos.hilog';
-      import Logger from '../../utils/Logger';
-      import promptAction from '@ohos.promptAction';
       import rpc from '@ohos.rpc';
       import Want from '@ohos.app.ability.Want';
       import { BusinessError } from '@ohos.base';
@@ -455,7 +449,7 @@ A system application can connect to a service on another device by calling [conn
       let connectionId: number;
       let options: common.ConnectOptions = {
         onConnect(elementName, remote) {
-          Logger.info('onConnect callback');
+          hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
           if (remote === null) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
             return;
@@ -463,8 +457,7 @@ A system application can connect to a service on another device by calling [conn
           let option = new rpc.MessageOption();
           let data = new rpc.MessageSequence();
           let reply = new rpc.MessageSequence();
-          data.writeInt(99);
-          // You can send data to the target application for corresponding operations.
+          data.writeInt(99); // You can send data to the target application for corresponding operations.
           // @param code Indicates the service request code sent by the client.
           // @param data Indicates the {@link MessageSequence} object sent by the client.
           // @param reply Indicates the response message object sent by the remote service.
@@ -477,11 +470,8 @@ A system application can connect to a service on another device by calling [conn
             if (errCode === 0) {
               msg = reply.readInt();
             }
+	    // The background service is connected.
             hilog.info(DOMAIN_NUMBER, TAG, `sendRequest msg:${msg}`);
-            // The background service is connected.
-            promptAction.showToast({
-              message: `sendRequest msg:${msg}`
-            })
           }).catch((error: BusinessError) => {
             hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
           });
@@ -540,11 +530,9 @@ A system application can connect to a service on another device by calling [conn
    ```ts
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
-   import Logger from '../../utils/Logger';
    import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
    
    let connectionId: number;
@@ -558,22 +546,22 @@ A system application can connect to a service on another device by calling [conn
    
    let options: common.ConnectOptions = {
      onConnect(elementName, remote: rpc.IRemoteObject): void {
-       Logger.info('onConnect callback');
+       hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
        if (remote === null) {
-         Logger.info(`onConnect remote is null`);
+         hilog.info(DOMAIN_NUMBER, TAG, 'onConnect remote is null');
          return;
        }
        let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
        // Communication is carried out by API calling, without exposing RPC details.
        serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-         Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
        });
        serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-         Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
        })
      },
      onDisconnect(elementName): void {
-       Logger.info('onDisconnect callback');
+       hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
      },
      onFailed(code: number): void {
        hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
@@ -591,13 +579,10 @@ A system application can connect to a service on another device by calling [conn
          .onClick(() => {
            this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
              connectionId = this.context.connectServiceExtensionAbility(want, options);
-             Logger.info('disconnectServiceExtensionAbility success');
+             hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
              // The background service is disconnected.
-             promptAction.showToast({
-               message: $r('app.string.SuccessfullyDisconnectBackendService')
-             })
            }).catch((error: BusinessError) => {
-             Logger.error('disconnectServiceExtensionAbility failed');
+             hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
            })
          })
      }
@@ -635,7 +620,7 @@ The following describes how to implement multi-device collaboration through cros
 
 3. Create the CalleeAbility.
    
-     For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
+   For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 
      1. Configure the launch type of the UIAbility.
 
@@ -666,9 +651,9 @@ The following describes how to implement multi-device collaboration through cros
          ```
      3. Define the agreed parcelable data.
 
-         The data formats sent and received by the CallerAbility and CalleeAbility must be consistent. In the following example, the data formats are number and string.
+        The data formats sent and received by the CallerAbility and CalleeAbility must be consistent. In the following example, the data formats are number and string.
 
-         
+        
          ```ts
          import rpc from '@ohos.rpc'
          class MyParcelable {
@@ -700,14 +685,13 @@ The following describes how to implement multi-device collaboration through cros
          ```
      4. Implement **Callee.on** and **Callee.off**.
 
-           In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the UIAbility and deregistered in **onDestroy()**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
-           
+        In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the UIAbility and deregistered in **onDestroy()**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
+        
          ```ts
          import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
          import UIAbility from '@ohos.app.ability.UIAbility';
          import type Want from '@ohos.app.ability.Want';
          import hilog from '@ohos.hilog';
-         import Logger from '../utils/Logger';
          import type rpc from '@ohos.rpc';
          import type { Caller } from '@ohos.app.ability.UIAbility';
 		 
@@ -776,21 +760,9 @@ The following describes how to implement multi-device collaboration through cros
                hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`)
              };
            }
-		 
-           releaseCall(): void {
-             try {
-               if (this.caller) {
-                 this.caller.release();
-                 this.caller = undefined;
-               }
-               Logger.info('caller release succeed');
-             } catch (error) {
-               Logger.info(`caller release failed with ${error}`)
-             };
-           };
          }
          ```
-     
+   
 4. Obtain the caller object and access the CalleeAbility.
    1. Import the **UIAbility** module.
       
@@ -799,7 +771,7 @@ The following describes how to implement multi-device collaboration through cros
        ```
    2. Obtain the caller object.
 
-       The **context** attribute of the UIAbility implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** and **onRemoteStateChange** listeners of the CallerAbility. You need to implement processing based on service requirements.
+      The **context** attribute of the UIAbility implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** and **onRemoteStateChange** listeners of the CallerAbility. You need to implement processing based on service requirements.
 
        
        ```ts
@@ -808,14 +780,12 @@ The following describes how to implement multi-device collaboration through cros
        import common from '@ohos.app.ability.common';
        import deviceManager from '@ohos.distributedDeviceManager';
        import hilog from '@ohos.hilog';
-       import Logger from '../../utils/Logger';
-       import promptAction from '@ohos.promptAction';
-	      
+	   
        const TAG: string = '[Page_CollaborateAbility]';
        const DOMAIN_NUMBER: number = 0xFF00;
        let caller: Caller | undefined;
        let dmClass: deviceManager.DeviceManager;
-	      
+	   
        function getRemoteDeviceId(): string | undefined {
          if (typeof dmClass === 'object' && dmClass !== null) {
            let list = dmClass.getAvailableDeviceListSync();
@@ -834,12 +804,12 @@ The following describes how to implement multi-device collaboration through cros
            return;
          }
        }
-	      
+	   
        @Entry
        @Component
        struct Page_CollaborateAbility {
          private context = getContext(this) as common.UIAbilityContext;
-	      
+	   
          build() {
            // ...
            Button ('Data returned for multi-device collaboration')
@@ -851,26 +821,23 @@ The following describes how to implement multi-device collaboration through cros
                }).then((data) => {
                  if (data !== null) {
                    caller = data;
-                   Logger.info('get remote caller success');
+                   hilog.info(DOMAIN_NUMBER, TAG, 'get remote caller success');
                    // Register the onRelease listener of the CallerAbility.
                    caller.onRelease((msg) => {
-                     Logger.info(`remote caller onRelease is called ${msg}`);
+                     hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                    })
-                   Logger.info('remote caller register OnRelease succeed');
-                   promptAction.showToast({
-                     message: $r('app.string.CallerSuccess')
-                   });
+                   hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
                    // Register the onRemoteStateChange listener of the CallerAbility.
                    try {
                      caller.onRemoteStateChange((str) => {
-                       Logger.info('Remote state changed ' + str);
+                       hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
                      });
                    } catch (error) {
-                     Logger.info(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                     hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                    };
                  }
                }).catch((error: BusinessError) => {
-                 Logger.error(`get remote caller failed with ${error}`);
+                 hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
                });
              }
              )
@@ -886,36 +853,35 @@ The following describes how to implement multi-device collaboration through cros
        ```ts
        import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
        import type rpc from '@ohos.rpc';
-       import Logger from '../utils/Logger';
-	      
+	   
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        class MyParcelable {
          num: number = 0;
          str: string = '';
-	      
+	   
          constructor(num: number, string: string) {
            this.num = num;
            this.str = string;
          };
-	      
+	   
          mySequenceable(num: number, string: string): void {
            this.num = num;
            this.str = string;
          };
-	      
+	   
          marshalling(messageSequence: rpc.MessageSequence): boolean {
            messageSequence.writeInt(this.num);
            messageSequence.writeString(this.str);
            return true;
          };
-	      
+	   
          unmarshalling(messageSequence: rpc.MessageSequence): boolean {
            this.num = messageSequence.readInt();
            this.str = messageSequence.readString();
            return true;
          };
        };
-	      
+	   
        export default class EntryAbility extends UIAbility {
          // ...
          caller: Caller | undefined;
@@ -926,7 +892,7 @@ The following describes how to implement multi-device collaboration through cros
                await this.caller.call(MSG_SEND_METHOD, msg);
              }
            } catch (error) {
-             Logger.info(`caller call failed with ${error}`);
+             hilog.info(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
            };
          }
          // ...
@@ -937,9 +903,10 @@ The following describes how to implement multi-device collaboration through cros
         ```ts
         import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
         import rpc from '@ohos.rpc';
-        import Logger from '../utils/Logger';
 
         const MSG_SEND_METHOD: string = 'CallSendMsg';
+        let originMsg: string = '';
+        let backMsg: string = '';
 
         class MyParcelable {
           num: number = 0;
@@ -976,14 +943,14 @@ The following describes how to implement multi-device collaboration through cros
               let msg: MyParcelable = new MyParcelable(1, originMsg);
               if (this.caller) {
                 const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
-                Logger.info('caller callWithResult succeed');
+                hilog.info(DOMAIN_NUMBER, TAG, 'caller callWithResult succeed');
                 let result: MyParcelable = new MyParcelable(0, '');
                 data.readParcelable(result);
                 backMsg = result.str;
-                Logger.info(`caller result is [${result.num}, ${result.str}]`);
+                hilog.info(DOMAIN_NUMBER, TAG, `caller result is [${result.num}, ${result.str}]`);
               }
             } catch (error) {
-              Logger.info(`caller callWithResult failed with ${error}`);
+              hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             };
           }
           // ...
@@ -996,7 +963,6 @@ The following describes how to implement multi-device collaboration through cros
 
    ```ts
    import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
-   import Logger from '../utils/Logger';
    
    export default class EntryAbility extends UIAbility {
      caller: Caller | undefined;
@@ -1006,11 +972,11 @@ The following describes how to implement multi-device collaboration through cros
            this.caller.release();
            this.caller = undefined;
          }
-         Logger.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
        } catch (error) {
-         Logger.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
        };
      }
    }
    ```
-
+<!--no_check-->

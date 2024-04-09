@@ -22,7 +22,7 @@ Notifications are displayed in the notification panel, which is the only support
 
 ## Available APIs
 
-The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and delivery time – by setting the [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
+The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and publish time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
 
 | Name| Description|
 | -------- | -------- |

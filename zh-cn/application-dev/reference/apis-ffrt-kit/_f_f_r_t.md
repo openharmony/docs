@@ -44,17 +44,17 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef void \* ffrt_queue_t | 队列句柄. | 
+| typedef void\* ffrt_queue_t | 队列句柄. | 
 | typedef int ffrt_qos_t | qos类型. | 
-| typedef void(\* ffrt_function_t ) (void \*) | 任务执行函数指针类型. | 
-| typedef void \* ffrt_task_handle_t | 并行任务句柄. | 
+| typedef void(\*ffrt_function_t)(void\*) | 任务执行函数指针类型. | 
+| typedef void\* ffrt_task_handle_t | 并行任务句柄. | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ffrt_queue_type_t](#ffrt_queue_type_t) { ffrt_queue_serial, **ffrt_queue_max** } | 队列类型. | 
+| [ffrt_queue_type_t](#ffrt_queue_type_t) { ffrt_queue_serial, ffrt_queue_max } | 队列类型. | 
 | [ffrt_qos_default_t](#ffrt_qos_default_t) {<br/>ffrt_qos_inherit = -1, ffrt_qos_background, ffrt_qos_utility, ffrt_qos_default,<br/>ffrt_qos_user_initiated<br/>} | 任务的qos类型. | 
 | [ffrt_storage_size_t](#ffrt_storage_size_t) {<br/>ffrt_task_attr_storage_size = 128, ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t), ffrt_mutex_storage_size = 64, ffrt_cond_storage_size = 64,<br/>ffrt_queue_attr_storage_size = 128<br/>} | 多种类型数据结构分配大小定义. | 
 | [ffrt_function_kind_t](#ffrt_function_kind_t) { ffrt_function_kind_general, ffrt_function_kind_queue } | 任务类型. | 
@@ -66,48 +66,48 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| FFRT_C_API int [ffrt_cond_init](#ffrt_cond_init) ([ffrt_cond_t](ffrt__cond__t.md) \*cond, const [ffrt_condattr_t](ffrt__condattr__t.md) \*attr) | 初始化条件变量. | 
-| FFRT_C_API int [ffrt_cond_signal](#ffrt_cond_signal) ([ffrt_cond_t](ffrt__cond__t.md) \*cond) | 唤醒阻塞在条件变量上的一个任务. | 
-| FFRT_C_API int [ffrt_cond_broadcast](#ffrt_cond_broadcast) ([ffrt_cond_t](ffrt__cond__t.md) \*cond) | 唤醒阻塞在条件变量上的所有任务. | 
-| FFRT_C_API int [ffrt_cond_wait](#ffrt_cond_wait) ([ffrt_cond_t](ffrt__cond__t.md) \*cond, [ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | 条件变量等待函数，条件变量不满足时阻塞当前任务. | 
-| FFRT_C_API int [ffrt_cond_timedwait](#ffrt_cond_timedwait) ([ffrt_cond_t](ffrt__cond__t.md) \*cond, [ffrt_mutex_t](ffrt__mutex__t.md) \*mutex, const struct timespec \*time_point) | 条件变量超时等待函数，条件变量不满足时阻塞当前任务，超时等待返回. | 
-| FFRT_C_API int [ffrt_cond_destroy](#ffrt_cond_destroy) ([ffrt_cond_t](ffrt__cond__t.md) \*cond) | 销毁掉件变量. | 
-| FFRT_C_API int [ffrt_mutex_init](#ffrt_mutex_init) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex, const [ffrt_mutexattr_t](ffrt__mutexattr__t.md) \*attr) | 初始化mutex. | 
-| FFRT_C_API int [ffrt_mutex_lock](#ffrt_mutex_lock) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | 获取mutex. | 
-| FFRT_C_API int [ffrt_mutex_unlock](#ffrt_mutex_unlock) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | 释放mutex. | 
-| FFRT_C_API int [ffrt_mutex_trylock](#ffrt_mutex_trylock) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | 尝试获取mutex. | 
-| FFRT_C_API int [ffrt_mutex_destroy](#ffrt_mutex_destroy) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | 销毁mutex. | 
-| FFRT_C_API int [ffrt_queue_attr_init](#ffrt_queue_attr_init) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | 初始化串行队列属性. | 
-| FFRT_C_API void [ffrt_queue_attr_destroy](#ffrt_queue_attr_destroy) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | 销毁串行队列属性. | 
-| FFRT_C_API void [ffrt_queue_attr_set_qos](#ffrt_queue_attr_set_qos) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, ffrt_qos_t qos) | 设置串行队列qos属性. | 
-| FFRT_C_API ffrt_qos_t[ffrt_queue_attr_get_qos](#ffrt_queue_attr_get_qos) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | 获取串行队列qos属性. | 
-| FFRT_C_API void [ffrt_queue_attr_set_timeout](#ffrt_queue_attr_set_timeout) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, uint64_t timeout_us) | 设置串行队列timeout属性. | 
-| FFRT_C_API uint64_t [ffrt_queue_attr_get_timeout](#ffrt_queue_attr_get_timeout) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | 获取串行队列任务执行的timeout时间. | 
-| FFRT_C_API void [ffrt_queue_attr_set_callback](#ffrt_queue_attr_set_callback) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, [ffrt_function_header_t](ffrt__function__header__t.md) \*f) | 设置串行队列超时回调方法. | 
-| FFRT_C_API [ffrt_function_header_t](ffrt__function__header__t.md) \* [ffrt_queue_attr_get_callback](#ffrt_queue_attr_get_callback) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | 获取串行队列超时回调方法. | 
-| FFRT_C_API ffrt_queue_t[ffrt_queue_create](#ffrt_queue_create) ([ffrt_queue_type_t](#ffrt_queue_type_t) type, const char \*name, const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | 创建队列. | 
+| FFRT_C_API int [ffrt_cond_init](#ffrt_cond_init) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, const [ffrt_condattr_t](ffrt__condattr__t.md)\* attr) | 初始化条件变量. | 
+| FFRT_C_API int [ffrt_cond_signal](#ffrt_cond_signal) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | 唤醒阻塞在条件变量上的一个任务. | 
+| FFRT_C_API int [ffrt_cond_broadcast](#ffrt_cond_broadcast) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | 唤醒阻塞在条件变量上的所有任务. | 
+| FFRT_C_API int [ffrt_cond_wait](#ffrt_cond_wait) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, [ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | 条件变量等待函数，条件变量不满足时阻塞当前任务. | 
+| FFRT_C_API int [ffrt_cond_timedwait](#ffrt_cond_timedwait) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, [ffrt_mutex_t](ffrt__mutex__t.md)\* mutex, const struct timespec\* time_point) | 条件变量超时等待函数，条件变量不满足时阻塞当前任务，超时等待返回. | 
+| FFRT_C_API int [ffrt_cond_destroy](#ffrt_cond_destroy) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | 销毁条件变量. | 
+| FFRT_C_API int [ffrt_mutex_init](#ffrt_mutex_init) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex, const [ffrt_mutexattr_t](ffrt__mutexattr__t.md)\* attr) | 初始化mutex. | 
+| FFRT_C_API int [ffrt_mutex_lock](#ffrt_mutex_lock) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | 获取mutex. | 
+| FFRT_C_API int [ffrt_mutex_unlock](#ffrt_mutex_unlock) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | 释放mutex. | 
+| FFRT_C_API int [ffrt_mutex_trylock](#ffrt_mutex_trylock) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | 尝试获取mutex. | 
+| FFRT_C_API int [ffrt_mutex_destroy](#ffrt_mutex_destroy) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | 销毁mutex. | 
+| FFRT_C_API int [ffrt_queue_attr_init](#ffrt_queue_attr_init) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | 初始化串行队列属性. | 
+| FFRT_C_API void [ffrt_queue_attr_destroy](#ffrt_queue_attr_destroy) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | 销毁串行队列属性. | 
+| FFRT_C_API void [ffrt_queue_attr_set_qos](#ffrt_queue_attr_set_qos) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, ffrt_qos_t qos) | 设置串行队列qos属性. | 
+| FFRT_C_API ffrt_qos_t [ffrt_queue_attr_get_qos](#ffrt_queue_attr_get_qos) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | 获取串行队列qos属性. | 
+| FFRT_C_API void [ffrt_queue_attr_set_timeout](#ffrt_queue_attr_set_timeout) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, uint64_t timeout_us) | 设置串行队列timeout属性. | 
+| FFRT_C_API uint64_t [ffrt_queue_attr_get_timeout](#ffrt_queue_attr_get_timeout) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | 获取串行队列任务执行的timeout时间. | 
+| FFRT_C_API void [ffrt_queue_attr_set_callback](#ffrt_queue_attr_set_callback) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, [ffrt_function_header_t](ffrt__function__header__t.md)\* f) | 设置串行队列超时回调方法. | 
+| FFRT_C_API [ffrt_function_header_t](ffrt__function__header__t.md)\* [ffrt_queue_attr_get_callback](#ffrt_queue_attr_get_callback) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | 获取串行队列超时回调方法. | 
+| FFRT_C_API ffrt_queue_t [ffrt_queue_create](#ffrt_queue_create) ([ffrt_queue_type_t](#ffrt_queue_type_t) type, const char\* name, const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | 创建队列. | 
 | FFRT_C_API void [ffrt_queue_destroy](#ffrt_queue_destroy) (ffrt_queue_t queue) | 销毁队列. | 
-| FFRT_C_API void [ffrt_queue_submit](#ffrt_queue_submit) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交一个任务到队列中调度执行. | 
-| FFRT_C_API ffrt_task_handle_t[ffrt_queue_submit_h](#ffrt_queue_submit_h) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交一个任务到队列中调度执行，并返回任务句柄. | 
+| FFRT_C_API void [ffrt_queue_submit](#ffrt_queue_submit) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 提交一个任务到队列中调度执行. | 
+| FFRT_C_API ffrt_task_handle_t [ffrt_queue_submit_h](#ffrt_queue_submit_h) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 提交一个任务到队列中调度执行，并返回任务句柄. | 
 | FFRT_C_API void [ffrt_queue_wait](#ffrt_queue_wait) (ffrt_task_handle_t handle) | 等待队列中一个任务执行完成. | 
 | FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) (ffrt_task_handle_t handle) | 取消队列中一个任务. | 
-| FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | 延迟usec微秒. | 
+| FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | 睡眠usec微秒. | 
 | FFRT_C_API void [ffrt_yield](#ffrt_yield) (void) | 当前任务主动放权，让其他任务有机会调度执行. | 
-| FFRT_C_API int [ffrt_task_attr_init](#ffrt_task_attr_init) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 初始化任务属性. | 
-| FFRT_C_API void [ffrt_task_attr_set_name](#ffrt_task_attr_set_name) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, const char \*name) | 设置任务名字. | 
-| FFRT_C_API const char \* [ffrt_task_attr_get_name](#ffrt_task_attr_get_name) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 获取任务名字. | 
-| FFRT_C_API void [ffrt_task_attr_destroy](#ffrt_task_attr_destroy) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 销毁任务属性. | 
-| FFRT_C_API void [ffrt_task_attr_set_qos](#ffrt_task_attr_set_qos) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, ffrt_qos_t qos) | 设置任务qos. | 
-| FFRT_C_API ffrt_qos_t[ffrt_task_attr_get_qos](#ffrt_task_attr_get_qos) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 获取任务qos. | 
-| FFRT_C_API void [ffrt_task_attr_set_delay](#ffrt_task_attr_set_delay) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, uint64_t delay_us) | 设置任务延迟时间. | 
-| FFRT_C_API uint64_t [ffrt_task_attr_get_delay](#ffrt_task_attr_get_delay) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 获取任务延迟时间. | 
+| FFRT_C_API int [ffrt_task_attr_init](#ffrt_task_attr_init) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 初始化任务属性. | 
+| FFRT_C_API void [ffrt_task_attr_set_name](#ffrt_task_attr_set_name) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, const char\* name) | 设置任务名字. | 
+| FFRT_C_API const char\* [ffrt_task_attr_get_name](#ffrt_task_attr_get_name) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 获取任务名字. | 
+| FFRT_C_API void [ffrt_task_attr_destroy](#ffrt_task_attr_destroy) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 销毁任务属性. | 
+| FFRT_C_API void [ffrt_task_attr_set_qos](#ffrt_task_attr_set_qos) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, ffrt_qos_t qos) | 设置任务qos. | 
+| FFRT_C_API ffrt_qos_t [ffrt_task_attr_get_qos](#ffrt_task_attr_get_qos) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 获取任务qos. | 
+| FFRT_C_API void [ffrt_task_attr_set_delay](#ffrt_task_attr_set_delay) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, uint64_t delay_us) | 设置任务延迟时间. | 
+| FFRT_C_API uint64_t [ffrt_task_attr_get_delay](#ffrt_task_attr_get_delay) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 获取任务延迟时间. | 
 | FFRT_C_API int [ffrt_this_task_update_qos](#ffrt_this_task_update_qos) (ffrt_qos_t qos) | 更新任务qos. | 
 | FFRT_C_API uint64_t [ffrt_this_task_get_id](#ffrt_this_task_get_id) (void) | 获取任务id. | 
-| FFRT_C_API void \* [ffrt_alloc_auto_managed_function_storage_base](#ffrt_alloc_auto_managed_function_storage_base) ([ffrt_function_kind_t](#ffrt_function_kind_t) kind) | 申请函数执行结构的内存. | 
-| FFRT_C_API void [ffrt_submit_base](#ffrt_submit_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交任务调度执行. | 
-| FFRT_C_API ffrt_task_handle_t[ffrt_submit_h_base](#ffrt_submit_h_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交任务调度执行并返回任务句柄. | 
+| FFRT_C_API void\* [ffrt_alloc_auto_managed_function_storage_base](#ffrt_alloc_auto_managed_function_storage_base) ([ffrt_function_kind_t](#ffrt_function_kind_t) kind) | 申请函数执行结构的内存. | 
+| FFRT_C_API void [ffrt_submit_base](#ffrt_submit_base) ([ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_deps_t](ffrt__deps__t.md)\* in_deps, const [ffrt_deps_t](ffrt__deps__t.md)\* out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 提交任务调度执行. | 
+| FFRT_C_API ffrt_task_handle_t [ffrt_submit_h_base](#ffrt_submit_h_base) ([ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_deps_t](ffrt__deps__t.md)\* in_deps, const [ffrt_deps_t](ffrt__deps__t.md)\* out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | 提交任务调度执行并返回任务句柄. | 
 | FFRT_C_API void [ffrt_task_handle_destroy](#ffrt_task_handle_destroy) (ffrt_task_handle_t handle) | 销毁任务句柄. | 
-| FFRT_C_API void [ffrt_wait_deps](#ffrt_wait_deps) (const [ffrt_deps_t](ffrt__deps__t.md) \*deps) | 等待依赖的任务完成，当前任务开始执行. | 
+| FFRT_C_API void [ffrt_wait_deps](#ffrt_wait_deps) (const [ffrt_deps_t](ffrt__deps__t.md)\* deps) | 等待依赖的任务完成，当前任务开始执行. | 
 | FFRT_C_API void [ffrt_wait](#ffrt_wait) (void) | 等待之前所有提交任务完成，当前任务开始执行. | 
 
 
@@ -115,19 +115,19 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ffrt_function_t[ffrt_function_header_t::exec](#exec) | 任务执行函数 | 
-| ffrt_function_t[ffrt_function_header_t::destroy](#destroy) | 任务销毁函数 | 
-| uint64_t [ffrt_function_header_t::reserve](#reserve) [2] | 保留位. | 
-| [ffrt_dependence_type_t](#ffrt_dependence_type_t)[ffrt_dependence_t::type](#type) | 依赖类型 | 
-| const void \* [ffrt_dependence_t::ptr](#ptr) | 依赖数据地址 | 
+| ffrt_function_t [ffrt_function_header_t::exec](#exec) | 任务执行函数 | 
+| ffrt_function_t [ffrt_function_header_t::destroy](#destroy) | 任务销毁函数 | 
+| uint64_t [ffrt_function_header_t::reserve](#reserve)[2] | 保留位 | 
+| [ffrt_dependence_type_t](#ffrt_dependence_type_t) [ffrt_dependence_t::type](#type) | 依赖类型 | 
+| const void\* [ffrt_dependence_t::ptr](#ptr) | 依赖数据地址 | 
 | uint32_t [ffrt_deps_t::len](#len) | 依赖数量 | 
-| const [ffrt_dependence_t](ffrt__dependence__t.md) \* [ffrt_deps_t::items](#items) | 依赖数据 | 
-| uint32_t [ffrt_task_attr_t::storage](#storage-46) [(ffrt_task_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 任务属性所占空间 | 
-| uint32_t [ffrt_queue_attr_t::storage](#storage-36) [(ffrt_queue_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 串行队列属性所占空间 | 
+| const [ffrt_dependence_t](ffrt__dependence__t.md)\* [ffrt_deps_t::items](#items) | 依赖数据 | 
+| uint32_t [ffrt_task_attr_t::storage](#storage-46)[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 任务属性所占空间 | 
+| uint32_t [ffrt_queue_attr_t::storage](#storage-36)[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | 串行队列属性所占空间 | 
 | long [ffrt_condattr_t::storage](#storage-56) | FFRT条件变量属性所占空间 | 
 | long [ffrt_mutexattr_t::storage](#storage-66) | FFRT锁属性所占空间 | 
-| uint32_t [ffrt_mutex_t::storage](#storage-26) [(ffrt_mutex_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT互斥锁所占空间 | 
-| uint32_t [ffrt_cond_t::storage](#storage-16) [(ffrt_cond_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT条件变量所占空间 | 
+| uint32_t [ffrt_mutex_t::storage](#storage-26)[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT互斥锁所占空间 | 
+| uint32_t [ffrt_cond_t::storage](#storage-16)[(ffrt_cond_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | FFRT条件变量所占空间 | 
 
 
 ## 枚举类型说明
@@ -267,7 +267,7 @@ FFRT_C_API void* ffrt_alloc_auto_managed_function_storage_base (ffrt_function_ki
 ### ffrt_cond_broadcast()
 
 ```
-FFRT_C_API int ffrt_cond_broadcast (ffrt_cond_t * cond)
+FFRT_C_API int ffrt_cond_broadcast (ffrt_cond_t* cond)
 ```
 
 **描述**
@@ -284,18 +284,18 @@ FFRT_C_API int ffrt_cond_broadcast (ffrt_cond_t * cond)
 
 **返回：**
 
-唤醒成功返回ffrt_thrd_success, 唤醒失败返回ffrt_thrd_error.
+唤醒成功返回ffrt_success, 唤醒失败返回ffrt_error_inval.
 
 
 ### ffrt_cond_destroy()
 
 ```
-FFRT_C_API int ffrt_cond_destroy (ffrt_cond_t * cond)
+FFRT_C_API int ffrt_cond_destroy (ffrt_cond_t* cond)
 ```
 
 **描述**
 
-销毁掉件变量.
+销毁条件变量.
 
 **起始版本：** 10
 
@@ -307,13 +307,13 @@ FFRT_C_API int ffrt_cond_destroy (ffrt_cond_t * cond)
 
 **返回：**
 
-销毁条件变量成功返回ffrt_thrd_success, 销毁条件变量失败返回ffrt_thrd_error.
+销毁条件变量成功返回ffrt_success, 销毁条件变量失败返回ffrt_error_inval.
 
 
 ### ffrt_cond_init()
 
 ```
-FFRT_C_API int ffrt_cond_init (ffrt_cond_t * cond, const ffrt_condattr_t * attr )
+FFRT_C_API int ffrt_cond_init (ffrt_cond_t* cond, const ffrt_condattr_t* attr)
 ```
 
 **描述**
@@ -331,13 +331,13 @@ FFRT_C_API int ffrt_cond_init (ffrt_cond_t * cond, const ffrt_condattr_t * attr 
 
 **返回：**
 
-初始化条件变量成功返回ffrt_thrd_success, 初始化条件变量失败返回ffrt_thrd_error.
+初始化条件变量成功返回ffrt_success, 初始化条件变量失败返回ffrt_error_inval.
 
 
 ### ffrt_cond_signal()
 
 ```
-FFRT_C_API int ffrt_cond_signal (ffrt_cond_t * cond)
+FFRT_C_API int ffrt_cond_signal (ffrt_cond_t* cond)
 ```
 
 **描述**
@@ -354,13 +354,13 @@ FFRT_C_API int ffrt_cond_signal (ffrt_cond_t * cond)
 
 **返回：**
 
-唤醒成功返回ffrt_thrd_success, 唤醒失败返回ffrt_thrd_error.
+唤醒成功返回ffrt_success, 唤醒失败返回ffrt_error_inval.
 
 
 ### ffrt_cond_timedwait()
 
 ```
-FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t * cond, ffrt_mutex_t * mutex, const struct timespec * time_point )
+FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)
 ```
 
 **描述**
@@ -379,13 +379,13 @@ FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t * cond, ffrt_mutex_t * mutex, co
 
 **返回：**
 
-等待后被成功唤醒返回ffrt_thrd_success, 等待超时返回ffrt_thrd_timedout. 等待失败ffrt_thrd_error.
+等待后被成功唤醒返回ffrt_success, 等待超时返回ffrt_error_timedout. 等待失败返回ffrt_error_inval.
 
 
 ### ffrt_cond_wait()
 
 ```
-FFRT_C_API int ffrt_cond_wait (ffrt_cond_t * cond, ffrt_mutex_t * mutex )
+FFRT_C_API int ffrt_cond_wait (ffrt_cond_t* cond, ffrt_mutex_t* mutex)
 ```
 
 **描述**
@@ -403,13 +403,13 @@ FFRT_C_API int ffrt_cond_wait (ffrt_cond_t * cond, ffrt_mutex_t * mutex )
 
 **返回：**
 
-等待后被成功唤醒返回ffrt_thrd_success, 等待失败返回ffrt_thrd_error.
+等待后被成功唤醒返回ffrt_success, 等待失败返回ffrt_error_inval.
 
 
 ### ffrt_mutex_destroy()
 
 ```
-FFRT_C_API int ffrt_mutex_destroy (ffrt_mutex_t * mutex)
+FFRT_C_API int ffrt_mutex_destroy (ffrt_mutex_t* mutex)
 ```
 
 **描述**
@@ -426,13 +426,13 @@ FFRT_C_API int ffrt_mutex_destroy (ffrt_mutex_t * mutex)
 
 **返回：**
 
-销毁mutex成功返回ffrt_thrd_success, 销毁mutex失败返回ffrt_thrd_error.
+销毁mutex成功返回ffrt_success, 销毁mutex失败返回ffrt_error_inval.
 
 
 ### ffrt_mutex_init()
 
 ```
-FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t * mutex, const ffrt_mutexattr_t * attr )
+FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr)
 ```
 
 **描述**
@@ -450,13 +450,13 @@ FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t * mutex, const ffrt_mutexattr_t * a
 
 **返回：**
 
-初始化mutex成功返回ffrt_thrd_success, 初始化mutex失败返回ffrt_thrd_error.
+初始化mutex成功返回ffrt_success, 初始化mutex失败返回ffrt_error或ffrt_error_inval.
 
 
 ### ffrt_mutex_lock()
 
 ```
-FFRT_C_API int ffrt_mutex_lock (ffrt_mutex_t * mutex)
+FFRT_C_API int ffrt_mutex_lock (ffrt_mutex_t* mutex)
 ```
 
 **描述**
@@ -473,13 +473,13 @@ FFRT_C_API int ffrt_mutex_lock (ffrt_mutex_t * mutex)
 
 **返回：**
 
-获取mutex成功返回ffrt_thrd_success, 获取mutex失败返回ffrt_thrd_error，或者阻塞当前任务.
+获取mutex成功返回ffrt_success, 获取mutex失败返回ffrt_error_inval，或者阻塞当前任务.
 
 
 ### ffrt_mutex_trylock()
 
 ```
-FFRT_C_API int ffrt_mutex_trylock (ffrt_mutex_t * mutex)
+FFRT_C_API int ffrt_mutex_trylock (ffrt_mutex_t* mutex)
 ```
 
 **描述**
@@ -496,13 +496,13 @@ FFRT_C_API int ffrt_mutex_trylock (ffrt_mutex_t * mutex)
 
 **返回：**
 
-获取mutex成功返回ffrt_thrd_success, 获取mutex失败返回ffrt_thrd_error或ffrt_thrd_busy.
+获取mutex成功返回ffrt_success, 获取mutex失败返回ffrt_error_inval或ffrt_error_busy.
 
 
 ### ffrt_mutex_unlock()
 
 ```
-FFRT_C_API int ffrt_mutex_unlock (ffrt_mutex_t * mutex)
+FFRT_C_API int ffrt_mutex_unlock (ffrt_mutex_t* mutex)
 ```
 
 **描述**
@@ -519,13 +519,13 @@ FFRT_C_API int ffrt_mutex_unlock (ffrt_mutex_t * mutex)
 
 **返回：**
 
-释放mutex成功返回ffrt_thrd_success, 释放mutex失败返回ffrt_thrd_error.
+释放mutex成功返回ffrt_success, 释放mutex失败返回ffrt_error_inval.
 
 
 ### ffrt_queue_attr_destroy()
 
 ```
-FFRT_C_API void ffrt_queue_attr_destroy (ffrt_queue_attr_t * attr)
+FFRT_C_API void ffrt_queue_attr_destroy (ffrt_queue_attr_t* attr)
 ```
 
 **描述**
@@ -544,7 +544,7 @@ FFRT_C_API void ffrt_queue_attr_destroy (ffrt_queue_attr_t * attr)
 ### ffrt_queue_attr_get_callback()
 
 ```
-FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback (const ffrt_queue_attr_t * attr)
+FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback (const ffrt_queue_attr_t* attr)
 ```
 
 **描述**
@@ -567,7 +567,7 @@ FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback (const ffrt_queu
 ### ffrt_queue_attr_get_qos()
 
 ```
-FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos (const ffrt_queue_attr_t * attr)
+FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos (const ffrt_queue_attr_t* attr)
 ```
 
 **描述**
@@ -590,7 +590,7 @@ FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos (const ffrt_queue_attr_t * attr)
 ### ffrt_queue_attr_get_timeout()
 
 ```
-FFRT_C_API uint64_t ffrt_queue_attr_get_timeout (const ffrt_queue_attr_t * attr)
+FFRT_C_API uint64_t ffrt_queue_attr_get_timeout (const ffrt_queue_attr_t* attr)
 ```
 
 **描述**
@@ -613,7 +613,7 @@ FFRT_C_API uint64_t ffrt_queue_attr_get_timeout (const ffrt_queue_attr_t * attr)
 ### ffrt_queue_attr_init()
 
 ```
-FFRT_C_API int ffrt_queue_attr_init (ffrt_queue_attr_t * attr)
+FFRT_C_API int ffrt_queue_attr_init (ffrt_queue_attr_t* attr)
 ```
 
 **描述**
@@ -636,7 +636,7 @@ FFRT_C_API int ffrt_queue_attr_init (ffrt_queue_attr_t * attr)
 ### ffrt_queue_attr_set_callback()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t * attr, ffrt_function_header_t * f )
+FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t* attr, ffrt_function_header_t* f)
 ```
 
 **描述**
@@ -656,7 +656,7 @@ FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t * attr, ffrt_fun
 ### ffrt_queue_attr_set_qos()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t * attr, ffrt_qos_t qos )
+FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t* attr, ffrt_qos_t qos)
 ```
 
 **描述**
@@ -676,7 +676,7 @@ FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t * attr, ffrt_qos_t qo
 ### ffrt_queue_attr_set_timeout()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t * attr, uint64_t timeout_us )
+FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t* attr, uint64_t timeout_us)
 ```
 
 **描述**
@@ -713,13 +713,13 @@ FFRT_C_API int ffrt_queue_cancel (ffrt_task_handle_t handle)
 
 **返回：**
 
-取消任务成功返回0 取消任务失败返回-1
+取消任务成功返回0, 取消任务失败返回-1.
 
 
 ### ffrt_queue_create()
 
 ```
-FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char * name, const ffrt_queue_attr_t * attr )
+FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
 ```
 
 **描述**
@@ -738,7 +738,7 @@ FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char * 
 
 **返回：**
 
-创建队列成功返回非空队列句柄 创建队列失败返回空指针
+创建队列成功返回非空队列句柄, 创建队列失败返回空指针.
 
 
 ### ffrt_queue_destroy()
@@ -763,7 +763,7 @@ FFRT_C_API void ffrt_queue_destroy (ffrt_queue_t queue)
 ### ffrt_queue_submit()
 
 ```
-FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr )
+FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -784,12 +784,12 @@ FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * 
 ### ffrt_queue_submit_h()
 
 ```
-FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr )
+FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
 ```
 
 **描述**
 
-提交一个任务到队列中调度执行，并返回任务句柄.
+提交一个任务到队列中调度执行, 并返回任务句柄.
 
 **起始版本：** 10
 
@@ -803,7 +803,7 @@ FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_func
 
 **返回：**
 
-提交成功返回非空任务句柄; 提交失败返回空指针
+提交成功返回非空任务句柄, 提交失败返回空指针.
 
 
 ### ffrt_queue_wait()
@@ -828,7 +828,7 @@ FFRT_C_API void ffrt_queue_wait (ffrt_task_handle_t handle)
 ### ffrt_submit_base()
 
 ```
-FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+FFRT_C_API void ffrt_submit_base (ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -850,7 +850,7 @@ FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t 
 ### ffrt_submit_h_base()
 
 ```
-FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -876,7 +876,7 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t * f, co
 ### ffrt_task_attr_destroy()
 
 ```
-FFRT_C_API void ffrt_task_attr_destroy (ffrt_task_attr_t * attr)
+FFRT_C_API void ffrt_task_attr_destroy (ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -895,7 +895,7 @@ FFRT_C_API void ffrt_task_attr_destroy (ffrt_task_attr_t * attr)
 ### ffrt_task_attr_get_delay()
 
 ```
-FFRT_C_API uint64_t ffrt_task_attr_get_delay (const ffrt_task_attr_t * attr)
+FFRT_C_API uint64_t ffrt_task_attr_get_delay (const ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -918,7 +918,7 @@ FFRT_C_API uint64_t ffrt_task_attr_get_delay (const ffrt_task_attr_t * attr)
 ### ffrt_task_attr_get_name()
 
 ```
-FFRT_C_API const char* ffrt_task_attr_get_name (const ffrt_task_attr_t * attr)
+FFRT_C_API const char* ffrt_task_attr_get_name (const ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -941,7 +941,7 @@ FFRT_C_API const char* ffrt_task_attr_get_name (const ffrt_task_attr_t * attr)
 ### ffrt_task_attr_get_qos()
 
 ```
-FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos (const ffrt_task_attr_t * attr)
+FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos (const ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -964,7 +964,7 @@ FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos (const ffrt_task_attr_t * attr)
 ### ffrt_task_attr_init()
 
 ```
-FFRT_C_API int ffrt_task_attr_init (ffrt_task_attr_t * attr)
+FFRT_C_API int ffrt_task_attr_init (ffrt_task_attr_t* attr)
 ```
 
 **描述**
@@ -987,7 +987,7 @@ FFRT_C_API int ffrt_task_attr_init (ffrt_task_attr_t * attr)
 ### ffrt_task_attr_set_delay()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t * attr, uint64_t delay_us )
+FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t* attr, uint64_t delay_us)
 ```
 
 **描述**
@@ -1007,7 +1007,7 @@ FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t * attr, uint64_t dela
 ### ffrt_task_attr_set_name()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t * attr, const char * name )
+FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t* attr, const char* name)
 ```
 
 **描述**
@@ -1027,7 +1027,7 @@ FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t * attr, const char * n
 ### ffrt_task_attr_set_qos()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t * attr, ffrt_qos_t qos )
+FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t* attr, ffrt_qos_t qos)
 ```
 
 **描述**
@@ -1066,7 +1066,7 @@ FFRT_C_API void ffrt_task_handle_destroy (ffrt_task_handle_t handle)
 ### ffrt_this_task_get_id()
 
 ```
-FFRT_C_API uint64_t ffrt_this_task_get_id (void )
+FFRT_C_API uint64_t ffrt_this_task_get_id (void)
 ```
 
 **描述**
@@ -1077,7 +1077,7 @@ FFRT_C_API uint64_t ffrt_this_task_get_id (void )
 
 **返回：**
 
-返回当前任务的id
+返回当前任务的id.
 
 
 ### ffrt_this_task_update_qos()
@@ -1096,7 +1096,7 @@ FFRT_C_API int ffrt_this_task_update_qos (ffrt_qos_t qos)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| qos | 更新的qos，更新当前任务的qos. | 
+| qos | 当前任务待更新的qos. | 
 
 **返回：**
 
@@ -1111,7 +1111,7 @@ FFRT_C_API int ffrt_usleep (uint64_t usec)
 
 **描述**
 
-延迟usec微秒.
+睡眠usec微秒.
 
 **起始版本：** 10
 
@@ -1119,17 +1119,17 @@ FFRT_C_API int ffrt_usleep (uint64_t usec)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| usec延迟时间，单位微秒. |  | 
+| usec | 睡眠时间，单位微秒. | 
 
 **返回：**
 
-执行成功时返回ffrt_thrd_success, 执行成功时返回ffrt_thrd_error.
+执行成功时返回ffrt_success.
 
 
 ### ffrt_wait()
 
 ```
-FFRT_C_API void ffrt_wait (void )
+FFRT_C_API void ffrt_wait (void)
 ```
 
 **描述**
@@ -1142,7 +1142,7 @@ FFRT_C_API void ffrt_wait (void )
 ### ffrt_wait_deps()
 
 ```
-FFRT_C_API void ffrt_wait_deps (const ffrt_deps_t * deps)
+FFRT_C_API void ffrt_wait_deps (const ffrt_deps_t* deps)
 ```
 
 **描述**
@@ -1161,7 +1161,7 @@ FFRT_C_API void ffrt_wait_deps (const ffrt_deps_t * deps)
 ### ffrt_yield()
 
 ```
-FFRT_C_API void ffrt_yield (void )
+FFRT_C_API void ffrt_yield (void)
 ```
 
 **描述**
@@ -1243,7 +1243,7 @@ uint64_t ffrt_function_header_t::reserve[2]
 ### storage [1/6]
 
 ```
-uint32_t ffrt_cond_t::storage[(ffrt_cond_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
+uint32_t ffrt_cond_t::storage[(ffrt_cond_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
 ```
 
 **描述**
@@ -1254,7 +1254,7 @@ FFRT条件变量所占空间
 ### storage [2/6]
 
 ```
-uint32_t ffrt_mutex_t::storage[(ffrt_mutex_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
+uint32_t ffrt_mutex_t::storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
 ```
 
 **描述**
@@ -1265,7 +1265,7 @@ FFRT互斥锁所占空间
 ### storage [3/6]
 
 ```
-uint32_t ffrt_queue_attr_t::storage[(ffrt_queue_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
+uint32_t ffrt_queue_attr_t::storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
 ```
 
 **描述**
@@ -1276,7 +1276,7 @@ uint32_t ffrt_queue_attr_t::storage[(ffrt_queue_attr_storage_size+sizeof(uint32_
 ### storage [4/6]
 
 ```
-uint32_t ffrt_task_attr_t::storage[(ffrt_task_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
+uint32_t ffrt_task_attr_t::storage[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
 ```
 
 **描述**

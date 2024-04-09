@@ -34,7 +34,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Connectivity](connectivity/ipc-rpc-overview.md)
 - [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/data-mgmt-overview.md)
-- [File Management](file-management/file-management-overview.md)
+- [File Management](file-management/core-file-kit-intro.md)
 - [Background Task Management](task-management/background-task-overview.md)
 - [Device Management](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
@@ -55,16 +55,6 @@ To make you better understand how functions work together and jumpstart your app
 
 ## API References
 
-API references encompass all components and APIs available in OpenHarmony, helping you use and integrate APIs more effectively.
+[API References](reference/development-intro.md) encompass all components and APIs provided by every kit in the OpenHarmony SDK, helping you use and integrate APIs more effectively.
 
-They are organized as follows:
-
-- [ArkTS API Reference](reference/apis/development-intro.md)
-- [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-components-summary.md)
-- [Component Reference (JavaScript-compatible Web-like Development Paradigm-ArkUI.Full)](reference/arkui-js/js-components-common-attributes.md)
-- [Component Reference (JavaScript-compatible Web-like Development Paradigm-ArkUI.Lite)](reference/arkui-js-lite/js-framework-file.md)
-- [JavaScript Service Widget UI Component Reference](reference/js-service-widget-ui/js-service-widget-file.md)
-- Native API Reference
-  - [Native APIs](reference/native-apis/_o_h___native_x_component.md)
-  - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
-  - [Node_API](reference/native-lib/third_party_napi/napi.md)
+ <!--no_check--> 

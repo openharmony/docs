@@ -34,8 +34,8 @@ import pasteboard from '@ohos.pasteboard';
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示string的类型。 |
-| image.PixelMap | 表示[image.PixelMap](../apis/js-apis-image.md#pixelmap7)的类型。 |
-| Want | 表示[Want](../apis/js-apis-app-ability-want.md)的类型。 |
+| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
+| Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 
 ## pasteboard.createData<sup>9+</sup>
@@ -186,7 +186,7 @@ createWantData(want: Want): PasteData
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | Want内容。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want内容。 |
 
 **返回值：**
 
@@ -308,7 +308,7 @@ createWantRecord(want: Want): PasteDataRecord
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | Want内容。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want内容。 |
 
 **返回值：**
 
@@ -414,11 +414,11 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
-| want<sup>7+</sup> | [Want](../apis/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
+| want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
 | data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
 ### toPlainText<sup>9+</sup>
@@ -568,7 +568,7 @@ getPrimaryWant(): Want
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Want](../apis/js-apis-app-ability-want.md) | Want对象内容。 |
+| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Want对象内容。 |
 
 **示例：**
 
@@ -616,7 +616,7 @@ getPrimaryPixelMap(): image.PixelMap
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap内容。 |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。 |
 
 **示例：**
 
@@ -1032,7 +1032,7 @@ addWantRecord(want: Want): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | Want对象内容。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want对象内容。 |
 
 **示例：**
 
@@ -1417,6 +1417,8 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1453,6 +1455,8 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
 getData(): Promise&lt;PasteData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1932,6 +1936,8 @@ try {
 getDataSync(): PasteData
 
 读取系统剪贴板内容, 此接口为同步接口。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 

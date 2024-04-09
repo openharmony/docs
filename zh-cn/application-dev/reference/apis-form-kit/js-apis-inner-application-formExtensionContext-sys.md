@@ -8,6 +8,9 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
+> 本模块接口为系统接口。
+
+
 
 ## 导入模块
 
@@ -19,11 +22,11 @@ import common from '@ohos.app.ability.common';
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-拉起一个卡片所属应用的Ability。使用callback异步回调。
+拉起一个应用的Ability。使用callback异步回调。
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **错误码：**
 
@@ -33,7 +36,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -43,7 +45,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 |                类型               | 必填 |              说明               |
 | ------| --------------------------------- | ---- | -------------------------------------- |
 | want| [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是  | 包含bundleName，abilityName以及用户自定参数用于拉起Ability。 |
-| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个卡片所属应用的Ability成功，err为undefined，否则为错误对象。 |
+| callback| AsyncCallback&lt;void&gt;       | 是  | 回调函数。当拉起一个应用的Ability成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -79,11 +81,11 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 startAbility(want: Want): Promise&lt;void&gt;
 
-拉起一个卡片所属应用的Ability。使用Promise异步回调。
+拉起一个应用的Ability。使用Promise异步回调。
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -105,7 +107,6 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -132,7 +133,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`StartAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
 };
@@ -144,9 +145,9 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将一个Ability与服务类型的Ability绑定。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -225,9 +226,9 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -285,9 +286,9 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
 
-**系统能力**：SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -299,7 +300,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

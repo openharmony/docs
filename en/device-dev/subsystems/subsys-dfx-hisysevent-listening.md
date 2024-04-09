@@ -39,7 +39,7 @@ HiSysEvent is implemented using the APIs provided by the **HiSysEventManager** c
 | -------- | -------- |
 | ListenerRule(const&nbsp;std::string&amp;&nbsp;tag,<br>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | Constructor used to create a **ListenerRule** object based on the event tag.<br>Input arguments:<br>- **tag**: event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits.<br>- **ruleType**: type of the **ListenerRule** object. The value is an enum defined by **RuleType**.|
 | ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | Constructor used to create a **ListenerRule** object based on the event domain and event name.<br>Input arguments:<br>- **domain**: event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores.<br>- **eventName**: event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores.<br>- **ruleType**: type of the **ListenerRule** object. The value is an enum defined by **RuleType**.|
-| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br>&nbsp;const&nbsp;std::string&amp;&nbsp;tag,<br>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | Constructor used to create a **ListenerRule** object based on the event domain, event name, and event tag.<br>Input arguments:<br>- **tag**: event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits.<br>- **domain**: event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores.<br>- **eventName**: event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores.<br>- **ruleType**: type of the **ListenerRule** object. The value is an enum defined by **RuleType**.|
+| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br>&nbsp;const&nbsp;std::string&amp;&nbsp;tag,<br>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | Constructor used to create a **ListenerRule** object based on the event domain, event name, and event tag.<br>Input arguments:<br>- **domain**: event domain for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, digits, and underscores.<br>- **eventName**: event name for the **ListenerRule** object. The value is a string of 1 to 32 characters, including uppercase letters, digits, and underscores.<br>- **tag**: event tag for the **ListenerRule** object. The value is a string of 1 to 16 characters, including uppercase letters, lowercase letters, and digits.<br>- **ruleType**: type of the **ListenerRule** object. The value is an enum defined by **RuleType**.|
 
   **Table 3** Description of HiSysEventListener
 
@@ -153,7 +153,7 @@ HiSysEvent listening is implemented using the API provided in the following tabl
     sysRules.push_back(regRule);
     sysRules.push_back(domainNameRule);
     // Start event listening.
-    auto ret = HiSysEventManager::AddEventListener(testListener, sysRules);
+    auto ret = HiSysEventManager::AddListener(testListener, sysRules);
     // Remove the listener when the service ends.
     if (ret == 0) {
        HiSysEventManager::RemoveListener(testListener);
@@ -264,7 +264,7 @@ Suppose you want to enable listening for all events whose domain is **HIVIEWDFX*
         ListenerRule domainNameRule("HIVIEWDFX", "PLUGIN_LOAD", RuleType::WHOLE_WORD);
         std::vector<ListenerRule> sysRules;
         sysRules.push_back(domainNameRule);
-        auto ret = HiSysEventManager::AddEventListener(testListener, sysRules);
+        auto ret = HiSysEventManager::AddListener(testListener, sysRules);
         if (ret == 0) {
             HiSysEventManager::RemoveListener(testListener);
         }

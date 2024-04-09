@@ -20,9 +20,9 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 订阅加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -32,9 +32,9 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：**  
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -67,9 +67,9 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 
 订阅未校准加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -79,9 +79,9 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：**   
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -117,7 +117,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 订阅环境光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -127,15 +127,15 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。         |
 | options  | [Options](#options)                             | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
-**示例：**
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -160,7 +160,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 订阅温度传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -170,15 +170,15 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
-**示例：**
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -203,7 +203,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 订阅气压计传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -213,13 +213,15 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。     |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -244,7 +246,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: 
 
 订阅重力传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -254,13 +256,15 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: 
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。       |
 | options  | [Options](#options)                                 | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -287,9 +291,9 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 
 订阅校准的陀螺仪传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -299,13 +303,15 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。     |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -333,9 +339,9 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 订阅未校准陀螺仪传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE 
 
-**系统能力**：SystemCapability.Sensors.Sensor  
+**系统能力：** SystemCapability.Sensors.Sensor  
 
 **参数：** 
 
@@ -345,13 +351,15 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -382,7 +390,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 订阅霍尔传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -392,13 +400,15 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。           |
 | options  | [Options](#options)                           | 否   | 可选参数列表，默认值为200000000ns。当霍尔事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -424,9 +434,9 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, optio
 
 订阅心率传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA 
+**需要权限：** ohos.permission.READ_HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -436,13 +446,15 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, optio
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。     |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -467,7 +479,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 
 订阅湿度传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -477,13 +489,15 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。      |
 | options  | [Options](#options)                                   | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -509,9 +523,9 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 
 订阅线性加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -521,13 +535,15 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -554,7 +570,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 
 订阅地磁传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -564,13 +580,15 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -597,7 +615,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 订阅未校准地磁传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -607,13 +625,15 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -643,11 +663,11 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 订阅方向传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -660,6 +680,8 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 | type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。   |
 | options  | [Options](#options)                                         | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -686,13 +708,13 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 订阅计步器传感器数据。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -705,6 +727,8 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 | type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。     |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -730,9 +754,9 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 订阅计步检测器传感器数据。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -742,13 +766,15 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -773,7 +799,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 订阅接近光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -783,13 +809,15 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。      |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，默认值为200000000ns。当接近光事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -815,7 +843,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 订阅旋转矢量传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -825,13 +853,15 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -860,7 +890,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 订阅大幅动作检测传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -870,13 +900,15 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -902,7 +934,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 订阅佩戴检测传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -912,13 +944,15 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -945,9 +979,9 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 获取一次加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -956,13 +990,15 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。              |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -986,9 +1022,9 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 
 获取一次未校准加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -997,13 +1033,15 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1030,7 +1068,7 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 
 获取一次环境光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -1039,13 +1077,15 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。      |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1067,7 +1107,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 获取一次温度传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -1076,13 +1116,15 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1104,7 +1146,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 获取一次气压计传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：SensorId**
 
@@ -1113,13 +1155,15 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 | type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。              |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1141,7 +1185,7 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 获取一次重力传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1150,13 +1194,15 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 | type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。              |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1180,9 +1226,9 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 获取一次陀螺仪传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -1191,13 +1237,15 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。              |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -1221,9 +1269,9 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 
 获取一次未校准陀螺仪传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -1232,13 +1280,15 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1265,7 +1315,7 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
 获取一次霍尔传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -1274,13 +1324,15 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 | type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。              |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1302,9 +1354,9 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 获取一次心率传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA 
+**需要权限：** ohos.permission.READ_HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -1313,13 +1365,15 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 | type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。             |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1341,7 +1395,7 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 获取一次湿度传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -1350,13 +1404,15 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 | type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。              |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1378,9 +1434,9 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 
 获取一次线性加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：** 
 
@@ -1389,13 +1445,15 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。        |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1419,7 +1477,7 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 
 获取一次磁场传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1428,13 +1486,15 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1458,7 +1518,7 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 
 获取一次未经校准的磁场传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1467,13 +1527,15 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1500,7 +1562,7 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 获取一次方向传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -1509,13 +1571,15 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 | type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。              |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1539,9 +1603,9 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 获取一次计步器传感器数据。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -1550,13 +1614,15 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 | type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。              |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1578,9 +1644,9 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 获取一次计步检测器传感器数据。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**系需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -1589,13 +1655,15 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1617,7 +1685,7 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 
 获取一次接近光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1626,13 +1694,15 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 | type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。              |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1654,7 +1724,7 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 获取一次旋转矢量传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1663,13 +1733,15 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1694,7 +1766,7 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 获取一次大幅动作检测传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1703,13 +1775,15 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1731,7 +1805,7 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 获取一次佩戴检测传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1740,13 +1814,15 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1766,13 +1842,13 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: CallbackAccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1780,6 +1856,8 @@ off(type: SensorId.ACCELEROMETER, callback?: CallbackAccelerometerResponse&gt;):
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1812,9 +1890,9 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 
 取消订阅未校准加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1822,6 +1900,8 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1854,7 +1934,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 取消订阅环境光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1862,6 +1942,8 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。               |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1894,7 +1976,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 取消订阅温度传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1902,6 +1984,8 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1934,7 +2018,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 取消订阅气压计传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -1942,6 +2026,8 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                   |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -1974,7 +2060,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 取消订阅重力传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -1982,6 +2068,8 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                     |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2015,9 +2103,9 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 取消订阅陀螺仪传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2025,6 +2113,8 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                   |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2057,9 +2147,9 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
  取消订阅未校准陀螺仪传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2067,6 +2157,8 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2099,7 +2191,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 取消订阅霍尔传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2107,6 +2199,8 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                        |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2139,9 +2233,9 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 取消订阅心率传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA 
+**需要权限：** ohos.permission.READ_HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2149,6 +2243,8 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                  |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2181,7 +2277,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 取消订阅湿度传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2189,6 +2285,8 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                    |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2221,9 +2319,9 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 取消订阅线性加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER 
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -2231,6 +2329,8 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELERATION。         |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2263,7 +2363,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 取消订阅磁场传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -2271,6 +2371,8 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。              |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2303,7 +2405,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 
 取消订阅未校准的磁场传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力：** SystemCapability.Sensors.Sensor 
 
 **参数：**
 
@@ -2311,6 +2413,8 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2343,7 +2447,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 取消订阅方向传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2351,6 +2455,8 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                 |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2383,9 +2489,9 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 取消订阅计步器传感器数据。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2393,6 +2499,8 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                   |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2425,9 +2533,9 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 取消订阅计步检测器传感器数据。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2435,6 +2543,8 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2467,7 +2577,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 取消订阅接近光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2475,6 +2585,8 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                   |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2507,7 +2619,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 取消订阅旋转矢量传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2515,6 +2627,8 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2547,7 +2661,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 取消大幅动作检测传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2555,6 +2669,8 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2587,7 +2703,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 取消订阅佩戴检测传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2595,6 +2711,8 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。              |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2627,7 +2745,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 
 获取某时刻地球上特定位置的地磁场信息，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -2637,13 +2755,15 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 | timeMillis      | number                                                       | 是   | 获取磁偏角的时间，unix时间戳，单位毫秒。 |
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 回调函数，异步返回地磁场信息。                 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2676,7 +2796,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 
 获取某时刻地球上特定位置的地磁场信息，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -2691,13 +2811,15 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 | ---------------------------------------------------------- | -------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise对象，使用异步方式返回地磁场信息。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2728,7 +2850,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 
 根据气压值获取海拔高度，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -2738,13 +2860,15 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 | currentPressure | number                      | 是   | 指定的气压值，单位为hPa。 |
 | callback        | AsyncCallback&lt;number&gt; | 是   | 回调函数，异步返回指定的气压值对应的海拔高度，单位为米。  |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2772,7 +2896,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 
 根据气压值获取海拔高度，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -2787,13 +2911,15 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 | --------------------- | ------------------------------------ |
 | Promise&lt;number&gt; | Promise对象，使用异步方式返回指定的气压值对应的海拔高度，单位为米。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2820,7 +2946,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 
 根据倾斜矩阵计算地磁倾角，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2829,13 +2955,15 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 | inclinationMatrix | Array&lt;number&gt;         | 是   | 倾斜矩阵。               |
 | callback          | AsyncCallback&lt;number&gt; | 是   | 回调函数，异步返回地磁倾角，单位为弧度。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getInclination错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getInclination错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2867,7 +2995,7 @@ try {
 
 根据倾斜矩阵计算地磁倾角，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2881,13 +3009,15 @@ try {
 | --------------------- | ---------------------------- |
 | Promise&lt;number&gt; | Promise对象，使用异步方式返回地磁倾斜角，单位为弧度。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getInclination错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getInclination错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2919,7 +3049,7 @@ try {
 
 计算两个旋转矩阵之间的角度变化，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2929,13 +3059,15 @@ try {
 | preRotationMatrix     | Array&lt;number&gt;                      | 是   | 相对旋转矩阵。                    |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回绕z、x、y轴方向的旋转角度。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -2977,7 +3109,7 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 
 得到两个旋转矩阵之间的角度变化，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -2992,13 +3124,15 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回绕z、x、y轴方向的旋转角度。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3039,7 +3173,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 
 根据旋转矢量获取旋转矩阵，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3048,13 +3182,15 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 | rotationVector | Array&lt;number&gt;                      | 是   | 旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回3*3旋转矩阵。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3083,7 +3219,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 
 根据旋转矢量获取旋转矩阵，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -3097,13 +3233,15 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 | ---------------------------------- | -------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回旋转矩阵。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3132,7 +3270,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 根据指定坐标系映射旋转矩阵，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3142,13 +3280,15 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 指定坐标系方向。       |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 回调函数，异步返回映射后的旋转矩阵。 |
 
-**错误码**：
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3181,7 +3321,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 根据指定坐标系映射旋转矩阵，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -3196,13 +3336,15 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 | ---------------------------------- | ---------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回转换后的旋转矩阵。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3234,7 +3376,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 
 根据旋转向量计算归一化四元数，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3243,13 +3385,15 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 | rotationVector | Array&lt;number&gt;                      | 是   | 旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回归一化四元数。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3278,7 +3422,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 
 根据旋转向量计算归一化四元数，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -3292,13 +3436,15 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise，使用异步方式对象返归一化回四元数。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3326,7 +3472,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 
 根据旋转矩阵计算设备方向，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -3335,13 +3481,15 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 | rotationMatrix | Array&lt;number&gt;                      | 是   | 旋转矩阵。                    |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回围绕z、x、y轴方向的旋转角度。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getOrientation错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getOrientation错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from "@ohos.sensor";
@@ -3377,7 +3525,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 
 根据旋转矩阵计算设备的方向，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：**
 
@@ -3391,13 +3539,15 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise对象，使用异步方式返回围绕z、x、y轴方向的旋转角度。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getOrientation错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getOrientation错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3429,7 +3579,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3439,13 +3589,15 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 | geomagnetic | Array&lt;number&gt;                                          | 是   | 地磁矢量。 |
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 回调函数，异步返回旋转矩阵。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
 
-| 错误码ID | 错误信息          |
-| -------- | ----------------- |
-| 14500101 | Service exception |
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3473,7 +3625,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3488,13 +3640,15 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 | ------------------------------------------------------------ | -------------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise对象，使用异步方式返回旋转矩阵。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3521,7 +3675,7 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 获取设备上的所有传感器信息，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3529,13 +3683,15 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 | -------- | ---------------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 回调函数，异步返回传感器属性列表。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSensorList错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3563,7 +3719,7 @@ try {
 
 获取设备上的所有传感器信息，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **返回值：** 
 
@@ -3571,13 +3727,15 @@ try {
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，使用异步方式返回传感器属性列表。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSensorList错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3603,7 +3761,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 获取指定传感器类型的属性信息，使用Callback异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3612,13 +3770,15 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 | type     | [SensorId](#sensorid9)                  | 是   | 指定传感器类型。     |
 | callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 回调函数，异步返回指定传感器的属性信息。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3644,7 +3804,7 @@ try {
 
 获取指定类型的传感器信息，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -3658,13 +3818,15 @@ try {
 | ------- | --------------------------------- | ---- | ---------------------------- |
 | promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 使用异步方式返回传感器信息。 |
 
-**错误码**： 
+**错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](../errorcodes/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -3686,7 +3848,7 @@ try {
 
 表示当前支持订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称                        | 值   | 说明                   |
 | --------------------------- | ---- | ---------------------- |
@@ -3716,7 +3878,7 @@ try {
 
 表示要订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称                                       | 值   | 说明                   |
@@ -3747,7 +3909,7 @@ try {
 
 传感器数据的精度。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称    | 值 | 说明                     |
 | --------- | ---- | ------------------------ |
@@ -3760,7 +3922,7 @@ try {
 
 传感器数据的时间戳。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称      | 类型   | 可读 | 可写 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
@@ -3771,7 +3933,7 @@ try {
 
 指示传感器信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称            | 类型 | 可读 | 可写 | 说明                   |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
@@ -3790,7 +3952,7 @@ try {
 
 加速度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                 |
@@ -3804,7 +3966,7 @@ try {
 
 线性加速度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                     |
@@ -3818,7 +3980,7 @@ try {
 
 未校准加速度计传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 可读 | 可写 | 说明                                           |
@@ -3835,7 +3997,7 @@ try {
 
 重力传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                     |
@@ -3849,7 +4011,7 @@ try {
 
 方向传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 可读 | 可写 | 说明                              |
@@ -3863,7 +4025,7 @@ try {
 
 旋转矢量传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 可读 | 可写 | 说明              |
@@ -3878,7 +4040,7 @@ try {
 
 陀螺仪传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 可读 | 可写 | 说明                             |
@@ -3892,7 +4054,7 @@ try {
 
 未校准陀螺仪传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 可读 | 可写 | 说明                                       |
@@ -3909,7 +4071,7 @@ try {
 
 有效运动传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
@@ -3921,7 +4083,7 @@ try {
 
 接近光传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称     | 类型   | 可读 | 可写 | 说明                                                       |
@@ -3933,7 +4095,7 @@ try {
 
 环境光传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称      | 类型   | 可读 | 可写 | 说明                   |
@@ -3945,7 +4107,7 @@ try {
 
 霍尔传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
@@ -3957,7 +4119,7 @@ try {
 
 磁场传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
@@ -3971,7 +4133,7 @@ try {
 
 未校准磁场传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 可读 | 可写 | 说明                                   |
@@ -3988,7 +4150,7 @@ try {
 
 计步传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 可读 | 可写 | 说明             |
@@ -4000,7 +4162,7 @@ try {
 
 湿度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称     | 类型   | 可读 | 可写 | 说明                                                      |
@@ -4012,7 +4174,7 @@ try {
 
 计步检测传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
@@ -4024,7 +4186,7 @@ try {
 
 温度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称        | 类型   | 可读 | 可写 | 说明                       |
@@ -4036,7 +4198,7 @@ try {
 
 气压计传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称     | 类型   | 可读 | 可写 | 说明                   |
@@ -4048,7 +4210,7 @@ try {
 
 心率传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                    |
@@ -4060,7 +4222,7 @@ try {
 
 佩戴检测传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 可读 | 可写 | 说明                                             |
@@ -4072,7 +4234,7 @@ try {
 
 设置传感器上报频率。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称     | 类型                                                        | 可读 | 可写 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -4082,7 +4244,7 @@ try {
 
 传感器上报频率模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称   | 类型   | 可读 | 可写 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -4094,7 +4256,7 @@ try {
 
 设置旋转矩阵响应对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称        | 类型                | 可读 | 可写 | 说明       |
 | ----------- | ------------------- | ---- | ---- | ---------- |
@@ -4106,7 +4268,7 @@ try {
 
 设置坐标选项对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称 | 类型   | 可读 | 可写 | 说明        |
 | ---- | ------ | ---- | ---- | ----------- |
@@ -4118,7 +4280,7 @@ try {
 
 设置地磁响应对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称            | 类型   | 可读 | 可写 | 说明                                               |
 | --------------- | ------ | ---- | ---- | -------------------------------------------------- |
@@ -4134,7 +4296,7 @@ try {
 
 指示地理位置。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称      | 类型   | 可读 | 可写 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
@@ -4154,9 +4316,9 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.ACCELEROMETER](#accelerometer9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4165,6 +4327,8 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER | 是   | 要订阅的加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。     |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4188,9 +4352,9 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)<sup>9+</sup>代替。 
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4210,9 +4374,9 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4221,6 +4385,8 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 是   | 要订阅的未校准加速度计传感器类型为SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4248,7 +4414,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.GRAVITY](#gravity9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4257,6 +4423,8 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GRAVITY | 是   | 要订阅的重力传感器类型为SENSOR_TYPE_ID_GRAVITY。            |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt;        | 是   | 注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
 | options  | [Options](#options)                                        | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4280,9 +4448,9 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.GYROSCOPE](#gyroscope9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4291,6 +4459,8 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE | 是   | 要订阅的陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE。         |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt;      | 是   | 注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4314,9 +4484,9 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4325,6 +4495,8 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | 是   | 要订阅的未校准陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED。 |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4351,7 +4523,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.SIGNIFICANT_MOTION](#significant_motion9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4360,6 +4532,8 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_SIGNIFICANT_MOTION | 是   | 要订阅的大幅动作传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4381,9 +4555,9 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.PEDOMETER_DETECTION](#pedometer_detection9)<sup>9+</sup>代替。 
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限：** ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4392,6 +4566,8 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER_DETECTION | 是   | 要订阅的计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4413,9 +4589,9 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.PEDOMETER](#pedometer9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION 
+**需要权限：** ohos.permission.ACTIVITY_MOTION 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4424,6 +4600,8 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER | 是   | 要订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。           |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt;      | 是   | 注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4445,7 +4623,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.AMBIENT_TEMPERATURE](#ambient_temperature9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4454,6 +4632,8 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | 是   | 要订阅的环境温度传感器类型为SENSOR_TYPE_ID_AMBIENT_TEMPERATURE。 |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4475,7 +4655,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.MAGNETIC_FIELD](#magnetic_field9)<sup>9+</sup>代替。  
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4484,6 +4664,8 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | 是   | 要订阅的磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。      |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4507,7 +4689,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4516,6 +4698,8 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 是   | 要订阅的未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4542,7 +4726,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.PROXIMITY](#proximity9)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4551,6 +4735,8 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PROXIMITY | 是   | 要订阅的接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。         |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt;      | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，默认值为200000000ns。当接近光事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4572,7 +4758,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.HUMIDITY](#humidity9)<sup>9+</sup>代替。  
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4581,6 +4767,8 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HUMIDITY | 是   | 要订阅的湿度传感器类型为SENSOR_TYPE_ID_HUMIDITY。            |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt;       | 是   | 注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 | options  | [Options](#options)                                         | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4602,7 +4790,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.BAROMETER](#barometer9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4611,6 +4799,8 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_BAROMETER | 是   | 要订阅的气压计传感器类型为SENSOR_TYPE_ID_BAROMETER。         |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt;      | 是   | 注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4632,7 +4822,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.HALL](#hall9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4641,6 +4831,8 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HALL | 是   | 要订阅的霍尔传感器类型为SENSOR_TYPE_ID_HALL。                |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt;           | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，默认值为200000000ns。当霍尔事件被触发的很频繁时，该参数用于限定事件上报的频率。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4662,7 +4854,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.AMBIENT_LIGHT](#ambient_light9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4671,6 +4863,8 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_LIGHT | 是   | 要订阅的环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。    |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | 是   | 注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4692,7 +4886,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.ORIENTATION](#orientation9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4701,6 +4895,8 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ORIENTATION | 是   | 要订阅的方向传感器类型为SENSOR_TYPE_ID_ORIENTATION。         |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt;  | 是   | 注册方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4724,9 +4920,9 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.HEALTH_DATA 
+**需要权限：** ohos.permission.HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4746,7 +4942,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.ROTATION_VECTOR](#rotation_vector9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4755,6 +4951,8 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ROTATION_VECTOR | 是   | 要订阅的旋转矢量传感器类型为SENSOR_TYPE_ID_ROTATION_VECTOR。 |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4779,7 +4977,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 >
 > 从API version 9 开始不再维护，建议使用[sensor.on.WEAR_DETECTION](#wear_detection9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4788,6 +4986,8 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | 是   | 要订阅的佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。  |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4811,9 +5011,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.ACCELEROMETER](#accelerometer9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4821,6 +5021,8 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER | 是   | 加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。             |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册一次加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4842,9 +5044,9 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACCELERATION
+**需要权限：** ohos.permission.ACCELERATION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4863,9 +5065,9 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4873,6 +5075,8 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 是   | 未校准加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册一次未校准加速度传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4897,7 +5101,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.GRAVITY](#gravity9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4905,6 +5109,8 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GRAVITY | 是   | 重力传感器类型为SENSOR_TYPE_ID_GRAVITY。                     |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt;        | 是   | 注册一次重力传感器的回调函数，上报的数据类型为GravityResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4926,9 +5132,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.GYROSCOPE](#gyroscope9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4936,6 +5142,8 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE | 是   | 陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE。                 |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt;      | 是   | 注册一次陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -4957,9 +5165,9 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4967,6 +5175,8 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | 是   | 未校准陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED。 |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册一次未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
+
+**示例：** 
 
 
 ```ts
@@ -4992,7 +5202,7 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.SIGNIFICANT_MOTION](#significant_motion9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5000,6 +5210,8 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_SIGNIFICANT_MOTION | 是   | 有效运动传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。      |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册一次有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5019,9 +5231,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.PEDOMETER_DETECTION](#pedometer_detection9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限：** ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5029,6 +5241,8 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER_DETECTION | 是   | 计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。     |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5048,9 +5262,9 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.PEDOMETER](#pedometer9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限：** ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5058,6 +5272,8 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER | 是   | 计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。                   |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt;      | 是   | 注册一次计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5077,7 +5293,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.AMBIENT_TEMPERATURE](#ambient_temperature9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5085,6 +5301,8 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | 是   | 环境温度传感器类型为SENSOR_TYPE_ID_AMBIENT_TEMPERATURE。     |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册一次环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5104,7 +5322,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.MAGNETIC_FIELD](#magnetic_field9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5112,6 +5330,8 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | 是   | 磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。              |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册一次磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5133,7 +5353,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5141,6 +5361,8 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 是   | 未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册一次未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5165,7 +5387,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.PROXIMITY](#proximity9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5173,6 +5395,8 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PROXIMITY | 是   | 接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。                 |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt;      | 是   | 注册一次接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5193,7 +5417,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.HUMIDITY](#humidity9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5201,6 +5425,8 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HUMIDITY | 是   | 湿度传感器类型为SENSOR_TYPE_ID_HUMIDITY。                    |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt;       | 是   | 注册一次湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5220,7 +5446,7 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.BAROMETER](#barometer9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5228,6 +5454,8 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_BAROMETER | 是   | 气压计传感器类型为SENSOR_TYPE_ID_BAROMETER。                 |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt;      | 是   | 注册一次气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5247,7 +5475,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.HALL](#hall9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5255,6 +5483,8 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HALL | 是   | 霍尔传感器类型为SENSOR_TYPE_ID_HALL。                        |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt;           | 是   | 注册一次霍尔传感器的回调函数，上报的数据类型为HallResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5274,7 +5504,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.AMBIENT_LIGHT](#ambient_light9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5282,6 +5512,8 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_LIGHT | 是   | 环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。             |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | 是   | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5301,7 +5533,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.ORIENTATION](#orientation9-1)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5309,6 +5541,8 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ORIENTATION | 是   | 方向传感器类型为SENSOR_TYPE_ID_ORIENTATION。                 |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt;  | 是   | 注册一次方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5330,7 +5564,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.ROTATION_VECTOR](#rotation_vector9-1)<sup>9+</sup>代替。  
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5338,6 +5572,8 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ROTATION_VECTOR | 是   | 旋转矢量传感器类型为SENSOR_TYPE_ID_ROTATION_VECTOR。         |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册一次旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5360,9 +5596,9 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.HEART_RATE](#heart_rate9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.HEART_RATE  
+**需要权限：** ohos.permission.HEART_RATE  
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5381,7 +5617,7 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 >
 > 从API version 9 开始不再维护，建议使用[sensor.once.WEAR_DETECTION](#wear_detection9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5389,6 +5625,8 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | 是   | 佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。          |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册一次穿戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
+
+**示例：** 
 
 
 ```ts
@@ -5411,9 +5649,9 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.ACCELEROMETER<sup>9+</sup>](#accelerometer9-2)代替。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5421,6 +5659,8 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER | 是   | 要取消订阅的加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。 |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5444,9 +5684,9 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-2)<sup>9+</sup>代替。 
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5454,6 +5694,8 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 是   | 要取消订阅的未校准加速度计传感器类型为SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5480,7 +5722,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.AMBIENT_LIGHT](#ambient_light9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5488,6 +5730,8 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_LIGHT | 是   | 要取消订阅的环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。 |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;              | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5509,7 +5753,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.AMBIENT_TEMPERATURE](#ambient_temperature9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5517,6 +5761,8 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | 是   | 要取消订阅的环境温度传感器类型为SENSOR_TYPE_ID_AMBIENT_TEMPERATURE。 |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5538,7 +5784,7 @@ off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.BAROMETER](#barometer9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5546,6 +5792,8 @@ off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_BAROMETER | 是   | 要取消订阅的气压计传感器类型为SENSOR_TYPE_ID_BAROMETER。     |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5567,7 +5815,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityRespo
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.GRAVITY](#gravity9-2)<sup>9+</sup>代替。  
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5575,6 +5823,8 @@ off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityRespo
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GRAVITY | 是   | 要取消订阅的重力传感器类型为SENSOR_TYPE_ID_GRAVITY。         |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt;        | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5598,9 +5848,9 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.GYROSCOPE](#gyroscope9-2)<sup>9+</sup>代替。 
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5608,6 +5858,8 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE | 是   | 要取消订阅的陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE。     |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5631,9 +5883,9 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-2)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.GYROSCOPE
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5641,6 +5893,8 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | 是   | 要取消订阅的未校准陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED。 |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5664,7 +5918,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.HALL](#hall9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5672,6 +5926,8 @@ off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HALL | 是   | 要取消订阅的霍尔传感器类型为SENSOR_TYPE_ID_HALL。            |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt;           | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5693,9 +5949,9 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.HEART_RATE](#heart_rate9-2)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.HEALTH_DATA 
+**需要权限：** ohos.permission.HEALTH_DATA 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5703,6 +5959,8 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HEART_RATE | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。      |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5724,7 +5982,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.HUMIDITY](#humidity9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5732,6 +5990,8 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HUMIDITY | 是   | 要取消订阅的湿度传感器类型为SENSOR_TYPE_ID_HUMIDITY。        |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt;       | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5753,9 +6013,9 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9-2)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限：** ohos.permission.ACCELEROMETER
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5763,6 +6023,8 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_LINEAR_ACCELERATION | 是   | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5786,7 +6048,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.MAGNETIC_FIELD](#magnetic_field9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5794,6 +6056,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type             | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD | 是   | 要取消订阅的磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。  |
 | callbackcallback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5817,7 +6081,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-2)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5825,6 +6089,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 是   | 要取消订阅的未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5851,7 +6117,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.ORIENTATION](#orientation9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5859,6 +6125,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ORIENTATION | 是   | 要取消订阅的方向传感器类型为SENSOR_TYPE_ID_ORIENTATION。     |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt;  | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5882,9 +6150,9 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.PEDOMETER](#pedometer9-2)<sup>9+</sup>代替。 
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限：** ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5892,6 +6160,8 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER | 是   | 要取消订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。       |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5913,9 +6183,9 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.PEDOMETER_DETECTION](#pedometer_detection9-2)<sup>9+</sup>代替。 
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限：** ohos.permission.ACTIVITY_MOTION
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5923,6 +6193,8 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PEDOMETER_DETECTION | 是   | 要取消订阅的计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5944,7 +6216,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityR
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.PROXIMITY](#proximity9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5952,6 +6224,8 @@ off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_PROXIMITY | 是   | 要取消订阅的接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。     |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -5973,7 +6247,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;Rota
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.ROTATION_VECTOR](#rotation_vector9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -5981,6 +6255,8 @@ off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;Rota
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_ROTATION_VECTOR | 是   | 要取消订阅的旋转矢量传感器类型为SENSOR_TYPE_ID_ROTATION_VECTOR。 |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6005,7 +6281,7 @@ off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;S
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.SIGNIFICANT_MOTION](#significant_motion9-2)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6013,6 +6289,8 @@ off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;S
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_SIGNIFICANT_MOTION | 是   | 要取消订阅的大幅动作传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6034,7 +6312,7 @@ off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearD
 >
 > 从API version 9 开始不再维护，建议使用[sensor.off.WEAR_DETECTION](#wear_detection9-2)<sup>9+</sup>代替。 
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6042,6 +6320,8 @@ off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearD
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | 是   | 要取消订阅的佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。 |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6063,7 +6343,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 >
 > 从API version 9 开始不再维护，建议使用[sensor.transformRotationMatrix](#sensortransformrotationmatrix9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6072,6 +6352,8 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 | inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。             |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。           |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 异步返回转换后的旋转矩阵。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6099,7 +6381,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 >
 > 从API version 9 开始不再维护，建议使用[sensor.transformRotationMatrix](#sensortransformrotationmatrix9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6113,6 +6395,8 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 | 类型                               | 说明                               |
 | ---------------------------------- | ---------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回转换后的旋转矩阵。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6139,7 +6423,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6148,6 +6432,8 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 | locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
 | timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 异步返回磁场信息。                 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6174,7 +6460,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6187,6 +6473,8 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 | 类型                                                       | 说明                       |
 | ---------------------------------------------------------- | -------------------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 使用异步方式返回磁场信息。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6212,7 +6500,7 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6221,6 +6509,8 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 | seaPressure     | number                      | 是   | 表示海平面气压值，单位为hPa。          |
 | currentPressure | number                      | 是   | 表示设备所在高度的气压值，单位为hPa。  |
 | callback        | AsyncCallback&lt;number&gt; | 是   | 异步返回设备所在的海拔高度，单位为米。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6245,7 +6535,7 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6259,6 +6549,8 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 | 类型                  | 说明                                             |
 | --------------------- | ------------------------------------------------ |
 | Promise&lt;number&gt; | 使用异步方式返回设备所在的海拔高度（单位：米）。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6283,7 +6575,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getInclination](#sensorgetinclination9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6291,6 +6583,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 | ----------------- | --------------------------- | ---- | -------------------------------- |
 | inclinationMatrix | Array&lt;number&gt;         | 是   | 表示倾斜矩阵。                   |
 | callback          | AsyncCallback&lt;number&gt; | 是   | 异步返回地磁倾斜角，单位为弧度。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6315,7 +6609,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getInclination](#sensorgetinclination9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6328,6 +6622,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 | 类型                  | 说明                                     |
 | --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | 使用异步方式返回地磁倾斜角，单位为弧度。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6351,7 +6647,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getAngleVariation](#sensorgetanglevariation9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6360,6 +6656,8 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 | currentRotationMatrix | Array&lt;number&gt;                      | 是   | 表示当前旋转矩阵。                    |
 | preRotationMatrix     | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                        |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 异步返回z、x、y轴方向的旋转角度变化。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6387,7 +6685,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getAngleVariation](#sensorgetanglevariation9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6401,6 +6699,8 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 | 类型                               | 说明                                          |
 | ---------------------------------- | --------------------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回z、x、y轴方向的旋转角度变化。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6428,7 +6728,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6436,6 +6736,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 | -------------- | ---------------------------------------- | ---- | ------------------ |
 | rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。     |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 异步返回旋转矩阵。 |
+
+**示例：** 
 
 ```ts
 import sensor from '@ohos.sensor';
@@ -6463,7 +6765,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6476,6 +6778,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 | 类型                               | 说明                       |
 | ---------------------------------- | -------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 使用异步方式返回旋转矩阵。 |
+
+**示例：** 
 
  ```ts
 import sensor from '@ohos.sensor';
@@ -6502,7 +6806,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getQuaternion](#sensorgetquaternion9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6539,7 +6843,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getQuaternion](#sensorgetquaternion9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6580,7 +6884,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getOrientation](#sensorgetorientation9)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6617,7 +6921,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getOrientation](#sensorgetorientation9-1)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6658,7 +6962,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-2)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -6694,7 +6998,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 >
 > 从API version 9 开始不再维护，建议使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-3)<sup>9+</sup>代替。
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 

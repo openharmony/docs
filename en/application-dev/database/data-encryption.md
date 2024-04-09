@@ -14,7 +14,7 @@ Both KV stores and RDB stores support database encryption.
 
 When a KV store is created, the **encrypt** parameter in **options** specifies whether to encrypt it. The value **true** means to encrypt the KV store, and the value **false** (default) means the opposite.
 
-For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
+For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
   
 ```ts
@@ -72,7 +72,7 @@ if (kvStore !== undefined) {
 
 When an RDB store is created, the **encrypt** parameter in **StoreConfig** specifies whether to encrypt it. The value **true** means to encrypt the RDB store, and the value **false** (default) means the opposite.
 
-For details about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
+For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
   
 ```ts

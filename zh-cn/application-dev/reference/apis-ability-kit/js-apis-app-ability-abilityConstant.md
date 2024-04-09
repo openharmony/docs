@@ -4,9 +4,9 @@ AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 本模块接口仅可在Stage模型下使用。
+> - 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -16,7 +16,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 ## AbilityConstant.LaunchParam
 
-启动参数。
+启动参数。Ability启动时由系统自动传入，开发者无需修改。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -24,7 +24,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | [LaunchReason](#abilityconstantlaunchreason)| 否 | 是 | 枚举类型，表示启动原因。 |
 | lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 是 | 枚举类型，表示最后退出原因。 |
-| lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。 |
+| lastExitMessage<sup>12+</sup> | string | 否 | 是 | 表示最后退出详细原因。 |
 
 ## AbilityConstant.LaunchReason
 
@@ -35,8 +35,8 @@ Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| START_ABILITY          | 1    | 通过[startAbility](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
-| CALL | 2    | 通过[startAbilityByCall](../apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
+| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
+| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 | SHARE<sup>10+</sup>           | 5    | 通过元服务分享启动ability。 |
@@ -145,6 +145,46 @@ class MyAbility extends UIAbility {
 }
 ```
 
+## AbilityConstant.WindowMode<sup>12+</sup>
+
+启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)使用，指定启动Ability的窗口模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                        | 值 | 说明                 |
+| ---                         | --- | ---                  |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 支持应用内拉起Ability时设置为分屏，左侧分屏。   |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | 支持应用内拉起Ability时设置为分屏，右侧分屏。   |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let option: StartOptions = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_SPLIT_PRIMARY
+};
+
+// 确保从上下文获取到context
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.startAbility(want, option).then(()=>{
+      console.log('Succeed to start ability.');
+    }).catch((error: BusinessError)=>{
+      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+    });
+  }
+}
+```
+
 ## AbilityConstant.OnSaveResult
 
 保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法完成相应的返回。
@@ -202,7 +242,7 @@ class MyAbility extends UIAbility {
 
 ## AbilityConstant.ContinueState<sup>10+</sup>
 
-流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](../apis/js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
+流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

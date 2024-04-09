@@ -31,7 +31,7 @@ Ability信息，系统应用可以通过bundleManager.queryAbilityInfo获取Abil
 | enabled               | boolean                                                  | 是   | 否   | Ability是否可用。                           |
 | supportWindowModes    | Array\<[SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | 是   | 否   | Ability支持的窗口模式。                      |
 | windowSize|[WindowSize](#windowsize)                                            |    是   | 否   | Ability窗口尺寸。|
-
+| excludeFromDock<sup>12+</sup>       | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标。         |
 ## WindowSize
 
 描述窗口尺寸。

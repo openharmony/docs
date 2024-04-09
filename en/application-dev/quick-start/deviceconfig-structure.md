@@ -1,4 +1,4 @@
-# Internal Structure of the deviceConfig Tag
+# Structure of the deviceConfig Tag
 
 
 The **deviceConfig** tag contains device-specific configuration of the application, including attributes such as **default**, **tv**, **car**, and **wearable**. The **default** configuration applies to all types of devices. You need to declare the peculiar configuration of a specific device type in the associated sub-tag of this type.

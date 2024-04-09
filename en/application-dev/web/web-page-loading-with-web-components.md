@@ -4,12 +4,12 @@
 Page loading is a basic function of the **Web** component. Depending on the data source, page loading falls into three types: loading of network pages, loading of local pages, and loading of HTML rich text data.
 
 
-If acquisition of network resources is involved in page loading, you need to declare the [ohos.permission.INTERNET](../security/accesstoken-guidelines.md) permission.
+If acquisition of network resources is involved in page loading, you need to declare the [ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md) permission.
 
 
 ## Loading Network Pages
 
-You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component.
+You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component.
 
 
 In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
@@ -48,7 +48,7 @@ struct WebComponent {
 
 ## Loading Local Pages
 
-Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis/js-apis-webview.md#loadurl) to change the displayed page of the **Web** component.
+Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **Web** component.
 
 
 The following example shows how to load a local page file.
@@ -108,7 +108,7 @@ The following example shows how to load a local page file.
 
 ## Loading HTML Rich Text Data
 
-The **Web** component provides the [loadData()](../reference/apis/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page.
+The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page.
 
 
 
@@ -143,4 +143,131 @@ struct WebComponent {
     }
   }
 }
+```
+
+## Dynamically Creating Web Components
+**Web** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **Web** instances started in the background be less than or equal to 200. 
+
+```ts
+// Carrier ability
+// EntryAbility.ets
+import {createNWeb} from "../pages/common"
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err, data) => {
+    // Dynamically create a Web component (UIContext needs to be passed in). The component can be created at any time after loadContent is called.
+    createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
+    if (err.code) {
+      return;
+    }
+  });
+}
+```
+```ts
+// Create a NodeController instance.
+// common.ets
+import { UIContext } from '@ohos.arkui.UIContext';
+import web_webview from '@ohos.web.webview'
+import { NodeController, BuilderNode, Size, FrameNode }  from '@ohos.arkui.node';
+// @Builder contains the specific content of the dynamically created component.
+// Data is the class for input parameter encapsulation.
+class Data{
+  url: string = "https://www.example.com";
+  controller: WebviewController = new web_webview.WebviewController();
+}
+
+@Builder
+function WebBuilder(data:Data) {
+  Column() {
+    Web({ src: data.url, controller: data.controller })
+      .width("100%")
+      .height("100%")
+  }
+}
+
+let wrap = wrapBuilder<Data[]>(WebBuilder);
+
+// NodeController is used to control and feed back the behavior of the corresponding node in the NodeContainer. It must be used together with NodeContainer.
+export class myNodeController extends NodeController {
+  private rootnode: BuilderNode<Data[]> | null = null;
+  // This method must be overridden. It is used to construct the number of nodes and return the number of nodes mounted to the corresponding NodeContainer.
+  // Called when the corresponding NodeContainer is created or called through the rebuild method.
+  makeNode(uiContext: UIContext): FrameNode | null {
+    console.log(" uicontext is undifined : "+ (uiContext === undefined));
+    if (this.rootnode != null) {
+      // Return the FrameNode.
+      return this.rootnode.getFrameNode();
+    }
+    // Return null to control the dynamic component to be detached from the bound node.
+    return null;
+  }
+  // Called when the layout size changes.
+  aboutToResize(size: Size) {
+    console.log("aboutToResize width : " + size.width  +  " height : " + size.height )
+  }
+
+  // Called when the NodeContainer bound to the current controller is about to be displayed.
+  aboutToAppear() {
+    console.log("aboutToAppear")
+  }
+
+  // Called when the NodeContainer bound to the current controller is about to be hidden.
+  aboutToDisappear() {
+    console.log("aboutToDisappear")
+  }
+
+  // This function is a custom function and can be used as an initialization function.
+  // Initialize BuilderNode through UIContext, and then initialize the content in @Builder through the build API in BuilderNode.
+  initWeb(url:string, uiContext:UIContext, control:WebviewController) {
+    if(this.rootnode != null)
+    {
+      return;
+    }
+    // Create a node. uiContext is required.
+    this.rootnode = new BuilderNode(uiContext)
+    // Create a dynamic Web component.
+    this.rootnode.build(wrap, { url:url, controller:control })
+  }
+}
+ // Create a map to save the required NodeController.
+let NodeMap:Map<string, myNodeController | undefined> = new Map();
+// Create a map to save the required WebViewController.
+let controllerMap:Map<string, WebviewController | undefined> = new Map();
+
+// UIContext is required for initialization and needs to be obtained from the ability.
+export const createNWeb = (url: string, uiContext: UIContext) => {
+  // Create a NodeController.
+  let baseNode = new myNodeController();
+  let controller = new web_webview.WebviewController() ;
+  // Initialize the custom Web component.
+  baseNode.initWeb(url, uiContext, controller);
+  controllerMap.set(url, controller)
+  NodeMap.set(url, baseNode);
+}
+// Customize the API for obtaining the NodeController.
+export const getNWeb = (url : string) : myNodeController | undefined => {
+  return NodeMap.get(url);
+}
+```
+```ts
+// Use the Page page of the NodeController.
+// Index.ets
+import {createNWeb, getNWeb} from "./common"
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        // NodeContainer is used to bind to the NodeController. A rebuild call triggers makeNode.
+        // The Page page is bound to the NodeController through the NodeContainer API to display the dynamic component.
+        NodeContainer(getNWeb("https://www.example.com"))
+          .height("90%")
+          .width("100%")
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
 ```

@@ -347,8 +347,8 @@ struct Second {
 }
 ```
 ## 参考
-[Canvas](../application-dev/reference/arkui-ts/ts-components-canvas-canvas.md)
+[Canvas](../application-dev/reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)
 
-[CanvasRenderingContext2D对象](../application-dev/reference/arkui-ts/ts-canvasrenderingcontext2d.md)
+[CanvasRenderingContext2D对象](../application-dev/reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)
 
-[TextClock](../application-dev/reference/arkui-ts/ts-basic-components-textclock.md)
+[TextClock](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)

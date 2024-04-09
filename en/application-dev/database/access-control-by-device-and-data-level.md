@@ -53,7 +53,7 @@ The access control mechanism ensures secure data storage and synchronization acr
 
 When a KV store is created, the **securityLevel** parameter specifies the security level of the KV store. The following example shows how to create a KV store with security level of S1.
 
-For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
+For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
 
   
@@ -103,7 +103,7 @@ try {
 
 When an RDB store is created, the **securityLevel** parameter specifies the security level of the RDB store. The following example shows how to create an RDB store with security level of S1.
 
-For details about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
+For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
 
   

@@ -1,4 +1,4 @@
-# Applications for MDM Applications
+# Permissions for MDM Applications
 
 The following permissions are available only to Mobile Device Management (MDM) applications.
 

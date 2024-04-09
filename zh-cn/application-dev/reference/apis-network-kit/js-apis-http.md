@@ -193,7 +193,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -273,7 +273,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -290,24 +290,31 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise = httpRequest.request("EXAMPLE_URL", {
-  method: http.RequestMethod.GET,
-  connectTimeout: 60000,
-  readTimeout: 60000,
-  header: new Header('application/json')
-});
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+    // 当使用POST请求时此字段用于传递内容
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+    usingCache: true, // 可选，默认为true
+    priority: 1, // 可选，默认为1
+    // 开发者根据自身业务需要添加header字段
+    header: new Header('application/json'),
+    readTimeout: 60000, // 可选，默认为60000ms
+    connectTimeout: 60000, // 可选，默认为60000ms
+    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+    usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+};
 
-promise.then((data:http.HttpResponse) => {
-  console.info('Result:' + data.result);
-  console.info('code:' + data.responseCode);
-  console.info('type:' + JSON.stringify(data.resultType));
-  console.info('header:' + JSON.stringify(data.header));
-  console.info('cookies:' + data.cookies); // 自API version 8开始支持cookie
-  console.info('header.content-Type:' + data.header);
-  console.info('header.Status-Line:' + data.header);
-
-}).catch((err:Error) => {
-  console.info('error:' + JSON.stringify(err));
+httpRequest.request("EXAMPLE_URL", options, (err: Error, data: http.HttpResponse) => {
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('type:' + JSON.stringify(data.resultType));
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // 自API version 8开始支持cookie
+  } else {
+    console.info('error:' + JSON.stringify(err));
+  }
 });
 ```
 
@@ -374,7 +381,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -481,7 +488,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -555,7 +562,7 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -565,7 +572,21 @@ import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 let httpRequest = http.createHttp();
-httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+    // 当使用POST请求时此字段用于传递内容
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+    usingCache: true, // 可选，默认为true
+    priority: 1, // 可选，默认为1
+    // 开发者根据自身业务需要添加header字段
+    header: new Header('application/json'),
+    readTimeout: 60000, // 可选，默认为60000ms
+    connectTimeout: 60000, // 可选，默认为60000ms
+    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+    usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+};
+httpRequest.requestInStream("EXAMPLE_URL", options, (err: BusinessError<void> , data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -634,7 +655,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -950,13 +971,13 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
+class DataReceiveProgressInfo {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -985,13 +1006,13 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
+class DataReceiveProgressInfo {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1017,13 +1038,13 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
+class DataSendProgressInfo {
   sendSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1052,13 +1073,13 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
+class DataSendProgressInfo {
   sendSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1075,8 +1096,8 @@ httpRequest.off("dataSendProgress");
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
 | extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'content-Type'为'text/xml'时，该字段对应的类型通常为String；当'content-Type'为'application/json'时，该字段对应的类型通常为Object；当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
-| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
-| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存。  |
+| priority<sup>9+</sup>        | number                          | 否   | http/https请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'content-Type': 'application/json'}。   |
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
@@ -1145,7 +1166,7 @@ HTTP 请求方法。
 | ENTITY_TOO_LARGE  | 413  | 由于请求的实体过大，服务器无法处理，因此拒绝请求。           |
 | REQ_TOO_LONG      | 414  | 请求的URI过长（URI通常为网址），服务器无法处理。             |
 | UNSUPPORTED_TYPE  | 415  | 服务器无法处理请求的格式。                                   |
-| RANGE_NOT_SATISFIABLE | 416  | 请求范围不符合要求。                                  |
+| RANGE_NOT_SATISFIABLE<sup>12+</sup> | 416  | 请求范围不符合要求。                                  |
 | INTERNAL_ERROR    | 500  | 服务器内部错误，无法完成请求。                               |
 | NOT_IMPLEMENTED   | 501  | 服务器不支持请求的功能，无法完成请求。                       |
 | BAD_GATEWAY       | 502  | 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求。 |
@@ -1242,7 +1263,7 @@ request方法回调函数的返回值类型。
 
 createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
-创建一个默认的对象来存储HTTP访问请求的响应。
+创建一个HttpResponseCache对象，可用于存储HTTP请求的响应数据。对象中可调用flush与delete方法，cacheSize指定缓存大小。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1291,12 +1312,21 @@ import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.flush((err: BusinessError) => {
-  if (err) {
-    console.info('flush fail');
-    return;
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL", (err: BusinessError, data: http.HttpResponse) => {
+  if (!err) {
+    httpResponseCache.flush((err: BusinessError) => {
+      if (err) {
+        console.error('flush fail');
+      }
+      console.info('flush success');
+    });
+    httpRequest.destroy();
+  } else {
+    console.error('error:' + JSON.stringify(err));
+    // 当该请求使用完毕时，开发者务必调用destroy方法主动销毁该JavaScript Object。
+    httpRequest.destroy();
   }
-  console.info('flush success');
 });
 ```
 
@@ -1320,11 +1350,18 @@ flush(): Promise\<void\>
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
+let httpRequest = http.createHttp();
 let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.flush().then(() => {
-  console.info('flush success');
-}).catch((err: BusinessError) => {
-  console.info('flush fail');
+let promise = httpRequest.request("EXAMPLE_URL");
+
+promise.then((data: http.HttpResponse) => {
+  httpResponseCache.flush().then(() => {
+    console.error('flush success');
+  }).catch((err: BusinessError) => {
+    console.info('flush fail');
+  });
+}).catch((err: Error) => {
+  console.error('error:' + JSON.stringify(err));
 });
 ```
 
@@ -1348,13 +1385,23 @@ delete(callback: AsyncCallback\<void\>): void
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
-let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.delete((err: BusinessError) => {
-  if (err) {
-    console.info('delete fail');
-    return;
-  }
-  console.info('delete success');
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL").then(data => {
+  const httpResponseCache = http.createHttpResponseCache();
+  httpResponseCache.delete((err: BusinessError) => {
+    try {
+      if (err) {
+        console.error('fail: ' + err);
+      } else {
+        console.info('success');
+      }
+    } catch (err) {
+      console.error('error: ' + err);
+    }
+  });
+  httpRequest.destroy();
+}).catch((error: BusinessError) => {
+  console.error("errocode" + JSON.stringify(error));
 });
 ```
 
@@ -1378,11 +1425,17 @@ delete(): Promise\<void\>
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
-let httpResponseCache = http.createHttpResponseCache();
-httpResponseCache.delete().then(() => {
-  console.info('delete success');
-}).catch((err: Error) => {
-  console.info('delete fail');
+let httpRequest = http.createHttp();
+httpRequest.request("EXAMPLE_URL").then(data => {
+  const httpResponseCache = http.createHttpResponseCache();
+  httpResponseCache.delete().then(() => {
+    console.log("success");
+  }).catch((err: BusinessError) => {
+    console.error("fail");
+  });
+  httpRequest.destroy();
+}).catch((error: BusinessError) => {
+  console.error("errocode" + JSON.stringify(error));
 });
 ```
 

@@ -317,7 +317,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
-  key_example: 'value_example'
+  'key_example': 'value_example'
 }
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
@@ -1517,6 +1517,7 @@ async function selectOutputDeviceByFilter(){
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererState      | [AudioState](js-apis-audio.md#audiostate8)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
 
@@ -1911,10 +1912,10 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                       |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| 参数名   | 类型                                                 | 必填 | 说明                                           |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态。 |
+| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。    |
 
 **错误码：**
 
@@ -1951,7 +1952,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态。 |
+| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2117,7 +2118,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态。 |
+| callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2154,7 +2155,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态。 |
+| callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2222,6 +2223,87 @@ try {
 }
 ```
 
+### setSpatializationSceneType<sup>12+</sup>
+
+setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType): void
+
+设置空间音频渲染场景类型，同步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| spatializationSceneType     | [AudioSpatializationSceneType](#audiospatializationscenetype12)     | 是   | 需要设置的空间音频渲染场景类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
+  console.info(`AudioSpatializationManager setSpatializationSceneType success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getSpatializationSceneType<sup>12+</sup>
+
+getSpatializationSceneType(): AudioSpatializationSceneType
+
+查询当前空间音频渲染场景类型，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| [AudioSpatializationSceneType](#audiospatializationscenetype12) | 返回当前空间音频渲染场景类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
 ## AudioSpatialDeviceState<sup>11+</sup>
 
 空间化设备状态。
@@ -2266,6 +2348,21 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 | SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE     | 3      |  头戴式耳机。       |
 | SPATIAL_DEVICE_TYPE_GLASSES                | 4      |  眼镜式耳机。       |
 | SPATIAL_DEVICE_TYPE_OTHERS                 | 5      |  其他空间化设备类型。|
+
+## AudioSpatializationSceneType<sup>12+</sup>
+
+枚举，空间音频渲染场景类型。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+| 名称                               |  值     | 说明                       |
+| ---------------------------------- | ------ | ------------------------- |
+| DEFAULT                            | 0      |  空间音频默认渲染场景。            |
+| MUSIC                              | 1      |  空间音频音乐渲染场景。            |
+| MOVIE                              | 2      |  空间音频电影渲染场景。            |
+| AUDIOBOOK                          | 3      |  空间音频有声读物渲染场景。          |
 
 ## ToneType<sup>9+</sup>
 

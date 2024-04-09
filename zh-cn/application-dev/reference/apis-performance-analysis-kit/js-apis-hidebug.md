@@ -16,7 +16,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-获取本应用堆内存的总大小。
+获取内存分配器统计的进程持有的堆内存大小（含分配器元数据）。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -24,7 +24,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回本应用堆内存总大小，单位为Byte。 |
+| bigint | 内存分配器统计的进程持有的堆内存大小（含分配器元数据），单位为Byte。 |
 
 **示例：**
 
@@ -36,7 +36,7 @@ getNativeHeapSize(): bigint
 
 getNativeHeapAllocatedSize(): bigint
 
-获取本应用堆内存的已分配内存大小。
+获取内存分配器统计的进程业务分配的堆内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -44,7 +44,7 @@ getNativeHeapAllocatedSize(): bigint
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回本应用堆内存的已分配内存，单位为Byte。 |
+| bigint | 返回内存分配器统计的进程业务分配的堆内存大小，单位为Byte。 |
 
 
 **示例：**
@@ -56,7 +56,7 @@ getNativeHeapAllocatedSize(): bigint
 
 getNativeHeapFreeSize(): bigint
 
-获取本应用堆内存的空闲内存大小。
+获取内存分配器持有的缓存内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -64,7 +64,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回本应用堆内存的空闲内存，单位为Byte。 |
+| bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
   ```ts
@@ -177,7 +177,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 获取系统服务信息。
 
-**需要权限**: ohos.permission.DUMP
+**需要权限**: ohos.permission.DUMP，仅系统应用可申请。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -281,12 +281,6 @@ stopJsCpuProfiling() : void
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
-
 **示例：**
 
 ```ts
@@ -341,7 +335,8 @@ try {
 
 startProfiling(filename : string) : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
+> **说明：** 
+> 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -367,7 +362,8 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
 
 停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
@@ -387,7 +383,8 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
 
 虚拟机堆导出。
 
@@ -404,3 +401,354 @@ dumpHeapData(filename : string) : void
 ```ts
 hidebug.dumpHeapData("heap-20220216");
 ```
+
+## hidebug.getAppVMMemoryInfo<sup>12+</sup>
+
+getAppVMMemoryInfo(): VMMemoryInfo
+
+获取VM内存相关信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型         | 说明                                    |
+| -------------| --------------------------------------- |
+| [VMMemoryInfo](#vmmemoryinfo12) |  返回VM内存信息  |
+
+**示例：**
+
+  ```ts
+let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
+hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
+hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
+hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+  ```
+
+## hidebug.getAppThreadCpuUsage<sup>12+</sup>
+
+getAppThreadCpuUsage(): ThreadCpuUsage[]
+
+获取应用线程CPU使用情况。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型             | 说明                                                        |
+| -----------------| ------------------------------------------------------------|
+| [ThreadCpuUsage](#threadcpuusage12)[] | 返回当前应用进程下所有ThreadCpuUsage数组 |
+
+
+
+**示例：**
+
+  ```ts
+let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
+for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
+    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
+    appThreadCpuUsage[ii].cpuUsage);
+}
+  ```
+
+## hidebug.startAppTraceCapture<sup>12+</sup>
+
+startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
+
+启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应。
+
+先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                                                  |
+| -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
+| tags     | number[] | 是   | 详情请见[tags](#tags12)                                                      |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)          |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB                                                       |
+
+**返回值：**
+
+| 类型             | 说明                                           |
+| -----------------| -----------------------------------------------|
+| string           | 返回trace文件名路径                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
+| 11400102 | Have already capture trace                                          |
+| 11400103 | Without write permission on the file                                |
+| 11400104 | The status of the trace is abnormal                                 |
+
+**示例：**
+
+```ts
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## hidebug.stopAppTraceCapture<sup>12+</sup>
+
+stopAppTraceCapture() : void
+
+停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集。
+
+先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | The status of the trace is abnormal                                |
+| 11400105 |   No capture trace running                                       |
+
+**示例：**
+
+```ts
+let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
+let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
+let limitSize: number = 1024 * 1024;
+let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+// code block
+// ...
+// code block
+hidebug.stopAppTraceCapture();
+```
+
+## hidebug.getAppMemoryLimit<sup>12+</sup>
+
+getAppMemoryLimit() : MemoryLimit
+
+获取应用程序进程内存限制。
+
+**系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| [MemoryLimit](#memorylimit12) | 应用程序进程内存限制|
+
+**示例**
+
+```ts
+ let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
+```
+## MemoryLimit<sup>12+</sup>
+
+应用程序进程内存限制。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
+| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
+| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
+
+## VMMemoryInfo<sup>12+</sup>
+
+描述VM内存信息。
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称               | 类型    | 可读 | 可写 | 说明                                |
+| -------------------| ------- | ---- | ---- | ---------------------------------- |
+| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位    |
+| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位  |
+| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位 |
+
+## ThreadCpuUsage<sup>12+</sup>
+
+描述线程CPU使用情况。
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称               | 类型    | 可读 | 可写 | 说明                                |
+| -------------------| ------- | ---- | ---- | ----------------------------------- |
+| threadId           | number  | 是   | 否   | 线程号                           |
+| cpuUsage           | number  | 是   | 否   | 线程CPU使用率                       |
+
+## tags<sup>12+</sup>
+
+描述支持/使用场景标签。
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称                     | 类型    |  说明                                |
+| -------------------------| ------- |  ----------------------------------- |
+| ABILITY_MANAGER          | number  |  能力管理标签                         |
+| ARKUI                    | number  |  ArkUI开发框架标签                    |
+| ARK                      | number  |  JSVM虚拟机标签                       |
+| BLUETOOTH                | number  |  蓝牙标签                            |
+| COMMON_LIBRARY           | number  |  公共库子系统标签                     |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  分布式硬件设备管理标签     |
+| DISTRIBUTED_AUDIO        | number  |        分布式音频标签                 |
+| DISTRIBUTED_CAMERA       | number  |  分布式相机标签                       |
+| DISTRIBUTED_DATA         | number  |  分布式数据管理模块标签                |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  分布式硬件框架标签              |
+| DISTRIBUTED_INPUT        | number  |  分布式输入标签                       |
+| DISTRIBUTED_SCREEN       | number  |  分布式屏幕标签                       |
+| DISTRIBUTED_SCHEDULER    | number  |  分布式调度器标签                     |
+| FFRT                     | number  |  FFRT任务标签.                        |
+| FILE_MANAGEMENT          | number  |  文件管理系统标签                     |
+| GLOBAL_RESOURCE_MANAGER  | number  |  全局资源管理标签                     |
+| GRAPHICS                 | number  |  图形模块标签                        |
+| HDF                      | number  |  HDF子系统标签                       |
+| MISC                     | number  |  MISC模块标签                        |
+| MULTIMODAL_INPUT         | number  |  多模态输入模块标签                   |
+| NET                      | number  |  网络标签                             |
+| NOTIFICATION             | number  |  通知模块标签                         |
+| NWEB                     | number  |  Nweb标签                            |
+| OHOS                     | number  |  OHOS通用标签                         |
+| POWER_MANAGER            | number  |  电源管理标签                         |
+| RPC                      | number  |  RPC标签                             |
+| SAMGR                    | number  |  系统能力管理标签                     |
+| WINDOW_MANAGER           | number  |  窗口管理标签                         |
+| AUDIO                    | number  |  音频模块标签                        |
+| CAMERA                   | number  |  相机模块标签                        |
+| IMAGE                    | number  |  图片模块标签                        |
+| MEDIA                    | number  |  媒体模块标签                        |
+
+## hidebug.getSystemCpuUsage<sup>12+</sup>
+
+getSystemCpuUsage() : number
+
+获取系统的CPU资源占用情况。
+
+例如，当系统资源CPU占用为 **50%**，将返回**0.5**。
+
+**系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**
+
+| 类型     | 说明          |
+|--------|-------------|
+| number | 系统CPU资源占用情况。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug-CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)。
+
+| 错误码ID | 错误信息                                            |
+| ------- |-------------------------------------------------|
+| 11400104 | The status of the system cpu usage is abnormal. |
+
+**示例**
+  ```ts
+  let cpuUsage: number = hidebug.getSystemCpuUsage();
+  ```
+
+## hidebug.getAppNativeMemInfo<sup>12+</sup>
+
+getAppNativeMemInfo(): NativeMemInfo
+
+获取应用进程内存信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息|
+
+**示例**
+
+```ts
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
+
+hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
+
+hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
+
+hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
+
+hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
+
+hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
+
+hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
+
+hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
+```
+## NativeMemInfo<sup>12+</sup>
+
+描述应用进程内存信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| pss  | bigint |  是  | 实际占用的物理内存的大小(比例分配共享库占用的内存)，以KB为单位     |
+| vss  | bigint |  是  | 占用虚拟内存大小(包括共享库所占用的内存)，以KB为单位       |
+| rss  | bigint |  是  | 实际占用的物理内存的大小(包括共享库占用)，以KB为单位         |
+| sharedDirty  | bigint |  是  | 共享脏内存的大小，以KB为单位      |
+| privateDirty  | bigint |  是  | 专用脏内存的大小，以KB为单位      |
+| sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位      |
+| privateClean  | bigint |  是  | 专用干净内存的大小，以KB为单位      |
+
+## hidebug.getSystemMemInfo<sup>12+</sup>
+
+getSystemMemInfo(): SystemMemInfo
+
+获取系统内存信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| [SystemMemInfo](#systemmeminfo12) | 系统内存信息|
+
+**示例**
+
+```ts
+let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
+
+hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
+
+hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
+
+hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
+```
+## SystemMemInfo<sup>12+</sup>
+
+描述系统内存信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| totalMem  | bigint |  是  | 系统总的内存，以KB为单位     |
+| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位       |
+| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位      |
+
+## TraceFlag<sup>12+</sup>
+
+描述采集trace线程的类型。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 说明         |
+| --------- | ------------ |
+| MAIN_THREAD  | 只采集当前应用主线程     |
+| ALL_THREADS |  采集当前应用下所有线程   |
+

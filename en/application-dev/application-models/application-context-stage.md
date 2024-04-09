@@ -3,7 +3,7 @@
 
 ## Overview
 
-[Context](../reference/apis/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application file path), and **area** (encryption level). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application file path), and **area** (encryption level). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
 
 - The figure below illustrates the inheritance relationship of contexts. 
 
@@ -14,7 +14,7 @@
   ![context-holding](figures/context-holding.png)
   
 - The following describes the information provided by different contexts.
-  - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
+  - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -31,7 +31,7 @@
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-  - Scenario-specific [ExtensionContext](../reference/apis/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
+  - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
     
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
@@ -43,7 +43,7 @@
        }
      }
      ```
-  - [AbilityStageContext](../reference/apis/js-apis-inner-application-abilityStageContext.md): module-level context. It provides **HapModuleInfo** and **Configuration** in addition to those provided by the base class **Context**.
+  - [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md): module-level context. It provides **HapModuleInfo** and **Configuration** in addition to those provided by the base class **Context**.
     
      ```ts
      import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -54,7 +54,7 @@
        }
      }
      ```
-  - [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
+  - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
@@ -82,7 +82,7 @@ This topic describes how to use the context in the following scenarios:
 
 ### Obtaining Application File Paths
 
-The base class [Context](../reference/apis/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext** inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
+The base class [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext** inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
 
 The application file paths obtained by the preceding contexts are different.
 
@@ -194,7 +194,7 @@ The application file paths obtained by the preceding contexts are different.
 
 Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection.
 
-In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. For details about the permissions required for a specific encryption level, see **AreaMode** in [ContextConstant](../reference/apis/js-apis-app-ability-contextConstant.md).
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security.  For details about the permissions required for a specific encryption level, see **AreaMode** in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
 
 <ul>
 <li>EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.</li>
@@ -203,7 +203,7 @@ In practice, you need to select a proper encryption level based on scenario-spec
 <li>EL4: For files that are related to user security information and do not need to be read, written, or created when the screen is locked, the application can place them in EL4.</li>
 </ul>
 
-You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis/js-apis-inner-application-context.md).
+You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md).
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import contextConstant from '@ohos.app.ability.contextConstant';
@@ -277,7 +277,7 @@ struct Page_Context {
 
 ### Creating Context of Another Application or Module
 
-The base class **Context** provides [createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext), [createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1) to create the context of other applications or modules, so as to obtain the resource information, for example, [obtaining application file paths](#obtaining-application-development-paths) of other modules.
+The base class **Context** provides [createBundleContext(bundleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context-sys.md#contextcreatebundlecontext), [createModuleContext(moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName: string, moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext-1) to create the context of other applications or modules, so as to obtain the resource information, for example, [obtaining application file paths](#obtaining-application-development-paths) of other modules.
 
 - Call **createBundleContext(bundleName:string)** to create the context of another application.
   > **NOTE**
@@ -383,18 +383,19 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
 
 In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to UIAbility lifecycle changes in a process.
 
-[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
+[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) as an example.
 
 
 ```ts
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import Logger from '../utils/Logger';
+import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
 import type window from '@ohos.window';
 
 const TAG: string = '[LifecycleAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class LifecycleAbility extends UIAbility {
   // Define a lifecycle ID.
@@ -405,50 +406,50 @@ export default class LifecycleAbility extends UIAbility {
     let abilityLifecycleCallback: AbilityLifecycleCallback = {
       // Called when a UIAbility is created.
       onAbilityCreate(uiAbility) {
-        Logger.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when a window is created.
       onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
-        Logger.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        Logger.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window becomes active.
       onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
-        Logger.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        Logger.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window becomes inactive.
       onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
-        Logger.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        Logger.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window is destroyed.
       onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
-        Logger.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        Logger.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the UIAbility is destroyed.
       onAbilityDestroy(uiAbility) {
-        Logger.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when the UIAbility is switched from the background to the foreground.
       onAbilityForeground(uiAbility) {
-        Logger.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when the UIAbility is switched from the foreground to the background.
       onAbilityBackground(uiAbility) {
-        Logger.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when UIAbility is continued on another device.
       onAbilityContinue(uiAbility) {
-        Logger.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       }
     };
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
     // Register the application lifecycle callback.
     this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-    Logger.info(TAG, `register callback number: ${this.lifecycleId}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
 
   ...

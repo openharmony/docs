@@ -2957,7 +2957,7 @@ let x = M.abc;
 
 ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScript中其他的`Utility Types`。
 
-对于`Record`类型的对象，通过索引获访问到的值的类型是包含`undefined`的联合类型。
+对于`Record`类型的对象，通过索引访问到的值的类型是包含`undefined`的联合类型。
 
 ### 不支持对函数声明属性
 

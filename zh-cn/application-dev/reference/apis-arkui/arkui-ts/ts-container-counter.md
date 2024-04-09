@@ -22,19 +22,57 @@ Counter()
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 
 
-| 名称                          | 参数类型                               | 描述                                       |
-| --------------------------- | ---------------------------------------- | ---------------------------------------- |
-| enableInc<sup>10+</sup>              | boolean                            | 设置增加按钮禁用或使能。<br/>默认值：true   |
-| enableDec<sup>10+</sup>           | boolean                                  | 设置减少按钮禁用或使能。<br/>默认值：true |
+### enableInc<sup>10+</sup>
+
+enableInc(value: boolean)
+
+设置增加按钮禁用或使能。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | boolean | 是   | 增加按钮禁用或使能。<br/>默认值：true |
+
+### enableDec<sup>10+</sup>
+
+enableDec(value: boolean)
+
+设置减少按钮禁用或使能。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | boolean | 是   | 减少按钮禁用或使能。<br/>默认值：true |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### onInc
+
+onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+监听数值增加事件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onDec
+
+onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+监听数值减少事件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例

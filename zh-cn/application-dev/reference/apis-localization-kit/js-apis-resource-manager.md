@@ -14,7 +14,8 @@ import resourceManager from '@ohos.resourceManager';
 
 ## 使用说明
 
-从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。此方式FA模型不适用，FA模型还需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源对象。 
+从API Version9开始，Stage模型通过context获取resourceManager对象的方式后，可直接调用其内部获取资源的接口，无需再导入包。
+FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagergetresourcemanager)接口获取资源对象。 
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
@@ -52,7 +53,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -61,7 +62,6 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
     });
   });
   ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +109,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -120,7 +120,6 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
     console.error("error is " + error);
   });
   ```
-注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 ## resourceManager.getResourceManager
 
@@ -267,7 +266,7 @@ import { BusinessError } from '@ohos.base';
 
 ## RawFileDescriptor<sup>8+</sup>
 
-表示rawfile的descriptor信息。
+表示rawfile文件所在hap的的descriptor信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -275,9 +274,9 @@ import { BusinessError } from '@ohos.base';
 
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | rawfile所在hap的文件描述符。 |
-| offset | number  | 是    | 否 | rawfile的起始偏移量。      |
-| length | number  | 是    | 否 | rawfile的文件长度。       |
+| fd     | number  | 是    | 否 | 文件描述符。 |
+| offset | number  | 是    | 否 | 起始偏移量。      |
+| length | number  | 是    | 否 | 文件长度。       |
 
 ## Resource<sup>9+</sup>
 
@@ -303,16 +302,11 @@ import { BusinessError } from '@ohos.base';
 >
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
-> - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
+> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过r(资源地址).id的方式获取，例如r('app.string.test').id。
 >
-> - 对于本应用包资源，通过.context().resourceManager 的方法获取特定资源ID或资源名称的资源。
+> - resource对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时长。
 >
-> - 对于应用内跨包资源有两种访问
-方式，第一种是通过resource对象；第二种是创建对应module的context，通过 .context().createModuleContext().resourceManager 方式获取。
->
-> - 对于跨应用包，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法获取，该方法仅支持系统应用使用。
->
-> - Context的更多使用信息请参考[应用上下文Context](../../application-models/application-context-stage.md)。
+> - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
 
 ### getStringSync<sup>9+</sup>
 
@@ -370,7 +364,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -406,7 +400,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 getStringSync(resource: Resource): string
 
-用户获取指定resource对象对应的字符串，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -457,7 +451,7 @@ getStringSync(resource: Resource): string
 
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -468,7 +462,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -562,7 +556,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -689,7 +683,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的字符串，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -741,7 +735,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的字符串，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -930,7 +924,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-用户获取指定resource对象对应的字符串数组，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1113,7 +1107,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定resource对象对应的字符串数组，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用callback异步回调。
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1164,7 +1158,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定resource对象对应的字符串数组，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1358,7 +1352,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 getPluralStringValueSync(resource: Resource, num: number): string
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回。
 
 >**说明**
 >
@@ -1563,7 +1557,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取指定resource对象表示的单复数字符串，使用callback异步回调。
 
 >**说明**
 >
@@ -1620,7 +1614,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise异步回调。
 
 >**说明**
 >
@@ -1832,7 +1826,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2122,7 +2116,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2173,7 +2167,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2225,7 +2219,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2279,7 +2273,7 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2565,7 +2559,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2855,7 +2849,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2906,7 +2900,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2958,7 +2952,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3012,7 +3006,7 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3305,7 +3299,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3471,7 +3465,7 @@ getBoolean(resId: number): boolean
 
 getBoolean(resource: Resource): boolean
 
-使用同步方式，返回获取指定resource对象对应的布尔结果。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+使用同步方式，返回获取指定resource对象对应的布尔结果。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3616,7 +3610,7 @@ getNumber(resId: number): number
 
 getNumber(resource: Resource): number
 
-用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3632,7 +3626,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值, 具体参考示例代码。 |
+| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -3655,7 +3649,7 @@ getNumber(resource: Resource): number
     id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);// integer对应返回的是原数值, float对应返回的是真实像素点值
+    this.context.resourceManager.getNumber(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3681,7 +3675,7 @@ getNumberByName(resName: string): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值。 |
+| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
@@ -3761,7 +3755,7 @@ getColorSync(resId: number) : number;
 
 getColorSync(resource: Resource): number
 
-用户获取指定resource对象对应的颜色值，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3946,7 +3940,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-用户获取指定resource对象对应的颜色值，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用callback异步回调。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -3998,7 +3992,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-用户获取指定resource对象对应的颜色值，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4412,7 +4406,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 getRawFdSync(path: string): RawFileDescriptor
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor。
+用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4426,7 +4420,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor。 |
+| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4453,7 +4447,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
+用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4462,7 +4456,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | 是    | rawfile文件路径。                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件的descriptor。 |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4498,7 +4492,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
+用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4512,7 +4506,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件所在hap的descriptor信息。 |
 
 **错误码：**
 
@@ -4546,7 +4540,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFdSync(path: string): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4581,7 +4575,7 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4621,7 +4615,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
+用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5106,6 +5100,47 @@ getSymbolByName(resName: string) : number;
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getSymbolByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### isRawDir<sup>12+</sup>
+
+isRawDir(path: string) : bool
+
+用户判断指定路径是否是rawfile下的目录，使用同步方式返回。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| path | string | 是    | rawfile路径。 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| bool |是否是rawfile下的目录。<br>true：表示是rawfile下的目录 <br>false：表示不是rawfile下的目录|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.isRawDir("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

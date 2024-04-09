@@ -40,9 +40,9 @@ direction(value: Direction)
 
 ## position
 
-position(value: Position)
+position(value: Position | Edges)
 
-绝对定位，设置子元素左上角相对于父容器左上角偏移位置。
+绝对定位，确定子组件相对父组件的位置。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -50,9 +50,9 @@ position(value: Position)
 
 **参数：**
 
-| 参数名 | 类型                              | 必填 | 说明                                                         |
-| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 绝对定位，设置子元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不参与父容器布局，即不占位，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。 |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) | 是   | 绝对定位，确定子组件相对父组件的位置。当父容器为Row/Column/Flex时，设置position的子组件不占位。<br/>Position类型基于父组件左上角确定位置，Edges类型基于父组件四边确定位置。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md), 且子组件设置了alignRules属性, 则子组件的position属性不生效。 |
 
 ## markAnchor
 
@@ -66,15 +66,15 @@ markAnchor(value: Position)
 
 **参数：**
 
-| 参数名 | 类型                              | 必填 | 说明                                                         |
-| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| 参数名 | 类型                             | 必填 | 说明                                                         |
+| ------ | -------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position) | 是   | 设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## offset
 
-offset(value: Position)
+offset(value: Position | Edges)
 
-相对定位，设置子元素相对于自身的额外偏移量。
+相对偏移，组件相对原本的布局位置进行偏移。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -82,9 +82,9 @@ offset(value: Position)
 
 **参数：**
 
-| 参数名 | 类型                              | 必填 | 说明                                                         |
-| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 相对定位，设置子元素相对于自身的额外偏移量。设置该属性后，子组件正常参与父容器布局，依然会占位，在绘制时基于父容器给予的offset做一次额外的偏移。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) | 是   | 相对偏移，组件相对原本的布局位置进行偏移。offset属性不影响父容器布局，仅在绘制时调整位置。<br/>Position类型基于组件自身左上角偏移，Edges类型基于组件自身四边偏移。offset属性设置 {x: x, y: y} 与设置 {left: x, top: y} 以及 {right: -x, bottom: -y} 效果相同。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## alignRules<sup>9+</sup>
 
@@ -121,7 +121,7 @@ alignRules(value: AlignRuleOption)
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | Bias  | { horizontal?: number, vertical?: number } | &nbsp;否 | 组件在锚点约束下的偏移参数。<br/>-&nbsp;horizontal：水平方向上的bias值。<br/>-&nbsp;vertical：垂直方向上的bias值。<br/>-&nbsp;当子组件的width可以确定并且有2个水平方向的锚点时生效。<br/>-&nbsp;当子组件的height可以确定并且有2个垂直方向的锚点时生效。<br/>默认值：{<br/>horizontal:&nbsp;0.5,<br/>vertical:&nbsp;0.5<br/>}。 |
 
-## chainMode<sup>11+</sup>
+## chainMode<sup>12+</sup>
 
 chainMode(direction: Axis, style: ChainStyle)
 
@@ -133,8 +133,8 @@ chainMode(direction: Axis, style: ChainStyle)
 
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| direction  | [Axis](ts-appendix-enums.md#Axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](ts-appendix-enums.md#ChainStyle) | 是   | 链的样式。 |
+| direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
+| style  | [ChainStyle](ts-appendix-enums.md#chainstyle12) | 是   | 链的样式。 |
 
 ## 示例
 ### 示例1
@@ -271,3 +271,42 @@ struct PositionExample2 {
 ```
 
 ![position.png](figures/position.png)
+
+### 示例3
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Example3 {
+  build() {
+    Column({ space: 20 }){
+      Text('position use Edges').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        Text('bottom:0, right:0').size({ width: '30%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center).position({bottom: 0, right: 0})
+        Text('top:0, left:0').size({ width: '30%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center).position({top: 0, left: 0})
+        Text('top:10%, left:50%').size({ width: '50%', height: '30' }).backgroundColor(0xbbb2cb).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center).position({ top: '10%', left: '50%' })
+        Text('bottom:0, left:30').size({ width: '50%', height: '30' }).backgroundColor(0xbbb2cb).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center).position({ bottom: 0, left: 30 })
+      }.width('90%').height(100).border({ width: 1, style: BorderStyle.Dashed })
+
+
+      Text('offset use Edges').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        Text('1').size({ width: '25%', height: 50 }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
+        Text('2 top:30, left:0').size({ width: '25%', height: 50 }).backgroundColor(0xbbb2cb).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center).offset({top: 30, left: 0})
+        Text('3').size({ width: '25%', height: 50 }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
+        Text('4 bottom:10, right:30').size({ width: '25%', height: 50 }).backgroundColor(0xbbb2cb).border({ width: 1 }).fontSize(12)
+          .textAlign(TextAlign.Center).offset({bottom: 10, right: 30})
+      }.width('90%').height(150).border({ width: 1, style: BorderStyle.Dashed })
+    }.width('100%').margin({ top: 25 })
+  }
+}
+```
+
+![position.png](figures/position2.jpeg)

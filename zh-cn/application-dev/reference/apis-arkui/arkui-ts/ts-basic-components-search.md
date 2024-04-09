@@ -27,23 +27,319 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                    | 参数类型                                         | 描述                                           |
-| ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton | value: string,<br />option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10对象说明)            | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
-| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。<br />默认值：'#99182431'。   |
-| placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
-| textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
-| textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。<br/>默认值：TextAlign.Start    |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。 |
-| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。                                       |
-| cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
-| fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。<br />默认值：'#FF182431'。<br />**说明：**<br />[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在textFont属性中设置。 |
-| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
-| enableKeyboardOnFocus<sup>10+</sup> | boolean | Search获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
-| selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
-| type<sup>11+</sup>                     | [SearchType](#searchtype11枚举说明)     | 设置输入框类型。<br/>默认值：SearchType.Normal        |
-| maxLength<sup>11+</sup>   | number                                                       | 设置文本的最大输入字符数。<br/>默认不设置最大输入字符数限制。<br/>到达文本最大字符限制，将无法继续输入字符。 |
+### searchButton
+
+searchButton(value: string, option?: SearchButtonOptions)
+
+设置搜索框末尾搜索按钮。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                  | 必填 | 说明                         |
+| ------ | ----------------------------------------------------- | ---- | ---------------------------- |
+| value  | string                                                | 是   | 搜索框末尾搜索按钮文本内容。 |
+| option | [SearchButtonOptions](#searchbuttonoptions10对象说明) | 否   | 配置搜索框文本样式。<br />默认值：<br />{<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}         |
+
+### placeholderColor
+
+placeholderColor(value: ResourceColor)
+
+设置placeholder文本颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | placeholder文本颜色。<br />默认值：'#99182431'。 |
+
+### placeholderFont
+
+placeholderFont(value?: Font)
+
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                  |
+| ------ | ------------------------ | ---- | --------------------- |
+| value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。 |
+
+### textFont
+
+textFont(value?: Font)
+
+设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                   |
+| ------ | ------------------------ | ---- | ---------------------- |
+| value  | [Font](ts-types.md#font) | 否   | 搜索框内输入文本样式。 |
+
+### textAlign
+
+textAlign(value: TextAlign)
+
+设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                   |
+| ------ | ------------------------------------------- | ---- | ------------------------------------------------------ |
+| value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本在搜索框中的对齐方式。<br/>默认值：TextAlign.Start |
+
+### copyOption<sup>9+</sup>
+
+copyOption(value: CopyOptions)
+
+设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。
+
+copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。 |
+
+### searchIcon<sup>10+</sup>
+
+searchIcon(value: IconOptions)
+
+设置左侧搜索图标样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                  | 必填 | 说明               |
+| ------ | ------------------------------------- | ---- | ------------------ |
+| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
+
+### cancelButton<sup>10+</sup>
+
+cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
+
+设置右侧清除按钮样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {&nbsp;style:?&nbsp;[CancelButtonStyle](#cancelbuttonstyle10枚举说明),&nbsp;icon:?&nbsp;[IconOptions](#iconoptions10对象说明)&nbsp;} | 是   | 右侧清除按钮样式。<br />style：右侧图标显示状态。<br/>icon：右侧图标。<br>默认值：<br />{<br/>style：CancelButtonStyle.INPUT,<br/>icon:&nbsp;{<br/>size: '16vp',<br/>color: '#99ffffff',<br/>src: ' '<br/>}<br/>}<br/>当style为CancelButtonStyle.CONSTANT时，默认显示清除样式。 |
+
+### fontColor<sup>10+</sup>
+
+fontColor(value: ResourceColor)
+
+设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                            |
+| ------ | ------------------------------------------ | ---- | ----------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入文本的字体颜色。<br />默认值：'#FF182431'。 |
+
+### caretStyle<sup>10+</sup>
+
+caretStyle(value: CaretStyle)
+
+设置光标样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                | 必填 | 说明                                                         |
+| ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
+
+>  **说明：**     
+>   从API version 12开始，此接口支持设置文本手柄颜色和文本选中底板颜色，光标、文本手柄和文本选中底板颜色保持一致。<br/>文本手柄透明度为设置透明度，文本选中底板透明度，默认20%，如果设置透明度，文本选中底板颜色透明度在设置色透明度的基础上再叠加20%。例如，设置透明度50%，文本选中底板颜色透明度为10%。
+
+### enableKeyboardOnFocus<sup>10+</sup>
+
+enableKeyboardOnFocus(value: boolean)
+
+设置Search通过点击以外的方式获焦时，是否绑定输入法。
+
+从API version 10开始，获焦默认绑定输入法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                            |
+| ------ | ------- | ---- | ----------------------------------------------- |
+| value  | boolean | 是   | Search获焦时，是否绑定输入法<br/>默认值：true。 |
+
+### selectionMenuHidden<sup>10+</sup>
+
+selectionMenuHidden(value: boolean)
+
+设置长按输入框或者右键输入框时，是否弹出文本选择菜单。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
+
+### customKeyboard<sup>10+</sup>
+
+customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
+
+设置自定义键盘。
+
+当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。
+
+自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
+
+自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。
+
+自定义键盘无法获取焦点，但是会拦截手势事件。
+
+默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。
+
+如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名                | 类型                                        | 必填 | 说明                             |
+| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+
+### type<sup>11+</sup>
+
+type(value: SearchType)
+
+设置输入框类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明                        |
+| ------ | ----------------------------------- | ---- | -------------------------- |
+| value  | [SearchType](#searchtype11枚举说明) | 是   | 输入框类型。<br/>默认值：SearchType.Normal |
+
+### maxLength<sup>11+</sup>
+
+maxLength(value: number)
+
+设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明                   |
+| ------ | ----------------------------------- | ---- | ---------------------- |
+| value  | number | 是   | 文本的最大输入字符数。 |
+
+### enterKeyType<sup>12+</sup>
+
+enterKeyType(value: EnterKeyType)
+
+设置输入法回车键类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                             | 必填 | 说明                                               |
+| ------ | ------------------------------------------------ | ---- | -------------------------------------------------- |
+| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.Search |
+
+### lineHeight<sup>12+</sup>
+
+lineHeight(value: number | string | Resource)
+
+设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
+
+### decoration<sup>12+</sup>
+
+decoration(value: TextDecorationOptions)
+
+设置文本装饰线样式及其颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+
+### letterSpacing<sup>12+</sup>
+
+letterSpacing(value: number | string | Resource)
+
+设置文本字符间距。设置该值为百分比时，按默认值显示。
+
+当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                       | 必填 | 说明           |
+| ------ | -------------------------- | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。 |
+
+### fontFeature<sup>12+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -67,6 +363,13 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
 
+## TextDecorationOptions<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
+| color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
 | 名称                    | 描述             |
@@ -82,21 +385,112 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | NORMAL   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
 | EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
 | NUMBER   | 纯数字输入模式。      |
-| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
+| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSubmit(callback: (value: string) => void)                  | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
-| onChange(callback: (value: string) => void)                  | 输入内容发生变化时，触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
-| onCopy(callback: (value: string) => void)                    | 长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。<br> -value: 复制的文本内容。 |
-| onCut(callback: (value: string) => void)                     | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。 |
-| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> - value: 粘贴的文本内容。<br/> - event: 用户自定义的粘贴事件。|
-| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
-| onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
+### onSubmit
+
+onSubmit(callback: (value: string) => void)
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                         |
+| ------ | ------ | ---- | ---------------------------- |
+| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+
+### onChange
+
+onChange(callback: (value: string) => void)
+
+输入内容发生变化时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                         |
+| ------ | ------ | ---- | ---------------------------- |
+| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+
+### onCopy
+
+onCopy(callback: (value: string) => void)
+
+长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| value  | string | 是   | 复制的文本内容。 |
+
+### onCut
+
+onCut(callback: (value: string) => void)
+
+长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| value  | string | 是   | 剪切的文本内容。 |
+
+### onPaste
+
+onPaste(callback: (value: string, event: PasteEvent]) => void)
+
+长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名              | 类型                                                         | 必填 | 说明                   |
+| ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| value               | string                                                       | 是   | 粘贴的文本内容。       |
+| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 否   | 用户自定义的粘贴事件。 |
+
+### onTextSelectionChange<sup>10+</sup>
+
+onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+
+文本选择的位置发生变化时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名         | 类型   | 必填 | 说明                                              |
+| -------------- | ------ | ---- | ------------------------------------------------- |
+| selectionStart | number | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
+| selectionEnd   | number | 否   | 文本选择区域结束位置。                            |
+
+### onContentScroll<sup>10+</sup>
+
+onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+
+文本内容滚动时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                               |
+| ------------ | ------ | ---- | ---------------------------------- |
+| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
+| totalOffsetY | number | 否   | 文本在内容区的纵坐标偏移，单位px。 |
 
 ## SearchController
 
@@ -144,7 +538,7 @@ getTextContentRect(): RectResult
 
 ### RectResult<sup>10+</sup>
 
-位置和大小。
+位置和大小，单位均为像素。
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
@@ -152,6 +546,14 @@ getTextContentRect(): RectResult
 | y     | number | 竖直方向纵坐标。|
 | width | number | 内容宽度大小。|
 | height | number | 内容高度大小。|
+
+## KeyboardOptions<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称            | 类型              | 必填 | 描述                               |
+| --------------- | ---------------  |---- | ---------------------------------   |
+| supportAvoidance |  boolean        | 否  | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 
 ### getTextContentLineCount<sup>10+</sup>
@@ -184,6 +586,43 @@ getCaretOffset(): CaretOffset
 > - 不输入文本时，返回值中有相对Search组件的位置信息。
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
 > - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+
+### setTextSelection<sup>12+</sup>
+
+setTextSelection(selectionStart: number, selectionEnd: number, options?: SelectionOptions): void;
+
+组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
+
+**参数：**
+
+| 参数名         | 参数类型 | 必填 | 参数描述                                                     |
+| -------------- | -------- | ---- | ------------------------------------------------------------ |
+| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
+| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
+| options | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+>  **说明：**
+>
+>  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
+>
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+
+##  SelectionOptions<sup>12+</sup>
+
+setTextSelection的选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
 
 ##  示例
 
@@ -318,6 +757,177 @@ struct SearchExample {
     }
   }
 }
-````
+```
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
+
+### 示例4
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  @State Text: string = ''
+  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State index: number = 0
+  build() {
+    Column({ space: 20 }) {
+      Search({ placeholder: '请输入文本', value: this.Text })
+        .width(380)
+        .enterKeyType(this.enterTypes[this.index])
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit((value: String) => {
+          console.log("trigger search onsubmit" + value);
+        })
+
+      Button('改变EnterKeyType').onClick(() => {
+        this.index = (this.index + 1) % this.enterTypes.length;
+      })
+    }.width('100%')
+  }
+}
+```
+
+![searchEnterKeyType](figures/searchEnterKey.gif)
+
+### 示例5
+
+该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  build() {
+    Row() {
+      Column() {
+        Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
+        Search({value: 'lineHeight unset'})
+          .border({ width: 1 }).padding(10)
+        Search({value: 'lineHeight 15'})
+          .border({ width: 1 }).padding(10).lineHeight(15)
+        Search({value: 'lineHeight 30'})
+          .border({ width: 1 }).padding(10).lineHeight(30)
+
+        Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
+        Search({value: 'letterSpacing 0'})
+          .border({ width: 1 }).padding(5).letterSpacing(0)
+        Search({value: 'letterSpacing 3'})
+          .border({ width: 1 }).padding(5).letterSpacing(3)
+        Search({value: 'letterSpacing -1'})
+          .border({ width: 1 }).padding(5).letterSpacing(-1)
+
+        Text('decoration').fontSize(9).fontColor(0xCCCCCC)
+        Search({value: 'LineThrough, Red'})
+          .border({ width: 1 }).padding(5)
+          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
+        Search({value: 'Overline, Red'})
+          .border({ width: 1 }).padding(5)
+          .decoration({type: TextDecorationType.Overline, color: Color.Red})
+        Search({value: 'Underline, Red'})
+          .border({ width: 1 }).padding(5)
+          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+
+```
+
+![SearchDecoration](figures/search_decoration.png)
+
+### 示例6
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+
+```ts
+@Entry
+@Component
+struct search {
+  @State text1: string = 'This is ss01 on : 0123456789'
+  @State text2: string = 'This is ss01 off: 0123456789'
+
+  build() {
+    Column(){
+      Search({value: this.text1})
+        .margin({top:200})
+        .fontFeature("\"ss01\" on")
+      Search({value: this.text2})
+        .margin({top:10})
+        .fontFeature("\"ss01\" off")
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+![fontFeature](figures/searchFontFeature.png)
+
+### 示例7
+
+自定义键盘弹出发生避让示例
+
+```ts
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State inputValue: string = ""
+  @State height1:string|number = '80%'
+  @State supportAvoidance:boolean = true;
+  // 自定义键盘组件
+  @Builder CustomKeyboardBuilder() {
+    Column() {
+      Row(){
+        Button('x').onClick(() => {
+          // 关闭自定义键盘
+          this.controller.stopEditing()
+        }).margin(10)
+      }
+      Grid() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
+          GridItem() {
+            Button(item + "")
+              .width(110).onClick(() => {
+              this.inputValue += item
+            })
+          }
+        })
+      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+    }
+    .backgroundColor(Color.Gray)
+  }
+
+  build() {
+    Column() {
+      Row(){
+        Button("20%")
+          .fontSize(24)
+          .onClick(()=>{
+            this.height1 = "20%"
+          })
+        Button("80%")
+          .fontSize(24)
+          .margin({left:20})
+          .onClick(()=>{
+            this.height1 = "80%"
+          })
+      }
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Bottom)
+      .height(this.height1)
+      .width("100%")
+      .padding({bottom:50})
+      Search({ controller: this.controller, value: this.inputValue})
+        // 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+    }
+  }
+}
+```
+
+![CustomSearchKeyType](figures/Custom_Search.gif)

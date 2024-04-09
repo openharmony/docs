@@ -24,7 +24,7 @@ on(type: 'error', observer: ErrorObserver): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'error'，表示错误观察器。 |
-| observer | [ErrorObserver](../apis/js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
+| observer | [ErrorObserver](js-apis-inner-application-errorObserver.md) | 是 | 错误观察器。 |
 
 **返回值：**
 
@@ -38,7 +38,7 @@ on(type: 'error', observer: ErrorObserver): number
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -72,7 +72,7 @@ try {
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
-注销错误观测器。
+注销错误观测器。使用callback异步返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -90,7 +90,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -118,7 +118,7 @@ try {
 
 off(type: 'error', observerId: number): Promise\<void>
 
-注销错误观测器。
+注销错误观测器。使用Promise异步返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,7 +133,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -141,7 +141,7 @@ off(type: 'error', observerId: number): Promise\<void>
 | ------- | -------- |
 | 16000003 | Id does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -163,5 +163,189 @@ try {
     let message = (paramError as BusinessError).message;
     console.error(`error: ${code}, ${message}`);
 }
-
 ```
+
+## ErrorManager.on<sup>12+</sup>
+
+on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
+
+注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写'loopObserver'，表示注册主线程消息处理耗时监听器。 |
+| timeout | number | 是 |  表示事件执行阈值（单位：毫秒）。 阈值必须大于0。 |
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
+
+**示例：**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.LoopObserver = {
+    onLoopTimeOut(timeout: number) {
+        console.log('Duration timeout: ' + timeout);
+    }
+};
+errorManager.on("loopObserver", 1, observer);
+```
+
+## ErrorManager.on<sup>12+</sup>
+
+on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
+
+注册主线程被拒绝promise监听器。注册后可以捕获到应用主线程中未被捕获到的promise rejection。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名                   | 类型                                                          | 必填 | 说明                                       |
+|-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
+| type                  | string                                                      | 是 | 填写'unhandledRejection'，表示注册主线程被拒绝promise监听器。 |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 是 | 注册主线程被拒绝promise监听器。                          |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16200001 | Invalid caller. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
+  if (promise === promise1) {
+    console.log("promise1 is rejected");
+  }
+  console.log("reason.name: ", reason.name);
+  console.log("reason.message: ", reason.message);
+  if (reason.stack) {
+      console.log("reason.stack: ", reason.stack);
+  }
+};
+
+errorManager.on("unhandledRejection", observer);
+
+promise1 = new Promise<void>(() => {}).then(() => {
+    throw new Error("uncaught error")
+})
+```
+
+## ErrorManager.off<sup>12+</sup>
+
+off(type: 'loopObserver', observer?: LoopObserver): void
+
+注销主线程消息处理监听器。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+ 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观察器标志。 |
+
+**示例：**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+errorManager.off("loopObserver");
+```
+
+## ErrorManager.off<sup>12+</sup>
+
+off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
+
+注销主线程被拒绝promise监听器。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名                   | 类型                              | 必填 | 说明                                           |
+|-----------------------|---------------------------------|----|----------------------------------------------|
+| type                  | string                          | 是  | 填写'unhandledRejection'，表示注册主线程被拒绝promise监听器。 |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了的主线程被拒绝promise监听器。                        |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16200001 | Invalid caller. |
+| 16300004 | observer not found. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
+  if (promise === promise1) {
+    console.log("promise1 is rejected");
+  }
+  console.log("reason.name: ", reason.name);
+  console.log("reason.message: ", reason.message);
+  if (reason.stack) {
+    console.log("reason.stack: ", reason.stack);
+  }
+};
+
+errorManager.on("unhandledRejection", observer);
+
+promise1 = new Promise<void>(() => {}).then(() => {
+  throw new Error("uncaught error")
+})
+
+errorManager.off("unhandledRejection");
+```
+或者
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
+  if (promise === promise1) {
+    console.log("promise1 is rejected");
+  }
+  console.log("reason.name: ", reason.name);
+  console.log("reason.message: ", reason.message);
+  if (reason.stack) {
+    console.log("reason.stack: ", reason.stack);
+  }
+};
+
+errorManager.on("unhandledRejection", observer);
+
+promise1 = new Promise<void>(() => {}).then(() => {
+  throw new Error("uncaught error")
+})
+
+errorManager.off("unhandledRejection", observer);
+```
+
+## UnhandledRejectionObserver<sup>12+</sup>
+
+type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
+
+将在js运行时应用主线程中用户未捕获到的rejection。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名    | 类型            | 必填 | 说明 |
+|--------|---------------|---| -------- |
+| reason | Error \| any  | 是 | 通常是`Error`类型，表示被拒绝的理由。 |
+| promise | Promise\<any> | 否 | 被拒绝的promise。 |

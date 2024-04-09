@@ -17,8 +17,8 @@
 
 ### 成员变量
 
-| 名称                                                                                                                                                                                                                                                                                                                    | 描述 | 
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| 名称                    | 描述 |
+|------------------------------------------------------| -------- |
 | int32_t (\*[OH_AudioCapturer_OnReadData](#oh_audiocapturer_onreaddata))([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, void \*buffer, int32_t lenth)                                                                                                                                 | 该函数指针将指向用于读取音频数据的回调函数。 | 
 | int32_t (\*[OH_AudioCapturer_OnStreamEvent](#oh_audiocapturer_onstreamevent))([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event) event)                                                                                       | 该函数指针将指向用于处理音频录制流事件的回调函数。 | 
 | int32_t (\*[OH_AudioCapturer_OnInterruptEvent](#oh_audiocapturer_oninterruptevent))([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | 该函数指针将指向用于处理音频录制中断事件的回调函数。 | 
@@ -26,6 +26,9 @@
 
 
 ## 结构体成员变量说明
+
+> **说明：**
+> 以下回调接口的返回值没有枚举定义，当前版本实现并不按返回值区分处理，但为保证后续版本可扩展，默认使用0。
 
 
 ### OH_AudioCapturer_OnError
@@ -38,7 +41,6 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 
 该函数指针将指向用于处理音频录制错误结果的回调函数。
 
-**起始版本：** 10
 
 
 ### OH_AudioCapturer_OnInterruptEvent
@@ -51,7 +53,6 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnInterruptEvent)(
 
 该函数指针将指向用于处理音频录制中断事件的回调函数。
 
-**起始版本：** 10
 
 
 ### OH_AudioCapturer_OnReadData
@@ -75,4 +76,3 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnStreamEvent)(OH_
 
 该函数指针将指向用于处理音频录制流事件的回调函数。
 
-**起始版本：** 10

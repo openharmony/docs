@@ -3,7 +3,7 @@
 本模块提供对进程运行信息进行查询的能力。
 
 > **说明：** 
-> - 本模块接口从API version 9 开始废弃，建议使用[ProcessInformation<sup>9+</sup>](../apis/js-apis-inner-application-processInformation.md)替代。
+> - 本模块接口从API version 9 开始废弃，建议使用[ProcessInformation<sup>9+</sup>](js-apis-inner-application-processInformation.md)替代。
 > - 本模块首批接口从API version 8 开始支持。
 
 ## 导入模块
@@ -25,7 +25,7 @@ import appManager from '@ohos.application.appManager';
 
 ## 使用说明
 
-通过appManager中[getProcessRunningInfos](../apis/js-apis-application-appManager.md#appmanagergetprocessrunninginfosdeprecated)方法来获取。
+通过appManager中[getProcessRunningInfos](js-apis-application-appManager.md#appmanagergetprocessrunninginfosdeprecated)方法来获取。
 
 **示例：**
 ```ts

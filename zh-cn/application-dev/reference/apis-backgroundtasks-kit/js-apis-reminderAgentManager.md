@@ -21,7 +21,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 > **说明：**
 >
-> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -69,7 +69,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 > **说明：**
 >
-> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis/js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -210,7 +210,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用设置的所有有效的代理提醒。 |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | 是 | 回调函数，返回当前应用设置的所有有效（未过期）的代理提醒。 |
 
 **错误码：**
 
@@ -274,7 +274,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise对象，返回当前应用设置的所有有效的代理提醒。 |
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise对象，返回当前应用设置的所有有效（未过期）的代理提醒。 |
 
 **错误码：**
 
@@ -401,7 +401,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
 **示例**：
@@ -436,7 +436,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis/js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 
 **返回值**：
 
@@ -473,7 +473,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
 
 **示例**：
@@ -497,7 +497,7 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-删除目标NotificationSlot（通知槽）。使用Promise异步回调。
+删除目标NotificationSlot（通知槽），使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -505,7 +505,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
 
 **返回值**：
 
@@ -524,6 +524,62 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 });
+```
+
+## reminderAgentManager.getAllValidReminders<sup>12+</sup>
+
+getAllValidReminders(): Promise\<Array\<ReminderInfo>>
+
+获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
+
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+
+**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**返回值**：
+
+| 类型                                              | 说明                                                         |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise对象，返回当前应用设置的所有有效（未过期）的代理提醒。 |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgentManager.ReminderInfo>) => {
+  console.log("promise, getAllValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getAllValidReminders, reminderId = " + reminders[i].reminderId);
+    console.log("getAllValidReminders, reminderType = " + reminders[i].reminderReq.reminderType);
+    const actionButton = reminders[i].reminderReq.actionButton || [];
+    for (let j = 0; j < actionButton.length; j++) {
+      console.log("getAllValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getAllValidReminders, actionButton.type = " + actionButton[j]?.type);
+    }
+    console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
+    console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
+    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
+    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
+    console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
+    console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
+    console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);
+    console.log("getAllValidReminders, title = " + reminders[i].reminderReq.title);
+    console.log("getAllValidReminders, content = " + reminders[i].reminderReq.content);
+    console.log("getAllValidReminders, expiredContent = " + reminders[i].reminderReq.expiredContent);
+    console.log("getAllValidReminders, snoozeContent = " + reminders[i].reminderReq.snoozeContent);
+    console.log("getAllValidReminders, notificationId = " + reminders[i].reminderReq.notificationId);
+    console.log("getAllValidReminders, slotType = " + reminders[i].reminderReq.slotType);
+  }
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+}); 
 ```
 
 ## ActionButtonType
@@ -567,6 +623,10 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 
 跳转目标的ability信息。
 
+> **说明**
+>
+> 从API version12开始，uri对所有应用开放。
+
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 
@@ -574,6 +634,8 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
+| parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
+| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。 |
 
 
 ## MaxScreenWantAgent
@@ -609,10 +671,10 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
-| slotType | [notification.SlotType](../apis/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](../apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
-| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis/js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型(不适用于倒计时提醒类型)。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型(不适用于倒计时提醒类型)。 |
 | customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri。 |
 
 ## ReminderRequestCalendar
@@ -673,3 +735,15 @@ ReminderRequestTimer extends ReminderRequest
 | hour | number | 是 | 时，取值范围是[0, 23]。 |
 | minute | number | 是 | 分，取值范围是[0, 59]。 |
 | second | number | 否 | 秒，取值范围是[0, 59]。 |
+
+## ReminderInfo<sup>12+</sup>
+
+代理提醒信息，包含 ReminderRequest 和 ReminderId。
+
+**系统能力**：SystemCapability.Notification.ReminderAgent
+
+| 名称        | 类型                                | 必填 | 说明                  |
+| ----------- | ----------------------------------- | ---- | --------------------- |
+| reminderId  | number                              | 否   | 发布提醒后返回的 Id。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 代理提醒对象。        |
+

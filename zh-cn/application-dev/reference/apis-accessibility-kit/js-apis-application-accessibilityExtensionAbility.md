@@ -1,6 +1,6 @@
 # @ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)
 
-**AccessibilityExtensionAbility**基于ExtensionAbility框架，提供辅助功能业务的能力。
+AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力。
 
 > **说明：**
 >
@@ -32,7 +32,9 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 | --------- |----------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
 | eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。当前版本暂不支持。 |
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是                                                                            | 否                                  | 发生事件的目标组件。                                         |
-| timeStamp | number                                                         | 是                                                                            | 否                                  | 事件时间戳。                                                 |
+| timeStamp | number                                                         | 是                                                                            | 否                                  | 事件时间戳，单位是毫秒。                                                 |
+| elementId<sup>12+</sup> | number                                                         | 是                                                                            | 否                                  | 主动聚焦的组件ID。                                                 |
+| textAnnouncedForAccessibility<sup>12+</sup> | string                                                         | 是                                                                            | 否                                  | 主动播报的内容。                                                 |
 
 
 ## AccessibilityElement<sup>10+</sup>
@@ -250,7 +252,7 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 
 onAccessibilityEvent(event: AccessibilityEvent): void;
 
-在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。
+在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。（目前暂不支持UIExtension组件和onTouch事件）
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -258,7 +260,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 | 参数名   | 类型                                       | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
+| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。<br>目前暂不支持UIExtension组件和onTouch事件 |
 
 **示例：**
 
@@ -287,7 +289,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 | 参数名      | 类型                                               | 必填   | 说明                      |
 | -------- |--------------------------------------------------| ---- | ----------------------- |
-| keyEvent | [KeyEvent](../apis/js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
+| keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
 **示例：**
 

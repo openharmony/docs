@@ -1,7 +1,7 @@
 # Text Input (TextInput/TextArea)
 
 
-The **\<TextInput>** and **\<TextArea>** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/arkui-ts/ts-basic-components-textarea.md).
+The **\<TextInput>** and **\<TextArea>** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md).
 
 
 ## Creating a Text Box
@@ -97,7 +97,7 @@ The **\<TextInput>** component comes in nine types. You can specify its type by 
 
   ![en-us_image_0000001511740444](figures/en-us_image_0000001511740444.png)
 
-  More styles can be implemented by leveraging the [universal attributes](../reference/arkui-ts/ts-universal-attributes-size.md).
+  More styles can be implemented by leveraging the [universal attributes](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md).
 
 
 ## Adding Events

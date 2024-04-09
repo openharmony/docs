@@ -5,11 +5,9 @@
 
 范围包含最小值和最大值。
 
-\@syscap SystemCapability.Multimedia.Media.CodecBase
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 **相关模块：**
 
@@ -23,8 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [minVal](#minval) | 范围下限 | 
-| [maxVal](#maxval) | 范围上限 | 
+| [minVal](#minval) | 范围下限。 | 
+| [maxVal](#maxval) | 范围上限。 | 
 
 
 ## 结构体成员变量说明
@@ -37,13 +35,11 @@
 int32_t minVal
 ```
 
-**描述：**
+**描述**
 
-范围下限
+范围下限。
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ### maxVal
@@ -53,10 +49,8 @@ int32_t minVal
 int32_t maxVal
 ```
 
-**描述：**
+**描述**
 
-范围上限
+范围上限。
 
-**起始版本：**
-
-10
+**起始版本：** 10

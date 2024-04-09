@@ -1248,7 +1248,7 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如设备不可用或者冲突等返回对应错误信息。 |
 | camera   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | ErrorCallback | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
 
 **示例：**
 
@@ -1278,7 +1278,7 @@ off(type: 'error', camera: CameraDevice, callback?: ErrorCallback): void
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如设备不可用或者冲突等返回对应错误信息。 |
 | camera   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
 
 **示例：**
 
@@ -1649,7 +1649,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用[Session.start](#start11-1)，[CameraOutput.release](#release-1)等接口发生错误时返回对应错误信息。 |
-| callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。  |
 
 **示例：**
 
@@ -1678,7 +1678,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
 
 **示例：**
 
@@ -2276,7 +2276,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。拍照接口调用时出现错误触发该事件并返回错误信息。 |
-| callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。             |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。             |
 
 **示例：**
 
@@ -2305,7 +2305,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
 
 **示例：**
 
@@ -2602,7 +2602,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型       | 必填 | 说明                                    |
 | -------- | ----------- | ---- | -------------------------------------- |
 | type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。录像接口调用出现错误时触发该事件并返回对应错误码，比如调用[start](#start-1)，[CameraOutput.release](#release-1)接口时出现错误返回对应错误信息。 |
-| callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。                 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。                 |
 
 **示例：**
 
@@ -2631,7 +2631,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。               |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。               |
 
 **示例：**
 
@@ -2846,7 +2846,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。metadata接口使用错误时触发该事件并返回对应错误码，比如调用[start](#start-3)，[CameraOutput.release](#release-1)接口时发生错误返回对应错误信息。 |
-| callback | ErrorCallback | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。            |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。            |
 
 **示例：**
 
@@ -2875,7 +2875,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。 |
-| callback | ErrorCallback | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。           |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。           |
 
 **示例：**
 
@@ -4461,7 +4461,7 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 | 参数名       | 类型            | 必填 | 说明               |
 | ------------ | -------------- | ---- | ----------------- |
 | targetRatio  | number         | 是   | 目标值。      |
-| mode         | SmoothZoomMode | 否   | 模式。      |
+| mode         | [SmoothZoomMode](#smoothzoommode11) | 否   | 模式。      |
 
 **错误码：**
 
@@ -4735,6 +4735,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
     console.info('Promise returned to indicate the commit config success.');
   }).catch((error: BusinessError) => {
     // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
     console.error(`The commitConfig call failed. error code: ${err.code}`);
   });
 }
@@ -6286,10 +6287,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 参数名     | 类型                                                          | 必填 | 说明                           |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfigdeprecated)，[commitConfig](#commitconfigdeprecated-1)，[addInput](#addinputdeprecated)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
+| 参数名     | 类型                                                                       | 必填 | 说明                           |
+| -------- |--------------------------------------------------------------------------| ---- | ------------------------------ |
+| type     | string                                                                   | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfigdeprecated)，[commitConfig](#commitconfigdeprecated-1)，[addInput](#addinputdeprecated)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
 
 **示例：**
 
@@ -6319,7 +6320,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
 
 **示例：**
 
@@ -6348,7 +6349,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig11)，[commitConfig](#commitconfig11-1)，[addInput](#addinput11)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。        |
 
 **示例：**
 
@@ -6379,7 +6380,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                            | 必填 | 说明                           |
 | -------- | -------------------------------- | ---- | ------------------------------ |
 | type     | string                           | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。     |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。     |
 
 **示例：**
 
@@ -6512,7 +6513,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型              | 必填 | 说明                           |
 | -------- | ------------------ | ---- | ------------------------------ |
 | type     | string             | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](#beginconfig11)，[commitConfig](#commitconfig11-1)，[addInput](#addinput11)等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback      | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)      | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。   |
 
 **示例：**
 
@@ -6541,7 +6542,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                          | 必填 | 说明                           |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | type     | string                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | ErrorCallback| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。      |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。      |
 
 **示例：**
 

@@ -43,7 +43,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
    }
    ```
 
-[AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
 
 
 - **onCreate()** lifecycle callback: Before the first UIAbility instance of a module is loaded, an AbilityStage instance is created. This callback is invoked when the AbilityStage instance is created. The AbilityStage module notifies you of when you can perform module initialization such as resource pre-loading and thread creation during module loading.

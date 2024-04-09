@@ -1,7 +1,7 @@
-ArkUI (方舟UI框架)
+# ArkUI（方舟UI框架）
 - [ArkUI简介](arkui-overview.md)
 - UI开发 (ArkTS声明式开发范式)
-  - [UI开发 (ArkTS声明式开发范式)概述](arkts-ui-development-overview.md)
+  - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
   - 开发布局
     - [布局概述](arkts-layout-development-overview.md)
     - 构建布局
@@ -25,7 +25,8 @@ ArkUI (方舟UI框架)
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
-      - [XComponent](arkts-common-components-xcomponent.md)
+      - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
+      - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
@@ -143,3 +144,4 @@ ArkUI (方舟UI框架)
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
+- [窗口管理](../windowmanager/Readme-CN.md)

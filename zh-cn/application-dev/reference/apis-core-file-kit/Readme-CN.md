@@ -29,5 +29,20 @@
     - [@ohos.fileio (文件管理)](js-apis-fileio.md)
     - [@ohos.statfs (statfs)](js-apis-statfs.md)
     - [@system.file (文件存储)](js-apis-system-file.md)
+- C API
+  - 模块
+    - [Environment](_environment.md)
+    - [FileIO](_file_i_o.md)
+    - [FileShare](file_share.md)
+    - [Fileuri](fileuri.md)
+  - 头文件
+    - [error_code.h](error__code_8h.md)
+    - [oh_environment.h](oh__environment_8h.md)
+    - [oh_file_share.h](oh__file__share_8h.md)
+    - [oh_file_uri.h](oh__file__uri_8h.md)
+    - [oh_fileio.h](oh__fileio_8h.md)
+  - 结构体
+    - [FileShare_PolicyErrorResult](_file_share___policy_error_result.md)
+    - [FileShare_PolicyInfo](_file_share___policy_info.md)
 - 错误码
   - [文件管理错误码](errorcode-filemanagement.md)

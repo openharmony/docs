@@ -918,22 +918,6 @@ function test(str: string, obj: Record<string, Object>) {
 }
 ```
 
-### 判断数组的key
-
-**应用代码**
-
-```typescript
-let arr = [10, 20, 30, 40];
-let isIn = 5 in arr;
-```
-
-**建议改法**
-
-```typescript
-let arr = [10, 20, 30, 40];
-let isIn = 5 < arr.length;
-```
-
 ## arkts-no-destruct-assignment
 
 **应用代码**

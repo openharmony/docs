@@ -1,16 +1,16 @@
 # InputMethodExtensionAbility
 
 ## 使用场景
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基于[ExtensionAbility](extensionability-overview.md)框架，用于开发输入法应用。
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)基于[ExtensionAbility](extensionability-overview.md)框架，用于开发输入法应用。
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)实例及其所在的ExtensionAbility进程的整个生命周期，都是由输入法框架进行调度管理。输入法框架提供了[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基类，开发者需要派生此基类，以实现输入法应用生命周期开始和销毁时的相关初始化操作和资源清理工作等。
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)实例及其所在的ExtensionAbility进程的整个生命周期，都是由输入法框架进行调度管理。输入法框架提供了[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)基类，开发者需要派生此基类，以实现输入法应用生命周期开始和销毁时的相关初始化操作和资源清理工作等。
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)通过[InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md)提供相关能力。
 
 
 ## 实现一个输入法应用
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
 - **onCreate()**
 
@@ -363,41 +363,47 @@
 > **说明：**
 >
 > - 若导入被限制的模块，在编译时不报错，在运行时会返回错误的值，即undefined，导致不生效。
-> - 当前未禁止对音频管理模块[@ohos.multimedia.audio (音频管理)](../reference/apis/js-apis-audio.md)的访问，但要求开发者应遵循以下约定：
+> - 当前未禁止对音频管理模块[@ohos.multimedia.audio (音频管理)](../reference/apis-audio-kit/js-apis-audio.md)的访问，但要求开发者应遵循以下约定：
 >   - 不得因用户未授予录音权限而禁止用户使用输入法应用的非语音输入法功能；
 >   - 仅允许InputMethodExtensionAbility处于前台时开展与录音相关的业务。如仅允许软键盘在前台且用户主动操作语音输入法时，才进行录音；应用切换到后台时，应主动停止录音；
 >   - 系统会逐步增加对违反以上约定的行为进行管控和识别，因此未遵守此约定可能会造成业务功能异常。
 
 **模块列表：** 
 
-- [@ohos.ability.featureAbility (FeatureAbility模块)](../reference/apis/js-apis-ability-featureAbility.md)
-- [@ohos.ability.particleAbility (ParticleAbility模块)](../reference/apis/js-apis-ability-particleAbility.md)
-- [@ohos.account.distributedAccount (分布式帐号管理)](../reference/apis/js-apis-distributed-account.md)
-- [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis/js-apis-backgroundTaskManager.md)
-- [@ohos.bluetooth (蓝牙)](../reference/apis/js-apis-bluetooth.md)
-- [@ohos.bluetoothManager (蓝牙)](../reference/apis/js-apis-bluetoothManager.md)
-- [@ohos.connectedTag (有源标签)](../reference/apis/js-apis-connectedTag.md)
-- [@ohos.geolocation (位置服务)](../reference/apis/js-apis-geolocation.md)
-- [@ohos.geoLocationManager (位置服务)](../reference/apis/js-apis-geoLocationManager.md)
-- [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](../reference/apis/js-apis-cardEmulation.md)
-- [@ohos.nfc.controller (标准NFC)](../reference/apis/js-apis-nfcController.md)
-- [@ohos.nfc.tag (标准NFC-Tag)](../reference/apis/js-apis-nfcTag.md)
-- [@ohos.reminderAgent (后台代理提醒)](../reference/apis/js-apis-reminderAgent.md)
-- [@ohos.reminderAgentManager (后台代理提醒)](../reference/apis/js-apis-reminderAgentManager.md)
-- [@ohos.sensor (传感器)](../reference/apis/js-apis-sensor.md)
-- [@ohos.telephony.call (拨打电话)](../reference/apis/js-apis-call.md)
-- [@ohos.telephony.data (蜂窝数据)](../reference/apis/js-apis-telephony-data.md)
-- [@ohos.telephony.observer (observer)](../reference/apis/js-apis-observer.md)
-- [@ohos.telephony.radio (网络搜索)](../reference/apis/js-apis-radio.md)
-- [@ohos.telephony.sim (SIM卡管理)](../reference/apis/js-apis-sim.md)
-- [@ohos.telephony.sms (短信服务)](../reference/apis/js-apis-sms.md)
-- [@ohos.wallpaper (壁纸)](../reference/apis/js-apis-wallpaper.md)
-- [@ohos.wifiext (WLAN扩展接口)](../reference/apis/js-apis-wifiext.md)
-- [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
-- [@ohos.wifiManagerExt (WLAN扩展接口)](../reference/apis/js-apis-wifiManagerExt.md)
-- [@system.geolocation (地理位置)](../reference/apis/js-apis-system-location.md)
-- [nfctech (标准NFC-Tag Nfc 技术)](../reference/apis/js-apis-nfctech.md)
-- [tagSession (标准NFC-Tag TagSession)](../reference/apis/js-apis-tagSession.md)
+- [@ohos.ability.featureAbility (FeatureAbility模块)](../reference/apis-ability-kit/js-apis-ability-featureAbility.md)
+- [@ohos.ability.particleAbility (ParticleAbility模块)](../reference/apis-ability-kit/js-apis-ability-particleAbility.md)
+- [@ohos.account.distributedAccount (分布式帐号管理)](../reference/apis-basic-services-kit/js-apis-distributed-account.md)
+- [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
+- [@ohos.bluetooth (蓝牙)](../reference/apis-connectivity-kit/js-apis-bluetooth.md)
+- [@ohos.bluetoothManager (蓝牙)](../reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
+- [@ohos.connectedTag (有源标签)](../reference/apis-connectivity-kit/js-apis-connectedTag.md)
+- [@ohos.geolocation (位置服务)](../reference/apis-location-kit/js-apis-geolocation.md)
+- [@ohos.geoLocationManager (位置服务)](../reference/apis-location-kit/js-apis-geoLocationManager.md)
+- [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](../reference/apis-connectivity-kit/js-apis-cardEmulation.md)
+- [@ohos.nfc.controller (标准NFC)](../reference/apis-connectivity-kit/js-apis-nfcController.md)
+- [@ohos.nfc.tag (标准NFC-Tag)](../reference/apis-connectivity-kit/js-apis-nfcTag.md)
+- [@ohos.reminderAgent (后台代理提醒)](../reference/apis-backgroundtasks-kit/js-apis-reminderAgent.md)
+- [@ohos.reminderAgentManager (后台代理提醒)](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
+- [@ohos.sensor (传感器)](../reference/apis-sensor-service-kit/js-apis-sensor.md)
+- [@ohos.telephony.call (拨打电话)](../reference/apis-telephony-kit/js-apis-call.md)
+- [@ohos.telephony.data (蜂窝数据)](../reference/apis-telephony-kit/js-apis-telephony-data.md)
+- [@ohos.telephony.observer (observer)](../reference/apis-telephony-kit/js-apis-observer.md)
+- [@ohos.telephony.radio (网络搜索)](../reference/apis-telephony-kit/js-apis-radio.md)
+- [@ohos.telephony.sim (SIM卡管理)](../reference/apis-telephony-kit/js-apis-sim.md)
+- [@ohos.telephony.sms (短信服务)](../reference/apis-telephony-kit/js-apis-sms.md)
+- [@ohos.telephony.call (拨打电话)（系统接口）](../reference/apis-telephony-kit/js-apis-call-sys.md)
+- [@ohos.telephony.data (蜂窝数据)（系统接口）](../reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
+- [@ohos.telephony.observer (observer)（系统接口）](../reference/apis-telephony-kit/js-apis-observer-sys.md)
+- [@ohos.telephony.radio (网络搜索)（系统接口）](../reference/apis-telephony-kit/js-apis-radio-sys.md)
+- [@ohos.telephony.sim (SIM卡管理)（系统接口）](../reference/apis-telephony-kit/js-apis-sim-sys.md)
+- [@ohos.telephony.sms (短信服务)（系统接口）](../reference/apis-telephony-kit/js-apis-sms-sys.md)
+- [@ohos.wallpaper (壁纸)](../reference/apis-basic-services-kit/js-apis-wallpaper.md)
+- [@ohos.wifiext (WLAN扩展接口)](../reference/apis-connectivity-kit/js-apis-wifiext.md)
+- [@ohos.wifiManager (WLAN)](../reference/apis-connectivity-kit/js-apis-wifiManager.md)
+- [@ohos.wifiManagerExt (WLAN扩展接口)](../reference/apis-connectivity-kit/js-apis-wifiManagerExt.md)
+- [@system.geolocation (地理位置)](../reference/apis-location-kit/js-apis-system-location.md)
+- [nfctech (标准NFC-Tag Nfc 技术)](../reference/apis-connectivity-kit/js-apis-nfctech.md)
+- [tagSession (标准NFC-Tag TagSession)](../reference/apis-connectivity-kit/js-apis-tagSession.md)
 
 
 
@@ -406,3 +412,5 @@
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
 - [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 
+
+  

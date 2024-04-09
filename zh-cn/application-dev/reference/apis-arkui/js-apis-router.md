@@ -932,6 +932,30 @@ back(options?: RouterOptions ): void
 router.back({url:'pages/detail'});    
 ```
 
+## router.back<sup>12+</sup>
+
+back(index: number, params?: Object): void;
+
+返回指定的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| index | number | 是    | 跳转目标页面的索引值。  |
+| params    | Object      | 否    | 页面返回时携带的参数。 |
+
+**示例：**
+
+```ts
+router.back(1);    
+```
+```ts
+router.back(1, {info: '来自Home页'}); //携带参数返回
+```
+
 ## router.clear
 
 clear(): void
@@ -990,6 +1014,70 @@ console.log('current name = ' + page.name);
 console.log('current path = ' + page.path);
 ```
 
+## router.getStateByIndex<sup>12+</sup>
+
+getStateByIndex(index: number): RouterState | undefined
+
+通过索引值获取对应页面的状态信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| index    | number | 是   | 表示要获取的页面索引。  |
+
+**返回值：**
+
+| 类型                          | 说明      |
+| --------------------------- | ------- |
+| [RouterState](#routerstate) | 页面状态信息。 |
+| undefined   | 索引不存在时返回undefined。|
+
+**示例：** 
+
+```ts
+let options:router.RouterState | undefined = router.getStateByIndex(1);
+if (options != undefined) {
+  console.log('index = ' + options.index);
+  console.log('name = ' + options.name);
+  console.log('path = ' + options.path);
+  console.log('params = ' + options.params);
+}
+```
+## router.getStateByUrl<sup>12+</sup>
+
+getStateByUrl(url: string): Array&lt;RouterState&gt;
+
+通过url获取对应页面的状态信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| url    | string | 是   | 表示要获取对应页面信息的url。  |
+
+**返回值：**
+
+| 类型                          | 说明      |
+| --------------------------- | ------- |
+| Array<[RouterState](#routerstate)> | 页面状态信息。 |
+
+**示例：** 
+
+```ts
+let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+for (let i: number = 0; i < options.length; i++) {
+  console.log('index = ' + options[i].index);
+  console.log('name = ' + options[i].name);
+  console.log('path = ' + options[i].path);
+  console.log('params = ' + options[i].params);
+}
+```
+
 ## RouterState
 
 页面状态信息。
@@ -1001,6 +1089,7 @@ console.log('current path = ' + page.path);
 | index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
 | name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
 | path  | string | 是   | 表示当前页面的路径。                                         |
+| params<sup>12+</sup>  | Object |  否  | 表示当前页面携带的参数。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
 

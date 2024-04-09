@@ -159,7 +159,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型，固定取值为'inputStart'。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
 
 **示例：**
 
@@ -188,7 +188,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型，固定取值为'inputStart'。 |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | 否 | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | 否 | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。|
 
 **示例：**
 
@@ -633,7 +633,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法应用信息。 |
 | callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
@@ -678,7 +678,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 
 **返回值：**
@@ -901,7 +901,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
+| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
@@ -1255,7 +1255,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | LocalStorage相关联的具体页面的路径。 |
-| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
+| storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -1291,7 +1291,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -1307,7 +1307,7 @@ import { BusinessError } from '@ohos.base';
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2')then(() => {
+  panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
@@ -1724,7 +1724,7 @@ setPrivacyMode(isPrivacyMode: boolean): void
 
 ```ts
 try {
-    boolean isPrivacyMode = true;
+    let isPrivacyMode = true;
     panel.setPrivacyMode(isPrivacyMode);
 } catch(err) {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
@@ -1751,7 +1751,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -1787,7 +1787,7 @@ hide(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -1883,7 +1883,7 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
@@ -1920,7 +1920,7 @@ exitCurrentInputType(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
@@ -2018,7 +2018,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2069,7 +2069,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2113,7 +2113,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
@@ -2161,7 +2161,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
@@ -2207,7 +2207,7 @@ getForwardSync(length:number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2243,7 +2243,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
@@ -2291,7 +2291,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
@@ -2337,7 +2337,7 @@ getBackwardSync(length:number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -2373,7 +2373,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2425,7 +2425,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2469,7 +2469,7 @@ deleteForwardSync(length:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -2505,7 +2505,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2557,7 +2557,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2597,7 +2597,7 @@ deleteBackwardSync(length:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -2633,7 +2633,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2680,7 +2680,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2723,7 +2723,7 @@ insertTextSync(text: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -2757,7 +2757,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2794,7 +2794,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2833,7 +2833,7 @@ getEditorAttributeSync(): EditorAttribute
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -2867,7 +2867,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2913,7 +2913,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
@@ -2951,7 +2951,7 @@ moveCursorSync(direction: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -2985,7 +2985,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -3033,7 +3033,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -3073,7 +3073,7 @@ selectByRangeSync(range: Range): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -3109,7 +3109,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -3157,7 +3157,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -3197,7 +3197,7 @@ selectByMovementSync(movement: Movement): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -3232,7 +3232,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -3269,7 +3269,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -3304,7 +3304,7 @@ getTextIndexAtCursorSync(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -3343,7 +3343,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -3394,7 +3394,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -3436,7 +3436,7 @@ try {
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](js-apis-keycode.md#keycode)。 |
+| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
 
 ## PanelFlag<sup>10+</sup>

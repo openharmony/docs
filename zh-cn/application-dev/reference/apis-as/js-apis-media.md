@@ -36,7 +36,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -79,7 +79,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -121,7 +121,7 @@ media.createAVPlayer().then((audio: media.AVPlayer) => {
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+Audio播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 ### 属性
 
@@ -154,7 +154,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -201,7 +201,7 @@ avPlayer.off('error')
 
 prepare(callback: AsyncCallback\<void>): void
 
-通过回调方式准备播放音频，需在stateChange事件成功触发至initialized状态后，才能调用。
+通过回调方式准备播放音频，需在stateChange事件成功触发至initialized/stopped状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -213,7 +213,7 @@ prepare(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -236,7 +236,7 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-通过Promise方式准备播放音频，需在stateChange事件成功触发至initialized状态后，才能调用。
+通过Promise方式准备播放音频，需在stateChange事件成功触发至initialized/stopped状态后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -248,7 +248,7 @@ prepare(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -281,7 +281,7 @@ play(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -315,7 +315,7 @@ play(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -347,7 +347,7 @@ pause(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -381,7 +381,7 @@ pause(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -413,7 +413,7 @@ stop(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -447,7 +447,7 @@ stop(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -479,7 +479,7 @@ reset(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -513,7 +513,7 @@ reset(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -545,7 +545,7 @@ release(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -579,7 +579,7 @@ release(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -611,7 +611,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
@@ -645,7 +645,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](../apis-media-kit/errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -773,7 +773,7 @@ avPlayer.off('timeUpdate')
 
 ## AVPlayerState<sup>9+</sup>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听stateChange事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听stateChange事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -787,7 +787,7 @@ avPlayer.off('timeUpdate')
 |            completed            | string | 播放至结尾状态，当媒体资源播放至结尾时，如果用户未设置循环播放（loop = 1），AVPlayer会进入completed状态，此时调用play()会进入playing状态和重播，调用stop()会进入stopped状态。 |
 |             stopped             | string | 停止状态，在prepared/playing/paused/completed状态调用stop()方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用prepare()重新准备，也可以调用reset()重置，或者调用release()彻底销毁。 |
 |            released             | string | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用release()方法后，会进入released状态，结束流程。 |
-| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../errorcodes/errorcode-media.md)），则会转换至当前状态，可以调用reset()重置，也可以调用release()销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用reset()重置或者release()销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
+| error | string | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](../apis-media-kit/errorcode-media.md)），则会转换至当前状态，可以调用reset()重置，也可以调用release()销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用reset()重置或者release()销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 

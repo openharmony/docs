@@ -59,7 +59,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -107,7 +107,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -152,7 +152,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -205,7 +205,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -265,7 +265,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -318,7 +318,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -377,7 +377,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -461,7 +461,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -515,7 +515,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -590,10 +590,10 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void
 
-用于UIAbility拉起弹框请求用户授权。使用callback异步回调。
+用于UIAbility/UIExtensionAbility拉起弹框请求用户授权。使用callback异步回调。
 > **说明：**
 >
-> 非UIAbility不支持调用本函数。
+> 仅支持UIAbility/UIExtensionAbility。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -603,13 +603,13 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
+| context | Context | 是 | 请求权限的UIAbility/UIExtensionAbility的Context。 |
 | permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -630,6 +630,7 @@ try {
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
+    console.info('data dialogShownResults:' + data.dialogShownResults);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -640,11 +641,11 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;
 
-用于UIAbility拉起弹框请求用户授权。使用promise异步回调。
+用于UIAbility/UIExtensionAbility拉起弹框请求用户授权。使用promise异步回调。
 
 > **说明：**
 >
-> 非UIAbility不支持调用本函数。
+> 仅支持UIAbility/UIExtensionAbility。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -654,7 +655,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
+| context | Context | 是 | 请求权限的UIAbility/UIExtensionAbility的Context。 |
 | permissionList | Array&lt;Permissions&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
@@ -665,7 +666,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -686,6 +687,7 @@ try {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);
+        console.info('data dialogShownResults:' + data.dialogShownResults);
     }).catch((err: BusinessError) => {
         console.info('data:' + JSON.stringify(err));
     })
@@ -761,7 +763,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[访问控制错误码](../errorcodes/errorcode-access-token.md)。
+以下错误码的详细介绍请参见[访问控制错误码](../apis-ability-kit/errorcode-access-token.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -811,8 +813,8 @@ console.log(`data->${JSON.stringify(data)}`);
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称           | 类型                       | 可读 | 可写 | 说明                |
+| 名称           | 类型                       | 只读 | 必填 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
-| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限授权状态变化类型。        |
-| tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识。 |
-| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 是   | 权限授权状态变化类型。        |
+| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。 |
+| permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |

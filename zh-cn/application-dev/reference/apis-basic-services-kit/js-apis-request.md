@@ -83,7 +83,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 
@@ -95,7 +95,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -142,13 +142,13 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -714,7 +714,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
 
 **返回值：**
@@ -725,7 +725,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -769,13 +769,13 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 回调函数，异步返回下载任务。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -1919,7 +1919,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) 类获取文件路径。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
@@ -1989,7 +1989,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
 
-事件配置信息请参考[静态订阅公共事件](../../application-models/common-event-static-subscription.md)。
+事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2004,7 +2004,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径位于调用方的缓存文件夹下的相对路径。 |
+| path | string | 是 | 文件路径：<br/>-位于调用方的缓存文件夹下的相对路径。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
 | extras | Object | 否 | 文件信息的附加内容。 |
@@ -2037,12 +2037,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。 |
-| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，仅支持"internal://cache/"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为相对路径，即下载至调用方当前缓存路径下。 |
 | network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。 |
 | metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否|
 | roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否 |
 | retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。<br/>-true：是 <br/>-false：否 |
 | redirect | boolean | 否 | 是否允许重定向，默认为true。<br/>-true：是 <br/>-false：否 |
+| proxy | string | 否 | 设置代理地址，其最大长度为512个字符，默认为空。<br/>代理地址格式:"http://\<domain or address\>:\<port\>" |
 | index | number | 否 | 任务的路径索引，通常用于任务断点续传，默认为0。 |
 | begins | number | 否 | 文件起点，通常用于断点续传。默认值为0，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的起点位置（http协议中设置"Range"选项）。<br/>-上传时，在上传开始时读取。 |
 | ends | number | 否 | 文件终点，通常用于断点续传。默认值为-1，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的结束位置（http协议中设置"Range"选项）。<br/>-上传时，在上传时结束读取。 |
@@ -2107,7 +2108,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundle | string | 否 | 指定应用程序的包名，仅对系统应用开放。<br/>**系统接口**：此接口为系统接口。 |
 | before | number | 否 | 结束的Unix时间戳（毫秒），默认为调用时刻。 |
 | after | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
 | state | [State](#state10) | 否 | 指定任务的状态。 |
@@ -2121,11 +2121,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uid | string | 否 | 应用程序的UID，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| bundle | string | 否 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。|
-| url | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
+| saveas | string | 否 | 保存下载文件的路径。 |
+| url | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)进行查询。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)。 |
 | tid | string | 是 | 任务id。 |
 | title | string | 是 | 任务标题。 |
 | description | string | 是 | 任务描述。 |
@@ -2143,6 +2141,18 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | string | 否 | 任务的额外部分。|
 
+
+## HttpResponse<sup>12+</sup> 
+任务响应头的数据结构。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| version | string | 是 | Http版本。 |
+| statusCode | number | 是 | Http响应状态码。 |
+| reason | string | 是 | Http响应原因。|
+| headers | Map&lt;string, Array&lt;string&gt;&gt; | 是 | Http响应头部。 |
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -2175,7 +2185,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2246,7 +2256,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2317,7 +2327,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2388,7 +2398,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
 **示例：**
 
@@ -2455,7 +2465,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
 **示例：**
 
@@ -2522,7 +2532,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
 **示例：**
 
@@ -2572,6 +2582,73 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+### on('response')<sup>12+</sup>
+
+on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
+
+订阅任务响应头，异步方法，使用callback形式返回结果。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'response'，表示任务响应。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务响应头的数据结构。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (response: request.agent.HttpResponse) => {
+    console.info('upload task response.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('response', createOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ### off('progress')<sup>10+</sup>
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
@@ -2589,7 +2666,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2668,7 +2745,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2747,7 +2824,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2826,7 +2903,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
 **示例：**
 
@@ -2901,7 +2978,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
 **示例：**
 
@@ -2976,7 +3053,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
 **示例：**
 
@@ -3034,11 +3111,86 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+### off('response')<sup>12+</sup>
+
+off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
+
+取消订阅任务响应头。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'response'，表示任务响应。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+**示例：**
+
+  ```ts
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback1 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task response.');
+  };
+  let createOffCallback2 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task response.');
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.on('response', createOffCallback1);
+    task.on('response', createOffCallback2);
+    //表示取消createOffCallback1的订阅
+    task.off('response', createOffCallback1);
+    //表示取消订阅任务移除的所有回调
+    task.off('response');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ### start<sup>10+</sup>
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-启动任务，无法启动已初始化的任务。使用callback异步回调。
+启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用callback异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3052,7 +3204,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3106,7 +3258,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 start(): Promise&lt;void&gt;
 
-启动任务，无法启动已初始化的任务。使用Promise异步回调。
+启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3120,7 +3272,7 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3184,7 +3336,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3251,7 +3403,7 @@ pause(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3318,7 +3470,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3388,7 +3540,7 @@ resume(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3454,7 +3606,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3517,7 +3669,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3577,12 +3729,12 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数，返回创建任务的配置信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3652,7 +3804,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
 
 **返回值：** 
@@ -3663,7 +3815,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3728,7 +3880,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | id | string | 是 | 任务id。 |
   | token | string | 否 | 任务查询token。 |
 
@@ -3740,7 +3892,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3774,7 +3926,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3816,7 +3968,7 @@ remove(id: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3850,7 +4002,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3891,7 +4043,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3926,7 +4078,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3968,7 +4120,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4000,7 +4152,7 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4034,7 +4186,7 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4079,7 +4231,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4101,86 +4253,4 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
   ```
 
 
-## request.agent.query<sup>10+</sup>
 
-query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
-
-根据任务id查询任务的详细信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
-
-**示例：**
-
-  ```ts
-  request.agent.query("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
-    if (err) {
-      console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
-  });
-  ```
-
-
-## request.agent.query<sup>10+</sup>
-
-query(id: string): Promise&lt;TaskInfo&gt;
-
-根据任务id查询任务的详细信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
-
-**系统能力**: SystemCapability.Request.FileTransferAgent
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | id | string | 是 | 任务id。 |
-
-**返回值：** 
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
-
-  | 错误码ID | 错误信息 |
-  | -------- | -------- |
-  | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
-
-**示例：**
-
-  ```ts
-  request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
-  });
-  ```
-
-<!--no_check-->

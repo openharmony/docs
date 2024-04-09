@@ -280,10 +280,10 @@ struct Page3 {
 }
 ```
 ## 参考
-[Circle](../application-dev/reference/arkui-ts/ts-drawing-components-circle.md)
+[Circle](../application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md)
 
-[Path](../application-dev/reference/arkui-ts/ts-drawing-components-path.md)
+[Path](../application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-path.md)
 
-[Slider](../application-dev/reference/arkui-ts/ts-basic-components-slider.md)
+[Slider](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)
 
-[Timer](../application-dev/reference/apis/js-apis-timer.md)
+[Timer](../application-dev/reference/common/js-apis-timer.md)

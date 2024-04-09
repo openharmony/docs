@@ -112,7 +112,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针显示或隐藏状态。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针状态，true为显示，false为隐藏。 |
 
 **示例**：
 
@@ -180,9 +180,6 @@ try {
   console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
-
-
 
 ## pointer.getPointerStyle
 
@@ -426,6 +423,29 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 });
 ```
 
+## PrimaryButton<sup>10+</sup>
+
+鼠标主键类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| LEFT                          | 0    | 鼠标左键     |
+| RIGHT                             | 1    | 鼠标右键   |
+
+## RightClickType<sup>10+</sup>
+
+右键菜单触发方式。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| TOUCHPAD_RIGHT_BUTTON            | 1    |触控板右键区域。 |
+| TOUCHPAD_LEFT_BUTTON            | 2    |触控板左键区域。 |
+| TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或按压触控板。|
+
 ## PointerStyle
 
 鼠标样式类型。
@@ -492,7 +512,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
@@ -509,7 +529,7 @@ import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer = svgFileData.buffer;
+const svgBuffer: image.Buffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
 svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
@@ -539,7 +559,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
@@ -550,7 +570,7 @@ import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer = svgFileData.buffer;
+const svgBuffer: image.Buffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
 svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {

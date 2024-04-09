@@ -12,7 +12,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
 
 ## 基本知识
 
@@ -330,10 +330,6 @@ switch (expression) {
 }
 ```
 
-`switch`表达式的类型必须是`number`、`enum`或`string`。
-
-label必须是常量表达式或枚举常量值。
-
 如果`switch`表达式的值等于某个label的值，则执行相应的语句。
 
 如果没有任何一个label值与表达式值相匹配，并且`switch`具有`default`子句，那么程序会执行`default`子句对应的代码块。
@@ -352,7 +348,7 @@ label必须是常量表达式或枚举常量值。
 condition ? expression1 : expression2
 ```
 
-`condition`必须是逻辑表达式。如果该逻辑表达式为`true`，则使用`expression1`作为该表达式的结果；否则，使用使用`expression2`。
+如果`condition`的为真值（转换后为`true`的值），则使用`expression1`作为该表达式的结果；否则，使用`expression2`。
 
 示例：
 
@@ -376,7 +372,7 @@ for ([init]; [condition]; [update]) {
 `for`语句的执行流程如下：
 
 1、 执行`init`表达式（如有）。此表达式通常初始化一个或多个循环计数器。  
-2、 计算`condition`。如果它的值为`true`（或者没有该语句），则执行循环主体的语句。如果它的值为`false`，则`for`循环终止。  
+2、 计算`condition`。如果它为真值（转换后为`true`的值），则执行循环主体的语句。如果它为假值（转换后为`false`的值），则`for`循环终止。  
 3、 执行循环主体的语句。  
 4、 如果有`update`表达式，则执行该表达式。  
 5、 回到步骤2。  
@@ -410,15 +406,13 @@ for (let ch of 'a string object') {
 
 #### `While`语句
 
-只要`condition`的值为`true`，`while`语句就会执行`statements`语句。示例如下：
+只要`condition`为真值（转换后为`true`的值），`while`语句就会执行`statements`语句。示例如下：
 
 ```typescript
 while (condition) {
   statements
 }
 ```
-
-`condition`必须是逻辑表达式。
 
 示例：
 
@@ -433,15 +427,13 @@ while (n < 3) {
 
 #### `Do-while`语句
 
-在`condition`的值为`false`之前，`statements`语句会重复执行。示例如下：
+如果`condition`的值为真值（转换后为`true`的值），那么`statements`语句会重复执行。示例如下：
 
 ```typescript
 do {
   statements
 } while (condition)
 ```
-
-`condition`必须是逻辑表达式。
 
 示例：
 
@@ -700,14 +692,15 @@ let sum2 = (x: number, y: number) => x + y
 
 ### 闭包
 
-箭头函数通常在另一个函数中定义。作为内部函数，它可以访问外部函数中定义的所有变量和函数。
+闭包是由函数及声明该函数的环境组合而成的。该环境包含了这个闭包创建时作用域内的任何局部变量。
 
-为了捕获上下文，内部函数将其环境组合成闭包，以允许内部函数在自身环境之外的访问。
+在下例中，`z`是执行`f`时创建的`g`箭头函数实例的引用。`g`的实例维持了对它的环境的引用（变量`count`存在其中）。因此，当`z`被调用时，变量`count`仍可用。
 
 ```typescript
 function f(): () => number {
   let count = 0;
-  return (): number => { count++; return count; }
+  let g = (): number => { count++; return count; };
+  return g;
 }
 
 let z = f();
@@ -715,20 +708,17 @@ z(); // 返回：1
 z(); // 返回：2
 ```
 
-在以上示例中，箭头函数闭包捕获`count`变量。
-
 ### 函数重载
 
 我们可以通过编写重载，指定函数的不同调用方式。具体方法为，为同一个函数写入多个同名但签名不同的函数头，函数实现紧随其后。
 
 ```typescript
-function foo(): void;            /* 第一个函数定义 */
-function foo(x: string): void;   /* 第二个函数定义 */
-function foo(x?: string): void { /* 函数实现 */
-  console.log(x);
+function foo(x: number): void;            /* 第一个函数定义 */
+function foo(x: string): void;            /* 第二个函数定义 */
+function foo(x: number | string): void {  /* 函数实现 */
 }
 
-foo();     //  OK，使用第一个定义
+foo(123);     //  OK，使用第一个定义
 foo('aa'); // OK，使用第二个定义
 ```
 
@@ -798,9 +788,9 @@ class Person {
 }
 
 let p1 = new Person('Alice', 25);
-console.log(p1.name);
+p1.name;
 let p2 = new Person('Bob', 28);
-console.log(p2.getName());
+p2.getName();
 ```
 
 #### 静态字段
@@ -962,8 +952,6 @@ square.calculateArea(); // 输出：100
 
 静态方法定义了类作为一个整体的公共行为。
 
-所有实例都可以访问静态方法。
-
 必须通过类名调用静态方法：
 
 ```typescript
@@ -1046,7 +1034,7 @@ class FilledRectangle extends RectangleSize {
     this.color = c;
   }
 
-  override draw() {
+  draw() {
     super.draw(); // 父类方法的调用
     // super.height -可在此处使用
     /* 填充矩形 */
@@ -1056,7 +1044,7 @@ class FilledRectangle extends RectangleSize {
 
 #### 方法重写
 
-子类可以重写其父类中定义的方法的实现。重写的方法可以用关键字`override`标记，以提高可读性。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
+子类可以重写其父类中定义的方法的实现。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
 
 ```typescript
 class RectangleSize {
@@ -1068,7 +1056,7 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   private side: number = 0
-  override area(): number {
+  area(): number {
     return this.side * this.side;
   }
 }
@@ -1080,14 +1068,13 @@ class Square extends RectangleSize {
 
 ```typescript
 class C {
-  foo(): void;            /* 第一个签名 */
-  foo(x: string): void;   /* 第二个签名 */
-  foo(x?: string): void { /* 实现签名 */
-    console.log(x);
+  foo(x: number): void;            /* 第一个签名 */
+  foo(x: string): void;            /* 第二个签名 */
+  foo(x: number | string): void {  /* 实现签名 */
   }
 }
 let c = new C();
-c.foo();     // OK，使用第一个签名
+c.foo(123);     // OK，使用第一个签名
 c.foo('aa'); // OK，使用第二个签名
 ```
 
@@ -1134,22 +1121,19 @@ class Square extends RectangleSize {
 }
 ```
 
-如果构造函数函数体不以父类构造函数的显式调用开始，则构造函数函数体隐式地以父类构造函数调用`super()`开始。
-
 #### 构造函数重载签名
 
 我们可以通过编写重载签名，指定构造函数的不同调用方式。具体方法为，为同一个构造函数写入多个同名但签名不同的构造函数头，构造函数实现紧随其后。
 
 ```typescript
 class C {
-  constructor()             /* 第一个签名 */
-  constructor(x: string)    /* 第二个签名 */
-  constructor(x?: string) { /* 实现签名 */
-    console.log(x);
+  constructor(x: number)             /* 第一个签名 */
+  constructor(x: string)             /* 第二个签名 */
+  constructor(x: number | string) {  /* 实现签名 */
   }
 }
-let c1 = new C();      // OK，使用第一个签名
-let c2 = new C('abc'); // OK，使用第二个签名
+let c1 = new C(123);      // OK，使用第一个签名
+let c2 = new C('abc');    // OK，使用第二个签名
 ```
 
 如果两个重载签名的名称和参数列表均相同，则为错误。
@@ -1495,22 +1479,26 @@ if (x != null) { /* do something */ }
 
 ### 非空断言运算符
 
-后缀运算符`!` 可用于断言其操作数为非空。
+后缀运算符`!`可用于断言其操作数为非空。
 
 应用于空值时，运算符将抛出错误。否则，值的类型将从`T | null`更改为`T`：
 
 ```typescript
-let x: number | null = 1;
-let y: number
-y = x + 1;  // 编译时错误：无法对可空值作加法
-y = x! + 1; // ok
+class C {
+  value: number | null = 1;
+}
+
+let c = new C();
+let y: number;
+y = c.value + 1;  // 编译时错误：无法对可空值作做加法
+y = c.value! + 1; // ok，值为2
 ```
 
 ### 空值合并运算符
 
-空值合并二元运算符`??` 用于检查左侧表达式的求值是否等于null。如果是，则表达式的结果为右侧表达式；否则，结果为左侧表达式。
+空值合并二元运算符`??`用于检查左侧表达式的求值是否等于`null`或者`undefined`。如果是，则表达式的结果为右侧表达式；否则，结果为左侧表达式。
 
-换句话说，`a ?? b`等价于三元运算符`a != null ? a : b`。
+换句话说，`a ?? b`等价于三元运算符`(a != null && a != undefined) ? a : b`。
 
 在以下示例中，`getNick`方法如果设置了昵称，则返回昵称；否则，返回空字符串：
 
@@ -1566,7 +1554,7 @@ class Person {
 }
 
 let p: Person = new Person('Alice');
-console.log(p.spouse?.nick); // 打印undefined
+p.spouse?.nick; // undefined
 ```
 
 ## 模块
@@ -1602,6 +1590,8 @@ export function Distance(p1: Point, p2: Point): number {
 
 ### 导入
 
+#### 静态导入
+
 导入声明用于导入从其他模块导出的实体，并在当前模块中提供其绑定。导入声明由两部分组成：
 
 * 导入路径，用于指定导入的模块；
@@ -1636,6 +1626,44 @@ Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
 ```
 
+#### 动态导入
+应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替静态导入。
+import()语法通常称为动态导入dynamic import，是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
+如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
+
+```typescript
+let modulePath = prompt("Which module to load?");
+import(modulePath)
+.then(obj => <module object>)
+.catch(err => <loading error, e.g. if no such module>)
+```
+
+如果在异步函数中，可以使用let module = await import(modulePath)。
+
+```typescript
+// say.ts
+export function hi() {
+  console.log('Hello');
+}
+export function bye() {
+  console.log('Bye');
+}
+```
+
+那么，可以像下面这样进行动态导入：
+
+```typescript
+async function test() {
+  let ns = await import('./say');
+  let hi = ns.hi;
+  let bye = ns.bye;
+  hi();
+  bye();
+}
+```
+
+更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)
+
 ### 顶层语句
 
 模块可以包含除return语句外的任何模块级语句。
@@ -1644,7 +1672,7 @@ X // 编译时错误：'X'不可见
 
 ### 程序入口
 
-程序（应用）的入口是顶层主函数。 主函数应具有空参数列表或只有`string[]`类型的参数。
+程序（应用）的入口是顶层主函数。主函数应具有空参数列表或只有`string[]`类型的参数。
 
 ```typescript
 function main() {
@@ -1654,11 +1682,11 @@ function main() {
 
 ## ArkUI支持
 
-本节演示AkTS为创建图形用户界面（GUI）程序提供的机制。ArkUI基于TypeScript提供了一系列扩展能力，以声明式地描述应用程序的GUI以及GUI组件间的交互。
+本节演示ArkTS为创建图形用户界面（GUI）程序提供的机制。ArkUI基于TypeScript提供了一系列扩展能力，以声明式地描述应用程序的GUI以及GUI组件间的交互。
 
 
 ### ArkUI示例
 
 [MVVM应用示例](arkts-mvvm.md#mvvm应用示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
 
-有关ArkUI功能的更多详细信息，请参见ArkUI[指导手册](arkts-get-started.md)。
+有关ArkUI功能的更多详细信息，请参见ArkUI[基本语法概述](arkts-basic-syntax-overview.md)。

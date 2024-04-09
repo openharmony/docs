@@ -22,10 +22,10 @@
 
 1. 获取密钥别名、指定对应的属性参数HuksOptions。
 
-   应用在派生密钥时建议传入[OH_Huks_KeyStorageType](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype)中定义的类型：
+   应用在派生密钥时建议传入指定参数TAG：OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG，使用[OH_Huks_KeyStorageType](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype)中定义的类型：
 
-   - HUKS_STORAGE_ONLY_USED_IN_HUKS：表示协商出的密钥仅在HUKS内使用。
-   - HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示不在HUKS内存储，协商后直接导出。
+   - OH_HUKS_STORAGE_ONLY_USED_IN_HUKS：表示协商出的密钥仅在HUKS内使用。
+   - OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示不在HUKS内存储，协商后直接导出。
    - 若不传入，则默认同时支持存储和导出，存在安全风险，不推荐业务使用。
 
 2. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
@@ -123,7 +123,7 @@ static const uint32_t COMMON_SIZE = 2048;
 static const char *g_deriveInData = "Hks_HKDF_Derive_Test_00000000000000000000000000000000000000000000000000000000000"
                                     "00000000000000000000000000000000000000000000000000000000000000000000000000000000"
                                     "0000000000000000000000000000000000000000000000000000000000000000000000000_string";
-static napi_value DeriveKey(napi_env env, napi_callback_info info) 
+static napi_value DeriveKey(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_Blob genAlias = {
         (uint32_t)strlen("test_signVerify"),
@@ -142,18 +142,18 @@ static napi_value DeriveKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        
+
         ohResult = InitParamSet(&hkdfParamSet, g_hkdfParams, sizeof(g_hkdfParams) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
            break;
-        } 
-        
+        }
+
         // finish paramset
         ohResult = InitParamSet(&hkdfFinishParamSet, g_hkdfFinishParams, sizeof(g_hkdfFinishParams) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        
+
         /* 1. Generate Key */
         ohResult = OH_Huks_GenerateKeyItem(&genAlias, genParamSet, nullptr);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
@@ -184,7 +184,7 @@ static napi_value DeriveKey(napi_env env, napi_callback_info info)
     OH_Huks_FreeParamSet(&genParamSet);
     OH_Huks_FreeParamSet(&hkdfParamSet);
     OH_Huks_FreeParamSet(&hkdfFinishParamSet);
-    
+
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;

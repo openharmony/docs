@@ -32,7 +32,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -69,7 +69,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -105,7 +105,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -140,7 +140,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -160,7 +160,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>;
 
-获取应用程序的内存大小。
+获取当前应用程序可以使用的内存的值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -168,7 +168,7 @@ getAppMemorySize(): Promise\<number>;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | Promise&lt;number&gt; | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。| 
 
 **错误码**：
 
@@ -176,7 +176,7 @@ getAppMemorySize(): Promise\<number>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -195,7 +195,7 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void;
 
-获取应用程序的内存大小。
+获取当前应用程序可以使用的内存的值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -203,7 +203,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 |以回调方式返回接口运行结果及应用程序内存大小，可进行错误处理或其他自定义处理。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 |获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。| 
 
 **错误码**：
 
@@ -211,7 +211,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -253,7 +253,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -294,7 +294,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

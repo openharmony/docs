@@ -8,7 +8,7 @@ During application development, you may need to use different resources, such as
 
 ## Resource Categories
 
-Resource files used during application development must be stored in specified directories for management. There are two types of resource directories, namely, resource directories and resource group directories. The resource directories are the **base**, qualifiers, and **rawfile** directories. The resource group directories are the **element**, **media**, and **profile** directories.
+Resource files used during application development must be stored in specified directories for management. There are two types of resource directories, namely, resource directories and resource group directories. The resource directories are the **base**, qualifiers, **rawfile**, and **resfile** directories. The resource group directories are the **element**, **media**, and **profile** directories.
 
 > **NOTE**
 >
@@ -46,6 +46,7 @@ resources
 |   |---profile
 |   |   |---test_profile.json
 |---rawfile // Other types of files are saved as raw files and will not be integrated into the resources.index file. You can customize the file name as needed.
+|---resfile // Other types of files are saved as raw files and will not be integrated into the resources.index file. You can customize the file name as needed.
 ```
 ### Resource Directories
 
@@ -85,6 +86,10 @@ Table 2 Requirements for qualifier values
 
 You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. The subdirectories are referenced based on the specified file path and file name.
 
+#### resfile Directory
+
+You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After an application is installed, the **resfile** directory is decompressed to the application sandbox path. You can obtain the path through the [resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#attributes) attribute of **Context**.
+
 ### Resource Group Directories
 
 Resource group directories include **element**, **media**, and **profile**, which are used to store resource files of specific types.
@@ -95,7 +100,7 @@ Resource group directories include **element**, **media**, and **profile**, whic
 | --------- | ---------------------------------------- | ---------------------------------------- |
 | element | Element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating-point data<br>- **intarray**: array of integers<br>- **integer**: integer data<br>- **pattern**: pattern data<br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string data| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>-&nbsp;boolean.json<br>-&nbsp;color.json<br>-&nbsp;float.json<br>-&nbsp;intarray.json<br>-&nbsp;integer.json<br>-&nbsp;pattern.json<br>-&nbsp;plural.json<br>-&nbsp;strarray.json<br>-&nbsp;string.json |
 | media   | Indicates media resources, including non-text files such as images, audios, and videos. (Only files are supported in this directory.)<br>Table 4 and Table 5 describe the types of images, audios, and videos.             | The file name can be customized, for example, **icon.png**.                    |
-| profile  | Indicates a custom configuration file. You can obtain the file content by using the [getProfileByAbility](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability) API. (Only files are supported in this directory.)      | The file name can be customized, for example, **test_profile.json**.          |
+| profile  | Indicates a custom configuration file. You can obtain the file content by using the [getProfileByAbility](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability) API. (Only files are supported in this directory.)      | The file name can be customized, for example, **test_profile.json**.          |
 
 **Media Resource Types**
 
@@ -114,10 +119,7 @@ Table 5 Audio and video resource types
 
 | Format                                  | File Name Extension        |
 | ------------------------------------ | --------------- |
-| H.263                                | .3gp <br>.mp4   |
 | H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4   |
-| MPEG-4 SP                            | .3gp            |
-| VP8                                  | .webm <br> .mkv |
 
 **Resource File Examples**
 
@@ -234,13 +236,15 @@ Right-click a directory under **resources** and choose **New** > **XXX Resource 
 
 - When referencing resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the rawfile subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
-- To obtain the descriptor of a file in the **rawfile** subdirectory, you can use the [getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9) API, whose return value **descriptor.fd** is the file descriptor (FD). To access the file with this FD, use {fd, offset, length}.
+- To obtain the descriptor of a file in the **rawfile** subdirectory, you can use the [getRawFd](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9) API, whose return value **descriptor.fd** is the file descriptor (FD). To access the file with this FD, use {fd, offset, length}.
+
+- The **resfile** directory provides only resource paths. To operate the resources, go to the respective paths.
 
 > **NOTE**
 > 
 > Resource descriptors accept only strings, such as **'app.type.name'**, and cannot be combined.
 >
-> The return value of **$r** is a **Resource** object. You can obtain the corresponding string by using the [getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) API.
+> The return value of **$r** is a **Resource** object. You can obtain the corresponding string by using the [getStringValue](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringvalue9) API.
 
 As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and** plural.json**.<br>The usage is as follows:
 
@@ -324,11 +328,11 @@ Overylay is a resource replacement mechanism. With overlay resource packages, yo
 
 1. Place the overlay resource package in the target application installation path. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
 
-2. The application uses [addResource(path)](../reference/apis/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().BundleCodeDir**) and the HSP name of the resource. For example, **let path = getContext().bundleCodeDir + "HSP name"**, such as **/data/storage/el1/bundle/enter-release-signed.hsp**.
+2. The application uses [addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().BundleCodeDir**) and the HSP name of the resource. For example, **let path = getContext().bundleCodeDir + "HSP name"**, such as **/data/storage/el1/bundle/enter-release-signed.hsp**.
 
 - Using overlay in static mode
 
 If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority** fields during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase. Modules with the overlay feature generally provide an overlay resource file for other modules on the device, so that the module specified by **targetModuleName** can display different colors, labels, themes, and the like by using the overlay resource file in a running phase.
 
-The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis/js-apis-overlay.md).
+The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis-ability-kit/js-apis-overlay.md).
 

@@ -35,7 +35,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |  [Want](../apis/js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |  [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 
@@ -81,7 +81,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |  [Want](../apis/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |  [Want](../apis-ability-kit/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **返回值：**
 
@@ -152,7 +152,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](../apis/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
+| want |[Want](../apis-ability-kit/js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
 **示例：**
 

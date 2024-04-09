@@ -106,7 +106,7 @@ Web组件的onUrlLoadIntercept的不同返回结果对应不同的操作：
 
 **参考链接**
 
-[onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated)
+[onUrlloadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
 
 ## 为什么Web组件的onKeyEvent键盘事件不生效(API 9)
@@ -121,7 +121,7 @@ onKeyEvent为通用事件，当前Web组件不支持通用事件。Web组件监�
 
 **参考链接**
 
-[onInterceptKeyEvent](../reference/arkui-ts/ts-basic-components-web.md#oninterceptkeyevent9)
+[onInterceptKeyEvent](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyevent9)
 
 
 ## onInterceptRequest拦截URL并自定义HTML文件，页面加载失败(API 9)
@@ -158,7 +158,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[WebResourceResponse](../reference/arkui-ts/ts-basic-components-web.md#webresourceresponse)
+[WebResourceResponse](../reference/apis-arkweb/ts-basic-components-web.md#webresourceresponse)
 
 
 ## 如何在ArkTS代码中执行HTML内的JS函数(API 9)
@@ -172,7 +172,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[runJavaScript](../reference/apis/js-apis-webview.md#runjavascript)
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascript)
 
 
 ## 使用Web组件加载本地网页时，如何在本地网页中调用ArkTS中的函数(API 9)
@@ -247,7 +247,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)
+[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)
 
 
 ## Web组件domStorageAccess属性设置(API 9)
@@ -258,7 +258,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[domStorageAccess](../reference/arkui-ts/ts-basic-components-web.md#domstorageaccess)
+[domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess)
 
 
 ## 如何解决Web组件加载的HTML页面内检测网络状态失败(API 9)
@@ -316,7 +316,7 @@ struct Index {
 
 **参考链接**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
 
 
 ## Web组件中如何通过手势滑动返回上一个Web页面(API 9)
@@ -354,7 +354,7 @@ struct Index {
 
 **参考链接**
 
-[accessStep](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
 
 
 ## WebView支持同层渲染吗(API 10)
@@ -397,7 +397,7 @@ setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用Dev
 
 **参考链接**
 
-[runJavaScript](../reference/apis/js-apis-webview.md#runjavascriptext10)、[registerJavaScriptProxy](../reference/apis/js-apis-webview.md#registerjavascriptproxy)、[javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)、[onInterceptRequest](../reference/arkui-ts/ts-basic-components-web.md#oninterceptrequest9)
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)、[registerJavaScriptProxy](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)、[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)、[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)
 
 
 ## WebView进程模型和渲染机制是什么(API 11)

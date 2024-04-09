@@ -90,9 +90,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onUpdateForm
 
-onUpdateForm(formId: string): void
+onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-卡片提供方接收更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -101,6 +101,7 @@ onUpdateForm(formId: string): void
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | formId | string | 是   | 请求更新的卡片ID。 |
+| wantParams<sup>12+</sup> | Record<string, Object> | 否   | 更新参数。 |
 
 **示例：**
 
@@ -111,8 +112,9 @@ import formProvider from '@ohos.app.form.formProvider';
 import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onUpdateForm(formId: string) {
-    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId}`);
+  onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
+    console.log(`FormExtensionAbility onUpdateForm, formId: ${formId},
+        wantPara: ${wantParams?.['ohos.extra.param.key.host_bg_inverse_color']}`);
     let param: Record<string, string> = {
       'temperature': '22c',
       'time': '22:00'
@@ -246,7 +248,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](../apis/js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
+| newConfig | [Configuration](../apis-ability-kit/js-apis-application-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
 
@@ -290,4 +292,24 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     return formInfo.FormState.UNKNOWN;
   }
 };
+```
+
+## onStop<sup>12+</sup>
+
+onStop?(): void
+
+当卡片提供方的卡片进程退出时，触发该回调。
+  
+**系统能力** SystemCapability.Ability.Form
+
+**示例：**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onStop() {
+    console.log(`FormExtensionAbility onStop`);
+  }
+}
 ```

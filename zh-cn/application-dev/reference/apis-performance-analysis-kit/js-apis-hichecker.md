@@ -22,7 +22,7 @@ import hichecker from '@ohos.hichecker';
 | 名称                               | 参数类型 | 说明                                                   |
 | ---------------------------------- | -------- | ------------------------------------------------------ |
 | RULE_CAUTION_PRINT_LOG             | bigint   | 告警规则，当有告警时记录日志。                         |
-| RULE_CAUTION_TRIGGER_CRASH         | bigint   | 告警规则，当有告警时让应用推出。                       |
+| RULE_CAUTION_TRIGGER_CRASH         | bigint   | 告警规则，当有告警时让应用退出。                       |
 | RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | 检测规则，检测是否有耗时函数被调用。                   |
 | RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | 检测规则，检测是否发生ability泄露。                    |
 

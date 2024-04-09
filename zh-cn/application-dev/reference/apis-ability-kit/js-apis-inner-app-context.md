@@ -15,7 +15,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 ## 使用说明
 
-Context对象是在featureAbility中创建实例，并通过featureAbility的[getContext](../apis/js-apis-ability-featureAbility.md#featureabilitygetcontext)接口返回，因此在使用Context时，必须导入@ohos.ability.featureAbility库。示例如下：
+Context对象是在featureAbility中创建实例，并通过featureAbility的[getContext](js-apis-ability-featureAbility.md#featureabilitygetcontext)接口返回，因此在使用Context时，必须导入@ohos.ability.featureAbility库。示例如下：
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
@@ -99,7 +99,7 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 | 参数名         | 类型                                      | 必填   | 说明                   |
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | 是    | 指定权限的名称。             |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | 是    | 权限选项。                |
+| options    | [PermissionOptions](#permissionoptions7) | 是    | 权限选项。                |
 | callback   | AsyncCallback\<number>                  | 是    | 返回权限验证结果，0有权限，-1无权限。 |
 
 **示例：**
@@ -120,7 +120,7 @@ bundle.getBundleInfo('com.context.test', 1, (err: BusinessError, datainfo: bundl
     });
 });
 ```
-示例代码中出现的getBundleInfo相关描述可参考对应[文档](../apis/js-apis-bundleManager.md)。
+示例代码中出现的getBundleInfo相关描述可参考对应[文档](js-apis-bundleManager.md)。
 
 
 
@@ -167,7 +167,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 | 参数名         | 类型                                      | 必填   | 说明       |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | 是    | 指定权限的名称。 |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | 否    | 权限选项。    |
+| options    | [PermissionOptions](#permissionoptions7) | 否    | 权限选项。    |
 
 **返回值：**
 
@@ -190,7 +190,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)>): void
 
 从系统请求某些权限（callback形式）。
 
@@ -202,7 +202,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | 是    | 指示要请求的权限列表。此参数不能为null。              |
 | requestCode    | number                                   | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
-| resultCallback | AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
 
 **示例：**
 
@@ -230,7 +230,7 @@ context.requestPermissionsFromUser(
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)>
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](#permissionrequestresult7)>
 
 从系统请求某些权限（promise形式）。
 
@@ -247,7 +247,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Pr
 
 | 类型                                                           | 说明             |
 | ------------------------------------------------------------- | ---------------- |
-| Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)> | 返回授权结果信息。 |
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | 返回授权结果信息。 |
 
 **示例：**
 
@@ -281,7 +281,7 @@ getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
 | 参数名       | 类型                              | 必填   | 说明           |
 | -------- | ------------------------------- | ---- | ------------ |
-| callback | AsyncCallback\<[ApplicationInfo](../apis/js-apis-bundleManager-applicationInfo.md)> | 是    | 返回当前应用程序的信息。 |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是    | 返回当前应用程序的信息。 |
 
 **示例：**
 
@@ -312,7 +312,7 @@ getApplicationInfo(): Promise\<ApplicationInfo>
 
 | 类型                        | 说明        |
 | ------------------------- | --------- |
-| Promise\<[ApplicationInfo](../apis/js-apis-bundle-ApplicationInfo.md)> | 当前应用程序的信息 |
+| Promise\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 当前应用程序的信息 |
 
 **示例：**
 
@@ -395,7 +395,7 @@ getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 
 | 参数名     | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[bundle.DisplayOrientation](../apis/js-apis-bundleManager.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
 
 **示例：**
 
@@ -424,7 +424,7 @@ getDisplayOrientation(): Promise\<bundle.DisplayOrientation>
 
 | 类型                                       | 说明        |
 | ---------------------------------------- | --------- |
-| Promise\<[bundle.DisplayOrientation](../apis/js-apis-bundleManager.md#displayorientation)> | 表示屏幕显示方向。 |
+| Promise\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | 表示屏幕显示方向。 |
 
 **示例：**
 
@@ -505,7 +505,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 | 参数名          | 类型                                       | 必填   | 说明           |
 | ----------- | ---------------------------------------- | ---- | ------------ |
-| orientation | [bundle.DisplayOrientation](../apis/js-apis-bundleManager.md#displayorientation) | 是    | 指示当前能力的新方向。 |
+| orientation | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | 是    | 指示当前能力的新方向。 |
 | callback    | AsyncCallback\<void> | 是    | 表示屏幕显示方向。    |
 
 **示例：**
@@ -531,9 +531,9 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
 **参数：**
 
-| 类型                                       | 类型                                       | 必填   | 说明                                       |
+| 参数名                                       | 类型                                       | 必填   | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
-| orientation                              | [bundle.DisplayOrientation](../apis/js-apis-bundleManager.md#displayorientation) | 是    | 表示屏幕显示方向。                                |
+| orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | 是    | 表示屏幕显示方向。                                |
 
 **返回值：**
 
@@ -559,7 +559,7 @@ context.setDisplayOrientation(orientation).then((data) => {
 setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（callback形式）。
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis/js-apis-window.md#setshowonlockscreen9)替代。
+> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -587,7 +587,7 @@ context.setShowOnLockScreen(show, (error) => {
 setShowOnLockScreen(show: boolean): Promise\<void>
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（Promise形式）。
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis/js-apis-window.md#setshowonlockscreen9)替代。
+> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -689,7 +689,7 @@ getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
 | 参数名       | 类型                          | 必填   | 说明         |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[ProcessInfo](../apis/js-apis-inner-app-processInfo.md)> | 是    | 返回当前进程的信息。 |
+| callback | AsyncCallback\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | 是    | 返回当前进程的信息。 |
 
 **示例：**
 
@@ -720,7 +720,7 @@ getProcessInfo(): Promise\<ProcessInfo>
 
 | 类型                    | 说明      |
 | --------------------- | ------- |
-| Promise\<[ProcessInfo](../apis/js-apis-inner-app-processInfo.md)> | 当前进程的信息 |
+| Promise\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | 当前进程的信息 |
 
 **示例：**
 
@@ -749,7 +749,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 | 参数名       | 类型                          | 必填   | 说明                                     |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](../apis/js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundleManager.ElementName对象。 |
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -782,7 +782,7 @@ getElementName(): Promise\<ElementName>
 
 | 类型                    | 说明                                   |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](../apis/js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundleManager.ElementName对象。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -1141,7 +1141,7 @@ getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
 | 参数名       | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](../apis/js-apis-bundleManager-hapModuleInfo.md)> | 是    | 返回应用的ModuleInfo对象。 |
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | 是    | 返回应用的ModuleInfo对象。 |
 
 **示例：**
 
@@ -1170,7 +1170,7 @@ getHapModuleInfo(): Promise\<HapModuleInfo>
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](../apis/js-apis-bundleManager-hapModuleInfo.md)> | 返回应用的ModuleInfo对象。 |
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | 返回应用的ModuleInfo对象。 |
 
 **示例：**
 
@@ -1195,7 +1195,7 @@ getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
 | 参数名       | 类型                                       | 必填   | 说明                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[AppVersionInfo](../apis/js-apis-inner-app-appVersionInfo.md)> | 是    | 返回应用版本信息。 |
+| callback | AsyncCallback\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | 是    | 返回应用版本信息。 |
 
 **示例：**
 
@@ -1224,7 +1224,7 @@ getAppVersionInfo(): Promise\<AppVersionInfo>
 
 | 类型                                       | 说明        |
 | ---------------------------------------- | --------- |
-| Promise\<[AppVersionInfo](../apis/js-apis-inner-app-appVersionInfo.md)> | 返回应用版本信息。 |
+| Promise\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | 返回应用版本信息。 |
 
 **示例：**
 
@@ -1249,7 +1249,7 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
 | 参数名       | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md)> | 是    | 返回当前归属Ability详细信息。 |
+| callback | AsyncCallback\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | 是    | 返回当前归属Ability详细信息。 |
 
 **示例：**
 
@@ -1278,7 +1278,7 @@ getAbilityInfo(): Promise\<AbilityInfo>
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Promise\<[AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md)> | 返回当前归属Ability详细信息。 |
+| Promise\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | 返回当前归属Ability详细信息。 |
 
 **示例：**
 

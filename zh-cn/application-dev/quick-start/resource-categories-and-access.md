@@ -73,10 +73,10 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 限定词类型       | 含义与取值说明                                  |
 | ----------- | ---------------------------------------- |
-| 移动国家码和移动网络码 | 移动国家码（MCC）和移动网络码（MNC）的值取自设备注册的网络。<br/>MCC可与MNC合并使用，使用下划线（_）连接，也可以单独使用。例如：mcc460表示中国，mcc460_mnc00表示中国_中国移动。<br/>详细取值范围，请查阅**ITU-T&nbsp;E.212**（国际电联相关标准）。 |
-| 语言          | 表示设备使用的语言类型，由2~3个小写字母组成。例如：zh表示中文，en表示英语，mai表示迈蒂利语。<br/>详细取值范围，请查阅**ISO&nbsp;639**（ISO制定的语言编码标准）。 |
-| 文字          | 表示设备使用的文字类型，由1个大写字母（首字母）和3个小写字母组成。例如：Hans表示简体中文，Hant表示繁体中文。<br/>详细取值范围，请查阅**ISO&nbsp;15924**（ISO制定的文字编码标准）。 |
-| 国家或地区       | 表示用户所在的国家或地区，由2~3个大写字母或者3个数字组成。例如：CN表示中国，GB表示英国。<br/>详细取值范围，请查阅**ISO&nbsp;3166-1**（ISO制定的国家和地区编码标准）。 |
+| 移动国家码和移动网络码 | 移动国家码（MCC）和移动网络码（MNC）的值取自设备注册的网络。<br/>MCC可与MNC合并使用，使用下划线（_）连接，也可以单独使用。例如：mcc460表示中国，mcc460_mnc00表示中国_中国移动。<br/>详细取值范围，请查阅[**ITU-T&nbsp;E.212**](https://www.itu.int/rec/T-REC-E.212)（国际电联相关标准）。 |
+| 语言          | 表示设备使用的语言类型，由2~3个小写字母组成。例如：zh表示中文，en表示英语，mai表示迈蒂利语。<br/>详细取值范围，请查阅[**ISO&nbsp;639**](https://www.iso.org/iso-639-language-code)（ISO制定的语言编码标准）。 |
+| 文字          | 表示设备使用的文字类型，由1个大写字母（首字母）和3个小写字母组成。例如：Hans表示简体中文，Hant表示繁体中文。<br/>详细取值范围，请查阅[**ISO&nbsp;15924**](https://www.iso.org/standard/81905.html)（ISO制定的文字编码标准）。 |
+| 国家或地区       | 表示用户所在的国家或地区，由2~3个大写字母或者3个数字组成。例如：CN表示中国，GB表示英国。<br/>详细取值范围，请查阅[**ISO&nbsp;3166-1**](https://www.iso.org/iso-3166-country-codes.html)（ISO制定的国家和地区编码标准）。 |
 | 横竖屏         | 表示设备的屏幕方向，取值如下：<br/>-&nbsp;vertical：竖屏<br/>-&nbsp;horizontal：横屏 |
 | 设备类型        | 表示设备的类型，取值如下：<br/>-&nbsp;car：车机<br/>-&nbsp;tablet：平板<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴 |
 | 颜色模式        | 表示设备的颜色模式，取值如下：<br/>-&nbsp;dark：深色模式<br/>-&nbsp;light：浅色模式 |
@@ -92,14 +92,14 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 ### 资源组目录
 
-资源组目类型包括element、media、profile，用于存放特定类型的资源文件。
+资源组目录包括element、media、profile三种类型的资源文件，用于存放特定类型资源。
 
   表3 资源组目录说明
 
 | 目录类型    | 说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
-| media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明间表4和表5。              | 文件名可自定义，例如：icon.png。                     |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是-2^128-2^128<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是-2^31-2^31-1<br/>-&nbsp;pattern，样式（仅支持系统应用使用）<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 <br/>-&nbsp;theme，主题（仅支持系统应用使用）| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明见表4和表5。              | 文件名可自定义，例如：icon.png。                     |
 | profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
 **媒体资源类型说明**
@@ -119,15 +119,12 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 格式                                   | 支持的文件类型         |
 | ------------------------------------ | --------------- |
-| H.263                                | .3gp <br>.mp4   |
-| H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4   |
-| MPEG-4 SP                            | .3gp            |
-| VP8                                  | .webm <br> .mkv |
+| H.264 AVC |.3gp |
+| Baseline Profile (BP) | .mp4   |
 
 **资源文件示例**
 
 color.json文件的内容如下：
-
 
 ```json
 {
@@ -146,7 +143,6 @@ color.json文件的内容如下：
 
 float.json文件的内容如下：
 
-
 ```json
 {
     "float":[
@@ -163,7 +159,6 @@ float.json文件的内容如下：
 ```
 
 string.json文件的内容如下：
-
 
 ```json
 {
@@ -185,7 +180,6 @@ string.json文件的内容如下：
 ```
 
 plural.json文件的内容如下：
-
 
 ```json
 {
@@ -231,53 +225,141 @@ plural.json文件的内容如下：
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
+## 资源可翻译特性
+### 功能介绍
+资源需要翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
+
+未配置attr属性，默认需要翻译。
+```
+"attr": {
+  "translatable": false|true
+  "priority": "code|translate|LT|customer"
+}
+```
+**attr支持属性**
+
+| 名称        | 类型                    |  说明   |
+| --------- | ----------------------- |  ---- |
+| translatable |  boolean |  标记字符串是否需要翻译。 <br>  true：需要翻译。 <br> false：不需要翻译。|
+| priority    | string   |  标记字符串翻译状态。<br>code：未翻译。<br>translate：翻译未验证。<br>LT：翻译已验证。<br>customer：用户定制字符串。   |
+
+### 使用约束
+可翻译特性使能范围：base目录下string、strarray、plural类型资源。
+```
+resources
+|---base
+|   |---element
+|   |   |---string.json
+|   |   |---strarray.json
+|   |   |---plural.json
+```
+### 示例
+string资源配置attr属性示例如下：
+
+```json
+{
+  "string": [
+    {
+      "name": "string1",
+      "value": "1",
+      "attr": {
+        "translatable": false
+      }
+    },
+    {
+      "name": "string2",
+      "value": "Hello world!",
+      "attr": {
+        "translatable": true,
+        "priority": "LT"
+      }
+    }
+  ]
+}
+```
+
 ## 资源访问
 
-### 应用资源
+### 单HAP包应用资源
 
-- 对于应用资源，在工程中，通过```"$r('app.type.name')"```形式引用。其中，app为应用内resources目录中定义的资源；type为资源类型或资源的存放位置，取值包含“color”、“float”、“string”、“plural”、“media”；name为资源命名，由开发者定义资源时确定。
+ - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
-- 对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
+   > **说明：**
+   >
+   > rawfile的native的访问方式请参考[Rawfile开发指导](../napi/rawfile-guidelines.md)。
 
-- 对于rawfile目录的descriptor，可通过资源管理的[getRawFd](../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)接口引用，其返回值descriptor.fd为hap包的fd。此时，访问rawfile文件需要结合{fd, offset, length}一起使用。
+  [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
-- 对于resfile目录资源，只提供资源目录获取，可直接通过资源路径操作文件。
+  ```ts
+    Text('Hello')
+    .fontColor($r('sys.color.ohos_id_color_emphasize'))
+    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
 
-> **说明：**
-> 
-> 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
->
-> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
+    Image($r('sys.media.ohos_app_icon'))
+    .border({
+      color: $r('sys.color.ohos_id_color_palette_aux1'),
+      radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+    })
+    .margin({
+      top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
+      bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+    })
+    .height(200)
+    .width(300)
+  ```
 
-[资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
+- 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
-```ts
-Text($r('app.string.string_hello'))
-  .fontColor($r('app.color.color_hello'))
-  .fontSize($r('app.float.font_hello'))
+### 跨HAP/HSP包应用资源
 
-Text($r('app.string.string_world'))
-  .fontColor($r('app.color.color_world'))
-  .fontSize($r('app.float.font_world'))
+#### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-// 引用string.json资源。Text中$r的第一个参数指定string资源，第二个参数用于替换string.json文件中的%s。
-// 如下示例代码value为"We will arrive at five of the clock"。
-Text($r('app.string.message_arrive', "five of the clock"))
-  .fontColor($r('app.color.color_hello'))
-  .fontSize($r('app.float.font_hello'))
+- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
-// 引用plural$资源。Text中$r的第一个指定plural资源，第二个参数用于指定单复数（在中文，单复数均使用other。在英文，one：代表单数，取值为1；other：代表复数，取值为大于等于1的整数），第三个参数用于替换%d
-// 如下示例代码为复数，value为"5 apples"。
-Text($r('app.plural.eat_apple', 5, 5))
-  .fontColor($r('app.color.color_world'))
-  .fontSize($r('app.float.font_world'))
+#### bundle相同，跨module访问
 
-Image($r('app.media.my_background_image'))  // media资源的$r引用
+- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
-Image($rawfile('test.png'))                 // rawfile$r引用rawfile目录下图片
+- 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
 
-Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下图片
-```
+  1.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
+  
+    ```ts
+      Text($r('[hsp].string.test_string'))
+        .fontSize($r('[hsp].float.font_size'))
+        .fontColor($r('[hsp].color.font_color'))  
+      Image($rawfile('[hsp].icon.png'))
+    ```
+  2.使用变量获取资源。示例如下：
+
+   ```ts
+    @Entry
+    @Component
+    struct Index {
+      text: string = '[hsp].string.test_string';
+      fontSize: string = '[hsp].float.font_size';
+      fontColor: string = '[hsp].color.font_color';
+      image: string = '[hsp].media.string';
+      rawfile: string = '[hsp].icon.png';
+  
+      build() {
+        Row() {
+          Text($r(this.text))
+            .fontSize($r(this.fontSize))
+            .fontColor($r(this.fontColor))
+  
+          Image($r(this.image))
+  
+          Image($rawfile(this.rawfile))
+        }
+      }
+    }
+   ```
+  > **说明** 
+  >
+  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如```"\$rawfile('[hsp].oneFile/twoFile/icon.png')"```，使用```"$r"```和```"$rawfile"```跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
 
 ### 系统资源
 
@@ -290,6 +372,8 @@ Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下�
 > - 仅声明式开发范式支持使用系统资源。
 >
 > - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+>
+> - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
 ```ts
 Text('Hello')
@@ -325,15 +409,48 @@ Image($r('sys.media.ohos_app_icon'))
 
 **overlay机制**
 
-overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。
+overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
 
 - 动态overlay使用方式
 
-1、对应的overlay资源包需要放在对应应用安装路径下。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
+1、对应的overlay资源包需要放在对应应用安装路径下，通过hdc install的方式安装。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
 
 - 静态overlay配置方式
+
+包内overlay资源包中的配置文件module.json5中支持的字段：
+```{
+  "app":{
+    "bundleName": "com.example.myapplication.overlay",
+    "vendor" : "example",
+    "versinCode": "1000000",
+    "versionName": "1.0.0.1",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+  },
+  "module":{
+    "name": "entry_overlay_module_name",
+    "type": "shared",
+    "description": "$string:entry_overlay_desc",
+    "deviceTypes": [
+      "default",
+      "tablet",
+    ],
+    "deliverywithInstall": true,
+
+    "targetModuleName": "entry_module_name",
+    "targetPriority": 1,
+  }
+}
+```
+> **说明：**
+>
+> - targetModuleName: 字符串类型，指定要overlay的moduleName
+>
+> - targetPriority： 整数类型，指定overlay优先级
+>
+> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
 
 在IDE中创建应用工程时，module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，以便于targetModuleName指向的module在运行阶段可以使用overlay资源文件展示不同的颜色，标签，主题等等。
 

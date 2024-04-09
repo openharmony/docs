@@ -28,15 +28,15 @@ The preference persistent file of an application is stored in the application sa
 
 ## Available APIs
 
-The following table lists the APIs used for persisting user preference data. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
+The following table lists the APIs used for persisting user preference data. For more information about the APIs, see [User Preferences](../reference/apis-arkdata/js-apis-data-preferences.md).
 
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br> An asynchronous API is also provided.                   |
+| getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.                   |
 | putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data. |
-| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br>An asynchronous API is also provided.|
-| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br>An asynchronous API is also provided.|
-| deleteSync(key: string): void                                | Deletes a KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br>An asynchronous API is also provided.|
+| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
+| getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
+| deleteSync(key: string): void                                | Deletes a KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
 | flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence.|
 | on(type: 'change', callback: Callback&lt;string&gt;): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.|
 | off(type: 'change', callback?: Callback&lt;string&gt;): void | Unsubscribes from data changes.                                          |
@@ -54,35 +54,35 @@ The following table lists the APIs used for persisting user preference data. For
 2. Obtain a **Preferences** instance. Read data from a file and load the data to a **Preferences** instance for data operations.
 
    Stage model:
-   
+
+
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-      import { BusinessError } from '@ohos.base';
-      import window from '@ohos.window';
-   
-      let preferences: dataPreferences.Preferences | null = null;
-   
-      class EntryAbility extends UIAbility {
-        onWindowStageCreate(windowStage: window.WindowStage) {
-          let options: dataPreferences.Options = { name: 'myStore' };
-          preferences = dataPreferences.getPreferencesSync(this.context, options);
-        }
-      }
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
+
+   let preferences: dataPreferences.Preferences | null = null;
+
+   class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       let options: dataPreferences.Options = { name: 'myStore' };
+       preferences = dataPreferences.getPreferencesSync(this.context, options);
+     }
+   }
    ```
-   
+
    FA model:
-   
+
+
    ```ts
    // Obtain the context.
-      import featureAbility from '@ohos.ability.featureAbility';
-      import { BusinessError } from '@ohos.base';
-      
-      let context = featureAbility.getContext();
-      let options: dataPreferences.Options =  { name: 'myStore' };
-      let preferences: dataPreferences.Preferences = dataPreferences.getPreferencesSync(context, options);
+   import featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@ohos.base';
+   
+   let context = featureAbility.getContext();
+   let options: dataPreferences.Options =  { name: 'myStore' };
+   let preferences: dataPreferences.Preferences = dataPreferences.getPreferencesSync(context, options);
    ```
-   
-   
 
 3. Write data.
 
@@ -119,26 +119,24 @@ The following table lists the APIs used for persisting user preference data. For
    let val = preferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // If the value is a string containing special characters, it is stored in the Uint8Array format. Conver the obtained Uint8Array into a string.
-   let uInt8Array : data_preferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
-   val = new util.TextDecoder().decode(uInt8Array as Uint8Array);
+   let uInt8Array : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   let textDecoder = util.TextDecoder.create('utf-8');
+   val = textDecoder.decodeWithStream(uInt8Array as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
 4. Delete data.
 
    Use **deleteSync()** to delete a KV pair.<br>Example:
-   
+
+
    ```ts
    preferences.deleteSync('startup');
    ```
-   
-   
 
 6. Persist data.
 
-   You can use **flush()** to persist the data held in a **Preferences** instance to a file. 
-
-   Example:
+   You can use **flush()** to persist the data held in a **Preferences** instance to a file.<br>Example:
 
    ```ts
    preferences.flush((err: BusinessError) => {
@@ -150,13 +148,9 @@ The following table lists the APIs used for persisting user preference data. For
    })
    ```
 
-   
-
 7. Subscribe to data changes.
 
-   Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data. 
-
-   Example:
+   Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.<br>Example:
 
    ```ts
    let observer = (key: string) => {
@@ -182,8 +176,6 @@ The following table lists the APIs used for persisting user preference data. For
    })
    ```
 
-   
-
 8. Delete a **Preferences** instance from the memory.
 
    Use **deletePreferences()** to delete a **Preferences** instance from the memory. If the **Preferences** instance has a persistent file, the persistent file and its backup and corrupted files will also be deleted.
@@ -191,13 +183,13 @@ The following table lists the APIs used for persisting user preference data. For
    > **NOTE**
    >
    > - The deleted **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
-   >
+   > 
    > - The deleted data and files cannot be restored.
 
    Example:
-
+   
    ```ts
-    let options: dataPreferences.Options = { name: 'myStore' };
+   let options: dataPreferences.Options = { name: 'myStore' };
         dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
           if (err) {
             console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
@@ -206,5 +198,5 @@ The following table lists the APIs used for persisting user preference data. For
           console.info('Succeeded in deleting preferences.');
       })
    ```
-
+   
    

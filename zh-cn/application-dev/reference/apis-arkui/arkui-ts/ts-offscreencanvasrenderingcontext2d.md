@@ -2072,6 +2072,51 @@ clip(path:Path2D, fillRule?: CanvasFillRule): void
 
   ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
 
+
+### reset<sup>12+</sup>
+
+reset(): void
+
+将OffscreenCanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Reset {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.fillStyle = '#0000ff'
+            offContext.fillRect(20, 20, 150, 100)
+            offContext.reset()
+            offContext.fillRect(20, 150, 150, 100)
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
+
+
 ### resetTransform
  
 resetTransform(): void
@@ -2494,7 +2539,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 | 参数    | 类型                                       | 必填   | 默认值  | 描述                            |
 | ----- | ---------------------------------------- | ---- | ---- | ----------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
 | sx    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值，单位：vp。          |
 | sy    | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值，单位：vp。          |
 | sw    | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度，单位：vp。                |
@@ -2576,7 +2621,7 @@ createImageData(imageData: ImageData): ImageData
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建[PixelMap](../../apis/js-apis-image.md#pixelmap7)对象。
+以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
  **参数：**
 
@@ -2591,7 +2636,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 类型                                       | 说明           |
 | ---------------------------------------- | ------------ |
-| [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
+| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
 
 **示例：**
 
@@ -2599,7 +2644,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   // xxx.ets
   @Entry
   @Component
-  struct GetImageData {
+  struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
@@ -2632,20 +2677,20 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 setPixelMap(value?: PixelMap): void
 
-将当前传入[PixelMap](../../apis/js-apis-image.md#pixelmap7)对象绘制在画布上。setPixelMap示例同getPixelMap。
+将当前传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象绘制在画布上。setPixelMap示例同getPixelMap。
 
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述              |
 | ---- | ------ | ---- | ---- | --------------- |
-|  value  | [PixelMap](../../apis/js-apis-image.md#pixelmap7) | 否    |  null   | 包含像素值的PixelMap对象 |
+|  value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    |  null   | 包含像素值的PixelMap对象 |
 
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
+以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

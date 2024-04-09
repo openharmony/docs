@@ -14,6 +14,9 @@ hid模块提供了访问蓝牙hid相关功能的方法。
 import hid from '@ohos.bluetooth.hid';
 ```
 
+## HidHostProfile
+
+使用HidHostProfile方法之前需要创建该类的实例进行操作，通过createHidHostProfile()方法构造此实例。
 
 ### connect
 
@@ -35,7 +38,7 @@ connect(deviceId: string): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -77,7 +80,7 @@ disconnect(deviceId: string): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |

@@ -34,7 +34,7 @@ shutdown(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -70,7 +70,7 @@ reboot(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -104,7 +104,7 @@ wakeup(detail: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -139,7 +139,7 @@ suspend(isImmediate?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -176,7 +176,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -220,7 +220,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -236,4 +236,41 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .catch((err : Error)=> {
     console.error('set power mode failed, err: ' + err);
 });
+```
+
+## power.setScreenOffTime<sup>12+</sup>
+
+setScreenOffTime(timeout: number): void
+
+设置熄屏超时时间。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| timeout | number | 是    | 熄屏超时时间，单位是毫秒，大于0代表熄屏超时时间，-1代表恢复默认超时时间，其它是无效值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+| 201 | If the permission is denied. |
+| 202 | If the system permission is denied. |
+| 1 | Other unknown reason. |
+
+**示例：**
+
+```js
+try {
+    power.setScreenOffTime(30000);
+} catch(err) {
+    console.error('set screen off time failed, err: ' + err);
+}
 ```

@@ -16,7 +16,7 @@ import privacyManager from '@ohos.privacyManager';
 
 ## privacyManager.addPermissionUsedRecord
 
-addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number): Promise&lt;void&gt;
+addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number, options?: AddPermissionUsedRecordOptions): Promise&lt;void&gt;
 
 受应用权限保护的应用在被其他服务、应用调用时，可以使用该接口增加一条权限使用记录。使用Promise异步回调。
 权限使用记录包括：调用方的应用身份标识、使用的应用权限名称，和其访问本应用成功、失败的次数。
@@ -33,6 +33,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
+| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | 否   | 添加权限使用记录可选参数，从API version 12开始支持。 |
 
 **返回值：**
 
@@ -46,7 +47,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -59,15 +60,20 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
-        console.log('addPermissionUsedRecord success');
-    }).catch((err: BusinessError) => {
-        console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
+  console.log('addPermissionUsedRecord success');
+}).catch((err: BusinessError) => {
+  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
+// with options param
+let optons: privacyManager.AddPermissionUsedRecordOptions = {
+  .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
+};
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
+  console.log('addPermissionUsedRecord success');
+}).catch((err: BusinessError) => {
+  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.addPermissionUsedRecord
@@ -110,17 +116,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('addPermissionUsedRecord success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('addPermissionUsedRecord success');
+  }
+});
 ```
 
 ## privacyManager.getPermissionUsedRecord
@@ -173,15 +175,12 @@ let request: privacyManager.PermissionUsedRequest = {
     'endTime': 1,
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-try {
-    privacyManager.getPermissionUsedRecord(request).then((data) => {
-        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+
+privacyManager.getPermissionUsedRecord(request).then((data) => {
+  console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.getPermissionUsedRecord
@@ -229,17 +228,14 @@ let request: privacyManager.PermissionUsedRequest = {
     'endTime': 1,
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-try {
-    privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
-        if (err) {
-            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+
+privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
+  if (err) {
+    console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+  }
+});
 ```
 
 ## privacyManager.startUsingPermission
@@ -285,15 +281,11 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-        console.log('startUsingPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
+  console.log('startUsingPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.startUsingPermission
@@ -334,17 +326,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('startUsingPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('startUsingPermission success');
+  }
+});
 ```
 
 ## privacyManager.stopUsingPermission
@@ -390,15 +378,11 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-        console.log('stopUsingPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
+  console.log('stopUsingPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.stopUsingPermission
@@ -439,17 +423,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // 可以通过getApplicationInfo获取accessTokenId
-try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('stopUsingPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('stopUsingPermission success');
+  }
+});
 ```
 
 ## privacyManager.on
@@ -546,6 +526,73 @@ try {
 }
 ```
 
+## privacyManager.getPermissionUsedTypeInfos<sup>12+</sup>
+
+getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
+
+查询设备上指定应用访问敏感权限时的信息（包括敏感权限名称、敏感权限访问方式）。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名             | 类型                   | 必填 | 说明                                                          |
+| ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
+| tokenId            | number                | 否   | 访问敏感权限的应用身份标识，为空时表示查询所有应用的敏感权限访问类型信息。   |
+| permissionName     | Permissions           | 否   | 被访问的敏感权限名称，为空时标识查询所有敏感权限的访问类型信息。   |
+
+**返回值：**
+
+| 类型          | 说明                                    |
+| ------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[PermissionUsedTypeInfo](#permissionusedtypeinfo12)&gt;&gt; | Promise对象。返回权限访问类型信息列表的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. PermissionName exceeds 256 characters. |
+| 12100002 | The input tokenId does not exist. |
+| 12100003 | The input permissionName does not exist. |
+
+**示例：**
+
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
+
+let tokenId: number = 0; // 可以通过bundleManager.getApplicationInfo获取accessTokenId
+let permissionName: Permissions = 'ohos.permission.CAMERA';
+// without any param
+privacyManager.getPermissionUsedTypeInfos().then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// only tokenId
+privacyManager.getPermissionUsedTypeInfos(tokenId).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// only permissionName
+privacyManager.getPermissionUsedTypeInfos(null, permissionName).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// tokenId and permissionName
+privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+```
+
 ## PermissionUsageFlag
 
 使用记录的查询方式的枚举。
@@ -630,6 +677,7 @@ try {
 | timestamp | number         | 是    | 否    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 是    | 否    | 访问时长，单位：ms。                                 |
 | count<sup>11+</sup> | number | 是 | 否    | 成功或失败次数。
+| usedType<sup>12+</sup> | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限访问方式。 |
 
 ## PermissionActiveStatus
 
@@ -655,3 +703,37 @@ try {
 | permissionName | Permissions            | 是   | 否   | 权限使用状态发生变化的权限名 |
 | deviceId       | string                 | 是   | 否   | 设备号                 |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型        |
+
+## PermissionUsedType<sup>12+</sup>
+
+表示通过何种方式使用敏感权限的枚举。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称                    | 值 | 说明              |
+| ----------------------- | -- | ---------------- |
+| NORMAL_TYPE             | 0  | 表示通过弹窗授权或设置授权的方式来使用敏感权限。   |
+| PICKER_TYPE             | 1  | 表示通过某个PICKER服务来使用敏感权限，此方式未授予权限。 |
+| SECURITY_COMPONENT_TYPE | 2  | 表示通过安全控件授权的方式来使用敏感权限。 |
+
+## PermissionUsedTypeInfo<sup>12+</sup>
+
+表示某次权限使用类型的详情。
+
+ **系统能力:** SystemCapability.Security.AccessToken
+
+| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| -------------- | ---------------------- | ---- | ---- | --------------------- |
+| tokenId        | number                 | 是   | 否   | 访问敏感权限的应用身份标识 |
+| permissionName | Permissions            | 是   | 否   | 被访问的敏感权限名称 |
+| usedType | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限使用类型。 |
+
+## AddPermissionUsedRecordOptions<sup>12+</sup>
+
+添加权限使用记录可选参数集。
+
+ **系统能力:** SystemCapability.Security.AccessToken
+
+| 名称           | 类型                    | 可读 | 可写 | 说明                   |
+| -------------- | ---------------------- | ---- | ---- | --------------------- |
+| usedType | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限使用类型。 |

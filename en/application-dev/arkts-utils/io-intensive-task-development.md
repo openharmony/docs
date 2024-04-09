@@ -40,7 +40,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
     }
 	```
 
-2. Use **TaskPool** to execute the concurrency function that contains the intensive I/O operations. Specifically, call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute) to execute the tasks and process the scheduling result in a callback. For details about how to obtain **filePath1** and **filePath2** in the example, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
+2. Use **TaskPool** to execute the concurrency function that contains the intensive I/O operations. Specifically, call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute) to execute the tasks and process the scheduling result in a callback. For details about how to obtain **filePath1** and **filePath2** in the example, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
 
     ```ts
     import taskpool from '@ohos.taskpool';

@@ -12,38 +12,15 @@
 
 ## 开发
 
-为了帮助开发者更好的理解OpenHarmony提供的能力，我们对重点功能提供了开发指导，辅助开发者完成应用的开发。
+我们对应用框架、应用服务、系统、媒体、图形等领域的重点开放能力提供了开发指导，助力开发者快速完成应用的开发。
 
-首先，提供了支撑OpenHarmony应用的两个重要框架：
 
-- 应用程序的框架：[应用模型](application-models/application-model-composition.md)
-- UI的框架：[UI开发](ui/arkui-overview.md)
+- 应用框架相关Kit开放能力：Ability Kit（程序框架服务）、ArkUI（方舟UI框架）等。
+- 应用服务相关Kit开放能力：Account Kit（华为帐号服务）、Location Kit（位置服务）等。
+- 系统相关Kit开放能力：Network Kit（网络服务）、Universal Keystore Kit（密钥管理服务）等。
+- 媒体相关Kit开放能力：Audio Kit（音频服务）、Media Library Kit（媒体文件管理服务）等。
+- 图形相关Kit开放能力：ArkGraphics 2D（方舟2D图形服务）等。
 
-所有应用都应该在这两个框架的基础之上进行功能的开发。
-
-在此基础上，还提供了如下功能的开发指导：
-
-- [ArkTS语言基础类库](arkts-utils/arkts-commonlibrary-overview.md)
-- [Web](web/web-component-overview.md)
-- [通知](notification/notification-overview.md)
-- [窗口管理](windowmanager/window-overview.md)
-- [WebGL](webgl/webgl-overview.md)
-- [媒体](media/media-application-overview.md)
-- [安全](security/AccessToken/access-token-overview.md)
-- [AI](ai/ai-overview.md)
-- [网络与连接](connectivity/ipc-rpc-overview.md)
-- [电话服务](telephony/telephony-overview.md)
-- [数据管理](database/data-mgmt-overview.md)
-- [文件管理](file-management/file-management-overview.md)
-- [后台任务（Background Task）管理](task-management/background-task-overview.md)
-- [设备管理](device/usb-overview.md)
-- [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-guidelines.md)
-- [国际化](internationalization/i18n-l10n.md)
-- [应用测试](application-test/arkxtest-guidelines.md)
-- [一次开发，多端部署](key-features/multi-device-app-dev/foreword.md)
-- [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-- [Native API的相关指导](napi/napi-guidelines.md)
 
 ## 工具
 
@@ -56,18 +33,4 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ## API参考
 
-API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
-
-内容包括：
-
-- [ArkTS接口参考](reference/apis/development-intro.md)
-
-
-- [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/ts-components-summary.md)
-- [组件参考（兼容JS的类Web开发范式-ArkUI.Full）](reference/arkui-js/js-components-common-attributes.md)
-- [组件参考（兼容JS的类Web开发范式-ArkUI.Lite）](reference/arkui-js-lite/js-framework-file.md)
-- [JS服务卡片UI组件参考](reference/js-service-widget-ui/js-service-widget-file.md)
-- 接口参考（Native API）
-  - [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)
-  - [Native API标准库](reference/native-lib/third_party_libc/musl.md)
-  - [Node_API](reference/native-lib/third_party_napi/napi.md)
+[API参考](reference/development-intro.md)提供了OpenHarmony SDK各Kit开放能力的全量组件和接口的说明文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。

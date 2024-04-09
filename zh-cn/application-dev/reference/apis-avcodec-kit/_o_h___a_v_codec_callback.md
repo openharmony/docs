@@ -19,10 +19,10 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodecOnError](_codec_base.md#oh_avcodeconerror)[onError](#onerror) | 监控编解码器操作错误。 | 
-| [OH_AVCodecOnStreamChanged](_codec_base.md#oh_avcodeconstreamchanged)[onStreamChanged](#onstreamchanged) | 监控编解码器流变化。 | 
-| [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)[onNeedInputBuffer](#onneedinputbuffer) | 监控编解码器需要输入数据。 | 
-| [OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)[onNewOutputBuffer](#onnewoutputbuffer) | 监控编解码器已生成输出数据。 | 
+| [OH_AVCodecOnError](_codec_base.md#oh_avcodeconerror) [onError](#onerror) | 监控编解码器操作错误。 | 
+| [OH_AVCodecOnStreamChanged](_codec_base.md#oh_avcodeconstreamchanged) [onStreamChanged](#onstreamchanged) | 监控编解码器流变化。 | 
+| [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer) [onNeedInputBuffer](#onneedinputbuffer) | 监控编解码器需要输入数据。 | 
+| [OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer) [onNewOutputBuffer](#onnewoutputbuffer) | 监控编解码器已生成输出数据。 | 
 
 
 ## 结构体成员变量说明

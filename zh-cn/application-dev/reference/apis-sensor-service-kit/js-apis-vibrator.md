@@ -19,11 +19,11 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 根据指定的振动效果和振动属性触发马达振动。使用callback异步回调。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
-**参数：**
+**参数：** 
 
 | 参数名    | 类型                                   | 必填 | 说明                                                         |
 | --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
@@ -31,15 +31,15 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
 | callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
 
-**错误码**：
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 14600101 | Device operation failed. |
 
-**示例：**
+**示例：** 
 
 按照指定持续时间触发马达振动：
 
@@ -133,9 +133,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 根据指定的振动效果和振动属性触发马达振动。使用promise异步回调。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -150,9 +150,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码**：
+**错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -246,9 +246,9 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 按照指定模式停止马达振动。使用callback异步回调。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -348,9 +348,9 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照指定模式停止马达的振动。使用promise异步回调。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -447,9 +447,9 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 停止所有模式的马达振动。使用callback异步回调。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -484,9 +484,9 @@ stopVibration(): Promise&lt;void&gt;
 
 停止所有模式的马达振动。使用promise异步回调。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **返回值：** 
 
@@ -519,7 +519,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 查询是否支持传入参数effectId。使用callback异步回调。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -576,7 +576,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 查询是否支持传入参数effectId。使用promise异步回调。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -631,7 +631,7 @@ try {
 
 预置的振动效果。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
@@ -642,7 +642,7 @@ try {
 
 停止振动的模式。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
@@ -653,7 +653,7 @@ try {
 
 马达振动效果，支持以下三种。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
@@ -665,7 +665,7 @@ try {
 
 固定时长振动类型。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型    | 必填 | 说明                           |
 | -------- | ------ | ----- | ------------------------------ |
@@ -676,7 +676,7 @@ try {
 
 预置振动类型。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型      | 必填 | 说明                           |
 | -------- | -------- | ---- |------------------------------ |
@@ -686,9 +686,9 @@ try {
 
 ## VibrateFromFile<sup>10+</sup>
 
-自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcodes/errorcode-universal.md)。
+自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md)。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
@@ -697,9 +697,9 @@ try {
 
 ## HapticFileDescriptor<sup>10+</sup>
 
-自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动)。
+自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](../apis-core-file-kit/js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/sensor/vibrator-guidelines.md#自定义振动)。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型      |  必填  | 说明                           |
 | -------- | -------- |--------| ------------------------------|
@@ -711,7 +711,7 @@ try {
 
 马达振动属性。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称  | 类型 | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
@@ -722,7 +722,7 @@ try {
 
 振动使用场景。
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称             | 类型   | 说明                           |
 | ---------------- | ------ | ------------------------------ |
@@ -744,9 +744,9 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -781,9 +781,9 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -816,9 +816,9 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -854,9 +854,9 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -888,9 +888,9 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
@@ -935,9 +935,9 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
 从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9)<sup>9+</sup>代替。
 
-**需要权限**：ohos.permission.VIBRATE
+**需要权限：** ohos.permission.VIBRATE
 
-**系统能力**：SystemCapability.Sensors.MiscDevice
+**系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 

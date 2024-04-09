@@ -25,7 +25,7 @@ export default class EntryAbility extends UIAbility {
         console.log('eventFunc is called');
     }
 
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
     }
 }
@@ -52,16 +52,20 @@ on(event: string, callback: Function): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
         // 支持使用匿名函数订阅事件
         this.context.eventHub.on('myEvent', () => {
             console.log('call anonymous eventFunc');
         });
+
+    }
+
+    onDestroy() {
         // 结果：
         // eventFunc is called
         // call anonymous eventFunc
-        this.context.eventHub.emit('myEvent'); 
+        this.context.eventHub.emit('myEvent');
     }
 
     eventFunc() {
@@ -93,7 +97,7 @@ off(event: string, callback?: Function): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc1);
         this.context.eventHub.off('myEvent', this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
         this.context.eventHub.on('myEvent', this.eventFunc1);
@@ -132,7 +136,7 @@ emit(event: string, ...args: Object[]): void;
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onForeground() {
+    onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
         // 结果：
         // eventFunc is called,undefined,undefined

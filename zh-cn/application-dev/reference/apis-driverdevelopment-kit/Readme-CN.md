@@ -1,14 +1,14 @@
-# Driver Development Kit API参考 
+# Driver Development Kit API参考
 
-- ArkTS API 
-  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](./js-apis-app-ability-driverExtensionAbility.md)
-  - [@ohos.driver.deviceManager (外设管理)](./js-apis-driver-deviceManager.md)
-  - [DriverExtensionContext](./js-apis-inner-application-driverExtensionContext.md)
-
+- ArkTS API
+  - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
+  - [@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)
+  - application
+    - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
 - C API
   - 模块
-    - [HidDdk](_hid_ddk.md)
-    - [UsbDdk](_usb_ddk.md)
+    - [HID DDK](_hid_ddk.md)
+    - [USB DDK](_usb_ddk.md)
   - 头文件
     - [usb_ddk_api.h](usb__ddk__api_8h.md)
     - [usb_ddk_types.h](usb__ddk__types_8h.md)
@@ -34,6 +34,3 @@
     - [Hid_KeyCodeArray](_hid___key_code_array.md)
     - [Hid_MscEventArray](_hid___msc_event_array.md)
     - [Hid_RelAxesArray](_hid___rel_axes_array.md)
-
-- 错误码
-

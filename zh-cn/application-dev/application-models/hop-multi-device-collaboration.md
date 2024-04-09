@@ -58,7 +58,6 @@
    ```ts
    import deviceManager from '@ohos.distributedDeviceManager';
    import hilog from '@ohos.hilog';
-   import promptAction from '@ohos.promptAction'
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -70,9 +69,6 @@
      try {
        dmClass = deviceManager.createDeviceManager('com.samples.stagemodelabilitydevelop');
        hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(dmClass) ?? '');
-       promptAction.showToast({
-         message: $r('app.string.InitializedSuccessfully')
-       });
      } catch (err) {
        hilog.error(DOMAIN_NUMBER, TAG, 'createDeviceManager err: ' + JSON.stringify(err));
      };
@@ -98,13 +94,12 @@
    }
    ```
 
-4. 设置目标组件参数，调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
+4. 设置目标组件参数，调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
 
    ```ts
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
-   import promptAction from '@ohos.promptAction';
    import deviceManager from '@ohos.distributedDeviceManager';
    import common from '@ohos.app.ability.common';
    
@@ -143,13 +138,14 @@
            let want: Want = {
              deviceId: getRemoteDeviceId(),
              bundleName: 'com.samples.stagemodelabilityinteraction',
-             abilityName: 'CollaborateAbility'
+             abilityName: 'CollaborateAbility',
+	     moduleName: 'entry' // moduleName非必选
            }
+   	   // context为发起端UIAbility的AbilityContext
            this.context.startAbility(want).then(() => {
-             promptAction.showToast({
-               message: $r('app.string.SuccessfulCollaboration')
-             });
+       		// ...
            }).catch((err: BusinessError) => {
+       		// ...
              hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
            });
          }
@@ -159,7 +155,7 @@
 
    ```
 
-5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
+5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
 
    ```ts
    import Want from '@ohos.app.ability.Want';
@@ -408,7 +404,7 @@
 
 ## 通过跨设备连接ServiceExtensionAbility组件实现多端协同
 
-系统应用可以通过[connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
+系统应用可以通过[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)跨设备连接一个服务，实现跨设备远程调用。比如：分布式游戏场景，平板作为遥控器，智慧屏作为显示器。
 
 
 ### 接口说明
@@ -441,8 +437,6 @@
       import common from '@ohos.app.ability.common';
       import deviceManager from '@ohos.distributedDeviceManager';
       import hilog from '@ohos.hilog';
-      import Logger from '../../utils/Logger';
-      import promptAction from '@ohos.promptAction';
       import rpc from '@ohos.rpc';
       import Want from '@ohos.app.ability.Want';
       import { BusinessError } from '@ohos.base';
@@ -454,7 +448,7 @@
       let connectionId: number;
       let options: common.ConnectOptions = {
         onConnect(elementName, remote) {
-          Logger.info('onConnect callback');
+          hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
           if (remote === null) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
             return;
@@ -462,8 +456,7 @@
           let option = new rpc.MessageOption();
           let data = new rpc.MessageSequence();
           let reply = new rpc.MessageSequence();
-          data.writeInt(99);
-          // 开发者可发送data到目标端应用进行相应操作
+          data.writeInt(99); // 开发者可发送data到目标端应用进行相应操作
           // @param code 表示客户端发送的服务请求代码。
           // @param data 表示客户端发送的{@link MessageSequence}对象。
           // @param reply 表示远程服务发送的响应消息对象。
@@ -476,11 +469,8 @@
             if (errCode === 0) {
               msg = reply.readInt();
             }
+	    // 成功连接后台服务
             hilog.info(DOMAIN_NUMBER, TAG, `sendRequest msg:${msg}`);
-            // 成功连接后台服务
-            promptAction.showToast({
-              message: `sendRequest msg:${msg}`
-            })
           }).catch((error: BusinessError) => {
             hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
           });
@@ -539,11 +529,9 @@
    ```ts
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   import promptAction from '@ohos.promptAction';
    import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
-   import Logger from '../../utils/Logger';
    import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
    
    let connectionId: number;
@@ -557,22 +545,22 @@
    
    let options: common.ConnectOptions = {
      onConnect(elementName, remote: rpc.IRemoteObject): void {
-       Logger.info('onConnect callback');
+       hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
        if (remote === null) {
-         Logger.info(`onConnect remote is null`);
+         hilog.info(DOMAIN_NUMBER, TAG, 'onConnect remote is null');
          return;
        }
        let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
        // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
        serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-         Logger.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
        });
        serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-         Logger.info(`insertDataToMap, errorCode: ${errorCode}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
        })
      },
      onDisconnect(elementName): void {
-       Logger.info('onDisconnect callback');
+       hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
      },
      onFailed(code: number): void {
        hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
@@ -590,13 +578,10 @@
          .onClick(() => {
            this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
              connectionId = this.context.connectServiceExtensionAbility(want, options);
-             Logger.info('disconnectServiceExtensionAbility success');
+             hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
              // 成功断连后台服务
-             promptAction.showToast({
-               message: $r('app.string.SuccessfullyDisconnectBackendService')
-             })
            }).catch((error: BusinessError) => {
-             Logger.error('disconnectServiceExtensionAbility failed');
+             hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
            })
          })
      }
@@ -702,7 +687,6 @@
          import UIAbility from '@ohos.app.ability.UIAbility';
          import type Want from '@ohos.app.ability.Want';
          import hilog from '@ohos.hilog';
-         import Logger from '../utils/Logger';
          import type rpc from '@ohos.rpc';
          import type { Caller } from '@ohos.app.ability.UIAbility';
 		 
@@ -771,18 +755,6 @@
                hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`)
              };
            }
-		 
-           releaseCall(): void {
-             try {
-               if (this.caller) {
-                 this.caller.release();
-                 this.caller = undefined;
-               }
-               Logger.info('caller release succeed');
-             } catch (error) {
-               Logger.info(`caller release failed with ${error}`)
-             };
-           };
          }
          ```
      
@@ -802,8 +774,6 @@
        import common from '@ohos.app.ability.common';
        import deviceManager from '@ohos.distributedDeviceManager';
        import hilog from '@ohos.hilog';
-       import Logger from '../../utils/Logger';
-       import promptAction from '@ohos.promptAction';
 	   
        const TAG: string = '[Page_CollaborateAbility]';
        const DOMAIN_NUMBER: number = 0xFF00;
@@ -845,26 +815,23 @@
                }).then((data) => {
                  if (data !== null) {
                    caller = data;
-                   Logger.info('get remote caller success');
+                   hilog.info(DOMAIN_NUMBER, TAG, 'get remote caller success');
                    // 注册caller的release监听
                    caller.onRelease((msg) => {
-                     Logger.info(`remote caller onRelease is called ${msg}`);
+                     hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
                    })
-                   Logger.info('remote caller register OnRelease succeed');
-                   promptAction.showToast({
-                     message: $r('app.string.CallerSuccess')
-                   });
+                   hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
                    // 注册caller的协同场景下跨设备组件状态变化监听通知
                    try {
                      caller.onRemoteStateChange((str) => {
-                       Logger.info('Remote state changed ' + str);
+                       hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
                      });
                    } catch (error) {
-                     Logger.info(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                     hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
                    };
                  }
                }).catch((error: BusinessError) => {
-                 Logger.error(`get remote caller failed with ${error}`);
+                 hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
                });
              }
              )
@@ -880,7 +847,6 @@
        ```ts
        import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
        import type rpc from '@ohos.rpc';
-       import Logger from '../utils/Logger';
 	   
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        class MyParcelable {
@@ -920,7 +886,7 @@
                await this.caller.call(MSG_SEND_METHOD, msg);
              }
            } catch (error) {
-             Logger.info(`caller call failed with ${error}`);
+             hilog.info(DOMAIN_NUMBER, TAG, `caller call failed with ${error}`);
            };
          }
          // ...
@@ -931,9 +897,10 @@
         ```ts
         import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
         import rpc from '@ohos.rpc';
-        import Logger from '../utils/Logger';
 
         const MSG_SEND_METHOD: string = 'CallSendMsg';
+        let originMsg: string = '';
+        let backMsg: string = '';
 
         class MyParcelable {
           num: number = 0;
@@ -970,14 +937,14 @@
               let msg: MyParcelable = new MyParcelable(1, originMsg);
               if (this.caller) {
                 const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
-                Logger.info('caller callWithResult succeed');
+                hilog.info(DOMAIN_NUMBER, TAG, 'caller callWithResult succeed');
                 let result: MyParcelable = new MyParcelable(0, '');
                 data.readParcelable(result);
                 backMsg = result.str;
-                Logger.info(`caller result is [${result.num}, ${result.str}]`);
+                hilog.info(DOMAIN_NUMBER, TAG, `caller result is [${result.num}, ${result.str}]`);
               }
             } catch (error) {
-              Logger.info(`caller callWithResult failed with ${error}`);
+              hilog.info(DOMAIN_NUMBER, TAG, `caller callWithResult failed with ${error}`);
             };
           }
           // ...
@@ -989,7 +956,6 @@
 
    ```ts
    import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
-   import Logger from '../utils/Logger';
    
    export default class EntryAbility extends UIAbility {
      caller: Caller | undefined;
@@ -999,9 +965,9 @@
            this.caller.release();
            this.caller = undefined;
          }
-         Logger.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
        } catch (error) {
-         Logger.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
        };
      }
    }

@@ -1,7 +1,7 @@
 # Managing Location Permissions
 
 
-The **Web** component provides the location permission management capability. You can use [onGeolocationShow()](../reference/arkui-ts/ts-basic-components-web.md#ongeolocationshow) to manage the location permission specific to a website. Based on the API response, the **Web** component determines whether to grant the location permission to the frontend page. To obtain the device location, you need to declare the [ohos.permission.LOCATION](../security/accesstoken-guidelines.md) permission, and enable on the device the location permission for the application and the location information for the control panel.
+The **Web** component provides the location permission management capability. You can use [onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow) to manage the location permission specific to a website. Based on the API response, the **Web** component determines whether to grant the location permission to the frontend page. To obtain the device location, you need to declare the [ohos.permission.LOCATION](../security/AccessToken/request-user-authorization.md) permission, and enable on the device the location permission for the application and the location information for the control panel.
 
 
 In the following example, when a user clicks the **Get Location** button on the frontend page, the **Web** component notifies the application of the location permission request in a dialog box.
@@ -37,6 +37,34 @@ In the following example, when a user clicks the **Get Location** button on the 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import { abilityAccessCtrl, common }from '@kit.AbilityKit';
+  import {geoLocationManager} from '@kit.LocationKit';
+
+  let context = getContext(this) as common.UIAbilityContext;
+  let atManager = abilityAccessCtrl.createAtManager();
+
+  try{
+    atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"], (err, data) => {
+      let requestInfo: geoLocationManager.LocationRequest = {
+        'priority': 0x203,
+        'scenario': 0x300,
+        'maxAccuracy': 0
+      };
+      let locationChange = (location: geoLocationManager.Location):void => {
+        if(location){
+          console.log('locationChanger: location=' + JSON.stringify(location));
+        }
+      };
+      try{
+        geoLocationManager.on('locationChange', requestInfo, locationChange);
+        geoLocationManager.off('locationChange', locationChange);
+      } catch (err) {
+        console.error("errCode:" + err.code + ", errMessage:" + err.message);
+      }
+    })
+  } catch (err) {
+    console.error("err:", err);
+  }
 
   @Entry
   @Component

@@ -421,7 +421,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SAMPLE_RATE_44100 | 44100  | 采样率为44100。 |
 | SAMPLE_RATE_48000 | 48000  | 采样率为48000。 |
 | SAMPLE_RATE_64000 | 64000  | 采样率为64000。 |
+| SAMPLE_RATE_88200<sup>12+</sup> | 88200  | 采样率为88200。 |
 | SAMPLE_RATE_96000 | 96000  | 采样率为96000。 |
+| SAMPLE_RATE_176400<sup>12+</sup> | 176400  | 采样率为176400。 |
+| SAMPLE_RATE_192000<sup>12+</sup> | 192000  | 采样率为192000。 |
 
 ## AudioEncodingType<sup>8+</sup>
 
@@ -533,6 +536,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                                                                                                                                       |
 | STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                                                                                                                                       |
 | STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                                                                                                                                         |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。                                                                                                                                         |
 
 ## AudioState<sup>8+</sup>
 
@@ -782,6 +786,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup>
 
@@ -797,9 +802,11 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 待录制的播放音频流的筛选信息。
 
-**需要权限：** ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+**需要权限：**
 
-在API 10时，支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO。从API 11开始，直接不再支持此枚举，所以当前接口不再涉及此枚举值或对应权限。
+- 在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。
+
+- 从API version 11开始，CaptureFilterOptions不再支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，所以当前接口不再涉及此权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -828,7 +835,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 音频参数设置，使用callback方式异步返回结果。
 
-本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 11 开始废弃。替代接口仅面向系统应用开放。
@@ -865,7 +872,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
 
-本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 11 开始废弃。替代接口仅面向系统应用开放。
@@ -2805,7 +2812,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从 API version 9开始支持，从API version 11 开始废弃。替代接口仅面向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2840,7 +2847,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 >
 > 从 API version 9开始支持，从API version 11 开始废弃。替代接口仅面向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG
+**需要权限：** ohos.permission.MANAGE_AUDIO_CONFIG，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3119,6 +3126,113 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`Fail to adjust the system volume by step. ${error}`);
+}
+```
+
+### getMaxAmplitudeForInputDevice<sup>12+</sup>
+
+getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
+
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ----------- | ------------------------------------- | ---- | --------------------------------------------------- |
+| inputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | 是   | 获取最大电平值的设备信息。                                 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回对应设备的电平值，大小在0-1之间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+| 6800301 | system error                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let inputDeviceDesc: audio.AudioDeviceDescriptor;
+
+let capturerInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  capturerFlags : 0 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
+  (desc) => {
+    inputDeviceDesc = desc;
+  }).catch((err) => {
+    console.error("get outputDeviceId error" + JSON.stringify(err));
+    return;
+  });
+audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
+  console.info(`mic volatileume amplitude is: ${value}`);
+}
+```
+
+### getMaxAmplitudeForOutputDevice<sup>12+</sup>
+
+getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
+
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ------------ | --------------------------------------- | ---- | -------------------------------------------------------- |
+| outputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | 是   | 获取最大电平值的设备信息。                                             |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回对应设备的电平值，大小在0-1之间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+| 6800301 | system error                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let outputDeviceDesc: audio.AudioDeviceDescriptor;
+
+let rendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0 }
+
+audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
+  (desc) => {
+    outputDeviceDesc = desc;
+  }).catch((err) => {
+    console.error("get outputDeviceId error" + JSON.stringify(err));
+    return;
+  });
+
+audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
+  console.info(`speaker volatileume amplitude is: ${value}`);
 }
 ```
 
@@ -6019,6 +6133,33 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
   console.info('setVolume Success!');
 });
 ```
+### getVolume<sup>12+</sup>
+
+getVolume(): number
+
+获取音频渲染器的当前音量值，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| number | 返回音量大小，音量范围[0.0-1.0]。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioRenderer.getVolume();
+  console.info(`Indicate that the volume is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the volume, error ${error}.`);
+}
+```
 
 ### getMinStreamVolume<sup>10+</sup>
 
@@ -8084,6 +8225,60 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 audioCapturer.off('readData', (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
 });
+```
+
+### getOverflowCount<sup>12+</sup>
+
+getOverflowCount(): Promise&lt;number&gt;
+
+获取当前录制音频流的过载音频帧数量。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt;| Promise对象，返回音频流的过载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+audioCapturer.getOverflowCount().then((value: number) => {
+  console.info(`Get overflow count Success! ${value}`);
+}).catch((err: BusinessError) => {
+  console.error(`Get overflow count Fail: ${err}`);
+});
+```
+
+### getOverflowCountSync<sup>12+</sup>
+
+getOverflowCountSync(): number
+
+获取当前录制音频流的过载音频帧数量，同步返回数据。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| number| 返回音频流的过载音频帧数量。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioCapturer.getOverflowCountSync();
+  console.info(`Get overflow count Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get overflow count Fail: ${error}`);
+}
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>

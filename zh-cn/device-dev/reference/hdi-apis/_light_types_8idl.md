@@ -5,17 +5,11 @@
 
 定义灯的数据结构，包括灯类型ID、灯的基本信息、灯的模式、灯的闪烁参数、灯的颜色模式和灯的效果参数。
 
-**Since:**
+模块包路径：ohos.hdi.light.v1_0
 
-3.1
+**起始版本：** 3.1
 
-**Version:**
-
-1.0
-
-**相关模块:**
-
-[Light](_light.md)
+**相关模块：**[Light](_light.md)
 
 
 ## 汇总
@@ -23,27 +17,20 @@
 
 ### 类
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [HdfLightInfo](_hdf_light_info.md) | struct<br/>定义灯的基本信息。 | 
-| [HdfLightFlashEffect](_hdf_light_flash_effect.md) | struct<br/>定义灯的闪烁参数。 | 
-| [RGBColor](_r_g_b_color.md) | struct<br/>定义灯的RGB模式。 | 
-| [WRGBColor](_w_r_g_b_color.md) | struct<br/>定义灯的WRGB模式。 | 
-| [ColorValue](union_color_value.md) | union<br/>定义灯的颜色模式。 | 
-| [HdfLightColor](_hdf_light_color.md) | struct<br/>定义亮灯参数。 | 
-| [HdfLightEffect](_hdf_light_effect.md) | struct<br/>定义灯的效果参数。 | 
+| struct&nbsp;&nbsp;[HdfLightInfo](_hdf_light_info_v10.md) | 定义灯的基本信息。 | 
+| struct&nbsp;&nbsp;[HdfLightFlashEffect](_hdf_light_flash_effect_v10.md) | 定义灯的闪烁参数。 | 
+| struct&nbsp;&nbsp;[RGBColor](_r_g_b_color_v10.md) | 定义灯的RGB模式。 | 
+| struct&nbsp;&nbsp;[WRGBColor](_w_r_g_b_color_v10.md) | 定义灯的WRGB模式。 | 
+| union&nbsp;&nbsp;[ColorValue](union_color_value_v10.md) | 定义灯的颜色模式。 | 
+| struct&nbsp;&nbsp;[HdfLightColor](_hdf_light_color_v10.md) | 定义亮灯参数。 | 
+| struct&nbsp;&nbsp;[HdfLightEffect](_hdf_light_effect_v10.md) | 定义灯的效果参数。 | 
 
 
 ### 枚举
 
-  | 名称 | 描述 | 
+| 名称 | 描述 | 
 | -------- | -------- |
-| [HdfLightId](_light.md#hdflightid)&nbsp;{&nbsp;HDF_LIGHT_ID_BATTERY&nbsp;=&nbsp;1,&nbsp;HDF_LIGHT_ID_NOTIFICATIONS&nbsp;=&nbsp;2,&nbsp;HDF_LIGHT_ID_ATTENTION&nbsp;=&nbsp;3,&nbsp;HDF_LIGHT_ID_BUTT&nbsp;=&nbsp;4&nbsp;} | 枚举灯类型。 | 
-| [HdfLightFlashMode](_light.md#hdflightflashmode)&nbsp;{&nbsp;HDF_LIGHT_FLASH_NONE&nbsp;=&nbsp;0,&nbsp;HDF_LIGHT_FLASH_TIMED&nbsp;=&nbsp;1,&nbsp;HDF_LIGHT_FLASH_GRADIENT&nbsp;=&nbsp;2,&nbsp;HDF_LIGHT_FLASH_BUTT&nbsp;=&nbsp;3&nbsp;} | 枚举灯的模式。 | 
-
-
-### 关键字
-
-  | 名称 | 描述 | 
-| -------- | -------- |
-| package&nbsp;ohos.hdi.light.v1_0 | 灯模块接口的包路径。 | 
+| [HdfLightId](_light.md#hdflightid) { HDF_LIGHT_ID_BATTERY = 1, HDF_LIGHT_ID_NOTIFICATIONS = 2, HDF_LIGHT_ID_ATTENTION = 3, HDF_LIGHT_ID_BUTT = 4 } | 枚举灯类型。 | 
+| [HdfLightFlashMode](_light.md#hdflightflashmode) { HDF_LIGHT_FLASH_NONE = 0, HDF_LIGHT_FLASH_TIMED = 1, HDF_LIGHT_FLASH_GRADIENT = 2, HDF_LIGHT_FLASH_BUTT = 3 } | 枚举灯的模式。 | 

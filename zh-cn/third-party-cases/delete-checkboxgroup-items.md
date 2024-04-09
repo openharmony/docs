@@ -348,11 +348,11 @@ struct CheckboxDemo{
 ```
 ## 参考
 
-- [ChecckboxGroup](../application-dev/reference/arkui-ts/ts-basic-components-checkboxgroup.md)
-- [Checkbox](../application-dev/reference/arkui-ts/ts-basic-components-checkbox.md)
-- [Flex](../application-dev/reference/arkui-ts/ts-container-flex.md)
-- [Button](../application-dev/reference/arkui-ts/ts-basic-components-button.md)
-- [ohos.promptAction (弹窗)](../application-dev/reference/apis/js-apis-promptAction.md)
+- [ChecckboxGroup](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md)
+- [Checkbox](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md)
+- [Flex](../application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md)
+- [Button](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
+- [ohos.promptAction (弹窗)](../application-dev/reference/apis-as/js-apis-promptAction.md)
 - [ForEach循环渲染](../application-dev/quick-start/arkts-rendering-control-foreach.md)
 - [@State状态管理](../application-dev/quick-start/arkts-state.md)
 - [@Builder动态构建UI元素](../application-dev/quick-start/arkts-builder.md)

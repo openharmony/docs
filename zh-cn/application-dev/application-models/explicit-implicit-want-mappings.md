@@ -1,11 +1,11 @@
 # 显式Want与隐式Want匹配规则
 
-在启动目标应用组件时，会通过显式[Want](../reference/apis/js-apis-app-ability-want.md)或者隐式[Want](../reference/apis/js-apis-app-ability-want.md)进行目标应用组件的匹配，这里说的匹配规则就是调用方传入的[want](../reference/apis/js-apis-app-ability-want.md)参数中设置的参数如何与目标应用组件声明的配置文件进行匹配。
+在启动目标应用组件时，会通过显式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)或者隐式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)进行目标应用组件的匹配，这里说的匹配规则就是调用方传入的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数中设置的参数如何与目标应用组件声明的配置文件进行匹配。
 
 ## 显式Want匹配原理
 
 
-显式[Want](../reference/apis/js-apis-app-ability-want.md)匹配原理如下表所示。
+显式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)匹配原理如下表所示。
 
 | 名称 | 类型 | 匹配项 | 必选 | 规则 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -22,7 +22,7 @@
 
 ## 隐式Want匹配原理
 
-隐式[Want](../reference/apis/js-apis-app-ability-want.md)匹配原理如下表所示。
+隐式[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)匹配原理如下表所示。
 
 | 名称        | 类型                           | 匹配项 | 必选 | 规则                                                         |
 | ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
@@ -45,7 +45,7 @@
 - 待匹配应用组件的skills配置，声明其具备的能力（[module.json5配置文件](../quick-start/module-configuration-file.md)中的[skills标签](../quick-start/module-configuration-file.md#skills标签)参数）。
 
 
-系统将调用方传入的want参数（包含action、entities、uri和type属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）依次进行匹配。当四个属性匹配均通过，则此应用才会被应用选择器展示给用户进行选择。
+系统将调用方传入的want参数（包含action、entities、uri和type属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）依次进行匹配。当四个属性匹配均未配置，隐式匹配失败。当四个属性匹配均通过，则此应用才会被应用选择器展示给用户进行选择。
 
 
 ### want参数的action匹配规则

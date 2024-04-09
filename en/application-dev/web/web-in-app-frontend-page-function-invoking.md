@@ -1,7 +1,7 @@
 # Invoking Frontend Page Functions on the Application
 
 
-You can call [runJavaScript()](../reference/apis/js-apis-webview.md#runjavascript) on an application to call JavaScript functions of frontend pages.
+You can call [runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript) on an application to call JavaScript functions of frontend pages.
 
 
 In the following example, when a user clicks the **runJavaScript** button on the application, the **htmlTest()** API of the frontend page will be triggered.
@@ -37,11 +37,11 @@ In the following example, when a user clicks the **runJavaScript** button on the
   
     build() {
       Column() {
-        Web({ src: $rawfile('index.html'), controller: this.webviewController})
         Button('runJavaScript')
           .onClick(() => {
              this.webviewController.runJavaScript('htmlTest()');
           })
+        Web({ src: $rawfile('index.html'), controller: this.webviewController})
       }
     }
   }

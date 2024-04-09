@@ -9,10 +9,10 @@ To encrypt an RDB store, set **encrypt** in **StoreConfig** to **true** when cre
 
 **Reference**
 
-[RDB Store](../reference/apis/js-apis-data-relationalStore.md#storeconfig)
+[RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)
 
 
-## What if I failed to clear a table in an RDB store by using TRUNCATE TABLE? (API version 9)
+## What do I do if the table data in an RDB store cannot be cleared by using **TRUNCATE TABLE**? (API version 9)
 
 **Symptom**
 
@@ -62,7 +62,7 @@ struct Index {
 
 **Reference**
 
-[PersistentStorage](../quick-start/arkts-persiststorage.md)
+[ PersistentStorage: Application State Persistence](../quick-start/arkts-persiststorage.md)
 
 
 ## How do I save pixel map data to a database? (API version 9)
@@ -73,7 +73,7 @@ Convert the pixel map data into an **ArrayBuffer** and save the **ArrayBuffer** 
 
 **Reference**
 
-[readPixelsToBuffer](../reference/apis/js-apis-image.md#readpixelstobuffer7-1)
+[readPixelsToBuffer](../reference/apis-image-kit/js-apis-image.md#readpixelstobuffer7-1)
 
 
 ## How do I obtain RDB store files? (API version 9)
@@ -101,7 +101,7 @@ I do not know whether I need to design a lock mechanism for databases in develop
 
 **Solution**
 
-The distributed data service (DDS), RDB store, and preferences provided by OpenHarmony come with a lock mechanism. You do not need to bother with the lock mechanism during the development.
+The distributed data service (DDS), RDB store, and preferences provided by OpenHarmony have a lock mechanism. You do not need to bother with the lock mechanism during the development.
 
 
 ## What if I failed to use get() to obtain the data saved by @ohos.data.storage put()? (API version 9)

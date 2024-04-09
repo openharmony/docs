@@ -1,11 +1,10 @@
 # \@Extend Decorator: Extension of Built-in Components
 
 
-Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which allows you to add a new attribute feature to a built-in component.
+Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which allows you to add a new attribute feature to a built-in component.
 
 
 > **NOTE**
->
 > Since API version 9, this decorator is supported in ArkTS widgets.
 
 
@@ -24,6 +23,9 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
 
 - Unlike \@Styles, \@Extend can be defined only globally, that is, outside a component declaration.
 
+> **NOTE**
+> This decorator can be used only in the current file and cannot be exported.
+
 - Unlike \@Styles, \@Extend can encapsulate private attributes and events of specified components and predefine \@Extend decorated methods of the same component.
 
   ```ts
@@ -31,7 +33,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
   @Extend(Text) function fancy () {
     .fontColor(Color.Red)
   }
-  // superFancyText can call the predefined fancy method.
+  // superFancyText can call the predefined method fancy.
   @Extend(Text) function superFancyText(size:number) {
       .fontSize(size)
       .fancy()
@@ -39,7 +41,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
   ```
 
 
-- Unlike \@Styles, \@Extend decorated methods support parameters. You can pass parameters when calling such methods. Regular TypeScript provisions for method parameters apply.
+- Unlike \@Styles, \@Extend decorated methods support parameters. You can pass in parameters when calling such methods. Regular TypeScript provisions for method parameters apply.
 
   ```ts
   // xxx.ets
@@ -62,7 +64,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
   }
   ```
 
-- A function can be passed as a parameter in an \@Extend decorated method to be used as the handler of the event.
+- A function can be passed as a parameter in an \@Extend decorated method. The function is used as the handler of an event.
 
   ```ts
   @Extend(Text) function makeMeClick(onClick: () => void) {
@@ -88,7 +90,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
   }
   ```
 
-- A [state variable](arkts-state-management-overview.md) can be passed as a parameter in an \@Extend decorated method. When the state variable changes, the UI is updated and re-rendered.
+- A [state variable](arkts-state-management-overview.md) can be passed as a parameter in an \@Extend decorated method. When the state variable changes, the UI is re-rendered.
 
   ```ts
   @Extend(Text) function fancy (fontSize: number) {
@@ -113,7 +115,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
   ```
 
 
-## Application Scenarios
+## Use Scenarios
 
 The following example declares three **\<Text>** components. The **fontStyle**, **fontWeight**, and **backgroundColor** styles are set for each **\<Text>** component.
 

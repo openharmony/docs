@@ -19,7 +19,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：**
+**参数：** 
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -30,18 +30,57 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 | src | string | 是 | 需要滚动的文本。 |
 
 ## 属性
-除支持文本通用属性：fontColor、fontSize、fontWeight、fontFamily外，还支持以下属性：
-| 名称       | 参数类型 | 描述                                                         |
-| ---------- | -------- | ------------------------------------------------------------ |
-| allowScale | boolean  | 是否允许文本缩放。<br/>暂不支持该接口。<br/>默认值：false<br/> |
+除支持文本通用属性：[fontColor](ts-universal-attributes-text-style.md#fontcolor)、[fontSize](ts-universal-attributes-text-style.md#fontsize)、[fontWeight](ts-universal-attributes-text-style.md#fontweight)、[fontFamily](ts-universal-attributes-text-style.md#fontfamily)外，还支持以下属性：
+
+### allowScale
+
+allowScale(value: boolean)
+
+设置是否允许文本缩放。
+
+暂不支持该接口。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                 |
+| ------ | ------- | ---- | ------------------------------------ |
+| value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false |
 
 ## 事件
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 开始滚动时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动全部循环次数完成时触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### onStart
+
+onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+开始滚动时触发回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onBounce
+
+onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onFinish
+
+onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+滚动全部循环次数完成时触发回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例

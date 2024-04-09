@@ -35,9 +35,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | \@StorageProp变量装饰器 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ |
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型      | Object、&nbsp;class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>不支持any，API12及以上支持undefined和null类型。<br/>API12及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageProp("AA") a: number \| null = null`是推荐的，不推荐`@StorageProp("AA") a: number = null`。 |
 | 同步类型                | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
-| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则作为初始化默认值，并存入AppStorage中。 |
+| 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -62,9 +62,15 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用appstorage和localstorage](#从ui内部使用appstorage和localstorage)）。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
+
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。详见[装饰Date类型变量](#装饰date类型变量)。
+
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 
 **框架行为**
@@ -93,9 +99,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | \@StorageLink变量装饰器 | 说明                                       |
 | ------------------ | ---------------------------------------- |
 | 装饰器参数              | key：常量字符串，必填（字符串需要有引号）。                  |
-| 允许装饰的变量类型          | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。不支持any，不允许使用undefined和null。 |
+| 允许装饰的变量类型          | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API12及以上支持Map、Set、Date类型。嵌套类型的场景请参考[观察变化和行为表现](#观察变化和行为表现)。<br/>类型必须被指定，建议和AppStorage中对应属性类型相同，否则会发生类型隐式转换，从而导致应用行为异常。<br/>不支持any，API12及以上支持undefined和null类型。<br/>API12及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[AppStorage支持联合类型](#appstorage支持联合类型)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@StorageLink("AA") a: number \| null = null`是推荐的，不推荐`@StorageLink("AA") a: number = null`。 |
 | 同步类型               | 双向同步：从AppStorage的对应属性到自定义组件，从自定义组件到AppStorage对应属性。 |
-| 被装饰变量的初始值          | 必须指定，如果AppStorage实例中不存在属性，则作为初始化默认值，并存入AppStorage中。 |
+| 被装饰变量的初始值          | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
 
 ### 变量的传递/访问规则说明
@@ -120,9 +126,15 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
-- 当装饰的数据类型为class或者Object时，可以观察到赋值和属性赋值的变化，即Object.keys(observedObject)返回的所有属性。
+- 当装饰的数据类型为class或者Object时，可以观察到对象整体赋值和对象属性变化（详见[从ui内部使用appstorage和localstorage](#从ui内部使用appstorage和localstorage)）。
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化。
+
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。详见[装饰Date类型变量](#装饰date类型变量)。
+
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 
 **框架行为**
@@ -174,26 +186,48 @@ prop.get() // == 49
 
 
 ```ts
+class PropB {
+  code: number;
+
+  constructor(code: number) {
+    this.code = code;
+  }
+}
+
 AppStorage.setOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropB', new PropB(50));
 let storage = new LocalStorage();
 storage.setOrCreate('PropA', 48);
+storage.setOrCreate('PropB', new PropB(100));
 
 @Entry(storage)
 @Component
 struct CompA {
   @StorageLink('PropA') storageLink: number = 1;
   @LocalStorageLink('PropA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
 
   build() {
     Column({ space: 20 }) {
       Text(`From AppStorage ${this.storageLink}`)
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
 
       Text(`From LocalStorage ${this.localStorageLink}`)
         .onClick(() => {
-          this.localStorageLink += 1
+          this.localStorageLink += 1;
+        })
+
+      Text(`From AppStorage ${this.storageLinkObject.code}`)
+        .onClick(() => {
+          this.storageLinkObject.code += 1;
+        })
+
+      Text(`From LocalStorage ${this.localStorageLinkObject.code}`)
+        .onClick(() => {
+          this.localStorageLinkObject.code += 1;
         })
     }
   }
@@ -440,7 +474,6 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
   private index: number = 0;
   private uri: Resource = {
     id: 0,
@@ -462,6 +495,207 @@ export struct TapImage {
           color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
         })
     }
+  }
+}
+```
+
+
+### AppStorage支持联合类型
+
+在下面的示例中，变量A的类型为number | null，变量B的类型为number | undefined。Text组件初始化分别显示为null和undefined，点击切换为数字，再次点击切换回null和undefined。
+
+```ts
+@Component
+struct StorLink {
+  @StorageLink("AA") A: number | null = null;
+  @StorageLink("BB") B: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text("@StorageLink接口初始化，@StorageLink取值")
+      Text(this.A + "").fontSize(20).onClick(() => {
+        this.A ? this.A = null : this.A = 1;
+      })
+      Text(this.B + "").fontSize(20).onClick(() => {
+        this.B ? this.B = undefined : this.B = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Red)
+
+  }
+}
+
+@Component
+struct StorProp {
+  @StorageProp("AAA") A: number | null = null;
+  @StorageProp("BBB") B: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text("@StorageProp接口初始化，@StorageProp取值")
+      Text(this.A + "").fontSize(20).onClick(() => {
+        this.A ? this.A = null : this.A = 1;
+      })
+      Text(this.B + "").fontSize(20).onClick(() => {
+        this.B ? this.B = undefined : this.B = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Blue)
+  }
+}
+
+@Entry
+@Component
+struct TestCase3 {
+  build() {
+    Row() {
+      Column() {
+        StorLink()
+        StorProp()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### 装饰Date类型变量
+
+> **说明：**
+>
+> 从API version 12开始，AppStorage支持Date类型。
+
+在下面的示例中，@StorageLink装饰的selectedDate类型为Date，点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct DateSample {
+  @StorageLink("date") selectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('set selectedDate to 2023-07-08')
+        .margin(10)
+        .onClick(() => {
+          AppStorage.setOrCreate("date", new Date('2023-07-08'));
+        })
+      Button('increase the year by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+        })
+      Button('increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+        })
+      Button('increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: $$this.selectedDate
+      })
+    }.width('100%')
+  }
+}
+```
+
+
+### 装饰Map类型变量
+
+> **说明：**
+>
+> 从API version 12开始，AppStorage支持Map类型。
+
+在下面的示例中，@StorageLink装饰的message类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct MapSample {
+  @StorageLink("map") message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() => {
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        })
+        Button('set new one').onClick(() => {
+          this.message.set(4, "d");
+        })
+        Button('clear').onClick(() => {
+          this.message.clear();
+        })
+        Button('replace the existing one').onClick(() => {
+          this.message.set(0, "aa");
+        })
+        Button('delete the existing one').onClick(() => {
+          AppStorage.get<Map<number, string>>("map")?.delete(0);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### 装饰Set类型变量
+
+> **说明：**
+>
+> 从API version 12开始，AppStorage支持Set类型。
+
+在下面的示例中，@StorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，视图会随之刷新。
+
+```ts
+@Entry
+@Component
+struct SetSample {
+  @StorageLink("set") memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`)
+            .fontSize(30)
+          Divider()
+        })
+        Button('init set')
+          .onClick(() => {
+            this.memberSet = new Set([0, 1, 2, 3, 4]);
+          })
+        Button('set new one')
+          .onClick(() => {
+            AppStorage.get<Set<number>>("set")?.add(5);
+          })
+        Button('clear')
+          .onClick(() => {
+            this.memberSet.clear();
+          })
+        Button('delete the first one')
+          .onClick(() => {
+            this.memberSet.delete(0);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```

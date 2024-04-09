@@ -15,4 +15,4 @@ FFRT锁属性结构.
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| long [storage](_f_f_r_t.md#storage-66) |  | 
+| long [storage](_f_f_r_t.md#storage-66) | FFRT锁属性所占空间 | 

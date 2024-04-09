@@ -4,7 +4,7 @@
 
 ## 背景
 
-瀑布流常用于展示图片信息，如多用于购物、资讯类应用。下面通过对[WaterFlow](../reference/arkui-ts/ts-container-waterflow.md)组件示例代码的逐步改造，介绍优化WaterFlow性能的方法。
+瀑布流常用于展示图片信息，如多用于购物、资讯类应用。下面通过对[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件示例代码的逐步改造，介绍优化WaterFlow性能的方法。
 
 ## 使用懒加载
 
@@ -48,7 +48,7 @@
 
 示例代码中FlowItem数量是固定的，不能满足无限滚动的场景。
 
-基于WaterFlow本身提供的能力，可以在onReachEnd时给LazyForEach数据源增加新数据，并将footer做成正在加载新数据的样式（使用[LoadingProgress](../reference/arkui-ts/ts-basic-components-loadingprogress.md)组件）。
+基于WaterFlow本身提供的能力，可以在onReachEnd时给LazyForEach数据源增加新数据，并将footer做成正在加载新数据的样式（使用[LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md)组件）。
 
 ```ts
   build() {

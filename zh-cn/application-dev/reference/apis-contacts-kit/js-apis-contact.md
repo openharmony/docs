@@ -29,7 +29,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)         | 是   | 联系人信息。                                                 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回添加的联系人id。                               |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，成功返回添加的联系人id,失败返回联系人无效id。                               |
 
 **错误码：**
 
@@ -198,7 +198,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| key      | string                    | 是   | 联系人key值，一个联系人对应一个key。                         |
+| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步删除联系人之后的回调。                             |
 
 **错误码：**
@@ -241,7 +241,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
-| key      | string                    | 是   | 联系人key值，一个联系人对应一个key。 |
+| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步删除联系人之后的回调。     |
 
 **示例：**
@@ -273,7 +273,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| key     | string  | 是   | 联系人的key值，一个联系人对应一个key。                       |
+| key     | string  | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。                       |
 
 **返回值：**
 
@@ -320,7 +320,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| key    | string | 是   | 联系人的key值，一个联系人对应一个key。 |
+| key    | string | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。 |
 
 **返回值：**
 
@@ -356,7 +356,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact  | [Contact](#contact)       | 是   | 联系人信息。                                                 |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步更新联系人之后的回调。                         |
 
 **错误码：**
@@ -403,7 +403,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
-| contact  | [Contact](#contact)       | 是   | 联系人信息。                         |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步更新联系人之后的回调。 |
 
 **示例：**
@@ -439,7 +439,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact  | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                                 |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 异步更新联系人之后的回调。                         |
 
@@ -489,7 +489,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 | 参数名   | 类型                                    | 必填 | 说明                                 |
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
-| contact  | [Contact](#contact)                     | 是   | 联系人信息。                         |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                         |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                   |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 异步更新联系人之后的回调。 |
 
@@ -528,7 +528,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact | [Contact](#contact)                     | 是   | 联系人信息。                                                 |
+| contact | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                                 |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
 **返回值：**
@@ -582,7 +582,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 | 参数名  | 类型                                    | 必填 | 说明               |
 | ------- | --------------------------------------- | ---- | ------------------ |
-| contact | [Contact](#contact)                     | 是   | 联系人信息。       |
+| contact | [Contact](#contact)                     | 是   | 联系人信息。id必填。       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
 
 **返回值：**
@@ -3854,7 +3854,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
 | 名称             | 值   | 说明             |
 | ---------------- | ---- | ---------------- |
-| CUSTOM_LABEL     | 10000    | 自定义邮箱类型。 |
+| CUSTOM_LABEL     | 0    | 自定义邮箱类型。 |
 | EMAIL_HOME       | 1    | 家庭邮箱类型。   |
 | EMAIL_WORK       | 2    | 工作邮箱类型。   |
 | EMAIL_OTHER      | 3    | 其它邮箱类型。   |
@@ -3934,7 +3934,7 @@ holder.holderId = 0;
 
 | 名称              | 值   | 说明               |
 | ----------------- | ---- | ------------------ |
-| CUSTOM_LABEL      | 10000    | 自定义事件类型。   |
+| CUSTOM_LABEL      | 0    | 自定义事件类型。   |
 | EVENT_ANNIVERSARY | 1    | 周年纪念事件类型。 |
 | EVENT_OTHER       | 2    | 其它事件类型。     |
 | EVENT_BIRTHDAY    | 3    | 生日事件类型。     |
@@ -4009,15 +4009,14 @@ group.title = "title";
 
 | 名称             | 值   | 说明                 |
 | ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 10000   | 自定义即时消息类型。 |
-| IM_AIM           | 1    | AIM即时消息类型。    |
-| IM_MSN           | 2    | MSN即时消息类型。    |
-| IM_YAHOO         | 3    | YAHOO即时消息类型。  |
-| IM_SKYPE         | 4    | SKYPE即时消息类型。  |
-| IM_QQ            | 5    | QQ即时消息类型。     |
-| IM_HANGOUTS      | 6    | HANGOUTS即时消息类型 |
-| IM_ICQ           | 7    | ICQ即时消息类型。    |
-| IM_JABBER        | 8    | JABBER即时消息类型。 |
+| CUSTOM_LABEL     | -1   | 自定义即时消息类型。 |
+| IM_AIM           | 0    | AIM即时消息类型。    |
+| IM_MSN           | 1    | MSN即时消息类型。    |
+| IM_YAHOO         | 2    | YAHOO即时消息类型。  |
+| IM_SKYPE         | 3    | SKYPE即时消息类型。  |
+| IM_QQ            | 4    | QQ即时消息类型。     |
+| IM_ICQ           | 6    | ICQ即时消息类型。    |
+| IM_JABBER        | 7    | JABBER即时消息类型。 |
 | INVALID_LABEL_ID | -2   | 无效的即时消息类型。 |
 
 
@@ -4155,8 +4154,8 @@ note.noteContent = "noteContent";
 
 | 名称  |   类型   | 可读 | 可写 | 说明       |
 | ----- | -------- | ---- | ---- | ---------- |
-| name  | string   | 是   | 是   | 组织名称。 |
-| title | string   | 是   | 是   | 组织标题。 |
+| name  | string   | 是   | 是   | 单位名称。 |
+| title | string   | 是   | 是   | 职位名称。 |
 
 
 **对象创建示例：**
@@ -4189,15 +4188,27 @@ organization.title = "title";
 
 | 名称             | 值   | 说明                                             |
 | ---------------- | ---- | ------------------------------------------------ |
-| CUSTOM_LABEL     | 10000    | 自定义电话类型。                                 |
-| NUM_MOBILE       | 1    | 移动电话类型。                                   |
-| NUM_HOME         | 2    | 家庭电话类型。                                   |
+| CUSTOM_LABEL     | 0    | 自定义电话类型。                                 |
+| NUM_HOME         | 1    | 家庭电话类型。                                   |
+| NUM_MOBILE       | 2    | 移动电话类型。                                   |
 | NUM_WORK         | 3    | 工作电话类型。                                   |
 | NUM_FAX_WORK     | 4    | 工作传真电话类型。                               |
 | NUM_FAX_HOME     | 5    | 家庭传真电话类型。                               |
 | NUM_PAGER        | 6    | 寻呼机电话类型。                                 |
 | NUM_OTHER        | 7    | 其它电话类型。                                   |
+| NUM_CALLBACK     | 8    | 回呼电话类型。                                   |
+| NUM_CAR          | 9    | 车机电话类型。                                   |
+| NUM_COMPANY_MAIN | 10   | 公司电话类型。                                   |
+| NUM_ISDN         | 11   | 综合业务数字网（ISDN）电话类型。                 |
 | NUM_MAIN         | 12   | 主电话类型。                                     |
+| NUM_OTHER_FAX    | 13   | 其它传真类型。                                   |
+| NUM_RADIO        | 14   | 无线电话类型。                                   |
+| NUM_TELEX        | 15   | 电传电话类型。                                   |
+| NUM_TTY_TDD      | 16   | 电传打字机（TTY）或测试驱动开发（TDD）电话类型。 |
+| NUM_WORK_MOBILE  | 17   | 工作移动电话类型。                               |
+| NUM_WORK_PAGER   | 18   | 工作寻呼机电话类型。                             |
+| NUM_ASSISTANT    | 19   | 助理电话类型。                                   |
+| NUM_MMS          | 20   | 彩信电话类型。                                   |
 | INVALID_LABEL_ID | -1   | 无效电话类型。                                   |
 
 
@@ -4268,7 +4279,7 @@ portrait.uri = "uri";
 
 | 名称             | 值   | 说明                 |
 | ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 10000    | 自定义邮政地址类型。 |
+| CUSTOM_LABEL     | 0    | 自定义邮政地址类型。 |
 | ADDR_HOME        | 1    | 家庭地址类型。       |
 | ADDR_WORK        | 2    | 工作地址类型。       |
 | ADDR_OTHER       | 3    | 其它地址类型。       |
@@ -4321,17 +4332,17 @@ postalAddress.postalAddress = "postalAddress";
 
 | 名称                      | 值   | 说明               |
 | ------------------------- | ---- | ------------------ |
-| CUSTOM_LABEL              | 10000    | 自定义关系类型。   |
+| CUSTOM_LABEL              | 0    | 自定义关系类型。   |
 | RELATION_ASSISTANT        | 1    | 助手关系类型。     |
 | RELATION_BROTHER          | 2    | 兄弟关系类型。     |
 | RELATION_CHILD            | 3    | 子女关系类型。     |
-| RELATION_PARTNER          | 4    | 合作伙伴关系类型。 |
+| RELATION_DOMESTIC_PARTNER | 4    | 同居同伴关系类型。 |
 | RELATION_FATHER           | 5    | 父亲关系类型。     |
 | RELATION_FRIEND           | 6    | 朋友关系类型。     |
 | RELATION_MANAGER          | 7    | 管理者关系类型。   |
 | RELATION_MOTHER           | 8    | 母亲关系类型。     |
 | RELATION_PARENT           | 9    | 父母关系类型。     |
-| RELATION_DOMESTIC_PARTNER | 10   | 同居同伴关系类型。 |
+| RELATION_PARTNER          | 10   | 合作伙伴关系类型。 |
 | RELATION_REFERRED_BY      | 11   | 推荐人关系类型。   |
 | RELATION_RELATIVE         | 12   | 亲属关系类型。     |
 | RELATION_SISTER           | 13   | 姐妹关系类型。     |
@@ -4378,7 +4389,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 | 名称             | 值   | 说明                                |
 | ---------------- | ---- | ----------------------------------- |
-| CUSTOM_LABEL     | 10000    | 自定义会话发起协议（SIP）地址类型。 |
+| CUSTOM_LABEL     | 0    | 自定义会话发起协议（SIP）地址类型。 |
 | SIP_HOME         | 1    | 家庭会话发起协议（SIP）地址类型。   |
 | SIP_WORK         | 2    | 工作会话发起协议（SIP）地址类型。   |
 | SIP_OTHER        | 3    | 其它会话发起协议（SIP）地址类型。   |

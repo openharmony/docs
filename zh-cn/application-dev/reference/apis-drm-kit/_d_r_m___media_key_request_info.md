@@ -3,9 +3,7 @@
 
 ## 概述
 
-许可证请求参数类型。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
+媒体密钥请求信息。
 
 **起始版本：** 11
 
@@ -19,8 +17,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DRM_MediaKeyType](_drm.md#drm_mediakeytype)[type](_drm.md#type-12) | 许可证类型 | 
-| [DRM_Uint8Buffer](_d_r_m___uint8_buffer.md)[data](_drm.md#data-13) | base64编码后的pssh数据 | 
-| [DRM_CharBuffer](_d_r_m___char_buffer.md)[mimeType](_drm.md#mimetype) | 媒体类型 | 
-| uint32_t [optionsCount](_drm.md#optionscount) | 操作数数组长度 | 
-| [DRM_CharBufferPair](_d_r_m___char_buffer_pair.md)[optionsData](_drm.md#optionsdata) [0] | 操作数数组 | 
+| [DRM_MediaKeyType](_drm.md#drm_mediakeytype) [type](_drm.md#type-12) | 密钥类型。 | 
+| int32_t [initDataLen](_drm.md#initdatalen) | 初始数据长度。 | 
+| uint8_t [initData](_drm.md#initdata) [[MAX_INIT_DATA_LEN](_drm.md#max_init_data_len)] | base64解码后格式为PSSH的初始数据。 | 
+| char [mimeType](_drm.md#mimetype) [[MAX_MIMETYPE_LEN](_drm.md#max_mimetype_len)] | 媒体上下文的mime类型。 | 
+| uint32_t [optionsCount](_drm.md#optionscount) | 选项数据计数。 | 
+| char [optionName](_drm.md#optionname) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](_drm.md#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN](_drm.md#max_media_key_request_option_name_len)] | 选项名称集合。 | 
+| char [optionData](_drm.md#optiondata) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](_drm.md#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN](_drm.md#max_media_key_request_option_data_len)] | 选项数据集合。 | 

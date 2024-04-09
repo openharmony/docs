@@ -22,6 +22,8 @@ _**4. Task-oriented**: Focus on actual tasks of developers, and provide complete
 
 _**5. Reference purposes**: This template only provides the basic document framework. You can adjust the content based on the actual requirements._
 
+_**6. Content that is open only to system applications**: For content that is open only to system applications, topic-level isolation is recommended in terms of concepts, principles, and development scenarios. In other words, use an independent .md file to carry the content, and append "(for System Applications Only) to the title._
+
 
 ## *Example* Overview
 

@@ -12,7 +12,7 @@ Vulkan是一套用来做2D和3D渲染的图形应用程序接口，其中创建V
 | ------------------------------------------------------------ | ---------------------- |
 | vkCreateSurfaceOHOS (VkInstance instance, const VkSurfaceCreateInfoOHOS\* pCreateInfo, const VkAllocationCallbacks\* pAllocator, VkSurfaceKHR\* pSurface) | 创建VkSurfaceKHR对象。 |
 
-更多的接口说明请参考[Vulkan](vulkan-symbol.md)。
+更多的接口说明请参考[Vulkan](vulkan.md)。
 
 ## 开发步骤
 
@@ -70,7 +70,7 @@ libvulkan.so
 
 2. **获取OHNativeWindow**。
 
-   OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../../ui/arkts-common-components-xcomponent.md)和[XComponent开发指导](xcomponent-guidelines.md)。
+   OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../../ui/arkts-common-components-xcomponent.md)和[XComponent开发指导](../../ui/napi-xcomponent-guidelines.md)。
 
    1. ets/pages/Index.ets中增加一个XComponent组件。
 

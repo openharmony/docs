@@ -7,6 +7,11 @@
 > 从API Version 9 开始，该接口不再维护，推荐使用[`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md)等相关profile接口。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
 
+## 导入模块
+
+```js
+import bluetooth from '@ohos.bluetooth';
+```
 
 ## bluetooth.cancelPairedDevice<sup>8+</sup><sup>(deprecated)</sup><a name="cancelPairedDevice"></a>
 

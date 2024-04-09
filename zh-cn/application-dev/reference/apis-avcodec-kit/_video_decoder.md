@@ -24,27 +24,28 @@ VideoDecoder模块提供用于视频解码的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVCodec \* [OH_VideoDecoder_CreateByMime](#oh_videodecoder_createbymime) (const char \*mime) | 从MIME类型创建视频解码器实例。 | 
-| OH_AVCodec \* [OH_VideoDecoder_CreateByName](#oh_videodecoder_createbyname) (const char \*name) | 通过视频解码器名称创建视频解码器实例。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Destroy](#oh_videodecoder_destroy) (OH_AVCodec \*codec) | 清理解码器内部资源，销毁解码器实例。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_SetCallback](#oh_videodecoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，让应用可以响应视频解码器生成的事件。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_RegisterCallback](#oh_videodecoder_registercallback) (OH_AVCodec \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 注册异步回调函数，让应用可以响应视频解码器生成的事件。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_SetSurface](#oh_videodecoder_setsurface) (OH_AVCodec \*codec, OHNativeWindow \*window) | 指定输出表面以提供视频解码输出，必须在调用Prepare之前调用此接口。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Configure](#oh_videodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置视频解码器，通常需要配置解码视频轨迹的描述信息，这些信息可以从OH_AVSource中提取。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Prepare](#oh_videodecoder_prepare) (OH_AVCodec \*codec) | 要准备解码器的内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Start](#oh_videodecoder_start) (OH_AVCodec \*codec) | 启动解码器，准备成功后必须调用此接口。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Stop](#oh_videodecoder_stop) (OH_AVCodec \*codec) | 停止解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Flush](#oh_videodecoder_flush) (OH_AVCodec \*codec) | 清除解码器中缓存的输入和输出数据。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_Reset](#oh_videodecoder_reset) (OH_AVCodec \*codec) | 重置解码器。 | 
-| OH_AVFormat \* [OH_VideoDecoder_GetOutputDescription](#oh_videodecoder_getoutputdescription) (OH_AVCodec \*codec) | 获取解码器输出数据的描述信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_SetParameter](#oh_videodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 设置解码器的动态参数。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_PushInputData](#oh_videodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充数据的输入缓冲区提交给视频解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出Buffer返回给解码器，并通知解码器完成在输出表面上渲染Buffer中包含的解码数据。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_PushInputBuffer](#oh_videodecoder_pushinputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将填充数据的输入缓冲区提交给视频解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_RenderOutputBuffer](#oh_videodecoder_renderoutputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲返回给解码器，并通知解码器完成在输出表面上渲染，输出缓冲包含解码数据。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前解码实例是否有效。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_VideoDecoder_CreateByMime](#oh_videodecoder_createbymime) (const char \*mime) | 从MIME类型创建视频解码器实例。 | 
+| [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_VideoDecoder_CreateByName](#oh_videodecoder_createbyname) (const char \*name) | 通过视频解码器名称创建视频解码器实例。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Destroy](#oh_videodecoder_destroy) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清理解码器内部资源，销毁解码器实例。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetCallback](#oh_videodecoder_setcallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，让应用可以响应视频解码器生成的事件。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RegisterCallback](#oh_videodecoder_registercallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 注册异步回调函数，让应用可以响应视频解码器生成的事件。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetSurface](#oh_videodecoder_setsurface) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OHNativeWindow](_codec_base.md#ohnativewindow) \*window) | 指定输出表面以提供视频解码输出，必须在调用Prepare之前调用此接口。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Configure](#oh_videodecoder_configure) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format) | 配置视频解码器，通常需要配置解码视频轨迹的描述信息，这些信息可以从OH_AVSource中提取。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Prepare](#oh_videodecoder_prepare) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 要准备解码器的内部资源。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Start](#oh_videodecoder_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 启动解码器，准备成功后必须调用此接口。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Stop](#oh_videodecoder_stop) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 停止解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Flush](#oh_videodecoder_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除解码器中缓存的输入和输出数据。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_Reset](#oh_videodecoder_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置解码器。 | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_VideoDecoder_GetOutputDescription](#oh_videodecoder_getoutputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 获取解码器输出数据的描述信息。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetParameter](#oh_videodecoder_setparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format) | 设置解码器的动态参数。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_PushInputData](#oh_videodecoder_pushinputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充数据的输入缓冲区提交给视频解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出Buffer返回给解码器，并通知解码器完成在输出表面上渲染Buffer中包含的解码数据。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_PushInputBuffer](#oh_videodecoder_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填充数据的输入缓冲区提交给视频解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBuffer](#oh_videodecoder_renderoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲返回给解码器，并通知解码器完成在输出表面上渲染，输出缓冲包含解码数据。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前解码实例是否有效。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。 | 
 
 
 ## 函数说明
@@ -512,6 +513,32 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | codec | 指向视频解码实例的指针。 | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。 | 
 | userData | 用户特定数据。 | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+
+### OH_VideoDecoder_SetDecryptionConfig()
+
+```
+OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySession *mediaKeySession, bool secureVideoPath)
+```
+**描述**
+
+设置解密配置。在调用准备之前，可选择调用此接口。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
+
+**起始版本：** 11
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频解码实例的指针。  | 
+| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅**MediaKeySession**。  | 
+| secureVideoPath | 安全视频通路。指定安全视频通路为true，否则为false。  | 
 
 **返回：**
 

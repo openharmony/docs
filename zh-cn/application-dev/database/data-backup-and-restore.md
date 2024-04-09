@@ -197,22 +197,33 @@
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-   let key1 = 'NAME';
-   let key2 = 'AGE';
-   let key3 = 'SALARY';
-   let key4 = 'CODES';
    let value1 = 'Rose';
-   let value2 = 22;
-   let value3 = 200.5;
+   let value2 = 18;
+   let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   const valueBucket: ValuesBucket = {
-     key1: value1,
-     key2: value2,
-     key3: value3,
-     key4: value4,
+
+   // 以下三种方式可用
+   const valueBucket1: ValuesBucket = {
+     'NAME': value1,
+     'AGE': value2,
+     'SALARY': value3,
+     'CODES': value4,
    };
+   const valueBucket2: ValuesBucket = {
+     NAME: value1,
+     AGE: value2,
+     SALARY: value3,
+     CODES: value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME": value1,
+     "AGE": value2,
+     "SALARY": value3,
+     "CODES": value4,
+   };
+
    if(store != undefined) {
-     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
        if (err) {
          console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
          return;

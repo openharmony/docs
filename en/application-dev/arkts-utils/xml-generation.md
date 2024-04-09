@@ -20,7 +20,7 @@ The **xml** module provides the **XmlSerializer** class to generate XML files. T
 
 You can call different methods to write different types of content. For example, call **startElement(name: string)** to write a start tag and **setText(text: string)** to write a tag value. 
 
-For details about the APIs of the **XML** module, see [@ohos.xml (XML Parsing and Generation)](../reference/apis/js-apis-xml.md).
+For details about the APIs of the **XML** module, see [@ohos.xml (XML Parsing and Generation)](../reference/apis-arkts/js-apis-xml.md).
 
 To generate an XML file, proceed as follows:
 

@@ -6,13 +6,13 @@ Nonlinear containers, underpinned by hash tables or red-black trees, implement a
 
 ## HashMap
 
-[HashMap](../reference/apis/js-apis-hashmap.md) is used to store a set of associated key-value (KV) pairs. In a hash map, each key is unique and corresponds to a value.
+[HashMap](../reference/apis-arkts/js-apis-hashmap.md) is used to store a set of associated key-value (KV) pairs. In a hash map, each key is unique and corresponds to a value.
 
 **HashMap** uses generics. In a hash map, a key is located based on its hash code. The initial capacity of a hash map is 16, and it has capacity doubled in each dynamic expansion. The bottom layer of **HashMap** is implemented based on a hash table. It uses chaining to avoid collisions in hash tables.
 
-**HashMap** is faster in accessing data than [TreeMap](../reference/apis/js-apis-treemap.md), because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
+**HashMap** is faster in accessing data than [TreeMap](../reference/apis-arkts/js-apis-treemap.md), because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
 
-[HashSet](../reference/apis/js-apis-hashset.md) is implemented based on **HashMap**. The input parameter of **HashMap** consists of **key** and **value**. In **HashSet**, only the **value** object is processed.
+[HashSet](../reference/apis-arkts/js-apis-hashset.md) is implemented based on **HashMap**. The input parameter of **HashMap** consists of **key** and **value**. In **HashSet**, only the **value** object is processed.
 
 You are advised to use **HashMap** when you need to quickly access, remove, and insert KV pairs.
 
@@ -35,13 +35,13 @@ You are advised to use **HashMap** when you need to quickly access, remove, and 
 
 ## HashSet
 
-[HashSet](../reference/apis/js-apis-hashset.md) is used to store a set of values, each of which is unique in a hash set.
+[HashSet](../reference/apis-arkts/js-apis-hashset.md) is used to store a set of values, each of which is unique in a hash set.
 
 **HashSet** uses generics. In a hash set, a value is located based on its hash code. The initial capacity of a hash set is 16, and it has capacity doubled in each dynamic expansion. The type of **value** must comply with the ECMA standard. The bottom layer of **HashSet** is implemented based on a hash table. It uses chaining to avoid collisions in hash tables.
 
-**HashSet** is implemented based on [HashMap](../reference/apis/js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
+**HashSet** is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
 
-Unlike [TreeSet](../reference/apis/js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+Unlike [TreeSet](../reference/apis-arkts/js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 You are advised to use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
@@ -61,11 +61,11 @@ You are advised to use **HashSet** when you need a set that has only unique elem
 
 ## TreeMap
 
-[TreeMap](../reference/apis/js-apis-treemap.md) is used to store a set of associated KV pairs. In a tree map, each key is unique and corresponds to a value.
+[TreeMap](../reference/apis-arkts/js-apis-treemap.md) is used to store a set of associated KV pairs. In a tree map, each key is unique and corresponds to a value.
 
 **TreeMap** uses generics, and the keys in a tree map are ordered. The bottom layer of **TreeMap** is a binary tree, which supports quick search of KV pairs through the children (left child and right child) of the tree. The type of **key** must comply with the ECMA standard. Keys in a tree map are stored in order. The bottom layer of **TreeMap** is implemented based on the red-black tree and supports quick insertion and removal.
 
-[HashMap](../reference/apis/js-apis-hashmap.md) is faster in accessing data than **TreeMap**, because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
+[HashMap](../reference/apis-arkts/js-apis-hashmap.md) is faster in accessing data than **TreeMap**, because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
 
 You are advised to use **TreeMap** when you need to store KV pairs in sorted order.
 
@@ -90,13 +90,13 @@ You are advised to use **TreeMap** when you need to store KV pairs in sorted ord
 
 ## TreeSet
 
-[TreeSet](../reference/apis/js-apis-treeset.md) is used to store a set of values, each of which is unique in a tree set.
+[TreeSet](../reference/apis-arkts/js-apis-treeset.md) is used to store a set of values, each of which is unique in a tree set.
 
 **TreeSet** uses generics, and the values in a tree set are ordered. The bottom layer of **TreeSet** is a binary tree, which supports quick search of a value through the children (left child and right child) of the tree. The type of **value** must meet the ECMA standard. Values in a tree set are stored in order. The bottom layer of **TreeSet** is implemented based on the red-black tree and supports quick insertion and removal.
 
-**TreeSet** is implemented based on [TreeMap](../reference/apis/js-apis-treemap.md). In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
+**TreeSet** is implemented based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md). In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
 
-[HashSet](../reference/apis/js-apis-hashset.md) stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+[HashSet](../reference/apis-arkts/js-apis-hashset.md) stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 You are advised to use **TreeSet** when you need to store data in sorted order.
 
@@ -118,11 +118,11 @@ You are advised to use **TreeSet** when you need to store data in sorted order.
 
 ## LightWeightMap
 
-[LightWeightMap](../reference/apis/js-apis-lightweightmap.md) is used to store a set of associated KV pairs. In a lightweight map, each key is unique and corresponds to a value. **LightWeightMap** uses generics and a more lightweight structure. It uses the hash code to uniquely identify a key at the bottom layer. It uses linear probing to avoid collisions. In a lightweight map, a key is located by using the hash code and binary search algorithm. The hash code is stored in an array and mapped to a key and its value in another array. The type of **key** must comply with the ECMA standard.
+[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) is used to store a set of associated KV pairs. In a lightweight map, each key is unique and corresponds to a value. **LightWeightMap** uses generics and a more lightweight structure. It uses the hash code to uniquely identify a key at the bottom layer. It uses linear probing to avoid collisions. In a lightweight map, a key is located by using the hash code and binary search algorithm. The hash code is stored in an array and mapped to a key and its value in another array. The type of **key** must comply with the ECMA standard.
 
 The default initial capacity of a lightweight map is 8, and it has capacity doubled in each expansion.
 
-Compared with [HashMap](../reference/apis/js-apis-hashmap.md), which can also store KV pairs, **LightWeightMap** occupies less memory.
+Compared with [HashMap](../reference/apis-arkts/js-apis-hashmap.md), which can also store KV pairs, **LightWeightMap** occupies less memory.
 
 You are advised to use **LightWeightMap** when you need to store and access **KV pairs**.
 
@@ -150,13 +150,13 @@ You are advised to use **LightWeightMap** when you need to store and access **KV
 
 ## LightWeightSet
 
-[LightWeightSet](../reference/apis/js-apis-lightweightset.md) is used to store a set of values, each of which is unique in a lightweight set.
+[LightWeightSet](../reference/apis-arkts/js-apis-lightweightset.md) is used to store a set of values, each of which is unique in a lightweight set.
 
 **LightWeightSet** uses generics and a lightweight structure. Its default initial capacity is 8, and it has capacity doubled in each expansion. In a lightweight set, a value is located by using the hash code and binary search algorithm. The hash code is stored in an array and mapped to a value in another array. The type of **value** must comply with the ECMA standard.
 
 **LightWeightSet** uses the hash code to uniquely identify a value at the bottom layer. It uses linear probing to avoid collisions and adopts the binary search algorithm.
 
-Compared with [HashSet](../reference/apis/js-apis-hashset.md), which can also store values, **LightWeightSet** occupies less memory.
+Compared with [HashSet](../reference/apis-arkts/js-apis-hashset.md), which can also store values, **LightWeightSet** occupies less memory.
 
 You are advised to use **LightWeightSet** when you need a set that has only unique elements or need to deduplicate a set.
 
@@ -179,11 +179,11 @@ You are advised to use **LightWeightSet** when you need a set that has only uniq
 
 ## PlainArray
 
-[PlainArray](../reference/apis/js-apis-plainarray.md) is used to store a set of associated KV pairs. In a plain array, each key is unique, corresponds to a value, and is of the number type. **PlainArray** uses generics and a more lightweight structure. In a plain array, a key is located by using the binary search algorithm and is mapped to a value in another array.
+[PlainArray](../reference/apis-arkts/js-apis-plainarray.md) is used to store a set of associated KV pairs. In a plain array, each key is unique, corresponds to a value, and is of the number type. **PlainArray** uses generics and a more lightweight structure. In a plain array, a key is located by using the binary search algorithm and is mapped to a value in another array.
 
 The default initial capacity of a plain array is 16, and it has capacity doubled in each expansion.
 
-Both **PlainArray** and [LightWeightMap](../reference/apis/js-apis-lightweightmap.md) are used to store KV pairs in the lightweight structure. However, the key type of **PlainArray** can only be **number**.
+Both **PlainArray** and [LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) are used to store KV pairs in the lightweight structure. However, the key type of **PlainArray** can only be **number**.
 
 You are advised to use PlainArray when you need to store KV pairs whose keys are of the number type.
 

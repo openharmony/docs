@@ -359,6 +359,51 @@ struct Test {
 ![zh-cn_image_0000001219864131](figures/zh-cn_image_0000001219864131.png)
 
 
+### skew<sup>12+</sup>
+
+skew(x: number, y: number): Matrix4Transit
+
+
+Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会改变调用该函数的原始矩阵。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                        | 必填 | 说明           |
+| ------ | --------------------------- | ---- | -------------- |
+| x | number | 是   | 设置x轴倾斜参数。 |
+| y | number | 是   | 设置y轴倾斜参数。 |
+
+**返回值：**
+
+| 类型                              | 说明                         |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | 倾斜效果后的矩阵对象。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import matrix4 from '@ohos.matrix4'
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity().skew(2, 3)
+
+  build() {
+    Column() { 
+      Image($r("app.media.bg1")).transform(this.matrix1)
+        .width("40%")
+        .height(100)
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001219864132](figures/zh-cn_image_0000001219864132.jpeg)
+
+
 ### rotate
 
 rotate(options: RotateOption): Matrix4Transit
@@ -462,6 +507,48 @@ struct Test {
 
 ![zh-cn_image_0000001219864133](figures/zh-cn_image_0000001219864133.PNG)
 
+### setPolyToPoly<sup>12+</sup>
+
+setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
+
+将一个多边形的顶点坐标映射到另外一个多边形的顶点坐标。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ | ---------------- | ---- | ------------------ |
+| option | PolyToPolyOptions(#PolyToPolyOptions)  | 是   | 映射相关的参数。 |
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [Matrix4Transit](#matrix4transit) | 当前矩阵变换后的对象。 |
+
+**示例：**
+
+```ts
+import matrix4 from '@ohos.matrix4'
+
+@Entry
+@Component
+struct Index {
+  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:200, y:0}, {x:0, y:200}, {x:200, y:200} ],
+    dst:[{x:150, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
+
+  build() {
+    Stack() {
+      Image($r("app.media.1"))
+        .transform(this.matrix1)
+        .width(150)
+        .height(150)
+    }.width("100%").height("100%")
+  }
+}
+```
+![zh-cn_image_0000001174422898](figures/setPolyTopoly.png)
 ## TranslateOption
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -497,6 +584,27 @@ struct Test {
 | centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：0                       |
 | centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：0                       |
 
+
+## PolyToPolyOptions<sup>12+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型   | 必填 | 说明                                                        |
+| ---- | ------ | ---- | ----------------------------------------------------------- |
+| src    |  Array<[Point](#point12)> | 是   | 源点坐标。 |
+| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0。|
+| dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
+| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0。 |
+| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2。|
+
+## Point<sup>12+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型   | 必填 | 说明                                                        |
+| ---- | ------ | ---- | ----------------------------------------------------------- |
+| x    |  number | 是   | x轴坐标。 |
+| y    | number | 是   | y轴坐标。 |
 
 
 

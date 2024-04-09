@@ -29,21 +29,28 @@ CustomDialogController(value: CustomDialogControllerOptions)
 
 | 名称                           | 参数类型                                     | 必填   | 描述                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | 是    | 自定义弹窗内容构造器。                              |
+| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | 是    | 自定义弹窗内容构造器。<br/>**说明：** <br/>若builder构造器使用回调函数作为入参，请注意使用this绑定问题，如build: custombuilder({ callback: ()=> {...}})。 |
 | cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。 |
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出，true表示关闭弹窗。false表示不关闭弹窗。<br>默认值：true |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset                        | [Offset](ts-types.md#offset)             | 否    | 弹窗相对alignment所在位置的偏移量。                   |
-| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。<br>设置为true时，宽度跟随子节点自适应，圆角为0，弹窗背景色为透明色。 |
+| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。<br>设置为true时，宽度跟随子节点自适应，圆角为0，弹窗背景色为透明色，不支持设置弹窗边框宽度、边框样式、边框颜色以及阴影。|
 | gridCount<sup>8+</sup>        | number                                   | 否    | 弹窗宽度占[栅格宽度](../../../ui/arkts-layout-development-grid-layout.md)的个数。<br>默认为按照窗口大小自适应，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值: 0x33000000              |
-| maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
-| openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗弹出的动画效果相关参数。<br>**说明**：<br>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。 |
-| closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗关闭的动画效果相关参数。<br>**说明**：<br>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。<br/>页面转场切换时，建议使用默认关闭动效。                    |
+| maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。|
+| openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗弹出的动画效果相关参数。<br>**说明**：<br>tempo默认值为1，当设置小于0的值时按默认值处理。<br/>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。 |
+| closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 否    | 自定义设置弹窗关闭的动画效果相关参数。<br>**说明**：<br>tempo默认值为1，当设置小于0的值时按默认值处理。<br/>iterations默认值为1，默认播放一次，设置为其他数值时按默认值处理。<br>playMode控制动画播放模式，默认值为PlayMode.Normal，设置为其他数值时按照默认值处理。<br/>页面转场切换时，建议使用默认关闭动效。 |
 | showInSubWindow<sup>10+</sup> | boolean                                  | 否    | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br>默认值：false，弹窗显示在应用内，而非独立子窗口。<br>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 |
 | backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | 否   | 设置弹窗背板填充。<br />**说明**：如果同时设置了内容构造器的背景色，则backgroundColor会被内容构造器的背景色覆盖。 |
 | cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | 否   | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }<br />**说明**：自定义弹窗默认的背板圆角半径为24vp，如果需要使用cornerRadius属性，请和[borderRadius](ts-universal-attributes-border.md#borderradius)属性一起使用。 |
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](ts-methods-alert-dialog-box.md#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+| borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
+| borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
+| borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
+| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br>width和gridCount同时设置时，width优先。<br />**说明：**<br /> 弹窗的宽度百分比是相对主窗口或子窗口(showInSubWindow)的宽度。<br />非showInSubWindow弹窗宽度的最大尺寸是主窗口宽度，showInSubWindow弹窗宽度的最大尺寸是子窗口宽度。|
+| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br />**说明：**<br /> 弹窗的高度百分比是相对主窗口或子窗口(showInSubWindow)的高度。<br />当高度设置100%，非showInSubWindow弹窗高度的最大尺寸是主窗口高度，showInSubWindow弹窗高度的最大尺寸是子窗口高度。<br />设置弹窗对齐方式，弹出的显示区域不足，会剪裁弹窗。|
+| shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
 
 > **说明：**
 >
@@ -55,7 +62,7 @@ CustomDialogController(value: CustomDialogControllerOptions)
 ### 导入对象
 
 ```ts
-let dialogController : CustomDialogController = new CustomDialogController(CustomDialogControllerOptions)
+dialogController : CustomDialogController | null = new CustomDialogController(CustomDialogControllerOptions)
 ```
 **说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
@@ -103,6 +110,16 @@ struct CustomDialogExample {
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
+      }
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
+      }
+    },
     offset: { dx: 0, dy: -25 } })
   controller?: CustomDialogController
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在所有controller的后面
@@ -155,13 +172,23 @@ struct CustomDialogUser {
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept,
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() },
       textValue: $textValue,
       inputValue: $inputValue
     }),
     cancel: this.exitApp,
     autoCancel: true,
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
+      }
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
+      }
+    },
     alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
@@ -231,11 +258,21 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: this.onCancel,
-      confirm: this.onAccept
+      cancel: ()=> { this.onCancel() },
+      confirm: ()=> { this.onAccept() }
     }),
     cancel: this.existApp,
     autoCancel: true,
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+      console.log("dialog onWillDismiss")
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
+      }
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
+      }
+    },
     alignment: DialogAlignment.Center,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,

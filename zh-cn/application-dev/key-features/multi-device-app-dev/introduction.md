@@ -63,7 +63,7 @@ Module分为“Ability”和“Library”两种类型：
 
 * “Ability”类型的Module编译后生成HAP包。
 
-* “Library”类型的Module编译后生成HAR包或[HSP包](../../quick-start/shared-guide.md)。
+* “Library”类型的Module编译后生成[HAR包](../../quick-start/har-package.md)或[HSP包](../../quick-start/in-app-hsp.md)。
 
 应用以APP Pack形式发布，其包含一个或多个HAP包。HAP是应用安装的基本单位，HAP可以分为Entry和Feature两种类型：
 
@@ -114,7 +114,7 @@ Module分为“Ability”和“Library”两种类型：
 
 - features（基础特性层）：用于存放基础特性集合（如应用中相对独立的各个功能的UI及业务逻辑实现等）。
 
-  各个feature高内聚、低耦合、可定制，供产品灵活部署。不需要单独部署的feature通常编译为HAR包或HSP包，供products或其它feature使用。需要单独部署的feature通常编译为Feature类型的HAP包，和products下Entry类型的HAP包进行[组合部署](../../quick-start/multi-hap-objective.md)。features层可以横向调用及依赖common层，同时可以被products层不同设备形态的HAP所依赖，但是不能反向依赖products层。
+  各个feature高内聚、低耦合、可定制，供产品灵活部署。不需要单独部署的feature通常编译为HAR包或HSP包，供products或其它feature使用，但是不能反向依赖products层。需要单独部署的feature通常编译为Feature类型的HAP包，和products下Entry类型的HAP包进行组合部署。features层可以横向调用及依赖common层。
 
 - products（产品定制层）：用于针对不同设备形态进行功能和特性集成。
 

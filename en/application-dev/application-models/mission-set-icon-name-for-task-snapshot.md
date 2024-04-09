@@ -8,7 +8,7 @@ Figure 1 Mission snapshot of a UIAbility
 
 ![](figures/mission-list-recent.png)
 
-You can also use [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) and [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to customize the icon and name for a mission snapshot. For example, for a UIAbility instance in multiton mode, you can configure the icon and name for each mission snapshot based on different functions.
+You can also use [UIAbilityContext.setMissionIcon()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon) and [UIAbilityContext.setMissionLabel()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to customize the icon and name for a mission snapshot. For example, for a UIAbility instance in multiton mode, you can configure the icon and name for each mission snapshot based on different functions.
 
 This document describes the following operations:
 
@@ -17,9 +17,9 @@ This document describes the following operations:
 
 ## Setting a Mission Snapshot Icon (for System Applications Only)
 
-Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot.
+Call [UIAbilityContext.setMissionIcon()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot.
 
-For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image/image-decoding.md).
 
 ```ts
 import common from '@ohos.app.ability.common';
@@ -51,7 +51,7 @@ Figure 2 Mission snapshot icon
 
 ## Setting a Mission Snapshot Name
 
-Call [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
+Call [UIAbilityContext.setMissionLabel()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to set the name of a mission snapshot.
 
 ```ts
 import common from '@ohos.app.ability.common';

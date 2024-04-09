@@ -77,24 +77,12 @@ MyGlobalBuilderFunction()
 
 按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@Builder方法内的UI刷新。
 
-
 ```ts
-class ABuilderParam {
-  paramA1: string = ''
-  paramB1: string = ''
-}
-
-@Builder function ABuilder(params : ABuilderParam) {...}
-```
-
-
-
-```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
 }
 
-@Builder function ABuilder(params: ABuilderParam) {
+@Builder function overBuilder(params: Tmp) {
   Row() {
     Text(`UseStateVarByReference: ${params.paramA1} `)
   }
@@ -105,8 +93,8 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the ABuilder component when the ABuilder component is called in the Parent component.
-      ABuilder({ paramA1: this.label })
+      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
@@ -120,25 +108,25 @@ struct Parent {
 按引用传递参数时，如果在\@Builder方法内调用自定义组件，ArkUI提供$$作为按引用传递参数的范式。
 
 ```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
   paramB1: string = ''
 }
 
-@Builder function ABuilder($$ : ABuilderParam) {...}
+@Builder function overBuilder($$ : Tmp) {...}
 ```
 
 
 
 ```ts
-class ABuilderParam {
+class Tmp {
   paramA1: string = ''
 }
 
-@Builder function BBuilder($$: ABuilderParam) {
+@Builder function overBuilder($$: Tmp) {
   Row() {
     Column() {
-      Text(`BBuilder===${$$.paramA1}`)
+      Text(`overBuilder===${$$.paramA1}`)
       HelloComponent({message: $$.paramA1})
     }
   }
@@ -161,8 +149,8 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the BBuilder component when the BBuilder component is called in the Parent component.
-      BBuilder({paramA1: this.label})
+      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
         this.label = 'ArkUI';
@@ -179,7 +167,7 @@ struct Parent {
 
 
 ```ts
-@Builder function ABuilder(paramA1: string) {
+@Builder function overBuilder(paramA1: string) {
   Row() {
     Text(`UseStateVarByValue: ${paramA1} `)
   }
@@ -190,7 +178,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      ABuilder(this.label)
+      overBuilder(this.label)
     }
   }
 }

@@ -2,9 +2,9 @@
 
 ## Introduction
 
-During system running, a database fault may occur due to storage damage, insufficient storage space, file system permission, or system power-off. The database fault may cause data loss. For example, the database corruption of Contacts causes the loss of Contacts data. The data management subsystem provides the following solutions and capabilities to ensure data reliability and security:
+A database fault may be caused by storage corruption, insufficient storage space, lack of file system permission, or system power-off. The database fault may cause data loss or even malfunction of the system. For example, the database corruption of Contacts causes the loss of Contacts data, and the database corruption of Calendar may cause loss of Calendar reminders. ArkData management provides the following solutions and capabilities to ensure data reliability and security:
 
-- Data backup and restoration: Critical data (such as the bank information) can be backed up and restored from the backup to prevent data loss.
+- Data backup and restore: Critical data (such as bank information) can be backed up and restored from the backup to prevent data loss.
 
 - Database encryption: The database that stores sensitive information, such as authentication credentials and financial data, can be encrypted to improve data security.
 
@@ -18,22 +18,22 @@ In addition, the backup database is stored in the application sandbox. When the 
 Before developing functions related to data reliability and security, understand the following concepts.
 
 
-### Database Backup and Restoration
+### Database Backup and Restore
 
-- Database backup: OpenHarmony provides full backup of database files.
-  When backing up a database, you only need to invoke the backup API of the database, without closing the database.
+- Database backup: A full backup is performed for OpenHarmony database files.
+  The related API is called to perform the backup, without closing the database.
 
-- Database restoration: You can restore a database from a database backup file.
+- Database restore: Database data can be restored from a database backup file. After the data restore is complete, the database is restored to the state when the data was backed up.
 
 
 ### Database Encryption
 
-The entire database file can be encrypted to enhance the database security.
+The entire database file can be encrypted to enhance database security.
 
 
-### Data Rating
+### Access Control by Data Level
 
-In distributed scenarios, the access to data is controlled based on the device security level and data security labels.
+Distributed data management implements access control based on data security labels and device security levels.
 
 A higher data security label and device security level indicate stricter encryption and access control measures and higher data security.
 
@@ -41,9 +41,9 @@ A higher data security label and device security level indicate stricter encrypt
 ## Working Principles
 
 
-### Database Backup and Restoration Mechanism
+### Database Backup and Restore Mechanism
 
-The data of a database is backed up to the specified file. Subsequent operations on the database do not affect the backup file. The database is overwritten by the specified backup file only when a restoration is performed.
+The data of a database is backed up to the specified file. Subsequent operations on the database do not affect the backup file. The database is overwritten by the specified backup file only when a restore is performed.
 
 - KV store backup directory: **/data/service/el1(el2)/public/database/...{appId}/kvdb/backup/...{storeId}**
 
@@ -52,7 +52,7 @@ The data of a database is backed up to the specified file. Subsequent operations
 
 ### Database Encryption Mechanism
 
-When encrypting a database, you do not need to pass in the key for encryption. The only thing you need to do is set the database encryption status. The system automatically calls the [HUKS APIs](../reference/apis/js-apis-huks.md) to generate a key and encrypt the database.
+When encrypting a database, you do not need to pass in the key for encryption. The only thing you need to do is set the database encryption status. The system automatically calls the [HUKS APIs](../reference/apis-universal-keystore-kit/js-apis-huks.md) to generate a key and encrypt the database.
 
 
 ## Constraints

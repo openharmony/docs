@@ -1,6 +1,6 @@
 # MindSpore Lite Kit API参考 
 
-- ArkTS API 
+- ArkTS API
   - [@ohos.ai.mindSporeLite (推理能力)](js-apis-mindSporeLite.md)
   - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](js-apis-intelligentVoice-sys.md)
 - C API
@@ -20,4 +20,3 @@
     - [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md)
 - 错误码
   - [智能语音错误码](errorcode-intelligentVoice.md)
-

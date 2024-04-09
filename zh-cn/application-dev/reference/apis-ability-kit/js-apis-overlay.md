@@ -24,7 +24,7 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| moduleName  | string | 是    | overlay特征module的HAP名称。               |
+| moduleName  | string | 是    | overlay特征module的名称。               |
 | isEnabled   | boolean  | 是  | 值为true表示使能，值为false表示禁用。 |
 
 **返回值：**
@@ -76,7 +76,7 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| moduleName  | string | 是    | overlay特征module的HAP名称。               |
+| moduleName  | string | 是    | overlay特征module的名称。               |
 | isEnabled   | boolean  | 是  | 值为true表示使能，值为false表示禁用。|
 | callback    | AsyncCallback\<void> | 是    | 回调函数，当设置指定module的overlay禁用使能状态成功时，err为null，否则为错误对象。 |
 
@@ -124,7 +124,7 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | ------------------------------------------ |
-| moduleName | string | 是    | 指定当前应用中的overlay module的HAP名称。     |
+| moduleName | string | 是    | 指定当前应用中的overlay module的名称。     |
 
 **返回值：**
 
@@ -173,7 +173,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| moduleName | string | 是    | 指定当前应用中的overlay特征module的HAP名称。     |
+| moduleName | string | 是    | 指定当前应用中的overlay特征module的名称。     |
 | callback    | AsyncCallback\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)> | 是    | 回调函数，当获取当前应用中指定的module的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
@@ -219,7 +219,7 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| targetModuleName | string | 是    | 指定当前应用中的目标module的HAP名称。     |
+| targetModuleName | string | 是    | 指定当前应用中的目标module的名称。     |
 
 **返回值：**
 
@@ -267,7 +267,7 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| targetModuleName | string | 是    | 指定当前应用中的目标module的HAP名称。     |
+| targetModuleName | string | 是    | 指定当前应用中的目标module的名称。     |
 | callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定的目标module的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)成功时，err返回null。否则回调函数返回具体错误对象。  |
 
 **错误码：**

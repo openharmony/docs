@@ -18,12 +18,16 @@ PersistentStorage和AppStorage中的属性建立双向同步。应用开发通�
 PersistentStorage允许的类型和值有：
 
 - `number, string, boolean, enum` 等简单类型。
-- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象。例如`Date, Map, Set`等内置类型则不支持，以及对象的属性方法不支持持久化。
+- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象，以及对象的属性方法不支持持久化。
+- API12及以上支持Map类型，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。且更新的值被持久化存储。详见[装饰Map类型变量](#装饰map类型变量)。
+- API12及以上支持Set类型，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。且更新的值被持久化存储。详见[装饰Set类型变量](#装饰set类型变量)。
+- API12及以上支持Date类型，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。且更新的值被持久化存储。详见[装饰Date类型变量](#装饰date类型变量)。
+- API12及以上支持`undefined` 和 `null`。
+- API12及以上[支持联合类型](#支持联合类型)。
 
 PersistentStorage不允许的类型和值有：
 
 - 不支持嵌套对象（对象数组，对象的属性是对象等）。因为目前框架无法检测AppStorage中嵌套对象（包括数组）值的变化，所以无法写回到PersistentStorage中。
-- 不支持`undefined` 和 `null` 。
 
 持久化数据是一个相对缓慢的操作，应用程序应避免以下情况：
 
@@ -33,7 +37,19 @@ PersistentStorage不允许的类型和值有：
 
 PersistentStorage的持久化变量最好是小于2kb的数据，不要大量的数据持久化，因为PersistentStorage写入磁盘的操作是同步的，大量的数据本地化读写会同步在UI线程中执行，影响UI渲染性能。如果开发者需要存储大量的数据，建议使用数据库api。
 
-PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用，可以通过在[runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法持久化数据。
+PersistentStorage和UI实例相关联，持久化操作需要在UI实例初始化成功后（即[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9-2)传入的回调被调用时）才可以被调用，早于该时机调用会导致持久化失败。
+
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      return;
+    }
+    PersistentStorage.persistProp('aProp', 47);
+  });
+}
+```
 
 ## 使用场景
 
@@ -136,3 +152,218 @@ if (AppStorage.get('aProp') > 50) {
 ```
 
 示例代码在读取PersistentStorage储存的数据后判断“aProp”的值是否大于50，如果大于50的话使用AppStorage的接口设置为47。
+
+
+### 支持联合类型
+
+PersistentStorage支持联合类型和undefined和null，在下面的示例中，使用persistProp方法初始化"P"为undefined。通过@StorageLink("P")绑定变量p，类型为number | undefined | null，点击Button改变P的值，视图会随之刷新。且P的值被持久化存储。
+
+```ts
+PersistentStorage.persistProp("P", undefined);
+
+@Entry
+@Component
+struct TestCase6 {
+  @StorageLink("P") p: number | undefined | null = 10;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.p + "")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("changeToNumber").onClick(() => {
+          this.p = 10;
+        })
+        Button("changeTo undefined").onClick(() => {
+          this.p = undefined;
+        })
+        Button("changeTo null").onClick(() => {
+          this.p = null;
+        })
+      }  
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### 装饰Date类型变量
+
+在下面的示例中，@StorageLink装饰的persistedDate类型为Date，点击Button改变persistedDate的值，视图会随之刷新。且persistedDate的值被持久化存储。
+
+```ts
+PersistentStorage.persistProp("persistedDate", new Date());
+
+@Entry
+@Component
+struct PersistedDate {
+  @StorageLink("persistedDate") persistedDate: Date = new Date();
+
+  updateDate() {
+    this.persistedDate = new Date();
+  }
+
+  build() {
+    List() {
+      ListItem() {
+        Column() {
+          Text(`Persisted Date is ${this.persistedDate.toString()}`)
+            .margin(20)
+
+          Text(`Persisted Date month is ${this.persistedDate.getMonth()}`)
+            .margin(20)
+
+          Text(`Persisted Date day is ${this.persistedDate.getDay()}`)
+            .margin(20)
+
+          Text(`Persisted Date time is ${this.persistedDate.toLocaleTimeString()}`)
+            .margin(20)
+
+          Button() {
+            Text('Update Date')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.updateDate();
+          })
+
+        }.width('100%')
+      }
+    }
+  }
+}
+```
+
+### 装饰Map类型变量
+
+在下面的示例中，@StorageLink装饰的persistedMapString类型为Map\<number, string\>，点击Button改变persistedMapString的值，视图会随之刷新。且persistedMapString的值被持久化存储。
+
+```ts
+PersistentStorage.persistProp("persistedMapString", new Map<number, string>([]));
+
+@Entry
+@Component
+struct PersistedMap {
+  @StorageLink("persistedMapString") persistedMapString: Map<number, string> = new Map<number, string>([]);
+
+  persistMapString() {
+    this.persistedMapString = new Map<number, string>([[3, "one"], [6, "two"], [9, "three"]]);
+  }
+
+  build() {
+    List() {
+      ListItem() {
+        Column() {
+          Text(`Persisted Map String is `)
+            .margin(20)
+          ForEach(Array.from(this.persistedMapString.entries()), (item: [number, string]) => {
+            Text(`${item[0]} ${item[1]}`)
+          })
+
+          Button() {
+            Text('Persist Map String')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.persistMapString();
+          })
+
+        }.width('100%')
+      }
+    }
+  }
+}
+```
+
+### 装饰Set类型变量
+
+在下面的示例中，@StorageLink装饰的persistedSet类型为Set\<number\>，点击Button改变persistedSet的值，视图会随之刷新。且persistedSet的值被持久化存储。
+
+```ts
+PersistentStorage.persistProp("persistedSet", new Set<number>([]));
+
+@Entry
+@Component
+struct PersistedSet {
+  @StorageLink("persistedSet") persistedSet: Set<number> = new Set<number>([]);
+
+  persistSet() {
+    this.persistedSet = new Set<number>([33, 1, 3]);
+  }
+
+  clearSet() {
+    this.persistedSet.clear();
+  }
+
+  build() {
+    List() {
+      ListItem() {
+        Column() {
+          Text(`Persisted Set is `)
+            .margin(20)
+          ForEach(Array.from(this.persistedSet.entries()), (item: [number, string]) => {
+            Text(`${item[1]}`)
+          })
+
+          Button() {
+            Text('Persist Set')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.persistSet();
+          })
+
+          Button() {
+            Text('Persist Clear')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.clearSet();
+          })
+
+        }
+        .width('100%')
+      }
+    }
+  }
+}
+```

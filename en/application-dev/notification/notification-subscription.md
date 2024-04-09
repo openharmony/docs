@@ -4,12 +4,12 @@
 To receive notifications, an application must subscribe to notifications first. The notification subsystem provides two types of subscription APIs, allowing applications to subscribe to notifications from all applications or notifications from a specific application.
 
 
-You can use the [NotificationSubscriber](../reference/apis/js-apis-inner-notification-notificationSubscriber.md) object to provide callbacks for subscription events, such as subscription success, notification reception, notification cancellation, and subscription cancellation.
+You can use the [NotificationSubscriber](../reference/apis-notification-kit/js-apis-inner-notification-notificationSubscriber-sys.md) object to provide callbacks for subscription events, such as subscription success, notification reception, notification cancellation, and subscription cancellation.
 
 
 ## Available APIs
 
-The major APIs for notification subscription are described as follows. For details about the APIs, see [@ohos.notificationSubscribe](../reference/apis/js-apis-notificationSubscribe.md).
+The major APIs for notification subscription are described as follows. For details about the APIs, see [@ohos.notificationSubscribe (NotificationSubscribe)](../reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md).
 
 **Table 1** Major APIs for notification subscription
 

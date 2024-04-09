@@ -29,7 +29,7 @@
 
 
 - 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行。
-- 使用了[媒体会话](../media/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
+- 使用了[媒体会话](../media/avsession/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
 ### 约束与限制
@@ -363,7 +363,7 @@
     import Want from '@ohos.app.ability.Want';
    ```
 
-4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
+4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 stopBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
   
    ```js
     function startContinuousTask() {

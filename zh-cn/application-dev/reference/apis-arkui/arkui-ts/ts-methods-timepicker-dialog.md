@@ -6,13 +6,13 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> 从API version 10开始，可以通过使用[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../../apis/js-apis-arkui-UIContext.md#showtimepickerdialog)来明确UI的执行上下文。
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)来明确UI的执行上下文。
 
 ## TimePickerDialog.show
 
-show(options?: TimePickerDialogOptions)
+static show(options?: TimePickerDialogOptions)
 
 定义时间滑动选择器弹窗并弹出。
 
@@ -31,7 +31,7 @@ show(options?: TimePickerDialogOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false<br />**说明：**当展示时间为12小时制时，上下午与小时无联动关系。 |
+| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false<br />**说明：** 当展示时间为12小时制时，上下午与小时无联动关系。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
@@ -43,6 +43,10 @@ show(options?: TimePickerDialogOptions)
 | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
+| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。 |
+| onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
+| onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
 
 ## 示例
 
@@ -75,6 +79,18 @@ struct TimePickerDialogExample {
             },
             onChange: (value: TimePickerResult) => {
               console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            },
+            onDidAppear: () => {
+              console.info("TimePickerDialog:onDidAppear()")
+            },
+            onDidDisappear: () => {
+              console.info("TimePickerDialog:onDidDisappear()")
+            },
+            onWillAppear: () => {
+              console.info("TimePickerDialog:onWillAppear()")
+            },
+            onWillDisappear: () => {
+              console.info("TimePickerDialog:onWillDisappear()")
             }
           })
         })
@@ -98,6 +114,18 @@ struct TimePickerDialogExample {
             },
             onChange: (value: TimePickerResult) => {
               console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            },
+            onDidAppear: () => {
+              console.info("TimePickerDialog:onDidAppear()")
+            },
+            onDidDisappear: () => {
+              console.info("TimePickerDialog:onDidDisappear()")
+            },
+            onWillAppear: () => {
+              console.info("TimePickerDialog:onWillAppear()")
+            },
+            onWillDisappear: () => {
+              console.info("TimePickerDialog:onWillDisappear()")
             }
           })
         })

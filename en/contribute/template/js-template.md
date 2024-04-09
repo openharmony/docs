@@ -25,13 +25,13 @@ For an attribute or interface table, if a tag has the same value for all the ite
 
 | d.ts Tag| Description| Document Field|
 | ---------- | ---- | ------- |
-| @since | Version description| 1. Use the greater-than sign (**>**) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the **<sup>** tag to mark its earliest version. The format is **<sup>versionNumber+</sup>**, for example, **<sup>7+</sup>**.  <br>If an attribute is added to an existing module, suffix the **<sup>** tag to the new attribute name, for example, **newAttribute<sup>7+</sup>**.<br>If a method is added to an existing module, suffix the **<sup>** tag to the method name, for example, **sim.getSimIccId<sup>7+</sup>**. The same rule applies to new interfaces, classes, and enums. |
+| @since | Version description| 1. Use the greater-than sign (**>**) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the **<sup>** tag to mark its earliest version. The format is **<sup>versionNumber+</sup>**, for example, **<sup>7+</sup>**.  <br>If an attribute is added to an existing module, suffix the **<sup>** tag to the new attribute name, for example, **newAttribute<sup>7+</sup>**.<br>If a method is added to an existing module, suffix the **<sup>** tag to the method name, for example, **sim.getSimIccId<sup>7+</sup>**. The same rule applies to new interfaces, classes, and enums.|
 | @deprecated | Deprecated description| Do not delete the deprecated content from the document. Instead, suffix **deprecated** as a superscript to the content, and use the greater-than sign (**>**) to introduce the initial version and deprecated version.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is supported since API version 4 and deprecated since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
 | @FAModelOnly / @StageModelOnly | Model restriction description| **Model restriction**: This API can be used only in the FA model. **Model restriction**: This API can be used only in the stage model.|
 | @form | Widget capability description| **Widget capability**: Since API version *x*, this feature is supported in ArkTS widgets.|
 | @systemapi | System API description| **System API**: This is a system API.|
 | @syscap | System capability description| **System capability**: SystemCapability.*A.B*|
-| @permission | Permission description| 1. If only one permission is required for using the API, use the following format:<br>**Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>**Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>**Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB |
+| @permission | Permission description| 1. If only one permission is required for using the API, use the following format:<br>**Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>**Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>**Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
 
 The following describes the instructions for writing a specific API reference document.
 
@@ -101,9 +101,9 @@ import call from '@ohos.telephony.call';
 >
 > 2. If an attribute is of a custom type, create a link to the corresponding interface or enum.
 >
-> 3. For a readable attribute, if it has a limited number of values with special meanings, enumerate the values.
+> 3. A read-only attribute is marked with **readonly** in d.ts files. If it has a limited number of values with special meanings, enumerate the values or provide a link to the corresponding enum.
 >
-> 4. For a writable attribute, if only fixed fields are supported, describe them.
+> 4. For a mandatory attribute, if only fixed fields are supported, describe them. If it is not used as a passed-in parameter value, you can enter N/A.
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 

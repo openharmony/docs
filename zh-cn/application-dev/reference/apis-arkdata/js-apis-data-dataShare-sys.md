@@ -23,10 +23,9 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 创建DataShareHelper实例。使用callback异步回调。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标DataShareExtension的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -76,10 +75,9 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 创建DataShareHelper实例。使用callback异步回调。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标DataShareExtension的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -129,10 +127,9 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 创建DataShareHelper实例。使用Promise异步回调。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标DataShareExtension的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -196,10 +193,10 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                           |
-| uri     | string                                                  | 否   | 要开启的数据提供方的数据路径。<br />1、uri不填，默认开启该服务提供方下所有的uri的静默访问。并且会清空掉之前设置的具体的uri的开关状态。<br />2、uri填写固定的值，开启该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先校验传入的uri精准匹配的开关情况，如果匹配不到会继续校验是否调用过enableSilentProxy并且不传递uri的开关情况。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
+| 参数名  | 类型                                                    | 必填 | 说明                                                                                                                                                                                                                                                                               |
+| ------- | ------------------------------------------------------- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                                                                                                                                                                                                                                                        |
+| uri     | string                                                  | 否   | 要开启的数据提供方的数据路径。<br />1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的所有uri开关状态，开启数据提供方静默访问。<br />2、精准开关状态：uri的入参为固定的值，仅开启该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
 
 **返回值：**
 
@@ -245,11 +242,10 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                           |
-| uri     | string                                                  | 否   | 要关闭的数据提供方的应用路径。<br />1、uri不填，默认关闭该服务提供方下所有的uri的静默访问。并且会清空掉之前设置的具体的uri的开关状态。<br />2、uri填写固定的值，关闭该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先校验传入的uri精准匹配的开关情况，如果匹配不到会继续校验是否调用过disableSilentProxy并且不传递uri的开关情况。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
-
+| 参数名  | 类型                                                    | 必填 | 说明                                                                                                                                                                                                                                                                             |
+| ------- | ------------------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                                                                                                                                                                                                                                                      |
+| uri     | string                                                  | 否   | 要关闭的数据提供方的数据路径。<br />1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的uri开关状态，关闭数据提供方静默访问。<br />2、精准开关状态：uri的入参为固定的值，仅关闭该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
 **返回值：**
 
 | 类型                                               | 说明                                   |
@@ -356,6 +352,51 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | ----- | -------- |
 | key | string | 是 | 指定运算结果的键。 |
 | result | number | 是 | 指定运算结果。正常情况下返回0，异常情况下返回错误码。  |
+## UpdateOperation<sup>12+</sup>
+
+批量更新操作的参数结构。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称       | 类型                                                         | 必填 | 说明           |
+| ---------- | ------------------------------------------------------------ | ---- | -------------- |
+| values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。     |
+
+## ChangeType<sup>12+</sup>
+
+数据变更类型枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称     | 值          | 说明          |
+| ---------| ------------| --------------|
+| INSERT   | 0           | 表示数据添加。|
+| DELETE   | 1           | 表示数据删除。|
+| UPDATE   | 2           | 表示数据更新。|
+
+## SubscriptionType<sup>12+</sup>
+
+数据订阅类型枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称                        | 值   | 说明                         |
+| ----------------------------|------| ---------------------------- |
+| SUBSCRIPTION_TYPE_EXACT_URI | 0    | 表示订阅指定uri路径的数据变更。|
+
+## ChangeInfo<sup>12+</sup>
+
+数据变更时通知用户具体变更的内容，包括数据变更类型、变化的uri、变更的数据内容。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称       | 类型                                                         | 必填 | 说明           |
+| ---------- | ------------------------------------------------------------ | ---- | -------------- |
+| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型 |
+| uri        | string                                                       | 是   | 指定uri。      |
+| values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
+
 ## DataShareHelper
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
@@ -388,6 +429,35 @@ if (dataShareHelper !== undefined) {
 }
 ```
 
+### on('dataChange')<sup>12+</sup>
+
+on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
+
+订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册变更通知，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。仅支持非静默访问。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| event     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当有其他用户触发了变更通知时，触发该事件。 |
+| type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| uri      | string               | 是   | 表示指定的数据路径。 |
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt; | 是   | 回调函数。当有其他用户触发了变更通知时会回调该函数。|
+
+**示例：**
+
+```ts
+let uri = ("datashare:///com.acts.datasharetest");
+export function callback(error,ChangeInfo) {
+    console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
+}
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on('dataChange', dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+}
+```
+
 ### off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
@@ -414,6 +484,37 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, callback);
   (dataShareHelper as dataShare.DataShareHelper).off("dataChange", uri, callback);
+}
+```
+
+
+### off('dataChange')<sup>12+</sup>
+
+off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
+
+取消订阅指定URI下指定callback对应的数据资源的变更通知。仅支持非静默访问。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
+| type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| uri      | string               | 是   | 表示指定的数据路径。 |
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。如果不为空，传入的callback必须和注册为同一个。|
+
+**示例：**
+
+```ts
+let uri = ("datashare:///com.acts.datasharetest");
+export function callback(error,ChangeInfo) {
+    console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
+}
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
 }
 ```
 
@@ -1269,6 +1370,91 @@ try {
 };
 ```
 
+### batchUpdate<sup>12+</sup>
+
+batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
+
+批量更新数据库中的数据记录，Record最多支持900K的数据，超出该限制更新失败；该接口的事务性取决于provider（数据提供方）。使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                   |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| operations | Record&lt;string, Array&lt;[UpdateOperation](#updateoperation12)&gt;&gt; | 是   | 要更新数据的路径、筛选条件和数据集合。 |
+
+**返回值：**
+
+| 类型                                                  | 说明                                                         |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise对象。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------ |
+| 15700000 | Inner error.                         |
+| 15700010 | The datasharehelper has been closed. |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
+let record: Record<string, Array<dataShare.UpdateOperation>> = {};
+let operations1: Array<dataShare.UpdateOperation> = [];
+let operations2: Array<dataShare.UpdateOperation> = [];
+
+let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+pre1.equalTo("name", "ZhangSan");
+let vb1: ValueBucket = {
+  "name": "ZhangSan1",
+}
+let operation1: dataShare.UpdateOperation = {
+  values: vb1,
+  predicates: pre1
+}
+operations1.push(operation1);
+
+let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+pre2.equalTo("name", "ZhangSan2");
+let vb2: ValueBucket = {
+  "name": "ZhangSan3",
+}
+let operation2: dataShare.UpdateOperation = {
+  values: vb2,
+  predicates: pre2
+}
+operations2.push(operation2);
+record["uri1"] = operations1;
+record["uri2"] = operations2;
+
+try {
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
+      // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
+      for (const [key, values] of Object.entries(data)) {
+          console.info(`Update uri:${key}`);
+          for (const value of values) {
+              console.info(`Update result:${value}`);
+          }
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Batch update error: code: ${code}, message: ${message} `);
+};
+```
+
 ### batchInsert
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -1374,6 +1560,36 @@ try {
   let message = (err as BusinessError).message
   console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
+```
+
+### close<sup>12+</sup>
+
+close(): Promise &lt;void&gt;
+
+关闭DataShareHelper实例，调用后该实例失效。使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+
+| 错误码ID | 错误信息     |
+| -------- | ------------ |
+| 15700000 | Inner error. |
+
+**示例：**
+
+```ts
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).close();
+}
 ```
 
 ### normalizeUri
@@ -1562,5 +1778,41 @@ notifyChange(uri: string): Promise&lt;void&gt;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri);
+}
+```
+
+### notifyChange<sup>12+</sup>
+
+notifyChange(data: ChangeInfo): Promise&lt;void&gt;
+
+通知已注册的观察者指定URI对应的数据资源已发生变更类型及变更内容。使用Promise异步回调。仅支持非静默访问。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ---- | ------ | ---- | -------------------- |
+| data  | [ChangeInfo](#changeinfo12) | 是   | 表示数据变更类型、变化的uri、变更的数据内容。 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise&lt;void&gt; |  无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import values from '@ohos.data.ValuesBucket';
+
+let dsUri = ("datashare:///com.acts.datasharetest");
+let people: Array<values.ValuesBucket> = new Array(
+                {"name": "LiSi"},
+                {"name": "WangWu"},
+                {"name": "ZhaoLiu"});
+let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);
 }
 ```

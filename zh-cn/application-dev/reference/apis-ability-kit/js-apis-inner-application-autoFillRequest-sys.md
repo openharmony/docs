@@ -22,8 +22,9 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type        | [AutoFillType](../apis/js-apis-inner-application-autoFillType.md)       | 是   | 自动填充类型。          |
-| viewData    | [ViewData](../apis/js-apis-inner-application-viewData.md)               | 是   | 页面数据。              |
+| type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 是   | 自动填充类型。          |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+| isPopup<sup>12+</sup>    | boolean               | 是   | 自动填充服务是否拉起popup窗口。<br>true：当前拉起popup窗口。<br>false：当前拉起模态窗。              |
 
 ## SaveRequest
 
@@ -33,7 +34,17 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](../apis/js-apis-inner-application-viewData.md)               | 是   | 页面数据。              |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+
+## UpdateRequest<sup>12+</sup>
+
+自动填充更新信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称        | 类型                 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
 
 ## FillResponse
 
@@ -43,7 +54,7 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| viewData    | [ViewData](../apis/js-apis-inner-application-viewData.md)               | 是   | 页面数据。              |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
 
 ## FillRequestCallback
 
@@ -86,7 +97,7 @@ onSuccess(response: FillResponse): void
       try {
         let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
           'fillCallback': callback,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'viewData': request.viewData,
         }
         let storage_fill = new LocalStorage(storageData);
@@ -108,8 +119,9 @@ onSuccess(response: FillResponse): void
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
   
-  let storage = LocalStorage.getShared();
-  let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let fillCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
   let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
 
   @Entry
@@ -127,14 +139,15 @@ onSuccess(response: FillResponse): void
         Button('onSuccess')
           .onClick(() => {
             if (viewData) {
-              viewData.pageNodeInfos[0].value = "user1";
-              viewData.pageNodeInfos[1].value = "user1 password";
-              viewData.pageNodeInfos[2].value = "user1 generate new password";
+              viewData.pageNodeInfos[0].value = 'user1';
+              viewData.pageNodeInfos[1].value = 'user1 password';
+              viewData.pageNodeInfos[2].value = 'user1 generate new password';
               hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
               try {
                 fillCallback?.onSuccess({ viewData: viewData });
               } catch (error) {
-                console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+                console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                  message: ${(error as Base.BusinessError).message}`);
               }
             }
           })
@@ -176,7 +189,7 @@ onFailure(): void
       try {
         let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
           'fillCallback': callback,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'viewData': request.viewData,
         }
         let storage_fill = new LocalStorage(storageData);
@@ -198,8 +211,9 @@ onFailure(): void
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
 
-  let storage = LocalStorage.getShared();
-  let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let fillCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
   @Entry
   @Component
@@ -218,7 +232,8 @@ onFailure(): void
             try {
               fillCallback?.onFailure();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
         .width('100%')
@@ -259,7 +274,7 @@ onCancel(): void
       try {
         let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
           'fillCallback': callback,
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'viewData': request.viewData,
         }
         let storage_fill = new LocalStorage(storageData);
@@ -281,8 +296,9 @@ onCancel(): void
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
  
-  let storage = LocalStorage.getShared();
-  let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let fillCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
   @Entry
   @Component
@@ -302,7 +318,8 @@ onCancel(): void
             try {
               fillCallback?.onCancel();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')
@@ -346,7 +363,7 @@ onSuccess(): void
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
         let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'saveCallback': callback,
           'viewData': request.viewData
         }
@@ -369,8 +386,9 @@ onSuccess(): void
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
 
-  let storage = LocalStorage.getShared();
-  let saveCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
+  let storage: LocalStorage = LocalStorage.getShared();
+  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
+    storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
 
   @Entry
   @Component
@@ -390,7 +408,8 @@ onSuccess(): void
             try {
               saveCallback?.onSuccess();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')
@@ -430,7 +449,7 @@ onFailure(): void
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
         let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
-          'message': "AutoFill Page",
+          'message': 'AutoFill Page',
           'saveCallback': callback,
           'viewData': request.viewData
         }
@@ -453,8 +472,9 @@ onFailure(): void
   import Base from '@ohos.base';
   import hilog from '@ohos.hilog';
 
-  let storage = LocalStorage.getShared();
-  let saveCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
+  let storage: LocalStorage = LocalStorage.getShared();
+  let saveCallback: autoFillManager.FillRequestCallback | undefined =
+    storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
 
   @Entry
   @Component
@@ -473,7 +493,8 @@ onFailure(): void
             try {
               saveCallback?.onFailure();
             } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+              console.error(`catch error, code: ${(error as Base.BusinessError).code},
+                message: ${(error as Base.BusinessError).message}`);
             }
           })
           .width('100%')

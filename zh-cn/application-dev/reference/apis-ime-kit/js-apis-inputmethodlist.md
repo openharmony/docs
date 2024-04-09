@@ -17,7 +17,7 @@ import inputMethodL from '@ohos.inputMethodList';
 无
 
 ## 属性
-不支持[通用属性](../arkui-ts/ts-universal-attributes-size.md)
+不支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)
 
 ## InputMethodListDialog
 
@@ -33,7 +33,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](../arkui-ts/ts-methods-custom-dialog-box.md) | 是 | - | 输入法切换列表弹窗控制器。 |
+| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 输入法切换列表弹窗控制器。 |
 | patternOptions | [PatternOptions](#patternoptions) | 否 | - | 输入法模式选项（仅默认输入法支持）。 |
 
 ## PatternOptions
@@ -52,12 +52,12 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。默认图片资源。 |
-| selectedIcon<sup>11+</sup>    | [Resource](../arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。选中时的图片资源。 |
+| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。默认图片资源。 |
+| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。选中时的图片资源。 |
 
 ##  事件
 
-不支持[通用事件](../arkui-ts/ts-universal-events-click.md)
+不支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)
 
 ##  示例
 

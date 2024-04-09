@@ -38,6 +38,20 @@ displayPriority(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>小数点后的数字不作优先级区分，即区间为[x, x + 1)内的数字视为相同优先级。例如：1.0与1.9为同一优先级。<br/>**说明：** <br/>仅在Row/Column/Flex(单行)容器组件中生效。 |
 
+## pixelRound<sup>11+</sup>
+
+pixelRound(value: PixelRoundPolicy)
+
+指定当前组件的像素级取整对齐方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | 是 | 指定当前组件边界取整策略。<br/>**说明：**<br/>该属性用于因浮点数绘制产生视觉异常的场景。|
+
 ## 示例
 
 ### 示例1
@@ -162,3 +176,43 @@ struct DisplayPriorityExample {
 横屏显示
 
 ![zh-cn_image_0000001219662667](figures/zh-cn_image_0000001219662667.gif)
+
+### 示例3
+
+采用pixelRound指导布局。
+
+```ts
+@Entry
+@Component
+struct PixelRoundExample {
+  build() {
+    Column() {
+      Row() {
+        Row() {
+        }
+        .width('100%')
+        .height('100%')
+        .backgroundColor(Color.Yellow)
+      }
+      .width('300.6px')
+      .height('300.6px')
+      .backgroundColor(Color.Red)
+      .position({x: '200.2px', y: '100.2px'})
+      .pixelRound({
+        start:PixelRoundCalcPolicy.FORCE_CEIL,
+        top:PixelRoundCalcPolicy.FORCE_CEIL
+       })
+    }
+    .width("100%")
+    .height('100%')
+    .backgroundColor('#ffe5e5e5')
+  }
+}
+```
+**图1** 采用pixelRound指导布局效果图
+
+![zh-cn_image_pixel_round_disable.png](figures/zh-cn_image_pixel_round_enable.png)
+
+**图2** 不用pixelRound指导布局效果图
+
+![zh-cn_image_pixel_round_disable.png](figures/zh-cn_image_pixel_round_disable.png)

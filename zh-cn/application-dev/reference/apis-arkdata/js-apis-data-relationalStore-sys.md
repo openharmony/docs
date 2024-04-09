@@ -28,6 +28,7 @@ import relationalStore from '@ohos.data.relationalStore';
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| vector<sup>12+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。向量数据库目前支持[execute](js-apis-data-relationalStore.md#execute12-1)，[querySql](js-apis-data-relationalStore.md#querysql-1)，[beginTrans](js-apis-data-relationalStore.md#begintrans12)，[commit](js-apis-data-relationalStore.md#commit12)，[rollback](js-apis-data-relationalStore.md#rollback12)以及[ResultSet](js-apis-data-relationalStore.md#resultset)类型操作接口。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## Reference<sup>11+</sup>
 
@@ -62,7 +63,7 @@ import relationalStore from '@ohos.data.relationalStore';
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
-根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -94,24 +95,35 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -125,7 +137,7 @@ if(store != undefined) {
 
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
-根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -163,24 +175,35 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// 以下三种方式可用
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -290,7 +313,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -346,7 +369,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，使用callback异步回调。
+根据指定条件查询数据库中的数据，使用callback异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -403,7 +426,7 @@ if(store != undefined) {
 
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-根据指定条件查询数据库中的数据，使用Promise异步回调。
+根据指定条件查询数据库中的数据，使用Promise异步回调。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -693,4 +716,46 @@ if(store != undefined) {
   })
 }
 
+```
+
+## ResultSet
+
+提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
+
+### getFloat32Array<sup>12+</sup>
+
+getFloat32Array(columnIndex: number): Float32Array
+
+以浮点数组的形式获取当前行中指定列的值，仅可在[向量数据库](#storeconfig)下可用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| Float32Array | 以浮点数组的形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800011     | Failed to open database by database corrupted. |
+| 14800013     | The column value is null or the column type is incompatible. |
+
+**示例：**
+
+```ts
+let resultSet: relationalStore.ResultSet | undefined;
+if(resultSet != undefined) {
+  const id = (resultSet as relationalStore.ResultSet).getFloat32Array(0);
+}
 ```

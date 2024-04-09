@@ -44,9 +44,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
+| Distributed Data Object Instance| Object Instance| Property Name| Property Value|
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
+| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database|
 
 
 ### Cross-Device Synchronization and Data Change Notification
@@ -55,7 +55,7 @@ One of the most important functions of distributed data objects is to implement 
 
 As shown in the following figure, distributed data object 1 of device A and distributed data object 1 of device B are set with the same session ID **session1**, and synchronization relationship of session 1 is established between the two objects.
 
-**Figure 2** Object synchronization relationship 
+  **Figure 2** Object synchronization relationship 
 
 ![distributedObject_sync](figures/distributedObject_sync.jpg)
 
@@ -72,7 +72,7 @@ After the synchronization relationship is established, each session has a copy o
 
 ### Minimum Synchronization Unit
 
-Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed attribute needs to be synchronized.
+Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed property needs to be synchronized.
 
 **Figure 3** Synchronization of distributed data objects
 
@@ -90,6 +90,13 @@ You need to persist distributed data objects in the following scenarios:
 
 - Enable an application started on another device to retrieve the exact same data. In this case, you need to persist the distributed data object (for example, object 1 with session ID 1) on device A and synchronize the data to device B. Then, create a distributed data object (for example, object 2) and set the session ID to 1. When the application is started on device B, it can retrieve the same application data used on device A before the application is closed.
 
+### Asset Synchronization Mechanism
+
+In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) is used to describe a local entity asset file. When the distributed object is synchronized across devices, the file is also synchronized to other devices with it. Currently, only asset is supported. The type [assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets) is not supported. To synchronize multiple assets, use each asset as a root property of the distributed object.
+
+### Resolution of Joint Asset Conflicts 
+
+When an asset in a distributed object and an asset in an RDB store point to the same entity asset file, that is, the URIs of the two assets are the same, a conflict occurs. Such assets are called joint assets. To resolve the conflict of joint assets, bind the asset and the RDB store. The binding is automatically released when the application exits the session.
 
 ## Constraints
 
@@ -107,14 +114,13 @@ You need to persist distributed data objects in the following scenarios:
 
 - For the sake of performance and user experience, the maximum number of devices for data collaboration is 3.
 
-- For the distributed data object of the complex type, only the root property can be modified. The subordinate properties cannot be modified.
+- For the distributed data object of the complex type, only the root property can be modified. The subordinate properties cannot be modified. In [asset synchronization mechanism](#asset-synchronization-mechanism), the data of the asset type must support modification of its lower-level properties.
 
 - Currently, only JS APIs are supported.
 
-
 ## Available APIs
 
-Most of the APIs for cross-device synchronization of distributed data objects are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md).
+Most of the APIs for cross-device synchronization of distributed data objects are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed Data Object](../reference/apis-arkdata/js-apis-data-distributedobject.md).
 
 
 
@@ -130,9 +136,12 @@ Most of the APIs for cross-device synchronization of distributed data objects ar
 | off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object.|
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object.|
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object.|
+| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store.|
 
 
 ## How to Develop
+
+### Data Synchronization Across Devices
 
 The following example demonstrates how to implement synchronization of distributed data objects.
 
@@ -142,10 +151,10 @@ The following example demonstrates how to implement synchronization of distribut
    import distributedDataObject from '@ohos.data.distributedDataObject';
    ```
 
-2. Apply for required permissions.
+2. Apply for permissions.
 
-   1. Apply for the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-   2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+   1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+   2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create a distributed data object instance.
 
@@ -184,7 +193,7 @@ The following example demonstrates how to implement synchronization of distribut
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-       let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+       let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
      }
    }
@@ -219,7 +228,7 @@ The following example demonstrates how to implement synchronization of distribut
      }
    }
    let parentSource: ParentObject = new ParentObject('jack mom', 'jack Dad');
-   let source: SourceObject = new SourceObject("amy", 18, false, parentSource);
+   let source: SourceObject = new SourceObject("jack", 18, false, parentSource);
    // Create a distributed data object, which has properties of the string, number, boolean, and object types.
    let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
@@ -237,7 +246,7 @@ The following example demonstrates how to implement synchronization of distribut
    // Create a distributed data object, which has properties of the string, number, boolean, and object types.
    let remoteSource: SourceObject = new SourceObject(undefined, undefined, undefined, undefined);
    let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
-   // After learning that the device goes online, the remote object synchronizes data. That is, name is changed to jack and age to 18.
+   // After receiving the message indicating the device goes online, the remote object synchronizes data. That is, name is changed to jack and age is changed to 18.
    remoteObject.setSessionId(sessionId);
    ```
 
@@ -317,7 +326,7 @@ The following example demonstrates how to implement synchronization of distribut
     }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
-   
+      
     // Revoke the data saved.
     localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
@@ -343,5 +352,96 @@ The following example demonstrates how to implement synchronization of distribut
     ```ts
     localObject.setSessionId(() => {
       console.info('leave all session.');
+    });
+    ```
+
+### Asset Synchronization Across Devices
+
+The asset type allows the file described by **asset** to be synchronized across devices with its distributed data object. The device that holds the asset file is the source device, and the device that obtains the asset file is the destination device.
+
+1. Import the **@ohos.data.distributedDataObject** and **@ohos.data.commonType** modules.
+
+   ```ts
+   import distributedDataObject from '@ohos.data.distributedDataObject';
+   import commonType from '@ohos.data.commonType';
+   ```
+
+2. Request permissions.
+
+   1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+   2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+
+3. Create a distributed data object that contains the asset for the source device and add the device to the network.
+
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import type window from '@ohos.window';
+    import distributedDataObject from '@ohos.data.distributedDataObject';
+    import commonType from '@ohos.data.commonType';
+    import type { BusinessError } from '@ohos.base';
+
+    class Note {
+      title: string | undefined
+      text: string | undefined
+      attachment: commonType.Asset | undefined
+
+      constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
+        this.title = title;
+        this.text = text;
+        this.attachment = attachment;
+      }
+    }
+
+    class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage) {
+        let attachment: commonType.Asset = {
+          name: 'test_img.jpg',
+          uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+          path: '/dir/test_img.jpg',
+          createTime: '2024-01-02 10:00:00',
+          modifyTime: '2024-01-02 10:00:00',
+          size: '5',
+          status: commonType.AssetStatus.ASSET_NORMAL
+        }
+        // Create a custom note type that contains an image asset.
+        let note: Note = new Note('test', "test", attachment);
+        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+        localObject.setSessionId('123456');
+      }
+    }
+    ```
+
+4. Create a distributed data object for the destination device and add the device to the network.
+
+    ```ts
+    let note: Note = new Note(undefined, undefined, undefined);
+    let receiverObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+    receiverObject.on('change', (sessionId: string, fields: Array<string>) => {
+      if (fields.includes('attachment')) {
+        // When the destination device detects the change in the data of the asset type, the synchronization of the asset file is complete.
+        console.info('attachment synchronization completed');
+      }
+    });
+    receiverObject.setSessionId('123456');
+    ```
+
+5. If the asset is a joint asset, bind the asset and its RDB store to resolve the conflict.
+
+    ```ts
+    const bindInfo: distributedDataObject.BindInfo = {
+      storeName: 'notepad',
+      tableName: 'note_t',
+      primaryKey: {
+        'uuid': '00000000-0000-0000-0000-000000000000'
+      },
+      field: 'attachment',
+      assetName: attachment.name
+    }
+
+    localObject.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
+      if (err) {
+        console.error('bindAssetStore failed.');
+      }
+      console.info('bindAssetStore success.');
     });
     ```

@@ -17,7 +17,7 @@ import CommonEvent from '@ohos.commonEvent';
 
 系统公共事件是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要特定的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
 
-全部系统公共事件枚举定义请参见[系统公共事件定义](./commonEvent-definitions.md)。
+全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEvent-definitions.md)。
 
 ## CommonEvent.publish<sup>(deprecated)</sup>
 

@@ -22,7 +22,7 @@ onAutoStartupOn(info: AutoStartupInfo): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| info | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)   | 是 | 设置为开机自启动的应用组件信息。 |
+| info | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | 是 | 设置为开机自启动的应用组件信息。 |
 
 **示例：**
 
@@ -59,7 +59,7 @@ onAutoStartupOff(info: AutoStartupInfo): void;
 
 | 参数名 | 类型            | 必填 | 说明                 |
 | ------ | --------------- | ---- | -------------------- |
-| info   | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)   | 是   | 取消开机自启动的应用组件信息。 |
+| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md)   | 是   | 取消开机自启动的应用组件信息。 |
 
 **示例：**
 

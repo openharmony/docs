@@ -1,6 +1,9 @@
 # ArkTS API参考 
 
 - ArkTS API 
+  - [@arkts.collections (ArkTS容器集)](js-apis-arkts-collections.md)
+  - [@arkts.lang (ArkTS语言基础能力)](js-apis-arkts-lang.md)
+  - [@arkts.utils (ArkTS工具库)](js-apis-arkts-utils.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.process (获取进程相关的信息)](js-apis-process.md)
@@ -12,6 +15,7 @@
   - [@ohos.util.Deque (线性容器Deque)](js-apis-deque.md)
   - [@ohos.util.HashMap (非线性容器HashMap)](js-apis-hashmap.md)
   - [@ohos.util.HashSet (非线性容器HashSet)](js-apis-hashset.md)
+  - [@ohos.util.json (JSON解析与生成)](js-apis-json.md)
   - [@ohos.util.LightWeightMap (非线性容器LightWeightMap)](js-apis-lightweightmap.md)
   - [@ohos.util.LightWeightSet (非线性容器LightWeightSet)](js-apis-lightweightset.md)
   - [@ohos.util.LinkedList (线性容器LinkedList)](js-apis-linkedlist.md)

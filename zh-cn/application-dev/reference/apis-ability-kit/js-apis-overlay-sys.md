@@ -31,7 +31,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName  | string | 是    | 指定应用的bundle名称。                 |
-| moduleName  | string | 是    | 指定应用的overlay module的HAP名称。    |
+| moduleName  | string | 是    | 指定应用的overlay module的名称。    |
 | isEnabled   | boolean  | 是  | 值为true表示使能，值为false表示禁用。 |
 
 **返回值：**
@@ -91,7 +91,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 | 参数名       | 类型     | 必填   | 说明                                  |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName  | string | 是    | 指定应用的bundle名称。                 |
-| moduleName  | string | 是    | 指定应用的overlay特征module的HAP名称。    |
+| moduleName  | string | 是    | 指定应用的overlay特征module的名称。    |
 | isEnabled   | boolean  | 是  | 值为true表示使能，值为false表示禁用。 |
 | callback    | AsyncCallback\<void> | 是    | 回调函数。当设置指定应用的overlay module的禁用使能状态成功时，err为null，否则为错误对象。                    |
 
@@ -147,7 +147,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的overlay module的HAP名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
+| moduleName | string | 否    | 指定应用中的overlay module的名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
 
 **返回值：**
 
@@ -203,7 +203,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
-| moduleName | string | 是    | 指定应用中的overlay module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
+| moduleName | string | 是    | 指定应用中的overlay module的名称。缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
 | callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定应用中指定module的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。    |
 
 **错误码：**
@@ -307,7 +307,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的目标module的HAP名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
+| moduleName | string | 否    | 指定应用中的目标module的名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
 
 **返回值：**
 
@@ -363,7 +363,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| moduleName | string | 是    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
+| moduleName | string | 是    | 指定应用中的目标module的名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
 | callback    | AsyncCallback\<Array\<[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)>> | 是    | 回调函数，当获取指定应用中指定module关联的所有[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**

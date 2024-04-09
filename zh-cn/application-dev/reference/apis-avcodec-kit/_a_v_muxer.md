@@ -20,18 +20,40 @@ AVMuxer模块提供用于音视频封装功能的函数。
 | [native_avmuxer.h](native__avmuxer_8h.md) | 声明用于音视频封装的Native API。 | 
 
 
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typedef struct [OH_AVMuxer](#oh_avmuxer) [OH_AVMuxer](#oh_avmuxer) | 为封装接口定义native层对象。  | 
+
+
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVMuxer \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | 通过文件描述符fd和封装格式创建OH_AVMuxer实例。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_SetRotation](#oh_avmuxer_setrotation) (OH_AVMuxer \*muxer, int32_t rotation) | 设置视频的旋转角度（顺时针）。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_AddTrack](#oh_avmuxer_addtrack) (OH_AVMuxer \*muxer, int32_t \*trackIndex, OH_AVFormat \*trackFormat) | 向封装器添加媒体轨。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_Start](#oh_avmuxer_start) (OH_AVMuxer \*muxer) | 开始封装。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_WriteSample](#oh_avmuxer_writesample) (OH_AVMuxer \*muxer, uint32_t trackIndex, OH_AVMemory \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) info) | 将数据写入封装器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_WriteSampleBuffer](#oh_avmuxer_writesamplebuffer) (OH_AVMuxer \*muxer, uint32_t trackIndex, const OH_AVBuffer \*sample) | 将数据写入封装器。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_Stop](#oh_avmuxer_stop) (OH_AVMuxer \*muxer) | 停止封装。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode)[OH_AVMuxer_Destroy](#oh_avmuxer_destroy) (OH_AVMuxer \*muxer) | 清理内部资源，销毁OH_AVMuxer实例。 | 
+| [OH_AVMuxer](#oh_avmuxer) \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | 通过文件描述符fd和封装格式创建OH_AVMuxer实例。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetRotation](#oh_avmuxer_setrotation) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t rotation) | 设置视频的旋转角度（顺时针）。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_AddTrack](#oh_avmuxer_addtrack) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t \*trackIndex, [OH_AVFormat](_core.md#oh_avformat) \*trackFormat) | 向封装器添加媒体轨。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Start](#oh_avmuxer_start) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | 开始封装。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSample](#oh_avmuxer_writesample) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) info) | 将数据写入封装器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSampleBuffer](#oh_avmuxer_writesamplebuffer) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, const [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | 将数据写入封装器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Stop](#oh_avmuxer_stop) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | 停止封装。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Destroy](#oh_avmuxer_destroy) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | 清理内部资源，销毁OH_AVMuxer实例。  | 
+
+
+## 类型定义说明
+
+
+### OH_AVMuxer
+
+```
+typedef struct OH_AVMuxer OH_AVMuxer
+```
+**描述**
+
+为封装接口定义native层对象。
+
+**起始版本：** 10
 
 
 ## 函数说明

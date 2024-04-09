@@ -30,9 +30,9 @@ Video(value: VideoOptions)
 
 | 参数名              | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见 [DataAbility说明](../../../application-models/dataability-overview.md)。<br/>- 支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、webm、TS。 |
+| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见 [DataAbility说明](../../../application-models/dataability-overview.md)。<br/>- 支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string&nbsp;\| [PixelMap](../../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
+| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。                     |
 
 
@@ -50,34 +50,194 @@ Video(value: VideoOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称        | 参数类型                                     | 描述                           |
-| --------- | ---------------------------------------- | ---------------------------- |
-| muted     | boolean                                  | 是否静音。<br/>默认值：false          |
-| autoPlay  | boolean                                  | 是否自动播放。<br/>默认值：false        |
-| controls  | boolean                                  | 控制视频播放的控制栏是否显示。<br/>默认值：true |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 设置视频显示模式。<br/>默认值：Cover      |
-| loop      | boolean                                  | 是否单个视频循环播放。<br/>默认值：false    |
+### muted
+
+muted(value: boolean)
+
+设置是否静音。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| value  | boolean | 是   | 是否静音。<br/>默认值：false |
+
+### autoPlay
+
+autoPlay(value: boolean)
+
+设置是否自动播放。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                             |
+| ------ | ------- | ---- | -------------------------------- |
+| value  | boolean | 是   | 是否自动播放。<br/>默认值：false |
+
+### controls
+
+controls(value: boolean)
+
+设置控制视频播放的控制栏是否显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                            |
+| ------ | ------- | ---- | ----------------------------------------------- |
+| value  | boolean | 是   | 控制视频播放的控制栏是否显示。<br/>默认值：true |
+
+### objectFit
+
+objectFit(value: ImageFit)
+
+设置视频显示模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                             |
+| ------ | ----------------------------------------- | ---- | -------------------------------- |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+
+### loop
+
+loop(value: boolean)
+
+设置是否单个视频循环播放。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                     |
+| ------ | ------- | ---- | ---------------------------------------- |
+| value  | boolean | 是   | 是否单个视频循环播放。<br/>默认值：false |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onStart(event:()&nbsp;=&gt;&nbsp;void)                       | 播放时触发该事件。                                           |
-| onPause(event:()&nbsp;=&gt;&nbsp;void)                       | 暂停时触发该事件。                                           |
-| onFinish(event:()&nbsp;=&gt;&nbsp;void)                      | 播放结束时触发该事件。                                       |
-| onError(event:()&nbsp;=&gt;&nbsp;void)                       | 播放失败时触发该事件。                                       |
-| onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 视频准备完成时触发该事件。<br/>duration：当前视频的时长，单位为秒(s)。 |
-| onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息。<br/>time：当前视频播放的进度，单位为s。 |
-| onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息。<br/>time：当前视频播放的进度，单位为s。 |
-| onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件。<br/>time：当前视频播放的进度，单位为s。 |
-| onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void) | 在全屏播放与非全屏播放状态之间切换时触发该事件。<br/>fullscreen：返回值为true表示进入全屏播放状态，为false则表示非全屏播放。 |
+### onStart
+
+onStart(event:()&nbsp;=&gt;&nbsp;void)
+
+播放时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPause
+
+onPause(event:()&nbsp;=&gt;&nbsp;void)
+
+暂停时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onFinish
+
+onFinish(event:()&nbsp;=&gt;&nbsp;void)
+
+播放结束时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onError
+
+onError(event:()&nbsp;=&gt;&nbsp;void)
+
+播放失败时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onStop<sup>12+</sup>
+
+onStop(event:()&nbsp;=&gt;&nbsp;void)
+
+播放停止时触发该事件(当stop()方法被调用后触发)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onPrepared
+
+onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+视频准备完成时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                       |
+| -------- | ------ | ---- | -------------------------- |
+| duration | number | 是   | 当前视频的时长，单位为秒。 |
+
+### onSeeking
+
+onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+操作进度条过程时上报时间信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                           |
+| ------ | ------ | ---- | ------------------------------ |
+| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+
+### onSeeked
+
+onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+操作进度条完成后，上报播放时间信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                           |
+| ------ | ------ | ---- | ------------------------------ |
+| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+
+### onUpdate
+
+onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+播放进度变化时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                           |
+| ------ | ------ | ---- | ------------------------------ |
+| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+
+### onFullscreenChange
+
+onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void)
+
+在全屏播放与非全屏播放状态之间切换时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型    | 必填 | 说明                                                  |
+| ---------- | ------- | ---- | ----------------------------------------------------- |
+| fullscreen | boolean | 是   | 为true表示进入全屏播放状态，为false则表示非全屏播放。 |
 
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
 
 
 ### 导入对象
@@ -157,8 +317,6 @@ setCurrentTime(value: number, seekMode: SeekMode)
 | ClosestKeyframe  | 跳转到最近的关键帧。     |
 | Accurate         | 精准跳转，不论是否为关键帧。 |
 
-
-
 ## 示例
 
 ```ts
@@ -196,6 +354,9 @@ struct VideoCreateComponent {
         })
         .onError(() => {
           console.info('onError')
+        })
+        .onStop(() => {
+          console.info('onStop')
         })
         .onPrepared((e?: DurationObject) => {
           if (e != undefined) {

@@ -1,15 +1,46 @@
 # Performance Analysis Kit（性能分析服务）
 
 - [Performance Analysis Kit简介](performance-analysis-kit-overview.md)
-- [应用事件打点开发指导](hiappevent-guidelines.md)
-- [分布式跟踪开发指导](hitracechain-guidelines.md)
-- [HiLog开发指导（Native）](hilog-guidelines.md)
-- 性能打点跟踪
-  - [性能打点跟踪开发指导（ArkTS）](hitracemeter-guidelines.md)
-  - [性能打点跟踪开发指导（Native）](hitracemeter-native-guidelines.md)
+- HiLog使用指导
+  - [使用HiLog打印日志（ArkTS）](hilog-guidelines-arkts.md)
+  - [使用HiLog打印日志（C/C++）](hilog-guidelines-ndk.md)
+- HiAppEvent使用指导
+  - [HiAppEvent介绍](hiappevent-intro.md)
+  - 事件订阅
+    - 应用事件
+      - [订阅应用事件（ArkTS）](hiappevent-watcher-app-events-arkts.md)
+      - [订阅应用事件（C/C++）](hiappevent-watcher-app-events-ndk.md)
+    - 系统事件
+      - 崩溃事件
+        - [崩溃事件介绍](hiappevent-watcher-crash-events.md)
+        - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)
+        - [订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)
+      - 卡死时间
+        - [卡死事件介绍](hiappevent-watcher-freeze-events.md)
+        - [订阅卡死事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)
+        - [订阅卡死事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)
+      - 资源泄漏事件
+        - [资源泄漏事件介绍](hiappevent-watcher-resourceleak-events.md)
+        - [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-arkts.md)
+        - [订阅资源泄漏事件（C/C++）](hiappevent-watcher-resourceleak-events-ndk.md)
+  - [事件上报](hiappevent-event-reporting.md)
+- HiTraceMeter使用指导
+  - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
+  - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
+  - [查看HiTraceMeter日志](hitracemeter-view.md)
+- [HiTraceChain使用指导](hitracechain-guidelines.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
-- 日志分析
-  - [应用无响应(appfreeze)日志分析指导](appfreeze-guidelines.md)
-  - [进程崩溃(cppcrash)日志分析指导](cppcrash-guidelines.md)
+- 故障分析
+  - [分析JS Crash（进程崩溃）](jscrash-guidelines.md)
+  - [分析CppCrash（进程崩溃）](cppcrash-guidelines.md)
+  - [分析AppFreeze（应用无响应）](appfreeze-guidelines.md)
+- 命令行工具
+  - [hdc](hdc.md)
+  - [hilog](hilog.md)
+  - [hidumper](hidumper.md)
+  - [hitrace](hitrace.md)
+  - [hiperf](hiperf.md)
+  - [hisysevent](hisysevent.md)
+  - [uinput](uinput.md)

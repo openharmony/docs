@@ -36,6 +36,7 @@
 | bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（元服务）。                                |
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。        |
+| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。                                                                                                   |
 
 ## ModuleMetadata<sup>10+</sup>
 

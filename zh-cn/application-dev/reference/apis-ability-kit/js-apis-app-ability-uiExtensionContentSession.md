@@ -35,7 +35,7 @@ loadContent(path: string, storage?: LocalStorage): void
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -77,7 +77,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](../apis/js-apis-inner-ability-abilityResult.md) | 是 | 返回给UIExtensionComponent控件的信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给UIExtensionComponent控件的信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止成功，err为undefined，否则为错误对象。 |
 
 ## UIExtensionContentSession.terminateSelfWithResult
@@ -92,7 +92,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](../apis/js-apis-inner-ability-abilityResult.md) | 是 | 返回给UIExtensionComponent控件的信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给UIExtensionComponent控件的信息。 |
 
 **返回值：**
 
@@ -153,8 +153,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: any} | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](../apis/js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
+| wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 | callback | AsyncCallback\<void> | 是 |回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -167,7 +167,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -183,8 +183,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
-| wantParam | {[key: string]: Object} | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](../apis/js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
+| wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 
 **返回值：**
 
@@ -202,4 +202,4 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。

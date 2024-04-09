@@ -2,7 +2,6 @@
 
 - [如何编译full-SDK](full-sdk-compile-guide.md)
 - [如何替换full-SDK](full-sdk-switch-guide.md)
-- [如何在CMake工程中使用NDK](cmake-with-ndk.md)
 - [应用模型常见问题](faqs-ability.md)
 - ArkUI框架开发常见问题(ArkTS)
   - [ArkTS语法使用常见问题](faqs-arkui-arkts.md)
@@ -27,7 +26,6 @@
 - [DFX开发常见问题](faqs-dfx.md)
 - [泛Sensor服务开发常见问题](faqs-sensor.md)
 - [启动恢复开发常见问题](faqs-startup.md)
-- [分布式DeviceProfrofile开发常见问题](faqs-distributed-device-profile.md)
 - [SDK使用常见问题](faqs-sdk.md)
 - [NDK开发常见问题](faqs-ndk.md)
 - [语言编译运行时常见问题](faqs-compiler-runtime.md)

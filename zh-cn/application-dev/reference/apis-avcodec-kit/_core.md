@@ -20,7 +20,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 | [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | 用声道布局来表示在录制或播放时扬声器的外观和顺序。 | 
 | [native_avbuffer.h](native__avbuffer_8h.md) | 声明了媒体数据结构AVBuffer的函数接口。 | 
 | [native_avbuffer_info.h](native__avbuffer__info_8h.md) | 声明了媒体数据结构AVBuffer属性的定义。 | 
-| [native_averrors.h](native__averrors_8h.md) | 声明了媒体子系统的错误码OH_AVErrCode的定义。 | 
+| [native_averrors.h](native__averrors_8h.md) | 声明了播放框架的错误码OH_AVErrCode的定义。 | 
 | [native_avformat.h](native__avformat_8h.md) | 声明了格式相关的函数和枚举。 | 
 | [native_avmemory.h](native__avmemory_8h.md) | 声明了媒体数据结构AVMemory的定义。 | 
 
@@ -36,62 +36,66 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_AudioChannelSet](#oh_audiochannelset)[OH_AudioChannelSet](#oh_audiochannelset) | 音频声道集合。 | 
-| typedef enum [OH_AmbAttributeSet](#oh_ambattributeset)[OH_AmbAttributeSet](#oh_ambattributeset) | 高保真立体声混响设置。 | 
-| typedef enum [OH_AudioChannelLayout](#oh_audiochannellayout)[OH_AudioChannelLayout](#oh_audiochannellayout) | 音频声道布局。 | 
-| typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags)[OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | 枚举OH_AVCodec缓冲区标记的类别。 | 
-| typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)[OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
-| typedef enum [OH_AVErrCode](#oh_averrcode)[OH_AVErrCode](#oh_averrcode) | 音视频错误码。 | 
-| typedef enum [OH_AVPixelFormat](#oh_avpixelformat)[OH_AVPixelFormat](#oh_avpixelformat) | 视频像素格式的枚举类。 | 
+| typedef enum [OH_AudioChannelSet](#oh_audiochannelset-1) [OH_AudioChannelSet](#oh_audiochannelset) | 音频声道集合。 | 
+| typedef enum [OH_AmbAttributeSet](#oh_ambattributeset-1) [OH_AmbAttributeSet](#oh_ambattributeset) | 高保真立体声混响设置。 | 
+| typedef enum [OH_AudioChannelLayout](#oh_audiochannellayout-1) [OH_AudioChannelLayout](#oh_audiochannellayout) | 音频声道布局。 | 
+| typedef struct [OH_AVBuffer](#oh_avbuffer) [OH_AVBuffer](#oh_avbuffer) | 为媒体内存接口定义native层对象。 | 
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | 为图形内存接口定义native层对象。 | 
+| typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | 枚举OH_AVCodec缓冲区标记的类别。 | 
+| typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | 定义OH_AVCodec的缓冲区描述信息。 | 
+| typedef enum [OH_AVErrCode](#oh_averrcode-1) [OH_AVErrCode](#oh_averrcode) | 音视频错误码。 | 
+| typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | 为媒体格式接口定义native层对象。 | 
+| typedef enum [OH_AVPixelFormat](#oh_avpixelformat-1) [OH_AVPixelFormat](#oh_avpixelformat) | 视频像素格式的枚举类。 | 
+| typedef struct [OH_AVMemory](#oh_avmemory) [OH_AVMemory](#oh_avmemory) | 为音视频内存接口定义native层对象。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AudioChannelSet](#oh_audiochannelset) {<br/>CH_SET_FRONT_LEFT = 1ULL &lt;&lt; 0U,<br/>CH_SET_FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br/>CH_SET_FRONT_CENTER = 1ULL &lt;&lt; 2U,<br/>CH_SET_LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br/>CH_SET_BACK_LEFT = 1ULL &lt;&lt; 4U,<br/>CH_SET_BACK_RIGHT = 1ULL &lt;&lt; 5U,<br/>CH_SET_FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br/>CH_SET_FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br/>CH_SET_BACK_CENTER = 1ULL &lt;&lt; 8U,<br/>CH_SET_SIDE_LEFT = 1ULL &lt;&lt; 9U,<br/>CH_SET_SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br/>CH_SET_TOP_CENTER = 1ULL &lt;&lt; 11U,<br/>CH_SET_TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br/>CH_SET_TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br/>CH_SET_TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br/>CH_SET_TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br/>CH_SET_TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br/>CH_SET_TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br/>CH_SET_STEREO_LEFT = 1ULL &lt;&lt; 29U,<br/>CH_SET_STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br/>CH_SET_WIDE_LEFT = 1ULL &lt;&lt; 31U,<br/>CH_SET_WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br/>CH_SET_SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br/>CH_SET_SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br/>CH_SET_LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br/>CH_SET_TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br/>CH_SET_TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br/>CH_SET_BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br/>CH_SET_BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br/>CH_SET_BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U<br/>} | 音频声道集合。 | 
-| [OH_AmbAttributeSet](#oh_ambattributeset) {<br/>AMB_ORD_1 = 1ULL &lt;&lt; 0U,<br/>AMB_ORD_2 = 2ULL &lt;&lt; 0U,<br/>AMB_ORD_3 = 3ULL &lt;&lt; 0U,<br/>AMB_COM_ACN = 0ULL &lt;&lt; 8U,<br/>AMB_COM_FUMA = 1ULL &lt;&lt; 8U,<br/>AMB_NOR_N3D = 0ULL &lt;&lt; 12U,<br/>AMB_NOR_SN3D = 1ULL &lt;&lt; 12U,<br/>AMB_MODE = 1ULL &lt;&lt; 44U<br/>} | 高保真立体声混响设置。 | 
-| [OH_AudioChannelLayout](#oh_audiochannellayout) {<br/>CH_LAYOUT_UNKNOWN = 0ULL,<br/>CH_LAYOUT_MONO = CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_STEREO = CH_SET_FRONT_LEFT \| CH_SET_FRONT_RIGHT,<br/>CH_LAYOUT_STEREO_DOWNMIX = CH_SET_STEREO_LEFT \| CH_SET_STEREO_RIGHT,<br/>CH_LAYOUT_2POINT1 = CH_LAYOUT_STEREO \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_3POINT0 = CH_LAYOUT_STEREO \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_SURROUND = CH_LAYOUT_STEREO \| CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_3POINT1 = CH_LAYOUT_SURROUND \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_4POINT0 = CH_LAYOUT_SURROUND \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_QUAD_SIDE = CH_LAYOUT_STEREO \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br/>CH_LAYOUT_QUAD = CH_LAYOUT_STEREO \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_2POINT0POINT2 = CH_LAYOUT_STEREO \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_AMB_ORDER1_ACN_N3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_N3D, CH_LAYOUT_AMB_ORDER1_ACN_SN3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER1_FUMA = AMB_MODE \| AMB_ORD_1 \| AMB_COM_FUMA,<br/>CH_LAYOUT_4POINT1 = CH_LAYOUT_4POINT0 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_5POINT0 = CH_LAYOUT_SURROUND \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br/>CH_LAYOUT_5POINT0_BACK = CH_LAYOUT_SURROUND \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_2POINT1POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_3POINT0POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_5POINT1 = CH_LAYOUT_5POINT0 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_5POINT1_BACK = CH_LAYOUT_5POINT0_BACK \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_6POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_3POINT1POINT2 = CH_LAYOUT_3POINT1 \| CH_SET_TOP_FRONT_LEFT \| CH_SET_TOP_FRONT_RIGHT,<br/>CH_LAYOUT_6POINT0_FRONT = CH_LAYOUT_QUAD_SIDE \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_HEXAGONAL = CH_LAYOUT_5POINT0_BACK \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1_FRONT = CH_LAYOUT_6POINT0_FRONT \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_7POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_7POINT0_FRONT = CH_LAYOUT_5POINT0 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_7POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_OCTAGONAL = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_CENTER \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_5POINT1POINT2 = CH_LAYOUT_5POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_7POINT1_WIDE = CH_LAYOUT_5POINT1 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_7POINT1_WIDE_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_AMB_ORDER2_ACN_N3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_N3D,<br/>CH_LAYOUT_AMB_ORDER2_ACN_SN3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER2_FUMA = AMB_MODE \| AMB_ORD_2 \| AMB_COM_FUMA,<br/>CH_LAYOUT_5POINT1POINT4,<br/>CH_LAYOUT_7POINT1POINT2 = CH_LAYOUT_7POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_7POINT1POINT4,<br/>CH_LAYOUT_10POINT2,<br/>CH_LAYOUT_9POINT1POINT4 = CH_LAYOUT_7POINT1POINT4 \| CH_SET_WIDE_LEFT \| CH_SET_WIDE_RIGHT,<br/>CH_LAYOUT_9POINT1POINT6 = CH_LAYOUT_9POINT1POINT4 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_HEXADECAGONAL,<br/>CH_LAYOUT_AMB_ORDER3_ACN_N3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_N3D,<br/>CH_LAYOUT_AMB_ORDER3_ACN_SN3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER3_FUMA = AMB_MODE \| AMB_ORD_3 \| AMB_COM_FUMA,<br/>CH_LAYOUT_22POINT2<br/>} | 音频声道布局。 | 
-| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) {<br/>AVCODEC_BUFFER_FLAGS_NONE = 0,<br/>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br/>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec缓冲区标记的类别。 | 
-| [OH_AVErrCode](#oh_averrcode) {<br/>AV_ERR_OK = 0,<br/>AV_ERR_NO_MEMORY = 1,<br/>AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>AV_ERR_INVALID_VAL = 3,<br/>AV_ERR_IO = 4,<br/>AV_ERR_TIMEOUT = 5,<br/>AV_ERR_UNKNOWN = 6,<br/>AV_ERR_SERVICE_DIED = 7,<br/>AV_ERR_INVALID_STATE = 8,<br/>AV_ERR_UNSUPPORT = 9,<br/>AV_ERR_EXTEND_START = 100<br/>} | 音视频错误码。 | 
-| [OH_AVPixelFormat](#oh_avpixelformat) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类 | 
+| [OH_AudioChannelSet](#oh_audiochannelset-1) {<br/>CH_SET_FRONT_LEFT = 1ULL &lt;&lt; 0U,<br/>CH_SET_FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br/>CH_SET_FRONT_CENTER = 1ULL &lt;&lt; 2U,<br/>CH_SET_LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br/>CH_SET_BACK_LEFT = 1ULL &lt;&lt; 4U,<br/>CH_SET_BACK_RIGHT = 1ULL &lt;&lt; 5U,<br/>CH_SET_FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br/>CH_SET_FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br/>CH_SET_BACK_CENTER = 1ULL &lt;&lt; 8U,<br/>CH_SET_SIDE_LEFT = 1ULL &lt;&lt; 9U,<br/>CH_SET_SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br/>CH_SET_TOP_CENTER = 1ULL &lt;&lt; 11U,<br/>CH_SET_TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br/>CH_SET_TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br/>CH_SET_TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br/>CH_SET_TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br/>CH_SET_TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br/>CH_SET_TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br/>CH_SET_STEREO_LEFT = 1ULL &lt;&lt; 29U,<br/>CH_SET_STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br/>CH_SET_WIDE_LEFT = 1ULL &lt;&lt; 31U,<br/>CH_SET_WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br/>CH_SET_SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br/>CH_SET_SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br/>CH_SET_LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br/>CH_SET_TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br/>CH_SET_TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br/>CH_SET_BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br/>CH_SET_BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br/>CH_SET_BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U<br/>} | 音频声道集合。 | 
+| [OH_AmbAttributeSet](#oh_ambattributeset-1) {<br/>AMB_ORD_1 = 1ULL &lt;&lt; 0U,<br/>AMB_ORD_2 = 2ULL &lt;&lt; 0U,<br/>AMB_ORD_3 = 3ULL &lt;&lt; 0U,<br/>AMB_COM_ACN = 0ULL &lt;&lt; 8U,<br/>AMB_COM_FUMA = 1ULL &lt;&lt; 8U,<br/>AMB_NOR_N3D = 0ULL &lt;&lt; 12U,<br/>AMB_NOR_SN3D = 1ULL &lt;&lt; 12U,<br/>AMB_MODE = 1ULL &lt;&lt; 44U<br/>} | 高保真立体声混响设置。 | 
+| [OH_AudioChannelLayout](#oh_audiochannellayout-1) {<br/>CH_LAYOUT_UNKNOWN = 0ULL,<br/>CH_LAYOUT_MONO = CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_STEREO = CH_SET_FRONT_LEFT \| CH_SET_FRONT_RIGHT,<br/>CH_LAYOUT_STEREO_DOWNMIX = CH_SET_STEREO_LEFT \| CH_SET_STEREO_RIGHT,<br/>CH_LAYOUT_2POINT1 = CH_LAYOUT_STEREO \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_3POINT0 = CH_LAYOUT_STEREO \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_SURROUND = CH_LAYOUT_STEREO \| CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_3POINT1 = CH_LAYOUT_SURROUND \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_4POINT0 = CH_LAYOUT_SURROUND \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_QUAD_SIDE = CH_LAYOUT_STEREO \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br/>CH_LAYOUT_QUAD = CH_LAYOUT_STEREO \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_2POINT0POINT2 = CH_LAYOUT_STEREO \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_AMB_ORDER1_ACN_N3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_N3D, CH_LAYOUT_AMB_ORDER1_ACN_SN3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER1_FUMA = AMB_MODE \| AMB_ORD_1 \| AMB_COM_FUMA,<br/>CH_LAYOUT_4POINT1 = CH_LAYOUT_4POINT0 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_5POINT0 = CH_LAYOUT_SURROUND \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br/>CH_LAYOUT_5POINT0_BACK = CH_LAYOUT_SURROUND \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_2POINT1POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_3POINT0POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_5POINT1 = CH_LAYOUT_5POINT0 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_5POINT1_BACK = CH_LAYOUT_5POINT0_BACK \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_6POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_3POINT1POINT2 = CH_LAYOUT_3POINT1 \| CH_SET_TOP_FRONT_LEFT \| CH_SET_TOP_FRONT_RIGHT,<br/>CH_LAYOUT_6POINT0_FRONT = CH_LAYOUT_QUAD_SIDE \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_HEXAGONAL = CH_LAYOUT_5POINT0_BACK \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1_FRONT = CH_LAYOUT_6POINT0_FRONT \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_7POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_7POINT0_FRONT = CH_LAYOUT_5POINT0 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_7POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_OCTAGONAL = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_CENTER \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_5POINT1POINT2 = CH_LAYOUT_5POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_7POINT1_WIDE = CH_LAYOUT_5POINT1 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_7POINT1_WIDE_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_AMB_ORDER2_ACN_N3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_N3D,<br/>CH_LAYOUT_AMB_ORDER2_ACN_SN3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER2_FUMA = AMB_MODE \| AMB_ORD_2 \| AMB_COM_FUMA,<br/>CH_LAYOUT_5POINT1POINT4,<br/>CH_LAYOUT_7POINT1POINT2 = CH_LAYOUT_7POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_7POINT1POINT4,<br/>CH_LAYOUT_10POINT2,<br/>CH_LAYOUT_9POINT1POINT4 = CH_LAYOUT_7POINT1POINT4 \| CH_SET_WIDE_LEFT \| CH_SET_WIDE_RIGHT,<br/>CH_LAYOUT_9POINT1POINT6 = CH_LAYOUT_9POINT1POINT4 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_HEXADECAGONAL,<br/>CH_LAYOUT_AMB_ORDER3_ACN_N3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_N3D,<br/>CH_LAYOUT_AMB_ORDER3_ACN_SN3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER3_FUMA = AMB_MODE \| AMB_ORD_3 \| AMB_COM_FUMA,<br/>CH_LAYOUT_22POINT2<br/>} | 音频声道布局。 | 
+| [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) {<br/>AVCODEC_BUFFER_FLAGS_NONE = 0,<br/>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br/>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3<br/>} | 枚举OH_AVCodec缓冲区标记的类别。 | 
+| [OH_AVErrCode](#oh_averrcode-1)  {<br/>AV_ERR_OK = 0,<br/>AV_ERR_NO_MEMORY = 1,<br/>AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>AV_ERR_INVALID_VAL = 3,<br/>AV_ERR_IO = 4,<br/>AV_ERR_TIMEOUT = 5,<br/>AV_ERR_UNKNOWN = 6,<br/>AV_ERR_SERVICE_DIED = 7,<br/>AV_ERR_INVALID_STATE = 8,<br/>AV_ERR_UNSUPPORT = 9,<br/>AV_ERR_EXTEND_START = 100<br/>} | 音视频错误码。 | 
+| [OH_AVPixelFormat](#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类。 | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVBuffer \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
-| [OH_AVErrCode](#oh_averrcode)[OH_AVBuffer_Destroy](#oh_avbuffer_destroy) (OH_AVBuffer \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
-| [OH_AVErrCode](#oh_averrcode)[OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) (OH_AVBuffer \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的高频属性参数。 | 
-| [OH_AVErrCode](#oh_averrcode)[OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) (OH_AVBuffer \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的高频属性参数。 | 
-| OH_AVFormat \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) (OH_AVBuffer \*buffer) | 获取数据缓冲区的随帧参数。 | 
-| [OH_AVErrCode](#oh_averrcode)[OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) (OH_AVBuffer \*buffer, const OH_AVFormat \*format) | 设置数据缓冲区的随帧参数。 | 
-| uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) (OH_AVBuffer \*buffer) | 获取数据缓冲区的虚拟地址。 | 
-| int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) (OH_AVBuffer \*buffer) | 获取数据缓冲区的容量。 | 
-| OH_NativeBuffer \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) (OH_AVBuffer \*buffer) | 获取OH_NativeBuffer实例的指针。 | 
-| struct OH_AVFormat \* [OH_AVFormat_Create](#oh_avformat_create) (void) | 创建OH_AVFormat句柄，用于读取数据。 | 
-| struct OH_AVFormat \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | 创建音频OH_AVFormat句柄指针，用于读写数据。 | 
-| struct OH_AVFormat \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | 创建视频OH_AVFormat句柄指针，用于读写数据。 | 
-| void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct OH_AVFormat \*format) | 销毁OH_AVFormat句柄。 | 
-| bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct OH_AVFormat \*to, struct OH_AVFormat \*from) | 复制OH_AVFormat句柄。 | 
-| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t value) | 将int数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t value) | 将long数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct OH_AVFormat \*format, const char \*key, float value) | 将float数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct OH_AVFormat \*format, const char \*key, double value) | 将double数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*value) | 将string数据写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct OH_AVFormat \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
-| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct OH_AVFormat \*format, const char \*key, int32_t \*out) | 从OH_AVFormat读取int数据。 | 
-| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct OH_AVFormat \*format, const char \*key, int64_t \*out) | 从OH_AVFormat读取long数据。 | 
-| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct OH_AVFormat \*format, const char \*key, float \*out) | 从OH_AVFormat读取float数据。 | 
-| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct OH_AVFormat \*format, const char \*key, double \*out) | 从OH_AVFormat读取double数据。 | 
-| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct OH_AVFormat \*format, const char \*key, const char \*\*out) | 从OH_AVFormat读取string数据。 | 
-| bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct OH_AVFormat \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
-| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct OH_AVFormat \*format) | 输出OH_AVFormat中包含的字符串。 | 
-| OH_AVMemory \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。 | 
-| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct OH_AVMemory \*mem) | 获取入参的内存虚拟地址。 | 
-| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct OH_AVMemory \*mem) | 获取入参的内存长度。 | 
-| [OH_AVErrCode](#oh_averrcode)[OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct OH_AVMemory \*mem) | 释放OH_AVMemory实例指针的资源。 | 
+| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的高频属性参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的高频属性参数。 | 
+| [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的随帧参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | 设置数据缓冲区的随帧参数。 | 
+| uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的虚拟地址。 | 
+| int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的容量。 | 
+| [OH_NativeBuffer](#oh_nativebuffer) \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取OH_NativeBuffer实例的指针。 | 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_Create](#oh_avformat_create) (void) | 创建OH_AVFormat句柄，用于读取数据。 | 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | 创建音频OH_AVFormat句柄指针，用于读写数据。 | 
+| struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | 创建视频OH_AVFormat句柄指针，用于读写数据。 | 
+| void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | 销毁OH_AVFormat句柄。 | 
+| bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | 复制OH_AVFormat句柄。 | 
+| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | 将int数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | 将long数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | 将float数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | 将double数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | 将string数据写入OH_AVFormat。 | 
+| bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
+| bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | 从OH_AVFormat读取int数据。 | 
+| bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | 从OH_AVFormat读取long数据。 | 
+| bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | 从OH_AVFormat读取float数据。 | 
+| bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | 从OH_AVFormat读取double数据。 | 
+| bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | 从OH_AVFormat读取string数据。 | 
+| bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
+| const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | 输出OH_AVFormat中包含的字符串。 | 
+| [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。 | 
+| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取入参的内存虚拟地址。 | 
+| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取入参的内存长度。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 释放OH_AVMemory实例指针的资源。 | 
 
 
 ## 类型定义说明
@@ -100,7 +104,7 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 ### OH_AmbAttributeSet
 
 ```
-typedef enum OH_AmbAttributeSetOH_AmbAttributeSet
+typedef enum OH_AmbAttributeSet OH_AmbAttributeSet
 ```
 
 **描述**
@@ -117,7 +121,7 @@ typedef enum OH_AmbAttributeSetOH_AmbAttributeSet
 ### OH_AudioChannelLayout
 
 ```
-typedef enum OH_AudioChannelLayoutOH_AudioChannelLayout
+typedef enum OH_AudioChannelLayout OH_AudioChannelLayout
 ```
 
 **描述**
@@ -134,7 +138,7 @@ typedef enum OH_AudioChannelLayoutOH_AudioChannelLayout
 ### OH_AudioChannelSet
 
 ```
-typedef enum OH_AudioChannelSetOH_AudioChannelSet
+typedef enum OH_AudioChannelSet OH_AudioChannelSet
 ```
 
 **描述**
@@ -148,10 +152,22 @@ typedef enum OH_AudioChannelSetOH_AudioChannelSet
 **起始版本：** 11
 
 
+### OH_AVBuffer
+
+```
+typedef struct OH_AVBuffer OH_AVBuffer
+```
+**描述**
+
+为媒体内存接口定义native层对象。
+
+**起始版本：** 11
+
+
 ### OH_AVCodecBufferAttr
 
 ```
-typedef struct OH_AVCodecBufferAttrOH_AVCodecBufferAttr
+typedef struct OH_AVCodecBufferAttr OH_AVCodecBufferAttr
 ```
 
 **描述**
@@ -166,7 +182,7 @@ typedef struct OH_AVCodecBufferAttrOH_AVCodecBufferAttr
 ### OH_AVCodecBufferFlags
 
 ```
-typedef enum OH_AVCodecBufferFlagsOH_AVCodecBufferFlags
+typedef enum OH_AVCodecBufferFlags OH_AVCodecBufferFlags
 ```
 
 **描述**
@@ -181,7 +197,7 @@ typedef enum OH_AVCodecBufferFlagsOH_AVCodecBufferFlags
 ### OH_AVErrCode
 
 ```
-typedef enum OH_AVErrCodeOH_AVErrCode
+typedef enum OH_AVErrCode OH_AVErrCode
 ```
 
 **描述**
@@ -193,10 +209,34 @@ typedef enum OH_AVErrCodeOH_AVErrCode
 **起始版本：** 9
 
 
+### OH_AVFormat
+
+```
+typedef struct OH_AVFormat OH_AVFormat
+```
+**描述**
+
+为媒体格式接口定义native层对象。
+
+**起始版本：** 9
+
+
+### OH_AVMemory
+
+```
+typedef struct OH_AVMemory OH_AVMemory
+```
+**描述**
+
+为音视频内存接口定义native层对象。
+
+**起始版本：** 9
+
+
 ### OH_AVPixelFormat
 
 ```
-typedef enum OH_AVPixelFormatOH_AVPixelFormat
+typedef enum OH_AVPixelFormat OH_AVPixelFormat
 ```
 
 **描述**
@@ -206,6 +246,18 @@ typedef enum OH_AVPixelFormatOH_AVPixelFormat
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **起始版本：** 9
+
+
+### OH_NativeBuffer
+
+```
+typedef struct OH_NativeBuffer OH_NativeBuffer
+```
+**描述**
+
+为图形内存接口定义native层对象。
+
+**起始版本：** 11
 
 
 ## 枚举类型说明
@@ -219,7 +271,7 @@ enum OH_AmbAttributeSet
 
 **描述**
 
-高保真立体声混响设置.
+高保真立体声混响设置。
 
 用int64整数来表示高保真立体声混响属性。
 
@@ -419,7 +471,7 @@ enum OH_AVPixelFormat
 
 **描述**
 
-视频像素格式的枚举类
+视频像素格式的枚举类。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -427,11 +479,11 @@ enum OH_AVPixelFormat
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AV_PIXEL_FORMAT_YUVI420 | yuv 420 planar | 
-| AV_PIXEL_FORMAT_NV12 | NV12. yuv 420 semiplanar | 
-| AV_PIXEL_FORMAT_NV21 | NV21. yuv 420 semiplanar | 
-| AV_PIXEL_FORMAT_SURFACE_FORMAT | surface格式 | 
-| AV_PIXEL_FORMAT_RGBA | RGBA8888 | 
+| AV_PIXEL_FORMAT_YUVI420 | yuv 420 planar。 | 
+| AV_PIXEL_FORMAT_NV12 | NV12. yuv 420 semiplanar。 | 
+| AV_PIXEL_FORMAT_NV21 | NV21. yuv 420 semiplanar。 | 
+| AV_PIXEL_FORMAT_SURFACE_FORMAT | 像素格式从surface获取。 | 
+| AV_PIXEL_FORMAT_RGBA | RGBA8888。 | 
 
 
 ## 函数说明
@@ -484,7 +536,7 @@ OH_AVErrCode OH_AVBuffer_Destroy (OH_AVBuffer *buffer)
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode)。
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
 
 
 ### OH_AVBuffer_GetAddr()
@@ -535,7 +587,7 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr (OH_AVBuffer *buffer, OH_AVCodecBufferAtt
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode)。
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
 
 
 ### OH_AVBuffer_GetCapacity()
@@ -610,7 +662,7 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode)。
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
 
 
 ### OH_AVBuffer_SetBufferAttr()
@@ -636,7 +688,7 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBuf
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode)。
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
 
 
 ### OH_AVBuffer_SetParameter()
@@ -662,7 +714,7 @@ OH_AVErrCode OH_AVBuffer_SetParameter (OH_AVBuffer *buffer, const OH_AVFormat *f
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode)。
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
 
 
 ### OH_AVFormat_Copy()
@@ -1191,7 +1243,7 @@ OH_AVErrCode OH_AVMemory_Destroy (struct OH_AVMemory *mem)
 
 **返回：**
 
-如果释放成功返回AV_ERR_OK，如果失败返回具体错误码, 参考[OH_AVErrCode](#oh_averrcode)。
+如果释放成功返回AV_ERR_OK，如果失败返回具体错误码, 参考[OH_AVErrCode](#oh_averrcode-1)。
 
 
 ### OH_AVMemory_GetAddr()

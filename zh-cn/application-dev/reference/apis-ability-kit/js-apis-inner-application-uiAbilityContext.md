@@ -1,6 +1,6 @@
 # UIAbilityContext
 
-UIAbilityContext是需要保存状态的[UIAbility](../apis/js-apis-app-ability-uiAbility.md)所对应的context，继承自[Context](../apis/js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法，如启动UIAbility，停止当前UIAbilityContext所属的UIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
+UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbility.md)所对应的context，继承自[Context](js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法，如启动UIAbility，停止当前UIAbilityContext所属的UIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
 
 > **说明：**
 >
@@ -20,13 +20,14 @@ import common from '@ohos.app.ability.common';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | [AbilityInfo](../apis/js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。 |
-| currentHapModuleInfo | [HapModuleInfo](../apis/js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。 |
-| config | [Configuration](../apis/js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。 |
+| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象 。|
 
 > **关于示例代码的说明：**
 >
-> 在本文档的示例中，通过`this.context`来获取`UIAbilityContext`，其中`this`代表继承自`UIAbility`的`UIAbility`实例。如需要在页面中使用`UIAbilityContext`提供的能力，请参见[获取UIAbility的上下文信息](../apis/../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在本文档的示例中，通过`this.context`来获取`UIAbilityContext`，其中`this`代表继承自`UIAbility`的`UIAbility`实例。如需要在页面中使用`UIAbilityContext`提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## UIAbilityContext.startAbility
 
@@ -34,11 +35,9 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 启动Ability（callback形式）。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
- - 跨任务链启动时，如果需要跨任务链进行返回，需要参考[Want](../apis/js-apis-app-ability-want.md)中的parameter参数用法。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -46,7 +45,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
@@ -69,7 +68,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -112,10 +111,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 启动Ability（callback形式）。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -123,8 +121,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
@@ -145,9 +143,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -195,10 +196,9 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 启动Ability（promise形式）。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -206,8 +206,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -233,9 +233,12 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -281,14 +284,13 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability。Ability被启动后，有如下情况(callback形式):
- - 正常情况下可通过调用[terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -296,8 +298,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](../apis/js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -319,7 +321,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -363,14 +365,13 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability。Ability被启动后，有如下情况(callback形式):
- - 正常情况下可通过调用[terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -378,9 +379,9 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](../apis/js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -402,7 +403,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -451,14 +452,13 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 启动一个Ability。Ability被启动后，有如下情况(promise形式):
- - 正常情况下可通过调用[terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -466,15 +466,15 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](../apis/js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](../apis/js-apis-inner-ability-abilityResult.md)&gt; | Promise形式返回执行结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise形式返回执行结果。 |
 
 **错误码：**
 
@@ -496,7 +496,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -563,7 +563,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -620,7 +620,7 @@ terminateSelf(): Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -656,7 +656,7 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -664,7 +664,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](../apis/js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
 
 **错误码：**
@@ -678,7 +678,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -727,7 +727,7 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
+停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -735,7 +735,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](../apis/js-apis-inner-ability-abilityResult.md) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 |
 
 **返回值：**
 
@@ -754,7 +754,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -810,8 +810,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 连接ServiceExtensionAbility的want信息。 |
-| options | [ConnectOptions](../apis/js-apis-inner-ability-connectOptions.md) | 是 | 与ServiceExtensionAbility建立连接后回调函数的实例。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 连接ServiceExtensionAbility的want信息。 |
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 与ServiceExtensionAbility建立连接后回调函数的实例。 |
 
 **返回值：**
 
@@ -834,7 +834,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -906,7 +906,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -964,7 +964,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1008,15 +1008,15 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 > **说明：**
 >
-> API version 11之前的版本，该接口权限为ohos.permission.ABILITY_BACKGROUND_COMMUNICATION权限；从API version 11开始，该接口权限修改为ohos.permission.DISTRIBUTED_DATASYNC权限。
+> API version 11之前的版本，该接口需要申请权限ohos.permission.ABILITY_BACKGROUND_COMMUNICATION（该权限仅系统应用可申请）。从API version 11开始，该接口需要申请的权限变更为ohos.permission.DISTRIBUTED_DATASYNC权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1024,13 +1024,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[Caller](../apis/js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
 
 **错误码：**
 
@@ -1048,7 +1048,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1159,7 +1159,7 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1206,7 +1206,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1242,7 +1242,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](../apis/js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1252,7 +1252,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1282,7 +1282,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](../apis/js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
 
 **返回值：**
 
@@ -1297,7 +1297,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1338,7 +1338,7 @@ restoreWindowStage(localStorage: LocalStorage): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1373,7 +1373,7 @@ isTerminating(): boolean
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1392,12 +1392,11 @@ export default class EntryAbility extends UIAbility {
 
 requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestResult&gt;): void
 
-启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](../apis/js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1405,8 +1404,8 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |[Want](../apis/js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](../apis/js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 执行结果回调函数。 |
+| want |[Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -1428,7 +1427,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1470,12 +1469,11 @@ export default class EntryAbility extends UIAbility {
 
 requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
-启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](../apis/js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者（promise形式）。
+启动一个支持模态弹框的ServiceExtensionAbility。ServiceExtensionAbility被启动后，应用弹出模态弹框，通过调用[setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult)接口返回结果给调用者（promise形式）。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 组件启动规则详见：[组件启动规则（Stage模型）](../apis/../../application-models/component-startup-rules.md)。
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1483,14 +1481,14 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[dialogRequest.RequestResult](../apis/js-apis-app-ability-dialogRequest.md)&gt; | Promise形式返回执行结果。
+| Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise形式返回执行结果。
 
 **错误码：**
 
@@ -1512,7 +1510,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1555,7 +1553,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
- **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1570,7 +1569,7 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1622,7 +1621,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](../apis/js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1635,7 +1634,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1674,7 +1673,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](../apis/js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
 
 **返回值：**
 
@@ -1692,7 +1691,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../apis/../errorcodes/errorcode-ability.md)。
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1714,3 +1713,217 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
+
+## UIAbilityContext.showAbility<sup>12+</sup>
+
+showAbility() : Promise\<void>
+
+显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+
+调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.UIAbilityContext;
+  context.showAbility().then(() => {
+    console.log(`showAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+## UIAbilityContext.hideAbility<sup>12+</sup>
+
+hideAbility() : Promise\<void>
+
+隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。
+
+调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+  let context = getContext(this) as common.UIAbilityContext;
+  context.hideAbility().then(() => {
+    console.log(`hideAbility success`);
+  }).catch((err: BusinessError) => {
+    console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
+  })
+  ```
+
+## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
+moveAbilityToBackground(): Promise\<void>
+
+将处于前台的Ability移动到后台。使用Promise异步回调。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000061 | Operation not supported. |
+| 16000065 | The interface can be called only when ability is foreground. |
+| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct Index {
+  @State moveAbilityToBackground: string = 'Move To Background'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.moveAbilityToBackground)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            context.moveAbilityToBackground().then(() => {
+              console.log(`moveAbilityToBackground success.`);
+            }).catch((err: BusinessError) => {
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`)
+            });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## UIAbilityContext.openAtomicService<sup>12+<sup>
+openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
+
+跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。
+分为以下几种情况：
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死EmbeddableUIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
+ - 如果不同应用多次调用该接口启动同一个EmbeddableUIAbility，当这个EmbeddableUIAbility调用[terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动元服务所携带的参数。 |
+
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象。返回[AbilityResult](js-apis-inner-ability-abilityResult.md)对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000002 | Incorrect ability type. |
+| 16000003 | The appId does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    let options: AtomicServiceOptions = {
+      displayId: 0,
+    };
+
+    try {
+      this.context.openAtomicService(want, options)
+        .then((result: common.AbilityResult) => {
+          // 执行正常业务
+          console.info('openAtomicService succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`openAtomicService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`openAtomicService failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

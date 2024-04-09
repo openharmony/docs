@@ -31,6 +31,14 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | modalTransition | [ModalTransition](ts-types.md#modaltransition10) | 否    | 全屏模态页面的转场方式。  |
+| onWillDismiss<sup>12+</sup> | [DismissContentCoverAction](#dismisscontentcoveraction12类型说明) | 否    | 全屏模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行back事件关闭交互操作时，如果注册该回调函数，则不会立刻关闭。在回调函数中可以通过reason得到阻拦关闭页面的操作类型，从而根据原因选择是否关闭全屏模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md##transitioneffect10对象说明) | 否    | 全屏模态页面的转场方式。  |
+
+## DismissContentCoverAction<sup>12+</sup>类型说明
+| 名称              | 类型                                       | 必填   | 描述            |
+| --------------- | ---------------------------------------- | ---- | ------------- |
+| dismiss | function | 是    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
+| reason | [DismissReason](ts-methods-alert-dialog-box.md##dismissreason12枚举说明) | 是    | 返回本次拦截全屏模态页面退出的事件原因。  |
 
 ## 示例
 
@@ -66,7 +74,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Orange, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Orange, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -88,7 +103,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor("#ff49c8ab")
@@ -142,7 +164,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Orange, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Orange, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -166,7 +195,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.NONE, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor("#ff49c8ab")
@@ -212,7 +248,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.DEFAULT, backgroundColor: Color.Gray, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.DEFAULT, 
+          backgroundColor: Color.Gray, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -234,7 +277,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.DEFAULT, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.DEFAULT, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.White)
@@ -280,7 +330,14 @@ struct ModalTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.ALPHA, backgroundColor: Color.Gray, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        }).bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.ALPHA, 
+          backgroundColor: Color.Gray, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
 
       Button("close modal 1")
         .margin(10)
@@ -302,7 +359,14 @@ struct ModalTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.ALPHA, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.ALPHA, 
+          backgroundColor: Color.Pink, 
+          onWillAppear: () => {console.log("BindContentCover onWillAppear.")}, 
+          onAppear: () => {console.log("BindContentCover onAppear.")}, 
+          onWillDisappear: () => {console.log("BindContentCover onWillDisappear.")}, 
+          onDisappear: () => {console.log("BindContentCover onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.White)
@@ -313,3 +377,107 @@ struct ModalTransitionExample {
 ```
 
 ![zh-cn_full_screen_modal_alpha](figures/zh-cn_full_screen_modal_alpha.gif)
+
+### 示例5
+
+全屏模态自定义转场。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ModalTransitionExample {
+  @State isShow:boolean = false
+  @State isShow2:boolean = false
+
+  @Builder myBuilder2() {
+    Column() {
+      Button("Close Modal 2")
+        .margin(10)
+        .fontSize(20)
+        .onClick(()=>{
+          this.isShow2 = false;
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder myBuilder() {
+    Column() {
+      Button("Transition Modal 2")
+        .margin(10)
+        .fontSize(20)
+        .onClick(()=>{
+          this.isShow2 = true;
+        })
+        .bindContentCover(
+          this.isShow2,
+          this.myBuilder2(),
+          {
+            modalTransition: ModalTransition.DEFAULT,
+            backgroundColor: Color.Gray,
+            transition: TransitionEffect.SLIDE.animation({ duration: 5000, curve: Curve.LinearOutSlowIn }),
+            onWillDismiss: ((dismissContentCoverAction: DismissContentCoverAction) => {
+              if (dismissContentCoverAction.reason == DismissReason.PRESS_BACK) {
+                console.log("BindContentCover dismiss reason is back pressed")
+              }
+              dismissContentCoverAction.dismiss()
+            }),
+            onAppear: () => { console.info("BindContentCover onAppear.") },
+            onDisappear: () => { this.isShow2 = false; console.info("BindContentCover onDisappear.") }
+          })
+
+      Button("Close Modal 1")
+        .margin(10)
+        .fontSize(20)
+        .onClick(()=>{
+          this.isShow = false;
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  build() {
+    Column() {
+      Button("Transition Modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindContentCover(
+          this.isShow,
+          this.myBuilder(),
+          {
+            modalTransition: ModalTransition.DEFAULT,
+            backgroundColor: Color.Pink,
+            transition: TransitionEffect.asymmetric(
+              TransitionEffect.OPACITY.animation({ duration: 1100 }).combine(
+                TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ delay: 1000, duration: 1000 }))
+              ,
+              TransitionEffect.OPACITY.animation({ duration: 1200 }).combine(
+                TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1300 }))
+            ),
+            onWillDismiss: ((dismissContentCoverAction: DismissContentCoverAction) => {
+              if (dismissContentCoverAction.reason == DismissReason.PRESS_BACK) {
+                console.log("back pressed");
+              }
+              dismissContentCoverAction.dismiss()
+            }),
+            onAppear: () => { console.log("BindContentCover onAppear.") },
+            onDisappear: () => { this.isShow = false; console.log("BindContentCover onDisappear.") }
+          })
+    }
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor(Color.White)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_full_screen_modal_alpha](figures/zh-cn_full_screen_modal_transition.gif)

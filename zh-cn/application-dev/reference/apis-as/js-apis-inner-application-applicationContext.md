@@ -21,7 +21,7 @@ import common from '@ohos.app.ability.common';
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-注册监听应用内生命周期
+注册监听应用内生命周期。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -95,7 +95,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消监听应用内生命周期
+取消监听应用内生命周期。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
         console.log(`stage applicationContext: ${applicationContext}`);
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
             if (error) {
-                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);    
+                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);
             } else {
                 console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
             }
@@ -133,7 +133,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-取消监听应用内生命周期
+取消监听应用内生命周期。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -170,7 +170,7 @@ export default class MyAbility extends Ability {
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
-注册对系统环境变化的监听。使用callback异步回调。
+注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,7 +219,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消对系统环境变化的监听。使用callback异步回调。
+取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -256,7 +256,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-取消对系统环境变化的监听。
+取消对系统环境变化的监听。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -292,7 +292,7 @@ export default class MyAbility extends Ability {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-注册对当前应用前后台变化的监听。使用callback异步回调。
+注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -334,7 +334,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。
+取消当前应用注册的前后台变化的全部监听。不支持多线程并发调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -379,7 +379,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -420,7 +420,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -461,7 +461,7 @@ killAllProcesses(): Promise\<void\>
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -496,7 +496,7 @@ killAllProcesses(callback: AsyncCallback\<void\>): void
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -526,7 +526,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -535,7 +535,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -572,7 +572,7 @@ setLanguage(language: string): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

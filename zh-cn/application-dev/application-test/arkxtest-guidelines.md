@@ -53,7 +53,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 ### 编写单元测试脚本
 
-本章节主要描述单元测试框架支持能力，以及能力的使用方法。
+本章节主要描述单元测试框架支持能力，以及能力的使用方法, 具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
 在单元测试框架，测试脚本需要包含如下基本元素:
 
@@ -100,7 +100,7 @@ export default function abilityTest() {
 
 ### 编写UI测试脚本
 
-本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口（提供链接）调用，进而完成对应的测试活动。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
+本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../../application-dev/reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
 1.增加依赖导包。
 
@@ -225,7 +225,7 @@ export default function abilityTest() {
 | --bundleName  | -b           | 应用Bundle名称                         | - b com.test.example               |
 | --packageName | -p           | 应用模块名，适用于FA模型应用           | - p com.test.example.entry         |
 | --moduleName  | -m           | 应用模块名，适用于STAGE模型应用        | -m entry                           |
-| NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest OpenHarmonyTestRunner |
+| NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest /ets/testrunner/OpenHarmonyTestRunner |
 
 框架当前支持多种用例执行方式，通过上表中的-s参数后的配置键值对参数传入触发，如下表所示。
 
@@ -439,7 +439,7 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存�
 | swipe       | 模拟慢滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600))                                       | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
 | drag        | 模拟拖拽操作                                  | from_x (必选参数,拖拽起点x坐标)<br/> from_y(必选参数,拖拽起点y坐标)<br/> to_x(必选参数,拖拽终点x坐标)<br/> to_y(必选参数,拖拽终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600))                                       | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
 | dircFling   | 模拟指定方向滑动操作                              | direction (可选参数,滑动方向,可选值: [0,1,2,3], 滑动方向: [左,右,上,下],默认值: 0)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50)                                                                                                                                  | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
-| input       | 模拟输入框输入文本操作                             | point_x (必选参数,输入框x坐标点)<br/> point_y (必选参数,输入框y坐标点)<br/> input(输入文本)                                                                                                                                 | hdc shell uitest uiInput input point_x point_y text                                 |
+| inputText        | 模拟输入框输入文本操作                             | point_x (必选参数,输入框x坐标点)<br/> point_y (必选参数,输入框y坐标点)<br/> input(输入文本)                                                                                                                                 | hdc shell uitest uiInput inputText  point_x point_y text                                  |
 | keyEvent    | 模拟实体按键事件(如:键盘,电源键,返回上一级,返回桌面等),以及组合按键操作 | keyID (必选参数,实体按键对应ID)<br/> keyID2 (可选参数,实体按键对应ID)                                                                                                                                                   | hdc shell uitest uiInput keyEvent keyID                                             |
 
 示例代码1：执行点击事件。

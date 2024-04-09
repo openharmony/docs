@@ -1,0 +1,120 @@
+# 使用HiLog打印日志（ArkTS）
+
+
+在应用开发过程中，可在关键代码处输出日志信息。在运行应用后，通过查看日志信息来分析应用执行情况（如应用是否正常运行、代码运行时序、运行逻辑分支是否正常等）。
+
+
+系统提供不同的API供开发者调用并输出日志信息，即HiLog与console。两个API在使用时略有差异，本文重点介绍HiLog的用法，console的具体用法可查看API参考[console](../reference/common/js-apis-logs.md)。
+
+
+## 接口说明
+
+HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提供了对应的方法输出不同级别的日志，接口如下表所示，具体说明可查阅[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hilog.md)。
+
+| 接口名 | 功能描述 | 
+| -------- | -------- |
+| isLoggable(domain: number, tag: string, level: LogLevel) | 在打印日志前调用该接口，检查指定领域标识、日志标识和级别的日志是否可以打印。 |
+| debug(domain: number, tag: string, format: string, ...args: any[]) | 输出DEBUG级别日志。仅用于应用/服务调试。<br/>在DevEco Studio的terminal窗口或cmd里，通过命令“hdc shell hilogcat”设置可打印日志的等级为DEBUG。 |
+| info(domain: number, tag: string, format: string, ...args: any[]) | 输出INFO级别日志。表示普通的信息。 |
+| warn(domain: number, tag: string, format: string, ...args: any[]) | 输出WARN级别日志。表示存在警告。 |
+| error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 |
+| fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 |
+
+### 参数解析
+
+> **说明：**
+> 
+> - isLoggable()和具体日志打印接口使用的domain和tag应保持一致。
+> 
+> - isLoggable()使用的level，应和具体日志打印接口级别保持一致。
+
+- **domain**：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
+
+- **tag**：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。
+
+- **level**：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/js-apis-hilog.md#loglevel)。
+
+- **format**：格式字符串，用于日志的格式化输出。日志打印的格式化参数需按照“%{private flag}specifier”的格式打印。
+  | 隐私标识符（private flag） | 说明 |
+  | -------- | -------- |
+  | private | 表示日志打印结果不可见，输出结果为&lt;private&gt;。 |
+  | public | 表示日志打印结果可见，明文显示参数。 |
+  | 无 | 缺省值默认为private，日志打印结果不可见。 |
+
+  | 格式说明符（specifier） | 说明 | 示例 |
+  | -------- | -------- | -------- |
+  | d/i | 支持打印number和bigint类型。 | 123 |
+  | s | 支持打印string、undefined、bool和null类型。 | "123" |
+
+  格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。
+
+  调试时可通过命令“hilog -p off”指令，关闭隐私开关，明文显示private日志内容。
+
+- **args**：可以为0个或多个参数，是格式字符串中参数类型对应的参数列表。参数的数量、类型必须与格式字符串中的标识一一对应。
+
+## 约束与限制
+
+日志打印最多打印4096字节，超出限制文本将被截断。
+
+## 开发示例
+
+在按钮中增加一个单击事件，单击按钮时打印一条日志。
+
+1. 新建一个工程，选择“Empty Ability”。
+
+2. 工程配置界面中，**Model**选择“Stage”。
+
+3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件，添加一个按钮，单击按钮打印日志。
+   示例代码如下：
+
+   ```ts
+   // Index.ets
+   
+   import hilog from '@ohos.hilog';
+   
+   @Entry
+   @Component
+   struct Index {
+     build() {
+       Row() {
+         Column() {
+           // 添加按钮，以响应用户点击
+           Button() {
+             Text('Next')
+               .fontSize(30)
+               .fontWeight(FontWeight.Bold)
+           }
+           .type(ButtonType.Capsule)
+           .margin({
+             top: 20
+           })
+           .backgroundColor('#0D9FFB')
+           .width('40%')
+           .height('5%')
+           // 跳转按钮绑定onClick事件，点击时打印日志
+           .onClick(() => {
+             hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);    
+             hilog.info(0xFF00, "testTag", "%{public}s World %{public}d", "hello", 3);
+           })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
+
+   以输出一条INFO级别的信息为例，表示输出一条普通信息，格式字符串为：
+
+   ```txt
+   ”%{public}s World %{public}d”
+   ```
+
+   其中变参"%{public}s"为公共的字符串，%{public}d为公共的整型数。
+
+4. 在真机上运行该工程，单击应用/服务界面上的“Next”按钮。
+
+5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件。
+   选择当前的设备及进程，日志级别选择Verbose，搜索内容设置为“testTag”。此时窗口仅显示符合条件的日志。
+
+   打印日志结果为“hello World 3”。

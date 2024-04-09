@@ -30,8 +30,8 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
-| args   | Object[] | 否   | 执行逻辑的函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | Object[] | 否   | 执行逻辑的函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **返回值：**
 
@@ -67,7 +67,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -121,7 +121,7 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-将创建好的任务组放入taskpool内部任务队列等待，等待分发到工作线程执行。
+将创建好的任务组放入taskpool内部任务队列等待，等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。当前执行模式适用于执行一组有关联的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -179,7 +179,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。该任务不可以是任务组任务或串行队列任务。
+延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -231,7 +231,7 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 
 cancel(task: Task): void
 
-取消任务池中的任务。
+取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回undefined作为结果；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -307,7 +307,7 @@ concurrntFunc();
 
 cancel(group: TaskGroup): void
 
-取消任务池中的任务组。
+取消任务池中的任务组。当一个任务组的任务未全部执行结束时取消任务组，返回undefined作为任务组结果。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -361,6 +361,43 @@ function concurrntFunc() {
 concurrntFunc();
 ```
 
+## taskpool.terminateTask<sup>12+</sup>
+
+terminateTask(longTask: LongTask): void
+
+中止任务池中的长时任务，在长时任务执行完成后调用。中止后，执行长时任务的线程可能会被回收。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| longTask   | [LongTask](#longtask12) | 是   | 需要中止的长时任务。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function longTask(arg: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < arg) {
+    continue;
+  }
+  console.info("longTask has been executed.");
+  return arg;
+}
+
+function concurrntFunc() {
+  let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
+  taskpool.execute(task1).then((res: Object)=>{
+    taskpool.terminateTask(task1);
+    console.info("taskpool longTask result: " + res);
+  });
+}
+
+concurrntFunc();
+```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
 
@@ -399,34 +436,37 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 ```ts
 @Concurrent
 function printArgs(args: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) { // 1000: delay 1s
+    continue;
+  }
   console.info("printArgs: " + args);
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-let highCount = 0;
-let mediumCount = 0;
-let lowCount = 0;
-let allCount = 100;
-for (let i: number = 0; i < allCount; i++) {
-  taskpool.execute(task, taskpool.Priority.LOW).then((res: Object) => {
-    lowCount++;
-    console.info("taskpool lowCount is :" + lowCount);
-  });
-  taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: Object) => {
-    mediumCount++;
-    console.info("taskpool mediumCount is :" + mediumCount);
-  });
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {
-    highCount++;
-    console.info("taskpool highCount is :" + highCount);
-  });
+let allCount = 100; // 100: test number
+let taskArray: Array<taskpool.Task> = [];
+// 创建300个任务并添加至taskArray
+for (let i: number = 1; i < allCount; i++) {
+  let task1: taskpool.Task = new taskpool.Task(printArgs, i);
+  taskArray.push(task1);
+  let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
+  taskArray.push(task2);
+  let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
+  taskArray.push(task3);
+}
+
+// 从taskArray中获取不同的任务并给定不同优先级执行
+for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+  taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
+  taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
+  taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
 }
 ```
 
 ## Task
 
-表示任务。使用[constructor](#constructor)方法构造Task。
+表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或添加依赖关系执行。
 
 ### constructor
 
@@ -440,8 +480,8 @@ Task的构造函数。
 
 | 参数名 | 类型      | 必填 | 说明                                                                  |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| args   | Object[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | Object[] | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 
@@ -476,8 +516,8 @@ Task的构造函数，可以指定任务名称。
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | 是   | 任务名称。                                                   |
-| func   | Function | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
-| args   | Object[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | Object[] | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 
@@ -570,7 +610,7 @@ taskpool.execute(task).then((res: Object)=>{
 
 setTransferList(transfer?: ArrayBuffer[]): void
 
-设置任务的传输列表。使用该方法前需要先构造Task。
+设置任务的传输列表。使用该方法前需要先构造Task。不调用该接口，则传给任务的数据中的ArrayBuffer默认transfer转移。
 
 > **说明：**<br/>
 > 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。若ArrayBuffer为空，则不会transfer转移。
@@ -859,7 +899,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务不可以是任务组任务、串行队列任务和已执行的任务。
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务和已执行的任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -977,14 +1017,32 @@ taskpool.execute(task3).then(() => {
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
 | arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>   | string    | 是   | 是   | 创建任务时指定的任务名称。                                    |
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
 | totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
 | ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
 | cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
 
+## LongTask<sup>12+</sup>
+
+表示长时任务。LongTask继承自[Task](#task)。  
+长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持在任务组（TaskGroup）执行和多次执行。  
+执行长时任务的线程一直存在，直到执行完成后调用[terminateTask](#taskpoolterminatetask12)，该线程会在空闲时被回收。
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
+```
+
 ## TaskGroup<sup>10+</sup>
 
-表示任务组，一次执行一组任务，如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
+表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
 
 ### constructor<sup>10+</sup>
 
@@ -1034,8 +1092,8 @@ addTask(func: Function, ...args: Object[]): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
-| args   | Object[] | 否   | 任务执行函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | Object[] | 否   | 任务执行函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 
@@ -1062,7 +1120,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务和已执行的任务。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务、长时任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1104,7 +1162,7 @@ taskGroup.addTask(task);
 
 ## SequenceRunner <sup>11+</sup>
 
-表示串行队列的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
+表示串行队列的任务，用于执行一组需要串行执行的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
 
 ### constructor<sup>11+</sup>
 
@@ -1203,7 +1261,7 @@ async function seqRunner()
 
 ## State<sup>10+</sup>
 
-表示任务（Task）状态的枚举。
+表示任务（Task）状态的枚举。当任务创建成功后，调用execute，任务进入taskpool等待队列，状态设置为WAITING；任务从等待队列出来进入taskpool工作线程中，任务状态更新为RUNNING；当任务执行完成，返回结果后任务状态重置为WAITING；当主动cancel任务时，将任务状态更新为CANCELED。
 
 **系统能力：**  SystemCapability.Utils.Lang
 
@@ -1226,6 +1284,7 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。                                                     |
 | taskId   | number             | 是   | 否   | 任务的ID。                                                     |
 | state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
 | duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
@@ -1558,6 +1617,7 @@ let priority: number = 0;
 let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
+let name: string = "";
 let threadIS = Array.from(taskpoolInfo.threadInfos)
 for(let threadInfo of threadIS) {
   tid = threadInfo.tid;
@@ -1575,7 +1635,8 @@ for(let taskInfo of taskIS) {
   if (taskInfo.duration != undefined )
   {
     duration = taskInfo.duration;
+    name = taskInfo.name;
   }
-  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
+  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration + ", name is:" + name);
 }
 ```

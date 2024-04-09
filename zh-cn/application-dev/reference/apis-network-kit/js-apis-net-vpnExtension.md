@@ -195,7 +195,7 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
@@ -245,11 +245,10 @@ import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
@@ -302,7 +301,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            this.VpnConnection.create(config, (error, data) => {
+            this.VpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
@@ -348,12 +347,11 @@ protect(socketFd: number): Promise\<void\>
 import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 let g_tunnelFd = -1;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
@@ -362,7 +360,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     this.Protect();
   }
   CreateTunnel() {
-      g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
+      g_tunnelFd = 8888;
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
@@ -406,7 +404,7 @@ import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt;
+  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
@@ -433,8 +431,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
 | mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |
 | isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 flase。     |
-| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 flase。   |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 flase。       |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。     |
+| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。   |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。       |
 | trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
 | blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |

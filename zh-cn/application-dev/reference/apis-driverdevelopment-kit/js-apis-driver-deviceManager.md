@@ -26,7 +26,7 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 | 参数名  | 类型   | 必填 | 说明                                 |
 | ------- | ------ | ---- | ------------------------------------ |
-| busType | number | 否   | 设备总线类型，不填则查找所有类型设备 |
+| busType | number | 否   | 设备总线类型，不填则查找所有类型设备。 |
 
 **返回值：**
 
@@ -65,7 +65,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 根据queryDevices()返回的设备信息绑定设备。
 
-需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -75,9 +75,9 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 | 参数名       | 类型                                                                                                 | 必填 | 说明                                   |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| deviceId     | number                                                                                               | 是   | 设备ID，通过queryDevices获得           |
-| onDisconnect | AsyncCallback&lt;number&gt;                                                                          | 是   | 绑定设备断开的回调                     |
-| callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis/js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象 |
+| deviceId     | number                                                                                               | 是   | 设备ID，通过queryDevices获得。           |
+| onDisconnect | AsyncCallback&lt;number&gt;                                                                          | 是   | 绑定设备断开的回调。                     |
+| callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | 是   | 绑定设备的回调，返回绑定设备的通信对象。 |
 
 **错误码：**
 
@@ -120,7 +120,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 根据queryDevices()返回的设备信息绑定设备。
 
-需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
+需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -130,9 +130,9 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 | 参数名       | 类型                        | 必填 | 说明                         |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得 |
-| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调           |
-| callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| 是 | 指示绑定结果，包括设备 ID 和远程对象 |
+| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
+| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
+| callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| 是 | 指示绑定结果，包括设备 ID 和远程对象。 |
 
 **错误码：**
 
@@ -181,14 +181,14 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 
 | 参数名       | 类型                        | 必填 | 说明                         |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得 |
-| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调           |
+| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
+| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
 
 **返回值：** 
 
 | 类型                                                                                           | 说明                                         |
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| Promise&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis/js-apis-rpc.md#iremoteobject)}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
+| Promise&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Promise对象，返回设备ID和IRemoteObject对象。 |
 
 **错误码：**
 
@@ -233,8 +233,8 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 
 | 参数名       | 类型                        | 必填 | 说明                         |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得 |
-| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调           |
+| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
+| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
 
 **返回值：** 
 
@@ -401,4 +401,4 @@ USB设备信息。
 | 名称      | 类型   | 必填 | 说明                |
 | --------- | ------ | ---- | ------------------- |
 | deviceId<sup>11+</sup>  | number | 是   | 设备ID。  |
-| remote<sup>11+</sup> | [rpc.IRemoteObject](../apis/js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
+| remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |

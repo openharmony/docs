@@ -45,12 +45,14 @@ foundation/window/window_manager/
 
 ## Constraints
 
-The Programming language version must be C++ 11 or later.
+Programming language version: C++ 11 or later
 
 ## Available APIs
 
-- [Window](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-window.md)
-- [Display](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-display.md)
+- [@ohos.window (Window)](../application-dev/reference/apis-arkui/js-apis-window.md)
+- [@ohos.window (Window) (System API)](../application-dev/reference/apis-arkui/js-apis-window-sys.md)
+- [@ohos.display (Display)](../application-dev/reference/apis-arkui/js-apis-display.md)
+- [@ohos.display (Display) (System API)](../application-dev/reference/apis-arkui/js-apis-display-sys.md)
 
 ## Repositories Involved
 

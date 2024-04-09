@@ -183,7 +183,7 @@
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the [page router](../reference/apis/js-apis-router.md), which finds the target page based on the page URL. Import the **router** module and then perform the steps below.
+You can implement page redirection through the [page router](../reference/apis-arkui/js-apis-router.md), which finds the target page based on the page URL. Import the **router** module and then perform the steps below.
 
 To deliver better transition effects, use [Navigation](../ui/arkts-navigation-navigation.md).
 

@@ -28,7 +28,7 @@ Write a **patch.json** file that meets your project requirements on the local co
 
 ## Generating a Quick Fix File
 ### Quick Fix for ArkTS Code
-Modify the ArkTS code file in DevEco Studio and build it into a HAP file. You can find the corresponding .abc file in the project directory, for example, **build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc**.
+Modify the ArkTS code file in DevEco Studio and build it into a HAP file. You can find the corresponding .abc file in the project directory, for example, **build\default\intermediates\loader_out\default\ets\modules.abc**.
 
 ### Quick Fix for C++ Code
 

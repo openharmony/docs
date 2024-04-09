@@ -13,7 +13,7 @@
 
 ## 接口
 
-Text(content?: string | Resource, value?: TextOptions)
+Text(content?: string | Resource | StyledString , value?: TextOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -21,38 +21,452 @@ Text(content?: string | Resource, value?: TextOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) \| [StyledString](./ts-universal-styled-string.md) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>[StyledString](./ts-universal-styled-string.md#styledstring)的子类[MutableStyledString](./ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)外，还支持以下属性：
 
-| 名称                       | 参数类型                            | 描述                                               |
-| ----------------------- | ----------------------------------- | ------------------------------------------- |
-| textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>文本段落宽度占满Text组件宽度；可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。结合TextAlign属性可控制内容在水平方向的位置。<br/>当`textAlign`属性设置为TextAlign.JUSTIFY时，最后一行文本不参与两端对齐，为水平对齐首部效果。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| textOverflow            | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 设置文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip}<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。从API version 11开始，建议优先组合`wordBreak`属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断，使用[示例](#示例4)。<br />当`overflow`设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合`maxLines`使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。<br/>当`overflow`设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置`maxLines`及`copyOption`属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置`textAlign`属性生效；在文本可滚动时，设置`textAlign`属性不生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| maxLines                | number | 设置文本的最大行数。<br />**说明：** <br />默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过        `textOverflow`来指定截断方式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| lineHeight              | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| decoration              | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| baselineOffset          | number&nbsp;\|&nbsp;string | 设置文本基线的偏移量，默认值0。  <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置该值为百分比时，按默认值显示。 |
-| letterSpacing           | number&nbsp;\|&nbsp;string | 设置文本字符间距。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置该值为百分比时，按默认值显示。<br /> 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。 |
-| minFontSize             | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)      | 设置文本最小显示字号。<br/>需配合maxFontSize以及maxline或布局大小限制使用，单独设置不生效，对子组件不生效。<br/>自适应字号生效时，fontSize设置不生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| maxFontSize             | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)      | 设置文本最大显示字号。<br/>需配合minFontSize以及maxline或布局大小限制使用，单独设置不生效，对子组件不生效。<br/>自适应字号生效时，fontSize设置不生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| textCase                | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br />默认值：TextCase.Normal <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本是否可复制粘贴。<br />默认值：CopyOptions.None <br/>该接口支持在ArkTS卡片中使用。<br>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。 |
-| draggable<sup>9+</sup>  | boolean | 设置选中文本拖拽效果。<br/>不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用；<br/>需配合copyOption一起使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，并且draggable设置为true时，支持对选中文本的拖拽以及选中内容复制到输入框。<br/>默认值：false <br />**说明：**<br />从 API version 9 开始支持。 |
-| font<sup>10+</sup>  | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。 |
-| textShadow<sup>10+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&gt;<sup>11+</sup>  | 设置文字阴影效果。<br/>**说明：**<br/>不支持fill字段,不支持智能取色模式。<br/>Text组件clip属性默认为true，超出组件大小区域的内容（例如文字阴影）会被截断。在Text组件内容超出组件大小区域场景下，建议设置`clip`属性为false达到完整文字阴影效果。<br/>从API version 11开始，该接口支持以数组形式入参，实现多重文字阴影。|
-| heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 设置文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。<br/>**说明：**<br/>当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用`maxLines`属性来调整文本高度。如果使用`maxLines`属性的布局大小超过了布局约束，则尝试在`minFontSize`和`maxFontSize`的范围内缩小字体以显示更多文本。<br/>当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用`minFontSize`属性来调整文本高度。如果使用`minFontSize`属性可以将文本布局在一行中，则尝试在`minFontSize`和`maxFontSize`的范围内增大字体并使用最大可能的字体大小。<br/>当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在`minFontSize`和`maxFontSize`的范围内缩小字体以满足布局约束。如果将字体大小缩小到`minFontSize`后，布局大小仍然超过布局约束，则删除超过布局约束的行。|
-| textIndent<sup>10+</sup> | [Length](ts-types.md#length) | 设置首行文本缩进，默认值0。 |
-| font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。 |
-| wordBreak<sup>11+</sup> | [WordBreak](ts-appendix-enums.md#wordbreak11) | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示|
-| selection<sup>11+</sup> |(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)| 设置选中区域。选中区域高亮且显示手柄和文本选择菜单。 <br />默认值：（-1，-1） <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`copyOption`设置为CopyOptions.None时，设置`selection`属性不生效。<br/>当`overflow`设置为TextOverflow.MARQUEE时，设置`selection`属性不生效。<br/>当`selectionStart`大于等于`selectionEnd`时不选中。可选范围为[0, textSize],textSize为文本内容最大字符数，入参小于0处理为0，大于textSize处理为textSize。<br/>当`selectionStart`或`selectionEnd`在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。|
-| ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>`ellipsisMode`属性需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
-| enableDataDetector<sup>11+</sup> |boolean| 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOption`设置为CopyOptions.None时，该功能不会生效。 |
-| dataDetectorConfig<sup>11+</sup> | [TextDataDetectorConfig](#textdatadetectorconfig11对象说明) | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>当有两个实体A、B重叠时，按以下规则保留实体：<br/>1.&nbsp;若A&nbsp;⊂&nbsp;B，则保留B，反之则保留A。<br/>2.&nbsp;当A&nbsp;⊄&nbsp;B且B&nbsp;⊄&nbsp;A时，若A.start&nbsp;<&nbsp;B.start，则保留A，反之则保留B。|
-| bindSelectionMenu<sup>11+</sup> | {<br/>spantype:&nbsp;[TextSpanType](ts-appendix-enums.md#textspantype11),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[TextResponseType](ts-appendix-enums.md#textresponsetype11)&nbsp;\,<br/>options?:&nbsp;[SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;TextSpanType.TEXT<br/>content：空<br/>responseType:&nbsp;TextResponseType.LONG_PRESS <br/>}<br />**说明：**<br/>`bindSelectionMenu`长按响应时长为600ms，`bindContextMenu`长按响应时长为800ms，同时绑定且触发方式均为长按时，优先响应`bindSelectionMenu`。<br/>自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。 |
+### textAlign
+
+textAlign(value: TextAlign)
+
+设置文本段落在水平方向的对齐方式。
+
+文本段落宽度占满Text组件宽度。
+
+可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。结合TextAlign属性可控制内容在水平方向的位置。
+
+当textAlign属性设置为TextAlign.JUSTIFY时，最后一行文本不参与两端对齐，为水平对齐首部效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start |
+
+### textOverflow
+
+textOverflow(value: { overflow: TextOverflow })
+
+设置文本超长时的显示方式。
+
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。从API version 11开始，建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断，使用[示例](#示例4)。
+
+当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。
+
+从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 是   | 文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip} |
+
+### maxLines
+
+maxLines(value: number)
+
+设置文本的最大行数。默认情况下，文本是自动折行的，如果指定此属性，则文本最多不会超过指定的行。如果有多余的文本，可以通过[textOverflow](#textoverflow)来指定截断方式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| value  | number | 是   | 文本的最大行数。 |
+
+### lineHeight
+
+lineHeight(value: number | string | Resource)
+
+设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
+
+### decoration
+
+decoration(value: { type: TextDecorationType; color?: ResourceColor })
+
+设置文本装饰线样式及其颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+
+### baselineOffset
+
+baselineOffset(value: number | string)
+
+设置文本基线的偏移量，设置该值为百分比时，按默认值显示。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                             |
+| ------ | -------------------------- | ---- | -------------------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 文本基线的偏移量。<br/>默认值：0 |
+
+### letterSpacing
+
+letterSpacing(value: number | string)
+
+设置文本字符间距。设置该值为百分比时，按默认值显示。
+
+当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明           |
+| ------ | -------------------------- | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。 |
+
+### minFontSize
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+minFontSize小于或等于0时，自适应字号不生效。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
+### textCase
+
+textCase(value: TextCase)
+
+设置文本大小写。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                      |
+| ------ | ----------------------------------------- | ---- | ----------------------------------------- |
+| value  | [TextCase](ts-appendix-enums.md#textcase) | 是   | 文本大小写。<br />默认值：TextCase.Normal |
+
+### copyOption<sup>9+</sup>
+
+copyOption(value: CopyOptions)
+
+设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                                       |
+| ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件是否支持文本可复制粘贴。<br />默认值：CopyOptions.None |
+
+### draggable<sup>9+</sup>
+
+draggable(value: boolean)
+
+设置选中文本拖拽效果。
+
+不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。
+
+需配合[CopyOptions](ts-appendix-enums.md#copyoptions9)一起使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，并且draggable设置为true时，支持对选中文本的拖拽以及选中内容复制到输入框。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                 |
+| ------ | ------- | ---- | ------------------------------------ |
+| value  | boolean | 是   | 选中文本拖拽效果。<br/>默认值：false |
+
+### font<sup>10+</sup>
+
+font(value: Font)
+
+设置文本样式。包括字体大小、字体粗细、字体族和字体风格。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明       |
+| ------ | ------- | ---- | ---------- |
+| value  | [Font](ts-types.md#font) | 是   | 文本样式。 |
+
+### textShadow<sup>10+</sup>
+
+textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
+
+设置文字阴影效果。
+
+不支持fill字段,不支持智能取色模式。
+
+Text组件clip属性默认为true，超出组件大小区域的内容（例如文字阴影）会被截断。在Text组件内容超出组件大小区域场景下，建议设置clip属性为false达到完整文字阴影效果。
+
+从API version 11开始，该接口支持以数组形式入参，实现多重文字阴影。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&gt;<sup>11+</sup> | 是   | 文字阴影效果。 |
+
+### heightAdaptivePolicy<sup>10+</sup>
+
+heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
+
+设置文本自适应高度的方式。
+
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxlines](#maxlines)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize)和[maxFontSize](#maxfontsize)的范围内缩小字体以显示更多文本。
+
+当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。如果将字体大小缩小到minFontSize后，布局大小仍然超过布局约束，则删除超过布局约束的行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+
+### textIndent<sup>10+</sup>
+
+textIndent(value: Length)
+
+设置首行文本缩进。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                         |
+| ------ | ---------------------------- | ---- | ---------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 首行文本缩进。<br/>默认值：0 |
+
+### wordBreak<sup>11+</sup>
+
+wordBreak(value: WordBreak)
+
+设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
+
+### selection<sup>11+</sup>
+
+selection(selectionStart: number, selectionEnd: number)
+
+设置选中区域。选中区域高亮且显示手柄和文本选择菜单。
+
+当copyOption设置为CopyOptions.None时，设置selection属性不生效。
+
+当overflow设置为TextOverflow.MARQUEE时，设置selection属性不生效。
+
+当selectionStart大于等于selectionEnd时不选中。可选范围为[0, textSize],textSize为文本内容最大字符数，入参小于0处理为0，大于textSize处理为textSize。
+
+当selectionStart或selectionEnd在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名         | 类型   | 必填 | 说明                                 |
+| -------------- | ------ | ---- | ------------------------------------ |
+| selectionStart | number | 是   | 所选文本的起始位置。<br />默认值：-1 |
+| selectionEnd   | number | 是   | 所选文本的结束位置。<br />默认值：-1 |
+
+### ellipsisMode<sup>11+</sup>
+
+ellipsisMode(value: EllipsisMode)
+
+设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
+
+EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                      |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+
+### enableDataDetector<sup>11+</sup>
+
+enableDataDetector(enable: boolean)
+
+设置使能文本识别。所识别实体的fontColor和decoration会被更改为如下样式：
+
+fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}
+
+该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
+
+当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
+
+当copyOption设置为CopyOptions.None时，该功能不会生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| value  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+
+### dataDetectorConfig<sup>11+</sup>
+
+dataDetectorConfig(config: TextDataDetectorConfig)
+
+设置文本识别配置。
+
+需配合enableDataDetector一起使用，设置enableDataDetector为true时，dataDetectorConfig的配置才能生效。
+
+当有两个实体A、B重叠时，按以下规则保留实体：
+
+1.&nbsp;若A&nbsp;⊂&nbsp;B，则保留B，反之则保留A。
+
+2.&nbsp;当A&nbsp;⊄&nbsp;B且B&nbsp;⊄&nbsp;A时，若A.start&nbsp;<&nbsp;B.start，则保留A，反之则保留B。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| config | [TextDataDetectorConfig](#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
+
+### bindSelectionMenu<sup>11+</sup>
+
+bindSelectionMenu(spanType: TextSpanType, content: CustomBuilder, responseType: TextResponseType,
+    options?: SelectionMenuOptions)
+
+设置自定义选择菜单。
+
+bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长为800ms，同时绑定且触发方式均为长按时，优先响应bindSelectionMenu。
+
+自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| spantype     | [TextSpanType](ts-appendix-enums.md#textspantype11)          | 是   | 选择菜单的类型。<br/>默认值：TextSpanType.TEXT               |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 选择菜单的内容。                                             |
+| responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
+| options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | 否   | 选择菜单的选项。                                             |
+
+### fontFeature<sup>12+</sup>
+
+fontFeature(value: string)
+
+设置文字特性效果，比如数字等宽的特性。
+
+格式为：normal \| \<feature-tag-value\>
+
+\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]
+
+\<feature-tag-value\>的个数可以有多个，中间用','隔开。
+
+例如，使用等宽数字的输入格式为："ss01" on。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| value  | string | 是   | 文字特性效果。 |
+
+设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
+更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
 >  **说明：**
 >
@@ -61,6 +475,8 @@ Text(content?: string | Resource, value?: TextOptions)
 >  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，在Text组件中，默认值为true，即文本内容大于组件内容时，文本会截断。如果需要显示超出的部分，可以设置clip为false。
 >
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。
+>
+>  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -72,10 +488,38 @@ Text(content?: string | Resource, value?: TextOptions)
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>11+</sup> | 长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>目前文本复制仅支持文本。|
-| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>11+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
+### onCopy<sup>11+</sup>
+
+onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+
+长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| value  | string | 是   | 复制的文本内容。 |
+
+### onTextSelectionChange<sup>11+</sup>
+
+onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+
+文本选择的位置发生变化时，触发该回调。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名         | 类型   | 必填 | 说明                 |
+| -------------- | ------ | ---- | -------------------- |
+| selectionStart | number | 是   | 所选文本的起始位置。 |
+| selectionEnd   | number | 是   | 所选文本的结束位置。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -629,3 +1073,32 @@ function MenuStyles() {
 ```
 
 ![](figures/textBindSelectionMenu.gif)
+
+### 示例9
+fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
+
+```ts
+@Entry
+@Component
+struct text {
+  @State text1: string = 'This is ss01 on : 0123456789'
+  @State text2: string = 'This is ss01 off: 0123456789'
+
+  build() {
+    Column(){
+      Text(this.text1)
+        .fontSize(20)
+        .margin({top:200})
+        .fontFeature("\"ss01\" on")
+      Text(this.text2)
+        .margin({top:10})
+        .fontSize(20)
+        .fontFeature("\"ss01\" off")
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![fontFeature](figures/textFontFeature.png)

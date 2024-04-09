@@ -24,13 +24,15 @@ This topic elaborates steps 3 and 4.
 
 - A check for the required permission is mandatory each time before the operation that requires the permission is performed.
   
-  To check whether the user has granted the permission to your application, use [checkAccessToken()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9). This API returns [PERMISSION_GRANTED](../../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
+  You can use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted specific permissions to your application. This API returns [PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
 
-- Each time before an API that requires a **user_grant** permission is called, use [requestPermissionsFromUser()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the user has already granted the permission.
-
+- Each time before an API that requires a **user_grant** permission is called, use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the user has already granted the permission.
+ 
   After a permission is granted, the user may revoke the permission in **Settings**. Therefore, the previous authorization status cannot be persistent.
 
 - For a user_grant permission, show a rationale to the user in a UI element, clearly explaining why your application needs the permission. Based on the rationale, the user then determines whether to grant the permission.
+
+- The authorization dialog box cannot be displayed again if the user denies the authorization. The application needs to provide information to guide the user to manually grant permissions on **Settings**.
 
 
 ## How to Develop
@@ -45,7 +47,7 @@ The following example steps you through on how to request the permission for usi
 
 2. Check whether the user has granted the permission.
    
-   Use [checkAccessToken()](../../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has already granted the permission that your application requires. If yes, the application can use the microphone. Otherwise, user authorization is required.
+   Use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has already granted the permission that your application requires. If yes, the application can use the microphone. Otherwise, user authorization is required.
 
    ```ts
    import bundleManager from '@ohos.bundle.bundleManager';
@@ -93,12 +95,12 @@ The following example steps you through on how to request the permission for usi
 
 3. Request user authorization when your application needs to access the microphone.
    
-   Use [requestPermissionsFromUser()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request user authorization. You can specify a list of permissions, such as the permission to access the location, Calendar, camera, or microphone, in the **Array<Permissions>** parameter of this API. The user can grant or deny the permissions.
+   Use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request user authorization. You can specify a list of permissions, such as the permission to access the location, Calendar, camera, or microphone, in the **Array<Permissions>** parameter of this API. The user can grant or deny the permissions.
 
-   You can have [requestPermissionsFromUser()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) called in **onWindowStageCreate()** of the UIAbility to dynamically request user authorization, or request user authorization on the UI based on service requirements.
+   You can have [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) called in **onWindowStageCreate()** of the UIAbility to dynamically request user authorization, or request user authorization on the UI based on service requirements.
 
    - Sample code for requesting user authorization using UIAbility
-     
+      
       ```ts
       import UIAbility from '@ohos.app.ability.UIAbility';
       import window from '@ohos.window';
@@ -183,7 +185,7 @@ The following example steps you through on how to request the permission for usi
 
 4. Perform subsequent operations based on the authorization result.
    
-   After [requestPermissionsFromUser()](../../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can use the microphone. Otherwise, display a message indicating that user authorization is required, and direct the user to set the permission in the **Settings** page.
+   After [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can use the microphone. Otherwise, display a message indicating that user authorization is required, and direct the user to set the permission in the **Settings** page.
 
    ```ts
    import Want from '@ohos.app.ability.Want';

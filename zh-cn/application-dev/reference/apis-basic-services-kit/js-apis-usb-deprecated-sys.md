@@ -14,6 +14,7 @@
 
 ```js
 import usb from "@ohos.usb";
+import { BusinessError } from '@ohos.base';
 ```
 
 ## usb.usbFunctionsFromString<sup>9+</sup>
@@ -99,10 +100,10 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 **示例：**
 
 ```js
-let funcs = usb.FunctionType.HDC;
+let funcs : number = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
-}).catch(err => {
+}).catch((err : BusinessError) => {
     console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
@@ -209,7 +210,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 let portId = 1;
 usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
-}).catch(err => {
+}).catch((err : BusinessError) => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
 });
 ```

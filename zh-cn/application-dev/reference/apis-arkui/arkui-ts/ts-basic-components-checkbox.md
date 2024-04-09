@@ -22,7 +22,7 @@ Checkbox(options?: CheckboxOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：** 
 
 | 参数名  | 类型                                        | 必填 | 描述               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
@@ -39,22 +39,103 @@ Checkbox(options?: CheckboxOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
+### select
 
-| 名称          | 参数类型 | 描述 |
-| ------------- | ------- | -------- |
-| select        | boolean | 设置多选框是否选中。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框非选中状态边框颜色。 |
-| mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
-| shape<sup>11+</sup> | [CheckBoxShape](#checkboxshape11枚举类型说明) | 设置CheckBox组件形状, 包括圆形和圆角方形。 <br/>默认值：CheckBoxShape.CIRCLE。|
+select(value: boolean)
+
+设置多选框是否选中。
+
+从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 描述                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false |
+
+### selectedColor
+
+selectedColor(value: ResourceColor)
+
+设置多选框选中状态颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 描述                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
+
+### unselectedColor<sup>10+</sup>
+
+unselectedColor(value: ResourceColor)
+
+设置多选框非选中状态边框颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 描述                       |
+| ------ | ------------------------------------------ | ---- | -------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+
+### mark<sup>10+</sup>
+
+mark(value: MarkStyle)
+
+设置多选框内部图标样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 描述                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+
+### shape<sup>11+</sup>
+
+shape(value: CheckBoxShape)
+
+设置CheckBox组件形状, 包括圆形和圆角方形。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 描述                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [CheckBoxShape](#checkboxshape11枚举类型说明) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
 
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称                                         | 功能描述                                                     |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### onChange
+
+onChange(callback: (value: boolean) => void)
+
+当选中状态发生变化时，触发该回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 描述                                              |
+| ------ | ------- | ---- | ------------------------------------------------- |
+| value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -80,22 +161,21 @@ Checkbox(options?: CheckboxOptions)
 @Entry
 @Component
 struct CheckboxExample {
-
   build() {
-    Row() {
-      Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
+    Flex({ justifyContent: FlexAlign.SpaceAround }) {
+      Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
         .selectedColor(0xed6f21)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
+        .shape(CheckBoxShape.CIRCLE)
         .onChange((value: boolean) => {
-          console.info('Checkbox1 change is'+ value)
+          console.info('Checkbox1 change is' + value)
         })
-      Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
+      Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
         .selectedColor(0x39a2db)
         .shape(CheckBoxShape.ROUNDED_SQUARE)
         .onChange((value: boolean) => {
-          console.info('Checkbox2 change is'+ value)
+          console.info('Checkbox2 change is' + value)
         })
     }
   }
@@ -154,33 +234,3 @@ struct Index {
 
 
 ![](figures/checkbox2.gif)
-
-### 示例3
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CheckboxExample {
-
-  build() {
-    Row() {
-      Checkbox({name: 'checkbox1',  group: 'checkboxGroup'})
-        .select(true)
-        .shape(CheckBoxShape.CIRCLE)
-        .onChange((value: boolean) => {
-          console.info('Checkbox1 change is'+ value)
-        })
-      Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
-        .select(false)
-        .shape(CheckBoxShape.CIRCLE)
-        .onChange((value: boolean) => {
-          console.info('Checkbox2 change is'+ value)
-        })
-    }
-  }
-}
-```
-
-
-![](figures/checkbox.png)

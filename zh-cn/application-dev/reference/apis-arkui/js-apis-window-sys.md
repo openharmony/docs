@@ -45,6 +45,7 @@ import window from '@ohos.window';
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                 |
 | TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
+| TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 
 ## WindowMode<sup>7+</sup>
 
@@ -845,12 +846,59 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
+## window.getSnapshot<sup>12+</sup>
+
+window.getSnapshot(windowId: number): Promise<image.PixelMap>
+
+获取指定窗口截图，使用Promise异步回调
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+| 参数名   | 类型   | 必填  | 说明         |
+| -------- | ------ | ----- | ------------ |
+| windowId | number | 是    | 窗口Id。可通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到相关窗口属性，其中属性id即对应为窗口ID。 |
+
+**返回值：**
+| 类型                    | 说明                            |
+| ----------------------- | ------------------------------- |
+| Promise<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise对象。返回指定窗口截图。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 1300002  | This window state is abnormal.               |
+| 1300003  | This window manager service work abnormally. |
+| 1300004  | This operation is not access.                |
+
+**示例：**
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+try {
+  // 此处仅示意，请使用getWindowProperties获取对应窗口ID再进行使用
+  let windowId: number = 40;
+  let promise = window.getSnapshot(windowId);
+  promise.then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
+    pixelMap.release();
+  }).catch((err: BusinessError) =>{
+    console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
+}
+```
 
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。
 
-下列API示例中都需先使用[getLastWindow()](js-apis-window.md#windowgetlastwindow9)、[createWindow()](js-apis-window.md##windowcreatewindow9)、[findWindow()](js-apis-window.md##windowfindwindow9)中的任一方法获取到Window实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[getLastWindow()](js-apis-window.md#windowgetlastwindow9)、[createWindow()](js-apis-window.md#windowcreatewindow9)、[findWindow()](js-apis-window.md#windowfindwindow9)中的任一方法获取到Window实例（windowClass），再通过此实例调用对应方法。
 
 ### hide<sup>7+</sup>
 
@@ -881,7 +929,6 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.hide((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -921,7 +968,6 @@ hide(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.hide();
 promise.then(() => {
   console.info('Succeeded in hiding the window.');
@@ -961,7 +1007,6 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.hideWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1003,7 +1048,6 @@ hideWithAnimation(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.hideWithAnimation();
 promise.then(() => {
   console.info('Succeeded in hiding the window with animation.');
@@ -1044,7 +1088,6 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.showWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1086,7 +1129,6 @@ showWithAnimation(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.showWithAnimation();
 promise.then(() => {
   console.info('Succeeded in showing the window with animation.');
@@ -1128,7 +1170,6 @@ import { BusinessError } from '@ohos.base';
 
 let mode = window.WindowMode.FULLSCREEN;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   windowClass.setWindowMode(mode, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -1180,7 +1221,6 @@ import { BusinessError } from '@ohos.base';
 
 let mode = window.WindowMode.FULLSCREEN;
 try {
-  let windowClass: window.Window = window.findWindow("test");
   let promise = windowClass.setWindowMode(mode);
   promise.then(() => {
     console.info('Succeeded in setting the window mode.');
@@ -1251,7 +1291,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
 let windowClass: window.Window | undefined = undefined;
-let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
+let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     let errCode: number = err.code;
@@ -1341,8 +1381,9 @@ class TestRemoteObject extends rpc.RemoteObject {
 let token: TestRemoteObject = new TestRemoteObject('testObject');
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
-  name: "dialogWindow",
-  windowType: window.WindowType.TYPE_DIALOG
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  ctx: this.context
 };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -1406,7 +1447,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     console.info('onRequest');
     let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
-      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
+      name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -1480,7 +1521,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
     console.info('onRequest');
     let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
-      name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
+      name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context
     };
     try {
       window.createWindow(config, (err: BusinessError, data) => {
@@ -1536,7 +1577,6 @@ setWakeUpScreen(wakeUp: boolean): void
 
 ```ts
 let wakeUp: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
@@ -1568,7 +1608,6 @@ setSnapshotSkip(isSkip: boolean): void
 | 1300002 | This window state is abnormal. |
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let isSkip: boolean = true;
 try {
   windowClass.setSnapshotSkip(isSkip);
@@ -1609,7 +1648,6 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 import { BusinessError } from '@ohos.base';
 
 let isForbidSplitMove: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
     const errCode: number = err.code;
@@ -1661,7 +1699,6 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let isForbidSplitMove: boolean = true;
-let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
   promise.then(() => {
@@ -1702,7 +1739,6 @@ opacity(opacity: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.opacity(0.5);
 } catch (exception) {
@@ -1738,7 +1774,6 @@ scale(scaleOptions: ScaleOptions): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.ScaleOptions = {
   x: 2.0,
   y: 1.0,
@@ -1780,7 +1815,6 @@ rotate(rotateOptions: RotateOptions): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.RotateOptions = {
   x: 1.0,
   y: 1.0,
@@ -1823,7 +1857,6 @@ translate(translateOptions: TranslateOptions): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 let obj: window.TranslateOptions = {
   x: 100.0,
   y: 0.0,
@@ -1895,7 +1928,6 @@ setBlur(radius: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBlur(4.0);
 } catch (exception) {
@@ -1931,7 +1963,6 @@ setBackdropBlur(radius: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
@@ -1967,7 +1998,6 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
@@ -2006,7 +2036,6 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
@@ -2042,11 +2071,46 @@ setCornerRadius(cornerRadius: number): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
 try {
   windowClass.setCornerRadius(4.0);
 } catch (exception) {
   console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setTouchableAreas<sup>12+</sup>
+
+setTouchableAreas(rects: Array&lt;Rect&gt;): void
+
+实现设置窗口可触摸区域；不设置时默认整个窗口区域可触摸；设置窗口可触摸区域后，区域外触摸事件将被透传；如果窗口区域发生变化需要重新设置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |                       |
+
+**示例：**
+
+```ts
+try {
+  windowClass.setTouchableAreas([{left: 100, top: 100, width: 200, height:200},
+    {left: 400, top: 100, width: 200, height:200}]);
+} catch (exception) {
+  console.error('Failed to set touchable areas. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2082,7 +2146,6 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseToAppTop((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -2125,7 +2188,6 @@ raiseToAppTop(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.raiseToAppTop();
 promise.then(() => {
   console.info('Succeeded in raising the window to app top.');
@@ -2171,7 +2233,6 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let enable = true;
   let promise = windowClass.setWaterMarkFlag(enable);
@@ -2217,7 +2278,6 @@ setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
 try {
   let enable: boolean = true;
   windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
@@ -2232,6 +2292,56 @@ try {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+### setHandwritingFlag<sup>12+</sup>
+
+setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或移除手写标志，添加该标志后窗口只响应手写笔事件，不响应触屏事件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示移除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let enable = true;
+  let promise = windowClass.setHandwritingFlag(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting handwriting flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set handwriting flag of window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set handwriting flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2263,8 +2373,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-// 将windowClass调整到targetWindow之上
-let windowClass: window.Window | undefined = undefined;
+// windowClass的获取需放在targetWindow之上
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -2313,8 +2422,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-// 将windowClass调整到targetWindow之上
-let windowClass: window.Window | undefined = undefined;
+// windowClass的获取需放在targetWindow之上
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
@@ -2359,7 +2467,6 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 ```js
 let enabled = false;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
     if (err.code) {
         console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
@@ -2408,7 +2515,6 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 ```js
 let enabled = false;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
     console.info('Succeeded in disabling the raise-by-click function.');
@@ -2460,7 +2566,7 @@ export default class EntryAbility extends UIAbility {
         });
         // 获取应用主窗口。
         let mainWindow = null;
-        
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2531,7 +2637,7 @@ export default class EntryAbility extends UIAbility {
         });
         // 获取应用主窗口。
         let mainWindow = null;
-        
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2697,6 +2803,66 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+
+### setTopmost<sup>12+</sup>
+
+setTopmost(isTopmost: boolean): Promise&lt;void&gt;
+
+系统应用主窗口调用，实现将窗口置于所有应用窗口之上不被遮挡，使用Promise异步回调。
+
+仅对2in1设备的悬浮窗口生效。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| isTopmost | boolean | 是   | 是否将系统应用主窗口置顶，true表示置顶，false表示取消置顶。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // ...
+    windowStage.getMainWindow().then((window) => {
+      let isTopmost: boolean = true;
+      let promise = window.setTopmost(isTopmost);
+      promise.then(() => {
+        console.info('Succeeded in setting the main window to be topmost.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to set the main window to be topmost. Cause: ' + JSON.stringify(err));
+      });
+    });
+  }
+}
+```
+
+
 ### setSingleFrameComposerEnabled<sup>11+</sup>
 
 setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
@@ -2735,13 +2901,71 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let enable = true;
-let windowClass: window.Window = window.findWindow("test");
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
     console.info('Succeeded in enabling the single-frame-composer function.');
 }).catch((err: BusinessError)=>{
     console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
 });
+```
+
+###  setTitleButtonVisible<sup>12+</sup>
+
+setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
+
+设置主窗标题栏上的最大化、最小化、分屏按钮是否可见。
+
+此接口仅支持2in1设备且仅对在当前场景下可见的标题栏按钮（最大化、最小化、分屏）生效。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isMaximizeVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。 |
+| isMinimizeVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+| isSplitVisible | boolean | 是   | 设置分屏按钮是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // 调用setTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、分屏按钮。
+          mainWindow.setTitleButtonVisible(false, false, false);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          }
+      });
+    });
+  }
+}
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -2770,8 +2994,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-let type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_SYSTEM_ALERT;
 windowClass.setWindowType(type, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -2813,8 +3036,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-let type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_SYSTEM_ALERT;
 let promise = windowClass.setWindowType(type);
 promise.then(() => {
   console.info('Succeeded in setting the window type.');
@@ -2947,7 +3169,6 @@ completeTransition(isCompleted: boolean): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -2978,9 +3199,33 @@ let windowClass: window.Window | undefined = undefined;
 
 ## TransitionController<sup>9+</sup>
 
-属性转换控制器。
+属性转换控制器。使用其子接口之前得先创建系统窗口，参照示例代码。
 
 **系统接口：** 此接口为系统接口。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "systemTypeWindow",
+  windowType: window.WindowType.TYPE_PANEL, //根据需要自选系统窗口类型
+  ctx: this.context
+};
+try {
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+}
+```
 
 ### animationForShown<sup>9+</sup>
 

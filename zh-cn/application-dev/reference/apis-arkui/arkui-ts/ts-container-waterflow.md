@@ -27,7 +27,7 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 是 | 瀑布流组件参数。 |
+| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 否 | 瀑布流组件参数。 |
 
 
 ## WaterFlowOptions对象说明
@@ -37,60 +37,492 @@ WaterFlow(options?:  WaterFlowOptions)
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
 | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
+| sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。  |
 
+
+## WaterFlowSections<sup>12+</sup>
+
+瀑布流分组信息。
+
+### splice<sup>12+</sup>
+
+splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>): boolean
+
+移除或者替换已存在的分组和/或添加新分组。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| start | number | 是    | 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`start + WaterFlowSections.length()`。<br/>2. 如果 `start < -WaterFlowSections.length()`，则使用0。<br/>3. 如果 `start >= WaterFlowSections.length()`，则在最后添加新分组。 |
+| deleteCount | number | 否    | 表示要从start开始删除的分组数量。<br/>**说明：** <br/>1. 如果省略了deleteCount，或者其值大于或等于由start指定的位置到WaterFlowSections末尾的分组数量，那么从start到WaterFlowSections末尾的所有分组将被删除。<br/>2. 如果deleteCount是0或者负数，则不会删除任何分组。 |
+| sections | Array<[SectionOptions](#sectionoptions12)> | 否    | 表示要从start开始加入的分组。如果不指定，`splice()`将只从瀑布流中删除分组。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| boolean | 分组是否修改成功，要加入的分组中有任意分组的itemsCount不是正整数时返回false。 |
+
+
+### push<sup>12+</sup>
+
+push(section: SectionOptions): boolean
+
+将指定分组添加到瀑布流末尾。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| section | [SectionOptions](#sectionoptions12) | 是    | 添加到瀑布流末尾的分组。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| boolean | 分组是否添加成功，新分组的itemsCount不是正整数时返回false。 |
+
+### update<sup>12+</sup>
+
+update(sectionIndex: number, section: SectionOptions): boolean
+
+修改指定索引分组的配置信息。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| sectionIndex | number | 是    | 从0开始计算的索引，会转换为整数，表示要修改的分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`sectionIndex + WaterFlowSections.length()`。<br/>2. 如果`sectionIndex < -WaterFlowSections.length()`，则使用0。<br/>3. 如果`sectionIndex >= WaterFlowSections.length()`，则在最后添加新分组。 |
+| section | [SectionOptions](#sectionoptions12) | 是    | 新的分组信息。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| boolean | 分组是否更新成功，新分组的itemsCount不是正整数时返回false。 |
+
+### values<sup>12+</sup>
+
+values(): Array\<SectionOptions\>
+
+获取瀑布流中所有分组配置信息。
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Array<[SectionOptions](#sectionoptions12)> | 瀑布流中所有分组配置信息。 |
+
+### length<sup>12+</sup>
+
+length(): number
+
+获取瀑布流中分组数量。
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| number | 瀑布流中分组数量。 |
+
+## SectionOptions<sup>12+</sup>
+
+FlowItem分组配置信息。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+|------|-----|-----|-----|
+| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。 |
+| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。 |
+| columnsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的列间距，不设置时使用瀑布流的columnsGap，设置非法值时使用0vp。 |
+| rowsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的行间距，不设置时使用瀑布流的rowsGap，设置非法值时使用0vp。 |
+| margin | [Margin](ts-types.md#margin) \| [Dimension](ts-types.md#dimension10) | 否 | 该分组的外边距参数为Length类型时，四个方向外边距同时生效。<br>默认值：0<br>单位：vp<br>margin设置百分比时，上下左右外边距均以瀑布流的width作为基础值。 |
+| onGetItemMainSizeByIndex | [GetItemMainSizeByIndex](#getitemmainsizebyindex12) | 否 | 瀑布流组件布局过程中获取指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。<br/>**说明：** <br/>1. 同时使用onGetItemMainSizeByIndex和FlowItem的宽高属性时，主轴大小以onGetItemMainSizeByIndex返回结果为准。<br/>2. 使用onGetItemMainSizeByIndex可以提高瀑布流跳转到指定位置或index时的效率，避免混用设置onGetItemMainSizeByIndex和未设置的分组，会导致布局异常。<br/>3. onGetItemMainSizeByIndex返回负数时FlowItem高度为0。 |
+
+
+## GetItemMainSizeByIndex<sup>12+</sup>
+
+type GetItemMainSizeByIndex = (index: number) => number
+
+根据index获取指定Item的主轴大小。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| index | number | 是    | FlowItem在WaterFlow中的索引。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| number | 指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。 |
 
 ## 属性
 
-
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前瀑布流组件布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br>可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。<br>默认值：'1fr' |
-| rowsTemplate | string | 设置当前瀑布流组件布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br>可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。<br/>默认值：'1fr' |
-| itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
-| columnsGap | [Length](ts-types.md#length) |设置列与列的间距。 <br>默认值：0|
-| rowsGap | [Length](ts-types.md#length) |设置行与行的间距。<br> 默认值：0|
-| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。<br/>默认值：FlexDirection.Column|
-| enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
-| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
-| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
-| cachedCount<sup>11+</sup> | number | 设置预加载的FlowItem的数量，只在LazyForEach中生效。 <br/> 默认值：1 <br/>**说明：** <br/>设置该属性后会缓存cachedCount个FlowItem。<br/>[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。<br/>设置为小于0的值时，按默认值显示。|
-| scrollBar<sup>11+</sup>            | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>滚动条位置和长度以已布局过的总高度和当前偏移为准，在瀑布流布局全部子节点之前随着滑动持续变化。 |
-| scrollBarWidth<sup>11+</sup> | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。 |
-| scrollBarColor<sup>11+</sup> | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
-| edgeEffect<sup>11+</sup>     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br/>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11对象说明)        | 设置边缘滑动效果。<br/>\- value：设置瀑布流组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None <br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+### columnsTemplate
+
+columnsTemplate(value: string)
+
+设置当前瀑布流组件布局列的数量，不设置时默认1列。
+
+例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+
+可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                           |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| value  | string | 是   | 当前瀑布流组件布局列的数量。<br/>默认值：'1fr' |
+
+### rowsTemplate
+
+rowsTemplate(value: string)
+
+设置当前瀑布流组件布局行的数量，不设置时默认1行。
+
+例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+
+可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                           |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| value  | string | 是   | 当前瀑布流组件布局行的数量。<br/>默认值：'1fr' |
+
+### itemConstraintSize
+
+itemConstraintSize(value: ConstraintSizeOptions)
+
+设置约束尺寸，子组件布局时，进行尺寸范围限制。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                       | 必填 | 说明       |
+| ------ | ---------------------------------------------------------- | ---- | ---------- |
+| value  | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是   | 约束尺寸。 |
+
+### columnsGap
+
+columnsGap(value: Length)
+
+设置列与列的间距。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                          |
+| ------ | ---------------------------- | ---- | ----------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 列与列的间距。 <br/>默认值：0 |
+
+### rowsGap
+
+rowsGap(value: Length)
+
+设置行与行的间距。 
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                          |
+| ------ | ---------------------------- | ---- | ----------------------------- |
+| value  | [Length](ts-types.md#length) | 是   | 行与行的间距。 <br/>默认值：0 |
+
+### layoutDirection
+
+layoutDirection(value: FlexDirection)
+
+设置布局的主轴方向。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                              |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------- |
+| value  | [FlexDirection](ts-appendix-enums.md#flexdirection) | 是   | 布局的主轴方向。<br/>默认值：FlexDirection.Column |
 
 layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
 
 - layoutDirection设置纵向布局（FlexDirection.Column 或 FlexDirection.ColumnReverse）
 
-	此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+  此时columnsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
 
 - layoutDirection设置横向布局（FlexDirection.Row 或 FlexDirection.RowReverse）
 
-	此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
+  此时rowsTemplate有效（如果未设置，取默认值）。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件横向布局，辅轴均分成纵向3列。
 
 - layoutDirection未设置布局方向
 
-	布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+  布局方向为layoutDirection的默认值：FlexDirection.Column，此时columnsTemplate有效。例如columnsTemplate设置为"1fr 1fr"、rowsTemplate设置为"1fr 1fr 1fr"时，瀑布流组件纵向布局，辅轴均分成横向2列。
+
+### enableScrollInteraction<sup>10+</sup>
+
+enableScrollInteraction(value: boolean)
+
+设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                |
+| ------ | ------- | ---- | ----------------------------------- |
+| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+
+### nestedScroll<sup>10+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。 |
+
+### friction<sup>10+</sup>
+
+friction(value: number | Resource)
+
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                      |
+| ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9 |
+
+### cachedCount<sup>11+</sup>
+
+cachedCount(value: number)
+
+设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+
+### scrollBar<sup>11+</sup>
+
+scrollBar(barState: BarState)
+
+设置滚动条状态。滚动条位置和长度以已布局过的总高度和当前偏移为准，在瀑布流布局全部子节点之前随着滑动持续变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                      | 必填 | 说明                                  |
+| -------- | ----------------------------------------- | ---- | ------------------------------------- |
+| barState | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：BarState.Off |
+
+### scrollBarWidth<sup>11+</sup>
+
+scrollBarWidth(value: number | string)
+
+设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                                      |
+| ------ | -------------------------- | ---- | ----------------------------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp |
+
+### scrollBarColor<sup>11+</sup>
+
+scrollBarColor(color: Color | number | string)
+
+设置滚动条的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。 |
+
+### edgeEffect<sup>11+</sup>
+
+edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
+
+设置边缘滑动效果。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | 设置瀑布流组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11对象说明) | 否   | 设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false |
+
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
 ## 事件
 
-
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
+### onReachStart
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onReachStart(event: () => void) | 瀑布流组件到达起始位置时触发。 |
-| onReachEnd(event: () => void)   | 瀑布流组件到底末尾位置时触发。 |
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate枚举说明) => { offsetRemain：number }) | 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。|
-| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 瀑布流滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，瀑布流的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。<br/>- scrollState: 当前滑动状态。 |
-| onScrollIndex<sup>11+</sup>(event: (first: number, last: number) => void) | 当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。<br/>- first: 当前显示的WaterFlow起始位置的索引值。<br/>- last: 当前显示的瀑布流终止位置的索引值。<br/>瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
-| onScrollStart<sup>11+</sup>(event: () => void) | 瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
-| onScrollStop<sup>11+</sup>(event: () => void)          | 瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
+onReachStart(event: () => void)
 
+瀑布流组件到达起始位置时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onReachEnd
+
+onReachEnd(event: () => void)
+
+瀑布流组件到底末尾位置时触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollFrameBegin<sup>10+</sup>
+
+onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
+
+瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
+
+触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                    | 必填 | 说明                       |
+| ------ | ------------------------------------------------------- | ---- | -------------------------- |
+| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
+| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
+
+**返回值：** 
+
+| 类型                     | 说明                 |
+| ------------------------ | -------------------- |
+| { offsetRemain: number } | 实际滑动量，单位vp。 |
+
+### onScrollIndex<sup>11+</sup>
+
+onScrollIndex(event: (first: number, last: number) => void)
+
+当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。
+
+瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| first  | number | 是   | 当前显示的WaterFlow起始位置的索引值。 |
+| last   | number | 是   | 当前显示的瀑布流终止位置的索引值。    |
+
+### onScrollStart<sup>11+</sup>
+
+onScrollStart(event: () => void)
+
+瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollStop<sup>11+</sup>
+
+onScrollStop(event: () => void)
+
+瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onScroll<sup>(deprecated)</sup>
+onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) 
+
+瀑布流滑动时触发。
+
+从API version11开始使用。
+
+从API version12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+
+### onWillScroll<sup>12+</sup>
+onWillScroll(handler: OnScrollCallback)
+
+瀑布流滑动前触发，返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 瀑布流滑动时触发的回调。 |
+
+> **说明：** 
+> 
+> 调用ScrollEdge和不带动画的ScrollToIndex时,不触发onWillScroll。
+
+
+### onDidScroll<sup>12+</sup> 
+onDidScroll(handler: OnScrollCallback)
+
+瀑布流滑动时触发，返回当前帧滑动的偏移量和当前滑动状态。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 瀑布流滑动时触发的回调。 |
 
 ## 示例
 
@@ -204,6 +636,12 @@ export class WaterFlowDataSource implements IDataSource {
   public deleteLastItem(): void {
     this.dataArray.splice(-1, 1)
     this.notifyDataDelete(this.dataArray.length)
+  }
+
+  // 在指定索引位置删除一个元素
+  public deleteItem(index: number): void {
+    this.dataArray.splice(index, 1)
+    this.notifyDataDelete(index)
   }
 
   // 重新加载数据
@@ -362,3 +800,214 @@ struct WaterFlowDemo {
 ```
 
 ![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)
+
+
+### 示例3
+WaterFlowSections的使用。
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+@Reusable
+@Component
+struct ReusableFlowItem {
+  @State item: number = 0
+
+  // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
+  aboutToReuse(params: Record<string, number>) {
+    this.item = params.item;
+    console.info('Reuse item:' + this.item)
+  }
+
+  aboutToAppear() {
+    console.info('new item:' + this.item)
+  }
+
+  build() {
+    Text("N" + this.item).fontSize(16).height('100%')
+  }
+}
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  minSize: number = 80
+  maxSize: number = 180
+  fontSize: number = 24
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  scroller: Scroller = new Scroller()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataCount: number = this.dataSource.totalCount()
+  private itemHeightArray: number[] = []
+  @State sections: WaterFlowSections = new WaterFlowSections()
+  sectionMargin: Margin = { top: 10, left: 5, bottom: 10, right: 5 }
+  oneColumnSection: SectionOptions = {
+    itemsCount: 4,
+    crossCount: 1,
+    columnsGap: '5vp',
+    rowsGap: 10,
+    margin: this.sectionMargin,
+    onGetItemMainSizeByIndex: (index: number) => {
+      return this.itemHeightArray[index % 100]
+    }
+  }
+  twoColumnSection: SectionOptions = {
+    itemsCount: 2,
+    crossCount: 2,
+    onGetItemMainSizeByIndex: (index: number) => {
+      return 100
+    }
+  }
+  lastSection: SectionOptions = {
+    itemsCount: 20,
+    crossCount: 2,
+    onGetItemMainSizeByIndex: (index: number) => {
+      return this.itemHeightArray[index % 100]
+    }
+  }
+
+  // 计算FlowItem高度
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem的高度数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+    // 初始化瀑布流分组信息
+    let sectionOptions: SectionOptions[] = []
+    let count = 0
+    let oneOrTwo = 0
+    while (count < this.dataCount) {
+      if (this.dataCount - count < 20) {
+        this.lastSection.itemsCount = this.dataCount - count
+        sectionOptions.push(this.lastSection)
+        break;
+      }
+      if (oneOrTwo++ % 2 == 0) {
+        sectionOptions.push(this.oneColumnSection)
+        count += this.oneColumnSection.itemsCount
+      } else {
+        sectionOptions.push(this.twoColumnSection)
+        count += this.twoColumnSection.itemsCount
+      }
+    }
+    this.sections.splice(0, 0, sectionOptions)
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Row() {
+        Button('splice')
+          .height('5%')
+          .onClick(() => {
+            // 将所有分组替换成一个新分组，注意保证LazyForEach中数据数量和新分组itemsCount保持一致
+            let totalCount: number = this.dataSource.totalCount()
+            let newSection: SectionOptions = {
+              itemsCount: totalCount,
+              crossCount: 2,
+              onGetItemMainSizeByIndex: (index: number) => {
+                return this.itemHeightArray[index % 100]
+              }
+            }
+            let oldLength: number = this.sections.length()
+            this.sections.splice(0, oldLength, [newSection])
+          })
+          .margin({ top: 10, left: 20 })
+        Button('update')
+          .height('5%')
+          .onClick(() => {
+            // 在第二个分组增加4个FlowItem，注意保证LazyForEach中数据数量和所有分组itemsCount的和保持一致
+            let newSection: SectionOptions = {
+              itemsCount: 6,
+              crossCount: 3,
+              columnsGap: 5,
+              rowsGap: 10,
+              margin: this.sectionMargin,
+              onGetItemMainSizeByIndex: (index: number) => {
+                return this.itemHeightArray[index % 100]
+              }
+            }
+            this.dataSource.addItem(this.oneColumnSection.itemsCount)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 1)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 2)
+            this.dataSource.addItem(this.oneColumnSection.itemsCount + 3)
+            const result: boolean = this.sections.update(1, newSection)
+            console.info('update:' + result)
+          })
+          .margin({ top: 10, left: 20 })
+        Button('delete')
+          .height('5%')
+          .onClick(() => {
+            // 先点击update再点击delete
+            let newSection: SectionOptions = {
+              itemsCount: 2,
+              crossCount: 2,
+              columnsGap: 5,
+              rowsGap: 10,
+              margin: this.sectionMargin,
+              onGetItemMainSizeByIndex: (index: number) => {
+                return this.itemHeightArray[index % 100]
+              }
+            }
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.dataSource.deleteItem(this.oneColumnSection.itemsCount)
+            this.sections.update(1, newSection)
+          })
+          .margin({ top: 10, left: 20 })
+        Button('values')
+          .height('5%')
+          .onClick(() => {
+            const sections: Array<SectionOptions> = this.sections.values();
+            for (const value of sections) {
+              console.log(JSON.stringify(value));
+            }
+            console.info('count:' + this.sections.length())
+          })
+          .margin({ top: 10, left: 20 })
+      }.margin({ bottom: 20 })
+
+      WaterFlow({ scroller: this.scroller, sections: this.sections }) {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            ReusableFlowItem({ item: item })
+          }
+          .width('100%')
+          // 以onGetItemMainSizeByIndex为准
+          // .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('1fr 1fr') // 瀑布流使用sections参数时该属性无效
+      .columnsGap(10)
+      .rowsGap(5)
+      .backgroundColor(0xFAEEE0)
+      .width('100%')
+      .height('100%')
+      .layoutWeight(1)
+      .onScrollIndex((first: number, last: number) => {
+        // 即将触底时提前增加数据
+        if (last + 20 >= this.dataSource.totalCount()) {
+          for (let i = 0; i < 100; i++) {
+            this.dataSource.addLastItem()
+          }
+          // 更新数据源后同步更新sections，修改最后一个section的FlowItem数量
+          this.lastSection.itemsCount += 100
+          this.sections.update(-1, this.lastSection);
+        }
+      })
+    }
+  }
+}
+```
+
+![waterflowSections.png](figures/waterflowSections.png)

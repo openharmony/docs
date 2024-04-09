@@ -26,30 +26,103 @@ NavDestination()
 
 仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
 
-| 名称         | 参数类型                                                     | 描述                                                         |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| title        | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9类型说明)&nbsp;\|&nbsp;[NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9类型说明) | 页面标题。<br/>**说明：** <br/>使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。<br/>字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。 |
-| hideTitleBar | boolean                                                      | 是否显示标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
-| mode <sup>11+</sup> | [NavDestinationMode](#navdestinationmode枚举说明-11)                                                   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD|
-| backButtonIcon<sup>11+</sup> |   [ResourceStr](ts-types.md#resourcestr)  \|  [PixelMap](../../apis/js-apis-image.md#pixelmap7)       | 设置标题栏返回键图标。 |
+### title
+
+title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle)
+
+设置页面标题。使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明       |
+| ------ | ------------------------------------------------------------ | ---- | ---------- |
+| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](ts-basic-components-navigation.md#navigationcommontitle9类型说明)&nbsp;\|&nbsp;[NavigationCustomTitle](ts-basic-components-navigation.md#navigationcustomtitle9类型说明) | 是   | 页面标题。 |
+
+### hideTitleBar
+
+hideTitleBar(value: boolean)
+
+设置是否隐藏标题栏。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
+
+### mode <sup>11+</sup>
+
+mode(value: NavDestinationMode)
+
+设置NavDestination类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [NavDestinationMode](#navdestinationmode枚举说明-11) | 是   | NavDestination类型。<br/>默认值: NavDestinationMode.STANDARD |
+
+### backButtonIcon<sup>11+</sup>
+
+backButtonIcon(value: ResourceStr | PixelMap)
+
+设置标题栏返回键图标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 标题栏返回键图标。 |
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| STANDARD | 标准类型NavDestination的生命周期跟随NavPathStack栈中标准Destination变化而改变。                       |
-| DIALOG | 默认透明。不影响其他NavDestination的生命周期。    |
+| STANDARD | 标准模式的NavDestination。                       |
+| DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期，不支持系统转场动画。    |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持如下事件：
 
+### onShown<sup>10+</sup>
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面显示时触发此回调。 |
-| onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面隐藏时触发此回调。 |
-| onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)<sup>10+</sup> | 当与Navigation绑定的页面栈中存在内容时，此回调生效。<br/>当点击返回键时，触发该回调。<br/>返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。<br/> |
-| onReady(callback:&nbsp;[Callback](../../apis/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11类型说明)>)<sup>11+</sup> | 当NavDestination即将构建子组件之前会触发此回调。 |
+onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+当该NavDestination页面显示时触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onHidden<sup>10+</sup>
+
+onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+当该NavDestination页面隐藏时触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onBackPressed<sup>10+</sup>
+
+当与Navigation绑定的页面栈中存在内容时，此回调生效。当点击返回键时，触发该回调。
+
+返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onReady<sup>11+</sup>
+
+onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)<[NavDestinationContext](#navdestinationcontext11类型说明)>)
+
+当NavDestination即将构建子组件之前会触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## NavDestinationContext<sup>11+</sup>类型说明
 

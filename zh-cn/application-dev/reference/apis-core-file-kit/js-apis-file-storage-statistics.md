@@ -91,6 +91,6 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 | 名称      | 类型   | 可读 | 可写 | 说明           |
 | --------- | ------ | --- | ---- | -------------- |
-| appSize   | number | 是 | 否 | app数据大小（单位为Byte）    |
+| appSize   | number | 是 | 否 | app数据大小（不包含空目录）（单位为Byte）    |
 | cacheSize | number | 是 | 否 | 缓存数据大小（单位为Byte）   |
 | dataSize  | number | 是 | 否 | 应用总数据大小（单位为Byte） |

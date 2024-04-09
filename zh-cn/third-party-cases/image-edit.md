@@ -223,4 +223,4 @@ struct ImageEdit{
 ## 参考
 - [图片解码](../application-dev/media/image-decoding.md)
 - [图片变换](../application-dev/media/image-transformation.md)
-- [Image组件](../application-dev/reference/arkui-ts/ts-basic-components-image.md)
+- [Image组件](../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md)

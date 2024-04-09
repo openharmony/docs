@@ -128,7 +128,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 getAppMemorySize(): Promise\<number>
 
-获取应用程序的内存大小。使用Promise异步回调。
+获取当前应用程序可以使用的内存的值。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -136,7 +136,7 @@ getAppMemorySize(): Promise\<number>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise对象，返回应用程序内存大小, 单位为M。 | 
+  | Promise&lt;number&gt; | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。| 
 
 **示例：**
     
@@ -163,7 +163,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回应用程序内存大小, 单位为M。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 | 获取当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。| 
 
 **示例：**
     
@@ -186,7 +186,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 > 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -194,7 +194,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessRunningInfo](../apis/js-apis-inner-application-processRunningInfo.md)>> | Promise对象，返回有关运行进程的信息。 |
+| Promise\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | Promise对象，返回有关运行进程的信息。 |
 
 **示例：**
     
@@ -217,7 +217,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 > 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -225,7 +225,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessRunningInfo](../apis/js-apis-inner-application-processRunningInfo.md)>> | 是 | 回调函数，返回有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)>> | 是 | 回调函数，返回有关运行进程的信息。 |
 
 **示例：**
     

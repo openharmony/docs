@@ -30,7 +30,7 @@ API 11及之后，TextClock组件构造参数timeZoneOffset设置{ 9.5, 3.5, -3.
 
 **适配指导**
 
-请查阅[TextClock组件](../../../application-dev/reference/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
+请查阅[TextClock组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)文档进行适配。
 
 ## cl.arkui.2 Gauge组件的默认阴影模糊半径变更
 
@@ -121,7 +121,7 @@ API version 11变更后：大小位置返回值都以vp为单位。
 
 **变更影响**
 
-该变更为兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
+该变更为非兼容性变更，变更后@Link/@ObjectLink父组件校验报错。
 
 **API Level**
 
@@ -294,3 +294,312 @@ OffscreenCanvas
 **适配指导**
 
 DevEco Studio中OffscreenCanvas代码编辑联想功能，不涉及适配。
+
+## cl.arkui.7 layoutWeight支持float类型变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+layoutWeight需要更精细的设置。
+
+**变更影响**
+
+该变更为兼容性变更，变更后layoutWeight参数支持float类型。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+涉及到layoutWeight接口
+
+API 12前，参数为float类型，小数点后不生效。
+
+API 12及以后，参数为float类型，小数点后生效。
+
+**适配指导**
+
+接口参数类型变更，不涉及适配。
+
+## cl.arkui.8 GridRow组件高度自适应变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+原规格遗留问题，变更前用户设置了GridRow组件的height属性，而实际上GridRow组件的高度并不会按设置的height进行绘制，而是会自适应子组件高度。
+现将规格确定为：若用户设置了GridRow组件的height属性，则GridRow组件的高度按设置的height进行绘制，若用户没有设置GridRow组件的height属性，则自适应子组件高度。
+
+**变更影响**
+
+该变更为非兼容性变更。改变了GridRow组件的高度设置，可按照用户设置的高度进行绘制。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。
+
+**变更的接口/组件**
+
+涉及到GridRow组件
+
+API 11前，GridRow组件无论是否设置height属性，其高度都会自适应子组件高度。
+
+API 11及以后，GridRow组件设置了height属性后不再自适应子组件高度，而是按用户设置高度进行绘制；如果没有设置height属性，则仍会自适应子组件高度。
+
+**适配指导**
+
+组件高度自适应变更，不涉及适配。
+
+## cl.arkui.9  surface类型XComponent组件backgroundColor属性行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+surface类型的XComponent组件需支持设置背景色。
+
+**变更影响**
+
+该变更为非兼容性变更，场景为给surface类型的XComponent组件设置backgroundColor属性，具体行为如下：
+
+API version 11变更前：无论设置何种属性，背景色均为默认黑色背景色。
+
+API version 11变更后：组件背景色会生效所设置的颜色。
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5 版本开始。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct XComponentBKColor {
+  private surfaceId: string = ''
+  private xComponentContext: Record<string, () => void> = {}
+  xComponentController: XComponentController = new XComponentController()
+
+  build() {
+    Row() {
+      XComponent({
+        id: 'xcomponentid',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+      })
+        .onLoad(() => {
+          this.xComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 })
+          this.surfaceId = this.xComponentController.getXComponentSurfaceId()
+          this.xComponentContext = this.xComponentController.getXComponentContext() as Record<string, () => void>
+        })
+        .width('640px')
+        .height('480px')
+        .backgroundColor(Color.White)
+    }
+  }
+}
+```
+
+**变更的接口/组件**
+
+XComponent
+
+**适配指导**
+
+给surface类型的XComponent组件设置backgroundColor属性后，确认是应用的场景所需要的背景色。
+
+## cl.arkui.10 TextInput/TextArea组件光标超出圆角部分截断显示效果变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该变更为非兼容性变更，当设置TextInput组件padding为0时，光标会显示在输入框默认圆角外，不符合应用诉求。
+
+**变更影响**
+
+API version 11变更前：输入框使用默认圆角， 设置padding为0，光标超出输入框组件圆角的部分未被截断。
+
+![Alt text](figures/textinputcursorexceednotclip.png)
+
+API version 11变更后：输入框使用默认圆角， 设置padding为0，光标超出输入框组件圆角的部分会被截断。
+
+![Alt text](figures/textinputcursorexceedclip.png)
+
+**API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。 
+
+**变更的接口/组件**
+
+TextInput/TextArea
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.11 全局接口作用的UI实例跟踪匹配规则变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规范全局接口UI实例匹配行为，避免因实例不明确造成的非预期行为。
+
+**变更影响**
+
+多实例场景下，在未绑定UI实例的上下文中调用全局接口（如在异步回调中使用路由接口），接口的作用实例可能发生变化。
+
+全局接口需要明确的UI实例上下文以确定作用的UI实例，建议通过绑定实例的接口进行调用。
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.6.5开始。 
+
+**变更的接口/组件**
+
+不推荐开发者在多实例场景下使用如下接口，建议开发者使用适配指导中的替代接口。
+
+|                  API                  |            说明            |
+| :-----------------------------------: | :------------------------: |
+|            @ohos.animator             |      自定义动画控制器      |
+|     @ohos.arkui.componentSnapshot     |          组件截图          |
+|      @ohos.arkui.componentUtils       |         组件工具类         |
+|      @ohos.arkui.dragController       |         拖拽控制器         |
+|         @ohos.arkui.inspector         |        组件布局回调        |
+|         @ohos.arkui.observer          |          无感监听          |
+|              @ohos.font               |         自定义字体         |
+|             @ohos.measure             |          文本计算          |
+|           @ohos.mediaquery            |          媒体查询          |
+|          @ohos.promptAction           |            弹窗            |
+|             @ohos.router              |          页面路由          |
+|              AlertDialog              |          警告弹窗          |
+|              ActionSheet              |        列表选择弹窗        |
+|         CalendarPickerDialog          |       日历选择器弹窗       |
+|           DatePickerDialog            |      日期滑动选择弹窗      |
+|           TimePickerDialog            |     时间滑动选择器弹窗     |
+|           TextPickerDialog            |     文本滑动选择器弹窗     |
+|              ContextMenu              |          菜单控制          |
+| vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx |        像素单位转换        |
+|             focusControl              |          焦点控制          |
+|             cursorControl             |          光标控制          |
+|              getContext               | 获取当前的Ability的Context |
+|        LocalStorage.getShared         |  获取Ability传递的Storage  |
+|               animateTo               |          显式动画          |
+|         animateToImmediately          |        显式立即动画        |
+
+**适配指导**
+
+使用组件内置方法[`getUIContext`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)，可直接获取当前组件所在的UIContext，并使用如下[UIContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的API获取与实例绑定的对象。
+
+| UIContext接口                    | 说明               |
+| -------------------------------- | ------------------ |
+| getRouter                        | 页面路由           |
+| getComponentUtils                | 组件工具类         |
+| getUIInspector                   | 组件布局回调       |
+| getUIObserver                    | 无感监听           |
+| getMediaQuery                    | 媒体查询           |
+| getFont                          | 字体               |
+| getPrompAction                   | 弹窗               |
+| animateTo                        | 显示动画           |
+| showAlerDialog                   | 警告弹窗           |
+| showActionSheet                  | 列表选择弹窗       |
+| showDatePickerDialog             | 日期滑动选择弹窗   |
+| showTimePickerDialog             | 时间滑动选择器弹窗 |
+| showTextPcikerDialog             | 文本滑动选择器弹窗 |
+| createAnimator                   | 自定义动画控制器   |
+| KeyboardAvoidMode                | 键盘避让           |
+| getAtomicServiceBar              | 云服务             |
+| getDragController/getDragPreview | 拖拽               |
+| runScopedTask                    | 执行绑定实例的闭包 |
+
+对于以下UIContext中尚不具备的API，可使用runScopedTask进行适配：
+
+| 接口                                  | 说明                       |
+| ------------------------------------- | -------------------------- |
+| measure                               | 文本计算                   |
+| getContext                            | 获取当前的Ability的Context |
+| LocalStorage.getShared                | 获取Ability传递的Storage   |
+| animateToImmediately                  | 显式立即动画               |
+| ContextMenu                           | 菜单控制                   |
+| vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx | 像素单位转换               |
+| focusControl                          | 焦点控制                   |
+| cursorControl                         | 光标控制                   |
+| @ohos.arkui.componentSnapshot         | 组件截图                   |
+
+示例1
+
+```ets
+// 使用绑定实例的路由对象进行页面路由
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button()
+        .onClick(() => {
+          let uiContext = this.getUIContext();
+          let uiRouter = uiContext.getRouter();
+          uiRouter.pushUrl({
+            url: 'pages/Page'
+          })
+        })
+    }
+  }
+}
+```
+
+示例2
+
+```ets
+// 执行绑定实例的闭包
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button()
+        .onClick(() => {
+          let uiContext = this.getUIContext();
+          uiContext.runScopedTask(() => {
+            let context = getContext();
+            console.log('Get context: ' + JSON.stringify(context))
+          })
+        })
+    }
+  }
+}
+```
+

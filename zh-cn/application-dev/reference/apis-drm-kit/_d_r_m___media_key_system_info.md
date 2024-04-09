@@ -3,9 +3,7 @@
 
 ## 概述
 
-从媒体源获取的DRM信息。
-
-**系统能力：** SystemCapability.Multimedia.Drm.Core
+播放器从媒体源获取媒体密钥系统信息。
 
 **起始版本：** 11
 
@@ -19,5 +17,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [psshCount](_drm.md#psshcount) | PSSH信息数组长度 | 
-| [DRM_PsshInfo](_d_r_m___pssh_info.md)[psshInfo](_drm.md#psshinfo) [0] | PSSH信息数组 | 
+| uint32_t [psshCount](_drm.md#psshcount) | PSSH计数。 | 
+| [DRM_PsshInfo](_d_r_m___pssh_info.md) [psshInfo](_drm.md#psshinfo) [[MAX_PSSH_INFO_COUNT](_drm.md#max_pssh_info_count)] | PSSH信息。 | 

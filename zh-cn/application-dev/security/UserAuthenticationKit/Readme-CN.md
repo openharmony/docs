@@ -7,3 +7,4 @@
   - [发起认证](start-authentication.md)
   - [认证过程中取消认证](cancel-authentication.md)
   - [切换自定义认证](apply-custom-authentication.md)
+  - [查询用户注册凭据的状态](obtain-enrolled-state-capabilities.md)

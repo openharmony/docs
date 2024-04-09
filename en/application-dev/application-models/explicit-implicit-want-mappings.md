@@ -1,11 +1,11 @@
 # Matching Rules of Explicit Want and Implicit Want
 
-Both explicit [Want](../reference/apis/js-apis-app-ability-want.md) and implicit [Want](../reference/apis/js-apis-app-ability-want.md) can be used to match an application component to start based on certain rules. These rules determine how the parameters set in [want](../reference/apis/js-apis-app-ability-want.md) match the configuration file declared by the target application component.
+Both explicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) and implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) can be used to match an application component to start based on certain rules. These rules determine how the parameters set in [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) match the configuration file declared by the target application component.
 
 ## Matching Rules of Explicit Want
 
 
-The table below describes the matching rules of explicit [Want](../reference/apis/js-apis-app-ability-want.md).
+The table below describes the matching rules of explicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md).
 
 | Name| Type| Matching Item| Mandatory| Rule Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -20,20 +20,20 @@ The table below describes the matching rules of explicit [Want](../reference/api
 | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
 | parameters | {[key:&nbsp;string]:&nbsp;Object} | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 
-## Matching Rules for Implicit Want
+## Matching Rules of Implicit Want
 
-The table below describes the matching rules of implicit [Want](../reference/apis/js-apis-app-ability-want.md).
+The table below describes the matching rules of implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md).
 
 | Name       | Type                          | Matching Item| Mandatory| Rule Description                                                        |
 | ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |
 | deviceId    | string                         | Yes    | No  | Implicit invoking is not supported across devices.                                  |
 | abilityName | string                         | No    | No  | To use implicit Want, this field must be left unspecified.                                |
-| bundleName  | string                         | Yes    | No  | - When only **bundleName** is specified, matching is limited to that application.<br>- When both **bundleName** and **moduleName** are specified, matching is limited to that module in that application.<br>- When only **moduleName** is specified, the setting is invalid.<br> <br>These fields will be used for implicit matching.|
-| moduleName  | string                         | Yes    | No  |                                                              |
-| uri         | string                         | Yes    | No  |                                                              |
-| type        | string                         | Yes    | No  |                                                              |
-| action      | string                         | Yes    | No  |                                                              |
-| entities    | Array&lt;string&gt;            | Yes    | No  |                                                              |
+| bundleName  | string                         | Yes    | No  | This field is used to match the target application component in the given bundle.                             |
+| moduleName  | string                         | Yes    | No  | This field is used to match the target application component in the given module.                             |
+| uri         | string                         | Yes    | No  | For details, see [Matching Rules of uri and type in the want Parameter](#matching-rules-of-uri-and-type-in-the-want-parameter).                                                            |
+| type        | string                         | Yes    | No  | For details, see [Matching Rules of uri and type in the want Parameter](#matching-rules-of-uri-and-type-in-the-want-parameter).                                                            |
+| action      | string                         | Yes    | No  | For details, see [Matching Rules of action in the want Parameter](#matching-rules-of-action-in-the-want-parameter).                                                            |
+| entities    | Array&lt;string&gt;            | Yes    | No  | For details, see [Matching Rules of entities in the want Parameter](#matching-rules-of-entities-in-the-want-parameter).                                                            |
 | flags       | number                         | No    | No  | This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
 | parameters  | {[key:&nbsp;string]:&nbsp;Object} | No    | No  | This field is not used for matching. It is passed to the target application component as a parameter.        |
 
@@ -45,7 +45,7 @@ Get familiar with the following about implicit Want:
 - The **skills** field declares the capabilities of the target application component. For details, see [the skills tag](../quick-start/module-configuration-file.md#skills) in the [module.json5 file](../quick-start/module-configuration-file.md).
 
 
-The system matches the **want** parameter (including the **action**, **entities**, **uri**, and **type** attributes) passed by the caller against the **skills** configuration (including the **actions**, **entities**, **uris**, and **type** attributes) of the application components one by one. When all the four attributes are matched, a dialog box is displayed for users to select a matched application.
+The system matches the **want** parameter (including the **action**, **entities**, **uri**, and **type** attributes) passed by the caller against the **skills** configuration (including the **actions**, **entities**, **uris**, and **type** attributes) of the application components one by one. If none of the four attributes is configured, implicit matching fails. When all the four attributes are matched, a dialog box is displayed for users to select a matched application.
 
 
 ### Matching Rules of action in the want Parameter
@@ -124,7 +124,7 @@ To simplify the description:
 
 ### Matching Rules of uri
 
-The rules are as follows:
+The matching rules are as follows:
 
 - If **scheme** of **s_uri** is unspecified and **w_uri** is unspecified, the matching is successful. Otherwise, the matching fails.
 

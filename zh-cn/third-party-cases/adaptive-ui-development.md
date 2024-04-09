@@ -6,7 +6,7 @@
 
 ## 两个重要的自适应布局组件
 使用OpenHarmony进行自适应布局的开发离不开以下两个组件：GridRow、GridCol。
-- GridRow用来将屏幕等分为特定列数，并设置区分屏幕大小的临界点（breakpoints），比如可以将屏幕列数根据屏幕大小划分为：小屏设备4列，中屏8列，大屏12列（假设屏幕宽度<=520vp为小屏，520vp<屏幕宽度<=840vp为中屏，屏幕宽度>840vp为大屏）。那么就可以将520vp和840vp设置为临界点，当屏幕尺寸由[0，520vp]区间跨越到[520vp，840vp]区间时，屏幕划分的列数也会由4列变为8列。临界点的详细介绍可参考[GridRow指南](../application-dev/reference/arkui-ts/ts-container-gridrow.md#breakpoints)。
+- GridRow用来将屏幕等分为特定列数，并设置区分屏幕大小的临界点（breakpoints），比如可以将屏幕列数根据屏幕大小划分为：小屏设备4列，中屏8列，大屏12列（假设屏幕宽度<=520vp为小屏，520vp<屏幕宽度<=840vp为中屏，屏幕宽度>840vp为大屏）。那么就可以将520vp和840vp设置为临界点，当屏幕尺寸由[0，520vp]区间跨越到[520vp，840vp]区间时，屏幕划分的列数也会由4列变为8列。临界点的详细介绍可参考[GridRow指南](../application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md#breakpoints)。
 
 - GridCol是GridRow的子组件，可以根据屏幕大小设置其所覆盖的列数，那么GridCol中的子组件就可以相应的随屏幕的大小变化而变化。比如界面中有一个搜索框，我们希望其长度在小屏设备上占2列，中屏设备占4列，大屏设备占8列，那么就可以将搜索框放在一个GridCol组件中，并设置GridCol组件在小、中、大设备上所占的列数分别为2、4、8。
 
@@ -245,5 +245,5 @@ export struct HomePage{
 ```
 
 ## 参考
-- [GridRow组件的使用](../application-dev/reference/arkui-ts/ts-container-gridrow.md)
-- [GridCol组件的使用](../application-dev/reference/arkui-ts/ts-container-gridcol.md)
+- [GridRow组件的使用](../application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md)
+- [GridCol组件的使用](../application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md)

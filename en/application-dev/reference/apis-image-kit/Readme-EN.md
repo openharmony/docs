@@ -1,0 +1,36 @@
+# Image Kit API Reference
+
+- ArkTS APIs
+  - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
+- C APIs
+  - Modules
+    - [Image](image.md)
+  - Header Files
+    - [image_mdk.h](image__mdk_8h.md)
+    - [image_mdk_common.h](image__mdk__common_8h.md)
+    - [image_packer_mdk.h](image__packer__mdk_8h.md)
+    - [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md)
+    - [image_pixel_map_napi.h](image__pixel__map__napi_8h.md)
+    - [image_receiver_mdk.h](image__receiver__mdk_8h.md)
+    - [image_source_mdk.h](image__source__mdk_8h.md)
+  - Structs
+    - [ImagePacker_Opts_](_image_packer___opts__.md)
+    - [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+    - [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+    - [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
+    - [OhosImageDecodingOps](_ohos_image_decoding_ops.md)
+    - [OhosImageReceiverInfo](_ohos_image_receiver_info.md)
+    - [OhosImageRegion](_ohos_image_region.md)
+    - [OhosImageSize](_ohos_image_size.md)
+    - [OhosImageSource](_ohos_image_source.md)
+    - [OhosImageSourceDelayTimeList](_ohos_image_source_delay_time_list.md)
+    - [OhosImageSourceInfo](_ohos_image_source_info.md)
+    - [OhosImageSourceOps](_ohos_image_source_ops.md)
+    - [OhosImageSourceProperty](_ohos_image_source_property.md)
+    - [OhosImageSourceSupportedFormat](_ohos_image_source_supported_format.md)
+    - [OhosImageSourceSupportedFormatList](_ohos_image_source_supported_format_list.md)
+    - [OhosImageSourceUpdateData](_ohos_image_source_update_data.md)
+    - [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md)
+    - [OhosPixelMapInfos](_ohos_pixel_map_infos.md)
+- Error Codes
+  - [Image Error Code](errorcode-image.md)

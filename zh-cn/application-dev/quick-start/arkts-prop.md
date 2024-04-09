@@ -21,7 +21,7 @@
 
 ## 限制条件
 
-- \@Prop修饰复杂类型时是深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
+- \@Prop装饰变量时会进行深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
 
 - \@Prop装饰器不能在\@Entry装饰的自定义组件中使用。
 
@@ -33,7 +33,7 @@
 | 装饰器参数       | 无                                        |
 | 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
 | 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Prop a : string \| undefined = undefined`是推荐的，不推荐`@Prop a: string = undefined`。 |
-| 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)；<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
+| 支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。| 必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
@@ -100,7 +100,7 @@ this.title.a.value = 'ArkUi'
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
-- 当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
+- 当装饰的类型是数组的时候，可以观察到数组本身的赋值和数组项的添加、删除和更新。
 
 ```
 // @State装饰的对象为数组时
@@ -417,7 +417,7 @@ struct Library {
 
 ### 从父组件中的\@State数组项到\@Prop class类型的同步
 
-在下面的示例中，更改了\@State 修饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
+在下面的示例中，更改了\@State 装饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
 
 ```ts
 let nextId: number = 1;
@@ -922,22 +922,22 @@ struct Zoo {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Commodity {
+  public price: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(price: number) {
+    this.price = price;
   }
 }
 
 @Component
 struct PropChild {
-  @Prop testNum: ClassA; // 未进行本地初始化
+  @Prop fruit: Commodity; // 未进行本地初始化
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
@@ -945,17 +945,17 @@ struct PropChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent fruit ${this.fruit[0].price}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.fruit[0].price += 1;
         })
-        
+
       // @Prop本地没有初始化，也没有从父组件初始化
-      PropChild1()
+      PropChild()
     }
   }
 }
@@ -965,34 +965,34 @@ struct Parent {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Commodity {
+  public price: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(price: number) {
+    this.price = price;
   }
 }
 
 @Component
 struct PropChild1 {
-  @Prop testNum: ClassA; // 未进行本地初始化
+  @Prop fruit: Commodity; // 未进行本地初始化
 
   build() {
-    Text(`PropChild1 testNum ${this.testNum.c}`)
+    Text(`PropChild1 fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
 
 @Component
 struct PropChild2 {
-  @Prop testNum: ClassA = new ClassA(1); // 进行本地初始化
+  @Prop fruit: Commodity = new Commodity(1); // 进行本地初始化
 
   build() {
-    Text(`PropChild2 testNum ${this.testNum.c}`)
+    Text(`PropChild2 fruit ${this.fruit.price}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.fruit.price += 1;
       })
   }
 }
@@ -1000,20 +1000,20 @@ struct PropChild2 {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State fruit: Commodity[] = [new Commodity(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent fruit ${this.fruit[0].price}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.fruit[0].price += 1;
         })
 
       // @PropChild1本地没有初始化，必须从父组件初始化
-      PropChild1({ testNum: this.testNum[0] })
+      PropChild1({ fruit: this.fruit[0] })
       // @PropChild2本地进行了初始化，可以不从父组件初始化，也可以从父组件初始化
       PropChild2()
-      PropChild2({ testNum: this.testNum[0] })
+      PropChild2({ fruit: this.fruit[0] })
     }
   }
 }

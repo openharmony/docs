@@ -6,13 +6,13 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> 从API version 10开始，可以通过使用[UIContext](../../apis/js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../../apis/js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
 
 ## DatePickerDialog.show
 
-show(options?: DatePickerDialogOptions)
+static show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
 
@@ -47,6 +47,10 @@ show(options?: DatePickerDialogOptions)
 | onDateChange<sup>10+</sup> | (value:  Date) => void | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。<br />**说明：**<br />当showTime设置为true时，回调接口返回值value中时和分为选择器选择的时和分。否则，返回值value中时和分为系统时间的时和分。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
+| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 |
+| onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
+| onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
 
 **异常情形说明:**
 
@@ -101,6 +105,18 @@ struct DatePickerDialogExample {
             },
             onDateChange: (value: Date) => {
               console.info("DatePickerDialog:onDateChange()" + value.toString())
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()")
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()")
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()")
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()")
             }
           })
         })
@@ -125,6 +141,18 @@ struct DatePickerDialogExample {
             },
             onDateChange: (value: Date) => {
               console.info("DatePickerDialog:onDateChange()" + value.toString())
+            },
+            onDidAppear: () => {
+              console.info("DatePickerDialog:onDidAppear()")
+            },
+            onDidDisappear: () => {
+              console.info("DatePickerDialog:onDidDisappear()")
+            },
+            onWillAppear: () => {
+              console.info("DatePickerDialog:onWillAppear()")
+            },
+            onWillDisappear: () => {
+              console.info("DatePickerDialog:onWillDisappear()")
             }
           })
         })
@@ -134,3 +162,7 @@ struct DatePickerDialogExample {
 ```
 
 ![DataPickerDialog](figures/DatePickerDialogApi10.gif)
+
+> **说明：** 
+>
+> 如需完全自定义实现日期滑动选择器弹窗，可以通过先使用[自定义弹窗 (CustomDialog)](ts-methods-custom-dialog-box.md)，然后使用[DatePicker组件](ts-basic-components-datepicker.md)来实现。

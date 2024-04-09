@@ -229,8 +229,8 @@ struct TwoLevelLink {
 }
 ```
 ## 参考
-[List](../application-dev/reference/arkui-ts/ts-container-list.md)
+[List](../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md)
 
-[Line](../application-dev/reference/arkui-ts/ts-drawing-components-line.md)
+[Line](../application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-line.md)
 
-[Scroll](../application-dev/reference/arkui-ts/ts-container-scroll.md)
+[Scroll](../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md)
