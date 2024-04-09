@@ -122,20 +122,6 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
 | extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
-## onPreDrag<sup>12+</sup>
-
-onPreDrag(event: (preDragStatus: PreDragStatus) => void)
-
-绑定此事件的组件，当触发拖拽发起前的不同阶段时，触发回调。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名      | 类型                            | 必填 | 说明                           |
-| ----------- | ------------------------------- | ---- | ------------------------------ |
-| preDragStatus       | [PreDragStatus](#predragstatus12枚举说明)     | 是   | 拖拽预发起阶段。 |
-
 ## DragItemInfo说明
 
 | 名称      | 类型                                     | 必填   | 描述                                |
@@ -214,17 +200,6 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | COPY | 复制模式角标。 |
 | MOVE| 剪贴模式角标。 |
 
-## PreDragStatus<sup>12+</sup>枚举说明
-
-| 名称 | 值 | 描述 |
-| ---- | - | ----------------- |
-| ACTION_DETECTING_STATUS | 0 | 拖拽手势启动阶段。(按下50ms时触发) |
-| READY_TO_TRIGGER_DRAG_ACTION | 1 | 拖拽准备完成，可发起拖拽阶段。(按下500ms时触发) |
-| PREVIEW_LIFT_STARTED | 2 | 拖拽浮起动效发起阶段。(按下800ms时触发) |
-| PREVIEW_LIFT_FINISHED | 3 | 拖拽浮起动效结束阶段。(浮起动效完全结束时触发) |
-| PREVIEW_LANDING_STARTED | 4 | 拖拽落回动效发起阶段。(落回动效发起时触发) |
-| PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发) |
-| ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
 
 ## 示例
 
@@ -246,7 +221,6 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
-  @State backGroundColor: Color = Color.Transparent;
 
   @Builder
   pixelMapBuilder() {
@@ -283,15 +257,6 @@ struct Index {
     setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
-  }
-
-  private PreDragChange(preDragStatus: PreDragStatus): void {
-    if (preDragStatus == PreDragStatus.READY_TO_TRIGGER_DRAG_ACTION) {
-      this.backGroundColor = Color.Red;
-    } else if (preDragStatus == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG
-      || preDragStatus == PreDragStatus.PREVIEW_LANDING_FINISHED) {
-      this.backGroundColor = Color.Blue;
-    }
   }
 
   build() {
@@ -354,16 +319,11 @@ struct Index {
         .width('100%')
         .height(100)
         .onDragStart((event) => {
-          this.backGroundColor = Color.Transparent;
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
           (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
-        .onPreDrag((status: PreDragStatus) => {
-          this.PreDragChange(status);
-        })
-        .backgroundColor(this.backGroundColor)
       }.width('45%')
       .height('100%')
 

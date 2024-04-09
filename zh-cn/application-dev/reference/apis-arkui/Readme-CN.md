@@ -194,7 +194,6 @@
       - [Column](arkui-ts/ts-container-column.md)
       - [ColumnSplit](arkui-ts/ts-container-columnsplit.md)
       - [Counter](arkui-ts/ts-container-counter.md)
-      - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)
       - [Flex](arkui-ts/ts-container-flex.md)
       - [FlowItem](arkui-ts/ts-container-flowitem.md)
       - [FolderStack](arkui-ts/ts-container-folderstack.md)
