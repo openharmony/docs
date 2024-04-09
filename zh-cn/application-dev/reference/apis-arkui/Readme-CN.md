@@ -31,6 +31,7 @@
     - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
+      - [ComponentContent](js-apis-arkui-ComponentContent.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)

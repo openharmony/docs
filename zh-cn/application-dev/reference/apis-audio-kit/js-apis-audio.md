@@ -3128,6 +3128,113 @@ try {
 }
 ```
 
+### getMaxAmplitudeForInputDevice<sup>12+</sup>
+
+getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
+
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ----------- | ------------------------------------- | ---- | --------------------------------------------------- |
+| inputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | 是   | 获取最大电平值的设备信息。                                 |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回对应设备的电平值，大小在0-1之间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+| 6800301 | system error                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let inputDeviceDesc: audio.AudioDeviceDescriptor;
+
+let capturerInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  capturerFlags : 0 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
+  (desc) => {
+    inputDeviceDesc = desc;
+  }).catch((err) => {
+    console.error("get outputDeviceId error" + JSON.stringify(err));
+    return;
+  });
+audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
+  console.info(`mic volatileume amplitude is: ${value}`);
+}
+```
+
+### getMaxAmplitudeForOutputDevice<sup>12+</sup>
+
+getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
+
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ------------ | --------------------------------------- | ---- | -------------------------------------------------------- |
+| outputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | 是   | 获取最大电平值的设备信息。                                             |
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回对应设备的电平值，大小在0-1之间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+| 6800301 | system error                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let outputDeviceDesc: audio.AudioDeviceDescriptor;
+
+let rendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0 }
+
+audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
+  (desc) => {
+    outputDeviceDesc = desc;
+  }).catch((err) => {
+    console.error("get outputDeviceId error" + JSON.stringify(err));
+    return;
+  });
+
+audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
+  console.info(`speaker volatileume amplitude is: ${value}`);
+}
+```
+
 ## AudioStreamManager<sup>9+</sup>
 
 管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#getstreammanager9)获取AudioStreamManager实例。

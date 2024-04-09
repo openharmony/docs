@@ -296,7 +296,7 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
 | 参数名 | 类型                                | 必填 | 说明                         |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| event  | [RichEditorRange](#richeditorrange) | 否   | 文本选择区域起始和终止位置。 |
+| value  | [RichEditorRange](#richeditorrange) | 否   | 文本选择区域起始和终止位置。 |
 
 ### onEditingChange<sup>12+</sup>
 
