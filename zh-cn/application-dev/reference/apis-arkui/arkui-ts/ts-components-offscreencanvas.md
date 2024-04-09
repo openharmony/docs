@@ -16,7 +16,7 @@ OffscreenCanvas组件用于自定义绘制图形。
 
 OffscreenCanvas(width: number, height: number)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -31,8 +31,8 @@ OffscreenCanvas支持以下属性：
 
 | 名称   | 类型   | 默认值 | 描述                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | OffscreenCanvas组件的宽度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 0      | OffscreenCanvas组件的高度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width  | number | 0      | OffscreenCanvas组件的宽度，单位为vp。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | 0      | OffscreenCanvas组件的高度，单位为vp。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ### width
 
@@ -114,7 +114,7 @@ transferToImageBitmap(): ImageBitmap
 
 从OffscreenCanvas组件中最近渲染的图像创建一个ImageBitmap对象。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：**
 
