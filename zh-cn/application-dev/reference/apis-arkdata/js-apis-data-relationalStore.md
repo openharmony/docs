@@ -580,6 +580,7 @@ class EntryAbility extends UIAbility {
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
+| bigint<sup>12+</sup> | 表示值类型为任意精度整数。 |
 
 ## ValuesBucket
 
@@ -5277,6 +5278,59 @@ goToPreviousRow(): boolean
 if(resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
+```
+
+### getValue
+
+getValue(columnIndex: number): ValueType
+
+获取当前指定列的值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [ValueType](#valuetype) | 表示允许的数据字段类型。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+**示例：**
+
+```ts
+import featureAbility from '@ohos.ability.featureAbility'
+
+var context = featureAbility.getContext();
+const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS bigint_table(id INTEGER PRIMARY KEY AUTOINCREMENT, value1 UNLIMITED INT NOT NULL, value2 UNLIMITED INT)";
+const STORE_CONFIG = {
+  name: 'value_type.db',
+  securityLevel: relationalStore.SecurityLevel.S1,
+}
+var store = undefined;
+store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+await store.execute(CREATE_TABLE_TEST);
+let bucket = {
+  "value1":BigInt("15822401018187971961171"),
+  "value2":BigInt("-15822401018187971961171")
+};
+let rowid = await store.insert("bigint_table", bucket);
+let resultSet = await store.querySql("select value1, value2 from bigint_table");
+let status = resultSet.goToNextRow();
+let value1 = resultSet.getValue(resultSet.getColumnIndex("value1"));
+let type = typeof value1;
+console.log("getValue(0):=>" + value1 + " type:" + type);
+let value2 = resultSet.getValue(resultSet.getColumnIndex("value2"));
+type = typeof value2;
+console.log("getValue(1):=>" + value2 + " type:" + type);
 ```
 
 ### getBlob
