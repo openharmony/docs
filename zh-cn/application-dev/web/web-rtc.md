@@ -37,8 +37,8 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发�
             console.info(" not hasPermissions1")
           }
         }).catch(() => {
-        reture;
-      });
+        return;
+      });n
     }
 
     build() {
