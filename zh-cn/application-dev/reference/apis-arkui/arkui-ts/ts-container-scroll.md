@@ -435,7 +435,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 ### scrollEdge
 
-scrollEdge(value: Edge): void
+scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
@@ -445,6 +445,7 @@ scrollEdge(value: Edge): void
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
 
 ### fling<sup>12+</sup>
 
@@ -630,6 +631,11 @@ getItemRect(index: number): RectResult
 | ----- | ------| ------- | ----------------- |
 | xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
 | yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滑动偏移<br/>默认值：0|
+
+## ScrollEdgeOptions<sup>12+</sup>对象说明
+| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。          |
 
 ## 示例
 ### 示例1
@@ -884,7 +890,6 @@ struct Index {
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
 
 ### 示例5
-
 ```ts
 @Entry
 @Component
@@ -929,3 +934,61 @@ struct ListExample {
 ```
 
 ![scroller_fling](figures/scroller_fling.gif)
+
+### 示例6
+该示例实现了按速度700vp/s向Scroll下边缘滚动。
+
+```ts
+// xxx.ets
+import Curves from '@ohos.curves'
+
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollBar(BarState.On) // 滚动条常驻显示
+      .scrollBarColor(Color.Gray) // 滚动条颜色
+      .scrollBarWidth(10) // 滚动条宽度
+      .friction(0.6)
+      .edgeEffect(EdgeEffect.None)
+      .onScroll((xOffset: number, yOffset: number) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+
+      Button('scroll to bottom 700')
+        .height('5%')
+        .onClick(() => { // 点击后滑到下边缘，速度值是700vp/s
+          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
+        })
+        .margin({ top: 100, left: 20 })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![ScrollEdgeAtVelocity](figures/ScrollEdgeAtVelocity.gif)

@@ -146,9 +146,15 @@ API version 12及以后：
 
 a)当前Text组件长按出现菜单时，旋转屏幕，隐藏菜单，保持选中态。
 
-b)当前TextInput/TextArea/Search/RichEditor组件长按出现菜单时，隐藏菜单，保持选中态。
+b)当前TextInput/TextArea/Search/RichEditor组件长按出现菜单时，进行复制行为，隐藏菜单，保持选中态。
 
 c)当前TextInput/TextArea/Search/RichEditor组件在手机和平板设备上通过代码选区，出现选中态和手柄，用户可自定义出现菜单。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/text_before.png) | ![](figures/text_after.png) |
+| ![](figures/copy_before.png) | ![](figures/copy_after.png) |
+| ![](figures/selection_before.png) | ![](figures/select_after.png) |
 
 **API Level**
 
@@ -201,34 +207,3 @@ TextInput组件。
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期
-
-## cl.arkui.5 bindMenu新增指向性菜单样式
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规格增强
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-变更前：在bindMenu的MenuOptions中将enableArrow属性设为true时，不展示指向性菜单样式。
-
-变更后：在bindMenu的MenuOptions中将enableArrow属性设为true且菜单的大小和位置足以放置箭头时，会展示指向性菜单样式。
-
-**API Level**
-
-enableArrow、arrowOffset属性的起始支持版本为API version 10。
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.21开始。
-
-**适配指导**
-
-如果不需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中不设置enableArrow属性或将enableArrow属性设置为false；
-如果需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中将enableArrow属性设置为true，并根据需要决定是否设置arrowOffset属性值。

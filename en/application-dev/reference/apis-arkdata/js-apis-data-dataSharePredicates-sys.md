@@ -1,4 +1,4 @@
-# @ohos.data.dataSharePredicates (Data Share Predicates) (System API)
+# @ohos.data.dataSharePredicates (DataShare Predicates) (System API)
 
 You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare-sys.md#update), [deleting](js-apis-data-dataShare-sys.md#delete), and [querying](js-apis-data-dataShare-sys.md#query) data when **DataShare** is used to manage data.
 

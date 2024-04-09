@@ -376,6 +376,44 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 });
 ```
 
+## media.createAVScreenCaptureRecorder<sup>12+</sup>
+
+createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
+
+创建屏幕录制实例，使用Promise方式异步获取返回值。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**返回值：**
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<[AVScreenCaptureRecorder](#avscreencapturerecorder12)> | Promise对象。异步返回AVScreenCaptureRecorder实例，失败时返回null。可用于进行屏幕录制。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
+media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
+  if (captureRecorder != null) {
+    avScreenCaptureRecorder = captureRecorder;
+    console.info('createAVScreenCaptureRecorder success');
+  } else {
+    console.error('createAVScreenCaptureRecorder fail');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`createAVScreenCaptureRecorder catchCallback, error message:${error.message}`);
+});
+```
+
 ## AVErrorCode<sup>9+</sup>
 
 [媒体错误码](errorcode-media.md)类型枚举
@@ -443,6 +481,7 @@ Codec MIME类型枚举。
 | MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
+| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。          |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -3119,7 +3158,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 | Promise\<[AVRecorderConfig](#avrecorderconfig9)> | 异步获得实时配置参数的回调方法。 |
 
 **错误码：**
-  
+
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
 
 | 错误码ID | 错误信息                                  |
@@ -3362,6 +3401,7 @@ avRecorder.off('audioCapturerChange');
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
+| enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -6004,3 +6044,324 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。 |
+
+## AVScreenCaptureRecordPreset<sup>12+</sup>
+
+进行屏幕录制时的编码、封装格式参数的枚举。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称                              | 值   | 说明                                         |
+| --------------------------------- | ---- | -------------------------------------------- |
+| SCREEN_RECORD_PRESET_H264_AAC_MP4 | 0    | 使用视频H264编码，音频AAC编码，MP4封装格式。 |
+| SCREEN_RECORD_PRESET_H265_AAC_MP4 | 1    | 使用视频H265编码，音频AAC编码，MP4封装格式。 |
+
+## AVScreenCaptureStateCode<sup>12+</sup>
+
+屏幕录制的状态回调。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称                                     | 值   | 说明                     |
+| ---------------------------------------- | ---- | ------------------------ |
+| SCREENCAPTURE_STATE_STARTED              | 0    | 录屏已开始。             |
+| SCREENCAPTURE_STATE_CANCELED             | 1    | 录屏被取消。             |
+| SCREENCAPTURE_STATE_STOPPED_BY_USER      | 2    | 录屏被用户手动停止。     |
+| SCREENCAPTURE_STATE_INTERRUPTED_BY_OTHER | 3    | 录屏被其他录屏打断。     |
+| SCREENCAPTURE_STATE_STOPPED_BY_CALL      | 4    | 录屏被来电打断。         |
+| SCREENCAPTURE_STATE_MIC_UNAVAILABLE      | 5    | 录屏无法使用麦克风收音。 |
+| SCREENCAPTURE_STATE_MIC_MUTED_BY_USER    | 6    | 麦克风被用户关闭。       |
+| SCREENCAPTURE_STATE_MIC_UNMUTED_BY_USER  | 7    | 麦克风被用户打开。       |
+| SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE  | 8    | 录屏进入隐私页面。       |
+| SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | 录屏退出隐私页面。       |
+
+## AVScreenCaptureRecordConfig<sup>12+</sup>
+
+表示录屏参数配置。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称              | 类型                                                         | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| fd                | number                                                       | 是   | 录制输出的文件fd。                                           |
+| frameWidth        | number                                                       | 否   | 录屏的视频宽度，默认屏幕宽度，根据不同屏幕默认值不同，单位px。 |
+| frameHeight       | number                                                       | 否   | 录屏的视频高度，默认屏幕高度，根据不同屏幕默认值不同，单位px。 |
+| videoBitrate      | number                                                       | 否   | 录屏的视频比特率，默认10000000。                             |
+| audioSampleRate   | number                                                       | 否   | 录屏的音频采样率，内录的系统音和外录的麦克风都是用此采样率，默认48000，仅支持设置48000或16000。 |
+| audioChannelCount | number                                                       | 否   | 录屏的音频通道数，内录的系统音和外录的麦克风都是用此通道数，默认2声道，仅支持设置1或2声道。 |
+| audioBitrate      | number                                                       | 否   | 录屏的音频比特率，内录的系统音和外录的麦克风都是用此比特率，默认96000。 |
+| preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
+
+## AVScreenCaptureRecorder<sup>12+</sup>
+
+屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过createAVScreenCaptureRecorder()创建一个AVScreenCaptureRecorder实例。
+
+### init<sup>12+</sup>
+
+init(config: AVScreenCaptureRecordConfig): Promise\<void>
+
+异步方式进行录屏初始化，设置录屏参数。通过Promise获取返回值。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| config | [AVScreenCaptureRecordConfig](#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。 |
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Promise\<void> | 异步录屏初始化方法的Promise返回值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400103  | IO error. Return by promise.                   |
+| 5400105  | Service died. Return by promise.               |
+
+**示例：**
+
+```ts
+let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
+    fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数
+    frameWidth: 640,
+    frameHeight: 480
+    // 补充其他参数
+}
+
+avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
+    console.info('avScreenCaptureRecorder init success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
+})
+```
+
+### startRecording<sup>12+</sup>
+
+startRecording(): Promise\<void>
+
+异步方式开始录屏。通过Promise获取返回值。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**返回值：**
+
+| 类型           | 说明                             |
+| -------------- | -------------------------------- |
+| Promise\<void> | 异步开始录屏方法的Promise返回值. |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.startRecording().then(() => {
+    console.info('avScreenCaptureRecorder start success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
+})
+```
+
+### stopRecording+</sup>
+
+stopRecording(): Promise\<void>
+
+异步方式结束录屏。通过Promise获取返回值。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | 异步结束录屏方法的Promise返回值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.stopRecording().then(() => {
+    console.info('avScreenCaptureRecorder stop success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
+})
+```
+
+### setMicEnabled<sup>12+</sup>
+
+setMicEnabled(enable: boolean): Promise\<void>
+
+异步方式设置麦克风开关。通过Promise获取返回值。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                      |
+| ------ | ------- | ---- | --------------------------------------------------------- |
+| enable | boolean | 是   | 麦克风开关控制，true代表麦克风打开，false代表麦克风关闭。 |
+
+**返回值：**
+
+| 类型           | 说明                                    |
+| -------------- | --------------------------------------- |
+| Promise\<void> | 异步设置麦克风开关方法的Promise返回值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.setMicEnabled(true).then(() => {
+    console.info('avScreenCaptureRecorder setMicEnabled success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
+})
+```
+
+### release+</sup>
+
+release(): Promise\<void>
+
+异步方式释放录屏。通过Promise获取返回值。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | 异步释放录屏方法的Promise返回值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.release().then(() => {
+    console.info('avScreenCaptureRecorder release success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
+})
+```
+
+### on('stateChange'）<sup>12+</sup>
+
+on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
+
+订阅录屏状态切换的事件，当状态发生的时候，会通过订阅的回调通知用户。用户只能订阅一个状态切换的回调方法，重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
+| callback | function | 是   | 状态切换事件回调方法，AVScreenCaptureStateCode表示切换到的状态。 |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.on('stateChange', (state: media.AVScreenCaptureStateCode) => {
+    console.info('avScreenCaptureRecorder stateChange to ' + state);
+})
+```
+
+### on('error'）<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅AVScreenCaptureRecorder的错误事件，用户可以根据应用自身逻辑对错误事件进行处理。用户只能订阅一个错误事件的回调方法，重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                    |
+| -------- | ------------- | ---- | --------------------------------------- |
+| type     | string        | 是   | 错误事件回调类型，支持的事件：'error'。 |
+| callback | ErrorCallback | 是   | 录屏错误事件回调方法。                  |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.on('error', (err: BusinessError) => {
+    console.error('avScreenCaptureRecorder error:' + err.message);
+})
+```
+
+### off('stateChange'）<sup>12+</sup>
+
+ off(type: 'stateChange', callback?: Callback\<AVScreenCaptureStateCode>): void
+
+取消订阅状态切换回调事件。用户可以指定填入状态切换的回调方法来取消订阅。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
+| callback | function | 否   | 状态切换事件回调方法，AVScreenCaptureStateCode表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.off('stateChange');
+```
+
+### off('error'）<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅错误回调事件。用户可以指定填入错误回调方法来取消订阅。
+
+**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                       |
+| -------- | -------- | ---- | ---------------------------------------------------------- |
+| type     | string   | 是   | 状态切换事件回调类型，支持的事件：'error'。                |
+| callback | function | 否   | 录屏错误事件回调方法，不填此参数则会取消最后一次订阅事件。 |
+
+**示例：**
+
+```ts
+avScreenCaptureRecorder.off('error');
+```

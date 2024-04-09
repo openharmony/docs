@@ -125,6 +125,8 @@ Checks whether NFC is open.
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Return value**
 
 | **Type**| **Description**                           |
@@ -138,6 +140,8 @@ getNfcState(): [NfcState](#nfcstate)
 Obtains the NFC state.
 
 **System capability**: SystemCapability.Communication.NFC.Core
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -153,6 +157,8 @@ Subscribes to NFC state changes. A callback will be invoked to return the NFC st
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
   
 | **Name**| **Type**| **Mandatory**| **Description**|
@@ -167,6 +173,8 @@ off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 Unsubscribes from the NFC state changes. The subscriber will not receive NFC state change notifications.
 
 **System capability**: SystemCapability.Communication.NFC.Core
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 

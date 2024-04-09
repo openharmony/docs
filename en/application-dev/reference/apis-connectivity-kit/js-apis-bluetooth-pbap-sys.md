@@ -14,6 +14,9 @@ The **pbap** module provides APIs for accessing the phone book of a device using
 import pbap from '@ohos.bluetooth.pbap';
 ```
 
+## PbapServerProfile
+
+Provides APIs for accessing the phone book of a device. Before using any API of **PbapServerProfile**, you need to create an instance of this class by using **createPbapServerProfile()**.
 
 ### disconnect
 
