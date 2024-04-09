@@ -67,7 +67,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | rowsGap | [Length](ts-types.md#length) | 设置行与行的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 设置滚动条的颜色。 |
-| scrollBarWidth | string \| number    | 设置滚动条的宽度。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。<br/>默认值：4<br/>单位：vp |
+| scrollBarWidth | string \| number    | 设置滚动条的宽度，不支持百分比设置。<br/>默认值：4<br/>单位：vp <br/>**说明：** <br/>宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Grid组件主轴方向的高度，则滚动条的宽度会变为默认值。|
 | cachedCount | number                                   | 设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>**说明：** <br>设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。<br/>[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的GridItem会被释放。<br/>设置为小于0的值时，按默认值显示。 |
 | editMode <sup>8+</sup>                   | boolean | 设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。<br/>默认值：false |
 | layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8枚举说明) | 设置布局的主轴方向。<br/>默认值：GridDirection.Row |
