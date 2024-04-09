@@ -361,7 +361,11 @@ onResultReport : AsyncCallback&lt;string&gt;
   import { BusinessError } from '@ohos.base';
 
   onResultReport: (err: BusinessError, result: string) => {
-    console.info('onResultReport success, result:' + result);
+    if (err) {
+      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('onResultReport success, result: ' + result);
   }
   ```
 

@@ -86,7 +86,8 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string;
 
 Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作。
-与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx，onRestoreEx返回值不能为空串，若返回值为空串，则调用onRestore。
+onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
+onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
