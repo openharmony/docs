@@ -67,18 +67,18 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为bool。该键是可选的。            |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
 | [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频表面尺度类型, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的。 |
-| OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY          | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
-| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE                    | 传递图片组大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
-| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE          | 描述图片组内参考模式的键，值类型为int32_t，请参见OH_TemporalGopReferenceMode，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
-| OH_MD_KEY_VIDEO_CROP_TOP                                     | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。该键是可选的。 |
-| OH_MD_KEY_VIDEO_CROP_BOTTOM                                  | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的。 |
-| OH_MD_KEY_VIDEO_CROP_LEFT                                    | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的。 |
-| OH_MD_KEY_VIDEO_CROP_RIGHT                                   | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的。 |
-| OH_MD_KEY_VIDEO_STRIDE                                       | 描述视频帧宽跨距的键，值类型为int32_t。该键是可选的。        |
-| OH_MD_KEY_VIDEO_SLICE_HEIGHT                                 | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
-| OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY                           | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
-| OH_MD_KEY_VIDEO_ENCODER_QP_MAX                               | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。该键是可选的。 |
-| OH_MD_KEY_VIDEO_ENCODER_QP_MIN                               | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | 传递图片组大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1)，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。该键是可选的。 |
+| [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的。 |
+| [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的。 |
+| [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的。 |
+| [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride)       | 描述视频帧宽跨距的键，值类型为int32_t。该键是可选的。        |
+| [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。该键是可选的。 |
+| [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的。 |
 
 音频专有的键值对：
 
@@ -133,9 +133,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
-| struct&nbsp;&nbsp;[OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
-| struct&nbsp;&nbsp;[OH_AVDataSource](_o_h___a_v_data_source.md) | 用户自定义数据源。  | 
+| struct  [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| struct  [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。 | 
+| struct  [OH_AVDataSource](_o_h___a_v_data_source.md) | 用户自定义数据源。  | 
 
 ### 类型定义
 
@@ -164,6 +164,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef enum [OH_ColorPrimary](#oh_colorprimary-1) [OH_ColorPrimary](#oh_colorprimary) | 色域。 | 
 | typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic-1) [OH_TransferCharacteristic](#oh_transfercharacteristic) | 转移特性。 | 
 | typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient-1) [OH_MatrixCoefficient](#oh_matrixcoefficient) | 矩阵系数。 | 
+| typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | AVC级别。  | 
+| typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | HEVC级别。  | 
+| typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | 时域图片组参考模式。  | 
 
 
 ### 枚举
@@ -183,6 +186,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_ColorPrimary](#oh_colorprimary-1) {<br/>COLOR_PRIMARY_BT709 = 1,<br/>COLOR_PRIMARY_UNSPECIFIED = 2,<br/>COLOR_PRIMARY_BT470_M = 4,<br/>COLOR_PRIMARY_BT601_625 = 5,<br/>COLOR_PRIMARY_BT601_525 = 6,<br/>COLOR_PRIMARY_SMPTE_ST240 = 7,<br/>COLOR_PRIMARY_GENERIC_FILM = 8,<br/>COLOR_PRIMARY_BT2020 = 9,<br/>COLOR_PRIMARY_SMPTE_ST428 = 10,<br/>COLOR_PRIMARY_P3DCI = 11,<br/>COLOR_PRIMARY_P3D65 = 12<br/>} | 色域。 | 
 | [OH_TransferCharacteristic](#oh_transfercharacteristic-1) {<br/>TRANSFER_CHARACTERISTIC_BT709 = 1,<br/>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br/>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br/>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br/>TRANSFER_CHARACTERISTIC_BT601 = 6,<br/>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br/>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br/>TRANSFER_CHARACTERISTIC_LOG = 9,<br/>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br/>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br/>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br/>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br/>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br/>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br/>TRANSFER_CHARACTERISTIC_PQ = 16,<br/>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br/>TRANSFER_CHARACTERISTIC_HLG = 18<br/>} | 转移特性。 | 
 | [OH_MatrixCoefficient](#oh_matrixcoefficient-1) {<br/>MATRIX_COEFFICIENT_IDENTITY = 0,<br/>MATRIX_COEFFICIENT_BT709 = 1,<br/>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br/>MATRIX_COEFFICIENT_FCC = 4,<br/>MATRIX_COEFFICIENT_BT601_625 = 5,<br/>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br/>MATRIX_COEFFICIENT_YCGCO = 8,<br/>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br/>MATRIX_COEFFICIENT_BT2020_CL = 10,<br/>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br/>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br/>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br/>MATRIX_COEFFICIENT_ICTCP = 14<br/>} | 矩阵系数。 | 
+| [OH_AVCLevel](#oh_avclevel-1) {<br/>AVC_LEVEL_1 = 0, <br/>AVC_LEVEL_1b = 1, <br/>AVC_LEVEL_11 = 2, <br/>AVC_LEVEL_12 = 3,<br/>AVC_LEVEL_13 = 4, <br/>AVC_LEVEL_2 = 5, <br/>AVC_LEVEL_21 = 6, <br/>AVC_LEVEL_22 = 7,<br/>AVC_LEVEL_3 = 8, <br/>AVC_LEVEL_31 = 9, <br/>AVC_LEVEL_32 = 10, <br/>AVC_LEVEL_4 = 11,<br/>AVC_LEVEL_41 = 12, <br/>AVC_LEVEL_42 = 13, <br/>AVC_LEVEL_5 = 14, <br/>AVC_LEVEL_51 = 15<br/>} | AVC级别。  | 
+| [OH_HEVCLevel](#oh_hevclevel-1) {<br/>HEVC_LEVEL_1 = 0, <br/>HEVC_LEVEL_2 = 1, <br/>HEVC_LEVEL_21 = 2, <br/>HEVC_LEVEL_3 = 3,<br/>HEVC_LEVEL_31 = 4, <br/>HEVC_LEVEL_4 = 5, <br/>HEVC_LEVEL_41 = 6, <br/>HEVC_LEVEL_5 = 7,<br/>HEVC_LEVEL_51 = 8, <br/>HEVC_LEVEL_52 = 9, <br/>HEVC_LEVEL_6 = 10, <br/>HEVC_LEVEL_61 = 11,<br/>HEVC_LEVEL_62 = 12<br/>} | HEVC级别。  | 
+| [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br/>ADJACENT_REFERENCE = 0, <br/>JUMP_REFERENCE = 1 <br/>} | 时域图片组参考模式。  | 
 
 
 ### 变量
@@ -255,6 +261,18 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 是否是hdr vivid的键，值类型为bool。 |
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键. 值类型为int32_t。 |
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | 传递图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode)，只在使能分层编码时生效。  | 
+| const char \* [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top) | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。 | 
+| const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。本。  | 
+| const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键, 值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键, 值类型为int32_t。  | 
 
 
 ## 类型定义说明
@@ -273,6 +291,19 @@ AAC配置。
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
+
+
+### OH_AVCLevel
+
+```
+typedef enum OH_AVCLevel OH_AVCLevel
+```
+**描述**
+AVC级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
 
 
 ### OH_AVCodec
@@ -603,6 +634,19 @@ typedef enum OH_ColorPrimary OH_ColorPrimary
 **起始版本：** 10
 
 
+### OH_HEVCLevel
+
+```
+typedef enum OH_HEVCLevel OH_HEVCLevel
+```
+**描述**
+HEVC级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
 ### OH_HEVCProfile
 
 ```
@@ -661,6 +705,19 @@ typedef enum OH_ScalingMode OH_ScalingMode
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 10
+
+
+### OH_TemporalGopReferenceMode
+
+```
+typedef enum OH_TemporalGopReferenceMode OH_TemporalGopReferenceMode
+```
+**描述**
+时域图片组参考模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
 
 
 ### OH_TransferCharacteristic
@@ -845,6 +902,38 @@ AAC配置。
 | AAC_PROFILE_LC | AAV编码配置为Low Complexity级别。 | 
 
 
+### OH_AVCLevel
+
+```
+enum OH_AVCLevel
+```
+**描述**
+AVC级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AVC_LEVEL_1  | 级别1   | 
+| AVC_LEVEL_1b  | 级别1b   | 
+| AVC_LEVEL_11  | 级别1.1   | 
+| AVC_LEVEL_12  | 级别1.2   | 
+| AVC_LEVEL_13  | 级别1.3   | 
+| AVC_LEVEL_2  | 级别2   | 
+| AVC_LEVEL_21  | 级别2.1   | 
+| AVC_LEVEL_22  | 级别2.2   | 
+| AVC_LEVEL_3  | 级别3   | 
+| AVC_LEVEL_31  | 级别3.1   | 
+| AVC_LEVEL_32  | 级别3.2   | 
+| AVC_LEVEL_4  | 级别4   | 
+| AVC_LEVEL_41  | 级别4.1   | 
+| AVC_LEVEL_42  | 级别4.2   | 
+| AVC_LEVEL_5  | 级别5   | 
+| AVC_LEVEL_51  | 级别5.1   | 
+
+
 ### OH_AVCProfile
 
 ```
@@ -965,6 +1054,34 @@ enum OH_ColorPrimary
 | COLOR_PRIMARY_P3DCI | P3DCI色域。 | 
 | COLOR_PRIMARY_P3D65 | P3D65色域。 | 
 
+### OH_HEVCLevel
+
+```
+enum OH_HEVCLevel
+```
+**描述**
+HEVC级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HEVC_LEVEL_1  | 级别1   | 
+| HEVC_LEVEL_2  | 级别2   | 
+| HEVC_LEVEL_21  | 级别2.1   | 
+| HEVC_LEVEL_3  | 级别3   | 
+| HEVC_LEVEL_31  | 级别3.1   | 
+| HEVC_LEVEL_4  | 级别4   | 
+| HEVC_LEVEL_41  | 级别4.1   | 
+| HEVC_LEVEL_5  | 级别5   | 
+| HEVC_LEVEL_51  | 级别5.1   | 
+| HEVC_LEVEL_52  | 级别5.2   | 
+| HEVC_LEVEL_6  | 级别6   | 
+| HEVC_LEVEL_61  | 级别6.1   | 
+| HEVC_LEVEL_62  | 级别6.2   | 
+
 
 ### OH_HEVCProfile
 
@@ -1059,6 +1176,24 @@ enum OH_ScalingMode
 | -------- | -------- |
 | SCALING_MODE_SCALE_TO_WINDOW | 根据窗口尺寸自适应调整图像大小。 | 
 | SCALING_MODE_SCALE_CROP | 根据窗口尺寸裁剪图像大小。 | 
+
+
+### OH_TemporalGopReferenceMode
+
+```
+enum OH_TemporalGopReferenceMode
+```
+**描述**
+时域图片组参考模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ADJACENT_REFERENCE  | 参考最近的短期参考帧。   | 
+| JUMP_REFERENCE  | 参考最近的长期参考帧。   | 
 
 
 ### OH_TransferCharacteristic
@@ -1741,6 +1876,8 @@ const char* OH_MD_KEY_I_FRAME_INTERVAL
 
 关键帧间隔的键，值类型为int32_t，单位为毫秒。
 
+负值表示只有第一帧是关键帧，零表示所有帧都是关键帧。
+
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
@@ -2015,6 +2152,74 @@ const char* OH_MD_KEY_TRANSFER_CHARACTERISTICS
 
 **起始版本：** 10
 
+### OH_MD_KEY_VIDEO_CROP_BOTTOM
+
+```
+const char* OH_MD_KEY_VIDEO_CROP_BOTTOM
+```
+**描述**
+描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。 包含裁剪框底部的行，行索引从0开始。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_CROP_LEFT
+
+```
+const char* OH_MD_KEY_VIDEO_CROP_LEFT
+```
+**描述**
+描述裁剪矩形左坐标(x)值的键，值类型为int32_t。包含裁剪框最左边的列，列索引从0开始。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_CROP_RIGHT
+
+```
+const char* OH_MD_KEY_VIDEO_CROP_RIGHT
+```
+**描述**
+描述裁剪矩形右坐标(x)值的键，值类型为int32_t。包含裁剪框最右边的列，列索引从0开始。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_CROP_TOP
+
+```
+const char* OH_MD_KEY_VIDEO_CROP_TOP
+```
+**描述**
+描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。 包含裁剪框顶部的行，行索引从0开始。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
+
+```
+const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
+```
+**描述**
+使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。
+
+如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
+
+该键是可选的且只用于视频编码，在configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
 
 ### OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 
@@ -2030,6 +2235,70 @@ const char* OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 
 **起始版本：** 9
 
+### OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
+```
+**描述**
+使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。 使用前可以通过**OH_AVCapability_IsFeatureSupported**接口查询当前视频编码器是否支持分层编码。 该键是可选的且只用于视频编码，在configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENCODER_QP_MAX
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_QP_MAX
+```
+**描述**
+描述视频编码器允许的最大量化参数的键, 值类型为int32_t。 在configure/setparameter阶段使用，或随帧立即生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENCODER_QP_MIN
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_QP_MIN
+```
+**描述**
+描述视频编码器允许的最小量化参数的键, 值类型为int32_t。 在configure/setparameter阶段使用，或随帧立即生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE
+```
+**描述**
+描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode)，只在使能分层编码时生效。 该键是可选的且只用于视频编码，在configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE
+```
+**描述**
+传递图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
 
 ### OH_MD_KEY_VIDEO_IS_HDR_VIVID
 
@@ -2044,6 +2313,39 @@ const char* OH_MD_KEY_VIDEO_IS_HDR_VIVID
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 11
+
+### OH_MD_KEY_VIDEO_SLICE_HEIGHT
+
+```
+const char* OH_MD_KEY_VIDEO_SLICE_HEIGHT
+```
+**描述**
+描述视频帧高跨距的键，值类型为int32_t。
+
+高跨距是指从Y平面顶部到U平面顶部必须偏移的行数。本质上，U平面的偏移量是sliceHeight \* stride。 
+
+U/V平面的高度可以根据颜色格式计算，尽管它通常是未定义的，并且取决于设备和版本。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_STRIDE
+
+```
+const char* OH_MD_KEY_VIDEO_STRIDE
+```
+**描述**
+描述视频帧宽跨距的键，值类型为int32_t。
+
+宽跨距是像素的索引与正下方像素的索引之间的差。 
+
+对于YUV420格式，宽跨距对应于Y平面，U和V平面的跨距可以根据颜色格式计算，但通常未定义，并且取决于设备和版本。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
 
 
 ### OH_MD_KEY_WIDTH
