@@ -4,9 +4,9 @@ AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 本模块接口仅可在Stage模型下使用。
+> - 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -142,6 +142,46 @@ class MyAbility extends UIAbility {
             console.log('The memory of device is critical, please release some memory.');
         }
     }
+}
+```
+
+## AbilityConstant.WindowMode<sup>12+</sup>
+
+启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)使用，指定启动Ability的窗口模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                        | 值 | 说明                 |
+| ---                         | --- | ---                  |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 支持应用内拉起Ability时设置为分屏，左侧分屏。   |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | 支持应用内拉起Ability时设置为分屏，右侧分屏。   |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let option: StartOptions = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_SPLIT_PRIMARY
+};
+
+// 确保从上下文获取到context
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.startAbility(want, option).then(()=>{
+      console.log('Succeed to start ability.');
+    }).catch((error: BusinessError)=>{
+      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+    });
+  }
 }
 ```
 

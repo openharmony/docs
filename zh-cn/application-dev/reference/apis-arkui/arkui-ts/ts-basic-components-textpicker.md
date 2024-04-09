@@ -157,6 +157,20 @@ divider(value: DividerOptions | null)
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
 | divider  | [DividerOptions](#divideroptions12类型说明) \| null | 否   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
 
+### gradientHeight<sup>12+</sup>
+
+gradientHeight(value: Dimension)
+
+设置渐隐效果高度，不设置该属性则显示默认渐隐效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比）。设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp|
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -333,3 +347,27 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker3.gif)
+```ts
+// xxx.ets 该示例实现了通过gradientHeight()自定义TextPicker的渐隐效果高度
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
+        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
+        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
+        .gradientHeight(100)
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textpicker](figures/textpicker4.gif)

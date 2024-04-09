@@ -1,12 +1,17 @@
-# Sendable开发指南
+# Sendable开发指导
 
 ## 基础概念
 
 ### Sendable协议
 
-Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合Sendable协议的数据（以下简称[Sendable数据](#sendable支持的数据类型)）可以在ArkTS并发实例间传递。默认情况下，Sendable数据在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递的行为是引用传递。同时，ArkTS支持Sendable数据在ArkTS并发实例间的拷贝传递。当多个并发实例尝试同时更新可变Sendable数据时，会发生数据竞争。ArkTS提供了异步锁的机制来避免不同并发实例间的数据竞争。
+Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合Sendable协议的数据（以下简称[Sendable数据](#sendable支持的数据类型)）可以在ArkTS并发实例间传递。
+
+默认情况下，Sendable数据在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递的行为是引用传递。同时，ArkTS支持Sendable数据在ArkTS并发实例间的拷贝传递。
+
+当多个并发实例尝试同时更新可变Sendable数据时，会发生数据竞争。ArkTS提供了异步锁的机制来避免不同并发实例间的数据竞争。
 
 **示例：**
+
 ```ts
 import { taskpool, worker } from '@kit.ArkTS';
 

@@ -819,7 +819,7 @@ struct WidthExample {
             ctx.filter = 'saturate(30%)';
             ctx.drawImage(img, 0, 100, 100, 100);
 
-            ctx.filter = 'hue-rotate(90degree)';
+            ctx.filter = 'hue-rotate(90deg)';
             ctx.drawImage(img, 100, 100, 100, 100);
 
             ctx.filter = 'invert(100%)';
@@ -1917,6 +1917,46 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
 
 
+### reset<sup>12+</sup>
+
+reset(): void
+
+将CanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Reset {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.fillStyle = '#0000ff'
+            this.context.fillRect(20, 20, 150, 100)
+            this.context.reset()
+            this.context.fillRect(20, 150, 150, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
+
+
 ### resetTransform
 
 resetTransform(): void
@@ -2092,8 +2132,8 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 | 参数   | 类型     | 必填   | 默认值  | 描述                   |
 | ---- | ------ | ---- | ---- | -------------------- |
 | a    | number | 是    | 0    | scaleX: 指定水平缩放值。     |
-| b    | number | 是    | 0    | skewX: 指定垂直倾斜值。      |
-| c    | number | 是    | 0    | skewY: 指定水平倾斜值。      |
+| b    | number | 是    | 0    | skewY: 指定垂直倾斜值。      |
+| c    | number | 是    | 0    | skewX: 指定水平倾斜值。      |
 | d    | number | 是    | 0    | scaleY: 指定垂直缩放值。     |
 | e    | number | 是    | 0    | translateX: 指定水平移动值，单位：vp。 |
 | f    | number | 是    | 0    | translateY: 指定垂直移动值，单位：vp。 |
@@ -3059,6 +3099,8 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
+@Entry
+@Component
 struct ImageAnalyzerExample {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)

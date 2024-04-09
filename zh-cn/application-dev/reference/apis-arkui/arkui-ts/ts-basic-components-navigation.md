@@ -415,7 +415,7 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 
 pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
-将info指定的NavDestination页面信息入栈，支持返回接口调用结果。
+将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
 **参数：**
 
@@ -445,7 +445,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&lt;void&gt;
 
-将name指定的NavDestination页面信息入栈，传递的数据为param，支持返回接口调用结果。
+将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
 **参数：**
 
@@ -476,7 +476,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
-将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，支持返回接口调用结果。
+将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
 
 **参数：**
 
@@ -1315,6 +1315,8 @@ export function pageTwoTmp(info: Pages) {
 
 ### 示例3
 
+该示例主要演示设置每个NavDestination子页面的自定义转场动画。
+
 ```ts
 // Index.ets
 import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
@@ -1361,8 +1363,10 @@ struct NavigationExample {
           console.log(`current transition result is ${isSuccess}`);
         },
         timeout: 700,
+        // 转场开始时系统调用该方法，并传入转场上下文代理对象
         transition: (transitionProxy: NavigationTransitionProxy)=>{
           console.log("trigger transition callback");
+          // 从封装类CustomTransition中根据子页面的序列获取对应的转场动画回调
           let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.index);
           let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.index);
           if (fromParam.start != undefined) {
@@ -1493,6 +1497,7 @@ export struct PageTwoTemp {
 ```
 ```ts
 // CustomNavigationUtils.ts
+// 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -1511,6 +1516,11 @@ export class CustomTransition {
     return CustomTransition.delegate;
   }
 
+  // 注册某个页面的动画回调
+  // startCallback：用来设置动画开始时页面的状态
+  // endCallback：用来设置动画结束时页面的状态
+  // onFinish：用来执行动画结束后页面的其他操作
+  // timeout：转场结束的超时时间
   registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
                    endCallback:(operation: boolean, isExit: boolean) => void,
                    onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {

@@ -227,6 +227,10 @@
                     } else {
                       console.log("onNativeEmbedGestureEvent fail " + componentId)
                     }
+                    if (event.result) {
+                      // 通知web组件手势事情消费结果
+                      event.result.setGestureEventResult(ret);
+                    }
                   }
                 })
               })

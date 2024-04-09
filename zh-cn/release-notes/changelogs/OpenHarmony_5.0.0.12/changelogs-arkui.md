@@ -96,8 +96,10 @@ struct Child {
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
+  @Require @BuilderParam buildTest: () => void;
   @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
   @Require @Prop initMessage: string = 'Hello';
+  @Require @Prop message: string;
 
   build() {
     Column() {
@@ -184,7 +186,7 @@ struct ComponentsChild {
 }
 ```
 
-2.当成员变量被public访问限定符和@StorageLink/@StorageProp/@LocalStorageLink/@LocalStorageLink/@Consume装饰器同时修饰时，因为@StorageLink/@StorageProp/@LocalStorageLink/@LocalStorageLink/@Consume装饰器只支持被私有成员变量改变，所以ArkTS会进行校验并产生告警日志。
+2.当成员变量被public访问限定符和@StorageLink/@StorageProp/@LocalStorageLink/@Consume装饰器同时修饰时，因为@StorageLink/@StorageProp/@LocalStorageLink/@Consume装饰器只支持被私有成员变量改变，所以ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry

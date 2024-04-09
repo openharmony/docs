@@ -62,6 +62,7 @@ Foreground:Yes  <- 崩溃时刻应用是否在前台
 Timestamp:2017-08-05 18:23:53.000 <- 故障发生时间戳
 Pid:1369  <- 进程号
 Uid:0  <- 用户ID
+Process life time:29s   <- 进程存活时间
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@00000000 <- 故障原因
 Fault thread Info:
 Tid:1369 Name:crasher <- 故障线程号,线程名
@@ -168,6 +169,17 @@ f7871000-f7873000 rw-p 00115000 /system/lib/ld-musl-arm.so.1
 f7873000-f787f000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
 ff993000-ff9b4000 rw-p 00000000 [stack]
 ffff0000-ffff1000 r-xp 00000000 [vectors]
+
+OpenFiles:   <-  故障时进程打开文件Fd信息
+0->/dev/null native object of unknown type 0
+1->/dev/null native object of unknown type 0
+2->/dev/null native object of unknown type 0
+3->socket:[20842] native object of unknown type 0
+...
+46->/dev/null FILE* 4155732440
+47->/dev/mali0 native object of unknown type 0
+48->/dev/null FILE* 4155732136
+49->anon_inode:[eventfd] native object of unknown type 0
 ```
 
 
@@ -179,6 +191,7 @@ Timestamp:2017-08-06 00:54:30.000   <- 故障发生时间
 Pid:1369   <- 进程号
 Uid:0  <- 用户ID
 Process name:crasher   <- 进程名
+Process life time:29s   <- 进程存活时间
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@00000000   <- 异常信息
 Fault thread Info:
 Tid:1369, Name:crasher  <- 异常线程号与线程名
@@ -283,6 +296,17 @@ f7871000-f7873000 rw-p 00115000 /system/lib/ld-musl-arm.so.1
 f7873000-f787f000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
 ff993000-ff9b4000 rw-p 00000000 [stack]
 ffff0000-ffff1000 r-xp 00000000 [vectors]
+
+OpenFiles:   <-  故障时进程打开文件Fd信息
+0->/dev/null native object of unknown type 0
+1->/dev/null native object of unknown type 0
+2->/dev/null native object of unknown type 0
+3->socket:[20842] native object of unknown type 0
+...
+46->/dev/null FILE* 4155732440
+47->/dev/mali0 native object of unknown type 0
+48->/dev/null FILE* 4155732136
+49->anon_inode:[eventfd] native object of unknown type 0
 ```
 
 ### 通过日志定位问题

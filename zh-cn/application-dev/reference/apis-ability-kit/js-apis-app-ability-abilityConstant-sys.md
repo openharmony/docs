@@ -28,8 +28,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
 | WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。   |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。   |
 | WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
 
 **示例：**

@@ -153,6 +153,26 @@ getPromptAction(): PromptAction
 uiContext.getPromptAction();
 ```
 
+### getOverlayManager<sup>12+</sup>
+
+getOverlayManager(): OverlayManager
+
+获取OverlayManager对象。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                           | 说明                 |
+| ----------------------------- | ------------------- |
+| [OverlayManager](#overlaymanager12) | 返回OverlayManager实例对象。 |
+
+**示例：**
+
+```ts
+uiContext.getOverlayManager();
+```
+
 ### animateTo
 
 animateTo(value: AnimateParam, event: () => void): void
@@ -1569,6 +1589,328 @@ struct Index {
     }
   }
 }
+```
+
+### on('navDestinationSwitch')<sup>12+</sup>
+
+on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('navDestinationSwitch', callback);
+```
+
+### off('navDestinationSwitch')<sup>12+</sup>
+
+off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+取消监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('navDestinationSwitch', callback);
+```
+
+### on('navDestinationSwitch')<sup>12+</sup>
+
+on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+```
+
+### off('navDestinationSwitch')<sup>12+</sup>
+
+off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchObserverOptions, callback?: Callback\<observer.NavDestinationSwitchInfo\>): void
+
+取消监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
+| callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (info: observer.NavDestinationSwitchInfo) => {
+    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
+};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+```
+
+### on('willClick')<sup>12+</sup>
+
+on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('willClick', callback);
+```
+
+### off('willClick')<sup>12+</sup>
+
+off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('willClick', callback);
+```
+
+### on('didClick')<sup>12+</sup>
+
+on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('didClick', callback);
+```
+
+### off('didClick')<sup>12+</sup>
+
+off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('didClick', callback);
+```
+
+### on('willClick')<sup>12+</sup>
+
+on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('willClick', callback);
+```
+
+### off('willClick')<sup>12+</sup>
+
+off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('willClick', callback);
+```
+
+### on('didClick')<sup>12+</sup>
+
+on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('didClick', callback);
+```
+
+### off('didClick')<sup>12+</sup>
+
+off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('didClick', callback);
 ```
 
 ## MediaQuery
@@ -3683,6 +4025,248 @@ struct DragControllerPage {
 }
 ```
 
+## OverlayManager<sup>12+</sup>
+
+以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
+> **说明：**
+>
+> OverlayManager上节点的层级在Page页面层级之上，在Dialog、Popup、Menu、BindSheet、BindContentCover和Toast等之下。
+>
+> OverlayManager上节点安全区域内外的绘制方式与Page一致，键盘避让方式与Page一致。
+>
+> 与OverlayManager相关的属性推荐采用AppStorage来进行应用全局存储，以免切换页面后属性值发生变化从而导致业务错误。
+
+### addComponentContent<sup>12+</sup>
+
+addComponentContent(content: ComponentContent, index?: number): void
+
+在OverlayManager上新增指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中，按层级堆叠。|
+| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，若index的值越大，则ComponentContent的层级越高；当多个ComponentContent的index相同时，若ComponentContent添加的时间越晚，则层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。<br/>
+
+**示例：**
+
+```ts
+import { OverlayManager } from '@ohos.arkui.UIContext';
+import { ComponentContent } from '@ohos.arkui.node';
+import router from '@ohos.router';
+
+class Params {
+  text: string = ""
+  offset: Position
+  constructor(text: string, offset: Position) {
+    this.text = text
+    this.offset = offset
+  }
+}
+@Builder
+function builderText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }.offset(params.offset)
+}
+
+@Entry
+@Component
+struct OverlayExample {
+  @State message: string = 'ComponentContent';
+  private uiContext: UIContext = this.getUIContext()
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0
+  @StorageLink('arrayIndex') arrayIndex: number = 0
+  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+
+  build() {
+    Column() {
+      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+        ++this.componentContentIndex
+      })
+      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+        --this.componentContentIndex
+      })
+      Button("增加ComponentContent" + this.contentArray.length).onClick(()=>{
+        let componentContent = new ComponentContent(
+          this.uiContext, wrapBuilder<[Params]>(builderText),
+          new Params(this.message + (this.contentArray.length), this.componentOffset)
+        )
+        this.contentArray.push(componentContent)
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+      })
+      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
+        ++this.arrayIndex
+      })
+      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
+        --this.arrayIndex
+      })
+      Button("删除ComponentContent" + this.arrayIndex).onClick(()=>{
+        if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
+          this.overlayNode.removeComponentContent(componentContent.pop())
+        } else {
+          console.log("arrayIndex有误")
+        }
+      })
+      Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
+        if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+          let componentContent = this.contentArray[this.arrayIndex]
+          this.overlayNode.showComponentContent(componentContent)
+        } else {
+          console.log("arrayIndex有误")
+        }
+      })
+      Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
+        if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
+          let componentContent = this.contentArray[this.arrayIndex]
+          this.overlayNode.hideComponentContent(componentContent)
+        } else {
+          console.log("arrayIndex有误")
+        }
+      })
+      Button("显示所有ComponentContent").onClick(()=>{
+          this.overlayNode.showAllComponentContents()
+      })
+      Button("隐藏所有ComponentContent").onClick(()=>{
+        this.overlayNode.hideAllComponentContents()
+      })
+
+      Button("跳转页面").onClick(()=>{
+        router.pushUrl({
+          url: 'pages/Second'
+        })
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### removeComponentContent<sup>12+</sup>
+
+removeComponentContent(content: ComponentContent): void
+
+在overlay上删除指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上删除此content。 |
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### showComponentContent<sup>12+</sup>
+
+showComponentContent(content: ComponentContent): void
+
+在OverlayManager上显示指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上显示此content。|
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### hideComponentContent<sup>12+</sup>
+
+hideComponentContent(content: ComponentContent): void
+
+在OverlayManager上显示指定节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上隐藏此content。 |
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### showAllComponentContents<sup>12+</sup>
+
+showAllComponentContents(): void
+
+显示OverlayManager上所有的ComponentContent。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+### hideAllComponentContents<sup>12+</sup>
+
+hideAllComponentContents(): void
+
+隐藏OverlayManager上的所有ComponentContent。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[addComponentContent示例](#addcomponentcontent12)
+
+
+### setDragEventStrictReportingEnabled<sup>12+</sup>
+
+setDragEventStrictReportingEnabled(enable: boolean): void
+
+当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+|参数名|类型|必填|说明|
+| ------- | ------- | ------- | ------- |
+| enable | boolean | 是| 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。|
+
+**示例：**
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
+     });
+   });
+ }
+```
+
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
@@ -3901,7 +4485,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ## FocusController<sup>12+</sup>
 以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
 
-### clearFocus
+### clearFocus<sup>12+</sup>
 
 clearFocus(): void
 
