@@ -9,3 +9,4 @@
 - 分布式媒体会话
   - [分布式媒体会话概述](distributed-avsession-overview.md)
   - [使用分布式媒体会话](using-distributed-avsession.md)
+  - [通话音频设备切换](using-switch-call-devices.md)
