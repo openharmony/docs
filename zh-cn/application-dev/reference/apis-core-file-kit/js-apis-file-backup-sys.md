@@ -601,50 +601,11 @@ getBackupInfo(bundleToBackup: string): string;
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  let generalCallbacks: backup.GeneralCallbacks = {
-    onFileReady: (err: BusinessError, file: backup.File) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-    },
-    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
-      if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
-        return;
-      }
-      console.info('onBundleBegin success');
-    },
-    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
-      if (err) {
-        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
-        return;
-      }
-      console.info('onBundleEnd success');
-    },
-    onAllBundlesEnd: (err: BusinessError) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onAllBundlesEnd success');
-    },
-    onBackupServiceDied: () => {
-      console.info('service died');
-    },
-    onResultReport: (err: BusinessError, result: string) => {
-      console.info('onResultReport success, result:' + result);
-    }
-  };
   function getBackupInfo() {
     try {
-      let sessionBackup = new backup.SessionBackup(generalCallbacks);
       let backupApp = "com.example.hiworld"；
       let result = backup.getBackupInfo(backupApp);
       console.info('getBackupInfo success， result: ' + result);
-      sessionBackup.release();
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getBackupInfo failed with err: ' + JSON.stringify(err));
@@ -1036,6 +997,13 @@ constructor(callbacks: GeneralCallbacks);
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1116,6 +1084,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1222,6 +1197,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1316,6 +1298,13 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1409,6 +1398,13 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1512,6 +1508,13 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1609,6 +1612,13 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
       onBackupServiceDied: () => {
         console.info('service died');
       }
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
+      }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
     return sessionRestore;
@@ -1697,6 +1707,13 @@ release(): Promise&lt;void&gt;
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
