@@ -39,7 +39,7 @@ TextInput(value?: TextInputOptions)
 | placeholderFont                       | [Font](ts-types.md#font)                                     | 设置placeholder文本样式。                                    |
 | enterKeyType                          | [EnterKeyType](#enterkeytype枚举说明)                        | 设置输入法回车键类型。<br/>默认值：EnterKeyType.Done         |
 | caretColor                            | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入框光标颜色。<br/>默认值：'#007DFF'。                 |
-| maxLength                             | number                                                       | 设置文本的最大输入字符数。                                   |
+| maxLength                             | number                                                       | 设置文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 | inputFilter<sup>8+</sup>              | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。<br/>从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。 |
 | copyOption<sup>9+</sup>               | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。 |
 | showPasswordIcon<sup>9+</sup>         | boolean                                                      | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true  |
