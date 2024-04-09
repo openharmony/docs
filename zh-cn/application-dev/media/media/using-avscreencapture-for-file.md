@@ -43,9 +43,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
     创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
 
-    其中，录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
+    其中，录屏存文件时默认录制内录，麦克风可以动态开关，可以同时内外录制。
 
-    同时，录屏存文件无需设置回调函数。
+    同时，录屏存文件需要设置状态回调，感知录制状态。
 
     ```c++
     //录屏时获取麦克风或者内录，内录参数必填，如果都设置了，内录和麦克风的参数设置需要一致
@@ -98,19 +98,64 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-4. 调用StartScreenRecording()方法开始进行屏幕录制。
+4. 设置麦克风开关。
 
     ```c++
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    bool isMic = true;
+    OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-5. 调用StopScreenRecording()方法停止录制。
+5. 回调函数的设置，主要监听录屏过程中的错误事件的发生,音频流和视频流数据的产生事件。
 
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
+    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     ```
 
-6. 调用Release()方法销毁实例，释放资源。
+6. 调用StartScreenRecording()方法开始进行屏幕录制
+
+    ```c++
+    OH_AVScreenCapture_StartScreenRecording(capture);
+    ```
+
+    或调用StartScreenCaptureWithSurface方法以Surface模式进行屏幕录制。
+
+    ```c++
+    OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
+    ```
+
+7. 调用StopScreenRecording()方法停止录制。
+
+    ```c++
+    OH_AVScreenCapture_StopScreenRecording(capture);
+    ```
+
+8. 调用AcquireAudioBuffer()获取音频原始码流数据.
+
+    ```c++
+    OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
+    ```
+
+9. 调用AcquireVideoBuffer()获取视频原始码流数据。
+
+    ```c++
+    OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
+    ```
+
+10. 调用ReleaseAudioBuffer()方法释放音频buffer。
+
+    ```c++
+    OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
+    ```
+
+11. 调用ReleaseVideoBuffer()释放视频数据。
+
+    ```c++
+    OH_AVScreenCapture_ReleaseVideoBuffer(capture);
+    ```
+
+12. 调用Release()方法销毁实例，释放资源。
 
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -119,6 +164,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 ## 完整示例
 
 下面展示了使用AVScreenCapture屏幕录制存文件的完整示例代码。
+
+创建OH_AVBuffer，可参考[视频解码Buffer模式](../avcodec/video-decoding.md#buffer模式)。
+
+使用Surface模式录屏，可参考[视频编码Surface模式](../avcodec/video-encoding.md#surface模式)。
+
+> **说明：**
+> 编码格式当前阶段仅作预留，待后续版本实现。
 
 ```c++
 
@@ -130,14 +182,48 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include "string"
 #include "unistd.h"
 
+void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
+    (void)capture;
+    (void)errorCode;
+    (void)userData;
+}
+
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    (void)capture;
+    
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // 处理状态变更
+        //可选 配置录屏旋转
+        int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+    }
+
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // 处理状态变更
+    }
+    (void)userData;
+}
+
+void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
+    OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
+    int32_t ret;
+    // 获取解码后信息
+    OH_AVCodecBufferAttr info;
+    ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+        // 处理视频buffer
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+        // 处理内录buffer
+    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+        // 处理麦克风buffer
+    }
+}
+
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
-    OH_AudioCaptureInfo micCapInfo = {
-        .audioSampleRate = 48000, 
-        .audioChannels = 2, 
-        .audioSource = OH_MIC
-    };
-
+    // 内外同录的规格是必定有内录，麦克风可选。
     OH_AudioCaptureInfo innerCapInfo = {
         .audioSampleRate = 48000, 
         .audioChannels = 2, 
@@ -162,7 +248,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_AudioInfo audioInfo = {
-        .micCapInfo = micCapInfo, 
+        .innerCapInfo = innerCapInfo, 
         .audioEncInfo = audioEncInfo
     };
 
@@ -178,7 +264,26 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         .videoInfo = videoInfo,
     };
 
+    // 实例化ScreenCapture
     struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
+
+    // 设置麦克风开关
+    bool isMic = true;
+    OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
+
+    // 设置回调 
+    OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
+    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+
+    // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
+    OH_AVScreenCapture_SetCanvasRotation(capture, true);
+    // 可选 [过滤音频]
+    OH_AVScreenCapture_ContentFilter contentFilter = OH_AVScreenCapture_CreateContentFilter();
+    // 添加过滤通知音
+    OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
+    // 排除过滤器
+    //OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
     // 初始化录屏参数，传入配置信息OH_AVScreenRecorderConfig
     OH_RecorderInfo recorderInfo;
@@ -188,6 +293,16 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     config.recorderInfo = recorderInfo;
+
+    // 可选 [Surface模式]
+    // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
+    // OH_AVCodec *codec = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);    
+    // 从视频编码器获取输入Surface
+    // OH_AVErrCode OH_VideoEncoder_GetSurface(codec, window);
+    // 启动编码器
+    // int32_t retEnc = OH_VideoEncoder_Start(codec);
+    // 指定surface开始录屏
+    // int32_t retStart = OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window); 
 
     // 进行初始化操作
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
