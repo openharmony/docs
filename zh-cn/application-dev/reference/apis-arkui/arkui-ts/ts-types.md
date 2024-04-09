@@ -435,3 +435,23 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 ## VoidCallback<sup>12+</sup>
 
 函数回调：() => void
+
+## HoverCallback<sup>12+</sup>
+
+hover事件的回调类型。
+
+HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+
+
+## SubmitEvent<sup>11+</sup>
+
+定义用户提交事件。
+
+| 名称              | 类型       | 必填 | 描述                                               |
+| ----------------- | ---------- | ---- | -------------------------------------------------- |
+| keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text              | string     | 否   | 输入框文本内容。                                   |
