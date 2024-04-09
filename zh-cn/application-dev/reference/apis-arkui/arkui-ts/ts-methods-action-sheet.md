@@ -43,14 +43,7 @@ static show(value: ActionSheetOptions)
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 | onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](ts-methods-alert-dialog-box.md#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
-| cornerRadius<sup>12+</sup> | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10)  | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }。 <br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照0处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。|
-| borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
-| borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)  | 否 | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 |
-| borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9)  | 否 | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
-| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的宽度。<br /> 百分比参数方式：以父元素宽的百分比来设置弹窗的宽度。|
-| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br /> 百分比参数方式：以父元素高的百分比来设置弹窗的高度。|
-| shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 |
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。 |
+
 ## SheetInfo接口说明
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述          |
@@ -204,61 +197,3 @@ struct ActionSheetExample {
 
 ![zh-cn_image_action_showinsubwindow](figures/zh-cn_image_action_showinsubwindow.jpg)
 
-### 示例3
-ActionSheet显示动画持续3秒，退出动画持续100毫秒
-```ts
-import router from '@ohos.router';
-@Entry
-@Component
-struct ActionSheetExample {
-  build() {
-    Column({ space: 5 }) {
-      Button('ActionSheet Set Duration')
-        .onClick(() => {
-            ActionSheet.show({
-              title: 'ActionSheet 1',
-              message: 'Set Animation Duration open 3 second, close 100 ms',
-              autoCancel: true,
-              alignment: DialogAlignment.Top,
-              transition:TransitionEffect.asymmetric(TransitionEffect.OPACITY
-                .animation({ duration: 3000, curve: Curve.Sharp }).combine(TransitionEffect.scale({x: 1.5, y: 1.5}).animation({duration: 3000, curve: Curve.Sharp})),
-                TransitionEffect.OPACITY.animation({ duration: 100, curve: Curve.Smooth })
-                  .combine(TransitionEffect.scale({x: 0.5, y: 0.5}).animation({duration: 100, curve: Curve.Smooth}))),
-              offset: { dx: 0, dy: -20 },
-              confirm: {
-                value: 'button',
-                action: () => {
-                  console.info('Button-clicking callback')
-                }
-              },
-              cancel: () => {
-                console.info('Closed callbacks')
-              },
-              sheets: [
-                {
-                  title: 'apples',
-                  action: () => {
-                    console.log('apples')
-                  }
-                },
-                {
-                  title: 'bananas',
-                  action: () => {
-                    console.log('bananas')
-                  }
-                },
-                {
-                  title: 'pears',
-                  action: () => {
-                    console.log('pears')
-                  }
-                }
-              ]
-            })
-        }).backgroundColor(0x317aff).height("88px")
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![zh-cn_image_action_animation](figures/zh-cn_image_action_animation.gif)

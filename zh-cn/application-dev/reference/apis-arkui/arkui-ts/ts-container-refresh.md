@@ -32,39 +32,10 @@ Refresh(value: RefreshOptions)
 | offset<sup>(deprecated)</sup>    | string&nbsp;\|&nbsp;number               | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>从API version 11开始废弃，无替代接口<br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数 。|
 | friction<sup>(deprecated)</sup>   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。<br/>从API version 11开始废弃，无替代接口 |
 | builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 下拉时，自定义刷新样式的组件。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。|
-| promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置组件底部显示的用户自定义文本。<br/>**说明：**<br/>输入文本的限制参考Text组件。|
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
-
-### refreshOffset<sup>12+</sup>
-
-refreshOffset(value: number)
-
-设置触发刷新的下拉偏移量。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                        | 必填 | 说明                                                       |
-| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | number |  是 | 下拉偏移量，单位vp。<br/>默认值：64vp |
-
-### pullToRefresh<sup>12+</sup>
-
-pullToRefresh(value: boolean)
-
-设置当下拉距离超过refreshOffset时是否触发刷新。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                        | 必填 | 说明                                                       |
-| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | boolean |  是 | 是否触发刷新。<br/>默认值：true |
+支持[通用属性](ts-universal-attributes-size.md)。
 
 
 ## 事件

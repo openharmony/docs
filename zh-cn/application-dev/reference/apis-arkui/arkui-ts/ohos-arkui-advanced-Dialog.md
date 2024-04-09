@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog } from '@ohos.arkui.advanced.Dialog'
 ```
 
 
@@ -26,7 +26,7 @@ import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, Cu
 ## TipsDialog
 
 
-TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: SizeOptions, title: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 
 提示弹出框，即为带图形确认框，必要时可通过图形化方式展现确认框。
@@ -45,12 +45,11 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | -------- | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。 | 
 | imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
-| imageSize | [SizeOptions](ts-types.md#sizeoptions) | 否 | - | 自定义图片尺寸。默认值：64*64vp | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框标题。 | 
+| imageSize | [SizeOptions](ts-types.md#sizeoptions) | 是 | - | 自定义图片尺寸。 | 
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 提示弹出框标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框内容。 | 
 | checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 | 
-| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 |
-| checkAction<sup>12+</sup> | (isChecked: boolean) => void | 否 | - | checkbox的选中状态改变事件。 |  
+| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 | 
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框左侧按钮。 | 
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框右侧按钮。 | 
 
@@ -102,7 +101,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, secondaryTitle: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
 
@@ -115,8 +114,6 @@ AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, seco
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。 | 
-| primaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框一级标题。 | 
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框二级标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。 | 
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。 | 
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。 | 
@@ -140,28 +137,6 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 | 
 
 
-## CustomContentDialog<sup>12+</sup>
-
-CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[]})
-
-自定义内容区弹出框，同时支持定义操作区按钮样式。
-
-**装饰器类型：**\@CustomDialog
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 弹出框控制器。 | 
-| contentBuilder | () => void | 是 | 弹出框内容。 |
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
-| contentAreaPadding<sup>12+</sup> | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
-| buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
-
-
 ## ButtonOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -172,12 +147,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 按钮的点击事件。 | 
 | background | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的背景。 | 
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。 | 
-| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 | 
-| role<sup>12+</sup> | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否 | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。 |
 
->  **说明：**
->
->  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
@@ -194,22 +164,28 @@ struct Index {
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
-      imageRes: $r('sys.media.ohos_ic_public_voice'),
-      content: '想要卸载这个APP嘛?',
+      imageRes: $r('app.media.icon'),
+      imageSize: { width: 100, height: 100 },
+      title: '文本标题',
+      content: '文本文本文本文本文本文本文本文本文本',
+      isChecked: this.isChecked,
+      checkTips: '不再提示',
       primaryButton: {
         value: '取消',
         action: () => {
-          console.info('Callback when the first button is clicked')
+          console.info('Callback when the CheckBox is clicked')
         },
       },
       secondaryButton: {
-        value: '删除',
-        role: ButtonRole.ERROR,
+        value: '确定',
         action: () => {
           console.info('Callback when the second button is clicked')
         }
       },
     }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
   })
 
   build() {
@@ -222,17 +198,17 @@ struct Index {
             .onClick(() => {
               this.dialogControllerImage.open()
             })
-        }.margin({bottom: 300})
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
-    }
-    .backgroundImageSize({ width: '100%', height: '100%' })
-    .height('100%')
-  }
+          }.margin({bottom: 300})
+        }.align(Alignment.Bottom)
+        .width('100%').height('100%')
+      }
+     .backgroundImageSize({ width: '100%', height: '100%' })
+     .height('100%')
+   }
 }
 ```
 
-![TipsDialog](figures/TipsDialog.png)
+![20230728-111325](figures/20230728-111325.png)
 
 
 ### 示例2
@@ -272,6 +248,9 @@ struct Index {
         },
       ]
     }),
+    customStyle: true,
+    alignment: DialogAlignment.Bottom,
+    autoCancel: false
   })
 
   build() {
@@ -294,7 +273,7 @@ struct Index {
 }
 ```
 
-![SelectDialog](figures/SelectDialog.png)
+![20230728-101201](figures/20230728-101201.png)
 
 
 ### 示例3
@@ -355,41 +334,40 @@ struct Index {
 
 ```ts
 import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
-
 @Entry
 @Component
 struct Index {
   dialogControllerConfirm: CustomDialogController = new CustomDialogController({
     builder: AlertDialog({
-      primaryTitle: '弹框一级标题',
-      secondaryTitle: '弹框二级标题',
       content: '文本文本文本文本文本',
       primaryButton: {
         value: '取消',
-        action: () => {
-        },
+        action: () => {},
       },
       secondaryButton: {
         value: '确认',
-        role: ButtonRole.ERROR,
+        fontColor: $r('sys.color.ohos_id_color_warning'),
         action: () => {
           console.info('Callback when the second button is clicked')
         }
       },
     }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
   })
 
   build() {
     Row() {
       Stack() {
-        Column() {
+        Column(){
           Button("纯文本弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-        }.margin({ bottom: 300 })
+        }.margin({bottom: 300})
       }.align(Alignment.Bottom)
       .width('100%').height('100%')
     }
@@ -399,7 +377,7 @@ struct Index {
 }
 ```
 
-![AlertDialog](figures/AlertDialog.png)
+![20230728-101355](figures/20230728-101355.png)
 
 
 ### 示例5
@@ -413,6 +391,9 @@ struct Index {
     builder: LoadingDialog({
       content: '文本文本文本文本文本...',
     }),
+    autoCancel: true,
+    customStyle: true,
+    alignment: DialogAlignment.Bottom
   })
 
   build() {
@@ -435,49 +416,4 @@ struct Index {
 }
 ```
 
-![LoadingDialog](figures/LoadingDialog.png)
-
-
-### 示例6
-
-```ts
-import { CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
-
-@Entry
-@Component
-struct Index {
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomContentDialog({
-      primaryTitle: '标题',
-      secondaryTitle: '辅助文本',
-      contentBuilder: () => {
-        this.buildContent();
-      },
-      buttons: [{ value: '按钮1', buttonStyle: ButtonStyleMode.TEXTUAL, action: () => {
-        console.info('Callback when the button is clicked')
-      } }, { value: '按钮2', buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR }],
-    }),
-  });
-
-  build() {
-    Column() {
-      Button("支持自定义内容弹出框")
-        .onClick(() => {
-          this.dialogController.open()
-        })
-    }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
-  }
-
-  @Builder
-  buildContent(): void {
-    Column() {
-      Text('内容区')
-    }
-  }
-}
-```
-
-![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
+![20230728-101306](figures/20230728-101306.png)

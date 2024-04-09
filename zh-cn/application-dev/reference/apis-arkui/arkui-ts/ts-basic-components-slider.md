@@ -46,7 +46,6 @@ Slider(options?: SliderOptions)
 | -------- | -------- |
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
-| NONE<sup>12+</sup> | 无滑块 |
 
 ## 属性
 
@@ -90,7 +89,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                       | 必填 | 说明                                      |
 | ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431' |
 
 ### selectedColor
 
@@ -237,22 +236,6 @@ trackBorderRadius(value: Length)
 | ------ | ---------------------------- | ---- | -------------------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：'2vp' |
 
-### selectedBorderRadius<sup>12+</sup>
-
-selectedBorderRadius(value: Length)
-
-设置已滑动部分（高亮）圆角半径。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                         | 必填 | 说明                             |
-| ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。|
-
 ### blockSize<sup>10+</sup>
 
 blockSize(value: SizeOptions)
@@ -339,34 +322,6 @@ maxLabel(value: string)
 >  - 当Slider为水平滑动条时，Slider默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，左右间距为分别为10vp，若设置padding，padding不会覆盖左右间距。
 >  - 当Slider为竖直滑动条时，Slider默认宽度为40vp，高度为父容器的高度，滑动条居中显示，上下间距为分别为6vp，若设置padding，padding不会覆盖上下间距。
 
-### sliderInteractionMode<sup>12+</sup>
-
-sliderInteractionMode(value: SliderInteraction)
-
-设置用户与滑动条组件交互方式。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| value  | [SliderInteraction](#sliderinteraction12枚举说明) | 否   | 用户与滑动条组件交互方式。 <br /> 默认值：SliderInteraction.SLIDE_AND_CLICK。 |
-
-### minResponsiveDistance<sup>12+</sup>
-
-minResponsiveDistance(value: number)
-
-设置滑动响应的最小距离。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                       |
-| ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数min和max一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
-
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
 Slider组件滑块形状参数。
@@ -386,15 +341,6 @@ Slider组件滑块形状枚举。
 | DEFAULT | 使用默认滑块（圆形）。   |
 | IMAGE   | 使用图片资源作为滑块。   |
 | SHAPE   | 使用自定义形状作为滑块。 |
-
-## SliderInteraction<sup>12+</sup>枚举说明
-
-用户与滑动条组件交互方式
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| SLIDE_AND_CLICK | 用户可拖拽滑块或者点击滑轨使滑块移动。|
-| SLIDE_ONLY | 不允许用户通过点击滑轨使滑块移动。|
 
 ## 事件
 

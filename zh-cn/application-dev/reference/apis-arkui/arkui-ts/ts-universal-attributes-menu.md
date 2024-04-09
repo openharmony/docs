@@ -111,14 +111,14 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 |
+
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 
 | 名称  | 类型                                       | 必填 | 描述                                 |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ |
 | scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。 |
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 |
+
 
 ## AnimationRange<sup>11+</sup>
 
@@ -452,70 +452,4 @@ struct Index {
 }
 ```
 
-### 示例8
 
-通过transition自定义菜单和预览的显示/退出动效属性
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct MenuExample {
-  @Builder MenuBuilder() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text('Test menu item 1')
-        .fontSize(12)
-        .width(200)
-        .height(30)
-        .textAlign(TextAlign.Center)
-      Divider().height(10)
-      Text('Test menu item 2')
-        .fontSize(12)
-        .width(100)
-        .height(30)
-        .textAlign(TextAlign.Center)
-    }.width(100)
-  }
-  @Builder
-  MyPreview() {
-    Column() {
-      Image($r('app.media.icon'))
-        .width(50)
-        .height(50)
-    }
-  }
-  @State isShow:boolean = false
-  private iconStr: ResourceStr = $r("app.media.icon")
-
-  @Builder
-  MyMenu() {
-    Menu() {
-      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
-      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
-      MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
-    }
-  }
-  build() {
-    Column() {
-      Button('LongPress bindContextMenu')
-        .margin({ top: 15 })
-        .bindContextMenu(
-          this.MenuBuilder,
-          ResponseType.LongPress,{
-          transition: TransitionEffect.OPACITY.animation({ duration: 4000, curve: Curve.Ease }).combine(
-            TransitionEffect.rotate({ z: 1, angle: 180 })),
-          preview: this.MyPreview,
-          previewAnimationOptions: {
-            scale: [0.8, 1.0],
-            transition: TransitionEffect.OPACITY.animation({ duration: 4000, curve: Curve.Ease }).combine(
-              TransitionEffect.rotate({ z: 1, angle: 180 }))
-          }
-        })
-    }
-    .width('100%')
-    .margin({ top: 5 })
-  }
-}
-```
-
-![preview-builder](figures/menu2.gif)

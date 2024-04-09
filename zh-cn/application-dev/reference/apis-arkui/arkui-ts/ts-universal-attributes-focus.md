@@ -102,15 +102,6 @@ requestFocus(value: string): boolean
 >
 >  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
-## clearFocus<sup>12+</sup>
-
-clearFocus(): void
-
-清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
-
->  **说明：**
->
->  调用该接口需要先获取[FocusController](../js-apis-arkui-UIContext.md)，具体使用方式可以参考[示例3](./ts-universal-attributes-focus.md#示例3)。
 
 ## 示例
 
@@ -351,62 +342,3 @@ struct RequestFocusExample {
 申请存在且可获焦的组件获焦：
 
 ![requestFocus3](figures/requestFocus3.png)
-
-### 示例3
-
-```ts
-
-@Entry
-@Component
-struct ClearFocusExample {
-  @State inputValue: string = ''
-  @State btColor: Color = Color.Blue
-
-  build() {
-    Column({ space: 20 }) {
-      Column({ space: 5 }) {
-        Button('button1')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .focusOnTouch(true)
-          .backgroundColor(Color.Blue)
-        Button('button2')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .focusOnTouch(true)
-          .backgroundColor(this.btColor)
-          .defaultFocus(true)
-          .onFocus(() => {
-            this.btColor = Color.Red
-          })
-          .onBlur(() => {
-            this.btColor = Color.Blue
-          })
-        Button('clearFocus')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .backgroundColor(Color.Blue)
-          .onClick(() => {
-            this.getUIContext().getFocusController().clearFocus()
-          })
-      }
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-
-```
-
-示意图：
-
-首次进入页面，Button2按钮获焦，背景颜色为红色
-
-![clearFocus1](figures/clearFocus1.jpg)
-
-点击ClearFocus按钮，清除焦点，Button2失焦，触发onBlur失焦回调将背景颜色变为蓝色。
-
-![clearFocus2](figures/clearFocus2.jpg)

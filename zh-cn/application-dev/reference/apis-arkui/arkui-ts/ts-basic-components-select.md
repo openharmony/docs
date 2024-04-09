@@ -63,19 +63,6 @@ value(value: ResourceStr)
 | ------ | ---------------------------------------------------- | ---- | ------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | 是   | 下拉按钮本身的文本内容。 |
 
-### controlSize<sup>12+</sup>
-
-controlSize(value: ControlSize)
-
-设置Select组件的尺寸。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                             |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup> | 是   | Select组件的尺寸。<br/>默认值:ControlSize.NORMAL |
 
 ### font
 

@@ -183,20 +183,6 @@ flingSpeedLimit(speedLimit: number)
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
 
-### initialOffset<sup>12+</sup>
-
-initialOffset(value: OffsetOptions)
-
-设置初始滚动偏移量。只在首次布局时生效，后续动态修改该属性值不生效。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型    | 必填 | 说明                                  |
-| ------ | ------- | ---- | ------------------------------------- |
-| value  | [OffsetOptions](#offsetoptions12对象说明)  | 是   |当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。|
-
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
@@ -446,18 +432,6 @@ scrollEdge(value: Edge): void
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
 
-### fling<sup>12+</sup>
-
-fling(velocity: number): void
-
-
-滚动类组件开启按传入的初始速度进行惯性滚动。
-
-**参数：**
-
-| 参数名   | 参数类型 | 必填 | 参数描述                                                     |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。 |
 
 ### scrollPage<sup>9+</sup>
 
@@ -624,12 +598,6 @@ getItemRect(index: number): RectResult
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
 | animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
-
-## OffsetOptions<sup>12+</sup>对象说明
-| 参数名   | 类型  | 必填 | 描述              |
-| ----- | ------| ------- | ----------------- |
-| xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
-| yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滑动偏移<br/>默认值：0|
 
 ## 示例
 ### 示例1
@@ -882,50 +850,3 @@ struct Index {
 }
 ```
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
-
-### 示例5
-
-```ts
-@Entry
-@Component
-//滚动控制器新增按给定速度执行惯性滚动的函数fling
-struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
-  build() {
-    Column() {
-      Button('Fling-1000')
-        .height('5%')
-        .onClick(() => {
-          this.scrollerForList.fling(-1000)
-        })
-      Button('Fling3000')
-        .height('5%')
-        .onClick(() => {
-          this.scrollerForList.fling(3000)
-        })
-      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
-          ListItem() {
-            Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }
-        }, (item: string) => item)
-      }
-      .listDirection(Axis.Vertical) // 排列方向
-      .scrollBar(BarState.Off)
-      .friction(0.9)
-      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
-      .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
-      .width('90%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
-  }
-}
-```
-
-![scroller_fling](figures/scroller_fling.gif)
