@@ -237,7 +237,7 @@ role(value: ButtonRole)
 
 ## ButtonType枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                 |
 | ------- | ------------------ |
@@ -265,7 +265,7 @@ role(value: ButtonRole)
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                 |
 | ------- | ------------------ |
@@ -275,7 +275,7 @@ role(value: ButtonRole)
 
 ## ControlSize<sup>11+</sup>枚举说明
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                 |
 | ------- | ------------------ |
