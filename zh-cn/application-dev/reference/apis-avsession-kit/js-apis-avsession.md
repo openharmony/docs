@@ -26,6 +26,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                            | 必填 | 说明                           |
@@ -121,7 +123,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 
 ## AVSessionType<sup>10+<sup>
@@ -129,6 +131,8 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 当前会话支持的会话类型。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称  | 类型   | 说明 |
 | ----- | ------ | ---- |
@@ -143,6 +147,8 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
@@ -163,6 +169,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 设置会话元数据。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -457,6 +465,8 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 设置会话播放状态。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1256,6 +1266,8 @@ getAVCastController(): Promise\<AVCastController>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
@@ -1294,6 +1306,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 通过会话获取播放设备信息。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1367,6 +1381,8 @@ activate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1438,6 +1454,8 @@ deactivate(): Promise\<void>
 禁用当前会话的功能，可通过[activate](#activate10)恢复。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1512,6 +1530,8 @@ destroy(): Promise\<void>
 销毁当前会话，使当前会话完全失效。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -2078,6 +2098,8 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -2559,6 +2581,8 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                      |
@@ -2908,6 +2932,8 @@ stopCasting(): Promise\<void>
 结束投播。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
