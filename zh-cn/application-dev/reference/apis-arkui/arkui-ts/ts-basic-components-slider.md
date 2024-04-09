@@ -389,7 +389,6 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 struct SliderExample {
   @State outSetValueOne: number = 40
   @State inSetValueOne: number = 40
-  @State noneValueOne: number = 40
   @State outSetValueTwo: number = 40
   @State inSetValueTwo: number = 40
   @State vOutSetValueOne: number = 40
@@ -468,26 +467,6 @@ struct SliderExample {
       }
       .width('80%')
 
-      Text('none slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
-      Row() {
-        Slider({
-          value: this.noneValueOne,
-          min: 0,
-          max: 100,
-          style: SliderStyle.NONE
-        })
-          .blockColor('#191970')
-          .trackColor('#ADD8E6')
-          .selectedColor('#4169E1')
-          .showTips(true)
-          .onChange((value: number, mode: SliderChangeMode) => {
-            this.noneValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
-          })
-        Text(this.noneValueOne.toFixed(0)).fontSize(12)
-      }
-      .width('80%')
-
       Row() {
         Column() {
           Text('vertical outset slider').fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15)
@@ -557,7 +536,7 @@ struct SliderExample {
 }
 ```
 
-![slider](figures/slider.gif)
+![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)
 
 ### 示例2
 
@@ -585,10 +564,6 @@ struct SliderExample {
       Slider({ style: SliderStyle.InSet, value: 40 })
         .trackBorderRadius(2)
       Divider()
-      Text('selected').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      Slider({ style: SliderStyle.InSet, value: 40 })
-        .selectedBorderRadius(2)
-      Divider()
       Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Slider({ style: SliderStyle.OutSet, value: 40 })
         .blockStyle({ type: SliderBlockType.DEFAULT })
@@ -610,4 +585,4 @@ struct SliderExample {
 }
 ```
 
-![slider_2](figures/slider_2.png)
+![](figures/slider_2.png)
