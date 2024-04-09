@@ -40,7 +40,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器mime类型的键，值类型为string。该键是可选的。         |
-| [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | 比特率的键，值类型为int64_t。                                |
+| [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | 比特率的键，值类型为int64_t。该键用于音视频编码场景。在视频编码场景下该键是可选的。 |
 | [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size)        | 最大输入大小的键，值类型为uint32_t。该键是可选的。           |
 | [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | 编码档次，值类型为int32_t请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。该键是可选的。 |
 | [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。该键是可选的。 |
@@ -102,21 +102,21 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](#oh_mediatype)。 |
-| [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 持续时间键，值类型为int64_t。                                |
-| [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 源格式标题的键，值类型为string。                             |
-| [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | 艺术家的源格式键，值类型为string。                           |
-| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 相册的源格式键，值类型为string。                             |
-| [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 相册艺术家的键，值类型为string。                             |
-| [OH_MD_KEY_DATE](#oh_md_key_date)                            | 源格式日期的键，值类型为string。                             |
-| [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | 源格式注释的键，值类型为string。                             |
-| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式类型的键，值类型为string。                             |
-| [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | 源格式版权的键，值类型为string。                             |
-| [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | 源格式语言的键，值类型为string。                             |
-| [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | 源格式描述的键，值类型为string。                             |
-| [OH_MD_KEY_LYRICS](#oh_md_key_lyrics)                        | 源格式歌词的键，值类型为string。                             |
-| [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count)              | 源格式轨道数量的键，值类型为uint32_t。                       |
-| [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 是否是hdr vivid的键，值类型为bool。                          |
+| [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](#oh_mediatype)。该键是可选的。 |
+| [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 持续时间键，值类型为int64_t。该键是可选的。                  |
+| [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 源格式标题的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | 艺术家的源格式键，值类型为string。该键是可选的。             |
+| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 相册的源格式键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 相册艺术家的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_DATE](#oh_md_key_date)                            | 源格式日期的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | 源格式注释的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式类型的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | 源格式版权的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | 源格式语言的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | 源格式描述的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_LYRICS](#oh_md_key_lyrics)                        | 源格式歌词的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count)              | 源格式轨道数量的键，值类型为uint32_t。该键是可选的。         |
+| [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 是否是hdr vivid的键，值类型为bool。该键是可选的。            |
 
 ## 汇总
 
