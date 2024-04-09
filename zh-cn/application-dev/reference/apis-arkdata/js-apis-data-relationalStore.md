@@ -4970,6 +4970,160 @@ if(store != undefined) {
 }
 ```
 
+### lockRow<sup>12+</sup>
+
+lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
+
+根据RdbPredicates的指定实例对象从数据库中锁定数据，锁定数据不执行端云同步，使用Promise异步回调。
+
+该接口只支持主键为基本类型的表、不支持共享表、无主键表和复合类型主键表。
+该接口不支持依赖关系表之间的锁传递，如果表存在依赖关系，需要根据依赖关系手动调用该接口。
+该接口不支持对已删除数据的操作。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                 | 必填 | 说明                                      |
+| ---------- | ------------------------------------ | ---- | ----------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+
+**返回值**：
+
+| 类型                  | 说明                            |
+| --------------------- | ------------------------------- |
+| Promise&lt;void&gt;   | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | Inner error.                                 |
+| 14800018     | No data was locked.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).lockRow(predicates).then(() => {
+    console.info(`Lock success`);
+  }).catch((err: BusinessError) => {
+    console.error(`Lock failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### unlockRow<sup>12+</sup>
+
+unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
+
+根据RdbPredicates的指定实例对象从数据库中解锁数据，使用Promise异步回调。
+
+该接口只支持主键为基本类型的表、不支持共享表、无主键表和复合类型主键表。
+该接口不支持依赖关系表之间的锁传递，如果表存在依赖关系，需要根据依赖关系手动调用该接口。
+该接口不支持对已删除数据的操作。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                 | 必填 | 说明                                      |
+| ---------- | ------------------------------------ | ---- | ----------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+
+**返回值**：
+
+| 类型                  | 说明                            |
+| --------------------- | ------------------------------- |
+| Promise&lt;void&gt;   | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | Inner error.                                 |
+| 14800018     | No data was unlocked.                        |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).unlockRow(predicates).then(() => {
+    console.info(`Unlock success`);
+  }).catch((err: BusinessError) => {
+    console.error(`Unlock failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### queryLockedRow<sup>12+</sup>
+
+queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+
+根据指定条件查询数据库中锁定的数据，使用Promise异步回调。
+由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                 | 必填 | 说明                                             |
+| ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // 释放数据集的内存
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
