@@ -228,7 +228,7 @@ barState(value: BarState)
 
 maxLines(value: number)
 
-设置内联输入风格编辑态时文本可显示的最大行数。
+设置内联输入风格编辑态和非内联模式下文本可显示的最大行数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
