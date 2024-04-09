@@ -31,18 +31,18 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 目前调节系统音量主要是靠SystemAPI，具体服务于物理音量按键和设置。通过音量按键可以调节系统音量的大小，根据按下的具体按键调用系统接口，实现系统音量的大小调节。调节的音量类型包括媒体、铃声和通知。
 
-### 使用音量组件调节系统音量
+### 使用音量面板调节系统音量
 
-如上所述，调节系统音量的接口是SystemAPI，普通三方应用无法使用，但是系统通过提供音量组件，可以让用户通过界面操作来调节音量。使用组件的好处是，当应用调节音量时，系统会展示音量提示界面，显性的提示用户系统音量发生了改变。
+如上所述，调节系统音量的接口是SystemAPI，普通三方应用无法使用，但是系统通过提供音量面板，可以让用户通过界面操作来调节音量。使用面板的好处是，当应用调节音量时，系统会展示音量提示界面，显性的提示用户系统音量发生了改变。
 
-系统提供了[AVVolumeComponent](../../reference/apis-audio-kit/ohos-multimedia-avvolumecomponent.md)由应用创建组件.
+系统提供了[AVVolumePanel](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)由应用创建组件.
 
-#### 默认组件样式
+#### 默认面板样式
 
-应用可以使用系统提供的默认组件样式，当前仅提供默认的系统音量条样式。
+应用可以使用系统提供的默认面板样式，当前仅提供默认的系统音量条样式。
 
 ```ts
-import AVVolume from '@ohos.multimedia.avVolumeComponent';
+import AVVolume from '@ohos.multimedia.avVolumePanel';
 
 @Entry
 @Component
@@ -55,8 +55,8 @@ struct Index {
       Column() {
         AVVolume({
           volumeLevel: this.volume,
-          sliderParameter: {
-            sliderPosition: {
+          volumeParameter: {
+            position: {
               x: 100,
               y: 200
             }
