@@ -101,13 +101,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 4. 调用StartScreenRecording()方法开始进行屏幕录制。
 
     ```c++
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    OH_AVScreenCapture_StartScreenRecording(capture);
     ```
 
 5. 调用StopScreenRecording()方法停止录制。
 
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_StopScreenRecording(capture);
     ```
 
 6. 调用Release()方法销毁实例，释放资源。
