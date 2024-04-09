@@ -957,3 +957,52 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## abilityManager.setResidentProcessEnable<sup>12</sup>
+
+setResidentProcessEnable(bundleName: string, enable: boolean): Promise<void>;
+
+常驻进程支持按需启停。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 常驻进程的包名。 |
+| enable | boolean | 是 | 需要更新的使能状态 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201  | Permission denien. |
+| 202  | Not a system application. |
+| 401  | If the input parameter is not valid parameter. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+let residentProcessBundleName: string = 'com.xxx.xxxxxx';
+let enable: boolen = false;
+abilityManager.setResidentProcessEnable(residentProcessBundleName, enable)
+    .then( () => {console.log('setResidentProcessEnable success.');})
+    .catch((err:BusinessError) => {
+        console.error(`setResidentProcessEnable fail, err: ${JSON.stringify(err)}`);
+    });
+```
