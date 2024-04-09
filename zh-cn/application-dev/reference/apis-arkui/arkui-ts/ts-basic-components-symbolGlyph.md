@@ -36,10 +36,6 @@ SymbolGlyph(value: Resource)
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
-SymbolGlyph多色模式下各个组件的默认颜色与层数展示图。
-
-![renderingStrategy](figures/renderingStrategy.png)
-
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)。
@@ -51,74 +47,77 @@ SymbolGlyph多色模式下各个组件的默认颜色与层数展示图。
 @Entry
 @Component
 struct Index {
-  @State scaleplay:boolean = false
-  @State hieraplay:boolean = false
   build() {
     Column() {
       Row() {
-        Column(){
-          Text("细")
-          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+        Column() {
+          Text("Light")
+          SymbolGlyph($r('sys.symbol.ohos_trash'))
             .fontWeight(FontWeight.Lighter)
             .fontSize(96)
         }
-        Column(){
-          Text("标准")
-          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Normal")
+          SymbolGlyph($r('sys.symbol.ohos_trash'))
             .fontWeight(FontWeight.Normal)
             .fontSize(96)
         }
-        Column(){
-          Text("粗")
-          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Bold")
+          SymbolGlyph($r('sys.symbol.ohos_trash'))
             .fontWeight(FontWeight.Bold)
             .fontSize(96)
         }
       }
 
       Row() {
-        Column(){
-          Text("统一")
-          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+        Column() {
+          Text("单色")
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-            .fontColor([Color.Blue,Color.Grey,Color.Green])
+            .fontColor([Color.Black, Color.Green, Color.White])
         }
-        Column(){
+
+        Column() {
           Text("多色")
-          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
-            .fontColor([Color.Blue,Color.Grey,Color.Green])
+            .fontColor([Color.Black, Color.Green, Color.White])
         }
-        Column(){
-          Text("不同透明度")
-          SymbolGlyph($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("分层")
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
-            .fontColor([Color.Blue,Color.Grey,Color.Green])
+            .fontColor([Color.Black, Color.Green, Color.White])
         }
       }
+
       Row() {
-        Column(){
+        Column() {
           Text("无动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(SymbolEffectStrategy.NONE)
         }
-        Column(){
+
+        Column() {
           Text("整体缩放动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(this.scaleplay ? 1 : 0)
-          Button(this.scaleplay? '关闭':'播放').onClick(()=>{this.scaleplay = !this.scaleplay})
+            .effectStrategy(1)
         }
-        Column(){
+
+        Column() {
           Text("层级动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(this.hieraplay ? 2 : 0)
-          Button(this.hieraplay? '关闭':'播放').onClick(()=>{this.hieraplay = !this.hieraplay})
+            .effectStrategy(2)
         }
       }
     }
