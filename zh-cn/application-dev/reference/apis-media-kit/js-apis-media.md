@@ -453,8 +453,6 @@ Codec MIME类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 | 名称         | 值                    | 说明                     |
 | ------------ | --------------------- | ------------------------ |
 | VIDEO_H263   | 'video/h263'          | 表示视频/h263类型。      |
@@ -3397,8 +3395,6 @@ avRecorder.off('audioCapturerChange');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
-
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。                  |
@@ -3413,8 +3409,6 @@ avRecorder.off('audioCapturerChange');
 音视频录制的配置文件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -3435,8 +3429,6 @@ avRecorder.off('audioCapturerChange');
 表示视频录制中音频源类型的枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
 | 名称                      | 值   | 说明                   |
 | ------------------------- | ---- | ---------------------- |
@@ -3459,8 +3451,6 @@ avRecorder.off('audioCapturerChange');
 表示容器格式类型的枚举，缩写为CFT。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
-
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
 | 名称        | 值    | 说明                  |
 | ----------- | ----- | --------------------- |
