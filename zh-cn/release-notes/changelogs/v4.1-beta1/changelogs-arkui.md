@@ -854,7 +854,7 @@ try {
 
 变更后：
 
-callback参数数据类型为AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](../../../application-dev/reference/apis/js-apis-promptAction.md#actionmenusuccessresponse)&gt;，为回调方法。使用AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](../../../application-dev/reference/apis/js-apis-promptAction.md#actionmenusuccessresponse)&gt;作为callback的入参接口可以正常使用。
+callback参数数据类型为AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-promptAction.md#actionmenusuccessresponse)&gt;，为回调方法。使用AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-promptAction.md#actionmenusuccessresponse)&gt;作为callback的入参接口可以正常使用。
 
 ```ts
 import { PromptAction, UIInspector } from '@ohos.arkui.UIContext';
@@ -1685,3 +1685,5 @@ API 11及以后，Datapanel组件的默认阴影模糊半径为20vp。
 **适配指导**
 
 默认阴影效果变更，不涉及适配。
+
+<!--no_check-->

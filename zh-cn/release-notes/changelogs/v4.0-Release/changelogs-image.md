@@ -163,3 +163,5 @@ static NativePixelMap* getNativePixelMap(napi_env env, napi_callback_info info)
 }
 ...
 ```
+
+<!--no_check-->

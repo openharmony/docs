@@ -31,3 +31,5 @@ isRemoveAllowed增加权限ohos.permission.SET_UNREMOVABLE_NOTIFICATION
 
 开发者需申请权限适配
 变更后需要申请ohos.permission.SET_UNREMOVABLE_NOTIFICATION
+
+<!--no_check-->

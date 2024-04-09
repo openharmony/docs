@@ -30,3 +30,5 @@ queryDevices
 **适配指导**
 
 有了权限标签之后在调用接口时需要申请ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER权限才可以。
+
+<!--no_check-->

@@ -350,3 +350,5 @@ getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>;
 **适配指导**
 
 修改后用户调用该接口时，如果需要判断其返回值，需要增加EARPIECE设备的判断。
+
+<!--no_check-->

@@ -156,3 +156,5 @@ interface ResultSetV9 从api/data/rdb/resultSet.d.ts 迁移至@ohos.data.relatio
 **适配指导**
  * `import rdb from "@ohos.data.rdb"` 改为 `import rdb from "@ohos.data.relationalStore"`；
  * ResultSetV9实例仅通过getRdbStoreV9方法获取，参考cl.distributeddatamgr.2变更后，代码可自动适配ResultSet。
+
+<!--no_check-->

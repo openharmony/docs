@@ -25,3 +25,5 @@
 **适配指导**
 
 调用setTime、setDate、setTimezone接口时，需申请相应的权限才可正常使用。
+
+<!--no_check-->

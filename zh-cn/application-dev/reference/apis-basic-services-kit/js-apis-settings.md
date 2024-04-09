@@ -18,12 +18,13 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：** SystemCapability.Applications.Settings.Core
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED<sup>11+</sup>      | string | 是   | 是   | 设备属性共享域                                          |
-| USER_PROPERTY<sup>11+</sup>      | string | 是   | 是   | 为用户属性域                                           |
+| DEVICE_SHARED<sup>11+</sup>| string | 是   | 是   | 设备属性共享域                                          |
+| USER_PROPERTY<sup>11+</sup>| string | 是   | 是   | 为用户属性域                                           |
+| USER_SECURITY<sup>11+</sup>| string | 是   | 是   | 为用户安全属性域                                        |
 
 ## date
 
@@ -209,7 +210,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -242,7 +243,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -280,7 +281,7 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -493,7 +494,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -531,7 +532,7 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 

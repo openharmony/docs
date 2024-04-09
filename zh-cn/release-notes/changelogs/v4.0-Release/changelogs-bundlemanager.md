@@ -112,3 +112,5 @@
 
 **适配指导**<br>
 删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，使用distributionFilter替代。
+
+<!--no_check-->

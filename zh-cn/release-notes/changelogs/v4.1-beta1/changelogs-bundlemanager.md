@@ -82,13 +82,13 @@ schema校验文件app.json、module.json、configSchema_lite.json和configSchema
 
 ## c2.bundlemanager.2 包管理ApplicationInfo结构体中新增dataUnclearable字段。
 
-包管理[ApplicationInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts)结构体中新增dataUnclearable字段，参考：[API文档链接](../../../application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md)。
+包管理[ApplicationInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts)结构体中新增dataUnclearable字段，参考：[API文档链接](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md)。
 
 **变更影响**<br>
 对之前接口使用无影响。
 
 **关键的接口/组件变更**<br>
-包管理[ApplicationInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts)结构体中新增dataUnclearable字段，参考：[API文档链接](../../../application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md)。
+包管理[ApplicationInfo](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ApplicationInfo.d.ts)结构体中新增dataUnclearable字段，参考：[API文档链接](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-bundle-ApplicationInfo.md)。
 
 **适配指导**<br>
 无
@@ -231,7 +231,7 @@ MDM权限判断逻辑是根据[权限定义](https://gitee.com/openharmony/utils
 
 **废弃影响**
 
-包管理[installer](../../../application-dev/reference/apis/js-apis-installer.md)模块中废弃VerifyCodeParam接口和InstallParam中的verifyCodeParams字段，不再需要该接口来指定安装包的代码签名文件。
+包管理[installer](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-installer.md)模块中废弃VerifyCodeParam接口和InstallParam中的verifyCodeParams字段，不再需要该接口来指定安装包的代码签名文件。
 
 **废弃发生版本**
 
@@ -275,3 +275,5 @@ MDM权限判断逻辑是根据[权限定义](https://gitee.com/openharmony/utils
 **适配指导**
 
 打包工具默认以不压缩方式打包libs库，如果需要以压缩方式打包libs库，可以设置[module.json5配置文件](../../../application-dev/quick-start/module-configuration-file.md)中的compressNativeLibs参数为true。
+
+<!--no_check-->

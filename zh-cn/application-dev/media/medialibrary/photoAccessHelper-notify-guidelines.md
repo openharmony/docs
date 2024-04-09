@@ -21,7 +21,7 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以对一张图片注册监听，通过将这张图片设置为收藏触发监听回调为例。
 
@@ -67,7 +67,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以对一个用户相册注册监听，通过重命名相册触发监听回调为例。
 
@@ -122,7 +122,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以对所有PhotoAsset注册监听，对被监听的PhotoAsset设置为收藏触发监听回调为例。
 
@@ -167,7 +167,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以取消对一张图片指定的监听为例，取消监听后，改变图片的收藏状态不再触发对应的监听回调。
 

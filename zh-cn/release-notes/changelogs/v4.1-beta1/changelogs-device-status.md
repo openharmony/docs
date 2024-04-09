@@ -48,3 +48,4 @@
 
 建议使用新模块的接口进行开发，参见[@ohos.cooperate ](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-devicestatus-cooperate.md#cooperateprepare)。
 
+<!--no_check-->
