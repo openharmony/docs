@@ -572,7 +572,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index, info);
+    ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

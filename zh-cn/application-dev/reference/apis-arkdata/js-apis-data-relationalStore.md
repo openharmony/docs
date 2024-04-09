@@ -2952,6 +2952,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
+此接口不支持执行查询和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -2990,6 +2992,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+
+此接口不支持执行查询和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3030,6 +3034,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
+
+此接口不支持执行查询和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
