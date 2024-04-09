@@ -572,7 +572,8 @@ console.log("retStr = " + retStr);
 
 ## TextEncoder
 
-TextEncoder用于将字符串编码为字节数组，支持多种编码格式，包括utf-8、utf-16le/be等。需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的。例如，utf-8编码下中文字符通常占3个字节，而utf-16le/be编码下中文字符通常占2个字节。因此，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
+需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
 
 ### 属性
 
