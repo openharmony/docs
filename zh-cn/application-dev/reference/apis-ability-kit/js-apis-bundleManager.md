@@ -825,7 +825,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 根据给定的bundleName获得扩展资源对应的moduleNames。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -983,7 +983,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 根据给定的bundleName获得动态图标对应的moduleName。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
