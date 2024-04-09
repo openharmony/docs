@@ -63,7 +63,7 @@
 >
 > 开发者需要根据dstAbilityMode来选择action、metadata的配置。
 >
-> - 如果被拉起的页面时UIAbility，则需配置到“ abilities ”中，
+> - 如果被拉起的页面是UIAbility，则需配置到“ abilities ”中，
 >
 > - 如果是UIExtensionAbility，则需配置到“ extensionAbilities ” 中。
 >
