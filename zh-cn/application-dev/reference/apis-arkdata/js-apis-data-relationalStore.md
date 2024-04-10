@@ -5280,7 +5280,7 @@ if(resultSet != undefined) {
 }
 ```
 
-### getValue
+### getValue<sup>12+</sup>
 
 getValue(columnIndex: number): ValueType
 
