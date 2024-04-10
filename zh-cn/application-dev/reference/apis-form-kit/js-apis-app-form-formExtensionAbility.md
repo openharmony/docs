@@ -184,7 +184,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-卡片提供方接收处理卡片事件的通知接口（此方法仅可在JS卡片中使用）。
+卡片提供方接收处理卡片事件的通知接口。
 
 **系统能力**：SystemCapability.Ability.Form
 
