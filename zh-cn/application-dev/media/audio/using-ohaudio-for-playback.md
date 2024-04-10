@@ -206,6 +206,7 @@ OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 ```C
 // 自定义同时写入PCM数据和元数据函数
 int32_t MyOnWriteDataWithMetadata(
+    OH_AudioRenderer* renderer,
     void* userData,
     void* audioData,
     int32_t audioDataSize,
