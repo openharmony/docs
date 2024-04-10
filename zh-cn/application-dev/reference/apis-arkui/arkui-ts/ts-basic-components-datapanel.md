@@ -18,7 +18,7 @@
 
 DataPanel(options: DataPanelOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -37,7 +37,7 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 描述 |
 | -------| ------------ |

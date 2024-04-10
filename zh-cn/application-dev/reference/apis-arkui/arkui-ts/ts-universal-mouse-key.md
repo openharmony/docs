@@ -98,7 +98,7 @@ struct MouseEventExample {
         })
       Button('onMouse')
         .width(180).height(80)
-        .onMouse((event?: MouseEvent):void => {
+        .onMouse((event: MouseEvent):void => {
           if(event){
             switch (event.button) {
               case MouseButton.None:

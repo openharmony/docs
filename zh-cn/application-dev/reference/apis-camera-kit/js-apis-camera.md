@@ -4735,6 +4735,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
     console.info('Promise returned to indicate the commit config success.');
   }).catch((error: BusinessError) => {
     // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
     console.error(`The commitConfig call failed. error code: ${err.code}`);
   });
 }

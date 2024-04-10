@@ -2954,6 +2954,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -2992,6 +2994,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3032,6 +3036,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3077,7 +3083,10 @@ if(store != undefined) {
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，返回值类型为ValueType，使用Promise异步回调。
+
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3145,7 +3154,10 @@ if(store != undefined) {
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，使用Promise异步回调。
+
 该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

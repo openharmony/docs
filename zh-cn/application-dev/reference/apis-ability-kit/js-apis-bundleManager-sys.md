@@ -245,7 +245,7 @@ try {
 
 ### bundleManager.getBundleInfo
 
-getBundleInfo(bundleName: string, bundleFlags: [number](js-apis-bundleManager.md#bundleflag), userId?: number): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用Promise形式返回结果。
 
@@ -326,7 +326,7 @@ try {
 
 ### bundleManager.getApplicationInfo
 
-getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>): void
+getApplicationInfo(bundleName: string, appFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
 以异步方法根据给定的bundleName、appFlags和userId获取ApplicationInfo，使用callback形式返回结果。
 
@@ -383,7 +383,7 @@ try {
 
 ### bundleManager.getApplicationInfo
 
-getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), callback: AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>): void
+getApplicationInfo(bundleName: string, appFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
 
 以异步方法根据给定的bundleName和appFlags获取ApplicationInfo，使用callback形式返回结果。
 
@@ -437,7 +437,7 @@ try {
 
 ### bundleManager.getApplicationInfo
 
-getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), userId?: number): Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>
+getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promise\<ApplicationInfo>
 
 以异步方法根据给定的bundleName、appFlags和userId获取ApplicationInfo，使用Promise形式返回结果。
 
@@ -497,7 +497,7 @@ try {
 
 ### bundleManager.getAllBundleInfo
 
-getAllBundleInfo(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), userId: number, callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void
+getAllBundleInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
 以异步方法根据给定的bundleFlags和userId获取系统中所有的BundleInfo，使用callback形式返回结果。
 
@@ -548,7 +548,7 @@ try {
 
 ### bundleManager.getAllBundleInfo
 
-getAllBundleInfo(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>): void
+getAllBundleInfo(bundleFlags: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
 以异步方法根据给定的bundleFlags获取系统中所有的BundleInfo，使用callback形式返回结果。
 
@@ -589,7 +589,7 @@ try {
 
 ### bundleManager.getAllBundleInfo
 
-getAllBundleInfo(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), userId?: number): Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>>
+getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInfo>>
 
 以异步方法根据给定的bundleFlags和userId获取系统中所有的BundleInfo，使用Promise形式返回结果。
 
@@ -642,7 +642,7 @@ try {
 
 ### bundleManager.getAllApplicationInfo
 
-getAllApplicationInfo(appFlags: [number](#applicationflag), userId: number, callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void
+getAllApplicationInfo(appFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
 以异步方法根据给定的appFlags和userId获取系统中所有的ApplicationInfo，使用callback形式返回结果。
 
@@ -693,7 +693,7 @@ try {
 
 ### bundleManager.getAllApplicationInfo
 
-getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>): void
+getAllApplicationInfo(appFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
 以异步方法根据给定的appFlags获取系统中所有的ApplicationInfo，使用callback形式返回结果。
 
@@ -734,7 +734,7 @@ try {
 
 ### bundleManager.getAllApplicationInfo
 
-getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>>
+getAllApplicationInfo(appFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
 
 以异步方法根据给定的appFlags和userId获取系统中所有的ApplicationInfo，使用Promise形式返回结果。
 
@@ -788,7 +788,7 @@ try {
 
 ### bundleManager.queryAbilityInfo
 
-queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId: number, callback: AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>): void
+queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
 以异步方法根据给定的want、abilityFlags和userId获取多个AbilityInfo，使用callback形式返回结果。
 
@@ -849,7 +849,7 @@ try {
 
 ### bundleManager.queryAbilityInfo
 
-queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>): void
+queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
 以异步方法根据给定的want和abilityFlags获取一个或多个AbilityInfo，使用callback形式返回结果。
 
@@ -907,7 +907,7 @@ try {
 
 ### bundleManager.queryAbilityInfo
 
-queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>>
+queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
 以异步方法根据给定的want、abilityFlags和userId获取一个或多个AbilityInfo，使用Promise形式返回结果。
 
@@ -994,7 +994,7 @@ try {
 
 ### bundleManager.queryAbilityInfoSync<sup>10+</sup>
 
-queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>
+queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<AbilityInfo>
 
 以同步方法根据给定的want、abilityFlags和userId获取一个或多个AbilityInfo。
 
@@ -1076,7 +1076,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfo
 
-queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId: number, callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void
+queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
 以异步方法根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取一个或多个ExtensionAbilityInfo，使用callback形式返回结果。
 
@@ -1138,7 +1138,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfo
 
-queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), callback: AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>): void
+queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
 以异步方法根据给定的want、extensionAbilityType和extensionAbilityFlags获取一个或多个ExtensionAbilityInfo，使用callback形式返回结果。
 
@@ -1197,7 +1197,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfo
 
-queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>>
+queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 以异步方法根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用Promise形式返回结果。
 
@@ -1287,7 +1287,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
 
-queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 以同步方法根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo。
 
@@ -1518,7 +1518,7 @@ try {
 
 ### bundleManager.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 以异步方法根据给定的hapFilePath和bundleFlags获取BundleInfo，使用callback形式返回结果。
 
@@ -1569,7 +1569,7 @@ try {
 
 ### bundleManager.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string,  bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleArchiveInfo(hapFilePath: string,  bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的hapFilePath和bundleFlags获取BundleInfo，使用Promise形式返回结果。
 
@@ -1924,7 +1924,7 @@ try {
 
 ### bundleManager.setAbilityEnabled
 
-setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean, callback: AsyncCallback\<void>): void
+setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 设置指定组件的禁用或使能状态，使用callback形式返回结果。
 
@@ -1988,7 +1988,7 @@ try {
 
 ### bundleManager.setAbilityEnabled
 
-setAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): Promise\<void>
+setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 
 设置指定组件的禁用或使能状态，使用Promise形式返回结果。
 
@@ -2055,7 +2055,7 @@ try {
 
 ### bundleManager.setAbilityEnabledSync<sup>10+</sup>
 
-setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): void
+setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 
 以同步方法设置指定组件的禁用或使能状态。
 
@@ -2262,7 +2262,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), callback: AsyncCallback\<boolean>): void
+isAbilityEnabled(info: AbilityInfo], callback: AsyncCallback\<boolean>): void
 
 以异步的方法获取指定组件的禁用或使能状态，使用callback形式返回结果。
 
@@ -2323,7 +2323,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): Promise\<boolean>
+isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
 以异步的方法获取指定组件的禁用或使能状态，使用Promise形式返回结果。
 
@@ -2387,7 +2387,7 @@ try {
 
 ### bundleManager.isAbilityEnabledSync<sup>10+</sup>
 
-isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): boolean
+isAbilityEnabledSync(info: AbilityInfo): boolean
 
 以同步方法获取指定组件的禁用或使能状态。
 
@@ -2684,7 +2684,7 @@ try {
 
 ### bundleManager.getPermissionDef
 
-getPermissionDef(permissionName: string, callback: AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)>): void
+getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>): void
 
 以异步方法根据给定的permissionName获取权限定义结构体PermissionDef信息，使用callback形式返回结果。
 
@@ -2732,7 +2732,7 @@ try {
 
 ### bundleManager.getPermissionDef
 
-getPermissionDef(permissionName: string): Promise\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)>
+getPermissionDef(permissionName: string): Promise\<PermissionDef>
 
 以异步方法根据给定的permissionName获取权限定义结构体PermissionDef信息，使用Promise形式返回结果。
 
@@ -2783,7 +2783,7 @@ try {
 
 ### bundleManager.getPermissionDefSync<sup>10+</sup>
 
-getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef-sys.md);
+getPermissionDefSync(permissionName: string): PermissionDef;
 
 以同步方法根据给定的permissionName获取权限定义结构体PermissionDef信息。
 
@@ -3005,7 +3005,7 @@ try {
 
 ### bundleManager.getApplicationInfoSync
 
-getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)
+getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : ApplicationInfo
 
 以同步方法根据给定的bundleName、applicationFlags和userId获取ApplicationInfo。
 
@@ -3060,7 +3060,7 @@ try {
 
 ### bundleManager.getApplicationInfoSync
 
-getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)
+getApplicationInfoSync(bundleName: string, applicationFlags: number) : ApplicationInfo
 
 以同步方法根据给定的bundleName、applicationFlags获取ApplicationInfo。
 
@@ -3112,7 +3112,7 @@ try {
 
 ### bundleManager.getBundleInfoSync
 
-getBundleInfoSync(bundleName: string, bundleFlags: [number](js-apis-bundleManager.md#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md)
+getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
 以同步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo。
 
@@ -3167,7 +3167,7 @@ try {
 
 ### bundleManager.getBundleInfoSync
 
-getBundleInfoSync(bundleName: string, bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md)
+getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
 
@@ -3401,7 +3401,7 @@ try {
 
 ### bundleManager.getAppProvisionInfo<sup>10+</sup>
 
-getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\>): void
+getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInfo\>): void
 
 以异步的方法获取指定bundleName的provision配置文件信息，使用callback形式返回结果。
 
@@ -3450,7 +3450,7 @@ try {
 
 ### bundleManager.getAppProvisionInfo<sup>10+</sup>
 
-getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\>): void
+getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<AppProvisionInfo\>): void
 
 以异步的方法获取指定bundleName和userId的provision配置文件信息，使用callback形式返回结果。
 
@@ -3503,7 +3503,7 @@ try {
 
 ### bundleManager.getAppProvisionInfo<sup>10+</sup>
 
-getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\>
+getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionInfo\>
 
 以异步的方法根据bundleName和userId获取应用的provision配置文件信息，使用Promise形式返回结果。
 
@@ -3726,7 +3726,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
-queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>
+queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 根据给定的want、extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
 
@@ -3813,7 +3813,7 @@ try {
 
 ### bundleManager.getJsonProfile<sup>11+</sup>
 
-getJsonProfile(profileType: [ProfileType](#profiletype11), bundleName: string, moduleName?: string): string
+getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string): string
 
 以同步的方法根据给定的profileType、bundleName和moduleName查询相应配置文件的JSON字符串。
 
@@ -3995,7 +3995,7 @@ try {
 
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
-queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>
+queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
 根据给定的extensionAbilityType、extensionAbilityFlags和userId获取ExtensionAbilityInfo。
 
@@ -4069,7 +4069,7 @@ try {
 
 ### bundleManager.getAllBundleInfoByDeveloperId<sup>12+</sup>
 
-getAllBundleInfoByDeveloperId(developerId: string): Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getAllBundleInfoByDeveloperId(developerId: string): Array\<BundleInfo>
 
 根据给定的developerId获取当前用户下的包信息列表。
 

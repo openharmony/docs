@@ -124,7 +124,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 ## CheckboxGroupResult对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 类型   | 描述      |
 | ------ | ------ | ------- |
@@ -133,7 +133,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 ## SelectStatus枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称  | 描述 |
 | ----- | -------------------- |

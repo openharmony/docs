@@ -40,9 +40,3 @@ try {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
-
-
-## HidHostProfile
-
-Before using any API of **HidHostProfile**, you need to create an instance of this class by using **createHidHostProfile()**.
-

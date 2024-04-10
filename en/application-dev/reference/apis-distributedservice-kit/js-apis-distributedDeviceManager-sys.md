@@ -81,8 +81,8 @@ Subscribes to the reply to the UI operation result.
 
   | Name     | Type                            | Mandatory| Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | Yes | Event type, which has a fixed value of **'replyResult'**.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
+  | type     | string                                | Yes | Event type, which has a fixed value of **replyResult**.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status change.       |
 
 **Example**
 
@@ -127,7 +127,7 @@ Unsubscribes from the reply to the UI operation result.
 
   | Name     | Type                             | Mandatory| Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | Yes  | Event type, which has a fixed value of **'replyResult'**.|
+  | type     | string                                | Yes  | Event type, which has a fixed value of **replyResult**.|
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
 
 **Example**

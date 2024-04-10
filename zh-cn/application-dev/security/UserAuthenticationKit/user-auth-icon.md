@@ -23,7 +23,7 @@
 
 ## 参数说明
 
-具体参数等信息，请参考对应的[API文档](../../reference/apis-user-authentication-kit/js-apis-useriam-userauthicon.md)。
+具体参数等信息，请参考对应的[API文档](../../reference/apis-user-authentication-kit/ohos-useriam-userauthicon.md)。
 
 ## 开发步骤
 
