@@ -126,7 +126,7 @@
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability
-          operationType: wantAgent.OperationType.START_ABILITY,
+          actionType: wantAgent.OperationType.START_ABILITY,
           // 使用者自定义的一个私有值
           requestCode: 0,
           // 点击通知后，动作执行属性
@@ -213,7 +213,7 @@
           }
         ],
         // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
@@ -375,7 +375,7 @@
           }
         ],
         // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性

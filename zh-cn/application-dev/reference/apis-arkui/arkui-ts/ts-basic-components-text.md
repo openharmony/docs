@@ -15,13 +15,13 @@
 
 Text(content?: string | Resource | StyledString , value?: TextOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) \| [StyledString](./ts-universal-styled-string.md) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>[StyledString](./ts-universal-styled-string.md#styledstring)的子类[MutableStyledString](./ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) \| [StyledString](./ts-universal-styled-string.md)<sup>12+</sup> | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>[StyledString](./ts-universal-styled-string.md#styledstring)的子类[MutableStyledString](./ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -142,7 +142,7 @@ baselineOffset(value: number | string)
 
 letterSpacing(value: number | string)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 

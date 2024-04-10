@@ -228,7 +228,7 @@ barState(value: BarState)
 
 maxLines(value: number)
 
-设置内联输入风格编辑态时文本可显示的最大行数。
+设置内联输入风格编辑态和非内联模式下文本可显示的最大行数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -329,7 +329,7 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 

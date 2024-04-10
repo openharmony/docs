@@ -42,7 +42,7 @@ struct WebComponent {
   在下面的示例中，Ability的onCreate中提前初始化Web内核并对首页进行预连接。
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -155,7 +155,7 @@ struct WebComponent {
   以下示例，在Ability的onCreate中，提前初始化Web内核并预获取首页的post请求。
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
