@@ -21,7 +21,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 > **说明：**
 >
 > 不支持转场动画。
-> 同一页面的多个web组件，必须绑定不同的WebviewController。
+> 同一页面的多个Web组件，必须绑定不同的WebviewController。
 
 **参数：**
 
@@ -1471,7 +1471,7 @@ allowWindowOpenMethod(flag: boolean)
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
   controller?: CustomDialogController
@@ -1701,7 +1701,7 @@ layoutMode(mode: WebLayoutMode)
 > 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
 > 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
 > Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
-> 全量展开模式下，频繁更改页面宽高会触发web组件重新布局，影响性能和体验。
+> 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
 
 **参数：**
 
@@ -3791,7 +3791,7 @@ onGeolocationHide(callback: () => void)
 
 onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
-通知开发者web组件进入全屏模式。
+通知开发者Web组件进入全屏模式。
 
 **参数：**
 
@@ -3828,7 +3828,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 onFullScreenExit(callback: () => void)
 
-通知开发者web组件退出全屏模式。
+通知开发者Web组件退出全屏模式。
 
 **参数：**
 
@@ -3887,7 +3887,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
-  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
   controller?: CustomDialogController
@@ -5067,7 +5067,7 @@ exitFullScreen(): void
 
 ## ControllerHandler<sup>9+</sup>
 
-设置用户新建web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+设置用户新建Web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
 
 ### setWebController<sup>9+</sup>
 
@@ -5079,11 +5079,11 @@ setWebController(controller: WebviewController): void
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建Web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
-web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getErrorCode
 
@@ -5111,7 +5111,7 @@ getErrorInfo(): string
 
 ## WebResourceRequest
 
-web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+Web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getRequestHeader
 
@@ -5196,7 +5196,7 @@ Web组件返回的请求/响应头对象。
 
 ## WebResourceResponse
 
-web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
+Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
 
 ### getReasonMessage
 
@@ -5372,7 +5372,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
+Web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
 ### getTitle<sup>9+</sup>
 
@@ -6083,7 +6083,7 @@ let webController: WebController = new WebController()
 
 getCookieManager(): WebCookie
 
-获取web组件cookie管理对象。
+获取Web组件cookie管理对象。
 
 从API version 9开始不再维护，建议使用[getCookie](js-apis-webview.md#getcookiedeprecated)代替。
 
@@ -6091,7 +6091,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
+| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
 
 **示例：**
 
@@ -6794,7 +6794,7 @@ clearHistory(): void
 
 ## WebCookie<sup>(deprecated)</sup>
 
-通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
 ### setCookie<sup>(deprecated)</sup>
 
