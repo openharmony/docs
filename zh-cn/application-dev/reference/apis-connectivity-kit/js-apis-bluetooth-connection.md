@@ -360,7 +360,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 设置设备配对请求确认。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
