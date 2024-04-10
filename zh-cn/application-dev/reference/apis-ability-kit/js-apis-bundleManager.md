@@ -860,7 +860,7 @@ let bundleName : string = 'com.ohos.demo';
 
 try {
     bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
-        for (let i = 0; i < modules.length; i++>) {
+        for (let i = 0; i < modules.length; i++) {
             hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
         }
     }).catch((err: BusinessError) => {
