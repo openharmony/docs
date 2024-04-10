@@ -86,7 +86,7 @@
 | int32_t [OH_ArkWebResponse_SetUrl](_web.md#oh_arkwebresponse_seturl) ([ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*url) | 设置经过重定向或由于HSTS而改变后的解析URL，设置后会触发跳转。  | 
 | void [OH_ArkWebResponse_GetUrl](_web.md#oh_arkwebresponse_geturl) (const [ArkWeb_Response](_web.md#arkweb_response) \*response, char \*\*url) | 获取经过重定向或由于HSTS而更改后的解析URL。  | 
 | int32_t [OH_ArkWebResponse_SetError](_web.md#oh_arkwebresponse_seterror) ([ArkWeb_Response](_web.md#arkweb_response) \*response, [ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | 给ArkWeb_Response对象设置一个错误码。  | 
-| [ArkWeb_NetError](_web.md#arkweb_neterror)[OH_ArkWebResponse_GetError](_web.md#oh_arkwebresponse_geterror) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
+| [ArkWeb_NetError](_web.md#arkweb_neterror) [OH_ArkWebResponse_GetError](_web.md#oh_arkwebresponse_geterror) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
 | int32_t [OH_ArkWebResponse_SetStatus](_web.md#oh_arkwebresponse_setstatus) ([ArkWeb_Response](_web.md#arkweb_response) \*response, int status) | 为ArkWeb_Response对象设置一个HTTP状态码。  | 
 | int [OH_ArkWebResponse_GetStatus](_web.md#oh_arkwebresponse_getstatus) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的HTTP状态码。  | 
 | int32_t [OH_ArkWebResponse_SetStatusText](_web.md#oh_arkwebresponse_setstatustext) ([ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*statusText) | 为ArkWeb_Response设置状态文本。  | 

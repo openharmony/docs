@@ -4547,7 +4547,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](../apis-device-certificate-kit/js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用Web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](../apis-device-certificate-kit/js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4710,7 +4710,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](../apis-device-certificate-kit/js-apis-cert.md)），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用Web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](../apis-device-certificate-kit/js-apis-cert.md)），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5077,7 +5077,7 @@ setCustomUserAgent(userAgent: string): void
 > **说明：**
 >
 >setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
->若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的web组件的src可以设置一个空字符串。
+>若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的Web组件的src可以设置一个空字符串。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -6582,7 +6582,7 @@ struct WebComponent {
 
 setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
-为当前web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
+为当前Web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6636,7 +6636,7 @@ struct WebComponent {
 
 clearWebSchemeHandler(): void
 
-清除当前web组件设置的所有WebSchemeHandler。
+清除当前Web组件设置的所有WebSchemeHandler。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6940,7 +6940,7 @@ closeCamera(): void
 
 ## WebCookieManager
 
-通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
 
 ### getCookie<sup>(deprecated)</sup>
 
@@ -8617,7 +8617,7 @@ struct WebComponent {
 
 ## WebDataBase
 
-web组件数据库管理对象。
+Web组件数据库管理对象。
 
 > **说明：**
 >
@@ -8807,7 +8807,7 @@ struct WebComponent {
 
 ## GeolocationPermissions
 
-web组件地理位置权限管理对象。
+Web组件地理位置权限管理对象。
 
 > **说明：**
 >
