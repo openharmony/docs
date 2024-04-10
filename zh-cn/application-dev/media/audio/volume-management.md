@@ -39,7 +39,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 #### 默认面板样式
 
-应用可以使用系统提供的默认面板样式，当前仅提供默认的系统音量条样式。
+应用可以使用系统提供的默认面板样式，当前仅提供默认的系统音量条样式，除位置外，其余基础属性调节暂不支持。
 
 ```ts
 import AVVolume from '@ohos.multimedia.avVolumePanel';
@@ -62,8 +62,6 @@ struct Index {
             }
           }
         })
-        .width('40vp').height('40vp')
-        .border({ width: 1, color: Color.Red })
       }
     }.width('50%').height('50%')
   }

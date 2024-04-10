@@ -67,8 +67,6 @@ struct Index {
             }
           }
         })
-        .width('40vp').height('40vp')
-        .border({ width: 1, color: Color.Red })
       }
     }.width('50%').height('50%')
   }
