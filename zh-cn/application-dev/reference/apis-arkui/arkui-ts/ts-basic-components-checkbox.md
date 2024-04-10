@@ -34,6 +34,7 @@ Checkbox(options?: CheckboxOptions)
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 用于指定多选框名称。 |
 | group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。自定义组件按照设定的尺寸来显示，超过Checkbox组件的部分，也不会对尺寸进行裁剪。indicatorBuilder不是function时，默认为indicatorBuilder未设置。|
 
 ## 属性
 
@@ -99,7 +100,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 描述                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
 
 ### shape<sup>11+</sup>
 
@@ -331,3 +332,59 @@ struct Index {
 
 
 ![](figures/checkbox3.gif)
+
+### 示例4
+该示例设置选中样式为Text。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CheckboxExample {
+  @Builder
+  indicatorBuilder(value: number) {
+    Column(){
+      Text(value > 99 ? '99+': value.toString())
+        .textAlign(TextAlign.Center)
+        .fontSize(value > 99 ?  '16vp': '20vp')
+        .fontWeight(FontWeight.Medium)
+        .fontColor('#ffffffff')
+    }
+  }
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(9)}})
+            .shape(CheckBoxShape.CIRCLE)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is'+ value)
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox1').fontSize(20)
+        }.padding(15)
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(100)}})
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox2').fontSize(20)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+![](figures/checkbox4.gif)
