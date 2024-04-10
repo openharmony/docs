@@ -3778,7 +3778,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 | URI           | 'uri'                 | 文件uri。                                                   |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
-| SIZE          | 'size'                | 文件大小。                                                   |
+| SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
 | DATE_ADDED    | 'date_added'          | 添加日期（添加文件时间距1970年1月1日的秒数值）。             |
 | DATE_MODIFIED | 'date_modified'       | 修改日期（修改文件时间距1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
 | DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                    |
