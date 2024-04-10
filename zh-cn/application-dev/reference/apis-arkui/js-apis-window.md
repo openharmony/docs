@@ -6601,6 +6601,8 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
 | SHOWN      | 1      | 切到前台。 |
