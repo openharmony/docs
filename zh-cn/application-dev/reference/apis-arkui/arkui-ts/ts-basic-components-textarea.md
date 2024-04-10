@@ -384,6 +384,23 @@ wordBreak(value: WordBreak)
 >
 >  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
 
+### selectedBackgroundColor<sup>12+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
+>  **说明：**     
+>   如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
