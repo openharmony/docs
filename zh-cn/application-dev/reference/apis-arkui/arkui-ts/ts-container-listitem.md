@@ -13,7 +13,7 @@
 
 ## 接口
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 ### ListItem<sup>10+</sup>
 

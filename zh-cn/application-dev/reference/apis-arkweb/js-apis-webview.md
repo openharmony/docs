@@ -688,7 +688,7 @@ static initializeWebEngine(): void
 本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -721,7 +721,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -1837,7 +1837,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。                                             |
+| script   | string \| ArrayBuffer         | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。                                             |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -2052,7 +2052,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string \| ArrayBuffer<sup>12+</sup>  | 是   | JavaScript脚本。 |
+| script | string \| ArrayBuffer | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。 |
 
 **返回值：**
 
@@ -4382,7 +4382,7 @@ struct WebComponent {
 2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4468,7 +4468,7 @@ struct WebComponent {
 2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4998,7 +4998,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -5050,7 +5050,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -6539,7 +6539,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 | 类型                                        | 说明                                                      |
 | ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOP。 |
+| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
 
 **错误码：**
 
@@ -9314,7 +9314,7 @@ Web组件发送的资源请求信息。
 | NONE    | 0    | 页面无音视频启播。 |
 | PLAYING | 1    | 页面音视频播放中。 |
 | PAUSED  | 2    | 页面音视频暂停。   |
-| STOP    | 3    | 页面音视频停止。   |
+| STOPPED | 3    | 页面音视频停止。   |
 
 ## RenderProcessMode<sup>12+</sup>
 

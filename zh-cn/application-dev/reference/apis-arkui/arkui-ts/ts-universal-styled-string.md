@@ -17,7 +17,7 @@
 
 StyledString(value: string , styles?: Array\<StyleOptions>)
 
-从API version 12开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -320,7 +320,7 @@ appendStyledString(other: StyledString): void
 
 TextStyle(value?: TextStyleInterface)
 
-从API version 12开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 

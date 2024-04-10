@@ -456,47 +456,47 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存�
 ```
 示例代码4：执行快滑操作。
 ```shell  
-hdc shell uitest uiInput fling 0 0 200 200 500 
+hdc shell uitest uiInput fling 10 10 200 200 500 
 ```
 示例代码5：执行慢滑操作。
 ```shell  
-hdc shell uitest uiInput swipe 0 0 200 200 500 
+hdc shell uitest uiInput swipe 10 10 200 200 500 
 ```
 示例代码6：执行拖拽操作。
 ```shell  
-hdc shell uitest uiInput drag 0 0 100 100 500 
+hdc shell uitest uiInput drag 10 10 100 100 500 
 ```
-示例代码6：执行向左滑动操作。
+示例代码7：执行向左滑动操作。
 ```shell  
 hdc shell uitest uiInput dircFling 0 500
 ```
-示例代码7：执行向右滑动操作。
+示例代码8：执行向右滑动操作。
 ```shell  
 hdc shell uitest uiInput dircFling 1 600
 ```
-示例代码8：执行向上滑动操作。
+示例代码9：执行向上滑动操作。
 ```shell  
 hdc shell uitest uiInput dircFling 2 
 ```
-示例代码9：执行向下滑动操作。
+示例代码10：执行向下滑动操作。
 ```shell  
 hdc shell uitest uiInput dircFling 3
 ```
 
-示例代码10：执行输入框输入操作。
+示例代码11：执行输入框输入操作。
 ```shell  
 hdc shell uitest uiInput inputText 100 100 hello
 ```
 
-示例代码11：执行返回主页操作。
+示例代码12：执行返回主页操作。
 ```shell  
-hdc shell uitest uiInput keyEvent home
+hdc shell uitest uiInput keyEvent Home
 ```
-示例代码12：执行返回上一步操作。
+示例代码13：执行返回上一步操作。
 ```shell  
-hdc shell uitest uiInput keyEvent back
+hdc shell uitest uiInput keyEvent Back
 ```
-示例代码13：执行组合键复制粘贴操作。
+示例代码14：执行组合键粘贴操作。
 ```shell  
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
