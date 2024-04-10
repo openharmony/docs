@@ -780,6 +780,48 @@ let key: cryptoFramework.PriKey; // key is a private key object. The generation 
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
 ```
+### getEncodedDer<sup>12+</sup>
+
+getEncodedDer(format: string): DataBlob
+
+支持根据指定的密钥格式（如采用哪个规范），获取满足ASN.1语法、DER编码的私钥数据。当前仅支持获取PKCS8格式的ecc私钥数据。
+
+> **说明：**
+>
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
+> 1. 本接口可根据入参决定数据的输出格式，当前支持获取PKCS8格式的ecc私钥数据。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 用于指定当前密钥格式，取值当前仅支持"PKCS8"。 |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的ecc私钥数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
+let returnBlob = key.getEncodedDer('PKCS8');
+console.info('returnBlob data：' + returnBlob.data);
+```
 
 ## KeyPair
 
@@ -1434,7 +1476,7 @@ try {
 
 **密钥转换说明**
 
-1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，此数据可用于跨应用传输或持久化存储。
+1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，其中对于ecc私钥，返回的是RFC5915定义格式。上述数据可用于跨应用传输或持久化存储。
 2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
 3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 
