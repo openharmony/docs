@@ -6849,6 +6849,70 @@ closeCamera(): void
 
 完整示例代码参考[startCamera](#startcamera12)。
 
+### precompileJavaScript<sup>12+</sup>
+
+precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
+
+预编译JavaScript生成字节码缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即请求该文件的服务器版本时使用的网络地址。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
+| cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
+
+**返回值：**
+
+| 类型                                | 说明                        |
+| ----------------------------------- | --------------------------- |
+| Promise\<number\> | 生成字节码缓存的错误码，0表示无错误，-1表示内部错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onControllerAttached( => {
+          getContext().resourceManager.getRawFileContent("local.js")
+            .then((content) => {
+              this.controller.precompileJavaScript("https://exmaple.com/example.js", content, {
+                responseHeaders: [
+                  {
+                    headerKey: "E-Tag",
+                    headerValue: "68ZpTzuAFdm85xPNtr3EOzySP8Q"
+                  }
+                ]
+              }).then((res) => {
+                console.error("precompile result: " + res);
+              }).catch((err) => {
+                console.error("precompile error: " + err);
+              })
+            }
+        })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -12917,3 +12981,13 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 **示例：**
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+## CacheOptions<sup>12+</sup>
+
+Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制字节码缓存更新。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称        | 类型   | 可读 | 可写 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，用于标识文件版本，判断是否需要更新。   |
