@@ -71,6 +71,7 @@ let config: pipWindow.PiPConfiguration = {
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight,
+  controlGroups: [pipWinodw.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
 };
 
 let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
@@ -141,7 +142,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoPlayControlGroup<sup>12+</sup>
 
-视频播放控件组。
+视频播放控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_PLAY时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -152,25 +153,25 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoCallControlGroup<sup>12+</sup>
 
-视频通话控件组。
+视频通话控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_CALL时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
 |----------------------|-----|-----------------------|
 | MICROPHONE_SWITCH       | 201   | 打开/关闭麦克风控件组。            |
-| HANG_UP_BUTTON    | 202   | 挂断控件组。<br/>如开发者需传入可选控件组，则挂断控件组为必传控件组。           |
+| HANG_UP_BUTTON    | 202   | 挂断控件组。           |
 | CAMERA_SWITCH    | 203   | 打开/关闭摄像头控件组。            |
 
 ## VideoMeetingControlGroup<sup>12+</sup>
 
-视频会议控件组。
+视频会议控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_MEETING时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
 |----------------------|-----|-----------------------|
-| HANG_UP_BUTTON       | 301   | 挂断控件组。<br/>如开发者需传入可选控件组，则挂断控件组为必传控件组。           |
+| HANG_UP_BUTTON       | 301   | 挂断控件组。          |
 | CAMERA_SWITCH    | 302   | 打开/关闭摄像头控件组。           |
 | MUTE_SWITCH    | 303   | 静音控件组。            |
 
