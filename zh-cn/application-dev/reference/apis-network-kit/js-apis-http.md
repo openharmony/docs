@@ -971,13 +971,8 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 ```ts
 import http from '@ohos.net.http';
 
-class DataReceiveProgressInfo {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1006,13 +1001,8 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 ```ts
 import http from '@ohos.net.http';
 
-class DataReceiveProgressInfo {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1038,13 +1028,8 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class DataSendProgressInfo {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1073,13 +1058,8 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class DataSendProgressInfo {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
