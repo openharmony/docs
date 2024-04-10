@@ -259,7 +259,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
             dl
     )
     ```
-   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.camke"`。
+   - 使用ohos-sdk交叉编译，需要对CMake设置native工具链路径，即：`-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.cmake"`。
     
    - 工具链默认编译64位的程序，如果要编译32位，需要添加：`-DOHOS_ARCH="armeabi-v7a"`。
 
