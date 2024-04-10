@@ -175,12 +175,6 @@ OH_AudioStreamBuilder_Destroy(builder);
 OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 ```
 
-## 相关实例
-
-针对音频通话开发，有以下相关实例可供参考：
-
-- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
-
 ## 设置音频声道布局
 
 播放音频文件时，可以通过设置音频的声道布局信息，指定渲染或播放时的扬声器摆位，使得渲染和播放效果更佳，获得更高质量的音频体验。
@@ -229,3 +223,9 @@ OH_AudioRenderer_WriteDataWithMetadataCallback metadataCallback = MyOnWriteDataW
 // 设置同时写入PCM数据和元数据的回调
 OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(builder, metadataCallback, nullptr);
 ```
+
+## 相关实例
+
+针对音频通话开发，有以下相关实例可供参考：
+
+- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
