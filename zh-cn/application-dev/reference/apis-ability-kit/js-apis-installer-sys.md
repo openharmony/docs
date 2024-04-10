@@ -929,7 +929,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE or ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
