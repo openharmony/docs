@@ -197,9 +197,10 @@ struct CustomDialogUser {
 ![openAnimator](figures/openAnimator.gif)
 
 ## 嵌套自定义弹窗
+
 通过第一个弹窗打开第二个弹窗时，最好将第二个弹窗定义在第一个弹窗的父组件处，通过父组件传给第一个弹窗的回调来打开第二个弹窗。
 
-```
+```ts
 @CustomDialog
 struct CustomDialogExampleTwo {
   controllerTwo?: CustomDialogController
