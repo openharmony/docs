@@ -837,10 +837,21 @@ async function example18() {
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection |
 | authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false。当authMode为true时，defaultFilePathUri必填，表明待授权uri。仅支持特定设备 |     
 
+## DocumentPickerMode
+
+枚举，picker选择的文档类型。
+
+**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| DEFAULT  | 0  | 标准模式 |
+| DOWNLOAD | 1  | 下载模式 |
 
 ## DocumentSaveOptions
 
 文档保存选项。
+当pickerMode设置为DOWNLOAD时，用户配置的参数defaultFilePathUri和fileSuffixChoices将不会生效。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
@@ -849,12 +860,16 @@ async function example18() {
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 |
+| pickerMode     | Array&lt;DocumentPickerMode&gt; | 否   | 拉起picker的类型 |
 
 ## AudioSelectOptions
 
 音频选择选项，目前不支持参数配置。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
+| 名称                    | 类型                                          | 必填 | 说明                                       |
+| :---------------------- |---------------------------------------------| ---- |------------------------------------------|
+| maxSelectNumber       | number                                      | 否   | 选择文件最大个数 |
 
 ## AudioSaveOptions
 
