@@ -751,5 +751,3 @@ Defines the type of the trace collection thread.
 | --------- | ------------ |
 | MAIN_THREAD  | Only the main thread of the current application.    |
 | ALL_THREADS |  All threads of the current application.  |
-
-<!--no_check-->
