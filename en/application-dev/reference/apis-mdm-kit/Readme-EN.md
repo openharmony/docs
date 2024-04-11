@@ -6,7 +6,7 @@
   - [@ohos.enterprise.accountManager (Account Management) (System API)](js-apis-enterprise-accountManager-sys.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management) (System API)](js-apis-enterprise-adminManager-sys.md)
   - [@ohos.enterprise.applicationManager (Application Management) (System API)](js-apis-enterprise-applicationManager-sys.md)
-  - [@ohos.enterprise.bluetoothManager (Bluetooth Management) (System Interface)](js-apis-enterprise-bluetoothManager-sys.md)
+  - [@ohos.enterprise.bluetoothManager (Bluetooth Management) (System API)](js-apis-enterprise-bluetoothManager-sys.md)
   - [@ohos.enterprise.browser (Browser Management) (System API)](js-apis-enterprise-browser-sys.md)
   - [@ohos.enterprise.bundleManager (Bundle Management) (System API)](js-apis-enterprise-bundleManager-sys.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management) (System API)](js-apis-enterprise-dateTimeManager-sys.md)

@@ -1,6 +1,6 @@
-# Internalization and Localization
+# Localization Kit
 
-- [Overview of Internationalization and Localization](i18n-l10n.md)
+- [Introduction to Localization Kit](i18n-l10n.md)
 - Application Internalization
     - [UI Design for Internationalization](i18n-ui-design.md)
     - [Locale and Cultural Habit Division](i18n-locale-culture.md)
