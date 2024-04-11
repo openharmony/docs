@@ -142,6 +142,42 @@ createKeyboardDelegate(): KeyboardDelegate
 let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
+## inputMethodEngine.CommandDataType<sup>12+</sup>
+
+**type** CommandDataType = **number** | **string** | boolean;
+
+私有数据类型，包含string，number，boolean。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+```ts
+import inputMethodEngine from '@ohos.inputMethodEngine';
+import { BusinessError } from '@ohos.base';
+
+inputMethodEngine.getInputMethodAbility.on('inputStart', (kbController, textInputClient) => {
+    globalThis.textInputClient = textInputClient;
+})
+try {
+  let record :Record<string, inputMethodEngine.CommandDataType> = {
+    "valueString1": "abcdefg",
+    "valueString2": true,
+    "valueString3": 500,
+  }
+  globalThis.textInputClient.sendPrivateCommand(record).then((err) => {
+  }).catch(err => {
+    if (err !== undefined) {
+      let error = err as BusinessError;
+      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    }
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+}
+```
+
 ## InputMethodEngine
 
 下列API均需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)获取到InputMethodEngine实例后，通过实例调用。
@@ -587,6 +623,92 @@ try {
   inputMethodAbility.off('securityModeChange', securityChangeCallback);
 } catch(err) {
   console.error(`Failed to off securityModeChange: ${JSON.stringify(err)}`);
+}
+```
+
+### on('privateCommand')<sup>12+</sup>
+
+on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandDataType>>): **void**;
+
+订阅输入法私有数据事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
+| callback | Callback<Record<**string**, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 12800010 | not default input method configured by system. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import inputMethodEngine from '@ohos.inputMethodEngine';
+
+let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+  for (const key in record) {
+    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+  }
+}
+try {
+  this.addLog(`regist private command `);
+  inputMethodEngine.getInputMethodAbility().on('privateCommand', privateCommandCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+}
+```
+
+### off('privateCommand')<sup>12+</sup>
+
+off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
+
+取消订阅输入法私有数据事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'privateCommand'。                   |
+| callback | Callback\<[SecurityMode](#securitymode11))> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 12800010 | not default input method configured by system. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import inputMethodEngine from '@ohos.inputMethodEngine';
+
+let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+  for (const key in record) {
+    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+  }
+}
+try {
+  this.addLog(`regist private command `);
+  inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  this.addLog(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -3414,6 +3536,69 @@ try {
   });
 } catch(err) {
   console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+}
+```
+
+### sendPrivateCommand<sup>12+</sup>
+
+sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**void**>;&gt;
+
+发送私有数据至需要与输入法应用通信的系统其他部分。
+
+>**说明**
+>
+>提供系统预置输入法应用与实现私有数据传递功能的系统其他部分的通信机制，用于设备级厂商在特定设备上实现特有的输入法功能。
+>
+>私有数据规格限制：总大小32KB，数量限制5条
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名      | 类型                            | 必填 | 说明       |
+| ----------- | ------------------------------- | ---- | ---------- |
+| commandData | Record<string, CommandDataType> | 是   | 私有数据。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 12800003 | input method client error.                     |
+| 12800010 | not default input method configured by system. |
+
+**示例：**
+
+```ts
+import inputMethodEngine from '@ohos.inputMethodEngine';
+import { BusinessError } from '@ohos.base';
+
+inputMethodEngine.getInputMethodAbility.on('inputStart', (kbController, textInputClient) => {
+    globalThis.textInputClient = textInputClient;
+})
+try {
+  let record :Record<string, inputMethodEngine.CommandDataType> = {
+    "valueString1": "abcdefg",
+    "valueString2": true,
+    "valueString3": 500,
+  }
+  globalThis.textInputClient.sendPrivateCommand(record).then((err) => {
+  }).catch(err => {
+    if (err !== undefined) {
+      let error = err as BusinessError;
+      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    }
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
 }
 ```
 
