@@ -28,12 +28,15 @@
 | struct&nbsp;&nbsp;[ArkUI_Rect](_ark_u_i___rect.md) | 定义遮罩屏蔽区域的范围结构体。  | 
 | struct&nbsp;&nbsp;[ArkUI_IntSize](_ark_u_i___int_size.md) | 尺寸类型，用于描述组件的宽高。  | 
 | struct&nbsp;&nbsp;[ArkUI_IntOffset](_ark_u_i___int_offset.md) | 位置，用于描述组件的位置。  | 
+| struct&nbsp;&nbsp;[ArkUI_Margin](_ark_u_i___margin.md) | 外边距属性，用于描述组件的外边距属性。  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef struct [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) | 约束尺寸，组件布局时，进行尺寸范围限制。  | 
+| typedef struct [ArkUI_DrawContext](_ark_u_i___native_module.md#arkui_drawcontext) [ArkUI_DrawContext](_ark_u_i___native_module.md#arkui_drawcontext) | 定义组件绘制上下文类型结构。  | 
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
 | typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
 | typedef struct [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
@@ -108,33 +111,39 @@
 | [ArkUI_ImageRenderMode](_ark_u_i___native_module.md#arkui_imagerendermode) { [ARKUI_IMAGE_RENDER_MODE_ORIGINAL](_ark_u_i___native_module.md) = 0, [ARKUI_IMAGE_RENDER_MODE_TEMPLATE](_ark_u_i___native_module.md) } | 定义图片渲染模式。  | 
 | [ArkUI_TransitionEdge](_ark_u_i___native_module.md#arkui_transitionedge) { [ARKUI_TRANSITION_EDGE_TOP](_ark_u_i___native_module.md) = 0, [ARKUI_TRANSITION_EDGE_BOTTOM](_ark_u_i___native_module.md), [ARKUI_TRANSITION_EDGE_START](_ark_u_i___native_module.md), [ARKUI_TRANSITION_EDGE_END](_ark_u_i___native_module.md) } | 定义转场从边缘滑入和滑出的效果。  | 
 | [ArkUI_BlendApplyType](_ark_u_i___native_module.md#arkui_blendapplytype) { [BLEND_APPLY_TYPE_FAST](_ark_u_i___native_module.md) = 0, [BLEND_APPLY_TYPE_OFFSCREEN](_ark_u_i___native_module.md) } | 指定的混合模式应用于视图的内容选项.  | 
+| [ArkUI_DimensionMode](_ark_u_i___native_module.md#arkui_dimensionmode) { [ARKUI_DIMENSION_MODE_DEFAULT](_ark_u_i___native_module.md) = -1, [ARKUI_DIMENSION_MODE_PX](_ark_u_i___native_module.md) = 0, [ARKUI_DIMENSION_MODE_VP](_ark_u_i___native_module.md), [ARKUI_DIMENSION_MODE_FP](_ark_u_i___native_module.md) } | 定义组件的单位模式。  | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| ArkUI_LayoutConstraint \* [OH_ArkUI_LayoutConstraint_Create](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_create) () | 创建约束尺寸。  | 
-| ArkUI_LayoutConstraint \* [OH_ArkUI_LayoutConstraint_Copy](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_copy) (const ArkUI_LayoutConstraint \*Constraint) | 约束尺寸深拷贝。  | 
-| void \* [OH_ArkUI_LayoutConstraint_Dispose](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_dispose) (ArkUI_LayoutConstraint \*Constraint) | 销毁约束尺寸指针。  | 
-| int32_t [OH_ArkUI_LayoutConstraint_GetMaxWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getmaxwidth) (const ArkUI_LayoutConstraint \*Constraint) | 通过约束尺寸获取最大宽度，单位为px。  | 
-| int32_t [OH_ArkUI_LayoutConstraint_GetMinWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getminwidth) (const ArkUI_LayoutConstraint \*Constraint) | 通过约束尺寸获取最小宽度，单位为px。  | 
-| int32_t [OH_ArkUI_LayoutConstraint_GetMaxHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getmaxheight) (const ArkUI_LayoutConstraint \*Constraint) | 通过约束尺寸获取最大高度，单位为px。  | 
-| int32_t [OH_ArkUI_LayoutConstraint_GetMinHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getminheight) (const ArkUI_LayoutConstraint \*Constraint) | 通过约束尺寸获取最小高度，单位为px。  | 
-| int32_t [OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getpercentreferencewidth) (const ArkUI_LayoutConstraint \*Constraint) | 通过约束尺寸获取宽度百分比基准，单位为px。  | 
-| int32_t [OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getpercentreferenceheight) (const ArkUI_LayoutConstraint \*Constraint) | 通过约束尺寸获取高度百分比基准，单位为px。  | 
-| void [OH_ArkUI_LayoutConstraint_SetMaxWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setmaxwidth) (ArkUI_LayoutConstraint \*Constraint, int32_t value) | 设置最大宽度。  | 
-| void [OH_ArkUI_LayoutConstraint_SetMinWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setminwidth) (ArkUI_LayoutConstraint \*Constraint, int32_t value) | 设置最小宽度。  | 
-| void [OH_ArkUI_LayoutConstraint_SetMaxHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setmaxheight) (ArkUI_LayoutConstraint \*Constraint, int32_t value) | 设置最大高度。  | 
-| void [OH_ArkUI_LayoutConstraint_SetMinHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setminheight) (ArkUI_LayoutConstraint \*Constraint, int32_t value) | 设置最小高度。  | 
-| void [OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setpercentreferencewidth) (ArkUI_LayoutConstraint \*Constraint, int32_t value) | 设置宽度百分比基准。  | 
-| void [OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setpercentreferenceheight) (ArkUI_LayoutConstraint \*Constraint, int32_t value) | 设置高度百分比基准。  | 
-| void \* [OH_ArkUI_DrawContext_GetCanvas](_ark_u_i___native_module.md#oh_arkui_drawcontext_getcanvas) (ArkUI_DrawContext \*context) | 获取绘制canvas指针，可以转换为图形库的OH_Drawing_Canvas指针进行绘制。  | 
-| [ArkUI_IntSize](_ark_u_i___int_size.md) [OH_ArkUI_DrawContext_GetSize](_ark_u_i___native_module.md#oh_arkui_drawcontext_getsize) (ArkUI_DrawContext \*context) | 获取可绘制区域大小。  | 
+| [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \* [OH_ArkUI_LayoutConstraint_Create](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_create) () | 创建约束尺寸。  | 
+| [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \* [OH_ArkUI_LayoutConstraint_Copy](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_copy) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 约束尺寸深拷贝。  | 
+| void \* [OH_ArkUI_LayoutConstraint_Dispose](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_dispose) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 销毁约束尺寸指针。  | 
+| int32_t [OH_ArkUI_LayoutConstraint_GetMaxWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getmaxwidth) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 通过约束尺寸获取最大宽度，单位为px。  | 
+| int32_t [OH_ArkUI_LayoutConstraint_GetMinWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getminwidth) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 通过约束尺寸获取最小宽度，单位为px。  | 
+| int32_t [OH_ArkUI_LayoutConstraint_GetMaxHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getmaxheight) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 通过约束尺寸获取最大高度，单位为px。  | 
+| int32_t [OH_ArkUI_LayoutConstraint_GetMinHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getminheight) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 通过约束尺寸获取最小高度，单位为px。  | 
+| int32_t [OH_ArkUI_LayoutConstraint_GetPercentReferenceWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getpercentreferencewidth) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 通过约束尺寸获取宽度百分比基准，单位为px。  | 
+| int32_t [OH_ArkUI_LayoutConstraint_GetPercentReferenceHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_getpercentreferenceheight) (const [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 通过约束尺寸获取高度百分比基准，单位为px。  | 
+| void [OH_ArkUI_LayoutConstraint_SetMaxWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setmaxwidth) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置最大宽度。  | 
+| void [OH_ArkUI_LayoutConstraint_SetMinWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setminwidth) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置最小宽度。  | 
+| void [OH_ArkUI_LayoutConstraint_SetMaxHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setmaxheight) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置最大高度。  | 
+| void [OH_ArkUI_LayoutConstraint_SetMinHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setminheight) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置最小高度。  | 
+| void [OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setpercentreferencewidth) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置宽度百分比基准。  | 
+| void [OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight](_ark_u_i___native_module.md#oh_arkui_layoutconstraint_setpercentreferenceheight) ([ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置高度百分比基准。  | 
+| void \* [OH_ArkUI_DrawContext_GetCanvas](_ark_u_i___native_module.md#oh_arkui_drawcontext_getcanvas) ([ArkUI_DrawContext](_ark_u_i___native_module.md#arkui_drawcontext) \*context) | 获取绘制canvas指针，可以转换为图形库的OH_Drawing_Canvas指针进行绘制。  | 
+| [ArkUI_IntSize](_ark_u_i___int_size.md) [OH_ArkUI_DrawContext_GetSize](_ark_u_i___native_module.md#oh_arkui_drawcontext_getsize) ([ArkUI_DrawContext](_ark_u_i___native_module.md#arkui_drawcontext) \*context) | 获取可绘制区域大小。  | 
 | [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \* [OH_ArkUI_WaterFlowSectionOption_Create](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_create) () | 创建FlowItem分组配置信息。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_Dispose](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_dispose) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option) | 销毁FlowItem分组配置信息指针。  | 
-| void [OH_ArkUI_WaterFlowSectionOption_SetItemsCount](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setitemscount) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, int32_t itemsCount) | 设置分组中FlowItem数量。  | 
+| void [OH_ArkUI_WaterFlowSectionOption_SetItemCount](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setitemcount) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, int32_t itemCount) | 设置分组中FlowItem数量。  | 
+| int32_t [OH_ArkUI_WaterFlowSectionOption_GetItemCount](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_getitemcount) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*Constraint, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的FlowItem数量。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetCrossCount](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setcrosscount) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, int32_t crossCount) | 设置布局栅格，纵向布局时为列数，横向布局时为行数。  | 
-| void [OH_ArkUI_WaterFlowSectionOption_SetColumnsGap](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setcolumnsgap) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, float columnGap) | 设置分组的列间距。  | 
-| void [OH_ArkUI_WaterFlowSectionOption_SetRowsGap](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setrowsgap) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, float rowGap) | 设置分组的行间距。  | 
+| int32_t [OH_ArkUI_WaterFlowSectionOption_GetCrossCount](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_getcrosscount) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的布局栅格数。  | 
+| void [OH_ArkUI_WaterFlowSectionOption_SetColumnGap](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setcolumngap) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*, int32_t index, float columnGap) | 设置分组的列间距。  | 
+| float [OH_ArkUI_WaterFlowSectionOption_GetColumnGap](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_getcolumngap) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的列间距。  | 
+| void [OH_ArkUI_WaterFlowSectionOption_SetRowGap](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setrowgap) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, float rowGap) | 设置分组的行间距。  | 
+| float [OH_ArkUI_WaterFlowSectionOption_GetRowGap](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_getrowgap) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的行间距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetMargin](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_setmargin) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index, float marginTop, float marginRight, float marginBottom, float marginLeft) | 设置分组的外边距。  | 
+| ArkUI_IntMargin [OH_ArkUI_WaterFlowSectionOption_GetMargin](_ark_u_i___native_module.md#oh_arkui_waterflowsectionoption_getmargin) ([ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。  | 
