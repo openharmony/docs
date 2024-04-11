@@ -33,7 +33,7 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [registerNodeEvent](#registernodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType, int32_t targetId, void \*userData) | 注册节点事件函数。  | 
 | void(\* [unregisterNodeEvent](#unregisternodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType) | 反注册节点事件函数。  | 
 | void(\* [registerNodeEventReceiver](#registernodeeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 注册事件回调统一入口函数。  | 
-|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册事件回调统一入口函数。  | 
+|  void(\* unregisterNodeEventReceiver )() | 反注册事件回调统一入口函数。  | 
 | void(\* [markDirty](#markdirty) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeDirtyFlag](_ark_u_i___native_module.md#arkui_nodedirtyflag) dirtyFlag) | 强制标记当前节点需要重新测算，布局或者绘制。  | 
 | uint32_t(\* [getTotalChildCount](#gettotalchildcount) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取子节点的个数。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getChildAt](#getchildat) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t position) | 获取子节点。  | 
@@ -43,18 +43,21 @@ Node模块相关接口需要在主线程上调用。
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getNextSibling](#getnextsibling) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取下一个兄弟节点。  | 
 | int32_t(\* [registerNodeCustomEvent](#registernodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType, int32_t targetId, void \*userData) | 注册自定义节点事件函数。事件触发时通过registerNodeCustomEventReceiver注册的自定义事件入口函数返回。  | 
 | void(\* [unregisterNodeCustomEvent](#unregisternodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType) | 反注册自定义节点事件函数。  | 
-| void(\* [registerNodeCustomEventReceiver](#registernodecustomeventreceiver) )(void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 注册自定义节点事件回调统一入口函数。  | 
-|  void(\* unregisterNodeCustomEventReceiver )() | 反注册自定义节点事件回调统一入口函数。  | 
+| void(\* [registerNodeCustomEventReceiver](#registernodecustomeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 注册自定义节点事件回调统一入口函数。  | 
+|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册自定义节点事件回调统一入口函数。  | 
 | int32_t(\* [setMeasuredSize](#setmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t width, int32_t height) | 在测算回调函数中设置组件的测算完成后的宽和高。  | 
 | int32_t(\* [setLayoutPosition](#setlayoutposition) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t positionX, int32_t positionY) | 在布局回调函数中设置组件的位置。  | 
 | [ArkUI_IntSize](_ark_u_i___int_size.md)(\* [getMeasuredSize](#getmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取组件测算完成后的宽高尺寸。  | 
 | [ArkUI_IntOffset](_ark_u_i___int_offset.md)(\* [getLayoutPosition](#getlayoutposition) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取组件布局完成后的位置。  | 
-| int32_t(\* [measureNode](#measurenode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_LayoutConstraint \*Constraint) | 对特定组件进行测算，可以通过getMeasuredSize接口获取测算后的大小。  | 
+| int32_t(\* [measureNode](#measurenode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) \*Constraint) | 对特定组件进行测算，可以通过getMeasuredSize接口获取测算后的大小。  | 
 | int32_t(\* [layoutNode](#layoutnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t positionX, int32_t positionY) | 对特定组件进行布局并传递该组件相对父组件的期望位置。  | 
 | int32_t(\* [addNodeEventReceiver](#addnodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 在组件上添加组件事件回调函数，用于接受该组件产生的组件事件。  | 
 | int32_t(\* [removeNodeEventReceiver](#removenodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 在组件上删除注册的组件事件回调函数。  | 
-| int32_t(\* [addNodeCustomEventReceiver](#addnodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 在组件上添加自定义事件回调函数，用于接受该组件产生的自定义事件（如布局事件，绘制事件）。  | 
-| int32_t(\* [removeNodeCustomEventReceiver](#removenodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 在组件上删除注册的自定义事件回调函数。  | 
+| int32_t(\* [addNodeCustomEventReceiver](#addnodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 在组件上添加自定义事件回调函数，用于接受该组件产生的自定义事件（如布局事件，绘制事件）。  | 
+| int32_t(\* [removeNodeCustomEventReceiver](#removenodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 在组件上删除注册的自定义事件回调函数。  | 
+| int32_t(\* [setUserData](#setuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData) | 在组件上保存自定义数据。  | 
+| void \*(\* [getUserData](#getuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取在组件上保存的自定义数据。  | 
+| int32_t(\* [setDimensionMode](#setdimensionmode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_DimensionMode](_ark_u_i___native_module.md#arkui_dimensionmode) mode) | 指定组件的单位。  | 
 
 
 ## 结构体成员变量说明
@@ -355,6 +358,26 @@ uint32_t(* ArkUI_NativeNodeAPI_1::getTotalChildCount) (ArkUI_NodeHandle node)
 0 - 成功。 401 - 函数参数异常。
 
 
+### getUserData
+
+```
+void*(* ArkUI_NativeNodeAPI_1::getUserData) (ArkUI_NodeHandle node)
+```
+**描述：**
+
+获取在组件上保存的自定义数据。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 保存了自定义数据的组件。  | 
+
+**返回：**
+
+自定义数据。
+
+
 ### insertChildAfter
 
 ```
@@ -452,14 +475,14 @@ void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirty
 
 强制标记当前节点需要重新测算，布局或者绘制。
 
-系统属性设置更新场景下ArkUI框架会自动标记藏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
+系统属性设置更新场景下ArkUI框架会自动标记脏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| node | 需要标记藏区的节点对象。  | 
-| dirtyFlag | 藏区类型。  | 
+| node | 需要标记脏区的节点对象。  | 
+| dirtyFlag | 脏区类型。  | 
 
 
 ### measureNode
@@ -525,6 +548,16 @@ ArkUI框架会统一收集过程中产生的自定义组件事件并通过注册
 | eventReceiver | 事件回调统一入口函数。  | 
 
 
+### unregisterNodeEventReceiver
+
+```
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
+```
+**描述：**
+
+反注册事件回调统一入口函数。
+
+
 ### registerNodeEvent
 
 ```
@@ -565,17 +598,6 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | 名称 | 描述 | 
 | -------- | -------- |
 | eventReceiver | 事件回调统一入口函数。  | 
-
-
-### unregisterNodeEventReceiver
-
-```
-void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
-```
-**描述：**
-
-反注册事件回调统一入口函数。
-
 
 
 ### removeChild
@@ -684,6 +706,27 @@ int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_Nod
 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
+### setDimensionMode
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::setDimensionMode) (ArkUI_NodeHandle node, ArkUI_DimensionMode mode)
+```
+**描述：**
+
+指定组件的单位。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 用于指定单位的组件。  | 
+| mode | 单位类型[ArkUI_DimensionMode](_ark_u_i___native_module.md#arkui_dimensionmode)，默认为 ARKUI_DIMENSION_MODE_VP。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
+
+
 ### setLayoutPosition
 
 ```
@@ -722,6 +765,27 @@ int32_t(* ArkUI_NativeNodeAPI_1::setMeasuredSize) (ArkUI_NodeHandle node, int32_
 | node | 目标节点对象。  | 
 | width | 设置的宽。  | 
 | height | 设置的高。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
+
+
+### setUserData
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::setUserData) (ArkUI_NodeHandle node, void *userData)
+```
+**描述：**
+
+在组件上保存自定义数据。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 用于保存自定义数据的组件。  | 
+| userData | 要保存的自定义数据。  | 
 
 **返回：**
 
