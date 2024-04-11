@@ -1092,6 +1092,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | 是   | 文件的应用沙箱路径或URI。                                   |
 | mode  | number | 是   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+| callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
 
@@ -1125,6 +1126,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | 是   | 文件的应用沙箱路径或URI。                                   |
+| callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
 
@@ -2967,6 +2969,7 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件的应用沙箱路径。 |
   | dest | string | 是    | 目的文件的应用沙箱路径。 |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件之后的回调。 |
 
 **错误码：**
 
@@ -3433,11 +3436,11 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
-    fs.closeSync(file);
+    stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
-    stream.closeSync();
+    fs.closeSync(file);
   });
   ```
 
@@ -3580,7 +3583,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 ### 属性
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | 是    | 否    | 发生监听事件的文件名。 |
 | event | number | 是    | 否    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文件或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。 |
@@ -3592,7 +3595,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | processedSize | number | 是    | 否    | 已拷贝的数据大小。 |
 | totalSize | number | 是    | 否    | 待拷贝的数据总大小。 |
@@ -3636,7 +3639,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 ### 属性
 
-| 名称     | 类型   | 可读   | 可写   | 说明                                       |
+| 名称     | 类型   | 只读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |                        
 | ino    | bigint | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。|                 |
 | mode   | number | 是    | 否    | 表示文件权限，各特征位的含义如下：<br/>**说明：** 以下值为八进制，取得的返回值为十进制，请换算后查看。<br/>-&nbsp;0o400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。 |
@@ -4268,7 +4271,7 @@ readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 ### 属性
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | 是    | 否    | 打开的文件描述符。 |
 | path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
@@ -4436,7 +4439,7 @@ unlock(): void
 
 ### 属性
 
-| 名称         | 类型   | 可读  | 可写  | 说明              |
+| 名称         | 类型   | 只读  | 可写  | 说明              |
 | ----------- | ------ | ----  | ----- | ---------------- |
 | fd          | number | 是    | 否    | 打开的文件描述符。 |
 | filePointer | number | 是    | 是    | RandomAccessFile对象的偏置指针。 |
@@ -4828,14 +4831,14 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| suffix | Array&lt;string&gt;     | 文件后缀名完全匹配，各个关键词OR关系。           |
-| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
-| mimeType    | Array&lt;string&gt; | mime类型完全匹配，各个关键词OR关系。       |
-| fileSizeOver    | number | 文件大小匹配，大于等于指定大小的文件。       |
-| lastModifiedAfter    | number | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
-| excludeMedia    | boolean | 是否排除Media中已有的文件。       |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| suffix | Array&lt;string&gt;     | 否 | 文件后缀名完全匹配，各个关键词OR关系。           |
+| displayName    | Array&lt;string&gt;     | 否 | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
+| mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。       |
+| fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。       |
+| lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
+| excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。       |
 
 ## ConflictFiles<sup>10+</sup>
 
@@ -4894,7 +4897,7 @@ open接口flags参数常量。文件打开标签。
 
 ## ReadTextOptions<sup>11+</sup>
 
-可选项类型，支持readText接口使用。
+可选项类型，支持readText接口使用，ReadTextOptions继承至ReadOptions。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4906,7 +4909,7 @@ open接口flags参数常量。文件打开标签。
 
 ## WriteOptions<sup>11+</sup>
 
-可选项类型，支持write接口使用。
+可选项类型，支持write接口使用，WriteOptions继承至Options。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
