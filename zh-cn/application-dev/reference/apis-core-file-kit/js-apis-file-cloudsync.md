@@ -123,9 +123,6 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid. |
 | 13600001  | IPC error. |
-| 13900002  | No such file or directory. |
-| 13900025  | No space left on device. |
-| 14000002  | Invalid uri. |
 
 **示例：**
 
