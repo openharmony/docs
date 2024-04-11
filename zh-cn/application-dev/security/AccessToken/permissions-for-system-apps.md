@@ -337,6 +337,18 @@
 
 **起始版本**：9
 
+### ohos.permission.ENTERPRISE_CONFIG
+
+允许应用激活企业设备。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
 允许应用发布系统公共事件。
