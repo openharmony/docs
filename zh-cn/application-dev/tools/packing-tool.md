@@ -136,7 +136,7 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 示例:
 
 ```
-java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --out-path <option>
+java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --resources-path <option> --out-path <option>
 ```
 
 **表5** HQF打包指令参数说明
@@ -147,6 +147,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <optio
 | --json-path | 是     | NA          | .json文件路径，文件名必须为patch.json。        |
 | --lib-path  | 否     | NA          | lib库文件的路径。                         |
 | --ets-path  | 否     | NA          | 存放ets文件目录路径。                       |
+| --resources-path  | 否     | NA          | resources资源包路径。                       |
 | --out-path  | 是     | NA          | 目标文件路径，文件名必须以.hqf为后缀。              |
 | --force     | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
