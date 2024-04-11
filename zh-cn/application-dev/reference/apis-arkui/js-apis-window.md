@@ -7601,7 +7601,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用使用系统默认Density。
+设置应用是否使用系统默认Density。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -7611,7 +7611,7 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| enabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。 |
+| enabled | boolean | 是   | 是否设置应用使用系统默认Density。true表示使用系统默认Density，窗口不跟随系统显示大小变化重新布局；false表示不使用系统默认Density，窗口跟随系统显示大小变化重新布局。不设置，则默认为false。|
 
 **错误码：**
 
