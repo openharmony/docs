@@ -3280,7 +3280,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3362,7 +3362,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3430,7 +3430,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3503,7 +3503,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4721,7 +4721,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -5796,7 +5796,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5877,7 +5877,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5942,7 +5942,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | keyPrefix | string                                                       | Yes  | Key prefix to match.                                        |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Error codes**
 
@@ -5950,7 +5950,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6007,7 +6007,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Error codes**
 
@@ -6015,7 +6015,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6063,7 +6063,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
 | query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6071,7 +6071,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6151,7 +6151,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6159,7 +6159,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6239,7 +6239,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6307,7 +6307,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Over max limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
