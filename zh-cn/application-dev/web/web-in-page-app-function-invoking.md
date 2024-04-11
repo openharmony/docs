@@ -341,7 +341,7 @@
   class testClass {
     constructor() {
     }
-    // 传递的基础类型name:"jeck", age:"12"。
+
     test(param: ESObject): void {
       param.hello("call obj func");
     }
