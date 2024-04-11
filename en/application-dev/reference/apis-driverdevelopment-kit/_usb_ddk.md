@@ -426,3 +426,5 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 **Returns**
 
 **0** if the operation is successful; a negative value otherwise.
+
+<!--no_check-->
