@@ -46,7 +46,7 @@
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | bundleName     | string         | 是   | 否   | 应用包的名称。                 |
-| moduleName | string         | 是   | 否   | 应用包的模块名。            |
+| moduleName | string         | 是   | 否   | 应用包的模块名，以entryModuleName为主。            |
 | iconId | number         | 是   | 否   | 应用图标Id。            |
 | labelId | number         | 是   | 否   | 应用标签Id。            |
 
