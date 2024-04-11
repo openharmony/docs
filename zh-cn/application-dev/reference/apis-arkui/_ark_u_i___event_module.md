@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  <br>**库：** libace_ndk.z.so| 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  | 
 
 
 ### 类型定义
@@ -33,6 +33,7 @@
 | { UI_TOUCH_EVENT_ACTION_CANCEL = 0, UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3 } | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
+| [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
 
 
 ### 函数
@@ -81,6 +82,7 @@
 | double [OH_ArkUI_AxisEvent_GetVerticalAxisValue](#oh_arkui_axisevent_getverticalaxisvalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的垂直滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetHorizontalAxisValue](#oh_arkui_axisevent_gethorizontalaxisvalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的水平滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetPinchAxisScaleValue](#oh_arkui_axisevent_getpinchaxisscalevalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的捏合轴缩放的值。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [HitTestMode](#hittestmode) mode) | 配置HitTest模式。  | 
 
 
 ## 类型定义说明
@@ -169,6 +171,25 @@ enum ArkUI_UIInputEvent_Type
 UI输入事件类型定义。
 
 **起始版本：** 12
+
+
+### HitTestMode
+
+```
+enum HitTestMode
+```
+**描述：**
+
+定义触摸测试类型的枚举值。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HTMDEFAULT  | 默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。&nbsp;&nbsp; | 
+| HTMBLOCK  | 自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。&nbsp;&nbsp; | 
+| HTMTRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。&nbsp;&nbsp; | 
+| HTMNONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。&nbsp;&nbsp; | 
 
 
 ## 函数说明
@@ -470,7 +491,6 @@ float OH_ArkUI_PointerEvent_GetHistoryPressure (const ArkUI_UIInputEvent * event
 **返回：**
 
 返回当前带有指向性的输入事件产生的触屏压力，如果参数异常则返回0.0f。
-
 
 ### OH_ArkUI_PointerEvent_GetHistorySize()
 
@@ -1024,6 +1044,29 @@ float OH_ArkUI_PointerEvent_GetYByIndex (const ArkUI_UIInputEvent * event, uint3
 **返回：**
 
 返回当前带有指向性的输入事件相对于当前组件左上角的Y坐标，如果参数异常则返回0.0f。
+
+
+### OH_ArkUI_PointerEvent_SetInterceptHitTestMode()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetInterceptHitTestMode (const ArkUI_UIInputEvent * event, HitTestMode mode )
+```
+**描述：**
+
+配置HitTest模式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| mode | 指定HitTest模式，参数类型[HitTestMode](#hittestmode)。  | 
+
+**返回：**
+
+返回执行的状态代码。
 
 
 ### OH_ArkUI_UIInputEvent_GetAction()
