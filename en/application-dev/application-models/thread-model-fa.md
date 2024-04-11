@@ -1,4 +1,4 @@
-# Thread Model Overview (FA Model)
+# Thread Model (FA Model)
 
 
 There are three types of threads in the FA model:
@@ -19,8 +19,10 @@ There are three types of threads in the FA model:
 
   Performs time-consuming operations.
 
-Based on the thread model, different services run on different threads. Service interaction requires inter-thread communication. Threads can communicate with each other in [Emitter](itc-with-emitter.md) or [Worker](../arkts-utils/worker-introduction.md) mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
+Based on the thread model, different services run on different threads. Service interaction requires inter-thread communication. Threads can communicate with each other in [Emitter](../basic-services/common-event/itc-with-emitter.md) or [Worker](../arkts-utils/worker-introduction.md) mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
 
 > **NOTE**
 >
 > The FA model provides an independent thread for each ability. Emitter is mainly used for event synchronization within the ability thread, between a pair of ability threads, or between the ability thread and worker thread.
+
+ <!--no_check--> 

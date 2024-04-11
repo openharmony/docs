@@ -11,38 +11,41 @@ You can use the JAR package of the packing tool to generate an HAP file for a mo
 
 - Packing command example in the stage model:
 
+
       ```
-      java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option>   --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true
+      java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5
       ```
 
 - Packing command example in the FA model:
 
+
       ```
-      java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option]
+      java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option] --compress-level 5
       ```
 
 **Table 1** Parameters of the HAP packing command
 
-| Name              | Mandatory| Option                  | Description                                                       | Remarks        |
-|------------------|-------|----------------------|-----------------------------------------------------------|------------|
-| --mode           | Yes    | hap                  | Packing mode.                                                    | NA         |
-| --json-path      | Yes    | NA                   | Path of the JSON file. The file name must be **config.json** in the FA model and **module.json** in the stage model.| NA         |
-| --profile-path   | No    | NA                   | Path of the **CAPABILITY.profile** file.                                  | NA         |
-| --maple-so-path  | No    | NA                   | Path of the Maple SO file. The file name extension must be .so. If there are multiple SO files, separate them with commas (,).      | NA         |
-| --maple-so-dir   | No    | NA                   | Path of the maple SO directory (folder).                                          | NA         |
-| --dex-path       | No    | NA                   | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.| NA         |
-| --lib-path       | No    | NA                   | Path of the library file.                                                | NA         |
-| --resources-path | No    | NA                   | Path of the resource file.                                          | NA         |
-| --index-path     | No    | NA                   | Path of the INDEX file. The file name must be **resources.index**.                        | NA         |
-| --pack-info-path | No    | NA                   | Path of the **pack.info** file. The file name must be **pack.info**.                           | NA         |
-| --rpcid-path     | No    | NA                   | Path of the **rpcid.sc** file. The file name must be **rpcid.sc**.                             | NA         |
-| --js-path        | No    | NA                   | Path of the JS file.                                              | This parameter is valid only in the stage model.|
-| --ets-path       | No    | NA                   | Path of the ETS file.                                             | This parameter is valid only in the stage model.|
-| --out-path       | Yes    | NA                   | Path of the target file. The file name extension must be .hap.                                    | NA         |
-| --force          | No    | true or false         | The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.                       | NA         |
-| --an-path        | No    | NA                   | Path of the AN file.                                               | This parameter is valid only in the stage model.|
-| --ap-path        | No    | NA                   | Path of the AP file.                                               | This parameter is valid only in the stage model.|
-| --dir-list       | No    | NA                   | List of directories (folders) to be packed into the HAP file.                             | NA         |
+| Name            | Mandatory| Option         | Description                                                        | Remarks           |
+| ---------------- | ---------- | ------------- | ------------------------------------------------------------ | --------------- |
+| --mode           | Yes        | hap           | Packing mode.                                                  | NA              |
+| --json-path      | Yes        | NA            | Path of the JSON file. The file name must be **config.json** in the FA model and **module.json** in the stage model.| NA              |
+| --profile-path   | No        | NA            | Path of the **CAPABILITY.profile** file.                                | NA              |
+| --maple-so-path  | No        | NA            | Path of the Maple SO file. The file name extension must be .so. If there are multiple SO files, separate them with commas (,).| NA              |
+| --maple-so-dir   | No        | NA            | Path of the maple SO directory (folder).                                      | NA              |
+| --dex-path       | No        | NA            | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.| NA              |
+| --lib-path       | No        | NA            | Path of the library file.                                             | NA              |
+| --resources-path | No        | NA            | Path of the resource file.                                       | NA              |
+| --index-path     | No        | NA            | Path of the INDEX file. The file name must be **resources.index**.               | NA              |
+| --pack-info-path | No        | NA            | Path of the **pack.info** file. The file name must be **pack.info**.                  | NA              |
+| --rpcid-path     | No        | NA            | Path of the **rpcid.sc** file. The file name must be **rpcid.sc**.                    | NA              |
+| --js-path        | No        | NA            | Path of the JS file.                                        | This parameter is valid only in the stage model.|
+| --ets-path       | No        | NA            | Path of the ETS file.                                       | This parameter is valid only in the stage model.|
+| --out-path       | Yes        | NA            | Path of the target file. The file name extension must be .hap.                      | NA              |
+| --force          | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing. | NA              |
+| --an-path        | No        | NA            | Path of the AN file.                                          | This parameter is valid only in the stage model.|
+| --ap-path        | No        | NA            | Path of the AP file.                                          | This parameter is valid only in the stage model.|
+| --dir-list       | No        | NA            | List of directories (folders) to be packed into the HAP file.                     | NA              |
+| --compress-level | No        | number        | Compression level, ranging from 1 to 9. The default value is **1**. This parameter is valid only when **compressNativeLibs** is set to **true**. A larger value indicates a higher compression rate and a slower compression speed.| NA  |
 
 ## HAR Packing Command
 
@@ -51,7 +54,7 @@ You can use the JAR package of the packing tool to generate an HAR file for an a
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [option]--lib-path [option] --resources-path [option] --out-path [option] --force [option]
+java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [option] --lib-path [option] --resources-path [option] --out-path [option] --force [option]
 ```
 
 **Table 2** Parameters of the HAR packing command
@@ -72,25 +75,26 @@ HSP files enable file sharing among multiple HAPs. You can use the JAR package o
 
 Packing command example:
 ```
-java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true
+java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5
 ```
 
 **Table 3** Parameters of the HSP packing command
 
-| Name              | Mandatory| Option         | Description                                                       |
-|------------------|-------|-------------|-----------------------------------------------------------|
-| --mode           | Yes    | hsp         | Packing mode.                                                    |
-| --json-path      | Yes    | NA          | Path of the JSON file. The file name must be **module.json**.                             |
-| --profile-path   | No    | NA          | Path of the **CAPABILITY.profile** file.                                  |
-| --dex-path       | No    | NA          | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.|
-| --lib-path       | No    | NA          | Path of the library file.                                                |
-| --resources-path | No    | NA          | Path of the resource file.                                          |
-| --index-path     | No    | NA          | Path of the INDEX file. The file name must be **resources.index**.                        |
-| --pack-info-path | No    | NA          | Path of the **pack.info** file. The file name must be **pack.info**.                           |
-| --js-path        | No    | NA          | Path of the JS file.                                              |
-| --ets-path       | No    | NA          | Path of the ETS file.                                             |
-| --out-path       | Yes    | NA          | Path of the target file. The file name extension must be .hsp.                                    |
-| --force          | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.           |
+| Name            | Mandatory| Option         | Description                                                        |
+| ---------------- | ---------- | ------------- | ------------------------------------------------------------ |
+| --mode           | Yes        | hsp           | Packing mode.                                                  |
+| --json-path      | Yes        | NA            | Path of the JSON file. The file name must be **module.json**.                    |
+| --profile-path   | No        | NA            | Path of the **CAPABILITY.profile** file.                                |
+| --dex-path       | No        | NA            | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.|
+| --lib-path       | No        | NA            | Path of the library file.                                             |
+| --resources-path | No        | NA            | Path of the resource file.                                       |
+| --index-path     | No        | NA            | Path of the INDEX file. The file name must be **resources.index**.               |
+| --pack-info-path | No        | NA            | Path of the **pack.info** file. The file name must be **pack.info**.                  |
+| --js-path        | No        | NA            | Path of the JS file.                                        |
+| --ets-path       | No        | NA            | Path of the ETS file.                                       |
+| --out-path       | Yes        | NA            | Path of the target file. The file name extension must be .hsp.                      |
+| --force          | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing. |
+| --compress-level | No        | number        | Compression level, ranging from 1 to 9. The default value is **1**. This parameter is valid only when **compressNativeLibs** is set to **true**. A larger value indicates a higher compression rate and a slower compression speed.|
 
 ## APP Packing Command
 
@@ -102,7 +106,7 @@ You can use the JAR package of the packing tool to generate an APP file for an a
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info [option]--force [option]
+java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
 ```
 
 **Table 4** Parameters of the APP packing command
@@ -162,7 +166,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <optio
 | --mode      | Yes    | hqf         | Packing mode.                             |
 | --json-path | Yes    | NA          | Path of the JSON file. The file name must be **patch.json**.       |
 | --lib-path  | No    | NA          | Path of the library file.                        |
-| --ets-path  | Yes    | NA          | Path of the ETS file.                      |
+| --ets-path  | No    | NA          | Path of the ETS file.                      |
 | --out-path  | Yes    | NA          | Path of the target file. The file name extension must be .hqf.             |
 | --force     | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.|
 

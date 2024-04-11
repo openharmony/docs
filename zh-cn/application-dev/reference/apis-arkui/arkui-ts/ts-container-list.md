@@ -36,7 +36,7 @@
 
 List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?: Scroller})
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -147,7 +147,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false |
+| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false |
 
 ### edgeEffect
 
@@ -206,7 +206,7 @@ multiSelectable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否开启鼠标框选。<br/>默认值：false，关闭框选。true，开启框选。。 |
+| value  | boolean | 是   | 是否开启鼠标框选。<br/>默认值：false，关闭框选。true，开启框选。 |
 
 ### lanes<sup>9+</sup>
 
@@ -329,7 +329,7 @@ friction(value: number | Resource)
 
 scrollBarWidth(value: number | string)
 
-设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过List组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -419,7 +419,7 @@ flingSpeedLimit(speedLimit: number)
 
 设置列表项滚动结束对齐效果。
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 左右和上下这种两端对齐的样式：当列表位移至末端，则需要将末端的item完整显示，同时不能露出边界空白区域，此时另一端可以出现不限位对齐的现象。
 
@@ -581,9 +581,9 @@ onItemMove(event: (from: number, to: number) => boolean)
 
 ### onItemDragStart<sup>8+</sup>
 
-开始拖拽列表元素时触发。
+onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void))
 
-onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void)
+开始拖拽列表元素时触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -625,6 +625,8 @@ onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: numb
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
 
 ### onItemDragLeave<sup>8+</sup>
+
+onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 拖拽离开列表元素时触发。
 
@@ -708,6 +710,21 @@ onDidScroll(handler: OnScrollCallback)
 | ------ | ------ | ------ | ------|
 | handler | [OnScrollCallback](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
 
+### onScrollVisibleContentChange<sup>12+</sup>
+onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
+
+有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem/ListItemGroup中的header/ListItemGroup中的footer都算一个子组件。
+
+触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12对象说明) | 是 | 当前显示内容发生改变的时候触发回调。 |
+
 ## OnScrollCallback对象说明
 列表滑动时触发的回调  
 
@@ -718,7 +735,7 @@ onDidScroll(handler: OnScrollCallback)
 
 ## ScrollState枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -829,10 +846,35 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 >
 > - ListScroller必须绑定到List组件上。
 
+## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
+有子组件划入或划出List显示区域时触发。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| start | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面第一个ListItem或ListItemGroup的详细信息。 |
+| end | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面最后一个ListItem或ListItemGroup的详细信息。 |
+
+## VisibleListContentInfo<sup>12+</sup>
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| index | number | 是 | List显示区域内ListItem或ListItemGroup的索引值。 |
+| itemGroupArea | [ListItemGroupArea](#listitemgrouparea12枚举说明) | 否 | 如果当前可视页面的上边或下边在某个ListItemGroup之中，将会显示它所处的位置。 |
+| itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
+
+## ListItemGroupArea<sup>12+</sup>枚举说明
+
+| 名称     |  枚举值  | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| NONE |  0  | 当前页面可视边处于none位置。例如，ListItemGroup中既没有header、footer，也没有ListItem。 |
+| IN_LIST_ITEM_AREA |  1  | 当前页面可视边处于ListItem位置。 |
+| IN_HEADER_AREA |  2  | 当前页面可视边处于header位置。 |
+| IN_FOOTER_AREA |  3  | 当前页面可视边处于footer位置。 |
+
 ## 示例
 
 ### 示例1
-
+该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
 ```ts
 // xxx.ets
 @Entry
@@ -860,6 +902,14 @@ struct ListExample {
         console.info('first' + firstIndex)
         console.info('last' + lastIndex)
         console.info('center' + centerIndex)
+      })
+      .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
+        console.log(' start index: ' + start.index +
+                    ' start item group area: ' + start.itemGroupArea +
+                    ' start index in group: ' + start.itemIndexInGroup)
+        console.log(' end index: ' + end.index +
+                    ' end item group area: ' + end.itemGroupArea +
+                    ' end index in group: ' + end.itemIndexInGroup)
       })
       .onScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)

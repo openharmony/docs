@@ -728,7 +728,7 @@ udp.off('error');
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| address | string | 是   | 本地绑定的ip地址。                                           |
+| address<sup>11+</sup> | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
 | family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
 
@@ -5642,8 +5642,8 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5651,7 +5651,7 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5661,7 +5661,7 @@ let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsTwoWay.connect(tlsTwoWayConnectOptions, (err: BusinessError) => {
+tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 ```
@@ -5747,8 +5747,8 @@ tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect failed " + JSON.stringify(err));
 });
 
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5756,7 +5756,7 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5766,7 +5766,7 @@ let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsTwoWay.connect(tlsTwoWayConnectOptions).then(() => {
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));

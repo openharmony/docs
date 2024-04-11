@@ -16,4 +16,3 @@ ArkTS卡片框架提供了[updateForm()](../reference/apis-form-kit/js-apis-app-
 - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
 - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
 - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
-- [使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)

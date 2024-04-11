@@ -245,7 +245,6 @@ import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
@@ -302,7 +301,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            this.VpnConnection.create(config, (error, data) => {
+            this.VpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
@@ -348,7 +347,6 @@ Protects sockets against a VPN connection. The data sent through sockets is dire
 import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 let g_tunnelFd = -1;
@@ -362,7 +360,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
     this.Protect();
   }
   CreateTunnel() {
-      g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
+      g_tunnelFd = 8888;
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
@@ -438,5 +436,3 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
-
-<!--no_check-->

@@ -93,9 +93,9 @@ popupBackground(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                      |
-| ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗背景色。<br/>默认值：0xFFFFFFFF。 |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗背景色。<br/>默认值：<br />API version 11及以前：0xFFFFFFFF。<br />API version 12及以后：#66808080。 |
 
 ### usingPopup
 
@@ -123,7 +123,7 @@ selectedFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 选中项文字样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 选中项文字样式。<br/>默认值：<br/>API version 11及以前：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}<br/>API version 12及以后：<br/>{<br/>size:'10.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### popupFont
 
@@ -151,7 +151,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 字母索引条默认字体样式。<br/>默认值：<br/>API version 11及以前：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}<br/>API version 12及以后：<br/>{<br/>size:'10.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### itemSize
 
@@ -196,7 +196,7 @@ selected(index: number)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | number | 是   | 选中项索引值。<br/>默认值：0 |
+| index  | number | 是   | 选中项索引值。<br/>默认值：0 |
 
 ### popupPosition<sup>8+</sup>
 
@@ -210,7 +210,7 @@ popupPosition(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
+| value  | [Position](ts-types.md#position) | 是   | 弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0} |
 
 ### popupSelectedColor<sup>10+</sup>
 
@@ -266,7 +266,7 @@ popupItemBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                     | 必填 | 说明                                            |
 | ------ | ------------------------ | ---- | ----------------------------------------------- |
-| value  | [Font](ts-types.md#font) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFFFF |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗非字母部分背景色。 <br/>默认值：<br />API version 11及以前：#FFFFFFFF。<br />API version 12及以后：#00000000。 |
 
 ### autoCollapse<sup>11+</sup>   
 
@@ -285,6 +285,62 @@ autoCollapse(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
 | value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：false |
+
+### popupItemBorderRadius<sup>12+</sup>   
+
+popupItemBorderRadius(value: number)
+
+设置提示弹窗索引项背板圆角半径。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 设置提示弹窗索引项背板圆角半径。<br/>默认值：24vp。<br/>不支持百分比，小于0时按照0设置。<br/>提示弹窗背板圆角自适应变化（索引项圆角半径+4vp）。 |
+
+### itemBorderRadius<sup>12+</sup>   
+
+itemBorderRadius(value: number)
+
+设置索引项背板圆角半径。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 设置索引项背板圆角半径。<br/>默认值：8vp<br/>不支持百分比，小于0时按照0设置。<br/>索引条背板圆角自适应变化（索引项圆角半径+4vp）。 |
+
+### popupBackgroundBlurStyle<sup>12+</sup>   
+
+popupBackgroundBlurStyle(value: BlurStyle)
+
+设置提示弹窗的背景模糊材质。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                         | 必填 | 说明                                                         |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
+
+### popupTitleBackground<sup>12+</sup>   
+
+popupTitleBackground(value: ResourceColor)
+
+设置提示弹窗首个索引项背板颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                     |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：#0c182431。 |
 
 ## IndexerAlign枚举说明
 
@@ -430,6 +486,10 @@ struct AlphabetIndexerSample {
           .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框内容的字体样式
           .itemSize(28) // 每一项的尺寸大小
           .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
+          .popupItemBorderRadius(24) // 设置提示弹窗索引项背板圆角半径
+          .itemBorderRadius(14) // 设置索引项背板圆角半径
+          .popupBackgroundBlurStyle(BlurStyle.NONE) // 设置提示弹窗的背景模糊材质
+          .popupTitleBackground(0xCCCCCC) // 设置提示弹窗首个索引项背板颜色
           .popupSelectedColor(0x00FF00)
           .popupUnselectedColor(0x0000FF)
           .popupItemFont({ size: 30, style: FontStyle.Normal })
@@ -541,6 +601,7 @@ struct AlphabetIndexerSample {
               .popupFont({ size: 30, weight: FontWeight.Bolder })// 弹出框内容的字体样式
               .itemSize(28)// 每一项的尺寸大小
               .alignStyle(IndexerAlign.Right)// 弹出框在索引条右侧弹出
+              .popupTitleBackground("#D2B48C") // 弹出框首个索引项背板颜色
               .popupSelectedColor(0x00FF00)
               .popupUnselectedColor(0x0000FF)
               .popupItemFont({ size: 30, style: FontStyle.Normal })
@@ -597,3 +658,128 @@ struct AlphabetIndexerSample {
 ```
 
 ![alphabetIndexerAutoCollapseSample](figures/alphabetIndexerAutoCollapseSample.gif)
+
+### 示例3
+
+```ts
+// 该示例实现了自定义设置提示弹窗的背景模糊材质
+@Entry
+@Component
+struct AlphabetIndexerSample {
+  private arrayA: string[] = ['安']
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
+  private arrayC: string[] = ['曹', '成', '陈', '催']
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+    'V', 'W', 'X', 'Y', 'Z']
+  @State customBlurStyle: BlurStyle = BlurStyle.NONE;
+
+  build() {
+    Stack({ alignContent: Alignment.Start }) {
+      Row() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arrayA, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayB, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayC, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayL, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+        }
+        .width('30%')
+        .height('100%')
+        Column(){
+          Column() {
+            Text('切换模糊材质: ')
+              .fontSize(24)
+              .fontColor(0xcccccc)
+              .width('100%')
+            Button('COMPONENT_REGULAR')
+              .margin('5vp')
+              .width(200)
+              .onClick(() => {
+                this.customBlurStyle = BlurStyle.COMPONENT_REGULAR;
+              })
+            Button('BACKGROUND_THIN')
+              .margin('5vp')
+              .width(200)
+              .onClick(() => {
+                this.customBlurStyle = BlurStyle.BACKGROUND_THIN;
+              })
+          }.height('20%')
+
+          Column(){
+            AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+              .usingPopup(true) // 是否显示弹出框
+              .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
+              .popupItemBorderRadius(24) // 设置提示弹窗索引项背板圆角半径
+              .itemBorderRadius(14) // 设置索引项背板圆角半径
+              .popupBackgroundBlurStyle(this.customBlurStyle) // 设置提示弹窗的背景模糊材质
+              .popupTitleBackground(0xCCCCCC) // 设置提示弹窗首个索引项背板颜色
+              .onSelect((index: number) => {
+                console.info(this.value[index] + ' Selected!')
+              })
+              .onRequestPopupData((index: number) => {
+                if (this.value[index] == 'A') {
+                  return this.arrayA // 当选中A时，弹出框里面的提示文本列表显示A对应的列表arrayA，选中B、C、L时也同样
+                } else if (this.value[index] == 'B') {
+                  return this.arrayB
+                } else if (this.value[index] == 'C') {
+                  return this.arrayC
+                } else if (this.value[index] == 'L') {
+                  return this.arrayL
+                } else {
+                  return [] // 选中其余子母项时，提示文本列表为空
+                }
+              })
+              .onPopupSelect((index: number) => {
+                console.info('onPopupSelected:' + index)
+              })
+          }
+          .height('80%')
+        }
+        .width('70%')
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundImage($r("app.media.image"))
+    }
+  }
+}
+```
+
+![alphabetIndexerBlurStyleSample](figures/alphabetIndexerBlurStyleSample.gif)

@@ -219,7 +219,7 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。同步�
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
 当Ability准备迁移时触发，保存数据。
 
@@ -235,7 +235,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt;  | 接续的结果或带接续结果的Promise对象。 |
 
 **示例：**
 
@@ -249,6 +249,29 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
           wantParams['myData'] = 'my1234567';
           return AbilityConstant.OnContinueResult.AGREE;
       }
+  }
+  ```
+
+支持应用在迁移时，使用异步接口进行数据保存。
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  class MyUIAbility extends UIAbility {
+    async setWant(wantParams: Record<string, Object>) {
+      console.log('setWant start');
+      for (let time = 0; time < 1000; ++time) {
+        wantParams[time] = time;
+      }
+      console.log('setWant end');
+    }
+
+    async onContinue(wantParams: Record<string, Object>) {
+        console.log('onContinue');
+        return this.setWant(wantParams).then(()=>{
+          return AbilityConstant.OnContinueResult.AGREE;
+        });
+    }
   }
   ```
 
@@ -435,7 +458,10 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 onBackPressed(): boolean
 
-UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。同步接口，不支持异步回调。
+UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回值决定是否销毁UIAbility。
+
+- 当targetSdkVersion<12时，默认返回值为false，会销毁UIAbility。
+- 当targetSdkVersion>=12时，默认返回值为true，会将UIAbility移动到后台不销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

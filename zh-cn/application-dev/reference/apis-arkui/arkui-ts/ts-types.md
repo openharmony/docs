@@ -1,4 +1,4 @@
-# 类型定义
+# 基础类型定义
 
 >**说明：**
 >
@@ -189,10 +189,10 @@
 | -------------- | ---------------------- | ------------------------------ |
 | width          | [Length](#length)      | 目标元素的宽度，作为返回值时，类型为number，单位vp。 |
 | height         | [Length](#length)      | 目标元素的高度，作为返回值时，类型为number，单位vp。 |
-| position       | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。            |
-| globalPosition | [Position](#position8) | 目标元素左上角相对页面左上角的位置。             |
+| position       | [Position](#position) | 目标元素左上角相对父元素左上角的位置。            |
+| globalPosition | [Position](#position) | 目标元素左上角相对页面左上角的位置。             |
 
-## Position<sup>8+</sup>
+## Position
 
 位置类型，用于表示一个坐标点。
 
@@ -259,7 +259,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../quick-start/arkts-builder.md#builder)。 |
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -451,3 +451,32 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+
+## StyledStringValue<sup>12+</sup>
+
+样式对象类型，用于设置属性字符串的样式。
+
+| 名称   | 描述       |
+| ------ | ---------- |
+| TextStyle | 文本字体样式。 |
+
+## SubmitEvent<sup>11+</sup>
+
+定义用户提交事件。
+
+| 名称              | 类型       | 必填 | 描述                                               |
+| ----------------- | ---------- | ---- | -------------------------------------------------- |
+| keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text              | string     | 否   | 输入框文本内容。                                   |
+
+## EnterKeyType枚举说明
+
+| 名称                   | 描述               |
+| ---------------------- | ------------------ |
+| Go                     | 显示为开始样式。   |
+| Search                 | 显示为搜索样式。   |
+| Send                   | 显示为发送样式。   |
+| Next                   | 显示为下一步样式。 |
+| Done                   | 显示为完成样式。   |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
+| NEW_LINE<sup>11+</sup> | 显示为换行样式。   |

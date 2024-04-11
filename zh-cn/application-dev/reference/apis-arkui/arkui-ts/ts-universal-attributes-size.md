@@ -46,7 +46,7 @@ height(value: Length)
 >
 >  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
 
-## Size
+## size
 
 size(value: SizeOptions)
 
@@ -96,9 +96,9 @@ margin(value: margin | Length)
 
 **参数：** 
 
-| 参数名   | 类型                                       | 必填      | 说明                                       |
-| ----- | ---------------------------------------- | ------- | ---------------------------------------- |
-| value | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件实际的水平方向offset为20。 |
+| 参数名 | 类型                                                         | 必填     | 说明                                                         |
+| ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件水平方向偏移10。 |
 
 ## layoutWeight
 
@@ -149,7 +149,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 ## SizeOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -158,7 +158,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 ## ConstraintSizeOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |

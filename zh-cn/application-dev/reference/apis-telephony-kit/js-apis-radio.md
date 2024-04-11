@@ -1,6 +1,6 @@
 # @ohos.telephony.radio (网络搜索)
 
-网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持5G\(NR\)、判断主卡的Radio是否打开等。
+网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持NR(New Radio)、判断主卡的Radio是否打开等。
 
 >**说明：**
 >
@@ -349,7 +349,7 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\)
 | 参数名   | 类型                    | 必填 | 说明                                     |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。如果设备没有注册任何网络，接口返回空字符串。|
 
 **错误码：**
 
@@ -397,7 +397,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
+| Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。如果设备没有注册任何网络，接口返回空字符串。|
 
 **错误码：**
 
@@ -442,7 +442,7 @@ getISOCountryCodeForNetworkSync\(slotId: number\): string
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| string | 返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
+| string | 返回注册网络所在国家的ISO国家码，例如CN（中国）。如果设备没有注册任何网络，接口返回空字符串。|
 
 **示例：**
 
@@ -545,7 +545,7 @@ getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInfo
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回[SignalInformation](#signalinformation)对象的数组。 |
+| callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回从[SignalInformation](#signalinformation)中派生出的子类对象的数组。|
 
 **错误码：**
 
@@ -593,7 +593,7 @@ getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
+| Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)子类对象的数组。|
 
 **错误码：**
 
@@ -638,7 +638,7 @@ getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Array\<[SignalInformation](#signalinformation)\>| 返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
+| Array\<[SignalInformation](#signalinformation)\>| 返回网络信号强度[SignalInformation](#signalinformation)子类对象的数组。|
 
 
 **示例：**
@@ -649,11 +649,11 @@ let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(
 console.log(`signal information size is:` + signalInfo.length);
 ```
 
-## radio.isNrSupported<sup>(deprecated)</sup>
+## radio.isNrSupported<sup>8+(deprecated)</sup>
 
 isNrSupported\(\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 > **说明：**
 >
@@ -678,7 +678,7 @@ console.log("Result: "+ result);
 
 isNrSupported\(slotId: number\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 > **说明：**
 >
@@ -711,7 +711,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -733,7 +733,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(slotId: number\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1075,7 +1075,7 @@ console.log(`operator name is:` + operatorName);
 | NETWORK_TYPE_WCDMA   | 3    | 网络类型为WCDMA（Wideband Code Division Multiple Access）。  |
 | NETWORK_TYPE_TDSCDMA | 4    | 网络类型为TDSCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
 | NETWORK_TYPE_LTE     | 5    | 网络类型为LTE（Long Term Evolution）。                       |
-| NETWORK_TYPE_NR      | 6    | 网络类型为5G NR（New Radio）。                               |
+| NETWORK_TYPE_NR      | 6    | 网络类型为NR（New Radio）。                               |
 
 ## NetworkState
 

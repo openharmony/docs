@@ -345,22 +345,22 @@ Since API version 11, **DateTimeOptions** is supported in ArkTS widgets.
 | Name             | Type     | Mandatory  | Description                                      |
 | --------------- | ------- | ---- |  ---------------------------------------- |
 | locale          | string  | No   |Locale, for example, **zh-Hans-CN**.                |
-| dateStyle       | string  | No    |Date display format. The value can be **long**, **short**, **medium**, or **full**.|
-| timeStyle       | string  | No    |Time display format. The value can be **long**, **short**, **medium**, or **full**.|
+| dateStyle       | string  | No    |Date display format. The value can be **long**, **short**, **medium**, **full**, or **auto**.|
+| timeStyle       | string  | No    |Time display format. The value can be **long**, **short**, **medium**, **full**, or **auto**.|
 | hourCycle       | string  | No    |Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
 | timeZone        | string  | No    |Time zone represented by a valid IANA time zone ID.                     |
 | numberingSystem | string  | No    |Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
 | hour12          | boolean | No    | Whether to use the 12-hour clock. If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.        |
-| weekday         | string  | No    | Workday display format. The value can be **long**, **short**, or **narrow**.|
-| era             | string  | No    | Era display format. The value can be **long**, **short**, or **narrow**.|
+| weekday         | string  | No    | Workday display format. The value can be **long**, **short**, **narrow**, or **auto**.|
+| era             | string  | No    | Era display format. The value can be **long**, **short**, **narrow**, or **auto**.|
 | year            | string  | No    | Year display format. The value can be **numeric** or **2-digit**.  |
-| month           | string  | No    | Month display format. The value can be any of the following: **numeric**, **2-digit**, **long**, **short**, **narrow**.|
+| month           | string  | No    | Month display format. The value can be **numeric**, **2-digit**, **long**, **short**, **narrow**, or **auto**.|
 | day             | string  | No    | Day display format. The value can be **numeric** or **2-digit**. |
 | hour            | string  | No    | Hour display format. The value can be **numeric** or **2-digit**. |
 | minute          | string  | No    | Minute display format. The value can be **numeric** or **2-digit**. |
 | second          | string  | No    | Seconds display format. The value can be **numeric** or **2-digit**. |
-| timeZoneName    | string  | No    | Localized representation of a time zone name.                             |
-| dayPeriod       | string  | No    | Time period display format. The value can be **long**, **short**, or **narrow**.|
+| timeZoneName    | string  | No    | Localized representation of the time zone name. The value can be **long**, **short**, or **auto**.                             |
+| dayPeriod       | string  | No    | Time period display format. The value can be **long**, **short**, **narrow**, or **auto**.|
 | localeMatcher   | string  | No    | Locale matching algorithm. The value can be **lookup** or **best fit**.|
 | formatMatcher   | string  | No    | Format matching algorithm. The value can be **basic** or **best fit**.|
 
@@ -470,7 +470,7 @@ Since API version 9, the attributes in **NumberOptions** are optional.
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
 | locale                   | string  | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
 | currency                 | string  | No   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting". The default value is **standard**.|
+| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting**. The default value is **standard**.|
 | currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
 | unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | No   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|

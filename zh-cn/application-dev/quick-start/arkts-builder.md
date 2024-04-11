@@ -77,18 +77,6 @@ MyGlobalBuilderFunction()
 
 按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@Builder方法内的UI刷新。
 
-
-```ts
-class Tmp {
-  paramA1: string = ''
-  paramB1: string = ''
-}
-
-@Builder function overBuilder(params : Tmp) {...}
-```
-
-
-
 ```ts
 class Tmp {
   paramA1: string = ''

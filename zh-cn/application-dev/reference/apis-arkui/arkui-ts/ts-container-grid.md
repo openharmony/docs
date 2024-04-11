@@ -193,7 +193,7 @@ scrollBarColor(value: Color | number | string)
 
 scrollBarWidth(value: number | string)
 
-设置滚动条的宽度。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。
+设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Grid组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -233,7 +233,7 @@ editMode(value: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | Grid是否进入编辑模式。<br/>默认值：flase |
+| value  | boolean | 是   | Grid是否进入编辑模式。<br/>默认值：false |
 
 ### layoutDirection<sup>8+</sup>
 
@@ -390,33 +390,6 @@ friction(value: number | Resource)
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。 |
 
-Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为以下三种布局模式：
-
-1、rowsTemplate、columnsTemplate同时设置：
-
-- Grid只展示固定行列数的元素，其余元素不展示，且Grid不可滚动。
-- 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
-- Grid的宽高没有设置时，默认适应父组件尺寸。
-- Grid网格列大小按照Grid自身内容区域大小减去所有行列Gap后按各个行列所占比重分配。
-- GridItem默认填满网格大小。
-
-2、rowsTemplate、columnsTemplate仅设置其中的一个：
-
-- 元素按照设置的方向进行排布，超出Grid显示区域后，Grid可通过滚动的方式展示。
-- 如果设置了columnsTemplate，Grid滚动方向为垂直方向，主轴方向为垂直方向，交叉轴方向为水平方向。
-- 如果设置了rowsTemplate，Grid滚动方向为水平方向，主轴方向为水平方向，交叉轴方向为垂直方向。
-- 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
-- 网格交叉轴方向尺寸根据Grid自身内容区域交叉轴尺寸减去交叉轴方向所有Gap后按所占比重分配。
-- 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem高度最大值。
-
-3、rowsTemplate、columnsTemplate都不设置：
-
-- 元素在layoutDirection方向上排布，列数由Grid的宽度、首个元素的宽度、minCount、maxCount、columnsGap共同决定。
-- 行数由Grid高度、首个元素高度、cellLength、rowsGap共同决定。超出行列容纳范围的元素不显示，也不能通过滚动进行展示。
-- 此模式下仅生效以下属性：layoutDirection、maxCount、minCount、cellLength、editMode、columnsGap、rowsGap。
-- 当前layoutDirection设置为Row时，先从左到右排列，排满一行再排下一行。剩余高度不足时不再布局，整体内容顶部居中。
-- 当前layoutDirection设置为Column时，先从上到下排列，排满一列再排下一列，剩余宽度不足时不再布局。整体内容顶部居中。
-
 ### flingSpeedLimit<sup>11+</sup>
 
 flingSpeedLimit(speedLimit: number)
@@ -498,9 +471,9 @@ onItemDragEnter(event: (event: ItemDragInfo) => void)
 
 ### onItemDragMove<sup>8+</sup>
 
-拖拽在网格元素范围内移动时触发。
-
 onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void)
+
+拖拽在网格元素范围内移动时触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -602,7 +575,7 @@ Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>10+</sup>
 
-onScrollFrameBegin(event: (offset: number, state:  ScrollState => { offsetRemain: number })
+onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
 
 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。
 
@@ -799,7 +772,7 @@ struct GridExample {
 struct GridExample {
   @State numbers: String[] = ['0', '1', '2', '3', '4']
   scroller: Scroller = new Scroller()
-  @State Position: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+  @State gridPosition: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   build() {
     Column({ space: 5 }) {
@@ -851,11 +824,11 @@ struct GridExample {
         console.info("XXX" + "Grid onScrollStop")
       })
       .onReachStart(() => {
-        this.Position = 0
+        this.gridPosition = 0
         console.info("XXX" + "Grid onReachStart")
       })
       .onReachEnd(() => {
-        this.Position = 2
+        this.gridPosition = 2
         console.info("XXX" + "Grid onReachEnd")
       })
 

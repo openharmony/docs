@@ -20,7 +20,6 @@
         - [@ohos.brightness (屏幕亮度)(系统接口)](js-apis-brightness-sys.md)
         - [@ohos.charger (充电类型)(系统接口)](js-apis-charger-sys.md)
         - [@ohos.deviceAttest (设备证明)(系统接口)](js-apis-deviceAttest-sys.md)
-        - [@ohos.enterprise.usbManager (USB管理)(系统接口)](js-apis-enterprise-usbManager-sys.md)
         - [@ohos.power (系统电源管理)(系统接口)](js-apis-power-sys.md)
         - [@ohos.systemCapability (系统能力)(系统接口)](js-apis-system-capability-sys.md)
         - [@ohos.systemParameterEnhance (系统参数)(系统接口)](js-apis-system-parameterEnhance-sys.md)
@@ -70,6 +69,8 @@
         - [@ohos.base (公共回调信息)](js-apis-base.md)
         - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
         - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+        - [@ohos.resourceschedule.systemload (性能功耗热融合档位)](js-apis-resourceschedule-systemload.md)
+        - [@ohos.configPolicy (配置策略)(系统接口)](js-apis-configPolicy-sys.md)
         - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
         - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
         - [@ohos.systemDateTime (系统时间、时区)](js-apis-date-time.md)
@@ -88,6 +89,7 @@
         - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
         - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
         - [@ohos.systemTime (系统时间、时区)(系统接口)](js-apis-system-time-sys.md)
+        - [@ohos.systemTime(系统时间、时区)](js-apis-time.md)
         
 - 错误码
     - [USB服务错误码](errorcode-usb.md)

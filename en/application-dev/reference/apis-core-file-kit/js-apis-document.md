@@ -3,7 +3,7 @@
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module have been deprecated since API version 9 and are not recommended for use. An exception will be thrown if any of the APIs is called.
+> - The APIs of this module have been deprecated since API version 9 and are not recommended for use. An exception will be thrown if any of the APIs is called.
 
 ## Modules to Import
 
@@ -15,7 +15,7 @@ import document from '@ohos.document';
 
 choose(types?: string[]): Promise&lt;string&gt;
 
-Chooses files of the specified types using the file manager. This API uses a promise to return the result.
+Chooses files of the specified types. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -41,7 +41,7 @@ Chooses files of the specified types using the file manager. This API uses a pro
 
 choose(callback:AsyncCallback&lt;string&gt;): void
 
-Chooses a file using the file manager. This API uses an asynchronous callback to return the result.
+Chooses a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -63,7 +63,7 @@ Chooses a file using the file manager. This API uses an asynchronous callback to
 
 choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
-Chooses files using the file manager. This API uses an asynchronous callback to return the result.
+Chooses files of the specified types. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -71,7 +71,7 @@ Chooses files using the file manager. This API uses an asynchronous callback to 
 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | types    | string[]                      | No  | Types of the files to choose.|
+  | types    | string[]                      | Yes  | Types of the files to choose.|
   | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
 
 **Example**

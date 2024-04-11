@@ -1,12 +1,14 @@
 # ArkWeb
 
 - [Introduction to ArkWeb](web-component-overview.md)
+- [Default User Agent String](web-default-userAgent.md)
 - [Loading Pages by Using the Web Component](web-page-loading-with-web-components.md)
 - Setting Basic Attributes and Events
   - [Setting the Dark Mode](web-set-dark-mode.md)
   - [Uploading Files](web-file-upload.md)
   - [Opening Pages in a New Window](web-open-in-new-window.md)
   - [Managing Location Permissions](web-geolocation-permission.md)
+  - [Using Incognito Mode](web-incognito-mode.md)
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
 - Using Frontend Page JavaScript Code on the Application
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)
@@ -18,4 +20,5 @@
 - [Printing Frontend Pages](web-print.md)
 - [Downloading Files](web-download.md)
 - [Accelerating Web Page Access with Preconnecting and Prefetching](web-predictor.md)
+- [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md)
 - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)

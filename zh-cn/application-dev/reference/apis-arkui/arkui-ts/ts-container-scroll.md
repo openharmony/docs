@@ -74,7 +74,7 @@ scrollBarColor(color: Color | number | string)
 
 scrollBarWidth(value: number | string)
 
-设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Scroll组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -182,6 +182,20 @@ flingSpeedLimit(speedLimit: number)
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | 是   | Fling动效开始时的最大初始速度。 |
+
+### initialOffset<sup>12+</sup>
+
+initialOffset(value: OffsetOptions)
+
+设置初始滚动偏移量。只在首次布局时生效，后续动态修改该属性值不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | [OffsetOptions](#offsetoptions12对象说明)  | 是   |当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。|
 
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
@@ -421,7 +435,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 ### scrollEdge
 
-scrollEdge(value: Edge): void
+scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
@@ -431,6 +445,20 @@ scrollEdge(value: Edge): void
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
+
+### fling<sup>12+</sup>
+
+fling(velocity: number): void
+
+
+滚动类组件开启按传入的初始速度进行惯性滚动。
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                                                     |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。 |
 
 ### scrollPage<sup>9+</sup>
 
@@ -597,6 +625,17 @@ getItemRect(index: number): RectResult
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
 | animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
+
+## OffsetOptions<sup>12+</sup>对象说明
+| 参数名   | 类型  | 必填 | 描述              |
+| ----- | ------| ------- | ----------------- |
+| xOffset | [Dimension](ts-types.md#dimension10) | 否 |水平滑动偏移<br/>默认值：0 |
+| yOffset | [Dimension](ts-types.md#dimension10) | 否 |垂直滑动偏移<br/>默认值：0|
+
+## ScrollEdgeOptions<sup>12+</sup>对象说明
+| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。          |
 
 ## 示例
 ### 示例1
@@ -849,3 +888,107 @@ struct Index {
 }
 ```
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
+
+### 示例5
+```ts
+@Entry
+@Component
+//滚动控制器新增按给定速度执行惯性滚动的函数fling
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+      Button('Fling-1000')
+        .height('5%')
+        .onClick(() => {
+          this.scrollerForList.fling(-1000)
+        })
+      Button('Fling3000')
+        .height('5%')
+        .onClick(() => {
+          this.scrollerForList.fling(3000)
+        })
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .listDirection(Axis.Vertical) // 排列方向
+      .scrollBar(BarState.Off)
+      .friction(0.9)
+      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
+      .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
+      .width('90%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![scroller_fling](figures/scroller_fling.gif)
+
+### 示例6
+该示例实现了按速度700vp/s向Scroll下边缘滚动。
+
+```ts
+// xxx.ets
+import Curves from '@ohos.curves'
+
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollBar(BarState.On) // 滚动条常驻显示
+      .scrollBarColor(Color.Gray) // 滚动条颜色
+      .scrollBarWidth(10) // 滚动条宽度
+      .friction(0.6)
+      .edgeEffect(EdgeEffect.None)
+      .onScroll((xOffset: number, yOffset: number) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+
+      Button('scroll to bottom 700')
+        .height('5%')
+        .onClick(() => { // 点击后滑到下边缘，速度值是700vp/s
+          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
+        })
+        .margin({ top: 100, left: 20 })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![ScrollEdgeAtVelocity](figures/ScrollEdgeAtVelocity.gif)

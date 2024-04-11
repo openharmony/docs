@@ -24,11 +24,12 @@ library
 ├── src
 │   └── main
 │       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
+│       │   └── pages
+│       │       └── index.ets
 │       ├── resources
 │       └── module.json5
-└── oh-package.json5
+├── oh-package.json5
+└── index.ets
 ```
 
 ## 开发
@@ -57,8 +58,8 @@ export struct MyTitleBar {
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
-export { MyTitleBar } from './components/MyTitleBar';
+// library/index.ets
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
@@ -82,8 +83,8 @@ export function minus(a: number, b: number): number {
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
 ```
 ### 导出native方法
 在HSP中也可以包含C++编写的`so`。对于`so`中的`native`方法，HSP通过间接的方式导出，以导出`liblibrary.so`的乘法接口`multi`为例：
@@ -99,8 +100,8 @@ export function nativeMulti(a: number, b: number): number {
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 
 ### 通过$r访问HSP中的资源
@@ -145,8 +146,8 @@ export class ResManager{
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
-export { ResManager } from './ResManager';
+// library/index.ets
+export { ResManager } from './src/main/ets/ResManager';
 ```
 
 
@@ -160,11 +161,11 @@ export { ResManager } from './ResManager';
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
-export { MyTitleBar } from './components/MyTitleBar';
-export { ResManager } from './ResManager';
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
+export { ResManager } from './src/main/ets/ResManager';
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 在使用方的代码中，可以这样使用：
 ```ts

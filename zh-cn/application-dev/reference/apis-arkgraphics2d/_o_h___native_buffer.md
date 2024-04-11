@@ -24,14 +24,19 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性 |
+| struct  [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性。 |
+| struct  [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md) | 单个图像平面格式信息。 | 
+| struct  [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md) | OH_NativeBuffer的图像平面格式信息。 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBuffer](#oh_nativebuffer) | 提供OH_NativeBuffer结构体声明 |
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer)  [OH_NativeBuffer](#oh_nativebuffer) | 提供OH_NativeBuffer结构体声明。 | 
+| typedef struct [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)  [OH_NativeBuffer_Config](#oh_nativebuffer_config) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性 | 
+| typedef struct [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)  [OH_NativeBuffer_Plane](#oh_nativebuffer_plane) | 单个图像平面格式信息。 | 
+| typedef struct [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)  [OH_NativeBuffer_Planes](#oh_nativebuffer_planes) | OH_NativeBuffer的图像平面格式信息。 | 
 
 
 ### 枚举
@@ -57,7 +62,8 @@
 | [OH_NativeBuffer_Unmap](#oh_nativebuffer_unmap) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除 |
 | [OH_NativeBuffer_GetSeqNum](#oh_nativebuffer_getseqnum) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer) | 获取OH_NativeBuffer的序列号 |
 | [OH_NativeBuffer_SetColorSpace](#oh_nativebuffer_setcolorspace) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer, [OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace) colorSpace) | 为OH_NativeBuffer设置颜色空间属性 |
-
+| int32_t [OH_NativeBuffer_MapPlanes](#oh_nativebuffer_mapplanes) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer, void \*\*virAddr, [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md) \*outPlanes) | 将OH_NativeBuffer对应的多通道ION内存映射到进程空间。 | 
+| int32_t [OH_NativeBuffer_FromNativeWindowBuffer](#oh_nativebuffer_fromnativewindowbuffer) (OHNativeWindowBuffer \*nativeWindowBuffer, [OH_NativeBuffer](#oh_nativebuffer) \*\*buffer) | 将OHNativeWindowBuffer实例转换为OH_NativeBuffer实例。 | 
 
 ## 类型定义说明
 
@@ -73,6 +79,50 @@ typedef struct OH_NativeBufferOH_NativeBuffer
 提供OH_NativeBuffer结构体声明
 
 **起始版本：** 9
+
+### OH_NativeBuffer_Config
+
+```
+typedef struct OH_NativeBuffer_Config OH_NativeBuffer_Config
+```
+
+**描述**
+
+OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**起始版本：** 9
+
+
+### OH_NativeBuffer_Plane
+
+```
+typedef struct OH_NativeBuffer_Plane OH_NativeBuffer_Plane
+```
+
+**描述**
+
+单个图像平面格式信息。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**起始版本：** 12
+
+
+### OH_NativeBuffer_Planes
+
+```
+typedef struct OH_NativeBuffer_Planes OH_NativeBuffer_Planes
+```
+
+**描述**
+
+OH_NativeBuffer的图像平面格式信息。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**起始版本：** 12
 
 
 ## 枚举类型说明
@@ -286,6 +336,31 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config * config)
 
 创建成功则返回一个指向OH_NativeBuffer结构体实例的指针，否则返回NULL
 
+### OH_NativeBuffer_FromNativeWindowBuffer()
+
+```
+int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer )
+```
+
+**描述**
+
+将OHNativeWindowBuffer实例转换为OH_NativeBuffer实例.
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| nativeWindowBuffer | 一个指向OHNativeWindowBuffer实例的指针。 | 
+| buffer | 一个指向OH_NativeBuffer实例的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功。
+
 
 ### OH_NativeBuffer_GetConfig()
 
@@ -358,6 +433,32 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer * buffer, void ** virAddr )
 **返回：**
 
 返回值为0表示执行成功
+
+### OH_NativeBuffer_MapPlanes()
+
+```
+int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes )
+```
+
+**描述**
+
+将OH_NativeBuffer对应的多通道ION内存映射到进程空间。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| buffer | 一个指向OH_NativeBuffer实例的指针。 | 
+| virAddr | 一个二级指针，二级指针指向映射到当前进程的虚拟内存的地址。 | 
+| outPlanes | 一个指向所有图像平面格式信息的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功。
 
 
 ### OH_NativeBuffer_Reference()

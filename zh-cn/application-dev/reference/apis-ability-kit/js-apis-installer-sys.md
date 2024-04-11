@@ -863,6 +863,122 @@ try {
 }
 ```
 
+## BundleInstaller.addExtResource<sup>12+</sup>
+
+addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
+
+根据给定的bundleName和hsp文件路径添加扩展资源，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 要添加扩展资源的应用名称。 |
+| filePaths | Array\<string> | 是   | 要添加扩展资源的资源路径。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+| 17700301 | AddExtResource failed due to parse file failed.                  |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName : string = 'com.ohos.demo';
+let filePaths : Array<string> = ['/data/storage/el2/base/a.hsp'];
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.addExtResource(bundleName, filePaths).then((data) => {
+            hilog.info(0x0000, 'testTag', 'addExtResource successfully');
+        }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'testTag', 'addExtResource failed. Cause: %{public}s', err.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.removeExtResource<sup>12+</sup>
+
+removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<void>;
+
+根据给定的bundleName和moduleNames删除扩展资源，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE or ohos.permission.UNINSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 要删除扩展资源的应用名称。 |
+| moduleNames | Array\<string> | 是   | 要删除扩展资源的moduleNames。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+| 17700302 | RemoveExtResource failed due to module does not exist.                  |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName : string = 'com.ohos.demo';
+let moduleNames : Array<string> = ['moduleTest'];
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.removeExtResource(bundleName, moduleNames).then((data) => {
+            hilog.info(0x0000, 'testTag', 'removeExtResource successfully');
+        }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'testTag', 'removeExtResource failed. Cause: %{public}s', err.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
 updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void
@@ -1078,6 +1194,69 @@ try {
                 console.info('updateBundleForSelf successfully: ' + JSON.stringify(data));
         }).catch((error: BusinessError) => {
             console.error('updateBundleForSelf failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.uninstallUpdates<sup>12+</sup>
+
+uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void\>;
+
+以异步方法对预置应用进行卸载更新，恢复到初次安装时的状态，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 待卸载更新应用的包名。                                                  |
+| installParam | [InstallParam](#installparam) | 否   | 指定卸载更新所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。其中userId无法指定，调用本接口将对所有已安装相应应用的用户进行卸载更新操作。 |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 17700001 | The specified bundle name is not found. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let installParam: installer.InstallParam = {
+    isKeepData: true,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstallUpdates(bundleName, installParam)
+            .then(() => {
+                console.info('uninstallUpdates successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('uninstallUpdates failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);

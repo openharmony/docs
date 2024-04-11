@@ -2,9 +2,7 @@
 
 [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)组件一般作为页面的根容器，包括单页面、分栏和自适应三种显示模式。Navigation组件适用于模块内页面切换，[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景下，Navigation组件能够自动适配窗口显示大小，在窗口较大的场景下自动切换分栏展示效果。
 
-Navigation组件的页面包含主页和内容页。主页由标题栏、内容区和工具栏组成，可在内容区中使用[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)子组件实现导航栏功能。内容页主要显示[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)子组件中的内容。
-
-NavRouter是配合Navigation使用的特殊子组件，默认提供点击响应处理，不需要开发者自定义点击事件逻辑。NavRouter有且仅有两个子组件，其中第二个子组件必须是NavDestination。NavDestination是配合NavRouter使用的特殊子组件，用于显示Navigation组件的内容页。当开发者点击NavRouter组件时，会跳转到对应的NavDestination内容区。
+推荐使用Navigation路由栈[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)控制页面跳转，当前NavRouter作为Navigation子组件进行页面跳转的方式不做推荐。Navigation跳转子组件为[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md),NavDestination组件单独使用则不具备页面跳转能力。
 
 
 ## 设置页面显示模式
@@ -193,7 +191,7 @@ Navigation() {
 
 ## 设置工具栏
 
-工具栏位于Navigation组件的底部，开发者可以通过toolBar属性进行设置。
+工具栏位于Navigation组件的底部，开发者可以通过toolbarConfiguration属性进行设置。
 
 
   **图7** 工具栏  
@@ -335,3 +333,138 @@ NavDestination作为子页面的根容器，用于显示Navigation的内容区�
   ```
 
   ![dialog_navdes_2](figures/dialog_navdes_2.png)
+
+## 使用系统路由表
+
+针对通过Navigation的navDestination属性配置页面跳转的方式。跳转到其他模块(hsp/har)的页面中，首先需要将跳转目标模块依赖项配置到主工程的module.json5文件中，然后将跳转目标页面通过import的方式导入。这种方式容易造成不同模块依赖耦合的问题，以及首页加载时间长的问题。使用系统路由表的方式，可以不用配置不同跳转模块间的依赖，并且当发生页面跳转时，未跳转页面不会加载，已经加载过的页面不会再次加载。
+
+1. 在跳转目标模块的配置文件module.json5添加路由表配置：
+
+    ```json
+      {
+        "module" : {
+          "routerMap": "$profile:route_map"
+        }
+      }
+    ```
+
+2. 添加完路由配置文件地址后，需要在工程resources/base/profile中创建route_map.json文件。文件内容如下所示：
+
+    ```json
+      {
+        "routerMap": [
+          {
+            "name": "PageOne",
+            "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+            "buildFunction": "PageOneBuilder",
+            "data": {
+              "description" : "this is PageOne"
+            }
+          }
+        ]
+      }
+    ```
+
+    | 配置项 | 说明 |
+    |---|---|
+    | name | 跳转页面名称。|
+    | pageSourceFile | 跳转目标页在包内的路径，相对src目录的相 对路径。|
+    | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
+    | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|
+
+3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和router_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。通过pushPathByName(name, param)等接口进行页面跳转，入口Builder函数会将跳转参数name,param作为执行函数入参。
+
+    ```ts
+      // 跳转页面入口函数
+      @Builder
+      export function PageOneBuilder(name: string,param: Object) {
+        PageOne({name: string, pram: param})
+      }
+
+      @Component
+      struct PageOne {
+        name: string = "";
+        param: Object;
+        build() {
+          NavDestination() {}
+        }
+      }
+    ```
+
+应用通过调用pushDestinationByName等方式，可以获取跳转目标页面的错误信息。
+
+## 自定义路由表跳转
+
+1. 定义配置路由加载项，在加载项中配置对应加载项的页面名称，模块名称和模块路径。
+
+    ```ts
+      class RouteItem {
+        name: string;
+        pageModule: string;
+        pagePath: string;
+      }
+    ```
+
+2. 也可以将上述配置项配置在资源文件中，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)将文件读取后解析出对应字段。
+
+3. 将路由表中的页面配置到Navigation定义页所在工程的依赖配置文件oh_packages.json5中。
+
+    ```json
+      {
+        "dependency": {
+          "dynamicRouter": "file:../dynamicRouter", // 外部依赖配置项
+          ...
+        }
+      }
+    ```
+
+4. 将路由表中的依赖动态加载的文件配置到oh-packages.json中，可以参考如下配置：
+
+    ```json
+      {
+        "buildOption": {
+          "sourceOption": {
+            "dynamicImport": [
+              './PageOne', // 本包的文件路径
+              "dynamicRouter" // 跨包的名称
+            ]
+          }
+        }
+      }
+    ```
+
+5. 提供路由管理类，注册WrapBuilder方法。
+
+    ```ts
+      registerRouteMap(name: string, builder: WrapperBuilder<[object]>)
+      {
+        DynamicRouter.builderMap.set(name, builder);
+      }
+
+      async push(info: RouterInfo, param?: string)
+      {
+        try {
+          let result = await import(info.moduleName);
+          result.harInit(info.pageName);
+          DynamicRouter.getNavPathStack().pushPathByName(info.name);
+        } catch(err) {
+          logger.error(LOGGER_TAG, err);
+        }
+      }
+    ```
+
+6. 针对跳转目标页面，需要调用注册函数将页面注册到页面跳转列表中。
+
+    ```ts
+      @Builder
+      export function getVibrateEffectView() {
+        VibrateEffectView()
+      }
+
+      DynamicRouter.registerRouterMap(RouterInfo.VIBRATE_EFFECT, wrapBuilder(getVibrateEffectView));
+    ```
+
+## 相关实例
+自定义路由表开发可以参考如下示例Sample：
+
+- [动态路由 (ArkTS) (Full SDK) API(12) ](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)

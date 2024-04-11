@@ -47,18 +47,6 @@
    let userIDM: account_osAccount.UserIDM = new account_osAccount.UserIDM();
    ```
 
-## 打开会话
-
-在进行凭据管理前，请先打开一个新的会话。开发者可以使用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口完成此操作。
-
-具体开发实例如下：
-
-1. 调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
-
-   ```ts
-   let challenge: Uint8Array = await userIDM.openSession();
-   ```
-
 ## 注册PIN码输入器
 
 输入器用于传递PIN码数据，录入、认证PIN码前需要先注册输入器。
@@ -81,6 +69,18 @@
    ```ts
    let pinAuth: PINAuth = new account_osAccount.PINAuth();
    pinAuth.registerInputer(inputer);
+   ```
+
+## 打开会话
+
+在进行凭据管理前，请先打开一个新的会话。开发者可以使用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口完成此操作。
+
+具体开发实例如下：
+
+1. 调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
+
+   ```ts
+   let challenge: Uint8Array = await userIDM.openSession();
    ```
 
 ## 录入PIN码

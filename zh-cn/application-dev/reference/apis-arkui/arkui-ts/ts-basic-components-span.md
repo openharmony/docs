@@ -18,7 +18,7 @@
 
 Span(value: string | Resource)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -45,8 +45,7 @@ decoration(value: { type: TextDecorationType; color?: ResourceColor })
 
 | 参数名 | 类型                                                         | 必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type   | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 文本装饰线样式。<br/>默认值：type:&nbsp;TextDecorationType.None |
-| color  | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 文本装饰线颜色。<br/>默认值：Color.Black                     |
+| value  | {&nbsp;type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype);&nbsp;color:?&nbsp;[ResourceColor](ts-types.md#resourcecolor)&nbsp;} | 是   | 文本装饰线样式及其颜色。<br/>type：文本装饰线样式。color：文本装饰线颜色。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black&nbsp;} |
 
 ### letterSpacing
 

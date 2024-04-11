@@ -15,11 +15,14 @@
 >
 >  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
 >
->  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AutoLinear或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+>  Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AUTO_LINEAR或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
 >
 >  Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
->  当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0 ) + nextMargin? (1 : 0 ))时，按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。
+>  当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0) + nextMargin? (1 : 0))时，一般按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。例外情况如下：
+>>  当Swiper子组件个数等于Swiper组件内容区内显示的节点总个数且prevMargin和nextMargin都生效时，设置loop为true支持循环。
+>>
+>>  当Swiper子组件个数等于Swiper组件DisplayCount数 + 1，且prevMargin和nextMargin至少一个生效时，设置loop为true会生成截图占位组件(如果使用图片异步加载等显示耗时较长的组件可能不能正确生成截图，不建议在该场景开启循环)，支持循环。
 >
 >  当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 
@@ -185,7 +188,7 @@ displayMode(value: SwiperDisplayMode)
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 是   | 主轴方向上元素排列的模式。<br/>默认值：SwiperDisplayMode.Stretch |
+| value  | [SwiperDisplayMode](#swiperdisplaymode枚举说明) | 是   | 主轴方向上元素排列的模式。<br/>默认值：SwiperDisplayMode.STRETCH |
 
 ### cachedCount<sup>8+</sup>
 
@@ -247,7 +250,7 @@ indicatorStyle(value?: IndicatorStyle)
 
 | 参数名 | 类型                                                | 必填 | 说明         |
 | ------ | --------------------------------------------------- | ---- | ------------ |
-| value  | [IndicatorStyle](#indicatorstyledeprecated对象说明) | 是   | 导航点样式。 |
+| value  | [IndicatorStyle](#indicatorstyledeprecated对象说明) | 否   | 导航点样式。 |
 
 ### displayCount<sup>8+</sup>
 
@@ -255,7 +258,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 设置Swiper视窗内元素显示个数。
 
-字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AutoLinear。
+字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AUTO_LINEAR。
 
 使用number类型且设置小于等于0时，按默认值1显示。
 
@@ -307,7 +310,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 | 参数名                     | 类型                                             | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | boolean&nbsp;\|&nbsp;[ArrowStyle](#arrowstyle10) | 是   | 支持设置箭头和底板样式，异常场景使用ArrowStyle对象中的默认值。 |
-| swipeByGroup<sup>11+</sup> | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
+| isHoverShow                | boolean                                          | 否   | 设置鼠标悬停时是否显示箭头。<br/>默认值：false<br/>**说明：**<br/>isHoverShow为false时，常驻显示箭头，支持点击翻页。<br/>isHoverShow为true时，只有在鼠标悬停时才会显示箭头，并支持点击翻页。 |
 
 ### nextMargin<sup>10+</sup>
 
@@ -358,6 +361,20 @@ nestedScroll(value: SwiperNestedScrollMode)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [SwiperNestedScrollMode](#swipernestedscrollmode11枚举说明) | 是   | Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY |
+
+### indicatorInteractive<sup>12+</sup>
+
+indicatorInteractive(value: boolean)
+
+设置禁用组件导航点交互功能。设置为true时表示导航点可交互。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
@@ -571,9 +588,80 @@ onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 | index     | number                                                     | 是   | 当前显示元素的索引。                                         |
 | extraInfo | [SwiperAnimationEvent](ts-types.md#swiperanimationevent10) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
+### customContentTransition<sup>12+</sup>
+
+customContentTransition(transition: SwiperContentAnimatedTransition)
+
+自定义Swiper页面切换动画。在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发回调，开发者可以在回调中设置透明度、缩放比例、位移等属性来自定义切换动画。
+
+使用说明：
+
+1、设置displayMode属性为SwiperDisplayMode.AUTO_LINEAR时，该接口不生效。<br>2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>3、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>5、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12对象说明) | 是 | Swiper自定义切换动画相关信息。 |
+
+### onContentDidScroll<sup>12+</sup>
+
+onContentDidScroll(handler: ContentDidScrollCallback)
+
+监听Swiper页面滑动事件。
+
+使用说明：
+
+1、设置displayMode属性为SwiperDisplayMode.AUTO_LINEAR时，该接口不生效。<br>2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>3、在页面滑动过程中，会对视窗内所有页面逐帧触发[ContentDidScrollCallback](#contentdidscrollcallback12类型说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| handler | [ContentDidScrollCallback](#contentdidscrollcallback12类型说明) | 是 | Swiper滑动时触发的回调。 |
+
+## SwiperContentAnimatedTransition<sup>12+</sup>对象说明
+
+Swiper自定义切换动画相关信息。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
+| transition | Callback<[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)> | 是 | 自定义切换动画具体内容。 |
+
+## SwiperContentTransitionProxy<sup>12+</sup>对象说明
+
+Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
+| index | number | 是 | 视窗内某个页面的索引。 |
+| position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
+| finishTransition() | void | 是 | 通知Swiper组件，此页面的自定义动画已结束。 |
+
+## ContentDidScrollCallback<sup>12+</sup>类型说明
+
+Swiper滑动时触发的回调。
+
+ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
+| index | number | 是 | 视窗内某个页面的索引。 |
+| position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
+
 ## 示例
 
 ### 示例1
+该示例实现了通过indicatorInteractive控制导航点交互功能。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -629,6 +717,7 @@ struct SwiperExample {
       .autoPlay(true)
       .interval(4000)
       .loop(true)
+      .indicatorInteractive(true)
       .duration(1000)
       .itemSpace(0)
       .indicator( // 设置圆点导航点样式
@@ -851,3 +940,82 @@ struct SwiperExample {
 }
 ```
 ![swiper](figures/swiper-swipe-by-group.gif)
+
+### 示例4
+
+本示例通过customContentTransition接口实现了自定义Swiper页面切换动画。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SwiperCustomAnimationExample {
+  private DISPLAY_COUNT: number = 2
+  private MIN_SCALE: number = 0.75
+
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
+  @State opacityList: number[] = []
+  @State scaleList: number[] = []
+  @State translateList: number[] = []
+  @State zIndexList: number[] = []
+
+  aboutToAppear(): void {
+    for (let i = 0; i < this.backgroundColors.length; i++) {
+      this.opacityList.push(1.0)
+      this.scaleList.push(1.0)
+      this.translateList.push(0.0)
+      this.zIndexList.push(0)
+    }
+  }
+
+  build() {
+    Column() {
+      Swiper() {
+        ForEach(this.backgroundColors, (backgroundColor: Color, index: number) => {
+          Text(index.toString()).width('100%').height('100%').fontSize(50).textAlign(TextAlign.Center)
+            .backgroundColor(backgroundColor)
+            // 自定义动画变化透明度、缩放页面、抵消系统默认位移、渲染层级等
+            .opacity(this.opacityList[index])
+            .scale({ x: this.scaleList[index], y: this.scaleList[index] })
+            .translate({ x: this.translateList[index] })
+            .zIndex(this.zIndexList[index])
+        })
+      }
+      .height(300)
+      .indicator(false)
+      .displayCount(this.DISPLAY_COUNT, true)
+      .customContentTransition({
+        // 页面移除视窗时超时1000ms下渲染树
+        timeout: 1000,
+        // 对视窗内所有页面逐帧回调transition，在回调中修改opacity、scale、translate、zIndex等属性值，实现自定义动画
+        transition: (proxy: SwiperContentTransitionProxy) => {
+          if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
+            // 同组页面往左滑或往右完全滑出视窗外时，重置属性值
+            this.opacityList[proxy.index] = 1.0
+            this.scaleList[proxy.index] = 1.0
+            this.translateList[proxy.index] = 0.0
+            this.zIndexList[proxy.index] = 0
+          } else {
+            // 同组页面往右滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值，实现两个页面往Swiper中间靠拢并透明缩放的自定义切换动画
+            if (proxy.index % this.DISPLAY_COUNT === 0) {
+              this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
+              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
+              this.translateList[proxy.index] = - proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+            } else {
+              this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT
+              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT)
+              this.translateList[proxy.index] = - (proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+            }
+            this.zIndexList[proxy.index] = -1
+          }
+        }
+      })
+      .onContentDidScroll((selectedIndex: number, index: number, position: number, mainAxisLength: number) => {
+        // 监听Swiper页面滑动事件，在该回调中可以实现自定义导航点切换动画等
+        console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength)
+      })
+    }.width('100%')
+  }
+}
+```
+![swiper](figures/swiper-custom-animation.gif)

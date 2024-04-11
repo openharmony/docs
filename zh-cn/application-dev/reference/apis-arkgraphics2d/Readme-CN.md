@@ -56,6 +56,8 @@
     - [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)
     - [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) 
     - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
+    - [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)
+    - [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)
     - [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)
     - [OHExtDataHandle](_o_h_ext_data_handle.md)
     - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)

@@ -22,3 +22,5 @@
 | placeholder    | string              | 否   | 页面节点的占位符。                               |
 | passwordRules    | string              | 否   | 生成密码的规则。                               |
 | enableAutoFill    | boolean              | 是   | 自动填充标志。                               |
+| rect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md) | 是   | 当前节点的坐标和宽高信息。  |
+| isFocus<sup>12+</sup>    | boolean              | 是   | 当前节点是否获焦。                               |

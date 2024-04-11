@@ -46,7 +46,6 @@ nextLabel(value: string)
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | string                          | 是   | 右侧文本按钮内容。                                           |
-| status | [ItemState](#itemstate枚举说明) |      | 步骤导航器nextLabel的显示状态，参数可选。<br/>默认值：ItemState.Normal |
 
 ### status
 
