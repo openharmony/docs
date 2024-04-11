@@ -55,7 +55,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象。返回授权状态结果。 |
 
 **错误码：**
 
@@ -76,7 +76,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`checkAccessToken fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -120,7 +120,7 @@ try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
   console.log(`data->${JSON.stringify(data)}`);
 } catch(err) {
-  console.log(`catch err->${JSON.stringify(err)}`);
+  console.error(`catch err->${JSON.stringify(err)}`);
 }
 
 ```
@@ -148,7 +148,7 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象。返回授权状态结果。 |
 
 **示例：**
 
@@ -162,13 +162,13 @@ let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
 });
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
-requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void
+requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;): void
 
 用于UIAbility/UIExtensionAbility拉起弹框请求用户授权。使用callback异步回调。
 
@@ -222,7 +222,7 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: 
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
-requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;
+requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;PermissionRequestResult&gt;
 
 用于UIAbility/UIExtensionAbility拉起弹框请求用户授权。使用promise异步回调。
 
@@ -273,7 +273,7 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((
   console.info('data authResults:' + data.authResults);
   console.info('data dialogShownResults:' + data.dialogShownResults);
 }).catch((err: BusinessError) => {
-  console.info('data:' + JSON.stringify(err));
+  console.error('data:' + JSON.stringify(err));
 });
 ```
 
@@ -300,7 +300,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象。返回授权状态结果。 |
 
 **示例：**
 
@@ -313,7 +313,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
 });
 ```
 
