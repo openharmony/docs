@@ -2263,6 +2263,162 @@ function unregisterPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void 
 }
 ```
 
+### on('frameShutterEnd')<sup>12+</sup>
+
+on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): void
+
+监听拍照曝光结束捕获，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'frameShutterEnd'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | 是   | 回调函数，用于获取相关信息。该回调返回意味着拍照曝光结束。   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, frameShutterEndInfo: camera.FrameShutterEndInfo): void {
+  console.info(`CaptureId for frame : ${frameShutterEndInfo.captureId}`);
+}
+
+function registerPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('frameShutterEnd', callback);
+}
+```
+
+### off('frameShutterEnd')<sup>12+</sup>
+
+off(type: 'frameShutterEnd', callback?: AsyncCallback\<FrameShutterEndInfo\>): void
+
+注销监听拍照帧输出捕获。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'frameShutterEnd'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | 否   | 回调函数，可选，有就是匹配on('frameShutterEnd') callback（callback对象不可是匿名函数）。 |
+
+**示例：**
+
+```ts
+function unregisterPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('frameShutterEnd');
+}
+```
+
+### on('captureReady')<sup>12+</sup>
+
+on(type: 'captureReady', callback: AsyncCallback\<void\>): void;
+
+监听可拍下一张，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。当下一张可拍时可触发该事件发生并返回相应信息。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取相关信息。                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(): void {
+  console.info(`photo capture ready`);
+}
+
+function registerPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('captureReady', callback);
+}
+```
+
+### off('captureReady')<sup>12+</sup>
+
+off(type: 'captureReady', callback?: AsyncCallback<void>): void;
+
+注销监听监听可拍下一张。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                               | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[CaptureReadyInfo](#captureendinfo)\> | 否   | 回调函数，可选，有就是匹配on('captureReady') callback（callback对象不可是匿名函数）。 |
+
+**示例：**
+
+```ts
+function unregisterPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('captureReady');
+}
+```
+
+### on('estimatedCaptureDuration')<sup>12+</sup>
+
+on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
+
+监听预估的拍照时间，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
+| callback | AsyncCallback\<number> | 是   | 回调函数，用于获取相关信息。                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, duration: number): void {
+  console.info(`photo estimated capture duration : ${duration}`);
+}
+
+function registerPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('estimatedCaptureDuration', callback);
+}
+```
+
+### off('estimatedCaptureDuration')<sup>12+</sup>
+
+off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void;
+
+注销监听预估的拍照时间。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<number\> | 否   | 回调函数，可选，有就是匹配on('estimatedCaptureDuration') callback（callback对象不可是匿名函数）。 |
+
+**示例：**
+
+```ts
+function unregisterPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('estimatedCaptureDuration');
+}
+```
+
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -2326,6 +2482,15 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 | captureId | number | 否   | 是   | 拍照的ID。  |
 | timestamp | number | 否   | 是   | 快门时间戳。 |
 
+## FrameShutterEndInfo<sup>12+</sup>
+
+拍照曝光结束信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 类型   | 只读 | 必填 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| captureId | number | 否   | 是   | 拍照的ID。 |
 ## CaptureStartInfo<sup>11+</sup>
 
 拍照开始信息。
