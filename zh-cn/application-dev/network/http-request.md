@@ -63,8 +63,8 @@ httpRequest.request(
     header: {
       'Content-Type': 'application/json'
     },
-    // 当使用POST请求时此字段用于传递内容
-    extraData: "data to send", // 请求体内容，具体格式与服务端协商确定
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
+    extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -160,8 +160,8 @@ let streamInfo: http.HttpRequestOptions = {
   header: {
     'Content-Type': 'application/json'
   },
-  // 当使用POST请求时此字段用于传递内容
-  extraData: "data to send", // 请求体内容，具体格式与服务端协商确定
+  // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
+  extraData: "data to send",
   expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型
   usingCache: true, // 可选，默认为true
   priority: 1, // 可选，默认为1
