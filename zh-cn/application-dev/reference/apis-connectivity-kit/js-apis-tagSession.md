@@ -92,6 +92,8 @@ connect(): void;
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
@@ -149,6 +151,8 @@ resetConnection(): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **错误码：**
 
@@ -210,6 +214,8 @@ isConnected(): boolean
 检查是否已与标签建立连接。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -343,6 +349,8 @@ getTimeout(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -420,6 +428,8 @@ setTimeout(timeout: number): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -558,6 +568,8 @@ transmit(data: number[]): Promise<number[]>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -619,6 +631,8 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 

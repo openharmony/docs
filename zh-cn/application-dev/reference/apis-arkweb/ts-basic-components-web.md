@@ -21,15 +21,15 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 > **说明：**
 >
 > 不支持转场动画。
-> 同一页面的多个web组件，必须绑定不同的WebviewController。
+> 同一页面的多个Web组件，必须绑定不同的WebviewController。
 
 **参数：**
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_REDNER表示Web组件自渲染，RenderMode.SYNC_REDNER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_REDNER |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
@@ -129,7 +129,7 @@ Web组件统一渲染模式。
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
    ```ts
-   // GlobalContext.ts
+   // GlobalContext.ets
    export class GlobalContext {
      private constructor() {}
      private static instance: GlobalContext;
@@ -177,7 +177,7 @@ Web组件统一渲染模式。
    以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
    ```ts
-   // xxx.ts
+   // xxx.ets
    import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import Want from '@ohos.app.ability.Want';
@@ -1471,7 +1471,7 @@ allowWindowOpenMethod(flag: boolean)
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
   controller?: CustomDialogController
@@ -1700,6 +1700,8 @@ layoutMode(mode: WebLayoutMode)
 >
 > 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
 > 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
+> 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
 
 **参数：**
 
@@ -3223,7 +3225,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   1. 构造单例对象GlobalContext。
 
      ```ts
-     // GlobalContext.ts
+     // GlobalContext.ets
      export class GlobalContext {
        private constructor() {}
        private static instance: GlobalContext;
@@ -3789,7 +3791,7 @@ onGeolocationHide(callback: () => void)
 
 onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
-通知开发者web组件进入全屏模式。
+通知开发者Web组件进入全屏模式。
 
 **参数：**
 
@@ -3826,7 +3828,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 onFullScreenExit(callback: () => void)
 
-通知开发者web组件退出全屏模式。
+通知开发者Web组件退出全屏模式。
 
 **参数：**
 
@@ -3885,7 +3887,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
-  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
   controller?: CustomDialogController
@@ -4723,54 +4725,149 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
-当手指触摸到Embed标签时触发该回调。
+当手指触摸到同层渲染标签时触发该回调。
 
 **参数：**
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembeddatainfo11) | 手指触摸到Embed标签时触发该回调。 |
+| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | 手指触摸到同层渲染标签时触发该回调。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import {UIContext} from '@ohos.arkui.UIContext';
+  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
 
+  declare class Params {
+    text : string
+    width : number
+    height : number
+  }
+  declare class nodeControllerParams {
+    surfaceId : string
+    renderType : NodeRenderType
+    width : number
+    height : number
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_ : string = "";
+    private renderType_ :NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_ : number = 0;
+    private height_ : number = 0;
+
+    setRenderOption(params : nodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null{
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
+      this.rootNode.build(wrapBuilder(ButtonBuilder), {text: "myButton", width : this.width_, height : this.height_});
+      return this.rootNode.getFrameNode();
+    }
+
+    postEvent(event: TouchEvent | undefined) : boolean {
+      return this.rootNode?.postTouchEvent(event) as boolean
+    }
+  }
+
+@Component
+struct ButtonComponent {
+  @Prop params: Params
+  @State bkColor: Color = Color.Red
+
+  build() {
+    Column() {
+      Button(this.params.text)
+        .height(50)
+        .width(200)
+        .border({ width: 2, color: Color.Red})
+        .backgroundColor(this.bkColor)
+
+    }
+    .width(this.params.width)
+    .height(this.params.height)
+  }
+}
+
+@Builder
+function ButtonBuilder(params: Params) {
+  ButtonComponent({ params: params })
+    .backgroundColor(Color.Green)
+}
   @Entry
   @Component
   struct WebComponent {
     @State eventType: string = ''
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private nodeController: MyNodeController = new MyNodeController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedGestureEvent((event) => {
-          if (event && event.touchEvent){
-            if (event.touchEvent.type == TouchType.Down) {
-              this.eventType = 'Down'
+        Stack(){
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile("test.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .onNativeEmbedLifecycleChange((embed) => {
+            if (embed.status == NativeEmbedStatus.CREATE) {
+              this.nodeController.setRenderOption({surfaceId : embed.surfaceId as string, renderType : NodeRenderType.RENDER_TYPE_TEXTURE, width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
+              this.nodeController.rebuild()
             }
-            if (event.touchEvent.type == TouchType.Up) {
-              this.eventType = 'Up'
+          })
+          .onNativeEmbedGestureEvent((event) => {
+            if (event && event.touchEvent){
+              if (event.touchEvent.type == TouchType.Down) {
+                this.eventType = 'Down'
+              }
+              if (event.touchEvent.type == TouchType.Up) {
+                this.eventType = 'Up'
+              }
+              if (event.touchEvent.type == TouchType.Move) {
+                this.eventType = 'Move'
+              }
+              if (event.touchEvent.type == TouchType.Cancel) {
+                this.eventType = 'Cancel'
+              }
+              let ret = this.nodeController.postEvent(event.touchEvent)
+              if (event.result) {
+                event.result.setGestureEventResult(ret);
+              }
+              console.log("embedId = " + event.embedId);
+              console.log("touchType = " + this.eventType);
+              console.log("x = " + event.touchEvent.touches[0].x);
+              console.log("y = " + event.touchEvent.touches[0].y);
+              console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+              console.log("width = " + event.touchEvent.target.area.width);
+              console.log("height = " + event.touchEvent.target.area.height);
             }
-            if (event.touchEvent.type == TouchType.Move) {
-              this.eventType = 'Move'
-            }
-            if (event.touchEvent.type == TouchType.Cancel) {
-              this.eventType = 'Cancel'
-            }
-            console.log("embedId = " + event.embedId);
-            console.log("touchType = " + this.eventType);
-            console.log("x = " + event.touchEvent.touches[0].x);
-            console.log("y = " + event.touchEvent.touches[0].y);
-            console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-            console.log("width = " + event.touchEvent.target.area.width);
-            console.log("height = " + event.touchEvent.target.area.height);
-          }
-        })
+          })
+        }
       }
     }
   }
+  ```
+加载的html文件
+  ```
+  <!Document>
+<html>
+<head>
+    <title>同层渲染测试html</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <div id="bodyId">
+        <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+    </div>
+</div>
+</body>
+</html>
   ```
 
 ### onIntelligentTrackingPreventionResult<sup>12+</sup>
@@ -4970,7 +5067,7 @@ exitFullScreen(): void
 
 ## ControllerHandler<sup>9+</sup>
 
-设置用户新建web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+设置用户新建Web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
 
 ### setWebController<sup>9+</sup>
 
@@ -4982,11 +5079,11 @@ setWebController(controller: WebviewController): void
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建Web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
-web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getErrorCode
 
@@ -4998,7 +5095,7 @@ getErrorCode(): number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 返回加载资源的错误码。 |
+| number | 返回加载资源的错误码。错误码的含义可以参考[WebNetErrorList](js-apis-netErrorList.md) |
 
 ### getErrorInfo
 
@@ -5014,7 +5111,7 @@ getErrorInfo(): string
 
 ## WebResourceRequest
 
-web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+Web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getRequestHeader
 
@@ -5099,7 +5196,7 @@ Web组件返回的请求/响应头对象。
 
 ## WebResourceResponse
 
-web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
+Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
 
 ### getReasonMessage
 
@@ -5275,7 +5372,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
+Web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
 ### getTitle<sup>9+</sup>
 
@@ -5506,6 +5603,24 @@ grant(config: ScreenCaptureConfig): void
 | 参数名    | 参数类型                                     | 必填   | 默认值  | 参数描述    |
 | ------ | ---------------------------------------- | ---- | ---- | ------- |
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
+
+## EventResult<sup>12+</sup>
+
+通知Web组件事件消费结果，支持的事件参考[触摸事件的类型](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype)。如果应用不消费该事件，则设置为false，事件被Web组件消费。应用消费了该事件，设置为true，Web组件不消费。示例代码参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
+
+### setGestureEventResult<sup>12+</sup>
+
+setGestureEventResult(result: boolean): void
+
+**参数：**
+
+| 参数名     | 参数类型   | 必填   | 参数描述    |
+| ------- | ------ | ---- | ------- |
+| result | boolean | 是    | 是否消费该手势事件。 |
+
+**示例：**
+
+请参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
 
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
 
@@ -5968,7 +6083,7 @@ let webController: WebController = new WebController()
 
 getCookieManager(): WebCookie
 
-获取web组件cookie管理对象。
+获取Web组件cookie管理对象。
 
 从API version 9开始不再维护，建议使用[getCookie](js-apis-webview.md#getcookiedeprecated)代替。
 
@@ -5976,7 +6091,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
+| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
 
 **示例：**
 
@@ -6679,7 +6794,7 @@ clearHistory(): void
 
 ## WebCookie<sup>(deprecated)</sup>
 
-通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -6846,6 +6961,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 是    | Embed标签的唯一id。 |
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。 |
+| result<sup>12+</sup>     | [EventResult](#eventresult12)   | 是    | 通知Web组件手势事件的消费结果。 |
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 
@@ -6877,7 +6993,7 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 | largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
 | largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
 | largestImageLoadEndTime   | number | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
-| imageBPP                  | number | 否   | 图片像素位数。                           |
+| imageBPP                  | number | 否   | 最大图片像素位数。                           |
 
 ## OnLargestContentfulPaintCallback<sup>12+</sup>
 

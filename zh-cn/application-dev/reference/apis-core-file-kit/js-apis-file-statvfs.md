@@ -190,7 +190,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   let path = context.filesDir;
   statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getTotalSize succeed, Size: " + number);
     }

@@ -490,61 +490,77 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 ### 调测验证
 
-驱动开发完成后，开发者可以通过[用户认证API接口](../../application-dev/reference/apis/js-apis-useriam-userauth.md)开发JS应用，JS应用通过Fingerprint_auth服务调用Fingerprint_auth驱动，从而验证驱动开发是否符合预期。基于Hi3516DV300平台验证，认证功能验证的JS测试代码如下：
+驱动开发完成后，开发者可以通过[用户认证API接口](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)开发HAP应用，基于RK3568平台验证。认证和取消功能验证的测试代码如下：
 
-    ```js
-    // API version 9
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+1.发起认证并获取认证结果的测试代码如下：
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+  
+  // 设置认证参数
+  const authParam: userIAM_userAuth.AuthParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FINGERPRINT],
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  };
 
+  // 配置认证界面
+  const widgetParam: userIAM_userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
+
+  try {
     // 获取认证对象
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('get userAuth instance success');
     // 订阅认证结果
-    try {
-        auth.on("result", {
-            callback: (result: userIAM_userAuth.AuthResultInfo) => {
-                console.log("authV9 result " + result.result);
-                console.log("authV9 token " + result.token);
-                console.log("authV9 remainAttempts " + result.remainAttempts);
-                console.log("authV9 lockoutDuration " + result.lockoutDuration);
-            }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
-    }
+    userAuthInstance.on('result', {
+      onResult(result) {
+        console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+        // 可在认证结束或其他业务需要场景，取消订阅认证结果
+        userAuthInstance.off('result');
+      }
+    });
+    console.info('auth on success');
+    userAuthInstance.start();
+    console.info('auth start success');
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+```
+    
+2.取消认证的测试代码如下：
 
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+  
+  const authParam: userIAM_userAuth.AuthParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FINGERPRINT],
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  };
+
+  const widgetParam: userIAM_userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
+  
+  try {
+    // 获取认证对象
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('get userAuth instance success');
     // 开始认证
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
+    userAuthInstance.start();
+    console.info('auth start success');
     // 取消认证
-    try {
-        auth.cancel();
-        console.info("cancel auth success");
-    } catch (error) {
-        console.info("cancel auth failed, error = " + error);
-    }
-
-    // 取消订阅认证结果
-    try {
-        auth.off("result");
-        console.info("cancel subscribe authentication event success");
-    } catch (error) {
-        console.info("cancel subscribe authentication event failed, error = " + error);
-    }
-    ```
+    userAuthInstance.cancel();
+    console.info('auth cancel success');
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+```

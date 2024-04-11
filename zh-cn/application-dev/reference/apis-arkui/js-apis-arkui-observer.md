@@ -62,6 +62,9 @@ NavDestination组件信息。
 | navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
 | name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
 | state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。                   |
+| index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
+| param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
+| navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
 
 ## ScrollEventInfo<sup>12+</sup>
 
@@ -109,6 +112,29 @@ RouterPageInfo包含的信息。
 | ------- | ----------------------------------------- | ---- | -------------------------------------- |
 | context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 屏幕像素密度变化时页面对应的上下文信息 |
 | density | number                                    | 是   | 变化后的屏幕像素密度。                 |
+
+## NavDestinationSwitchInfo<sup>12+</sup>
+
+Navigation组件页面切换的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                          |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发页面切换的Navigation对应的上下文信息。 |
+| from         | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的源页面。         |
+| to           | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的目的页面。         |
+| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md##navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
+
+## NavDestinationSwitchObserverOptions<sup>12+</sup>
+
+Navigation组件页面切换事件的监听选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                          |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 指定需要监听的Navigation的ID |
 
 ## observer.on('navDestinationUpdate')
 
@@ -652,4 +678,126 @@ struct Index {
     }
   }
 }
+```
+
+## observer.on('navDestinationSwitch')<sup>12+</sup>
+
+on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback: Callback\<NavDestinationSwitchInfo\>): void
+
+监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面切换事件的范围。 |
+| callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+
+**示例：**
+
+```ts
+// 在UIAbility中使用
+import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+// callBackFunc 是开发者定义的监听回调函数
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
+observer.on('navDestinationSwitch', this.context, callBackFunc);
+// 可以通过窗口的getUIContext()方法获取对应的UIContent
+uiContext: UIContext | null = null;
+observer.on('navDestinationSwitch', this.uiContext, callBackFunc);
+```
+
+## observer.off('navDestinationSwitch')<sup>12+</sup>
+
+off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback?: Callback\<NavDestinationSwitchInfo\>): void
+
+取消监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面切换事件的范围。 |
+| callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在UIAbility中使用
+import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+// callBackFunc 是开发者定义的监听回调函数
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
+observer.off('navDestinationSwitch', this.context, callBackFunc);
+// 可以通过窗口的getUIContext()方法获取对应的UIContent
+uiContext: UIContext | null = null;
+observer.off('navDestinationSwitch', this.uiContext, callBackFunc);
+```
+
+## observer.on('navDestinationSwitch')<sup>12+</sup>
+
+on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observerOptions: NavDestinationSwitchObserverOptions, callback: Callback\<NavDestinationSwitchInfo\>): void
+
+监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面切换事件的范围。 |
+| observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
+| callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 是   | 回调函数。携带NavDestinationSwitchInfo，返回页面切换事件的信息。                 |
+
+**示例：**
+
+```ts
+// 在UIAbility中使用
+import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+// callBackFunc 是开发者定义的监听回调函数
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
+observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+// 可以通过窗口的getUIContext()方法获取对应的UIContent
+uiContext: UIContext | null = null;
+observer.on('navDestinationSwitch', this.uiContext, { navigationId: "myNavId" }, callBackFunc);
+```
+
+## observer.off('navDestinationSwitch')<sup>12+</sup>
+
+off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observerOptions: NavDestinationSwitchObserverOptions, callback?: Callback\<NavDestinationSwitchInfo\>): void
+
+取消监听Navigation的页面切换事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面切换事件的范围。 |
+| observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
+| callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在UIAbility中使用
+import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+// callBackFunc 是开发者定义的监听回调函数
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
+observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+// 可以通过窗口的getUIContext()方法获取对应的UIContent
+uiContext: UIContext | null = null;
+observer.off('navDestinationSwitch', this.uiContext, { navigationId: "myNavId" }, callBackFunc);
 ```

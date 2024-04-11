@@ -139,7 +139,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
   });
 }
+```
 
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -177,7 +179,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
   });
 }
+```
 
+```ts
 // xxx.ets
 @Entry
 @Component

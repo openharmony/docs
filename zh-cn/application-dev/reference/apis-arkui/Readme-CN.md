@@ -29,8 +29,10 @@
     - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
+    - [@ohos.arkui.UIContext (UIContext)(系统接口)](js-apis-arkui-UIContext-sys.md)
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
+      - [ComponentContent](js-apis-arkui-ComponentContent.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
@@ -103,6 +105,7 @@
         - [点击回弹效果](arkui-ts/ts-universal-attributes-click-effect.md)
         - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
+        - [动态手势设置](arkui-ts/ts-universal-attributes-gesture-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - 触摸交互控制
@@ -122,6 +125,7 @@
         - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
         - [背景设置 (系统接口)](arkui-ts/ts-universal-attributes-background-sys.md)
         - [组件内容模糊 (系统接口)](arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
+        - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -133,6 +137,7 @@
           - [SwipeGesture](arkui-ts/ts-basic-gestures-swipegesture.md)
         - [组合手势](arkui-ts/ts-combined-gestures.md)
         - [自定义手势判定](arkui-ts/ts-gesture-customize-judge.md)
+        - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
     - 基础组件
       - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](arkui-ts/ts-basic-components-blank.md)
@@ -292,14 +297,16 @@
         - [时间滑动选择器弹窗 (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](arkui-ts/ts-methods-menu.md)
-    - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
-    - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
-    - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+    - 自定义组件
+      - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
+      - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
+      - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+    - 类型定义
+      - [基础类型定义](arkui-ts/ts-types.md)
+      - [图像类型定义](arkui-ts/ts-image-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
-    - [类型定义](arkui-ts/ts-types.md)
-    - [图像类型定义](arkui-ts/ts-image-common.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件

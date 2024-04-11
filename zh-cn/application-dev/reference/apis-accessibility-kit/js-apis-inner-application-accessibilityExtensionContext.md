@@ -954,6 +954,37 @@ rootElement.performAction(actionName).then(() => {
 });
 ```
 
+**无参数Action示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+// Action描述中无明确要求的，均为无参数Action
+rootElement.performAction('click').then(() => {
+  console.info(`Succeeded in perform action.`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+**有参数Action示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+// setSelection示例代码
+rootElement.performAction('setSelection', {
+  selectTextBegin: '0', // 表示选择起始位置
+  selectTextEnd: '8'    // 表示选择结束位置
+}).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ### performAction
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;

@@ -33,7 +33,7 @@ import BackupExtension from '@ohos.application.BackupExtensionAbility';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称                  | 类型                                                              | 可读 | 可写 | 说明                                                |
+| 名称                  | 类型                                                              | 只读 | 可写 | 说明                                                |
 | --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
 | context<sup>11+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | 是   | 否   | BackupExtensionAbility的上下文环境，继承自Context。 |
 

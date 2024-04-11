@@ -61,7 +61,7 @@ import accessibility from '@ohos.accessibility';
 
 ## Action
 
-应用所支持的目标动作。
+应用所支持的目标动作，需要配置参数的目标动作已在描述中标明。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -80,9 +80,10 @@ import accessibility from '@ohos.accessibility';
 | copy                    | 表示复制操作。   |
 | paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
-| setText                 | 表示设置文本操作。当前版本暂不支持。 |
+| setText                 | 表示设置文本操作，需配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd。   |
+| common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
 
 ## Capability
 
@@ -290,8 +291,9 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | currentIndex     | number                                | 否   | 当前条目序号。当前版本暂不支持。      |
 | endIndex         | number                                | 否   | 画面显示条目的结束序号。当前版本暂不支持。 |
 | itemCount        | number                                | 否   | 条目总数。当前版本暂不支持。        |
-| elementId<sup>12+</sup>        | number                                | 否   | 主动聚焦的组件ID。        |
+| elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
 
@@ -1038,6 +1040,36 @@ let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
   triggerAction: 'click',
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**主动聚焦示例：**
+
+```ts
+build() {
+  Collumn() {
+    // 待聚焦组件添加id属性，id唯一性由使用者保证
+    Button('待聚焦组件').id('abc123')
+  }
+}
+```
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'requestFocusForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  customId: 'abc123' // 对应待聚焦组件id属性值
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

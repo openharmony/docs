@@ -10,7 +10,7 @@
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
   - [Web组件嵌套滚动](web-nested-scrolling.md)
-- 在应用中使用前端页面JavaScript
+- 应用侧与前端页面的相互调用
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
   - [建立应用侧与前端页面数据通道](web-app-page-data-channel.md)
@@ -26,3 +26,4 @@
 - [webRTC拉起摄像头和麦克风](web-rtc.md)
 - [解决Web组件本地资源跨域问题](web-cross-origin.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+- [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

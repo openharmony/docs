@@ -35,6 +35,6 @@
 | void [OH_NativeArkWeb_RegisterJavaScriptProxy](_web.md#oh_nativearkweb_registerjavascriptproxy) (const char \*webTag, const char \*objName, const char \*\*methodList, [NativeArkWeb_OnJavaScriptProxyCallback](_web.md#nativearkweb_onjavascriptproxycallback) \*callback, int32_t size, bool needRefresh) | 注册应用侧的对象及回调函数。  | 
 | void [OH_NativeArkWeb_UnregisterJavaScriptProxy](_web.md#oh_nativearkweb_unregisterjavascriptproxy) (const char \*webTag, const char \*objName) | 删除已注册的对象及回调函数。  | 
 | void [OH_NativeArkWeb_SetJavaScriptProxyValidCallback](_web.md#oh_nativearkweb_setjavascriptproxyvalidcallback) (const char \*webTag, [NativeArkWeb_OnValidCallback](_web.md#nativearkweb_onvalidcallback) callback) | 设置对象可注册的回调函数。  | 
-| [NativeArkWeb_OnValidCallback](_web.md#nativearkweb_onvalidcallback)[OH_NativeArkWeb_GetJavaScriptProxyValidCallback](_web.md#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取对象可注册的回调函数。  | 
+| [NativeArkWeb_OnValidCallback](_web.md#nativearkweb_onvalidcallback) [OH_NativeArkWeb_GetJavaScriptProxyValidCallback](_web.md#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取对象可注册的回调函数。  | 
 | void [OH_NativeArkWeb_SetDestroyCallback](_web.md#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback) callback) | 设置组件销毁的回调函数。  | 
-| [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback)[OH_NativeArkWeb_GetDestroyCallback](_web.md#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  | 
+| [NativeArkWeb_OnDestroyCallback](_web.md#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](_web.md#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取组件销毁的回调函数。  | 

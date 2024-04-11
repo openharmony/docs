@@ -28,6 +28,8 @@ getSak(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -51,6 +53,8 @@ getAtqa(): number[]
 获取NFC-A标签的Atqa值。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -84,6 +88,8 @@ getRespAppData(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -107,6 +113,8 @@ getRespProtocol(): number[]
 获取标签的协议信息。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -140,6 +148,8 @@ getSystemCode(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                            |
@@ -163,6 +173,8 @@ getPmm(): number[]
 从标签实例获取PMm（由IC代码和制造商参数组成）。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -196,6 +208,8 @@ getResponseFlags(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -219,6 +233,8 @@ getDsfId(): number
 从标签实例实例获取数据存储格式标识符（DSFID）。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -252,6 +268,8 @@ getHistoricalBytes(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -275,6 +293,8 @@ getHiLayerResponse(): number[]
 获取标签的更高层响应字节，针对基于NfcB通信技术的IsoDep卡片。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -301,6 +321,8 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -353,6 +375,8 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -408,6 +432,8 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -443,6 +469,8 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -467,6 +495,8 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -489,6 +519,8 @@ isNdefWritable(): boolean
 检查NDEF标签是否可写。在调用写数据接口前，需要先判断是否支持写操作。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -515,6 +547,8 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -567,6 +601,8 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -621,6 +657,8 @@ writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -677,6 +715,8 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -737,6 +777,8 @@ canSetReadOnly(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -770,6 +812,8 @@ setReadOnly(): Promise\<void>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **错误码：**
 
@@ -816,6 +860,8 @@ setReadOnly(callback: AsyncCallback\<void>): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -869,6 +915,8 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -915,6 +963,8 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -971,6 +1021,8 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1029,6 +1081,8 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1089,6 +1143,8 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1145,6 +1201,8 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1200,6 +1258,8 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1260,6 +1320,8 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1314,6 +1376,8 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1373,6 +1437,8 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1427,6 +1493,8 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1486,6 +1554,8 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1538,6 +1608,8 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1595,6 +1667,8 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -1647,6 +1721,8 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1702,6 +1778,8 @@ getSectorCount(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -1726,6 +1804,8 @@ getBlockCountInSector(sectorIndex: number): number
 获取指定扇区中的块数。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1765,6 +1845,8 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -1788,6 +1870,8 @@ getTagSize(): number
 获取标签的存储空间大小，具体请参见[MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9)。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1814,6 +1898,8 @@ isEmulatedTag(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -1838,6 +1924,8 @@ getBlockIndex(sectorIndex: number): number
 获取特定扇区的第一个块的序号。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1876,6 +1964,8 @@ getSectorIndex(blockIndex: number): number
 获取包含指定块号的扇区序号。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1924,6 +2014,8 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1985,6 +2077,8 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2041,6 +2135,8 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2095,6 +2191,8 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2152,6 +2250,8 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | **类型** | **说明**                             |
@@ -2185,6 +2285,8 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2241,6 +2343,8 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2306,6 +2410,8 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
@@ -2361,6 +2467,8 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 

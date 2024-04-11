@@ -290,24 +290,31 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise = httpRequest.request("EXAMPLE_URL", {
-  method: http.RequestMethod.GET,
-  connectTimeout: 60000,
-  readTimeout: 60000,
-  header: new Header('application/json')
-});
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+    // 当使用POST请求时此字段用于传递内容
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+    usingCache: true, // 可选，默认为true
+    priority: 1, // 可选，默认为1
+    // 开发者根据自身业务需要添加header字段
+    header: new Header('application/json'),
+    readTimeout: 60000, // 可选，默认为60000ms
+    connectTimeout: 60000, // 可选，默认为60000ms
+    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+    usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+};
 
-promise.then((data:http.HttpResponse) => {
-  console.info('Result:' + data.result);
-  console.info('code:' + data.responseCode);
-  console.info('type:' + JSON.stringify(data.resultType));
-  console.info('header:' + JSON.stringify(data.header));
-  console.info('cookies:' + data.cookies); // 自API version 8开始支持cookie
-  console.info('header.content-Type:' + data.header);
-  console.info('header.Status-Line:' + data.header);
-
-}).catch((err:Error) => {
-  console.info('error:' + JSON.stringify(err));
+httpRequest.request("EXAMPLE_URL", options, (err: Error, data: http.HttpResponse) => {
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('type:' + JSON.stringify(data.resultType));
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // 自API version 8开始支持cookie
+  } else {
+    console.info('error:' + JSON.stringify(err));
+  }
 });
 ```
 
@@ -565,7 +572,21 @@ import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 let httpRequest = http.createHttp();
-httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+    // 当使用POST请求时此字段用于传递内容
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+    usingCache: true, // 可选，默认为true
+    priority: 1, // 可选，默认为1
+    // 开发者根据自身业务需要添加header字段
+    header: new Header('application/json'),
+    readTimeout: 60000, // 可选，默认为60000ms
+    connectTimeout: 60000, // 可选，默认为60000ms
+    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+    usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+};
+httpRequest.requestInStream("EXAMPLE_URL", options, (err: BusinessError<void> , data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -950,13 +971,8 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -985,13 +1001,8 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1017,13 +1028,8 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1052,13 +1058,8 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1145,7 +1146,7 @@ HTTP 请求方法。
 | ENTITY_TOO_LARGE  | 413  | 由于请求的实体过大，服务器无法处理，因此拒绝请求。           |
 | REQ_TOO_LONG      | 414  | 请求的URI过长（URI通常为网址），服务器无法处理。             |
 | UNSUPPORTED_TYPE  | 415  | 服务器无法处理请求的格式。                                   |
-| RANGE_NOT_SATISFIABLE | 416  | 请求范围不符合要求。                                  |
+| RANGE_NOT_SATISFIABLE<sup>12+</sup> | 416  | 请求范围不符合要求。                                  |
 | INTERNAL_ERROR    | 500  | 服务器内部错误，无法完成请求。                               |
 | NOT_IMPLEMENTED   | 501  | 服务器不支持请求的功能，无法完成请求。                       |
 | BAD_GATEWAY       | 502  | 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求。 |
@@ -1379,7 +1380,7 @@ httpRequest.request("EXAMPLE_URL").then(data => {
     }
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```

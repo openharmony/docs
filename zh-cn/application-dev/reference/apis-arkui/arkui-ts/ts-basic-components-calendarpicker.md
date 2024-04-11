@@ -85,7 +85,7 @@ onChange(callback: (value: Date) => void)
 
 ## CalendarAlign枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称   | 描述                     |
 | ------ | ------------------------ |

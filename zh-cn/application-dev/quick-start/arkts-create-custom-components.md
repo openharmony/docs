@@ -148,7 +148,11 @@ struct ParentComponent {
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | 否 | 表示作为命名路由页面的名字。 |
   | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
-  | useSharedStorage | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的[LocalStorage](arkts-localstorage.md)实例对象。 |
+  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的[LocalStorage](arkts-localstorage.md)实例对象，默认值false。 |
+
+  > **说明：**
+  >
+  > 当useSharedStorage设置为true，并且storage又被赋值时，useSharedStorage的值优先级更高。
 
   ```ts
   @Entry({ routeName : 'myPage' })
@@ -217,6 +221,44 @@ struct ParentComponent {
 }
 ```
 
+下面的示例代码将父组件中的函数传递给子组件，并在子组件中调用。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State cnt: number = 0
+  submit: () => void = () => {
+    this.cnt++;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.cnt}`)
+      Son({ submitArrow: this.submit })
+    }
+  }
+}
+
+@Component
+struct Son {
+  submitArrow?: () => void
+
+  build() {
+    Row() {
+      Button('add')
+        .width(80)
+        .onClick(() => {
+          if (this.submitArrow) {
+            this.submitArrow()
+          }
+        })
+    }
+    .justifyContent(FlexAlign.SpaceBetween)
+    .height(56)
+  }
+}
+```
 
 ## build()函数
 

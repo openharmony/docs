@@ -482,22 +482,22 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: ClassA = new ClassA(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum.c += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum[0].c })
+      LinkChild({ testNum: this.testNum.c })
     }
   }
 }
 ```
 
-\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: $testNum})
+\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: this.testNum})
 
 【正例】
 
@@ -513,26 +513,29 @@ class ClassA {
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA[];
+  @Link testNum: ClassA;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum[0]?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: ClassA = new ClassA(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum.c += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: $testNum })
+      LinkChild({ testNum: this.testNum })
     }
   }
 }
