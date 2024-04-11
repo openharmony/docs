@@ -378,3 +378,61 @@ AlphabetIndexer组件
 **适配指导**
 
 请查阅[AlphabetIndexer组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)文档进行适配。
+
+## cl.arkui.7 Menu组件header、footer对齐方式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+UX样式变更
+
+**变更影响**
+
+该变更为兼容性变更。变更前，header、footer与菜单文本左对齐。变更后，header、footer与左侧图标左对齐。
+
+**API Level**
+
+起始level 9，在API 12进行版本隔离。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+Menu组件。
+
+**适配指导**
+
+UX默认行为变更，无需适配。
+
+## cl.arkui.8 Menu组件上下安全边距变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+UX样式变更
+
+**变更影响**
+
+该变更为兼容性变更。变更前，菜单布局避让顶部状态栏与底部导航条后，上下再保留48vp的边距。变更后，菜单布局避让顶部状态栏与底部导航条后，上方保留16vp的边距，下方保留4vp的边距。
+
+**API Level**
+
+在API 12进行版本隔离
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+Menu组件。
+
+**适配指导**
+
+UX默认行为变更，无需适配。
