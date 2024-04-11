@@ -1,6 +1,7 @@
 # ArkWeb
 
 - [Introduction to ArkWeb](web-component-overview.md)
+- [Default User Agent String](web-default-userAgent.md)
 - [Loading Pages by Using the Web Component](web-page-loading-with-web-components.md)
 - Setting Basic Attributes and Events
   - [Setting the Dark Mode](web-set-dark-mode.md)
@@ -19,4 +20,5 @@
 - [Printing Frontend Pages](web-print.md)
 - [Downloading Files](web-download.md)
 - [Accelerating Web Page Access with Preconnecting and Prefetching](web-predictor.md)
+- [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md)
 - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)

@@ -157,7 +157,7 @@ struct WebComponent {
 }
 ```
 
-## 动态创建web组件
+## 动态创建Web组件
 支持命令式创建Web组件，这种方式创建的组件不会立即挂载到组件树，即不会对用户呈现（组件状态为Hidden和InActive），开发者可以在后续使用中按需动态挂载。后台启动的Web实例不建议超过200个。  
 
 ```ts
@@ -250,7 +250,7 @@ export const createNWeb = (url: string, uiContext: UIContext) => {
   // 创建NodeController 
   let baseNode = new myNodeController();
   let controller = new web_webview.WebviewController() ;
-  // 初始化自定义web组件
+  // 初始化自定义Web组件
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller)
   NodeMap.set(url, baseNode);

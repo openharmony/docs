@@ -4547,7 +4547,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](../apis-device-certificate-kit/js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用Web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](../apis-device-certificate-kit/js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4710,7 +4710,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](../apis-device-certificate-kit/js-apis-cert.md)），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用Web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](../apis-device-certificate-kit/js-apis-cert.md)），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5077,7 +5077,7 @@ setCustomUserAgent(userAgent: string): void
 > **说明：**
 >
 >setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
->若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的web组件的src可以设置一个空字符串。
+>若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的Web组件的src可以设置一个空字符串。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -6582,7 +6582,7 @@ struct WebComponent {
 
 setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
-为当前web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
+为当前Web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6636,7 +6636,7 @@ struct WebComponent {
 
 clearWebSchemeHandler(): void
 
-清除当前web组件设置的所有WebSchemeHandler。
+清除当前Web组件设置的所有WebSchemeHandler。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6938,9 +6938,73 @@ closeCamera(): void
 
 完整示例代码参考[startCamera](#startcamera12)。
 
+### precompileJavaScript<sup>12+</sup>
+
+precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
+
+预编译JavaScript生成字节码缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即请求该文件的服务器版本时使用的网络地址。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
+| cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
+
+**返回值：**
+
+| 类型                                | 说明                        |
+| ----------------------------------- | --------------------------- |
+| Promise\<number\> | 生成字节码缓存的错误码，0表示无错误，-1表示内部错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onControllerAttached( => {
+          getContext().resourceManager.getRawFileContent("local.js")
+            .then((content) => {
+              this.controller.precompileJavaScript("https://exmaple.com/example.js", content, {
+                responseHeaders: [
+                  {
+                    headerKey: "E-Tag",
+                    headerValue: "68ZpTzuAFdm85xPNtr3EOzySP8Q"
+                  }
+                ]
+              }).then((res) => {
+                console.error("precompile result: " + res);
+              }).catch((err) => {
+                console.error("precompile error: " + err);
+              })
+            }
+        })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
-通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
 
 ### getCookie<sup>(deprecated)</sup>
 
@@ -8617,7 +8681,7 @@ struct WebComponent {
 
 ## WebDataBase
 
-web组件数据库管理对象。
+Web组件数据库管理对象。
 
 > **说明：**
 >
@@ -8807,7 +8871,7 @@ struct WebComponent {
 
 ## GeolocationPermissions
 
-web组件地理位置权限管理对象。
+Web组件地理位置权限管理对象。
 
 > **说明：**
 >
@@ -13018,3 +13082,13 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 **示例：**
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+## CacheOptions<sup>12+</sup>
+
+Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制字节码缓存更新。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称        | 类型   | 可读 | 可写 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，用于标识文件版本，判断是否需要更新。   |

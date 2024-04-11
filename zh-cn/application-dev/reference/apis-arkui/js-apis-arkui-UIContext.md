@@ -399,6 +399,52 @@ getFrameNodeById(id: string): FrameNode | null
 uiContext.getFrameNodeById("TestNode")
 ```
 
+### getFrameNodeByUniqueId<sup>12+</sup>
+
+getFrameNodeByUniqueId(id: number): FrameNode | null
+
+提供getFrameNodeByUniqueId接口通过组件的uniqueId获取组件树的实体节点。
+1. 当uniqueId对应的是内置组件时，返回组件所对应的FrameNode；
+2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回其FrameNode，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
+3. 当uniqueId无对应的组件时，返回null。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@ohos.arkui.UIContext';
+import { FrameNode } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let uniqueId: number = this.getUniqueId();
+    let uiContext: UIContext = this.getUIContext();
+    if (uiContext) {
+      let node: FrameNode = uiContext.getFrameNodeByUniqueId(uniqueId);
+    }
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+
 ### showAlertDialog
 
 showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
@@ -3905,9 +3951,10 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
+    let storage: LocalStorage = new LocalStorage();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', storage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -4531,6 +4578,86 @@ struct ClearFocusExample {
           .backgroundColor(Color.Blue)
           .onClick(() => {
             this.getUIContext().getFocusController().clearFocus()
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### requestFocus<sup>12+</sup>
+
+requestFocus(key: string): void
+
+通过组件的id将焦点转移到组件树对应的实体节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| key | string | 是 | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[焦点错误码](errorcode-focus.md)。
+
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 150001 | This component is not focusable. |
+| 150002 | This component has unfocusable ancestor.      |
+| 150003 | This id refers to a nonexistent component which haven't been created or invisible right now. |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct RequestExample {
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+          .id("testButton")
+
+        Divider()
+          .vertical(false)
+          .width("80%")
+          .backgroundColor(Color.Black)
+          .height(10)
+
+        Button('requestFocus')
+          .width(200)
+          .height(70)
+          .onClick(() => {
+            this.getUIContext().getFocusController().requestFocus("testButton")
+          })
+
+        Button('requestFocus fail')
+          .width(200)
+          .height(70)
+          .onClick(() => {
+            try {
+              this.getUIContext().getFocusController().requestFocus("eee")
+            } catch (error) {
+              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message)
+            }
           })
       }
     }

@@ -238,7 +238,7 @@ For an application in the DLP sandbox state, the permissions granted to the appl
     }
     ```
 
-13. Start the DLP manager application in borderless mode. This method can be called only in the UIAbility context and supports only the stage mode.
+13. Start the DLP manager application in borderless mode. This method can be called only in the UIAbility context and supports only the stage model.
 
     ```ts
     import dlpPermission from '@ohos.dlpPermission';

@@ -41,7 +41,7 @@ getFreeBytes(path:string):Promise&lt;number&gt;
   statfs.getFreeBytes(path).then((number: number) => {
     console.info("getFreeBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeBytes failed with error:" + JSON.stringify(err));
+    console.error("getFreeBytes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -103,7 +103,7 @@ getTotalBytes(path: string): Promise&lt;number&gt;
   statfs.getTotalBytes(path).then((number: number) => {
     console.info("getTotalBytes promise successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalBytes failed with error:" + JSON.stringify(err));
+    console.error("getTotalBytes failed with error:" + JSON.stringify(err));
   });
   ```
 

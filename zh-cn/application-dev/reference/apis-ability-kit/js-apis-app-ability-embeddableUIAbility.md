@@ -435,7 +435,7 @@ EmbeddableUIAbility生命周期回调，当系统预关闭开关打开后（配�
 
 onBackPressed(): boolean
 
-EmbeddableUIAbility生命周期回调，当EmbeddableUIAbility侧滑返回时触发。根据返回值决定是否销毁EmbeddableUIAbility，默认为销毁EmbeddableUIAbility。该生命周期仅在跳转启动时生效。
+EmbeddableUIAbility生命周期回调，当EmbeddableUIAbility侧滑返回时触发，根据返回值决定是否销毁EmbeddableUIAbility。默认返回值为true，会将EmbeddableUIAbility移动到后台不销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

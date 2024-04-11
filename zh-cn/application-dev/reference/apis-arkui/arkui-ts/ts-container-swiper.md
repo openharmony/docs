@@ -362,6 +362,20 @@ nestedScroll(value: SwiperNestedScrollMode)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [SwiperNestedScrollMode](#swipernestedscrollmode11枚举说明) | 是   | Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY |
 
+### indicatorInteractive<sup>12+</sup>
+
+indicatorInteractive(value: boolean)
+
+设置禁用组件导航点交互功能。设置为true时表示导航点可交互。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
+
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
 | 名称          | 类型                                       | 必填 | 描述                                                 |
@@ -647,6 +661,7 @@ ContentDidScrollCallback = (selectedIndex: number, index: number, position: numb
 ## 示例
 
 ### 示例1
+该示例实现了通过indicatorInteractive控制导航点交互功能。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -702,6 +717,7 @@ struct SwiperExample {
       .autoPlay(true)
       .interval(4000)
       .loop(true)
+      .indicatorInteractive(true)
       .duration(1000)
       .itemSpace(0)
       .indicator( // 设置圆点导航点样式
