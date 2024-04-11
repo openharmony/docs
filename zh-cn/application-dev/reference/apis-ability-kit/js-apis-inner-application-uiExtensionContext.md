@@ -1057,3 +1057,124 @@ export default class EntryAbility extends UIExtensionAbility {
   }
 }
 ```
+
+## UIExtensionContext.openLink<sup>12+<sup>
+openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
+
+通过AppLinking启动UIAbility，使用Promise异步回调。
+
+通过在link字段中传入标准格式的uri，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+- "actions"列表中包含"ohos.want.action.viewData"。
+- "entities"列表中包含"entity.system.browsable"。
+- "uris"列表中包含"scheme"为"https"且"autoVerify"为true的元素。
+
+如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#uiextensioncontextstartabilityforresult)接口。
+传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| link | string | 是 | 指示要打开的标准格式URL。 |
+| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | 否 | 打开URL的选项参数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 否 | 执行结果回调函数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { BusinessError } from '@ohos.base';
+
+function log(info) {
+  console.error("MyUIExtension::" + info)
+}
+
+export default class UIExtAbility extends UIExtensionAbility {
+  onCreate() {
+    log(`UIExtAbility onCreate`)
+    globalThis.context = this.context;
+  }
+
+  onForeground() {
+    log(`UIExtAbility onForeground`)
+  }
+
+  onBackground() {
+    log(`UIExtAbility onBackground`)
+  }
+
+  onDestroy() {
+    log(`UIExtAbility onDestroy`)
+  }
+
+  onSessionCreate(want, session) {
+    log(`UIExtAbility onSessionCreate`)
+    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
+    let storage: LocalStorage = new LocalStorage({
+      'session': session
+    });
+    session.loadContent("pages/UIExtensionIndex", storage);
+
+    let link: string = "https://www.example.com"
+    let openLinkOptions: OpenLinkOptions = {
+      appLinkingOnly: true
+    };
+    try {
+      this.context.openLink(
+        link,
+        openLinkOptions,
+        (err, result) => {
+          log('openLink callback error.code:' + JSON.stringify(err));
+          log('openLink callback result:' + JSON.stringify(result.resultCode));
+          log('openLink callback result data:' + JSON.stringify(result.want));
+        }
+      ).then(() => {
+        log('open link success.');
+      }).catch((err: BusinessError) => {
+        log('open link failed, errCode ' + JSON.stringify(err.code));
+      })
+    }
+    catch (e) {
+      log('exception occured, errCode ' + JSON.stringify(e.code));
+    }
+
+  }
+
+  onSessionDestroy(session) {
+    log(`UIExtAbility onSessionDestroy`)
+  }
+};
+```
