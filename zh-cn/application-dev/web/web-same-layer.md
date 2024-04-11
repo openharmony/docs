@@ -185,7 +185,7 @@
             ForEach(this.componentIdArr, (componentId: string) => {
               NodeContainer(this.nodeControllerMap.get(componentId))
             }, (embedId: string) => embedId)
-            // web组件加载本地test.html页面。
+            // Web组件加载本地test.html页面。
             Web({ src: $rawfile("test.html"), controller: this.browserTabController })
                 // 配置同层渲染开关开启。
               .enableNativeEmbedMode(true)
@@ -228,7 +228,7 @@
                       console.log("onNativeEmbedGestureEvent fail " + componentId)
                     }
                     if (event.result) {
-                      // 通知web组件手势事情消费结果
+                      // 通知Web组件手势事情消费结果
                       event.result.setGestureEventResult(ret);
                     }
                   }

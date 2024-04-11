@@ -1,6 +1,6 @@
 # NodeContainer
 
-The **\<NodeContainer>** component is a basic component that accepts an instance of [NodeController](../apis/js-apis-arkui-nodeController.md) and does not allow child nodes to be appended. It must be used together with **NodeController**.
+The **\<NodeContainer>** component is a basic component that accepts an instance of [NodeController](../js-apis-arkui-nodeController.md) and does not allow child nodes to be appended. It must be used together with **NodeController**.
 
 > **NOTE**
 >
@@ -18,9 +18,9 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 **Parameters**
 
-| Name    | Type                                                      | Mandatory| Description                                                                                  |
-| ---------- | -------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| controller | [NodeController](../apis/js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **\<NodeContainer>**. It represents the lifecycle of the **\<NodeContainer>**.|
+| Name    | Type                                            | Mandatory| Description                                                    |
+| ---------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| controller | [NodeController](../js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **\<NodeContainer>**. It represents the lifecycle of the **\<NodeContainer>**.|
 
 ## Attributes
 

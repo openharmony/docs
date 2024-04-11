@@ -157,7 +157,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -210,7 +210,7 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -263,7 +263,7 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -316,7 +316,7 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -346,7 +346,7 @@ Obtains an **IsoDepTag** object, which allows access to the tags that use the Is
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -376,7 +376,7 @@ Obtains an **NdefTag** object, which allows access to the tags in the NFC Data E
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -406,7 +406,7 @@ Obtains a **MifareClassicTag** object, which allows access to the tags that use 
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -436,7 +436,7 @@ Obtains a **MifareUltralightTag** object, which allows access to the tags that u
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 | Name | Type               | Mandatory| Description                                                         |
@@ -465,7 +465,7 @@ Obtains an **NdefFormatableTag** object, which allows access to the tags that ar
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -489,7 +489,7 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -513,7 +513,7 @@ Registers a listener for the NFC tag read event so that the tag can be preferent
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -537,7 +537,7 @@ Unregisters the listener for the NFC tag read event. If the listener is unregist
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -620,7 +620,7 @@ Subscribes to the NFC tag read event to implement dispatch of the tag to a foreg
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -653,7 +653,7 @@ Unsubscribes from the NFC tag card read event. The device exits the reader mode 
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -745,7 +745,7 @@ Creates an NDEF record based on the specified URI.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -786,7 +786,7 @@ Creates an NDEF record based on the specified text data and encoding type.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -830,7 +830,7 @@ Creates an NDEF record based on the specified MIME data and type.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -872,7 +872,7 @@ Creates an NDEF record based on application-specific data.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -917,7 +917,7 @@ Converts an NDEF message to bytes.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -954,7 +954,7 @@ Creates an NDEF message from raw byte data. The data must comply with the NDEF r
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -989,7 +989,7 @@ Creates an NDEF message from the NDEF records list.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
