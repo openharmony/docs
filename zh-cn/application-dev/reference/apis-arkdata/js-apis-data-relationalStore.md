@@ -580,7 +580,7 @@ class EntryAbility extends UIAbility {
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
-| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[data-persistence-by-rdb-store](#../../database/data-persistence-by-rdb-store.md)，在数据插入时，通过BigInt()方法构造数据。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)，在数据插入时，通过BigInt()方法构造数据。 |
 
 ## ValuesBucket
 
