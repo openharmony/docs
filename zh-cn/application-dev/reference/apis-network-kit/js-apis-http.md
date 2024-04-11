@@ -49,7 +49,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 当使用POST请求时此字段用于传递内容
-    extraData: new ExtraData('data to send'),
+    extraData: new ExtraData('data to send'), // 请求体内容，具体格式与服务端协商确定
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -293,7 +293,7 @@ let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 当使用POST请求时此字段用于传递内容
-    extraData: 'data to send',
+    extraData: 'data to send', // 请求体内容，具体格式与服务端协商确定
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -575,7 +575,7 @@ let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 当使用POST请求时此字段用于传递内容
-    extraData: 'data to send',
+    extraData: 'data to send', // 请求体内容，具体格式与服务端协商确定
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
