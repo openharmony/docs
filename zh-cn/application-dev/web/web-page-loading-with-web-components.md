@@ -163,7 +163,7 @@ struct WebComponent {
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import {createNWeb} from "../pages/common"
+import { createNWeb } from "../pages/common"
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
@@ -263,7 +263,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import {createNWeb, getNWeb} from "./common"
+import { getNWeb } from "./common"
 @Entry
 @Component
 struct Index {
