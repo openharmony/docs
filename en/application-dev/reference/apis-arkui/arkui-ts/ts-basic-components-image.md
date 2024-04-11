@@ -9,7 +9,7 @@ The **\<Image>** component is usually used to display images in applications. It
 
 ## Required Permissions
 
-To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
+To use online images, the application requires the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
 
 ## Child Components
@@ -469,7 +469,7 @@ struct ImageExample1 {
 
 ### Loading Online Images
 
-The default network timeout period is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure the placeholder image displayed during loading. If more flexible network configuration is required, you can use [HTTP](../../../connectivity/http-request.md) to send a network request, and then decode the returned data into a **PixelMap** object in the **\<Image>** component. For details about image development, see [Image Processing](../../../media/image-overview.md).
+The default timeout is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure a placeholder image displayed during loading. If more flexible network configuration is required, you can use [HTTP](../../../network/http-request.md) to send a network request, and then decode the returned data into a **PixelMap** object in the **\<Image>** component. For details about image development, see [Introduction to Image Kit](../../../media/image/image-overview.md).
 
 To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
@@ -562,3 +562,4 @@ struct ImageExample4 {
   }
 }
 ```
+<!--no_check-->
