@@ -846,7 +846,7 @@ struct TextInputExample {
 
 
 ### 示例6
-示例展示设置不同wordBreak属性的TextInput样式。
+示例展示设置不同wordBreak属性的TextArea样式。
 
 ```ts
 // xxx.ets
@@ -861,7 +861,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.NORMAL)
       Text("英文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
       TextArea({
@@ -869,7 +868,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.BREAK_ALL)
       Text("中文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
       TextArea({
@@ -877,7 +875,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.BREAK_ALL)
       Text("属性WordBreakType为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
       TextArea({
@@ -885,7 +882,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.BREAK_WORD)
     }
   }

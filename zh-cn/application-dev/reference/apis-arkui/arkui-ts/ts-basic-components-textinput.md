@@ -1298,7 +1298,7 @@ struct Index {
 
 
 ### 示例8
-示例展示设置不同wordBreak属性的TextArea样式。
+示例展示设置不同wordBreak属性的TextInput样式。
 
 ```ts
 // xxx.ets
