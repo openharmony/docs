@@ -31,7 +31,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 >
 > 目前在该自定义组件下支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不支持原生的全屏模式）、Web、XComponent。
 >
-> 使用方式可参考[同层渲染绘制XComponent+AVPlayer和Button组件](../../web/web-same-layer.md)。
+> 使用方式可参考[同层渲染绘制](../../web/web-same-layer.md)。
 
 ## RenderOptions
 
