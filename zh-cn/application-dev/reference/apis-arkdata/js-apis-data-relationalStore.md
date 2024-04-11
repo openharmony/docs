@@ -5302,7 +5302,12 @@ getValue(columnIndex: number): ValueType
 
 **错误码：**
 
-错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800000     | Inner error. |
+| 14800011     | Database corrupted. |
 
 **示例：**
 
