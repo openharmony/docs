@@ -1,7 +1,7 @@
 # Using Emitter for Inter-Thread Communication
 
 
-[Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md) provides APIs for sending and processing events between threads, including the APIs for processing events that are subscribed to in persistent or one-shot manner, unsubscribing from events, and emitting events to the event queue.
+[Emitter](../../reference/apis-basic-services-kit/js-apis-emitter.md) provides APIs for sending and processing events between threads, including the APIs for processing events that are subscribed to in persistent or one-shot manner, unsubscribing from events, and emitting events to the event queue.
 
 
 To develop the Emitter mode, perform the following steps:

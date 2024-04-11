@@ -7,7 +7,7 @@ Subscribers can receive sticky common events that have been sent. If the events 
 
 ## Available APIs
 
-For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
+For details, see [Common Event](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md).
 
 | Name| Description|
 | -------- | -------- |
@@ -16,7 +16,7 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
 
 ## How to Develop
 
-1. Declare the **ohos.permission.COMMONEVENT_STICKY** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+1. Declare the **ohos.permission.COMMONEVENT_STICKY** permission. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 2. Import the module.
 
@@ -45,3 +45,4 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
      Logger.info(TAG, `Succeeded in removeing sticky event.`);
    });
    ```
+ <!--no_check--> 
