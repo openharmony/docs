@@ -123,6 +123,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
 ## AVSessionType<sup>10+<sup>
 
@@ -3510,6 +3511,79 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ```
 
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+在线DRM资源投播时，处理许可证响应。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | 是   | 媒体ID。 |
+| response | Uint8Array             | 是   | 许可证响应。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，当处理许可证响应成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import http from '@ohos.net.http'
+
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
+   //get media key from DRM server
+   let licenseResponeStr: string = 'defaultStr';
+   let httpRequest = http.createHttp();
+   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+   try {
+     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
+        method: http.RequestMethod.POST,
+        header: {
+           'Content-Type': 'application/json',
+           'Accept-Encoding': 'gzip, deflate',
+        },
+        extraData: licenseRequestStr,
+        expectDataType: http.HttpDataType.STRING,
+      });
+      if (response?.responseCode == http.ResponseCode.OK) {
+        if (typeof response.result == 'string') {
+          licenseResponeStr = response.result;
+        }
+      }
+      httpRequest.destroy();
+   } catch (e) {
+     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
+     return;
+   }
+
+   let licenseResponeData: Unit8Array = TypeConversion.stringToByte(licenseResponeStr);
+   try {
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponeData);
+   } catch (err) {
+    let error = err as BusinessError;
+    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
+   }
+}
+
+```
+
 ### release<sup>11+</sup>
 
 release(callback: AsyncCallback\<void>): void
@@ -4140,6 +4214,90 @@ off(type: 'error'): void
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+在线DRM资源投播时，设置许可证请求的事件监听。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | 是   | 事件回调类型，支持事件`'keyRequest'`：当DRM资源播放需要许可证时，触发该事件。 |
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | 是   | 回调函数，媒体资源及许可证请求数据。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+取消监听许可证请求的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持的事件是`'keyRequest'`。 |
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('keyRequest');
+```
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+许可证请求事件的回调函数。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | 是   | 媒体ID。 |
+| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+```
+
 ## CastDisplayState<sup>12+</sup>
 
 投播显示设备状态。
@@ -4204,6 +4362,7 @@ aVCastController.off('error')
 | previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4230,6 +4389,8 @@ aVCastController.off('error')
 | lyricUri     | string                  | 否   | 播放列表媒体歌词URI。         |
 | artist     | string                  | 否   | 播放列表媒体专辑作者。         |
 | fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast         |
 | duration     | number                  | 否   | 播放列表媒体播放时长。         |
 | startPosition     | number                  | 否   | 播放列表媒体起始播放位置。         |
 | creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。         |
@@ -4366,6 +4527,7 @@ aVCastController.off('error')
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
