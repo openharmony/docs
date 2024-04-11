@@ -5307,7 +5307,7 @@ getValue(columnIndex: number): ValueType
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 14800000     | Inner error. |
-| 14800011     | Database corrupted. |
+| 14800011     | Database corruption. |
 
 **示例：**
 
