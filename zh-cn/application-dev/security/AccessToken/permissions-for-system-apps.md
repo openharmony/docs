@@ -2669,6 +2669,42 @@
 
 **起始版本**：12
 
+## ohos.permission.USE_CLOUD_DRIVE_SERVICE
+
+允许应用和服务使用云空间服务进行端云数据同步。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：12
+
+## ohos.permission.USE_CLOUD_BACKUP_SERVICE
+
+允许应用和服务触发云空间云备份任务执行和通知备份相关事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：12
+
+## ohos.permission.USE_CLOUD_COMMON_SERVICE
+
+允许应用通过云空间公共服务获取云空间相关信息和资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
