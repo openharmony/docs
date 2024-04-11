@@ -326,7 +326,6 @@
   - 头文件和结构体
     - 头文件
       - [native_dialog.h](native__dialog_8h.md)
-      - [native_event.h](native__event_8h.md)
       - [native_gesture.h](native__gesture_8h.md)
       - [native_interface.h](native__interface_8h.md)
       - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
@@ -340,6 +339,7 @@
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
       - [ArkUI_IntOffset](_ark_u_i___int_offset.md)
       - [ArkUI_IntSize](_ark_u_i___int_size.md)
+      - [ArkUI_Margin](_ark_u_i___margin.md)
       - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
       - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
