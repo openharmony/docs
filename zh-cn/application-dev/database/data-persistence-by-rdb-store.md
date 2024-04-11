@@ -293,7 +293,8 @@
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
+     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError
+   , resultSet) => {
        if (err) {
          console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
          return;
@@ -305,7 +306,8 @@
          const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
          const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
          const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
-         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+         const identity = resultSet.getValue(resultSet.getColumnIndex('IDENTITY'));
+         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}, identity=${identity}`);
        }
        // 释放数据集的内存
        resultSet.close();
