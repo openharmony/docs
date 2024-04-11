@@ -6329,11 +6329,11 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
   captureSession.off('error');
 }
 ```
-## ColorManagement<sup>11+</sup>
+## ColorManagement<sup>12+</sup>
 
 色彩管理类，用于设置色彩空间参数。
 
-### getSupportedColorSpaces<sup>11+</sup>
+### getSupportedColorSpaces<sup>12+</sup>
 
 getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
@@ -6363,17 +6363,17 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getSupportedColorSpaces(session: camera.PhotoSessionForSys): Array<colorSpaceManager.ColorSpace> {
+function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
   return colorSpaces;
 }
 ```
 
-### setColorSpace<sup>11+</sup>
+### setColorSpace<sup>12+</sup>
 
 setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
-设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces11)获取当前设备所支持的ColorSpaces。
+设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6383,7 +6383,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 | 参数名         | 类型                 | 必填 | 说明                      |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces12)接口获取。   |
 
 **错误码：**
 
@@ -6401,7 +6401,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 import { BusinessError } from '@ohos.base';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function setColorSpace(session: camera.PhotoSessionForSys, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
+function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
   if (colorSpaces === undefined || colorSpaces.length <= 0) {
     return;
   }
@@ -6414,7 +6414,7 @@ function setColorSpace(session: camera.PhotoSessionForSys, colorSpaces: Array<co
 }
 ```
 
-### getActiveColorSpace<sup>11+</sup>
+### getActiveColorSpace<sup>12+</sup>
 
 getActiveColorSpace(): colorSpaceManager.ColorSpace
 
@@ -6444,7 +6444,7 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getActiveColorSpace(session: camera.PhotoSessionForSys): colorSpaceManager.ColorSpace {
+function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
   let colorSpace: colorSpaceManager.ColorSpace = session.getActiveColorSpace();
   return colorSpace;
 }
