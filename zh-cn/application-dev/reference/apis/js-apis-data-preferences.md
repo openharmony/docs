@@ -1439,6 +1439,10 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
+   > **说明：**
+   >
+   > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1475,6 +1479,10 @@ try {
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
+
+   > **说明：**
+   >
+   > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1516,6 +1524,10 @@ try {
 putSync(key: string, value: ValueType): void
 
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
+
+   > **说明：**
+   >
+   > 当对应的键已经存在时，putSync()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
