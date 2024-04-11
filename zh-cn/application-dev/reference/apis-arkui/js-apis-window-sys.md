@@ -846,6 +846,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
 ```
+
 ## window.getSnapshot<sup>12+</sup>
 
 window.getSnapshot(windowId: number): Promise<image.PixelMap>
@@ -1055,7 +1056,6 @@ promise.then(() => {
   console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
-
 
 ### showWithAnimation<sup>9+</sup>
 
@@ -1869,7 +1869,7 @@ try {
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
  getTransitionController(): TransitionController
 
@@ -2565,7 +2565,7 @@ export default class EntryAbility extends UIAbility {
             console.info('Succeeded in loading the content.');
         });
         // 获取应用主窗口。
-        let mainWindow = null;
+        let mainWindow: window.Window | undefined = undefined;
 
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
@@ -2636,7 +2636,7 @@ export default class EntryAbility extends UIAbility {
             console.info('Succeeded in loading the content.');
         });
         // 获取应用主窗口。
-        let mainWindow = null;
+        let mainWindow: window.Window | undefined = undefined;
 
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
@@ -2706,7 +2706,7 @@ export default class EntryAbility extends UIAbility {
     });
 
     // 获取应用主窗口。
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2781,7 +2781,7 @@ export default class EntryAbility extends UIAbility {
     });
 
     // 获取应用主窗口。
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2802,7 +2802,6 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
 
 ### setTopmost<sup>12+</sup>
 
@@ -2862,7 +2861,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-
 ### setSingleFrameComposerEnabled<sup>11+</sup>
 
 setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
@@ -2909,7 +2907,7 @@ promise.then(()=> {
 });
 ```
 
-###  setTitleButtonVisible<sup>12+</sup>
+### setTitleButtonVisible<sup>12+</sup>
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
@@ -3134,6 +3132,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## TransitionContext<sup>9+</sup>
 
 属性转换的上下文信息。
@@ -3300,6 +3299,7 @@ try {
   console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
+
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void

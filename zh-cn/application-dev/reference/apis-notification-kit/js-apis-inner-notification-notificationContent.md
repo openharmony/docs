@@ -81,7 +81,7 @@
 | lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | briefText      | string                                       |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
 | expandedTitle  | string                                       |  否  | 是  | 通知展开时的标题（不可为空字符串）。    |
-| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|
+| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(图像像素的总字节数不能超过2MB)。|
 
 
 ## NotificationSystemLiveViewContent

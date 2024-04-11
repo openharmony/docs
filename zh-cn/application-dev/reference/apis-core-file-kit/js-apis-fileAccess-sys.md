@@ -24,7 +24,7 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
+| 名称 | 类型                        | 只读 | 可写 | 说明                                                      |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
 | DEVICES_URI<sup>11+</sup>  | string | 是   | 否   | 监听设备上线，下线通知，作为注册监听的URI                    |
 
@@ -230,7 +230,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 ### 属性
 
-| 名称 | 类型   | 可读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | 是 | 否 | 文件(夹)的uri |
 | relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径 |
@@ -400,7 +400,7 @@ next() : { value: FileInfo, done: boolean }
 
 ### 属性
 
-| 名称 | 类型   | 可读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | deviceType | number | 是 | 否 |设备类型 |
 | uri | string | 是 | 否 | 设备根目录Uri |
@@ -1244,7 +1244,7 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | --- | -- |
-| Promise&lt;boolean&gt; | 文件(夹)是否存在 |
+| Promise&lt;boolean&gt; | 文件(夹)是否存在，true为存在，false为不存在。|
 
 **错误码：**
 
@@ -1289,7 +1289,7 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
 | sourceFileUri | string | 是 | 文件(夹)的uri |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 文件(夹)是否存在 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 文件(夹)是否存在，true为存在，false为不存在。 |
 
 **错误码：**
 
@@ -1857,7 +1857,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
 | 参数名               | 类型                                              | 必填 | 说明                           |
 | -------------------- | ------------------------------------------------- | ---- | ------------------------------ |
 | uri                  | string                                            | 是   | 文件或目录的uri                |
-| notifyForDescendants | boolean                                           | 是   | 监听目录时，是否监听子文件变化 |
+| notifyForDescendants | boolean                                           | 是   | 监听目录时，是否监听子文件变化。true为监听，false为不监听 |
 | callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | 是   | 返回通知信息                   |
 
 **示例1：注册一个callback对一个uri的监听**
@@ -2463,7 +2463,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称      | 类型   | 可读 | 可写 | 说明                |
+| 名称      | 类型   | 只读 | 可写 | 说明                |
 | --------- | ------ | ---- | ---- | ----------------- |
 | sourceUri | string | 是   | 否   | 源文件(夹) uri                                         |
 | destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空 |
@@ -2528,7 +2528,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 可读 | 可写 | 说明                                                      |
+| 名称 | 类型                        | 只读 | 可写 | 说明                                                      |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
 | type | [NotifyType](#notifytype10) | 是   | 否   | 变更的通知类型                                            |
 | uris | Array&lt;string&gt;         | 是   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知 |
@@ -2543,7 +2543,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称      | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称      | 类型   | 只读 | 可写 | 说明                                                         |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | sourceUri | string | 是   | 否   | 源文件(夹) uri                                               |
 | destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |

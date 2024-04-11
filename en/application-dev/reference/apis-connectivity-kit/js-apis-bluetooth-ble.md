@@ -83,7 +83,7 @@ Obtains the Bluetooth Low Energy (BLE) devices connected to this device.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the BLE devices connected to this device.|
+| Array&lt;string&gt; | Addresses of the BLE devices connected to this device. For security purposes, the device addresses obtained are random MAC addresses.|
 
 **Error codes**
 
@@ -1981,7 +1981,7 @@ Unsubscribes from MTU status changes for the server.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
@@ -2566,7 +2566,7 @@ let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-80
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
 function writeCharacteristicValueCallBack(code: BusinessError) {
-    if (code.code != 0) {
+    if (code != null) {
         return;
     }
     console.log('bluetooth writeCharacteristicValue success');
@@ -2981,7 +2981,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets indication for the change of a characteristic. The GATT client will be indicated when the specified characteristic value changes.
+Sets indication for the change of a characteristic. The GATT client that subscribes to the change will be indicated when the characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2992,7 +2992,7 @@ Sets indication for the change of a characteristic. The GATT client will be indi
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3034,7 +3034,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-Sets indication for the change of a characteristic. The GATT client will be indicated when the specified characteristic value changes.
+Sets indication for the change of a characteristic. The GATT client that subscribes to the change will be indicated when the characteristic changes.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -3045,7 +3045,7 @@ Sets indication for the change of a characteristic. The GATT client will be indi
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -3092,7 +3092,7 @@ try {
 
 on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
-Subscribes to BLE characteristic changes. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
+Subscribes to BLE characteristic changes. The client can receive a notification from the server only after [setCharacteristicChangeNotification](#setcharacteristicchangenotification) is called.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -3102,7 +3102,7 @@ Subscribes to BLE characteristic changes. The client can receive a notification 
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes. |
+| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the characteristic value changes.                 |
 
 **Example**
@@ -3137,7 +3137,7 @@ Unsubscribes from BLE characteristic changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes. |
+| type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
@@ -3167,7 +3167,7 @@ Subscribes to BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes. |
+| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback invoked to return the BLE connection state.                          |
 
 **Example**
@@ -3201,7 +3201,7 @@ Unsubscribes from BLE connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes. |
+| type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
@@ -3263,7 +3263,7 @@ Unsubscribes from MTU status changes for the client.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Example**
@@ -3333,7 +3333,7 @@ Defines the parameters in the notifications sent when the server characteristic 
 | serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | characteristicValue | ArrayBuffer | Yes   | Yes   | Binary value of the characteristic.                              |
-| confirm             | boolean     | Yes   | Yes   | Whether the notification needs to be confirmed by the remote end. For a notification, set it to **true**. In this case, the remote end must confirm the receipt of the notification. For an indication, set it to **false**. In this case, the remote end does not need to confirm the receipt of the notification.|
+| confirm             | boolean     | Yes   | Yes   | Whether the notification or indication needs to be confirmed by the remote end. For a notification, the value **false** means the remote end must confirm the receipt of it. For an indication, the value **true** means the remote end does not need to confirm the receipt of it.|
 
 
 ## CharacteristicReadRequest
@@ -3439,11 +3439,11 @@ Defines the scan result.
 
 | Name      | Type       | Readable  | Writable  | Description                                |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX.|
+| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX. For security purposes, the device address is a random MAC address.|
 | rssi     | number      | Yes   | No   | RSSI of the device.                   |
 | data     | ArrayBuffer | Yes   | No   | Advertisement packets sent by the device.                   |
 | deviceName | string | Yes   | No   | Name of the device detected.                   |
-| connectable  | boolean | Yes   | No   | Whether the discovered device is connectable.                   |
+| connectable  | boolean | Yes   | No   | Whether the discovered device is connectable. The value **true** means the discovered device is connectable; the value **false** means the opposite.                   |
 
 
 ## AdvertiseSetting
@@ -3454,9 +3454,9 @@ Defines the BLE advertising parameters.
 
 | Name         | Type   | Readable  | Writable  | Description                                      |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **32** slots (20 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
+| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **160** slots (100 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
 | txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**. <br>Recommended value: **1** for high transmit power, **-7** for medium transmit power, and **-15** for low transmit power.  |
-| connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The default value is **true**.                  |
+| connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The value **true** (default) means the advertisement is connectable; the value **false** means the opposite.                  |
 
 
 ## AdvertiseData
@@ -3470,7 +3470,7 @@ Represents the content of a BLE advertising packet, which is 31 bytes in size.
 | serviceUuids    | Array&lt;string&gt;                      | Yes   | Yes   | List of service UUIDs to broadcast.|
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | Yes   | Yes   | List of manufacturers to broadcast.          |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
-| includeDeviceName | boolean                  | Yes   | Yes   | Whether the device name is contained. This parameter is optional. Note that the advertising packet containing the device name cannot exceed 31 bytes.       |
+| includeDeviceName | boolean     | Yes   | Yes   | Whether the device name is contained. This parameter is optional. To carry the device name, set this parameter to **true**. Otherwise, set this parameter to **false** or leave it unspecified. Note that the advertising packet containing the device name cannot exceed 31 bytes.       |
 
 ## AdvertisingParams<sup>11+</sup>
 
@@ -3483,7 +3483,7 @@ Defines the parameters for starting BLE advertising for the first time.
 | advertisingSettings<sup>11+</sup> | AdvertiseSetting                | Yes   | Yes   | Parameters related advertising settings.   |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
-| duration<sup>11+</sup>            | number                          | Yes   | Yes   | Duration for the advertising.    |
+| duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br>Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.   |
 
 ## AdvertisingEnableParams<sup>11+</sup>
 
@@ -3494,7 +3494,7 @@ Defines the parameters for temporarily enabling BLE advertising.
 | Name               | Type                  | Readable | Writable | Description                     |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
 | advertisingId<sup>11+</sup>       | number                | Yes   | Yes   | ID of the advertisement.    |
-| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising.   |
+| duration<sup>11+</sup>            | number                | Yes   | Yes   | Duration for the advertising, in 10 ms.<br>Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.  |
 
 ## AdvertisingDisableParams<sup>11+</sup>
 
@@ -3547,19 +3547,19 @@ Defines the scan filter parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                    | Type   | Readable| Writable| Description                                                        |
-| ---------------------------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| deviceId                                 | string      | Yes  | Yes  | Address of the BLE device to filter, for example, XX:XX:XX:XX:XX:XX.          |
-| name                                     | string      | Yes  | Yes  | Name of the BLE device to filter.                                       |
-| serviceUuid                              | string      | Yes  | Yes  | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
-| serviceUuidMask             | string      | Yes  | Yes  | Service UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
-| serviceSolicitationUuid     | string      | Yes  | Yes  | Service solicitation UUID of the device to filter, for example, **00001888-0000-1000-8000-00805F9B34FB**.|
-| serviceSolicitationUuidMask | string      | Yes  | Yes  | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
-| serviceData                 | ArrayBuffer | Yes  | Yes  | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**.|
-| serviceDataMask             | ArrayBuffer | Yes  | Yes  | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**.|
-| manufactureId               | number      | Yes  | Yes  | Manufacturer ID of the device to filter, for example, **0x0006**.                |
-| manufactureData             | ArrayBuffer | Yes  | Yes  | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**.|
-| manufactureDataMask         | ArrayBuffer | Yes  | Yes  | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**.|
+| Name                                    | Type   | Mandatory | Description                                                        |
+| ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
+| deviceId                                 | string      | No   | Address of the BLE device to filter, for example, XX:XX:XX:XX:XX:XX.          |
+| name                                     | string      | No   | Name of the BLE device to filter.                                       |
+| serviceUuid                              | string      | No   | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| serviceUuidMask             | string      | No    | Service UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
+| serviceSolicitationUuid     | string      | No    | Service solicitation UUID of the device to filter, for example, **00001888-0000-1000-8000-00805F9B34FB**.|
+| serviceSolicitationUuidMask | string      | No    | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
+| serviceData                 | ArrayBuffer | No    | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**.|
+| serviceDataMask             | ArrayBuffer | No    | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**.|
+| manufactureId               | number      | No    | Manufacturer ID of the device to filter, for example, **0x0006**.                |
+| manufactureData             | ArrayBuffer | No    | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**.|
+| manufactureDataMask         | ArrayBuffer | No    | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**.|
 
 
 ## ScanOptions

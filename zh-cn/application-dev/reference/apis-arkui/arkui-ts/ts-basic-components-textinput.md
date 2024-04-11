@@ -130,9 +130,9 @@ maxLength(value: number)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| value  | number | 是   | 文本的最大输入字符数。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -312,7 +312,7 @@ underlineColor(value: ResourceColor|UnderlineColor|undefined)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\| [UnderlineColor](#underlinecolor12对象说明)\|undefined | 否   | 设置下划线颜色。<br/>当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [UnderlineColor](#underlinecolor12对象说明) \| undefined | 是   | 设置下划线颜色。<br/>当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。<br/>默认值：主题配置的下划线颜色。主题配置的默认下滑颜色为'#33182431'。 |
 
 ### passwordIcon<sup>10+</sup>
 
@@ -385,20 +385,6 @@ maxLines(value: number)
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
-
-### wordBreak<sup>12+</sup>
-
-wordBreak(value: WordBreak)
-
-设置文本断行规则。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -540,7 +526,7 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
@@ -576,6 +562,24 @@ fontFeature(value: string)
 
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+
+### wordBreak<sup>12+</sup>
+
+wordBreak(value: WordBreak)
+
+设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 内联输入风格编辑态时断行规则。 <br />默认值：WordBreak.BREAK_WORD |
+
+>  **说明：**
+>
+>  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -823,7 +827,9 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
-##  SelectionOptions<sup>12+</sup>
+>
+
+## SelectionOptions<sup>12+</sup>
 
 setTextSelection选中文字时的配置。
 
@@ -919,12 +925,12 @@ getCaretOffset(): CaretOffset
 
 ## UnderlineColor<sup>12+</sup>对象说明
 
-| 参数名  | 类型                                                        | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| typing  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| normal  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| error   | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
-| disable | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| 参数名  | 类型                                                         | 必填 | 描述                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
+| disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
 ## KeyboardOptions<sup>12+</sup>
 

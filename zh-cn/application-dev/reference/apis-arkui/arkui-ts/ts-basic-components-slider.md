@@ -40,7 +40,7 @@ Slider(options?: SliderOptions)
 
 ## SliderStyle枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -423,7 +423,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 ## SliderChangeMode枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |

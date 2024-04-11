@@ -40,7 +40,6 @@ bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, option
 | isShow<sup>11+</sup> | boolean                                                      | 是   | 支持开发者通过状态变量控制显隐，默认值为false，menu弹窗必须等待页面全部构建才能展示，因此不能在页面构建中设置为true，否则会导致显示位置及形状错误，当前不支持双向绑定。 |
 | content              | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。                 |
 | options              | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                                         |
-| transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup> | 否   | 设置菜单显示和退出的过渡效果。说明：详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup>对象说明。 |
 
 ## bindContextMenu<sup>8+</sup>
 
@@ -77,7 +76,6 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false。menu需要在页面全部构建完成后才能弹窗展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。当前不支持双向绑定。             |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
-| transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup> | 否   | 设置菜单显示和退出的过渡效果。说明：详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)<sup>10+</sup>对象说明。 |
 
 ## MenuElement
 
@@ -113,12 +111,14 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | aboutToDisappear           | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 菜单退出动效前的事件回调。                                       |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 |
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 
 | 名称  | 类型                                       | 必填 | 描述                                 |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ |
 | scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。 |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 |
 
 ## AnimationRange<sup>11+</sup>
 

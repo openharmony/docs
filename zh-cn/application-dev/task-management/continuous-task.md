@@ -27,8 +27,7 @@
 | VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
 | TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件。 |
 
-
-- 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行。
+- 实现上传下载的功能，建议调用系统[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行。
 - 使用了[媒体会话](../media/avsession/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 
@@ -127,7 +126,7 @@
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability
-          operationType: wantAgent.OperationType.START_ABILITY,
+          actionType: wantAgent.OperationType.START_ABILITY,
           // 使用者自定义的一个私有值
           requestCode: 0,
           // 点击通知后，动作执行属性
@@ -214,7 +213,7 @@
           }
         ],
         // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
@@ -376,7 +375,7 @@
           }
         ],
         // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性

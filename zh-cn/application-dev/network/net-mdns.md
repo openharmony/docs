@@ -141,15 +141,11 @@ let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
-class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo|null = null
-  errorCode?: mdns.MdnsError = mdns.MdnsError.INTERNAL_ERROR
-}
 // 订阅MDNS服务发现相关状态变化
-discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
+discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('discoveryStop', (data: DataServiceInfo) => {
+discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
@@ -166,10 +162,10 @@ discoveryService.startSearchingMDNS();
 discoveryService.stopSearchingMDNS();
 
 // 取消订阅的MDNS服务
-discoveryService.off('discoveryStart', (data: DataServiceInfo) => {
+discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.off('discoveryStop', (data: DataServiceInfo) => {
+discoveryService.off('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
