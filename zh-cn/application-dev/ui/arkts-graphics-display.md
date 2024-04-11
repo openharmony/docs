@@ -85,7 +85,6 @@ Image支持加载存档图、多媒体像素图两种类型。
         @State imgDatas: string[] = [];
         // 获取照片url集
         getAllImg() {
-          let result = new Array<string>();
           try {
             let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
             PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -124,13 +123,13 @@ Image支持加载存档图、多媒体像素图两种类型。
         }
       }
       ```
-
-  2. 从媒体库获取的url格式通常如下。
+      
+2. 从媒体库获取的url格式通常如下。
       ```ts
       Image('file://media/Photos/5')
       .width(200)
       ```
-
+  
 - base64
 
   路径格式为data:image/[png|jpeg|bmp|webp];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
