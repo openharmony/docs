@@ -1,9 +1,10 @@
 # @ohos.data.relationalStore (RDB Store)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+
 ArkTS supports the following basic data types: number, string, binary data, and boolean. The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
-The **relationalStore** module provides the following functions:
+The **relationalStore** module provides the following:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
@@ -120,7 +121,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object obtained.|
 
 **Error codes**
 
@@ -501,7 +502,7 @@ Defines the RDB store configuration.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name, which is the unique identifier of the database.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core  |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | autoCleanDirtyData<sup>11+<sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
@@ -579,6 +580,7 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | Uint8Array<sup>10+</sup>           | Uint8 array.           |
 | Asset<sup>10+</sup>  | [Asset](#asset10).    |
 | Assets<sup>10+</sup> | [Assets](#assets10).|
+| Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers.|
 
 ## ValuesBucket
 
@@ -688,7 +690,7 @@ Enumerates data change types. Use the enum name rather than the enum value.
 
 ## ChangeInfo<sup>10+</sup>
 
-Defines the details about the device-cloud sync process.
+Represents the detail information about the device-cloud sync process.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -738,7 +740,7 @@ Defines the resolution to use when **insert()** and **update()** conflict. Use t
 
 ## Progress<sup>10+</sup>
 
-Enumerates the device-cloud sync processes. Use the enum name rather than the enum value.
+Enumerates the device-cloud sync progresses. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -787,6 +789,7 @@ Enumerates the device-cloud sync states. Use the enum name rather than the enum 
 | LOCKED_BY_OTHERS      | 4    | The device-cloud sync of another device is being performed.<br>Start device-cloud sync after checking that cloud resources are not occupied by other devices.|
 | RECORD_LIMIT_EXCEEDED | 5    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
 | NO_SPACE_FOR_ASSET    | 6    | The remaining cloud space is less than the size of the data to be synchronized.                    |
+| BLOCKED_BY_NETWORK_STRATEGY<sup>12+</sup>    | 7    | The device-cloud sync is blocked due to the network strategy.                    |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -796,8 +799,8 @@ Represents the statistics of the overall device-cloud sync (upload and download)
 
 | Name    | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| schedule | [Progress](#progress10)                           | Yes  | device-cloud sync process.                                          |
-| code     | [ProgressCode](#progresscode10)                   | Yes  | device-cloud sync state.                                    |
+| schedule | [Progress](#progress10)                           | Yes  | Device-cloud sync progress.                                          |
+| code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud sync state.                                    |
 | details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud sync statistics of the table.|
 
 ## RdbPredicates
@@ -828,7 +831,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database sync.
+Sets an **RdbPredicates** object to specify the remote devices to connect during the distributed database sync.
 
 > **NOTE**
 >
@@ -878,7 +881,7 @@ predicates.inDevices(deviceIds);
 inAllDevices(): RdbPredicates
 
 
-Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database sync.
+Sets an **RdbPredicates** object to specify all remote devices to connect during the distributed database sync.
 
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -1731,22 +1734,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, (err: BusinessError, rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, (err: BusinessError, rowId: number) => {
     if (err) {
       console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -1787,22 +1801,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
     (err: BusinessError, rowId: number) => {
       if (err) {
         console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1849,22 +1874,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket).then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1909,22 +1945,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1962,10 +2009,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1978,23 +2021,24 @@ let value9 = "Tom";
 let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
 const valueBucket1: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 const valueBucket2: ValuesBucket = {
-  key1: value5,
-  key2: value6,
-  key3: value7,
-  key4: value8,
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
 };
 const valueBucket3: ValuesBucket = {
-  key1: value9,
-  key2: value10,
-  key3: value11,
-  key4: value12,
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2045,10 +2089,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -2061,23 +2101,24 @@ let value9 = "Tom";
 let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
 const valueBucket1: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 const valueBucket2: ValuesBucket = {
-  key1: value5,
-  key2: value6,
-  key3: value7,
-  key4: value8,
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
 };
 const valueBucket3: ValuesBucket = {
-  key1: value9,
-  key2: value10,
-  key3: value11,
-  key4: value12,
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2120,24 +2161,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates,(err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates,(err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -2178,24 +2230,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -2241,24 +2304,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2303,24 +2377,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2870,6 +2955,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 Executes an SQL statement that contains specified arguments but returns no value. This API uses an asynchronous callback to return the result.
 
+This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -2908,6 +2995,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 Executes an SQL statement that contains specified arguments but returns no value. This API uses an asynchronous callback to return the result.
+
+This API does not support query , attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2948,6 +3037,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 Executes an SQL statement that contains specified arguments but returns no value. This API uses a promise to return the result.
+
+This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2993,7 +3084,10 @@ if(store != undefined) {
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 Executes an SQL statement that contains the specified parameters. This API uses a promise to return the result.
+
 This API can be used to add, delete, and modify data, run SQL statements of the PRAGMA syntax, and create, delete, and modify a table. The type of the return value is determined by the execution result.
+
+This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3053,6 +3147,61 @@ if(store != undefined) {
   }).catch((err) => {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
   })
+}
+```
+
+### execute<sup>12+</sup>
+
+execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
+
+Executes an SQL statement that contains the specified parameters. This API uses a promise to return the result.
+
+This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).
+
+This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | Yes  | SQL statement to run.                                       |
+| txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12). If the value is **0**, the SQL statement is executed in a separate transaction by default.                                     |
+| args | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[ValueType](#valuetype)&gt; | Promise that returns **null**.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800011     | Database corrupted.
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+
+**Example**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
 }
 ```
 
@@ -3167,10 +3316,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3178,13 +3323,58 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 store.beginTransaction();
 const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 store.insert("test", valueBucket);
 store.commit();
+```
+
+### beginTrans<sup>12+</sup>
+
+beginTrans(): Promise&lt;number&gt;
+
+Begins the transaction before executing the SQL statement. This API uses a promise to return the result.
+Different from [beginTransaction](#begintransaction), this API returns a transaction ID. [execute](#execute12-1) can specify the transaction ID to isolate different transactions.
+This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the transaction ID.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**Example**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
 ```
 
 ### commit
@@ -3201,10 +3391,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3212,13 +3398,61 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 store.beginTransaction();
 const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 store.insert("test", valueBucket);
 store.commit();
+```
+
+### commit<sup>12+</sup>
+
+commit(txId : number):Promise&lt;void&gt;
+
+Commits the executed SQL statements. This API must be used with [beginTrans](#begintrans12).
+This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12).                                       |
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**Example**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
+}
 ```
 
 ### rollBack
@@ -3235,10 +3469,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3247,10 +3477,10 @@ let value4 = new Uint8Array([1, 2, 3]);
 try {
   store.beginTransaction()
   const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
   };
   store.insert("test", valueBucket);
   store.commit();
@@ -3259,6 +3489,54 @@ try {
   let message = (err as BusinessError).message
   console.error(`Transaction failed, code is ${code},message is ${message}`);
   store.rollBack();
+}
+```
+
+### rollback<sup>12+</sup>
+
+rollback(txId : number):Promise&lt;void&gt;
+
+Rolls back the executed SQL statements. This API must be used with [beginTrans](#begintrans12).
+This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| txId      | number                               | Yes  | Transaction ID obtained via [beginTrans](#begintrans12).                                       |
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800011     | Failed to open database by database corrupted.                                 |
+
+**Example**
+
+```ts
+import { BusinessError } from "@ohos.base";
+if(store != null) {
+  let txId : number;
+  (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
+    (store as relationalStore.RdbStore).execute("DELETE FROM TEST WHERE age = ? OR age = ?", txId, ["18", "20"])
+      .then(() => {
+        (store as relationalStore.RdbStore).commit(txId);
+    })
+    .catch((err: BusinessError) => {
+      (store as relationalStore.RdbStore).rollback(txId)
+      console.error(`execute sql failed, code is ${err.code},message is ${err.message}`);
+    });
+  });
 }
 ```
 
@@ -4047,7 +4325,7 @@ if(store != undefined) {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Subscribes to data changes of specified devices. When the data of the specified devices changes, a callback is invoked to return the data change.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4055,9 +4333,9 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
-| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to register.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
+| event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                     |
+| type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.                    |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. **Array<string>** specifies the IDs of the peer devices whose data is changed. |
 
 **Example**
 
@@ -4087,7 +4365,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Subscribes to data changes of this RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4095,9 +4373,9 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
-| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
-| type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud sync.|
+| event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.     |
+| type     | [SubscribeType](#subscribetype)    | Yes  | Type of data change to observe. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud sync. |
 
 **Example**
 
@@ -4127,7 +4405,7 @@ try {
 
 on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
-Registers an intra-process or inter-process event listener for the RDB store. This callback is invoked by [emit](#emit10).
+Subscribes to process events. This callback is invoked by [emit](#emit10).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4135,8 +4413,8 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
+| event        | string          | Yes  | Event name to observe.                                       |
+| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events. |
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -4168,7 +4446,7 @@ try {
 
 on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 
-Registers a listener for the auto sync progress. This API can be called only when device-cloud sync is enabled and the network connection is normal. When auto sync is performed, a callback will be invoked to send a notification of the sync progress.
+Subscribes to the auto sync progress. This API can be called only when device-cloud sync is enabled and the network connection is normal. When auto sync is performed, a callback will be invoked to send a notification of the sync progress.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4176,7 +4454,7 @@ Registers a listener for the auto sync progress. This API can be called only whe
 
 | Name      | Type                             | Mandatory| Description                               |
 | ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | Yes  | Event type. The value is **autoSyncProgress**, which indicates the auto sync progress.|
+| event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.|
 | progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback invoked to return the auto sync progress.                            |
 
 **Example**
@@ -4201,7 +4479,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the data change event listener.
+Unsubscribes from data changes of the specified devices.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4209,9 +4487,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
-| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed. |
+| event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                     |
+| type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.           |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback to unregister. **Array<string>** indicates the IDs of the peer devices whose data change is unsubscribed from. |
 
 **Example**
 
@@ -4239,7 +4517,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Unregisters the data change event listener.
+Unsubscribes from data changes of this RDB store.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4247,9 +4525,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
-| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
-| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback for the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud sync.<br>If **observer** is not specified, listening for all data change events of the specified **type** will be canceled. |
+| event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
+| type     | [SubscribeType](#subscribetype)     | Yes  | Type of data change to observe.          |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback to unregister.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud sync.<br>If **observer** is not specified, this API unregisters all callbacks for data changes of the specified **type**. |
 
 **Example**
 
@@ -4279,7 +4557,7 @@ try {
 
 off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
-Unregisters the data change event listener.
+Unsubscribes from process events.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4288,8 +4566,8 @@ Unregisters the data change event listener.
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the event.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
-| observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered.|
+| interProcess | boolean         | Yes  | Type of the data to observe.<br/>The value **true** means inter-process events.<br/>The value **false** means intra-process events. |
+| observer     | Callback\<void> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. |
 
 **Error codes**
 
@@ -4320,7 +4598,7 @@ try {
 
 off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 
-Unregisters the listener for the auto sync progress.
+Unsubscribes from the auto sync progress.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4328,8 +4606,8 @@ Unregisters the listener for the auto sync progress.
 
 | Name      | Type                             | Mandatory| Description                                                              |
 | ------------ |---------------------------------| ---- |------------------------------------------------------------------|
-| event        | string                          | Yes  | Event type. The value is **autoSyncProgress**, which indicates the auto sync progress.                               |
-| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback for the auto sync progress. If this parameter is specified, the specified callback will be unregistered. If this parameter is **null** or **undefined** or not specified, all callbacks for **autoSyncProgress** will be unregistered.|
+| event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.                             |
+| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback to unregister. If this parameter is **null** or **undefined** or not specified, this API unregisters all callbacks for the auto sync progress. |
 
 **Example**
 
@@ -4353,7 +4631,7 @@ try {
 
 emit(event: string): void
 
-Triggers the inter-process or intra-process event listener registered through [on](#on10).
+Triggers the inter-process or intra-process event listener registered in [on](#on10).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4384,7 +4662,7 @@ if(store != undefined) {
 
 cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
 
-Clears the dirty data with the cursor smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud.
+Clears the dirty data whose cursor is smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4393,7 +4671,7 @@ Clears the dirty data with the cursor smaller than the specified cursor from the
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | table     | string                        | Yes  | Name of the table in the RDB store.                            |
-| cursor    | number                        | Yes  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. |
+| cursor    | number                        | Yes  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared.    |
 | callback  | AsyncCallback&lt;void&gt;     | Yes  | Callback invoked to return the result.|
 
 **Error codes**
@@ -4459,7 +4737,7 @@ if(store != undefined) {
 
 cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
-Clears the dirty data with the cursor smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud. If **cursor** is not specified, all the dirty data will be cleared.
+Clears the dirty data whose cursor is smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud. If **cursor** is not specified, all the dirty data will be cleared.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4468,7 +4746,7 @@ Clears the dirty data with the cursor smaller than the specified cursor from the
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | table     | string           | Yes  | Name of the table in the RDB store.          |
-| cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared. |
+| cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared.|
 
 **Return value**
 | Name   | Description                                              |
@@ -4493,6 +4771,202 @@ if(store != undefined) {
         console.info('clean dirty data  succeeded');
     }).catch ((err: BusinessError) => {
         console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### attach<sup>12+</sup>
+
+attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+Attaches an RDB store to this RDB store so that the data in the attached RDB store can be directly accessed using the SQL statement.
+
+The RDB store is attached via a database file. This API cannot be used for encrypted RDB stores. After the **attach()** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name       | Type    | Mandatory | Description          |
+| ----------- | ------ | --- | ------------ |
+| fullPath | string | Yes  | Path of the database file to attach.|
+| attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
+| waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2|
+
+**Return value**
+
+| Type             | Description                          |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise used to return the number of attached RDB stores.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+| 14800010     | Invalid database path.               |
+| 14800011     | Database corrupted.                 |
+| 14800015     | The database does not respond.                 |
+| 14800016     | The database is already attached.                |
+
+**Example**
+
+```ts
+// Attach a non-encrypted RDB store to a non-encrypted RDB store.
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
+        console.info('attach succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### attach<sup>12+</sup>
+
+attach(context: Context, config: StoreConfig, attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+Attaches an RDB store to this RDB store so that the data in the attached RDB store can be directly accessed using the SQL statement.
+
+This API cannot be used to attach a non-encrypted RDB store to an encrypted RDB store. After the **attach()** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name       | Type    | Mandatory | Description          |
+| ----------- | ------ | --- | ------------ |
+| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
+| config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store to attach.                               |
+| attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
+| waitTime | number | No  | Maximum time period (in seconds) allowed for attaching the database file. <br>Value range: 1 to 300<br>Default value: 2|
+
+**Return value**
+
+| Type             | Description                          |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise used to return the number of attached RDB stores.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+| 14800010     | Invalid database path.               |
+| 14800011     | Database corrupted.                 |
+| 14800015     | The database does not respond.                 |
+| 14800016     | The database is already attached.                |
+| 14801001     | Only supported in stage mode.                 |
+| 14801002     | The data group id is not valid.                |
+
+Example 1: Attach a non-encrypted RDB store to a non-encrypted RDB store.
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let attachStore: relationalStore.RdbStore= undefined;
+
+const STORE_CONFIG1: relationalStore.StoreConfig = {
+    name: "rdbstore1.db",
+    securityLevel: relationalStore.SecurityLevel.S1,
+}
+
+await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+    attachStore = rdbStore;
+    console.info('Get RdbStore successfully.')
+}).catch((err: BusinessError) => {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+        console.info(`attach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+Example 2: Attach an encrypted RDB store to a non-encrypted RDB store.
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let attachStore: relationalStore.RdbStore= undefined;
+
+
+const STORE_CONFIG2: relationalStore.StoreConfig = {
+    name: "rdbstore2.db",
+    encrypt: true,
+    securityLevel: relationalStore.SecurityLevel.S1,
+}
+
+await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+    attachStore = rdbStore;
+    console.info('Get RdbStore successfully.')
+}).catch((err: BusinessError) => {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+})
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+        console.info(`attach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`attach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### detach<sup>12+</sup>
+
+Detaches an RDB store from this RDB store.
+
+After all attached RDB stores are detached, the RDB is switched to the WAL mode.
+
+detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name       | Type    | Mandatory | Description          |
+| ----------- | ------ | --- | ------------ |
+| attachName | string | Yes  | Alias of the RDB store formed after the attach operation.|
+| waitTime | number | No  | Maximum time period (in seconds) allowed for detaching the RDB store. <br>Value range: 1 to 300<br>Default value: 2|
+
+**Return value**
+
+| Type             | Description                          |
+| ---------------- | ---------------------------- |
+|  Promise&lt;number&gt; | Promise used to returned the number of remaining attached RDB stores.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.|
+| 14800011     | Database corrupted. |
+| 14800015     | The database does not respond.|
+
+
+**Example**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
+        console.info(`detach succeeded, number is ${number}`);
+    }).catch ((err: BusinessError) => {
+        console.error(`detach failed, code is ${err.code},message is ${err.message}`);
     })
 }
 ```
