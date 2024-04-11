@@ -860,7 +860,6 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | name          | 标识跳转页面的名称。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。       |
-| pageModule    | 标识页面所在的模块名称。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | pageSourceFile| 标识页面在模块内的路径。取值为长度不超过31字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
 | [data](#data标签)  | 标识自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
@@ -869,28 +868,26 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 
 1. 在开发视图的resources/base/profile下面定义配置文件，文件名可以自定义，例如：router_map.json。
 
-    ```json
+```json
+{
+  "routerMap": [
     {
-      "routerMap": [
-        {
-          "name": "DynamicPage1",
-      "pageModule": "library1",
-          "pageSourceFile": "entry/src/index",
-          "buildFunction": "myFunction"
-        },
-        {
-          "name": "DynamicPage2",
-      "pageModule": "library2",
-          "pageSourceFile": "entry/src/index",
-          "buildFunction": "myBuilder",
-          "data": {
-            "key1": "data1",
-            "key2": "data2"
-          }
-        }
-      ]
+      "name": "DynamicPage1",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myFunction"
+    },
+    {
+      "name": "DynamicPage2",
+      "pageSourceFile": "entry/src/index",
+      "buildFunction": "myBuilder",
+      "data": {
+        "key1": "data1",
+        "key2": "data2"
+      }
     }
-    ```
+  ]
+}
+```
 
 2. 在module.json5配置文件的module标签中定义`routerMap`字段，指向定义的路由表配置文件，例如：`"routerMap": "$profile:router_map"`。
 
@@ -906,7 +903,6 @@ data标签示例：
   "routerMap": [
     {
       "name": "DynamicPage",
-      "pageModule": "library",
       "pageSourceFile": "entry/src/index",
       "buildFunction": "myBuilder",
       "data": {
