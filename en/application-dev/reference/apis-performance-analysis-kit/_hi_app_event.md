@@ -1125,3 +1125,5 @@ Before application event logging, use this API to verify parameters of the event
 **Returns**
 
 The value **0** indicates that the event parameter verification is successful, and the event will be written to the event file asynchronously. A value greater than **0** indicates that invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored. A value smaller than **0** indicates that the event parameter verification fails, and the event will not be written to the event file.
+
+<!--no_check-->
