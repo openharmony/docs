@@ -971,3 +971,14 @@ try {
 | DEVICE_TYPE_SPEAKER<sup>12+</sup>     | 6 | 音响。<br/>此接口为系统接口。  |
 | DEVICE_TYPE_OTHERS<sup>12+</sup>     | 7 | 其他设备。<br/>此接口为系统接口。  |
 
+
+## BatteryInfo<sup>12+</sup>
+
+描述电量信息的内容。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string | 是    | 否    | 表示远端设备的MAC地址。<br/>此接口为系统接口。 |
+
