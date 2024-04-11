@@ -81,16 +81,14 @@ import window from '@ohos.window';
 
 窗口显示方向类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
 | UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
@@ -162,6 +160,8 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
 | UNDEFINED                 | 0    | 默认值。                                                   |
@@ -178,6 +178,8 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
 | rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
@@ -189,20 +191,18 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 | 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                                  |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。                      |
+| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
 | dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
-| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。                                                                   |
+| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                   |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。                                                                  |
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
@@ -1939,7 +1939,7 @@ getPreferredOrientation(): Orientation
 
 主窗口调用，获取窗口的显示方向属性。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3226,6 +3226,8 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
@@ -3248,6 +3250,8 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 关闭窗口矩形（窗口位置及窗口大小）变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
