@@ -458,7 +458,10 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 onBackPressed(): boolean
 
-UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。同步接口，不支持异步回调。
+UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回值决定是否销毁UIAbility。
+
+- 当targetSdkVersion<12时，默认返回值为false，会销毁UIAbility。
+- 当targetSdkVersion>=12时，默认返回值为true，会将UIAbility移动到后台不销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
