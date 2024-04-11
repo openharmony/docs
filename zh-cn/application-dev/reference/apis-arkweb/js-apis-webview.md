@@ -4974,7 +4974,7 @@ struct WebComponent {
 
 static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
 
-根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存密钥和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请通过[clearPrefetchedResource()](clearPrefetchedResource12)清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。如果要使用预获取的资源缓存，开发者需要在正式发起的post请求的请求头中增加键值“ArkWebPostCacheKey”，其内容为对应缓存的cacheKey。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4984,7 +4984,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
 | request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
-| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的密钥。仅支持字母和数字，未传入或传入空则取默认值url作为密钥。 |
+| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
 | cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
 
 **错误码：**
@@ -5019,6 +5019,52 @@ export default class EntryAbility extends UIAbility {
         AppStorage.setOrCreate("abilityWant", want);
         console.log("EntryAbility onCreate done");
     }
+}
+```
+
+### clearPrefetchedResource<sup>12+</sup>
+
+static clearPrefetchedResource(cacheKeyList: Array\<string>): void
+
+根据指定的缓存key列表清除对应的预获取资源缓存。入参中的缓存key必须是[prefetchResource()](prefetchresource12)指定预获取到的资源缓存key。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型        | 必填  | 说明                                                                       |
+| ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
+| cacheKeyList      | string      | 是   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: "https://www.example.com/", controller: this.webviewController})
+        .onAppear(() => {
+            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+            web_webview.WebviewController.prefetchResource(
+              {url:"https://www.example1.com/post?e=f&g=h",
+              method:"POST",
+              formData:"a=x&b=y",},
+              [{headerKey:"c",
+                headerValue:"z",},],
+              "KeyX", 500);
+        })
+        .onPageEnd(() => {
+            // 清除后续不再使用的预获取缓存。
+            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
+        })
+    }
+  }
 }
 ```
 
