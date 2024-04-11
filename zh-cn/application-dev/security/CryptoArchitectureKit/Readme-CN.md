@@ -46,4 +46,7 @@
 - [消息摘要计算](crypto-generate-message-digest.md)
 - [消息认证码计算](crypto-compute-mac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
-- [密钥派生](crypto-key-derivation.md)
+- 密钥派生
+  - [密钥派生介绍及算法规格](crypto-key-derivation-overview.md)
+  - [使用PBKDF2进行密钥派生](crypto-key-derivation-using-pbkdf2.md)
+  - [使用HKDF进行密钥派生](crypto-key-derivation-using-hkdf.md)
