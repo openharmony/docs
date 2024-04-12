@@ -41,8 +41,13 @@
    @State isPresent: boolean = false;
 
    Button('Click to present model view')
-     // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
-     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
+     // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画，通过onDisappear控制状态变量变换
+     .bindContentCover(this.isPresent, this.MyBuilder(), {
+               modalTransition: ModalTransition.NONE,
+               onDisappear: () => {
+                 this.isPresent = !this.isPresent;
+               }
+             })
      .onClick(() => {
        // 改变状态变量，显示模态界面
        this.isPresent = !this.isPresent;
@@ -71,14 +76,14 @@ struct BindContentCoverDemo {
     { name: '许**', cardnum: '3456***********789' },
     { name: '唐*', cardnum: '4567***********789' }
   ];
-
   // 第一步：定义全屏模态转场效果bindContentCover
   // 模态转场控制变量
   @State isPresent: boolean = false;
 
   // 第二步：定义模态展示界面
   // 通过@Builder构建模态展示界面
-  @Builder MyBuilder() {
+  @Builder
+  MyBuilder() {
     Column() {
       Row() {
         Text('选择乘车人')
@@ -120,6 +125,7 @@ struct BindContentCoverDemo {
               }
             }
             .width('20%')
+
             Column() {
               Text(item.name)
                 .fontColor(0x333333)
@@ -130,6 +136,7 @@ struct BindContentCoverDemo {
             }
             .width('60%')
             .alignItems(HorizontalAlign.Start)
+
             Column() {
               Text('编辑')
                 .fontColor(0x007dfe)
@@ -181,11 +188,13 @@ struct BindContentCoverDemo {
             Text('始发站')
           }
           .width('30%')
+
           Column() {
             Text('G1234')
             Text('8时1分')
           }
           .width('30%')
+
           Column() {
             Text('08:26')
             Text('终点站')
@@ -208,9 +217,13 @@ struct BindContentCoverDemo {
           .padding({ top: 10, bottom: 10 })
           .width('60%')
           .textAlign(TextAlign.Center)
-          .borderRadius(15)
-            // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果。
-          .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
+          .borderRadius(15)// 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择DEFAULT代表设置上下切换动画效果，通过onDisappear控制状态变量变换。
+          .bindContentCover(this.isPresent, this.MyBuilder(), {
+            modalTransition: ModalTransition.DEFAULT,
+            onDisappear: () => {
+              this.isPresent = !this.isPresent;
+            }
+          })
           .onClick(() => {
             // 第三步：通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果
             // 改变状态变量，显示模态界面
@@ -243,8 +256,10 @@ struct BindSheetDemo {
   // 半模态转场显示隐藏控制
   @State isShowSheet: boolean = false;
   private menuList: string[] = ['不要辣', '少放辣', '多放辣', '不要香菜', '不要香葱', '不要一次性餐具', '需要一次性餐具'];
+
   // 通过@Builder构建半模态展示界面
-  @Builder mySheet() {
+  @Builder
+  mySheet() {
     Column() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap }) {
         ForEach(this.menuList, (item: string) => {
@@ -257,7 +272,7 @@ struct BindSheetDemo {
             .padding(10)
         })
       }
-      .padding({top: 18})
+      .padding({ top: 18 })
     }
     .width('100%')
     .height('100%')
@@ -272,11 +287,11 @@ struct BindSheetDemo {
       Column() {
         Row() {
           Row()
-          .width(10)
-          .height(10)
-          .backgroundColor('#a8a8a8')
-          .margin({ right: 12 })
-          .borderRadius(20)
+            .width(10)
+            .height(10)
+            .backgroundColor('#a8a8a8')
+            .margin({ right: 12 })
+            .borderRadius(20)
 
           Column() {
             Text('选择点餐口味和餐具')
@@ -303,10 +318,13 @@ struct BindSheetDemo {
         .alignItems(VerticalAlign.Center)
         .padding({ left: 15, top: 15, bottom: 15 })
         .backgroundColor(Color.White)
-        // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large，一个是是否显示控制条DragBar，默认是true显示控制条
+        // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large，一个是是否显示控制条DragBar，默认是true显示控制条，通过onDisappear控制状态变量变换。
         .bindSheet(this.isShowSheet, this.mySheet(), {
           height: 300,
-          dragBar: false
+          dragBar: false,
+          onDisappear: () => {
+            this.isShowSheet = !this.isShowSheet;
+          }
         })
         .onClick(() => {
           this.isShowSheet = !this.isShowSheet;
