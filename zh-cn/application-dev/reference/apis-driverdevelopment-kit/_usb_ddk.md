@@ -446,7 +446,7 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 | 名称 | 描述 |
 | -------- | -------- |
 | pipe | 要传输数据的管道信息。 |
-| ashmem | 共享内存，可以通过[OH_DDK_CreateAshmem()](_base_ddk_.md#oh_ddk_createashmem)获得。 |
+| ashmem | 共享内存，可以通过[OH_DDK_CreateAshmem()](_base_ddk.md#oh_ddk_createashmem)获得。 |
 
 **返回:**
 
