@@ -1175,6 +1175,9 @@ static napi_value TestWrap(napi_env env1, napi_callback_info info)
 }
 ```
 
+场景示例：
+对象绑定及监听拦截属性操作。
+
 ```c++
 static int aa = 0;
 static JSVM_Value hello(JSVM_Env env, JSVM_CallbackInfo info) {
@@ -1362,6 +1365,8 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     char data[100] = "1111 hello world";
     callbackStruct.data = data;
     JSVM_Value testWrapClass = nullptr;
+
+    // 将属性的访问监听注册在propertyCfg中
     OH_JSVM_DefineClassWithPropertyHandler(env, "TestWrapClass", NAPI_AUTO_LENGTH, &param1, 0, nullptr, &propertyCfg,
                                            &callbackStruct, &testWrapClass);
     JSVM_Value instanceValue = nullptr;
