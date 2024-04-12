@@ -4549,14 +4549,11 @@ async function example() {
 
 枚举，不同[PhotoAsset](#photoasset)的类型。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| DEFAULT |  0 |  默认照片类型。 |
-| SCREENSHOT |  1 |  截屏录屏文件类型。 |
+| SCREENSHOT |  1 |  截屏录屏文件类型。**系统接口**：此接口为系统接口。 |
 
 ## PositionType
 
