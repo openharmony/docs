@@ -179,6 +179,49 @@ typedef JSVM_CallbackStruct* JSVM_Callback;
 typedef void (JSVM_Finalize)(JSVM_Env env, void finalizeData, void* finalizeHint);
 ```
 
+**JSVM_PropertyHandlerConfigurationStruct**
+
+当执行对象的getter、setter、deleter和enumerator作时，对应的的回调将会触发。
+
+```c++
+typedef struct {
+    JSVM_Value(JSVM_CDECL* genericNamedPropertyGetterCallback)(JSVM_Env env,
+                                                               JSVM_Value name,
+                                                               JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericNamedPropertySetterCallback)(JSVM_Env env,
+                                                               JSVM_Value name,
+                                                               JSVM_Value property,
+                                                               JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericNamedPropertyDeleterCallback)(JSVM_Env env,
+                                                                JSVM_Value name,
+                                                                JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericNamedPropertyEnumeratorCallback)(JSVM_Env env,
+                                                                   JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericIndexedPropertyGetterCallback)(JSVM_Env env,
+                                                                JSVM_Value index,
+                                                                JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericIndexedPropertySetterCallback)(JSVM_Env env,
+                                                                 JSVM_Value index,
+                                                                 JSVM_Value property,
+                                                                 JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericIndexedPropertyDeleterCallback)(JSVM_Env env,
+                                                                  JSVM_Value index,
+                                                                  JSVM_Value thisArg);
+    JSVM_Value(JSVM_CDECL* genericIndexedPropertyEnumeratorCallback)(JSVM_Env env,
+                                                                     JSVM_Value thisArg);
+} JSVM_PropertyHandlerConfigurationStruct;
+```
+
+**JSVM_PropertyHandlerCfg**
+
+包含属性监听回调的结构的指针类型。
+
+基本用法如下:
+
+```c++
+typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg;
+```
+
 ## 支持的JSVM-API接口
 
 标准JS引擎的能力通过JSVM-API提供。JSVM-API支持动态链接到不同版本的JS引擎库，从而为开发者屏蔽掉不同引擎接口的差异。JSVM-API提供引擎生命周期管理、JS context管理、JS代码执行、JS/C++互操作、执行环境快照、codecache等能力，具体可见下文。
@@ -1055,6 +1098,7 @@ static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
 |OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配 |
 |OH_JSVM_AddFinalizer | 为对象添加 JSVM_Finalize 回调，以便在 JavaScript 对象被垃圾回收时调用来释放原生对象 |
 |OH_JSVM_PostFinalizer | 安排在事件循环中异步调用 JSVM_Finalize 回调 |
+|OH_JSVM_DefineClassWithPropertyHandler | 定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类属性操作包括getter、setter、deleter、enumerator等，并作为函数回调进行调用 |
 
 场景示例：
 对象绑定操作。
@@ -1127,6 +1171,298 @@ static napi_value TestWrap(napi_env env1, napi_callback_info info)
     OH_JSVM_CloseVMScope(vm, vm_scope);
     OH_JSVM_DestroyVM(vm);
     OH_LOG_ERROR(LOG_APP, "testWrap pass");
+    return nullptr;
+}
+```
+
+```c++
+static int aa = 0;
+static JSVM_Value hello(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_Value output;
+    void *data = nullptr;
+    OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, nullptr, &data);
+    OH_JSVM_CreateStringUtf8(env, (char *)data, strlen((char *)data), &output);
+    return output;
+}
+
+static JSVM_CallbackStruct hello_cb = {hello, (void *)"Hello"};
+static intptr_t externals[] = {
+    (intptr_t)&hello_cb,
+    0,
+};
+
+static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 2;
+    JSVM_Value args[2];
+    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+
+    bool isStrictEquals = false;
+    OH_JSVM_StrictEquals(env, args[0], args[1], &isStrictEquals);
+    return nullptr;
+}
+
+static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg) {
+    // this callback is triggered by get requests on an object
+    char strValue[100];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
+    JSVM_Value newResult = nullptr;
+    char newStr[] = "new return value hahaha from name listening";
+    OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
+    return newResult;
+}
+
+static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg) {
+    // this callback is triggered by set requests on an object
+    char strValue[100];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
+    JSVM_Value newResult = nullptr;
+    char newStr[] = "new return value hahaha from name listening";
+    OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
+    return newResult;
+}
+
+static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg) {
+    // this callback is triggered by delete requests on an object
+    char strValue[100];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
+    JSVM_Value newResult = nullptr;
+    bool returnValue = false;
+    OH_JSVM_GetBoolean(env, returnValue, &newResult);
+    return newResult;
+}
+
+static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg) {
+    // this callback is triggered by get all properties requests on an object
+    JSVM_Value testArray = nullptr;
+    OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
+    JSVM_Value name1 = nullptr;
+    char newStr1[] = "hahaha";
+    OH_JSVM_CreateStringUtf8(env, newStr1, strlen(newStr1), &name1);
+    JSVM_Value name2 = nullptr;
+    char newStr2[] = "heheheh";
+    OH_JSVM_CreateStringUtf8(env, newStr2, strlen(newStr2), &name2);
+
+    OH_JSVM_SetElement(env, testArray, 0, name1);
+    OH_JSVM_SetElement(env, testArray, 1, name2);
+    return testArray;
+}
+
+static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg) {
+    // this function triggered by getting an indexed property of an instance objec
+    uint32_t value;
+    OH_JSVM_GetValueUint32(env, index, &value);
+
+    JSVM_Value newResult = nullptr;
+    char newStr[] = "new return value hahaha from index listening";
+    OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
+    return newResult;
+}
+
+static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg) {
+    // this function triggered by setting an indexed property of an instance object.
+    uint32_t value;
+    OH_JSVM_GetValueUint32(env, index, &value);
+    char str[100];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, property, str, 100, &size);
+    JSVM_Value newResult = nullptr;
+    char newStr[] = "new return value hahaha from name listening";
+    OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
+    return newResult;
+}
+
+static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg) {
+    // this function triggered by deleting an indexed property of an instance object.
+    uint32_t value;
+    OH_JSVM_GetValueUint32(env, index, &value);
+    JSVM_Value newResult = nullptr;
+    bool returnValue = false;
+    OH_JSVM_GetBoolean(env, returnValue, &newResult);
+    return newResult;
+}
+
+static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg) {
+    // this function triggered by getting all indexed properties requests on an object.
+    JSVM_Value testArray = nullptr;
+    OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
+    JSVM_Value index1 = nullptr;
+    OH_JSVM_CreateUint32(env, 1, &index1);
+    JSVM_Value index2 = nullptr;
+    OH_JSVM_CreateUint32(env, 2, &index2);
+    OH_JSVM_SetElement(env, testArray, 0, index1);
+    OH_JSVM_SetElement(env, testArray, 1, index2);
+    return testArray;
+}
+
+static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info info) {
+    OH_LOG_ERROR(LOG_APP, "TestDefineClassWithProperty start");
+    JSVM_InitOptions init_options;
+    memset(&init_options, 0, sizeof(init_options));
+    init_options.externalReferences = externals;
+    if (aa == 0) {
+        OH_JSVM_Init(&init_options);
+        aa++;
+    }
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    OH_JSVM_CreateVM(&options, &vm);
+    JSVM_VMScope vm_scope;
+    OH_JSVM_OpenVMScope(vm, &vm_scope);
+    JSVM_Env env;
+    JSVM_CallbackStruct param[1];
+    param[0].data = nullptr;
+    param[0].callback = assertEqual;
+    JSVM_PropertyDescriptor descriptor[] = {
+        {"assertEqual", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
+    };
+    OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    JSVM_HandleScope handlescope;
+    OH_JSVM_OpenHandleScope(env, &handlescope);
+
+
+    JSVM_CallbackStruct param1;
+    param1.callback = [](JSVM_Env env, JSVM_CallbackInfo info) -> JSVM_Value {
+        JSVM_Value thisVar = nullptr;
+        OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, &thisVar, nullptr);
+        return thisVar;
+    };
+    param1.data = nullptr;
+    // initialize the propertyCfg
+    JSVM_PropertyHandlerConfigurationStruct propertyCfg;
+    propertyCfg.genericNamedPropertyGetterCallback = GetPropertyCbInfo;
+    propertyCfg.genericNamedPropertySetterCallback = SetPropertyCbInfo;
+    propertyCfg.genericNamedPropertyDeleterCallback = DeleterPropertyCbInfo;
+    propertyCfg.genericNamedPropertyEnumeratorCallback = EnumeratorPropertyCbInfo;
+    propertyCfg.genericIndexedPropertyGetterCallback = IndexedPropertyGet;
+    propertyCfg.genericIndexedPropertySetterCallback = IndexedPropertySet;
+    propertyCfg.genericIndexedPropertyDeleterCallback = IndexedPropertyDeleter;
+    propertyCfg.genericIndexedPropertyEnumeratorCallback = IndexedPropertyEnumerator;
+    JSVM_CallbackStruct callbackStruct;
+    callbackStruct.callback = [](JSVM_Env env, JSVM_CallbackInfo info) -> JSVM_Value {
+        OH_LOG_INFO(LOG_APP, "call as a function called");
+        JSVM_Value thisVar = nullptr;
+        void *innerData;
+        size_t argc = 1;
+        JSVM_Value args[1];
+        OH_JSVM_GetCbInfo(env, info, &argc, args, &thisVar, &innerData);
+        OH_LOG_INFO(LOG_APP, "function call as function result is %{public}s", reinterpret_cast<char *>(innerData));
+        uint32_t ret = 0;
+        OH_JSVM_GetValueUint32(env, args[0], &ret);
+        const char testStr[] = "hello world 111111";
+        JSVM_Value setvalueName = nullptr;
+        JSVM_CALL(env, OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName));
+        return setvalueName;
+    };
+    char data[100] = "1111 hello world";
+    callbackStruct.data = data;
+    JSVM_Value testWrapClass = nullptr;
+    OH_JSVM_DefineClassWithPropertyHandler(env, "TestWrapClass", NAPI_AUTO_LENGTH, &param1, 0, nullptr, &propertyCfg,
+                                           &callbackStruct, &testWrapClass);
+    JSVM_Value instanceValue = nullptr;
+    OH_JSVM_NewInstance(env, testWrapClass, 0, nullptr, &instanceValue);
+    const char testStr[] = "hello world";
+    JSVM_Value setvalueName = nullptr;
+    OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName);
+
+    //======= 1. test name property callback ========================
+    // test set property
+    OH_JSVM_SetNamedProperty(env, instanceValue, "str11", setvalueName);
+    OH_JSVM_SetNamedProperty(env, instanceValue, "str123", setvalueName);
+
+    // test get property
+    JSVM_Value valueName = nullptr;
+    OH_JSVM_GetNamedProperty(env, instanceValue, "str11", &valueName);
+    char str[100];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, valueName, str, 100, &size);
+
+    // test get all property names
+    JSVM_Value allPropertyNames = nullptr;
+    OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
+                                static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
+                                JSVM_KEY_NUMBERS_TO_STRINGS, &allPropertyNames);
+    uint32_t nameSize = 0;
+    OH_JSVM_GetArrayLength(env, allPropertyNames, &nameSize);
+    JSVM_Value propertyName = nullptr;
+    for (uint32_t i = 0; i < nameSize; ++i) {
+        OH_JSVM_GetElement(env, allPropertyNames, i, &propertyName);
+        char str[100];
+        size_t size;
+        OH_JSVM_GetValueStringUtf8(env, propertyName, str, 100, &size);
+    }
+
+    // delete property
+    bool result = false;
+    propertyName = nullptr;
+    char propertyChar[] = "str11";
+    OH_JSVM_CreateStringUtf8(env, propertyChar, strlen(propertyChar), &propertyName);
+    OH_JSVM_DeleteProperty(env, instanceValue, propertyName, &result);
+
+    // ======= 2. test index property callback ===================
+    // test set property
+    JSVM_Value jsIndex = nullptr;
+    uint32_t index = 0;
+    OH_JSVM_CreateUint32(env, index, &jsIndex);
+    OH_JSVM_SetProperty(env, instanceValue, jsIndex, setvalueName);
+    JSVM_Value jsIndex1 = nullptr;
+    index = 1;
+    OH_JSVM_CreateUint32(env, index, &jsIndex1);
+    OH_JSVM_SetProperty(env, instanceValue, jsIndex1, setvalueName);
+
+    // test get property
+    JSVM_Value valueName1 = nullptr;
+    OH_JSVM_GetProperty(env, instanceValue, jsIndex, &valueName1);
+    char str1[100];
+    size_t size1;
+    OH_JSVM_GetValueStringUtf8(env, valueName1, str1, 100, &size1);
+
+    // test get all property names
+    JSVM_Value allPropertyNames1 = nullptr;
+    OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
+                                static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
+                                JSVM_KEY_NUMBERS_TO_STRINGS, &allPropertyNames1);
+    uint32_t nameSize1 = 0;
+    OH_JSVM_GetArrayLength(env, allPropertyNames1, &nameSize);
+    JSVM_Value propertyName1 = nullptr;
+    for (uint32_t i = 0; i < nameSize1; ++i) {
+        OH_JSVM_GetElement(env, allPropertyNames1, i, &propertyName1);
+        char str[100];
+        size_t size;
+        OH_JSVM_GetValueStringUtf8(env, propertyName1, str, 100, &size);
+    }
+
+    // delete property
+    bool result1 = false;
+    OH_JSVM_DeleteProperty(env, instanceValue, jsIndex, &result1);
+
+    // ======= 3. test call as function callback ===================
+    JSVM_Value gloablObj = nullptr;
+    OH_JSVM_GetGlobal(env, &gloablObj);
+    OH_JSVM_SetNamedProperty(env, gloablObj, "myTestInstance", instanceValue);
+    OH_LOG_INFO(LOG_APP, "set property on global object");
+    std::string innerSourcecodestr = R"(
+    {
+        let res = myTestInstance(12);
+    })";
+    JSVM_Value innerSourcecodevalue;
+    OH_JSVM_CreateStringUtf8(env, innerSourcecodestr.c_str(), innerSourcecodestr.size(), &innerSourcecodevalue);
+    JSVM_Script innerscript;
+    OH_JSVM_CompileScript(env, innerSourcecodevalue, nullptr, 0, true, nullptr, &innerscript);
+    JSVM_Value innerResult;
+    OH_JSVM_RunScript(env, innerscript, &innerResult);
+
+    OH_JSVM_CloseHandleScope(env, handlescope);
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vm_scope);
+    OH_JSVM_DestroyVM(vm);
+    OH_LOG_ERROR(LOG_APP, "TestDefineClassWithProperty pass");
     return nullptr;
 }
 ```

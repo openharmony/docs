@@ -30,6 +30,7 @@
 | @systemapi | 系统接口 | **系统接口：** 此接口为系统接口。 |
 | @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
 | @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
 
 下面进入具体每个API的写作。
 

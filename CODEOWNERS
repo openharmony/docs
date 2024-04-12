@@ -252,12 +252,12 @@ zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @hu-zhiqiong
 
 
 [开发-Connectivity Kit]
-zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @lilong32 @quanli125
+zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @xujiang1981 @quanli125
 zh-cn/application-dev/communication/nfc/ @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
 
 
 [开发-Contacts Kit]
-zh-cn/application-dev/telephony/contacts-intro.md @jiayanhong-hw @zhang_yixin13 @caowyan @zhaodengqi
+zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 @caowyan 
 
 
 [开发-Core File Kit]
@@ -340,16 +340,16 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 
 
 [开发-Network Kit]
-zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/socket-connection.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-sharing.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-ethernet.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-connection-manager.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-mdns.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-statistics.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-vpn.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
+zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/socket-connection.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-sharing.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-ethernet.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-connection-manager.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-mdns.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-statistics.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-vpn.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -391,9 +391,9 @@ zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @helloh
 
 
 [开发-Telephony Kit]
-zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 @jiayanhong-hw @zhaodengqi @dingxiaochen
-zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 @jiayanhong-hw @zhaodengqi @dingxiaochen
-zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @zhaodengqi @dingxiaochen
+zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
+zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
+zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
 
 
 [开发-Test Kit]
@@ -917,40 +917,40 @@ zh-cn/application-dev/reference/apis-calendar-kit/ @hu-zhiqiong @jt_123456 @edol
 
 
 [API参考-Connectivity Kit-bluetooth]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @lilong32 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @xujiang1981 @quanli125
 
 [API参考-Connectivity Kit-wifi]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiext.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManagerExt.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager-sys.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-wifi.md @yanxiaotao @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiext.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManagerExt.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager-sys.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-wifi.md @legendtau @zhang_yixin13  @xiangkejin123
 
 [API参考-Connectivity Kit-nfc]
 zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-cardEmulation.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
@@ -967,7 +967,7 @@ zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-se.md @knpingan 
 
 
 [API参考-Contacts Kit]
-zh-cn/application-dev/reference/apis-contacts-kit/ @jiayanhong-hw @zhang_yixin13 @caowyan @zhaodengqi
+zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 @caowyan 
 
 
 [API参考-Core File Kit]
@@ -1057,7 +1057,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @jiayanhong-hw @zhang_yixin13 @ustblx @maosiping
+zh-cn/application-dev/reference/apis-network-kit/ @jiayanhong-hw @zhang_yixin13 @w30013702 @rain_myf
 
 
 [API参考-Neural NetWork Runtime Kit]
@@ -1103,7 +1103,7 @@ zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @h
 
 
 [API参考-Telephony Kit]
-zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin13 @zhaodengqi @dingxiaochen
+zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin13 @w30013702 @dingxiaochen
 
 
 [API参考-Test Kit]

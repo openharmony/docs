@@ -1024,7 +1024,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId、parameters(可选)，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1909,7 +1909,7 @@ export default class EntryAbility extends UIAbility {
     };
 
     try {
-      this.context.openAtomicService(want, options)
+      this.context.openAtomicService(appId, options)
         .then((result: common.AbilityResult) => {
           // 执行正常业务
           console.info('openAtomicService succeed');

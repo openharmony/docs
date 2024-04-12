@@ -18,4 +18,4 @@
 | -------------------- | --------------------- | --- | ------------------------------------------ |
 | bundleNames          | Array<string>         | 否  | 应用Bundle名称。                              |
 | userId               | number                | 否  | 用户ID。                                      |
-| deviceType           | string                | 否  | 设备类型。                                    |
+| deviceType<sup>12+</sup>           | string                | 否  | 设备类型。                                    |

@@ -17,7 +17,7 @@ import common from '@ohos.app.ability.common';
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。
 
 > **说明：**
 >
@@ -30,7 +30,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -54,11 +54,46 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+  
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+
+    try {
+      this.context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability（callback形式）。
+启动Ability。使用callback异步回调。
 
 > **说明：**
 >
@@ -72,7 +107,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -94,11 +129,51 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      displayId: 0
+    };
+
+    try {
+      this.context.startAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability（promise形式）。
+启动Ability。使用Promise异步回调。
 
 > **说明：**
 >
@@ -117,7 +192,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回启动结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -141,11 +216,50 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      displayId: 0,
+    };
+
+    try {
+      this.context.startAbility(want, options)
+        .then(() => {
+          // 执行正常业务
+          console.info('startAbility succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
+启动一个Ability。使用callback异步回调。Ability被启动后，有如下情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -161,7 +275,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，返回启动Ability的结果。 |
 
 **错误码：**
 
@@ -185,11 +299,48 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+
+    try {
+      this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) { 
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        } 
+        // 执行正常业务
+        console.info('startAbilityForResult succeed');
+      });
+    } catch (err) { 
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
+启动一个Ability。使用callback异步回调。Ability被启动后，有如下情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -206,7 +357,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 执行结果回调函数。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，返回启动Ability的结果。 |
 
 **错误码：**
 
@@ -228,11 +379,52 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      displayId: 0,
+    };
+
+    try {
+      this.context.startAbilityForResult(want, options, (err: BusinessError, result: common.AbilityResult) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startAbilityForResult succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-启动一个Ability。Ability被启动后，有如下情况(promise形式):
+启动一个Ability。使用Promise异步回调。Ability被启动后，有如下情况:
  - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -255,7 +447,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise形式返回执行结果。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，返回启动Ability的结果。 |
 
 **错误码：**
 
@@ -278,6 +470,46 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      displayId: 0,
+    };
+
+    try {
+      this.context.startAbilityForResult(want, options)
+        .then((result: common.AbilityResult) => {
+          // 执行正常业务
+          console.info('startAbilityForResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
 
 
 ## UIExtensionContext.connectServiceExtensionAbility
@@ -318,13 +550,54 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
 
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'ServiceExtensionAbility'
+    };
+    let commRemote: rpc.IRemoteObject;
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) {
+        commRemote = remote;
+        console.info('onConnect...')
+      },
+      onDisconnect(elementName) {
+        console.info('onDisconnect...')
+      },
+      onFailed(code) {
+        console.info('onFailed...')
+      }
+    };
+    let connection: number;
+    try {
+      connection = this.context.connectServiceExtensionAbility(want, options);
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
 
 ## UIExtensionContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
-断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -338,7 +611,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -349,11 +622,45 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    // connection为connectServiceExtensionAbility中的返回值
+    let connection = 1;
+    let commRemote: rpc.IRemoteObject | null;
+
+    try {
+      this.context.disconnectServiceExtensionAbility(connection).then(() => {
+        commRemote = null;
+        // 执行正常业务
+        console.info('disconnectServiceExtensionAbility succeed');
+      }).catch((err: BusinessError) => {
+        // 处理业务逻辑错误
+        console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      })
+    } catch (err) {
+      commRemote = null;
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
-断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -362,7 +669,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 连接的ServiceExtensionAbility的数字代码，即connectServiceExtensionAbility返回的connectionId。 |
-| callback | AsyncCallback\<void> | 是 | callback形式返回断开连接的结果。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当断开与ServiceExtensionAbility的连接成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -372,6 +679,42 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 16000050 | Internal error. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    // connection为connectServiceExtensionAbility中的返回值
+    let connection = 1;
+    let commRemote: rpc.IRemoteObject | null;
+
+    try {
+      this.context.disconnectServiceExtensionAbility(connection, (err: BusinessError) => {
+        commRemote = null;
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('disconnectServiceExtensionAbility succeed');
+      });
+    } catch (err) {
+      commRemote = null;
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
 
 ## UIExtensionContext.terminateSelf<sup>12+</sup>
 
@@ -387,6 +730,35 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止UIExtensionContext对应的窗口界面对象成功，err为undefined，否则为错误对象。 |
 
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    try {
+      this.context.terminateSelf((err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('terminateSelf succeed');
+      });
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
 ## UIExtensionContext.terminateSelf<sup>12+</sup>
 
 terminateSelf(): Promise&lt;void&gt;
@@ -400,6 +772,34 @@ terminateSelf(): Promise&lt;void&gt;
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onForeground() {
+    try {
+      this.context.terminateSelf()
+        .then(() => {
+          // 执行正常业务
+          console.info('terminateSelf succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
 
 ## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
 
@@ -415,6 +815,48 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是   | 返回给UIExtensionComponent控件的信息。                 |
 | callback  | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。当停止成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let resultCode = 100;
+    // 返回给接口调用方AbilityResult信息
+    let abilityResult: common.AbilityResult = {
+      want,
+      resultCode
+    };
+
+    try {
+      this.context.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('terminateSelfWithResult succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
 
 ## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
 
@@ -435,7 +877,48 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-## UIExtensionContext.reportDrawnCompleted
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let resultCode = 100;
+    // 返回给接口调用方AbilityResult信息
+    let abilityResult: common.AbilityResult = {
+      want,
+      resultCode
+    };
+
+    try {
+      this.context.terminateSelfWithResult(abilityResult)
+        .then(() => {
+          // 执行正常业务
+          console.info('terminateSelfWithResult succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## UIExtensionContext.reportDrawnCompleted<sup>12+<sup>
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
@@ -460,37 +943,40 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-  ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  const TAG: string = '[testTag] UIExtAbility';
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { BusinessError } from '@ohos.base';
 
-  export default class UIExtAbility extends UIExtensionAbility {
-    onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
-      let storage: LocalStorage = new LocalStorage({
-        'session': session
+const TAG: string = '[testTag] UIExtAbility';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+    let data: Record<string, UIExtensionContentSession> = {
+      'session': session
+    };
+    let storage: LocalStorage = new LocalStorage(data);
+    session.loadContent('pages/extension', storage);
+    try {
+      this.context.reportDrawnCompleted((err) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('reportDrawnCompleted succeed');
       });
-      session.loadContent('pages/extension', storage);
-      try {
-        this.context.reportDrawnCompleted((err) => {
-          if (err.code) {
-            // 处理业务逻辑错误
-            console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          // 执行正常业务
-          console.info('reportDrawnCompleted succeed');
-        });
-      } catch (err) {
-        // 捕获同步的参数错误
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
-      }
+    } catch (err) {
+      // 捕获同步的参数错误
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
     }
   }
+}
   ```
 
 ## UIExtensionContext.openAtomicService<sup>12+<sup>
@@ -535,3 +1021,39 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    let options: AtomicServiceOptions = {
+      displayId: 0,
+    };
+
+    try {
+      this.context.openAtomicService(appId, options)
+        .then((result: common.AbilityResult) => {
+          // 执行正常业务
+          console.info('openAtomicService succeed');
+        })
+        .catch((err: BusinessError) => {
+          // 处理业务逻辑错误
+          console.error(`openAtomicService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`openAtomicService failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
