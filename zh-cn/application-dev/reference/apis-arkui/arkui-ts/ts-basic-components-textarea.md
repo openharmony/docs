@@ -19,6 +19,7 @@
 TextArea(value?: TextAreaOptions)
 
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 | value | [TextAreaOptions](#textareaoptions对象说明) | 否  | TextArea组件参数。 |
@@ -1052,7 +1053,7 @@ struct textArea {
 @Component
 struct TextAreaExample {
   controller: TextAreaController = new TextAreaController()
-  @State inputValue: string = ""
+  @State inputValue: string = "111111111111111111111111111111111111222222222222222222222222222222222222333333333333333333333333333333333333"
   @State height1:string|number = '80%'
   @State height2:number = 100
   @State supportAvoidance:boolean = true;
@@ -1107,5 +1108,5 @@ struct TextAreaExample {
   }
 }
 ```
-![CustomTextAreaType](figures/Custom_Text_Area.gif)
+![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 

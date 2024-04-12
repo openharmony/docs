@@ -300,7 +300,7 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
 ### onEditingChange<sup>12+</sup>
 
-onEditingChange(callback:&nbsp;(value:&nbsp;boolean) => void)
+onEditingChange(callback: Callback<boolean>)
 
 文本编辑状态发生改变时触发该回调函数。
 
@@ -310,11 +310,11 @@ onEditingChange(callback:&nbsp;(value:&nbsp;boolean) => void)
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| value  | boolean | 是   | true为编辑态，fasle为非编辑态。 |
+| callback | boolean | 是   | true为编辑态，fasle为非编辑态。 |
 
 ### onSubmit<sup>12+</sup>
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void)
+onSubmit(callback: SubmitCallback)
 
 按下软键盘输入法回车键触发该回调。
 
@@ -324,8 +324,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&n
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| enterKey  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event  | [SubmitEvent](ts-types.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。 |
+| callback | [SubmitCallback](#submitcallback12) | 是   | 侦听事件的回调。 |
 
 ### onWillChange<sup>12+</sup>
 
@@ -1095,6 +1094,15 @@ onLongPress(callback: (event?: GestureEvent) => void )
 | 名称            | 类型              | 必填   | 描述                               |
 | --------------- | ---------------  |---- | ------------------------------------  |
 | supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+
+## SubmitCallback<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称     | 类型                                             | 必填 | 描述                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event    | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
 
 ## 示例
 
