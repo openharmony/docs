@@ -4464,7 +4464,7 @@ PixelMap的初始化选项。
 | FOCAL_PLANE_X_RESOLUTION <sup>12+</sup> | "FocalPlaneXResolution" | 图像宽度中每FocalPlaneResolutionUnit的像素。 |
 | FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup> | "FocalPlaneYResolution" | 图像高度中每FocalPlaneResolutionUnit的像素。 |
 | FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit" | 测量FocalPlaneXResolution和FocalPlaneYResolution的单位。 |
-| SUBJECT_LOCATION <sup>12+</sup> | "SubjectLocation" | 主要主题相对于左边缘的位置。 |
+| SUBJECT_LOCATION <sup>12+</sup> | "SubjectLocation" | 主要对象相对于左边缘的位置。 |
 | EXPOSURE_INDEX <sup>12+</sup> | "ExposureIndex" | 捕获时选定的曝光指数。 |
 | SENSING_METHOD <sup>12+</sup> | "SensingMethod" | 相机上的图像传感器类型。 |
 | FILE_SOURCE <sup>12+</sup> | "FileSource" | 表明图像来源。 |
