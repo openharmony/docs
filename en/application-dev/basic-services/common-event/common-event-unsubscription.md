@@ -3,7 +3,7 @@
 
 ## When to Use
 
-You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) to unsubscribe from a common event that is no longer required in dynamic mode.
+You can call [unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) to unsubscribe from a common event that is no longer required in dynamic mode.
 
 
 ## Available APIs
@@ -50,3 +50,4 @@ You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#com
      });
    }
    ```
+ <!--no_check--> 

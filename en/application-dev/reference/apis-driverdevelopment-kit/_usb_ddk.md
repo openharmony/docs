@@ -1,16 +1,15 @@
-# UsbDDK
+# USB DDK
 
 
 ## Overview
 
 Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous data transfer over USB pipes, and implement control transfer and interrupt transfer, etc.
 
-\@syscap SystemCapability.Driver.USB.Extension
+**System capability**: SystemCapability.Driver.USB.Extension
 
 **Since**
 
 10
-
 
 ## Summary
 
@@ -427,3 +426,5 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 **Returns**
 
 **0** if the operation is successful; a negative value otherwise.
+
+<!--no_check-->

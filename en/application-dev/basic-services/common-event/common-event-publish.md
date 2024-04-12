@@ -12,7 +12,7 @@ You can use [publish()](../reference/apis/js-apis-commonEventManager.md#commonev
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerpublish).
+For details about the APIs, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish).
 
 | API| Description|
 | -------- | -------- |
@@ -51,7 +51,7 @@ Common events that do not carry information can be published only as unordered c
 
 ## Publishing a Common Event That Carries Information
 
-Common events that carry information can be published as unordered, ordered, and sticky common events, which are specified by the **isOrdered** and **isSticky** fields of [CommonEventPublishData](../reference/apis/js-apis-commonEventManager.md#commoneventpublishdata).
+Common events that carry information can be published as unordered, ordered, and sticky common events, which are specified by the **isOrdered** and **isSticky** fields of [CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventpublishdata).
 
 1. Import the **commonEventManager** module.
    
@@ -86,3 +86,4 @@ Common events that carry information can be published as unordered, ordered, and
      }
    });
    ```
+ <!--no_check--> 

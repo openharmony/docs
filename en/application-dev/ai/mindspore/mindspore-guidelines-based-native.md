@@ -2,7 +2,7 @@
 
 ## Scenarios
 
-You can use the Native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
+You can use the Native APIs provided by [MindSpore Lite](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
 
 ## Basic Concepts
 
@@ -298,3 +298,4 @@ On DevEco Studio, connect to the device and click **Run entry**. The following l
 08-08 16:55:33.826 1513-1529/com.mslite.native_demo I A00000/[MSLiteNapi]: Exit runDemo()
 08-08 16:55:33.827 1513-1529/com.mslite.native_demo I A00000/MSLiteNativeDemo: *** Finished MSLite Demo ***
 ```
+<!--no_check-->

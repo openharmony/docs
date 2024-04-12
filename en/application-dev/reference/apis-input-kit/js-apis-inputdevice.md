@@ -220,7 +220,7 @@ Disables listening for device hot swap events. This API is called before the app
 
 | Name      | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| type     | string                                   | Yes   | Event type of the input device. |
+| type     | string                                   | Yes   | Event type of the input device, such as the mouse, keyboard, or touchscreen. |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | No   | Listener for events of the input device.|
 
 **Example**

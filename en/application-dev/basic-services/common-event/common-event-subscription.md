@@ -3,12 +3,12 @@
 
 ## When to Use
 
-In dynamic subscription mode, an application, when it is running, subscribes to a common event and then receives the event once it is published, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../security/AccessToken/determine-application-mode.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
+In dynamic subscription mode, an application, when it is running, subscribes to a common event and then receives the event once it is published, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../../security/AccessToken/determine-application-mode.md) to subscribe to. For details, see [Required Permissions](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#support).
 
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../reference/apis/js-apis-commonEventManager.md#commoneventmanagersubscribe).
+For details about the APIs, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagersubscribe).
 
 | API| Description|
 | -------- | -------- |
@@ -30,7 +30,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    const TAG: string = 'ProcessModel';
    ```
 
-2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo).
+2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventsubscribeinfo).
    
    ```ts
    // Used to save the created subscriber object for subsequent subscription and unsubscription.
@@ -57,7 +57,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    })
    ```
 
-4. Create a subscription callback, which is triggered when an event is received. The data returned in the subscription callback contains information such as the common event name and data carried by the publisher. For details about the data types and parameters of the common event data, see [CommonEventData](../reference/apis/js-apis-commonEventManager.md#commoneventdata).
+4. Create a subscription callback, which is triggered when an event is received. The data returned in the subscription callback contains information such as the common event name and data carried by the publisher. For details about the data types and parameters of the common event data, see [CommonEventData](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventdata).
    
    ```ts
    // Callback for common event subscription.
@@ -72,3 +72,4 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
      console.error(`Need create subscriber`);
    }
    ```
+ <!--no_check--> 

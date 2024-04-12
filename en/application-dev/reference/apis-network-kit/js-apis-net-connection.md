@@ -1069,7 +1069,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** indicates the default data network is activated.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** indicates that the default data network is activated.|
 
 **Error codes**
 
@@ -1140,7 +1140,7 @@ Checks whether the default data network is activated. This API returns the resul
 
 | Type             | Description                                           |
 | ----------------- | ----------------------------------------------- |
-| boolean | The value **true** indicates the default data network is activated.|
+| boolean | The value **true** indicates that the default data network is activated.|
 
 **Error codes**
 
@@ -2364,6 +2364,7 @@ Defines the network capability.
 | NET_CAPABILITY_INTERNET  | 12   | The network has the Internet access capability, which is set by the network provider.|
 | NET_CAPABILITY_NOT_VPN | 15 | The network does not use a virtual private network (VPN).|
 | NET_CAPABILITY_VALIDATED | 16   | The Internet access capability of the network is successfully verified by the connection management module.|
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | The network is found to have a captive portal and user login authentication is required. This capability is set by the connection management module.|
 
 ## NetBearType
 
@@ -2371,11 +2372,12 @@ Enumerates network types.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name        | Value  | Description       |
-| --------------- | ---- | ----------- |
-| BEARER_CELLULAR | 0    | Cellular network. |
-| BEARER_WIFI     | 1    | Wi-Fi network.|
-| BEARER_ETHERNET | 3 | Ethernet network.|
+|            Name        | Value  | Description       |
+| ----------------------- | ---- | ---------- |
+| BEARER_CELLULAR         | 0    | Cellular network. |
+| BEARER_WIFI             | 1    | Wi-Fi network.|
+| BEARER_ETHERNET         | 3    | Ethernet network.|
+| BEARER_VPN<sup>12+</sup>| 4    | VPN.  |
 
 ## HttpProxy<sup>10+</sup>
 
@@ -2421,8 +2423,8 @@ Defines the network capability set.
 
 | Name                 | Type                               | Mandatory| Description                    |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  No|  Uplink (device-to-network) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated. |
-| linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated.  |
+| linkUpBandwidthKbps   | number                             |  No|  Uplink (device-to-network) bandwidth, in kbit/s. The value **0** indicates that the network bandwidth cannot be evaluated.|
+| linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth, in kbit/s. The value **0** indicates that the network bandwidth cannot be evaluated.|
 | networkCap            | Array\<[NetCap](#netcap)>           |  No|  Network capability.          |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type. The array contains only one specific network type.     |
 
