@@ -523,8 +523,10 @@ drawTextBlob(blob: TextBlob, x: number, y: number): void
 | 参数名 | 类型                  | 必填 | 说明                                       |
 | ------ | --------------------- | ---- | ------------------------------------------ |
 | blob   | [TextBlob](#textblob) | 是   | TextBlob对象。                             |
-| x      | number                | 是   | 所绘制出的文字的边界框左上角横坐标，该参数为浮点数。 |
-| y      | number                | 是   | 所绘制出的文字的边界框左上角纵坐标，该参数为浮点数。 |
+| x      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的横坐标，该参数为浮点数。 |
+| y      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的纵坐标，该参数为浮点数。 |
+
+![zh-ch_image_Text_Blob.png](figures/zh-ch_image_Text_Blob.png)
 
 **示例：**
 
@@ -538,7 +540,7 @@ class DrawingRenderNode extends RenderNode {
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     const font = new drawing.Font();
     font.setSize(20);
-    const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    const textBlob = drawing.TextBlob.makeFromString("Hello, drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
     canvas.detachBrush();
