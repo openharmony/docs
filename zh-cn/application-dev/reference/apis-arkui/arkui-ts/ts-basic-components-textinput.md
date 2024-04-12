@@ -455,7 +455,10 @@ showCounter(value: boolean, options?: InputCounterOptions)
 | options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
 
 >  **说明：**    
->  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: 12 vp,<br>&nbsp;right: 0 vp,<br>&nbsp;bottom: 12 vp,<br>&nbsp;left: 0 vp<br> }
+>    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 
@@ -939,7 +942,7 @@ struct TextInputExample {
     Column() {
       TextInput({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
 }
@@ -1054,7 +1057,7 @@ struct phone_example {
   build() {
     Column() {
         Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
+          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
             .onChange((number: string) => {
               let teleNumberNoSpace: string = this.removeSpace(number);
               if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
@@ -1088,4 +1091,4 @@ struct phone_example {
 }
 
 ```
-![phone_example](figures/phone_number.jpeg)
+![phone_example](figures/phone_number.PNG)
