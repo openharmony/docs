@@ -6891,7 +6891,7 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .onControllerAttached( => {
+        .onControllerAttached(() => {
           getContext().resourceManager.getRawFileContent("local.js")
             .then((content) => {
               this.controller.precompileJavaScript("https://exmaple.com/example.js", content, {
@@ -6903,10 +6903,10 @@ struct WebComponent {
                 ]
               }).then((res) => {
                 console.error("precompile result: " + res);
-              }).catch((err) => {
+              }).catch((err: number) => {
                 console.error("precompile error: " + err);
               })
-            }
+            })
         })
     }
   }
