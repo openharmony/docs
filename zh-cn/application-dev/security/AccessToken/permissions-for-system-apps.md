@@ -2969,6 +2969,18 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.INPUT_INFRARED_EMITTE
+
+允许系统应用使用红外接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.READ_AUDIO
 
 允许读取用户公共目录的音频文件。
