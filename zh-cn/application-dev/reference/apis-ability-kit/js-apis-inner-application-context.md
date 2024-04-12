@@ -1,6 +1,6 @@
 # Context
 
-Context模块提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
 
 > **说明：**
 >
