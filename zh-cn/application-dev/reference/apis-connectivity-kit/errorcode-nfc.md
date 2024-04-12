@@ -80,6 +80,22 @@ The off() can be called only when the on() has been called.
 **处理步骤**
 1. 应用程序的前台页面先执行on()接口，在页面退出时调用off()接口。
 
+## 3100204
+
+**错误信息**
+
+Tag I/O operation failed.
+
+**错误描述**
+
+NFC Tag I/O操作失败。
+
+**可能原因**
+1. NFC Tag不支持所执行的读写操作。
+
+**处理步骤**
+1. 应用程序根据业务场景进行异常处理或提示。
+
 ## 3200101
 
 **错误信息**
