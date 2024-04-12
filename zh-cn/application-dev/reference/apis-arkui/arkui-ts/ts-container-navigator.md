@@ -73,7 +73,7 @@ target(value: string)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | object | 是   | 转目标页面的路径。 |
+| value  | string | 是   | 转目标页面的路径。 |
 
 ### type
 type(value: NavigationType)
@@ -86,7 +86,7 @@ type(value: NavigationType)
 
 | 参数名 | 类型   | 必填 | 说明                                           |
 | ------ | ------ | ---- | ---------------------------------------------- |
-| value  | object | 是   | 路由跳转方式。<br/>默认值：NavigationType.Push |
+| value  | [NavigationType](#navigationtype枚举说明) | 是   | 路由跳转方式。<br/>默认值：NavigationType.Push |
 
 
 ## 示例
