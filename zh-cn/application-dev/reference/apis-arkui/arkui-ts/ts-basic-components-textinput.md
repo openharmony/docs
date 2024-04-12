@@ -563,6 +563,9 @@ fontFeature(value: string)
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
+>  **说明：**
+>  type属性中InputType枚举为Password、NEW_PASSWORD和NUMBER_PASSWORD等密码模式时，暂时不支持fontFeature设置文本样式。
+
 ### wordBreak<sup>12+</sup>
 
 wordBreak(value: WordBreak)
