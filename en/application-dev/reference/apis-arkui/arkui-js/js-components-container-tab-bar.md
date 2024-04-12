@@ -18,7 +18,7 @@ Supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -27,19 +27,19 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
+The [universal styles](js-components-common-styles.md) are supported.
 
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 
 ## Methods
 
-The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+The [universal methods](js-components-common-methods.md) are supported.
 
 
 ## Example
 
-For details, see [Example in tabs](../arkui-js/js-components-container-tabs.md#example).
+For details, see [Example in tabs](js-components-container-tabs.md#example).

@@ -13,12 +13,12 @@ None
 
 ## Child Components
 
-Only the **[\<option>](../arkui-js/js-components-basic-option.md)** component is supported.
+Only the **[\<option>](js-components-basic-option.md)** component is supported.
 
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name    | Type    | Default Value  | Mandatory  | Description                                      |
 | ------ | ------ | ----- | ---- | ---------------------------------------- |
@@ -41,9 +41,9 @@ The following styles are supported.
 | font-size      | &lt;length&gt;             | 30px       | No   | Font size of the menu.                              |
 | allow-scale    | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | letter-spacing | &lt;length&gt;             | 0          | No   | Character spacing of the menu.                              |
-| font-style     | string                     | normal     | No   | Font style of the menu. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| font-weight    | number \| string           | normal     | No   | Font weight of the menu. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
-| font-family    | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-style     | string                     | normal     | No   | Font style of the menu. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component.|
+| font-weight    | number \| string           | normal     | No   | Font weight of the menu. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component.|
+| font-family    | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 
 ## Events
