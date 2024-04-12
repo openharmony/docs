@@ -34,7 +34,7 @@ OpenHarmony Node-API是基于Node.js 8.x LTS的[Node-API](https://nodejs.org/doc
 
 - NativeEngine：ArkTS引擎抽象层，统一ArkTS引擎在Node-API层的接口行为。
 
-- ArkComiler ArkTS Runtime：ArkTS运行时。
+- ArkCompiler ArkTS Runtime：ArkTS运行时。
 
 ## Node-API的关键交互流程
 
