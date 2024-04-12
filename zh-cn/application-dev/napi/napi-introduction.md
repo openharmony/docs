@@ -33,7 +33,7 @@ OpenHarmony Node-API是基于Node.js的Node-API规范扩展开发的机制，为
 
 - NativeEngine：ArkTS引擎抽象层，统一ArkTS引擎在Node-API层的接口行为。
 
-- ArkComiler ArkTS Runtime：ArkTS运行时。
+- ArkCompiler ArkTS Runtime：ArkTS运行时。
 
 
 ## Node-API的关键交互流程
