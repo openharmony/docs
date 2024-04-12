@@ -564,7 +564,7 @@ fontFeature(value: string)
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
 >  **说明：**
->  type类型为InputType.Password密码模式时，暂时不支持fontFeature设置文本样式。
+>  type属性中InputType枚举为Password、NEW_PASSWORD和NUMBER_PASSWORD等密码模式时，暂时不支持fontFeature设置文本样式。
 
 ### wordBreak<sup>12+</sup>
 
