@@ -4421,17 +4421,17 @@ PixelMap的初始化选项。
 | FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | 对焦模式，当前为只读属性。                  |
 | COMPRESSION <sup>12+</sup> | "Compression" | 图像压缩方案。 |
 | PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | 像素构成，例如 RGB 或 YCbCr。 |
-| STRIP_OFFSETS <sup>12+</sup> | "StripOffsets" | 每个条带的字节偏移量。 |
-| SAMPLES_PER_PIXEL <sup>12+</sup> | "SamplesPerPixel" | 每像素的组件数。 |
-| ROWS_PER_STRIP <sup>12+</sup> | "RowsPerStrip" | 每条带的图像数据行数。 |
+| STRIP_OFFSETS <sup>12+</sup> | "StripOffsets" | 每个strip的字节偏移量。 |
+| SAMPLES_PER_PIXEL <sup>12+</sup> | "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。 |
+| ROWS_PER_STRIP <sup>12+</sup> | "RowsPerStrip" | 每个strip的图像数据行数。 |
 | STRIP_BYTE_COUNTS <sup>12+</sup> | "StripByteCounts"      | 每个图像数据带的总字节数。                              |
 | X_RESOLUTION <sup>12+</sup> | "XResolution"      | 图像宽度方向的分辨率。                             |
 | Y_RESOLUTION <sup>12+</sup> | "YResolution"      | 图像高度方向的分辨率。                             |
-| PLANAR_CONFIGURATION <sup>12+</sup> | "PlanarConfiguration"      | 表示像素组件是以chunky格式还是planar格式记录。                             |
+| PLANAR_CONFIGURATION <sup>12+</sup> | "PlanarConfiguration"      | 表示像素组件的记录格式，chunky格式或是planar格式。                             |
 | RESOLUTION_UNIT <sup>12+</sup> | "ResolutionUnit"      | 用于测量XResolution和YResolution的单位。                             |
 | TRANSFER_FUNCTION <sup>12+</sup> | "TransferFunction"      | 图像的传递函数，通常用于颜色校正。                             |
 | SOFTWARE <sup>12+</sup> | "Software"      | 用于生成图像的软件的名称和版本。                             |
-| ARTIST <sup>12+</sup> | "Artist"      | 创建图像的人的名字。                             |
+| ARTIST <sup>12+</sup> | "Artist"      | 创建图像的用户名称。                             |
 | WHITE_POINT <sup>12+</sup> | "WhitePoint"      | 图像的白点色度。                             |
 | PRIMARY_CHROMATICITIES <sup>12+</sup> | "PrimaryChromaticities"      | 图像的主要颜色的色度。                             |
 | YCBCR_COEFFICIENTS <sup>12+</sup> | "YCbCrCoefficients"      | 从RGB到YCbCr图像数据的转换矩阵系数。                             |
@@ -4445,7 +4445,7 @@ PixelMap的初始化选项。
 | SPECTRAL_SENSITIVITY <sup>12+</sup> | "SpectralSensitivity" | 表示所用相机的每个通道的光谱灵敏度。 |
 | OECF <sup>12+</sup> | "OECF" | 表示ISO 14524中规定的光电转换函数（OECF）。 |
 | EXIF_VERSION <sup>12+</sup> | "ExifVersion" | 支持的Exif标准版本。 |
-| DATE_TIME_DIGITIZED <sup>12+</sup> | "DateTimeDigitized" | 图像作为数字数据存储的日期和时间。 |
+| DATE_TIME_DIGITIZED <sup>12+</sup> | "DateTimeDigitized" | 图像作为数字数据存储的日期和时间，格式为YYYY:MM:DD HH:MM:SS |
 | COMPONENTS_CONFIGURATION <sup>12+</sup> | "ComponentsConfiguration" | 压缩数据的特定信息。 |
 | SHUTTER_SPEED <sup>12+</sup> | "ShutterSpeedValue" | 快门速度，以APEX（摄影曝光的加法系统）值表示。 |
 | BRIGHTNESS_VALUE <sup>12+</sup> | "BrightnessValue" | 图像的亮度值，以APEX单位表示。 |
@@ -4509,16 +4509,16 @@ PixelMap的初始化选项。
 | CAMERA_OWNER_NAME <sup>12+</sup> | "CameraOwnerName" | 相机所有者的姓名。 |
 | COMPOSITE_IMAGE <sup>12+</sup> | "CompositeImage" | 表示图像是否为合成图像。 |
 | COMPRESSED_BITS_PER_PIXEL <sup>12+</sup> | "CompressedBitsPerPixel" | 用于压缩图像的压缩模式，单位为每像素位数。 |
-| DNG_VERSION <sup>12+</sup> | "DNGVersion" | DNG版本标签编码了符合DNG规范的四级版本号。
-| DEFAULT_CROP_SIZE <sup>12+</sup> | "DefaultCropSize" | DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。
-| GAMMA <sup>12+</sup> | "Gamma" | 表示系数伽马的值。
-| ISO_SPEED_LATITUDE_YYY <sup>12+</sup> | "ISOSpeedLatitudeyyy" | 该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。
-| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup> | "ISOSpeedLatitudezzz" | 该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。
-| LENS_MAKE <sup>12+</sup> | "LensMake" | 镜头的制造商。
-| LENS_MODEL <sup>12+</sup> | "LensModel" | 镜头的型号名称。
-| LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | 镜头的序列号。
-| LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | 使用的镜头规格。
-| NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | 该标签广泛描述了此子文件中的数据类型。
+| DNG_VERSION <sup>12+</sup> | "DNGVersion" | DNG版本标签编码了符合DNG规范的四级版本号。|
+| DEFAULT_CROP_SIZE <sup>12+</sup> | "DefaultCropSize" | DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
+| GAMMA <sup>12+</sup> | "Gamma" | 表示系数伽马的值。|
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup> | "ISOSpeedLatitudeyyy" | 该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。|
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup> | "ISOSpeedLatitudezzz" | 该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。|
+| LENS_MAKE <sup>12+</sup> | "LensMake" | 镜头的制造商。|
+| LENS_MODEL <sup>12+</sup> | "LensModel" | 镜头的型号名称。|
+| LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | 镜头的序列号。|
+| LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | 使用的镜头规格。|
+| NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。|
 | OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | 此标签记录DateTime标签的UTC偏移量，确保无论位置如何都能有准确的时间戳。                              |
 | OFFSET_TIME_DIGITIZED <sup>12+</sup> | "OffsetTimeDigitized"      | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。                              |
 | OFFSET_TIME_ORIGINAL <sup>12+</sup> | "OffsetTimeOriginal"      | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。                              |
@@ -4529,16 +4529,16 @@ PixelMap的初始化选项。
 | PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup> | "PhotographicSensitivity"      | 此标签指示拍摄图像时相机或输入设备的灵敏度。                              |
 | BURST_NUMBER <sup>12+</sup> | "HwMnoteBurstNumber"      | 连拍次数。                              |
 | FACE_CONF <sup>12+</sup> | "HwMnoteFaceConf"      | 人脸置信度。                              |
-| FACE_LEYE_CENTER <sup>12+</sup> | "HwMnoteFaceLeyeCenter" | 眼中心（左）。 |
+| FACE_LEYE_CENTER <sup>12+</sup> | "HwMnoteFaceLeyeCenter" | 左眼中心。 |
 | FACE_MOUTH_CENTER <sup>12+</sup> | "HwMnoteFaceMouthCenter" | 嘴中心。 |
 | FACE_POINTER <sup>12+</sup> | "HwMnoteFacePointer" | 脸部指针。 |
 | FACE_RECT <sup>12+</sup> | "HwMnoteFaceRect" | 脸部矩形。 |
-| FACE_REYE_CENTER <sup>12+</sup> | "HwMnoteFaceReyeCenter" | 眼中心（右）。 |
-| FACE_SMILE_SCORE <sup>12+</sup> | "HwMnoteFaceSmileScore" | 笑容评分。 |
-| FACE_VERSION <sup>12+</sup> | "HwMnoteFaceVersion" | 脸部版本。 |
-| FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 前置摄像头。 |
+| FACE_REYE_CENTER <sup>12+</sup> | "HwMnoteFaceReyeCenter" | 右眼中心。 |
+| FACE_SMILE_SCORE <sup>12+</sup> | "HwMnoteFaceSmileScore" | FaceCount张人脸的笑脸分数。 |
+| FACE_VERSION <sup>12+</sup> | "HwMnoteFaceVersion" | 人脸算法版本信息。 |
+| FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 是否是前置相机自拍。 |
 | SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | 场景指针。 |
-| SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景版本。 |
+| SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景算法版本信息。 |
 
 ## ImageFormat<sup>9+</sup>
 
