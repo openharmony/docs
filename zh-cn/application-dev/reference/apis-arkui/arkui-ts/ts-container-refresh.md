@@ -106,7 +106,7 @@ onRefreshing(callback: () => void)
 
 ### onOffsetChange<sup>12+</sup>
 
-onOffsetChange(callback: Callback<number>)
+onOffsetChange(callback: Callback\<number>)
 
 下拉距离发生变化时触发回调。
 
