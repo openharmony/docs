@@ -912,6 +912,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ## object类型说明
