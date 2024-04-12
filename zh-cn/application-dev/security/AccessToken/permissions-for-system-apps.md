@@ -841,6 +841,18 @@
 
 **起始版本**：9
 
+### ohos.permission.START_SHORTCUT
+
+允许应用拉起快捷方式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 允许设置和查询应用的处置状态。
