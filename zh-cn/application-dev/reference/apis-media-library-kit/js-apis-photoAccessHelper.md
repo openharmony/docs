@@ -3788,6 +3788,8 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 | ORIENTATION   | 'orientation'         | 图片文件的方向。                                             |
 | FAVORITE      | 'is_favorite'            | 收藏。                                                    |
 | TITLE         | 'title'               | 文件标题。                                                   |
+| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。             |
+| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | 修改日期（修改文件时间距1970年1月1日的毫秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
 
 ## AlbumKeys
 
