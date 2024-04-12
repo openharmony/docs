@@ -85,6 +85,21 @@ starStyle(value: { backgroundUri: string, foregroundUri: string, secondaryUri?: 
 >
 >  为了指定绘制区域为方形，建议自定义宽高时采取[height * stars, height], width = height * stars的方式。
 
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<RatingConfiguration>)
+
+定制Rating内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<RatingConfiguration>](#ratingconfiguration12对象说明) | 是   | 在Rating组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+
 ## 事件
 
 ### onChange
@@ -111,6 +126,19 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 | Home       | 移动到第一个星星， 不改变实际分值。          |
 | End        | 移动到最后一个星星， 不改变实际分值。         |
 | Space/Enter | 根据当前评分提交评分结果。               |
+
+## RatingConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    |    默认值      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |
+| rating | number | 0 |评分条当前评分数。 |
+| indicator | boolean | false | 评分条是否作为一个指示器。 |
+| stars | number | 5 |评分条的星级总数。 |
+| stepSize | number | 0.5 |评分条的评分步长。 |
+| triggerChange | Callback\<number> | - |触发评分数量变化。 |
+
 
 ## 示例
 
@@ -203,3 +231,97 @@ struct RatingExample {
 ```
 
 ![rating1](figures/rating1.gif)
+
+### 示例3
+该示例实现了自定义评分条的功能，每个圆圈表示0.5分。
+
+```ts
+// xxx.ets
+class MyRatingStyle implements ContentModifier<RatingConfiguration> {
+  name: string = ""
+  style: number = 0
+  constructor(value1: string, value2: number) {
+    this.name = value1
+    this.style = value2
+  }
+  applyContent() : WrappedBuilder<[RatingConfiguration]> {
+    return wrapBuilder(buildRating)
+  }
+}
+
+@Builder function buildRating(config: RatingConfiguration) {
+  Column() {
+    Row() {
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 0.4 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          console.info('builder Rating change is'+ config.rating);
+          config.triggerChange(0.5);
+        })
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 0.9 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          console.info('builder Rating change is'+ config.rating);
+          config.triggerChange(1);
+        })
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 1.4 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          console.info('builder Rating change is'+ config.rating);
+          config.triggerChange(1.5);
+        })
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 1.9 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          console.info('builder Rating change is'+ config.rating);
+          config.triggerChange(2);
+        })
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 2.4 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          console.info('builder Rating change is'+ config.rating);
+          config.triggerChange(2.5);
+        })
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 2.9 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          console.info('builder Rating change is'+ config.rating);
+          config.triggerChange(3);
+        })
+    }
+    Text("分值：" + config.rating)
+  }
+}
+
+@Entry
+@Component
+struct ratingExample {
+  @State rating: number = 3;
+  build() {
+    Row() {
+      Column() {
+        Rating({
+          rating: 2,
+          indicator: true
+        })
+          .stepSize(0.5)
+          .stars(8)
+          .backgroundColor(Color.Transparent)
+          .width('100%')
+          .height(50)
+          .onChange((value: number) => {
+            console.info('Rating change is'+ value);
+            this.rating = value
+          })
+          .contentModifier(new MyRatingStyle("hello", 3))
+      }
+      .width('100%')
+      .height('100%')
+
+    }
+    .height('100%')
+  }
+}
+```
+
+![rating2](figures/rating2.gif)
