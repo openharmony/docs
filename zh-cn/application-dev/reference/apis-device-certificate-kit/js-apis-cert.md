@@ -274,7 +274,7 @@ buffer数组的列表。
 
 | 名称                                  | 值   | 说明                          |
 | --------------------------------------| -------- | -----------------------------|
-| VALIDATION_POLICY_TYPE_X509 | 0 | 默认值。 |
+| VALIDATION_POLICY_TYPE_X509 | 0 | 默认值，不需要校验证书中的sslHostname或dNSName。 |
 | VALIDATION_POLICY_TYPE_SSL | 1 | 需要校验证书中的sslHostname或dNSName。 |
 
 ## KeyUsageType<sup>12+</sup>
@@ -286,7 +286,7 @@ buffer数组的列表。
 | 名称                                  | 值   | 说明                          |
 | --------------------------------------| -------- | -----------------------------|
 | KEYUSAGE_DIGITAL_SIGNATURE | 0 | 证书持有者可以用证书中包含的私钥进行数字签名操作。 |
-| KEYUSAGE_NON_REPUDIATION | 1 | 证书持有者不能否认他们使用证书中包含的私钥进行的数字签名操作。 |
+| KEYUSAGE_NON_REPUDIATION | 1 | 证书持有者不可否认使用证书中包含的私钥进行的数字签名操作。 |
 | KEYUSAGE_KEY_ENCIPHERMENT | 2 | 证书持有者可以使用证书中包含的公钥进行密钥加密操作。 |
 | KEYUSAGE_DATA_ENCIPHERMENT | 3 | 证书持有者可以使用证书中包含的公钥进行数据加密操作。 |
 | KEYUSAGE_KEY_AGREEMENT | 4 | 证书持有者可以使用证书中包含的私钥进行密钥协商操作。 |
@@ -308,7 +308,7 @@ buffer数组的列表。
 | ocspResponderCert | X509Cert | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
 | ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
 | crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
-| options | Array\<[RevocationCheckOption](#revocationcheckoption)> | 否   | 表示证书吊销状态查询的策略组合。 |
+| options | Array\<[RevocationCheckOption](#revocationcheckoption12)> | 否   | 表示证书吊销状态查询的策略组合。 |
 
 ## CertChainValidationParameters<sup>11+</sup>
 
@@ -321,10 +321,10 @@ buffer数组的列表。
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
 | certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 表示需要校验证书是否在证书吊销列表中。 |
-| revocationCheckParam     | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 表示需要在线校验证证书吊销状态的参数对象。 |
-| policy     | [ValidationPolicyType](#validationpolicytype12) | 否   | 表示需要校验证书的策略类型。 |
-| sslHostname | string | 否   | 表示需要校验证书中主机名，与policy配合使用。 |
-| keyUsage     | Array\<[KeyUsageType](#keyusagetype12)> | 否   | 表示需要校验证书中的密钥用途。 |
+| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 表示需要在线校验证证书吊销状态的参数对象。 |
+| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | 否   | 表示需要校验证书的策略类型。 |
+| sslHostname<sup>12+</sup> | string | 否   | 表示需要校验证书中主机名，与policy配合使用。 |
+| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | 否   | 表示需要校验证书中的密钥用途。 |
 
 ## CertChainValidationResult<sup>11+</sup>
 
