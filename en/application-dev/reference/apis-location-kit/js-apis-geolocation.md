@@ -402,7 +402,7 @@ Registers a listener for status change events of the specified geofence.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
   | request |  [GeofenceRequest](#geofencerequestdeprecated) | Yes| Geofencing request.|
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
+  | want | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
 
 **Example**
 
@@ -450,7 +450,7 @@ Unregisters the listener for status change events of the specified geofence.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
   | request | [GeofenceRequest](#geofencerequestdeprecated) | Yes| Geofencing request.|
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
+  | want | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes| **WantAgent** used to receive geofence (entrance or exit) events.|
 
 **Example**
 
@@ -1434,8 +1434,8 @@ Defines the privacy statement type.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationPrivacyType](js-apis-geoLocationManager.md#locationprivacytype).
-
+> This API is deprecated since API version 9. You are advised to use **geoLocationManager.LocationPrivacyType**, which applies only to system APIs.
+**
 **Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
@@ -1492,7 +1492,7 @@ Sets the priority of the location request.
 Enumerates error codes of the location service.
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager](../errorcodes/errorcode-geoLocationManager.md).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager](errorcode-geoLocationManager.md).
 
 **Required permissions**: ohos.permission.LOCATION
 
