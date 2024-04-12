@@ -4087,7 +4087,7 @@ addDoNotDisturbProfile(templates: Array<DoNotDisturbProfile>): Promise\<void\>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile)> | 是 | 勿扰模式的配置信息 |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile)> | 是 | 勿扰模式的配置信息。 |
 
 **返回值：**
 
@@ -4152,7 +4152,7 @@ removeDoNotDisturbProfile(templates: Array<DoNotDisturbProfile>): Promise<void>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile)> | 是  | 勿扰模式的配置信息 |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile)> | 是  | 勿扰模式的配置信息。 |
 
 **返回值：**
 
@@ -4197,6 +4197,6 @@ notificationManager.removeDoNotDisturbProfile(templates).then(() => {
 
 | 名称  | 类型                                  | 必填 | 说明                   |
 | ----- | ------------------------------------- | ---- | ---------------------- |
-| id | Number | 是 | 勿扰模式编号 |
-| name | string  | 是 | 勿扰模式名称 |
-| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表 |
+| id | Number | 是 | 勿扰模式编号。 |
+| name | string  | 是 | 勿扰模式名称。 |
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
