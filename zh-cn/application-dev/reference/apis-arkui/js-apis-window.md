@@ -3031,7 +3031,7 @@ try {
 
 on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
 
-开启本窗口在指定超时时间内无交互事件的监听。
+开启本窗口在指定超时时间内无交互事件的监听，交互事件支持物理键盘输入事件和屏幕触控点击事件，不支持软键盘输入事件。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3068,7 +3068,7 @@ try {
 
 off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 
-关闭本窗口在指定超时时间内无交互事件的监听。
+关闭本窗口在指定超时时间内无交互事件的监听，交互事件支持物理键盘输入事件和屏幕触控点击事件，不支持软键盘输入事件。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
