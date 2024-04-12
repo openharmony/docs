@@ -4519,12 +4519,12 @@ PixelMap的初始化选项。
 | LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | 镜头的序列号。|
 | LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | 使用的镜头规格。|
 | NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。|
-| OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | 此标签记录DateTime标签的UTC偏移量，确保无论位置如何都能有准确的时间戳。                              |
+| OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。                              |
 | OFFSET_TIME_DIGITIZED <sup>12+</sup> | "OffsetTimeDigitized"      | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。                              |
 | OFFSET_TIME_ORIGINAL <sup>12+</sup> | "OffsetTimeOriginal"      | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。                              |
 | SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"      | 合成图像的源图像曝光时间。                              |
 | SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceImageNumberOfCompositeImage"      | 用于合成图像的源图像数量。                              |
-| SUBFILE_TYPE <sup>12+</sup> | "SubfileType"      | 此已弃用标签指示此子文件中的数据类型。请改用NewSubfileType。                              |
+| SUBFILE_TYPE <sup>12+</sup> | "SubfileType"      | 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。                              |
 | GPS_H_POSITIONING_ERROR <sup>12+</sup> | "GPSHPositioningError"      | 此标签指示水平定位误差，单位为米。                              |
 | PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup> | "PhotographicSensitivity"      | 此标签指示拍摄图像时相机或输入设备的灵敏度。                              |
 | BURST_NUMBER <sup>12+</sup> | "HwMnoteBurstNumber"      | 连拍次数。                              |
