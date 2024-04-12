@@ -992,4 +992,4 @@ struct SearchExample {
 }
 ```
 
-![CustomSearchKeyType](figures/Custom_Search.gif)
+![CustomSearchKeyType](figures/searchCustomKeyboard.gif)

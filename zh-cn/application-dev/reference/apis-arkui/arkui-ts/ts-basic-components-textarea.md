@@ -19,6 +19,7 @@
 TextArea(value?: TextAreaOptions)
 
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 | value | [TextAreaOptions](#textareaoptions对象说明) | 否  | TextArea组件参数。 |
@@ -1107,5 +1108,5 @@ struct TextAreaExample {
   }
 }
 ```
-![CustomTextAreaType](figures/Custom_Text_Area.gif)
+![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
