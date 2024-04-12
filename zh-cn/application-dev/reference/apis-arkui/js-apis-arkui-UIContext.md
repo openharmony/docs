@@ -953,6 +953,60 @@ getFocusController(): FocusController
 uiContext.getFocusController();
 ```
 
+### getFilteredInspectorTree<sup>12+</sup>
+
+getFilteredInspectorTree(filters?: Array\<string\>): string
+
+获取组件树及组件属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型            | 必填 | 说明                                                         |
+| ------- | --------------- | ---- | ------------------------------------------------------------ |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+
+**返回值：** 
+
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| string | 获取组件树及组件属性的JSON字符串。 |
+
+**示例：**
+
+```ts
+uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
+```
+
+### getFilteredInspectorTreeById<sup>12+</sup>
+
+getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
+
+获取指定的组件及其子组件的属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型            | 必填 | 说明                                                         |
+| ------- | --------------- | ---- | ------------------------------------------------------------ |
+| id      | string          | 是   | 指定的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)id。 |
+| depth   | number          | 是   | 获取子组件的层数。当取值0时，获取指定的组件及其所有的子孙组件的属性。当取值1时，仅获取指定的组件的属性。当取值2时，指定的组件及其1层子组件的属性。以此类推。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| string | 获取指定的组件及其子组件的属性的JSON字符串。 |
+
+**示例：**
+
+```ts
+uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
