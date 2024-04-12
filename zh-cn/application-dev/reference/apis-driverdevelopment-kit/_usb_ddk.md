@@ -426,3 +426,28 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 **返回:**
 
 成功返回0，否则返回负数。
+
+
+### OH_Usb_SendPipeRequestWithAshmem()
+
+
+```
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
+```
+
+**描述:**
+
+发送共享内存的管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| pipe | 要传输数据的管道信息。 |
+| ashmem | 共享内存，可以通过[OH_DDK_CreateAshmem()](_base_ddk_.md#oh_ddk_createashmem)获得。 |
+
+**返回:**
+
+成功返回0，否则返回负数。
