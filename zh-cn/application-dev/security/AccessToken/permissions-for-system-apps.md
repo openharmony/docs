@@ -2741,6 +2741,18 @@
 
 **起始版本**: 12
 
+### ohos.permission.INPUT_INFRARED_EMITTE
+
+允许系统应用使用红外接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -2968,18 +2980,6 @@
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
-
-### ohos.permission.INPUT_INFRARED_EMITTE
-
-允许系统应用使用红外接口。
-
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
 
 ### ohos.permission.READ_AUDIO
 
