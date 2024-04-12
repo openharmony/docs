@@ -379,7 +379,7 @@ getLayoutPosition(): Position
 
 ### getUserConfigBorderWidth<sup>12+</sup>
 
-getUserConfigBorderWidth(): Edges\<LengthMetric\>
+getUserConfigBorderWidth(): Edges\<LengthMetrics\>
 
 获取用户设置的边框宽度。
 
@@ -389,7 +389,7 @@ getUserConfigBorderWidth(): Edges\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的边框宽度。 |
+| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的边框宽度。 |
 
 **示例：**
 
@@ -397,7 +397,7 @@ getUserConfigBorderWidth(): Edges\<LengthMetric\>
 
 ### getUserConfigPadding<sup>12+</sup>
 
-getUserConfigPadding(): Edges\<LengthMetric\>
+getUserConfigPadding(): Edges\<LengthMetrics\>
 
 获取用户设置的内边距。
 
@@ -407,7 +407,7 @@ getUserConfigPadding(): Edges\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的内边距。 |
+| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的内边距。 |
 
 **示例：**
 
@@ -415,7 +415,7 @@ getUserConfigPadding(): Edges\<LengthMetric\>
 
 ### getUserConfigMargin<sup>12+</sup>
 
-getUserConfigMargin(): Edges\<LengthMetric\>
+getUserConfigMargin(): Edges\<LengthMetrics\>
 
 获取用户设置的外边距。
 
@@ -425,7 +425,7 @@ getUserConfigMargin(): Edges\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的外边距。 |
+| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的外边距。 |
 
 **示例：**
 
@@ -433,7 +433,7 @@ getUserConfigMargin(): Edges\<LengthMetric\>
 
 ### getUserConfigSize<sup>12+</sup>
 
-getUserConfigSize(): SizeT\<LengthMetric\>
+getUserConfigSize(): SizeT\<LengthMetrics\>
 
 获取用户设置的宽高。
 
@@ -443,7 +443,7 @@ getUserConfigSize(): SizeT\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的宽高。 |
+| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
 
 **示例：**
 

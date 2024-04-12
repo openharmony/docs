@@ -248,7 +248,7 @@ SizeT\<T>
 | width   | T    | 是   | 是   | 宽度的属性。 |
 | height    | T    | 是   | 是   | 高度的属性。 |
 
-## LengthMetric<sup>12+</sup>
+## LengthMetrics<sup>12+</sup>
 
 用于设置长度属性。
 
@@ -265,7 +265,7 @@ SizeT\<T>
 
 constructor(value: number, unit?: LengthUnit)
 
-LengthMetric的构造函数。
+LengthMetrics的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
