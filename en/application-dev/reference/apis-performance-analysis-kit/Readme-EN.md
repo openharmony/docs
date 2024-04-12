@@ -1,0 +1,33 @@
+# Performance Analysis Kit API Reference
+
+- ArkTS APIs
+  - [@ohos.faultLogger (FaultLogger)](js-apis-faultLogger.md)
+  - [@ohos.hichecker (HiChecker)](js-apis-hichecker.md)
+  - [@ohos.hidebug (HiDebug)](js-apis-hidebug.md)
+  - [@ohos.hilog (HiLog)](js-apis-hilog.md)
+  - [@ohos.hiTraceChain (Distributed Tracing)](js-apis-hitracechain.md)
+  - [@ohos.hiTraceMeter (Performance Tracing)](js-apis-hitracemeter.md)
+  - [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](js-apis-hiviewdfx-hiappevent.md)
+  - [@ohos.hiSysEvent (System Event Logging) (System API)](js-apis-hisysevent-sys.md)
+  - [@ohos.logLibrary (Log Library) (System API)](js-apis-loglibrary-sys.md)
+  - APIs No Longer Maintained
+    - [@ohos.bytrace (Performance Tracing)](js-apis-bytrace.md)
+    - [@ohos.hiAppEvent (Application Event Logging)](js-apis-hiappevent.md)
+- C APIs
+  - Modules
+    - [HiAppEvent](_hi_app_event.md)
+    - [HiLog](_hi_log.md)
+    - [Hitrace](_hitrace.md)
+  - Header Files
+    - [hiappevent.h](hiappevent_8h.md)
+    - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
+    - [hiappevent_event.h](hiappevent__event_8h.md)
+    - [hiappevent_param.h](hiappevent__param_8h.md)
+    - [log.h](log_8h.md)
+    - [trace.h](trace_8h.md)
+- Error Codes
+  - [FaultLogger Error Codes](errorcode-faultlogger.md)
+  - [Application Event Logging Error Codes](errorcode-hiappevent.md)
+  - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
+  - [HiSysEvent Error Codes](errorcode-hisysevent-sys.md)
+  - [Log Library Error Codes](errorcode-loglibrary-sys.md)

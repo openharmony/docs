@@ -1,4 +1,4 @@
-# ArkData (ArkData Management)
+# ArkData
 
 - [Introduction to ArkData](data-mgmt-overview.md)
 - Unified Data Definition

@@ -34,7 +34,7 @@ You can use the JAR package of the packing tool to generate an HAP file for a mo
 | --maple-so-dir   | No        | NA            | Path of the maple SO directory (folder).                                      | NA              |
 | --dex-path       | No        | NA            | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.| NA              |
 | --lib-path       | No        | NA            | Path of the library file.                                             | NA              |
-| --resources-path | No        | NA            | Path of the resource file.                                       | NA              |
+| --resources-path | No        | NA            | Path of the resources file.                                       | NA              |
 | --index-path     | No        | NA            | Path of the INDEX file. The file name must be **resources.index**.               | NA              |
 | --pack-info-path | No        | NA            | Path of the **pack.info** file. The file name must be **pack.info**.                  | NA              |
 | --rpcid-path     | No        | NA            | Path of the **rpcid.sc** file. The file name must be **rpcid.sc**.                    | NA              |
@@ -46,28 +46,6 @@ You can use the JAR package of the packing tool to generate an HAP file for a mo
 | --ap-path        | No        | NA            | Path of the AP file.                                          | This parameter is valid only in the stage model.|
 | --dir-list       | No        | NA            | List of directories (folders) to be packed into the HAP file.                     | NA              |
 
-## HAR Packing Command
-
-You can use the JAR package of the packing tool to generate an HAR file for an application by passing in packing options and file paths.
-
-Packing command example:
-
-```
-java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [option] --lib-path [option] --resources-path [option] --out-path [option] --force [option]
-```
-
-**Table 2** Parameters of the HAR packing command
-
-| Name             | Mandatory| Option         | Description                                                       |
-|-----------------|-------|-------------|-----------------------------------------------------------|
-| --mode          | Yes    | har         | Packing mode.                                                    |
-| --json-path     | Yes    | NA          | Path of the JSON file. The file name must be **config.json** in the FA model and **module.json** in the stage model.|
-| --jar-path      | No    | NA          | Path of the JAR file. The file name extension must be .jar. If there are multiple JAR files, separate them with commas (,).<br>The value can also be the directory (folder) where the JAR file is stored.|
-| --lib-path      | No    | NA          | Path of the library file.                                                |
-| --resource-path | Yes    | NA          | Path of the resource file.                                          |
-| --out-path      | Yes    | NA          | Path of the target file. The file name extension must be .har.                                    |
-| --force         | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.                       |
-
 ## HSP Packing Command
 
 HSP files enable file sharing among multiple HAPs. You can use the JAR package of the packing tool to generate an HSP file for an application by passing in packing options and file paths.
@@ -77,7 +55,7 @@ Packing command example:
 java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true
 ```
 
-**Table 3** Parameters of the HSP packing command
+**Table 2** Parameters of the HSP packing command
 
 | Name            | Mandatory| Option         | Description                                                        |
 | ---------------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -86,7 +64,7 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 | --profile-path   | No        | NA            | Path of the **CAPABILITY.profile** file.                                |
 | --dex-path       | No        | NA            | Path of the DEX file. The file name extension must be .dex. If there are multiple DEX files, separate them with commas (,).<br>The value can also be the directory (folder) where the DEX file is stored.|
 | --lib-path       | No        | NA            | Path of the library file.                                             |
-| --resources-path | No        | NA            | Path of the resource file.                                       |
+| --resources-path | No        | NA            | Path of the resources file.                                       |
 | --index-path     | No        | NA            | Path of the INDEX file. The file name must be **resources.index**.               |
 | --pack-info-path | No        | NA            | Path of the **pack.info** file. The file name must be **pack.info**.                  |
 | --js-path        | No        | NA            | Path of the JS file.                                        |
@@ -107,7 +85,7 @@ Packing command example:
 java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
 ```
 
-**Table 4** Parameters of the APP packing command
+**Table 3** Parameters of the APP packing command
 
 | Name                | Mandatory| Option         | Description                                                          |
 |--------------------|-------|-------------|--------------------------------------------------------------|
@@ -134,7 +112,7 @@ Packing command example:
 java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [option] --app-list [option] --out-path <option>
 ```
 
-**Table 5** Parameters of the multi-project packing command
+**Table 4** Parameters of the multi-project packing command
 
 | Name        | Mandatory| Option       | Description                                                                                                 |
 |------------|-------|-----------|-----------------------------------------------------------------------------------------------------|
@@ -157,7 +135,7 @@ Packing command example:
 java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --out-path <option>
 ```
 
-**Table 6** Parameters of the HQF packing command
+**Table 5** Parameters of the HQF packing command
 
 | Name         | Mandatory| Option         | Description                                |
 |-------------|-------|-------------|------------------------------------|
@@ -178,7 +156,7 @@ Packing command example:
 java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <option>
 ```
 
-**Table 7** Parameters of the APPQF packing command
+**Table 6** Parameters of the APPQF packing command
 
 | Name        | Mandatory| Option         | Description                                |
 |------------|-------|-------------|------------------------------------|
@@ -186,6 +164,9 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <opti
 | --hqf-list | Yes    | NA          | Path of the HQF file. If there are multiple HQF files, separate them with commas (,).             |
 | --out-path | Yes    | NA          | Path of the target file. The file name extension must be .appqf.           |
 | --force    | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.|
+
+
+           |
 
 ## versionNormalize Command
 
@@ -196,7 +177,7 @@ Packing command example:
 java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
 ```
 
-**Table 8** Parameters of the versionNormalize command
+**Table 7** Parameters of the versionNormalize command
 
 | Name            | Mandatory| Option              | Description                                                               |
 |----------------|-------|------------------|-------------------------------------------------------------------|

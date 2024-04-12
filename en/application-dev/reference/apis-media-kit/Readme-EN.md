@@ -2,7 +2,7 @@
 
 - ArkTS APIs
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
-  - [@ohos.multimedia.media (Media) (System)](js-apis-media-sys.md)
+  - [@ohos.multimedia.media (Media) (System API)](js-apis-media-sys.md)
   - multimedia
     - [SoundPool (Sound Pool)](js-apis-inner-multimedia-soundPool.md)
     - [SoundPool (Sound Pool) (System API)](js-apis-inner-multimedia-soundPool-sys.md)

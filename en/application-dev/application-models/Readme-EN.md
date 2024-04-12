@@ -71,8 +71,8 @@
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
     - [Component Startup Rules (FA Model)](component-startup-rules-fa.md)
-  - [Process Model (Stage Model)](process-model-fa.md)
-  - [Thread Model (Stage Model)](thread-model-fa.md)
+  - [Process Model (FA Model)](process-model-fa.md)
+  - [Thread Model (FA Model)](thread-model-fa.md)
   - [Mission Management (for System Applications Only)](mission-management-fa.md)
   - [Application Configuration File](config-file-fa.md)
 - Development of Component Interaction Between the FA Model and Stage Model
@@ -108,4 +108,4 @@
     - [resourceManager Switching](resourcemanager-switch.md)
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
-- [Ability Access Control](../security/AccessToken/Readme-EN.md)
+- [Access Control](../security/AccessToken/Readme-EN.md)

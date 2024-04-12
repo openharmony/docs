@@ -1416,7 +1416,7 @@ Sets a filter for a brush. The filter is a container that holds a mask filter an
 | Name| Description|
 | -------- | -------- |
 | OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
-| OH_Drawing_Filter | Pointer to an **OH_Drawing_Filter** object.|
+| OH_Drawing_Filter | Pointer to an **OH_Drawing_Filter** object. If null is passed in, the filter will be cleared.|
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -3556,7 +3556,7 @@ Sets a filter for a pen.
 | Name| Description|
 | -------- | -------- |
 | OH_Drawing_Pen | Pointer to an [OH_Drawing_Pen](#oh_drawing_pen) object.|
-| OH_Drawing_Filter | Pointer to an [OH_Drawing_Filter](#oh_drawing_filter) object.|
+| OH_Drawing_Filter | Pointer to an [OH_Drawing_Filter](#oh_drawing_filter) object. If null is passed in, the filter will be cleared.|
 
 
 ### OH_Drawing_PenSetJoin()
