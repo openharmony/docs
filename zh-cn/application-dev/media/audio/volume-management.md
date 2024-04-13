@@ -42,7 +42,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 应用可以使用系统提供的默认面板样式，当前仅提供默认的系统音量条样式，除位置外，其余基础属性调节暂不支持。
 
 ```ts
-import AVVolume from '@ohos.multimedia.avVolumePanel';
+import AVVolumePanel from '@ohos.multimedia.avVolumePanel';
 
 @Entry
 @Component
@@ -53,7 +53,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        AVVolume({
+        AVVolumePanel({
           volumeLevel: this.volume,
           volumeParameter: {
             position: {
