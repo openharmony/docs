@@ -797,3 +797,4 @@ Nullable\<T> {
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| GESTURE | 事件手势键。<br/>**说明：** [GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
