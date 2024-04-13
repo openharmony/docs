@@ -233,7 +233,8 @@ struct RatingExample {
 ![rating1](figures/rating1.gif)
 
 ### 示例3
-该示例实现了自定义评分条的功能，每个圆圈表示0.5分。
+该示例实现了自定义评分条的功能，每个圆圈表示0.5分。ratingIndicator为true时表示评分条作为一个指示器不可改变评分；
+为false时可以进行评分。ratingStars可改变评分总数。ratingStepsize可改变评分步长。
 
 ```ts
 // xxx.ets
@@ -255,39 +256,108 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 0.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
-          console.info('builder Rating change is'+ config.rating);
-          config.triggerChange(0.5);
-        })
+          if (!config.indicator) {
+            if (config.stepSize = 0.5) {
+              config.triggerChange(0.5);
+              return
+            }
+            if (config.stepSize = 1) {
+              config.triggerChange(1);
+              return
+            }
+          }
+        }).visibility(config.stars >= 1 ? Visibility.Visible : Visibility.Hidden)
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 0.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
-          console.info('builder Rating change is'+ config.rating);
-          config.triggerChange(1);
-        })
+          if (!config.indicator) {
+            config.triggerChange(1);
+          }
+        }).visibility(config.stars >= 1 ? Visibility.Visible : Visibility.Hidden)
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 1.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
-          console.info('builder Rating change is'+ config.rating);
-          config.triggerChange(1.5);
-        })
+          if (!config.indicator) {
+            if (config.stepSize = 0.5) {
+              config.triggerChange(1.5);
+              return
+            }
+            if (config.stepSize = 1) {
+              config.triggerChange(2);
+              return
+            }
+          }
+        }).visibility(config.stars >= 2 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 1.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
-          console.info('builder Rating change is'+ config.rating);
-          config.triggerChange(2);
-        })
+          if (!config.indicator) {
+            config.triggerChange(2);
+          }
+        }).visibility(config.stars >= 2 ? Visibility.Visible : Visibility.Hidden)
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 2.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
-          console.info('builder Rating change is'+ config.rating);
-          config.triggerChange(2.5);
-        })
+          if (!config.indicator) {
+            if (config.stepSize = 0.5) {
+              config.triggerChange(2.5);
+              return
+            }
+            if (config.stepSize = 1) {
+              config.triggerChange(3);
+              return
+            }
+          }
+        }).visibility(config.stars >= 3 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
       Circle({ width: 25, height: 25 })
         .fill(config.rating >= 2.9 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
-          console.info('builder Rating change is'+ config.rating);
-          config.triggerChange(3);
-        })
+          if (!config.indicator) {
+            config.triggerChange(3);
+          }
+        }).visibility(config.stars >= 3 ? Visibility.Visible : Visibility.Hidden)
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 3.4 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          if (!config.indicator) {
+            if (config.stepSize = 0.5) {
+              config.triggerChange(3.5);
+              return
+            }
+            if (config.stepSize = 1) {
+              config.triggerChange(4);
+              return
+            }
+          }
+        }).visibility(config.stars >= 4 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 3.9 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          if (!config.indicator) {
+            config.triggerChange(4);
+          }
+        }).visibility(config.stars >= 4 ? Visibility.Visible : Visibility.Hidden)
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 4.4 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          if (!config.indicator) {
+            if (config.stepSize = 0.5) {
+              config.triggerChange(4.5);
+              return
+            }
+            if (config.stepSize = 1) {
+              config.triggerChange(5);
+              return
+            }
+          }
+        }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden).margin({left:10})
+      Circle({ width: 25, height: 25 })
+        .fill(config.rating >= 4.9 ? Color.Black : Color.Red)
+        .onClick((event: ClickEvent) => {
+          if (!config.indicator) {
+            config.triggerChange(5);
+          }
+        }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden)
     }
     Text("分值：" + config.rating)
   }
@@ -296,16 +366,20 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
 @Entry
 @Component
 struct ratingExample {
-  @State rating: number = 3;
+  @State rating: number = 0;
+  @State ratingIndicator: boolean = true;
+  @State ratingStars: number = 0;
+  @State ratingStepsize: number = 0.5;
+  @State ratingEnabled: boolean = true;
   build() {
     Row() {
       Column() {
         Rating({
-          rating: 2,
-          indicator: true
+          rating: 0,
+          indicator: this.ratingIndicator
         })
-          .stepSize(0.5)
-          .stars(8)
+          .stepSize(this.ratingStepsize)
+          .stars(this.ratingStars)
           .backgroundColor(Color.Transparent)
           .width('100%')
           .height(50)
@@ -314,10 +388,41 @@ struct ratingExample {
             this.rating = value
           })
           .contentModifier(new MyRatingStyle("hello", 3))
+        Button(this.ratingIndicator ? "ratingIndicator : true" : "ratingIndicator : false")
+          .onClick((event) => {
+            if (this.ratingIndicator) {
+              this.ratingIndicator = false
+            } else {
+              this.ratingIndicator = true
+            }
+          }).margin({top : 5})
+
+        Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars =" + this.ratingStars : "ratingStars最大值为5")
+          .onClick((event) => {
+            if (this.ratingStars < 5) {
+              this.ratingStars += 1
+            }
+          }).margin({top : 5})
+
+        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars =" + this.ratingStars : "ratingStars小于等于0时默认等于5")
+          .onClick((event) => {
+            if (this.ratingStars > 0) {
+              this.ratingStars -= 1
+            }
+          }).margin({top : 5})
+
+        Button(this.ratingStepsize == 0.5 ? "ratingStepsize : 0.5" : "ratingStepsize : 1")
+          .onClick((event) => {
+            if (this.ratingStepsize == 0.5) {
+              this.ratingStepsize = 1
+            } else {
+              this.ratingStepsize = 0.5
+            }
+          }).margin({top : 5})
       }
       .width('100%')
       .height('100%')
-
+      .justifyContent(FlexAlign.Center)
     }
     .height('100%')
   }
