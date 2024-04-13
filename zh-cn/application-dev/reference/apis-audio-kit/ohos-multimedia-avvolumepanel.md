@@ -26,7 +26,7 @@ AVVolumePanel()
 ## 属性
 
 除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
-
+[音量组件api接口](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.avVolumePanel.d.ets)
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 |volumeLevel | number | 通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间，否则将被丢弃。 |

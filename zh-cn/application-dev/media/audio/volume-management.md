@@ -33,11 +33,11 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 ### 使用音量面板调节系统音量
 
-如上所述，调节系统音量的接口是SystemAPI，普通三方应用无法使用，但是系统通过提供音量面板，可以让用户通过界面操作来调节音量。使用面板的好处是，当应用调节音量时，系统会展示音量提示界面，显性的提示用户系统音量发生了改变。
+应用无法直接调节系统音量，可以通过系统音量面板，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。
 
-系统提供了[AVVolumePanel](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)由应用创建组件.
+系统提供了[AVVolumePanel](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)由应用创建组件。
 
-#### 默认面板样式
+### 默认面板样式
 
 应用可以使用系统提供的默认面板样式，当前仅提供默认的系统音量条样式，除位置外，其余基础属性调节暂不支持。
 
