@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DDK_Ashmem](ddk_ashmem.md) | 共享内存。  | 
+| [DDK_Ashmem](_ddk_ashmem.md) | 共享内存。  | 
 
 
 ### 枚举
