@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import AVVolume from '@ohos.multimedia.avVolumePanel';
+import AVVolumePanel from '@ohos.multimedia.avVolumePanel';
 ```
 
 ## 接口
