@@ -30,7 +30,7 @@ AVVolumePanel()
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 |volumeLevel | number | 通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间，否则将被丢弃。 |
-|volumeParameter | AVVolumePanelParameter(https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.avVolumePanel.d.ets) | 设置音量面板的自定义参数 |
+|volumeParameter | [AVVolumePanelParameter](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.avVolumePanel.d.ets) | 设置音量面板的自定义参数 |
 
 其中AVVolumePanelParameter自定义参数支持以下属性：
 
@@ -47,7 +47,7 @@ AVVolumePanel()
 音量面板功能的示例说明参考如下。
 
 ```ts
-import AVVolume from '@ohos.multimedia.avVolumePanel'
+import AVVolumePanel from '@ohos.multimedia.avVolumePanel'
 
 @Entry
 @Component
@@ -58,7 +58,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        AVVolume({
+        AVVolumePanel({
           volumeLevel: this.volume,
           volumeParameter: {
             position: {
