@@ -709,50 +709,69 @@ struct SliderExample {
 
 ```ts
 // xxx.ets
-//该示例实现了Slider组件通过样式Builder定制内容区，使用了进度条组件，按钮和文本框。点击增加按钮，进度条会按照原Slider设置的步长增加，反之点减少按钮进度条会减少，并触发原组件的onChange事件。
+//该示例实现了Slider组件通过样式Builder定制内容区。点击增加按钮，进度条会按照原Slider设置的步长增加，反之点减少按钮进度条会减少，并触发原组件的onChange事件。
 @Builder function buildSlider(config: SliderConfiguration) {
   Row() {
     Column({space: 30}) {
-      Progress({value: config.value, total: config.max, type:(config.contentModifier as MySliderStyle).progressType})
-        .margin(30)
+      Progress({value: config.value, total: config.max, type:ProgressType.Ring})
+        .margin({ top:20 })
 
       Button('增加').onClick(() => {
-        config.value=config.value+config.step
+        config.value = config.value + config.step
         config.triggerChange(config.value, SliderChangeMode.Click)
       })
         .width(100)
-        .height(30)
-        .fontSize(12)
+        .height(25)
+        .fontSize(10)
+        .enabled(config.value<config.max)
 
       Button('减少').onClick(() => {
         config.value=config.value-config.step
         config.triggerChange(config.value, SliderChangeMode.Click)
       })
         .width(100)
-        .height(30)
-        .fontSize(12)
+        .height(25)
+        .fontSize(10)
+        .enabled(config.value>config.min)
 
+      Slider({
+        value: config.value,
+        min: config.min,
+        max: config.max,
+        step:config.step,
+      })
+        .width(config.max)
+        .visibility((config.contentModifier as MySliderStyle).showSlider?Visibility.Visible:Visibility.Hidden)
+        .showSteps(true)
+        .onChange((value: number, mode: SliderChangeMode) => {
+          config.triggerChange(value, mode)
+        })
+      Text('当前状态：'+ ((config.contentModifier as MySliderStyle).sliderChangeMode==0?"Begin"
+        :((config.contentModifier as MySliderStyle).sliderChangeMode==1?"Moving"
+          :((config.contentModifier as MySliderStyle).sliderChangeMode==2?"End"
+            :((config.contentModifier as MySliderStyle).sliderChangeMode==3?"Click":"无")))))
+        .fontSize(10)
       Text('进度值：'+ config.value)
-        .fontSize(12)
-        .margin({top: 10})
+        .fontSize(10)
       Text('最小值：'+ config.min)
-        .fontSize(12)
+        .fontSize(10)
       Text('最大值：'+ config.max)
-        .fontSize(12)
+        .fontSize(10)
       Text('步长：'+ config.step)
-        .fontSize(12)
+        .fontSize(10)
     }
     .width('80%')
-    .height('100%')
 
   }
   .width('100%')
 }
 
 class MySliderStyle implements ContentModifier<SliderConfiguration> {
-  progressType:number=0
-  constructor(progressType: number) {
-    this.progressType = progressType
+  showSlider:boolean=true
+  sliderChangeMode:number=0
+  constructor(showSlider: boolean,sliderChangeMode:number) {
+    this.showSlider = showSlider
+    this.sliderChangeMode = sliderChangeMode
   }
   applyContent() : WrappedBuilder<[SliderConfiguration]> {
     return wrapBuilder(buildSlider)
@@ -763,24 +782,33 @@ class MySliderStyle implements ContentModifier<SliderConfiguration> {
 @Entry
 @Component
 struct SliderExample {
-  @State sliderValue: number = 40
+  @State showSlider:boolean=true
+  @State sliderValue: number = 0
+  @State sliderMin: number = 10
+  @State sliderMax: number = 100
+  @State sliderStep: number = 20
+  @State sliderChangeMode: number = 0
 
   build() {
     Column({ space: 8 }) {
+
       Row() {
         Slider({
           value: this.sliderValue,
-          min: 0,
-          max: 100,
-          step:10
+          min: this.sliderMin,
+          max: this.sliderMax,
+          step:this.sliderStep,
         })
+          .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
             this.sliderValue = value
+            this.sliderChangeMode=mode
             console.info('【SliderLog】value:' + value + 'mode:' + mode.toString())
           })
-          .contentModifier(new MySliderStyle(0))
+          .contentModifier(new MySliderStyle(this.showSlider,this.sliderChangeMode))
+
       }
-      .width('50%')
+      .width('100%')
 
     }.width('100%')
   }
