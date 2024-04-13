@@ -193,7 +193,7 @@ scrollBarColor(value: Color | number | string)
 
 scrollBarWidth(value: number | string)
 
-设置滚动条的宽度。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。
+设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Grid组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -772,7 +772,7 @@ struct GridExample {
 struct GridExample {
   @State numbers: String[] = ['0', '1', '2', '3', '4']
   scroller: Scroller = new Scroller()
-  @State Position: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+  @State gridPosition: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   build() {
     Column({ space: 5 }) {
@@ -824,11 +824,11 @@ struct GridExample {
         console.info("XXX" + "Grid onScrollStop")
       })
       .onReachStart(() => {
-        this.Position = 0
+        this.gridPosition = 0
         console.info("XXX" + "Grid onReachStart")
       })
       .onReachEnd(() => {
-        this.Position = 2
+        this.gridPosition = 2
         console.info("XXX" + "Grid onReachEnd")
       })
 

@@ -146,9 +146,15 @@ API version 12及以后：
 
 a)当前Text组件长按出现菜单时，旋转屏幕，隐藏菜单，保持选中态。
 
-b)当前TextInput/TextArea/Search/RichEditor组件长按出现菜单时，隐藏菜单，保持选中态。
+b)当前TextInput/TextArea/Search/RichEditor组件长按出现菜单时，进行复制行为，隐藏菜单，保持选中态。
 
 c)当前TextInput/TextArea/Search/RichEditor组件在手机和平板设备上通过代码选区，出现选中态和手柄，用户可自定义出现菜单。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/text_before.png) | ![](figures/text_after.png) |
+| ![](figures/copy_before.png) | ![](figures/copy_after.png) |
+| ![](figures/selection_before.png) | ![](figures/select_after.png) |
 
 **API Level**
 
@@ -202,7 +208,7 @@ TextInput组件。
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期
 
-## cl.arkui.5 bindMenu新增指向性菜单样式
+## cl.arkui.5 AlphabetIndexer组件的默认样式变更
 
 **访问级别**
 
@@ -210,25 +216,223 @@ TextInput组件。
 
 **变更原因**
 
-UX规格增强
+a)当前AlphabetIndexer组件的字母索引条默认字体大小为12vp，依照UX规范修改字母索引条默认字体大小到10vp。
+
+b)当前AlphabetIndexer组件的字母索引条默认字重为Normal，依照UX规范修改字母索引条默认字重到Medium。
+
+c)当前AlphabetIndexer组件的字母索引条选中项文字默认字体大小为12vp，依照UX规范修改字母索引条选中项文字默认字体大小到10vp。
+
+d)当前AlphabetIndexer组件的字母索引条选中项文字默认字重为Normal，依照UX规范修改字母索引条选中项文字默认字重到Medium。
+
+e)当前AlphabetIndexer组件的字母索引条索引项背板圆角默认为4vp，依照UX规范修改字母索引条索引项背板圆角默认为8vp。
+
+f)当前AlphabetIndexer组件的字母索引条背板圆角默认为0vp，依照UX规范修改字母索引条索引项背板圆角默认为12vp。
+
+g)当前AlphabetIndexer组件的字母索引条背板上下padding默认为2vp，依照UX规范修改字母索引条索引项背板上下padding默认为4vp。
+
+h)当前AlphabetIndexer组件的字母索引条pressed状态文字背板颜色默认为'#0c182431'，依照UX规范修改字母索引条pressed状态文字背板颜色默认为'#19182431'。
+
+i)当前AlphabetIndexer组件的弹出窗口默认背板阴影尺寸为DefaultShadowM、依照UX规范变更默认背板阴影尺寸为DefaultShadowL。
+
+j)当前AlphabetIndexer组件的弹出窗口默认背板最大高度为336vp、依照UX规范变更弹出窗口默认背板最大高度为342vp。
+
+k)当前AlphabetIndexer组件的弹出窗口自适应折叠模式默认背板最大高度为224vp、依照UX规范变更弹出窗口自适应折叠模式默认背板最大高度为186vp。
+
+l)当前AlphabetIndexer组件的弹出窗口上下padding默认为0vp、依照UX规范变更弹出窗口上下padding默认为4vp。
+
+m)当前AlphabetIndexer组件的弹出窗口背板圆角默认为16vp，依照UX规范修改弹出窗口背板圆角默认为28vp。
+
+n)当前AlphabetIndexer组件的弹出窗口索引项默认尺寸为56vp、依照UX规范变更弹出窗口索引项默认尺寸为48vp。
+
+o)当前AlphabetIndexer组件的弹出窗口索引项间隔为0vp、依照UX规范变更弹出窗口索引项间隔为4vp。
+
+p)当前AlphabetIndexer组件的弹出窗口索引项背板圆角默认为0vp，依照UX规范修改弹出窗口索引项背板圆角默认为24vp。
+
+q)当前AlphabetIndexer组件的弹出窗口背板颜色默认为'#FFFFFFFF'，依照UX规范修改弹出窗口背板颜色默认为'#66808080'。
+
+r)当前AlphabetIndexer组件的弹出窗口字母部分背板颜色默认为'#FFFFFFFF'，依照UX规范修改弹出窗口字母部分背板颜色默认为'#0c182431'。
+
+s)当前AlphabetIndexer组件的弹出窗口非字母部分背板颜色默认为'#FFFFFFFF'，依照UX规范修改弹出窗口非字母部分背板颜色默认为'#00000000'。
+
+t)当前AlphabetIndexer组件的弹出窗口非字母部分点击时背板颜色默认为0x1A000000，依照UX规范修改弹出窗口非字母部分背板颜色默认为'#0c182431'。
+
+u)当前AlphabetIndexer组件的弹出窗口背板模糊材质默认为NONE，依照UX规范修改弹出窗口背板模糊材质默认为COMPONENT_REGULAR。
+
+**变更影响**
+
+该变更为非兼容性变更。API version 11及以前，采用当前默认值。API version 12及以后，采用修改后默认值。
+
+**API Level**
+
+12 
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+AlphabetIndexer组件
+
+**适配指导**
+
+请查阅[AlphabetIndexer组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)文档进行适配。
+
+## cl.arkui.6  AlphabetIndexer组件允许用户自定义AlphabetIndexer的样式风格 
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+允许用户自定义AlphabetIndexer的样式风格：
+
+1、设置AlphabetIndexer索引项背板圆角、AlphabetIndexer背板圆角自适应变化
+
+2、设置AlphabetIndexer提示弹窗索引项背板圆角、AlphabetIndexer提示弹窗背板圆角自适应变化
+
+3、设置AlphabetIndexer提示弹窗首个索引项背板颜色
+
+4、设置AlphabetIndexer提示弹窗背板模糊风格
 
 **变更影响**
 
 该变更为非兼容性变更。
 
-变更前：在bindMenu的MenuOptions中将enableArrow属性设为true时，不展示指向性菜单样式。
+API version 11及以前，不允许用户自定义AlphabetIndexer索引项背板圆角、提示弹窗索引项背板圆角、提示弹窗首个索引项背板颜色、提示弹窗背板模糊风格。
 
-变更后：在bindMenu的MenuOptions中将enableArrow属性设为true且菜单的大小和位置足以放置箭头时，会展示指向性菜单样式。
+![AlphabetIndexerBefore](figures/AlphabetIndexerBefore.gif)
+
+API version 12及以后，允许用户自定义AlphabetIndexer索引项背板圆角、提示弹窗索引项背板圆角、提示弹窗首个索引项背板颜色、提示弹窗背板模糊风格。
+
+![AlphabetIndexerAfter](figures/AlphabetIndexerAfter.gif)
 
 **API Level**
 
-enableArrow、arrowOffset属性的起始支持版本为API version 10。
+12
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.21开始。
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct AlphabetIndexerSample {
+  private arrayA: string[] = ['安']
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
+  private arrayC: string[] = ['曹', '成', '陈', '催']
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+    'V', 'W', 'X', 'Y', 'Z']
+
+  build() {
+    Stack({ alignContent: Alignment.Start }) {
+      Row() {
+        List({ space: 20, initialIndex: 0 }){}
+        .width('50%')
+        .height('100%')
+
+        AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+          .popupBackground(0xD2B48C) // 弹出框背景颜色
+          .popupBackgroundBlurStyle(BlurStyle.COMPONENT_ULTRA_THICK) // 设置AlphabetIndexer提示弹窗背板模糊风格
+          .popupTitleBackground(0x00FF00) // 设置AlphabetIndexer提示弹窗首个索引项背板颜色
+          .popupItemBorderRadius(20) // 设置AlphabetIndexer提示弹窗索引项背板圆角
+          .itemBorderRadius(5) // 设置AlphabetIndexer索引项背板圆角
+          .onSelect((index: number) => {
+            console.info(this.value[index] + ' Selected!')
+          })
+          .onRequestPopupData((index: number) => {
+            if (this.value[index] == 'A') {
+              return this.arrayA // 当选中A时，弹出框里面的提示文本列表显示A对应的列表arrayA，选中B、C、L时也同样
+            } else if (this.value[index] == 'B') {
+              return this.arrayB
+            } else if (this.value[index] == 'C') {
+              return this.arrayC
+            } else if (this.value[index] == 'L') {
+              return this.arrayL
+            } else {
+              return [] // 选中其余子母项时，提示文本列表为空
+            }
+          })
+          .onPopupSelect((index: number) => {
+            console.info('onPopupSelected:' + index)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+**变更的接口/组件**
+
+AlphabetIndexer组件
 
 **适配指导**
 
-如果不需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中不设置enableArrow属性或将enableArrow属性设置为false；
-如果需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中将enableArrow属性设置为true，并根据需要决定是否设置arrowOffset属性值。
+请查阅[AlphabetIndexer组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)文档进行适配。
+
+## cl.arkui.7 Menu组件header、footer对齐方式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+UX样式变更
+
+**变更影响**
+
+该变更为兼容性变更。变更前，header、footer与菜单文本左对齐。变更后，header、footer与左侧图标左对齐。
+
+**API Level**
+
+起始level 9，在API 12进行版本隔离。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+Menu组件。
+
+**适配指导**
+
+UX默认行为变更，无需适配。
+
+## cl.arkui.8 Menu组件上下安全边距变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+UX样式变更
+
+**变更影响**
+
+该变更为兼容性变更。变更前，菜单布局避让顶部状态栏与底部导航条后，上下再保留48vp的边距。变更后，菜单布局避让顶部状态栏与底部导航条后，上方保留16vp的边距，下方保留4vp的边距。
+
+**API Level**
+
+在API 12进行版本隔离
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+Menu组件。
+
+**适配指导**
+
+UX默认行为变更，无需适配。

@@ -19,13 +19,12 @@
    import picker from '@ohos.file.picker';
    import fs from '@ohos.file.fs';
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   import { BusinessError } from '@ohos.base';
    ```
    
 2. 调用[select()](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select)接口从设备中选择一张图片，并用一个全局变量存储返回的uri。
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
 
    let selectUris: Array<string> = [];
        try {
@@ -50,8 +49,6 @@
    save返回的uri权限是读写权限，可以根据结果集里面的uri进行文件读写等操作。
 
    ```ts  
-   import picker from '@ohos.file.picker';
-   import { BusinessError } from '@ohos.base';
    
    let saveUris: Array<string> = [];
    try {
@@ -77,9 +74,7 @@
 4. 使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过选择和保存uri打开这两个文件得到fd，这里需要注意接口权限参数分别是fs.OpenMode.READ_ONLY和fs.OpenMode.WRITE_ONLY。再调用[fs.copyFileSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopyfilesync)接口进行复制，修改完成后关闭两个文件。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   
+
    try {
    	let photoSelect = fs.openSync(selectUris[0], fs.OpenMode.READ_ONLY);
        let photoSave = fs.openSync(saveUris[0], fs.OpenMode.WRITE_ONLY);
@@ -115,7 +110,6 @@
    </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
 
    let uris: Array<string> = [];
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
@@ -130,7 +124,6 @@
 4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
 
    ```ts
-   import fs from '@ohos.file.fs';
    
    const uri = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
@@ -140,7 +133,6 @@
 5. 通过fd使用[fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
-   import fs from '@ohos.file.fs';
    
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);

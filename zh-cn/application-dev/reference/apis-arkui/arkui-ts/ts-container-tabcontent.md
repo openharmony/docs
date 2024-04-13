@@ -66,11 +66,11 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 ## SubTabBarStyle<sup>9+</sup>
 
-子页签样式。
+子页签样式。打开后在切换页签时会播放跳转动画。
 
 ### constructor
 
-constructor(content: ResourceStr)
+constructor(content: ResourceStr | ComponentContent)
 
 SubTabBarStyle的构造函数。
 
@@ -78,11 +78,11 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| ComponentContent<sup>12+</sup> | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### of<sup>10+</sup>
 
-static of(content: ResourceStr)
+static of(content: ResourceStr | ComponentContent)
 
 SubTabBarStyle的静态构造函数。
 
@@ -90,7 +90,7 @@ SubTabBarStyle的静态构造函数。
 
 | 参数名  | 参数类型                                   | 必填 | 参数描述           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 页签内的文字内容。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| ComponentContent<sup>12+</sup> | 是   | 页签内的文字内容。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### 属性
 
@@ -1132,3 +1132,81 @@ struct TabBarStyleExample {
 ```
 
 ![tabContent](figures/tabContent6.gif)
+
+### 示例8
+该示例实现了通过ComponentContent设置SubTabBarStyle。
+```ts
+// xxx.ets
+import { ComponentContent } from "@ohos.arkui.node";
+import { UIContext } from '@ohos.arkui.UIContext';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+      .margin(20)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message1: string = "tabBar1"
+  @State message2: string = "tabBar2"
+  context: UIContext = this.getUIContext()
+  private count1 = 0;
+  private count2 = 0;
+  private controller: TabsController = new TabsController();
+  tabBar1: ComponentContent<Params> = new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(buildText), new Params(this.message1));
+  tabBar2: ComponentContent<Params> = new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(buildText), new Params(this.message2));
+
+  build() {
+    Row() {
+      Column() {
+        Button("更新tabBar1").width('90%').margin(20)
+          .onClick((event?: ClickEvent) => {
+            this.count1 += 1;
+            const message1 = "Update 1_" + this.count1.toString();
+            this.tabBar1.update(new Params(message1));
+          })
+        Button("更新tabBar2").width('90%').margin(20)
+          .onClick((event?: ClickEvent) => {
+            this.count2 += 1;
+            const message2 = "Update 2_" + this.count2.toString();
+            this.tabBar2.update(new Params(message2));
+          })
+        Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
+          }.tabBar(new SubTabBarStyle(this.tabBar1.getFrameNode()))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
+          }.tabBar(SubTabBarStyle.of(this.tabBar2.getFrameNode()))
+        }
+        .vertical(false)
+        .barWidth(414)
+        .barHeight(96)
+        .width(414)
+        .height(414)
+        .backgroundColor('#F1F3F5')
+        .margin({ top: 20 })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![tabContent7](figures/tabContent7.gif)

@@ -849,7 +849,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **系统接口：** 该接口为系统接口。
 
-| 名称      | 类型   | 可读  | 可写  | 说明           |
+| 名称      | 类型   | 只读  | 可写  | 说明           |
 | --------- | ------ | ---- | ----- | -------------- |
 | total   | number | 是 | 否 | 内置存储总空间大小（单位为Byte）    |
 | audio | number  |是 | 否 | 音频数据大小 （单位为Byte）  |

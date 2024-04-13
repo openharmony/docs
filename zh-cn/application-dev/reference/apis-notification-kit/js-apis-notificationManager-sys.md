@@ -3632,7 +3632,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| deviceType | string | 是   | 设备类型|
+| deviceType | string | 是   | 设备类型。|
 | enable   | boolean                  | 是   | 指定应用是否支持跨设备协同（true：支持，false：不支持）。|
 
 **返回值：**
@@ -3688,7 +3688,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 
 **返回值：**
 
@@ -3741,7 +3741,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 | enable   | boolean                  | 是   | 指定应用是否支持设备是否与其他设备协同智能提醒（true：支持，false：不支持）。|
 
 **返回值：**
@@ -3792,7 +3792,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 
 **返回值：**
 
@@ -4069,4 +4069,3 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN     |   1<<3   |     关闭亮屏提示功能。     |
 | NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     关闭振动提示功能。     |
 | NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     关闭状态栏图标提示功能。     |
-

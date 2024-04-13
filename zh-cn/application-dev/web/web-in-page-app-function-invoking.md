@@ -34,7 +34,7 @@
 
     build() {
       Column() {
-        // web组件加载本地index.html页面
+        // Web组件加载本地index.html页面
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
           // 将对象注入到web端
           .javaScriptProxy({

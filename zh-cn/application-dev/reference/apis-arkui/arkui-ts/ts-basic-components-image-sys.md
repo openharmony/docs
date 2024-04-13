@@ -46,7 +46,7 @@ edgeAntialiasing(value: number)
 
 ## ImageAnalyzerConfig<sup>11+</sup>
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 图片AI分析类型配置。
 

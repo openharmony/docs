@@ -130,9 +130,9 @@ maxLength(value: number)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| value  | number | 是   | 文本的最大输入字符数。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -312,7 +312,7 @@ underlineColor(value: ResourceColor|UnderlineColor|undefined)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\| [UnderlineColor](#underlinecolor12对象说明)\|undefined | 否   | 设置下划线颜色。<br/>当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [UnderlineColor](#underlinecolor12对象说明) \| undefined | 是   | 设置下划线颜色。<br/>当设置下划线颜色模式时，修改下划线颜色。当只设定非特殊状态下的颜色，可以直接输入ResourceColor。设定值为undefined、null、无效值时，所有下划线恢复为默认值。<br/>默认值：主题配置的下划线颜色。主题配置的默认下滑颜色为'#33182431'。 |
 
 ### passwordIcon<sup>10+</sup>
 
@@ -385,20 +385,6 @@ maxLines(value: number)
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>取值范围：(0, +∞) |
-
-### wordBreak<sup>12+</sup>
-
-wordBreak(value: WordBreak)
-
-设置文本断行规则。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 断行规则。 <br />默认值：WordBreak.BREAK_WORD |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -505,7 +491,10 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 | options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
 
 >  **说明：**    
->  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: 12 vp,<br>&nbsp;right: 0 vp,<br>&nbsp;bottom: 12 vp,<br>&nbsp;left: 0 vp<br> }
+>
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### lineHeight<sup>12+</sup>
@@ -540,7 +529,7 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
@@ -576,6 +565,65 @@ fontFeature(value: string)
 
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
+
+>  **说明：**
+>  type属性中InputType枚举为Password、NEW_PASSWORD和NUMBER_PASSWORD等密码模式时，暂时不支持fontFeature设置文本样式。
+
+### wordBreak<sup>12+</sup>
+
+wordBreak(value: WordBreak)
+
+设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是   | 内联输入风格编辑态时断行规则。 <br />默认值：WordBreak.BREAK_WORD |
+
+>  **说明：**
+>
+>  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
+
+### textOverflow<sup>12+</sup>
+
+textOverflow(value: TextOverflow)
+
+设置文本超长时的显示方式。
+
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+
+当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+**卡片能力：** 该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                          | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>Inline模式下默认值：TextOverflow.Ellipsis，否则为TextOverflow.Clip                     |
+
+>  **说明：**  
+>   TextInput组件 InLine模式下支持TextOverflow.CLIP、TextOverflow.ELLIPSIS，其余模式下只支持显示TextOverflow.Clip
+>   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 Inline模式下显示为TextOverflow.Ellipsis，否则显示为TextOverflow.Clip
+
+### textIndent<sup>12+</sup>
+
+textIndent(value: Dimension)
+
+设置首行文本缩进。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                         |
+| ------ | ---------------------------- | ---- | ---------------------------- |
+| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -823,7 +871,9 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
-##  SelectionOptions<sup>12+</sup>
+>
+
+## SelectionOptions<sup>12+</sup>
 
 setTextSelection选中文字时的配置。
 
@@ -919,12 +969,12 @@ getCaretOffset(): CaretOffset
 
 ## UnderlineColor<sup>12+</sup>对象说明
 
-| 参数名  | 类型                                                        | 必填 | 描述                                                         |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| typing  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| normal  | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
-| error   | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
-| disable | &nbsp;[ResourceColor](ts-types.md#resourcecolor)\|undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| 参数名  | 类型                                                         | 必填 | 描述                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| typing  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 键入时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| normal  | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 非特殊状态时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
+| error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
+| disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
 ## KeyboardOptions<sup>12+</sup>
 
@@ -1113,7 +1163,7 @@ struct TextInputExample {
     Column() {
       TextInput({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
 }
@@ -1228,7 +1278,7 @@ struct phone_example {
   build() {
     Column() {
         Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
+          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
             .onChange((number: string) => {
               let teleNumberNoSpace: string = this.removeSpace(number);
               if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
@@ -1262,7 +1312,7 @@ struct phone_example {
 }
 
 ```
-![phone_example](figures/phone_number.jpeg)
+![phone_example](figures/phone_number.PNG)
 
 ### 示例7
 

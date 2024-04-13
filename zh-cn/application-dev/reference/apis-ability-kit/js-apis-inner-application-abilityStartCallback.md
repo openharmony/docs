@@ -19,7 +19,8 @@ import common from '@ohos.app.ability.common';
 
 | 名称        |  类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| onError<sup>11+</sup>  | function               | 是   | 拉起UIExtensionAbility失败后的回调函数。                                |
+| onError  | function               | 是   | 拉起UIExtensionAbility失败后的回调函数。                                |
+| onResult<sup>12+</sup> | function               | 否   | 拉起UIExtensionAbility后，UIExtensionAbility调用terminateSelfWithResult的回调函数。                        |
 
 **示例：**
 

@@ -173,7 +173,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
 
@@ -183,7 +183,7 @@ getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag))
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
@@ -213,7 +213,7 @@ try {
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
+getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
 
@@ -223,7 +223,7 @@ getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag),
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
 
 **示例：**
@@ -646,7 +646,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 
 **返回值：**
 
@@ -825,7 +825,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 根据给定的bundleName获得扩展资源对应的moduleNames。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -860,7 +860,7 @@ let bundleName : string = 'com.ohos.demo';
 
 try {
     bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
-        for (let i = 0; i < modules.length; i++>) {
+        for (let i = 0; i < modules.length; i++) {
             hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
         }
     }).catch((err: BusinessError) => {
@@ -983,7 +983,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 根据给定的bundleName获得动态图标对应的moduleName。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

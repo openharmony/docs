@@ -261,7 +261,7 @@ start(): Promise&lt;void&gt;
   gallerySync.start().then(() => {
 	  console.info("start sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -304,7 +304,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   gallerySync.start((err: BusinessError) => {
     if (err) {
-      console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start sync successfully");
     }
@@ -352,7 +352,7 @@ stop(): Promise&lt;void&gt;
   gallerySync.stop().then(() => {
 	  console.info("stop sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -396,7 +396,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   gallerySync.stop((err: BusinessError) => {
     if (err) {
-      console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop sync successfully");
     }
@@ -586,7 +586,7 @@ start(uri: string): Promise&lt;void&gt;
   download.start(uri).then(() => {
 	  console.info("start download successfully");
   }).catch((err: BusinessError) => {
-	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -642,7 +642,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   download.start(uri, (err: BusinessError) => {
     if (err) {
-      console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start download successfully");
     }
@@ -697,7 +697,7 @@ stop(uri: string): Promise&lt;void&gt;
   download.stop(uri).then(() => {
 	  console.info("stop download successfully");
   }).catch((err: BusinessError) => {
-	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -743,7 +743,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   download.stop(uri, (err: BusinessError) => {
     if (err) {
-      console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop download successfully");
     }
@@ -942,7 +942,7 @@ start(): Promise&lt;void&gt;
   fileSync.start().then(() => {
 	  console.info("start sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -986,7 +986,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   fileSync.start((err: BusinessError) => {
     if (err) {
-      console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start sync successfully");
     }
@@ -1033,7 +1033,7 @@ stop(): Promise&lt;void&gt;
   fileSync.stop().then(() => {
 	  console.info("stop sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1076,7 +1076,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   fileSync.stop((err: BusinessError) => {
     if (err) {
-      console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop sync successfully");
     }
@@ -1122,7 +1122,7 @@ getLastSyncTime(): Promise&lt;number&gt;
     let date = new Date(timeStamp);
     console.info("get last sync time successfully:"+ date);
   }).catch((err: BusinessError) => {
-	  console.info("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
   });
 
   ```
@@ -1164,7 +1164,7 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 
   fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
     if (err) {
-      console.info("get last sync time with error message: " + err.message + ", error code: " + err.code);
+      console.error("get last sync time with error message: " + err.message + ", error code: " + err.code);
     } else {
       let date = new Date(timeStamp);
       console.info("get last sync time successfully:"+ date);
@@ -1222,7 +1222,7 @@ cleanCache(uri: string): void;
     fileCache.cleanCache(uri);
   } catch (err) {
     let error:BusinessError = err as BusinessError;
-    console.info("clean cache failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("clean cache failed with error message: " + err.message + ", error code: " + err.code);
   } 
 
   ```
@@ -1275,7 +1275,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
         console.info("get file sync state successfully" + syncStates[i]);
     }
   }).catch((err: BusinessError) => {
-	  console.info("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
   });
 
   ```
@@ -1320,7 +1320,7 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
     if (err) {
-      console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
+      console.error("get file sync state with error message: " + err.message + ", error code: " + err.code);
     } else {
       for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
@@ -1398,7 +1398,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
 | recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
-| callback | Callback&lt;ChangeData&gt; | 是   | 返回更改的数据。 |
+| callback | Callback&lt;[ChangeData](#changedata12)&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
 
@@ -1408,7 +1408,6 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |

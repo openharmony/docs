@@ -15,7 +15,7 @@
         - [崩溃事件介绍](hiappevent-watcher-crash-events.md)
         - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)
         - [订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)
-      - 卡死时间
+      - 卡死事件
         - [卡死事件介绍](hiappevent-watcher-freeze-events.md)
         - [订阅卡死事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)
         - [订阅卡死事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)

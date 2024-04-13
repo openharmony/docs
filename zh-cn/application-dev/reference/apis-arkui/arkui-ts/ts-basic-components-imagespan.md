@@ -80,7 +80,63 @@ textBackgroundStyle(value: TextBackgroundStyle)
 
 ## 事件
 
-通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
+通用事件仅支持[点击事件](ts-universal-attributes-click.md)。还支持以下事件：
+
+### onComplete<sup>12+</sup>
+
+onComplete(callback: ImageCompleteCallback)
+
+图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| callback | [ImageCompleteCallback](#imagecompletecallback12) | 是   | 图片数据加载成功和解码成功时触发的回调。 |
+
+### onError<sup>12+</sup>
+
+onError(callback: ImageErrorCallback)
+
+图片加载异常时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| callback | [ImageErrorCallback](ts-basic-components-image.md#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。 |
+
+## ImageCompleteCallback<sup>12+</sup>
+
+type ImageCompleteCallback = (result: ImageLoadResult) => void
+
+图片加载异常时触发的回调。
+
+| 参数名 | 类型                       | 必填 | 说明                               |
+| ------ | -------------------------- | ---- | ---------------------------------- |
+| result  | [ImageLoadResult](#imageloadresult12) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
+
+## ImageLoadResult<sup>12+</sup>
+
+图片数据加载成功和解码成功触发回调时返回的对象。
+
+| 参数名                       | 类型   | 必填 | 说明                                                         |
+| ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
+| width                        | number | 是   | 图片的宽。<br/>单位：像素                                    |
+| height                       | number | 是   | 图片的高。<br/>单位：像素                                    |
+| componentWidth               | number | 是   | 组件的宽。<br/>单位：像素                                    |
+| componentHeight              | number | 是   | 组件的高。<br/>单位：像素                                    |
+| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
+| contentWidth   | number | 是   | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight  | number | 是   | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+
+
 
 ## 示例
 
@@ -152,3 +208,28 @@ struct Index {
 }
 ```
 ![imagespan](figures/image_span_textbackgroundstyle.png)
+
+### 示例3
+ImageSpan设置图片成功加载解码和图片加载异常事件回调。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State src: ResourceStr = $r('app.media.icon');
+  build(){
+    Column(){
+      Text(){
+        ImageSpan(this.src)
+          .width(100).height(100)
+          .onError((err)=>{
+            console.log("onError:" + err.message)
+          })
+          .onComplete((event)=>{
+            console.log("onComplete: " + event.loadingStatus)
+          })
+      }
+    }.width('100%').height('100%')
+  }
+}
+```

@@ -22,7 +22,7 @@ import Intl from '@ohos.intl';
 
 ### Attributes
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -176,7 +176,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 Represents the locale options.
 
 Since API version 9, the attributes in **LocaleOptions** are optional.
-Since API version 11, **LocaleOptions** is supported in ArkTS widgets.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -197,7 +198,7 @@ constructor()
 
 Creates a **DateTimeOptions** object for the specified locale.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -338,7 +339,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 Provides the options for the **DateTimeFormat** object. For details about the parameter values and implementation effects, see [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 
 Since API version 9, the attributes in **DateTimeOptions** are optional.
-Since API version 11, **DateTimeOptions** is supported in ArkTS widgets.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 

@@ -32,6 +32,7 @@
 | { [UI_TOUCH_EVENT_ACTION_CANCEL](_ark_u_i___event_module.md) = 0, [UI_TOUCH_EVENT_ACTION_DOWN](_ark_u_i___event_module.md) = 1, [UI_TOUCH_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 2, [UI_TOUCH_EVENT_ACTION_UP](_ark_u_i___event_module.md) = 3 } | 定义输入事件的Action Code。  | 
 | {<br/>[UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_INPUT_EVENT_TOOL_TYPE_FINGER](_ark_u_i___event_module.md) = 1, [UI_INPUT_EVENT_TOOL_TYPE_PEN](_ark_u_i___event_module.md) = 2, [UI_INPUT_EVENT_TOOL_TYPE_MOUSE](_ark_u_i___event_module.md) = 3,<br/>[UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD](_ark_u_i___event_module.md) = 4, [UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK](_ark_u_i___event_module.md) = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { [UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE](_ark_u_i___event_module.md) = 1, [UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN](_ark_u_i___event_module.md) = 2 } | 产生输入事件的来源类型定义。  | 
+| [HitTestMode](_ark_u_i___event_module.md#hittestmode) { [HTMDEFAULT](_ark_u_i___event_module.md) = 0, [HTMBLOCK](_ark_u_i___event_module.md), [HTMTRANSPARENT](_ark_u_i___event_module.md), [HTMNONE](_ark_u_i___event_module.md) } | 定义触摸测试类型的枚举值。  | 
 
 
 ### 函数
@@ -80,3 +81,4 @@
 | double [OH_ArkUI_AxisEvent_GetVerticalAxisValue](_ark_u_i___event_module.md#oh_arkui_axisevent_getverticalaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前轴事件的垂直滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetHorizontalAxisValue](_ark_u_i___event_module.md#oh_arkui_axisevent_gethorizontalaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前轴事件的水平滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetPinchAxisScaleValue](_ark_u_i___event_module.md#oh_arkui_axisevent_getpinchaxisscalevalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event) | 获取当前轴事件的捏合轴缩放的值。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](_ark_u_i___event_module.md#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [HitTestMode](_ark_u_i___event_module.md#hittestmode) mode) | 配置HitTest模式。  | 

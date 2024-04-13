@@ -15,9 +15,6 @@
       - [HSP](in-app-hsp.md)
       - [动态import](arkts-dynamic-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
-    - 应用程序包快速修复
-      - [快速修复概述](quickfix-principles.md)
-      - [快速修复命令行调试开发指导](quickfix-debug.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
@@ -87,3 +84,4 @@
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+      - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)
