@@ -1,7 +1,7 @@
-# @ohos.arkui.advanced.EmbeddedAtomicServiceComponent (嵌入式元服务组件)
+# @ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)
 
 
-嵌入式元服务组件，当使用方被拉起方授权时嵌入式运行元服务，未授权时跳出式拉起元服务。
+全屏启动元服务组件，当被拉起方授权使用方可以嵌入式运行元服务时，使用方全屏嵌入式运行元服务；未授权时，使用方跳出式拉起元服务。
 
 
 > **说明：**
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { EmbeddedAtomicServiceComponent } from "@ohos.arkui.advanced.EmbeddedAtomicServiceComponent"
+import { FullScreenLaunchComponent } from "@ohos.arkui.advanced.FullScreenLaunchComponent"
 ```
 
 
@@ -21,11 +21,11 @@ import { EmbeddedAtomicServiceComponent } from "@ohos.arkui.advanced.EmbeddedAto
 无
 
 ## 属性
-不支持通用属性
+不支持[通用属性](ts-universal-attributes-size.md)
 
-## EmbeddedAtomicServiceComponent
+## FullScreenLaunchComponent
 
-EmbeddedAtomicServiceComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions })
+FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: AtomicServiceOptions })
 
 **装饰器类型：**\@Component
 
@@ -42,12 +42,12 @@ EmbeddedAtomicServiceComponent({ content: Callback\<void>, appId: string, option
 | options | AtomicServiceOptions | 是 | 拉起元服务参数。 |
 
 ## 事件
-不支持通用事件
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
 ```ts
-import EmbeddedAtomicServiceComponent from '@ohos.arkui.advanced.EmbeddedAtomicServiceComponent';
+import FullScreenLaunchComponent from '@ohos.arkui.advanced.FullScreenLaunchComponent';
 
 @Entry
 @Component
@@ -57,7 +57,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        EmbeddedAtomicServiceComponent({
+        FullScreenLaunchComponent({
           builder: ColumChild,
           appId: this.appId,
           options: {}
