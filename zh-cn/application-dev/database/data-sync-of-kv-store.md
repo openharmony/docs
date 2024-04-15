@@ -164,6 +164,24 @@
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
+
+     let child1 = new distributedKVStore.FieldNode('id');
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     child1.nullable = false;
+     child1.default = '1';
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     let child2 = new distributedKVStore.FieldNode('name');
+     child2.type = distributedKVStore.ValueType.STRING;
+     child2.nullable = false;
+     child2.default = 'zhangsan';
+
+     let schema = new distributedKVStore.Schema();
+     schema.root.appendChild(child1);
+     schema.root.appendChild(child2);
+     schema.indexes = ["$.id","$.name"];
+     schema.mode = 1;
+     schema.skip = 0;
+
      const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
@@ -172,6 +190,8 @@
        // kvStoreType不填时，默认创建多设备协同数据库
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       schema: schema,
+       // schema 可以不填，在需要使用schema功能时可以构造此参数，例如：使用谓词查询等。
        securityLevel: distributedKVStore.SecurityLevel.S1
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
