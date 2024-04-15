@@ -25,6 +25,23 @@ import baseProfile from '@ohos.bluetooth.baseProfile';
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | 是   | 否   | 表示蓝牙设备地址。   |
 | state    | ProfileConnectionState        | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
+| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | 是 | 否 | 表示连接失败的原因。|
+
+
+## DisconnectCause<sup>12+</sup>
+
+枚举，连接失败原因。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                 | 值  | 说明     |
+| ------------------ | ---- | ------ |
+| USER_DISCONNECT            | 0    | 用户主动断开连接。|
+| CONNECT_FROM_KEYBOARD      | 1    | 应该从键盘侧发起连接。|
+| CONNECT_FROM_MOUSE         | 2    | 应该从鼠标侧发起连接。|
+| CONNECT_FROM_CAR           | 3    | 应该从车机侧发起连接。|
+| TOO_MANY_CONNECTED_DEVICES | 4    | 当前连接数超过上限。|
+| CONNECT_FAIL_INTERNAL      | 5    | 内部错误。|
 
 
 ## baseProfile.getConnectedDevices
