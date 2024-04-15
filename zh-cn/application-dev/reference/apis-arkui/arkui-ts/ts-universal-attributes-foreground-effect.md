@@ -22,7 +22,8 @@ foregroundEffect(options: ForegroundEffectOptions)
 
 ## 示例
 
-### 示例1
+通过foregroundEffect接口设置前景属性
+
 ```ts
 // xxx.ets
 @Entry
@@ -41,5 +42,8 @@ struct Index {
   }
 }
 ```
+
+效果图如下：
+radius表示模糊半径，数值越大越模糊
 
 ![foregroundColor_circle](figures/foregroundEffect.jpg)
