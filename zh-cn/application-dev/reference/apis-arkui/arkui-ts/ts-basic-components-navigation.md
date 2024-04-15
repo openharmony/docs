@@ -2239,6 +2239,11 @@ struct NavigationExample3 {
 
 ```ts
 // 该示例演示NavDestination的右上角菜单功能
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOneComponent()
+}
+
 @Component
 struct PageOneComponent {
   private menuItems: Array<NavigationMenuItem> = [
