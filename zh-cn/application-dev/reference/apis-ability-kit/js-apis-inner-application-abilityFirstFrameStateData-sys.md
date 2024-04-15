@@ -1,6 +1,6 @@
 # AbilityFirstFrameStateData(系统接口)
 
-定义首帧绘制完成回调上报数据结构，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageron12)注册监听ability首帧绘制完成事件后，通过[AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)的onAbilityFirstFrameDrawn首帧绘制完成回调获取。
+定义首帧绘制完成回调上报数据结构，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageron12)注册监听Ability首帧绘制完成事件后，通过[AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)的onAbilityFirstFrameDrawn首帧绘制完成回调获取。
 
 > **说明：**
 >
@@ -17,12 +17,12 @@ import appManager from '@ohos.application.appManager';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用
+**系统接口**：此接口为系统接口。
 
-| 名称        | 类型    | 可读 | 可写 | 说明             |
+| 名称        | 类型    | 只读 | 必填 | 说明             |
 | ----------- | ------- | ---- | ---- | ---------------- |
 | bundleName  | string  | 是   | 否   | 应用Bundle名称。 |
 | moduleName  | string  | 是   | 否   | 应用Module名称。 |
 | abilityName | string  | 是   | 否   | Ability名称。    |
 | appIndex    | number  | 是   | 否   | DLP沙盒的索引。  |
-| isColdStart | boolean | 是   | 否   | 是否冷启动       |
+| isColdStart | boolean | 是   | 否   | 是否冷启动。     |

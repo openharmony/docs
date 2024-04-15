@@ -291,7 +291,7 @@ try {
 
 on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
 
-注册监听ability首帧绘制完成事件观察者对象，可用于系统应用监听ability首帧绘制事件。
+注册监听Ability首帧绘制完成事件观察者对象，可用于系统应用监听Ability首帧绘制事件。
 
 **系统接口**：此接口为系统接口。
 
@@ -304,8 +304,8 @@ on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bun
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | 是   | 调用接口类型，固定填'abilityFirstFrameState'字符串。         |
-| observer   | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 是   | 表示待注册的ability首帧绘制完成事件观察者对象。              |
-| bundleName | string                                                       | 否   | 表示待监听的ability的应用bundleName，不填表示注册监听所有应用ability首帧绘制完成事件。 |
+| observer   | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 是   | 表示待注册的Ability首帧绘制完成事件观察者对象。              |
+| bundleName | string                                                       | 否   | 表示待监听的Ability的应用bundleName，不填表示注册监听所有应用ability首帧绘制完成事件。 |
 
 **错误码**：
 
@@ -558,7 +558,7 @@ try {
 
 off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
 
-取消注册监听ability首帧绘制完成事件观察者对象。
+取消注册监听Ability首帧绘制完成事件观察者对象。
 
 **系统接口**：此接口为系统接口。
 
@@ -571,7 +571,7 @@ off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 调用接口类型，固定填'abilityFirstFrameState'字符串。         |
-| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 否   | 表示待取消的ability首帧绘制完成事件观察者对象，不填表示取消所有监听对象。 |
+| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 否   | 表示待取消的Ability首帧绘制完成事件观察者对象，不填表示取消所有监听对象。 |
 
 **错误码**：
 
