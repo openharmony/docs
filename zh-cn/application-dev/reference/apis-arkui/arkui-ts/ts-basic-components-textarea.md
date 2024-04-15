@@ -1044,6 +1044,7 @@ struct TextAreaExample {
       .width("100%")
       .padding({bottom:50})
       TextArea({ controller: this.controller, text: this.inputValue})
+        .height(100)
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
         // .height(200)
@@ -1051,5 +1052,5 @@ struct TextAreaExample {
   }
 }
 ```
-![CustomTextAreaType](figures/Custom_Text_Area.gif)
+![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
