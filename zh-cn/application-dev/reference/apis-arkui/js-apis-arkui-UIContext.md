@@ -4366,6 +4366,7 @@ import { UIContext } from '@ohos.arkui.UIContext';
      });
    });
  }
+}
 ```
 
 ## AtomicServiceBar<sup>11+</sup>
