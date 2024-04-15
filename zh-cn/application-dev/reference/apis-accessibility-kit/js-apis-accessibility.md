@@ -60,7 +60,7 @@ import accessibility from '@ohos.accessibility';
 
 ## Action
 
-应用所支持的目标动作。
+应用所支持的目标动作，需要配置参数的目标动作已在描述中标明。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -79,9 +79,9 @@ import accessibility from '@ohos.accessibility';
 | copy                    | 表示复制操作。   |
 | paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
-| setText                 | 表示设置文本操作。当前版本暂不支持。 |
+| setText                 | 表示设置文本操作，需要配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd。   |
 
 ## Capability
 
