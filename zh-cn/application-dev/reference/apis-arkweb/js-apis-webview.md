@@ -6980,7 +6980,7 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .onControllerAttached( => {
+        .onControllerAttached(() => {
           getContext().resourceManager.getRawFileContent("local.js")
             .then((content) => {
               this.controller.precompileJavaScript("https://exmaple.com/example.js", content, {
@@ -6992,10 +6992,10 @@ struct WebComponent {
                 ]
               }).then((res) => {
                 console.error("precompile result: " + res);
-              }).catch((err) => {
+              }).catch((err: number) => {
                 console.error("precompile error: " + err);
               })
-            }
+            })
         })
     }
   }
@@ -13091,4 +13091,4 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 | 名称        | 类型   | 可读 | 可写 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，用于标识文件版本，判断是否需要更新。   |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
