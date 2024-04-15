@@ -19,16 +19,16 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
 - Local initialization with the owning component's custom \@Builder function reference or a global \@Builder function reference
 
   ```ts
-  @Builder function GlobalBuilder0() {}
+  @Builder function overBuilder() {}
 
   @Component
   struct Child {
     @Builder doNothingBuilder() {};
 
     // Use the custom builder function of the custom component for \@BuilderParam initialization.
-    @BuilderParam aBuilder0: () => void = this.doNothingBuilder;
+    @BuilderParam customBuilderParam: () => void = this.doNothingBuilder;
     // Use the global custom builder function for \@BuilderParam initialization.
-    @BuilderParam aBuilder1: () => void = GlobalBuilder0;
+    @BuilderParam customOverBuilderParam: () => void = overBuilder;
     build(){}
   }
   ```
@@ -39,11 +39,11 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   @Component
   struct Child {
     // Use the \@Builder decorated method in the parent component for \@BuilderParam initialization.
-    @BuilderParam aBuilder0: () => void;
+    @BuilderParam customBuilderParam: () => void;
 
     build() {
       Column() {
-        this.aBuilder0()
+        this.customBuilderParam()
       }
     }
   }
@@ -57,7 +57,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
 
     build() {
       Column() {
-        Child({ aBuilder0: this.componentBuilder })
+        Child({ customBuilderParam: this.componentBuilder })
       }
     }
   }
@@ -67,7 +67,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
 
 - **this** in the function body must point to the correct object.
 
-  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. With **\@BuilderParam aBuilder0** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.aBuilder0()**, **this** points to the label of the **Child** component, that is, **Child**.
+  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. With **\@BuilderParam customBuilderParam** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.customBuilderParam()**, **this** points to the label of the **Child** component, that is, **Child**.
 
    >  **NOTE**
    >
@@ -77,11 +77,11 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
   @Component
   struct Child {
     label: string = `Child`
-    @BuilderParam aBuilder0: () => void;
+    @BuilderParam customBuilderParam: () => void;
 
     build() {
       Column() {
-        this.aBuilder0()
+        this.customBuilderParam()
       }
     }
   }
@@ -98,7 +98,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
     build() {
       Column() {
         this.componentBuilder()
-        Child({ aBuilder0: this.componentBuilder })
+        Child({ customBuilderParam: this.componentBuilder })
       }
     }
   }
@@ -116,7 +116,7 @@ An \@BuilderParam decorated method can be a method with or without parameters. W
 
 
 ```ts
-@Builder function GlobalBuilder1($$ : {label: string }) {
+@Builder function overBuilder($$ : {label: string }) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -127,14 +127,14 @@ An \@BuilderParam decorated method can be a method with or without parameters. W
 struct Child {
   label: string = 'Child'
   // Without parameters. The pointed componentBuilder is also without parameters.
-  @BuilderParam aBuilder0: () => void;
+  @BuilderParam customBuilderParam: () => void;
   // With parameters. The pointed GlobalBuilder1 is also with parameters.
-  @BuilderParam aBuilder1: ($$ : { label : string}) => void;
+  @BuilderParam customOverBuilderParam: ($$ : { label : string}) => void;
 
   build() {
     Column() {
-      this.aBuilder0()
-      this.aBuilder1({label: 'global Builder label' } )
+      this.customBuilderParam()
+      this.customOverBuilderParam({label: 'global Builder label' } )
     }
   }
 }
@@ -151,7 +151,7 @@ struct Parent {
   build() {
     Column() {
       this.componentBuilder()
-      Child({ aBuilder0: this.componentBuilder, aBuilder1: GlobalBuilder1 })
+      Child({ customBuilderParam: this.componentBuilder, customOverBuilderParam: overBuilder })
     }
   }
 }
@@ -176,6 +176,7 @@ You can pass the content in the trailing closure to \@BuilderParam as an \@Build
 @Component
 struct CustomContainer {
   @Prop header: string;
+  // Use the trailing closure {} (@Builder decorated method) of the parent component for @BuilderParam initialization.
   @BuilderParam closer: () => void
 
   build() {

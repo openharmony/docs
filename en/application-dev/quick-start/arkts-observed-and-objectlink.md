@@ -20,7 +20,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 - Using \@Observed alone has no effect. It needs to be used with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization.
 
 
-## Restrictions
+## Constraints
 
 - Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
 
@@ -127,14 +127,14 @@ this.b.a.c = 5
 
 ### Framework Behavior
 
-1. Initial render:
-   1. \@Observed causes all instances of the decorated class to be wrapped with an opaque proxy object, which takes over the setter and getter methods of the attributes on the class.
+1. Initial rendering:
+   1. \@Observed causes all instances of the decorated class to be wrapped with an opaque proxy object, which takes over the setter and getter methods of the attributes of the class.
    2. The \@ObjectLink decorated variable in the child component is initialized from the parent component and accepts the instance of the \@Observed decorated class. The \@ObjectLink decorated wrapped object registers itself with the \@Observed decorated class.
 
 2. Attribute update: When the attribute of the \@Observed decorated class is updated, the system uses the setter and getter of the proxy, traverses the \@ObjectLink decorated wrapped objects that depend on it, and notifies the data update.
 
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Nested Object
@@ -238,6 +238,19 @@ An object array is a frequently used data structure. The following example shows
 
 
 ```ts
+let NextID: number = 1;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
 @Component
 struct ViewA {
   // The type of @ObjectLink of the child component ViewA is ClassA.

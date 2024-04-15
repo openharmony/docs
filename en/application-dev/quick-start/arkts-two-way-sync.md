@@ -30,8 +30,8 @@ and the change is synced to **Text**. If the variable is not bound to $$, the ch
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State counter: number = 0
+  @State isRefreshing: boolean = false;
+  @State counter: number = 0;
 
   build() {
     Column() {
@@ -45,7 +45,13 @@ struct RefreshExample {
           .margin(10)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
+        console.info('Refresh onStateChange state is ' + refreshStatus)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+          this.counter++;
+        }, 2000)
       })
     }
   }

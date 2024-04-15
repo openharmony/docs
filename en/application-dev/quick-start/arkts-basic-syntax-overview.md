@@ -17,6 +17,11 @@ In this example, the basic composition of ArkTS is as follows.
 ![arkts-basic-grammar](figures/arkts-basic-grammar.png)
 
 
+> **NOTE**
+>
+> The name of a custom variable cannot be the same as that of any universal attribute or event.
+
+
 - Decorator: design pattern used to decorate classes, structs, methods, and variables to assign special meanings to them. In the preceding sample code, \@Entry, \@Component, and \@State are decorators. [@Component](arkts-create-custom-components.md#basic-structure-of-a-custom-component) indicates a custom component, [@Entry](arkts-create-custom-components.md#basic-structure-of-a-custom-component) indicates that the custom component is an entry component, and [@State](arkts-state.md) indicates a state variable in the component, whose change will trigger the UI to re-render.
 
 - [UI description](arkts-declarative-ui-description.md): declarative description of the UI structure, such as the code block of the **build()** method.
@@ -37,6 +42,6 @@ ArkTS extends multiple syntax paradigms to make development a more enjoyable exp
 
 - [@Builder](arkts-builder.md)/[@BuilderParam](arkts-builderparam.md): special method for encapsulating UI descriptions. It enables UI descriptions to be encapsulated and reused in a fine-grained manner.
 
-- [@Extend](arkts-extend.md)/[@Style](arkts-style.md): decorator that extends built-in components and encapsulates attribute styles to combine built-in components more flexibly.
+- [@Extend](arkts-extend.md)/[@Styles](arkts-style.md): decorator that extends built-in components and encapsulates attribute styles to combine built-in components more flexibly.
 
 - [stateStyles](arkts-statestyles.md): polymorphic style, which can be set based on the internal state of the component.
