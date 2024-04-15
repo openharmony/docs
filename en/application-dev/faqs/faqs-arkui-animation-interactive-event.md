@@ -270,3 +270,77 @@ struct ComponentChild2 {
 **Reference**
 
 [Enter/Exit Transition](../ui/arkts-enter-exit-transition.md)
+
+## How do I customize event transfer between parent and child components? (API version 10)
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+1. When processing a touch event, the system conducts hit testing - from the parent component to its children - determine the component that needs to respond to the event. Subsequent gesture recognition and competition are performed based on the test result.
+
+2. You can set the **hitTestBehavior** attribute to specify how a component behaves during hit testing.
+
+3. Intervention on gesture recognition and competition results may be refined with custom events and custom gesture judgment.
+
+**Reference**
+
+[Hit Test Control](../reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+
+## How do I enable a list to automatically rearrange the layout after one of the list items is dragged? (API version 10)
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+ 
+**Solution**
+
+1. Configure the list or list items to be draggable, and register the **onDragStart** callback.
+
+2. Set **visibility** of the dragged item to **HIDDEN** in the **onDragStart** callback.
+
+2. Register the **onDragMove** callback on the list or list item to listen for the movement during dragging.
+
+3. During the dragging, use the **event** parameter of **onDragMove** to obtain the coordinates of the drag points.
+
+4. Calculate the distance between the drag point coordinates and the item middle line. When the drag point and middle line overlap, enable the space filling animation.
+
+5. Use the **componentUtils** API to obtain the item layout information.
+
+6. The space filling animation uses **animateTo** to change the index in the data source and trigger the list sorting animation.
+
+7. The drop animation can be customized.
+
+ **Example**
+
+```ts
+// Record the dragged item when the dragging is started.
+  .onDragStart((event?: DragEvent, extraParams?: string) => {
+    this.dragIndex = Number(item.data)
+    this.dragItem = item
+  })
+  // Execute the space filling animation when the dragged item enters a valid drop target.
+  .onDragEnter((event?: DragEvent, extraParams?: string) => {
+    if (Number(item.data) != this.dragIndex) {
+      let current = this.dataSource.findIndex((element) => element.data === this.dragItem.data)
+      let index = this.dataSource.findIndex((element) => element.data === item.data)
+      animateTo({
+        curve: curves.interpolatingSpring(0, 1, 400, 38)
+      }, () => {
+        this.dataSource.splice(current, 1)
+        this.dataSource.splice(index, 0, this.dragItem)
+      })
+    }
+  })
+   // Implement a custom drop animation on the dragged item when it is dropped on a valid drop target.
+  .onDrop((dragEvent: DragEvent) => {
+    dragEvent.useCustomDropAnimation = true;
+    // Obtain the drop target.
+    let downLocation = getInspectorByKey(item.data)
+    let currentLocation = dragEvent.getPreviewRect()
+    this.dragItem.scale = 1.05
+    animateTo({
+      curve: curves.interpolatingSpring(14, 1, 170, 17)
+    }, () => {
+      this.dragItem.scale = 1
+    })
+  })
+```

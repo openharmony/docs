@@ -47,3 +47,90 @@ You can use the **sticky** attribute of the **\<List>** component together with 
 **Reference**
 
 [Adding a Sticky Header](../ui/arkts-layout-development-create-list.md#adding-a-sticky-header)
+
+## How do I configure only specified UI components to move up to avoid the open keyboard?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+ To configure the UI logic for keyboard avoidance, use **expandSafeArea**.
+
+**Reference**
+
+[Safe Area](../reference/arkui-ts/ts-universal-attributes-expand-safe-area.md)
+
+## What methods are available for combining text and images?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+1. To display text with images, you can nest an **\<ImageSpan>** component in a **\<Text>** component or nest **\<Text>** and **\<Image>** components in a container component (such as **\<Row>** and **\<Colunm>**. The former is recommended.
+
+2. If editing is needed, use the **\<RichEditor>** component.
+
+**Reference**
+
+[RichEditor](../reference/arkui-ts/ts-basic-components-richeditor.md)
+
+## How do I implement a layout similar to that achieved by CoordinatorLayout?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+You can implement nested scrolling in a scrollable component with the **nestedScroll** attribute.
+
+**Reference**
+
+[Scroll](../reference/arkui-ts/ts-container-scroll.md)
+
+## What should I do if the navigation bar is blocked when the sidebar is displayed?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+Configure the navigation bar as the second child component, that is, the content area, of the **\<SideBarContainer>** component. In this way, the sidebar takes up only its own width and does not block other part of the navigation bar.
+
+**Reference**
+
+[SideBarContainer](../reference/arkui-ts/ts-container-sidebarcontainer.md)
+
+## What should I if the UI is not re-rendered with ForEach and LazyForEach when the data source is changed?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+If the default key generator is used, the framework automatically generates a key based on **item** and **index**, that is, **(item: T, index: number) => { return index + '__' + JSON.stringify(item); }**. When the data source of a state variable is changed, **ForEach** or **LazyForEach** detects the key change, and triggers a component reconstruction to update the UI.
+
+**Reference**
+
+[ForEach: Rendering of Repeated Content](../quick-start/arkts-rendering-control-foreach.md)
+
+## How do I decouple a dialog box from pages? What are the best practices? (API version 10)
+
+**Solution**
+
+A dialog box must be bound a component and triggered by events. Its content can be defined with a global builder. It only needs to be defined once.
+
+Global builder:
+
+Syntax:
+
+@Builder function MyGlobalBuilderFunction(){ ... }
+
+Usage:
+
+MyGlobalBuilderFunction()
+
+A custom global build function is accessible throughout the application. As such, it is recommended if no own state is involved.
+
+**Reference**
+
+1. [Custom Dialog Box (CustomDialog)](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+2. [Popup Control](../reference/arkui-ts/ts-universal-attributes-popup.md)
+3. [@Builder Decorator: Custom Builder Function](../quick-start/arkts-builder.md)
+

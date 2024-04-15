@@ -10,7 +10,7 @@ Unfortunately not. Custom dialog boxes require ArkTS syntax for definition and i
 
 [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## How do I transfer variables in a custom dialog box to a page?
+## How do I pass variables in a custom dialog box to a page?
 
 Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
@@ -746,3 +746,107 @@ struct SideBarContainerExample {
   }
 }
 ```
+
+## How do I enable proactive component update?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+In the **Canvas** component, there are two types of content: 1. content rendered with universal attributes of components, such as the background color and boarder;
+2. content drawn by the application through the **CanvasRenderingContext2D** API. The first type of content is updated through state variables. The second type of content is updated in the next frame once the API is called, thanks to the built-in dirty table feature of the API. You do not need to explicitly refresh this type of content.
+
+**Reference**
+
+[CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md)
+
+## What should I do if the \<List> component cannot scroll to the bottom with its height not specified?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Cause**
+
+If no height is set for a **\<List>** component and the total height of its child components is greater than the height of its parent component, the component is displayed at the height of its parent component. In this case, if the **\<List>** component has sibling nodes, part of it may be pushed outside of the display area of the parent component, making it seemingly unable to be scrolled to the bottom.
+
+**Solution**
+
+Add the **layoutWeight(1)** attribute for the **\<List>** component so that it takes up the remaining space.
+
+**Reference**
+
+[Size](../reference/arkui-ts/ts-universal-attributes-size.md)
+
+## How do I implement infinite data loading and display for scrolling with a water flow layout?
+
+Applicable to: OpenHarmony 4.0 Release (API version 10)
+
+**Solution**
+
+1. Use **LazyForEach** as a child node of the **\<WaterFlow>** component.
+
+2. Determine whether the bottom is about to be reached in **onAppear** of the **\<FlowItem>** component, and append new data to the **LazyForEach** data source in advance. Alternatively, determine whether the bottom is about to be reached based on the current index in the **onScrollIndex11+** event.
+
+**Reference**
+
+[High-Performance WaterFlow Development](../performance/waterflow_optimization.md)
+
+## How do I open a new page from a custom dialog box without closing the dialog box? (API version 10)
+
+**Solution**
+
+Obtain the **uiContext** instance of the main window and then call **router.push** to jump to the new page.
+
+**Reference**
+
+[Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+
+## Is there any update on ArkUI-X availability? Is there a roadmap for ArkUI-X? (API version 10)
+
+**Solution**
+
+1. Progress: ArkUI-X is now an open-source tool, with first version officially released on December 15, 2023. It runs Android and iOS, with support for desktop and web platforms well on the way.
+
+2. [Roadmap](https://gitee.com/arkui-x/docs/blob/master/en/roadmap)
+
+**Reference**
+
+[ArkUI-X](https://gitee.com/arkui-x)
+
+## How does an application track component data or state in the build process of custom components? (API version 10)
+
+**Symptom**
+
+Logs cannot be inserted into the **build** method of the UI. As a result, the application cannot detect the UI drawing process, which is inconvenient for UI debugging and fault locating. 
+
+**Solution**
+
+Use @Watch to listen for state variables. The \@Watch callback is called when any value change has occurred. In this case, the UI of the changed variable is re-rendered when the VSYNC signal is sent next time.
+
+The sample code is as follows:
+
+```ts
+@Prop @Watch('onCountUpdated') count: number = 0; 
+@State total: number = 0; 
+// @Watch callback
+onCountUpdated(propName: string): void {
+  this.total += this.count; 
+}
+```
+
+**Reference**
+
+[@Watch Decorator: Getting Notified of State Variable Changes](../quick-start/arkts-watch.md)
+
+## How are inheritance and encapsulation implemented for custom components in ArkUI? (API version 10)
+
+**Solution**
+
+In the declarative UI, custom components do not support inheritance. To extend functionality, you can draw on the combination mechanism and inherit, reuse, and transfer existing component attributes with the attribute modifier.
+
+## What parameter types and unit types do components support? When are they used? (API version 10)
+
+**Solution**
+
+ArkUI provides several pixel units:<br>px: physical pixel unit of the screen. 1 px indicates a pixel on the screen. lpx: logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **designWidth**, representing the baseline width for page design. The size of an element is scaled at this ratio to the actual screen width. vp: virtual pixel unit. fp: font pixel unit. The formula for calculating vp is as follows: vp = px/(DPI/160). 
+A virtual pixel (vp) describes the virtual size of a device for an application. It is different from the unit used by the screen hardware, pixel (px). Its use allows elements to have a consistent visual volume on devices with different densities. By default, the font pixel (fp) size is the same as that of the virtual pixel size. That is, 1 fp = 1 vp. If you select a larger font size in **Settings**, the actual font size is the virtual pixel size multiplied by the scale coefficient. That is, 1 fp = 1 vp \* scale. Percentage: The unit must be %, for example, **'10%'**. 
+Resource: Size referenced from system or application resources.

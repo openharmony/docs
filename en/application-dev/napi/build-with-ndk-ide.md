@@ -59,7 +59,7 @@ The **externalNativeOptions** parameter in the module-level **build-profile.json
     "cppFlags": "",
     "abiFilters": [
        "arm64-v8a",
-       "armeabi-v7a",mor
+       "armeabi-v7a",
        "x86_64"
     ],
   }

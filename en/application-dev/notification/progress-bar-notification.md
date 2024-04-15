@@ -28,18 +28,17 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. Check whether a specific template is supported. In this example, the template of the **downloadTemplate** type is checked.
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     logger.info(`[ANS] isSupportTemplate success`);
-     logger.info('Succeeded in supporting download template notification.');
+     console.info(`[ANS] isSupportTemplate success`);
+     console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
    }).catch((err:Base.BusinessError) => {
-     logger.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
+     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
    
@@ -69,9 +68,9 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    // Publish the notification.
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     logger.info('Succeeded in publishing notification.');
+     console.info('Succeeded in publishing notification.');
    });
    ```

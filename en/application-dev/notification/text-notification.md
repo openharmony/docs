@@ -42,7 +42,6 @@ The following table describes the APIs for notification publishing. You specify 
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
-   import { logger } from '../util/Logger';
    ```
 
 3. Create a **NotificationRequest** object and publish a progress notification.
@@ -63,10 +62,10 @@ The following table describes the APIs for notification publishing. You specify 
       
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        logger.info('Succeeded in publishing notification.');
+        console.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -93,10 +92,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        logger.info('Succeeded in publishing notification.');
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -122,10 +121,10 @@ The following table describes the APIs for notification publishing. You specify 
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        logger.info('Succeeded in publishing notification.');
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -168,10 +167,10 @@ The following table describes the APIs for notification publishing. You specify 
         // Publish the notification.
         notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
           if (err) {
-            logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
             return;
           }
-          logger.info('Succeeded in publishing notification.');
+          console.info('Succeeded in publishing notification.');
         });
       }
       ```
