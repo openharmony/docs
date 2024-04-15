@@ -106,7 +106,7 @@ To enable the application to use system APIs, you need to change the **app-featu
 To modify the HarmonyAppProvision configuration file, perform the following steps:
 
 1. Open the directory where the OpenHarmony SDK is located. (You can choose **File** > **Settings** > **OpenHarmony SDK** on the menu bar of DevEco Studio to query the directory.)
-2. In the SDK directory, go to the **Toolchains** > {Version} > **lib** directory and open the **UnsgnedReleasedProfileTemplate.json** file.
+2. In the SDK directory, go to the **Toolchains** > {Version} > **lib** directory and open the **UnsignedReleasedProfileTemplate.json** file.
 3. Modify the related fields as required.
 
 After modifying the configuration file, [sign the application](hapsigntool-guidelines.md).
