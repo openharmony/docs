@@ -6329,17 +6329,15 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
   captureSession.off('error');
 }
 ```
-## ColorManagement<sup>12+</sup>
+## ColorManagementQuery<sup>12+</sup>
 
-色彩管理类，用于设置色彩空间参数。
+色彩管理类，用于查询色彩空间参数。
 
 ### getSupportedColorSpaces<sup>12+</sup>
 
 getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
 获取支持的色彩空间列表。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6368,14 +6366,17 @@ function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpace
   return colorSpaces;
 }
 ```
+## ColorManagement<sup>12+</sup>
+
+ColorManagement extends ColorManagementQuery
+
+色彩管理类，继承自ColorManagementQuery，用于设置色彩空间参数。
 
 ### setColorSpace<sup>12+</sup>
 
 setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6419,8 +6420,6 @@ function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpa
 getActiveColorSpace(): colorSpaceManager.ColorSpace
 
 获取当前设置的色彩空间。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
