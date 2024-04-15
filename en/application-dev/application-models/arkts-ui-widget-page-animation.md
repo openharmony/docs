@@ -25,32 +25,24 @@ The following sample code implements the animation effect of button rotation.
 ```ts
 @Entry
 @Component
-struct AttrAnimationCard {
+struct AnimationCard {
   @State rotateAngle: number = 0;
 
   build() {
-    Column() {
-      Button() {
-        Text($r('app.string.change_rotate_angle'))
-          .fontColor('#45A6F4')
-          .fontSize(12)
-      }
-      .width(120)
-      .height(32)
-      .backgroundColor('#FFFFFF')
-      .borderRadius(16)
-      .onClick(() => {
-        this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
-      })
-      .rotate({ angle: this.rotateAngle })
-      .animation({
-        curve: Curve.EaseOut,
-        playMode: PlayMode.Normal,
-      })
-    }.height('100%').width('100%')
-    .justifyContent(FlexAlign.Center)
-    .backgroundImage($r('app.media.CardExampleBkg'))
-    .backgroundImageSize(ImageSize.Cover)
+    Row() {
+      Button('change rotate angle')
+        .height('20%')
+        .width('90%')
+        .margin('5%')
+        .onClick(() => {
+          this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
+        })
+        .rotate({ angle: this.rotateAngle })
+        .animation({
+          curve: Curve.EaseOut,
+          playMode: PlayMode.Normal,
+        })
+    }.height('100%').alignItems(VerticalAlign.Center)
   }
 }
 ```

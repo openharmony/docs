@@ -13,15 +13,8 @@ Typically, a widget includes local images or online images downloaded from the n
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
-   import hilog from '@ohos.hilog';
-   import request from '@ohos.request';
    import type Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = 'WgtImgUpdateEntryFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
      // When the widget is added, a local image is opened and transferred to the widget page for display.
@@ -38,7 +31,7 @@ Typically, a widget includes local images or online images downloaded from the n
          };
        } catch (e) {
          console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-       };
+       }
    
        class FormDataClass {
          text: string = 'Image: Bear';
@@ -64,12 +57,10 @@ Typically, a widget includes local images or online images downloaded from the n
    import type fileFs from '@ohos.file.fs';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
    import fs from '@ohos.file.fs';
    import hilog from '@ohos.hilog';
    import request from '@ohos.request';
-   import type Want from '@ohos.app.ability.Want';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -99,7 +90,7 @@ Typically, a widget includes local images or online images downloaded from the n
              fileInfo[fileName] = file.fd;
            } catch (e) {
              console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-           };
+           }
    
            class FormDataClass {
              text: string = 'Image: Bear' + fileName;
@@ -132,7 +123,7 @@ Typically, a widget includes local images or online images downloaded from the n
    }
    ```
 
-4. On the widget page, use the **\<Image>** component to display the widget content transferred from the EntryFormAbility.
+4. On the widget page, use the  **backgroundImage** attribute to display the widget content passed from the EntryFormAbility.
 
    ```ts
    let storageWidgetImageUpdate = new LocalStorage();
@@ -231,4 +222,3 @@ Typically, a widget includes local images or online images downloaded from the n
 > - The **\<Image>** component determines whether to update the image by comparing the values of **imgName** consecutively passed by the EntryFormAbility. It updates the image only when the values are different.
 >
 > - To avoid memory leak, when a file is not in used, close it by calling [fs.closeSync](../reference/apis/js-apis-file-fs.md#fsclosesync). The system does not automatically close files.
-<!--no_check-->

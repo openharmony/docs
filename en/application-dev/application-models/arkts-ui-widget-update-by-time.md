@@ -18,7 +18,7 @@ The widget framework provides the following modes of updating widgets periodical
   ```json
   {
     "forms": [
-    {
+      {
         "name": "UpdateDuration",
         "description": "$string:widget_updateduration_desc",
         "src": "./ets/updateduration/pages/UpdateDurationCard.ets",
@@ -40,7 +40,7 @@ The widget framework provides the following modes of updating widgets periodical
     ]
   }
   ```
-  
+
 - Setting the scheduled update time: The widget will be updated at the scheduled time every day. You can specify the time by setting the [scheduledUpdateTime](arkts-ui-widget-configuration.md) field in the **form_updatebytime_config.json** file. For example, you can configure the widget to update at 10:30 a.m. every day.
 
   > **NOTE**
@@ -77,9 +77,7 @@ The widget framework provides the following modes of updating widgets periodical
 
   ```ts
   import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
   
@@ -103,7 +101,7 @@ The widget framework provides the following modes of updating widgets periodical
         });
       } catch (err) {
         hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
-      };
+      }
     }
     ...    
   }
@@ -115,6 +113,6 @@ When periodic update is triggered, the system calls the [onUpdateForm()](../refe
 
 > **NOTE**
 > - Each widget can be updated at the specified interval for a maximum of 50 times every day, including updates triggered by setting [updateDuration](arkts-ui-widget-configuration.md) or calling [setFormNextRefreshTime()](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime). When the limit is reached, the widget cannot be updated in this mode again. The number of update times is reset at 00:00 every day.
->- A single timer is used for timing updates at the specified interval. Therefore, if a widget is configured to update at scheduled intervals, the first scheduled update may have a maximum deviation of 30 minutes. For example, if widget A (updated every half an hour) is added at 03:20 and widget B (also updated every half an hour) is added at 03:40, the first update of widget B has a deviation of 10 minutes to the expected time: The timer starts at 03:20 when widget A is added, triggers an update for widget A at 03:50, and triggers another update for widget B at 04:20 (instead of 04:10 as expected).
+> - A single timer is used for timing updates at the specified interval. Therefore, if a widget is configured to update at scheduled intervals, the first scheduled update may have a maximum deviation of 30 minutes. For example, if widget A (updated every half an hour) is added at 03:20 and widget B (also updated every half an hour) is added at 03:40, the first update of widget B has a deviation of 10 minutes to the expected time: The timer starts at 03:20 when widget A is added, triggers an update for widget A at 03:50, and triggers another update for widget B at 04:20 (instead of 04:10 as expected).
 > - Updates at the specified interval and updates at the scheduled time are triggered only when the screen is on. The update action is merely recorded when the screen is off and is performed once the screen is on.
->- If the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature is enabled, the settings for the update interval and next update time will not take effect.
+> - If the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature is enabled, the settings for the update interval and next update time will not take effect.
