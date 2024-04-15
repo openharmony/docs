@@ -322,7 +322,7 @@ struct Index {
           } else {
             this.checkboxEnabled = false
           }
-        }
+        })
       }
     }.margin({top : 30})
   }
