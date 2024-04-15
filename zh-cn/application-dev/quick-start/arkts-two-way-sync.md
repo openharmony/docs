@@ -43,6 +43,7 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
   | [BindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
   | [BindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
   | [Refresh](../reference/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
+  | [GridItem](../reference/arkui-ts/ts-container-griditem.md) | selected | 10 |
 
 - $$绑定的变量变化时，会触发UI的同步刷新。
 
