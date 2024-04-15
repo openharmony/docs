@@ -58,7 +58,6 @@
 | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | 申请长时任务 |
 | stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 取消长时任务 |
 
-
 ## 开发步骤
 
 本文以申请录音长时任务为例，示例中包含“申请长时任务”和“取消长时任务”两个按钮，显示效果为：
