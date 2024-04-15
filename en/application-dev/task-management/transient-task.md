@@ -8,7 +8,7 @@ An application is suspended after it runs in the background for a short period o
 
 ### Constraints
 
-- **When to request**: An application can request a transient task when it is running in the foreground or within 5 seconds after it switches to the background.
+- **When to request**: An application can request a transient task when it is running in the foreground or through the **onBackground** callback.
 
 - **Quantity limit**: An application can request a maximum of three transient tasks during a time segment. As shown in the figure below, the application requests two transient tasks in the time segments ①, ②, and ③, and one transient task in the time segment ④.
 
