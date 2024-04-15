@@ -92,7 +92,7 @@ Provides the C APIs of the network connection module for network management.
 ### NetConn_ConnectionProperties
 
 ```
-typedef struct NetConn_ConnectionPropertiesNetConn_ConnectionProperties
+typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 ```
 
 **Description**
@@ -105,7 +105,7 @@ Network connection information.
 ### NetConn_HttpProxy
 
 ```
-typedef struct NetConn_HttpProxyNetConn_HttpProxy
+typedef struct NetConn_HttpProxy NetConn_HttpProxy
 ```
 
 **Description**
@@ -118,7 +118,7 @@ Proxy configuration information.
 ### NetConn_NetAddr
 
 ```
-typedef struct NetConn_NetAddrNetConn_NetAddr
+typedef struct NetConn_NetAddr NetConn_NetAddr
 ```
 
 **Description**
@@ -131,7 +131,7 @@ Network address.
 ### NetConn_NetBearerType
 
 ```
-typedef enum NetConn_NetBearerTypeNetConn_NetBearerType
+typedef enum NetConn_NetBearerType NetConn_NetBearerType
 ```
 
 **Description**
@@ -144,7 +144,7 @@ Network carrier type.
 ### NetConn_NetCap
 
 ```
-typedef enum NetConn_NetCapNetConn_NetCap
+typedef enum NetConn_NetCap NetConn_NetCap
 ```
 
 **Description**
@@ -157,7 +157,7 @@ Network capability set.
 ### NetConn_NetCapabilities
 
 ```
-typedef struct NetConn_NetCapabilitiesNetConn_NetCapabilities
+typedef struct NetConn_NetCapabilities NetConn_NetCapabilities
 ```
 
 **Description**
@@ -170,7 +170,7 @@ Network capability set.
 ### NetConn_NetHandle
 
 ```
-typedef struct NetConn_NetHandleNetConn_NetHandle
+typedef struct NetConn_NetHandle NetConn_NetHandle
 ```
 
 **Description**
@@ -183,7 +183,7 @@ Network ID.
 ### NetConn_NetHandleList
 
 ```
-typedef struct NetConn_NetHandleListNetConn_NetHandleList
+typedef struct NetConn_NetHandleList NetConn_NetHandleList
 ```
 
 **Description**
@@ -196,7 +196,7 @@ Network list.
 ### NetConn_Route
 
 ```
-typedef struct NetConn_RouteNetConn_Route
+typedef struct NetConn_Route NetConn_Route
 ```
 
 **Description**

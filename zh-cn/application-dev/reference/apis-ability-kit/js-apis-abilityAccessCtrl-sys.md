@@ -424,6 +424,13 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 **系统能力：** SystemCapability.Security.AccessToken
 
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                          |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 待获取权限状态的权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+
 **返回值：**
 
 | 类型          | 说明                                |

@@ -104,6 +104,19 @@ onRefreshing(callback: () => void)
 | Refresh  | 3 | 下拉结束，回弹至刷新距离，进入刷新状态。 |
 | Done     | 4 | 刷新结束，返回初始状态（顶部）。     |
 
+### onOffsetChange<sup>12+</sup>
+
+onOffsetChange(callback: Callback\<number>)
+
+下拉距离发生变化时触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明       |
+| ------ | --------------------------------------- | ---- | ---------- |
+| value  | number | 是   | 下拉距离。<br/>单位：vp |
 
 ## 示例 
 ### 示例1
@@ -139,6 +152,9 @@ struct RefreshExample {
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value)
       })
       .onRefreshing(() => {
         setTimeout(() => {

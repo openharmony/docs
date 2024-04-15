@@ -347,6 +347,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 
 ![变量动态import HAR包依赖转移到HAP](figures/dynamicimport2.png)
 
+
 1. **使用限制**
 - 仅限本地源码HAR包之间形成循环依赖时可使用该规避方案。
 - 被转移依赖的HAR之间只能通过变量动态import，不能有静态import或常量动态import。
@@ -355,6 +356,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 - 转移依赖的整个链路上只能有HAR，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4。
 
   HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上，但是，不能将HAR3或HAR4转移到HAP上。
+
 
 2. **使用实例**
 
@@ -492,9 +494,4 @@ export function addHar2(a:number, b:number):number {
 }
 ```
 
-2. **使用限制**
-- 仅限本地源码HAR包之间形成循环依赖时可使用该规避方案。
-- 被转移依赖的HAR之间只能通过变量动态import，不能有静态import或常量动态import。
-- HSP不支持转移依赖。即：HAP->HSP1->HSP2->HSP3，这里的HSP2和HSP3不能转移到HAP上面。
-- 转移依赖的整个链路上只能有HAR，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4
-  HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上，但是，不能将HAR3或HAR4转移到HAP上。
+

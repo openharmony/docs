@@ -43,7 +43,7 @@
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "tag",
+                "reason": "$string:app_name",
             }
         ]
     }
@@ -765,7 +765,7 @@ import tag from '@ohos.nfc.tag';
 
 try {
     let uri = "https://www.example.com"; // change it to be correct.
-    let ndefRecord = tag.ndef.makeUriRecord(uri);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeUriRecord payload: " + ndefRecord.payload);
@@ -808,7 +808,7 @@ import tag from '@ohos.nfc.tag';
 try {
     let text = "Hello World";   // change it to be correct.
     let locale = "en"; // change it to be correct.
-    let ndefRecord = tag.ndef.makeTextRecord(text, locale);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeTextRecord(text, locale);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeTextRecord payload: " + ndefRecord.payload);
@@ -852,7 +852,7 @@ import tag from '@ohos.nfc.tag';
 try {
     let mimeType = "text/plain";   // change it to be correct.
     let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeMimeRecord payload: " + ndefRecord.payload);
@@ -896,7 +896,7 @@ try {
     let domainName = "ohos.nfc.application"; // change it to be correct.
     let type = "test"; // change it to be correct.
     let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeExternalRecord payload: " + ndefRecord.payload);
@@ -937,7 +937,7 @@ import tag from '@ohos.nfc.tag';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
@@ -973,7 +973,7 @@ import tag from '@ohos.nfc.tag';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
 } catch (busiError) {
     console.error("ndef createNdefMessage busiError: " + busiError);
@@ -1007,11 +1007,11 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 ```js
 import tag from '@ohos.nfc.tag';
 
-let uriRecord = tag.ndef.makeUriRecord("https://www.example.com");
-let textRecord = tag.ndef.makeTextRecord("Hello World", "en");
-let ndefRecords = [uriRecord, textRecord];
+let uriRecord : tag.NdefRecord = tag.ndef.makeUriRecord("https://www.example.com");
+let textRecord : tag.NdefRecord = tag.ndef.makeTextRecord("Hello World", "en");
+let ndefRecords : tag.NdefRecord[] = [uriRecord, textRecord];
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(ndefRecords);
     console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
 } catch (busiError) {
     console.error("ndef createNdefMessage busiError: " + busiError);

@@ -1151,7 +1151,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout (OH_AudioRenderer *rende
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
-| channelLayout | 指向一个用来接收音频流声道布局的变量的指针。  | 
+| channelLayout | 指向一个用来接收音频流声道布局的变量的指针，具体参考[OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1)。  | 
 
 **返回：**
 
@@ -1943,7 +1943,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout (OH_AudioStreamBuil
 | 名称 | 描述 | 
 | -------- | -------- |
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。  | 
-| channelLayout | 音频流声道布局。  | 
+| channelLayout | 音频流声道布局，具体参考[OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1)。  | 
 
 **返回：**
 
@@ -1969,7 +1969,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilde
 | 名称 | 描述 | 
 | -------- | -------- |
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
-| encodingType | 音频流编码类型, **AUDIOSTREAM_ENCODING_PCM** | 
+| encodingType | 音频流编码类型。 | 
 
 **返回：**
 
