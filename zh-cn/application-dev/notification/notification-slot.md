@@ -59,10 +59,12 @@
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
             console.info(`getSlot success. `);
-            console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
-            console.info(`slot level is ${JSON.stringify(data.level)}`);
-            console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
-            console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
+            if (data != null) {
+                console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
+                console.info(`slot level is ${JSON.stringify(data.level)}`);
+                console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+                console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
+            }
         }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
