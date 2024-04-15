@@ -75,7 +75,7 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type options is not FetchOptions.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -135,7 +135,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type options is not FetchOptions.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -194,7 +194,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type createOption is wrong.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -246,7 +246,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type createOption is wrong.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -301,7 +301,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type createOption is wrong.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -353,7 +353,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type options is not FetchOption.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -414,7 +414,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type options is not FetchOption.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -473,7 +473,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type options is not FetchOption.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -563,13 +563,7 @@ async function example() {
   // 注册onCallback2监听
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
-  photoAsset.setFavorite(true, (err) => {
-    if (err === undefined) {
-      console.info('setFavorite successfully');
-    } else {
-      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
-    }
-  });
+  await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
 }
 ```
 
@@ -627,13 +621,7 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
   // 关闭onCallback1监听，onCallback2 继续监听
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-  photoAsset.setFavorite(true, (err) => {
-    if (err === undefined) {
-      console.info('setFavorite successfully');
-    } else {
-      console.error(`setFavorite failed with error: ${err.code}, ${err.message}`);
-    }
-  });
+  await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
 }
 ```
 
@@ -896,7 +884,7 @@ async function example() {
 
 ### get
 
-get(member: string): MemberType;
+get(member: string): MemberType
 
 获取PhotoAsset成员参数。
 
@@ -2100,7 +2088,7 @@ getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401       |  if type index is not number.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -2153,7 +2141,7 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401       |  if type index is not number.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -2306,7 +2294,7 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401       |  if type options is not FetchOptions.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2367,7 +2355,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401       |  if type options is not FetchOptions.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2421,7 +2409,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401       | if values to commit is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2473,7 +2461,7 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if parameter is invalid.         |
+| 401       |  if values to commit is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3393,11 +3381,12 @@ getAlbum(): Album
 async function example() {
   console.info('getAlbumDemo');
   try {
-    let albumName: string = 'newAlbumName' + new Date().getTime();
-    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
-    await phAccessHelper.applyChanges(albumChangeRequest);
-    let album: photoAccessHelper.Album = albumChangeRequest.getAlbum();
-    console.info('create album successfully with uri = ' + album.albumUri);
+    // 请确保图库内存在用户相册
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    let changeRequestAlbum: photoAccessHelper.Album = albumChangeRequest.getAlbum();
+    console.info('change request album uri: ' + changeRequestAlbum.albumUri);
   } catch (err) {
     console.error(`getAlbumDemo failed with error: ${err.code}, ${err.message}`);
   }
@@ -3489,10 +3478,12 @@ async function example() {
     predicates: predicates
   };
   try {
+    // 请确保图库内存在用户相册和照片
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let albumName: string = 'newAlbumName' + new Date().getTime();
-    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(context, albumName);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
     albumChangeRequest.addAssets([asset]);
     await phAccessHelper.applyChanges(albumChangeRequest);
     console.info('addAssets successfully');
@@ -3762,7 +3753,7 @@ async function example() {
 
 ### cancelRequest<sup>12+</sup>
 
-static cancelRequest(context: Context, requestId: string): Promise\<void>;
+static cancelRequest(context: Context, requestId: string): Promise\<void>
 
 取消尚未触发回调的资产内容请求。
 
@@ -4270,13 +4261,7 @@ title参数规格为：
 
 | 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
 | ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
-| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式 三种策略。 |
-
-## PhotoProxy<sup>11+</sup>
-
-照片代理，相机应用通过该对象写入图片数据。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -4400,7 +4385,7 @@ title参数规格为：
 
 ## DeliveryMode<sup>11+</sup>
 
-枚举，请求图片分发模式。
+枚举，资源分发模式。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
