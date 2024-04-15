@@ -353,6 +353,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 - 转移依赖时，dependencies和runtimeOnly依赖配置要同时转移。
 - HSP不支持转移依赖。即：HAP->HSP1->HSP2->HSP3，这里的HSP2和HSP3不能转移到HAP上面。
 - 转移依赖的整个链路上只能有HAR，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4
+
   HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上，但是，不能将HAR3或HAR4转移到HAP上。
 
 2. **使用实例**
