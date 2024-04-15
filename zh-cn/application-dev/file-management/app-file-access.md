@@ -87,20 +87,23 @@ let filesDir = context.filesDir;
 
 function readWriteFile(): void {
   // 打开文件
-  let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let srcFile = fs.openSync(this.filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let destFile = fs.openSync(this.filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 读取源文件内容并写入至目的文件
-  let bufSize = 4096;
+  let bufSize = 5;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readOptions: ReadOptions = {
+  let readOptions = {
     offset: readSize,
     length: bufSize
   };
   let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
-    fs.writeSync(destFile.fd, buf);
+    let writeOptions = {
+      length: readLen
+    };
+    fs.writeSync(destFile.fd, buf, writeOptions);
     readOptions.offset = readSize;
     readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
