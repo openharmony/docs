@@ -27,3 +27,4 @@
 - [解决Web组件本地资源跨域问题](web-cross-origin.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
 - [使用crashpad收集web组件崩溃信息](web-crashpad.md)
+- [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
