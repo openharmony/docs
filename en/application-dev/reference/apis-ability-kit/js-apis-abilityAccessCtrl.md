@@ -3,7 +3,6 @@
 The **abilityAccessCtrl** module provides APIs for application permission management, including authentication, authorization, and revocation.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -56,7 +55,7 @@ Checks whether a permission is granted to an application. This API uses a promis
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise used to return the permission grant state.|
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
 
 **Error codes**
 
@@ -74,15 +73,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-try {
-    atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-        console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### verifyAccessTokenSync<sup>9+</sup>
@@ -121,8 +116,13 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-console.log(`data->${JSON.stringify(data)}`);
+try {
+  let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
+  console.log(`data->${JSON.stringify(data)}`);
+} catch(err) {
+  console.error(`catch err->${JSON.stringify(err)}`);
+}
+
 ```
 
 ### verifyAccessToken<sup>9+</sup>
@@ -148,7 +148,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise used to return the permission grant state.|
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
 
 **Example**
 
@@ -159,28 +159,24 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
-try {
-    atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
-    });
-}catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
-requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void
+requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;): void
 
-Requests user authorization in a dialog box opened by a UIAbility. This API uses an asynchronous callback to return the result.
+Requests user authorization in a dialog box opened by a UIAbility/UIExtensionAbility. This API uses an asynchronous callback to return the result.
 
 If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page.
 
 > **NOTE**
 >
-> The API cannot be called by any non-UIAbility.
+> This API supports only UIAbilities/UIExtensionAbilities.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -190,8 +186,8 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the UIAbility.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| context | Context | Yes| Context of the UIAbility/UIExtensionAbility that requests the permission.|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
@@ -211,29 +207,30 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-    let context: Context = getContext(this) as common.UIAbilityContext;
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
+let context: Context = getContext(this) as common.UIAbilityContext;
+atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
+  if (err) {
+    console.log(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+  } else {
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+    console.info('data dialogShownResults:' + data.dialogShownResults);
+  }
+});
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
-requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;
+requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;PermissionRequestResult&gt;
 
-Requests user authorization in a dialog box opened by a UIAbility. This API uses a promise to return the result.
+Requests user authorization in a dialog box opened by a UIAbility/UIExtensionAbility. This API uses a promise to return the result.
 
 If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page.
 
 > **NOTE**
 >
-> The API cannot be called by any non-UIAbility.
+> This API supports only UIAbilities/UIExtensionAbilities.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -243,8 +240,8 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the UIAbility.|
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| context | Context | Yes| Context of the UIAbility/UIExtensionAbility that requests the permission.|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
 
@@ -269,18 +266,15 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-    let context: Context = getContext(this) as common.UIAbilityContext;
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
-        console.info('data:' + JSON.stringify(data));
-        console.info('data permissions:' + data.permissions);
-        console.info('data authResults:' + data.authResults);
-    }).catch((err: BusinessError) => {
-        console.info('data:' + JSON.stringify(err));
-    })
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+let context: Context = getContext(this) as common.UIAbilityContext;
+atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
+  console.info('data:' + JSON.stringify(data));
+  console.info('data permissions:' + data.permissions);
+  console.info('data authResults:' + data.authResults);
+  console.info('data dialogShownResults:' + data.dialogShownResults);
+}).catch((err: BusinessError) => {
+  console.error('data:' + JSON.stringify(err));
+});
 ```
 
 ### verifyAccessToken<sup>(deprecated)</sup>
@@ -291,7 +285,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 > **NOTE**
 >
-> This API is no longer maintained since API version 9. You are advised to use [checkAccessToken](#checkaccesstoken9).
+> This API is no longer maintained since API version 9. Use [checkAccessToken](#checkaccesstoken9) instead.
 
 **System capability**: SystemCapability.Security.AccessToken
 
@@ -306,7 +300,7 @@ Verifies whether a permission is granted to an application. This API uses a prom
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise used to return the permission grant state.|
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise used to return the permission grant state.|
 
 **Example**
 
@@ -316,15 +310,11 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-try {
-    atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
-    });
-}catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
+  console.log(`promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### checkAccessTokenSync<sup>10+</sup>
@@ -376,7 +366,5 @@ Enumerates the permission grant states.
 
 | Name              |    Value| Description       |
 | ------------------ | ----- | ----------- |
-| PERMISSION_DENIED  | -1    | Permission denied.|
-| PERMISSION_GRANTED | 0     | Permission granted.|
-
-<!--no_check-->
+| PERMISSION_DENIED  | -1    | The permission is not granted.|
+| PERMISSION_GRANTED | 0     | The permission is granted.|
