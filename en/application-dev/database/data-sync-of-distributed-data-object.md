@@ -44,9 +44,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
+| Distributed Data Object Instance| Object Instance| Property Name| Property Value|
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
+| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database|
 
 
 ### Cross-Device Synchronization and Data Change Notification
@@ -55,7 +55,7 @@ One of the most important functions of distributed data objects is to implement 
 
 As shown in the following figure, distributed data object 1 of device A and distributed data object 1 of device B are set with the same session ID **session1**, and synchronization relationship of session 1 is established between the two objects.
 
-  **Figure 2** Object synchronization relationship 
+**Figure 2** Object synchronization relationship
 
 ![distributedObject_sync](figures/distributedObject_sync.jpg)
 
@@ -226,6 +226,10 @@ The following example demonstrates how to implement synchronization of distribut
 
 4. Set the same session ID for the distributed data objects for data synchronization. The data objects in the synchronization network include the local and remote objects.
 
+  > **NOTE**
+  >
+  > If the data of a distributed data object (for example, object A) added to the network is different from that of the existing distributed data object ( for example, object B) in the network, the data of object B will be synced with that of object A. To enable the newly added distributed data object to sync data with the existing distributed data object in the network, set its attributes to **undefined**.
+
    ```ts
    // Set a session ID, for example, 123456, for device 1.
    let sessionId: string = '123456';
@@ -317,7 +321,7 @@ The following example demonstrates how to implement synchronization of distribut
     }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
-   
+      
     // Revoke the data saved.
     localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
