@@ -1,9 +1,10 @@
 # @ohos.data.relationalStore (RDB Store)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+
 ArkTS supports the following basic data types: number, string, binary data, and boolean. The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
-The **relationalStore** module provides the following functions:
+The **relationalStore** module provides the following:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
@@ -120,7 +121,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object obtained.|
 
 **Error codes**
 
@@ -512,7 +513,7 @@ Enumerates the RDB store security levels. Use the enum name rather than the enum
 
 > **NOTE**
 >
-> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Access Control Mechanism in Cross-Device Synchronization](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
+> To perform data sync operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Access Control Mechanism in Cross-Device Synchronization](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -624,7 +625,7 @@ Represents the data type of the primary key and modification time of a database 
 
 ## SyncMode
 
-Enumerates the database synchronization modes. Use the enum name rather than the enum value.
+Enumerates the database sync modes. Use the enum name rather than the enum value.
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
@@ -688,7 +689,7 @@ Enumerates data change types. Use the enum name rather than the enum value.
 
 ## ChangeInfo<sup>10+</sup>
 
-Defines the details about the device-cloud synchronization process.
+Represents the detail information about the device-cloud sync process.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -708,8 +709,8 @@ Enumerates the distributed table types. Use the enum name rather than the enum v
 
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | 0  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | 1   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_DEVICE | 0  | Distributed database table synced between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
+| DISTRIBUTED_CLOUD  | 1   | Distributed database table synced between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -719,7 +720,7 @@ Defines the configuration of the distributed mode of tables.
 
 | Name    | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync   | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table. The value **false** means only manual synchronization is supported for the table.|
+| autoSync   | boolean | Yes  | The value **true** means both auto sync and manual sync are supported for the table. The value **false** means only manual sync is supported for the table.|
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -738,19 +739,19 @@ Defines the resolution to use when **insert()** and **update()** conflict. Use t
 
 ## Progress<sup>10+</sup>
 
-Enumerates the device-cloud synchronization processes. Use the enum name rather than the enum value.
+Enumerates the device-cloud sync progresses. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name            | Value  | Description                    |
 | ---------------- | ---- | ------------------------ |
-| SYNC_BEGIN       | 0    | The device-cloud synchronization starts.  |
-| SYNC_IN_PROGRESS | 1    | The device-cloud synchronization is in progress.|
-| SYNC_FINISH      | 2    | The device-cloud synchronization is complete.|
+| SYNC_BEGIN       | 0    | The device-cloud sync starts.  |
+| SYNC_IN_PROGRESS | 1    | The device-cloud sync is in progress.|
+| SYNC_FINISH      | 2    | The device-cloud sync is complete.|
 
 ## Statistic<sup>10+</sup>
 
-Represents the device-cloud synchronization statistics information.
+Represents the device-cloud sync statistics information.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -759,11 +760,11 @@ Represents the device-cloud synchronization statistics information.
 | total      | number | Yes  | Total number of rows to be synchronized between the device and cloud in the database table.    |
 | successful | number | Yes  | Number of rows that are successfully synchronized between the device and cloud in the database table.      |
 | failed     | number | Yes  | Number of rows that failed to be synchronized between the device and cloud in the database table.      |
-| remained   | number | Yes  | Number of rows that are not executed for device-cloud synchronization in the database table.|
+| remained   | number | Yes  | Number of rows that are not executed for device-cloud sync in the database table.|
 
 ## TableDetails<sup>10+</sup>
 
-Represents the upload and download statistics of device-cloud synchronization tasks.
+Represents the upload and download statistics of device-cloud sync tasks.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -774,31 +775,31 @@ Represents the upload and download statistics of device-cloud synchronization ta
 
 ## ProgressCode<sup>10+</sup>
 
-Enumerates the device-cloud synchronization states. Use the enum name rather than the enum value.
+Enumerates the device-cloud sync states. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name                 | Value  | Description                                                        |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| SUCCESS               | 0    | The device-cloud synchronization is successful.                                      |
-| UNKNOWN_ERROR         | 1    | An unknown error occurs during device-cloud synchronization.                              |
-| NETWORK_ERROR         | 2    | A network error occurs during device-cloud synchronization.                              |
+| SUCCESS               | 0    | The device-cloud sync is successful.                                      |
+| UNKNOWN_ERROR         | 1    | An unknown error occurs during device-cloud sync.                              |
+| NETWORK_ERROR         | 2    | A network error occurs during device-cloud sync.                              |
 | CLOUD_DISABLED        | 3    | The cloud is unavailable.                                            |
-| LOCKED_BY_OTHERS      | 4    | The device-cloud synchronization of another device is being performed.<br>Start device-cloud synchronization after checking that cloud resources are not occupied by other devices.|
+| LOCKED_BY_OTHERS      | 4    | The device-cloud sync of another device is being performed.<br>Start device-cloud sync after checking that cloud resources are not occupied by other devices.|
 | RECORD_LIMIT_EXCEEDED | 5    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
 | NO_SPACE_FOR_ASSET    | 6    | The remaining cloud space is less than the size of the data to be synchronized.                    |
 
 ## ProgressDetails<sup>10+</sup>
 
-Represents the statistics of the overall device-cloud synchronization (upload and download) tasks.
+Represents the statistics of the overall device-cloud sync (upload and download) tasks.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name    | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| schedule | [Progress](#progress10)                           | Yes  | Device-cloud synchronization process.                                          |
-| code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud synchronization state.                                    |
-| details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud synchronization statistics of the table.|
+| schedule | [Progress](#progress10)                           | Yes  | Device-cloud sync progress.                                          |
+| code     | [ProgressCode](#progresscode10)                   | Yes  | Device-cloud sync state.                                    |
+| details  | Record<string, [TableDetails](#tabledetails10)> | Yes  | Statistics of each table.<br>The key indicates the table name, and the value indicates the device-cloud sync statistics of the table.|
 
 ## RdbPredicates
 
@@ -828,7 +829,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
+Sets an **RdbPredicates** object to specify the remote devices to connect during the distributed database sync.
 
 > **NOTE**
 >
@@ -878,7 +879,7 @@ predicates.inDevices(deviceIds);
 inAllDevices(): RdbPredicates
 
 
-Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database synchronization.
+Sets an **RdbPredicates** object to specify all remote devices to connect during the distributed database sync.
 
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -1731,22 +1732,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, (err: BusinessError, rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, (err: BusinessError, rowId: number) => {
     if (err) {
       console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -1787,22 +1799,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
     (err: BusinessError, rowId: number) => {
       if (err) {
         console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1849,22 +1872,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket).then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1909,22 +1943,33 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 if(store != undefined) {
-  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
     console.info(`Insert is successful, rowId = ${rowId}`);
   }).catch((err: BusinessError) => {
     console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
@@ -1962,10 +2007,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -1978,23 +2019,24 @@ let value9 = "Tom";
 let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
 const valueBucket1: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 const valueBucket2: ValuesBucket = {
-  key1: value5,
-  key2: value6,
-  key3: value7,
-  key4: value8,
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
 };
 const valueBucket3: ValuesBucket = {
-  key1: value9,
-  key2: value10,
-  key3: value11,
-  key4: value12,
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2045,10 +2087,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -2061,23 +2099,24 @@ let value9 = "Tom";
 let value10 = 20;
 let value11 = 102.5;
 let value12 = new Uint8Array([11, 12, 13, 14, 15]);
+
 const valueBucket1: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 const valueBucket2: ValuesBucket = {
-  key1: value5,
-  key2: value6,
-  key3: value7,
-  key4: value8,
+  'NAME': value5,
+  'AGE': value6,
+  'SALARY': value7,
+  'CODES': value8,
 };
 const valueBucket3: ValuesBucket = {
-  key1: value9,
-  key2: value10,
-  key3: value11,
-  key4: value12,
+  'NAME': value9,
+  'AGE': value10,
+  'SALARY': value11,
+  'CODES': value12,
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
@@ -2120,24 +2159,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates,(err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates,(err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -2178,24 +2228,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -2241,24 +2302,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -2303,24 +2375,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update(valueBucket1, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -3099,10 +3182,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3110,10 +3189,10 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 store.beginTransaction();
 const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 store.insert("test", valueBucket);
 store.commit();
@@ -3133,10 +3212,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3144,10 +3219,10 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 store.beginTransaction();
 const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
 store.insert("test", valueBucket);
 store.commit();
@@ -3167,10 +3242,6 @@ This API cannot be used in multi-process or multi-thread scenarios.
 ```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "name";
-let key2 = "age";
-let key3 = "SALARY";
-let key4 = "blobType";
 let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
@@ -3179,10 +3250,10 @@ let value4 = new Uint8Array([1, 2, 3]);
 try {
   store.beginTransaction()
   const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
   };
   store.insert("test", valueBucket);
   store.commit();
@@ -3540,7 +3611,7 @@ Sets distributed tables. This API uses a promise to return the result.
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | tables | Array&lt;string&gt;                       | Yes  | Names of the distributed tables to set.                                |
 | type   | [DistributedType](#distributedtype10)     | No  | Distributed type of the tables. The default value is **relationalStore.DistributedType.DISTRIBUTED_DEVICE**.|
-| config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual synchronization is supported.|
+| config | [DistributedConfig](#distributedconfig10) | No  | Configuration of the distributed mode. If this parameter is not specified, the value of **autoSync** is **false** by default, which means only manual sync is supported.|
 
 **Return value**
 
@@ -3709,9 +3780,9 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 | Name    | Type                                              | Mandatory| Description                                                        |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](#syncmode)                             | Yes  | Data synchronization mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.                              |
+| mode       | [SyncMode](#syncmode)                             | Yes  | Data sync mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.                              |
 | predicates | [RdbPredicates](#rdbpredicates)               | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.                                        |
-| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to send the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+| callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Error codes**
 
@@ -3771,14 +3842,14 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 | Name    | Type                                | Mandatory| Description                          |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode)               | Yes  | Data synchronization mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.|
+| mode       | [SyncMode](#syncmode)               | Yes  | Data sync mode. The value can be **relationalStore.SyncMode.SYNC_MODE_PUSH** or **relationalStore.SyncMode.SYNC_MODE_PULL**.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.          |
 
 **Return value**
 
 | Type                                        | Description                                                        |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the synchronization result. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the sync result. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Error codes**
 
@@ -3827,7 +3898,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Manually starts device-cloud synchronization for all distributed tables. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
+Manually starts device-cloud sync for all distributed tables. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3837,9 +3908,9 @@ Manually starts device-cloud synchronization for all distributed tables. This AP
 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                            |
-| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.            |
-| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the synchronization result to the caller.|
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                            |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.            |
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the sync result to the caller.|
 
 **Example**
 
@@ -3861,7 +3932,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-Manually starts device-cloud synchronization for all distributed tables. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
+Manually starts device-cloud sync for all distributed tables. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3871,14 +3942,14 @@ Manually starts device-cloud synchronization for all distributed tables. This AP
 
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                |
-| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.|
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                |
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
 
 **Return value**
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise used to send the synchronization result.|
+| Promise&lt;void&gt; | Promise used to send the sync result.|
 
 **Example**
 
@@ -3900,7 +3971,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Manually starts device-cloud synchronization of the specified table. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
+Manually starts device-cloud sync of the specified table. This API uses an asynchronous callback to return the result. Before using this API, ensure that the cloud service must be available.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3910,10 +3981,10 @@ Manually starts device-cloud synchronization of the specified table. This API us
 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                            |
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                            |
 | tables   | string[]                                              | Yes  | Name of the table to synchronize.                                  |
-| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.            |
-| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the synchronization result to the caller.|
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.            |
+| callback | AsyncCallback&lt;void&gt;                             | Yes  | Callback invoked to send the sync result to the caller.|
 
 **Example**
 
@@ -3937,7 +4008,7 @@ if(store != undefined) {
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
-Manually starts device-cloud synchronization of the specified table. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
+Manually starts device-cloud sync of the specified table. This API uses a promise to return the result. Before using this API, ensure that the cloud service must be available.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3947,15 +4018,15 @@ Manually starts device-cloud synchronization of the specified table. This API us
 
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| mode     | [SyncMode](#syncmode)                                 | Yes  | Synchronization mode of the database.                |
+| mode     | [SyncMode](#syncmode)                                 | Yes  | Sync mode of the database.                |
 | tables   | string[]                                              | Yes  | Name of the table to synchronize.                      |
-| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database synchronization details.|
+| progress | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
 
 **Return value**
 
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise used to send the synchronization result.|
+| Promise&lt;void&gt; | Promise used to send the sync result.|
 
 **Example**
 
@@ -3979,7 +4050,7 @@ if(store != undefined) {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Subscribes to data changes of specified devices. When the data of the specified devices changes, a callback is invoked to return the data change.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3987,9 +4058,9 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
-| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to register.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
+| event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
+| type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.                                                  |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. Array&lt;string&gt; specifies the IDs of the peer devices whose data is changed.|
 
 **Example**
 
@@ -4019,7 +4090,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Registers a data change event listener for the RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
+Subscribes to data changes of this RDB store. When the data of the specified devices changes, a callback is invoked to return the data change.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4027,9 +4098,9 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
-| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
-| type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization. |
+| event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
+| type     | [SubscribeType](#subscribetype)    | Yes  | Type of data change to observe.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud sync.|
 
 **Example**
 
@@ -4059,7 +4130,7 @@ try {
 
 on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
-Registers an intra-process or inter-process event listener for the RDB store. This callback is invoked by [emit](#emit10).
+Subscribes to process events. This callback is invoked by [emit](#emit10).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4068,7 +4139,7 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events.|
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -4100,7 +4171,7 @@ try {
 
 on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 
-Registers a listener for the auto synchronization progress. This API can be called only when device-cloud synchronization is enabled and the network connection is normal. When auto synchronization is performed, a callback will be invoked to send a notification of the synchronization progress.
+Subscribes to the auto sync progress. This API can be called only when device-cloud sync is enabled and the network connection is normal. When auto sync is performed, a callback will be invoked to send a notification of the sync progress.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4108,8 +4179,8 @@ Registers a listener for the auto synchronization progress. This API can be call
 
 | Name      | Type                             | Mandatory| Description                               |
 | ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | Yes  | Event type. The value is **autoSyncProgress**, which indicates the auto synchronization progress.|
-| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback invoked to return the auto synchronization progress.                            |
+| event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.|
+| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | Yes  | Callback invoked to return the auto sync progress.                            |
 
 **Example**
 
@@ -4133,7 +4204,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the data change event listener.
+Unsubscribes from data changes of the specified devices.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4141,9 +4212,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
-| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed. |
+| event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
+| type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.                                                  |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback to unregister. **Array<string>** indicates the IDs of the peer devices whose data change is unsubscribed from.|
 
 **Example**
 
@@ -4171,7 +4242,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Unregisters the data change event listener.
+Unsubscribes from data changes of this RDB store.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4179,9 +4250,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
-| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
-| type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback for the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.<br>If **observer** is not specified, listening for all data change events of the specified **type** will be canceled. |
+| event    | string                              | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.         |
+| type     | [SubscribeType](#subscribetype)     | Yes  | Type of data change to observe.                                |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback to unregister.<br>- If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>- If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud sync.<br>If **observer** is not specified, this API unregisters all callbacks for data changes of the specified **type**.|
 
 **Example**
 
@@ -4211,7 +4282,7 @@ try {
 
 off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
-Unregisters the data change event listener.
+Unsubscribes from process events.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4220,8 +4291,8 @@ Unregisters the data change event listener.
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
-| observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered. |
+| interProcess | boolean         | Yes  | Type of the data to observe.<br>The value **true** means inter-process events.<br>The value **false** means intra-process events.|
+| observer     | Callback\<void> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
 
 **Error codes**
 
@@ -4252,7 +4323,7 @@ try {
 
 off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 
-Unregisters the listener for the auto synchronization progress.
+Unsubscribes from the auto sync progress.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4260,8 +4331,8 @@ Unregisters the listener for the auto synchronization progress.
 
 | Name      | Type                             | Mandatory| Description                                                              |
 | ------------ |---------------------------------| ---- |------------------------------------------------------------------|
-| event        | string                          | Yes  | Event type. The value is **autoSyncProgress**, which indicates the auto synchronization progress.                               |
-| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback for the auto synchronization progress. If this parameter is specified, the specified callback will be unregistered. If this parameter is **null** or **undefined** or not specified, all callbacks for **autoSyncProgress** will be unregistered.|
+| event        | string                          | Yes  | Event type. The value is **'autoSyncProgress'**, which indicates the auto sync progress.                               |
+| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | No  | Callback to unregister. If this parameter is **null** or **undefined** or not specified, this API unregisters all callbacks for the auto sync progress.|
 
 **Example**
 
@@ -4285,7 +4356,7 @@ try {
 
 emit(event: string): void
 
-Triggers the inter-process or intra-process event listener registered through [on](#on10).
+Triggers the inter-process or intra-process event listener registered in [on](#on10).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4316,7 +4387,7 @@ if(store != undefined) {
 
 cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
 
-Clears the dirty data with the cursor smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud.
+Clears the dirty data whose cursor is smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4325,7 +4396,7 @@ Clears the dirty data with the cursor smaller than the specified cursor from the
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | table     | string                        | Yes  | Name of the table in the RDB store.                            |
-| cursor    | number                        | Yes  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. |
+| cursor    | number                        | Yes  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared.    |
 | callback  | AsyncCallback&lt;void&gt;     | Yes  | Callback invoked to return the result.|
 
 **Error codes**
@@ -4391,7 +4462,7 @@ if(store != undefined) {
 
 cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
-Clears the dirty data with the cursor smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud. If **cursor** is not specified, all the dirty data will be cleared.
+Clears the dirty data whose cursor is smaller than the specified cursor from the local device. The dirty data is the data that has been deleted from the cloud. If **cursor** is not specified, all the dirty data will be cleared.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -4400,7 +4471,7 @@ Clears the dirty data with the cursor smaller than the specified cursor from the
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | table     | string           | Yes  | Name of the table in the RDB store.          |
-| cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared. |
+| cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared.|
 
 **Return value**
 | Name   | Description                                              |
@@ -5043,6 +5114,3 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is empty or the specified location is invalid. |
-
-
-<!--no_check-->

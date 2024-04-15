@@ -1,4 +1,4 @@
-# @ohos.application.DataShareExtensionAbility (Data Share ExtensionAbility) (System API)
+# @ohos.application.DataShareExtensionAbility (DataShare ExtensionAbility) (System API)
 
 The **DataShareExtensionAbility** module provides data share services based on the ExtensionAbility.
 
@@ -289,7 +289,7 @@ Normalizes a URI. This API can be overridden as required.
 | Name    | Type                 | Mandatory| Description                   |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to normalize.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the normalized URI is returned. Otherwise, **null** is returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, the normalized URI is returned. Otherwise, **null** is returned.|
 
 **Example**
 
@@ -324,7 +324,7 @@ Denormalizes a URI. This API can be overridden as required.
 | Name    | Type                 | Mandatory| Description                   |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to denormalize.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the denormalized URI is returned. If the URI passed in is returned, denormalization is not required. If denormalization is not supported, **null** is returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, the denormalized URI is returned. If the URI passed in is returned, denormalization is not required. If denormalization is not supported, **null** is returned.|
 
 **Example**
 
