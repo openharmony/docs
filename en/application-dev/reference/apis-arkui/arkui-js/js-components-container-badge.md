@@ -46,7 +46,7 @@ In addition to the [universal attributes](js-components-common-attributes.md), t
 
 ## Styles
 
-The [universal styles](../arkui-js/js-components-common-styles.md) are supported.
+The [universal styles](js-components-common-styles.md) are supported.
 
 >  **NOTE**
 >
@@ -55,12 +55,12 @@ The [universal styles](../arkui-js/js-components-common-styles.md) are supported
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 
 ## Methods
 
-The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+The [universal methods](js-components-common-methods.md) are supported.
 
 
 ## Example
