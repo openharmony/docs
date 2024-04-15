@@ -659,9 +659,9 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 弹出的提醒通知中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次(不适用于倒计时提醒类型)。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
