@@ -207,6 +207,7 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+// 使用UIExtensionAbility：将common.UIAbilityContext 替换为common.UIExtensionContext
 let context: Context = getContext(this) as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
@@ -266,6 +267,7 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+// 使用UIExtensionAbility：将common.UIAbilityContext 替换为common.UIExtensionContext
 let context: Context = getContext(this) as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
   console.info('data:' + JSON.stringify(data));
