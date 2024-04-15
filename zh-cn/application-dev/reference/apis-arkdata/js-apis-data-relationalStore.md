@@ -580,7 +580,7 @@ class EntryAbility extends UIAbility {
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
-| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。说明：bigint类型不支持orderBy; bigint类型字段的数据写入时，须通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如let data = BigInt(1234)或let data = 1234n; bigint字段如果写入Number类型的数据，则查询该数据的返回类型为Number，而非bigint。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。说明：bigint类型不支持比较大小，因此不支持如下查询谓词：between,notBetween,greaterThan,lessThan,greaterThanOrEqualTo,lessThanOrEqualTo,orderByAsc,orderByDesc; bigint类型字段的数据写入时，须通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如let data = BigInt(1234)或let data = 1234n; bigint字段如果写入Number类型的数据，则查询该数据的返回类型为Number，而非bigint。 |
 
 ## ValuesBucket
 
