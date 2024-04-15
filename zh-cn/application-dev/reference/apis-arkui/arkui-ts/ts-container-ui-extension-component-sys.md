@@ -120,7 +120,7 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 | 参数名               | 参数类型                                 | 必填 | 参数描述                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false。 |
-| placeholder | [ComponentContent<sup>12+<sup>](js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
+| placeholder | [ComponentContent<sup>12+<sup>](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
 
 ## UIExtensionProxy
 
