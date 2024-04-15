@@ -1,6 +1,6 @@
 # 使用Web组件的PDF文档预览能力
 
-PDF文档预览是Web组件的基本功能。根据PDF文档来源可以分为三种常用场景，包括加载网络PDF文档、加载本地PDF文档、加载应用内resource资源PDF文档。
+Web组件提供了在网页中预览PDF的能力。应用可以通过Web组件的src参数和loadUrl接口中传入PDF文件，来加载PDF文档。根据PDF文档来源不同，可以分为三种常用场景：加载网络PDF文档、加载本地PDF文档、加载应用内resource资源PDF文档。
 
 PDF文档预览加载过程中，若涉及网络文档获取，需要配置[ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md)网络访问权限。
 
