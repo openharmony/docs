@@ -273,6 +273,16 @@ struct Parent {
     .backgroundColor(0xF1F3F5)
   }
 }
+
+@Component
+struct ChildItem {
+  @Prop item: string;
+  
+  build() {
+    Text(this.item)
+      .fontSize(30)
+  }
+}
 ```
 
 上述代码的运行效果如下图所示。
