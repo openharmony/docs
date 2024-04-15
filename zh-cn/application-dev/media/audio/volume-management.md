@@ -37,36 +37,6 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 系统提供了[AVVolumePanel](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)由应用创建组件。
 
-### 默认面板样式
-
-应用可以使用系统提供的默认面板样式，当前仅提供默认的系统音量条样式，除位置外，其余基础属性调节暂不支持。
-
-```ts
-import AVVolumePanel from '@ohos.multimedia.avVolumePanel';
-
-@Entry
-@Component
-struct Index {
-
-  @Prop volume: number = 0;
-
-  build() {
-    Row() {
-      Column() {
-        AVVolumePanel({
-          volumeLevel: this.volume,
-          volumeParameter: {
-            position: {
-              x: 100,
-              y: 200
-            }
-          }
-        })
-      }
-    }.width('50%').height('50%')
-  }
-}
-
 ```
 
 ## 音频流音量
