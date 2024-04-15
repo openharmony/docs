@@ -28,6 +28,8 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions对象说明
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
@@ -173,8 +175,6 @@ blockBorderColor(value: ResourceColor)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderColor可设置自定义形状中线的颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -195,8 +195,6 @@ blockBorderWidth(value: Length)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderWidth可设置自定义形状中线的粗细。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -210,8 +208,6 @@ blockBorderWidth(value: Length)
 stepColor(value: ResourceColor)
 
 设置刻度颜色。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,8 +223,6 @@ trackBorderRadius(value: Length)
 
 设置底板圆角半径。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -242,8 +236,6 @@ trackBorderRadius(value: Length)
 selectedBorderRadius(value: Length)
 
 设置已滑动部分（高亮）圆角半径。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -259,8 +251,6 @@ blockSize(value: SizeOptions)
 
 设置滑块大小。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -275,8 +265,6 @@ blockStyle(value: SliderBlockStyle)
 
 设置滑块形状参数。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -290,8 +278,6 @@ blockStyle(value: SliderBlockStyle)
 stepSize(value: Length)
 
 设置刻度大小（直径）。当值为0时，刻度点不显示，当值小于0时，取默认值。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -367,7 +353,7 @@ minResponsiveDistance(value: number)
 | ------ | ------- | ---- | ------------------------------------------ |
 | value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数min和max一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0。 |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 
