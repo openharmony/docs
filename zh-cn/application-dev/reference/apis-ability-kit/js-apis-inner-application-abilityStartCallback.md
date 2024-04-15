@@ -1,6 +1,6 @@
 # AbilityStartCallback
 
-定义拉起UIExtensionAbility失败后的回调。
+定义拉起UIExtensionAbility执行结果的回调。
 
 > **说明：**
 >
@@ -34,6 +34,9 @@ import common from '@ohos.app.ability.common';
   let abilityStartCallback: common.AbilityStartCallback = {
     onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
+    },
+    onResult: (abilityResult: common.AbilityResult) => {
+      console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
     }
   }
   context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err: BusinessError) => {

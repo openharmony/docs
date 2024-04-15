@@ -1621,7 +1621,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1647,6 +1647,9 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   let abilityStartCallback: common.AbilityStartCallback = {
     onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
+    },
+    onResult: (abilityResult: common.AbilityResult) => {
+      console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
     }
   }
   context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
@@ -1673,7 +1676,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 启动失败后的回调。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 
 **返回值：**
 
@@ -1705,6 +1708,9 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   let abilityStartCallback: common.AbilityStartCallback = {
     onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
+    },
+    onResult: (abilityResult: common.AbilityResult) => {
+      console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
     }
   }
   context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
