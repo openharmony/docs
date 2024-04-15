@@ -68,3 +68,34 @@ enableArrow、arrowOffset属性的起始支持版本为API version 10。
 
 如果不需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中不设置enableArrow属性或将enableArrow属性设置为false；
 如果需要bindMenu展示指向性菜单样式，在bindMenu的MenuOptions中将enableArrow属性设置为true，并根据需要决定是否设置arrowOffset属性值。
+
+## cl.arkui.3 应用可获焦的默认行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+优化默认走焦行为。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：有获焦能力但默认不可获焦的组件，需要通过配置属性`.focusable(true)`使得自身可获焦，且走焦时没有默认焦点框，需要配置焦点态样式。
+
+变更后：注册了onClick或者单指单击手势的组件默认可获焦，走焦时无需配置焦点态样式也能显示默认焦点框。
+
+**API Level**
+
+该特性变更起始支持版本为 API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+可点击组件不希望参与走焦，需要显示配置`.focusable(false)`；
+
