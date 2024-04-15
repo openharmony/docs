@@ -45,7 +45,7 @@
 > **说明：**
 > 
 > 应用按需求申请长时任务，当应用无需在后台运行（任务结束）时，要及时主动取消长时任务，否则系统会强行取消。例如用户点击音乐暂停播放时，应用需及时取消对应的长时任务；用户再次点击音乐播放时，需重新申请长时任务。\
-> 音乐类应用后台停止长时任务的同时，需要先暂停或停止音频流，否则应用会被强制终止。
+> 音乐类应用后台停止长时任务的同时，需要暂停或停止音频流，否则应用会被强制终止。
 
 ## 接口说明
 
@@ -57,9 +57,6 @@
 | -------- | -------- |
 | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | 申请长时任务 |
 | stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 取消长时任务 |
-| startBackgroundRunning(context: Context, bgModes: string[], wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | 申请长时任务 |
-| updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt; | 取消长时任务 |
-
 
 
 ## 开发步骤
