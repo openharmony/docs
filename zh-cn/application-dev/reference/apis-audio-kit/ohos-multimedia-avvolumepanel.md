@@ -12,14 +12,17 @@
 ```js
 import AVVolumePanel from '@ohos.multimedia.avVolumePanel';
 ```
+## 属性
 
-## 接口
+支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
 
-AVVolumePanel()
+## AVVolumePanel
+
+AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 音量面板，可用于在当前应用内展示音量调节面板。
 
-该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md)。
+**装饰器类型：** [@Component](../../quick-start/arkts-create-custom-components.md)
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -27,16 +30,18 @@ AVVolumePanel()
 
 除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-|volumeLevel | number | 通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间，否则将被丢弃。 |
-|volumeParameter | [AVVolumePanelParameter](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.avVolumePanel.d.ets) | 设置音量面板的自定义参数 |
+**参数：**
 
-其中AVVolumePanelParameter自定义参数支持以下属性：
+| 名称 | 类型 | 必填 | 装饰器类型 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+|volumeLevel | number | 否 | @Prop |  通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间，否则将被丢弃|
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 |  @Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条|
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-|position | Position | 设置音量面板的位置 |
+## AVVolumePanelParameter
+
+| 名称 | 类型 | 必填 | 说明
+| -------- | -------- | -------- | -------- |
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。 |
 
 ## 事件
 
