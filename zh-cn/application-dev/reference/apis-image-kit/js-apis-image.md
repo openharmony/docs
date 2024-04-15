@@ -2316,6 +2316,58 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 })
 ```
 
+### getImageProperties<sup>12+</sup>
+
+getImageProperties(key: Array<PropertyKey>): Promise<Record<PropertyKey, string|null>>
+
+批量获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | Array\<[PropertyKey](#propertykey7)>                                 | 是   | 图片属性名的数组。                         |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<Record<[PropertyKey](#propertykey7), string \| null>> | Promise实例，用于异步获取图片属性值，如获取失败则返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.            |
+| 62980135| The EXIF value is invalid.            |
+| 62980146| The EXIF data failed to be written to the file.            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+const { EXPOSURE_TIME, SCENE_TYPE, F_NUMBER } = image.PropertyKey;
+    let key = [EXPOSURE_TIME, F_NUMBER,SCENE_TYPE];
+    await getFd("test_exif1.jpg");
+    imageSourceApi = image.createImageSource(fdNumber);
+    if (imageSourceApi == undefined) {
+        console.info(`create image source failed`);
+    }
+    imageSourceApi.getImageProperties(key)
+        .then((data) => {
+        console.info(JSON.stringify(data));})
+        .catch((error) => {
+        console.log(JSON.stringify(error));
+    });
+```
+
 ### modifyImageProperty<sup>11+</sup>
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
@@ -2438,6 +2490,69 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
         console.info('modifyImageProperty Succeeded');
     }
 })
+```
+
+### modifyImageProperties<sup>12+</sup>
+
+modifyImageProperties(records: Record<[PropertyKey](#propertykey7), string|null>): Promise\<void>
+
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| key     | [Record<[PropertyKey](#propertykey7), string|null>]   | 是   | 包含图片属性名和属性值的数组。 |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980096| The operation failed.             |
+| 62980110| The image source data is incorrect.             |
+| 62980113| Unknown image format.             |
+| 62980116| Failed to decode the image.             |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+await getFd("test_exif1.jpg");
+imageSourceApi = image.createImageSource(fdNumber);
+let key = {
+            ExposureTime: "1/33 sec.",
+            ISOSpeedRatings: "400",
+            FNumber: "f/1.8"
+};
+if (imageSourceApi == undefined) {
+	console.info(`create image source failed`);
+}
+imageSourceApi.modifyImageProperties(key)
+.then(() => {
+    imageSourceApi
+    .getImageProperties(key)
+    .then((data) => {
+        console.info(data);
+    })
+    .catch((err) => {
+        console.info(err);
+    });
+})
+.catch((error) => {
+	console.log(JSON.stringify(error));
+});
 ```
 
 ### updateData<sup>9+</sup>
