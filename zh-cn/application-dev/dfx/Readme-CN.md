@@ -23,6 +23,10 @@
         - [资源泄漏事件介绍](hiappevent-watcher-resourceleak-events.md)
         - [订阅资源泄漏事件（ArkTS）](hiappevent-watcher-resourceleak-events-arkts.md)
         - [订阅资源泄漏事件（C/C++）](hiappevent-watcher-resourceleak-events-ndk.md)
+      - 踩内存事件
+        - [踩内存事件介绍](hiappevent-watcher-address-sanitizer-events.md)
+        - [订阅踩内存事件（ArkTS）](hiappevent-watcher-address-sanitizer-events-arkts.md)
+        - [订阅踩内存事件（C/C++）](hiappevent-watcher-address-sanitizer-events-ndk.md)
   - [事件上报](hiappevent-event-reporting.md)
 - HiTraceMeter使用指导
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
