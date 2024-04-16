@@ -67,7 +67,7 @@ let permissionFlags: number = 1;
 atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
   console.log('grantUserGrantedPermission success');
 }).catch((err: BusinessError) => {
-  console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -115,7 +115,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 let permissionFlags: number = 1;
 atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('grantUserGrantedPermission success');
   }
@@ -172,7 +172,7 @@ let permissionFlags: number = 1;
 atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
   console.log('revokeUserGrantedPermission success');
 }).catch((err: BusinessError) => {
-  console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -220,7 +220,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 let permissionFlags: number = 1;
 atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('revokeUserGrantedPermission success');
   }
@@ -275,7 +275,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
   console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -451,7 +451,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
   console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -507,7 +507,7 @@ try {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
+    console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
@@ -558,7 +558,7 @@ let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionList);
 } catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
+    console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
