@@ -55,7 +55,7 @@ allowScale(value: boolean)
 
 marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
-设置文本更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)<br>
+跑马灯组件属性更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)<br>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -65,7 +65,7 @@ marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value | MarqueeUpdateStrategy | 否 | 文本更新后，跑马灯的滚动策略<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
+| value | MarqueeUpdateStrategy | 否 | 跑马灯组件属性更新后，跑马灯的滚动策略<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
 
 ## 事件
 
@@ -102,8 +102,8 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 ## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
-| DEFAULT | 文本更新后， 从开始位置， 运行跑马灯效果。     |
-| PRESERVE_POSITION  | 文本更新后， 保持当前位置， 运行跑马灯效果。 |
+| DEFAULT | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
+| PRESERVE_POSITION  | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
 
 ## 示例
 
