@@ -22,6 +22,8 @@ getPixelMap(): image.PixelMap
 
 获取pixelMap。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -107,6 +109,8 @@ getForeground(): DrawableDescriptor;
 
 获取前景的DrawableDescriptor对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -129,6 +133,8 @@ let drawableNew: object = drawable.getForeground()
 getBackground(): DrawableDescriptor;
 
 获取背景的DrawableDescriptor对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -153,6 +159,8 @@ getMask(): DrawableDescriptor
 
 获取蒙版的DrawableDescriptor对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -174,6 +182,8 @@ let drawableNew: object = drawable.getMask()
 static getMaskClipPath(): string
 
 LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

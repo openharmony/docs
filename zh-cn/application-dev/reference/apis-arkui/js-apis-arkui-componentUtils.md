@@ -21,6 +21,8 @@ getRectangleById(id: string): ComponentInfo
 
 根据组件ID获取组件实例对象, 通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -44,6 +46,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ## ComponentInfo
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型             | 必填           | 说明                         |
@@ -59,6 +63,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Size 
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型 | 必填 | 说明                               |
@@ -67,6 +73,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | height   | number | 是 | 组件高度。<br />单位: px                      |
 
 ### Offset
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,6 +85,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### TranslateResult
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型 | 必填 | 说明                               |
@@ -86,6 +96,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | z       | number | 是 | z轴平移距离。<br />单位: px                       |
 
 ### ScaleResult
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +111,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### RotateResult
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型 | 必填 | 说明                               |
@@ -111,6 +125,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | centerY | number | 是 | 变换中心点y轴坐标。<br />单位: px                 |
 
 ### Matrix4Result
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

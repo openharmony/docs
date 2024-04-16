@@ -29,34 +29,38 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **装饰器类型：**\@Component
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  | 
+| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  |
 | -------- | -------- | -------- |-------------|---------------------|
-| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              | 
-| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 | 
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 筛选器的样式类型。           | 
-
+| toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              |
+| activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 |
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 筛选器的样式类型。           |
 
 ## ToolBarOptions
 
-| 名称 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 工具栏子项的文本。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 工具栏子项点击事件。 | 
-| icon | [Resource](ts-types.md#resource) | 否 | 工具栏子项的图标。 | 
-| state | [ItemState](#itemstate) | 否 | 工具栏子项的状态，默认为ENABLE。 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 工具栏子项的文本。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 工具栏子项点击事件。 |
+| icon | [Resource](ts-types.md#resource) | 否 | 工具栏子项的图标。 |
+| state | [ItemState](#itemstate) | 否 | 工具栏子项的状态，默认为ENABLE。 |
 
 ## ItemState
 
-| 名称 | 值 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| ENABLE | 1 | 工具栏子项为正常可点击状态。 | 
-| DISABLE | 2 | 工具栏子项为不可点击状态。 | 
-| ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 | 
+| ENABLE | 1 | 工具栏子项为正常可点击状态。 |
+| DISABLE | 2 | 工具栏子项为不可点击状态。 |
+| ACTIVATE | 3 | 工具栏子项为激活状态，可点击。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
