@@ -871,25 +871,6 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
->
-
-## SelectionOptions<sup>12+</sup>
-
-setTextSelection选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
 
 ### stopEditing<sup>10+</sup>
 
@@ -966,6 +947,24 @@ getCaretOffset(): CaretOffset
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
+
+## SelectionOptions<sup>12+</sup>
+
+setTextSelection选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
 
 ## UnderlineColor<sup>12+</sup>对象说明
 

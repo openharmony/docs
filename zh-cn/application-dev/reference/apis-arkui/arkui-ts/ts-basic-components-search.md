@@ -449,6 +449,24 @@ textIndent(value: Dimension)
 | NUMBER   | 纯数字输入模式。      |
 | PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
 
+## SelectionOptions<sup>12+</sup>
+
+setTextSelection的选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -667,24 +685,6 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
-
-##  SelectionOptions<sup>12+</sup>
-
-setTextSelection的选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
 
 ##  示例
 
