@@ -1797,131 +1797,7 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
-### defaultTextEncodingFormat<sup>12+</sup>
 
-defaultTextEncodingFormat(textEncodingFormat: string)
-
-设置网页的默认字符编码。
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| textEncodingFormat | string | 是    | "UTF-8"   | 默认字符编码。 |
-
-  **示例：**
-
-  ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        // 设置高和内边距
-        .height(500)
-        .padding(20)
-        .defaultTextEncodingFormat("UTF-8")
-        .javaScriptAccess(true)
-    }
-  }
-}
-  ```
-
-```html
-
-<!doctype html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>My test html5 page</title>
-</head>
-<body>
-    hello world, 你好世界!
-</body>
-</html>
-```
-### metaViewport<sup>12+</sup>
-
-metaViewport(enable: boolean)
-
-设置mete标签的viewport属性是否可用。
-
-> **说明：**
->
-> - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
-> - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
-> - 如果设置为异常值将无效。
-> - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
-| ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
-
-**示例：**
-
-  ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        .metaViewport(true)
-    }
-  }
-}
-  ```
-
-```html
-<!doctype html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-	<p>hello world, 你好世界!</p>
-</body>
-</html>
-```
-### textAutosizing<sup>12+</sup>
-设置使能文本自动调整大小。
-
-**参数：**
-
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| textAutosizing | boolean | 是    | true   | 文本自动调整大小。 |
-
-  **示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .textAutosizing(false)
-      }
-    }
-  }
-  ```
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -3106,64 +2982,6 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
   }
   ```
 
-### onSslErrorEvent<sup>12+</sup>
-
-onSslErrorEvent(callback: OnSslErrorEventCallback)
-
-通知用户加载资源（主资源+子资源）时发生SSL错误，如果只想处理主资源的SSL错误，请用isMainFrame字段进行区分。
-
-**参数：**
-
-| 参数名     | 参数类型                                 | 参数描述           |
-| ------- | ------------------------------------ | -------------- |
-| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | 通知用户加载资源时发生SSL错误。 |
-|
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onSslErrorEvent((event: SslErrorEvent) => {
-            console.log("onSslErrorEvent url: " + event.url)
-            console.log("onSslErrorEvent error: " + event.error)
-            console.log("onSslErrorEvent originalUrl: " + event.originalUrl)
-            console.log("onSslErrorEvent referrer: " + event.referrer)
-            console.log("onSslErrorEvent isFatalError: " + event.isFatalError)
-            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame)
-            AlertDialog.show({
-              title: 'onSslErrorEvent',
-              message: 'text',
-              primaryButton: {
-                value: 'confirm',
-                action: () => {
-                  event.handler.handleConfirm()
-                }
-              },
-              secondaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.handleCancel()
-                }
-              },
-              cancel: () => {
-                event.handler.handleCancel()
-              }
-            })
-          })
-      }
-    }
-  }
-  ```
-
 ### onClientAuthenticationRequest<sup>9+</sup>
 
 onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
@@ -4286,78 +4104,6 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
   }
   ```
 
-### onFirstMeaningfulPaint<sup>12+</sup>
-
-onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
-
-设置网页绘制页面主要内容回调函数。
-
-**参数：**
-
-| 参数名   | 类型                                                         | 说明                                   |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | 网页绘制页面主要内容度量信息的回调。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onFirstMeaningfulPaint((details) => {
-            console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
-              ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
-        })
-      }
-    }
-  }
-  ```
-
-### onLargestContentfulPaint<sup>12+</sup>
-
-onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12))
-
-设置网页绘制页面最大内容回调函数。
-
-**参数：**
-
-| 参数名   | 类型                                                         | 说明                                 |
-| -------- | ------------------------------------------------------------ | ------------------------------------ |
-| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | 网页绘制页面最大内容度量信息的回调。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onLargestContentfulPaint((details) => {
-            console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
-              ", [largestImagePaintTime]=" + details.largestImagePaintTime +
-              ", [largestTextPaintTime]=" + details.largestTextPaintTime +
-              ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
-              ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
-              ", [imageBPP]=" + details.imageBPP);
-        })
-      }
-    }
-  }
-  ```
-
 ### onLoadIntercept<sup>10+</sup>
 
 onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
@@ -4671,7 +4417,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
 ### onNativeEmbedLifecycleChange<sup>11+</sup>
 
-onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
+onNativeEmbedLifecycleChange(callback: (event: NativeEmbedDataInfo) => void)
 
 当Embed标签生命周期变化时触发该回调。
 
@@ -4724,7 +4470,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
 
-onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
+onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
 
 当手指触摸到Embed标签时触发该回调。
 
@@ -5737,6 +5483,10 @@ selectAll(): void
 ## JsGeolocation
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolocationShow事件](#ongeolocationshow)。
+
+### constructor
+
+constructor()
 
 ### invoke
 
@@ -6784,31 +6534,6 @@ Web组件进入全屏时触发的回调。
 | ---------- | ---------------------------- | ------------------- |
 | event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
 
-## SslErrorEvent<sup>12+</sup>
-
-用户加载资源时发生SSL错误时触发的回调详情。
-
-| 参数名     | 参数类型                                 | 参数描述           |
-| ------- | ------------------------------------ | -------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
-| error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
-| url   | string           | url地址。           |
-| originalUrl   | string          | 请求的原始url地址。           |
-| referrer   | string          | referrer url地址。           |
-| isFatalError   | boolean           | 是否是致命错误。           |
-| isMainFrame   | boolean          | 是否是主资源。           |
-
-
-## OnSslErrorEventCallback<sup>12+</sup>
-
-type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
-
-用户加载资源时发生SSL错误时触发的回调。
-
-| 参数名      | 参数类型                      | 参数描述              |
-| ---------- | ---------------------------- | ------------------- |
-| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | 用户加载资源时发生SSL错误时触发的回调详情。 |
-
 ## NativeEmbedStatus<sup>11+</sup>
 
 定义Embed标签生命周期。
@@ -6825,30 +6550,31 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| id     | string             | 是    | Embed标签的id信息。 |
-| type  | string                              | 是    | Embed标签的type信息。  |
-| src | string                              | 是    | Embed标签的src信息。  |
-| width  | number  | 是    | Embed标签的宽。       |
-| height | number                              | 是    | Embed标签的高。  |
-| url | string                              | 是    | Embed标签的url信息。  |
+| id     | string             | 否    | Embed标签的id信息。 |
+| type  | string                              | 否    | Embed标签的type信息。  |
+| src | string                              | 否    | Embed标签的src信息。  |
+| width  | number  | 否    | Embed标签的宽。       |
+| height | number                              | 否    | Embed标签的高。  |
+| url | string                              | 否    | Embed标签的url信息。  |
+
 ## NativeEmbedDataInfo<sup>11+</sup>
 
 提供Embed标签生命周期变化的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 是    | Embed标签生命周期状态。 |
-| surfaceId  | string                              | 是    | NativeImage的psurfaceid。  |
-| embedId | string                              | 是    | Embed标签的唯一id。  |
-| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 是    | Embed标签的详细信息。       |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 否    | Embed标签生命周期状态。 |
+| surfaceId  | string                              | 否    | NativeImage的psurfaceid。  |
+| embedId | string                              | 否    | Embed标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 否    | Embed标签的详细信息。       |
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
 提供手指触摸到Embed标签的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | 是    | Embed标签的唯一id。 |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。 |
+| embedId     | string   | 否    | Embed标签的唯一id。 |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 
