@@ -171,7 +171,7 @@ fitOriginalSize(value: boolean)
 
 fillColor(value: ResourceColor)
 
-设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的填充颜色。
+设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
