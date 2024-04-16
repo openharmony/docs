@@ -1397,7 +1397,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
 | 15700000 | Inner error.                         |
-| 15700010 | The datasharehelper has been closed. |
+| 15700013 | The DataShareHelper instance is already closed. |
 
 **示例：**
 

@@ -31,6 +31,14 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 目前调节系统音量主要是靠SystemAPI，具体服务于物理音量按键和设置。通过音量按键可以调节系统音量的大小，根据按下的具体按键调用系统接口，实现系统音量的大小调节。调节的音量类型包括媒体、铃声和通知。
 
+### 使用音量面板调节系统音量
+
+应用无法直接调节系统音量，可以通过系统音量面板，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。
+
+系统提供了[AVVolumePanel](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)由应用创建组件。
+
+```
+
 ## 音频流音量
 
 管理音频流音量的接口是AVPlayer或AudioRenderer的setVolume()方法，使用[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#mediacreateavplayer9)设置音频流音量的示例代码如下：

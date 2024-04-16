@@ -41,7 +41,7 @@ The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-da
 - **insert**: called to insert data upon the request of the client. Data insertion must be implemented in this callback on the server.
 
 - **update**: called to update data upon the request of the client. Data update must be implemented in this callback on the server.
-
+- **batchUpdate**: called to update batch data upon the request of the client. Batch data update must be implemented in this callback on the server.
 - **delete**: called to delete data upon the request of the client. Data deletion must be implemented in this callback on the server.
 
 - **query**: called to query data upon the request of the client. Data query must be implemented in this callback on the server.
@@ -62,6 +62,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
    ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
+   import { UpdateOperation } from '@ohos.application.DataShareExtensionAbility';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
    import relationalStore from '@ohos.data.relationalStore';
    import Want from '@ohos.app.ability.Want';
@@ -119,6 +120,25 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
          console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
+     // Override the batchUpdate API.
+     batchUpdate(operations, callback) {
+        let recordOps : Record<string, Array<UpdateOperation>> = operations;
+        let results : Record<string, Array<number>> = {};
+           for (const [key, values] of Object.entries(recordOps)) {
+               let result : number[] = [];
+               for (const value of values) {
+                   await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+                       console.info('Update row count is ' + rows);
+                       result.push(rows);
+                   }).catch((err) => {
+                       console.info("Update failed, err is " + JSON.stringify(err));
+                       result.push(-1);
+                   })
+               }
+               results[key] = result;
+           }
+           callback(null, results);
+       }
      // Override other APIs as required.
    };
    ```
@@ -130,12 +150,12 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field| Description| Mandatory|
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
-   | type | Ability type. The value **dataShare** indicates the development is based on the **datashare** template. | Yes|
-   | uri | Unique identifier for the data consumer to access the data provider. | Yes|
+   | type | Ability type. The value **dataShare** indicates the development is based on the **datashare** template.| Yes|
+   | uri | Unique identifier for the data consumer to access the data provider.| Yes|
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
    | readPermission | Permission required for data access. If this parameter is not set, read permission verification is not performed by default. | No|
    | writePermission | Permission required for data modificiation. If this parameter is not set, write permission verification is not performed by default. | No|
-   | metadata   | Silent access configuration, which includes the following:<br>- **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>- **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
+   | metadata   | Silent access configuration, which includes the following:<br>- **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>- **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
    
@@ -160,8 +180,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | ------------------- | ------------------------------------------------------------ | ---- |
    | tableConfig         | Label configuration.                                                  | Yes  |
    | uri                 | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect.| Yes  |
-   | crossUserMode       | Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes  |
-   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** (default) means to enable silent access; the value **false** means the opposite.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect. | No  |
+   | crossUserMode       | Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
+   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** (default) means to enable silent access; the value **false** means the opposite.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect.| No  |
    
    **data_share_config.json Example**
 
@@ -240,6 +260,23 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
+   
+   let record: Record<string, Array<dataShare.UpdateOperation>> = {};
+   let operations1: Array<dataShare.UpdateOperation> = [];
+   let operations2: Array<dataShare.UpdateOperation> = [];
+   let operation1: dataShare.UpdateOperation = {
+     values: valuesBucket,
+     predicates: predicates
+   }
+   operations1.push(operation1);
+   let operation2: dataShare.UpdateOperation = {
+     values: updateBucket,
+     predicates: predicates
+   }
+   operations2.push(operation2);
+   record["uri1"] = operations1;
+   record["uri2"] = operations2;
+   
    if (dsHelper != undefined) {
      // Insert a piece of data.
      (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
@@ -257,5 +294,17 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
        console.info(`dsHelper delete result:${data}`);
      });
+     // Update data in batches.
+     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
+       // Traverse data to obtain the update result of each data record. value indicates the number of data records that are successfully updated. If value is less than 0, the update fails.
+       for (const [key, values] of Object.entries(data)) {
+           console.info(`Update uri:${key}`);
+           for (const value of values) {
+               console.info(`Update result:${value}`);
+           }
+       }
+     });
+     // Close the DataShareHelper instance.
+     (dsHelper as dataShare.DataShareHelper).close();
    }
    ```

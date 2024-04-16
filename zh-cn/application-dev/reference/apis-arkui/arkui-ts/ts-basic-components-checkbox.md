@@ -34,6 +34,7 @@ Checkbox(options?: CheckboxOptions)
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 用于指定多选框名称。 |
 | group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。自定义组件按照设定的尺寸来显示，超过Checkbox组件的部分，也不会对尺寸进行裁剪。indicatorBuilder不是function时，默认为indicatorBuilder未设置。|
 
 ## 属性
 
@@ -99,7 +100,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                              | 必填 | 描述                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+| value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
 
 ### shape<sup>11+</sup>
 
@@ -116,6 +117,20 @@ shape(value: CheckBoxShape)
 | 参数名 | 类型                                          | 必填 | 描述                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [CheckBoxShape](#checkboxshape11枚举类型说明) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
+
+## contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
+
+定制CheckBox内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明) | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## 事件
 
@@ -151,6 +166,16 @@ onChange(callback: (value: boolean) => void)
 | -------------- | ------ | -------- |
 | CIRCLE         | 0      | 圆形     |
 | ROUNDED_SQUARE | 1      | 圆角方形 |
+
+## CheckBoxConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    |    默认值      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |
+| name | string | - |当前多选框名称。 |
+| selected | boolean| false | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
+| triggerChange |Callback\<boolean>| - |触发多选框选中状态变化。 |
 
 ## 示例
 
@@ -234,3 +259,132 @@ struct Index {
 
 
 ![](figures/checkbox2.gif)
+
+### 示例3
+该示例实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
+
+```ts
+// xxx.ets
+class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
+  selectedColor: Color = Color.White
+  constructor(selectedColor: Color) {
+    this.selectedColor = selectedColor;
+  }
+  applyContent() : WrappedBuilder<[CheckBoxConfiguration]>
+  {
+    return wrapBuilder(buildCheckbox)
+  }
+}
+
+@Builder function buildCheckbox(config: CheckBoxConfiguration) {
+  Column({space:10}) {
+      Text(config.name  + (config.selected ? "（ 选中 ）" : "（ 非选中 ）")).margin({right : 70, top : 50})
+      Text(config.enabled ? "enabled true" : "enabled false").margin({right : 110})
+      Shape() {
+        Path().width(100).height(100).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3).onClick(()=>{
+          if (config.selected) {
+            config.triggerChange(false)
+          } else {
+            config.triggerChange(true)
+          }
+        }).opacity(config.enabled ? 1 : 0.1)
+        Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
+          .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+          .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+          .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+          .margin({left:11,top:10})
+          .opacity(config.enabled ? 1 : 0.1)
+      }
+      .width(300)
+      .height(200)
+      .viewPort({ x: 0, y: 0, width: 310, height: 310 })
+      .strokeLineJoin(LineJoinStyle.Miter)
+      .strokeMiterLimit(5)
+      .margin({left:50})
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State checkboxEnabled: boolean = true;
+  build() {
+    Column({ space: 100 }) {
+        Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
+        .contentModifier(new MyCheckboxStyle(Color.Red))
+        .onChange((value: boolean) => {
+          console.info('Checkbox change is' + value)
+        }).enabled(this.checkboxEnabled)
+
+      Row() {
+        Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
+          if (value) {
+            this.checkboxEnabled = true
+          } else {
+            this.checkboxEnabled = false
+          }
+        }
+      }
+    }.margin({top : 30})
+  }
+}
+```
+
+
+![](figures/checkbox3.gif)
+
+### 示例4
+该示例设置选中样式为Text。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CheckboxExample {
+  @Builder
+  indicatorBuilder(value: number) {
+    Column(){
+      Text(value > 99 ? '99+': value.toString())
+        .textAlign(TextAlign.Center)
+        .fontSize(value > 99 ?  '16vp': '20vp')
+        .fontWeight(FontWeight.Medium)
+        .fontColor('#ffffffff')
+    }
+  }
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center}) {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(9)}})
+            .shape(CheckBoxShape.CIRCLE)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is'+ value)
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox1').fontSize(20)
+        }.padding(15)
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(100)}})
+            .shape(CheckBoxShape.ROUNDED_SQUARE)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox2').fontSize(20)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+![](figures/checkbox4.gif)

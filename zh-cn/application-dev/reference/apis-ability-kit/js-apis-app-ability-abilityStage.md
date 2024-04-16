@@ -184,3 +184,23 @@ export default class MyAbilityStage extends AbilityStage {
   // ...
 }
 ```
+
+## AbilityStage.onDestroy<sup>12+<sup>
+
+onDestroy(): void
+
+当应用销毁时调用, 此方法将在正常的调度生命周期中调用, 当应用程序异常退出或被终止时，将不会调用此方法。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**示例：**
+
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+class MyAbilityStage extends AbilityStage {
+    onDestroy() {
+        console.log('MyAbilityStage.onDestroy is called');
+    }
+}
+```

@@ -1220,7 +1220,7 @@ Changes the privilege on the shared data. This API uses a promise to return the 
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource   | string                                    | Yes  | Shared resource ID.|
-| participants      | Array&lt;[Participant](#participant11)&gt;  | Yes  | Participants of the share.|
+| participants      | Array&lt;[Participant](#participant11)&gt;  | Yes  | Participants with new privilege.|
 
 **Return value**
 
@@ -1269,7 +1269,7 @@ Changes the privilege on the shared data. This API uses an asynchronous callback
 | Name   | Type                           | Mandatory| Description                        |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                | Yes  | Shared resource ID.|
-| participants     | Array&lt;[Participant](#participant11)&gt;  | Yes  | Participants of the share.|
+| participants     | Array&lt;[Participant](#participant11)&gt;  | Yes  | Participants with new privilege.|
 | callback         | callback: AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | Yes  | Callback invoked to return the result.  |
 
 **Example**

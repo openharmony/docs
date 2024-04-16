@@ -46,7 +46,7 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -105,7 +105,7 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName or albumUri is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -159,7 +159,7 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -222,7 +222,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -4683,6 +4683,8 @@ async function example() {
 ## PhotoProxy<sup>11+</sup>
 
 照片代理，相机应用通过该对象写入图片数据。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

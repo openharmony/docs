@@ -28,9 +28,8 @@ The table below lists the types of continuous tasks, which are used in various s
 | VOIP | Voice and video calls (for system applications only)| voip  | Use a system chat application to make an audio call in the background.|
 | TASK_KEEPING | Computing task (for specific devices only)| taskKeeping  | Run antivirus software.|
 
-
-- When an application requests a continuous task of the DATA_TRANSFER type, the system increases the priority of the application process to reduce the probability of terminating the process. However, it still suspends the process. To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) so that the system functions as the agent.
-- Only audio and video applications that use [AVSession](../media/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
+- To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) so that the system functions as the agent.
+- Only audio and video applications that use [AVSession](../media/avsession/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
 
 
 ### Constraints
@@ -129,7 +128,7 @@ The following walks you through how to request a continuous task for recording. 
             }
           ],
           // Specify the action to perform (starting the ability) after the notification message is clicked.
-          operationType: wantAgent.OperationType.START_ABILITY,
+          actionType: wantAgent.OperationType.START_ABILITY,
           // Custom request code.
           requestCode: 0,
           // Execution attribute of the operation to perform after the notification is clicked.
@@ -216,7 +215,7 @@ The following walks you through how to request a continuous task for recording. 
           }
         ],
         // Type of the operation to perform after the notification is clicked.
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // Custom request code.
         requestCode: 0,
         // Execution attribute of the operation to perform after the notification is clicked.
@@ -378,7 +377,7 @@ The following walks you through how to request a continuous task for recording. 
           }
         ],
         // Type of the operation to perform after the notification is clicked.
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // Custom request code.
         requestCode: 0,
         // Execution attribute of the operation to perform after the notification is clicked.
@@ -469,5 +468,5 @@ The following walks you through how to request a continuous task for recording. 
     }
 
     export default new ServiceAbility();
-    ```
+   ```
 

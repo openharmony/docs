@@ -145,3 +145,8 @@
 - ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
 - ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+
+## 星闪
+
+- ohos.permission.ACCESS_NEARLINK 

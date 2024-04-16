@@ -14,7 +14,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name   | Type    | Default Value | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---- | ---------------------------------------- |
@@ -34,8 +34,8 @@ Only the following styles are supported.
 | font-style          | string                                   | normal       | No   | Font style. Available values are as follows:<br> - **normal**: standard font style<br>- **italic**: italic font style|
 | font-weight         | number\|string                           | normal       | No   | Font weight. The number value must be an exact multiple of 100 ranging from 100 to 900. The default value is 400. A larger value indicates a bigger weight. Available values of the string type are **lighter**, **normal**, **bold**, or **bolder**. |
 | text-decoration     | string                                   | none         | No   | Text decoration. Available values are as follows:<br>- **underline**: An underline is used.<br>- **line-through**: A strikethrough is used.<br>- **none**: The standard text is used.|
-| font-family         | string                                   | sans-serif   | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
-| background          | &lt;linear-gradient&gt;                  | -            | No   | Background. This attribute supports [gradient styles](../arkui-js/js-components-common-gradient.md) only and is not compatible with **background-color** or **background-image**.|
+| font-family         | string                                   | sans-serif   | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
+| background          | &lt;linear-gradient&gt;                  | -            | No   | Background. This attribute supports [gradient styles](js-components-common-gradient.md) only and is not compatible with **background-color** or **background-image**.|
 | background-color    | &lt;color&gt;                            | -            | No   | Background color.                                 |
 | background-image    | string                                   | -            | No   | Background image. Currently, this attribute is not compatible with **background-color** or **background**. Both online and local image resources are supported.|
 | background-size     | - string<br>- &lt;length&gt; &lt;length&gt;<br>- &lt;percentage&gt; &lt;percentage&gt; | auto         | No   | Background image size.<br>- The available values of the **string** type are as follows:<br>  - **contain**: extends the image to the maximum size so that its height and width are fully applicable to the content area.<br>  - **cover**: extends the background image to a large enough size so that it completely covers the background area. Some parts of the image may not be displayed in the background area.<br>  - **auto**: retains the original aspect ratio of the image.<br>- Values of the **\<length>** type: The two values are width and height of the background image. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to **auto** by default.<br>- Values of the **\<percentage>** type: The two values are width and height of the background image in percentage of the parent element. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to **auto** by default. |
@@ -48,7 +48,7 @@ Only the following styles are supported.
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 
 ## Methods

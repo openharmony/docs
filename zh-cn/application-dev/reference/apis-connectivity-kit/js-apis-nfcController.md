@@ -151,7 +151,7 @@ getNfcState(): [NfcState](#nfcstate)
 
 ## controller.on('nfcStateChange')
 
-on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
+on(type: 'nfcStateChange', callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
 注册NFC开关状态事件，通过Callback方式获取NFC状态的变化通知。
 
@@ -168,7 +168,7 @@ on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): voi
 
 ## controller.off('nfcStateChange')
 
-off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
+off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
 取消NFC开关状态事件的注册，取消后NFC状态变化时，就不会再收到Callback的通知。
 

@@ -1245,7 +1245,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
   async unshare(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
     console.info(`unshare, bundle: ${bundleName}`);
-    //Connect to ShareCenter and obtain the return value of the unshare operation.
+    // Connect to ShareCenter and obtain the return value of the unshare operation.
     // ...
     // Return the result obtained from ShareCenter.
     let result: Array<cloudExtension.Result<Participant>> = [];
@@ -1754,7 +1754,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
   async unshare(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
     console.info(`unshare, bundle: ${bundleName}`);
-    //Connect to ShareCenter and obtain the return value of the unshare operation.
+    // Connect to ShareCenter and obtain the return value of the unshare operation.
     // ...
     // Return the result obtained from ShareCenter.
     let result: Array<cloudExtension.Result<Participant>> = [];

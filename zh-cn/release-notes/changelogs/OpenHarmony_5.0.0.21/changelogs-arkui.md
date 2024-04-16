@@ -436,3 +436,54 @@ Menu组件。
 **适配指导**
 
 UX默认行为变更，无需适配。
+
+## cl.arkui.9 DatePickerDialog列宽比例、picker上下间距、内容与弹窗边距样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+a) DatePickerDialog列宽比例变更
+
+变更前：年/月/日选择器列宽比例为1：1：1；展示时间时，日月/上下午/时/分 选择器列宽比例为12：7：7：7。
+
+变更后：年/月/日选择器列宽比例为3：2：2；展示时间时，日月/上下午/时/分 选择器列宽比例为4：3：2：2。
+
+b) DatePickerDialog内容与弹窗左右边界间距变更
+
+变更前：内容与弹窗左右边界无间距。
+
+变更后：内容与弹窗左右边界有24vp间距。
+
+c) DatePickerDialog中picker上下间距变更
+
+变更前：dialog中datePicker无上下间距。
+
+变更后：dialog中datePicker上下间距为8vp。
+
+如下图所示为变更前后效果对比：
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/DatePickerDialog_Before.jpg) | ![](figures/DatePickerDialog_After.jpg) |
+| ![](figures/DatePickerDialogWithTime_Before.jpg) | ![](figures/DatePickerDialogWithTime_After.jpg) |
+
+**API Level**
+
+API Level 8，在API 12进行版本隔离
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21开始。
+
+**适配指导**
+
+默认样式变更调整，无需适配。
