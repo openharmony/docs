@@ -1492,4 +1492,4 @@ struct Input {
 }
 ```
 
-![CustomTextInputType](figures/Custom_Text_Input.gif)
+![CustomTextInputType](figures/textInputCustomKeyboard.gif)
