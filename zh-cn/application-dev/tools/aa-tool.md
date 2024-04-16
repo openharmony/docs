@@ -136,3 +136,35 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   ```bash
   aa force-stop <bundleName>
   ```
+
+## appdebug
+  用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。
+
+  | 参数 | 二级参数 | 参数说明 |
+  | -------- | -------- | -------- |
+  | -h/--help | - | 帮助信息。 |
+  | -b/--bundlename | bundleName | 为指定应用设置等待调试状态。设置时，不会进行包名合法化的校验。 |
+  | -p/--persist | - | 可选参数；持久化标志位，加入该参数，代表持续设置应用为等待调试状态，无论重启设备、重装应用都可以持续生效；不加入该参数，代表等待调试状态仅可以在重启设备前生效一次。需要和-b参数组合使用，例如：aa&nbsp;appdebug&nbsp;-b&nbsp;&lt;bundleName&gt;&nbsp;-p。 |
+  | -c/--cancel | - | 取消等待调试状态。 |
+  | -g/--get | - | 获取等待调试状态的应用包名和持久化信息。 |
+
+  **返回值**：
+
+  当执行成功时，返回"app debug successfully."；当执行失败时，返回"error: failed to app debug."；当失败原因为非开发者模式时，返回"error: not developer mode."。
+
+  **使用方法**：
+
+  ```bash
+  # 显示帮助信息
+  aa appdebug -h
+
+  # 为指定应用设置等待调试状态
+  aa appdebug -b <bundleName> [-p]
+
+  # 取消等待调试状态
+  aa appdebug -c
+
+  # 获取等待调试状态的应用包名和持久化信息
+  aa appdebug -g
+  # 获取信息例： bundle name : com.example.publishsystem, persist : false
+  ```
