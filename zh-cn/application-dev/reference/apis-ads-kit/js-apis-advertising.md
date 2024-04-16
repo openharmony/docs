@@ -31,7 +31,7 @@ constructor(context: common.Context);
 
 | **参数名** | **类型** | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | common.[Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | ability或application的上下文环境，不设置从api: @ohos.app.ability.common中获取。 |
+| context | common.[Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是 | ability或application的上下文环境。 |
 
 **示例：**
 
@@ -208,7 +208,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 | -------- | -------- | -------- | -------- |
 | ad | [Advertisement](#advertisement) | 是 | 广告对象。 | 
 | options | [AdDisplayOptions](#addisplayoptions) | 是 | 广告展示参数。 | 
-| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境。 | 
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境，不设置从api: @ohos.app.ability.common中获取。 | 
 
 
 **错误码：**
@@ -308,8 +308,8 @@ export struct ShowAd {
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| errorCode | number | 是 | 广告加载失败的错误码。 | 
-| errorMsg | string | 是 | 广告加载失败的错误信息。 | 
+| errorCode | number | 是 | 广告请求失败的错误码。 | 
+| errorMsg | string | 是 | 广告请求失败的错误信息。 | 
 
 
 ### onAdLoadSuccess
@@ -354,8 +354,8 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| errorCode | number | 是 | 广告加载失败的错误码。 | 
-| errorMsg | string | 是 | 广告加载失败的错误信息。 | 
+| errorCode | number | 是 | 广告请求失败的错误码。 | 
+| errorMsg | string | 是 | 广告请求失败的错误信息。 | 
 
 
 ### onAdLoadSuccess
