@@ -226,7 +226,11 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  |
 | eventType | 需要注册的事件类型。  |
-| eventId | 自定义事件ID，当事件触发时在回调参数&lt;0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 |
+| eventId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。 |
+
+返回：
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeEventReceiver
