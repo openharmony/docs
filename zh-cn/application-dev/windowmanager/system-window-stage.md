@@ -154,7 +154,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
    调用`showWithAnimation`接口，来显示窗口并播放动画。调用`hideWithAnimation`接口，来隐藏窗口并播放动画。
 
 ```ts
-// xxx.ts
+// xxx.ts 实现使用ts文件引入showWithAnimation，hideWithAnimation方法
 import window from '@ohos.window';
 
 export class AnimationConfig {
@@ -200,7 +200,7 @@ export class AnimationConfig {
 ```
 
 ```ts
-// xxx.ets
+// xxx.ets 实现主窗口创建相关操作
 import window from '@ohos.window';
 import Want from '@ohos.app.ability.Want';
 import hilog from '@ohos.hilog';
@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-// xxx.ets
+// xxx.ets 实现子窗口的属性设置
 import window from '@ohos.window';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
@@ -281,7 +281,7 @@ struct transferCtrlSubWindow {
 ```
 
 ```ts
-// xxx.ets
+// xxx.ets 实现子窗口的创建以及显示、隐藏窗口时的动效操作
 import window from '@ohos.window';
 import router from '@ohos.router';
 import common from '@ohos.app.ability.common';
