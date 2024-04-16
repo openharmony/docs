@@ -1291,7 +1291,7 @@ async function seqRunner()
 ```ts
 // 支持普通函数、引用入参传递
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }
