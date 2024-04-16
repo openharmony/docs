@@ -314,7 +314,7 @@ export struct ShowAd {
 
 ### onAdLoadSuccess
 
-广告请求成功回调。
+广告请求成功后回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -348,7 +348,7 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 ### onAdLoadFailure
 
-广告请求失败回调。
+多广告位广告请求失败回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -360,13 +360,13 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 ### onAdLoadSuccess
 
-广告请求成功回调。
+多广告位广告请求成功后回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](#advertisement)&gt; | 是 | 广告数据。 | 
+| ads |  Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;| 是 | 广告数据。 | 
 
 
 **示例：**
@@ -374,11 +374,11 @@ let adLoaderListener: advertising.AdLoadListener = {
 ```ts
 import advertising from '@ohos.advertising';
 
-let adLoaderListener: advertising.AdLoadListener = {
+let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
+  onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>): void {
 
   }
 }
