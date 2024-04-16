@@ -137,6 +137,46 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   aa force-stop <bundleName>
   ```
 
+## attach
+  通过bundleName使指定应用进入调试模式。
+
+  | 参数 | 参数说明              |
+  | -------- |-------------------|
+  | -h/--help | 帮助信息。             |
+  | -b | 必选参数，bundleName。  |
+
+
+  **返回值**：
+
+  当应用成功进入调试模式时，返回"attach app debug successfully."；当给定参数不合法时，返回"fail: unknown option."并打印帮助信息。
+
+  **使用方法**：
+
+  
+  ```bash
+  aa attach -b <bundleName>
+  ```
+
+## detach
+  通过bundleName使指定应用退出调试模式。
+
+  | 参数 | 参数说明              |
+  | -------- |-------------------|
+  | -h/--help | 帮助信息。             |
+  | -b | 必选参数，bundleName。  |
+
+
+  **返回值**：
+
+  当应用成功退出调试模式时，返回"detach app debug successfully."；当给定参数不合法时，返回"fail: unknown option."并打印帮助信息。
+
+  **使用方法**：
+
+  
+  ```bash
+  aa detach -b <bundleName>
+  ```
+
 ## appdebug
   用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。
 
