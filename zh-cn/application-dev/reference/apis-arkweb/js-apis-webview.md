@@ -5762,6 +5762,47 @@ struct WebComponent {
 }
 ```
 
+### terminateRenderProcess<sup>12+</sup>
+
+terminateRenderProcess(): boolean
+
+销毁渲染进程。
+
+调用该接口将会主动销毁相关联的渲染进程。如果渲染进程尚未启动，或者已销毁则没有任何影响。此外销毁渲染进程会同时影响所有与该渲染进程关联的其他实例。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('terminateRenderProcess')
+        .onClick(() => {
+          let result = this.controller.terminateRenderProcess();
+          console.log("terminateRenderProcess result: " + result);
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### postUrl<sup>11+</sup>
 
 postUrl(url: string, postData: ArrayBuffer): void
