@@ -329,10 +329,10 @@ export struct ShowAd {
 import advertising from '@ohos.advertising';
 
 let adLoaderListener: advertising.AdLoadListener = {
-  onAdLoadFailure: (errorCode: number, errorMsg: string) =>{
+  onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>):void{
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void{
 
   }
 }
@@ -375,10 +375,10 @@ let adLoaderListener: advertising.AdLoadListener = {
 import advertising from '@ohos.advertising';
 
 let adLoaderListener: advertising.AdLoadListener = {
-  onAdLoadFailure: (errorCode: number, errorMsg: string) =>{
+  onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>):void{
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void{
 
   }
 }
