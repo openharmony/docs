@@ -87,7 +87,7 @@ import backup from '@ohos.file.backup';
 一次增量备份对象。继承[IncrementalBackupTime](#incrementalbackuptime12)，[FileManifestData](#filemanifestdata12)，[BackupParams](#backupparams12)，[BackupPriority](#backuppriority12)。
 
 > **说明：**
-> 
+>
 > 记录应用最后一次的增量时间以及增量备份清单文件的文件描述符，清单文件中记录着增量时间内已备份的文件信息。可选参数包含了备份恢复的可选配置项，优先级配置项。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
@@ -150,7 +150,7 @@ onFileReady : AsyncCallback&lt;File&gt;
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
-  
+
   onFileReady: (err: BusinessError, file: backup.File) => {
     if (err) {
       console.error('onFileReady failed with err: ' + JSON.stringify(err));
@@ -1010,14 +1010,16 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 
 ### appendBundles
 
-appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&lt;void&gt;
+appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
+添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息。当前整个流程中，
+在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
 
 > **说明：**
 >
 > - 服务在恢复时需要其能力文件进行相关校验。
-> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
+> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，
+    可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1029,6 +1031,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
+| infos                | string[] | 否   | 备份所需信息的数组，需与bundlesToBackup数组相同索引的内容对应。从API version 12开始支持。 |
 
 **返回值：**
 
@@ -1099,6 +1102,30 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
         "com.example.hiworld",
       ];
       await sessionRestore.appendBundles(fileData.fd, restoreApps);
+      console.info('appendBundles success');
+      let infos: Array<string> = [
+        `
+         {
+          "infos":[
+            {
+              "details": [
+                {
+                  "detail": [
+                    {
+                      "source": "com.example.hiworld", // 应用旧系统包名
+                      "target": "com.example.helloworld" // 应用新系统包名
+                    }
+                  ]，
+                  "type": "app_mapping_relation"
+                }
+              ],
+              "type":"broadcast"
+            }
+          ]
+         }
+        `
+      ]
+      await sessionRestore.appendBundles(fileData.fd, restoreApps, infos);
       console.info('appendBundles success');
     } catch (error) {
       let err: BusinessError = error as BusinessError;
