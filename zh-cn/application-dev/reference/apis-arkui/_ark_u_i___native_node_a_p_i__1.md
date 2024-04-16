@@ -28,7 +28,7 @@ ArkUI提供的Native侧Node类型接口集合。
 | int32_t(\* [setAttribute](#setattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) \*item) | 属性设置函数。  | 
 | const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) \*(\* [getAttribute](#getattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute) | 属性获取函数。  | 
 | int32_t(\* [resetAttribute](#resetattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute) | 重置属性函数。  | 
-| int32_t(\* [registerNodeEvent](#registernodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType, int32_t eventId, void \*extraParam) | 注册节点事件函数。  | 
+| int32_t(\* [registerNodeEvent](#registernodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType, int32_t eventId) | 注册节点事件函数。  | 
 | void(\* [unregisterNodeEvent](#unregisternodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType) | 反注册节点事件函数。  | 
 | void(\* [registerNodeEventReceiver](#registernodeeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___node_event.md) \*event)) | 注册事件回调统一入口函数。  | 
 |  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册事件回调统一入口函数。  | 
@@ -223,7 +223,7 @@ void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirty
 ### registerNodeEvent
 
 ```
-int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkUI_NodeEventType eventType, int32_t eventId, void *extraParam)
+int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkUI_NodeEventType eventType, int32_t eventId)
 ```
 **描述：**
 
@@ -237,7 +237,11 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| eventId | 自定义事件ID，当事件触发时在回调参数&lt;**extraParam 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 ** | 
+| eventId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。  |
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeEventReceiver
