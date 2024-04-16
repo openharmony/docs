@@ -656,7 +656,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | reminderType | [ReminderType](#remindertype) | 是 | 指明代理提醒类型。 |
 | actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，在API10开始最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知框。 <br> 说明：该接口为预留接口，暂不支持使用。|
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时，全屏显示自动拉起目标的ability信息。如果设备正在使用中，则弹出一个通知横幅框。 <br> 说明：该接口为预留接口，暂不支持使用。|
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次(不适用于倒计时提醒类型)。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟(不适用于倒计时提醒类型)。 |
@@ -664,7 +664,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | content | string | 否 | 指明提醒内容。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容(不适用于倒计时提醒类型)。 |
-| notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
+| notificationId | number | 否 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
 | tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
