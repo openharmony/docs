@@ -62,7 +62,7 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
-设置拖拽过程中背板图处理模式，仅在onDragStart拖拽方式有效。
+设置拖拽过程中背板图处理模式及数量角标的显示。不支持onItemDragStart拖拽方式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 | 参数名 | 类型                                                            | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup>      | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：空 |
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup>      | 是   | 设置拖拽过程中背板图处理模式及数量角标的显示。<br/>默认值：空 |
 | options<sup>12+</sup>| [DragInteractionOptions](#draginteractionoptions12)<sup>12+</sup>| 否   | 设置拖拽过程中背板图浮起的交互模式。<br/>默认值：空|
 
 ## DragPreviewOptions<sup>11+</sup>
@@ -78,7 +78,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
-| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。<br/>默认值：true<br/> |
+| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。<br/>注：在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true<br/> |
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 

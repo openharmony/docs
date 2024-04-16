@@ -6329,10 +6329,140 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
   captureSession.off('error');
 }
 ```
+## ColorManagementQuery<sup>12+</sup>
+
+色彩管理类，用于查询色彩空间参数。
+
+### getSupportedColorSpaces<sup>12+</sup>
+
+getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
+
+获取支持的色彩空间列表。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103         |  Session not config, only throw in session usage.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
+  let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
+  try {
+    colorSpaces = session.getSupportedColorSpaces();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
+  }
+  return colorSpaces;
+}
+```
+## ColorManagement<sup>12+</sup>
+
+ColorManagement extends ColorManagementQuery
+
+色彩管理类，继承自ColorManagementQuery，用于设置色彩空间参数。
+
+### setColorSpace<sup>12+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
+
+设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                 | 必填 | 说明                      |
+| ------------ |---------------------- | -- | -------------------------- |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces12)接口获取。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102         |  The colorSpace does not match the format.     |
+| 7400103         |  Session not config.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
+  if (colorSpaces === undefined || colorSpaces.length <= 0) {
+    return;
+  }
+  try {
+    session.setColorSpace(colorSpaces[0]);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setColorSpace call failed, error code: ${err.code}`);
+  }
+}
+```
+
+### getActiveColorSpace<sup>12+</sup>
+
+getActiveColorSpace(): colorSpaceManager.ColorSpace
+
+获取当前设置的色彩空间。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
+  let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
+  try {
+    colorSpace = session.getActiveColorSpace();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getActiveColorSpace call failed. error code: ${err.code}`);
+  }
+  return colorSpace;
+}
+```
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom
+PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 普通拍照模式会话类，继承自[Session](#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
 
@@ -6496,7 +6626,7 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization
+VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 普通录像模式会话类，继承自[Session](#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
 

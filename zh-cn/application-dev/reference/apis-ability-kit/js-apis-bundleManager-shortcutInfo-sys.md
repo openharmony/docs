@@ -21,6 +21,7 @@
 | targetBundle              | string | 是   | 否   | 快捷方式的目标bundleName。 |
 | targetModule              | string | 是   | 否   | 快捷方式的目标moduleName。  |
 | targetAbility             | string | 是   | 否   | 快捷方式所需的目标abilityName。 |
+| parameters<sup>12+</sup>  | Array\<[ParameterItem](#parameteritem12)> | 是   | 否   | 快捷方式配置信息中的自定义数据。 |
 
 ## ShortcutInfo
 
@@ -39,5 +40,16 @@
 | label                   | string                                     | 是   | 否   | 快捷方式的标签。              |
 | labelId    | number                                     | 是   | 否   | 快捷方式的标签ID。           |
 | wants                   | Array\<[ShortcutWant](#shortcutwant)> | 是   | 否   | 快捷方式所需要的信息。        |
+
+## ParameterItem<sup>12+</sup>
+
+描述快捷方式配置信息中的自定义数据。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Launcher。
+
+| 名称          | 类型    | 只读 | 必填 | 说明                   |
+| ------------- | ------ | ---- | ---- | ---------------------- |
+| key           | string | 是   | 是   | 描述快捷方式配置信息中的自定义数据的键。       |
+| value         | string | 是   | 是   | 描述快捷方式配置信息中的自定义数据的值。 |
 
 <!--no_check-->
