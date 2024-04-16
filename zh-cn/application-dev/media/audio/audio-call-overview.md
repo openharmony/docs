@@ -46,6 +46,6 @@
 
 ## 通话场景音频设备切换
 
-在通话场景下，系统会根据默认优先级选择合适的音频设备。应用可以根据需要，自主切换音频设备。
+在通话场景下，系统会根据默认优先级选择合适的音频设备。应用可以根据需要，切换音频设备。
 
-通信设备类型（[CommunicationDeviceType](../../reference/apis-audio-kit/js-apis-audio.md#communicationdevicetype9)）是系统预置的可用于通话场景的设备，应用可以使用[AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)的isCommunicationDeviceActive函数获取指定通信设备的激活状态，并且可以使用AudioRoutingManager的setCommunicationDevice设置通信设备的激活状态，通过激活设备来实现通话场景音频设备的切换。
+切换方式可参考[AVSession Kit使用通话设备切换组件](../avsession/using-switch-call-devices.md)。

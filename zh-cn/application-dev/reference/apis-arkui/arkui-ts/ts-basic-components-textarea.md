@@ -19,6 +19,7 @@
 TextArea(value?: TextAreaOptions)
 
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 | value | [TextAreaOptions](#textareaoptions对象说明) | 否  | TextArea组件参数。 |
@@ -712,9 +713,9 @@ setTextSelection选中文字时的配置。
 
 设置自定义键盘是否支持避让功能。
 
-| 名称            | 类型              | 必填   | 描述                               |
-| --------------- | ---------------  |---- | ------------------------------------  |
-| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+| 名称             | 类型    | 必填 | 描述                                                         |
+| ---------------- | ------- | ---- | ------------------------------------------------------------ |
+| supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ## CaretStyle<sup>12+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -1096,6 +1097,7 @@ struct TextAreaExample {
       .width("100%")
       .padding({bottom:50})
       TextArea({ controller: this.controller, text: this.inputValue})
+        .height(100)
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
         // .height(200)
@@ -1103,5 +1105,5 @@ struct TextAreaExample {
   }
 }
 ```
-![CustomTextAreaType](figures/Custom_Text_Area.gif)
+![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 

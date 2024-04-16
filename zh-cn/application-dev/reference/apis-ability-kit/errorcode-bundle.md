@@ -799,6 +799,20 @@ The specified application can not be uninstalled.
 **处理步骤**<br/>
 检查指定的应用是否具有不可卸载特权。
 
+## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
+
+**错误信息**<br/>
+The specified shortcut want in shortcut info is not supported to be started.
+
+**错误描述**<br/>
+调用launcherBundleManager模块中的startShortcut接口时，ShortcutInfo结构体中的want指定的ability不支持被拉起。
+
+**可能原因**<br/>
+ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体中的want指定的ability不能被拉起等。
+
+**处理步骤**<br/>
+检查ShortcutInfo结构体中的want有效性。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.
