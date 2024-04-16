@@ -36,6 +36,8 @@ generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : 
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -140,6 +142,8 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
@@ -253,6 +257,8 @@ importKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -363,7 +369,8 @@ attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 201 | check permission failed. |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -530,6 +537,8 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) 
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -690,6 +699,8 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -1354,6 +1365,8 @@ exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -1484,6 +1497,8 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOption
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
@@ -1611,6 +1626,8 @@ hasKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1732,6 +1749,8 @@ initSessionAsUser(userId: number, keyAlias: string, options: HuksOptions) : Prom
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 202 | non-system applications are not allowed to use system APIs. |
 | 401 | argument is invalid. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |

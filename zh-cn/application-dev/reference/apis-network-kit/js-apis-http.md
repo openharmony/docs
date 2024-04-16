@@ -28,14 +28,6 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-class ExtraData {
-  public data: string;
-
-  constructor(data: string) {
-    this.data = data;
-  }
-}
-
 class Header {
   public contentType: string;
 
@@ -48,8 +40,8 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 当使用POST请求时此字段用于传递内容
-    extraData: new ExtraData('data to send'),
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
+    extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -292,7 +284,7 @@ class Header {
 let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 当使用POST请求时此字段用于传递内容
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
     extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
@@ -574,7 +566,7 @@ import { BusinessError } from '@ohos.base';
 let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 当使用POST请求时此字段用于传递内容
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
     extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
@@ -971,13 +963,8 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 ```ts
 import http from '@ohos.net.http';
 
-class DataReceiveProgressInfo {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1006,13 +993,8 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 ```ts
 import http from '@ohos.net.http';
 
-class DataReceiveProgressInfo {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1038,13 +1020,8 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class DataSendProgressInfo {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1073,13 +1050,8 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class DataSendProgressInfo {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");

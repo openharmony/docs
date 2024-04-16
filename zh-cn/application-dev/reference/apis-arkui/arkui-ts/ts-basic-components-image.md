@@ -251,7 +251,7 @@ colorFilter(value: ColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) | 是   | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>**说明：** <br/>svg类型图源不支持该属性。 |
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)<sup>12+</sup> | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>2. 从API Version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>DrawingColorFilter作为入参时，不支持预览。<br/>**说明：** <br/>API Version 11及之前，svg类型图源不支持该属性。|
 
 ### draggable<sup>9+</sup>
 
@@ -314,7 +314,7 @@ resizable(value: ResizableOptions)
 
 ## ImageInterpolation
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                         |
 | ------ | -------------------------- |
@@ -325,7 +325,7 @@ resizable(value: ResizableOptions)
 
 ## ImageRenderMode
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称       | 描述      |
 | -------- | ------- |
@@ -430,7 +430,9 @@ type ImageErrorCallback = (error: ImageError) => void
 
 ## 示例
 
-### 加载基本类型图片
+### 示例1
+
+加载基本类型图片
 
 ```ts
 @Entry
@@ -467,7 +469,7 @@ struct ImageExample1 {
 
 ![zh-cn_image_0000001592882500](figures/zh-cn_image_0000001592882500.gif)
 
-### 加载网络图片
+### 示例2
 
 加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用[HTTP](../../../network/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../../media/image/image-overview.md)。
 
@@ -489,8 +491,9 @@ struct ImageExample2 {
 ```
 
 
-### 为图片添加事件
+### 示例3
 
+为图片添加事件
 
 ```ts
 @Entry
@@ -503,7 +506,7 @@ struct ImageExample3 {
   @State src2: Resource = this.imageThree
   build(){
     Column(){
-      //为图片添加点击事件，点击完成后加载特定图片
+      // 为图片添加点击事件，点击完成后加载特定图片
       Image(this.src)
         .width(100)
         .height(100)
@@ -511,12 +514,12 @@ struct ImageExample3 {
           this.src = this.imageTwo
         })
 
-      //当加载图片为SVG格式时
+      // 当加载图片为SVG格式时
       Image(this.src2)
         .width(100)
         .height(100)
         .onClick(() => {
-          //SVG动效播放完成时加载另一张图片
+          // SVG动效播放完成时加载另一张图片
           this.src2 = this.imageOne
         })
     }.width('100%').height('100%')
@@ -526,7 +529,9 @@ struct ImageExample3 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_0000001607845173.gif)
 
-### 使用PixelMap开启图像分析
+### 示例4
+
+使用PixelMap开启图像分析
 
 ```ts
 import image from '@ohos.multimedia.image'
@@ -562,3 +567,69 @@ struct ImageExample4 {
   }
 }
 ```
+
+### 示例5
+
+调整不同方向对图片进行拉伸
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State top: number = 40
+  @State bottom: number = 5
+  @State left: number = 40
+  @State right: number = 10
+
+  build() {
+    Column({ space: 5 }) {
+      // 原图效果
+      Image($r("app.media.sky"))
+        .width(200).height(200)
+        .border({ width: 2, color: Color.Pink })
+        .objectFit(ImageFit.Contain)
+
+      // 图像拉伸效果，设置resizable属性，对图片不同方向进行拉伸
+      Image($r("app.media.sky"))
+        .resizable({
+          slice: {
+            left: this.left,
+            right: this.right,
+            top: this.top,
+            bottom: this.bottom
+          }
+        })
+        .width(200)
+        .height(200)
+        .border({ width: 2, color: Color.Pink })
+        .objectFit(ImageFit.Contain)
+
+      Row() {
+        Button("add top to " + this.top).fontSize(10)
+          .onClick(() => {
+            this.top += 2
+          })
+        Button("add bottom to " + this.bottom).fontSize(10)
+          .onClick(() => {
+            this.bottom += 2
+          })
+      }
+
+      Row() {
+        Button("add left to " + this.left).fontSize(10)
+          .onClick(() => {
+            this.left += 2
+          })
+        Button("add right to " + this.right).fontSize(10)
+          .onClick(() => {
+            this.right += 2
+          })
+      }
+
+    }
+    .justifyContent(FlexAlign.Start).width('100%').height('100%')
+  }
+}
+```
+
+![imageResizable](figures/imageResizable.gif)

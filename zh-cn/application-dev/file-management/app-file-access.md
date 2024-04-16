@@ -100,7 +100,10 @@ function readWriteFile(): void {
   let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
-    fs.writeSync(destFile.fd, buf);
+    let writeOptions = {
+      length: readLen
+    };
+    fs.writeSync(destFile.fd, buf, writeOptions);
     readOptions.offset = readSize;
     readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }

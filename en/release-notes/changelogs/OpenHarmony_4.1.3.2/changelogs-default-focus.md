@@ -1,6 +1,6 @@
 # ArkUI Subsystem Changelog
 
-## Changes of Default Focus Behavior
+## cl.arkui.1 Changes of Default Focus Behavior
 
 Changed the default focus used when **defaultFocus** is not set.
 
@@ -32,7 +32,7 @@ Example:
 To achieve the before-change results, bind the **defaultFocus(true)** attribute to the target component to enable the target component to become the default focus on the page. In this way, when the page opens for the first time, the focus is automatically given to the first component bound to the **defaultFocus(true)** attribute.
 
 
-## Changes of the Soft Keyboard Interaction Behavior in Text Box Components
+## cl.arkui.2 Changes of the Soft Keyboard Interaction Behavior in Text Box Components
 
 When the text box is focused, the input method is started. The soft keyboard of the input method can be closed by touching either the inverted triangle button or the EnterKey button on the keyboard.
 
@@ -52,9 +52,33 @@ API version 11 and later versions: After a button is clicked, the text box loses
 
 **Adaptation Guide**
 
-None
+No adaptation is required. However, you need to check whether the changed behavior affects the overall application logic.
 
-## Changes of the \<Checkbox> Component's Default Shape
+## cl.arkui.3 Change of the \<Checkbox> Component's Default Shape
+
+**Access Level**
+
+Public
+
+**Reason for Change**
+
+The change is made to enhance the visual and interaction experience.
+
+**Change Impact**
+
+This change is a compatible change.
+
+**API Level**
+
+11
+
+**Change Since**
+
+OpenHarmony SDK 4.1.3.2
+
+**Key API/Component Changes**
+
+\<Checkbox>
 
 Changed the **\<Checkbox>** component's default shape used when the **shape** attribute is not set.
 
@@ -64,15 +88,18 @@ Default shape policy:
 
 API version 11 and later versions: The **\<Checkbox>** component's default shape is circle.
 
+  ![](figures/checkbox.png)
+
 Versions earlier than API version 11: The **\<Checkbox>** component's default shape is rounded square.
+
+  ![](figures/checkbox_old.png)
 
 **Adaptation Guide**
 
 If you would like the **\<Checkbox>** component in the rounded square shape, bind the **shape(CheckBoxShape.ROUNDED_SQUARE)** attribute to the component.
 
 
-
-## Resource Verification Level Change of the rawfile File
+## cl.arkui.4 Resource Verification Level Change of the rawfile File
 
 **Access Level**
 

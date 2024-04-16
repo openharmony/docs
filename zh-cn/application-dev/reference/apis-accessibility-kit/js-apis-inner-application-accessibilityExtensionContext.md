@@ -80,6 +80,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | valueMin             | number                                                             | 是   | 否   | 最小值。|
 | valueNow             | number                                                             | 是   | 否   | 当前值。 |
 | windowId             | number                                                             | 是   | 否   | 窗口id。 |
+| textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置 |
 
 ## FocusDirection
 
@@ -954,6 +955,37 @@ rootElement.performAction(actionName).then(() => {
 });
 ```
 
+**无参数Action示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+// Action描述中无明确要求的，均为无参数Action
+rootElement.performAction('click').then(() => {
+  console.info(`Succeeded in perform action.`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+**有参数Action示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+// setSelection示例代码
+rootElement.performAction('setSelection', {
+  selectTextBegin: '0', // 表示选择起始位置
+  selectTextEnd: '8'    // 表示选择结束位置
+}).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ### performAction
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
@@ -1260,7 +1292,7 @@ findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement
 | 参数名       | 类型                                | 必填   | 说明                                       |
 | --------- | --------------------------------- | ---- | ---------------------------------------- |
 | type      | string                            | 是    | 固定为'elementId', 表示根据elementId查询当前活动窗口下的节点元素。 |
-| condition | number | 是    | 表示要查询的阶段元素的elementId。                           |
+| condition | number | 是    | 表示要查询的节点元素的elementId。                           |
 
 **返回值：**
 
@@ -1278,6 +1310,43 @@ let condition = 10;
 
 // rootElement是AccessibilityElement的实例
 rootElement.findElement('elementId', condition).then((data: AccessibilityElement) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### findElement('textType')<sup>12+</sup>
+
+findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityElement>>;
+
+根据节点配置的accessibilityTextHint无障碍文本类型查询所有节点元素，使用Promise异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                            |
+| --------- | ------ | ---- | ----------------------------- |
+| type      | string | 是    | 固定为'textType', 表示根据文本类型查找节点元素。 |
+| condition | string | 是    | 表示查找的条件。                      |
+
+**返回值：**
+
+| 类型                                       | 说明                            |
+| ---------------------------------------- | ----------------------------- |
+| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// condition的内容需要与目标组件accessibilityTextHint属性的type字段值保持一致
+let condition = 'location'; 
+
+// rootElement是AccessibilityElement的实例
+rootElement.findElement('textType', condition).then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);

@@ -580,6 +580,7 @@ class EntryAbility extends UIAbility {
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -5276,6 +5277,43 @@ goToPreviousRow(): boolean
 ```ts
 if(resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToPreviousRow();
+}
+```
+
+### getValue<sup>12+</sup>
+
+getValue(columnIndex: number): ValueType
+
+获取当前指定列的值，值类型可以是ValueType指定的任意类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [ValueType](#valuetype) | 表示允许的数据字段类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800000     | Inner error. |
+| 14800011     | Database corruption. |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
 }
 ```
 

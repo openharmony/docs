@@ -18,7 +18,7 @@
 
 Span(value: string | Resource)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -121,6 +121,19 @@ textBackgroundStyle(style: TextBackgroundStyle)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
+### baselineOffset<sup>12+</sup>
+
+baselineOffset(value: LengthMetric)
+
+设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                        | 必填 | 描述                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 设置Span基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0 |
 
 ## 事件
 
@@ -250,3 +263,38 @@ struct Index {
 }
 ```
 ![TextBackgroundStyleExample](figures/span_textbackgroundstyle.png)
+
+### 示例4
+
+该示例实现了如何设置Span基线的偏移量。
+
+```ts
+import { LengthUnit,LengthMetric } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        Text(){
+          Span('word1')
+            .baselineOffset(new LengthMetric(20,LengthUnit.VP))
+          Span('word2')
+            .baselineOffset(new LengthMetric(0,LengthUnit.VP))
+          ImageSpan($r("app.media.icon"))
+            .width('45px')
+            .baselineOffset(new LengthMetric(-20,LengthUnit.VP))
+        }
+        .backgroundColor(Color.Gray)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![SpanBaselineOffset](figures/SpanBaselineOffset.png)
+

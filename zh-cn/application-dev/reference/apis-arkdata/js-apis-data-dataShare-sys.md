@@ -472,7 +472,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
 
 **示例：**
 
@@ -503,7 +503,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 | event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。如果不为空，传入的callback必须和注册为同一个。|
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| 否   | 表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。如果不为空，传入的callback必须和注册为同一个。|
 
 **示例：**
 
@@ -667,7 +667,7 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 | type      | string                                      | 是   | 取消订阅的事件类型，支持的事件为'rdbDataChange'，表示rdb数据的变更事件。   |
 | uris    | Array&lt;string&gt;                           | 是   | 要操作的数据的路径。           |
 | templateId | [TemplateId](#templateid10)                | 是   | 处理回调的templateId。        |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
 
 **返回值：**
 
@@ -748,7 +748,7 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 | type      | string                                      | 是   | 取消订阅的事件类型，支持的事件为'publishedDataChange'，表示已发布数据的变更事件。|
 | uris    | Array&lt;string&gt;                           | 是   | 要操作的数据的路径。           |
 | subscriberId | string                                   | 是   | 指定处理回调的用户ID。           |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
 
 **返回值：**
 
@@ -1397,7 +1397,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
 | 15700000 | Inner error.                         |
-| 15700010 | The datasharehelper has been closed. |
+| 15700013 | The DataShareHelper instance is already closed. |
 
 **示例：**
 

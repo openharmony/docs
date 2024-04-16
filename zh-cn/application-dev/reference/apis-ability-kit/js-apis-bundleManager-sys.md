@@ -59,6 +59,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的abilityInfo。                            |
 | GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 用于获取包含禁用的abilityInfo的abilityInfo。                   |
 | GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 用于仅为系统应用程序获取abilityInfo。                         |
+| GET_ABILITY_INFO_WITH_APP_LINKING  | 0x00000040 | 用于获取通过域名校验筛选的abilityInfo。                         |
 
 ### ExtensionAbilityFlag
 

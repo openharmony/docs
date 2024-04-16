@@ -38,6 +38,20 @@ Sets the display priority for the component in the layout container.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
 
+## pixelRound<sup>11+</sup>
+
+pixelRound(value: PixelRoundPolicy)
+
+Describes the rounding strategy for component pixel-level alignment.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | Yes| Rounding strategy for component pixel-level alignment.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing.|
+
 ## Example
 
 ### Example 1
@@ -162,3 +176,43 @@ struct DisplayPriorityExample {
 Landscape display in containers of different sizes
 
 ![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)
+
+### Example 3
+
+Example of using **pixelRound**:
+
+```ts
+@Entry
+@Component
+struct PixelRoundExample {
+  build() {
+    Column() {
+      Row() {
+        Row() {
+        }
+        .width('100%')
+        .height('100%')
+        .backgroundColor(Color.Yellow)
+      }
+      .width('300.6px')
+      .height('300.6px')
+      .backgroundColor(Color.Red)
+      .position({x: '200.2px', y: '100.2px'})
+      .pixelRound({
+        start:PixelRoundCalcPolicy.FORCE_CEIL,
+        top:PixelRoundCalcPolicy.FORCE_CEIL
+       })
+    }
+    .width("100%")
+    .height('100%')
+    .backgroundColor('#ffe5e5e5')
+  }
+}
+```
+**Figure 1** Layout with pixelRound
+
+![en-us_image_pixel_round_disable.png](figures/en-us_image_pixel_round_enable.png)
+
+**Figure 2** Layout without pixelRound
+
+![en-us_image_pixel_round_disable.png](figures/en-us_image_pixel_round_disable.png)

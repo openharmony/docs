@@ -7,7 +7,8 @@
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
-
+>
+> NavDestination组件必须配合Navigation使用，作为Navigation目的页面的根节点。
 
 ## 子组件
 
@@ -130,6 +131,25 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 | ---- | ------ | ------ |
 | pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 |
 | pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 |
+
+### getConfigInRouteMap<sup>12+</sup>
+
+getConfigInRouteMap(): RouteMapConfig |undefined
+
+**返回值**
+
+| 类型 | 说明 |
+| --- | --- |
+| [RouteMapConfig](#routemapconfig12类型说明) | 当前页面路由配置信息。 |
+| undefined | 当该页面不是通过路由表配置时返回undefined。 |
+
+## RouteMapConfig<sup>12+</sup>类型说明
+
+| 名称   | 类型   | 描述 |
+| ----  | ---   | ----- |
+| name  | string | 页面名称。|
+| pageSourceFile| string | 页面在当前包中的路径。|
+| data | object | 页面自定义字段信息。|
 
 ## 示例
 

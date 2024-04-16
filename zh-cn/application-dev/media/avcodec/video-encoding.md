@@ -237,7 +237,15 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true); //目前仅支持动态请求IDR帧
+    // 支持动态请求IDR帧
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
+    // 支持动态重置比特率
+    int64_t bitRate = 2000000;
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+    // 支持动态重置视频帧速率
+    double frameRate = 60.0;
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -496,7 +504,15 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true); //目前仅支持动态请求IDR帧
+    // 支持动态请求IDR帧
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
+    // 支持动态重置比特率
+    int64_t bitRate = 2000000;
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
+    // 支持动态重置视频帧速率
+    double frameRate = 60.0;
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理

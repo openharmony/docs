@@ -14,7 +14,7 @@ Supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name        | Type            | Default Value     | Mandatory  | Description                                      |
 | ---------- | -------------- | -------- | ---- | ---------------------------------------- |
@@ -53,7 +53,7 @@ Only the following styles are supported.
 | border-[left\|top\|right\|bottom]-color  | &lt;color&gt;                            | black        | No   | Attribute to set colors for left, top, right, and bottom borders.                     |
 | border-radius                            | &lt;length&gt;                           | -            | No   | Attribute to set the radius of round-corner borders. This attribute cannot be used to set the width or color of a specific border. To set the width or color, you must set **border-width** or **border-color** for all the borders at the same time. |
 | border-[top\|bottom]-[left\|right]-radius | &lt;length&gt;                           | -            | No   | Attribute to respectively set the radii of upper-left, upper-right, lower-right, and lower-left rounded corners                |
-| background                               | &lt;linear-gradient&gt;                  | -            | No   | Background. This attribute supports [gradient styles](../arkui-js/js-components-common-gradient.md) only and is not compatible with **background-color** or **background-image**.|
+| background                               | &lt;linear-gradient&gt;                  | -            | No   | Background. This attribute supports [gradient styles](js-components-common-gradient.md) only and is not compatible with **background-color** or **background-image**.|
 | background-color                         | &lt;color&gt;                            | -            | No   | Background color.                                 |
 | background-image                         | string                                   | -            | No   | Background image. This attribute is not compatible with **background-color** or **background**. Local image resources are supported. |
 | background-size                          | - string<br>- &lt;length&gt; &lt;length&gt;<br>- &lt;percentage&gt; &lt;percentage&gt; | auto         | No   | Background image size.<br>- The **string** values are as follows:<br>  - **contain**: Expands the image to the maximum size so that its height and width are fully applicable to the content area.<br>  - **cover**: Extends the background image to a large enough size so that it completely covers the background area. Some parts of the image may not be displayed in the background area.<br>  - **auto**: Retains the original aspect ratio of the image.<br>- The two **length** values are width and height of the background image. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to **auto** by default.<br>- The two **percentage** values are width and height of the background image in percentage of the parent element. The first value indicates the width, and the second value indicates the height. If you only set one value, the other value is set to **auto** by default. |

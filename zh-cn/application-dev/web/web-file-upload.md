@@ -58,6 +58,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   <body>
   <!-- 点击上传文件按钮 -->
   <input type="file" value="file"></br>
+  <meta name="viewport" content="width=device-width" />
   </body>
   </html>
   ```

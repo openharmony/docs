@@ -24,6 +24,7 @@ VideoEncoder模块提供用于视频编码的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | 当OH_AVCodec在运行过程中需要新的输入参数时，将调用此函数指针，并携带可用的缓冲区来填充新的输入参数。设置的参数随帧立即生效。  | 
 | typedef enum [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) | 视频编码器的比特率模式。 | 
 
 
@@ -43,6 +44,7 @@ VideoEncoder模块提供用于视频编码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Destroy](#oh_videoencoder_destroy) (OH_AVCodec \*codec) | 清理编码器内部资源，销毁编码器实例。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_SetCallback](#oh_videoencoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，让应用可以响应视频编码器生成的事件。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_RegisterCallback](#oh_videoencoder_registercallback) (OH_AVCodec \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 注册异步回调函数，让应用可以响应视频编码器生成的事件。 | 
+| OH_AVErrCode [OH_VideoEncoder_RegisterParameterCallback](#oh_videoencoder_registerparametercallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter) onInputParameter, void \*userData) | 注册异步输入参数回调函数，让应用可以响应视频编码器生成的事件。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Configure](#oh_videoencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置视频编码器，通常需要配置要编码的视频轨的描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Prepare](#oh_videoencoder_prepare) (OH_AVCodec \*codec) | 准备编码器的内部资源。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Start](#oh_videoencoder_start) (OH_AVCodec \*codec) | 启动编码器，准备成功后必须调用此接口。 | 
@@ -56,6 +58,7 @@ VideoEncoder模块提供用于视频编码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_NotifyEndOfStream](#oh_videoencoder_notifyendofstream) (OH_AVCodec \*codec) | 通知视频编码器输入流已结束。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_PushInputData](#oh_videoencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填入数据的输入缓冲区提交给视频编码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_PushInputBuffer](#oh_videoencoder_pushinputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将填入数据的输入缓冲区提交给视频编码器。 | 
+| OH_AVErrCode [OH_VideoEncoder_PushInputParameter](#oh_videoencoder_pushinputparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填入数据的输入参数缓冲区提交给视频编码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。 | 
 | OH_AVFormat \* [OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | 获取视频编码器接收的描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编码实例是否有效。 | 
@@ -77,6 +80,30 @@ typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
 **起始版本：** 9
+
+
+### OH_VideoEncoder_OnNeedInputParameter
+
+```
+typedef void(* OH_VideoEncoder_OnNeedInputParameter) (OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
+```
+
+**描述**
+
+当OH_AVCodec在运行过程中需要新的输入参数时，将调用此函数指针，并携带可用的缓冲区来填充新的输入参数。设置的参数随帧立即生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  | 
+| index | 与新可用的输入参数缓冲区相对应的索引。  | 
+| parameter | 新的可用输入参数缓冲区。  | 
+| userData | 用户特定数据。  | 
 
 
 ## 枚举类型说明
@@ -501,6 +528,32 @@ OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
 
+### OH_VideoEncoder_PushInputParameter()
+
+```
+OH_AVErrCode OH_VideoEncoder_PushInputParameter (OH_AVCodec *codec, uint32_t index)
+```
+
+**描述**
+
+将填入数据的输入参数缓冲区提交给视频编码器。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  | 
+| index | 输入参数缓冲区对应的索引值。  | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+
 ### OH_VideoEncoder_RegisterCallback()
 
 ```
@@ -522,6 +575,35 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 | codec | 指向视频编码实例的指针。 | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 | 
 | userData | 用户特定数据。 | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+
+### OH_VideoEncoder_RegisterParameterCallback()
+
+```
+OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback (OH_AVCodec *codec, OH_VideoEncoder_OnNeedInputParameter onInputParameter, void *userData)
+```
+
+**描述**
+
+注册异步输入参数回调函数，让应用可以响应视频编码器生成的事件。
+
+编码surface模式，需要设置随帧参数时，须使用该接口。 如果使用该接口，必须在[OH_VideoEncoder_Configure](#oh_videoencoder_configure)之前调用该接口。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  | 
+| onInputParameter | 输入参数回调指针, 请参阅[OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)。  | 
+| userData | 用户特定数据。  | 
 
 **返回：**
 

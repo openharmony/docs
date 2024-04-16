@@ -30,7 +30,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## ClickEvent对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称            | 类型                                 | 描述                                                     |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
@@ -48,7 +48,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## EventTarget<sup>8+</sup>对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称   | 参数类型                      | 描述         |
 | ---- | ------------------------- | ---------- |

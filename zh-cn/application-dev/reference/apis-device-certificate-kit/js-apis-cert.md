@@ -253,6 +253,63 @@ buffer数组的列表。
 | CAPubKey  | Uint8Array            | 是   | 是   | 信任的CA证书公钥, DER格式。 |
 | CASubject | Uint8Array            | 是   | 是   | 信任的CA证书主题, DER格式。 |
 
+## RevocationCheckOption<sup>12+</sup>
+
+ 表示证书链在线校验证书吊销状态选项的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| REVOCATION_CHECK_OPTION_PREFER_OCSP | 0 | 优先采用OCSP进行校验，默认采用CRL校验。 |
+| REVOCATION_CHECK_OPTION_ACCESS_NETWORK | 1 | 支持通过访问网络获取CRL或OCSP响应进行吊销状态的校验，默认为关闭。 |
+| REVOCATION_CHECK_OPTION_FALLBACK_NOPREFER | 2 | 当ACCESS_NETWORK选项打开时有效，如果优选的校验方法由于网络原因导致无法校验证书状态，则采用备选的方案进行校验。 |
+| REVOCATION_CHECK_OPTION_FALLBACK_LOCAL | 3 | 当ACCESS_NETWORK选项打开时有效，如果在线获取CRL和OCSP响应都由于网络的原因导致无法校验证书状态，则采用本地设置的CRL和OCSP响应进行校验。 |
+
+## ValidationPolicyType<sup>12+</sup>
+
+ 表示证书链在线校验策略的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| VALIDATION_POLICY_TYPE_X509 | 0 | 默认值，不需要校验证书中的sslHostname或dNSName。 |
+| VALIDATION_POLICY_TYPE_SSL | 1 | 需要校验证书中的sslHostname或dNSName。 |
+
+## KeyUsageType<sup>12+</sup>
+
+ 表示证书中密钥用途的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| KEYUSAGE_DIGITAL_SIGNATURE | 0 | 证书持有者可以用证书中包含的私钥进行数字签名操作。 |
+| KEYUSAGE_NON_REPUDIATION | 1 | 证书持有者不可否认使用证书中包含的私钥进行的数字签名操作。 |
+| KEYUSAGE_KEY_ENCIPHERMENT | 2 | 证书持有者可以使用证书中包含的公钥进行密钥加密操作。 |
+| KEYUSAGE_DATA_ENCIPHERMENT | 3 | 证书持有者可以使用证书中包含的公钥进行数据加密操作。 |
+| KEYUSAGE_KEY_AGREEMENT | 4 | 证书持有者可以使用证书中包含的私钥进行密钥协商操作。 |
+| KEYUSAGE_KEY_CERT_SIGN | 5 | 证书持有者可以使用证书中包含的私钥对其他证书进行签名。 |
+| KEYUSAGE_CRL_SIGN | 6 | 证书持有者可以使用证书中包含的私钥对证书吊销列表（CRL）进行签名。 |
+| KEYUSAGE_ENCIPHER_ONLY | 7 | 证书持有者只能进行加密操作，不能进行解密操作。 |
+| KEYUSAGE_DECIPHER_ONLY | 8 | 证书持有者只能进行解密操作，不能进行加密操作。 |
+
+## RevocationCheckParameter<sup>12+</sup>
+
+表示证书链校验证书吊销状态的参数。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                              | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
+| ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
+| ocspResponderCert | X509Cert | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
+| ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
+| crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
+| options | Array\<[RevocationCheckOption](#revocationcheckoption12)> | 否   | 表示证书吊销状态查询的策略组合。 |
+
 ## CertChainValidationParameters<sup>11+</sup>
 
 表示证书链校验的参数。
@@ -264,6 +321,10 @@ buffer数组的列表。
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
 | certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 表示需要校验证书是否在证书吊销列表中。 |
+| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 表示需要在线校验证证书吊销状态的参数对象。 |
+| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | 否   | 表示需要校验证书的策略类型。 |
+| sslHostname<sup>12+</sup> | string | 否   | 表示需要校验证书中主机名，与policy配合使用。 |
+| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | 否   | 表示需要校验证书中的密钥用途。 |
 
 ## CertChainValidationResult<sup>11+</sup>
 

@@ -8,9 +8,9 @@ The drag and drop control attributes set whether a component can respond to drag
 
 The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their **draggable** attribute to **true**.
 
-- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
+- The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [FormComponent](ts-basic-components-formcomponent-sys.md), [Hyperlink](ts-container-hyperlink.md)
 
-- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
+- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md)
 
 You can also define drag responses by implementing common drag events.
 
@@ -18,9 +18,9 @@ To enable drag and drop for other components, you need to set the **draggable** 
 
 ## allowDrop
 
-allowDrop(value: Array&lt;UniformDataType&gt;)
+allowDrop(value: Array&lt;UniformDataType&gt; | null)
 
-Type of data that can be dropped to the component.
+Sets the type of data that can be dropped to the component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,13 +28,13 @@ Type of data that can be dropped to the component.
 
 | Name| Type                                                        | Mandatory| Description                                           |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | Yes  | Type of data that can be dropped to the component.<br>Default value: empty|
+| value  | Array\<[UniformDataType](../../apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> \| null<sup>12+</sup> | Yes  | Type of data that can be dropped to the component. Since API version 12, this parameter can be set to **null** to make the component reject all data types.<br>Default value: empty|
 
 ## draggable
 
 draggable(value: boolean)
 
-Whether the component is draggable.
+Sets whether the component is draggable.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,7 +46,7 @@ Whether the component is draggable.
 
 ## dragPreview<sup>11+</sup>
 
-dragPreview(value: CustomBuilder | DragItemInfo)
+dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 Sets the preview displayed when the component is dragged
 
@@ -56,11 +56,11 @@ Sets the preview displayed when the component is dragged
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#ondragstart) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../apis/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br>Default value: empty<br>|
+| value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) \| string<sup>12+</sup> | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#onDragStart) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br> When an ID of the string type is passed in, the snapshot of the component assigned the ID is used as the preview image. If the component assigned the ID cannot be found or its **Visibility** attribute is set to **none** or **hidden**, a snapshot of the current component is used as the preview image. Currently, snapshots do not support visual effects, such as brightness, shadow, blur, and rotation.<br>Default value: empty<br>|
 
 ## dragPreviewOptions<sup>11+</sup>
 
-dragPreviewOptions(value: DragPreviewOptions)
+dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 Sets how the drag preview is processed when the component is dragged. This API works only for **onDragStart**.
 
@@ -68,22 +68,31 @@ Sets how the drag preview is processed when the component is dragged. This API w
 
 **Parameters**
 
-| Name| Type                                                     | Mandatory| Description                                                        |
-| ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | Yes  | How the drag preview is processed when the component is dragged.<br>Default value: empty|
+| Name| Type                                                           | Mandatory| Description                                                        |
+| ------ | -------------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup>      | Yes  | How the drag preview is processed when the component is dragged.<br>Default value: empty|
+| options<sup>12+</sup>| [DragInteractionOptions](#draginteractionoptions12)<sup>12+</sup>| No  | Interaction mode of the drag preview.<br>Default value: empty|
 
 ## DragPreviewOptions<sup>11+</sup>
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11) | No| How the background image is processed when the component is dragged.<br>Default value: **DragPreviewMode.AUTO**<br>|
+| numberBadge<sup>12+</sup> | boolean  \|  number | No| Whether to display the badge or the number displayed via the badge.<br>Default value: **true**<br>|
 
 ## DragPreviewMode<sup>11+</sup>
 
 | Name| Value| Description|
 | -------- | ------- | -------- |
-| AUTO  | 0 | The system automatically changes the position of the dragged point based on the scenario and automatically scales the background image based on set rules.|
-| DISABLE_SCALE  | 1 | The system does not scale the background image.|
+| AUTO  | 1 | The system automatically changes the position of the dragged point based on the scenario and scales the drag preview based on set rules.|
+| DISABLE_SCALE  | 2 | The system does not scale the drag preview.|
+
+## DragInteractionOptions<sup>12+</sup>
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isMultiSelectionEnabled | boolean | No| Whether to enable multiselect for the drag preview. This parameter takes effect only for the [grid items](ts-container-griditem.md) and [list items](ts-container-listitem.md) in the [\<Grid>](ts-container-grid.md) and [\<List>](ts-container-list.md) containers.<br>When multiselect is enabled for an item, the child components of the item cannot be dragged. The precendence levels of drag previews for multiselect, from high to low, are as follows: preview specified through a string value in [dragPreview](#dragpreview11), preview specified through **PixelMap** in **dragPreview**, and component snapshot. The Builder format in **dragPreview** is not supported.<br>The context menu bound to the component through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12) cannot contain the **isShown** parameter.<br>Default value: **false**<br>|
+| defaultAnimationBeforeLifting | boolean | No| Whether to enable the default pressed state animation (compressing in size) of the component before a lift animation starts.<br>Default value: **false**<br>|
 
 ## Example
 ### Example 1
@@ -297,3 +306,80 @@ struct dragPreviewOptionsDemo{
 ```
 
 ![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)
+
+
+### Example 4
+Example of using the **isMultiSelectionEnabled** parameter in **DragInteractionOptions**:
+```ts
+@Entry
+@Component
+struct Example {
+  @State numbers: number[] = [0, 1, 2, 3, 4 , 5, 6, 7, 8]
+  build() {
+    Column({ space: 5}) {
+      Grid() {
+        ForEach(this.numbers, (item: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(Color.Red)
+              .width('100%')
+              .height('100%')
+          }
+          .width(90)
+          .height(90)
+          .selectable(true)
+          .selected(true)
+          .dragPreviewOptions({}, {isMultiSelectionEnabled:true})
+          .onDragStart(()=>{
+
+          })
+    }, (item: string) => item)
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr')
+      .height(300)
+    }
+    .width('100%')
+  }
+}
+```
+
+![isMultiSelectionEnabled.gif](figures/isMultiSelectionEnabled.gif)
+
+### Example 5
+Example of using the **defaultAnimationBeforeLifting** parameter in **DragInteractionOptions**:
+```ts
+@Entry
+@Component
+struct Example {
+  @State numbers: number[] = [0, 1, 2, 3, 4 , 5, 6, 7, 8]
+  build() {
+    Column({ space: 5}) {
+      Grid() {
+        ForEach(this.numbers, (item: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(Color.Red)
+              .width('100%')
+              .height('100%')
+          }
+          .width(90)
+          .height(90)
+          .selectable(true)
+          .selected(true)
+          .dragPreviewOptions({}, {isMultiSelectionEnabled:true, defaultAnimationBeforeLifting:true})
+          .onDragStart(()=>{
+
+          })
+    }, (item: string) => item)
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr')
+      .height(300)
+    }
+    .width('100%')
+  }
+}
+```
+
+![defaultAnimationBeforeLifting.gif](figures/defaultAnimationBeforeLifting.gif)

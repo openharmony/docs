@@ -15,7 +15,7 @@
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数:**
 
