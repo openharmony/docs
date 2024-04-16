@@ -13,17 +13,19 @@
 ```ts
 import advertising from '@ohos.advertising';
 ```
+## AdLoader
 
+提供加载广告的功能
 
-## constructor
+**系统能力：** SystemCapability.Advertising.Ads
+
+### constructor
 
 constructor(context: common.Context);
 
 构造函数。
 
 **系统能力：** SystemCapability.Advertising.Ads
-
-**起始版本：** 11
 
 **参数：**
 
@@ -45,15 +47,13 @@ function createConstructor(context: common.Context): void {
 ```
 
 
-## loadAd
+### loadAd
 
 loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener): void
 
 请求单广告位广告。
 
 **系统能力：** SystemCapability.Advertising.Ads
-
-**起始版本：** 11
 
 **参数：**
 
@@ -116,15 +116,13 @@ function requestAd(context: common.Context): void {
 ```
 
 
-## loadAdWithMultiSlots
+### loadAdWithMultiSlots
 
 loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener: MultiSlotsAdLoadListener): void
 
 请求多广告位广告。
 
 **系统能力：** SystemCapability.Advertising.Ads
-
-**起始版本：** 11
 
 **参数：**
 
@@ -203,8 +201,6 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 **系统能力：** SystemCapability.Advertising.Ads
 
-**起始版本：** 11
-
 **参数：**
 
 
@@ -212,7 +208,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 | -------- | -------- | -------- | -------- |
 | ad | [Advertisement](#advertisement) | 是 | 广告对象。 | 
 | options | [AdDisplayOptions](#addisplayoptions) | 是 | 广告展示参数。 | 
-| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境。 | 
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 否 | UIAbility的上下文环境，不设置从api: @ohos.app.ability.common中获取。 | 
 
 
 **错误码：**
@@ -304,11 +300,44 @@ export struct ShowAd {
 
 **系统能力：** SystemCapability.Advertising.Ads
 
+### onAdLoadFailure
 
-| 名称 | 类型 | 必填 | 说明 |
+广告请求失败回调。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+| **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| onAdLoadFailure | function(errorCode: number, errorMsg: string): void | 是 | 广告请求失败回调。 | 
-| onAdLoadSuccess | function(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void | 是 | 广告请求成功回调。 | 
+| errorCode | number | 是 | 广告请求失败的错误码。 | 
+| errorMsg | string | 是 | 广告请求失败的错误信息。 | 
+
+
+### onAdLoadSuccess
+
+广告请求成功后回调。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| ads | Array&lt;advertising.[Advertisement](#advertisement)&gt; | 是 | 广告数据。 | 
+
+
+**示例：**
+
+```ts
+import advertising from '@ohos.advertising';
+
+let adLoaderListener: advertising.AdLoadListener = {
+  onAdLoadFailure: (errorCode: number, errorMsg: string) => {
+
+  },
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
+
+  }
+}
+
+```
 
 
 ## MultiSlotsAdLoadListener
@@ -317,11 +346,43 @@ export struct ShowAd {
 
 **系统能力：** SystemCapability.Advertising.Ads
 
+### onAdLoadFailure
 
-| 名称 | 类型 | 必填 | 说明 |
+多广告位广告请求失败回调。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+| **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| onAdLoadFailure | function(errorCode: number, errorMsg: string): void | 是 | 广告请求失败回调。 | 
-| onAdLoadSuccess | function(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void | 是 | 广告请求成功回调。 | 
+| errorCode | number | 是 | 广告请求失败的错误码。 | 
+| errorMsg | string | 是 | 广告请求失败的错误信息。 | 
+
+
+### onAdLoadSuccess
+
+多广告位广告请求成功后回调。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| ads |  Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;| 是 | 广告数据。 | 
+
+
+**示例：**
+
+```ts
+import advertising from '@ohos.advertising';
+
+let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
+  onAdLoadFailure: (errorCode: number, errorMsg: string) => {
+
+  },
+  onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>): void {
+
+  }
+}
+```
 
 
 ## Advertisement
@@ -337,11 +398,11 @@ export struct ShowAd {
 | -------- | -------- | -------- | -------- |
 | adType | number | 是 | 广告类型。 | 
 | uniqueId | string | 是 | 广告唯一标识。 | 
-| rewarded | boolean | 否 | 广告是否获得奖励。<br/>- true：获得奖励。<br/>- false：没有获得奖励。 | 
-| shown | boolean | 否 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
-| clicked | boolean | 否 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
-| rewardVerifyConfig | Map&lt;string, string&gt; | 否 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 否 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| rewarded | boolean | 是 | 广告是否获得奖励。<br/>- true：获得奖励。<br/>- false：没有获得奖励。 | 
+| shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
+| clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
+| rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
+| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -371,7 +432,26 @@ export struct ShowAd {
 
 **系统能力：** SystemCapability.Advertising.Ads
 
+### onStatusChanged
+
+广告状态回调。
+
+**系统能力：** SystemCapability.Advertising.Ads
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| onStatusChanged | function(status: string, ad: advertising.[Advertisement](#advertisement), data: string): void | 是 | 广告展示回调。<br/>1. status：广告展示状态，取值<br/>onAdOpen（打开广告回调）、onAdClose（关闭广告回调）、onAdClick（点击广告回调）、onVideoPlayBegin（广告视频开始播放回调）、onVideoPlayEnd（广告视频播放结束回调）、onAdLoad（广告加载成功回调）、onAdFail（广告加载失败回调）、onMediaProgress（广告播放进度回调）、onMediaStart（广告开始播放回调）、onMediaPause（广告暂停播放回调）、onMediaStop（广告停止播放回调）、onMediaComplete（广告播放完成回调）、onMediaError（广告播放失败回调）、onLandscape（竖屏状态下点击全屏按钮回调）、onPortrait（全屏状态下点击返回按钮回调）<br/>1. ad：发生状态变化的广告内容。<br/>2. data：扩展信息。 | 
+| status | string | 是 | 1. status：广告展示状态，取值<br/>onAdOpen（打开广告回调）、onAdClose（关闭广告回调）、onAdClick（点击广告回调）、onVideoPlayBegin（广告视频开始播放回调）、onVideoPlayEnd（广告视频播放结束回调）、onAdLoad（广告加载成功回调）、onAdFail（广告加载失败回调）、onMediaProgress（广告播放进度回调）、onMediaStart（广告开始播放回调）、onMediaPause（广告暂停播放回调）、onMediaStop（广告停止播放回调）、onMediaComplete（广告播放完成回调）、onMediaError（广告播放失败回调）、onLandscape（竖屏状态下点击全屏按钮回调）、onPortrait（全屏状态下点击返回按钮回调）。 | 
+| ad | advertising.[Advertisement](#advertisement) | 是 | 发生状态变化的广告内容。 | 
+| data | string | 是 | 扩展信息。 | 
+
+**示例：**
+
+```ts
+import advertising from '@ohos.advertising';
+
+let adInteractionListener: advertising.AdInteractionListener = {
+  onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
+
+  }
+}
+```
