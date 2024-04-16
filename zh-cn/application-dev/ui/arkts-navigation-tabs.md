@@ -371,12 +371,6 @@ struct TabsExample {
       .height(600)
       .backgroundColor('#F1F3F5')
       .scrollable(true)
-      .onContentWillChange((currentIndex, comingIndex) => {
-        if (comingIndex == 2) {
-          return false
-        }
-        return true
-      })
 
       Button('动态修改index').width('50%').margin({ top: 20 })
         .onClick(()=>{
@@ -397,23 +391,6 @@ struct TabsExample {
   **图12** 内容与页签联动 
 
 ![TabsChange2](figures/TabsChange2.gif)
-
-  **图13** 支持开发者自定义页面切换拦截事件 
-
-![TabsChange3](figures/TabsChange3.gif)
-
-开发者可以通过Tabs组件的onContentWillChange接口，设置自定义拦截回调函数。拦截回调函数在下一个页面即将展示时被调用，如果回调返回true，新页面可以展示；如果回调返回false，新页面不会展示，仍显示原来页面。
-
-```ts
-Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
-.onContentWillChange((currentIndex, comingIndex) => {
-  if (comingIndex == 2) {
-    return false
-  }
-  return true
-})
-
-```
 
 ## 相关实例
 
