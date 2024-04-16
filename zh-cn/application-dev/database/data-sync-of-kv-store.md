@@ -177,8 +177,10 @@
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
      schema.indexes = ['$.id', '$.name'];
-     schema.mode = 1; // 0表示STRICT模式，1表示COMPATIBLE模式。
-     schema.skip = 0; // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
+     // 0表示STRICT模式，1表示COMPATIBLE模式。
+     schema.mode = 1;
+     // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
+     schema.skip = 0;
 
      const options: distributedKVStore.Options = {
        createIfMissing: true,
@@ -186,10 +188,10 @@
        backup: false,
        autoSync: false,
        // kvStoreType不填时，默认创建多设备协同数据库
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-       schema: schema,
+       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // schema 可以不填，在需要使用schema功能时可以构造此参数，例如：使用谓词查询等。
+       schema: schema,
        securityLevel: distributedKVStore.SecurityLevel.S1
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
@@ -232,8 +234,8 @@
 
      
    ```ts
-   // 如果未定义Schema则Value可以传任意值。
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+   // 如果未定义Schema则Value可以传其他符合要求的值。
    const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
@@ -257,6 +259,7 @@
      
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
+   // 如果未定义Schema则Value可以传其他符合要求的值。
    const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
