@@ -450,7 +450,7 @@ let adLoaderListener: advertising.AdLoadListener = {
 import advertising from '@ohos.advertising';
 
 let adInteractionListener: advertising.AdInteractionListener = {
-  onStatusChanged: (status: string, ad: advertising.Advertisement, data: string)=>{
+  onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
 
   }
 }
