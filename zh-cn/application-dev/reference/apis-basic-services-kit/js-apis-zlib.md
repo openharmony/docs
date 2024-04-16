@@ -383,15 +383,15 @@ try {
 
 createChecksum(): Promise&lt;Checksum&gt;
 
-创建校验对象，Promise异步返回。成功时返回Checksum。
+创建校验对象，使用Promise异步返回。成功时返回Checksum对象实例。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **返回值：**
 
-| 类型                                   | 说明                        |
-| -------------------------------------- | --------------------------- |
-| Promise&lt;[Checksum](#checksum12)&gt; | Promise对象。返回校验对象。 |
+| 类型                                   | 说明                            |
+| -------------------------------------- | ------------------------------- |
+| Promise&lt;[Checksum](#checksum12)&gt; | Promise对象。返回校验对象实例。 |
 
 **示例：**
 
@@ -407,15 +407,15 @@ zlib.createChecksum().then((data) => {
 
 createChecksumSync():  Checksum
 
-创建校验对象。成功时返回Checksum。
+创建校验对象。成功时返回Checksum对象实例。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **返回值：**
 
-| 类型                    | 说明       |
-| ----------------------- | ---------- |
-| [Checksum](#checksum12) | 校验实例。 |
+| 类型                    | 说明           |
+| ----------------------- | -------------- |
+| [Checksum](#checksum12) | 校验对象实例。 |
 
 **示例：**
 
@@ -433,7 +433,7 @@ let checksum = zlib.createChecksumSync()
 
 adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
-计算Adler-32校验和，Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
+计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -471,7 +471,7 @@ checksum.adler32(0, arrayBufferIn).then(data => {
 
 adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&gt;
 
-将两个Adler-32校验和合并，Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
+将两个Adler-32校验和合并，使用Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -525,7 +525,7 @@ async function demo() {
 
 crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
-更新CRC-32校验，Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
+更新CRC-32校验，使用Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -566,7 +566,7 @@ checksum.crc32(0, arrayBufferIn).then((data) => {
 
 crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
-将两个CRC-32校验合并，Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
+将两个CRC-32校验合并，使用Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -620,7 +620,7 @@ async function demo() {
 
 crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
-更新CRC-64校验，Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
+更新CRC-64校验，使用Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -661,7 +661,7 @@ checksum.crc64(0, arrayBufferIn).then((data) => {
 
 getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 
-输出CRC-32校验表，Promise异步返回。成功时返回CRC-32校验表。
+输出CRC-32校验表，使用Promise异步返回。成功时返回CRC-32校验表。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -689,7 +689,7 @@ checksum.getCrcTable().then((data) => {
 
 getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 
-输出CRC-64校验表，Promise异步返回。成功时返回CRC-64校验表。
+输出CRC-64校验表，使用Promise异步返回。成功时返回CRC-64校验表。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
