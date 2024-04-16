@@ -1,5 +1,7 @@
 # @ohos.security.asset (关键资产存储服务)(系统接口)
+
 关键资产存储服务提供了用户短敏感数据的安全存储及管理能力。其中，短敏感数据可以是密码类（账号/密码）、Token类（应用凭据）、其他关键明文（如银行卡号）等长度较短的用户敏感数据。
+
 > **说明：**
 >
 > - 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -11,7 +13,7 @@
 import { asset } from '@kit.AssetStoreKit';
 ```
 
-## asset.addAsUser<sup>12+</sup>
+## asset.addAsUser
 
 addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
@@ -23,8 +25,8 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| userId     | number                | 是   | 用户ID。                                                           |
-| attributes | [AssetMap](#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
+| userId     | number                                | 是   | 用户ID。                                                           |
+| attributes | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
 
 **返回值：**
 
@@ -67,7 +69,7 @@ function stringToArray(str: string): Uint8Array {
   return textEncoder.encodeInto(str);
 }
 
-let userId: number = 0;
+let userId: number = 100;
 let attr: asset.AssetMap = new Map();
 attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
@@ -85,7 +87,7 @@ try {
 }
 ```
 
-## asset.removeAsUser<sup>12+</sup>
+## asset.removeAsUser
 
 removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
@@ -95,8 +97,8 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                | 是   | 用户ID。                                                  |
-| query  | [AssetMap](#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
+| userId | number                                | 是   | 用户ID。                                                  |
+| query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
 
@@ -136,7 +138,7 @@ function stringToArray(str: string): Uint8Array {
   return textEncoder.encodeInto(str);
 }
 
-let userId: number = 0;
+let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
@@ -151,7 +153,7 @@ try {
 }
 ```
 
-## asset.updateAsUser<sup>12+</sup>
+## asset.updateAsUser
 
 updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
@@ -161,9 +163,9 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 | 参数名             | 类型     | 必填 | 说明                                                         |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| userId             | number                | 是   | 用户ID。                                                         |
-| query              | [AssetMap](#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
-| attributesToUpdate | [AssetMap](#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。              |
+| userId             | number                                | 是   | 用户ID。                                                         |
+| query              | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
+| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。              |
 
 **返回值：**
 
@@ -205,7 +207,7 @@ function stringToArray(str: string): Uint8Array {
   return textEncoder.encodeInto(str);
 }
 
-let userId: number = 0; 
+let userId: number = 100; 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
@@ -222,18 +224,18 @@ try {
 }
 ```
 
-## asset.preQueryAsUser<sup>12+</sup>
+## asset.preQueryAsUser
 
 preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
-在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)、[asset.postQuery](#assetpostqueryasuser)。使用Promise方式异步返回结果。
+在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)、[asset.postQueryAsUser](#assetpostqueryasuser)。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                | 是   | 用户ID。                                            |
-| query  | [AssetMap](#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
+| userId | number                                | 是   | 用户ID。                                            |
+| query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
 
@@ -276,7 +278,7 @@ function stringToArray(str: string): Uint8Array {
   return textEncoder.encodeInto(str);
 }
 
-let userId: number = 0;
+let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
@@ -291,7 +293,7 @@ try {
 }
 ```
 
-## asset.queryAsUser<sup>12+</sup>
+## asset.queryAsUser
 
 queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
@@ -301,8 +303,8 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| userId   | number                          | 是   | 用户ID。                                                  |
-| query    | [AssetMap](#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
+| userId   | number                                          | 是   | 用户ID。                                                  |
+| query    | [AssetMap](js-apis-asset.md#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
 
 **返回值：**
 
@@ -345,7 +347,7 @@ function stringToArray(str: string): Uint8Array {
   return textEncoder.encodeInto(str);
 }
 
-let userId: number = 0;
+let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
@@ -364,7 +366,7 @@ try {
 }
 ```
 
-## asset.postQueryAsUser<sup>12+</sup>
+## asset.postQueryAsUser
 
 postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
@@ -374,8 +376,8 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| userId | number                | 是   | 用户ID。                                                                     |
-| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuery](#assetprequery)执行成功返回的挑战值。 |
+| userId | number                                | 是   | 用户ID。                                                                     |
+| handle | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQueryAsUser](#assetprequeryasuser)执行成功返回的挑战值。 |
 
 **返回值：**
 
@@ -405,7 +407,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 import { asset } from '@kit.AssetStoreKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let userId: number = 0;
+let userId: number = 100;
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQueryAsUser执行成功返回的挑战值
 handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
