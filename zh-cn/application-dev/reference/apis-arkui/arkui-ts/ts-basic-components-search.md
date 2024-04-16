@@ -627,15 +627,6 @@ getTextContentRect(): RectResult
 | width | number | 内容宽度大小。|
 | height | number | 内容高度大小。|
 
-## KeyboardOptions<sup>12+</sup>
-
-设置自定义键盘是否支持避让功能。
-
-| 名称            | 类型              | 必填 | 描述                               |
-| --------------- | ---------------  |---- | ---------------------------------   |
-| supportAvoidance |  boolean        | 否  | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
-
-
 ### getTextContentLineCount<sup>10+</sup>
 
 getTextContentLineCount(): number
@@ -685,6 +676,14 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+
+## KeyboardOptions<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称             | 类型    | 必填 | 描述                                                         |
+| ---------------- | ------- | ---- | ------------------------------------------------------------ |
+| supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ##  示例
 
@@ -992,4 +991,4 @@ struct SearchExample {
 }
 ```
 
-![CustomSearchKeyType](figures/Custom_Search.gif)
+![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
