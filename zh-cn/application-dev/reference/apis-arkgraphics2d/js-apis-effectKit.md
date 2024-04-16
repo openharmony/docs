@@ -384,6 +384,60 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 ```
 ![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Largest_Proportion_Color.png)
 
+### getTopProportionColors<sup>12+</sup>
+
+getTopProportionColors(colorCount: number): Array<Color | null>
+
+读取图像占比靠前的颜色值，个数由`colorCount`指定，结果写入[Color](#color)的数组里，使用同步方式返回。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+| 参数名      | 类型   | 必填 | 说明              |
+| ---------- | ------ | ---- | ------------------------------------------- |
+| colorCount | number | 是   | 需要取主色的个数，取值范围为[1, 10]，向下取整。   |
+
+**返回值：**
+
+| 类型                                     | 说明                                            |
+| :--------------------------------------- | :---------------------------------------------- |
+| Array<[Color](#color) \| null> | Color数组，即图像占比前`colorCount`的颜色值数组，按占比排序。<br>- 当实际读取的特征色个数小于`colorCount`时，数组大小为实际特征色个数。<br>- 取色失败返回空数组。<br>- 取色个数小于1返回`[null]`。<br>- 取色个数大于10视为取前10个。 |
+
+**示例：**
+
+```js
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.error('Failed to create color picker.');
+    } else {
+      console.info('Succeeded in creating color picker.');
+      let colors = colorPicker.getTopProportionColors(2);
+      for(let index = 0; index < colors.length; index++) {
+        if (colors[index]) {
+          console.info('get top proportion colors: index ' + index + ', color ' + colors[index]);
+        }
+      }
+    }
+  })
+})
+```
+![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Top_Proportion_Colors.png)
+
 ### getHighestSaturationColor<sup>10+</sup>
 
 getHighestSaturationColor(): Color

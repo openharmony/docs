@@ -2168,7 +2168,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                                | 是   | finishSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                           | 是   | finishSession的参数集合。                           |
-| token    | Uint8Array                                            | 是   | finishSession操作的token。                          |
+| token    | Uint8Array                                            | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
@@ -2206,7 +2206,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | handle  | number                                          | 是   | finishSession操作的handle。                |
 | options | [HuksOptions](#huksoptions)                     | 是   | finishSession操作的参数集合。              |
-| token   | Uint8Array                                      | 否   | finishSession操作的token。                 |
+| token   | Uint8Array                                      | 否   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。     |
 
 **返回值**：
 

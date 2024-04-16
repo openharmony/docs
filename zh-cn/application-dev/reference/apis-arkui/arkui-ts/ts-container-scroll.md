@@ -153,7 +153,7 @@ friction(value: number | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9 |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
 
 ### enablePaging<sup>11+</sup>
 

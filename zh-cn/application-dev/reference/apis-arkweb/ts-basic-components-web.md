@@ -1888,6 +1888,7 @@ metaViewport(enable: boolean)
 > - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
 > - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
 > - 如果设置为异常值将无效。
+> - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 
 **参数：**
 
@@ -5624,7 +5625,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
 
 对网页访问的屏幕捕获操作进行授权。
 

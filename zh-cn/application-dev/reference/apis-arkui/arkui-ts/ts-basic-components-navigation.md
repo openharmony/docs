@@ -912,6 +912,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ## object类型说明
@@ -1293,6 +1294,23 @@ export function PageTwoBuilder(name: string, param: Object) {
 export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack()
 
+  private menuItems: Array<NavigationMenuItem> = [
+    {
+      value: "1",
+      icon: 'resources/base/media/undo.svg',
+    },
+    {
+      value: "2",
+      icon: 'resources/base/media/redo.svg',
+      isEnabled: false,
+    },
+    {
+      value: "3",
+      icon: 'resources/base/media/ic_public_ok.svg',
+      isEnabled: true,
+    }
+  ]
+
   build() {
     NavDestination() {
       Column() {
@@ -1305,6 +1323,7 @@ export struct PageTwo {
           })
       }.width('100%').height('100%')
     }.title('pageTwo')
+    .menus(this.menuItems)
     .onBackPressed(() => {
       this.pathStack.pop()
       return true
