@@ -211,7 +211,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let context: Context = getContext(this) as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
-    console.log(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+    console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
   } else {
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);

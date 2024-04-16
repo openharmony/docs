@@ -36,9 +36,9 @@ try {
       console.info("data permissions:" + data.permissions);
       console.info("data authResults:" + data.authResults);
   }).catch((err: BusinessError) => {
-      console.info("data:" + JSON.stringify(err));
+      console.error("data:" + JSON.stringify(err));
   })
 } catch(err) {
-  console.log(`catch err->${JSON.stringify(err)}`);
+  console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
