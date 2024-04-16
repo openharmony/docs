@@ -1,4 +1,4 @@
-# Ethernet Connection
+# Ethernet Connection Management
 
 ## Overview
 
