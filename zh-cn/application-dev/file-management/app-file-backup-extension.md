@@ -77,7 +77,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
    如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
 
-   下面的示例展示了一个空实现的`BackupExtensione`文件。
+   下面的示例展示了一个空实现的`BackupExtension.ets`文件。
 
     ```ts
     import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
