@@ -28,7 +28,7 @@ Subscribes to thermal level changes.
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-thermal.md).
+For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -63,7 +63,7 @@ Unsubscribes from thermal level changes.
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-thermal.md).
+For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -98,7 +98,7 @@ Obtains the current thermal level.
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-thermal.md).
+For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md).
 
 | ID  | Error Message   |
 |---------|---------|
