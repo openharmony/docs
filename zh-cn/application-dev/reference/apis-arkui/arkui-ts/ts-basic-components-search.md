@@ -403,6 +403,42 @@ textIndent(value: Dimension)
 | ------ | ---------------------------- | ---- | ---------------------------- |
 | value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
 
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
 ## IconOptions<sup>10+</sup>对象说明
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述    |
@@ -992,3 +1028,33 @@ struct SearchExample {
 ```
 
 ![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
+
+### 示例8
+
+该示例实现了使用minFontSize及maxFontSize设置文本自适应字号。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  build() {
+    Row() {
+      Column() {
+        Text('adaptive font').fontSize(9).fontColor(0xCCCCCC)
+
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![searchAdaptFont](figures/search_adapt_font.png)
