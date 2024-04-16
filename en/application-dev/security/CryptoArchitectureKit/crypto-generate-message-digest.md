@@ -60,6 +60,8 @@ async function doMd() {
   await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let mdResult = await md.digest();
   console.info('Md result:' + mdResult.data);
+  let mdLen = md.getMdLength();
+  console.info("md len: " + mdLen);
 }
 ```
 
@@ -94,5 +96,7 @@ async function doLoopMd() {
   }
   let mdOutput = await md.digest();
   console.info("md result: " + mdOutput.data);
+  let mdLen = md.getMdLength();
+  console.info("md len: " + mdLen);
 }
 ```

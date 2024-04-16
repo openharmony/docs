@@ -19,27 +19,29 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 3. Use [PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the public key, and use [PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the private key.
 
-- Example: Randomly generate an RSA key pair (using promise-based APIs).
-  ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+Example: Randomly generate an RSA key pair (using promise-based APIs).
 
-  function generateAsyKey() {
-    // Create an AsyKeyGenerator instance.
-    let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
-    // Use AsyKeyGenerator to randomly generate an asymmetric key pair.
-    let keyGenPromise = rsaGenerator.generateKeyPair();
-    keyGenPromise.then(keyPair => {
-      let pubKey = keyPair.pubKey;
-      let priKey = keyPair.priKey;
-      // Obtain the binary data of the asymmetric key pair.
-      let pkBlob = pubKey.getEncoded();
-      let skBlob = priKey.getEncoded();
-      AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-      AlertDialog.show({ message: 'sk bin data' + skBlob.data });
-    });
-  }
-  ```
- 
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function generateAsyKey() {
+  // Create an AsyKeyGenerator instance.
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
+  // Use AsyKeyGenerator to randomly generate an asymmetric key pair.
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
+    let pubKey = keyPair.pubKey;
+    let priKey = keyPair.priKey;
+    // Obtain the binary data of the asymmetric key pair.
+    let pkBlob = pubKey.getEncoded();
+    let skBlob = priKey.getEncoded();
+    console.info('pk bin data' + pkBlob.data);
+    console.info('sk bin data' + skBlob.data);
+  });
+}
+```
+
+
 ## Randomly Generating an SM2 Key Pair
 
 For details about the algorithm specifications, see [SM2](crypto-asym-key-generation-conversion-spec.md#sm2).
@@ -52,23 +54,24 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 3. Use [PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the public key, and use [PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the private key.
 
-- Example: Randomly generate an SM2 key pair (using promise-based APIs).
-  ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+Example: Randomly generate an SM2 key pair (using promise-based APIs).
 
-  function generateSM2Key() {
-    // Create an AsyKeyGenerator instance.
-    let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
-    // Use AsyKeyGenerator to randomly generate an asymmetric key pair.
-    let keyGenPromise = sm2Generator.generateKeyPair();
-    keyGenPromise.then(keyPair => {
-      let pubKey = keyPair.pubKey;
-      let priKey = keyPair.priKey;
-      // Obtain the binary data of the asymmetric key pair.
-      let pkBlob = pubKey.getEncoded();
-      let skBlob = priKey.getEncoded();
-      AlertDialog.show({ message: 'pk bin data' + pkBlob.data });
-      AlertDialog.show({ message: 'sk bin data' + skBlob.data });
-    });
-  }
-  ```
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function generateSM2Key() {
+  // Create an AsyKeyGenerator instance.
+  let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
+  // Use AsyKeyGenerator to randomly generate an asymmetric key pair.
+  let keyGenPromise = sm2Generator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
+    let pubKey = keyPair.pubKey;
+    let priKey = keyPair.priKey;
+    // Obtain the binary data of the asymmetric key pair.
+    let pkBlob = pubKey.getEncoded();
+    let skBlob = priKey.getEncoded();
+    console.info('pk bin data' + pkBlob.data);
+    console.info('sk bin data' + skBlob.data);
+  });
+}
+```
