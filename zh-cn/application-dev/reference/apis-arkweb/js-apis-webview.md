@@ -4501,7 +4501,6 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter.    |
 | 17100020 | Register custom schemes failed. |
 
 **示例：**
@@ -4970,58 +4969,6 @@ struct WebComponent {
 }
 ```
 
-### prefetchResource<sup>12+</sup>
-
-static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
-
-根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存密钥和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
-
-**系统能力：**  SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名             | 类型                             |  必填  | 说明                                                              |
-| ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
-| request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
-| additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
-| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的密钥。仅支持字母和数字，未传入或传入空则取默认值url作为密钥。 |
-| cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
-
-| 错误码ID  | 错误信息                                                      |
-| -------- | ------------------------------------------------------------ |
-| 17100002 | Invalid url.                                                 |
-
-**示例：**
-
-```ts
-// xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
-        web_webview.WebviewController.initializeWebEngine();
-        // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
-        web_webview.WebviewController.prefetchResource(
-          {url:"https://www.example1.com/post?e=f&g=h",
-          method:"POST",
-          formData:"a=x&b=y",},
-          [{headerKey:"c",
-            headerValue:"z",},],
-          "KeyX", 500);
-        AppStorage.setOrCreate("abilityWant", want);
-        console.log("EntryAbility onCreate done");
-    }
-}
-```
-
 ### prepareForPageLoad<sup>10+</sup>
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
@@ -5357,14 +5304,6 @@ enableSafeBrowsing(enable: boolean): void
 | --------| ------- | ---- | ---------------------------|
 |  enable | boolean | 是   | 是否启用检查网站安全风险的功能。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
-
 **示例：**
 
 ```ts
@@ -5454,7 +5393,6 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Invalid input parameter.    |
 
 **示例：**
 
@@ -5552,13 +5490,6 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 | ----------- | ------------- | ---- | ------------------------ |
 | hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID  | 错误信息                  |
-| -------- | ------------------------ |
-|  401     | Invalid input parameter. |
 
 **示例：**
 
@@ -5604,13 +5535,6 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 | ----------- | ------------- | ---- | ------------------------ |
 | hostList    | Array\<string> | 是   | 绕过智能防跟踪功能的域名列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID  | 错误信息                  |
-| -------- | ------------------------ |
-|  401     | Invalid input parameter. |
 
 **示例：**
 
@@ -5770,7 +5694,6 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
-| 401 | Invalid input parameter.                                                        |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -5922,7 +5845,6 @@ setScrollable(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6026,7 +5948,6 @@ setPrintBackground(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6258,237 +6179,6 @@ struct WebComponent {
 </script>
 ```
 
-### stopAllMedia<sup>12+</sup>
-
-stopAllMedia(): void
-
-控制网页所有音视频停止。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  build() {
-    Column() {
-      Button('stopAllMedia')
-        .onClick(() => {
-          try {
-            this.controller.stopAllMedia();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### pauseAllMedia<sup>12+</sup>
-
-pauseAllMedia(): void
-
-控制网页所有音视频暂停。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  build() {
-    Column() {
-      Button('pauseAllMedia')
-        .onClick(() => {
-          try {
-            this.controller.pauseAllMedia();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### resumeAllMedia<sup>12+</sup>
-
-resumeAllMedia(): void
-
-控制网页被pauseAllMedia接口暂停的音视频继续播放。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  build() {
-    Column() {
-      Button('resumeAllMedia')
-        .onClick(() => {
-          try {
-            this.controller.resumeAllMedia();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### closeAllMediaPresentations<sup>12+</sup>
-
-closeAllMediaPresentations(): void
-
-控制网页所有全屏视频关闭。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  build() {
-    Column() {
-      Button('closeAllMediaPresentations')
-        .onClick(() => {
-          try {
-            this.controller.closeAllMediaPresentations();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### getMediaPlaybackState<sup>12+</sup>
-
-getMediaPlaybackState(): MediaPlaybackState
-
-查询当前所有音视频播控状态。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**返回值：**
-
-| 类型                                        | 说明                                                      |
-| ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOP。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  build() {
-    Column() {
-      Button('getMediaPlaybackState')
-        .onClick(() => {
-          try {
-            console.log("MediaPlaybackState : " + this.controller.getMediaPlaybackState());
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### setWebSchemeHandler<sup>12+</sup>
 
 setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
@@ -6510,7 +6200,6 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6603,14 +6292,6 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 | scheme    | string | 是   | 要拦截的协议。 |
 | handler    | [WebSchemeHandler](#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
-
 **示例：**
 
 ```ts
@@ -6672,182 +6353,6 @@ struct WebComponent {
   }
 }
 ```
-
-### startCamera<sup>12+</sup>
-
-startCamera(): void
-
-开启当前网页摄像头捕获。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**需要权限：** ohos.permission.CAMERA
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-import common from '@ohos.app.ability.common';
-import abilityAccessCtrl, { PermissionRequestResult } from '@ohos.abilityAccessCtrl';
-import business_error, { BusinessError } from '@ohos.base';
-
-let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-try {
-  let context: Context = getContext(this) as common.UIAbilityContext;
-  atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
-    console.info('data:' + JSON.stringify(data));
-    console.info('data permissions:' + data.permissions);
-    console.info('data authResults:' + data.authResults);
-  })
-} catch (error) {
-  let e: business_error.BusinessError = error as business_error.BusinessError;
-  console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-}
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Button("startCamera").onClick(() => {
-        try {
-          this.controller.startCamera();
-        } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-        }
-      })
-      Button("stopCamera").onClick(() => {
-        try {
-          this.controller.stopCamera();
-        } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-        }
-      })
-      Button("closeCamera").onClick(() => {
-        try {
-          this.controller.closeCamera();
-        } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-        }
-      })
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onPermissionRequest((event) => {
-          if (event) {
-            AlertDialog.show({
-              title: 'title',
-              message: 'text',
-              primaryButton: {
-                value: 'deny',
-                action: () => {
-                  event.request.deny();
-                }
-              },
-              secondaryButton: {
-                value: 'onConfirm',
-                action: () => {
-                  event.request.grant(event.request.getAccessibleResource());
-                }
-              },
-              cancel: () => {
-                event.request.deny();
-              }
-            })
-          }
-        })
-    }
-  }
-}
-
-```
-加载的html文件。
- ```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
-  <body>
-    <video id="video" width="400px" height="400px" autoplay="autoplay">
-    </video>
-    <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
-    <script>
-      function getMedia() {
-        let constraints = {
-          video: {
-            width: 500,
-            height: 500
-          },
-          audio: true
-        }
-        let video = document.getElementById("video");
-        let promise = navigator.mediaDevices.getUserMedia(constraints);
-        promise.then(function(MediaStream) {
-          video.srcObject = MediaStream;
-          video.play();
-        })
-      }
-    </script>
-  </body>
-</html>
- ```
-
-### stopCamera<sup>12+</sup>
-
-stopCamera(): void
-
-停止当前网页摄像头捕获。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**需要权限：** ohos.permission.CAMERA
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-完整示例代码参考[startCamera](#startcamera12)。
-
-### closeCamera<sup>12+</sup>
-
-closeCamera(): void
-
-关闭当前网页摄像头捕获。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**需要权限：** ohos.permission.CAMERA
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-完整示例代码参考[startCamera](#startcamera12)。
 
 ## WebCookieManager
 
@@ -6995,7 +6500,6 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -7062,7 +6566,6 @@ static fetchCookie(url: string): Promise\<string>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -7240,7 +6743,6 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -7305,7 +6807,6 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -9119,18 +8620,6 @@ Web组件返回的请求/响应头对象。
 | headerKey   | string | 是 | 是 | 请求/响应头的key。   |
 | headerValue | string | 是 | 是 | 请求/响应头的value。 |
 
-## RequestInfo<sup>12+</sup>
-
-Web组件发送的资源请求信息。
-
-**系统能力：**: SystemCapability.Web.Webview.Core
-
-| 名称      | 类型   | 可读 | 可写 |说明        |
-| ---------| ------ | -----|------|--------  |
-| url      | string | 是 | 是 | 请求的链接。    |
-| method   | string | 是 | 是 | 请求的方法。    |
-| formData | string | 是 | 是 | 请求的表单数据。 |
-
 ## WebHitTestType
 
 [getHitTest](#gethittest)接口用于指示游标节点。
@@ -9213,19 +8702,6 @@ Web组件发送的资源请求信息。
 | ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
 | ARRAY        | 5 |数组类型。|
 | ERROR        | 6 |错误类型。|
-
-## MediaPlaybackState<sup>12+</sup>
-
-当前网页的播控状态。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称    | 值   | 说明               |
-| ------- | ---- | ------------------ |
-| NONE    | 0    | 页面无音视频启播。 |
-| PLAYING | 1    | 页面音视频播放中。 |
-| PAUSED  | 2    | 页面音视频暂停。   |
-| STOP    | 3    | 页面音视频停止。   |
 
 ## JsMessageExt<sup>10+</sup>
 
@@ -9736,7 +9212,7 @@ struct WebComponent {
 
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 是   | 否   | 历史记录项的标题。           |
@@ -10178,7 +9654,7 @@ getLastErrorCode(): WebDownloadErrorCode
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载发生错误的时候的错误码。 |
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | 下载发生错误的时候的错误码。 |
 
 **示例：**
 
@@ -11179,6 +10655,12 @@ onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 触发下载的回调。 |
+
 **示例：**
 
 ```ts
@@ -11280,6 +10762,12 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 下载过程中的回调，通过该回调的参数可以了解下载进度等信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已更新。 |
 
 **示例：**
 
@@ -11383,6 +10871,12 @@ onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已完成。 |
+
 **示例：**
 
 ```ts
@@ -11484,6 +10978,12 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 下载失败的通知。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载回调失败。 |
 
 **示例：**
 
@@ -12069,14 +11569,6 @@ read(size: number): Promise\<ArrayBuffer\>
 | ------ | ------------------------- |
 | Promise\<ArrayBuffer\> | Promise实例，用于获取WebHttpBodyStream中读取的数据。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
-
 **示例：**
 
 完整示例代码参考[initialize](#initialize12)。
@@ -12377,14 +11869,6 @@ setUrl(url: string): void
 
 示例完整示例代码参考[constructor](#constructor12)。
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
-
 ### setNetErrorCode<sup>12+</sup>
 
 setNetErrorCode(code: WebNetErrorList): void
@@ -12398,14 +11882,6 @@ setNetErrorCode(code: WebNetErrorList): void
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
 |  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
 
 **示例：**
 
@@ -12425,14 +11901,6 @@ setStatus(code: number): void
 | --------| ------- | ---- | ---------------------------|
 |  code | number | 是   | Http状态码。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
-
 **示例：**
 
 示例完整示例代码参考[constructor](#constructor12)。
@@ -12450,14 +11918,6 @@ setStatusText(text: string): void
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
 |  text | string | 是   | 状态文本。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
 
 **示例：**
 
@@ -12477,14 +11937,6 @@ setMimeType(type: string): void
 | --------| ------- | ---- | ---------------------------|
 |  text | string | 是   | 媒体类型。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
-
 **示例：**
 
 示例完整示例代码参考[constructor](#constructor12)。
@@ -12502,14 +11954,6 @@ setEncoding(encoding: string): void
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
 |  encoding | string | 是   | 字符集。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
 
 **示例：**
 
@@ -12530,14 +11974,6 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 |  name | string | 是   | 头部（header）的名称。 |
 |  value | string | 是   | 头部（header）的值。 |
 |  overwrite | boolean | 是   | 如果为true，将覆盖现有的头部，否则不覆盖。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                  |
-| -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
 
 **示例：**
 
@@ -12700,7 +12136,6 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
 | 17100021 | Resource handler is invalid. |
 
 **示例：**
@@ -12727,7 +12162,6 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
 | 17100021 | Resource handler is invalid. |
 
 **示例：**
