@@ -332,7 +332,7 @@ let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void{
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
 
   }
 }
@@ -378,7 +378,7 @@ let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void{
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
 
   }
 }
