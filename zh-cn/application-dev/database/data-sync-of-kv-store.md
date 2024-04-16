@@ -164,12 +164,10 @@
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
-
      let child1 = new distributedKVStore.FieldNode('id');
      child1.type = distributedKVStore.ValueType.INTEGER;
      child1.nullable = false;
      child1.default = '1';
-     child1.type = distributedKVStore.ValueType.INTEGER;
      let child2 = new distributedKVStore.FieldNode('name');
      child2.type = distributedKVStore.ValueType.STRING;
      child2.nullable = false;
@@ -178,9 +176,9 @@
      let schema = new distributedKVStore.Schema();
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
-     schema.indexes = ["$.id","$.name"];
-     schema.mode = 1;
-     schema.skip = 0;
+     schema.indexes = ['$.id', '$.name'];
+     schema.mode = 1; // 0表示STRICT模式，1表示COMPATIBLE模式。
+     schema.skip = 0; // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
 
      const options: distributedKVStore.Options = {
        createIfMissing: true,
@@ -234,8 +232,9 @@
 
      
    ```ts
+   // 如果未定义Schema则Value可以传任意值。
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {

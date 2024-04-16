@@ -165,11 +165,11 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 | 名称    | 类型                    | 可读 | 可写 | 说明                       |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
 | root    | [FieldNode](#fieldnode) | 是   | 是   | 存放了Value中所有字段的定义。 |
-| indexes | Array\<string>          | 是   | 是   | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，如果不需要创建任何索引，则此indexes字段可以不出现。格式为："$.field1","$.field2..."。|
-| mode    | number                  | 是   | 是   | Schema的模式，可以取值0或是1。0表示“STRICT”模式。1表示“COMPATIBLE”模式。|
-| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围在[0,4M-2]之间。|
+| indexes | Array\<string>          | 是   | 是   | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，如果不需要创建任何索引，则此indexes字段可以不出现。格式为：`'$.field1'`, `'$.field2'`。|
+| mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示STRICT模式，1表示COMPATIBLE模式。|
+| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。|
 
-STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则[Put](#put)时数据库会返回错误。
+STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则插入数据时数据库会返回错误。
 
 COMPATIBLE：选择为COMPATIBLE模式则数据库检查Value格式时比较宽松，只需要Value具有Schema描述的特征即可，允许有多出的字段。
 
@@ -189,7 +189,6 @@ let child1 = new distributedKVStore.FieldNode('id');
 child1.type = distributedKVStore.ValueType.INTEGER;
 child1.nullable = false;
 child1.default = '1';
-child1.type = distributedKVStore.ValueType.INTEGER;
 let child2 = new distributedKVStore.FieldNode('name');
 child2.type = distributedKVStore.ValueType.STRING;
 child2.nullable = false;
@@ -198,7 +197,7 @@ child2.default = 'zhangsan';
 let schema = new distributedKVStore.Schema();
 schema.root.appendChild(child1);
 schema.root.appendChild(child2);
-schema.indexes = ["$.id","$.name"];
+schema.indexes = ['$.id', '$.name'];
 schema.mode = 1;
 schema.skip = 0;
 ```
@@ -212,8 +211,8 @@ schema.skip = 0;
 | 名称     | 类型    | 可读 | 可写 | 说明                           |
 | -------- | ------- | ---- | ---- | ------------------------------ |
 | nullable | boolean | 是   | 是   | 表示数据库字段是否可以为空。true表示此节点数据可以为空，false表示此节点数据不能为空。|
-| default  | string  | 是   | 是   | 表示Fieldnode的默认值。        |
-| type     | number  | 是   | 是   | 表示指定节点对应数据类型的值。 对应的数据类型支持：STRING、INTEGER、FLOAT、BYTE_ARRAY、BOOLEAN、DOUBLE,且大小写敏感。|
+| default  | string  | 是   | 是   | 表示Fieldnode的默认值。如果插入数据时不填，则会按默认值插入。        |
+| type     | number  | 是   | 是   | 表示指定节点对应的数据类型，取值为[ValueType](#ValueType)对应的枚举值。|
 
 ### constructor
 
