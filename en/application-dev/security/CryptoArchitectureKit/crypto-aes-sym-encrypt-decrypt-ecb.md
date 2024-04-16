@@ -1,4 +1,4 @@
-# Encryption and Decryption with an AES Symmetric Key (CBC Mode)
+# Encryption and Decryption with an AES Symmetric Key (ECB Mode)
 
 
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
@@ -11,9 +11,9 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
    
    In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|CBC|PKCS7'** to create a **Cipher** instance. The key type is **AES128**, block cipher mode is **CBC**, and the padding mode is **PKCS7**.
+2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|ECB|PKCS7'** to create a **Cipher** instance. The key type is **AES128**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
 
-3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **IvParamsSpec** corresponding to the CBC mode.
+3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **IvParamsSpec** corresponding to the ECB mode.
 
 4. If the data to be encrypted is short, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the encrypted data.
 
@@ -21,7 +21,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 **Decryption**
 
 
-1. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **IvParamsSpec** corresponding to the CBC mode.
+1. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.DECRYPT_MODE** (decryption), **key** to **SymKey** (the key for decryption), and **params** to **IvParamsSpec** corresponding to the ECB mode.
 
 2. If the data to be decrypted is short, you can use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to obtain the decrypted data.
 
@@ -32,29 +32,17 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   import cryptoFramework from '@ohos.security.cryptoFramework';
   import buffer from '@ohos.buffer';
 
-  function genIvParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    let ivParamsSpec: cryptoFramework.IvParamsSpec = {
-      algName: "IvParamsSpec",
-      iv: ivBlob
-    };
-    return ivParamsSpec;
-  }
   // Encrypt the message.
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    let cipher = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
-    await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
+    let cipher = cryptoFramework.createCipher('AES128|ECB|PKCS7');
+    await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let cipherData = await cipher.doFinal(plainText);
     return cipherData;
   }
   // Decrypt the message.
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    let decoder = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
-    await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
+    let decoder = cryptoFramework.createCipher('AES128|ECB|PKCS7');
+    await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = await decoder.doFinal(cipherText);
     return decryptData;
   }
@@ -67,7 +55,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     return symKey;
   }
 
-  async function aesCBC() {
+  async function aesECB() {
     try {
       let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
       let symKey = await genSymKeyByData(keyData);
@@ -82,7 +70,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
         console.error('decrypt failed');
       }
     } catch (error) {
-      console.error(`AES CBC "${error}", error code: ${error.code}`);
+      console.error(`AES ECB "${error}", error code: ${error.code}`);
     }
   }
   ```
@@ -93,29 +81,17 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   import cryptoFramework from '@ohos.security.cryptoFramework';
   import buffer from '@ohos.buffer';
 
-  function genIvParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    let ivParamsSpec: cryptoFramework.IvParamsSpec = {
-      algName: "IvParamsSpec",
-      iv: ivBlob
-    };
-    return ivParamsSpec;
-  }
   // Encrypt the message.
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    let cipher = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
-    cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
+    let cipher = cryptoFramework.createCipher('AES128|ECB|PKCS7');
+    cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let cipherData = cipher.doFinalSync(plainText);
     return cipherData;
   }
   // Decrypt the message.
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    let decoder = cryptoFramework.createCipher('AES128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
-    decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
+    let decoder = cryptoFramework.createCipher('AES128|ECB|PKCS7');
+    decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = decoder.doFinalSync(cipherText);
     return decryptData;
   }
@@ -143,7 +119,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
         console.error('decrypt failed');
       }
     } catch (error) {
-      console.error(`AES CBC "${error}", error code: ${error.code}`);
+      console.error(`AES ECB "${error}", error code: ${error.code}`);
     }
   }
   ```
