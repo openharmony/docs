@@ -1012,14 +1012,16 @@ Navigation跳转拦截对象。
 
 ```ts
 // xxx.ets
-class A {
-  text: string = ''
-  num: number = 0
-}
-
 @Entry
 @Component
 struct NavigationExample {
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      PageOneComponent()
+    }
+  }
+  private stack: NavPathStack = new NavPathStack();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State currentIndex: number = 0
 
@@ -1057,7 +1059,7 @@ struct NavigationExample {
 
   build() {
     Column() {
-      Navigation() {
+      Navigation(this.stack) {
         TextInput({ placeholder: 'search...' })
           .width('90%')
           .height(40)
@@ -1081,9 +1083,18 @@ struct NavigationExample {
         .height(324)
         .width('100%')
         .margin({ top: 12, left: '10%' })
+
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.stack.pushPath({ name: "pageOne" })
+          })
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
+      .navDestination(this.PageMap)
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
@@ -1107,9 +1118,46 @@ struct NavigationExample {
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
+
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOneComponent()
+}
+
+@Component
+struct PageOneComponent {
+  private menuItems: Array<NavigationMenuItem> = [
+    {
+      value: "1",
+      icon: 'resources/base/media/undo.svg',
+    },
+    {
+      value: "2",
+      icon: 'resources/base/media/redo.svg',
+      isEnabled: false,
+    },
+    {
+      value: "3",
+      icon: 'resources/base/media/ic_public_ok.svg',
+      isEnabled: true,
+    }
+  ]
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pageOne', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin({ left: 20, top: 200, right: 20 })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .menus(this.menuItems)
+  }
+}
 ```
 
-![zh-cn_image_navigation](figures/zh-cn_image_navigation.png)
+![zh-cn_image_navigation](figures/zh-cn_image_navigation.gif)
 
 
 
@@ -2234,95 +2282,3 @@ struct NavigationExample3 {
 }
 ```
 ![navigationOnReady2.gif](figures/navigationOnReady2.gif)
-
-### 示例9
-
-```ts
-// 该示例演示NavDestination的右上角菜单功能
-@Builder
-export function PageOneBuilder(name: string, param: Object) {
-  PageOneComponent()
-}
-
-@Component
-struct PageOneComponent {
-  private menuItems: Array<NavigationMenuItem> = [
-    {
-      value: "1",
-      icon: 'resources/base/media/undo.svg',
-    },
-    {
-      value: "2",
-      icon: 'resources/base/media/redo.svg',
-      isEnabled: false,
-    },
-    {
-      value: "3",
-      icon: 'resources/base/media/ic_public_ok.svg',
-      isEnabled: true,
-    }
-  ]
-
-  build() {
-    NavDestination() {
-      Column() {
-        Button('pageOne', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin({ left: 20, top: 200, right: 20 })
-      }.width('100%').height('100%')
-    }.title('pageOne')
-    .menus(this.menuItems)
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private stack: NavPathStack = new NavPathStack();
-
-  @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      PageOneComponent()
-    }
-  }
-
-  build() {
-    Navigation(this.stack) {
-      Stack({ alignContent: Alignment.Center }) {
-        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            this.stack.pushPath({ name: "pageOne" })
-          })
-      }
-      .width('100%')
-      .height('100%')
-    }
-    .width('100%')
-    .height('100%')
-    .navDestination(this.PageMap)
-    .title('Navigation')
-  }
-}
-```
-```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
-{
-  "routerMap": [
-    {
-      "name": "pageOne",
-      "pageSourceFile": "src/main/ets/pages/Index.ets",
-      "buildFunction": "PageOneBuilder",
-      "data": {
-        "description": "this is pageOne"
-      }
-    }
-  ]
-}
-```
-![zh-cn_image_navDestination](figures/zh-cn_image_navDestination.png)
