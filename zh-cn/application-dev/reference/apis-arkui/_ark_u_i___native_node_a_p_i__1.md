@@ -498,7 +498,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeCustomEvent) (ArkUI_NodeHandle node
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数&lt;**userData 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeCustomEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 ** | 
+| targetId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。 | 
+| userData | 自定义事件参数，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。|
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeCustomEventReceiver
@@ -540,7 +545,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数&lt;**userData 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。 ** | 
+| targetId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。   | 
+| userData | 自定义事件参数，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。 |
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### registerNodeEventReceiver
