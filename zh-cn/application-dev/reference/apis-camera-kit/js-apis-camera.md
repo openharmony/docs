@@ -6358,10 +6358,17 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
 function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
-  let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
+  let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
+  try {
+    colorSpaces = session.getSupportedColorSpaces();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
+  }
   return colorSpaces;
 }
 ```
@@ -6438,10 +6445,17 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
 function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
-  let colorSpace: colorSpaceManager.ColorSpace = session.getActiveColorSpace();
+  let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
+  try {
+    colorSpace = session.getActiveColorSpace();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getActiveColorSpace call failed. error code: ${err.code}`);
+  }
   return colorSpace;
 }
 ```
