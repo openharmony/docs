@@ -12,7 +12,7 @@ The use of musl libc APIs may be restricted by the following factors:
     For details about the seccomp mechanism, see [Seccomp Policy Development](../../../device-dev/subsystems/subsys-boot-init-seccomp.md).
 
     A common error caused by seccomp is as follows:
-    - The stack top is in the musl function.
+    - Top function is the musl function in stacktrace.
     - The reason is "signal:SIGSYS", as shown in the following example:
         ```
         Process name:com.example.myapplication
