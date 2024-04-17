@@ -116,8 +116,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称 | 类型   | 可读 | 可写 | 说明                        |
 | ---- | ------ | ---- | ---- | --------------------------- |
-| x    | number | 是   | 是   | x轴方向的偏移量，单位为px。 |
-| y    | number | 是   | 是   | y轴方向的偏移量，单位为px。 |
+| x    | number | 是   | 是   | x轴方向的偏移量，单位为vp。 |
+| y    | number | 是   | 是   | y轴方向的偏移量，单位为vp。 |
 
 ## Matrix4
 
