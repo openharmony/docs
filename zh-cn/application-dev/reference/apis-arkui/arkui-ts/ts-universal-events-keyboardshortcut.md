@@ -55,6 +55,11 @@ keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?:
 | F10  | 表示键盘上F10功能键。 |
 | F11  | 表示键盘上F11功能键。 |
 | F12  | 表示键盘上F12功能键。 |
+| TAB<sup>12+</sup>  | 表示键盘上TAB功能键。 |
+| UP<sup>12+</sup>   | 表示键盘上UP方向键。  |
+| DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 |
+| LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 |
+| RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 |
 
 ## 快捷键使用注意事项
 
@@ -75,6 +80,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?:
 | 隐藏组件<br />                               | 响应快捷键                              | 无                                        |
 | disable状态组件                              | 不响应快捷键                             | 无                                        |
 | 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效          | Button('button1').keyboardShortcut('c',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
+| SHIFT+TAB键用于响应焦点事件 | 焦点事件响应优先级详见[按键事件](../../../ui/arkts-common-events-device-input-event.md#按键事件)    | 无 |
 
 ## 系统已有组合键
 
@@ -90,6 +96,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array<ModifierKey>, action?:
 | Ctrl+ Y        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 | 方向键、回车键        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 | TAB键           |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Shift + TAB     |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 
 ## 示例
 
