@@ -2241,7 +2241,7 @@ struct StyleExample {
 
 ### Struct支持联合类型的方案
 
-下面这段代码有arkts-no-any-unknown的报错，由于strcut不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
+下面这段代码有arkts-no-any-unknown的报错，由于struct不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
 
 **不推荐用法**
 
