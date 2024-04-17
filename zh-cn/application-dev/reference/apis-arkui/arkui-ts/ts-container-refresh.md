@@ -50,8 +50,7 @@ refreshOffset(value: number)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | number |  是 | 下拉偏移量，单位vp。<br/>默认值：64vp |
-
+| value  | number |  是 | 下拉偏移量，单位vp。<br/>默认值：64vp <br/>如果取值为0或负数的时候此接口采用默认值64vp。
 ### pullToRefresh<sup>12+</sup>
 
 pullToRefresh(value: boolean)
