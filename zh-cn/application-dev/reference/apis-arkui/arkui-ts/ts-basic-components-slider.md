@@ -28,6 +28,8 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions对象说明
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
