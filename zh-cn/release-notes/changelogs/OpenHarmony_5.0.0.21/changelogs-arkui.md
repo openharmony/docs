@@ -518,3 +518,74 @@ API Level 8，在API 12进行版本隔离
 **适配指导**
 
 快捷键的按键集合严格对应所需要的按键。
+
+## cl.arkui.11 onPageHide变更
+
+**访问级别**
+
+公开接口
+
+**变更背景**
+
+当前router中会在页面创建之前调用onPageHide生命周期，但是对应页面实际上并没有隐藏。
+
+**变更影响**
+
+该行为变更为非兼容性变更。
+
+**API Level**
+
+API Level 7，在API Version 12进行版本隔离。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21开始。
+
+**变更的接口/组件**
+
+涉及接口 [onPageHide](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)。
+
+API Version 12前：页面生命周期先触发退出页面隐藏onPageHide,再触发进场页面的aboutToAppear
+
+API Version 12后：页面跳转时，先触发进来页面的创建生命周期aboutToAppear,再触发退出页面的onPageHide生命周期。
+
+## cl.arkui.12 NavDestination生命周期变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+1. NavDestination组件有转场动画场景和无转场动画场景生命周期不一致。
+
+2. NavDestination所在自定义组件销毁生命周期早于Destination的销毁生命周期。
+
+**变更影响**
+
+该变更为非兼容性变更。如果开发者依赖Destination所在外层自定义组件onAboutToDisAppear以及Destination的onDisAppear生命周期执行顺序可能会受到影响。
+
+**起始API Level**
+
+API Level 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21开始。
+
+**变更的接口/组件**
+
+[NavDestination](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)生命周期
+
+变更前:
+1. 有动画场景：onAboutToAppear(进场NavDestination页面) -> onAppear(进场NavDestination页面) -> onHidden(退出NavDestination页面) -> onShown(进场NavDestination页面) -> onAboutToDisAppear(退场NavDestination页面) -> onDisAppear(退场NavDestination页面)。
+
+2. 无动画场景：
+onAboutToAppear(进场NavDestination页面) -> onAppear(进场NavDestination页面) -> onHidden(退出NavDestination页面) -> onAboutToDisAppear(退场NavDestination页面) -> onDisAppear(退场NavDestination页面)-> onShown(进场NavDestination页面)。
+
+变更后：
+onAboutToAppear(进场NavDestination页面)->onAppear(进场NavDestination页面) -> onHidden(退出NavDestination页面) -> onShown(进场NavDestination页面) -> onDisAppear(退出NavDestination页面) -> onAboutToDisAppear(退出NavDestination页面)。
+
+**适配指导**
+
+依赖 aboutToAppear与onDisAppear执行时间先后顺序，可以将对应处理逻辑转到willDisAppear生命周期中。
