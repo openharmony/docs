@@ -4763,11 +4763,14 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation (float deg, float x, float y 
 **参数:**
 
 | 名称 | 描述 | 
-| -------- | -------- |
-| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
+| -------- | -------- | 
 | deg | 旋转的角度，单位为度。正数表示按顺时针旋转，负数表示按逆时针旋转。 | 
 | x | x轴上坐标点。 | 
 | y | y轴上坐标点。 | 
+
+**返回：**
+
+函数返回一个指针，指针指向创建的矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)。
 
 
 ### OH_Drawing_MatrixCreateScale()
