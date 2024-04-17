@@ -12,7 +12,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 
 ## Available APIs
 
-The following table lists the common APIs for mouse pointer management. For details about the APIs, see [ohos.multimodalInput.pointer](../reference/apis-input-kit/js-apis-pointer.md).
+The following table lists the common APIs for mouse pointer management. For details about the APIs, see [ohos.multimodalInput.pointer](../../reference/apis-input-kit/js-apis-pointer.md).
 
 | API                                                      | Description                                                        |
 | ------------------------------------------ | ------------------------------------------------------- |
@@ -66,7 +66,7 @@ try {
 
 ## Setting the Mouse Pointer Style
 
-When designing a color picker, you can have the mouse pointer switched to the color picker style during color pickup and then switched to the default style on completion of color pickup. This setting takes effect for the pointer style of a specified window in the current application. A total of 43 pointer styles can be set. For details, see [Pointer Style](../reference/apis-input-kit/js-apis-pointer.md#pointerstyle).
+When designing a color picker, you can have the mouse pointer switched to the color picker style during color pickup and then switched to the default style on completion of color pickup. This setting takes effect for the pointer style of a specified window in the current application. A total of 43 pointer styles can be set. For details, see [Pointer Style](../../reference/apis-input-kit/js-apis-pointer.md#pointerstyle).
 
 ### How to Develop
 

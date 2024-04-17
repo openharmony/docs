@@ -12,7 +12,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 ## Available APIs
 
-The following table lists the common APIs provided by the **inputEventClient** module. For details, see [ohos.multimodalInput.inputEventClient](../reference/apis-input-kit/js-apis-inputeventclient-sys.md).
+The following table lists the common APIs provided by the **inputEventClient** module. For details, see [ohos.multimodalInput.inputEventClient](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md).
 
 | API | Description|
 | -------------------------------------------- | -------------------------- |
@@ -22,7 +22,7 @@ The following table lists the common APIs provided by the **inputEventClient** m
 
 ## How to Develop
 
-Assume that an application calls the Home key to return to the home screen. When the Home key is pressed, check whether [injectEvent](../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent) is called to inject the Home key to determine if the Home key takes effect.
+Assume that an application calls the Home key to return to the home screen. When the Home key is pressed, check whether [injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent) is called to inject the Home key to determine if the Home key takes effect.
 
 ```js
 try {
