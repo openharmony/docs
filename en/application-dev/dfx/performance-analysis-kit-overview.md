@@ -1,6 +1,6 @@
-# Introduction to Lancet Kit
+# Introduction to Performance Analysis Kit
 
-Lancet Kit provides the event, log, and tracing analysis tools to help you check the running status of your application for further behavior, fault, security, and statistical analysis.
+Performance Analysis Kit provides the event, log, and tracing analysis tools to help you check the running status of your application for further behavior, fault, security, and statistical analysis.
 
 ## Use Scenarios
 
