@@ -60,7 +60,7 @@ huks Handle结构体。
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
 | certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
-## HuksListAliasesReturnResult <sup>12+</sup>
+## HuksListAliasesReturnResult<sup>12+</sup>
 
 调用接口返回的result。
 
@@ -2553,7 +2553,7 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 
 | 类型                                | 说明                                               |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksListAliasesReturnResult](#hukslistaliasesreturnresult12)>             | Promise对象。将listAliases操作的结果添加到密钥管理系统的回调。 |
+| Promise<[HuksListAliasesReturnResult](#hukslistaliasesreturnresult12)> | Promise对象。将listAliases操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
 
