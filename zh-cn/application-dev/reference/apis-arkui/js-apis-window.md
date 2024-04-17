@@ -2854,6 +2854,55 @@ try {
 }
 ```
 
+### setWindowGrayScale<sup>12+</sup>
+
+setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
+
+设置窗口灰阶，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                     |
+| --------- | ------ | -- | ---------------------------------------- |
+| grayScale | number | 是 | 窗口灰阶。该参数为浮点数，取值范围为[0.0, 1.0]。0.0表示窗口图像无变化，1.0表示窗口图像完全转为灰度图像，0.0至1.0之间时效果呈线性变化。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let grayScale: number = 0.5;
+try {
+  if (canIUse("SystemCapability.Window.SessionManager")) {
+    let promise = windowClass.setWindowGrayScale(grayScale);
+    promise.then(() => {
+      console.info('Succeeded in setting the grayScale.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to set the grayScale. Cause: ' + JSON.stringify(err));
+    });
+  }
+} catch (exception) {
+  console.error('Failed to set the grayScale. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### on('windowTitleButtonRectChange')<sup>11+</sup>
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
@@ -2919,55 +2968,6 @@ try {
   windowClass.off('windowTitleButtonRectChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
-}
-```
-
-### setWindowGrayScale<sup>12+</sup>
-
-setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
-
-设置窗口灰阶，使用Promise异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明                                     |
-| --------- | ------ | -- | ---------------------------------------- |
-| grayScale | number | 是 | 窗口灰阶。该参数为浮点数，取值范围为[0.0, 1.0]。0.0表示窗口图像无变化，1.0表示窗口图像完全转为灰度图像，0.0至1.0之间时效果呈线性变化。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------- | ------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let grayScale: number = 0.5;
-try {
-  if (canIUse("SystemCapability.Window.SessionManager")) {
-    let promise = windowClass.setWindowGrayScale(grayScale);
-    promise.then(() => {
-      console.info('Succeeded in setting the grayScale.');
-    }).catch((err: BusinessError) => {
-      console.error('Failed to set the grayScale. Cause: ' + JSON.stringify(err));
-    });
-  }
-} catch (exception) {
-  console.error('Failed to set the grayScale. Cause: ' + JSON.stringify(exception));
 }
 ```
 
