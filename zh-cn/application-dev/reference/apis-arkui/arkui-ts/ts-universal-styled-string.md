@@ -72,7 +72,7 @@ equals(other: StyledString): boolean
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。 |
+| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。 |
 
 ### subStyledString
 
@@ -348,7 +348,32 @@ readonly fontColor?: ResourceColor
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
 
+## GestureStyle
+
+事件手势对象说明。
+
+GestureStyle(value?: GestureStyleInterface)
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [GestureStyleInterface](#gesturestyleinterface对象说明) | 否   | 事件设置项。 |
+
+## GestureStyleInterface对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| onClick | CallBack\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
+| onLongPress | CallBack\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
+
 ## 示例
+
+### 示例1
+
+属性字符串接口基本使用示例
 
 ```ts
 // xxx.ets
@@ -363,11 +388,11 @@ struct styled_string_demo1 {
   scroll: Scroller = new Scroller();
   fontStyleAttr1:TextStyle = new TextStyle({fontColor:Color.Blue});
   fontStyleAttr2:StyledStringValue = new TextStyle({fontColor:Color.Orange});
-  //创建可读写属性字符串的对象mutableStyledString1
+  // 创建可读写属性字符串的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟");
-  //创建构造入参有字符串和样式的对象mutableStyledString2
+  // 创建构造入参有字符串和样式的对象mutableStyledString2
   mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{start:0, length:5, styledKey:StyledStringKey.FONT, styledValue: this.fontStyleAttr1}]);
-  //创建只读属性字符串对象styledString2
+  // 创建只读属性字符串对象styledString2
   styledString2: StyledString = new StyledString("运动45分钟");
   spanStyle1:SpanStyle = {start:0, length:5, styledKey:StyledStringKey.FONT, styledValue: new TextStyle({ fontColor:Color.Pink})};
   spanStyle2:SpanStyle = { start:0, length:2, styledKey:StyledStringKey.FONT, styledValue: new TextStyle({fontColor:Color.Red})};
@@ -378,7 +403,7 @@ struct styled_string_demo1 {
     Column(){
       Scroll(this.scroll){
         Column(){
-          //显示属性字符串
+          // 显示属性字符串
           Text(this.styledString2)
           Text(this.mutableStyledString1).key('mutableStyledString1')
           Text(this.mutableStyledString2).key('mutableStyledString2')
@@ -392,7 +417,7 @@ struct styled_string_demo1 {
               }
             })
 
-          //属性字符串与Span冲突时忽略Span,以及样式与Text组件属性未冲突部分生效Text设置的属性
+          // 属性字符串与Span冲突时忽略Span,以及样式与Text组件属性未冲突部分生效Text设置的属性
           Text(this.mutableStyledString1){
             Span("span and styledString test")
               .fontColor(Color.Yellow)
@@ -413,7 +438,7 @@ struct styled_string_demo1 {
           .margin({top: 10})
           .draggable(true)
 
-          //以上冲突测试对照组
+          // 以上冲突测试对照组
           Text(){
             Span(this.string1)
               .fontColor(this.color1)
@@ -473,6 +498,88 @@ struct styled_string_demo1 {
 
 ![](figures/styledstring_1.jpeg)
 
+### 示例2
+
+属性字符串支持事件接口示例
+
+```ts
+// xxx.ets
+import promptAction from '@ohos.promptAction';
+
+@Entry
+@Component
+struct styled_string_demo2 {
+  scroll: Scroller = new Scroller();
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  clickGestureAttr: GestureStyle = new GestureStyle({
+    onClick: () => {
+      promptAction.showToast({ message: 'clickGestureAttr object trigger click event' })
+      this.backgroundColor1 = Color.Yellow
+    }
+  })
+  gestureStyleAttr: GestureStyle = new GestureStyle({
+    onClick: () => {
+      promptAction.showToast({ message: 'gestureStyleAttr object trigger click event' })
+      this.backgroundColor1 = Color.Green
+    },
+    onLongPress: () => {
+      promptAction.showToast({ message: 'gestureStyleAttr object trigger long press event' })
+      this.backgroundColor1 = Color.Orange
+    }
+  });
+  // 创建事件的对象mutableStyledString3
+  mutableStyledString3: MutableStyledString = new MutableStyledString("hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.GESTURE,
+    styledValue: this.clickGestureAttr
+  },
+    {
+      start: 0,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: this.fontStyleAttr1
+    },
+    {
+      start: 6,
+      length: 5,
+      styledKey: StyledStringKey.GESTURE,
+      styledValue: this.gestureStyleAttr
+    },
+    {
+      start: 6,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Pink })
+    }]);
+  @State fontColor1: ResourceColor = Color.Red;
+  @State backgroundColor1: ResourceColor | undefined = undefined;
+
+  build() {
+    Column() {
+      Scroll(this.scroll) {
+        Column({ space: 30 }) {
+          Button("响应属性字符串事件改变背景色").backgroundColor(this.backgroundColor1).width('80%')
+          // 包含事件的属性字符串
+          Text(this.mutableStyledString3).fontSize(30)
+            .copyOption(CopyOptions.InApp)
+            .draggable(true)
+            .clip(true)
+        }.width('100%')
+      }
+      .expandSafeArea([SafeAreaType.KEYBOARD])
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .edgeEffect(EdgeEffect.None)
+    }
+    .width('100%')
+  }
+}
+```
+
+![](figures/styledstring_2.png)
 
 
 
