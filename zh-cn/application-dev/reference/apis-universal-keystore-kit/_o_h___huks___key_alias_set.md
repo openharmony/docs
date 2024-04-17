@@ -39,4 +39,4 @@ struct OH_Huks_Blob* OH_Huks_KeyAliasSet::aliases
 uint32_t OH_Huks_KeyAliasSet::aliasesCnt
 ```
 **描述**
-密钥别名个数。
+密钥别名集个数。

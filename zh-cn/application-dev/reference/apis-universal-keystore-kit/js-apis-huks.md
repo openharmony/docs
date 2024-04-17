@@ -70,7 +70,7 @@ huks Handle结构体。
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
-| keyAliases | Array\<string>                  | 否   | 表示秘钥别名集合。 |
+| keyAliases | Array\<string>                  | 否   | 表示秘钥别名集。 |
 
 
 ## huks.generateKeyItem<sup>9+</sup>

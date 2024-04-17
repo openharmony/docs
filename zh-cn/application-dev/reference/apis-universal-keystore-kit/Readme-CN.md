@@ -25,5 +25,6 @@
     - [OH_Huks_ParamSet](_o_h___huks___param_set.md)
     - [OH_Huks_PubKeyInfo](_o_h___huks___pub_key_info.md)
     - [OH_Huks_Result](_o_h___huks___result.md)
+    - [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md)
 - 错误码
   - [HUKS错误码](errorcode-huks.md)
