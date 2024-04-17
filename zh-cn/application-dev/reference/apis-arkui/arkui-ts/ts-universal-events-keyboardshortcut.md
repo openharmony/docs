@@ -105,7 +105,7 @@ struct Index {
 
   build() {
     Row() {
-      Column() {
+      Column({ space: 5 }) {
         Text(this.message)
         Button("Test short cut 1").onClick((event) => {
           this.message = "I clicked Button 1";
@@ -153,7 +153,7 @@ struct Index {
 
   build() {
     Row() {
-      Column() {
+      Column({ space: 5 }) {
         Text('Ctrl+A is ' + this.message)
         Button("Test short cut").onClick((event) => {
           this.message = "I clicked Button";
