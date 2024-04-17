@@ -785,6 +785,20 @@ The specified developerId is invalid.
 **处理步骤**<br/>
 检查输入的开发者ID有效性。
 
+## 17700060 指定的应用不允许被卸载
+
+**错误信息**<br/>
+The specified application can not be uninstalled.
+
+**错误描述**<br/>
+调用bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
+
+**可能原因**<br/>
+指定的应用具有不可卸载特权。
+
+**处理步骤**<br/>
+检查指定的应用是否具有不可卸载特权。
+
 ## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
 
 **错误信息**<br/>
