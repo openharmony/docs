@@ -133,7 +133,7 @@ Sets the screen brightness adjustment mode.
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
->**NOTE**<br>This API is no longer maintained since API version 7. It is recommended that you use [window.setKeepScreenOn](../js-apis-window.md#setwindowkeepscreenon9) instead.
+>**NOTE**<br>This API is no longer maintained since API version 7. It is recommended that you use [window.setKeepScreenOn](../apis-arkui/js-apis-window.md#setwindowkeepscreenon9) instead.
 
 Sets whether to always keep the screen on. Call this API in **onShow()**.
 
