@@ -1319,7 +1319,7 @@ try {
 
 constructor()
 
-用于创建Schema实例的构造函数。
+用于创建Query实例的构造函数。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
