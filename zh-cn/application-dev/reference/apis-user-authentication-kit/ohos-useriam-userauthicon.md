@@ -99,4 +99,10 @@ struct Index {
 }
 ```
 
+**人脸认证图例：**
 
+![人脸图标](figures/user_auth_icon_face.png)
+
+**指纹认证图例：**
+
+![指纹图标](figures/user_auth_icon_fingerprint.png)
