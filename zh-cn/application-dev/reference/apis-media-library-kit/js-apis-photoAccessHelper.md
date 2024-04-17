@@ -3924,10 +3924,10 @@ title参数规格为：
 | BAR_CODE |  3 | 条码。 |
 | ID_CARD |  4 | 身份证。 |
 | PROFILE_PICTURE |  5 | 头像。 |
-| PASSPORT |  6 | 护照。 |
-| BANK_CARD |  7 | 银行卡。 |
-| DRIVER_LICENSE |  8 | 驾驶证。 |
-| DRIVING_LICENSE |  9 | 行驶证。 |
+| PASSPORT<sup>12+ |  6 | 护照。 |
+| BANK_CARD<sup>12+ |  7 | 银行卡。 |
+| DRIVER_LICENSE<sup>12+ |  8 | 驾驶证。 |
+| DRIVING_LICENSE<sup>12+ |  9 | 行驶证。 |
 
 **示例：**
 
@@ -4005,7 +4005,7 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
-| textContextInfo | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数。 |
+| textContextInfo<sup>12+ | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数。 |
 
 ## PhotoSelectOptions
 
