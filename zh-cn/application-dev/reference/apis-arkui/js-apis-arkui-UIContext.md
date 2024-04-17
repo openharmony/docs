@@ -945,7 +945,7 @@ getFocusController(): FocusController
 
 |类型|说明|
 |----|----|
-|[FocusController](js-apis-arkui-UIContext.md#FocusController12)| 获取FocusController对象。|
+|[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)| 获取FocusController对象。|
 
 **示例：**
 
@@ -1005,6 +1005,46 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
+```
+
+### getCursorController<sup>12+</sup>
+
+getCursorController(): CursorController
+
+获取CursorController对象，可通过该对象控制光标。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)| 获取CursorController对象。|
+
+**示例：**
+
+```ts
+uiContext.CursorController();
+```
+
+### getContextMenuController<sup>12+</sup>
+
+getContextMenuController(): ContextMenuController
+
+获取ContextMenuController对象，可通过该对象控制菜单。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)| 获取ContextMenuController对象。|
+
+**示例：**
+
+```ts
+uiContext.getContextMenuController()();
 ```
 
 ## Font
@@ -4721,3 +4761,148 @@ struct RequestExample {
   }
 }
 ```
+
+## CursorController<sup>12+</sup>
+以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
+
+### restoreDefault<sup>12+</sup>
+
+restoreDefault(): void
+
+恢复默认的光标样式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+当光标移出绿框时，通过CursorController的restoreDefault方法恢复默认光标样式
+
+```ts
+import pointer from '@ohos.multimodalInput.pointer';
+import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct CursorControlExample {
+  @State text: string = ''
+  cursorCustom: CursorController = this.getUIContext().getCursorController();
+
+  build() {
+    Column() {
+      Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
+        .onHover((flag) => {
+          if (flag) {
+            this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
+          } else {
+            console.log("restoreDefault");
+            this.cursorCustom.restoreDefault();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![cursor-restoreDefault](figures/cursor-restoreDefault.gif)
+
+### setCursor<sup>12+</sup>
+
+setCursor(value: PointerStyle): void
+
+更改当前的鼠标光标样式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| value | [PointerStyle](../../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+
+**示例：**
+当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
+
+```ts
+import pointer from '@ohos.multimodalInput.pointer';
+import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct CursorControlExample {
+  @State text: string = ''
+  cursorCustom: CursorController = this.getUIContext().getCursorController();
+
+  build() {
+    Column() {
+      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
+        .onHover((flag) => {
+          if (flag) {
+            this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
+          } else {
+            this.cursorCustom.restoreDefault();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![cursor-setCursor](figures/cursor-setCursor.gif)
+
+## ContextMenuController<sup>12+</sup>
+以下API需先使用UIContext中的[getContextMenuController()](js-apis-arkui-UIContext.md#getcontextmenucontroller12)方法获取ContextMenuController实例，再通过此实例调用对应方法。
+
+### close<sup>12+</sup>
+
+close(): void
+
+关闭菜单
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+通过定时器触发，调用ContextMenuController的close方法关闭菜单
+
+```ts
+import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  menu: ContextMenuController = this.getUIContext().getContextMenuController();
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Test ContextMenu1 Close')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu2')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu3')
+    }
+    .width(200)
+    .height(160)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button("启动定时器").onClick(()=>
+      {
+        setTimeout(() => {
+          this.menu.close();
+        }, 10000);
+      })
+
+      Column() {
+        Text("Test ContextMenu close")
+          .fontSize(20)
+          .width('100%')
+          .height(500)
+          .backgroundColor(0xAFEEEE)
+          .textAlign(TextAlign.Center)
+      }
+      .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![contextMenuController_close](figures/contextMenuController_close.gif)
