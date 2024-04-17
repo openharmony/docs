@@ -8,7 +8,7 @@ Through phone number formatting, your application will be able to present phone 
 
 ## How to Develop
 
-Phone number formatting is implemented through the [format](../reference/apis/js-apis-i18n.md#format8) API of the [PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8) class. The development procedure is as follows:
+Phone number formatting is implemented through the [format](../reference/apis-localization-kit/js-apis-i18n.md##format8) API of the [PhoneNumberFormat](../reference/apis-localization-kit/js-apis-i18n.md#phonenumberformat8) class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
