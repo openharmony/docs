@@ -901,6 +901,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -959,6 +960,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
