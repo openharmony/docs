@@ -3916,9 +3916,9 @@ setMeteringPoint(point: Point): void
 import { BusinessError } from '@ohos.base';
 
 function setMeteringPoint(photoSession: camera.PhotoSession): void {
-  const exposurePoint: camera.Point = {x: 1, y: 1};
+  const point: camera.Point = {x: 1, y: 1};
   try {
-    photoSession.setMeteringPoint(exposurePoint);
+    photoSession.setMeteringPoint(point);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -5334,7 +5334,7 @@ function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode |
 
 ### isExposureModeSupported<sup>(deprecated)</sup>
 
-isExposureModeSupported(aeMode: ExposureMode): boolean;
+isExposureModeSupported(aeMode: ExposureMode): boolean
 
 检测曝光模式是否支持。
 
@@ -5526,7 +5526,7 @@ setMeteringPoint(point: Point): void
 
 | 参数名           | 类型                            | 必填 | 说明                 |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | 是   | 曝光点，x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。             |
+| point | [Point](#point)                | 是   | 曝光点，x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。             |
 
 **错误码：**
 
@@ -5542,9 +5542,9 @@ setMeteringPoint(point: Point): void
 import { BusinessError } from '@ohos.base';
 
 function setMeteringPoint(captureSession: camera.CaptureSession): void {
-  const exposurePoint: camera.Point = {x: 1, y: 1};
+  const point: camera.Point = {x: 1, y: 1};
   try {
-    captureSession.setMeteringPoint(exposurePoint);
+    captureSession.setMeteringPoint(point);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -6491,9 +6491,7 @@ function callback(err: BusinessError): void {
 }
 
 function registerSessionError(photoSession: camera.PhotoSession): void {
-  photoSession.on('error', (error: BusinessError) => {
-    console.error(`Photo session error code: ${error.code}`);
-  });
+  photoSession.on('error', callback);
 }
 ```
 
