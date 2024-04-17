@@ -60,6 +60,18 @@ huks Handle结构体。
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
 | certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
+## HuksListAliasesReturnResult <sup>12+</sup>
+
+调用接口返回的result。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+
+
+| 名称     | 类型                            | 必填 | 说明             |
+| ---------- | ------------------------------- | ---- | ---------------- |
+| keyAliases | Array\<string>                  | 否   | 表示秘钥别名集合。 |
+
 
 ## huks.generateKeyItem<sup>9+</sup>
 
@@ -2520,6 +2532,71 @@ async function testAbort() {
     await huksInit(); // 以initSession阶段进行abortSession为例
     await huksAbort();
 }
+```
+
+## huks.listAliases<sup>12+</sup>
+
+listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
+
+批量查询密钥别名接口，使用Promise方式异步返回结果。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名  | 类型                        | 必填 | 说明                                        |
+| ------- | --------------------------- | ---- | ------------------------------------------- |
+| options  | [HuksOptions](#huksoptions)                      | 是   | listAliases操作的参数集合。                         |
+
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksListAliasesReturnResult](#hukslistaliasesreturnresult12)>             | Promise对象。将listAliases操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import { huks } from "@kit.UniversalKeystoreKit"
+import { BusinessError } from "@kit.BasicServicesKit"
+
+class HuksProperties {
+  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL
+  value: huks.HuksAuthStorageLevel
+}
+
+async function testListAliases() {
+  let queryProperties: HuksProperties[] = [
+    {
+      tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
+      value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
+    }
+  ];
+  let queryOptions: huks.HuksOptions = {
+    properties: queryProperties
+  };
+
+  try {
+    let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
+    console.info(`promise: listAliases success`);
+  } catch (error: BusinessError) {
+    console.error(`promise: listAliases fail`);
+  }
+}
+
 ```
 
 
