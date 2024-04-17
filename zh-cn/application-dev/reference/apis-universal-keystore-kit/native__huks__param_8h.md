@@ -27,3 +27,4 @@
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_IsParamSetTagValid](_huks_param_set_api.md#oh_huks_isparamsettagvalid) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 检查参数集中的参数是否有效、是否有重复。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_IsParamSetValid](_huks_param_set_api.md#oh_huks_isparamsetvalid) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, uint32_t size) | 检查参数集大小是否有效。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_CheckParamMatch](_huks_param_set_api.md#oh_huks_checkparammatch) (const struct [OH_Huks_Param](_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](_o_h___huks___param.md) \*param) | 比较两个参数是否相同  | 
+| void [OH_Huks_FreeKeyAliasSet](_huks_param_set_api.md#oh_huks_freekeyaliasset) (const struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*keyAliasSet) | 销毁密钥别名集  |
