@@ -118,7 +118,7 @@ shape(value: CheckBoxShape)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [CheckBoxShape](#checkboxshape11枚举类型说明) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
