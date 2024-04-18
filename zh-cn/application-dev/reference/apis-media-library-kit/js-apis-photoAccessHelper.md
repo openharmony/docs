@@ -4264,7 +4264,7 @@ async function example() {
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | 文件uri。                                                   |
+| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，不支持基于该字段排序。           |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
 | SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
@@ -4277,8 +4277,8 @@ async function example() {
 | ORIENTATION   | 'orientation'         | 图片文件的方向。                                             |
 | FAVORITE      | 'is_favorite'            | 收藏。                                                    |
 | TITLE         | 'title'               | 文件标题。                                                   |
-| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。             |
-| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | 修改日期（修改文件时间距1970年1月1日的毫秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
+| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。<br>注意：查询照片时，不支持基于该字段排序。  |
+| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | 修改日期（修改文件时间距1970年1月1日的毫秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。<br>注意：查询照片时，不支持基于该字段排序。 |
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | 媒体文件的子类型。                                                   |
 
 ## AlbumKeys
