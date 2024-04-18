@@ -658,11 +658,10 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
-
+// sendable.ets
+// 定义两个Sendable class：BaseClass及其子类DeriveClass
 @Sendable
-class BaseClass {
+export class BaseClass {
   private str: string = "sendable: BaseClass";
   static num :number = 10;
   str1: string = "sendable: this is BaseClass's string";
@@ -701,7 +700,7 @@ class BaseClass {
 }
 
 @Sendable
-class DeriveClass extends BaseClass {
+export class DeriveClass extends BaseClass {
   name: string = "sendable: this is DeriveClass";
   printName() {
     console.info(this.name);
@@ -710,6 +709,15 @@ class DeriveClass extends BaseClass {
     super();
   }
 }
+```
+
+
+```ts
+// index.ets
+// 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
+import taskpool from '@ohos.taskpool'
+import { BusinessError } from '@ohos.base'
+import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
