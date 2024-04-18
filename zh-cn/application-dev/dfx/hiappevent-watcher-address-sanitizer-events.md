@@ -17,14 +17,14 @@ HiAppEvent提供接口用于订阅系统踩内存事件。
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
 | type | string | 地址越界错误类型，取值范围详见type属性。 |
-| external_logs | string[] | 踩内存日志列表。 |
-| log_over_limit | boolean | 日志是否超限。 |
+| external_log | string[] | 故障日志文件路径。 |
+| log_over_limit | boolean | 生成的日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 **type属性：**
 
 | 取值    | 说明                       |
 | ------- | ------------------------- |
-| alloc-dealloc-mismatch | 内存申请和释放方式不匹配。 |
+| alloc-dealloc-mismatch | 内存分配和释放方式不匹配。 |
 | allocation-size-too-big | 当分配对堆来说太大时发现的错误。 |
 | calloc-overflow | calloc分配内存错误。 |
 | container-overflow | 容器溢出。 |
@@ -32,10 +32,10 @@ HiAppEvent提供接口用于订阅系统踩内存事件。
 | dynamic-stack-buffer-overflow | 缓冲区访问超出堆栈分配对象的边界。 |
 | global-buffer-overflow | 全局缓冲区溢出。 |
 | heap-buffer-overflow | 堆缓冲区溢出。 |
-| heap-use-after-free | 使用解除分配的内存。 |
+| heap-use-after-free | 使用已释放的堆内存。 |
 | invalid-allocation-alignment | 无效的内存分配对齐方式。 |
 | memcpy-param-overlap | memcpy不支持重叠内存。 |
-| new-delete-type-mismatch | 解除分配大小与分配大小不一致。 |
+| new-delete-type-mismatch | 内存释放大小与分配大小不一致。 |
 | stack-buffer-overflow | 堆栈缓冲区溢出。 |
 | stack-buffer-underflow | 堆栈缓冲区下溢。 |
 | stack-use-after-return | 在返回后使用堆栈内存。 |

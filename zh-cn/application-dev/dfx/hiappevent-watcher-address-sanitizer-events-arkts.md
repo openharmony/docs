@@ -11,7 +11,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 开发步骤
 
-以实现对越界访问数组场景生成的踩内存事件订阅为例，说明开发步骤。
+以实现对写数组越界场景生成的踩内存事件订阅为例，说明开发步骤。
 
 1. 新建Native C++工程，目录结构如下：
 
@@ -83,59 +83,59 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    static napi_value Test(napi_env env, napi_callback_info info)
    {
-     int a[10];
-     // 构造数组越界写入
-     a[10] = 1;
-     return {};
+       int a[10];
+       // 构造数组越界写入
+       a[10] = 1;
+       return {};
    }
 
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
    {
-     napi_property_descriptor desc[] = {
-       {"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
-     };
-     napi_define_properties(envv, exports, sizeof(desc) / sizeof(desc[0]), desc);
-     return exports;
+       napi_property_descriptor desc[] = {
+           {"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(envv, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
    }
    EXTERN_C_END
 
    static napi_module demoModule = {
-     .nm_version = 1,
-     .nm_flags = 0,
-     .nm_filename = nullptr,
-     .nm_register_func = Init,
-     .nm_modname = "entry",
-     .nm_priv = ((void*)0),
-     .reserved = {0},
+       .nm_version = 1,
+       .nm_flags = 0,
+       .nm_filename = nullptr,
+       .nm_register_func = Init,
+       .nm_modname = "entry",
+       .nm_priv = ((void*)0),
+       .reserved = {0},
    }
 
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
    {
-     napi_module_register(&demoModule);
+       napi_module_register(&demoModule);
    }
    ```
 
 5. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，完整示例代码如下：
 
    ```ts
-    import testNapi form 'libentry.so'
+   import testNapi form 'libentry.so'
 
-    @Entry
-    @Component
-    struct Index {
-      build() {
-        Row() {
-          Column() {
-            Button("address-sanitizer").onClick(() = > {
-              testNapi.test();
-            })
-          }
-          .width('100%')
-        }
-        .height('100%')
-      }
-    }
+   @Entry
+   @Component
+   struct Index {
+     build() {
+       Row() {
+         Column() {
+           Button("address-sanitizer").onClick(() = > {
+             testNapi.test();
+           })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
    ```
 
 6. 点击IDE界面中的“entry”，点击“Edit Configurations...”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
@@ -144,7 +144,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent onReceive: domain=OS
    HiAppEvent eventName=ADDRESS_SANITIZER
    HiAppEvent eventInfo.domain=OS
-   HiAppEvent eventInfo.name=ADDRESS_SANITIZERR
+   HiAppEvent eventInfo.name=ADDRESS_SANITIZER
    HiAppEvent eventInfo.eventType=1
    HiAppEvent eventInfo.time=1713161197957
    HiAppEvent eventInfo.bundle_version=1.0.0
