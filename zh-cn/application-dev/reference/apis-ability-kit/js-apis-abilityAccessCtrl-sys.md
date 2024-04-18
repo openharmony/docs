@@ -448,7 +448,7 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
+atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.PermissionStatus>) => {
   console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
