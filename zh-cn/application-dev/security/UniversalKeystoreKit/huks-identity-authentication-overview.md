@@ -58,8 +58,8 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
 
 除此之外，二次认证密钥访问控制还包含以下三种方式：
 
-- **根据Authtoken进行访问控制**
-  
+- **根据AuthToken进行访问控制**
+
   ![访问控制(2)](figures/访问控制(2).png)
 
   用户身份认证访问控制流程如上图所示。
@@ -75,5 +75,5 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
   使用方式：HUKS 每次生成的Challenge为8字节，而传入UserIAM中的Challenge可扩展为32字节，因而支持一次授权4个密钥的访问。业务调用HUKS为每个密钥生成8字节的Challenge，而后将多个Challenge拼接为一个Challenge传入UserIAM进行认证。
 
 - **支持基于timestamp的访问控制**
-  
-  对于某些特殊场景，如高性能场景，支持基于timestamp的免Challenge实现。在生成密钥时设置超时时间，业务使用时直接请求UserIAM发起认证，而后将包含了timestamp的AuthTocken传给HUKS，HUKS校验AuthTocken后，对比当前时间与timestamp差值是否大于超时时间，从而判断密钥是否允许使用。
+
+  对于某些特殊场景，如高性能场景，支持基于timestamp的免Challenge实现。在生成密钥时设置超时时间，业务使用时直接请求UserIAM发起认证，而后将包含了timestamp的AuthToken传给HUKS，HUKS校验AuthToken后，对比当前时间与timestamp差值是否大于超时时间，从而判断密钥是否允许使用。
