@@ -35,11 +35,11 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| content | Callback\<void> | 是 | 组件显示内容。 |
-| appId | string | 是 | 元服务appId。 |
-| options | AtomicServiceOptions | 是 | 拉起元服务参数。 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| content | Callback\<void> | 是 | \@BuilderParam | 组件显示内容。 |
+| appId | string | 是 | - | 元服务appId。 |
+| options | AtomicServiceOptions | 是 | - | 拉起元服务参数。 |
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
@@ -47,7 +47,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 ## 示例
 
 ```ts
-import FullScreenLaunchComponent from '@ohos.arkui.advanced.FullScreenLaunchComponent';
+import { FullScreenLaunchComponent } from '@ohos.arkui.advanced.FullScreenLaunchComponent';
 
 @Entry
 @Component
@@ -58,7 +58,7 @@ struct Index {
     Row() {
       Column() {
         FullScreenLaunchComponent({
-          builder: ColumChild,
+          content: ColumChild,
           appId: this.appId,
           options: {}
         }).width("80vp").height("80vp")
