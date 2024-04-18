@@ -408,10 +408,10 @@ struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle,
 ### OH_Huks_ListAliases()
 
 ```
-struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_KeyAliasSet ** outData )
+struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_KeyAliasSet ** outData )
 ```
 **描述**
-判断密钥是否存在。
+批量查询秘钥别名集。
 
 **起始版本：** 12
 
