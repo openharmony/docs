@@ -300,7 +300,7 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
 ### onEditingChange<sup>12+</sup>
 
-onEditingChange(callback: Callback<boolean>)
+onEditingChange(callback: Callback\<boolean\>)
 
 文本编辑状态发生改变时触发该回调函数。
 
@@ -308,9 +308,9 @@ onEditingChange(callback: Callback<boolean>)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                          |
-| ------ | ------- | ---- | ----------------------------- |
-| callback | boolean | 是   | true为编辑态，fasle为非编辑态。 |
+| 类型    | 必填 | 说明                                |
+| ------- | ---- | ----------------------------------- |
+| boolean | 是   | true表示编辑态，false表示非编辑态。 |
 
 ### onSubmit<sup>12+</sup>
 
