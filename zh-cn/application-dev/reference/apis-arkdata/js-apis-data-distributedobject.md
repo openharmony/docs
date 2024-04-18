@@ -38,9 +38,9 @@ create(context: Context, source: object): DataObject
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -186,8 +186,8 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201      | Permission verification failed. |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 15400001 | Create table failed.|
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **示例：**
 
@@ -225,8 +225,8 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201      | Permission verification failed. |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 15400001 | Create table failed.|
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **示例：**
 
@@ -270,8 +270,8 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201      | Permission verification failed. |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 15400001 | Create table failed.|
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **示例：**
 
@@ -309,9 +309,9 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -345,9 +345,9 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -384,9 +384,9 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -415,9 +415,9 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -457,10 +457,10 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 801      | Capability not supported.                                           |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -511,10 +511,10 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 801      | Capability not supported.                                           |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -552,10 +552,10 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 801      | Capability not supported.                                           |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -606,10 +606,9 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 801      | Capability not supported.                                           |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -657,10 +656,10 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 801      | Capability not supported.                                           |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -745,10 +744,10 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
 
   以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                            |
-  | -------- | ------------------------------------------------------------------- |
-  | 401      | Parameter error. Incorrect parameter types or number of parameters. |
-  | 801      | Capability not supported.                                           |
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例:**
 
