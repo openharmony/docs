@@ -4073,7 +4073,7 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 
 ## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
 
-addDoNotDisturbProfile(templates: Array<DoNotDisturbProfile>): Promise\<void\>
+addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
 
 添加勿扰模式配置信息。使用Promise异步回调。
 
@@ -4087,7 +4087,7 @@ addDoNotDisturbProfile(templates: Array<DoNotDisturbProfile>): Promise\<void\>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile)> | 是 | 勿扰模式的配置信息。 |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是 | 勿扰模式的配置信息。 |
 
 **返回值：**
 
@@ -4138,7 +4138,7 @@ notificationManager.addDoNotDisturbProfile(templates).then(() => {
 
 ## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
 
-removeDoNotDisturbProfile(templates: Array<DoNotDisturbProfile>): Promise<void>
+removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
 
 删除勿扰模式配置。使用Promise异步回调。
 
@@ -4152,7 +4152,7 @@ removeDoNotDisturbProfile(templates: Array<DoNotDisturbProfile>): Promise<void>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile)> | 是  | 勿扰模式的配置信息。 |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是  | 勿扰模式的配置信息。 |
 
 **返回值：**
 
@@ -4189,7 +4189,7 @@ notificationManager.removeDoNotDisturbProfile(templates).then(() => {
 });
 ```
 
-## DoNotDisturbProfile
+## DoNotDisturbProfile<sup>12+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
