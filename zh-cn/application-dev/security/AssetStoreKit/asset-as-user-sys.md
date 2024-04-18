@@ -9,13 +9,13 @@
 
 ## 约束与限制
 
-- 使用接口需要申请权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/determine-application-mode.md#system_basic%E7%AD%89%E7%BA%A7%E7%9A%84%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7%E6%9D%83%E9%99%90)。
+- 使用接口需要申请权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](../AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 # 接口介绍
 
 可通过API文档查看相关接口：
 
-| 接口名称 | 说明 | 基础功能接口（不指定用户空间）开发示例 |
+| 接口名称 | 说明 | 基础功能接口（不指定用户空间）<br>开发示例 |
 | -------- | -------- | ----------| 
 | [addAsUser](../../reference/apis-asset-store-kit/js-apis-asset-sys.md#assetaddasuser)              |   在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。           |  [add](asset-js-add.md)             |
 | [removeAsUser](../../reference/apis-asset-store-kit/js-apis-asset-sys.md#assetremoveasuser)              |   从指定用户空间中删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。           |  [remove](asset-js-remove.md)             |
