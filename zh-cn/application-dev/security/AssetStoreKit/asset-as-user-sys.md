@@ -9,7 +9,7 @@
 
 ## 约束与限制
 
-- 使用接口需要申请权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限]（https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/determine-application-mode.md#system_basic%E7%AD%89%E7%BA%A7%E7%9A%84%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7%E6%9D%83%E9%99%90）
+- 使用接口需要申请权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。申请流程请参考：[申请应用权限](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/determine-application-mode.md#system_basic%E7%AD%89%E7%BA%A7%E7%9A%84%E5%BA%94%E7%94%A8%E7%94%B3%E8%AF%B7%E6%9D%83%E9%99%90)。
 
 # 接口介绍
 
