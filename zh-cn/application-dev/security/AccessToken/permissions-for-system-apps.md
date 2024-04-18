@@ -2753,7 +2753,7 @@
 
 **起始版本**: 12
 
-### ohos.permission.INPUT_INFRARED_EMITTE
+### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 允许系统应用使用红外接口。
 
