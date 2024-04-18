@@ -121,8 +121,6 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
