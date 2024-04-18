@@ -2045,6 +2045,30 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_PRIVATE_SPACE_MANAGER
+
+允许系统应用或系统服务拉起隐私空间管理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.ACCESS_PRIVATE_SPACE_PASSWORD_PROTECT
+
+允许系统应用调用隐私空间服务密码保护相关接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
 允许系统应用或系统服务拉起密码保险箱能力。
