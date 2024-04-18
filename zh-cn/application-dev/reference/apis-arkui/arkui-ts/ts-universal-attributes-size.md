@@ -44,9 +44,9 @@ height(value: Length)
 
 >  **说明：**
 >
->  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
+>  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。在AlphabetIndexer组件中，width设置auto表示自适应宽度最大索引项的宽度。
 
-## Size
+## size
 
 size(value: SizeOptions)
 
@@ -149,7 +149,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 ## SizeOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -158,7 +158,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 ## ConstraintSizeOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |

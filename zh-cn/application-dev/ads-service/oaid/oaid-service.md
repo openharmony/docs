@@ -26,6 +26,12 @@ OAID会在下述场景中发生变化：
 | [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
 | [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
 
+> **说明：**
+> 如调用getOAID接口需要申请ohos.permission.app_tracking_consent权限，并获取用户授权。存在如下三种情况：
+> 1.如应用已配置ohos.permission.app_tracking_consent权限且弹框后用户手动授权，则返回OAID。
+> 2.如应用已配置ohos.permission.app_tracking_consent权限，但弹框后用户未手动授权，则返回00000000-0000-0000-0000-000000000000。
+> 3.如应用未配置ohos.permission.app_tracking_consent权限，则返回00000000-0000-0000-0000-000000000000。
+
 
 ### 开发步骤
 1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent)，该权限为user_grant权限，当申请的权限为user_grant权限时，reason，abilities标签必填，配置方式参见[requestPermissions标签说明](../../quick-start/module-configuration-file.md#requestpermissions标签)，示例代码如下所示：
@@ -72,12 +78,12 @@ OAID会在下述场景中发生变化：
 			 }
            });
          } else {
-           hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
+           hilog.error(0x0000, 'testTag', '%{public}s', 'user rejected');
          }
        }).catch((err: BusinessError) => {
          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
        })
-     } catch(err) {
+     } catch (err) {
        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
      }
    }

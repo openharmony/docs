@@ -390,7 +390,7 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
     let inDataSegPosition = 0;
     let isFinished = false;
     let outData: number[] = [];
-    
+
     while (inDataSegPosition <= lastInDataPosition) {
         if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
             isFinished = true;
@@ -572,8 +572,8 @@ async function ImportWrappedKey() {
      */
 
     /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk存放在变量huksPubKey中 */
-    const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-    await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+    const srcKeyAliasWrap = 'HUKS_Basic_Capability_Import_0200';
+    await generateAndExportPublicKey(srcKeyAliasWrap, genWrappingKeyParams, false);
 
     /* 3.设备A使用和设备B同样的算法，生成一个加密导入用途的、用于协商的非对称密钥对Caller_Key（公钥Caller_Pk，私钥Caller_Sk），导出Caller_Key公钥Caller_Pk存放在变量callerSelfPublicKey中 */
     await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -583,22 +583,22 @@ async function ImportWrappedKey() {
      * 5.设备A基于Caller_Key的私钥Caller_Sk和Wrapping_Key的公钥Wrapping_Pk，协商出Shared_Key
      */
     await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-    
+
     /**
      * 6.设备A使用Caller_Kek加密To_Import_Key，生成To_Import_Key_Enc
      * 7.设备A使用Shared_Key加密Caller_Kek，生成Caller_Kek_Enc
      */
     await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-   
+
     /* 8.设备A封装Caller_Pk、To_Import_Key_Enc、Caller_Kek_Enc等加密导入的材料并发送给设备B。本示例作为变量存放在callerSelfPublicKey，PlainKeyEncData，KekEncData */
     let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
     importWrappedAes192Params.inData = wrappedData;
-    
+
     /* 9.设备B导入封装的加密密钥材料 */
-    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-    
+    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params);
+
     /* 10.设备A、B删除用于加密导入的密钥 */
-    await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+    await publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams);
     await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
     await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
     await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);

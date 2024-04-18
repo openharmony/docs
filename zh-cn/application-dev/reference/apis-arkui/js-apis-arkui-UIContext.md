@@ -249,6 +249,82 @@ struct AnimateToExample {
   }
 }
 ```
+### animateToImmediately<sup>12+</sup>
+
+animateToImmediately(param: AnimateParam , event: () => void): void
+
+animateToImmediately接口允许用户通过UIContext对象，获取显式立即动画的能力。同时加载多个属性动画的情况下，使用该接口可以立即执行闭包代码中状态变化导致的过渡动效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| param | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
+| event | () => void                               | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
+
+**示例：**
+
+该示例实现了通过UIContext对象获取显式立即动画的能力，调用animateToImmediately接口实现参数定义的动画效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AnimateToImmediatelyExample {
+  @State widthSize: number = 250
+  @State heightSize: number = 100
+  @State opacitySize: number = 0
+  private flag: boolean = true
+  uiContext: UIContext | null | undefined = this.getUIContext();
+
+  build() {
+    Column() {
+      Column()
+        .width(this.widthSize)
+        .height(this.heightSize)
+        .backgroundColor(Color.Green)
+        .opacity(this.opacitySize)
+      Button('change size')
+        .margin(30)
+        .onClick(() => {
+          if (this.flag) {
+            this.uiContext?.animateToImmediately({
+              delay: 0,
+              duration: 1000
+            }, () => {
+              this.opacitySize = 1
+            })
+            this.uiContext?.animateTo({
+              delay: 1000,
+              duration: 1000
+            }, () => {
+              this.widthSize = 150
+              this.heightSize = 60
+            })
+          } else {
+            this.uiContext?.animateToImmediately({
+              delay: 0,
+              duration: 1000
+            }, () => {
+              this.widthSize = 250
+              this.heightSize = 100
+            })
+            this.uiContext?.animateTo({
+              delay: 1000,
+              duration: 1000
+            }, () => {
+              this.opacitySize = 0
+            })
+          }
+          this.flag = !this.flag
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![animateToImmediately](figures/animateToImmediately.gif) 
 
 ### getSharedLocalStorage<sup>12+</sup>
 
@@ -397,6 +473,52 @@ getFrameNodeById(id: string): FrameNode | null
 
 ```ts
 uiContext.getFrameNodeById("TestNode")
+```
+
+### getFrameNodeByUniqueId<sup>12+</sup>
+
+getFrameNodeByUniqueId(id: number): FrameNode | null
+
+提供getFrameNodeByUniqueId接口通过组件的uniqueId获取组件树的实体节点。
+1. 当uniqueId对应的是内置组件时，返回组件所对应的FrameNode；
+2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回其FrameNode，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
+3. 当uniqueId无对应的组件时，返回null。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@ohos.arkui.UIContext';
+import { FrameNode } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let uniqueId: number = this.getUniqueId();
+    let uiContext: UIContext = this.getUIContext();
+    if (uiContext) {
+      let node: FrameNode = uiContext.getFrameNodeByUniqueId(uniqueId);
+    }
+  }
+
+  build() {
+    // ...
+  }
+}
 ```
 
 ### showAlertDialog
@@ -899,12 +1021,106 @@ getFocusController(): FocusController
 
 |类型|说明|
 |----|----|
-|[FocusController](js-apis-arkui-UIContext.md#FocusController12)| 获取FocusController对象。|
+|[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)| 获取FocusController对象。|
 
 **示例：**
 
 ```ts
 uiContext.getFocusController();
+```
+
+### getFilteredInspectorTree<sup>12+</sup>
+
+getFilteredInspectorTree(filters?: Array\<string\>): string
+
+获取组件树及组件属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型            | 必填 | 说明                                                         |
+| ------- | --------------- | ---- | ------------------------------------------------------------ |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+
+**返回值：** 
+
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| string | 获取组件树及组件属性的JSON字符串。 |
+
+**示例：**
+
+```ts
+uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
+```
+
+### getFilteredInspectorTreeById<sup>12+</sup>
+
+getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
+
+获取指定的组件及其子组件的属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型            | 必填 | 说明                                                         |
+| ------- | --------------- | ---- | ------------------------------------------------------------ |
+| id      | string          | 是   | 指定的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)id。 |
+| depth   | number          | 是   | 获取子组件的层数。当取值0时，获取指定的组件及其所有的子孙组件的属性。当取值1时，仅获取指定的组件的属性。当取值2时，指定的组件及其1层子组件的属性。以此类推。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| string | 获取指定的组件及其子组件的属性的JSON字符串。 |
+
+**示例：**
+
+```ts
+uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
+```
+
+### getCursorController<sup>12+</sup>
+
+getCursorController(): CursorController
+
+获取CursorController对象，可通过该对象控制光标。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)| 获取CursorController对象。|
+
+**示例：**
+
+```ts
+uiContext.CursorController();
+```
+
+### getContextMenuController<sup>12+</sup>
+
+getContextMenuController(): ContextMenuController
+
+获取ContextMenuController对象，可通过该对象控制菜单。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)| 获取ContextMenuController对象。|
+
+**示例：**
+
+```ts
+uiContext.getContextMenuController()();
 ```
 
 ## Font
@@ -1703,6 +1919,214 @@ let callback = (info: observer.NavDestinationSwitchInfo) => {
 };
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+```
+
+### on('willClick')<sup>12+</sup>
+
+on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('willClick', callback);
+```
+
+### off('willClick')<sup>12+</sup>
+
+off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('willClick', callback);
+```
+
+### on('didClick')<sup>12+</sup>
+
+on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('didClick', callback);
+```
+
+### off('didClick')<sup>12+</sup>
+
+off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('didClick', callback);
+```
+
+### on('willClick')<sup>12+</sup>
+
+on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('willClick', callback);
+```
+
+### off('willClick')<sup>12+</sup>
+
+off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('willClick', callback);
+```
+
+### on('didClick')<sup>12+</sup>
+
+on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
+
+监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.on('didClick', callback);
+```
+
+### off('didClick')<sup>12+</sup>
+
+off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
+
+取消监听点击事件指令下发情况。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+
+**示例：**
+
+```ts
+// 在页面Component中使用
+import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+// callback是开发者定义的监听回调函数
+let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('didClick', callback);
 ```
 
 ## MediaQuery
@@ -3193,7 +3617,7 @@ try {
 
 openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3697,9 +4121,10 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
+    let storage: LocalStorage = new LocalStorage();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', storage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -4021,6 +4446,45 @@ hideAllComponentContents(): void
 
 请参考[addComponentContent示例](#addcomponentcontent12)
 
+
+### setDragEventStrictReportingEnabled<sup>12+</sup>
+
+setDragEventStrictReportingEnabled(enable: boolean): void
+
+当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+|参数名|类型|必填|说明|
+| ------- | ------- | ------- | ------- |
+| enable | boolean | 是| 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。|
+
+**示例：**
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
+     });
+   });
+ }
+}
+```
+
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
@@ -4293,3 +4757,228 @@ struct ClearFocusExample {
   }
 }
 ```
+
+### requestFocus<sup>12+</sup>
+
+requestFocus(key: string): void
+
+通过组件的id将焦点转移到组件树对应的实体节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| key | string | 是 | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[焦点错误码](errorcode-focus.md)。
+
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 150001 | This component is not focusable. |
+| 150002 | This component has unfocusable ancestor.      |
+| 150003 | This id refers to a nonexistent component which haven't been created or invisible right now. |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct RequestExample {
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+          .id("testButton")
+
+        Divider()
+          .vertical(false)
+          .width("80%")
+          .backgroundColor(Color.Black)
+          .height(10)
+
+        Button('requestFocus')
+          .width(200)
+          .height(70)
+          .onClick(() => {
+            this.getUIContext().getFocusController().requestFocus("testButton")
+          })
+
+        Button('requestFocus fail')
+          .width(200)
+          .height(70)
+          .onClick(() => {
+            try {
+              this.getUIContext().getFocusController().requestFocus("eee")
+            } catch (error) {
+              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message)
+            }
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## CursorController<sup>12+</sup>
+以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
+
+### restoreDefault<sup>12+</sup>
+
+restoreDefault(): void
+
+恢复默认的光标样式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+当光标移出绿框时，通过CursorController的restoreDefault方法恢复默认光标样式
+
+```ts
+import pointer from '@ohos.multimodalInput.pointer';
+import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct CursorControlExample {
+  @State text: string = ''
+  cursorCustom: CursorController = this.getUIContext().getCursorController();
+
+  build() {
+    Column() {
+      Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
+        .onHover((flag) => {
+          if (flag) {
+            this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
+          } else {
+            console.log("restoreDefault");
+            this.cursorCustom.restoreDefault();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![cursor-restoreDefault](figures/cursor-restoreDefault.gif)
+
+### setCursor<sup>12+</sup>
+
+setCursor(value: PointerStyle): void
+
+更改当前的鼠标光标样式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| value | [PointerStyle](../../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+
+**示例：**
+当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
+
+```ts
+import pointer from '@ohos.multimodalInput.pointer';
+import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct CursorControlExample {
+  @State text: string = ''
+  cursorCustom: CursorController = this.getUIContext().getCursorController();
+
+  build() {
+    Column() {
+      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
+        .onHover((flag) => {
+          if (flag) {
+            this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
+          } else {
+            this.cursorCustom.restoreDefault();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![cursor-setCursor](figures/cursor-setCursor.gif)
+
+## ContextMenuController<sup>12+</sup>
+以下API需先使用UIContext中的[getContextMenuController()](js-apis-arkui-UIContext.md#getcontextmenucontroller12)方法获取ContextMenuController实例，再通过此实例调用对应方法。
+
+### close<sup>12+</sup>
+
+close(): void
+
+关闭菜单
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+通过定时器触发，调用ContextMenuController的close方法关闭菜单
+
+```ts
+import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  menu: ContextMenuController = this.getUIContext().getContextMenuController();
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Test ContextMenu1 Close')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu2')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu3')
+    }
+    .width(200)
+    .height(160)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button("启动定时器").onClick(()=>
+      {
+        setTimeout(() => {
+          this.menu.close();
+        }, 10000);
+      })
+
+      Column() {
+        Text("Test ContextMenu close")
+          .fontSize(20)
+          .width('100%')
+          .height(500)
+          .backgroundColor(0xAFEEEE)
+          .textAlign(TextAlign.Center)
+      }
+      .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![contextMenuController_close](figures/contextMenuController_close.gif)

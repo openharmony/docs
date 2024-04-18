@@ -218,38 +218,7 @@ struct Test {
 ```
 应将myCenter定义为与api定义兼容的类型，可改为myCenter: [number, number] = [50, 50].
 
-## cl.arkui.4 快捷键接口keyboardShortcut匹配规则变更为严格匹配，匹配成功后拦截后续按键事件处理
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-快捷键匹配原则过于宽松，例如绑定了CTRL+A的快捷键事件，实际使用CTRL+SHIFT+A依然能成功触发该事件。
-快捷键事件被匹配并消费后依然会继续下发，并可能触发后续按键事件，例如被输入法响应。
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-变更前：绑定的快捷键是当前已触发按键的子集，即可触发快捷键。触发快捷键后，按键事件会继续触发`onKeyEvent`事件等其他按键事件。
-
-变更后：绑定的快捷键必须与当前触发的按键完全一致，方能触发快捷键。触发快捷键即视为按键已消费，不再触发其他按键事件。
-
-**API Level**
-
-10
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.19开始。
-
-**适配指导**
-
-快捷键的按键集合严格对应所需要的按键。
-
-## cl.arkui.5 TextInput、TextArea、Search文本手柄颜色和文本选中底板颜色显示样式变更
+## cl.arkui.4 TextInput、TextArea、Search文本手柄颜色和文本选中底板颜色显示样式变更
 
 **访问级别**
 
@@ -290,7 +259,7 @@ TextInput起始支持版本为 API 7，TextArea、Search起始支持版本为 AP
 默认样式变更调整，无需适配。
 
 
-## cl.arkui.6 @observed、@track装饰器命名变更为@ObservedV2、@Trace
+## cl.arkui.5 @observed、@track装饰器命名变更为@ObservedV2、@Trace
 
 **访问级别**
 
@@ -389,7 +358,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.7 LocalStorage实例对象作为参数传入@Entry装饰器的LocalStorage对象返回值变更
+## cl.arkui.6 LocalStorage实例对象作为参数传入@Entry装饰器的LocalStorage对象返回值变更
 
 **访问级别**
 
@@ -480,7 +449,7 @@ struct ChainCallStorage1 {
 
 [@LocalStorageProp初始化规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-localstorage.md)
 
-## cl.arkui.8 RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan，光标位置变更
+## cl.arkui.7 RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan，光标位置变更
 
 **访问级别**
 
@@ -509,3 +478,47 @@ addTextSpan，addImageSpan 起始支持版本为10，addBuilderSpan，addSymbolS
 **适配指导**
 
 在获焦时RichEditor调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan后，光标位置调整，开发者无需后续对光标位置信息做适配。
+
+## cl.arkui.8 全屏模态转场/半模态转场onAppear回调触发时序修正
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为保持onAppear回调与onDisappear回调命名和行为一致，将onAppear回调触发时序由模态页面显示动画开始前修正为模态页面显示动画结束后
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+全屏模态转场/半模态转场的onAppear回调，由模态页面显示动画开始前触发，改为模态页面显示动画结束后触发。
+
+**API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+受影响的组件：全屏模态转场、半模态转场
+
+API 12之前，全屏模态转场/半模态转场的onAppear回调会在模态页面显示动画开始前触发
+
+![模态显示回调时序图](figures/oldOpenSheet.png)
+
+![模态回退回调时序图](figures/oldCloseSheet.png)
+
+API 12及之后，全屏模态转场/半模态转场的onAppear回调会在模态页面显示动画结束后触发
+
+![模态显示回调时序图](figures/newOpenSheet.png)
+
+![模态回退回调时序图](figures/newCloseSheet.png)
+
+**适配指导**
+
+如有需要在模态页面显示动画开始前执行的逻辑，可以使用API 12新增的onWillAppear回调替代onAppear回调，请查阅[半模态转场](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。

@@ -337,6 +337,18 @@
 
 **起始版本**：9
 
+### ohos.permission.ENTERPRISE_CONFIG
+
+允许应用激活企业设备。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
 允许应用发布系统公共事件。
@@ -840,6 +852,30 @@
 **ACL使能**：true
 
 **起始版本**：9
+
+### ohos.permission.START_SHORTCUT
+
+允许应用拉起快捷方式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.PRELOAD_UI_EXTENSION_ABILITY
+
+预拉起UIExtensionAbility实例。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2009,6 +2045,30 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_PRIVATE_SPACE_MANAGER
+
+允许系统应用或系统服务拉起隐私空间管理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.ACCESS_PRIVATE_SPACE_PASSWORD_PROTECT
+
+允许系统应用调用隐私空间服务密码保护相关接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
 允许系统应用或系统服务拉起密码保险箱能力。
@@ -2660,6 +2720,78 @@
 ### ohos.permission.MANAGE_STYLUS_EVENT
 
 允许系统应用使用手写笔系统能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+## ohos.permission.USE_CLOUD_DRIVE_SERVICE
+
+允许应用和服务使用云空间服务进行端云数据同步。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：12
+
+## ohos.permission.USE_CLOUD_BACKUP_SERVICE
+
+允许应用和服务触发云空间云备份任务执行和通知备份相关事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：12
+
+## ohos.permission.USE_CLOUD_COMMON_SERVICE
+
+允许应用通过云空间公共服务获取云空间相关信息和资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：12
+
+### ohos.permission.PRELOAD_APPLICATION
+
+允许系统应用或系统服务预加载应用进程。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+
+允许系统应用使用红外接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.SET_PROCESS_CACHE_STATE
+
+允许应用设置是否支持应用缓存及缓存后快速启动。
 
 **权限级别**：system_basic
 

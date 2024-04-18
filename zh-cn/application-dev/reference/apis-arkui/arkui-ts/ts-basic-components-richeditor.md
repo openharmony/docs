@@ -300,7 +300,7 @@ onSelectionChange(callback:&nbsp;(value:&nbsp;RichEditorRange) => void)
 
 ### onEditingChange<sup>12+</sup>
 
-onEditingChange(callback:&nbsp;(value:&nbsp;boolean) => void)
+onEditingChange(callback: Callback<boolean>)
 
 文本编辑状态发生改变时触发该回调函数。
 
@@ -310,11 +310,11 @@ onEditingChange(callback:&nbsp;(value:&nbsp;boolean) => void)
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| value  | boolean | 是   | true为编辑态，fasle为非编辑态。 |
+| callback | boolean | 是   | true为编辑态，fasle为非编辑态。 |
 
 ### onSubmit<sup>12+</sup>
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void)
+onSubmit(callback: SubmitCallback)
 
 按下软键盘输入法回车键触发该回调。
 
@@ -324,8 +324,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType, event:&nbsp;SubmitEvent)&n
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| enterKey  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event  | [SubmitEvent](ts-types.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。 |
+| callback | [SubmitCallback](#submitcallback12) | 是   | 侦听事件的回调。 |
 
 ### onWillChange<sup>12+</sup>
 
@@ -487,7 +486,7 @@ Span类型信息。
 
 | 名称            | 类型                                       | 必填   | 描述        |
 | ------------- | ---------------------------------------- | ---- | --------- |
-| size          | [number, number]                         | 是    | 图片的宽度和高度。 |
+| size          | [number, number]                         | 是    | 图片的宽度和高度，单位为px。 |
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 |
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | 是    | 图片缩放类型。   |
 | layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | 否   | 图片布局风格。 |
@@ -496,7 +495,7 @@ Span类型信息。
 |名称	|类型	|必填|	描述|
 | -------------  | -----------------------            | ---- | ------------------------------------------------------------ |
 |margin	         |  [Dimension](ts-types.md#dimension10) \| [Margin](ts-types.md#margin)	                       |  否  |	外边距类型，用于描述组件不同方向的外边距。<br/>参数为Dimension类型时，四个方向外边距同时生效。|
-|borderRadius	   |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)  |  否  |	圆角类型，用于描述组件边框圆角半径。|
+|borderRadius	   |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)  |  否  |	圆角类型，用于描述组件边框圆角半径。<br/>参数为Dimension类型时，不支持以Percentage形式设置。|
 
 ## RichEditorOptions
 
@@ -948,7 +947,7 @@ SymbolSpan样式选项。
 | 名称                       | 类型                                       | 必填   | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | fontColor                | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。<br/> 默认值：Color.Black。              |
-| fontSize                 | [Length](ts-types.md#length) \| number            | 否    | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fontSize                 | [Length](ts-types.md#length) \| number            | 否    | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fontStyle                | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 字体样式。<br/>默认值：FontStyle.Normal。          |
 | fontWeight               | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
@@ -1095,6 +1094,15 @@ onLongPress(callback: (event?: GestureEvent) => void )
 | 名称            | 类型              | 必填   | 描述                               |
 | --------------- | ---------------  |---- | ------------------------------------  |
 | supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+
+## SubmitCallback<sup>12+</sup>
+
+设置自定义键盘是否支持避让功能。
+
+| 名称     | 类型                                             | 必填 | 描述                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event    | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
 
 ## 示例
 
@@ -3379,3 +3387,37 @@ struct RichEditorExample {
   }
 }
 ```
+### 示例18
+
+enterKeyType，onSubmit，stopEditing使用示例。
+
+```ts
+@Entry
+@Component
+struct SoftKeyboardEnterTypeExample {
+  controller: RichEditorController = new RichEditorController()
+
+    build() {
+    Column() {
+      Button("停止编辑").onClick(()=>{
+        this.controller.stopEditing()
+      })
+      RichEditor({ controller: this.controller })
+        .margin(10)
+        .border({ width: 1 })
+        .height(200)
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+        .enterKeyType(EnterKeyType.Search)
+        .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+          console.log("trigger richeditor onsubmit" + enterKey);
+          this.controller.addTextSpan(" type["+ enterKey +"] triggerred")
+          event.keepEditableState();
+        })
+    }.height("100%").justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![SoftKeyboardEnterType](figures/richeditorentertype.gif)

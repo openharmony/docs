@@ -5,6 +5,7 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 
 
 > **NOTE**
+>
 > Since API version 9, this decorator is supported in ArkTS widgets.
 
 
@@ -24,9 +25,10 @@ Apart from\@Styles used to extend styles, ArkUI also provides \@Extend, which al
 - Unlike \@Styles, \@Extend can be defined only globally, that is, outside a component declaration.
 
 > **NOTE**
+>
 > This decorator can be used only in the current file and cannot be exported.
 
-- Unlike \@Styles, \@Extend can encapsulate private attributes and events of specified components and predefine \@Extend decorated methods of the same component.
+- Unlike \@Styles, \@Extend can encapsulate private attributes, private events, and custom global methods of specified components.
 
   ```ts
   // @Extend(Text) supports the private attribute fontColor of the <Text> component.

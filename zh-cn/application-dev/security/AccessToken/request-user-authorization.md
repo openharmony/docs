@@ -99,8 +99,6 @@
 
    可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
 
-   UIExtensionAbility应用申请授权时，需要在onWindowStageCreate函数执行结束后或在onWindowStageCreate函数回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)，否则在ablility加载完成前，requestPermissionsFromUser会调用失败。
-
    - 在UIAbility中向用户申请授权。
       
       ```ts
@@ -111,7 +109,6 @@
       import { BusinessError } from '@ohos.base';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
@@ -131,7 +128,6 @@
           console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
         })
       }
-      
       export default class EntryAbility extends UIAbility {
         onWindowStageCreate(windowStage: window.WindowStage): void {
           reqPermissionsFromUser(permissions, this.context);
@@ -150,7 +146,6 @@
       import { BusinessError } from '@ohos.base';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
@@ -193,7 +188,6 @@
    import Want from '@ohos.app.ability.Want';
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   
    function openPermissionsInSystemSettings(context: common.UIAbilityContext): void {
      let wantInfo: Want = {
        action: 'action.settings.app.info',

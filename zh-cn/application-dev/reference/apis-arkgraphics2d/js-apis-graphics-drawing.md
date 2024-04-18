@@ -406,6 +406,48 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawPixelMapMesh<sup>12+</sup>
+
+drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
+
+在网格上绘制像素图，网格均匀分布在像素图上。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                            |
+| ----------- | -------------  | ---- | ------------------------------- |
+| pixelmap    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| meshWidth   | number         | 是   | 网格中的列数，大于0的整数。 |
+| meshHeight  | number         | 是   | 网格中的行数，大于0的整数。 |
+| vertices    | Array\<number> | 是   | 顶点数组，指定网格的绘制位置，浮点数组，大小必须为((meshWidth+1) * (meshHeight+1) + vertOffset) * 2。 |
+| vertOffset  | number         | 是   | 绘图前要跳过的vert元素数，大于等于0的整数。 |
+| colors      | Array\<number> | 是   | 颜色数组，在每个顶点指定一种颜色，整数数组，可为null，大小必须为(meshWidth+1) * (meshHeight+1) + colorOffset。 |
+| colorOffset | number         | 是   | 绘制前要跳过的颜色元素数，大于等于0的整数。 |
+
+**示例：**
+
+```ts
+import { RenderNode, DrawContext } from "@ohos.arkui.node"
+import image from "@ohos.multimedia.image"
+import drawing from "@ohos.graphics.drawing"
+class DrawingRenderNode extends RenderNode {
+  pixelMap: image.PixelMap | null = null;
+
+  async draw(context : DrawContext) {
+    const canvas = context.canvas;
+    if (this.pixelMap != null) {
+      const brush = new drawing.Brush(); // only support brush
+      canvas.attachBrush(brush);
+      let verts : Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]; // 18
+      canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
+      canvas.detachBrush();
+    }
+  }
+}
+```
+
 ### drawPoint
 
 drawPoint(x: number, y: number): void
@@ -523,8 +565,10 @@ drawTextBlob(blob: TextBlob, x: number, y: number): void
 | 参数名 | 类型                  | 必填 | 说明                                       |
 | ------ | --------------------- | ---- | ------------------------------------------ |
 | blob   | [TextBlob](#textblob) | 是   | TextBlob对象。                             |
-| x      | number                | 是   | 所绘制出的文字的边界框左上角横坐标，该参数为浮点数。 |
-| y      | number                | 是   | 所绘制出的文字的边界框左上角纵坐标，该参数为浮点数。 |
+| x      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的横坐标，该参数为浮点数。 |
+| y      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的纵坐标，该参数为浮点数。 |
+
+![zh-ch_image_Text_Blob.png](figures/zh-ch_image_Text_Blob.png)
 
 **示例：**
 
@@ -538,7 +582,7 @@ class DrawingRenderNode extends RenderNode {
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     const font = new drawing.Font();
     font.setSize(20);
-    const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    const textBlob = drawing.TextBlob.makeFromString("Hello, drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
     canvas.detachBrush();
@@ -803,7 +847,7 @@ import common2D from "@ohos.graphics.common2D"
 const font = new drawing.Font();
 font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-textBlob.bounds();
+let bounds = textBlob.bounds();
 ```
 
 ## Typeface
@@ -830,7 +874,7 @@ getFamilyName(): string
 import drawing from "@ohos.graphics.drawing"
 const font = new drawing.Font();
 let typeface = font.getTypeface();
-typeface.getFamilyName();
+let familyName = typeface.getFamilyName();
 ```
 
 ## Font
@@ -945,7 +989,7 @@ getSize(): number
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
 font.setSize(5);
-font.getSize();
+let fontSize = font.getSize();
 ```
 
 ### setTypeface
@@ -989,7 +1033,7 @@ getTypeface(): Typeface
 ```ts
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
-font.getTypeface();
+let typeface = font.getTypeface();
 ```
 
 ### getMetrics

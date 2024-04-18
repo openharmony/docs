@@ -2,7 +2,7 @@
 
 The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
-The **distributedKVStore** module provides the following functions:
+The **distributedKVStore** module provides the following:
 
 - [KVManager](#kvmanager): provides a **KVManager** instance to obtain KV store information.
 - [KVStoreResultSet](#kvstoreresultset): provides APIs for accessing the results obtained from a KV store.
@@ -331,7 +331,7 @@ Obtains a distributed KV store. This API uses an asynchronous callback to return
 
 | Name  | Type              | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| storeId  | string                 | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId  | string                 | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
 | callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the **SingleKVStore** or **DeviceKVStore** instance created.|
 
@@ -359,7 +359,7 @@ try {
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
     securityLevel: distributedKVStore.SecurityLevel.S2,
   };
-  kvManager.getKVStore('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+  kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -385,7 +385,7 @@ Obtains a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| storeId | string              | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string              | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options | [Options](#options) | Yes  | Configuration of the distributed KV store to create.                              |
 
 **Return value**
@@ -442,8 +442,8 @@ Closes a distributed KV store. This API uses an asynchronous callback to return 
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| appId    | string                    | Yes  | Bundle name of the application.                                     |
+| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
 
 **Example**
@@ -462,7 +462,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-  kvManager.getKVStore('storeId', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -471,7 +471,7 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.closeKVStore('appId', 'storeId', (err)=> {
+    kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
       if (err != undefined) {
         console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
         return;
@@ -497,8 +497,8 @@ Closes a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type| Mandatory| Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId | string   | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| appId   | string   | Yes  | Bundle name of the application.                                      |
+| storeId | string   | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 
 **Return value**
 
@@ -554,8 +554,8 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| appId    | string                    | Yes  | Bundle name of the application.                                      |
+| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -583,7 +583,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-  kvManager.getKVStore('store', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -592,7 +592,7 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.deleteKVStore('appId', 'storeId', (err) => {
+    kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError) => {
       if (err != undefined) {
         console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
         return;
@@ -618,8 +618,8 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type| Mandatory| Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | Yes  | Bundle name of the app that invokes the KV store.                                      |
-| storeId | string   | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| appId   | string   | Yes  | Bundle name of the application.                                     |
+| storeId | string   | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 
 **Return value**
 
@@ -683,7 +683,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 | Name  | Type                     | Mandatory| Description                                               |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
-| appId    | string                        | Yes  | Bundle name of the app that invokes the KV store.                             |
+| appId    | string                        | Yes  | Bundle name of the application.                             |
 | callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback invoked to return the IDs of all the distributed KV stores created.|
 
 **Example**
@@ -692,7 +692,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvManager.getAllKVStoreId('appId', (err, data) => {
+  kvManager.getAllKVStoreId('appId', (err: BusinessError, data: string[]) => {
     if (err != undefined) {
       console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
       return;
@@ -718,7 +718,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 
 | Name| Type| Mandatory| Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| appId  | string   | Yes  | Bundle name of the app that invokes the KV store.|
+| appId  | string   | Yes  | Bundle name of the application.|
 
 **Return value**
 
@@ -757,7 +757,7 @@ Subscribes to the termination (death) of the distributed data service. If the se
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service. |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
 | deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
 
 **Example**
@@ -789,8 +789,8 @@ Unsubscribes from the termination (death) of the distributed data service. The *
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service. |
-| deathCallback | Callback&lt;void&gt; | No  | Callback for the termination of the distributed data service. If this parameter is not specified, all callbacks for the termination of the distributed data service will be unregistered. |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| deathCallback | Callback&lt;void&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the **distributedDataServiceDie** event.                                         |
 
 **Example**
 
@@ -837,7 +837,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let count: number;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     count = resultSet.getCount();
@@ -872,7 +872,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let position: number;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeeded.');
     resultSet = result;
     position = resultSet.getPosition();
@@ -907,7 +907,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToFirst();
@@ -942,7 +942,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToLast();
@@ -977,7 +977,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     do {
@@ -1014,7 +1014,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToLast();
@@ -1056,7 +1056,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     moved = resultSet.move(2); // If the current position is 0, move the read position forward by two rows, that is, move to row 3.
@@ -1098,7 +1098,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     moved = resultSet.moveToPosition(1);
@@ -1134,7 +1134,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let isfirst: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     isfirst = resultSet.isFirst();
@@ -1169,7 +1169,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let islast: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     islast = resultSet.isLast();
@@ -1203,7 +1203,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let isbeforefirst = resultSet.isBeforeFirst();
@@ -1237,7 +1237,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let isafterlast = resultSet.isAfterLast();
@@ -1271,7 +1271,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let entry = resultSet.getEntry();
@@ -2271,7 +2271,7 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
@@ -2388,14 +2388,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
         }
@@ -2470,7 +2470,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -2524,14 +2524,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
+      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
           return;
@@ -2658,14 +2658,14 @@ try {
     keys.push(key + i);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.deleteBatch(keys, async (err) => {
+      kvStore.deleteBatch(keys, async (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
           return;
@@ -2789,17 +2789,17 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err: BusinessError) => {
     console.info('Succeeded in putting data');
     const deviceid = 'no_exist_device_id';
     if (kvStore != null) {
-      kvStore.removeDeviceData(deviceid, async (err) => {
+      kvStore.removeDeviceData(deviceid, async (err: BusinessError) => {
         if (err == undefined) {
           console.info('succeeded in removing device data');
         } else {
           console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
           if (kvStore != null) {
-            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err, data) => {
+            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err: BusinessError, data: boolean | string | number | Uint8Array) => {
               console.info('Succeeded in getting data');
             });
           }
@@ -2864,7 +2864,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
   });
-  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
     console.info('Succeeded in getting data');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get data.code is ${err.code},message is ${err.message} `);
@@ -2909,14 +2909,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -2973,7 +2973,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info(`Succeeded in getting data.data=${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -3031,14 +3031,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -3107,7 +3107,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -3167,12 +3167,12 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query, (err, entries) => {
+      kvStore.getEntries(query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -3243,7 +3243,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query).then((entries) => {
+      kvStore.getEntries(query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
@@ -3304,14 +3304,14 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3319,7 +3319,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err :BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -3390,7 +3390,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -3453,7 +3453,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -3462,7 +3462,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet(query, async (err, result) => {
+      kvStore.getResultSet(query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3533,7 +3533,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet(query).then((result) => {
+  kvStore.getResultSet(query).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
   }).catch((err: BusinessError) => {
@@ -3567,7 +3567,7 @@ import { BusinessError } from '@ohos.base';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+  kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -3575,7 +3575,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3618,7 +3618,7 @@ import { BusinessError } from '@ohos.base';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -3680,12 +3680,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err, resultSize) => {
+      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -3754,7 +3754,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize(query).then((resultSize) => {
+  kvStore.getResultSize(query).then((resultSize: number) => {
     console.info('Succeeded in getting result set size');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
@@ -3795,7 +3795,7 @@ import { BusinessError } from '@ohos.base';
 
 let file = "BK001";
 try {
-  kvStore.backup(file, (err) => {
+  kvStore.backup(file, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -3884,7 +3884,7 @@ import { BusinessError } from '@ohos.base';
 
 let file = "BK001";
 try {
-  kvStore.restore(file, (err) => {
+  kvStore.restore(file, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -3965,7 +3965,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files, (err, data) => {
+  kvStore.deleteBackup(files, (err: BusinessError, data: [string, number][]) => {
     if (err) {
       console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4005,7 +4005,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files).then((data) => {
+  kvStore.deleteBackup(files).then((data: [string, number][]) => {
     console.info(`Succeed in deleting Backup.data=${data}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
@@ -4066,11 +4066,11 @@ function putBatchString(len: number, prefix: string) {
 
 try {
   let count = 0;
-  kvStore.on('dataChange', 0, (data) => {
+  kvStore.on('dataChange', 0, (data: distributedKVStore.ChangeNotification) => {
     console.info(`startTransaction 0 ${data}`);
     count++;
   });
-  kvStore.startTransaction(async (err) => {
+  kvStore.startTransaction(async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
       return;
@@ -4079,7 +4079,7 @@ try {
     let entries = putBatchString(10, 'batch_test_string_key');
     console.info(`entries: ${entries}`);
     if (kvStore != null) {
-      kvStore.putBatch(entries, async (err) => {
+      kvStore.putBatch(entries, async (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
           return;
@@ -4129,7 +4129,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let count = 0;
-  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data: distributedKVStore.ChangeNotification) => {
     console.info(`startTransaction 0 ${data}`);
     count++;
   });
@@ -4172,7 +4172,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.commit((err) => {
+  kvStore.commit((err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in committing');
     } else {
@@ -4252,7 +4252,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.rollback((err) => {
+  kvStore.rollback((err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in rolling back');
     } else {
@@ -4325,7 +4325,7 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.enableSync(true, (err) => {
+  kvStore.enableSync(true, (err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in enabling sync');
     } else {
@@ -4387,8 +4387,8 @@ Sets the data sync range. This API uses an asynchronous callback to return the r
 
 | Name             | Type                 | Mandatory| Description                            |
 | ------------------- | ------------------------- | ---- | -------------------------------- |
-| localLabels         | string[]                  | Yes  | sync labels set for the local device.        |
-| remoteSupportLabels | string[]                  | Yes  | sync labels set for remote devices.|
+| localLabels         | string[]                  | Yes  | Sync labels set for the local device.        |
+| remoteSupportLabels | string[]                  | Yes  | Sync labels set for remote devices.|
 | callback            | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                      |
 
 **Example**
@@ -4399,7 +4399,7 @@ import { BusinessError } from '@ohos.base';
 try {
   const localLabels = ['A', 'B'];
   const remoteSupportLabels = ['C', 'D'];
-  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err) => {
+  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
       return;
@@ -4424,8 +4424,8 @@ Sets the data sync range. This API uses a promise to return the result.
 
 | Name             | Type| Mandatory| Description                            |
 | ------------------- | -------- | ---- | -------------------------------- |
-| localLabels         | string[] | Yes  | sync labels set for the local device.        |
-| remoteSupportLabels | string[] | Yes  | sync labels set for remote devices.|
+| localLabels         | string[] | Yes  | Sync labels set for the local device.        |
+| remoteSupportLabels | string[] | Yes  | Sync labels set for remote devices.|
 
 **Return value**
 
@@ -4474,7 +4474,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   const defaultAllowedDelayMs = 500;
-  kvStore.setSyncParam(defaultAllowedDelayMs, (err) => {
+  kvStore.setSyncParam(defaultAllowedDelayMs, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
       return;
@@ -4529,7 +4529,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device sync of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4543,7 +4543,7 @@ Synchronizes the KV store manually. For details about the sync modes of KV store
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | sync mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
 **Error codes**
@@ -4580,11 +4580,11 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
-            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err: BusinessError) => {
               if (err != undefined) {
                 console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
                 return;
@@ -4614,7 +4614,7 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device sync of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4628,7 +4628,7 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | sync mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
 | delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
@@ -4666,11 +4666,11 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
-            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err: BusinessError) => {
               if (err != undefined) {
                 console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
                 return;
@@ -4730,7 +4730,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data) => {
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data: distributedKVStore.ChangeNotification) => {
     console.info(`dataChange callback call data: ${data}`);
   });
 } catch (e) {
@@ -4763,7 +4763,7 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
-  kvStore.on('syncComplete', (data) => {
+  kvStore.on('syncComplete', (data: [string, number][]) => {
     console.info(`syncComplete ${data}`);
   });
   kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
@@ -4790,7 +4790,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change. If the callback is not specified, all callbacks for **dataChange** will be unregistered. |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Error codes**
 
@@ -4847,7 +4847,7 @@ Unsubscribes from sync complete events.
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the sync complete event. If the callback is not specified, all callbacks for **syncComplete** will be unregistered. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all the callbacks for the sync complete event. |
 
 **Example**
 
@@ -4895,7 +4895,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 | Name  | Type                                            | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback invoked to return the security level obtained.|
+| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback invoked to return the security level of the KV store.|
 
 **Error codes**
 
@@ -4911,7 +4911,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.getSecurityLevel((err, data) => {
+  kvStore.getSecurityLevel((err: BusinessError, data: distributedKVStore.SecurityLevel) => {
     if (err != undefined) {
       console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
       return;
@@ -4936,7 +4936,7 @@ Obtains the security level of this KV store. This API uses a promise to return t
 
 | Type                                          | Description                               |
 | ---------------------------------------------- | ----------------------------------- |
-| Promise&lt;[SecurityLevel](#securitylevel)&gt; | Promise used to return the security level obtained.|
+| Promise&lt;[SecurityLevel](#securitylevel)&gt; | Promise used to return the security level of the KV store.|
 
 **Error codes**
 
@@ -4952,7 +4952,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.getSecurityLevel().then((data) => {
+  kvStore.getSecurityLevel().then((data: distributedKVStore.SecurityLevel) => {
     console.info('Succeeded in getting securityLevel');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
@@ -5006,14 +5006,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -5069,7 +5069,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info(`Succeeded in getting data.data=${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -5122,14 +5122,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -5190,7 +5190,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info('Succeeded in getting');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -5248,14 +5248,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5323,7 +5323,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -5387,14 +5387,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries : ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5467,7 +5467,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting entries');
         console.info(`entries.length: ${entries.length}`);
         console.info(`entries[0]: ${entries[0]}`);
@@ -5530,12 +5530,12 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query, (err, entries) => {
+      kvStore.getEntries(query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5606,7 +5606,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query).then((entries) => {
+      kvStore.getEntries(query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
@@ -5671,7 +5671,7 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -5681,7 +5681,7 @@ try {
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', query, (err, entries) => {
+      kvStore.getEntries('localDeviceId', query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5759,7 +5759,7 @@ try {
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', query).then((entries) => {
+      kvStore.getEntries('localDeviceId', query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
@@ -5819,14 +5819,14 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -5834,7 +5834,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -5905,7 +5905,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -5961,7 +5961,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err, result) => {
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
       return;
@@ -5969,7 +5969,7 @@ try {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6026,7 +6026,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     if (kvStore != null) {
@@ -6094,7 +6094,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6103,7 +6103,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet('localDeviceId', query, async (err, result) => {
+      kvStore.getResultSet('localDeviceId', query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6111,7 +6111,7 @@ try {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
               return;
@@ -6190,7 +6190,7 @@ try {
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
   if (kvStore != null) {
-    kvStore.getResultSet('localDeviceId', query).then((result) => {
+    kvStore.getResultSet('localDeviceId', query).then((result: distributedKVStore.KVStoreResultSet) => {
       console.info('Succeeded in getting resultSet');
       resultSet = result;
       if (kvStore != null) {
@@ -6269,7 +6269,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet(query).then((result) => {
+  kvStore.getResultSet(query).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
   }).catch((err: BusinessError) => {
@@ -6330,7 +6330,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6339,7 +6339,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet(query, async (err, result) => {
+      kvStore.getResultSet(query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6347,7 +6347,7 @@ try {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
               return;
@@ -6406,12 +6406,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err, resultSize) => {
+      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -6480,7 +6480,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize(query).then((resultSize) => {
+  kvStore.getResultSize(query).then((resultSize: number) => {
     console.info('Succeeded in getting result set size');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
@@ -6538,7 +6538,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6547,7 +6547,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize('localDeviceId', query, async (err, resultSize) => {
+      kvStore.getResultSize('localDeviceId', query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
           return;
@@ -6621,7 +6621,7 @@ try {
   });
   let query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+  kvStore.getResultSize('localDeviceId', query).then((resultSize: number) => {
     console.info('Succeeded in getting resultSize');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
@@ -6631,5 +6631,3 @@ try {
   console.error(`Failed to get resultSize.code is ${error.code},message is ${error.message}`);
 }
 ```
-
-<!--no_check-->

@@ -472,6 +472,95 @@ try {
 ```
 
 
+## on('cooperateMouse')<sup>12+</sup>
+
+on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocation&gt;): void;
+
+注册监听指定设备鼠标光标位置。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数**：
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                                | 是   | 监听类型，取值为'cooperateMouse'   |
+| networkId| string                                                | 是   | 目标设备描述符   |
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | 是   | 回调函数，异步返回指定监听设备鼠标光标位置信息。 |
+
+**示例**：
+
+```ts
+function callback(data: cooperate.MouseLocation) {
+  console.log('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
+    data.displayWidth + 'displayHeight:' + data.displayHeight );
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callback);
+} catch (error) {
+  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
+
+## off('cooperateMouse')<sup>12+</sup>
+
+off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocation&gt;): void;
+
+取消监听指定设备鼠标光标位置。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听类型，取值为'cooperateMouse'。                                |
+| networkId| string                                                | 是   | 目标设备描述符   |
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+
+**示例**：
+
+```ts
+// 取消注册单个回调函数
+function callbackOn(data: cooperate.MouseLocation) {
+  console.log('Register mouse location listener');
+  return false;
+}
+function callbackOff(data: cooperate.MouseLocation) {
+  console.log('Unregister mouse location listener');
+  return false;
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callbackOn);
+  cooperate.off('cooperateMouse', networkId, callbackOff);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```ts
+// 取消注册所有回调函数
+function callbackOn(data: cooperate.MouseLocation) {
+  console.log('Register mouse location listener');
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callbackOn);
+  cooperate.off('cooperateMouse', networkId);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
 
 ## CooperateMessage<sup>11+</sup>
 
@@ -503,6 +592,20 @@ try {
 | COOPERATE_DEACTIVATE_FAIL   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
 | COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
 
+
+
+## MouseLocation<sup>12+</sup>
+
+鼠标光标位置信息。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| 名称           | 类型           | 可读 | 可写 | 说明                     |
+| ---------     | -------------- | ---- | ---- | ------------------------ |
+| displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
+| displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
+| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度。 |
+| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度。 |
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>

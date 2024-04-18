@@ -39,6 +39,36 @@ struct MyComponent {
 }
 ```
 
+## getUniqueId<sup>12+</sup>
+
+getUniqueId(): number
+
+获取当前Component的UniqueId。UniqueId为系统为每个组件分配的Id，可保证唯一性。若在组件未构建时获取，返回无效UniqueId：-1。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| number | 返回当前Component的UniqueId。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let uniqueId: number = this.getUniqueId();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+
 ## queryNavDestinationInfo
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;

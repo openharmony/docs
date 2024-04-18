@@ -24,7 +24,7 @@ Badge(value: BadgeParamWithNumber)
 
 创建数字标记组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -38,7 +38,7 @@ Badge(value: BadgeParamWithString)
 
 根据字符串创建标记组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -66,7 +66,7 @@ Badge(value: BadgeParamWithString)
 
 ## BadgePosition枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- |-------- |
@@ -76,7 +76,7 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeStyle对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称                      | 类型                                                         | 必填 | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

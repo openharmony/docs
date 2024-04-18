@@ -901,6 +901,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -929,7 +930,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE or ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -959,6 +960,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';

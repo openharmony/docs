@@ -21,15 +21,15 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 > **说明：**
 >
 > 不支持转场动画。
-> 同一页面的多个web组件，必须绑定不同的WebviewController。
+> 同一页面的多个Web组件，必须绑定不同的WebviewController。
 
 **参数：**
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_REDNER表示Web组件自渲染，RenderMode.SYNC_REDNER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_REDNER |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
@@ -129,7 +129,7 @@ Web组件统一渲染模式。
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
    ```ts
-   // GlobalContext.ts
+   // GlobalContext.ets
    export class GlobalContext {
      private constructor() {}
      private static instance: GlobalContext;
@@ -177,7 +177,7 @@ Web组件统一渲染模式。
    以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
    ```ts
-   // xxx.ts
+   // xxx.ets
    import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import Want from '@ohos.app.ability.Want';
@@ -1471,7 +1471,7 @@ allowWindowOpenMethod(flag: boolean)
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
   controller?: CustomDialogController
@@ -1700,6 +1700,8 @@ layoutMode(mode: WebLayoutMode)
 >
 > 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
 > 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
+> 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
 
 **参数：**
 
@@ -1795,6 +1797,36 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
+### registerNativeEmbedRule<sup>12+</sup>
+registerNativeEmbedRule(tag: string, type: string)
+
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型可使用任意非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述             |
+|------|--------| ---- |------|------------------|
+| tag  | string | 是    | ""   | 标签名。             |
+| type | string | 是    | ""   | 标签类型,内核使用前缀匹配此参数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .registerNativeEmbedRule("object", "application/view")
+      }
+    }
+  }
+  ```
 ### defaultTextEncodingFormat<sup>12+</sup>
 
 defaultTextEncodingFormat(textEncodingFormat: string)
@@ -1856,6 +1888,7 @@ metaViewport(enable: boolean)
 > - 设置false不支持meta标签viewport属性，将不解析viewport属性，进行默认布局。
 > - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
 > - 如果设置为异常值将无效。
+> - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 
 **参数：**
 
@@ -3223,7 +3256,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   1. 构造单例对象GlobalContext。
 
      ```ts
-     // GlobalContext.ts
+     // GlobalContext.ets
      export class GlobalContext {
        private constructor() {}
        private static instance: GlobalContext;
@@ -3789,7 +3822,7 @@ onGeolocationHide(callback: () => void)
 
 onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
-通知开发者web组件进入全屏模式。
+通知开发者Web组件进入全屏模式。
 
 **参数：**
 
@@ -3826,7 +3859,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 onFullScreenExit(callback: () => void)
 
-通知开发者web组件退出全屏模式。
+通知开发者Web组件退出全屏模式。
 
 **参数：**
 
@@ -3885,7 +3918,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
-  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
   controller?: CustomDialogController
@@ -5065,7 +5098,7 @@ exitFullScreen(): void
 
 ## ControllerHandler<sup>9+</sup>
 
-设置用户新建web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+设置用户新建Web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
 
 ### setWebController<sup>9+</sup>
 
@@ -5077,11 +5110,11 @@ setWebController(controller: WebviewController): void
 
 | 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建Web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
-web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getErrorCode
 
@@ -5093,7 +5126,7 @@ getErrorCode(): number
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 返回加载资源的错误码。 |
+| number | 返回加载资源的错误码。错误码的含义可以参考[WebNetErrorList](js-apis-netErrorList.md) |
 
 ### getErrorInfo
 
@@ -5109,7 +5142,7 @@ getErrorInfo(): string
 
 ## WebResourceRequest
 
-web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+Web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getRequestHeader
 
@@ -5194,7 +5227,7 @@ Web组件返回的请求/响应头对象。
 
 ## WebResourceResponse
 
-web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
+Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
 
 ### getReasonMessage
 
@@ -5370,7 +5403,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
+Web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
 ### getTitle<sup>9+</sup>
 
@@ -5592,7 +5625,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
 
 对网页访问的屏幕捕获操作进行授权。
 
@@ -6081,7 +6114,7 @@ let webController: WebController = new WebController()
 
 getCookieManager(): WebCookie
 
-获取web组件cookie管理对象。
+获取Web组件cookie管理对象。
 
 从API version 9开始不再维护，建议使用[getCookie](js-apis-webview.md#getcookiedeprecated)代替。
 
@@ -6089,7 +6122,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
+| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
 
 **示例：**
 
@@ -6792,7 +6825,7 @@ clearHistory(): void
 
 ## WebCookie<sup>(deprecated)</sup>
 
-通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -6933,14 +6966,18 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 提供Embed标签的详细信息。
 
-| 名称             | 类型                                  | 必填   | 描述                    |
-| -----------     | ------------------------------------ | ---- | --------------------- |
-| id     | string             | 是    | Embed标签的id信息。 |
-| type  | string                              | 是    | Embed标签的type信息。  |
-| src | string                              | 是    | Embed标签的src信息。  |
-| width  | number  | 是    | Embed标签的宽。       |
-| height | number                              | 是    | Embed标签的高。  |
-| url | string                              | 是    | Embed标签的url信息。  |
+| 名称                | 类型                                  | 必填   | 描述                        |
+|-------------------| ------------------------------------ | ---- |---------------------------|
+| id                | string             | 是    | Embed标签的id信息。             |
+| type              | string                              | 是    | Embed标签的type信息，统一为小写字符。   |
+| src               | string                              | 是    | Embed标签的src信息。            |
+| width             | number  | 是    | Embed标签的宽，单位为px。          |
+| height            | number                              | 是    | Embed标签的高，单位为px。          |
+| url               | string                              | 是    | Embed标签的url信息。            |
+| tag<sup>12+</sup> | string              | 是    | 标签名，统一为大写字符。              |
+| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表。  |
+| position<sup>12+</sup>          | Position            | 是    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
+
 ## NativeEmbedDataInfo<sup>11+</sup>
 
 提供Embed标签生命周期变化的详细信息。
@@ -6991,7 +7028,7 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 | largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
 | largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
 | largestImageLoadEndTime   | number | 否   | 最大图片结束记载时间，单位是以毫秒表示。 |
-| imageBPP                  | number | 否   | 图片像素位数。                           |
+| imageBPP                  | number | 否   | 最大图片像素位数。                           |
 
 ## OnLargestContentfulPaintCallback<sup>12+</sup>
 

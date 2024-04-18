@@ -92,7 +92,7 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Error codes**
 
@@ -152,7 +152,7 @@ Resets the connection to this tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Error codes**
 
@@ -215,7 +215,7 @@ Checks whether the tag is connected.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -349,7 +349,7 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -429,7 +429,7 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -568,7 +568,7 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -632,7 +632,7 @@ Transmits data to this tag. This API uses an asynchronous callback to return the
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 

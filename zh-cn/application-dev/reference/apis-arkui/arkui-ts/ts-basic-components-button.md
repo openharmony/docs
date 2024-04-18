@@ -235,9 +235,23 @@ role(value: ButtonRole)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | value  | [ButtonRole](#buttonrole12枚举说明) | 是   | 设置Button组件的角色。<br/>默认值:ButtonRole.NORMAL |
 
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
+
+定制Button内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ## ButtonType枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                 |
 | ------- | ------------------ |
@@ -265,7 +279,7 @@ role(value: ButtonRole)
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                 |
 | ------- | ------------------ |
@@ -275,7 +289,7 @@ role(value: ButtonRole)
 
 ## ControlSize<sup>11+</sup>枚举说明
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                 |
 | ------- | ------------------ |
@@ -290,6 +304,25 @@ role(value: ButtonRole)
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
 | ERROR  | 警示按钮。              |
+
+## ButtonConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    | 说明              |
+| ------ | ------ | ---------------- |
+| label | string | Button的文本标签。 |
+| pressed | boolean | 指示是否按下Button。 |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | Button的点击事件。 |
+
+## ButtonTriggerClickCallback<sup>12+</sup>对象说明
+
+定义ButtonConfiguration中使用的回调类型。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| xPos | number | 是 | 点击位置x的坐标。 |
+| yPos | number | 是 | 点击位置y的坐标。 |
 
 ## 事件
 
@@ -484,3 +517,53 @@ struct ButtonExample {
 }
 ```
 ![buttonrole](figures/buttonrole.jpeg)
+
+### 示例6
+该示例实现了自定义复选框样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
+```ts
+class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
+  x: number = 0
+  y: number = 0
+  selectedColor:Color = Color.Black
+
+  constructor(x : number, y: number,ColorType:Color) {
+    this.x = x
+    this.y = y
+    this.selectedColor = ColorType
+  }
+  applyContent() : WrappedBuilder<[ButtonConfiguration]>
+  {
+    return wrapBuilder(buildButton1)
+  }
+}
+
+@Builder function buildButton1(config: ButtonConfiguration) {
+  Column({space:30}) {
+    Text('圆圈状态' + (config.pressed ? "（ 按压 ）" : "（ 非按压 ）"))
+    Circle({ width: 50, height: 50 })
+      .fill(config.pressed ? (config.contentModifier as MyButtonStyle).selectedColor : Color.Black)
+  }
+}
+
+@Entry
+@Component
+struct ButtonExample {
+  @State positionX: number = 0
+  @State positionY: number = 0
+  @State state : boolean[] = [true,false]
+  @State index:number = 0
+  build() {
+    Column() {
+      Button('OK')
+        .enabled(this.state[this.index])
+        .contentModifier(new MyButtonStyle(this.positionX,this.positionY,Color.Red))
+        .onClick((event) => {
+          console.info('laoxu change' + JSON.stringify(event))
+          this.positionX = event.displayX
+          this.positionY = event.displayY
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![buttonrole](figures/buttonbuilder.gif)

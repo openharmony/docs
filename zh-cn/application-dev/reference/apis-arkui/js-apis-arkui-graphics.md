@@ -16,6 +16,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于返回组件布局大小的宽和高，单位为vp。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
@@ -27,6 +29,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置或返回组件的位置。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
@@ -37,6 +41,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 ## Frame
 
 用于设置或返回组件的布局大小和位置，单位为vp。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,6 +57,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置组件的轴心坐标，轴心会作为组件的旋转/缩放中心点，影响旋转和缩放效果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                                                |
@@ -61,6 +69,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 ## Scale
 
 用于设置组件的缩放比例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -73,6 +83,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置组件的平移量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
@@ -83,6 +95,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 ## Rotation
 
 用于设置组件的旋转角度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -96,12 +110,14 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置组件或效果的偏移。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型   | 可读 | 可写 | 说明                        |
 | ---- | ------ | ---- | ---- | --------------------------- |
-| x    | number | 是   | 是   | x轴方向的偏移量，单位为px。 |
-| y    | number | 是   | 是   | y轴方向的偏移量，单位为px。 |
+| x    | number | 是   | 是   | x轴方向的偏移量，单位为vp。 |
+| y    | number | 是   | 是   | y轴方向的偏移量，单位为vp。 |
 
 ## Matrix4
 
@@ -115,11 +131,15 @@ const transform: Matrix4 = [
 ]
 ```
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## Vector2
 
 用于表示包含x和y两个值的向量。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,6 +158,8 @@ get size(): Size
 
 获取画布的宽度和高度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -151,6 +173,8 @@ get size(): Size
 get canvas(): Canvas
 
 获取用于绘制的画布。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -220,6 +244,131 @@ Edges\<T>
 | top    | T    | 是   | 是   | 顶部边框的属性。 |
 | right  | T    | 是   | 是   | 右侧边框的属性。 |
 | bottom | T    | 是   | 是   | 底部边框的属性。 |
+
+## LengthUnit<sup>12+</sup>
+
+长度属性单位枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| [PX](arkui-ts/ts-types.md#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| [VP](arkui-ts/ts-types.md#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| [FP](arkui-ts/ts-types.md#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+
+## SizeT<sup>12+</sup>
+
+SizeT\<T>
+
+用于设置宽高的属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型 | 可读 | 可写 | 说明             |
+| ------ | ---- | ---- | ---- | ---------------- |
+| width   | T    | 是   | 是   | 宽度的属性。 |
+| height    | T    | 是   | 是   | 高度的属性。 |
+
+## LengthMetric<sup>12+</sup>
+
+用于设置长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**属性：**
+
+| Name          | Type                                    | Readable  | Writable  | Description    |
+| ------------ | ---------------------------------------- | ---- | ---- | ------ |
+| value       | number | Yes   | Yes   | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)                                   | Yes   | Yes   | 长度属性的单位，默认为VP。|
+
+### constructor<sup>12+</sup>
+
+constructor(value: number, unit?: LengthUnit)
+
+LengthMetric的构造函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+| unit   | [LengthUnit](#lengthunit12) | 否   | 长度属性的单位。 |
+
+### px<sup>12+</sup>
+
+px(value: number): void
+
+用于生成单位为PX的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### vp<sup>12+</sup>
+
+vp(value: number): void
+
+用于生成单位为VP的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### fp<sup>12+</sup>
+
+fp(value: number): void
+
+用于生成单位为FP的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### percent<sup>12+</sup>
+
+percent(value: number): void
+
+用于生成单位为PERCENT的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### lpx<sup>12+</sup>
+
+lpx(value: number): void
+
+用于生成单位为LPX的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
 
 ## Corners<sup>12+</sup>
 

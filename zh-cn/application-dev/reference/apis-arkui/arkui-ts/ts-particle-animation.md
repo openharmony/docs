@@ -104,6 +104,7 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
     config: ParticleConfigs[PARTICLE];
     count: number;
     lifetime?: number;
+    lifetimeRange?: number;
   };
   emitRate?: number;
   shape?: ParticleEmitterShape;
@@ -113,7 +114,7 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 ```
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>} | 是 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。|
+| particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>lifeTimeRange?:number<sup>12+<sup><br>} | 是 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br>-lifeTimeRange表示粒子生命周期取值范围，设置lifeTimeRange后粒子的生命周期为 [lifetime-lifeTimeRange,lifeTime+lifeTimeRange]中间的一个随机整数。lifeTimeRange 默认值为0，取值范围为为0到正无穷。设置为负值时取默认值。|
 | emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5。|
 | shape | [ParticleEmitterShape](#particleemittershape) | 否 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。 |
 | position | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 否 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。|
@@ -310,7 +311,8 @@ struct ParticleExample {
                 radius:10//圆点半径
               },
               count: 500,//粒子总数
-              lifetime:10000//粒子生命周期，单位ms
+              lifetime:10000,//粒子生命周期，单位ms
+              lifetimeRange:100//粒子生命周期取值范围，单位ms
             },
             emitRate:10,//每秒发射粒子数
             position:[0,0],
@@ -426,7 +428,8 @@ struct ParticleExample {
                   size:[10,10]
                 },
                 count: this.myCount,
-                lifetime:10000
+                lifetime:10000,
+                lifetimeRange:100
               },
               emitRate:3,
               shape:ParticleEmitterShape.CIRCLE
@@ -547,7 +550,8 @@ struct ParticleExample {
                 size:[10,10]
               },
               count: this.myCount,
-              lifetime:10000
+              lifetime:10000,
+              lifetimeRange:100
             },
             emitRate:3,
             shape:ParticleEmitterShape.CIRCLE
@@ -667,7 +671,8 @@ struct ParticleExample {
                 size:[10,10]
               },
               count: this.myCount,
-              lifetime:10000
+              lifetime:10000,
+              lifetimeRange:100
             },
             emitRate:3,
             shape:ParticleEmitterShape.CIRCLE

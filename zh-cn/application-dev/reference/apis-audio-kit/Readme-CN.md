@@ -19,5 +19,7 @@
   - 结构体
     - [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md)
     - [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md)
+- ArkTS组件
+  - [@ohos.multimedia.avVolumePanel (音量面板)](ohos-multimedia-avvolumepanel.md)
 - 错误码
   - [Audio错误码](errorcode-audio.md)

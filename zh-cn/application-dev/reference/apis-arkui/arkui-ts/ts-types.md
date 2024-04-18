@@ -1,4 +1,4 @@
-# 类型定义
+# 基础类型定义
 
 >**说明：**
 >
@@ -459,6 +459,7 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
+| GestureStyle | 事件手势样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 

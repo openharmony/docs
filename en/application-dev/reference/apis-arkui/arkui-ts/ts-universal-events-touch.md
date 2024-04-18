@@ -8,7 +8,7 @@ A touch event is triggered when a finger is pressed against, swipes on, or is li
 
 ## onTouch
 
-onTouch(event: (event: TouchEvent) => void)
+onTouch(event: (event: TouchEvent) => void): T
 
 Invoked when a touch event is triggered.
 
@@ -21,6 +21,12 @@ Invoked when a touch event is triggered.
 | Name| Type                             | Mandatory| Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [TouchEvent](#touchevent) | Yes  | **TouchEvent** object.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## TouchEvent
 

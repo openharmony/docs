@@ -580,6 +580,7 @@ class EntryAbility extends UIAbility {
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -2954,6 +2955,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -2992,6 +2995,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3032,6 +3037,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3077,7 +3084,10 @@ if(store != undefined) {
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，返回值类型为ValueType，使用Promise异步回调。
+
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3114,7 +3124,7 @@ if(store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
     console.info(`check result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3124,7 +3134,7 @@ if(store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
     console.info(`delete result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3134,7 +3144,7 @@ if(store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
     console.info(`drop result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3145,7 +3155,10 @@ if(store != undefined) {
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，使用Promise异步回调。
+
 该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4857,14 +4870,14 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let attachStore: relationalStore.RdbStore= undefined;
+let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
     name: "rdbstore1.db",
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -4872,7 +4885,7 @@ await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbSt
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG1, "attachDB").then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -4885,7 +4898,7 @@ if(store != undefined) {
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let attachStore: relationalStore.RdbStore= undefined;
+let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 
 const STORE_CONFIG2: relationalStore.StoreConfig = {
@@ -4894,7 +4907,7 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -4902,7 +4915,7 @@ await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbSt
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -5264,6 +5277,43 @@ goToPreviousRow(): boolean
 ```ts
 if(resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToPreviousRow();
+}
+```
+
+### getValue<sup>12+</sup>
+
+getValue(columnIndex: number): ValueType
+
+获取当前指定列的值，值类型可以是ValueType指定的任意类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [ValueType](#valuetype) | 表示允许的数据字段类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800000     | Inner error. |
+| 14800011     | Database corruption. |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
 }
 ```
 
