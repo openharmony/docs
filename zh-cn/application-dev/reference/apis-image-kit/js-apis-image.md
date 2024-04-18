@@ -162,7 +162,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -218,7 +218,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
         console.error('Failed to create pixelmap');
@@ -266,6 +266,278 @@ async function Demo() {
     return pixelMap;
 }
 ```
+
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options: InitializationOptions): PixelMap
+
+通过属性创建PixelMap，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Invalid input parameter|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
+    return pixelMap;
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+将PixelMap的透明通道非预乘模式转变为预乘模式，转换后的数据存入目标PixelMap，通过回调函数返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
+|callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  62980103     | The image data is not supported |
+|  401          | Invalid input parameter|
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error('Failed to convert pixelmap.');
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise<void>
+
+将PixelMap数据按照透明度不前乘格式转为前乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象 |
+
+**返回值：**
+
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Invalid input parameter|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error('Failed to convert pixelmap.');
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap，通过回调函数返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。|
+|callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Invalid input parameter|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error('Failed to convert pixelmap.');
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
+
+将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap，通过Promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
+
+**返回值：**
+
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  62980103    | The image data is not supported |
+|  60980246    | Failed to read the PixelMap |
+|  60980248    | PixelMap does not allow modification |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error('Failed to convert pixelmap.');
+    })
+}
+```
+
 
 ## PixelMap<sup>7+</sup>
 
@@ -474,6 +746,38 @@ async function Demo() {
 }
 ```
 
+### readPixelsSync<sup>12+</sup>
+
+readPixelsSync(area: PositionArea): void
+
+读取区域内的图片数据并同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                     |
+| ------ | ------------------------------ | ---- | ------------------------ |
+| area   | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsSync(area);
+    }
+}
+```
+
 ### writePixels<sup>7+</sup>
 
 writePixels(area: PositionArea): Promise\<void>
@@ -563,7 +867,7 @@ async function Demo() {
 }
 ```
 
- ### writePixelsSync<sup>12+</sup>
+### writePixelsSync<sup>12+</sup>
 
 writePixelsSync(area: PositionArea): void
 
@@ -687,6 +991,47 @@ async function Demo() {
     }
 }
 ```
+
+### writeBufferToPixelsSync<sup>12+</sup>
+
+writeBufferToPixelsSync(src: ArrayBuffer): void
+
+读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明           |
+| ------ | ----------- | ---- | -------------- |
+| src    | ArrayBuffer | 是   | 图像像素数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixelsSync(color);
+    }
+}
+```
+
 
 ### getImageInfo<sup>7+</sup>
 
@@ -913,11 +1258,47 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
-        await pixelMap.opacity(rate).then(() => {
+        pixelMap.opacity(rate).then(() => {
             console.info('Sucessed in setting opacity.');
         }).catch((err: BusinessError) => {
             console.error('Failed to set opacity.');
         })
+    }
+}
+```
+
+### opacitySync<sup>12+</sup>
+
+opacitySync(rate: number): void
+
+设置PixelMap的透明比率，初始化PixelMap并同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| rate     | number               | 是   | 透明比率的值。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let rate : number = 0.5;
+    if (pixelMap != undefined) {
+        pixelMap.opacitySync(rate);
     }
 }
 ```
@@ -943,7 +1324,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
             console.error('Failed to create alpha pixelmap.');
@@ -982,6 +1363,40 @@ async function Demo() {
             }
         }) 
     }
+}
+```
+
+### createAlphaPixelmapSync<sup>12+</sup>
+
+createAlphaPixelmapSync(): PixelMap
+
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return pixelmap;
 }
 ```
 
@@ -1052,7 +1467,7 @@ async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
-        await pixelMap.scale(scaleX, scaleY).then(() => {
+        pixelMap.scale(scaleX, scaleY).then(() => {
             console.info('Sucessed in scaling pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to scale pixelmap.');
@@ -1166,11 +1581,49 @@ async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
-        await pixelMap.translate(translateX, translateY).then(() => {
+        pixelMap.translate(translateX, translateY).then(() => {
             console.info('Sucessed in translating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to translate pixelmap.');
         })
+    }
+}
+```
+
+### translateSync<sup>12+</sup>
+
+translateSync(x: number, y: number): void
+
+根据输入的坐标对图片进行位置变换并同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                            |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | 是   | 宽度的缩放倍数。|
+| y        | number               | 是   | 高度的缩放倍数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    if (pixelMap != undefined) {
+        pixelMap.translateSync(translateX, translateY);
     }
 }
 ```
@@ -1197,7 +1650,6 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    let angle: number = 90.0;]
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
             if (err != undefined) {
@@ -1239,11 +1691,47 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
-        await pixelMap.rotate(angle).then(() => {
+        pixelMap.rotate(angle).then(() => {
             console.info('Sucessed in rotating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to rotate pixelmap.');
         })
+    }
+}
+```
+
+### rotateSync<sup>12+</sup>
+
+rotateSync(angle: number): void
+
+根据输入的角度对图片进行旋转并同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| angle    | number               | 是   | 图片旋转的角度。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let angle : number = 90.0;
+    if (pixelMap != undefined) {
+        pixelMap.rotateSync(angle);
     }
 }
 ```
@@ -1315,11 +1803,49 @@ async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
     if (pixelMap != undefined) {
-        await pixelMap.flip(horizontal, vertical).then(() => {
+        pixelMap.flip(horizontal, vertical).then(() => {
             console.info('Sucessed in flipping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to flip pixelmap.');
         })
+    }
+}
+```
+
+### flipSync<sup>12+</sup>
+
+flipSync(horizontal: boolean, vertical: boolean): void
+
+根据输入的条件对图片进行翻转并同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                          |
+| ---------- | -------------------- | ---- | ----------------------------- |
+| horizontal | boolean              | 是   | 水平翻转。                    |
+| vertical   | boolean              | 是   | 垂直翻转。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    if (pixelMap != undefined) {
+        pixelMap.flipSync(horizontal, vertical);
     }
 }
 ```
@@ -1386,12 +1912,48 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-     if (pixelMap != undefined) {
-        await pixelMap.crop(region).then(() => {
+    if (pixelMap != undefined) {
+        pixelMap.crop(region).then(() => {
             console.info('Sucessed in cropping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to crop pixelmap.');
         });
+    }
+}
+```
+
+### cropSync<sup>12+</sup>
+
+cropSync(region: Region): void
+
+根据输入的尺寸裁剪图片。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    if (pixelMap != undefined) {
+        pixelMap.cropSync(region);
     }
 }
 ```
@@ -1605,7 +2167,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1626,7 +2188,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1693,7 +2255,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1714,7 +2276,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -4403,6 +4965,7 @@ PixelMap的初始化选项。
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
 | editable                 | boolean                            | 是   | 是   | 是否可编辑。   |
+| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 传入的原始数据像素格式。|
 | pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
 | size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
