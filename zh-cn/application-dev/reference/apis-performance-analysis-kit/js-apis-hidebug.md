@@ -195,8 +195,8 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
 | 11400101 | the service id is invalid                                           |
-| 401 | the parameter check failed                                            |
 
 **示例：**
 
@@ -256,7 +256,7 @@ startJsCpuProfiling(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed                                            |
+| 401 | the parameter check failed,Parameter type error                        |
 
 **示例：**
 
@@ -316,7 +316,7 @@ dumpJsHeapData(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed                                            |
+| 401 | the parameter check failed, Parameter type error                      |
 
 **示例：**
 
@@ -335,7 +335,7 @@ try {
 
 startProfiling(filename : string) : void
 
-> **说明：** 
+> **说明：**
 > 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
@@ -481,7 +481,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed                                            |
+| 401 | the parameter check failed.Possible causes:1.The limitSize is too small 2.The parameter value is not in enum 3. The parameter type error|
 | 11400102 | Have already capture trace                                          |
 | 11400103 | Without write permission on the file                                |
 | 11400104 | The status of the trace is abnormal                                 |
