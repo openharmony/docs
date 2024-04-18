@@ -51,4 +51,4 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## Example
 
-For details, see [Example in Navrouter](ts-basic-components-navrouter.md#example).
+For details, see [Example in NavRouter](ts-basic-components-navrouter.md#example).
