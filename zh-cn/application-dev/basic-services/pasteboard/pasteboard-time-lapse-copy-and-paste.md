@@ -2,7 +2,7 @@
 
 ## 基本概念
 
-剪贴板服务主要提供管理系统剪贴板的能力，为系统复制、粘贴功能提供支持。现在我们新增了延迟复制粘贴功能。
+[剪贴板服务](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)主要提供管理系统剪贴板的能力，为系统复制、粘贴功能提供支持。现在我们新增了延迟复制粘贴功能。
 
 ## 场景介绍
 
@@ -20,10 +20,10 @@
 
 | 名称 | 说明                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|
-| setUnifiedData(data: udc.UnifiedData): Promise<void><sup>12+</sup> | 将统一数据类型的数据写入系统剪贴板。 
-| setUnifiedDataSync(data: udc.UnifiedData): void<sup>12+</sup> | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
-| getUnifiedData(): Promise<udc.UnifiedData><sup>12+</sup> | 从系统剪贴板中读取统一数据类型的数据。                                                                                                                          |
-| getUnifiedDataSync(): udc.UnifiedData<sup>12+</sup> | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口。                                                                                                                   |
+| setUnifiedData(data: udc.UnifiedData): Promise<void> | 将统一数据类型的数据写入系统剪贴板。 
+| setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
+| getUnifiedData(): Promise<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。                                                                                                                          |
+| getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口。                                                                                                                   |
 
 ## 开发步骤
 
