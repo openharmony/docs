@@ -18,7 +18,71 @@
 
 ## 接口说明
 
-
+| 名称 | 说明                                                                                                                                        |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------|
+| setUnifiedData(data: udc.UnifiedData): Promise<void><sup>12+</sup> | 将统一数据类型的数据写入系统剪贴板。 
+| setUnifiedDataSync(data: udc.UnifiedData): void<sup>12+</sup> | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
+| getUnifiedData(): Promise<udc.UnifiedData><sup>12+</sup> | 从系统剪贴板中读取统一数据类型的数据。                                                                                                                          |
+| getUnifiedDataSync(): udc.UnifiedData<sup>12+</sup> | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口。                                                                                                                   |
 
 ## 开发步骤
 
+1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+   
+   ```ts
+   import pasteboard from '@ohos.pasteboard.d.ts';
+   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   ```
+
+2. 构造一条PlainText数据,并书写获取延时数据的函数。
+
+   ```ts
+   let plainTextData = new unifiedDataChannel.unifiedData();
+   globalThis.GetDelayPlainText = ((dataType:string) => {
+     let plainText = new unifiedDataChannel.PlainText();
+     plainText.details = {
+       Key: 'delayPlaintext',
+       Value: 'delayPlaintext',
+     };
+     plainText.textContext = 'delayTextContent';
+     plainText.abstract = 'delayTextContent';
+     plainTextData.addRecord(plainText);
+     return plainText;
+     });
+   ``` 
+
+3. 向系统剪贴板中存入一条PlainText数据。
+
+   ```ts
+   globalThis.SetDelayPlainText = (() => {
+     plainTextData.properties.shareOptions = unifiedDataChannel.ShareOption.CROSS_APP;
+     // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
+     plainTextData.getDelayData = globalThis.GetDelayPlainText;
+     pasteboard.getSystemPasteboard().setUnifiedData(data).then(()=>{
+       // 存入成功，处理正常场景
+     }).catch((error: BusinessError) => {
+       // 处理异常场景
+     });
+   })
+   ```
+
+4. 从系统剪贴板中读取这条text数据
+
+   ```ts
+   globalThis.GetDelayTextData = ((dataType: string) => {
+     pasteboard.getSystemPasteboard().getUnifiedData().then((data)=>{
+       let outputData = data;
+       let records = outputData.getRecords();
+       if (records[0].getType == UniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+         let record = records[0] as unifiedDataChannel.PlainText;
+         globalThis.setLog('GetPlainText success, type:' + records[0].getType + ', details:' +
+           JSON.stringify(record.details) + ', textContext:' + record.textContext + ', abstract:' + record.abstract);
+       } else {
+          globalThis.setLog('Get Plain Text Data No Success, Type is: ' + records[0].GetType());
+       }
+     }).catch((error: BusinessError) => {
+       //处理异常场景
+     })
+   })
+   ```
