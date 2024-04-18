@@ -58,7 +58,7 @@
    globalThis.SetDelayPlainText = (() => {
      plainTextData.properties.shareOptions = unifiedDataChannel.ShareOption.CROSS_APP;
      // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-     plainTextData.getDelayData = globalThis.GetDelayPlainText;
+     plainTextData.properties.getDelayData = globalThis.GetDelayPlainText;
      pasteboard.getSystemPasteboard().setUnifiedData(data).then(()=>{
        // 存入成功，处理正常场景
      }).catch((error: BusinessError) => {
