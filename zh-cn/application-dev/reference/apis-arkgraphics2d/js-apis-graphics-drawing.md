@@ -847,7 +847,7 @@ import common2D from "@ohos.graphics.common2D"
 const font = new drawing.Font();
 font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-textBlob.bounds();
+let bounds = textBlob.bounds();
 ```
 
 ## Typeface
@@ -874,7 +874,7 @@ getFamilyName(): string
 import drawing from "@ohos.graphics.drawing"
 const font = new drawing.Font();
 let typeface = font.getTypeface();
-typeface.getFamilyName();
+let familyName = typeface.getFamilyName();
 ```
 
 ## Font
@@ -989,7 +989,7 @@ getSize(): number
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
 font.setSize(5);
-font.getSize();
+let fontSize = font.getSize();
 ```
 
 ### setTypeface
@@ -1033,7 +1033,7 @@ getTypeface(): Typeface
 ```ts
 import drawing from "@ohos.graphics.drawing"
 let font = new drawing.Font();
-font.getTypeface();
+let typeface = font.getTypeface();
 ```
 
 ### getMetrics
