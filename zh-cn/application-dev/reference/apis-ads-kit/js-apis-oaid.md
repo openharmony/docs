@@ -30,7 +30,7 @@ getOAID(): Promise&lt;string&gt;
 
 | 类型 | 说明 | 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。1.如应用已配置ohos.permission.app_tracking_consent权限且弹框后用户手动授权，则返回OAID。2.如应用已配置ohos.permission.app_tracking_consent权限，但弹框后用户未手动授权，则返回00000000-0000-0000-0000-000000000000。3.如应用未配置ohos.permission.app_tracking_consent权限，则返回00000000-0000-0000-0000-000000000000。| 
+| Promise&lt;string&gt; | Promise对象。返回开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）。<br/>1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限且弹框后用户手动授权，则返回OAID。<br/>2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，但弹框后用户未手动授权，则返回00000000-0000-0000-0000-000000000000。<br/>3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。| 
 
 **错误码：**
 
@@ -43,15 +43,16 @@ getOAID(): Promise&lt;string&gt;
 **示例：**
 ```
 import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog'; 
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
- 
-try {  
+
+try {
   identifier.getOAID().then((data) => {
     const oaid: string = data;
     hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success, oaid: ${oaid}`);
   }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
+    hilog.error(0x0000, 'testTag', '%{public}s',
+      `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
   })
 } catch (err) {
   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by promise catch error: ${err.code} ${err.message}`);
@@ -74,7 +75,7 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 | **参数**名 | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | 是 | 异步获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调。成功返回OAID，失败返回00000000-0000-0000-0000-000000000000。| 
+| callback | AsyncCallback&lt;string&gt; | 是 | 异步获取开放匿名设备标识符（Open&nbsp;Anonymous&nbsp;Device&nbsp;Identifier,&nbsp;OAID）的回调。<br/>1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限且弹框后用户手动授权，则返回OAID。<br/>2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，但弹框后用户未手动授权，则返回00000000-0000-0000-0000-000000000000。<br/>3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。| 
 
 
 **错误码：**
