@@ -377,7 +377,7 @@ The specified ability is disabled.
 指定的ability被禁用。
 
 **处理步骤**<br/>
-确认指定的ability是否被禁用，可以使用[bm工具命令](../../tools/bm-tool.md)查询对应的应用信息。
+确认指定的ability是否被禁用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息。
 
 ## 17700030 指定的应用不支持清除缓存文件
 
@@ -391,8 +391,8 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1. 确认指定的应用是否为系统应用，可以使用[bm工具命令](../../tools/bm-tool.md)查询对应的应用信息，查看isSystemApp是否为true。
-2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../tools/bm-tool.md)查询对应的应用信息，查看userDataClearable是否为true。
+1. 确认指定的应用是否为系统应用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看isSystemApp是否为true。
+2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看userDataClearable是否为true。
 
 ## 17700031 Overlay特性校验失败导致HAP安装失败
 
@@ -524,7 +524,7 @@ Failed to install because disallow install a shared bundle by hapFilePaths.
 安装应用时，传入的安装包为应用间共享库类型。
 
 **可能原因**<br/>
-1. 通过bm工具安装应用时，-p参数传入了应用间共享库的安装包路径。
+1. 通过[bm工具](../../tools/bm-tool.md)安装应用时，-p参数传入了应用间共享库的安装包路径。
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
@@ -539,7 +539,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 卸载应用时，传入的是应用间共享库的包名。
 
 **可能原因**<br/>
-1. 通过bm工具卸载应用时，-n参数传入了应用间共享库的包名。
+1. 通过[bm工具](../../tools/bm-tool.md)卸载应用时，-n参数传入了应用间共享库的包名。
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
