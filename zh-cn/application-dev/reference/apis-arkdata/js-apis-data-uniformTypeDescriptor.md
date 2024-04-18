@@ -138,7 +138,7 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | VCARD<sup>11+</sup>             | 'general.vcard'               | 所有电子名片类数据的基类型，归属类型为OBJECT。                     |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | 所有导航类数据的基类型，归属类型为OBJECT。                       |
 | LOCATION<sup>11+</sup>        | 'general.location'          | 导航定位类型，归属类型为NAVIGATION。            |
-| FONT<sup>12+</sup>                         | 'general.font'                    | 所有字体数据类型的基础类型，归属类型为ENTITY。       |
+| FONT<sup>12+</sup>                         | 'general.font'                    | 所有字体数据类型的基础类型，归属类型为OBJECT。       |
 | TRUETYPE_FONT<sup>12+</sup>                         | 'general.truetype-font'                    | TrueType字体类型，归属类型为FONT。       |
 | TRUETYPE_COLLECTION_FONT<sup>12+</sup>                         | 'general.truetype-collection-font'                    | TrueType collection字体类型，归属类型为FONT。       |
 | OPENTYPE_FONT<sup>12+</sup>                         | 'general.opentype-font'                    | OpenType 字体类型，归属类型为FONT。       |
@@ -161,7 +161,7 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 
 标准化数据类型的描述类，它包含了一些属性和方法用于描述标准化数据类型自身以及和其他标准化数据类型之间的归属与层级关系。
 
-## 属性
+### 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 

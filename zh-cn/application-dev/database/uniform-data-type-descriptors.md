@@ -45,11 +45,11 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，每个类型定义具体包含以下内容：
 
-+ **TypeId：** 定义标准化数据类型的ID，该ID具有唯一性。
-+ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
-+ **Description：** 标准化数据类型的简要说明。
-+ **ReferenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
-+ **IconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
++ **typeId：** 定义标准化数据类型的ID，该ID具有唯一性。
++ **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
++ **description：** 标准化数据类型的简要说明。
++ **referenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
++ **iconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
 + **filenameExtensions：**  标准化数据类型所关联的文件名后缀列表。
 + **mimeTypes：** 标准化数据类型所关联的多用途互联网邮件扩展类型列表。
 
@@ -177,9 +177,8 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 | getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。 |
 | getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。 |
 
-## 开发步骤
+## 媒体类文件归属类型查询场景
 
-#### 示例一
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
 1. 导入`@ohos.data.uniformTypeDescriptor`模块。
@@ -201,8 +200,8 @@ try {
   console.info('belongingToTypes:' + typeObj1.belongingToTypes);
   console.info('description:' + typeObj1.description);
   console.info('referenceURL:' + typeObj1.referenceURL);
-  console.info('filenameExtensions:' + typeObj2.filenameExtensions);
-  console.info('mimeTypes:' + typeObj2.mimeTypes);
+  console.info('filenameExtensions:' + typeObj1.filenameExtensions);
+  console.info('mimeTypes:' + typeObj1.mimeTypes);
 
 
   // 3.可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
@@ -235,7 +234,7 @@ try {
 }
 ```
 
-#### 示例二
+## 如何通过文件后缀获取对应的MIMEType列表
 
 下面以通过“.mp3”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
 
@@ -258,7 +257,7 @@ try {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }
 ```
-#### 示例三
+## 如何通过MIMEType获取对应的后缀列表
 
 下面以通过“audio/mp3”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
 
