@@ -5,6 +5,9 @@
 可通过API文档查询新增关键资产的异步接口[query(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery)、同步接口[querySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12)的详细介绍。
 
 在查询关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
+>**注意：**
+>
+>下表中名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
