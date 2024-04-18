@@ -465,8 +465,10 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.acts.datasharetest");
-export function callback(error,ChangeInfo) {
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
@@ -540,8 +542,10 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.acts.datasharetest");
-export function callback(error,ChangeInfo) {
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
@@ -1573,11 +1577,14 @@ try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
-      for (const [key, values] of Object.entries(data)) {
-          console.info(`Update uri:${key}`);
-          for (const value of values) {
-              console.info(`Update result:${value}`);
-          }
+      let a = Object.entries(data);
+      for (let i =0, i < a.length; i++) {
+        let key = a[i][0];
+        let values = a[i][1]
+        console.info(`Update uri:${key}`);
+        for (const value of values) {
+          console.info(`Update result:${value}`);
+        }
       }
     }).catch((err: BusinessError) => {
       console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
@@ -2014,10 +2021,10 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 import values from '@ohos.data.ValuesBucket';
 
 let dsUri = ("datashare:///com.acts.datasharetest");
-let people: Array<values.ValuesBucket> = new Array(
-                {"name": "LiSi"},
-                {"name": "WangWu"},
-                {"name": "ZhaoLiu"});
+let bucket1: values.ValuesBucket = {"name": "LiSi"};
+let bucket2: values.ValuesBucket = {"name": "WangWu"};
+let bucket3: values.ValuesBucket = {"name": "ZhaoLiu"};
+let people: Array<values.ValuesBucket> = new Array(bucket1, bucket2, bucket3);
 let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);
