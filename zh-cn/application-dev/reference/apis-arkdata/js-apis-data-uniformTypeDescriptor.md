@@ -361,7 +361,9 @@ try {
         let description = typeObj.description;
         let referenceURL = typeObj.referenceURL;
         let iconFile = typeObj.iconFile;
-        console.info(`typeId: ${typeId}, belongingToTypes: ${belongingToTypes}, description: ${description}, referenceURL: ${referenceURL}, iconFile: ${iconFile}`);
+        let filenameExtensions = typeObj.filenameExtensions;
+        let mimeTypes = typeObj.mimeTypes;
+        console.info(`typeId: ${typeId}, belongingToTypes: ${belongingToTypes}, description: ${description}, referenceURL: ${referenceURL}, iconFile: ${iconFile}, filenameExtensions: ${filenameExtensions}, mimeTypes: ${mimeTypes}`);
     } else {
         console.info('type com.adobe.photoshop-image does not exist');
     }
