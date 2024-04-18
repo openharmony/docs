@@ -507,6 +507,48 @@ struct Test {
 
 ![zh-cn_image_0000001219864133](figures/zh-cn_image_0000001219864133.PNG)
 
+### setPolyToPoly<sup>12+</sup>
+
+setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
+
+将一个多边形的顶点坐标映射到另外一个多边形的顶点坐标。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ | ---------------- | ---- | ------------------ |
+| option | PolyToPolyOptions(#PolyToPolyOptions)  | 是   | 映射相关的参数。 |
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [Matrix4Transit](#matrix4transit) | 当前矩阵变换后的对象。 |
+
+**示例：**
+
+```ts
+import matrix4 from '@ohos.matrix4'
+
+@Entry
+@Component
+struct Index {
+  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:200, y:0}, {x:0, y:200}, {x:200, y:200} ],
+    dst:[{x:150, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
+
+  build() {
+    Stack() {
+      Image($r("app.media.1"))
+        .transform(this.matrix1)
+        .width(150)
+        .height(150)
+    }.width("100%").height("100%")
+  }
+}
+```
+![zh-cn_image_0000001174422898](figures/setPolyTopoly.png)
 ## TranslateOption
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
