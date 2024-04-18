@@ -715,6 +715,35 @@ get commonEvent(): UICommonEvent
 
 请参考[基础事件示例](#基础事件示例)。
 
+### onDraw<sup>12+</sup>
+
+onDraw?(context: DrawContext): void
+
+FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被调用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| context | [DrawContext](./js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。自绘制区域无法超出组件自身大小。 |
+
+**示例：**
+
+请参考[节点自绘制示例](#节点自绘制示例)。
+
+### invalidate<sup>12+</sup>
+
+invalidate(): void
+
+该方法会触发FrameNode自绘制内容的重新渲染。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[节点自绘制示例](#节点自绘制示例)。
 
 ## 节点操作示例
 ```ts
@@ -1054,46 +1083,48 @@ struct Index {
 ## 基础事件示例
 
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node"
+import { FrameNode, NodeController } from '@ohos.arkui.node'
 
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
+
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.rootNode.commonAttribute.width(100)
+      .height(100)
+      .backgroundColor(Color.Pink);
     this.addCommonEvent(this.rootNode);
     return this.rootNode;
   }
 
-  addCommonEvent(frameNode : FrameNode)
-  {
-    frameNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
-      console.log( `isHover FrameNode: ${isHover}`);
-      console.log( `isHover FrameNode: ${JSON.stringify(event)}`);
+  addCommonEvent(frameNode: FrameNode) {
+    frameNode.commonEvent.setOnHover(((isHover: boolean, event: HoverEvent): void => {
+      console.log(`isHover FrameNode: ${isHover}`);
+      console.log(`isHover FrameNode: ${JSON.stringify(event)}`);
       event.stopPropagation();
     }))
-    frameNode.commonEvent.setOnClick((event)=>{
+    frameNode.commonEvent.setOnClick((event: ClickEvent) => {
       console.log(`Click FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnTouch((event)=>{
+    frameNode.commonEvent.setOnTouch((event: TouchEvent) => {
       console.log(`touch FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnAppear(()=>{
+    frameNode.commonEvent.setOnAppear(() => {
       console.log(`on Appear FrameNode`)
     })
-    frameNode.commonEvent.setOnDisappear(()=>{
+    frameNode.commonEvent.setOnDisappear(() => {
       console.log(`onDisAppear FrameNode`)
     })
-    frameNode.commonEvent.setOnFocus(()=>{
+    frameNode.commonEvent.setOnFocus(() => {
       console.log(`onFocus FrameNode`)
     })
-    frameNode.commonEvent.setOnBlur(()=>{
+    frameNode.commonEvent.setOnBlur(() => {
       console.log(`onBlur FrameNode`)
     })
-    frameNode.commonEvent.setOnKeyEvent((event)=>{
+    frameNode.commonEvent.setOnKeyEvent((event: KeyEvent) => {
       console.log(`Key FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnMouse((event)=>{
+    frameNode.commonEvent.setOnMouse((event: MouseEvent) => {
       console.log(`Mouse FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
@@ -1105,44 +1136,45 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  @State index: number = 0;
   private myNodeController: MyNodeController = new MyNodeController();
-  @State index : number = 0;
+
   build() {
     Column() {
       Button("add CommonEvent to Text")
-        .onClick(()=>{
-          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
+        .onClick(() => {
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling() !)
         })
       Text("this is a Text")
         .fontSize(16)
         .borderWidth(1)
-        .onHover(((isHover?: boolean, event?: HoverEvent):void => {
-          console.log( `isHover Text: ${isHover}`);
-          console.log( `isHover Text: ${JSON.stringify(event)}`);
+        .onHover(((isHover: boolean, event: HoverEvent): void => {
+          console.log(`isHover Text: ${isHover}`);
+          console.log(`isHover Text: ${JSON.stringify(event)}`);
           event.stopPropagation();
         }))
-        .onClick((event)=>{
+        .onClick((event: ClickEvent) => {
           console.log(`Click Text    : ${JSON.stringify(event)}`)
         })
-        .onTouch((event)=>{
+        .onTouch((event: TouchEvent) => {
           console.log(`touch Text    : ${JSON.stringify(event)}`)
         })
-        .onAppear(()=>{
+        .onAppear(() => {
           console.log(`on Appear Text`)
         })
-        .onDisAppear(()=>{
+        .onDisAppear(() => {
           console.log(`onDisAppear Text`)
         })
-        .onFocus(()=>{
+        .onFocus(() => {
           console.log(`onFocus Text`)
         })
-        .onBlur(()=>{
+        .onBlur(() => {
           console.log(`onBlur Text`)
         })
-        .onKeyEvent((event)=>{
+        .onKeyEvent((event: KeyEvent) => {
           console.log(`Key Text    : ${JSON.stringify(event)}`)
         })
-        .onMouse((event)=>{
+        .onMouse((event: MouseEvent) => {
           console.log(`Mouse Text : ${JSON.stringify(event)}`)
         })
         .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
@@ -1153,6 +1185,67 @@ struct Index {
         .width(300)
         .height(100)
     }.width("100%")
+  }
+}
+```
+
+## 节点自绘制示例
+
+```ts
+import { UIContext } from '@ohos.arkui.UIContext';
+import { DrawContext, FrameNode, NodeController } from '@ohos.arkui.node'
+import drawing from '@ohos.graphics.drawing'
+
+class MyFrameNode extends FrameNode {
+  public width: number = 10;
+
+  onDraw(context: DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachPen(pen);
+    canvas.drawRect({ left: 0, right: this.width, top: 0, bottom: this.width });
+    canvas.detachPen();
+  }
+
+  addWidth() {
+    this.width += 10;
+  }
+}
+
+class MyNodeController extends NodeController {
+  public rootNode: MyFrameNode | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new MyFrameNode(context);
+    this.rootNode?.commonAttribute?.size({ width: 100, height: 100 }).backgroundColor(Color.Green);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private nodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.nodeController)
+          .width('100%')
+          .height(100)
+          .backgroundColor('#FFF0F0F0')
+        Button('Invalidate')
+          .onClick(() => {
+            this.nodeController?.rootNode?.addWidth();
+            this.nodeController?.rootNode?.invalidate();
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
   }
 }
 ```
