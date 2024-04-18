@@ -1120,6 +1120,10 @@
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
     - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
+    - Hap包签名工具
+      - [Hap包签名工具概述](security/hapsigntool-overview.md)
+      - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
+      - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
