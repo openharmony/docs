@@ -42,6 +42,6 @@ NavDestination()
 
 ## 示例
 
-从API Version 9开始，详见[Navrouter组件示例](ts-basic-components-navrouter.md#示例)。
+从API Version 9开始，详见[NavRouter组件示例](ts-basic-components-navrouter.md#示例)。
 
 从API Version 10开始，详见[NavPathStack示例](ts-basic-components-navigation.md#示例2)。
