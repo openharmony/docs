@@ -68,6 +68,7 @@
     - [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md)
     - [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)
     - [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)
+    - [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)
     - [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) 
     - [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md)
     - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
