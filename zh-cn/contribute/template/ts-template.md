@@ -5,7 +5,7 @@
 |      | 说明项             | 细则                                                         |
 | ---- | ------------------ | ------------------------------------------------------------ |
 | 1    | 客户化写作基本要求 | **写作中，请变身开发者，对于开发者使用该组件时所需的使用场景、参数选取原则、开发建议/经验、示例等信息进行清晰描述，达到指导开发者顺利使用本组件进行开发的目标。** |
-| 3    | 上传路径           | markdown文件：docs/zh-cn/application-dev/reference/apis-xxx-kit/<br>图片路径：docs/zh-cn/application-dev/reference/apis-xxx-kit//figures，并在markdown文件中通过路径\![]\(figures/xxx.jpg)或\![]\(figures/xxx.png)引用。 |
+| 3    | 上传路径           | markdown文件：docs/zh-cn/application-dev/reference/apis-xxx-kit/<br>图片路径：docs/zh-cn/application-dev/reference/apis-xxx-kit/figures，并在markdown文件中通过路径\![]\(figures/xxx.jpg)或\![]\(figures/xxx.png)引用。 |
 | 4    | 文件命名           | 一个d.ts对应一个组件文档，文件名称需包含组件所属类和组件名，格式为：**ts-组件所属类名-组件名.md**。<br/>示例：<br/>基础组件Text，文件命名为：ts-basic-component-text.md<br/>容器组件List，文件命名为：ts-container-list.md |
 | 5    | 目录修改           | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis-xxx-kit/Readme-CN.md`。 |
 | 6    | 文档结构           | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>-子组件<br>- 接口、属性、事件、对象、枚举、自定义类型<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
@@ -83,7 +83,6 @@ import Curves from '@ohos.curves'
 > *写作说明*
 >
 > 1. 若该模块为系统内置组件，且组件包含子组件，必选。
-> 2. 若该模块非系统内置组件，或组件不包含子组件，则删除。
 > 3. 若子组件在使用时存在约束限制，需在此说明。
 
 示例：可以包含子组件。
@@ -148,15 +147,14 @@ type(value: ButtonType)
 > *写作说明*
 >
 > 1. 可选，如果没有事件可删除此二级标题。
-> 2. 类型如果为自定义类型（对象、枚举等）需要建立链接到对应的interface或enum中。若该类型首次出现，以二级标题的形式，在该事件下方描述。若该类型在其他模块已做说明，则建立相对链接。
+> 2. 事件方法具体的调用形式和d.ts保持一致，需要包括参数名、参数类型。
+> 3. 类型如果为自定义类型（对象、枚举等）需要建立链接到对应的interface或enum中。若该类型首次出现，以二级标题的形式，在该事件下方描述。若该类型在其他模块已做说明，则建立相对链接。
 
 若该模块为系统内置组件，则此处需说明该组件是否支持通用事件。
 
 示例：
 
 除支持通用事件（通用事件需添加相对链接）外，还支持如下事件：
-
-此处给出每个事件的具体调用形式，要求同[方法](#方法)。
 
 onSubmit(callback: (value: string) => void)
 
@@ -172,7 +170,7 @@ onSubmit(callback: (value: string) => void)
 
 > *写作说明*
 >
-> 1. 可选，如果没有可删除。写作要求同[API接口中方法](js-template.md#属性)说明。
+> 1. 可选，如果没有可删除。写作要求同[API接口中方法](js-template.md#方法)说明。
 > 2. 无需体现示例代码。
 
 
@@ -194,7 +192,7 @@ onSubmit(callback: (value: string) => void)
 
 > *写作说明*
 >
-> 1. 可选，如果没有可删除。写作要求同[API接口中方法](js-template.md#属性)说明。
+> 1. 可选，如果没有可删除。写作要求同[API接口中方法](js-template.md#方法)说明。
 
 ## 枚举
 
