@@ -66,7 +66,7 @@ privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1,
   console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
 });
 // with options param
-let optons: privacyManager.AddPermissionUsedRecordOptions = {
+let options: privacyManager.AddPermissionUsedRecordOptions = {
   .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
 };
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
