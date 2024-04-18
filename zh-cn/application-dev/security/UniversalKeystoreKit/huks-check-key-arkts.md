@@ -8,7 +8,7 @@ HUKS提供了接口供应用查询指定密钥是否存在。
 
 1. 指定密钥别名keyAlias，密钥别名最大长度为64字节。
 
-2. 初始化密钥属性集。用于查询时指定密钥的属性TAG，比如查询的密钥范围(全量/单个)，当查询单个时，TAG字段可传空。
+2. 初始化密钥属性集。用于查询指定秘钥名别集TAG，比如查询的密钥范围(全量/单个)，当查询单个时，TAG字段可传空。
 
 3. 调用接口[isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)，查询密钥是否存在。
 
