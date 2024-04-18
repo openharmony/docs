@@ -221,7 +221,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
    
 3. 建立设备间的可信关系。
 
-4. 查询周围上线并且可行的设备。
+4. 查询周围上线并且可信的设备。
 
    ```ts
    try {
