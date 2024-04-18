@@ -245,6 +245,7 @@
       - [CanvasGradient](arkui-ts/ts-components-canvas-canvasgradient.md)
       - [CanvasPattern](arkui-ts/ts-components-canvas-canvaspattern.md)
       - [CanvasRenderingContext2D](arkui-ts/ts-canvasrenderingcontext2d.md)
+      - [DrawingRenderingContext](arkui-ts/ts-drawingrenderingcontext.md)
       - [ImageBitmap](arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData](arkui-ts/ts-components-canvas-imagedata.md)
       - [Matrix2D](arkui-ts/ts-components-canvas-matrix2d.md)
