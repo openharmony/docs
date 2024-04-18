@@ -887,8 +887,8 @@ off(type: 'release', callback: OnReleaseCallback): void
 **示例：**
 
   ```ts
-  import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller, OnReleaseCallback } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -934,8 +934,8 @@ off(type: 'release'): void
 **示例：**
 
   ```ts
-  import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller, OnReleaseCallback } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
