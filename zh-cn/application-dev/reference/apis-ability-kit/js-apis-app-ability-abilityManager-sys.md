@@ -948,6 +948,7 @@ export default class EntryAbility extends UIAbility {
     try {
       abilityManager.isEmbeddedOpenAllowed(this.context, appId).then((data) => {
         console.info(`isEmbeddedOpenAllowed data: ${JSON.stringify(data)}`);
+      })
     } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
