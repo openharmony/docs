@@ -13,8 +13,9 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 > **说明：**
- > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
- > - 本模块接口在[自动化测试脚本](../../application-test/arkxtest-guidelines.md)中使用。
+> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口在[自动化测试脚本](../../application-test/arkxtest-guidelines.md)中使用。
+> - 本模块接口不支持并发调用。
 
 
 ## 导入模块
@@ -185,6 +186,14 @@ text(txt: string, pattern?: MatchPattern): On
 | ---------- | ---------------------------------- |
 | [On](#on9) | 返回指定目标控件文本属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -211,6 +220,14 @@ id(id: string): On
 | 类型       | 说明                             |
 | ---------- | -------------------------------- |
 | [On](#on9) | 返回指定目标控件id属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -240,6 +257,14 @@ type(tp: string): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -268,6 +293,14 @@ clickable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可点击状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -294,6 +327,14 @@ longClickable(b?: boolean): On
 | 类型       | 说明                                           |
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件的可长按点击状态属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -323,6 +364,14 @@ scrollable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可滑动状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -349,6 +398,14 @@ enabled(b?: boolean): On
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的使能状态属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -377,6 +434,14 @@ focused(b?: boolean): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的获焦状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -403,6 +468,14 @@ selected(b?: boolean): On
 | 类型       | 说明                                       |
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被选中状态属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -431,6 +504,14 @@ checked(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被勾选状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -458,6 +539,14 @@ checkable(b?: boolean): On
 | ---------- | -------------------------------------------- |
 | [On](#on9) | 返回指定目标控件能否被勾选状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -484,6 +573,14 @@ isBefore(on: On): On
 | 类型       | 说明                                                 |
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之前的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -514,6 +611,14 @@ isAfter(on: On): On
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之后的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -543,6 +648,14 @@ within(on: On): On
 | ---------- | -------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件内的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -571,6 +684,14 @@ inWindow(bundleName: string): On;
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的应用窗口内的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -598,6 +719,14 @@ description(val: string, pattern?: MatchPattern): On
 | 类型       | 说明                                      |
 | ---------- | ----------------------------------------- |
 | [On](#on9) | 返回指定目标控件description属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1192,6 +1321,7 @@ inputText(text: string): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1259,6 +1389,7 @@ scrollSearch(on: On): Promise\<Component>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1293,6 +1424,7 @@ scrollToTop(speed?: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -1327,6 +1459,7 @@ scrollToBottom(speed?: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -1361,6 +1494,7 @@ dragTo(target: Component): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1384,9 +1518,9 @@ pinchOut(scale: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | 是   | 指定放大的比例。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | 是   | 指定放大的比例。取值范围大于1。 |
 
 **错误码：**
 
@@ -1396,6 +1530,7 @@ pinchOut(scale: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1418,9 +1553,9 @@ pinchIn(scale: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | 是   | 指定缩小的比例。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | 是   | 指定缩小的比例。取值范围为0~1。 |
 
 **错误码：**
 
@@ -1430,6 +1565,7 @@ pinchIn(scale: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1460,10 +1596,11 @@ getDescription(): Promise\<string>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.      |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 17000004 | if the component is invisible or destroyed.                  |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1533,6 +1670,7 @@ Driver对象在给定的时间内延时。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1571,6 +1709,7 @@ findComponent(on: On): Promise\<Component>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1609,6 +1748,7 @@ findComponents(on: On): Promise\<Array\<Component>>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1647,6 +1787,7 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1686,6 +1827,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1719,6 +1861,7 @@ assertComponentExist(on: On): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000003 | if the assertion failed.    |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1777,6 +1920,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1811,6 +1955,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1845,6 +1990,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1878,6 +2024,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1911,6 +2058,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.**** |
 
 **示例：**
 
@@ -1947,6 +2095,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1983,6 +2132,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2021,6 +2171,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2036,7 +2187,7 @@ async function demo() {
 
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
-将设备的屏幕显示方向设置为指定的显示方向。
+将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2053,6 +2204,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2117,6 +2269,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2273,6 +2426,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2308,6 +2462,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2347,6 +2502,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2388,9 +2544,10 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2427,9 +2584,10 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2462,9 +2620,10 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2498,9 +2657,10 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2530,9 +2690,10 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2599,9 +2760,10 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2634,9 +2796,10 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2669,9 +2832,10 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2703,9 +2867,10 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2737,9 +2902,10 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2770,9 +2936,10 @@ inputText(p: Point, text: string): Promise\<void>
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2811,6 +2978,14 @@ static create(fingers: number, steps: number): PointerMatrix
 | -------------------------------- | ----------------------------- |
 | [PointerMatrix](#pointermatrix9) | 返回构造的PointerMatrix对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -2835,6 +3010,14 @@ setPoint(finger: number, step: number, point: Point): void
 | finger | number           | 是   | 手指的序号。                                               |
 | step   | number           | 是   | 步骤的序号。                                               |
 | point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10至80像素点范围内。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3119,6 +3302,7 @@ moveTo(x: number, y: number): Promise\<void>
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3156,6 +3340,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3366,6 +3551,14 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 | type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -3396,6 +3589,14 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 | -------- | -------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow' |
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
