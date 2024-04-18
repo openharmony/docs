@@ -29,6 +29,7 @@ onClick(event: (event: ClickEvent) => void): T
 | T | 返回当前组件。 |
 
 ## ClickEvent对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

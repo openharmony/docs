@@ -44,6 +44,7 @@ onMouse(event: (event: MouseEvent) => void)
 
 
 ## MouseEvent对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
@@ -63,6 +64,7 @@ onMouse(event: (event: MouseEvent) => void)
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API verdion 10开始不再维护，建议使用windowY代替。 |
 
 ## HoverEvent<sup>10+</sup>对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 | 名称              | 属性类型       | 描述      |
 | --------------- | ---------- | ------- |

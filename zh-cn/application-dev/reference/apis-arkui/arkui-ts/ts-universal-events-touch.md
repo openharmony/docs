@@ -29,6 +29,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | T | 返回当前组件。 |
 
 ## TouchEvent对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |
