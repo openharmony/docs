@@ -473,7 +473,7 @@ onFailure(): void
   import hilog from '@ohos.hilog';
 
   let storage: LocalStorage = LocalStorage.getShared();
-  let saveCallback: autoFillManager.FillRequestCallback | undefined =
+  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
     storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
 
   @Entry
