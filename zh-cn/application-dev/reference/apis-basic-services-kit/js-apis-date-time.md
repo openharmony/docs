@@ -23,7 +23,7 @@ import systemDateTime from '@ohos.systemDateTime';
 | STARTUP | 0    | 自系统启动以来经过的毫秒数，包括深度睡眠时间。   |
 | ACTIVE  | 1    | 自系统启动以来经过的毫秒数，不包括深度睡眠时间。 |
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -57,7 +57,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -90,7 +90,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -127,7 +127,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -161,7 +161,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -194,7 +194,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -231,7 +231,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -265,7 +265,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -298,7 +298,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
