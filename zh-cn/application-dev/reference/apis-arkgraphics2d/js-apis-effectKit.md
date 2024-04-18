@@ -10,9 +10,7 @@
 
 > **说明：**
 > 
-> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> - 从API version 12开始，本模块接口支持在ArkTS卡片中使用。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -24,6 +22,10 @@ import effectKit from '@ohos.effectKit';
 createEffect(source: image.PixelMap): Filter
 
 通过传入的PixelMap创建Filter实例。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -64,6 +66,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 通过传入的PixelMap创建ColorPicker实例，使用Promise异步回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -110,6 +116,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<ColorPicker>
 
 通过传入的PixelMap创建选定取色区域的ColorPicker实例，使用Promise异步回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -158,6 +168,10 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 通过传入的PixelMap创建ColorPicker实例，使用callback异步回调。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -199,6 +213,10 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 
 通过传入的PixelMap创建选定取色区域的ColorPicker实例，使用callback异步回调。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -239,6 +257,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 颜色类，用于保存取色的结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型   | 可读 | 可写 | 说明              |
@@ -257,6 +279,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 getMainColor(): Promise\<Color>
 
 读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -304,6 +330,10 @@ getMainColorSync(): Color
 
 读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -347,6 +377,10 @@ getLargestProportionColor(): Color
 
 读取图像占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -389,6 +423,8 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 getTopProportionColors(colorCount: number): Array<Color | null>
 
 读取图像占比靠前的颜色值，个数由`colorCount`指定，结果写入[Color](#color)的数组里，使用同步方式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -444,6 +480,10 @@ getHighestSaturationColor(): Color
 
 读取图像饱和度最高的颜色值，结果写入[Color](#color)里，使用同步方式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -487,6 +527,10 @@ getAverageColor(): Color
 
 读取图像平均的颜色值，结果写入[Color](#color)里，使用同步方式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -529,6 +573,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 isBlackOrWhiteOrGrayColor(color: number): boolean
 
 判断图像是否为黑白灰颜色，返回true或false。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -582,6 +630,10 @@ blur(radius: number): Filter
 
 将模糊效果添加到效果链表中，结果返回效果链表的头节点。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -626,6 +678,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 brightness(bright: number): Filter
 
 将高亮效果添加到效果链表中，结果返回效果链表的头节点。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -672,6 +728,10 @@ grayscale(): Filter
 
 将灰度效果添加到效果链表中，结果返回效果链表的头节点。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -703,6 +763,47 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 ![zh-ch_image_Add_Grayscale.png](figures/zh-ch_image_Add_Grayscale.png)
+
+### getEffectPixelMap<sup>11+</sup>
+
+getEffectPixelMap(): Promise<image.PixelMap>
+
+获取已添加链表效果的源图像的image.PixelMap，使用Promise异步回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Promise\<image.PixelMap>  | Promise对象。返回已添加链表效果的源图像的image.PixelMap。 |
+
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
+    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
+  })
+})
+```
 
 ### getPixelMap<sup>(deprecated)</sup>
 
@@ -742,41 +843,3 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   console.info('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
 })
 ```
-
-### getEffectPixelMap<sup>11+</sup>
-
-getEffectPixelMap(): Promise<image.PixelMap>
-
-获取已添加链表效果的源图像的image.PixelMap，使用Promise异步回调。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**返回值：**
-
-| 类型                   | 说明           |
-| ---------------------- | -------------- |
-| Promise\<image.PixelMap>  | Promise对象。返回已添加链表效果的源图像的image.PixelMap。 |
-
-
-**示例：**
-
-```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
-
-const color = new ArrayBuffer(96);
-let opts : image.InitializationOptions = {
-  editable: true,
-  pixelFormat: 3,
-  size: {
-    height: 4,
-    width: 6
-  }
-};
-image.createPixelMap(color, opts).then((pixelMap) => {
-  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
-    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
-  })
-})
-```
-
