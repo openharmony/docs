@@ -43,7 +43,7 @@
  let finishOutData: Uint8Array;
  let handle: number;
  let exportKey: Uint8Array;
- let exportKeyFrist: Uint8Array;
+ let exportKeyFirst: Uint8Array;
  let exportKeySecond: Uint8Array;
  /* 集成生成密钥参数集 */
  let properties: Array<huks.HuksParam> = new Array();
@@ -119,7 +119,7 @@
      tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
      value: huks.HuksCipherMode.HUKS_MODE_ECB,
  }
- let finishOptionsFrist: huks.HuksOptions = {
+ let finishOptionsFirst: huks.HuksOptions = {
      properties: finishProperties,
      inData: StringToUint8Array(agreeX25519InData)
  }
@@ -365,7 +365,7 @@
              }
          });
      } catch (error) {
-         console.error(`promise: deletKeeyItem input arg invalid` + error);
+         console.error(`promise: deleteKeyItem input arg invalid` + error);
      }
  }
  async function testAgree() {
@@ -376,17 +376,17 @@
      await publicGenKeyFunc(srcKeyAliasSecond, HuksOptions);
      /* 4.设备A、B导出非对称密钥的公钥 */
      await publicExportKeyFunc(srcKeyAliasFirst, HuksOptions);
-     exportKeyFrist = exportKey;
+     exportKeyFirst = exportKey;
      await publicExportKeyFunc(srcKeyAliasFirst, HuksOptions);
      exportKeySecond = exportKey;
      /* 5.对第一个密钥进行协商（三段式）*/
      await publicInitFunc(srcKeyAliasFirst, HuksOptions);
      HuksOptions.inData = exportKeySecond;
      await publicUpdateFunc(handle, HuksOptions);
-     await publicFinishFunc(handle, finishOptionsFrist);
+     await publicFinishFunc(handle, finishOptionsFirst);
      /* 5.对第二个密钥进行协商（三段式） */
      await publicInitFunc(srcKeyAliasSecond, HuksOptions);
-     HuksOptions.inData = exportKeyFrist;
+     HuksOptions.inData = exportKeyFirst;
      await publicUpdateFunc(handle, HuksOptions);
      await publicFinishFunc(handle, finishOptionsSecond);
      /* 6.设备A、B删除密钥 */
