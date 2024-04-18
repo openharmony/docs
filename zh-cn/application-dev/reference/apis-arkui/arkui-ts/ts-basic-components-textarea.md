@@ -425,19 +425,23 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0 |
 
 ### textOverflow<sup>12+</sup>
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。
+设置文本超长时的显示方式。在非内联模式、内联模式下支持
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+overflow在非内联模式下建议配合maxLines使用，否则设置为Ellipsis时，变为单行Ellipsis效果。
+
+overflow在内联模式下设置为TextOverflow.Ellipsis时，如果设置maxLines，效果仅为单行Ellipsis。
 
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 

@@ -591,11 +591,11 @@ wordBreak(value: WordBreak)
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。
+设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
 
-当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
@@ -603,13 +603,12 @@ textOverflow(value: TextOverflow)
 
 **参数：** 
 
-| 参数名 | 类型                                                          | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>Inline模式下默认值：TextOverflow.Ellipsis，否则为TextOverflow.Clip                     |
+| 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
 
 >  **说明：**  
->   TextInput组件 InLine模式下支持TextOverflow.CLIP、TextOverflow.ELLIPSIS，其余模式下只支持显示TextOverflow.Clip
->   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 Inline模式下显示为TextOverflow.Ellipsis，否则显示为TextOverflow.Clip
+>   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
 
 ### textIndent<sup>12+</sup>
 
@@ -621,9 +620,9 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                  | 必填 | 说明                         |
+| ------ | ------------------------------------ | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 首行文本缩进。<br/>默认值：0 |
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
