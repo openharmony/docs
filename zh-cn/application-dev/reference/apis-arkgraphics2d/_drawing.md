@@ -327,12 +327,12 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateTranslation](#oh_drawing_matrixcreatetranslation) (float dx, float dy) | 创建一个带平移属性的矩阵对象。 该矩阵对象为：单位矩阵平移(dx, dy)后得到的矩阵。 | 
 | void [OH_Drawing_MatrixSetMatrix](#oh_drawing_matrixsetmatrix) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float scaleX, float skewX, float transX, float skewY, float scaleY, float transY, float persp0, float persp1, float persp2) | 用于给矩阵对象设置参数。 | 
 | bool [OH_Drawing_MatrixSetRectToRect](#oh_drawing_matrixsetrecttorect) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, const [OH_Drawing_Rect](#oh_drawing_rect) \*dst, [OH_Drawing_ScaleToFit](#oh_drawing_scaletofit) stf) | 将矩阵以缩放方式适配目标矩阵。 | 
-| void [OH_Drawing_MatrixPreRotate](#oh_drawing_matrixprerotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 例如给定的矩阵： | 
-| void [OH_Drawing_MatrixPreScale](#oh_drawing_matrixprescale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 例如给定的矩阵： | 
-| void [OH_Drawing_MatrixPreTranslate](#oh_drawing_matrixpretranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵左乘平移一定距离后的单位矩阵后得到的矩阵。 例如给定的矩阵： | 
-| void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 例如给定的矩阵： | 
-| void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 例如给定的矩阵： | 
-| void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 例如给定的矩阵： | 
+| void [OH_Drawing_MatrixPreRotate](#oh_drawing_matrixprerotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 | 
+| void [OH_Drawing_MatrixPreScale](#oh_drawing_matrixprescale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。  | 
+| void [OH_Drawing_MatrixPreTranslate](#oh_drawing_matrixpretranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵左乘平移一定距离后的单位矩阵后得到的矩阵。  | 
+| void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。  | 
+| void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 | 
+| void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。  | 
 | void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 重置当前矩阵为单位矩阵。 | 
 | void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | 将矩阵total设置为矩阵a乘以矩阵b。 | 
 | float [OH_Drawing_MatrixGetValue](#oh_drawing_matrixgetvalue) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, int index) | 获取矩阵给定索引位的值。索引范围0-8。 | 
@@ -6408,11 +6408,7 @@ void OH_Drawing_MatrixPostRotate (OH_Drawing_Matrix* , float degree, float px, f
 
 **描述**
 
-将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 例如给定的矩阵：
-
-条件为：
-
-设置的最终的矩阵为：
+将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6436,11 +6432,8 @@ void OH_Drawing_MatrixPostScale (OH_Drawing_Matrix* , float sx, float sy, float 
 
 **描述**
 
-将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 例如给定的矩阵：
+将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 
 
-条件为： dx = px - sx \* px dy = py - sy \* py
-
-设置的最终的矩阵为：
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6465,9 +6458,7 @@ void OH_Drawing_MatrixPostTranslate (OH_Drawing_Matrix* , float dx, float dy )
 
 **描述**
 
-将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 例如给定的矩阵：
-
-设置的最终的矩阵为：
+将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6490,11 +6481,8 @@ void OH_Drawing_MatrixPreRotate (OH_Drawing_Matrix* , float degree, float px, fl
 
 **描述**
 
-将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 例如给定的矩阵：
+将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 
 
-条件为：
-
-设置的最终矩阵为：
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6518,11 +6506,7 @@ void OH_Drawing_MatrixPreScale (OH_Drawing_Matrix* , float sx, float sy, float p
 
 **描述**
 
-将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 例如给定的矩阵：
-
-条件为：
-
-设置的最终矩阵为：
+将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
