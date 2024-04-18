@@ -3115,7 +3115,7 @@ if(store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
     console.info(`check result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3125,7 +3125,7 @@ if(store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
     console.info(`delete result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3135,7 +3135,7 @@ if(store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
     console.info(`drop result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -4858,14 +4858,14 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let attachStore: relationalStore.RdbStore= undefined;
+let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
     name: "rdbstore1.db",
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -4873,7 +4873,7 @@ await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbSt
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG1, "attachDB").then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -4886,7 +4886,7 @@ if(store != undefined) {
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let attachStore: relationalStore.RdbStore= undefined;
+let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 
 const STORE_CONFIG2: relationalStore.StoreConfig = {
@@ -4895,7 +4895,7 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -4903,7 +4903,7 @@ await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbSt
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
