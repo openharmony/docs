@@ -466,6 +466,49 @@ import audio from '@ohos.multimedia.audio';
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
+### disableSafeMediaVolume<sup>12+</sup>
+
+disableSafeMediaVolume(): Promise&lt;void&gt;
+
+设置安规为非激活状态。使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                       | 说明                          |
+|------------------------------------------| ----------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioManager = audio.getAudioManager();
+try {
+    audioManager.disableSafeMediaVolume();
+    expect(true).assertTrue();
+    done();
+} catch (error) {
+    console.info(`${TagFrmwk}: disableSafeMediaVolume Fail,error:${error},ErrorCode:${error.code},${typeof (error.code)}`);
+    expect(false).assertTrue();
+    done();
+}
+```
+
 ### on('volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
