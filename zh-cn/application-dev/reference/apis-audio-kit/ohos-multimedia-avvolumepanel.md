@@ -37,8 +37,8 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-|volumeLevel | number | 否 | @Prop |  通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置设备最大音量值；如果该值小于当前设备音量的最小值，则视为设置设备最小音量值|
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 |  @Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条|
+|volumeLevel | number | 否 | @Prop |  通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置设备最大音量值；如果该值小于当前设备音量的最小值，则视为设置设备最小音量值。|
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 |  @Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条。|
 
 ## AVVolumePanelParameter
 
