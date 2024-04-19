@@ -555,9 +555,9 @@
 
 ### ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
-允许应用进行证书及凭据的安装、卸载、启用、禁用等操作。
+允许应用进行用户公共证书凭据的安装、卸载、授权等操作。
 
-**权限级别**：system_basic
+**权限级别**：API version 9-11为system_basic；从API version 12开始为system_core。
 
 **授权方式**：system_grant
 
@@ -2794,6 +2794,30 @@
 允许应用设置是否支持应用缓存及缓存后快速启动。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SYSTEM_APP_CERT
+
+允许调用方管理和使用系统业务证书凭据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_USER_TRUSTED_CERT
+
+允许调用方管理用户CA证书。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
