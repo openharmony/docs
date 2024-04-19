@@ -101,7 +101,7 @@ color(value: ResourceColor | LinearGradient)
 
 backgroundColor(value: ResourceColor)
 
-设置进度条底色。当设置[通用属性backgroundColor](./ts-universal-attributes-background.md)时，生效的是进度条的底色，而不是整个Progress组件的背景色。
+设置进度条底色。当设置[通用属性backgroundColor](./ts-universal-attributes-background.md#backgroundcolor)时，生效的是进度条的底色，而不是整个Progress组件的背景色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
