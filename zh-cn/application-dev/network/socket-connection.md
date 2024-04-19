@@ -373,7 +373,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total receive: ' + JSON.stringify(value));
   console.log('message information: ' + messageView);
@@ -467,7 +467,7 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
-      messageView = String.fromCharCode(uintArray[i]);
+      messageView += String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
     console.log('message information: ' + messageView);
