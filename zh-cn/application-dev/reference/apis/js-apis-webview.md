@@ -1440,6 +1440,11 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
 
+> **说明：**
+>
+> - registerJavaScriptProxy提供了webview沙箱与app之间强大的交互能力，尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册，在非可信的webview中注入app的object可能会导致app被恶意攻击。
+> - 注意registerJavaScriptProxy后app会将对象暴露给所有的页面frames。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
