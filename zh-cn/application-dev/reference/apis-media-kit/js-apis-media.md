@@ -1216,7 +1216,7 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 
 ### selectTrack<sup>12+</sup>
 
-selectTrack(index: number): void
+selectTrack(index: number): Promise\<void>
 
 使用AVPlayer播放多音轨视频时选择指定音轨播放。[视频播放开发指导](../../media/media/video-playback.md)。
 
@@ -1227,6 +1227,15 @@ selectTrack(index: number): void
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID  | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 401      | Parameter error. Return by callback.    |
+| 5400102  | Operate not permit. Return by callback. |
 
 **示例：**
 
@@ -1262,7 +1271,7 @@ avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 
 ### deselectTrack<sup>12+</sup>
 
-deselectTrack(index: number): void
+deselectTrack(index: number): Promise\<void>
 
 使用AVPlayer播放多音轨视频时取消指定音轨播放。[视频播放开发指导](../../media/media/video-playback.md)。
 
@@ -1273,6 +1282,15 @@ deselectTrack(index: number): void
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID  | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 401      | Parameter error. Return by callback.    |
+| 5400102  | Operate not permit. Return by callback. |
 
 **示例：**
 
