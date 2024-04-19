@@ -909,26 +909,26 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 
 1. 在开发视图的resources/base/profile下面定义配置文件，文件名可以自定义，例如：router_map.json。
 
-```json
-{
-  "routerMap": [
-    {
-      "name": "DynamicPage1",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myFunction"
-    },
-    {
-      "name": "DynamicPage2",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myBuilder",
-      "data": {
-        "key1": "data1",
-        "key2": "data2"
+  ```json
+  {
+    "routerMap": [
+      {
+        "name": "DynamicPage1",
+        "pageSourceFile": "entry/src/index",
+        "buildFunction": "myFunction"
+      },
+      {
+        "name": "DynamicPage2",
+        "pageSourceFile": "entry/src/index",
+        "buildFunction": "myBuilder",
+        "data": {
+          "key1": "data1",
+          "key2": "data2"
+        }
       }
-    }
-  ]
-}
-```
+    ]
+  }
+  ```
 
 2. 在module.json5配置文件的module标签中定义`routerMap`字段，指向定义的路由表配置文件，例如：`"routerMap": "$profile:router_map"`。
 
