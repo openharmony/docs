@@ -1228,14 +1228,20 @@ selectTrack(index: number): Promise\<void>
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引。 |
 
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 选择曲目完成的Promise返回值。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
-| 错误码ID  | 错误信息                                 |
-| -------- | --------------------------------------- |
-| 401      | Parameter error. Return by callback.    |
-| 5400102  | Operate not permit. Return by callback. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
 
 **示例：**
 
@@ -1283,14 +1289,20 @@ deselectTrack(index: number): Promise\<void>
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引。 |
 
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 取消选择曲目完成的Promise返回值。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
 
-| 错误码ID  | 错误信息                                 |
-| -------- | --------------------------------------- |
-| 401      | Parameter error. Return by callback.    |
-| 5400102  | Operate not permit. Return by callback. |
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
 
 **示例：**
 
