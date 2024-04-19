@@ -352,12 +352,8 @@ export default class EntryAbility extends UIAbility {
     };
 
     try {
-      this.context.startServiceExtensionAbility(want)
-        .then(() => {
-          // 执行正常业务
-          console.info('startServiceExtensionAbility succeed');
-        })
-        .catch((err: BusinessError) => {
+      this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
+        if (error.code) {
           // 处理业务逻辑错误
           console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
         });
