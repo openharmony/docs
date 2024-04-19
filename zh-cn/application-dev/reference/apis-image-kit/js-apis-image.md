@@ -1198,7 +1198,6 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let angle: number = 90.0;
     let angle: number = 90.0;
-    
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
             if (err != undefined) {
