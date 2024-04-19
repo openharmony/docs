@@ -352,7 +352,7 @@ export default class EntryAbility extends UIAbility {
     };
 
     try {
-      context.startServiceExtensionAbility(want, (error: BusinessError) => {
+      this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
           console.error(`startServiceExtensionAbility failed, code is ${error.code}, message is ${error.message}`);
