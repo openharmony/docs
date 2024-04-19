@@ -1214,6 +1214,100 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
+### selectTrack<sup>12+</sup>
+
+selectTrack(index: number): void
+
+使用AVPlayer播放多音轨视频时选择指定音轨播放。[视频播放开发指导](../../media/media/video-playback.md)。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| index | number | 是   | 多音轨轨道索引。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
+  if(player != null) {
+    avPlayer = player;
+    console.info(`createAVPlayer success`);
+    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+      if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+          if (i != 0) {
+            // 获取音频轨道列表
+            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+          }
+        }
+      } else {
+        console.error(`audio getTrackDescription fail, error:${error}`);
+      }
+    });
+  } else {
+    console.error(`createAVPlayer fail, error message:${err.message}`);
+  }
+});
+
+// 选择其中一个音频轨道
+avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
+```
+
+### deselectTrack<sup>12+</sup>
+
+deselectTrack(index: number): void
+
+使用AVPlayer播放多音轨视频时取消指定音轨播放。[视频播放开发指导](../../media/media/video-playback.md)。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| index | number | 是   | 多音轨轨道索引。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
+  if(player != null) {
+    avPlayer = player;
+    console.info(`createAVPlayer success`);
+    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+      if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+          if (i != 0) {
+            // 获取音频轨道列表
+            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+          }
+        }
+      } else {
+        console.error(`audio getTrackDescription fail, error:${error}`);
+      }
+    });
+  } else {
+    console.error(`createAVPlayer fail, error message:${err.message}`);
+  }
+});
+
+// 选择其中一个音频轨道
+avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
+// 取消选择上次选中的音频轨道，并恢复到默认音频轨道。
+avPlayer.deselectTrack(parseInt(audioTrackIndex.toString()));
+```
+
 ### setDecryptionConfig<sup>11+</sup>
 
 setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boolean): void
@@ -2177,7 +2271,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
-  videoFrameRate : 30
+  videoFrameRate : 30,
 }
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
