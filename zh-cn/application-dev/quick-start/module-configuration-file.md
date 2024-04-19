@@ -583,7 +583,7 @@ metadata中指定shortcut信息，其中：
 
 该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。
 
-> **说明：**  
+> **说明：**
 > 该标签从API10及以后版本开始生效，API9及以前版本使用distroFilter标签。
 
 - **适用场景：** 当一个工程中存在多个Entry，且多个Entry配置的deviceTypes存在交集时，则需要通过该标签进行区分。比如下面的两个Entry都支持tablet类型，就需要通过该标签进行区分。
@@ -867,28 +867,28 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 
 1. 在开发视图的resources/base/profile下面定义配置文件，文件名可以自定义，例如：router_map.json。
 
-```json
-{
-  "routerMap": [
+    ```json
     {
-      "name": "DynamicPage1",
+      "routerMap": [
+        {
+          "name": "DynamicPage1",
       "pageModule": "library1",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myFunction"
-    },
-    {
-      "name": "DynamicPage2",
+          "pageSourceFile": "entry/src/index",
+          "buildFunction": "myFunction"
+        },
+        {
+          "name": "DynamicPage2",
       "pageModule": "library2",
-      "pageSourceFile": "entry/src/index",
-      "buildFunction": "myBuilder",
-      "data": {
-        "key1": "data1",
-        "key2": "data2"
-      }
+          "pageSourceFile": "entry/src/index",
+          "buildFunction": "myBuilder",
+          "data": {
+            "key1": "data1",
+            "key2": "data2"
+          }
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
 2. 在module.json5配置文件的module标签中定义`routerMap`字段，指向定义的路由表配置文件，例如：`"routerMap": "$profile:router_map"`。
 
