@@ -287,7 +287,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 
 | Name     | Type                                      | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| keyEvent | [KeyEvent](../apis/js-apis-keyevent.md#keyevent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
+| keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
 
 **Example**
 
