@@ -593,7 +593,7 @@ getTextContentRect(): [RectResult](#rectresult10)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
 
 > **说明：**
 >
