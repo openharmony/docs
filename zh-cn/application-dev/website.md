@@ -1337,7 +1337,6 @@
       - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
       - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
       - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
-      - [zlib子系统错误码](reference/apis-ability-kit/errorcode-zlib.md)
       - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
   - Accessibility Kit API参考
     - ArkTS API
@@ -2145,7 +2144,6 @@
             - [@ohos.brightness (屏幕亮度)(系统接口)](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
             - [@ohos.charger (充电类型)(系统接口)](reference/apis-basic-services-kit/js-apis-charger-sys.md)
             - [@ohos.deviceAttest (设备证明)(系统接口)](reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md)
-            - [@ohos.enterprise.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md)
             - [@ohos.power (系统电源管理)(系统接口)](reference/apis-basic-services-kit/js-apis-power-sys.md)
             - [@ohos.systemCapability (系统能力)(系统接口)](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
