@@ -133,209 +133,209 @@ import(filePath).then(……);
 
 - **HAP变量动态import HAR模块名**
 
-```typescript
-// HAR's Index.ets
-export function add(a:number, b:number):number {
-  let c = a + b;
-  console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
-  return c;
-}
-```
-```typescript
-// HAP's Index.ets
-let packageName = 'myHar';
-import(packageName).then((ns:ESObject) => {
-  console.log(ns.add(3, 5));
-});
-```
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "myHar": "file:../myHar"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "myHar"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
-      ]
+  ```typescript
+  // HAR's Index.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+  ```typescript
+  // HAP's Index.ets
+  let packageName = 'myHar';
+  import(packageName).then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "myHar": "file:../myHar"
+  }
+  ```
+  ```json5
+  // HAP's build-profile.json5
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "myHar"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+        ]
+      }
     }
   }
-}
-```
+  ```
 
 - **HAP变量动态import HSP模块名**
 
-```typescript
-// HSP's Index.ets
-export function add(a:number, b:number):number {
-  let c = a + b;
-  console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
-  return c;
-}
-```
-```typescript
-// HAP's Index.ets
-let packageName = 'myHsp';
-import(packageName).then((ns:ESObject) => {
-  console.log(ns.add(3, 5));
-});
-```
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "myHsp": "file:../myHsp"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "myHsp"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
-      ]
+  ```typescript
+  // HSP's Index.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+  ```typescript
+  // HAP's Index.ets
+  let packageName = 'myHsp';
+  import(packageName).then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "myHsp": "file:../myHsp"
+  }
+  ```
+  ```json5
+  // HAP's build-profile.json5
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "myHsp"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+        ]
+      }
     }
   }
-}
-```
+  ```
 
 - **HAP变量动态import远程HAR模块名**
 
-```typescript
-// HAP's Index.ets
-let packageName = '@ohos/crypto-js';
-import(packageName).then((ns:ESObject) => {
-  console.log('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
-});
-```
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "@ohos/crypto-js": "2.0.3-rc.0"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "@ohos/crypto-js"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
-      ]
+  ```typescript
+  // HAP's Index.ets
+  let packageName = '@ohos/crypto-js';
+  import(packageName).then((ns:ESObject) => {
+    console.log('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
+  });
+  ```
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "@ohos/crypto-js": "2.0.3-rc.0"
+  }
+  ```
+  ```json5
+  // HAP's build-profile.json5
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "@ohos/crypto-js"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+        ]
+      }
     }
   }
-}
-```
+  ```
 
 - **HAP变量动态import ohpm包**
 
-```typescript
-// HAP's Index.ets
-let packageName = 'json5';
-import(packageName).then((ns:ESObject) => {
-  console.log('DynamicImport json5');
-});
-```
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "json5": "1.0.2"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "json5"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
-      ]
+  ```typescript
+  // HAP's Index.ets
+  let packageName = 'json5';
+  import(packageName).then((ns:ESObject) => {
+    console.log('DynamicImport json5');
+  });
+  ```
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "json5": "1.0.2"
+  }
+  ```
+  ```json5
+  // HAP's build-profile.json5
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "json5"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+        ]
+      }
     }
   }
-}
-```
+  ```
 
 - **HAP变量动态import自己的单文件**
 
-```typescript
-// HAP's src/main/ets/Calc.ets
-export function add(a:number, b:number):number {
-  let c = a + b;
-  console.log('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
-  return c;
-}
-```
-```typescript
-// HAP's Index.ets
-let filePath = './src/main/ets/Calc';
-import(filePath).then((ns:ESObject) => {
-  console.log(ns.add(3, 5));
-});
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "sources": [
-        "./src/main/ets/Calc.ets"  // 仅用于使用变量动态import模块自己单文件场景，静态import或常量动态import无需配置。
-      ]
+  ```typescript
+  // HAP's src/main/ets/Calc.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+  ```typescript
+  // HAP's Index.ets
+  let filePath = './src/main/ets/Calc';
+  import(filePath).then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+  ```json5
+  // HAP's build-profile.json5
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "sources": [
+          "./src/main/ets/Calc.ets"  // 仅用于使用变量动态import模块自己单文件场景，静态import或常量动态import无需配置。
+        ]
+      }
     }
   }
-}
-```
+  ```
 
 - **HAP变量动态import自己的Native库**
 
-```typescript
-// libnativeapi.so's index.d.ts
-export const add: (a:number, b:number) => number;
-```
-```typescript
-// HAP's Index.ets
-let soName = 'libnativeapi.so';
-import(soName).then((ns:ESObject) => {
-  console.log('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
-});
-```
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "libnativeapi.so": "file:./src/main/cpp/types/libnativeapi"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "libnativeapi.so"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
-      ]
+  ```typescript
+  // libnativeapi.so's index.d.ts
+  export const add: (a:number, b:number) => number;
+  ```
+  ```typescript
+  // HAP's Index.ets
+  let soName = 'libnativeapi.so';
+  import(soName).then((ns:ESObject) => {
+    console.log('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+  });
+  ```
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "libnativeapi.so": "file:./src/main/cpp/types/libnativeapi"
+  }
+  ```
+  ```json5
+  // HAP's build-profile.json5
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "libnativeapi.so"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+        ]
+      }
     }
   }
-}
-```
+  ```
 
 - **HAP变量动态import加载API**
 
-```typescript
-// HAP's Index.ets
-let packageName = '@system.app';
-import(packageName).then((ns:ESObject) => { ns.default.terminate(); });
-packageName = '@system.router';
-import(packageName).then((ns:ESObject) => { ns.default.clear(); });
-packageName = '@ohos.curves';
-import(packageName).then((ns:ESObject) => { ns.default.springMotion(0.555, 0.75, 0.001); });
-packageName = '@ohos.matrix4';
-import(packageName).then((ns:ESObject) => { ns.default.identity(); });
-packageName = '@ohos.hilog';
-import(packageName).then((ns:ESObject) => { ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.'); });
-```
+  ```typescript
+  // HAP's Index.ets
+  let packageName = '@system.app';
+  import(packageName).then((ns:ESObject) => { ns.default.terminate(); });
+  packageName = '@system.router';
+  import(packageName).then((ns:ESObject) => { ns.default.clear(); });
+  packageName = '@ohos.curves';
+  import(packageName).then((ns:ESObject) => { ns.default.springMotion(0.555, 0.75, 0.001); });
+  packageName = '@ohos.matrix4';
+  import(packageName).then((ns:ESObject) => { ns.default.identity(); });
+  packageName = '@ohos.hilog';
+  import(packageName).then((ns:ESObject) => { ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.'); });
+  ```
 变量动态import加载API时无需配置runtimeOnly。
 
 ### HAR模块间动态import依赖解耦
