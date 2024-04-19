@@ -151,7 +151,78 @@
 // common/breakpointsystem.ets
 import mediaQuery from '@ohos.mediaquery'
 
-declare interface BreakPointTypeOption<T> {
+export type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+
+export interface Breakpoint {
+  name: BreakpointType
+  size: number
+  mediaQueryListener?: mediaQuery.MediaQueryListener
+}
+
+export class BreakpointSystem {
+  private static instance: BreakpointSystem
+  private readonly breakpoints: Breakpoint[] = [
+    { name: 'xs', size: 0 },
+    { name: 'sm', size: 320 },
+    { name: 'md', size: 600 },
+    { name: 'lg', size: 840 }
+  ]
+  private states: Set<BreakpointState<Object>>
+
+  private constructor() {
+    this.states = new Set()
+  }
+
+  public static getInstance(): BreakpointSystem {
+    if (!BreakpointSystem.instance) {
+      BreakpointSystem.instance = new BreakpointSystem();
+    }
+    return BreakpointSystem.instance
+  }
+
+  public attach(state: BreakpointState<Object>): void {
+    this.states.add(state)
+  }
+
+  public detach(state: BreakpointState<Object>): void {
+    this.states.delete(state)
+  }
+
+  public start() {
+    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
+      let condition: string
+      if (index === this.breakpoints.length - 1) {
+        condition = `(${breakpoint.size}vp<=width)`
+      } else {
+        condition = `(${breakpoint.size}vp<=width<${this.breakpoints[index + 1].size}vp)`
+      }
+      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      if (breakpoint.mediaQueryListener.matches) {
+        this.updateAllState(breakpoint.name)
+      }
+      breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
+        if (mediaQueryResult.matches) {
+          this.updateAllState(breakpoint.name)
+        }
+      })
+    })
+  }
+
+  private updateAllState(type: BreakpointType): void {
+    this.states.forEach(state => state.update(type))
+  }
+
+  public stop() {
+    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
+      if (breakpoint.mediaQueryListener) {
+        breakpoint.mediaQueryListener.off('change')
+      }
+    })
+    this.states.clear()
+  }
+}
+
+export interface BreakpointOptions<T> {
   xs?: T
   sm?: T
   md?: T
@@ -160,108 +231,74 @@ declare interface BreakPointTypeOption<T> {
   xxl?: T
 }
 
-export class BreakPointType<T> {
-  options: BreakPointTypeOption<T>
+export class BreakpointState<T extends Object> {
+  public value: T | undefined = undefined;
+  private options: BreakpointOptions<T>
 
-  constructor(option: BreakPointTypeOption<T>) {
-    this.options = option
+  constructor(options: BreakpointOptions<T>) {
+    this.options = options
   }
 
-  getValue(currentBreakPoint: string) {
-    if (currentBreakPoint === 'xs') {
-      return this.options.xs
-    } else if (currentBreakPoint === 'sm') {
-      return this.options.sm
-    } else if (currentBreakPoint === 'md') {
-      return this.options.md
-    } else if (currentBreakPoint === 'lg') {
-      return this.options.lg
-    } else if (currentBreakPoint === 'xl') {
-      return this.options.xl
-    } else if (currentBreakPoint === 'xxl') {
-      return this.options.xxl
+  static of<T extends Object>(options: BreakpointOptions<T>): BreakpointState<T> {
+    return new BreakpointState(options)
+  }
+
+  public update(type: BreakpointType): void {
+    if (type === 'xs') {
+      this.value = this.options.xs
+    } else if (type === 'sm') {
+      this.value = this.options.sm
+    } else if (type === 'md') {
+      this.value = this.options.md
+    } else if (type === 'lg') {
+      this.value = this.options.lg
+    } else if (type === 'xl') {
+      this.value = this.options.xl
+    } else if (type === 'xxl') {
+      this.value = this.options.xxl
     } else {
-      return undefined
+      this.value = undefined
     }
   }
 }
-
-interface Breakpoint {
-  name: string
-  size: number
-  mediaQueryListener?: mediaQuery.MediaQueryListener
-}
-
-export class BreakpointSystem {
-  private currentBreakpoint: string = 'md'
-  private breakpoints: Breakpoint[] = [
-    { name: 'xs', size: 0 }, { name: 'sm', size: 320 },
-    { name: 'md', size: 600 }, { name: 'lg', size: 840 }
-  ]
-
-  private updateCurrentBreakpoint(breakpoint: string) {
-    if (this.currentBreakpoint !== breakpoint) {
-      this.currentBreakpoint = breakpoint
-      AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
-      console.log('on current breakpoint: ' + this.currentBreakpoint)
-    }
-  }
-
-  public register() {
-    this.breakpoints.forEach((breakpoint: Breakpoint, index) => {
-      let condition:string
-      if (index === this.breakpoints.length - 1) {
-        condition = '(' + breakpoint.size + 'vp<=width' + ')'
-      } else {
-        condition = '(' + breakpoint.size + 'vp<=width<' + this.breakpoints[index + 1].size + 'vp)'
-      }
-      console.log(condition)
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
-      breakpoint.mediaQueryListener.on('change', (mediaQueryResult) => {
-        if (mediaQueryResult.matches) {
-          this.updateCurrentBreakpoint(breakpoint.name)
-        }
-      })
-    })
-  }
-
-  public unregister() {
-    this.breakpoints.forEach((breakpoint: Breakpoint) => {
-      if(breakpoint.mediaQueryListener){
-        breakpoint.mediaQueryListener.off('change')
-      }
-    })
-  }
-}
-
 ```
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```ts
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from 'common/breakpointsystem'
 
 @Entry
 @Component
 struct MediaQuerySample {
-  @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
-  @State private icon: Resource = $r('app.media.md')
-  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  @State compStr: BreakpointState<string> = BreakpointState.of({ sm: "sm", md: "md", lg: "lg" })
+  @State compImg: BreakpointState<Resource> = BreakpointState.of({
+    sm: $r('app.media.sm'),
+    md: $r('app.media.md'),
+    lg: $r('app.media.lg')
+  });
 
   aboutToAppear() {
-    this.breakpointSystem.register()
+    BreakpointSystem.getInstance().attach(this.compStr)
+    BreakpointSystem.getInstance().attach(this.compImg)
+    BreakpointSystem.getInstance().start()
   }
 
   aboutToDisappear() {
-    this.breakpointSystem.unregister()
+    BreakpointSystem.getInstance().detach(this.compStr)
+    BreakpointSystem.getInstance().detach(this.compImg)
+    BreakpointSystem.getInstance().stop()
   }
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Image(new BreakPointType({sm:$r('app.media.sm'), md:$r('app.media.md'), lg:$r('app.media.lg')}).getValue(this.currentBreakpoint)!)
+      Column()
         .height(100)
         .width(100)
-        .objectFit(ImageFit.Contain)
+        .backgroundImage(this.compImg.value)
+        .backgroundImagePosition(Alignment.Center)
+        .backgroundImageSize(ImageSize.Contain)
 
-      Text(this.currentBreakpoint)
+      Text(this.compStr.value)
         .fontSize(24)
         .margin(10)
     }
