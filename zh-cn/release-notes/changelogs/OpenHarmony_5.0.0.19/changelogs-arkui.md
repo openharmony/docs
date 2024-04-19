@@ -267,12 +267,6 @@ a) TextInput、TextArea、Search文本手柄颜色，显示样式变更
 
 变更后：TextInput、TextArea、Search文本手柄颜色，显示为光标颜色。
 
-b) TextInput、TextArea、Search文本选中底板颜色显示样式变更
-
-变更前：TextInput、TextArea、Search文本选中底板颜色，未设置颜色，显示为默认颜色，默认透明度20%。
-
-变更后：TextInput、TextArea、Search文本选中底板颜色，未设置颜色，显示为光标颜色，透明度在光标颜色透明度的基础上叠加20%。
-
 如下图所示为变更前后效果对比：
 
 ![handler color change](figures/handler_color_changelog.png)
