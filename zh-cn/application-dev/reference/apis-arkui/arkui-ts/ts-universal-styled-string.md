@@ -294,8 +294,6 @@ appendStyledString(other: StyledString): void
 
 ## StyleOptions对象说明
 
-属性字符串初始化样式选项。
-
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | 否   | 设置属性字符串样式的开始位置。 |
@@ -304,8 +302,6 @@ appendStyledString(other: StyledString): void
 | styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
 
 ## SpanStyle对象说明
-
-属性字符串样式对象说明。
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -318,9 +314,25 @@ appendStyledString(other: StyledString): void
 
 文本字体样式对象说明。
 
-TextStyle(value?: TextStyleInterface)
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  是  |  否  | 获取属性字符串的文本颜色。 |
+| fontFamily | string   | 是    | 否    | 获取属性字符串的文本字体。 |
+| fontSize   | number   | 是    | 否    | 获取属性字符串的文本字体大小。 |
+| fontWeight   | number   | 是    | 否    | 获取属性字符串的文本字体粗细。 |
+| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 否    | 获取属性字符串的文本字体样式。 |
+
+### constructor
+
+constructor(value?: TextStyleInterface)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -328,33 +340,27 @@ TextStyle(value?: TextStyleInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [TextStyleInterface](#textstyleinterface对象说明) | 否   | 字体样式设置项。 |
 
-### fontColor
-
-readonly fontColor?: ResourceColor
-
-获取属性字符串的文本颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型              |说明       |
-| ------- | --------------------------------- | 
-| [ResourceColor](ts-types.md#resourcecolor) | 属性字符串的文本颜色。 |
-
 ## TextStyleInterface对象说明
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
+| fontFamily | [ResourceStr](ts-types.md#resourcestr) | 否   | 文本字体。 |
+| fontSize | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 否   | 字体大小。如果LengthMetric的unit值是percent，当前设置不生效，处理为0vp。 |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。 |
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 字体样式。 |
 
 ## GestureStyle
 
 事件手势对象说明。
 
-GestureStyle(value?: GestureStyleInterface)
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+### constructor
+
+constructor(value?: GestureStyleInterface)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -368,6 +374,118 @@ GestureStyle(value?: GestureStyleInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | onClick | CallBack\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
 | onLongPress | CallBack\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
+
+## DecorationStyle
+
+文本装饰线样式对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  是  | 获取属性字符串的文本下划线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 否    | 获取属性字符串的文本下划线颜色。 |
+
+### constructor
+
+constructor(value: DecorationStyleInterface)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 事件设置项。 |
+
+## DecorationStyleInterface对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 下划线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 下划线颜色。 |
+
+## BaselineOffsetStyle
+
+文本基线偏移量对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| baselineOffset  | number |  是  |  是  | 获取属性字符串的文本基线偏移量。 |
+
+### constructor
+
+constructor(value: LengthMetric)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 文本基线偏移量设置项。如果LengthMetric的unit值是percent，该设置不生效。 |
+
+## LetterSpacingStyle
+
+文本字符间距对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| letterSpacing  | number |  是  |  是  | 获取属性字符串的文本字符间距。 |
+
+### constructor
+
+constructor(value: LengthMetric)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 文本字符间距设置项。如果LengthMetric的unit值是percent，该设置不生效。 |
+
+## TextShadowStyle
+
+文本阴影对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textShadow  | Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> |  是  |  是  | 获取属性字符串的文本阴影。 |
+
+### constructor
+
+constructor(value: ShadowOptions | Array\<ShadowOptions>)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) \| Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)>  | 是   | 文本阴影设置项。 |
 
 ## 示例
 
@@ -581,7 +699,191 @@ struct styled_string_demo2 {
 
 ![](figures/styledstring_2.png)
 
+### 示例3
 
+属性字符串支持文本样式接口示例
+
+```ts
+// xxx.ets
+import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct styled_string_demo3 {
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  fontStyleAttr2: StyledStringValue = new TextStyle({
+    fontColor: Color.Orange,
+    fontSize: LengthMetrics.vp(20),
+    fontWeight: FontWeight.Bolder,
+    fontStyle: FontStyle.Italic,
+    fontFamily: "Arial"
+  });
+  fontStyleAttr3: StyledStringValue = new TextStyle({
+    fontColor: Color.Orange,
+    fontSize: LengthMetrics.vp(20),
+    fontWeight: FontWeight.Lighter,
+    fontStyle: FontStyle.Italic,
+    fontFamily: "Arial"
+  });
+  // 创建多重TextStyle样式的对象mutableStyledString1
+  mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟", [{
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr3
+  }, {
+    start: 2,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr2
+  }
+  ]);
+  // 创建有多种样式组合对象mutableStyledString2
+  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr1
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.DECORATION,
+    styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Blue })
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.TEXT_SHADOW,
+    styledValue: new TextShadowStyle({
+      radius: 5,
+      type: ShadowType.COLOR,
+      color: Color.Yellow,
+      offsetX: 10,
+      offsetY: -10
+    })
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.BASELINE_OFFSET,
+    styledValue: new BaselineOffsetStyle(LengthMetrics.px(20))
+  }, {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.LETTER_SPACING,
+    styledValue: new LetterSpacingStyle(new LengthMetrics(10, LengthUnit.VP))
+  }, {
+    start: 6,
+    length: 5,
+    styledKey: StyledStringKey.BASELINE_OFFSET,
+    styledValue: new BaselineOffsetStyle(LengthMetrics.fp(10))
+  }
+  ]);
+  @State fontColor1: ResourceColor = Color.Red;
+  controller: TextController = new TextController();
+  options: TextOptions = { controller: this.controller };
+  controller2: TextController = new TextController();
+  spanStyle1: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Pink })
+  };
+
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString1)
+    this.controller2.setStyledString(this.mutableStyledString2)
+  }
+
+  build() {
+    Column() {
+      Column({ space: 10 }) {
+        // 显示配了字体各种样式的属性字符串，Text组件亦配置冲突部分生效属性字符串配置，未冲突区间生效Text组件属性设置值
+        Text(undefined, this.options)
+          .fontColor(this.fontColor1)
+          .font({ size: 20, weight: 500, style: FontStyle.Normal })
+        // 显示配置了文本阴影、划线、字符间距、基线偏移量的属性字符串，Text组件亦配置生效属性字符串配置
+        Text(undefined, { controller: this.controller2 })
+          .fontSize(30)
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .decoration({ type: TextDecorationType.Overline, color: Color.Pink })
+          .textShadow({
+            radius: 10,
+            type: ShadowType.COLOR,
+            color: Color.Green,
+            offsetX: -10,
+            offsetY: 10
+          })
+        Button('查询字体样式')
+          .onClick(() => {
+            let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('mutableStyledString1 style object start:' + styles[i].start)
+                console.info('mutableStyledString1 style object length:' + styles[i].length)
+                console.info('mutableStyledString1 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 0) {
+                  let fontAttr = styles[i].styledValue as TextStyle;
+                  console.info('mutableStyledString1 fontColor:' + fontAttr.fontColor)
+                  console.info('mutableStyledString1 fontSize:' + fontAttr.fontSize)
+                  console.info('mutableStyledString1 fontWeight:' + fontAttr.fontWeight)
+                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontStyle)
+                  console.info('mutableStyledString1 fontStyle:' + fontAttr.fontFamily)
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+        Button('查询其他文本样式')
+          .onClick(() => {
+            let styles = this.mutableStyledString2.getStyles(0, this.mutableStyledString2.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('mutableStyledString2 style object start:' + styles[i].start)
+                console.info('mutableStyledString2 style object length:' + styles[i].length)
+                console.info('mutableStyledString2 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 1) {
+                  let decoAttr = styles[i].styledValue as DecorationStyle;
+                  console.info('mutableStyledString2 decoration type:' + decoAttr.type)
+                  console.info('mutableStyledString2 decoration color:' + decoAttr.color)
+                }
+                if (styles[i].styledKey === 2) {
+                  let baselineAttr = styles[i].styledValue as BaselineOffsetStyle;
+                  console.info('mutableStyledString2 baselineOffset:' + baselineAttr.baselineOffset)
+                }
+                if (styles[i].styledKey === 3) {
+                  let letterAttr = styles[i].styledValue as LetterSpacingStyle;
+                  console.info('mutableStyledString2 letterSpacing:' + letterAttr.letterSpacing)
+                }
+                if (styles[i].styledKey === 4) {
+                  let textShadowAttr = styles[i].styledValue as TextShadowStyle;
+                  let shadowValues = textShadowAttr.textShadow;
+                  if (shadowValues.length > 0) {
+                    for (let j = 0; j < shadowValues.length; j++) {
+                      console.info('mutableStyledString2 textShadow type:' + shadowValues[j].type);
+                      console.info('mutableStyledString2 textShadow radius:' + shadowValues[j].radius);
+                      console.info('mutableStyledString2 textShadow color:' + shadowValues[j].color);
+                      console.info('mutableStyledString2 textShadow offsetX:' + shadowValues[j].offsetX);
+                      console.info('mutableStyledString2 textShadow offsetY:' + shadowValues[j].offsetY);
+                    }
+                  }
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+        Button('更新mutableStyledString1样式')
+          .onClick(() => {
+            this.mutableStyledString1.setStyle(this.spanStyle1)
+            this.controller.setStyledString(this.mutableStyledString1)
+          })
+          .margin({ top: 10 })
+      }.width('100%')
+    }
+    .width('100%')
+  }
+}
+```
+![](figures/styledstring_3.png)
 
 
 
