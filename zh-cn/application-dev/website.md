@@ -1120,6 +1120,10 @@
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
     - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
+    - Hap包签名工具
+      - [Hap包签名工具概述](security/hapsigntool-overview.md)
+      - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
+      - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
@@ -1333,7 +1337,6 @@
       - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
       - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
       - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
-      - [zlib子系统错误码](reference/apis-ability-kit/errorcode-zlib.md)
       - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
   - Accessibility Kit API参考
     - ArkTS API
@@ -2141,7 +2144,6 @@
             - [@ohos.brightness (屏幕亮度)(系统接口)](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
             - [@ohos.charger (充电类型)(系统接口)](reference/apis-basic-services-kit/js-apis-charger-sys.md)
             - [@ohos.deviceAttest (设备证明)(系统接口)](reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md)
-            - [@ohos.enterprise.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md)
             - [@ohos.power (系统电源管理)(系统接口)](reference/apis-basic-services-kit/js-apis-power-sys.md)
             - [@ohos.systemCapability (系统能力)(系统接口)](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
