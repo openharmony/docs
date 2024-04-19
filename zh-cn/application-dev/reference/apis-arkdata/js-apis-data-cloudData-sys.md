@@ -48,8 +48,8 @@ import cloudData from '@ohos.data.cloudData';
 
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中accountId和bundleName不能为空。 |
+| eventId   | string | 是   | 目前仅支持传值为"cloud_data_change"，表示云数据变更。              |
+| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中所有字段均为必选字段。 |
 
 **样例：**
 
@@ -58,11 +58,21 @@ import cloudData from '@ohos.data.cloudData';
 //accountId:用户打开的云帐号ID
 //bundleName:应用包名
 //containerName:云上数据库名称
-//containerName:云上数据库表名
+//databaseScopes:云上数据库类型
+//recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
+  extraData: '{
+    "header": { "token": "bbbbbb" },
+    "data": {
+      "accountId": "aaa",
+      "bundleName": "com.bbb.xxx",
+      "containerName": "alias",
+      "databaseScopes": ["private", "shared"],
+      "recordTypes": ["xxx", "yyy", "zzz"]
+    }
+  }'
 }
 
 ```
