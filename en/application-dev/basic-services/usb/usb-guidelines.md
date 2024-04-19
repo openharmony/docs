@@ -165,9 +165,3 @@ You can set a USB device as a host to connect to a device for data transfer. The
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
-
-## 相关实例
-
-针对USB管理开发，有以下相关实例可供参考：
-
-- [`DeviceManagementCollection`：设备管理合集（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/DeviceManagementCollection)
