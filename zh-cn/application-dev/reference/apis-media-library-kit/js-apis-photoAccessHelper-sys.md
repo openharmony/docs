@@ -4760,3 +4760,6 @@ async function example() {
 | ANALYSIS\_COMPOSITION         | 7  | 美学构图分析类别。**系统接口**：此接口为系统接口。   |
 | ANALYSIS\_SALIENCY            | 8  | 最佳呈现主体中心分析类别。**系统接口**：此接口为系统接口。   |
 | ANALYSIS\_DETAIL\_ADDRESS     | 9  | 详细地址分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HUMAN\_FACE\_TAG    | 10 | 人像聚类信息分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HEAD\_POSITION      | 11 | 人头、宠物头位置分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_BONE\_POSE          | 12 | 人体骨骼点信息分析类别。**系统接口**：此接口为系统接口。    |
