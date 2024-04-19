@@ -39,6 +39,7 @@
 | struct&nbsp;&nbsp;[JSVM_PropertyDescriptor](_j_s_v_m___property_descriptor.md) | 属性描述符。 | 
 | struct&nbsp;&nbsp;[JSVM_ExtendedErrorInfo](_j_s_v_m___extended_error_info.md) | 扩展的异常信息。 | 
 | struct&nbsp;&nbsp;[JSVM_TypeTag](_j_s_v_m___type_tag.md) | 类型标记，存储为两个无符号64位整数的128位值。 作为一个UUID，通过它，JavaScript对象可以是"tagged"， 以确保它们的类型保持不变。 | 
+| struct&nbsp;&nbsp;[JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) | 当执行对象的getter、setter、deleter和enumerator作时，对应的的回调将会触发。 | 
 
 
 ### 宏定义
@@ -74,6 +75,7 @@
 | typedef [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) \* [JSVM_Callback](#jsvm_callback) | 用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。 | 
 | typedef void(JSVM_CDECL \* [JSVM_Finalize](#jsvm_finalize)) ([JSVM_Env](#jsvm_env) env, void \*finalizeData, void \*finalizeHint) | 函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。 | 
 | typedef bool(JSVM_CDECL \* [JSVM_OutputStream](#jsvm_outputstream)) (const char \*data, int size, void \*streamData) | ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。 | 
+| typedef [JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) \* [JSVM_PropertyHandlerCfg](#jsvm_propertyhandlercfg) | 包含属性监听回调的结构的指针类型。 | 
 
 
 ### 枚举
@@ -236,6 +238,7 @@
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_OpenInspector](#oh_jsvm_openinspector) ([JSVM_Env](#jsvm_env) env, const char \*host, uint16_t port) | 在指定的主机和端口上激活inspector，将用来调试JS代码。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CloseInspector](#oh_jsvm_closeinspector) ([JSVM_Env](#jsvm_env) env) | 尝试关闭剩余的所有inspector连接。 | 
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_WaitForDebugger](#oh_jsvm_waitfordebugger) ([JSVM_Env](#jsvm_env) env, bool breakNextLine) | 等待主机与inspector建立socket连接，连接建立后程序将继续运行。 发送Runtime.runIfWaitingForDebugger命令。 | 
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_DefineClassWithPropertyHandler](#oh_jsvm_defineclasswithpropertyhandler) ([JSVM_Env](#jsvm_env) env, const char \*utf8name, size_t length, [JSVM_Callback](#jsvm_callback) constructor, size_t propertyCount, const [JSVM_PropertyDescriptor](_j_s_v_m___property_descriptor.md) \*properties, [JSVM_PropertyHandlerCfg](#jsvm_propertyhandlercfg) propertyHandlerCfg, [JSVM_Callback](#jsvm_callback) callAsFunctionCallback, [JSVM_Value](#jsvm_value) \*result) | 定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类属性操作包括getter、setter、deleter、enumerator等，并作为函数回调进行调用。 | 
 
 
 ## 宏定义说明
@@ -383,6 +386,19 @@ typedef bool(JSVM_CDECL* JSVM_OutputStream) (const char *data, int size, void *s
 **描述**
 
 ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。
+
+**起始版本：** 12
+
+
+### JSVM_PropertyHandlerCfg
+
+```
+typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg
+```
+
+**描述**
+
+包含属性监听回调的结构的指针类型。
 
 **起始版本：** 12
 
@@ -1829,6 +1845,37 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineClass (JSVM_Env env, const char * utf8name
 **返回：**
 
 成功则返回JSVM_OK。
+
+
+### OH_JSVM_DefineClassWithPropertyHandler()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DefineClassWithPropertyHandler (JSVM_Env env, const char * utf8name, size_t length, JSVM_Callback constructor, size_t propertyCount, const JSVM_PropertyDescriptor * properties, JSVM_PropertyHandlerCfg propertyHandlerCfg, JSVM_Callback callAsFunctionCallback, JSVM_Value * result )
+```
+
+**描述**
+
+定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类属性操作包括getter、setter、deleter、enumerator等，并作为函数回调进行调用。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| utf8name | JavaScript类构造函数的名称。 | 
+| length | utf8name的长度（以字节为单位）或JSVM_AUTO_LENGTH（如果以 null 结尾）。 | 
+| constructor | 用于创建类的构造函数的回调函数。此方法必须是JSVM_Callback类型。 constructor中callback回调需为静态成员。不能使用C++类构造函数。详情请参考JSVM_Callback。 | 
+| propertyCount | properties数组参数中的项数。 | 
+| properties | 描述静态数据和实例数据的属性描述符数组类上的属性、访问器和方法请参考JSVM_PropertyDescriptor。 | 
+| propertyHandlerCfg | 访问实例对象属性触发相应的回调函数。 | 
+| callAsFunctionCallback | 将实例对象作为函数调用将触发此回调。 | 
+| result | 表示JavaScript类的构造函数的JSVM_Value。 | 
+
+**返回：**
+
+成功则返回JSVM_OK。失败则返回JSVM_GENERIC_FAILURE。
 
 
 ### OH_JSVM_DefineProperties()
