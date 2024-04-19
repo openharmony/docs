@@ -584,7 +584,7 @@ class DrawingRenderNode extends RenderNode {
 
 attachBrush(brush: Brush): void
 
-绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并其内部进行填充。
+绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并在其内部进行填充。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
