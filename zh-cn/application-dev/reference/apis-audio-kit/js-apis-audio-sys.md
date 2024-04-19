@@ -470,7 +470,9 @@ let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.
 
 disableSafeMediaVolume(): Promise&lt;void&gt;
 
-设置安规为非激活状态。使用Promise方式异步返回结果。
+设置安全音量为非激活状态。使用Promise方式异步返回结果。
+
+设置为非激活状态后，当设备长时间高音量播放时，不再自动提醒用户降低到安全音量。
 
 **需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
