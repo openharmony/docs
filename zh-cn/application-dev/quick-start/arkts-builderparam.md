@@ -160,7 +160,7 @@ struct Parent {
   build() {
     Column() {
       this.componentBuilder()
-      Child({ customBuilderParam: this.componentBuilder, customOverBuilderParam: GlobalBuilder1 })
+      Child({ customBuilderParam: this.componentBuilder, customOverBuilderParam: overBuilder })
     }
   }
 }
