@@ -11,7 +11,7 @@ In Host mode, you can obtain the list of connected USB devices, enable or disabl
 
 The USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
 
-USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis-basic-services-kit/js-apis-usbManager.md)。
+The following table lists the USB APIs currently available. For details, see the [API Reference](../../reference/apis-basic-services-kit/js-apis-usbManager.md).
 
 **Table 1** Open USB APIs
 
