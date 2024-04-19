@@ -98,6 +98,5 @@
     - [System Parameter Error Codes](errorcode-system-parameterV9.md)
     - [Power Manager Error Codes](errorcode-power.md)
     - [Account Management Error Codes](errorcode-account.md)
-    - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
     - [Update Error Codes](errorcode-update.md)
 <!--no_check-->
