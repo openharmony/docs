@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS参数集的能力，支持HUKS密钥管理接口的使用，包括初始化参数集、添加参数、构造参数集、释放参数集等HUKS参数集生命周期管理函数， 还包括获取参数、复制参数集、查询参数集、检查是否有效、销毁秘钥别名集等函数。
+描述HUKS参数集的能力，支持HUKS密钥管理接口的使用，包括初始化参数集、添加参数、构造参数集、释放参数集等HUKS参数集生命周期管理函数， 还包括获取参数、复制参数集、查询参数集、检查是否有效等函数。
 
 **系统能力：** SystemCapability.Security.Huks
 
@@ -34,7 +34,6 @@
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_IsParamSetTagValid](#oh_huks_isparamsettagvalid) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 检查参数集中的参数是否有效、是否有重复。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_IsParamSetValid](#oh_huks_isparamsetvalid) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, uint32_t size) | 检查参数集大小是否有效。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_CheckParamMatch](#oh_huks_checkparammatch) (const struct [OH_Huks_Param](_o_h___huks___param.md) \*baseParam, const struct [OH_Huks_Param](_o_h___huks___param.md) \*param) | 比较两个参数是否相同。 | 
-| void [OH_Huks_FreeKeyAliasSet](#oh_huks_freekeyaliasset) (struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*keyAliasSet) | 销毁密钥别名集。  | 
 
 ## 函数说明
 

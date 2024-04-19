@@ -404,24 +404,3 @@ struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle,
 [OH_Huks_FinishSession](#oh_huks_finishsession)
 
 [OH_Huks_AbortSession](#oh_huks_abortsession)
-
-### OH_Huks_ListAliases()
-
-```
-struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_KeyAliasSet ** outData )
-```
-**描述**
-批量查询密钥别名集。
-
-**起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| paramSet | 查询密钥需要的属性TAG（默认传空）。  | 
-| outData | 查询后输出的密钥集数据。  | 
-
-**返回：**
-
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
