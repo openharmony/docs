@@ -197,8 +197,19 @@ import drm from '@ohos.multimedia.drm';
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| uuid   | string | 是  | 插件类型Id      |
+| uuid   | string | 是  | 插件唯一标识码      |
 | pssh     | Uint8Array                 | 是  | drm info内的保护方案特定标头       |
+
+## MediaKeySystemDescription
+
+设备支持的插件信息，包含插件名称和插件唯一标识码uuid。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+| 名称      | 类型                           | 必填 | 说明         |
+| -------- | ----------------------------- |---- | ------------- |
+| name   | string | 是  | 插件名称      |
+| uuid   | string | 是  | 插件唯一标识码      |
 
 ## drm.createMediaKeySystem
 
@@ -379,6 +390,49 @@ try {
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 
+```
+
+## drm.getMediaKeySystemName
+
+getMediaKeySystemName(): MediaKeySystemDescription
+
+获取设备支持的DRM插件的名称和uuid。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件名称。                   |
+| uuid  | string     | 是   | 插件唯一识别码。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [MediaKeySystemDescription](#mediaKeySystemDescription)           | 设备支持的MediaKeySystem插件描述信息，包含name和uuid。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let description: drm.MediaKeySystemDescription = drm.getMediaKeySystemName();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystemName ERROR: ${error}`);  
+}
 ```
 
 ## MediaKeySystem
