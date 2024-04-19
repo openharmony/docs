@@ -503,6 +503,182 @@ try {
 }
 ```
 
+## display.on('foldAngleChange')<sup>12+</sup>
+
+on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
+
+开启折叠设备折叠角度变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是 | 监听事件，固定为'foldAngleChange'，表示折叠设备折叠角度发生变化。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+try {
+  display.on('foldAngleChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('foldAngleChange')<sup>12+</sup>
+
+off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): void
+
+关闭折叠设备折叠角度变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                    | 是  | 监听事件，固定为'foldAngleChange'表示折叠设备折叠角度发生变化。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 否  | 需要取消注册的回调函数。若无此参数，则取消注册折叠角度变化监听的所有回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  display.off('foldAngleChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.on('captureStatusChange')<sup>12+</sup>
+
+on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
+
+开启屏幕截屏、投屏、录屏状态变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏或者录屏状态发生变化。|
+| callback | Callback&lt;boolean&gt; | 是 | 回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+try {
+  display.on('captureStatusChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('captureStatusChange')<sup>12+</sup>
+
+off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭屏幕截屏、投屏、录屏状态变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏、录屏状态发生变化。|
+| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  display.off('captureStatusChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.isCaptured<sup>12+</sup>
+isCaptured(): boolean
+
+检查设备是否正在截屏、投屏、录屏。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| boolean | boolean值，返回当前设备是否有截屏、投屏或者录屏。true表示有截屏、投屏、录屏，否则返回false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+let ret: boolean = false;
+try {
+  ret = display.isCaptured();
+} catch (exception) {
+  console.error('Failed to check is captured or not. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## display.on('foldDisplayModeChange')<sup>10+</sup>
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
