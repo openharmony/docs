@@ -1899,7 +1899,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readLongArray(): number[]
 
-Reads the long array from this **MessageSequence** object.
+Reads the long integer array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3331,7 +3331,9 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
   hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
   ```
 
-### writeRawData
+### writeRawData<sup>(deprecated)</sup>
+
+>**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [writeRawDataBuffer](#writerawdatabuffer11).
 
 writeRawData(rawData: number[], size: number): void
 
@@ -3371,7 +3373,54 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readRawData
+### writeRawDataBuffer<sup>11+</sup>
+
+writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
+
+Writes raw data to this **MessageSequence** object.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+  | Name | Type    | Mandatory| Description                              |
+  | ------- | -------- | ---- | ---------------------------------- |
+  | rawData | ArrayBuffer | Yes  | Raw data to write.                |
+  | size    | number   | Yes  | Size of the raw data, in bytes.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
+
+**Example**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(64 * 1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let sequence = new rpc.MessageSequence();
+  try {
+    sequence.writeRawDataBuffer(buffer, size);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readRawData<sup>(deprecated)</sup>
+
+>**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [readRawDataBuffer](#readrawdatabuffer11).
 
 readRawData(size: number): number[]
 
@@ -3417,6 +3466,65 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   try {
     let result = sequence.readRawData(5);
     hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + result);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readRawDataBuffer<sup>11+</sup>
+
+readRawDataBuffer(size: number): ArrayBuffer
+
+Reads raw data from this **MessageSequence** object.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | size   | number | Yes  | Size of the raw data to read.|
+
+**Return value**
+
+  | Type    | Description                          |
+  | -------- | ------------------------------ |
+  | ArrayBuffer | Raw data obtained, in bytes.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
+
+**Example**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(64 * 1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let sequence = new rpc.MessageSequence();
+  try {
+    sequence.writeRawDataBuffer(buffer, size);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write rawdata fail, errorMessage ' + e.message);
+  }
+  try {
+    let result = sequence.readRawDataBuffer(size);
+    let readInt32View = new Int32Array(result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: sequence read raw data result is ' + readInt32View);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
@@ -6262,7 +6370,6 @@ Defines the response to the request.
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object sent to the remote process.|
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | No  | **MessageParcel** object returned by the remote process.  |
 
-
 ## IRemoteObject
 
 Provides methods to query of obtain interface descriptors, add or delete death notifications, dump object status to specific files, and send messages.
@@ -6563,6 +6670,8 @@ Checks whether this object is dead.
   | Type   | Description                              |
   | ------- | ---------------------------------- |
   | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
+
+
 
 ## RemoteProxy
 
@@ -6943,7 +7052,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7630,7 +7739,7 @@ Checks whether the **RemoteObject** is dead.
 
   | Type   | Description                                             |
   | ------- | ------------------------------------------------- |
-  | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
+  | boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
@@ -7689,7 +7798,7 @@ Defines the options used to construct the **MessageOption** object.
   | TF_SYNC       | 0 (0x00)  | Synchronous call.                                             |
   | TF_ASYNC      | 1 (0x01)  | Asynchronous call.                                             |
   | TF_ACCEPT_FDS | 16 (0x10) | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter is not used in IPC.                                    |
+  | TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter cannot be used in IPC.                                    |
 
 ### constructor<sup>9+</sup>
 
@@ -8192,7 +8301,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 static resetCallingIdentity(): string
 
-Changes the UID and PID of the remote user to the UID and PID of the local user. This API is a static method. You can use it in scenarios such as identity authentication.
+Resets the UID and PID of the remote user to those of the local user. This API is a static method and is used in scenarios such as identity authentication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8220,7 +8329,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 static restoreCallingIdentity(identity: string): void
 
-Restores the UID and PID of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
+Restores the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8251,7 +8360,7 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 static setCallingIdentity(identity: string): boolean
 
-Sets the UID and PID to that of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
+Sets the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8562,7 +8671,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9666,7 +9775,56 @@ Sets the protection level of the memory region to which the shared file is mappe
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 
-### writeAshmem<sup>9+</sup>
+### writeDataToAshmem<sup>11+</sup>
+
+writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
+
+Writes data to the shared file associated with this **Ashmem** object.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+  | Name| Type    | Mandatory| Description                                              |
+  | ------ | -------- | ---- | -------------------------------------------------- |
+  | buf    | ArrayBuffer | Yes  | Data to write.                            |
+  | size   | number   | Yes  | Size of the data to write.                                |
+  | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900003  | write to ashmem failed |
+
+**Example**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  ashmem.mapReadWriteAshmem();
+  try {
+    ashmem.writeDataToAshmem(buffer, size, 0);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
+  }
+  ```
+
+### writeAshmem<sup>9+(deprecated)</sup>
+
+>**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [writeDataToAshmem](#writedatatoashmem11).
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
@@ -9710,7 +9868,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem9deprecated).
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9745,7 +9903,70 @@ Writes data to the shared file associated with this **Ashmem** object.
   hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   ```
 
-### readAshmem<sup>9+</sup>
+### readDataFromAshmem<sup>11+</sup>
+
+readDataFromAshmem(size: number, offset: number): ArrayBuffer
+
+Reads data from the shared file associated with this **Ashmem** object.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+
+  | Name| Type  | Mandatory| Description                                              |
+  | ------ | ------ | ---- | -------------------------------------------------- |
+  | size   | number | Yes  | Size of the data to read.                              |
+  | offset | number | Yes  | Start position of the data to read in the memory region associated with this **Ashmem** object.|
+
+**Return value**
+
+  | Type    | Description            |
+  | -------- | ---------------- |
+  | ArrayBuffer | Data read.|
+
+**Error codes**
+
+For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 1900004  | read from ashmem failed |
+
+**Example**
+
+  ```ts
+  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@ohos.base';
+
+  let buffer = new ArrayBuffer(1024);
+  let int32View = new Int32Array(buffer);
+  for (let i = 0; i < int32View.length; i++) {
+    int32View[i] = i * 2 + 1;
+  }
+  let size = buffer.byteLength;
+  let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
+  ashmem.mapReadWriteAshmem();
+  try {
+    ashmem.writeDataToAshmem(buffer, size, 0);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc write to ashmem fail, errorMessage ' + e.message);
+  }
+  try {
+    let readResult = ashmem.readDataFromAshmem(size, 0);
+    let readInt32View = new Int32Array(readResult);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read from Ashmem result is ' + readInt32View);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'Rpc read from ashmem fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readAshmem<sup>9+(deprecated)</sup>
+
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use the [readDataFromAshmem](#readdatafromashmem11).
 
 readAshmem(size: number, offset: number): number[]
 
@@ -9796,7 +10017,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [readAshmem](#readashmem9).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [readAshmem](#readashmem9deprecated).
 
 readFromAshmem(size: number, offset: number): number[]
 

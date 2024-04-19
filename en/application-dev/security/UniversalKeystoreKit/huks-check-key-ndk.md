@@ -1,4 +1,4 @@
-# Checking Key Existence (C/C++)
+# Checking a Key (C/C++)
 
 
 Check whether a key exists.
@@ -10,7 +10,7 @@ Check whether a key exists.
    - Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
    - Set **TAG** of the key. By default, leave this parameter empty.
 
-2. Use [OH_Huks_IsKeyItemExist](../../reference/native-apis/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists.
+2. Use [OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists.
 
 ```c++
 #include "huks/native_huks_api.h"

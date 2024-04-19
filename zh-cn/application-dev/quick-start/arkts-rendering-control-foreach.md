@@ -206,10 +206,10 @@ struct ArticleList {
 
   build() {
     Column() {
-      ForEach(this.simpleList, (item: string) => {
+      ForEach(this.simpleList, (item: number) => {
         ArticleSkeletonView()
           .margin({ top: 20 })
-      }, (item: string) => item)
+      }, (item: number) => item.toString())
     }
     .padding(20)
     .width('100%')
@@ -533,7 +533,7 @@ struct ChildItem {
 }
 ```
 
-上述代码的初始渲染效果（左图）和点击“在第1项后插入新项”文本组件后的渲染效果（右图）如下图所示。
+上述代码的初始渲染效果和点击“在第1项后插入新项”文本组件后的渲染效果如下图所示。
 
 **图8**  渲染结果非预期运行效果图  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
@@ -592,7 +592,7 @@ struct ChildItem {
 }
 ```
 
-以上代码的初始渲染效果（左图）和点击"在第1项后插入新项"文本组件后的渲染效果（右图）如下所示。
+以上代码的初始渲染效果和点击"在第1项后插入新项"文本组件后的渲染效果如下图所示。
 
 **图9**  渲染性能降低案例运行效果图  
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)

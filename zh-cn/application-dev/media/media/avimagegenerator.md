@@ -79,8 +79,7 @@ struct Index {
     let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
     let param: media.PixelMapParams = {
       width : 300,
-      height : 300,
-      colorFormat : media.PixelFormat.RGB_565
+      height : 300
     }
 
     // 获取缩略图（promise模式）

@@ -124,14 +124,15 @@ Delete the keys from device A and device B when the keys are not required. For d
      inData: StringToUint8Array(agreeX25519InData)
  }
  /* Set the parameter set for the second key agreement. */
+ let finishPropertiesSecond = [...finishProperties]
+ finishPropertiesSecond[6] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
+    value: StringToUint8Array(srcKeyAliasSecond + 'final'),
+ }
  let finishOptionsSecond: huks.HuksOptions = {
-     properties: finishProperties,
+     properties: finishPropertiesSecond,
      inData: StringToUint8Array(agreeX25519InData)
  }
- finishOptionsSecond.properties!.splice(6, 1, {
-     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
-     value: StringToUint8Array(srcKeyAliasSecond + 'final'),
- })
  function StringToUint8Array(str:string) {
      let arr: number[] = new Array();
      for (let i = 0, j = str.length; i < j; ++i) {

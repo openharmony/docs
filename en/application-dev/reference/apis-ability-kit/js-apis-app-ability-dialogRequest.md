@@ -18,6 +18,10 @@ import dialogRequest from '@ohos.app.ability.dialogRequest';
 
 getRequestInfo(want: Want): RequestInfo
 
+> **NOTE**
+>
+>  This API can be used by a ServiceExtensionAbility. If the ServiceExtensionAbility implements modal dialog boxes, the request information can be obtained from Want. If this API is used in other scenarios, no return value is obtained.
+
 Obtains the request information from Want.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -58,6 +62,10 @@ export default class EntryAbility extends UIAbility {
 getRequestCallback(want: Want): RequestCallback
 
 Obtains the request callback from Want.
+
+> **NOTE**
+>
+>  This API can be used by a ServiceExtensionAbility. If the ServiceExtensionAbility implements modal dialog boxes, the request callback can be obtained from Want. If this API is used in other scenarios, no return value is obtained.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

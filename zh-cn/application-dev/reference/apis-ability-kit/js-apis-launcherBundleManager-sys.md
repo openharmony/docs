@@ -418,3 +418,60 @@ try {
     console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
+
+## launcherBundleManager.startShortcut<sup>12+</sup>
+
+startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise<void>;
+
+拉起指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)中的ability。
+
+**需要权限：** ohos.permission.START_SHORTCUT
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**参数：**
+
+| 参数名        | 类型   | 必填 | 说明         |
+| ------------ | ------ | ---- | -------------- |
+| ShortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 应用的快捷方式信息。 |
+| options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | 否   | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ---------------------------------------- |
+| 17700065 | The specified shortcut want in shortcut info is not supported to be started.  |
+
+**示例：**
+
+```ts
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let data : Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    console.log("data is " + JSON.stringify(data));
+    if (data) {
+        try {
+            launcherBundleManager.startShortcut(data[0])
+                .then(() => {
+                console.log("startShortcut success");
+            }).catch ((err: BusinessError) => {
+                console.error(`errData is errCode:${err.code}  message:${err.message}`);
+            });
+        } catch (error) {
+            let code = (error as BusinessError).code;
+            let message = (error as BusinessError).message;
+            console.error(`error is errCode:${code}  message:${message}`);
+        }
+    }
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```

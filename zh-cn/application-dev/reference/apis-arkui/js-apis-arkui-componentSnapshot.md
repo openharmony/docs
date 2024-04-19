@@ -1,6 +1,6 @@
 # @ohos.arkui.componentSnapshot (组件截图)
 
-本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。
+本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。兄弟节点堆叠在组件区域内，截图不会显示兄弟组件。
 
 > **说明：**
 >
@@ -51,36 +51,33 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap|undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   build() {
     Column() {
-      Image(this.pixmap)
-        .width(300).height(300)
-      // ...Component
-      // ...Component
-      // ...Component
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
-                if(error){
-                  console.log("error: " + JSON.stringify(error))
-                  return;
-                }
-                this.pixmap = pixmap
-                // save pixmap to file
-                // ....
-             })
-        })
+            if (error) {
+              console.log("error: " + JSON.stringify(error))
+              return;
+            }
+            this.pixmap = pixmap
+          })
+        }).margin(10)
     }
-    .width('80%')
-    .margin({ left: 10, top: 5, bottom: 5 })
-    .height(200)
-    .border({ color: '#880606', width: 2 })
-    .id("root")
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
+
+![componentget](figures/componentget.gif) 
 
 ## componentSnapshot.get
 
@@ -121,35 +118,32 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap|undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   build() {
     Column() {
-      Image(this.pixmap)
-        .width(300).height(300)
-      // ...Component
-      // ...Component
-      // ...Component
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root")
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
-              // save pixmap to file
-              // ....
             }).catch((err:Error) => {
             console.log("error: " + err)
           })
-        })
+        }).margin(10)
     }
-    .width('80%')
-    .margin({ left: 10, top: 5, bottom: 5 })
-    .height(200)
-    .border({ color: '#880606', width: 2 })
-    .id("root")
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
+
+![componentget](figures/componentget.gif) 
 
 ## componentSnapshot.createFromBuilder
 
@@ -217,8 +211,8 @@ struct OffscreenSnapshotExample {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               if(error){
-                  console.log("error: " + JSON.stringify(error))
-                  return;
+                console.log("error: " + JSON.stringify(error))
+                return;
               }
               this.pixmap = pixmap
               // save pixmap to file
@@ -230,13 +224,15 @@ struct OffscreenSnapshotExample {
         })
       Image(this.pixmap)
         .margin(10)
-        .height(100)
-        .width(100)
-    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
-    .border({ color: '#880606', width: 2 })
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
   }
 }
 ```
+
+![componentcreate](figures/componentcreate.gif) 
 
 ## componentSnapshot.createFromBuilder
 
@@ -319,10 +315,12 @@ struct OffscreenSnapshotExample {
         })
       Image(this.pixmap)
         .margin(10)
-        .height(100)
-        .width(100)
-    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
-    .border({ color: '#880606', width: 2 })
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
   }
 }
 ```
+
+![componentcreate](figures/componentcreate.gif) 

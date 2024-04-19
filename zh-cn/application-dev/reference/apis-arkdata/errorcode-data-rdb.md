@@ -12,21 +12,28 @@ Inner error.
 
 **错误描述**
 
-数据库底层发生错误。
+内部错误。
 
 **可能原因**
 
-传入SQL语句非法等。
+优先查看错误日志，通过日志可以详细了解错误原因，主要有以下几种：
+1. sql执行异常。
+2. 内部状态异常。
+3. 错误地使用接口。
+4. 系统错误，如空指针、内存不足、数据服务异常重启、I/O错误、IPC异常、JS引擎异常等。
 
 **处理步骤**
 
-需通过日志信息确认错误发生原因。
+1. 开发者排查sql语句和谓词是否正确使用。
+2. 开发者排查是否存在对象关闭后再使用。
+3. 开发者排查是否按接口文档正确使用接口。
+4. 尝试重试，如果依然无法解决，可以提示用户重启应用、升级应用或升级设备版本。
 
 ## 14800010 数据库路径不合法
 
 **错误信息**
 
-Failed to open or delete database by invalid database path.
+Invalid database path.
 
 **错误描述**
 
@@ -44,7 +51,7 @@ Failed to open or delete database by invalid database path.
 
 **错误信息**
 
-Failed to open database by database corrupted.
+Database corrupted.
 
 **错误描述**
 
@@ -99,6 +106,43 @@ The column value is  null or the column type is incompatible.
 1. 检查结果集是否为空。
 2. 检查结果集当前行号、列号是否超出范围。
 3. 检查当前列数据类型是否支持。
+
+## 14800015 数据库没有响应
+
+**错误信息**
+
+The database does not respond.
+
+**错误描述**
+
+数据库没有响应。
+
+**可能原因**
+
+有读写操作正在执行，无法在指定的时间（默认2s）内执行当前操作。
+
+**处理步骤**
+
+1. 重新尝试
+2. 如果是[attach](./js-apis-data-relationalStore.md#attach12)或[detach](./js-apis-data-relationalStore.md#detach12)接口，增加waitTime值来增加等待时长。
+
+## 14800016 数据库别名已被使用
+
+**错误信息**
+
+The database is already attached.
+
+**错误描述**
+
+附加后的数据库别名已被使用。
+
+**可能原因**
+
+附加后的数据库的别名已被使用。
+
+**处理步骤**
+
+不进行附加数据库操作或者修改附加后数据库的别名。
 
 ## 14800047 WAL文件大小超过默认上限
 

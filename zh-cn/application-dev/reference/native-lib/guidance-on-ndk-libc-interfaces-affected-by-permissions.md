@@ -53,8 +53,6 @@ musl libc接口使用的限制包含如下类型：
 | 受Seccomp机制影响     | sys/xattr.h  | setxattr |
 | 受Seccomp机制影响     | time.h       | clock_settime |
 | 受Seccomp机制影响     | time.h       | settimeofday |
-| 受Seccomp机制影响     | time.h       | adjtime |
-| 受Seccomp机制影响     | time.h       | stime |
 | 受Seccomp机制影响     | sys/stat.h   | mknod |
 | 受Seccomp机制影响     | sys/stat.h   | mknodat |
 | 受Seccomp机制影响     | sys/stat.h   | mkfifo |

@@ -62,12 +62,12 @@ ws.connect(defaultIpAddress, {
   header:{
       name1: 'value1',
       name2: 'value2',
-      name2: 'value3'
+      name3: 'value3'
   },
   proxy: {
       host: '192.168.0.150',
       port: 8888,
-      excludeList: []
+      exclusionList: []
   },
   protocol: 'my-protocol',
   }, (err: BusinessError, value: boolean) => {

@@ -34,7 +34,8 @@
    > 移除的粘性公共事件，必须是本应用之前已发布的粘性公共事件，发布粘性公共事件参考[公共事件发布](common-event-publish.md)章节。
 
    ```ts
-   commonEventManager.removeStickyCommonEvent('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+   // 移除粘性公共事件，其中的event字段需要替换为实际的事件名称。
+   commonEventManager.removeStickyCommonEvent('event', (err: Base.BusinessError) => {
      // sticky_event粘性公共事件名
      if (err) {
        console.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);

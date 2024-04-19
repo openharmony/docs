@@ -36,7 +36,49 @@ Refresh(value: RefreshOptions)
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+### refreshOffset<sup>12+</sup>
+
+refreshOffset(value: number)
+
+设置触发刷新的下拉偏移量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | number |  是 | 下拉偏移量，单位vp。<br/>默认值：64vp <br/>如果取值为0或负数的时候此接口采用默认值64vp。
+### pullToRefresh<sup>12+</sup>
+
+pullToRefresh(value: boolean)
+
+设置当下拉距离超过refreshOffset时是否触发刷新。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | boolean |  是 | 是否触发刷新。<br/>默认值：true |
+
+### pullDownRatio<sup>12+</sup>
+
+pullDownRatio(value: number)
+
+设置下拉跟手系数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| value  | number |  是 | 下拉跟手系数。<br/>没有设置或设置为undefined时，默认使用动态下拉跟手系数，下拉距离越大，跟手系数越小。<br/>有效值为0-1之间的值，小于0的值会被视为0，大于1的值会被视为1。 |
+
 
 ## 事件
 
@@ -64,33 +106,6 @@ onRefreshing(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### refreshOffset<sup>12+</sup>
-
-refreshOffset(value: number)
-
-触发刷新的下拉偏移量。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| value  | number | 是   | 下拉偏移量，单位vp。 |
-
-### pullToRefresh<sup>12+</sup>
-
-pullToRefresh(value: boolean)
-
-设置当下拉距离超过refreshOffset时是否触发刷新。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型    | 必填 | 说明           |
-| ------ | ------- | ---- | -------------- |
-| value  | boolean | 是   | 是否触发刷新。 |
 
 ## RefreshStatus枚举说明
 
@@ -102,6 +117,19 @@ pullToRefresh(value: boolean)
 | Refresh  | 3 | 下拉结束，回弹至刷新距离，进入刷新状态。 |
 | Done     | 4 | 刷新结束，返回初始状态（顶部）。     |
 
+### onOffsetChange<sup>12+</sup>
+
+onOffsetChange(callback: Callback\<number>)
+
+下拉距离发生变化时触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明       |
+| ------ | --------------------------------------- | ---- | ---------- |
+| value  | number | 是   | 下拉距离。<br/>单位：vp |
 
 ## 示例 
 ### 示例1
@@ -137,6 +165,9 @@ struct RefreshExample {
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value)
       })
       .onRefreshing(() => {
         setTimeout(() => {

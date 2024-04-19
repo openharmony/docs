@@ -24,6 +24,8 @@ import Configuration from '@ohos.app.ability.Configuration';
 | screenDensity  | [ScreenDensity](js-apis-app-ability-configurationConstant.md#configurationconstantscreendensity) | No| No| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.|
 | displayId  | number | No| No| ID of the display where the application is located.|
 | hasPointerDevice  | boolean | No| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.|
+| fontSizeScale<sup>12+<sup> | number | No| No| Scale factor for the font size. The value ranges from 0 to 3.2.|
+| fontWeightScale<sup>12+<sup> | number | No| No| Scale factor for the font weight. The value ranges from 0 to 1.25.|
 
 For details about the fields, see the **ohos.app.ability.Configuration.d.ts** file.
 
@@ -46,6 +48,8 @@ export default class EntryAbility extends UIAbility {
                 let screenDensity = config.screenDensity;
                 let displayId = config.displayId;
                 let hasPointerDevice = config.hasPointerDevice;
+                let fontSizeScale = config.fontSizeScale;
+                let fontWeightScale = config.fontWeightScale;
             },
             onMemoryLevel(level) {
                 console.log('onMemoryLevel level: ${level}');

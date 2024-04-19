@@ -1,5 +1,4 @@
-# OpenHarmony Node-API FAQs
-
+# Node-API FAQs
 
 ## What should I do when "undefined/not callable" is reported for an API of a module imported from a .so file?
 
@@ -17,7 +16,6 @@
 
     
 
-
 ## What should I do when an unexpected value is returned by an API and "occur exception need return" is reported?
 
 Before the call is complete, some Node-API interfaces are checked for JS exceptions in the VM. If an exception is detected, "occur exception need return" will be reported, with the line number of the code and the Node-API interface name.
@@ -30,31 +28,32 @@ You can solve this problem as follows:
 - Throw the exception to the ArkTS layer for capture.<br>
   Throw the exception directly to the ArkTS layer without going through the native logic.
 
-
 ## What are the differences between the lifecycle of napi_value and napi_ref?
 
 - **native_value** is managed by **HandleScope**. Generally, you do not need to add **HandleScope** for **native_value** (except for **complete callback** of **uv_queue_work**).
 
 - **napi_ref** must be deleted manually.
 
-
 ## How do I locate the fault if the return value of a Node-API interface is not "napi_ok"?
 
 When a Node-API interface is successfully executed, **napi_ok** is returned. If the return value is not **napi_ok**, locate the fault as follows:
 
 - Check the result of the input parameter null check, which is performed first before a Node-API interface is executed. The code is as follows:
-  ```
+
+  ```cpp
   CHECK_ENV: null check for env.
   CHECK_ARG: null check for other input parameters.
   ```
 
 - Check the result of the input parameter type check, which is performed for certain Node-API interfaces. For example, **napi_get_value_double** is used to obtain a C double value from a JS number, and the type of the JS value passed in must be number. The parameter type check is as follows:
-  ```
+
+  ```cpp
   RETURN_STATUS_IF_FALSE(env, nativeValue->TypeOf() == NATIVE_NUMBER, napi_number_expected);
   ```
 
 - Check the return value, which contains the verification result of certain interfaces. For example, **napi_call_function** is used to execute a JS function. If an exception occurs in the JS function, Node-API returns **napi_pending_exception**.
-  ```
+
+  ```cpp
   auto resultValue = engine->CallFunction(nativeRecv, nativeFunc, nativeArgv, argc); 
   RETURN_STATUS_IF_FALSE(env, resultValue != nullptr, napi_pending_exception)
   ```

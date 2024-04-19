@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType }from '@ohos.arkui.advanced.GridObjectSortComponent'
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
 ```
 
 ##  子组件
@@ -25,7 +25,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 ## GridObjectSortComponent
 
-GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array<GridObjectSortComponentItem>, onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void, onCancel: () => void })
+GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array\<GridObjectSortComponentItem>, onSave: (select: Array\<GridObjectSortComponentItem>, unselect: Array\<GridObjectSortComponentItem>) => void, onCancel: () => void })
 
 **装饰器类型：**\@Component
 

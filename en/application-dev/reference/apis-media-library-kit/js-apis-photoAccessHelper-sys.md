@@ -721,7 +721,7 @@ Deletes media assets. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](#deleteassets11-1) instead.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11) instead.
 
 **System API**: This is a system API.
 
@@ -789,7 +789,7 @@ Deletes media assets. This API uses a promise to return the result. The deleted 
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](#deleteassets11-1) instead.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11) instead.
 
 **System API**: This is a system API.
 
@@ -1610,11 +1610,11 @@ async function example() {
 
 getExif(): Promise&lt;string&gt;
 
-Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+Obtains the exchangeable image file format (EXIF) data from a JPG image. This API uses a promise to return the result.
 
-The EXIF tags obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
+The EXIF information obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF information, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF data. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys), which are passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -1626,7 +1626,7 @@ The EXIF tags obtained are provided by the [image](../apis-image-kit/js-apis-ima
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Callback invoked to return the JSON string obtained.|
+| Promise&lt;string&gt; | Promise used to return the EXIF data, in the form of a JSON string.|
 
 **Error codes**
 
@@ -1670,11 +1670,11 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+Obtains the EXIF data from a JPG image. This API uses an asynchronous callback to return the result.
 
-The EXIF tags obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
+The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF data, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF data. The complete EXIF data consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys), which are passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -1686,7 +1686,7 @@ The EXIF tags obtained are provided by the [image](../apis-image-kit/js-apis-ima
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the EXIF data, in JSON strings.|
 
 **Error codes**
 
@@ -3027,7 +3027,7 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2) instead.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11) instead.
 
 > **NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
@@ -3094,7 +3094,8 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11-2) instead.
+> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11) instead.
+
 > - This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
@@ -3165,6 +3166,7 @@ Sets the album cover. This API uses an asynchronous callback to return the resul
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
+
 > - This API can be used to set the user album cover, but not the system album cover.
 
 **System API**: This is a system API.
@@ -3231,6 +3233,7 @@ Sets the album cover. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
+
 > - This API can be used to set the user album cover, but not the system album cover.
 
 **System API**: This is a system API.
@@ -3642,7 +3645,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |----------|-----------------------------------|
 | 202      | Called by non-system application. |
 | 401      | if parameter is invalid.          |
-| 14000011 | System inner fail.                |
+| 14000011 | System inner fail.                | 
 | 14000016 | Operation Not Support.            |
 
 **Example**
@@ -4620,7 +4623,7 @@ Defines the key information about an image or video file.
 | POSITION  | 'position'            | File location type.<br>**System API**: This is a system API.                              |
 | DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time.<br>**System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden.<br>**System API**: This is a system API.                              |
-| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off.  (This parameter is available only for the system camera, and the key value is defined by the system camera.) **System API**: This is a system API.           |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) <br>**System API**: This is a system API.           |
 | USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information.<br>**System API**: This is a system API.          |
 | DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created.<br>**System API**: This is a system API.          |
 | DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created.<br>**System API**: This is a system API.          |
@@ -4651,7 +4654,7 @@ Options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. |
-| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off.  (This parameter is available only for the system camera, and the key value is defined by the system camera.)  |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)  |
 
 ## RequestPhotoOptions<sup>11+</sup>
 

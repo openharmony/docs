@@ -2836,7 +2836,7 @@ Defines the domain account information.
 | constraint.autofill | A user is not allowed to use the autofill service.|
 | constraint.content.capture | Capturing the content of a user's screen is prohibited.|
 | constraint.content.suggestions | A user is not allowed to receive content suggestions.|
-| constraint.os.account.start | User switching is blocked.|
+| constraint.os.account.activate | OS account activation is not allowed.|
 | constraint.location.set | A user is not allowed to configure the location service.|
 | constraint.airplane.mode.set | The airplane mode is prohibited on the device.|
 | constraint.brightness.set | A user is not allowed to configure brightness.|

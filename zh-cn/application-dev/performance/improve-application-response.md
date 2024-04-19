@@ -61,7 +61,7 @@ struct ImageExample2 {
 
 ### 使用TaskPool线程池异步处理
 
-当前系统提供了[TaskPool线程池](../reference/apis/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
+当前系统提供了[TaskPool线程池](../reference/apis-arkts/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
 
 ```typescript
 import taskpool from '@ohos.taskpool';
@@ -317,6 +317,110 @@ struct MyComponent {
         }
       }, (item:string) => item)
     }
+  }
+}
+```
+## 合理使用缓存提升响应速度
+缓存可以存储经常访问的数据或资源，当下次需要访问相同数据时，可以直接从缓存中获取，避免了重复的计算或请求，从而加快了响应速度。
+### 使用AVPlayer实例缓存提升视频加载速度
+AVPlayer实例的创建与销毁都很消耗性能，针对这个问题可以使用实例缓存进行优化，首次加载页面时创建两个实例，在打开新页面时切换空闲实例，通过reset方法重置实例到初始化状态。优化点在于不需要频繁创建销毁实例，且reset方法性能优于release方法。下面以AVPlayer为例列出正反例对比供参考。
+
+反例：打开新页面时创建实例，离开页面时使用release方法销毁实例。
+```typescript
+import media from '@ohos.multimedia.media';
+
+@Entry
+@Component
+struct Index {
+  private avPlayer: media.AVPlayer | undefined = undefined;
+  
+  aboutToAppear(): void {
+    // 页面创建时初始化AVPlayer实例
+    media.createAVPlayer().then((ret) => {
+      this.avPlayer = ret;
+    });
+  }
+  
+  aboutToDisappear(): void {
+    // 离开页面时销毁AVPlayer实例
+    if (this.avPlayer) {
+      this.avPlayer.release();
+    }
+    this.avPlayer = undefined;
+  }
+  
+  build() {
+    // 组件布局
+  }
+}
+```
+
+正例：首次加载页面时维护两个实例，在切换页面时切换实例，并将之前的实例通过reset方法重置。
+```typescript
+import media from '@ohos.multimedia.media';
+
+@Entry
+@Component
+struct Index {
+  private avPlayer: media.AVPlayer | undefined = undefined;
+  private avPlayerManager: AVPlayerManager = AVPlayerManager.getInstance();
+
+  aboutToAppear(): void {
+    this.avPlayerManager.switchPlayer();
+    this.avPlayer = this.avPlayerManager.getCurrentPlayer();
+  }
+
+  aboutToDisappear(): void {
+    this.avPlayerManager.resetCurrentPlayer();
+    this.avPlayer = undefined;
+  }
+
+  build() {
+    // 组件布局
+  }
+}
+
+class AVPlayerManager {
+  private static instance?: AVPlayerManager;
+
+  private player1?: media.AVPlayer;
+  private player2?: media.AVPlayer;
+  private currentPlayer?: media.AVPlayer;
+
+  public static getInstance(): AVPlayerManager {
+    if (!AVPlayerManager.instance) {
+      AVPlayerManager.instance = new AVPlayerManager();
+    }
+    return AVPlayerManager.instance;
+  }
+
+  async AVPlayerManager() {
+    this.player1 = await media.createAVPlayer();
+    this.player2 = await media.createAVPlayer();
+  }
+
+  /**
+   * 切换页面时切换AVPlayer实例
+   */
+  switchPlayer(): void {
+    if (this.currentPlayer === this.player1) {
+      this.currentPlayer = this.player2;
+    } else {
+      this.currentPlayer = this.player1;
+    }
+  }
+
+  getCurrentPlayer(): media.AVPlayer | undefined {
+    return this.currentPlayer;
+  }
+
+  /**
+   * 使用reset方法重置AVPlayer实例
+   */
+  resetCurrentPlayer(): void {
+    this.currentPlayer?.pause(() => {
+      this.currentPlayer?.reset();
+    });
   }
 }
 ```

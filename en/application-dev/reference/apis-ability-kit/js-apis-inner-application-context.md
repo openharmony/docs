@@ -203,4 +203,43 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
- <!--no_check--> 
+## Context.createSystemHspModuleResourceManager<sup>12+</sup>
+
+createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+Creates a resource manager object for a module of the system-level HSP.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description  |
+| -------- |--------| ---- |------|
+| bundleName | string | Yes   | Bundle name. |
+| moduleName | string | Yes   | Module name.|
+
+**Error codes**
+
+| ID| Error Message|
+|  | -------- |
+| 401 | Incorrect parameters.|
+| 16400001 | The combination of the bundle name and module name does not correspond to a system-level HSP.|
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let hspContext: common.Context = this.context;
+    let resourceManager = hspContext.createSystemHspModuleResourceManager("com.example.myapplication", "library");
+  }
+}
+```

@@ -22,7 +22,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 | HASH | SHA384 | 9+ | 
 | HASH | SHA512 | 9+ | 
 | HASH | SM3 | 10+ | 
-
+| HASH | MD5 | 12+ | 
 
 ## 开发步骤
 
@@ -71,6 +71,8 @@ async function doHmac() {
   await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let macResult = await mac.doFinal();
   console.info('HMAC result:' + macResult.data);
+  let macLen = mac.getMacLength();
+  console.info('HMAC len:' + macLen);
 }
 ```
 
@@ -121,5 +123,7 @@ async function doLoopHmac() {
   }
   let macOutput = await mac.doFinal();
   console.info("HMAC result: " + macOutput.data);
+  let macLen = mac.getMacLength();
+  console.info('HMAC len:' + macLen);
 }
 ```

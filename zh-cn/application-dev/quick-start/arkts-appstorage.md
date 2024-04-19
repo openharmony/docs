@@ -152,7 +152,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 ### 从应用逻辑使用AppStorage和LocalStorage
 
-AppStorage是单例，它的所有API都是静态的，使用方法类似于中LocalStorage对应的非静态方法。
+AppStorage是单例，它的所有API都是静态的，使用方法类似于LocalStorage中对应的非静态方法。
 
 
 ```ts
@@ -474,7 +474,6 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
   private index: number = 0;
   private uri: Resource = {
     id: 0,

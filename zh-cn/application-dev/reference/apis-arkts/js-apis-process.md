@@ -46,7 +46,7 @@ isIsolatedProcess(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回判断结果，true表示进程被隔离，false表示未被隔离。|
+| boolean | 返回判断结果，如果进程被隔离则返回true，否则返回false。|
 
 **示例：**
 
@@ -67,7 +67,7 @@ is64Bit(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回判断结果，如果为64位环境返回true，否则返回false。|
+| boolean | 返回判断结果，如果运行环境是64位则返回true，否则返回false。|
 
 **示例：**
 
@@ -176,7 +176,7 @@ kill(signal: number, pid: number): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 信号是否发送成功。返回值true为发送成功，false为发送失败。|
+| boolean | 信号是否发送成功。如果信号发送成功则返回true，否则返回false。|
 
 **示例：**
 
@@ -217,7 +217,7 @@ process.exit(0);
 
 getUidForName(v: string): number
 
-通过进程名获取进程uid。
+根据指定的用户名，从系统的用户数据库中获取该用户uid。
 
 > **说明：**
 >
@@ -229,13 +229,13 @@ getUidForName(v: string): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| v | string | 是 | 进程名。 |
+| v | string | 是 | 用户名。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回进程uid。|
+| number | 返回用户uid。|
 
 **示例：**
 
@@ -298,7 +298,7 @@ isAppUid(v: number): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回判断结果，如果为应用程序的uid返回true，否则返回false。|
+| boolean | 返回判断结果，如果是应用程序的uid则返回true，否则返回false。|
 
 **示例：**
 
@@ -394,7 +394,7 @@ isAppUid(v: number): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 返回判断结果，如果为应用程序的uid返回true，否则返回false。|
+| boolean | 返回判断结果，如果是应用程序的uid则返回true，否则返回false。|
 
 **示例：**
 
@@ -408,7 +408,7 @@ let result = pro.isAppUid(688);
 
 getUidForName(v: string): number
 
-通过进程名获取进程uid。
+根据指定的用户名，从系统的用户数据库中获取该用户uid。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -416,13 +416,13 @@ getUidForName(v: string): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| v | string | 是 | 进程名。 |
+| v | string | 是 | 用户名。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回进程uid。|
+| number | 返回用户uid。|
 
 **示例：**
 
@@ -450,7 +450,7 @@ getThreadPriority(v: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回线程的优先级。优先级顺序取决于前操作系统。 |
+| number | 返回线程的优先级。优先级顺序取决于当前操作系统。 |
 
 **示例：**
 
@@ -561,7 +561,7 @@ kill(signal: number, pid: number): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 信号是否发送成功。返回值true为发送成功，false为发送失败。 |
+| boolean | 信号是否发送成功。如果信号发送成功则返回true，否则返回false。 |
 
 **示例：**
 

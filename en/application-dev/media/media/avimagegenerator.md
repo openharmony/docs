@@ -1,4 +1,4 @@
-# Obtaining Video Thumbnails (ArkTS)
+# Obtaining Video Thumbnails
 
 You can use **AVImageGenerator** to obtain the thumbnail of a video at the specified time from the raw media asset.
 
@@ -79,8 +79,7 @@ struct Index {
     let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
     let param: media.PixelMapParams = {
       width : 300,
-      height : 300,
-      colorFormat : media.PixelFormat.RGB_565
+      height : 300
     }
 
     // Obtain the thumbnail (promise mode).

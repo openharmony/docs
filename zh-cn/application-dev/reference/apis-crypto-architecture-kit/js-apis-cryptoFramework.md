@@ -540,6 +540,27 @@ buffer数组，提供blob数据类型。
 >
 > password指的是原始密码，如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型，同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
 
+## HKDFSpec<sup>12+</sup>
+
+密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为HKDF密钥派生函数进行密钥派生时的输入。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| key | string \| Uint8Array | 是   | 是   | 密钥材料。|
+| salt | Uint8Array | 是   | 是   | 盐值。 |
+| info | Uint8Array | 是   | 是   | 拓展信息。 |
+| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
+
+> **说明：**
+>
+> key指的是用户输入的最初的密钥材料。info与salt是可选参数，根据模式的不同可以传空，但是不可不传。
+>
+> 例如：EXTRACT_AND_EXPAND模式需要输入全部的值，EXTRACT_ONLY模式info可以为空，在构建HKDFspec的时候，info传入null值。
+>
+> 默认的模式为EXTRACT_AND_EXPAND，"HKDF|SHA256|EXTRACT_AND_EXPAND"等价于"HKDF|SHA256"。
+
 ## SM2CipherTextSpec<sup>12+</sup>
 
 SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需要用到此对象。可以通过指定此参数，生成符合国密标准的ASN.1格式的SM2密文，反之，也可以从ASN.1格式的SM2密文中获取具体参数。
@@ -655,13 +676,13 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数。 |
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数。 |
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | 用于查看密钥参数的具体内容。 |
+| bigint \| string \| number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -678,6 +699,49 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
+```
+
+### getEncodedDer<sup>12+</sup>
+
+getEncodedDer(format: string): DataBlob
+
+支持根据指定的密钥格式（如采用哪个规范、是否压缩等），获取满足ASN.1语法、DER编码的公钥数据。当前仅支持获取ECC压缩/非压缩格式的公钥数据。
+
+> **说明：**
+>
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
+> 1. 本接口可根据入参决定数据的输出格式。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 用于指定当前密钥格式，取值仅支持"X509\|COMPRESSED"和"X509\|UNCOMPRESSED"。 |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的公钥数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let key: cryptoFramework.PubKey; // Key is a public key object. The generation process is omitted here.
+let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
+console.info('returnBlob data：' + returnBlob.data);
 ```
 
 ## PriKey
@@ -713,13 +777,13 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数类型。 |
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数类型。 |
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | 用于查看密钥参数的具体内容。 |
+| bigint \| string \| number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -736,6 +800,48 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
+```
+### getEncodedDer<sup>12+</sup>
+
+getEncodedDer(format: string): DataBlob
+
+支持根据指定的密钥格式（如采用哪个规范），获取满足ASN.1语法、DER编码的私钥数据。当前仅支持获取PKCS8格式的ecc私钥数据。
+
+> **说明：**
+>
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
+> 1. 本接口可根据入参决定数据的输出格式，当前支持获取PKCS8格式的ecc私钥数据。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 用于指定当前密钥格式，取值当前仅支持"PKCS8"。 |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的ecc私钥数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
+let returnBlob = key.getEncodedDer('PKCS8');
+console.info('returnBlob data：' + returnBlob.data);
 ```
 
 ## KeyPair
@@ -797,7 +903,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 对称密钥生成器。
 
-在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个symKeyGenerator实例。
+在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个SymKeyGenerator实例。
 
 ### 属性
 
@@ -882,7 +988,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.generateSymKey()
     .then(symKey => {
       console.info('Generate symKey success, algName: ' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
     });
 ```
@@ -1028,7 +1134,7 @@ function testConvertKey() {
   symKeyGenerator.convertKey(keyMaterialBlob)
     .then(symKey => {
       console.info('Convert symKey success, algName：' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
 }
@@ -1391,7 +1497,7 @@ try {
 
 **密钥转换说明**
 
-1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，此数据可用于跨应用传输或持久化存储。
+1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，其中对于ecc私钥，返回的是RFC5915定义格式。上述数据可用于跨应用传输或持久化存储。
 2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
 3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 
@@ -1856,7 +1962,7 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 | 参数名  | 类型   | 必填 | 说明                                           |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| algName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
+| curveName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
 
 **返回值：**
 
@@ -1885,6 +1991,100 @@ try {
     let e: BusinessError = err as BusinessError;
     console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
 }
+```
+
+### convertPoint<sup>12+</sup>
+
+static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
+
+根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，将指定的点数据转换为Point对象。当前支持压缩/非压缩格式的点数据。  
+
+> **说明：**
+>
+> 根据RFC5480规范中第2.2节的描述：<br/>
+> 1. 非压缩的点数据，表示为：前缀0x04\|x坐标\|y坐标；
+> 2. 压缩的点数据，对于Fp素数域上的点（当前暂不支持F2m域），表示为：前缀0x03\|x坐标 (坐标y是奇数时)，前缀0x02\|x坐标 (坐标y是偶数时)。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名       | 类型        | 必填 | 说明                                           |
+| ------------ | ---------- | ---- | ---------------------------------------------- |
+| curveName    | string     | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| encodedPoint | Uint8Array | 是   | 指定的ECC椭圆曲线上的点的数据。 |
+
+**返回值：**
+
+| 类型              | 说明                 |
+| ----------------- | ------------------- |
+| [Point](#point10) | 返回ECC的Point对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+// 随机生成的非压缩点数据
+let pkData = new Uint8Array([4, 143, 39, 57, 249, 145, 50, 63, 222, 35, 70, 178, 121, 202, 154, 21, 146, 129, 75, 76, 63, 8, 195, 157, 111, 40, 217, 215, 148, 120, 224, 205, 82, 83, 92, 185, 21, 211, 184, 5, 19, 114, 33, 86, 85, 228, 123, 242, 206, 200, 98, 178, 184, 130, 35, 232, 45, 5, 202, 189, 11, 46, 163, 156, 152]);
+let returnPoint = cryptoFramework.ECCKeyUtil.convertPoint('NID_brainpoolP256r1', pkData);
+console.info('returnPoint: ' + returnPoint.x.toString(16));
+```
+
+### getEncodedPoint<sup>12+</sup>
+
+static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
+
+根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为点数据。当前支持压缩/非压缩格式的点数据。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名       | 类型               | 必填 | 说明                                           |
+| ------------ | ----------------- | ---- | ---------------------------------------------- |
+| curveName    | string            | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| point        | [Point](#point10) | 是   | 椭圆曲线上的Point点对象。 |
+| format       | string            | 是   | 需要获取的点数据格式，当前支持"COMPRESSED"或"UNCOMPRESSED"。 |
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| Uint8Array | 返回指定格式的点数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
+let keyPair = await generator.generateKeyPair();
+let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+console.info('ECC_PK_X_BN 16：' + eccPkX.toString(16));
+console.info('ECC_PK_Y_BN 16：' + eccPkY.toString(16));
+// 将eccPkX.toString(16)结果放入x，eccPkY.toString(16)结果放入y
+let returnPoint: cryptoFramework.Point = {
+  x: BigInt('0x' + eccPkX.toString(16)),
+  y: BigInt('0x' + eccPkY.toString(16))
+};
+let returnData = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
+console.info('returnData: ' + returnData);
 ```
 
 ## DHKeyUtil<sup>11+</sup>
@@ -2594,7 +2794,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| string\|Uint8Array | 获取的加解密参数的具体值。 |
+| string \| Uint8Array | 获取的加解密参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -2931,11 +3131,11 @@ async function signByPromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
 
-当前只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
+只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2944,7 +3144,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的签名参数。 |
-| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定签名参数的具体值。 |
+| itemValue | number \| Uint8Array<sup>11+</sup> | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -2982,7 +3182,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| string\|number | 获取的签名参数的具体值。 |
+| string \| number | 获取的签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3317,6 +3517,10 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 
 对数据进行签名恢复原始数据，通过Promise返回恢复结果。
 
+> **说明：**
+>
+> - 目前仅RSA支持。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3385,6 +3589,10 @@ recoverSync(signatureData: DataBlob): DataBlob | null
 
 对数据进行签名恢复原始数据。
 
+> **说明：**
+>
+> - 目前仅RSA支持。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3413,11 +3621,11 @@ recoverSync(signatureData: DataBlob): DataBlob | null
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
 
-当前只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
+只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
 
 验签的参数应当与签名的参数保持一致。
 
@@ -3428,7 +3636,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
-| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
+| itemValue | number \| Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3468,7 +3676,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| string\|number | 获取的验签参数的具体值。 |
+| string \| number | 获取的验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3963,7 +4171,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3990,7 +4198,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4038,7 +4246,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-此外，更多Hmac的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -4085,7 +4293,7 @@ doFinal(): Promise\<DataBlob>
 
 **示例：**
 
-此外，更多Hmac的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -4385,7 +4593,7 @@ createKdf(algName: string): Kdf
 
 | 参数名  | 类型   | 必填 | 说明                              |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前仅支持PBKDF2算法，如"PBKDF2\|SHA1"。 |
+| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前支持PBKDF2、HKDF算法，如"PBKDF2\|SHA256", "HKDF\|SHA256"。 |
 
 **返回值**：
 
@@ -4403,10 +4611,9 @@ createKdf(algName: string): Kdf
 | 17620001 | memory error.          |
 
 **示例：**
-
+- PBKDF2算法
 ```ts
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
-
+let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 ```
 
 ## Kdf<sup>11+</sup>
@@ -4423,7 +4630,7 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
 
 ### generateSecret
 
-generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
+generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 基于传入的密钥派生参数进行密钥派生，通过注册回调函数返回派生得到的密钥。
 
@@ -4447,27 +4654,49 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-```ts
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-kdf.generateSecret(spec, (err, secret) => {
-  if (err) {
-    console.error("key derivation error.");
-    return;
-  }
-  console.info('key derivation output is ' + secret.data);
-});
-```
+- PBKDF2算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info('key derivation output is ' + secret.data);
+  });
+  ```
+
+- HKDF算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info('key derivation output is ' + secret.data);
+  });
+  ```
 
 ### generateSecret
 
-generateSecret(params: KdfSpec): Promise\<DataBlob>
+generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 基于传入的密钥派生参数进行密钥派生，通过Promise形式返回派生得到的密钥。
 
@@ -4496,21 +4725,44 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
+- PBKDF2算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
 
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-let kdfPromise = kdf.generateSecret(spec);
-kdfPromise.then(secret => {
-  console.info('key derivation output is ' + secret.data);
-}).catch((error: BusinessError) => {
-  console.error("key derivation error.");
-});
-```
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```
+
+- HKDF算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
+
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```

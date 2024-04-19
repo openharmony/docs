@@ -1,4 +1,4 @@
-# PixelMap Operation (ArkTS)
+# PixelMap Operation
 
 To process a certain area in an image, you can perform PixelMap operations, which are usually used to beautify the image.
 

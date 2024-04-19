@@ -4,14 +4,14 @@ The security capabilities vary with devices. For example, small embedded devices
 
 ## Available APIs
 
-For details about the APIs, see [ohos.file.securityLabel](../reference/apis/js-apis-file-securityLabel.md).
+For details about the APIs, see [ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md).
 
 **Table 1** Security level APIs
 
-| API| Description| Category| Synchronous Programming| Asynchronous Programming|
+| API| Description| Category| Synchronous Programming| Asynchronous Programming| 
 | -------- | -------- | -------- | -------- | -------- |
-| setSecurityLabel | Sets a security level for a file.| Method| Supported| Supported|
-| getSecurityLabel | Obtains the security level of a file.| Method| Supported| Supported|
+| setSecurityLabel | Sets a security level for a file.| Method| Supported| Supported| 
+| getSecurityLabel | Obtains the security level of a file.| Method| Supported| Supported| 
 
 > **NOTE**
 >
@@ -23,11 +23,12 @@ For details about the APIs, see [ohos.file.securityLabel](../reference/apis/js-a
 
 Obtain the sandbox path of a file and set the data security level. For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-
+  
 ```ts
 import securityLabel from '@ohos.file.securityLabel';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
 
 // Obtain the sandbox path of the file.
 let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityContext.

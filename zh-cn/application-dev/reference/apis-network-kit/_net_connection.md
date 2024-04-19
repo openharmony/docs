@@ -92,7 +92,7 @@
 ### NetConn_ConnectionProperties
 
 ```
-typedef struct NetConn_ConnectionPropertiesNetConn_ConnectionProperties
+typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 ```
 
 **描述**
@@ -105,7 +105,7 @@ typedef struct NetConn_ConnectionPropertiesNetConn_ConnectionProperties
 ### NetConn_HttpProxy
 
 ```
-typedef struct NetConn_HttpProxyNetConn_HttpProxy
+typedef struct NetConn_HttpProxy NetConn_HttpProxy
 ```
 
 **描述**
@@ -118,7 +118,7 @@ typedef struct NetConn_HttpProxyNetConn_HttpProxy
 ### NetConn_NetAddr
 
 ```
-typedef struct NetConn_NetAddrNetConn_NetAddr
+typedef struct NetConn_NetAddr NetConn_NetAddr
 ```
 
 **描述**
@@ -131,7 +131,7 @@ typedef struct NetConn_NetAddrNetConn_NetAddr
 ### NetConn_NetBearerType
 
 ```
-typedef enum NetConn_NetBearerTypeNetConn_NetBearerType
+typedef enum NetConn_NetBearerType NetConn_NetBearerType
 ```
 
 **描述**
@@ -144,7 +144,7 @@ typedef enum NetConn_NetBearerTypeNetConn_NetBearerType
 ### NetConn_NetCap
 
 ```
-typedef enum NetConn_NetCapNetConn_NetCap
+typedef enum NetConn_NetCap NetConn_NetCap
 ```
 
 **描述**
@@ -157,7 +157,7 @@ typedef enum NetConn_NetCapNetConn_NetCap
 ### NetConn_NetCapabilities
 
 ```
-typedef struct NetConn_NetCapabilitiesNetConn_NetCapabilities
+typedef struct NetConn_NetCapabilities NetConn_NetCapabilities
 ```
 
 **描述**
@@ -170,7 +170,7 @@ typedef struct NetConn_NetCapabilitiesNetConn_NetCapabilities
 ### NetConn_NetHandle
 
 ```
-typedef struct NetConn_NetHandleNetConn_NetHandle
+typedef struct NetConn_NetHandle NetConn_NetHandle
 ```
 
 **描述**
@@ -183,7 +183,7 @@ typedef struct NetConn_NetHandleNetConn_NetHandle
 ### NetConn_NetHandleList
 
 ```
-typedef struct NetConn_NetHandleListNetConn_NetHandleList
+typedef struct NetConn_NetHandleList NetConn_NetHandleList
 ```
 
 **描述**
@@ -196,7 +196,7 @@ typedef struct NetConn_NetHandleListNetConn_NetHandleList
 ### NetConn_Route
 
 ```
-typedef struct NetConn_RouteNetConn_Route
+typedef struct NetConn_Route NetConn_Route
 ```
 
 **描述**

@@ -22,17 +22,17 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 1. Obtain the key alias and set the **HuksOptions** parameter.
 
-   You are advised to pass in [OH_Huks_KeyStorageType](../../reference/native-apis/_huks_type_api.md#oh_huks_keystoragetype), which can be any of the following values:
+   You are advised to pass in [OH_Huks_KeyStorageType](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype), which can be any of the following values:
 
-   - **HUKS_STORAGE_ONLY_USED_IN_HUKS**: The key is used only in HUKS.
-   - **HUKS_STORAGE_KEY_EXPORT_ALLOWED**: The key is directly exported and is not stored in HUKS.
+   - **OH_HUKS_STORAGE_ONLY_USED_IN_HUKS**: The key is used only in HUKS.
+   - **OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED**: The key is directly exported and is not stored in HUKS.
    - If this parameter is not specified, the key can be stored in HUKS and exported by default, which poses security risks and is not recommended.
 
-2. Use [OH_Huks_InitSession](../../reference/native-apis/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
+2. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
 
-3. Use [OH_Huks_UpdateSession](../../reference/native-apis/_huks_key_api.md#oh_huks_updatesession) to process data.
+3. Use [OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession)n to process data.
 
-4. Use [OH_Huks_FinishSession](../../reference/native-apis/_huks_key_api.md#oh_huks_finishsession) to derive a key.
+4. Use [OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession) to derive a key.
 
 **Key Deletion**
 
@@ -123,7 +123,7 @@ static const uint32_t COMMON_SIZE = 2048;
 static const char *g_deriveInData = "Hks_HKDF_Derive_Test_00000000000000000000000000000000000000000000000000000000000"
                                     "00000000000000000000000000000000000000000000000000000000000000000000000000000000"
                                     "0000000000000000000000000000000000000000000000000000000000000000000000000_string";
-static napi_value DeriveKey(napi_env env, napi_callback_info info) 
+static napi_value DeriveKey(napi_env env, napi_callback_info info)
 {
     struct OH_Huks_Blob genAlias = {
         (uint32_t)strlen("test_signVerify"),
@@ -142,18 +142,18 @@ static napi_value DeriveKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        
+
         ohResult = InitParamSet(&hkdfParamSet, g_hkdfParams, sizeof(g_hkdfParams) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
            break;
-        } 
-        
+        }
+
         // finish paramset
         ohResult = InitParamSet(&hkdfFinishParamSet, g_hkdfFinishParams, sizeof(g_hkdfFinishParams) / sizeof(OH_Huks_Param));
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        
+
         /* 1. Generate Key */
         ohResult = OH_Huks_GenerateKeyItem(&genAlias, genParamSet, nullptr);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
@@ -184,7 +184,7 @@ static napi_value DeriveKey(napi_env env, napi_callback_info info)
     OH_Huks_FreeParamSet(&genParamSet);
     OH_Huks_FreeParamSet(&hkdfParamSet);
     OH_Huks_FreeParamSet(&hkdfFinishParamSet);
-    
+
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;

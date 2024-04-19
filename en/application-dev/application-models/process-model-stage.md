@@ -1,10 +1,10 @@
-# Process Model Overview (Stage Model)
+# Process Model (Stage Model)
 
 
 The process model is shown below.
 
 
-- All UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in the same process, which is **Main process** in green in the figure.
+- All UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in an independent process, which is **Main process** in green in the figure.
 - All ExtensionAbility components of the same type (except ServiceExtensionAbility and DataShareExtensionAbility) of an application (with the same bundle name) run in an independent process, such as **FormExtensionAbility process**, **InputMethodExtensionAbility process**, and other **ExtensionAbility process** in blue in the figure.
 - WebView has an independent render process, which is **Render process** in yellow in the figure.
 
@@ -24,9 +24,9 @@ A system application can apply for multi-process permissions (as shown in the fo
 ![multi-process](figures/multi-process.png)
 
 
-The system provides two inter-process communication (IPC) mechanisms.
+The system provides the following inter-process communication (IPC) mechanism:
 
 
-- [Common Events](common-event-overview.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
+[Common Events](../basic-services/common-event/common-event-overview.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
 
-- [Background Services](background-services.md): This mechanism is implemented through [ServiceExtensionAbility](serviceextensionability.md).
+ <!--no_check--> 

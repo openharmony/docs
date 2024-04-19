@@ -69,12 +69,12 @@ let genKeyProperties: genKeyPropertyType[] = [
 let genOptions: huks.HuksOptions = {
   properties: genKeyProperties
 };
-class anonAttestKeypropertyType {
+class anonAttestKeyPropertyType {
   tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO;
   value: Uint8Array = securityLevel;
 }
 /* 2.封装证明密钥的参数集 */
-let anonAttestKeyproperties: anonAttestKeypropertyType[] = [
+let anonAttestKeyProperties: anonAttestKeyPropertyType[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
     value: securityLevel
@@ -93,7 +93,7 @@ let anonAttestKeyproperties: anonAttestKeypropertyType[] = [
   }
 ]
 let huksOptions: huks.HuksOptions = {
-  properties: anonAttestKeyproperties
+  properties: anonAttestKeyProperties
 };
 function StringToUint8Array(str: string) {
   let arr: number[] = [];

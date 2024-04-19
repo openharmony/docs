@@ -1,4 +1,4 @@
-# Obtaining Supported Codecs (C/C++)
+# Obtaining Supported Codecs
 
 Different devices support different codecs. Before invoking or configuring a codec, you need to query the codec specifications supported.
 

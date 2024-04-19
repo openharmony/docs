@@ -105,7 +105,7 @@ LabelOptions定义文本的属性。
 | 名称        | 类型                                       | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | text        | string                                     | 是   | 文本文字内容。                                               |
-| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button3')。 |
+| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2')。 |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')。 |
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')。 |
 | fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"。                    |

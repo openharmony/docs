@@ -15,7 +15,7 @@ TextClock组件通过文本将当前系统时间显示在设备上。支持不�
 
 TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController })
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -160,7 +160,7 @@ onDateChange(event: (value: number) => void)
 
 TextClock容器组件的控制器，可以将该控制器绑定到TextClock组件，通过它控制文本时钟的启动与停止。一个TextClock组件仅支持绑定一个控制器。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ### 导入对象
 
@@ -174,7 +174,7 @@ start()
 
 启动文本时钟。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ### stop
 
@@ -182,7 +182,7 @@ stop()
 
 停止文本时钟。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 ## 示例
 ### 示例1

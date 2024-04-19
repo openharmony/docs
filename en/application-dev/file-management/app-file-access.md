@@ -1,36 +1,36 @@
-# Accessing Application Files
+# Accessing Application Files (ArkTS)
 
 This topic describes how to enable an application to view, create, read, write, delete, move, or copy an application file and obtain file information.
 
 ## Available APIs
 
-You can use [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to application files. The following table describes the commonly used APIs.
+You can use [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to application files. The following table describes the commonly used APIs.
 
 **Table 1** APIs for basic application file operations
 
-| API| Description| Category| Synchronous Programming| Asynchronous Programming|
+| API| Description| Category| Synchronous Programming| Asynchronous Programming| 
 | -------- | -------- | -------- | -------- | -------- |
-| access | Checks whether a file exists.| Method| Supported| Supported|
-| close | Closes a file.| Method| Supported| Supported|
-| copyFile | Copies a file.| Method| Supported| Supported|
-| createStream | Creates a stream based on a file path.| Method| Supported| Supported|
-| listFile | Lists all files in a directory.| Method| Supported| Supported|
-| mkdir | Creates a directory.| Method| Supported| Supported|
-| moveFile | Moves a file.| Method| Supported| Supported|
-| open | Opens a file.| Method| Supported| Supported|
-| read | Reads data from a file.| Method| Supported| Supported|
-| rename | Renames a file or folder.| Method| Supported| Supported|
-| rmdir | Deletes a directory.| Method| Supported| Supported|
-| stat | Obtains detailed file information.| Method| Supported| Supported|
-| unlink | Deletes a single file.| Method| Supported| Supported|
-| write | Writes data to a file.| Method| Supported| Supported|
-| Stream.close | Closes a stream.| Method| Supported| Supported|
-| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported|
-| Stream.write | Writes data to a stream.| Method| Supported| Supported|
-| Stream.read | Reads data from a stream.| Method| Supported| Supported|
-| File.fd | Defines a file descriptor.| Attribute| N/A| N/A|
-| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A|
-| Filter | Defines the options for filtering files.| Type| N/A| N/A|
+| access | Checks whether a file exists.| Method| Supported| Supported| 
+| close | Closes a file.| Method| Supported| Supported| 
+| copyFile | Copies a file.| Method| Supported| Supported| 
+| createStream | Creates a stream based on a file path.| Method| Supported| Supported| 
+| listFile | Lists all files in a directory.| Method| Supported| Supported| 
+| mkdir | Creates a directory.| Method| Supported| Supported| 
+| moveFile | Moves a file.| Method| Supported| Supported| 
+| open | Opens a file.| Method| Supported| Supported| 
+| read | Reads data from a file.| Method| Supported| Supported| 
+| rename | Renames a file or folder.| Method| Supported| Supported| 
+| rmdir | Deletes a directory.| Method| Supported| Supported| 
+| stat | Obtains detailed file information.| Method| Supported| Supported| 
+| unlink | Deletes a single file.| Method| Supported| Supported| 
+| write | Writes data to a file.| Method| Supported| Supported| 
+| Stream.close | Closes a stream.| Method| Supported| Supported| 
+| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported| 
+| Stream.write | Writes data to a stream.| Method| Supported| Supported| 
+| Stream.read | Reads data from a stream.| Method| Supported| Supported| 
+| File.fd | Defines a file descriptor.| Attribute| N/A| N/A| 
+| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A| 
+| Filter | Defines the options for filtering files.| Type| N/A| N/A| 
 
 ## Development Example
 
@@ -176,12 +176,13 @@ function getListFile(): void {
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
-    filter: {}
+    filter: {
+      suffix: [".png", ".jpg", ".txt"],
+      displayName: ["test*"],
+      fileSizeOver: 0,
+      lastModifiedAfter: new Date(0).getTime()
+    }
   };
-  listFileOption.filter.suffix = ['.png', '.jpg', '.txt'];         // The file name extension can be '.png', '.jpg', or '.txt'.
-  listFileOption.filter.displayName = ['test*'];                   // The file name starts with 'test'.
-  listFileOption.filter.fileSizeOver = 0;                          // The file size is greater than or equal to 0.
-  listFileOption.filter.lastModifiedAfter = new Date(0).getTime(); // The latest modification time of the file is later than January 1, 1970.
   let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);

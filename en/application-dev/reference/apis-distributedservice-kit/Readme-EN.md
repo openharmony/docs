@@ -2,7 +2,6 @@
 
 - ArkTS APIs 
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
-  - [@ohos.deviceAttest (Device Attestation) (System API)](js-apis-deviceAttest-sys.md)
   - [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API)](js-apis-distributedHardwareManager-sys.md)
   - [@ohos.distributedDeviceManager (Device Management) (System API)](js-apis-distributedDeviceManager-sys.md)
   - [@ohos.cooperate (Screen Hopping) (System API)](js-apis-devicestatus-cooperate.md)

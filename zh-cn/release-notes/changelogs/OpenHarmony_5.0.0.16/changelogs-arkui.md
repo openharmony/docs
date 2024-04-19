@@ -28,6 +28,8 @@
 变更前：Swiper默认曲线为Linear
 变更后：Swiper默认曲线为interpolatingSpring(-1,1,328,34)。
 
+![Swiper曲线变更示例](figures/curveDiff.gif)
+
 **适配指导**
 
-无需适配
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期， 如不符合则应自定义修改效果控制变量以达到预期

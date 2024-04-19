@@ -1,4 +1,4 @@
-# @ohos.data.dataShareResultSet (Data Share Result Set) (System API)
+# @ohos.data.dataShareResultSet (DataShare Result Set) (System API)
 
 The **DataShareResultSet** module provides APIs for accessing the result set obtained from the database. You can access the values in the specified rows or the value of the specified data type.
 

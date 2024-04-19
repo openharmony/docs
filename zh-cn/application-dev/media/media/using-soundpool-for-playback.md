@@ -81,7 +81,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 5. 调用on('error')方法，设置错误类型监听。
      
     ```ts
-    soundPool.on('error', (error) => {
+    soundPool.on('error', (error: BusinessError) => {
       console.info('error happened,message is :' + error.message);
     });
     ```
@@ -98,7 +98,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
         rightVolume: 0.5, // range = 0.0-1.0
         priority: 0, // 最低优先级
       }
-    soundPool.play(soundID, playParameters, (error, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
@@ -206,11 +206,12 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 ## 完整示例
 
 下面展示了使用SoundPool进行低时延播放的完整示例代码。
-  
+
 ```ts
 import audio from '@ohos.multimedia.audio';
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs'
+import { BusinessError } from '@ohos.base';
 
 let soundPool: media.SoundPool;
 let streamId: number = 0;
@@ -257,13 +258,20 @@ async function finishPlayCallback() {
 }
 //设置错误类型监听
 function setErrorCallback() {
-  soundPool.on('error', (error) => {
+  soundPool.on('error', (error: BusinessError) => {
     console.info('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
   // 开始播放,这边play也可带播放播放的参数PlayParameters
-  streamId = await soundPool.play(soundId);
+  await soundPool.play(soundID, playParameters, (error, streamID: number) => {
+    if (error) {
+      console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    } else {
+      streamId = streamID;
+      console.info('play success soundid:' + streamId);
+    }
+  });
   // 设置循环播放次数
   soundPool.setLoop(streamId, 2); // 播放3次
   // 设置对应流的优先级

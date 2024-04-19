@@ -19,7 +19,7 @@ This document describes the following operations:
 
 Call [UIAbilityContext.setMissionIcon()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot.
 
-For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image/image-decoding.md).
 
 ```ts
 import common from '@ohos.app.ability.common';

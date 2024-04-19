@@ -10,5 +10,6 @@
 - Video Playback and Recording
   - [Video Playback](video-playback.md)
   - [Video Recording](video-recording.md)
-  - [Screen Capture (for System Applications Only) (C/C++)](avscreen-capture.md)
+  - [Using AVScreenCapture to Obtain Original Streams (C/C++)](using-avscreencapture-for-buffer.md)
+  - [Using AVScreenCapture to Save Recordings in Files (C/C++)](using-avscreencapture-for-file.md)
   - [Obtaining Video Thumbnails](avimagegenerator.md)

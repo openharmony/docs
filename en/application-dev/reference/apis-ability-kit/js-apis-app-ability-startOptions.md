@@ -26,6 +26,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | windowTop<sup>11+</sup> | number | No| No| Top position of the window.|
 | windowWidth<sup>11+</sup> | number | No| No| Width of the window.|
 | windowHeight<sup>11+</sup> | number | No| No| Height of the window.|
+| processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) | No| No| Process mode.<br>**Constraints**:<br>This attribute takes effect only on tablets.<br>This attribute takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
+| startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#contextconstantstartupvisibility12) | No| No| Visibility of the ability after it is started in a new process.<br>**Constraints**:<br>This attribute takes effect only on tablets.<br>This attribute takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
 
 **Example**
 

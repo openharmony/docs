@@ -377,7 +377,7 @@ The specified ability is disabled.
 指定的ability被禁用。
 
 **处理步骤**<br/>
-确认指定的ability是否被禁用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息。
+确认指定的ability是否被禁用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息。
 
 ## 17700030 指定的应用不支持清除缓存文件
 
@@ -391,8 +391,8 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1. 确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
-2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
+1. 确认指定的应用是否为系统应用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看isSystemApp是否为true。
+2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看userDataClearable是否为true。
 
 ## 17700031 Overlay特性校验失败导致HAP安装失败
 
@@ -524,7 +524,7 @@ Failed to install because disallow install a shared bundle by hapFilePaths.
 安装应用时，传入的安装包为应用间共享库类型。
 
 **可能原因**<br/>
-1. 通过bm工具安装应用时，-p参数传入了应用间共享库的安装包路径。
+1. 通过[bm工具](../../tools/bm-tool.md)安装应用时，-p参数传入了应用间共享库的安装包路径。
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
@@ -539,7 +539,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 卸载应用时，传入的是应用间共享库的包名。
 
 **可能原因**<br/>
-1. 通过bm工具卸载应用时，-n参数传入了应用间共享库的包名。
+1. 通过[bm工具](../../tools/bm-tool.md)卸载应用时，-n参数传入了应用间共享库的包名。
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
@@ -757,6 +757,62 @@ The scheme of the specified link is not in the querySchemes.
 **处理步骤**<br/>
 检查是否在querySchemes字段下配置了相应的URL scheme。
 
+## 17700057 指定的应用不是预置应用
+
+**错误信息**<br/>
+Failed to uninstall updates because the HAP is not pre-installed.
+
+**错误描述**<br/>
+调用installer模块中的uninstallUpdates接口时，指定的应用不是预置应用。
+
+**可能原因**<br/>
+指定的应用不是预置应用，无法调用uninstallUpdates接口。
+
+**处理步骤**<br/>
+确认指定的应用是否为预置应用。
+
+## 17700059 指定的开发者ID不存在
+
+**错误信息**<br/>
+The specified developerId is invalid.
+
+**错误描述**<br/>
+调用bundleManager模块中的getAllBundleInfoByDeveloperId接口时，指定的developerId无效。
+
+**可能原因**<br/>
+设备上未安装指定开发者ID的应用。
+
+**处理步骤**<br/>
+检查输入的开发者ID有效性。
+
+## 17700060 指定的应用不允许被卸载
+
+**错误信息**<br/>
+The specified application can not be uninstalled.
+
+**错误描述**<br/>
+调用bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
+
+**可能原因**<br/>
+指定的应用具有不可卸载特权。
+
+**处理步骤**<br/>
+检查指定的应用是否具有不可卸载特权。
+
+## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
+
+**错误信息**<br/>
+The specified shortcut want in shortcut info is not supported to be started.
+
+**错误描述**<br/>
+调用launcherBundleManager模块中的startShortcut接口时，ShortcutInfo结构体中的want指定的ability不支持被拉起。
+
+**可能原因**<br/>
+ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体中的want指定的ability不能被拉起等。
+
+**处理步骤**<br/>
+检查ShortcutInfo结构体中的want有效性。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify abc.
@@ -782,3 +838,81 @@ Failed to delete abc.
 
 **处理步骤**<br/>
 请传递有效的.abc文件的路径。
+
+## 17700301 扩展资源添加失败
+**错误信息**<br/>
+AddExtResource failed.
+
+**错误描述**<br/>
+扩展资源添加失败。
+
+**可能原因**<br/>
+hsp文件不存在或者不可信。
+
+**处理步骤**<br/>
+请传递正确且可信hsp文件路径。
+
+## 17700302 扩展资源删除失败
+**错误信息**<br/>
+RemoveExtResource failed.
+
+**错误描述**<br/>
+扩展资源删除失败。
+
+**可能原因**<br/>
+moduleName对应的hsp不存在。
+
+**处理步骤**<br/>
+请传递有效的moduleName。
+
+## 17700303 扩展资源查询失败
+**错误信息**<br/>
+GetExtResource failed.
+
+**错误描述**<br/>
+扩展资源查询失败。
+
+**可能原因**<br/>
+bundleName没有hsp。
+
+**处理步骤**<br/>
+请传递有效的bundleName。
+
+## 17700304 动态图标使能失败
+**错误信息**<br/>
+EnableDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标使能失败。
+
+**可能原因**<br/>
+hsp包没有正确的图标资源。
+
+**处理步骤**<br/>
+使能动态图标前确保moduleName对应的hsp有效且包含图标资源。
+
+## 17700305 动态图标去使能失败
+**错误信息**<br/>
+DisableDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标去使能失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+去使能动态图标前确保bundleName存在动态图标。
+
+## 17700306 动态图标查询失败
+**错误信息**<br/>
+GetDynamicIcon failed.
+
+**错误描述**<br/>
+动态图标查询失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+查询动态图标前确保bundleName存在动态图标。

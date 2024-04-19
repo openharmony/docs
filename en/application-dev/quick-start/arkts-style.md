@@ -28,6 +28,7 @@ If the style of each component needs to be set separately, this will result in a
 - \@Styles can be defined inside or outside a component declaration. When it is defined outside a component declaration, the method name must be preceded by the keyword **function**.
 
 > **NOTE**
+>
 > This decorator can be used only in the current file and cannot be exported.
 
   ```ts

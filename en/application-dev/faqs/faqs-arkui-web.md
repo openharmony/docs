@@ -106,7 +106,7 @@ The operation that follows **onUrlLoadIntercept** is subject to its return resul
 
 **Reference**
 
-[onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated)
+[onUrlloadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
 
 ## What should I do if the onKeyEvent event of the \<Web> component is not triggered as expected? (API version 9)
@@ -121,7 +121,7 @@ Currently, the **\<Web>** component does not support the **onKeyEvent** event. T
 
 **Reference**
 
-[onInterceptKeyEvent](../reference/arkui-ts/ts-basic-components-web.md#oninterceptkeyevent9)
+[onInterceptKeyEvent](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyevent9)
 
 
 ## What should I do if page loading fails when onInterceptRequest is called? (API version 9)
@@ -158,7 +158,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **Reference**
 
-[WebResourceResponse](../reference/arkui-ts/ts-basic-components-web.md#webresourceresponse)
+[WebResourceResponse](../reference/apis-arkweb/ts-basic-components-web.md#webresourceresponse)
 
 
 ## How do I execute JS functions in HTML in ArkTS code? (API version 9)
@@ -168,11 +168,11 @@ Web({ src: 'www.example.com', controller: this.controller })
 Use the **runJavaScript** API in **WebviewController** to asynchronously execute JavaScript scripts and obtain the execution result in a callback.
 
 > **NOTE**
-> **runJavaScript** can be invoked only after l**oadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+> **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
 **Reference**
 
-[runJavaScript](../reference/apis/js-apis-webview.md#runjavascript)
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascript)
 
 
 ## How do I invoke an ArkTS method on a local web page? (API version 9)
@@ -247,7 +247,7 @@ Use the **runJavaScript** API in **WebviewController** to asynchronously execute
 
 **Reference**
 
-[javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)
+[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)
 
 
 ## How do I set the domStorageAccess attribute of the \<Web> component? (API version 9)
@@ -258,7 +258,7 @@ The **domStorageAccess** attribute sets whether to enable the DOM Storage API. B
 
 **Reference**
 
-[domStorageAccess](../reference/arkui-ts/ts-basic-components-web.md#domstorageaccess)
+[domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess)
 
 
 ## What should I do if the network status fails to be detected on the loaded HTML page? (API version 9)
@@ -273,7 +273,7 @@ Configure the permission for the application to obtain network information: ohos
 
 **Reference**
 
-[GET\_NETWORK\_INFO](../security/permission-list.md#ohospermissionget_network_info)
+[GET\_NETWORK\_INFO](../security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 
 ## How do I set the UserAgent parameter through string concatenation? (API version 9)
@@ -316,7 +316,7 @@ struct Index {
 
 **Reference**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
 
 
 ## How do I enable the \<Web> component to return to the previous web page following a swipe gesture? (API version 9)
@@ -354,4 +354,55 @@ struct Index {
 
 **Reference**
 
-[accessStep](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
+
+
+## Does WebView support same-layer rendering (API version 10)?
+
+**Solution**
+
+1. **WebView**, **Video**, **Map**, **Camera**, **Canvas**, and **WebGL** all support same-layer rendering.
+2. The **id**, **type**, **src**, **width**, **height**, and **url** attributes of web embedded tags can be transferred to native components.
+
+
+## What debugging tools does WebView provide? How do I use them? (API version 10)
+
+**Solution**
+
+The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
+
+**Reference**
+
+[Debugging Frontend Pages by Using DevTools](../web/web-debugging-with-devtools.md)
+
+
+## How do I use WebView to implement request interception? (API version 10)
+
+**Solution**
+
+You can call **onInterceptRequest()** to customize web page responses, file resource responses, and more. When a resource loading request is initiated on a web page, the application layer will receive the request. The application layer then constructs a local resource response and sends it to the web kernel. On receiving the response, the web kernel parses the response and loads page resources accordingly.
+
+**Reference**
+
+[Customizing Page Request Responses](../web/web-resource-interception-request-mgmt.md)
+
+
+## How does WebView communicate with the native side? (API version 10)
+
+**Solution**
+
+1. For communication from the native side to the HTML5 side, use the **runJavaScript** API. For communication from the HTML5 side to the native side, use the **registerJavaScriptProy** API. Register the native method with the HTML5 side, and then from the HTML5 side call the frontend method to communicate with the native side.
+2. Both **runJavaScript** and **registerJavaScriptProy** are exposed in the C API on the NDK side.
+3. The **onInterceptrequest** API is used to intercept requests from the HTML5 side and return native data as a response to the HTML5 side. In this way, the implement communication between the native side and HTML5 side is implemented.
+
+**Reference**
+
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10), [registerJavaScriptProxy](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy), [javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy), [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)
+
+
+## What are the WebView process model and rendering mechanism? (API version 11)
+
+**Solution**
+
+1. Process model: one main process and multiple render processes
+2. Rendering mechanism: web self-rendering

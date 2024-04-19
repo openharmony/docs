@@ -6,6 +6,10 @@
 
 在删除关键资产时，关键资产属性的内容参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                             |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
 | ASSET_TAG_ALIAS                 | 类型为uint8[]，长度为1-256字节。                               | 可选     | 关键资产别名，每条关键资产的唯一索引。            |
@@ -27,24 +31,30 @@
 
 删除别名是demo_alias的关键资产。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void RemoveAsset() {
-    static const char *ALIAS = "demo_alias";
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+   #include "asset/asset_api.h"
 
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 此处指定别名删除，也可不指定别名删除多条数据
-    };
+   void RemoveAsset() {
+      static const char *ALIAS = "demo_alias";
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
 
-    int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
-    if (ret == ASSET_SUCCESS) {
-        // Asset removed successfully.
-    } else {
-        // Failed to remove Asset.
-    }
-}
-```
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 此处指定别名删除，也可不指定别名删除多条数据
+      };
+
+      int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
+      if (ret == ASSET_SUCCESS) {
+         // Asset removed successfully.
+      } else {
+         // Failed to remove Asset.
+      }
+   }
+   ```

@@ -1,4 +1,4 @@
-# Using SoundPool for Audio Playback (ArkTS)
+# Using SoundPool for Audio Playback
 
 The **SoundPool** class provides APIs to implement low-latency playback of short sounds.
 
@@ -81,7 +81,7 @@ During application development, you must subscribe to playback state changes and
 5. Call **on('error')** to listen for errors that may occur.
      
     ```ts
-    soundPool.on('error', (error) => {
+    soundPool.on('error', (error: BusinessError) => {
       console.info('error happened,message is :' + error.message);
     });
     ```
@@ -98,7 +98,7 @@ During application development, you must subscribe to playback state changes and
         rightVolume: 0.5, // range = 0.0-1.0
         priority: 0, // The sound playback has the lowest priority.
       }
-    soundPool.play(soundID, playParameters, (error, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
@@ -206,11 +206,12 @@ During application development, you must subscribe to playback state changes and
 ## Sample Code
 
 The following sample code implements low-latency playback using **SoundPool**.
-  
+
 ```ts
 import audio from '@ohos.multimedia.audio';
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs'
+import { BusinessError } from '@ohos.base';
 
 let soundPool: media.SoundPool;
 let streamId: number = 0;
@@ -257,13 +258,20 @@ async function finishPlayCallback() {
 }
 // Set the listener for errors.
 function setErrorCallback() {
-  soundPool.on('error', (error) => {
+  soundPool.on('error', (error: BusinessError) => {
     console.info('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
   // Start playback. PlayParameters can be carried in the play() API.
-  streamId = await soundPool.play(soundId);
+  await soundPool.play(soundID, playParameters, (error, streamID: number) => {
+    if (error) {
+      console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    } else {
+      streamId = streamID;
+      console.info('play success soundid:' + streamId);
+    }
+  });
   // Set the number of loops.
   soundPool.setLoop (streamId, 2); // The sound is played three times (two loops).
   // Set the priority.

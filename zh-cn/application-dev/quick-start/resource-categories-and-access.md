@@ -73,10 +73,10 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 限定词类型       | 含义与取值说明                                  |
 | ----------- | ---------------------------------------- |
-| 移动国家码和移动网络码 | 移动国家码（MCC）和移动网络码（MNC）的值取自设备注册的网络。<br/>MCC可与MNC合并使用，使用下划线（_）连接，也可以单独使用。例如：mcc460表示中国，mcc460_mnc00表示中国_中国移动。<br/>详细取值范围，请查阅**ITU-T&nbsp;E.212**（国际电联相关标准）。 |
-| 语言          | 表示设备使用的语言类型，由2~3个小写字母组成。例如：zh表示中文，en表示英语，mai表示迈蒂利语。<br/>详细取值范围，请查阅**ISO&nbsp;639**（ISO制定的语言编码标准）。 |
-| 文字          | 表示设备使用的文字类型，由1个大写字母（首字母）和3个小写字母组成。例如：Hans表示简体中文，Hant表示繁体中文。<br/>详细取值范围，请查阅**ISO&nbsp;15924**（ISO制定的文字编码标准）。 |
-| 国家或地区       | 表示用户所在的国家或地区，由2~3个大写字母或者3个数字组成。例如：CN表示中国，GB表示英国。<br/>详细取值范围，请查阅**ISO&nbsp;3166-1**（ISO制定的国家和地区编码标准）。 |
+| 移动国家码和移动网络码 | 移动国家码（MCC）和移动网络码（MNC）的值取自设备注册的网络。<br/>MCC可与MNC合并使用，使用下划线（_）连接，也可以单独使用。例如：mcc460表示中国，mcc460_mnc00表示中国_中国移动。<br/>详细取值范围，请查阅[**ITU-T&nbsp;E.212**](https://www.itu.int/rec/T-REC-E.212)（国际电联相关标准）。 |
+| 语言          | 表示设备使用的语言类型，由2~3个小写字母组成。例如：zh表示中文，en表示英语，mai表示迈蒂利语。<br/>详细取值范围，请查阅[**ISO&nbsp;639**](https://www.iso.org/iso-639-language-code)（ISO制定的语言编码标准）。 |
+| 文字          | 表示设备使用的文字类型，由1个大写字母（首字母）和3个小写字母组成。例如：Hans表示简体中文，Hant表示繁体中文。<br/>详细取值范围，请查阅[**ISO&nbsp;15924**](https://www.iso.org/standard/81905.html)（ISO制定的文字编码标准）。 |
+| 国家或地区       | 表示用户所在的国家或地区，由2~3个大写字母或者3个数字组成。例如：CN表示中国，GB表示英国。<br/>详细取值范围，请查阅[**ISO&nbsp;3166-1**](https://www.iso.org/iso-3166-country-codes.html)（ISO制定的国家和地区编码标准）。 |
 | 横竖屏         | 表示设备的屏幕方向，取值如下：<br/>-&nbsp;vertical：竖屏<br/>-&nbsp;horizontal：横屏 |
 | 设备类型        | 表示设备的类型，取值如下：<br/>-&nbsp;car：车机<br/>-&nbsp;tablet：平板<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴 |
 | 颜色模式        | 表示设备的颜色模式，取值如下：<br/>-&nbsp;dark：深色模式<br/>-&nbsp;light：浅色模式 |
@@ -225,11 +225,62 @@ plural.json文件的内容如下：
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
+## 资源可翻译特性
+### 功能介绍
+资源需要翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
+
+未配置attr属性，默认需要翻译。
+```
+"attr": {
+  "translatable": false|true
+  "priority": "code|translate|LT|customer"
+}
+```
+**attr支持属性**
+
+| 名称        | 类型                    |  说明   |
+| --------- | ----------------------- |  ---- |
+| translatable |  boolean |  标记字符串是否需要翻译。 <br>  true：需要翻译。 <br> false：不需要翻译。|
+| priority    | string   |  标记字符串翻译状态。<br>code：未翻译。<br>translate：翻译未验证。<br>LT：翻译已验证。<br>customer：用户定制字符串。   |
+
+### 使用约束
+可翻译特性使能范围：base目录下string、strarray、plural类型资源。
+```
+resources
+|---base
+|   |---element
+|   |   |---string.json
+|   |   |---strarray.json
+|   |   |---plural.json
+```
+### 示例
+string资源配置attr属性示例如下：
+
+```json
+{
+  "string": [
+    {
+      "name": "string1",
+      "value": "1",
+      "attr": {
+        "translatable": false
+      }
+    },
+    {
+      "name": "string2",
+      "value": "Hello world!",
+      "attr": {
+        "translatable": true,
+        "priority": "LT"
+      }
+    }
+  ]
+}
+```
+
 ## 资源访问
 
-### 应用资源
-
-#### 单HAP包资源
+### 单HAP包应用资源
 
  - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
@@ -261,13 +312,13 @@ plural.json文件的内容如下：
 
 - 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.resourceManager.getStringByNameSync('app.string.XXX') 可获取字符串资源；getContext.resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
 
-#### 跨HAP/HSP包资源
+### 跨HAP/HSP包应用资源
 
-##### bundle不同，跨bundle访问（仅支持系统应用使用）
+#### bundle不同，跨bundle访问（仅支持系统应用使用）
 
 - 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
-##### bundle相同，跨module访问
+#### bundle相同，跨module访问
 
 - 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
@@ -358,15 +409,48 @@ Image($r('sys.media.ohos_app_icon'))
 
 **overlay机制**
 
-overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。
+overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
 
 - 动态overlay使用方式
 
-1、对应的overlay资源包需要放在对应应用安装路径下。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
+1、对应的overlay资源包需要放在对应应用安装路径下，通过hdc install的方式安装。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay的hsp名称组成。如：let path = getContext().bundleCodeDir + "hsp名"，其对应沙箱路径为：/data/storage/el1/bundle/enter-release-signed.hsp。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
 
 - 静态overlay配置方式
+
+包内overlay资源包中的配置文件module.json5中支持的字段：
+```{
+  "app":{
+    "bundleName": "com.example.myapplication.overlay",
+    "vendor" : "example",
+    "versinCode": "1000000",
+    "versionName": "1.0.0.1",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+  },
+  "module":{
+    "name": "entry_overlay_module_name",
+    "type": "shared",
+    "description": "$string:entry_overlay_desc",
+    "deviceTypes": [
+      "default",
+      "tablet",
+    ],
+    "deliverywithInstall": true,
+
+    "targetModuleName": "entry_module_name",
+    "targetPriority": 1,
+  }
+}
+```
+> **说明：**
+>
+> - targetModuleName: 字符串类型，指定要overlay的moduleName
+>
+> - targetPriority： 整数类型，指定overlay优先级
+>
+> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
 
 在IDE中创建应用工程时，module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，以便于targetModuleName指向的module在运行阶段可以使用overlay资源文件展示不同的颜色，标签，主题等等。
 

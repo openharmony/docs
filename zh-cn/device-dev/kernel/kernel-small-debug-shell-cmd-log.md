@@ -40,7 +40,6 @@ log level [_levelNum_]
 
   若level不在有效范围内，会打印提示信息。
 
-- 若log level命令不加[levelNum]参数，则默认查看当前打印等级，并且提示使用方法。
 
 - 开源小型系统源码设置level 为4或者5会有超多打印。
 

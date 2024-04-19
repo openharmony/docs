@@ -6,12 +6,12 @@ For details about the algorithm specifications, see [DH](crypto-key-agreement-ov
 
 ## How to Develop
 
-1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-1) to generate a DH asymmetric key pair (**KeyPair**) with the named DH group modp1536.
+1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a DH asymmetric key pair (**KeyPair**) with the named DH group **modp1536**.
    In addition to the example in this topic, [DH](crypto-asym-key-generation-conversion-spec.md#dh) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate a DH asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createKeyAgreement](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement) with the string parameter **'DH_modp1536'** to create a key agreement (**KeyAgreement**) instance.
+2. Use [cryptoFramework.createKeyAgreement](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement) with the string parameter **'DH_modp1536'** to create a key agreement (**KeyAgreement**) instance.
 
-3. Use [KeyAgreement.generateSecret](../../reference/apis/js-apis-cryptoFramework.md#generatesecret-1) to perform key agreement with the specified private key (**KeyPair.pubKey**) and public key (**KeyPair.priKey**), and return the shared secret.
+3. Use [KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1) to perform key agreement with the specified private key (**KeyPair.pubKey**) and public key (**KeyPair.priKey**), and return the shared secret.
 
 Example: Perform key agreement using **await**.
 ```ts

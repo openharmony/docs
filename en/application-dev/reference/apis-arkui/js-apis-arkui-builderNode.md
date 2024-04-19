@@ -35,7 +35,7 @@ Provides optional parameters for creating a BuilderNode.
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | No  | Ideal size of the node.                                            |
 | type          | [NodeRenderType](#noderendertype)      | No  | Rendering type of the node.                                            |
-| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage) instance.|
+| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage) instance.|
 
 ## BuilderNode
 
@@ -344,7 +344,7 @@ Dispatches an event to the FrameNode created by this BuilderNode.
 
 | Name| Type                                                                     | Mandatory| Description      |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
+| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
 
 **Return value**
 

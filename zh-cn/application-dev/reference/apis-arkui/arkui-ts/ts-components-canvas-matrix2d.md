@@ -10,18 +10,18 @@
 
 Matrix2D()
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 ## 属性
 
 | 属性                      | 类型   | 描述                                                         |
 | ------------------------- | ------ | ------------------------------------------------------------ |
-| [scaleX](#scalex)         | number | 水平缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [scaleY](#scaley)         | number | 垂直缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [rotateX](#rotatex)       | number | 水平倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [rotateY](#rotatey)       | number | 垂直倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [translateX](#translatex) | number | 水平平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [translateY](#translatey) | number | 垂直平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [scaleX](#scalex)         | number | 水平缩放系数。 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [scaleY](#scaley)         | number | 垂直缩放系数。 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [rotateX](#rotatex)       | number | 水平倾斜系数。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [rotateY](#rotatey)       | number | 垂直倾斜系数。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [translateX](#translatex) | number | 水平平移距离，单位为vp。 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [translateY](#translatey) | number | 垂直平移距离，单位为vp。 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 >  **说明：**
 >  
@@ -245,7 +245,7 @@ identity(): Matrix2D
 
 创建一个单位矩阵。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：**
 
@@ -294,7 +294,7 @@ invert(): Matrix2D
 
 得到当前矩阵的逆矩阵。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：**
 
@@ -349,7 +349,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 当前矩阵与目标矩阵相乘。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
 
 该接口从API version 10开始废弃。
 
@@ -419,7 +419,7 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 对当前矩阵进行旋转运算。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
 
 该接口从API version 10开始废弃，推荐使用[rotate](#rotate10)。
 
@@ -483,7 +483,7 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 以旋转点为中心、对当前矩阵进行右乘旋转运算。
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -546,7 +546,7 @@ translate(tx?: number, ty?: number): Matrix2D
 
 对当前矩阵进行左乘平移运算。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -608,7 +608,7 @@ scale(sx?: number, sy?: number): Matrix2D
 
 对当前矩阵进行右乘缩放运算。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 

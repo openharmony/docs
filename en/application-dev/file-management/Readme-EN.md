@@ -1,38 +1,34 @@
-# File Management
+# Core File Kit (Basic File Services)
 
-- Core File Kit
-  - [Introduction to Core File Kit](core-file-kit-intro.md)
-  - Application Files
-    - [Application File Overview](app-file-overview.md)
-    - [Application Sandbox](app-sandbox-directory.md)
-    - Application File Access and Management
-      - [Accessing Application Files](app-file-access.md)
-      - [Uploading and Downloading Application Files](app-file-upload-download.md)
-      - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
-    - [Pushing Files to an Application Sandbox Directory](send-file-to-app-sandbox.md)
-    - [Sharing an Application File](share-app-file.md)
-    - Application Data Backup and Restore
-      - [Application Data Backup and Restore Overview](app-file-backup-overview.md)
-      - [Accessing Backup and Restore](app-file-backup-extension.md)
-      - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
-    - [Authorizing Access to Application Files](app-file-authorization.md)
-  - User Files
-    - [User File Overview](user-file-overview.md)
-    - [User File URI](user-file-uri-intro.md)
-    - Selecting and Saving User Files (FilePicker)
-      - [Selecting User Files](select-user-file.md)
-      - [Saving User Files](save-user-file.md)
-    - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
-    - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
-  - Distributed File System
-    - [Distributed File System Overview](distributed-fs-overview.md)
-    - [Setting the Security Level of a Distributed File](set-security-label.md)
-    - [Accessing Files Across Devices](file-access-across-devices.md)
-    - [Copying Files Across Devices](file-copy-across-devices.md)
-- Media Library Kit
-  - [Introduction to Media Library Kit](photoAccessHelper-overview.md)
-  - [Before You Start](photoAccessHelper-preparation.md)
-  - [Managing Media Assets](photoAccessHelper-resource-guidelines.md)
-  - [Managing User Albums](photoAccessHelper-userAlbum-guidelines.md)
-  - [Managing System Albums](photoAccessHelper-systemAlbum-guidelines.md)
-  - [Observing Media Assets](photoAccessHelper-notify-guidelines.md)
+- [Introduction to Core File Kit](core-file-kit-intro.md)
+- Application Files
+  - [Application File Overview](app-file-overview.md)
+  - [Application Sandbox](app-sandbox-directory.md)
+  - Application File Access and Management
+    - [Accessing Application Files (ArkTS)](app-file-access.md)
+    - [Accessing Application Files (C/C++)](native-fileio-guidelines.md)
+    - [Uploading and Downloading Application Files](app-file-upload-download.md)
+    - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
+  - [Pushing Files to an Application Sandbox Directory](send-file-to-app-sandbox.md)
+  - [Sharing an Application File](share-app-file.md)
+  - Application Data Backup and Restore
+    - [Application Data Backup and Restore Overview](app-file-backup-overview.md)
+    - [Accessing Backup and Restore](app-file-backup-extension.md)
+    - [Triggering Backup and Restore (for System Applications Only)](app-file-backup.md)
+  - [Authorizing File Access (ArkTS)](app-file-authorization.md)
+  - [Authorizing File Access (C/C++)](native-fileshare-guidelines.md)
+- User Files
+  - [User File Overview](user-file-overview.md)
+  - [User File URI](user-file-uri-intro.md)
+  - [FileUri Development (C/C++)](native-fileuri-guidelines.md)
+  - [Obtaining the User Directory Environment (C/C++)](native-environment-guidelines.md)
+  - Selecting and Saving User Files (FilePicker)
+    - [Selecting User Files](select-user-file.md)
+    - [Saving User Files](save-user-file.md)
+  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
+  - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
+- Distributed File System
+  - [Distributed File System Overview](distributed-fs-overview.md)
+  - [Setting the Security Level of a Distributed File](set-security-label.md)
+  - [Accessing Files Across Devices](file-access-across-devices.md)
+  - [Copying Files Across Devices](file-copy-across-devices.md)

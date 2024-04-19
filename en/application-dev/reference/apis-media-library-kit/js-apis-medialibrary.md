@@ -445,7 +445,7 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums) instead.
-> - Since the SDK of API version 10, **relativePath** is no longer associated with albums and cannot be used  in **getAlbums()**. Currently, only **Camera** and **ScreenShots** albums are supported.
+> - Since the SDK of API version 10, **relativePath** is no longer associated with albums and cannot be used in **getAlbums()**. Currently, only **Camera** and **ScreenShots** albums are supported.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1276,7 +1276,7 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#getThumbnail) instead.
+> This API is deprecated since API version 9. Use [getThumbnail](js-apis-photoAccessHelper.md#getthumbnail) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1320,7 +1320,7 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#getThumbnail-1) instead.
+> This API is deprecated since API version 9. Use [getThumbnail](js-apis-photoAccessHelper.md#getthumbnail-1) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1366,7 +1366,7 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [close](js-apis-photoAccessHelper.md#getThumbnail-2) instead.
+> This API is deprecated since API version 9. Use [getThumbnail](js-apis-photoAccessHelper.md#getthumbnail-2) instead.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -1417,7 +1417,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [setFavorite](js-apis-photoAccessHelper.md#setfavorite) instead.
+> This API is deprecated since API version 9. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1462,7 +1462,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [setFavorite](js-apis-photoAccessHelper.md#setfavorite-1) instead.
+> This API is deprecated since API version 9. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1602,7 +1602,7 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteAssets) instead.
+> This API is deprecated since API version 9. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -1649,7 +1649,7 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteAssets-1) instead.
+> This API is deprecated since API version 9. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 

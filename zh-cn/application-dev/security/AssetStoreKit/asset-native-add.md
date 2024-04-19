@@ -6,6 +6,10 @@
 
 在新增关键资产时，关键资产属性的内容参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | ASSET_TAG_SECRET                | 类型为uint8[]，长度为1-1024字节。                              | 必选     | 关键资产明文。                                                 |
@@ -41,31 +45,37 @@
 
 新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的数据，该数据在用户首次解锁设备后可被访问。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void AddAsset() {
-    static const char *SECRET = "demo_pwd";
-    static const char *ALIAS = "demo_alias";
-    static const char *LABEL = "demo_label";
+   #include "asset/asset_api.h"
 
-    Asset_Blob secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_ACCESSIBILITY, .value.u32 = ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED },
-        { .tag = ASSET_TAG_SECRET, .value.blob = secret },
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias },
-        { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-    };
+   void AddAsset() {
+      static const char *SECRET = "demo_pwd";
+      static const char *ALIAS = "demo_alias";
+      static const char *LABEL = "demo_label";
 
-    int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
-    if (ret == ASSET_SUCCESS) {
-        // Asset added successfully.
-    } else {
-        // Failed to add Asset.
-    }
-}
-```
+      Asset_Blob secret = { (uint32_t)(strlen(SECRET)), (uint8_t *)SECRET };
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+      Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_ACCESSIBILITY, .value.u32 = ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED },
+         { .tag = ASSET_TAG_SECRET, .value.blob = secret },
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias },
+         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
+      };
+
+      int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
+      if (ret == ASSET_SUCCESS) {
+         // Asset added successfully.
+      } else {
+         // Failed to add Asset.
+      }
+   }
+   ```

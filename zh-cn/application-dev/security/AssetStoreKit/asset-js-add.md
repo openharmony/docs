@@ -6,6 +6,10 @@
 
 在新增关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | SECRET                | 类型为Uint8Array，长度为1-1024字节。                           | 必选     | 关键资产明文。                                              |
@@ -49,6 +53,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -63,10 +68,11 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.add(attr).then(() => {
     console.info(`Asset added successfully.`);
-  }).catch(() => {
-    console.error(`Failed to add Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
   })
 } catch (error) {
-  console.error(`Failed to add Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```

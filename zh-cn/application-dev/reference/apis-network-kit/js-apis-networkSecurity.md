@@ -18,12 +18,12 @@ import networkSecurity from '@ohos.net.networkSecurity';
 import networkSecurity from '@ohos.net.networkSecurity';
 
 // Define certificate blobs
-const cert = {
+const cert: networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (certificate data) ...\n-----END CERTIFICATE-----',
 };
 
-const caCert = {
+const caCert: networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (CA certificate data) ...\n-----END CERTIFICATE-----',
 };
@@ -33,7 +33,7 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Certificate verification result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Certificate verification failed:', error);
   });
 ```

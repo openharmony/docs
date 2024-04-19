@@ -1842,7 +1842,7 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: CallbackAccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅加速度传感器数据。
 

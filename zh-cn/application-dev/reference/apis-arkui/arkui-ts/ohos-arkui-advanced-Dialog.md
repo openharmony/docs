@@ -102,7 +102,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, secondaryTitle: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
 
@@ -115,6 +115,8 @@ AlertDialog({controller: CustomDialogController, content: ResourceStr, primaryBu
 | 名称 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。 | 
+| primaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框一级标题。 | 
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框二级标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。 | 
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。 | 
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。 | 
@@ -140,7 +142,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 ## CustomContentDialog<sup>12+</sup>
 
-CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, buttons?: ButtonOptions[]})
+CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[]})
 
 自定义内容区弹出框，同时支持定义操作区按钮样式。
 
@@ -156,6 +158,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | contentBuilder | () => void | 是 | 弹出框内容。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
+| contentAreaPadding<sup>12+</sup> | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
 | buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
 
 
@@ -352,15 +355,19 @@ struct Index {
 
 ```ts
 import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct Index {
   dialogControllerConfirm: CustomDialogController = new CustomDialogController({
     builder: AlertDialog({
+      primaryTitle: '弹框一级标题',
+      secondaryTitle: '弹框二级标题',
       content: '文本文本文本文本文本',
       primaryButton: {
         value: '取消',
-        action: () => {},
+        action: () => {
+        },
       },
       secondaryButton: {
         value: '确认',
@@ -375,14 +382,14 @@ struct Index {
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button("纯文本弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-        }.margin({bottom: 300})
+        }.margin({ bottom: 300 })
       }.align(Alignment.Bottom)
       .width('100%').height('100%')
     }

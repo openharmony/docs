@@ -17,4 +17,4 @@
 | -------- | -------- |
 | [ffrt_function_t](_f_f_r_t.md#类型定义) [exec](_f_f_r_t.md#exec) | 任务执行函数 | 
 | [ffrt_function_t](_f_f_r_t.md#类型定义) [destroy](_f_f_r_t.md#destroy) | 任务销毁函数 | 
-| uint64_t [reserve](_f_f_r_t.md#reserve) [2] | 保留位 | 
+| uint64_t [reserve](_f_f_r_t.md#reserve)[2] | 保留位 | 

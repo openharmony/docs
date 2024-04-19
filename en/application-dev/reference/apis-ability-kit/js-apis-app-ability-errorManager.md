@@ -181,14 +181,6 @@ Registers an observer for the message processing duration of the main thread. Af
 | timeout | number | Yes|  Event execution threshold, which must be greater than **0**.|
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | Yes| Observer to register.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------- |
-| 16200001 | Invalid caller. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
     
 ```ts
@@ -202,9 +194,55 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
+## ErrorManager.on<sup>12+</sup>
+
+on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
+
+Registers an observer for the promise rejection of the main thread. After the registration, rejected promise that is not captured in the main thread of the application can be captured.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+ 
+| Name                  | Type                                                         | Mandatory| Description                                      |
+|-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
+| type                  | string                                                      | Yes| Event type. It is fixed at **'unhandledRejection'**, indicating an observer for the promise rejection of the main thread.|
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | Yes| Observer to register.                         |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16200001 | Invalid caller. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
+  if (promise === promise1) {
+    console.log("promise1 is rejected");
+  }
+  console.log("reason.name: ", reason.name);
+  console.log("reason.message: ", reason.message);
+  if (reason.stack) {
+      console.log("reason.stack: ", reason.stack);
+  }
+};
+
+errorManager.on("unhandledRejection", observer);
+
+promise1 = new Promise<void>(() => {}).then(() => {
+    throw new Error("uncaught error")
+})
+```
+
 ## ErrorManager.off<sup>12+</sup>
 
-function off(type: 'loopObserver', observer?: LoopObserver): void
+off(type: 'loopObserver', observer?: LoopObserver): void
 
 Unregisters an observer for the message processing duration of the main thread.
 
@@ -224,3 +262,88 @@ import errorManager from '@ohos.app.ability.errorManager';
 
 errorManager.off("loopObserver");
 ```
+
+off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
+
+Unregisters an observer for the promise rejection of the main thread.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name                  | Type                             | Mandatory| Description                                          |
+|-----------------------|---------------------------------|----|----------------------------------------------|
+| type                  | string                          | Yes | Event type. It is fixed at **'unhandledRejection'**, indicating an observer for the promise rejection of the main thread.|
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | No | Observer to unregister.                       |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16200001 | Invalid caller. |
+| 16300004 | observer not found. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+    
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
+  if (promise === promise1) {
+    console.log("promise1 is rejected");
+  }
+  console.log("reason.name: ", reason.name);
+  console.log("reason.message: ", reason.message);
+  if (reason.stack) {
+    console.log("reason.stack: ", reason.stack);
+  }
+};
+
+errorManager.on("unhandledRejection", observer);
+
+promise1 = new Promise<void>(() => {}).then(() => {
+  throw new Error("uncaught error")
+})
+
+errorManager.off("unhandledRejection");
+```
+Or:
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
+  if (promise === promise1) {
+    console.log("promise1 is rejected");
+  }
+  console.log("reason.name: ", reason.name);
+  console.log("reason.message: ", reason.message);
+  if (reason.stack) {
+    console.log("reason.stack: ", reason.stack);
+  }
+};
+
+errorManager.on("unhandledRejection", observer);
+
+promise1 = new Promise<void>(() => {}).then(() => {
+  throw new Error("uncaught error")
+})
+
+errorManager.off("unhandledRejection", observer);
+```
+
+## UnhandledRejectionObserver<sup>12+</sup>
+
+type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
+
+Defines the observer for the promise rejection that is not captured in the main thread at the JS runtime.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name   | Type           | Mandatory| Description|
+|--------|---------------|---| -------- |
+| reason | Error \| any  | Yes| Generally, the value is of the **Error** type, indicating the reason for rejection.|
+| promise | Promise\<any> | No| Rejected promise.|

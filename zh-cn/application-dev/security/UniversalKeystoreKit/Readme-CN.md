@@ -62,3 +62,4 @@
   - 密钥导出
     - [密钥导出(ArkTS)](huks-export-key-arkts.md)
     - [密钥导出(C/C++)](huks-export-key-ndk.md)
+  - [指定用户身份操作(仅对系统应用开放)](huks-as-user-sys.md)

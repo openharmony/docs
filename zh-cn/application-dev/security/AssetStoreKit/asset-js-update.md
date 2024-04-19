@@ -6,6 +6,10 @@
 
 在更新关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 - **query的参数列表：**
 
   | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                             |
@@ -46,6 +50,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -60,10 +65,11 @@ attrsToUpdate.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label_new')
 try {
   asset.update(query, attrsToUpdate).then(() => {
     console.info(`Asset updated successfully.`);
-  }).catch(() => {
-    console.error(`Failed to update Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to update Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```

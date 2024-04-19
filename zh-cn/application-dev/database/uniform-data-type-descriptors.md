@@ -45,11 +45,11 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，每个类型定义具体包含以下内容：
 
-+ **typeId：** 定义标准化数据类型的ID，该ID具有唯一性。
-+ **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
-+ **description：** 标准化数据类型的简要说明。
-+ **referenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
-+ **iconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
++ **TypeId：** 定义标准化数据类型的ID，该ID具有唯一性。
++ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
++ **Description：** 标准化数据类型的简要说明。
++ **ReferenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
++ **IconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
 
 ## 预置数据类型
 
@@ -74,18 +74,18 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 针对自定义的类型描述各字段，有以下相关要求和限制：
 
-+ **typeId：** 定义标准化数据类型的ID，该ID具有唯一性，由应用bundleName + 具体类型名组成，不可缺省，允许包含数字、大小写字母、-和.。
++ **TypeId：** 定义标准化数据类型的ID，该ID具有唯一性，由应用bundleName + 具体类型名组成，不可缺省，允许包含数字、大小写字母、-和.。
 
-+ **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据
++ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据
   类型（标准化数据类型预置类型或其他新增自定义数据类型），不能为应用自定义类型本身，不能为空，且与现有标准化数据类型、其他新增自定义数据类型不能形成环行依赖结构。
 
 + **FilenameExtensions：** 应用自定义标准化数据类型所关联的文件后缀。可以缺省；可以为多个，每个后缀为以.开头且长度不超过127的字符串。
 
-+ **mimeTypes：** 应用自定义标准化数据类型所关联的web消息数据类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
++ **MIMETypes：** 应用自定义标准化数据类型所关联的web消息数据类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
 
-+ **description：** 应用自定义标准化数据类型的简要说明。可以缺省；填写时，长度为不超过255的字符串。
++ **Description：** 应用自定义标准化数据类型的简要说明。可以缺省；填写时，长度为不超过255的字符串。
 
-+ **referenceURL：** 应用自定义标准化数据类型的参考链接URL，用于描述类型的详细信息。可以缺省；填写时，长度为不超过255的字符串。
++ **ReferenceURL：** 应用自定义标准化数据类型的参考链接URL，用于描述类型的详细信息。可以缺省；填写时，长度为不超过255的字符串。
 
 
 ### 开发步骤
@@ -99,28 +99,28 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    {
         "UniformDataTypeDeclarations": [
             {
-                "typeId": "com.example.myFirstHap.image",
-                "belongingToTypes": ["general.image"],
+                "TypeId": "com.example.myFirstHap.image",
+                "BelongingToTypes": ["general.image"],
                 "FilenameExtensions": [".myImage", ".khImage"],
-                "mimeTypes": ["application/myImage", "application/khImage"],
-                "description": "My Image.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myImage", "application/khImage"],
+                "Description": "My Image.",
+                "ReferenceURL": ""
             },
             {
-                "typeId": "com.example.myFirstHap.audio",
-                "belongingToTypes": ["general.audio"],
+                "TypeId": "com.example.myFirstHap.audio",
+                "BelongingToTypes": ["general.audio"],
                 "FilenameExtensions": [".myAudio", ".khAudio"],
-                "mimeTypes": ["application/myAudio", "application/khAudio"],
-                "description": "My audio.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myAudio", "application/khAudio"],
+                "Description": "My audio.",
+                "ReferenceURL": ""
             },
             {
-                "typeId": "com.example.myFirstHap.video",
-                "belongingToTypes": ["general.video"],
+                "TypeId": "com.example.myFirstHap.video",
+                "BelongingToTypes": ["general.video"],
                 "FilenameExtensions": [".myVideo", ".khVideo"],
-                "mimeTypes": ["application/myVideo", "application/khVideo"],
-                "description": "My video.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myVideo", "application/khVideo"],
+                "Description": "My video.",
+                "ReferenceURL": ""
             }
         ]
    }
@@ -134,29 +134,29 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    {
        "ReferenceUniformDataTypeDeclarations": [
             {
-                "typeId": "com.example.myFirstHap.image",
-                "belongingToTypes": ["general.image"],
+                "TypeId": "com.example.myFirstHap.image",
+                "BelongingToTypes": ["general.image"],
                 "FilenameExtensions": [".myImage", ".khImage"],
-                "mimeTypes": ["application/myImage", "application/khImage"],
-                "description": "My Image.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myImage", "application/khImage"],
+                "Description": "My Image.",
+                "ReferenceURL": ""
             }
        ]
    }
    ```
 
-4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd.json5配置文件示例如下：
+4. 其他应用也可以在DevEco Studio中创建utd.json5模板，在模板中引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。同时，DevEco Studio还会对配置文件中的字段进行格式校验，utd.json5配置文件示例如下：
 
    ```json
    {
        "UniformDataTypeDeclarations": [
            {
-               "typeId": "com.example.mySecondHap.image",
-               "belongingToTypes": ["com.example.myFirstHap.image"],
+               "TypeId": "com.example.mySecondHap.image",
+               "BelongingToTypes": ["com.example.myFirstHap.image"],
                "FilenameExtensions": [".myImageEx", ".khImageEx"],
-               "mimeTypes": ["application/my-ImageEx", "application/khImageEx"],
-               "description": "My Image extension.",
-               "referenceURL": ""
+               "MIMETypes": ["application/my-ImageEx", "application/khImageEx"],
+               "Description": "My Image extension.",
+               "ReferenceURL": ""
            }
        ]
    }

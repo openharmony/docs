@@ -47,7 +47,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Use napi_value to undertake the created encoder instance.
    napi_value packer;
    // Use napi_env to create an encoder. If result is IMAGE_RESULT_SUCCESS, the encoder is created.
-   int32_t result = OH_ImagePacker_Create(env, packer);
+   int32_t result = OH_ImagePacker_Create(env, &packer);
    ```
 3. Initialize resources.
 
@@ -67,13 +67,12 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
    - Encoding parameters, including the encoding format and encoding quality
      
-   
    The encoding APIs can output data to the buffer (memory) or a file. They have the same input parameters, as described previously. You can select either of them as required.
 
    Example: output data to the buffer (memory)
    ```cpp
    // Encoding parameters
-   struct ImagePacker_Opts opts;
+   struct ImagePacker_Opts_ opts;
    // (Mandatory) Configure the encoding format.
    opts.format = "image/jpeg";
    // (Mandatory) Configure the encoding quality.
@@ -88,7 +87,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    Example: output data to a file
    ```cpp
    // Encoding parameters
-   struct ImagePacker_Opts opts;
+   struct ImagePacker_Opts_ opts;
    // (Mandatory) Configure the encoding format.
    opts.format = "image/jpeg";
    // (Mandatory) Configure the encoding quality.

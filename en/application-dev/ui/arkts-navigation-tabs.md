@@ -1,13 +1,14 @@
 # Tabs
 
 
-When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [\<Tabs>](../reference/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
+When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [\<Tabs>](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
 
 
 ## Basic Layout
 
   The **\<Tabs>** component consists of two parts: **\<TabContent>** and **\<TabBar>**. **\<TabContent>** is the content page, and **\<TabBar>** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
-  **Figure 1** \<Tabs> component layout 
+
+**Figure 1** \<Tabs> component layout
 
 ![tabs-layout](figures/tabs-layout.png)
 
@@ -324,44 +325,94 @@ For non-custom navigation bars, tabs and tab content are linked by default. For 
 
   **Figure 11** Lack of linkage between tabs and tab content 
 
-![lack-of-linkage](figures/lack-of-linkage.gif)
+![TabsChange1](figures/TabsChange1.gif)
 
 
 To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
 
 
 ```ts
-class Tmp{
-  currentIndex:number = 0;
-  foo(val:number){
-    this.currentIndex = val;
+//xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 2
+  private controller: TabsController = new TabsController()
+    
+  ...
+  
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('Home',0))
+
+        TabContent() {
+          ...
+        }.tabBar (this.tabBuilder ('Discover', 1))
+
+        TabContent() {
+          ...
+        }.tabBar (this.tabBuilder ('Recommended', 2))
+
+        TabContent() {
+          ...
+        }.tabBar(this.tabBuilder('Me',3))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationDuration(0)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(600)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      .onContentWillChange((currentIndex, comingIndex) => {
+        if (comingIndex == 2) {
+          return false
+        }
+        return true
+      })
+
+      Button('Change index').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+        })
+
+      Button('changeIndex').width('50%').margin({ top: 20 })
+        .onClick(()=>{
+          this.currentIndex = (this.currentIndex + 1) % 4
+          this.controller.changeIndex(this.currentIndex)
+        })
+    }.width('100%')
   }
 }
-Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('Home', 0))
-
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('Discover', 1))
-
-  TabContent() {
-    ...
-  }.tabBar(this.tabBuilder('Recommended', 2))
-
-  TabContent() {
-    ...
-  }
-  .tabBar(this.tabBuilder('Me', 3))
-}.onChange((index:number) => {
-  let cur:Tmp = new Tmp()
-  cur.foo(index)
-})
 ```
 
 
   **Figure 12** Linkage between tabs and tab content
 
-![final-effect](figures/final-effect.gif)
+![TabsChange2](figures/TabsChange2.gif)
+
+  **Figure 13** Customizing the page switching interception event
+
+![TabsChange3](figures/TabsChange3.gif)
+
+You can use the **onContentWillChange** API of the **\<Tabs>** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
+
+```ts
+Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
+.onContentWillChange((currentIndex, comingIndex) => {
+  if (comingIndex == 2) {
+    return false
+  }
+  return true
+})
+
+```
 

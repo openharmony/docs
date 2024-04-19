@@ -256,6 +256,16 @@ export class AVPlayerDemo {
     this.isSeek = false; // 不支持seek操作
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // 播放hls网络直播码流
   }
+
+  // 以下demo为通过setMediaSource设置网络地址来实现视频预下载
+  async preDownloadDemo() {
+    // 创建avPlayer实例对象
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"User-Agent" : "User-Agent-Value"});
+    let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+    // 设置媒体来源和播放策略
+    avPlayer.setMediaSource(mediaSource, playbackStrategy);
+  }
 }
 ```
 

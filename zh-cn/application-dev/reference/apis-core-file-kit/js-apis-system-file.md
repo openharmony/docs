@@ -191,7 +191,7 @@ get(Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 文件的uri。 |
-| recursive | boolean | 否 | 是否进行递归获取子目录文件列表，缺省为false。 |
+| recursive | boolean | 否 | 是否进行递归获取子目录文件列表，true为进行该操作，缺省为false。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
@@ -300,7 +300,7 @@ writeText(Object): void
 | uri | string | 是 | 本地文件uri，如果文件不存在会创建文件。 |
 | text | string | 是 | 写入的字符串。 |
 | encoding | string | 否 | 编码格式，默认为UTF-8。 |
-| append | boolean | 否 | 是否追加模式，默认为false。 |
+| append | boolean | 否 | 是否追加模式，默认为false。true为追加，false为不追加。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
@@ -351,7 +351,7 @@ writeArrayBuffer(Object): void
 | uri | string | 是 | 本地文件uri，如果文件不存在会创建文件。 |
 | buffer | Uint8Array | 是 | 写入的Buffer。 |
 | position | number | 否 | 文件开始写入数据的位置的偏移量，默认为0。 |
-| append | boolean | 否 | 是否追加模式，默认为false。当设置为true时，position参数无效。 |
+| append | boolean | 否 | 是否追加模式，默认为false。当设置为true时，position参数无效。true为追加，false为不追加。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
@@ -564,7 +564,7 @@ mkdir(Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 目录的uri路径。 |
-| recursive | boolean | 否 | 是否递归创建该目录的上级目录，缺省为false。 |
+| recursive | boolean | 否 | 是否递归创建该目录的上级目录，缺省为false。true为递归创建，false是不递归创建。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
@@ -612,7 +612,7 @@ rmdir(Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 目录的uri路径。 |
-| recursive | boolean | 否 | 是否递归删除子文件和子目录，缺省为false。 |
+| recursive | boolean | 否 | 是否递归删除子文件和子目录，缺省为false。true为递归删除，false为不递归删除。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |

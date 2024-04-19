@@ -29,7 +29,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 元服务中模块的预加载列表。|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | 是   | 否   | 模块的文件菜单配置。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_MENU获取。 |
-| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem)>                            | 是   | 否   | [模块的路由表配置](../../quick-start/module-configuration-file.md#routermap标签)。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。 |
+| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | 是   | 否   | [模块的路由表配置](../../quick-start/module-configuration-file.md#routermap标签)。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。 |
 | codePath<sup>12+</sup>            | string                                                       | 是   | 否   | 模块的安装路径。              |
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序内某个hapModule的本地库文件路径。                                                                                                   |
 
@@ -55,7 +55,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
 | versionCode | number | 是   | 否   | 标识当前共享包的版本号。   |
 
-## RouterItem
+## RouterItem<sup>12+</sup>
 
 描述模块配置的路由表信息。
 
@@ -64,12 +64,11 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | 名称           | 类型   | 只读 | 必填 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | name          | string | 是   | 是   | 标识跳转页面的名称。       |
-| pageModule    | string | 是   | 是   | 标识页面所在的模块名称。 |
 | pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
 | buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
-| data          | Array\<[DataItem](#dataitem)> | 是   | 是   | 标识自定义数据。   |
+| data          | Array\<[DataItem](#dataitem12)> | 是   | 是   | 标识自定义数据。   |
 
-## DataItem
+## DataItem<sup>12+</sup>
 
 描述模块配置的路由表中的自定义数据。
 

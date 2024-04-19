@@ -6,6 +6,10 @@
 
 在删除关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                             |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
 | ALIAS                 | 类型为Uint8Array，长度为1-256字节。                            | 可选     | 关键资产别名，每条关键资产的唯一索引。            |
@@ -34,6 +38,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -45,10 +50,11 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名�
 try {
   asset.remove(query).then(() => {
     console.info(`Asset removed successfully.`);
-  }).catch(() => {
-    console.error(`Failed to remove Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to remove Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```

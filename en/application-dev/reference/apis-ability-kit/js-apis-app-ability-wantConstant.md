@@ -1,6 +1,6 @@
 # @ohos.app.ability.wantConstant (wantConstant)
 
-The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
+The wantConstant module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
 >
@@ -39,9 +39,9 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                                 |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write data to the URI.                                 |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | Indicates that the URI can be persisted by the recipient.|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Indicates that no tips are displayed if the ability implicitly started does not match any application.      |
-
 ## wantConstant.ShowMode<sup>12+</sup>
 
 Enumerates the modes used to show the ability startup.

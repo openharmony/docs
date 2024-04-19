@@ -1,4 +1,4 @@
-# @ohos.data.dataShare (Data Share) (System API)
+# @ohos.data.dataShare (DataShare) (System API)
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
@@ -23,10 +23,9 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -40,7 +39,7 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
@@ -76,10 +75,9 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -93,7 +91,7 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
@@ -129,10 +127,9 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 Creates a **DataShareHelper** instance. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -152,7 +149,7 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
@@ -248,7 +245,7 @@ Observe the following when using this API:
 | Name | Type                                                   | Mandatory| Description                                                                                                                                                                                                                                                                            |
 | ------- | ------------------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                                                                                                                                                                                                                                                     |
-| uri     | string                                                  | No  | URI of the data, for which silent access is to be disabled.<br>Global setting: If **uri** is **undefined** or **null** or is not specified, all the previous settings will be cleared and silent access will be disbled globally for the data provider.<br>URI-specific setting: If a URI is specified, silent access to the specified URI will be disabled.<br>When datashareHelper APIs are called, the URI-specific setting is preferentially applied. If no match is found, the global setting is applied.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
+| uri     | string                                                  | No  | URI of the data, for which silent access is to be disabled.<br>Global setting: If **uri** is **undefined** or **null** or is not specified, all the previous settings will be cleared and silent access will be disabled globally for the data provider.<br>URI-specific setting: If a URI is specified, silent access to the specified URI will be disabled.<br>When datashareHelper APIs are called, the URI-specific setting is preferentially applied. If no match is found, the global setting is applied.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
 **Return value**
 
 | Type                                              | Description                                  |
@@ -355,6 +352,51 @@ Defines the result of the operation for subscribing to or unsubscribing from the
 | -------- | -------- | ----- | -------- |
 | key | string | Yes| Key of the operation result.|
 | result | number | Yes| Operation result. If the operation is successful, **0** is returned; otherwise, an error code is returned. |
+## UpdateOperation<sup>12+</sup>
+
+Represents the batch update operation information.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name      | Type                                                        | Mandatory| Description          |
+| ---------- | ------------------------------------------------------------ | ---- | -------------- |
+| values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | Data to be updated, which|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.    |
+
+## ChangeType<sup>12+</sup>
+
+Enumerates the data change types.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name    | Value         | Description         |
+| ---------| ------------| --------------|
+| INSERT   | 0           | Data is added.|
+| DELETE   | 1           | Data is deleted.|
+| UPDATE   | 2           | Data is updated.|
+
+## SubscriptionType<sup>12+</sup>
+
+Enumerates the data subscription types.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name                       | Value  | Description                        |
+| ----------------------------|------| ---------------------------- |
+| SUBSCRIPTION_TYPE_EXACT_URI | 0    | Data change of the specified URI.|
+
+## ChangeInfo<sup>12+</sup>
+
+Represents the data change information, including the data change type, URI of the data changed, and changed data content.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name      | Type                                                        | Mandatory| Description          |
+| ---------- | ------------------------------------------------------------ | ---- | -------------- |
+| type       | [ChangeType](#changetype12)      | Yes  | Data change type.|
+| uri        | string                                                       | Yes  | URI of the data changed.     |
+| values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| Yes  | Changed data.  |
+
 ## DataShareHelper
 
 Provides a **DataShareHelper** instance to access or manage data on the server. Before calling an API provided by **DataShareHelper**, you must create a **DataShareHelper** instance using [createDataShareHelper](#datasharecreatedatasharehelper).
@@ -363,7 +405,7 @@ Provides a **DataShareHelper** instance to access or manage data on the server. 
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-Subscribes to changes of the specified data. After an observer is registered, the subscriber will receive a notification when the change notification is triggered (the **notifyChange()** method is called). This API uses an asynchronous callback to return the result.
+Subscribes to the data change of the specified URI. After an observer is registered, the subscriber will receive a notification when the **notifyChange()** API is called. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -371,9 +413,9 @@ Subscribes to changes of the specified data. After an observer is registered, th
 
 | Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
-| uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is changed, the value of **err** is undefined. Otherwise, this callback is not invoked or the value of **err** is an error object.|
+| type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
+| uri      | string               | Yes  | URI of the data to be observed.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the data change. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
 
 **Example**
 
@@ -387,11 +429,11 @@ if (dataShareHelper !== undefined) {
 }
 ```
 
-### off('dataChange')
+### on('dataChange')<sup>12+</sup>
 
-off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
+on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
 
-Unsubscribes from data changes.
+Subscribes to the data change of the specified URI. This API uses an asynchronous callback to return the result. After a change notification is registered, the subscriber will receive a notification when the **notifyChange()** API is called. The change notification contains the data change type, URI of the data changed, and the changed data.  Silent access is not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -399,9 +441,38 @@ Unsubscribes from data changes.
 
 | Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
-| uri      | string               | Yes  | URI of the target data.|
-| callback | AsyncCallback&lt;void&gt; | No  | Callback for the data change. If this parameter is left empty, all notification events of the URI will be unsubscribed from. |
+| event     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
+| type     | [SubscriptionType](#subscriptiontype12)| Yes  | Subscription type.|
+| uri      | string               | Yes  | URI of the data to be observed.|
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt; | Yes  | Callback invoked to return the data change when the change notification is triggered.|
+
+**Example**
+
+```ts
+let uri = ("datashare:///com.acts.datasharetest");
+export function callback(error,ChangeInfo) {
+    console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
+}
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on('dataChange', dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+}
+```
+
+### off('dataChange')
+
+off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
+
+Unsubscribes from the data change of the specified URI.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                   |
+| -------- | -------------------- | ---- | ------------------------ |
+| type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
+| uri      | string               | Yes  | URI of the data to be observed.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks for the specified URI will be unregistered.|
 
 **Example**
 
@@ -413,6 +484,37 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, callback);
   (dataShareHelper as dataShare.DataShareHelper).off("dataChange", uri, callback);
+}
+```
+
+
+### off('dataChange')<sup>12+</sup>
+
+off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
+
+Unsubscribes from the data change of the specified URI. Silent access is not supported.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                   |
+| -------- | -------------------- | ---- | ------------------------ |
+| event     | string               | Yes  | Event or callback type. The value is **dataChange**, which indicates the data change.|
+| type     | [SubscriptionType](#subscriptiontype12)| Yes  | Subscription type.|
+| uri      | string               | Yes  | URI of the data to be observed.|
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| No  | Callback to unregister. If this parameter is left empty, all notification callbacks of the URI will be unregistered. If this parameter is specified, the callback must be the one registered in [on('datachange')](#ondatachange12).|
+
+**Example**
+
+```ts
+let uri = ("datashare:///com.acts.datasharetest");
+export function callback(error,ChangeInfo) {
+    console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
+}
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
 }
 ```
 
@@ -434,7 +536,7 @@ Adds a data template with the specified subscriber.
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message             |
 | -------- | -------------------- |
@@ -478,7 +580,7 @@ Deletes a data template based on the specified subscriber.
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message             |
 | -------- | -------------------- |
@@ -518,10 +620,10 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 
 | Name    | Type                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                           | Yes  | Event type. The value is **rdbDataChange**, which indicates the RDB data change event. If **type** is any other value, there is no response to this API. |
-| uris    | Array&lt;string&gt;                | Yes  | URIs of the data to operate.          |
+| type      | string                           | Yes  | Event type. The value is **rdbDataChange**, which indicates the change of the RDB data. If **type** is any other value, there is no response to this API. |
+| uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | templateId | [TemplateId](#templateid10)       | Yes  | ID of the template that triggers the callback.          |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback invoked to return the result when the specified data changes. The **err** is **undefined**, and **node** is the new data. Otherwise, this callback is not triggered or **err** is an error object. |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback invoked to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -562,10 +664,10 @@ Unsubscribes from the changes of the data corresponding to the specified URI and
 
 | Name    | Type                                       | Mandatory| Description                                                       |
 | -------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
-| type      | string                                      | Yes  | Event type. The value is **rdbDataChange**, which indicates the RDB data changes. |
-| uris    | Array&lt;string&gt;                           | Yes  | URIs of the data to operate.          |
+| type      | string                                      | Yes  | Event type. The value is **rdbDataChange**, which indicates the change of the RDB data.  |
+| uris    | Array&lt;string&gt;                           | Yes  | URIs of the target data.          |
 | templateId | [TemplateId](#templateid10)                | Yes  | ID of the template that triggers the callback.       |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all notification events of the URI will be unsubscribed from.|
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks for the specified URIs will be unregistered.|
 
 **Return value**
 
@@ -587,7 +689,7 @@ if (dataShareHelper != undefined) {
 
 on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt;
 
-Subscribes to changes of the published data.
+Subscribes to the change of the published data.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -595,10 +697,10 @@ Subscribes to changes of the published data.
 
 | Name    | Type                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                           | Yes  | Event type. The value is **publishedDataChange**, which indicates the event of published data changes. |
-| uris    | Array&lt;string&gt;                | Yes  | URIs of the data to operate.          |
+| type      | string                           | Yes  | Event type. The value is **publishedDataChange**, which indicates the change of the published data.|
+| uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | subscriberId | string                        | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback invoked to return the result when the published data changes. The **err** is **undefined**, and **node** is the new data. Otherwise, this callback is not triggered or **err** is an error object. |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback invoked to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data change. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -635,7 +737,7 @@ if (dataShareHelper != undefined) {
 
 off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback?: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt;
 
-Unsubscribes from the changes of the published data.
+Unsubscribes from the change of the published data.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -643,10 +745,10 @@ Unsubscribes from the changes of the published data.
 
 | Name    | Type                                       | Mandatory| Description                                                      |
 | -------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
-| type      | string                                      | Yes  | Event type. The value is **publishedDataChange**, which indicates the published data changes. |
-| uris    | Array&lt;string&gt;                           | Yes  | URIs of the data to operate.          |
+| type      | string                                      | Yes  | Event type. The value is **publishedDataChange**, which indicates the change of the published data.|
+| uris    | Array&lt;string&gt;                           | Yes  | URIs of the target data.          |
 | subscriberId | string                                   | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks of the URI will be unregistered.|
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks for the specified URIs will be unregistered.|
 
 **Return value**
 
@@ -684,11 +786,11 @@ Publishes data to the database.
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.          |
 | version | number                                             | Yes  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.|
-| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback will not be triggered or **err** is an error object.   |
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.   |
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
@@ -729,13 +831,13 @@ Publishes data to the database.
 | -------- | ------------------------------------------------- | ---- | ---------------------------------- |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;                        | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.      |
-| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback will not be triggered or **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.|
 
 **Example**
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
@@ -770,7 +872,7 @@ Publishes data to the database.
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | Yes  | Data to publish.|
 | bundleName | string                      | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data. |
-| version | number                         | No  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br>If the data version is not checked, leave this parameter unspecified.|
+| version | number                         | No  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br> If the data version is not checked, leave this parameter unspecified.|
 
 **Return value**
 
@@ -780,7 +882,7 @@ Publishes data to the database.
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
@@ -815,7 +917,7 @@ Obtains the published data of an application.
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
@@ -856,7 +958,7 @@ Obtains the published data of an application.
 
 **Error codes**
 
-For details about the error codes, see [Data Share Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
@@ -1268,6 +1370,91 @@ try {
 };
 ```
 
+### batchUpdate<sup>12+</sup>
+
+batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
+
+Updates data in batches. A maximum of 900 KB data can be updated at a time. If the data volume exceeds 900 KB, the update will fail. The transaction of this API depends on the data provider. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                  |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| operations | Record&lt;string, Array&lt;[UpdateOperation](#updateoperation12)&gt;&gt; | Yes  | Collection of the path of the data to update, update conditions, and new data.|
+
+**Return value**
+
+| Type                                                 | Description                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise used to return an array of updated data records. The value **-1** means the update operation fails.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+
+| ID| Error Message                            |
+| -------- | ------------------------------------ |
+| 15700000 | Inner error.                         |
+| 15700010 | The datasharehelper has been closed. |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
+let record: Record<string, Array<dataShare.UpdateOperation>> = {};
+let operations1: Array<dataShare.UpdateOperation> = [];
+let operations2: Array<dataShare.UpdateOperation> = [];
+
+let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+pre1.equalTo("name", "ZhangSan");
+let vb1: ValueBucket = {
+  "name": "ZhangSan1",
+}
+let operation1: dataShare.UpdateOperation = {
+  values: vb1,
+  predicates: pre1
+}
+operations1.push(operation1);
+
+let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+pre2.equalTo("name", "ZhangSan2");
+let vb2: ValueBucket = {
+  "name": "ZhangSan3",
+}
+let operation2: dataShare.UpdateOperation = {
+  values: vb2,
+  predicates: pre2
+}
+operations2.push(operation2);
+record["uri1"] = operations1;
+record["uri2"] = operations2;
+
+try {
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
+      // Traverse data to obtain the update result of each data record. value indicates the number of data records that are successfully updated. If value is less than 0, the update fails.
+      for (const [key, values] of Object.entries(data)) {
+          console.info(`Update uri:${key}`);
+          for (const value of values) {
+              console.info(`Update result:${value}`);
+          }
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Batch update error: code: ${code}, message: ${message} `);
+};
+```
+
 ### batchInsert
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -1373,6 +1560,36 @@ try {
   let message = (err as BusinessError).message
   console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
+```
+
+### close<sup>12+</sup>
+
+close(): Promise &lt;void&gt;
+
+Closes the **DataShareHelper** instance. After this API is called, the instance becomes invalid. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+
+| ID| Error Message    |
+| -------- | ------------ |
+| 15700000 | Inner error. |
+
+**Example**
+
+```ts
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).close();
+}
 ```
 
 ### normalizeUri
@@ -1561,5 +1778,41 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri);
+}
+```
+
+### notifyChange<sup>12+</sup>
+
+notifyChange(data: ChangeInfo): Promise&lt;void&gt;
+
+Notifies the observer of the data change of the specified URI. This API uses a promise to return the result. Silent access is not supported.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ---- | ------ | ---- | -------------------- |
+| data  | [ChangeInfo](#changeinfo12) | Yes  | Information about the data change type, URI of the data changed, and changed data.|
+
+**Return value**
+
+| Type          | Description                 |
+| -------------- | --------------------- |
+| Promise&lt;void&gt; |  returns no value.|
+
+**Example**
+
+```ts
+import values from '@ohos.data.ValuesBucket';
+
+let dsUri = ("datashare:///com.acts.datasharetest");
+let people: Array<values.ValuesBucket> = new Array(
+                {"name": "LiSi"},
+                {"name": "WangWu"},
+                {"name": "ZhaoLiu"});
+let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);
 }
 ```

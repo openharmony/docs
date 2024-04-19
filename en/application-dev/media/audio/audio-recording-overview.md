@@ -19,6 +19,6 @@ In addition to the preceding classes, you can also use Media Kit to implement au
 The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio.
 
 1. [Declare the permission](../../security/AccessToken/declare-permissions.md).
-2. [Request authorization from users](../../security/AccessToken/request-user-authorization.md).
+2. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
 
 For details about how to use and manage microphones, see [Microphone Management](mic-management.md).

@@ -51,7 +51,6 @@
     } catch (error) { // 参数检查发现错误立即抛出异常
       let e: BusinessError = error as BusinessError;
       console.error(`convertKey failed, ${e.code}, ${e.message}`);
-      return;
     }
   }
   ```

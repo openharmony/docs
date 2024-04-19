@@ -31,6 +31,7 @@
 | extraInfo      | [key: string] object                                               | 否  | 否  | 实况通知附加内容。           |
 | pictureInfo    | [key: string] Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 否  | 否  | 实况通知附加内容中的图片信息。|
 | lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
+| isLocalUpdateOnly<sup>12+</sup> | boolean                                           | 否  | 否  | 实况窗是否只在本地更新。     |
 
 ## LiveViewStatus<sup>11+</sup>
 

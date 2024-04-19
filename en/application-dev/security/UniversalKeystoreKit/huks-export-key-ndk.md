@@ -7,11 +7,11 @@ This topic walks you through on how to export the public key of a persistently s
 ## How to Develop
 
 1. Set parameters.
-   - **keyAlias**: key alias encapsulated in a [OH_Huks_Blob](../../reference/native-apis/_o_h___huks___blob.md) struct. The value cannot exceed 64 bytes.
+   - **keyAlias**: key alias encapsulated in an [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) struct. The maximum length of the key alias is 64 bytes.
    - **paramSetIn**: This parameter is reserved. Leave it empty.
-   - **key**: [OH_Huks_Blob](../../reference/native-apis/_o_h___huks___blob.md) object used to hold the key exported. Ensure that there is enough memory for storing the key exported.
+   - **key**: [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) object used to hold the key exported. Ensure that there is enough memory for storing the key exported.
 
-2. Use [OH_Huks_ExportPublicKeyItem()](../../reference/native-apis/_huks_key_api.md#oh_huks_exportpublickeyitem) to export the key.
+2. Use [OH_Huks_GetKeyItemParamSet](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_getkeyitemparamset) to obtain key properties.
 
 3. Check the return value. If the operation is successful, the exported key is in the **key** field in the DER format defined in X.509. For details about the format, see [Public Key Material Format](huks-concepts.md#public-key-material-format). If the operation fails, an error code is returned.
 

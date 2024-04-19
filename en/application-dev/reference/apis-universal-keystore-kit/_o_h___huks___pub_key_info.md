@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure of a public key.
+Defines the struct of a public key.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,63 +15,63 @@ Defines the structure of a public key.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [keyAlg](#keyalg) |Algorithm of the public key.  | 
-| [keySize](#keysize) | Length of the public key.  | 
-| [nOrXSize](#norxsize) | Length of the n or X value.  | 
-| [eOrYSize](#eorysize) | Length of the e or Y value.  | 
-| [placeHolder](#placeholder) | Placeholder size.  | 
+| enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg) [keyAlg](#keyalg) | Algorithm of the public key. |
+| uint32_t [keySize](#keysize) | Length of the public key. |
+| uint32_t [nOrXSize](#norxsize) | Length of **n** or **X**. |
+| uint32_t [eOrYSize](#eorysize) | Length of **e** or **Y**. |
+| uint32_t [placeHolder](#placeholder) | Placeholder size. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### eOrYSize
 
-  
 ```
 uint32_t OH_Huks_PubKeyInfo::eOrYSize
 ```
-**Description**<br>
-Length of the e or Y value.
+**Description**
+
+Length of **e** or **Y**.
 
 
 ### keyAlg
 
-  
 ```
 enum OH_Huks_KeyAlg OH_Huks_PubKeyInfo::keyAlg
 ```
-**Description**<br>
+**Description**
+
 Algorithm of the public key.
 
 
 ### keySize
 
-  
 ```
 uint32_t OH_Huks_PubKeyInfo::keySize
 ```
-**Description**<br>
+**Description**
+
 Length of the public key.
 
 
 ### nOrXSize
 
-  
 ```
 uint32_t OH_Huks_PubKeyInfo::nOrXSize
 ```
-**Description**<br>
-Length of the n or X value.
+**Description**
+
+Length of **n** or **X**.
 
 
 ### placeHolder
 
-  
 ```
 uint32_t OH_Huks_PubKeyInfo::placeHolder
 ```
-**Description**<br>
+**Description**
+
 Placeholder size.

@@ -20,7 +20,7 @@
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 - 导入[dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
 ### 指定媒体文件名获取图片或视频资源
@@ -121,7 +121,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 - 导入[dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
 ### 获取某张图片的缩略图
@@ -175,7 +175,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'。
 
 ### 创建图片或视频资源（仅向系统应用开放）
 
@@ -279,7 +279,7 @@ struct Index {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以将获取的图片资源中第一个文件重命名为例。
 
@@ -327,7 +327,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以将文件检索结果中第一个文件放入回收站为例。
 

@@ -7,8 +7,6 @@ EmbeddableUIAbility是为元服务提供可以嵌入式启动的UIAbility，继�
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
->
-> 本模块接口仅可在元服务中使用。
 
 ## 导入模块
 
@@ -22,9 +20,9 @@ import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 是 | 上下文。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility启动时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility最后请求时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。|
+| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 是 | 上下文。<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility启动时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility最后请求时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。|
 
 ## EmbeddableUIAbility.onCreate
@@ -35,12 +33,14 @@ EmbeddableUIAbility实例处于完全关闭状态下被创建完成后进入该�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 当前EmbeddableUIAbility的Want类型信息，包括Ability名称、Bundle名称等。 |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 否 | 创建&nbsp;ability、上次异常退出的原因信息。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。 |
 
 **示例：**
 
@@ -64,6 +64,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 当WindowStage创建后调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -93,6 +95,8 @@ onWindowStageDestroy(): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -113,6 +117,8 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 当迁移多实例ability时，恢复WindowStage后调用。该生命周期仅在跳转启动时生效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -141,6 +147,8 @@ onDestroy(): void | Promise&lt;void&gt;
 EmbeddableUIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -182,6 +190,8 @@ EmbeddableUIAbility生命周期回调，当应用从后台转到前台时触发�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -203,6 +213,8 @@ EmbeddableUIAbility生命周期回调，当应用从前台转到后台时触发�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -218,12 +230,13 @@ EmbeddableUIAbility生命周期回调，当应用从前台转到后台时触发�
 
 ## EmbeddableUIAbility.onContinue
 
-onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
 当Ability准备迁移时触发，保存数据。该生命周期仅在跳转启动时生效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -235,7 +248,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | 继续的结果。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp; \| &nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt; | Ability迁移结果。 |
 
 **示例：**
 
@@ -260,6 +273,8 @@ onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 EmbeddableUIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该EmbeddableUIAbility实例时会回调执行该方法。该生命周期仅在跳转启动时生效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -290,6 +305,8 @@ onDump(params: Array\<string>): Array\<string>
 转储客户端信息时调用，可用于转储非敏感信息。该生命周期仅在跳转启动时生效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -324,6 +341,8 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存EmbeddableUIAbility状态。该生命周期仅在跳转启动时生效。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -361,6 +380,8 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -390,6 +411,8 @@ EmbeddableUIAbility生命周期回调，当系统预关闭开关打开后（配�
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -435,9 +458,11 @@ EmbeddableUIAbility生命周期回调，当系统预关闭开关打开后（配�
 
 onBackPressed(): boolean
 
-EmbeddableUIAbility生命周期回调，当EmbeddableUIAbility侧滑返回时触发。根据返回值决定是否销毁EmbeddableUIAbility，默认为销毁EmbeddableUIAbility。该生命周期仅在跳转启动时生效。
+EmbeddableUIAbility生命周期回调，当EmbeddableUIAbility侧滑返回时触发，根据返回值决定是否销毁EmbeddableUIAbility。默认返回值为true，会将EmbeddableUIAbility移动到后台不销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -496,7 +521,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
   import rpc from '@ohos.rpc';
@@ -583,7 +608,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
   import rpc from '@ohos.rpc';
@@ -658,7 +683,7 @@ release(): void
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -709,7 +734,7 @@ release(): void
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -762,7 +787,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -817,7 +842,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -863,7 +888,7 @@ off(type: 'release', callback: OnReleaseCallback): void
 
   ```ts
   import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -910,7 +935,7 @@ off(type: 'release'): void
 
   ```ts
   import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 

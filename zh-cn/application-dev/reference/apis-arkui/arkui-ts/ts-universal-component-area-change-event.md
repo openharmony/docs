@@ -8,9 +8,9 @@
 
 ## onAreaChange
 
-onAreaChange(event: (oldValue: Area, newValue: Area) => void)
+onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
-组件区域变化时触发该回调。仅会响应由布局变化所导致的组件大小、位置发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如translate、offset。
+组件区域变化时触发该回调。仅会响应由布局变化所导致的组件大小、位置发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如[translate](ts-universal-attributes-transformation.md#translate)、[offset](ts-types.md#offset)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -21,6 +21,11 @@ onAreaChange(event: (oldValue: Area, newValue: Area) => void)
 | oldValue | [Area](ts-types.md#area8) | 是   | 返回目标元素变化之前的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
 | newValue | [Area](ts-types.md#area8) | 是   | 返回目标元素变化之后的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 
