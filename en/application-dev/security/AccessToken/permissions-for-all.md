@@ -368,7 +368,7 @@ Allows an application to use enhanced functions of the devices connected to this
 
 ## user_grant Permissions
 
-The [user_grant permission](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
+The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
 
 ### ohos.permission.ACCESS_BLUETOOTH
 
