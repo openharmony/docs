@@ -2271,7 +2271,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
-  videoFrameRate : 30,
+  videoFrameRate : 30
 }
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
