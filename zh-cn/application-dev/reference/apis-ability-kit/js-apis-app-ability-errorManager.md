@@ -235,7 +235,7 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
 
 errorManager.on("unhandledRejection", observer);
 
-promise1 = new Promise<void>(() => {}).then(() => {
+let promise1 = new Promise<void>(() => {}).then(() => {
     throw new Error("uncaught error")
 })
 ```
@@ -305,7 +305,7 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
 
 errorManager.on("unhandledRejection", observer);
 
-promise1 = new Promise<void>(() => {}).then(() => {
+let promise1 = new Promise<void>(() => {}).then(() => {
   throw new Error("uncaught error")
 })
 
@@ -328,7 +328,7 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
 
 errorManager.on("unhandledRejection", observer);
 
-promise1 = new Promise<void>(() => {}).then(() => {
+let promise1 = new Promise<void>(() => {}).then(() => {
   throw new Error("uncaught error")
 })
 
