@@ -44,9 +44,9 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+>  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width. For the **\<AlphabetIndexer>** component, the **auto** option of **width** means to adapt to the maximum width of index entries.
 
-## Size
+## size
 
 size(value: SizeOptions)
 
@@ -96,9 +96,9 @@ Since API version 10, this API supports the calc calculation feature.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory     | Description                                      |
-| ----- | ---------------------------------------- | ------- | ---------------------------------------- |
-| value | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 20.|
+| Name| Type                                                        | Mandatory    | Description                                                        |
+| ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
 
 ## layoutWeight
 
@@ -149,7 +149,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## SizeOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -158,7 +158,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ConstraintSizeOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |

@@ -229,7 +229,7 @@ struct Index {
 
 update(arg: Object): void
 
-Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](###build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
+Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](#build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -237,7 +237,7 @@ Updates this BuilderNode based on the provided parameter, which is of the same t
 
 | Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](###build) API.|
+| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](#build) API.|
 
 **Example**
 ```ts
