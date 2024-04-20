@@ -27,7 +27,7 @@ import common from '@ohos.app.ability.common';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
       let context = this.context; // 获取ServiceExtensionContext
@@ -868,7 +868,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -938,7 +938,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1020,7 +1020,7 @@ import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1636,7 +1636,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1700,7 +1700,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
