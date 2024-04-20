@@ -5,6 +5,7 @@
 
 **时域可分层视频编码, 是指能编码出时域分层码流的视频编码**，如下图所示，通过参考关系的构建实现4层时域分层码流结构。
 ![Temporal scalability 4 layers](figures/temporal-scalability-4layers.png)
+
 从高到低逐步丢弃部分层级的码流，能实现在传输和解码上帧率的差异化需求。如丢弃L3，在解码正常的情况下实现帧率减半的效果，其他层同理。
 ![Temporal scalability 3 layers](figures/temporal-scalability-3layers.png)
 
@@ -106,33 +107,33 @@ OH_VideoEncoder_SetParameter(OH_MD_KEY_REQUEST_I_FRAME, 1);
 ### 1）全局时域可分层特性开发指导
 基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针与基础视频编码过程中存在的区别做具体说明。
 
-**1. 校验全局时域可分层特性是否支持**
+**1. 校验当前视频编码器是否支持全局时域可分层特性**
 ```c++
-// 1.1 确定编码协议，获取对应编码器能力句柄，此处以H.264为例
+// 1.1 获取对应视频编码器能力句柄，此处以H.264为例
 OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// 1.2 通过特性能力查询接口确认全局时域可分层特性支持情况
+// 1.2 通过特性能力查询接口校验是否支持全局时域可分层特性
 bool isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
 ```
 
-若支持，则可以继续后续流程，使能全局时域可分层特性；若不支持，则停止后续流程。
+若支持，则可以使能全局时域可分层特性。
 
-**2. configure阶段配置参数配置**
+**2. configure阶段配置全局时域分层编码特性参数**
 
 ```c++
 constexpr int32_t TGOP_SIZE = 3; 
-// 2.1 创建AVFormat
+// 2.1 创建配置用临时AVFormat
 OH_AVFormat *format = OH_AVFormat_Create();
-// 2.2 配置使能参数 
+// 2.2 填充使能参数键值对
 OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
-// 2.3 (可选)配置TGOP大小和TGOP内参考模式
+// 2.3 (可选)填充TGOP大小和TGOP内参考模式键值对
 OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
 OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
-// 2.4 时域可分层特性参数随其他基础参数一起向下配置
+// 2.4 Configure配置
 int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
 if (ret != AV_ERR_OK) {
     // 异常处理
 }
-// 2.5 销毁AVFormat
+// 2.5 配置完成后销毁临时AVFormat
 OH_AVFormat_Destroy(format);
 ```
 
@@ -141,10 +142,10 @@ OH_AVFormat_Destroy(format);
 这里对获取方式不做限定，开发者可基于已配置的TGOP参数，按编码出帧数目周期性获取，也可以通过`OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR`确定出帧是否为时域关键帧（EL层）。
 
 通过配置周期获取示例代码如下：
+
 ```c++
-// 3.1 基础
 uint32_t outPoc = 0;
-// 3.2 通过输出回调中有效帧数，获取TGOP内相对位置，对照配置确认层级
+// 通过输出回调中有效帧数，获取TGOP内相对位置，对照配置确认层级
 static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
 {
     // 注：若涉及复杂处理流程，建议相关
@@ -161,9 +162,11 @@ static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *bu
     }
 }
 ```
+
 通过`OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR`获取示例代码如下：
+
 ```c++
-// 3.1 通过输入回调确认是否是LTR
+// 通过输入回调确认是否是LTR
 static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
 {
     if (!CODEC_DATA) {
@@ -179,9 +182,127 @@ static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *bu
 **（可选）4. 使用步骤3获取的时域层级信息，自适应传输或自适应解码**
 基于获取的时域可分层码流和对应的层级信息，开发者可选择需要的层级进行传输，或携带至对端自适应选帧解码。
 
-### 2）长期参考帧特性开发指导
-// 待实施
- 
+### 2）LTR特性开发指导
+基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针与基础视频编码过程中存在的区别做具体说明。
 
-## 常见问题
+**1. 校验当前视频编码器是否支持LTR特性**
+
+```c++
+constexpr int32_t NEEDED_LTR_COUNT = 5;
+bool isSupported = false;
+int32_t supportedLTRCount = 0;
+// 1.1 获取对应编码器能力句柄，此处以H.264为例
+OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1.2 通过特性能力查询接口校验是否支持LTR特性
+isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
+// 1.3 确定支持的LTR数目
+if (isSupported) {
+    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
+    OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &supportedLTRCount);
+    OH_AVFormat_Destroy(properties);
+    // 1.4 判断LTR是否满足结构需求
+    isSupported = supportedLTRCount >= NEEDED_LTR_COUNT;
+}
+
+```
+
+若支持，且支持的LTR数目满足自身码流结构需求，则可以使能LTR特性。
+
+**2. 注册回调**
+Buffer输入模式
+**Buffer输入模式示例：**
+```c++
+// 2.1 编码输入回调OH_AVCodecOnNeedInputBuffer实现
+static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+{
+    // 输入帧buffer对应的index，送入InIndexQueue队列
+    // 输入帧的数据buffer送入InBufferQueue队列
+    // 数据处理，请参考:
+    // - 写入编码码流
+    // - 通知编码器码流结束
+    // - 随帧参数写入
+    OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
+    OH_AVBuffer_SetParameter(buffer, format);
+    // 通知编码器buffer输入完成
+    OH_VideoEncoder_PushInputBuffer(codec, index);
+}
+
+// 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现
+static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+{
+    // 完成帧buffer对应的index，送入outIndexQueue队列
+    // 完成帧的数据buffer送入outBufferQueue队列
+    // 数据处理，请参考:
+    // - 释放编码帧
+}
+
+// 2.3 注册数据回调
+OH_AVCodecCallback cb;
+cb.onNeedInputBuffer = OnNeedInputBuffer;
+cb.onNewOutputBuffer = OnNewOutputBuffer;
+OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
+```
+
+**Surface输入模式示例：**
+```c++
+
+// 2.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
+static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
+{
+    // 输入帧buffer对应的index，送入InIndexQueue队列
+    // 输入帧的数据avformat送入InFormatQueue队列
+    // 数据处理，请参考:
+    // - 写入编码码流
+    // - 通知编码器码流结束
+    // - 随帧参数写入
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
+    // 通知编码器随帧参数配置输入完成
+    OH_VideoEncoder_PushInputParameter(codec, index);
+}
+
+// 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现
+static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+{
+    // 完成帧buffer对应的index，送入outIndexQueue队列
+    // 完成帧的数据buffer送入outBufferQueue队列
+    // 数据处理，请参考:
+    // - 释放编码帧
+}
+
+// 2.3 注册数据回调
+OH_AVCodecCallback cb;
+cb.onNewOutputBuffer = OnNewOutputBuffer;
+OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
+// 2.4 注册随帧参数回调
+OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
+OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
+```
+
+**3. configure阶段配置LTR特性参数**
+
+```c++
+constexpr int32_t TGOP_SIZE = 3; 
+// 3.1 创建配置用临时AVFormat
+OH_AVFormat *format = OH_AVFormat_Create();
+// 3.2 填充使能LTR个数键值对
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
+// 3.3 Configure配置
+int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+if (ret != AV_ERR_OK) {
+    // 异常处理
+}
+// 3.4 配置完成后销毁临时AVFormat
+OH_AVFormat_Destroy(format);
+```
+
+**（可选）4. 获取码流对应时域层级信息**
+同全局时域分层特性
+
+
+**（可选）5. 使用步骤3获取的时域层级信息，自适应传输或自适应解码**
+同全局时域分层特性
+
 
