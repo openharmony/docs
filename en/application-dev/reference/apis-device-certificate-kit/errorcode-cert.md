@@ -1,4 +1,4 @@
-#  Certificate Error Codes
+# Certificate Error Codes
 
 > **NOTE**
 >
