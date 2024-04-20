@@ -4,9 +4,11 @@
 **可分层视频编码**，又叫可分级视频编码、可伸缩视频编码，是视频编码的扩展标准，目前常用的包含SVC（H.264编码标准采用的可伸缩扩展）和SHVC（H.265编码标准采用的可扩展标准）。**其特点是能一次编码出时域分层、空域分层、质量域分层的码流结构，覆盖因网络、终端能力和用户需求不同的差异化需求。**
 
 **时域可分层视频编码, 是指能编码出时域分层码流的视频编码**，如下图所示，通过参考关系的构建实现4层时域分层码流结构。
+
 ![Temporal scalability 4 layers](figures/temporal-scalability-4layers.png)
 
 从高到低逐步丢弃部分层级的码流，能实现在传输和解码上帧率的差异化需求。如丢弃L3，在解码正常的情况下实现帧率减半的效果，其他层同理。
+
 ![Temporal scalability 3 layers](figures/temporal-scalability-3layers.png)
 
 
@@ -27,7 +29,7 @@
 
 * **短期参考帧（Short-Term Reference，简称STR）：** 是不能长期驻留在DPB中的参考帧，更新方式是先进先出，如果DPB满，旧的短期参考帧会被移出DPB。
   
-* **长期参考帧（Long-Term Reference，简称LTR）：** 是能长期驻留在DPB中的参考帧，通过标记替换的方式更新，不主动标记就不会更新。*注：参考帧仅在GOP内有效，刷新I帧后，DPB随之清空, 此时LTR也会被清空。*
+* **长期参考帧（Long-Term Reference，简称LTR）：** 是能长期驻留在DPB中的参考帧，通过标记替换的方式更新，不主动标记就不会更新。注：参考帧仅在GOP内有效，刷新I帧后，DPB随之清空, 此时LTR也会被清空。
 
 
 ## 接口介绍
@@ -47,11 +49,11 @@
 * **全局时域分层编码TGOP参考模式参数：** 影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`和跨帧参考`JUMP_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，如不配置则使用默认值。
 
 **配置效果举例：**
-*时域Gop4，相邻参考模式：*
+TGOP=4，相邻参考模式：
 
 ![Temporal gop 4 adjacent reference](figures/temporal-scalability-p-frame-gop4-adjacent.png)
 
-*时域Gop5，跨帧参考模式：*
+TGOP=5，跨帧参考模式：
 
 ![Temporal gop 5 jump reference](figures/temporal-scalability-p-frame-gop5-jump.png)
 
@@ -63,23 +65,17 @@
 | -------- | ---------------------------- |
 | OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT  |  长期参考帧个数参数 |
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧 |
-| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的已标记的LTR帧号  |
+| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧号  |
 
-* **长期参考帧个数参数：** 在configure阶段除配置配置，配置成功后是使能，请注意当前模式下不支持`OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT`外，还需要开启随帧参数配置通路，其中surface输入场景需要注册随帧参数回调`OH_VideoEncoder_OnNeedInputParameter`，buffer模式需要使用用`AVBuffer`接口配置。在输入回调轮转中，配置并下发随帧参数，动态控制编码结构。
+* **长期参考帧个数参数：** 在configure阶段配置，应小于等于查询到的最大支持数目，查询方式详见开发指导
+* **当前帧标记为LTR帧：** BL层标记为LTR，被跳跃参考的EL层也标记为LTR
+* **当前帧参考的LTR帧号：** 如当前帧需要跳跃参考前面已被标记为LTR的帧号
 
 
 ## 约束和限制
 
 ### 约束1：支持时域P分层，不支持时域B分层
 时域可分层编码按分层帧类型分为基于P帧的时域分层和基于B帧的时域编码，当前支持分层P编码，不支持分层B编码
-
-*分层P编码：可按需丢弃上图中小P帧，不影响视频正常播放：3（7）-> 2（6）-> 1（5）*
-
-![Temporal scalability p frame](figures/temporal-scalability-p-frame-gop4-adjacent.png)
-
-*分层B编码：可按需丢弃上图中B帧，不影响视频正常播放：3（7）-> 1（5）-> 2（6）*
-
-![Temporal scalability b frame](figures/temporal-scalability-b-frame.png)
 
 ### 约束2：不要混用全局时域可分层特性和长期参考帧特性
 因底层实现归一，全局时域可分层特性和长期参考帧特性不能同时开启。开发场景若涉及动态调整时域参考结构，请使能长期参考帧特性，否则使能全局时域可分层特性。
@@ -90,24 +86,25 @@
 ```c
 OH_VideoEncoder_SetParameter(OH_MD_KEY_REQUEST_I_FRAME, 1);
 ```
-应使用随帧配置方式，参考随帧配置通路指导，此处不做详述。
+
+应使用随帧配置方式，参考随帧配置通路指导。
 
 ### 约束4：仅支持AVBuffer回调通路
 新特性依赖AVBuffer随帧特性，请使用AVBuffer回调
 
 ## 适用场景
 基于上述描述的时域分层编码特点，可以利用时域分层结构，自适应动态变化的传输压力或解码压力，推荐以下使用场景：
+
 * 场景1：接受测无缓存或低缓存的实时编码传输场景，例如网络视频会议、网络视频直播、短距协同办公等。
 * 场景2：有视频预览播放或倍速播放需求的视频编码录制场景。
 
 
 ## 开发指导
 
-
 ### 1）全局时域可分层特性开发指导
 基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针与基础视频编码过程中存在的区别做具体说明。
 
-**1. 校验当前视频编码器是否支持全局时域可分层特性**
+#### 1. 校验当前视频编码器是否支持全局时域可分层特性
 ```c++
 // 1.1 获取对应视频编码器能力句柄，此处以H.264为例
 OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
@@ -117,7 +114,7 @@ bool isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_TEMPORA
 
 若支持，则可以使能全局时域可分层特性。
 
-**2. configure阶段配置全局时域分层编码特性参数**
+#### 2. configure阶段配置全局时域分层编码特性参数
 
 ```c++
 constexpr int32_t TGOP_SIZE = 3; 
@@ -137,8 +134,7 @@ if (ret != AV_ERR_OK) {
 OH_AVFormat_Destroy(format);
 ```
 
-
-**（可选）3. 获取码流对应时域层级信息**
+#### （可选）3. 获取码流对应时域层级信息
 这里对获取方式不做限定，开发者可基于已配置的TGOP参数，按编码出帧数目周期性获取，也可以通过`OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR`确定出帧是否为时域关键帧（EL层）。
 
 通过配置周期获取示例代码如下：
@@ -178,14 +174,13 @@ static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *bu
 }
 ```
 
-
-**（可选）4. 使用步骤3获取的时域层级信息，自适应传输或自适应解码**
+#### （可选）4. 使用步骤3获取的时域层级信息，自适应传输或自适应解码
 基于获取的时域可分层码流和对应的层级信息，开发者可选择需要的层级进行传输，或携带至对端自适应选帧解码。
 
 ### 2）LTR特性开发指导
 基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针与基础视频编码过程中存在的区别做具体说明。
 
-**1. 校验当前视频编码器是否支持LTR特性**
+#### 1. 校验当前视频编码器是否支持LTR特性
 
 ```c++
 constexpr int32_t NEEDED_LTR_COUNT = 5;
@@ -208,7 +203,7 @@ if (isSupported) {
 
 若支持，且支持的LTR数目满足自身码流结构需求，则可以使能LTR特性。
 
-**2. 注册回调**
+#### 2. 注册回调
 Buffer输入模式
 **Buffer输入模式示例：**
 ```c++
@@ -281,7 +276,7 @@ OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
 OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
 ```
 
-**3. configure阶段配置LTR特性参数**
+#### 3. configure阶段配置LTR特性参数
 
 ```c++
 constexpr int32_t TGOP_SIZE = 3; 
@@ -298,11 +293,9 @@ if (ret != AV_ERR_OK) {
 OH_AVFormat_Destroy(format);
 ```
 
-**（可选）4. 获取码流对应时域层级信息**
+#### （可选）4. 获取码流对应时域层级信息
 同全局时域分层特性
 
 
-**（可选）5. 使用步骤3获取的时域层级信息，自适应传输或自适应解码**
+#### （可选）5. 使用步骤3获取的时域层级信息，自适应传输或自适应解码
 同全局时域分层特性
-
-
