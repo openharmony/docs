@@ -4208,6 +4208,7 @@ Describes image information.
 | stride<sup>11+</sup> | number | Yes  | Yes  | Number of bytes from one row of pixels in memory to the next row of pixels in memory.stride >= region.size.width*4  |
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.|
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | Yes  | Yes  | Alpha type. |
+| mimeType<sup>12+</sup> | string  | Yes  | Yes  | Image mime type. |
 
 ## Size
 
