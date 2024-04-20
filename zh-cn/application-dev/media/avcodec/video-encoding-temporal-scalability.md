@@ -1,35 +1,51 @@
-# 视频编码扩展特性——时域可分级视频编码
-## 概念介绍
+# 时域可分层视频编码
+## 基础概念
+### 时域可分层视频编码介绍
+**可分层视频编码**，又叫可分级视频编码、可伸缩视频编码，是视频编码的扩展标准，目前常用的包含SVC（H.264编码标准采用的可伸缩扩展）和SHVC（H.265编码标准采用的可扩展标准）。**其特点是能一次编码出时域分层、空域分层、质量域分层的码流结构，覆盖因网络、终端能力和用户需求不同的差异化需求。**
 
-可分级视频编码（Scalable Video Coding），是传统视频编码的扩展特性，其特点是能一次编码出可时域伸缩、空域伸缩、质量域伸缩的码流结构。通过差异化选择解码帧组合新的视频码流，覆盖因网络、终端能力和用户需求不同的差异化需求。
+**时域可分层视频编码, 是指能编码出时域分层码流的视频编码**，如下图所示，通过参考关系的构建实现4层时域分层码流结构。
+![Temporal scalability 4 layers](figures/temporal-scalability-4layers.png)
+从高到低逐步丢弃部分层级的码流，能实现在传输和解码上帧率的差异化需求。如丢弃L3，在解码正常的情况下实现帧率减半的效果，其他层同理。
+![Temporal scalability 3 layers](figures/temporal-scalability-3layers.png)
 
-因仅需在传统视频编码流程中开放参考关系指定能力就能实现**时域可分级视频编码**，时域可分级在主流芯片厂商的硬件编码器上支持度远高于空域分级和质量域分级。**API12仅支持时域分级视频编码。**
 
-主流时域可分级编码有分级B编码和分级P编码。
+### 时域分层码流结构介绍
+基础码流是由一个个独立图像组（Group Of Pictures，简称GOP）组合而成的。GOP是在编码中一组从I帧开始到I帧结束的连续的可独立解码的图像组。
+时域分层码流可以在GOP内继续细分为独立的多个时域图像组（Temporal Group Of Pictures, 简称TGOP），**每一个TGOP由一个基本层和后续的一个或多个增强层组合而成**，如上图中的F0-F8。
 
-*分级B编码：可按需丢弃帧上图中B帧，不影响视频正常播放：3（7）-> 1（5）-> 2（6）*
+* **基本层（Base Layer, 简称BL）：** 是其中的最底层（上图中L0）。在时域分层中，该层用最低帧率进行编码。
 
-![Temporal scalability b frame](figures/temporal-scalability-b-frame.png)
+* **增强层（Enhance Layer简称EL）：** 是BL之上的层级，由低到高可以分为多层（上图中L1,L2,L3）。在时域分层中，最低层的EL依据BL获得的编码信息，进一步编码帧率更高的层级，更高层的EL会依据BL或低层EL，来编码比低层更帧率的视频。
 
-*分级P编码：可按需丢弃上图中小P帧，不影响视频正常播放：3（7）-> 2（6）-> 1（5）*
 
-![Temporal scalability p frame](figures/temporal-scalability-p-frame-gop4-adjacent.png)
+### 如何实现时域分层码流结构
+通过参考帧的设置来实现时域分层码流结构，参考帧分为短期参考帧
 
-其中分级B编码依赖芯片厂商支持基础B帧编码，**API12仅支持时域分级P编码。**
 
-## 适用场景
-基于上述描述的时域分级编码特点，可以利用时域分级结构，自适应动态变化的传输压力或解码压力，推荐以下使用场景：
-* 场景1：接受测无缓存或低缓存的实时编码传输场景，例如网络视频会议、网络视频直播、短距协同办公等。
-* 场景2：有视频预览播放或倍速播放需求的视频编码录制场景。
+部分帧解码完成后会标记成参考帧进入参考帧缓存（DPB），因DPB大小有限，参考帧不能无限制增长，存在一定的更新机制。参考帧按在DPB中的生命周期分为短期参考帧和长期参考帧。
+
+* **短期参考帧（Short-Term Reference，简称STR）：** 是不能长期驻留在DPB中的参考帧，更新方式是先进先出，如果DPB满，旧的短期参考帧会被移出DPB。
+  
+* **长期参考帧（Long-Term Reference，简称LTR）：** 是能长期驻留在DPB中的参考帧，通过标记替换的方式更新，不主动标记就不会更新。*注：参考帧仅在GOP内有效，刷新I帧后，DPB随之清空, 此时LTR也会被清空。*
+
 
 ## 接口介绍
-API12提供两套独立设置时域分级编码的接口。
-### 1）时域可分级特性
-**从易用维度设计了一套叫时域可分级(temporal_scalability)特性的静态配置，适用于稳定和简单的时域分级结构，初始配置，全局生效**。
-在configure阶段配置使能参数`OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY`，并按需配置时域图片组参数，包括时域图片组大小`OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE`，以及时域图片组内的参考方式`OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE`。
-时域图片组大小参数，可在[2, GopSize)范围内配置，影响时域关键帧之间的间隔，用户需要基于自身业务场景下抽帧需求自定义关键帧密度。
-时域图片组参考方式参数，影响非关键帧参考方式。包括相邻参考`ADJACENT_REFERENCE`压和跨帧参考`JUMP_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度。
+### 1）全局时域可分层特性（Feature_Temporal_Scalability）
+全局时域可层特性，适用于编码稳定和简单的时域分层结构，初始配置，全局生效，不支持动态修改。开发配置参数如下：
 
+| 配置参数 | 语义                 |
+| -------- | ---------------------------- |
+| OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY  |  全局时域分层编码使能参数 |
+| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE  | 全局时域分层编码TGOP大小参数 |
+| OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE  | 全局时域分层编码TGOP参考模式  |
+
+* **全局时域分层编码使能参数：** 在configure阶段配置，仅特性支持才会真正使能成功。
+
+* **全局时域分层编码TGOP大小参数：** 影响时域关键帧之间的间隔，用户需要基于自身业务场景下抽帧需求自定义关键帧密度，可在[2, GopSize)范围内配置，若不配置则使用默认值
+
+* **全局时域分层编码TGOP参考模式参数：** 影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`和跨帧参考`JUMP_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，如不配置则使用默认值。
+
+**配置效果举例：**
 *时域Gop4，相邻参考模式：*
 
 ![Temporal gop 4 adjacent reference](figures/temporal-scalability-p-frame-gop4-adjacent.png)
@@ -38,107 +54,134 @@ API12提供两套独立设置时域分级编码的接口。
 
 ![Temporal gop 5 jump reference](figures/temporal-scalability-p-frame-gop5-jump.png)
 
-### 2）长期参考帧特性
-**从灵活维度设计了一套长期参考帧(long_term_reference)特性的动态配置，适用于灵活和复杂的时域分级结构，逐帧配置**。在configure阶段除配置使能参数`OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT`外，还需要开启随帧参数配置通路，其中surface输入场景需要注册随帧参数回调`OH_VideoEncoder_OnNeedInputParameter`，buffer模式需要使用用`AVBuffer`接口配置。在输入回调轮转中，配置并下发随帧参数，动态控制编码结构。
-*注意：两套配置不能一起开启，若两套一起开启，则动态配置会失效。若涉及需要动态配置场景，请不要使能静态配置，直接使用动态配置即可。*
+
+### 2）长期参考帧特性（Feature_Long-Term_Reference）
+长期参考帧特性提供帧级灵活配置的时域可分层特性。适用于灵活和复杂的时域分层结构，逐帧配置。
+
+| 配置参数 | 语义                 |
+| -------- | ---------------------------- |
+| OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT  |  长期参考帧个数参数 |
+| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧 |
+| OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的已标记的LTR帧号  |
+
+* **长期参考帧个数参数：** 在configure阶段除配置配置，配置成功后是使能，请注意当前模式下不支持`OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT`外，还需要开启随帧参数配置通路，其中surface输入场景需要注册随帧参数回调`OH_VideoEncoder_OnNeedInputParameter`，buffer模式需要使用用`AVBuffer`接口配置。在输入回调轮转中，配置并下发随帧参数，动态控制编码结构。
+
+
+## 约束和限制
+
+### 约束1：支持时域P分层，不支持时域B分层
+时域可分层编码按分层帧类型分为基于P帧的时域分层和基于B帧的时域编码，当前支持分层P编码，不支持分层B编码
+
+*分层P编码：可按需丢弃上图中小P帧，不影响视频正常播放：3（7）-> 2（6）-> 1（5）*
+
+![Temporal scalability p frame](figures/temporal-scalability-p-frame-gop4-adjacent.png)
+
+*分层B编码：可按需丢弃上图中B帧，不影响视频正常播放：3（7）-> 1（5）-> 2（6）*
+
+![Temporal scalability b frame](figures/temporal-scalability-b-frame.png)
+
+### 约束2：不要混用全局时域可分层特性和长期参考帧特性
+因底层实现归一，全局时域可分层特性和长期参考帧特性不能同时开启。开发场景若涉及动态调整时域参考结构，请使能长期参考帧特性，否则使能全局时域可分层特性。
+
+### 约束3：叠加强制IDR配置时，请使用随帧通路
+参考关系的指定受I帧刷新位置影响很大，使能时域分层能力后若需要临时请求I帧，应**避免**使用生效时间无法确认的`OH_VideoEncoder_SetParameter`方式。
+
+```c
+OH_VideoEncoder_SetParameter(OH_MD_KEY_REQUEST_I_FRAME, 1);
+```
+应使用随帧配置方式，参考随帧配置通路指导，此处不做详述。
+
+### 约束4：仅支持AVBuffer回调通路
+新特性依赖AVBuffer随帧特性，请使用AVBuffer回调
+
+## 适用场景
+基于上述描述的时域分层编码特点，可以利用时域分层结构，自适应动态变化的传输压力或解码压力，推荐以下使用场景：
+* 场景1：接受测无缓存或低缓存的实时编码传输场景，例如网络视频会议、网络视频直播、短距协同办公等。
+* 场景2：有视频预览播放或倍速播放需求的视频编码录制场景。
+
 
 ## 开发指导
+
+
+### 1）全局时域可分层特性开发指导
 基础编码流程请参考[视频编码开发指导](video-encoding.md)，下面仅针与基础视频编码过程中存在的区别做具体说明。
 
-### 1）时域可分级特性开发指导
-在surface输入和buffer输入两种模式下无差别，以surface输入模式H.264编码为例介绍：
-1. 添加头文件。
+**1. 校验全局时域可分层特性是否支持**
+```c++
+// 1.1 确定编码协议，获取对应编码器能力句柄，此处以H.264为例
+OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1.2 通过特性能力查询接口确认全局时域可分层特性支持情况
+bool isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
+```
 
-    *和基础视频编码一致*
+若支持，则可以继续后续流程，使能全局时域可分层特性；若不支持，则停止后续流程。
 
-2. 创建编码器实例对象。
+**2. configure阶段配置参数配置**
 
-    *和基础视频编码一致*
+```c++
+constexpr int32_t TGOP_SIZE = 3; 
+// 2.1 创建AVFormat
+OH_AVFormat *format = OH_AVFormat_Create();
+// 2.2 配置使能参数 
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
+// 2.3 (可选)配置TGOP大小和TGOP内参考模式
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
+// 2.4 时域可分层特性参数随其他基础参数一起向下配置
+int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
+if (ret != AV_ERR_OK) {
+    // 异常处理
+}
+// 2.5 销毁AVFormat
+OH_AVFormat_Destroy(format);
+```
 
-3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
 
-    *和基础视频编码一致*
+**（可选）3. 获取码流对应时域层级信息**
+这里对获取方式不做限定，开发者可基于已配置的TGOP参数，按编码出帧数目周期性获取，也可以通过`OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR`确定出帧是否为时域关键帧（EL层）。
 
-4. 调用OH_VideoEncoder_Configure()配置编码器。
-
-    除基础视频编码配置外，您还需要通过如下流程配置时域可分级特性
-    ```c++
-    // 1. 基础配置，此处只列举必选以及和时域分级编码相关参数
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // 1.1 必选基础配置
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12);
-    // 1.2 (可选) 影响GopSize的配置
-    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, 2000);
-    // 2. 通过能力查询接口确认视频编码器是否时域可分级特性
-    OH_AVCapability *capability = OH_AVCodec_GetCapability  (OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-    bool isSupported = OH_AVCapability_isFeatureSupported(capability, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
-    // 3. 若支持，配置时域可分级特性相关参数，包括使能参数和时域Gop参数
-    if (isSupported) {
-        // 3.1 (必选)配置时域可分级特性使能参数
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY, 1);
-        // 3.2 (可选)配置时域可分级特性时域Gop尺寸参数，取值范围为[2, GopSize), 若不配置，将使用默认配置
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, 6);
-        // 3.3 (可选)配置时域可分级特性时域Gop参考模式，可选ADJACENT_REFERENCE和JUMP_REFERENCE，若不配置，将使用默认配置
-        OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
+通过配置周期获取示例代码如下：
+```c++
+// 3.1 基础
+uint32_t outPoc = 0;
+// 3.2 通过输出回调中有效帧数，获取TGOP内相对位置，对照配置确认层级
+static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+{
+    // 注：若涉及复杂处理流程，建议相关
+    struct OH_AVCodecBufferAttr attr;
+    (void)buffer->GetBufferAttr(attr);
+    // 刷新I帧后poc归零
+    if (attr.flags | AVCODEC_BUFFER_FLAG_KEY_FRAME) {
+        outPoc = 0;
     }
-    // 4. 时域可分级特性参数随其他参数一起向下配置
-    int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
+    // 没有帧码流只有XPS的输出需要跳过
+    if (attr.flags != AVCODEC_BUFFER_FLAG_CODEC_DATA) {
+        int32_t tGopInner = outPoc % TGOP_SIZE;
+        outPoc++;
     }
-    OH_AVFormat_Destroy(format);
-    ```
-
-5. 调用OH_VideoEncoder_Prepare()编码器就绪。
-
-    *和基础视频编码一致*
-
-6. 获取Surface。
-   
-    *和基础视频编码一致*
-
-7. 调用OH_VideoEncoder_Start()启动编码器。
-    *和基础视频编码一致*
-
-8. （可选）在运行过程中动态配置编码器参数。
-
-    *注意：时域分级编码特性使能后，不能通过`OH_VideoEncoder_SetParameter`接口配置`OH_MD_KEY_REQUEST_I_FRAME`，否则因生效时间随机，参考帧关系可能会错乱。如需使用请求动态IDR帧，请使用随帧参数通路随帧配置，参考xxx，此处不做详述。*
-
-9.  写出编码码流。
-
-    *和基础视频编码一致*
-
-10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器码流结束。
-
-    *和基础视频编码一致*
-
-11. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧。
-
-    *和基础视频编码一致*
-
-12. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
-
-    *和基础视频编码一致*
-
-13. （可选）调用OH_VideoEncoder_Reset()重置编码器。
-
-    *和基础视频编码一致*
-
-14. （可选）调用OH_VideoEncoder_Stop()停止编码器。
-
-    *和基础视频编码一致*
-
-15. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
-
-    *和基础视频编码一致*
+}
+```
+通过`OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR`获取示例代码如下：
+```c++
+// 3.1 通过输入回调确认是否是LTR
+static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
+{
+    if (!CODEC_DATA) {
+        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+        int isLTR = 0;
+        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR, &isLTR);
+        // ...
+    }
+}
+```
 
 
+**（可选）4. 使用步骤3获取的时域层级信息，自适应传输或自适应解码**
+基于获取的时域可分层码流和对应的层级信息，开发者可选择需要的层级进行传输，或携带至对端自适应选帧解码。
 
 ### 2）长期参考帧特性开发指导
 // 待实施
  
 
+## 常见问题
 
