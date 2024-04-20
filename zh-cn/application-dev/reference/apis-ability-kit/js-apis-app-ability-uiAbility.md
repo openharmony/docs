@@ -256,6 +256,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {
