@@ -77,7 +77,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -155,7 +154,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -242,14 +240,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -325,7 +322,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -408,7 +404,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -416,7 +411,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -501,14 +496,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -565,7 +559,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -622,7 +615,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf()
@@ -682,7 +674,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -758,7 +749,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -839,7 +829,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -850,16 +839,17 @@ export default class EntryAbility extends UIAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.info('onFailed...');
       }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (err) {
@@ -909,7 +899,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -923,7 +912,7 @@ export default class EntryAbility extends UIAbility {
       }).catch((err: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      })
+      });
     } catch (err) {
       commRemote = null;
       // 处理入参错误异常
@@ -967,7 +956,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -1054,10 +1042,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 后台启动Ability，不配置parameters
     let wantBackground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1095,10 +1081,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
     let wantForeground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1163,7 +1147,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
@@ -1210,7 +1193,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
@@ -1514,7 +1496,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1594,7 +1575,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
       }
     });
-    console.log("MainAbility onWindowStageCreate")
+    console.log("MainAbility onWindowStageCreate");
   }
 };
   ```
@@ -1632,23 +1613,32 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+      
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
+        if (err) {
+          console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+        } else {
+          console.log(`success`);
+        }
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`success`);
-    }
-  });
   ```
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
@@ -1689,20 +1679,29 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
+        console.log(`startAbilityByType success`);
+      }).catch((err: BusinessError) => {
+        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
-    console.log(`startAbilityByType success`);
-  }).catch((err: BusinessError) => {
-    console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-  })
   ```
