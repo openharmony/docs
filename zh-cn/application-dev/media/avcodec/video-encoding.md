@@ -102,7 +102,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 设置 OnStreamChanged 回调函数
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
-        // surface模式下，该回调函数无作用
+        // 编码场景，该回调函数无作用
         (void)codec;
         (void)format;
         (void)userData;
@@ -145,9 +145,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     // 配置视频帧宽度（必须）
-    constexpr uint32_t DEFAULT_WIDTH = 320; 
+    constexpr int32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
+    constexpr int32_t DEFAULT_HEIGHT = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     // 配置视频帧速率
@@ -400,6 +400,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
     ```c++
+    int32_t widthStride = 0;
+    int32_t heightStride = 0;
+    bool isFirstFrame = true;
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -408,26 +411,34 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)errorCode;
         (void)userData;
     }
-
+    
     // 编码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
-        // surface模式下，该回调函数无作用
+        // 编码场景，该回调函数无作用
         (void)codec;
         (void)format;
         (void)userData;
     }
-
+    
     // 编码输入回调OH_AVCodecOnNeedInputBuffer实现
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         // 输入帧buffer对应的index，送入InIndexQueue队列
         // 输入帧的数据buffer送入InBufferQueue队列
+        // 获取视频宽高跨距
+        if (isFirstFrame) {
+            OH_AVFormat *format = OH_VideoDecoder_GetInputDescription(codec);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_Destroy(format);
+            ifFirstFrame = false;
+        }
         // 数据处理，请参考:
         // - 写入编码码流
         // - 通知编码器码流结束
     }
-
+    
     // 编码输出回调OH_AVCodecOnNewOutputBuffer实现
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
@@ -436,7 +447,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 数据处理，请参考:
         // - 释放编码帧
     }
-
+    
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback 接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL);
@@ -451,9 +462,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     // 配置视频帧宽度（必须）
-    constexpr uint32_t DEFAULT_WIDTH = 320; 
+    constexpr int32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
+    constexpr int32_t DEFAULT_HEIGHT = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     
@@ -553,7 +564,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         }
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距来保证编码输入数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
 
     ```c++
         // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。
