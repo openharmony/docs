@@ -394,7 +394,7 @@ try {
 
 ## drm.getMediaKeySystemName
 
-getMediaKeySystemName(): MediaKeySystemDescription
+getMediaKeySystemName(): MediaKeySystemDescription[]
 
 获取设备支持的DRM插件的名称和uuid。
 
@@ -411,7 +411,7 @@ getMediaKeySystemName(): MediaKeySystemDescription
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription](#mediaKeySystemDescription)           | 设备支持的MediaKeySystem插件描述信息，包含name和uuid。                   |
+| [MediaKeySystemDescription[]](#mediaKeySystemDescription)           | 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。                   |
 
 **错误码：**
 
@@ -428,7 +428,7 @@ getMediaKeySystemName(): MediaKeySystemDescription
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 try {
-  let description: drm.MediaKeySystemDescription = drm.getMediaKeySystemName();
+  let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystemName();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getMediaKeySystemName ERROR: ${error}`);  
