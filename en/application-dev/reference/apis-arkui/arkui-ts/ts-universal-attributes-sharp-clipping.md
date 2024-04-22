@@ -36,7 +36,7 @@ Adds a mask of the specified shape to the component.
 
 | Name| Type                                                        | Mandatory| Description                            |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| value  | [ProgressMask](#progressmask10)<sup>10+</sup> \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Mask of the specified shape to add to the component.|
+| value  | [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) \| [ProgressMask](#progressmask10)<sup>10+</sup> | Yes  | Mask of the specified shape to add to the component.|
 
 ## ProgressMask<sup>10+</sup>
 
@@ -80,6 +80,17 @@ Updates the color of the progress mask.
 | ------ | ------------------------------------------ | ---- | ---------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the progress mask.|
 
+### enableBreathingAnimation<sup>12+</sup>
+
+enableBreathingAnimation(value: boolean): void
+
+Sets whether to enable the breathing animation when the progress indicator is full. By default, the breathing animation is disabled.
+
+**Parameters**
+
+| Name| Type                                  | Mandatory| Description        |
+| ------ | ------------------------------------------ | ---- | ---------------- |
+| value  | boolean | Yes  | Whether to enable the breathing animation. The value **true** means to enable the breathing animation, and **false** means the opposite. Default value: **false**|
 
 
 ## Example
@@ -132,6 +143,7 @@ struct ProgressMaskExample {
   @State progressflag1: boolean = true;
   @State color: Color = 0x01006CDE;
   @State value: number = 10.0;
+  @State enableBreathingAnimation: boolean = false;
   @State progress: ProgressMask = new ProgressMask(10.0, 100.0, Color.Gray);
   build() {
     Column({ space: 15 }) {
@@ -165,8 +177,15 @@ struct ProgressMaskExample {
           }
           this.progressflag1 = !this.progressflag1
         }).width(200).height(50).margin(20)
+      
+      // Enable or disable the breathing animation.
+      Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
+        .onClick((event?: ClickEvent) => {
+          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
+        }).width(200).height(50).margin(20)
 
-      // Restores the progress mask.
+      // Restore the progress mask.
       Button('click reset!')
         .onClick((event?: ClickEvent) => {
           this.value = 0;
@@ -179,4 +198,4 @@ struct ProgressMaskExample {
 }
 ```
 
-![progressMask](figures/progressMask.PNG)
+![progressMask](figures/progressMask.gif)
