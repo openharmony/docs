@@ -477,7 +477,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
             OH_AVFormat_Destroy(format);
-            ifFirstFrame = false;
+            isFirstFrame = false;
         }
         // 数据处理，请参考:
         // - 释放解码帧
