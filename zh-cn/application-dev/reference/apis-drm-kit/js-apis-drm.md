@@ -200,7 +200,7 @@ import drm from '@ohos.multimedia.drm';
 | uuid   | string | 是  | 插件唯一标识码      |
 | pssh     | Uint8Array                 | 是  | drm info内的保护方案特定标头       |
 
-## MediaKeySystemDescription
+## MediaKeySystemDescription<sup>12+</sup>
 
 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。
 
@@ -392,7 +392,7 @@ try {
 
 ```
 
-## drm.getMediaKeySystemName
+## drm.getMediaKeySystemName<sup>12+</sup>
 
 getMediaKeySystemName(): MediaKeySystemDescription[]
 
@@ -411,7 +411,7 @@ getMediaKeySystemName(): MediaKeySystemDescription[]
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription[]](#mediaKeySystemDescription)           | 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。                   |
+| [MediaKeySystemDescription[]](#mediakeysystemdescription)           | 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。                   |
 
 **错误码：**
 
