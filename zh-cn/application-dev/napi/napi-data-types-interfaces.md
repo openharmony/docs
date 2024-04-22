@@ -230,6 +230,25 @@ typedef enum {
 | napi_event_mode_default | 阻塞式的运行底层事件循环，直到循环中没有任何任务时退出事件循环。 |
 | napi_event_mode_nowait | 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。 |
 
+### 线程安全任务优先级
+napi提供了线程安全任务的优先级, 底层任务队列中的任务会根据其优先级被依次执行, 优先级的定义如下：
+
+```c
+typedef enum {
+    napi_priority_immediate = 0,
+    napi_priority_high = 1,
+    napi_priority_low = 2,
+    napi_priority_idle = 3,
+} napi_task_priority;
+```
+
+| 任务优先级 | 解释说明 |
+| -------- | -------- |
+| napi_priority_immediate | 该优先级的级别最高。|
+| napi_priority_high | 该优先级的级别低于napi_priority_immediate。|
+| napi_priority_low | 该优先级的级别低于napi_priority_immediate和napi_priority_high。|
+| napi_priority_idle | 该优先级的级别最低。 |
+
 ## 支持的Node-API接口
 
 Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部分接口，具体可见下文。
@@ -465,6 +484,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_serialize | 将ArkTS对象转换为native数据。|
 | napi_deserialize | 将native数据转为ArkTS对象。|
 | napi_delete_serialization_data | 删除序列化数据。|
+| napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|
 
 #### napi_queue_async_work_with_qos
 
@@ -552,6 +572,15 @@ napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object);
 
 ```c
 napi_status napi_delete_serialization_data(napi_env env, void* buffer);
+```
+
+#### napi_call_threadsafe_function_with_priority
+
+```c
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
+                                                        void *data,
+                                                        napi_task_priority priority,
+                                                        bool isTail);
 ```
 
 ### 环境生命周期
