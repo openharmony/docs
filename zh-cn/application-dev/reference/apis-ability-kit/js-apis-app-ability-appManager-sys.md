@@ -1409,3 +1409,59 @@ try {
 | STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
 | STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+
+## appManager.getRunningProcessInformationByBundleType<sup>12+</sup>
+
+getRunningProcessInformationByBundleType(bundleType: bundleManager.BundleType): Promise\<Array\<ProcessInformation>>
+
+根据包类型获取当前运行进程的有关信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleType    | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype)  | 是    | 表示要查询的包类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise对象，返回特定包类型的运行进程的信息。 |
+
+**错误码**：
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    appManager.getRunningProcessInformationByBundleType(bundleManager.BundleType.ATOMIC_SERVICE)
+        .then((data) => {
+            console.log(`The running process information is: ${JSON.stringify(data)}`);
+        }).catch((error: BusinessError) => {
+            console.error(`error: ${JSON.stringify(error)}`);
+        });
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
