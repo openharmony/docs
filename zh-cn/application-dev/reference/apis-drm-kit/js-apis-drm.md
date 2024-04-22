@@ -411,7 +411,7 @@ getMediaKeySystemName(): MediaKeySystemDescription[]
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription[]](#mediakeysystemdescription)           | 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。                   |
+| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。                   |
 
 **错误码：**
 
