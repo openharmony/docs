@@ -39,7 +39,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
@@ -92,7 +92,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
@@ -151,7 +151,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
@@ -209,7 +209,7 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
@@ -258,7 +258,7 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
@@ -424,7 +424,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -462,7 +462,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -501,7 +501,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -541,7 +541,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -581,7 +581,7 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -627,7 +627,7 @@ delTemplate(uri: string, subscriberId: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -682,7 +682,7 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -735,7 +735,7 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -777,7 +777,7 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -834,7 +834,7 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -875,7 +875,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
@@ -924,7 +924,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
@@ -971,7 +971,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
@@ -1008,7 +1008,7 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
@@ -1051,7 +1051,7 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
@@ -1085,7 +1085,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1150,7 +1150,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1208,7 +1208,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1264,7 +1264,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1314,7 +1314,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1373,7 +1373,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1425,7 +1425,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1494,7 +1494,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1559,7 +1559,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
@@ -1644,7 +1644,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1710,7 +1710,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1798,7 +1798,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1844,7 +1844,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1883,7 +1883,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1929,7 +1929,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -1968,7 +1968,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -2008,7 +2008,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
@@ -2046,7 +2046,7 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](errorcode-universal.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
