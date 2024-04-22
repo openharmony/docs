@@ -186,3 +186,4 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_serialize|将ArkTS对象转换为native数据。|12|
 |FUNC|napi_deserialize|将native数据转为ArkTS对象。|12|
 |FUNC|napi_delete_serialization_data|删除序列化数据。|12|
+|FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|12|
