@@ -9,35 +9,7 @@
 
 ## 申请权限
 
-应用在使用系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限，申请方式请参考下文。
-
-系统提供的定位权限有：
-- ohos.permission.LOCATION
-
-- ohos.permission.APPROXIMATELY_LOCATION
-
-- ohos.permission.LOCATION_IN_BACKGROUND
-
-访问设备的位置信息，必须申请权限，并且获得用户授权。
-
-API9之前的版本，申请ohos.permission.LOCATION即可。
-
-API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或者同时申请ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION；无法单独申请ohos.permission.LOCATION。
-
-| 使用的API版本 | 申请位置权限 | 申请结果 | 位置的精确度 |
-| -------- | -------- | -------- | -------- |
-| 小于9 | ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
-| 大于等于9 | ohos.permission.LOCATION | 失败 | 无法获取位置。 |
-| 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
-| 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
-
-如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
-
-应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
-
-长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
-
-开发者可以在应用配置文件中声明所需要的权限，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+请参考[申请位置权限开发指导](../../device/location/location-guidelines.md#申请位置权限开发指导)。
 
 
 ## 导入模块
@@ -55,10 +27,10 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。 |
 | latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
 | longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180。 |
-| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。 |
+| maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
 
 
 ## GeoCodeRequest
@@ -69,9 +41,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
+| locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
-| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。 |
+| maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
 | minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。 |
 | minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。 |
 | maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。 |
@@ -116,8 +88,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。 |
-| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。 |
+| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。 |
+| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。等于0时对位置上报距离间隔无限制。 |
 | maxAccuracy | number | 是 | 是 |  表示精度信息，单位是米。<br/>仅在精确位置功能场景（同时授予了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（仅授予了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>默认值为0，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
 
 
@@ -243,9 +215,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x200 | 表示未设置优先级，表示[LocationRequestPriority](#locationrequestpriority)无效。 |
-| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在开阔场景下可以提供米级的定位精度，具体性能指标依赖用户设备的定位硬件能力，但在室内等强遮蔽定位场景下，无法提供准确的位置服务。 |
-| LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略主要使用基站定位和WLAN、蓝牙定位技术，也可以同时提供室内和户外场景下的位置服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，如果对定位结果精度要求不高，或者使用场景多在有基站、可见WLAN、蓝牙设备高密度分布的情况下，推荐使用，可以有效节省设备功耗。 |
-| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该字段。<br/>快速定位优先策略会同时使用GNSS定位、基站定位和WLAN、蓝牙定位技术，以便室内和户外场景下，通过此策略都可以获得位置结果，当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
+| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，仅在长时间无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
+| LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。 |
+| FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该字段。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
 
 
 ## LocationRequestScenario
@@ -257,10 +229,10 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x300 | 表示未设置场景信息。<br/>表示[LocationRequestScenario](#locationrequestscenario)字段无效。 |
-| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外定位设备实时位置的场景，如车载、步行导航。<br/>在此场景下，为保证系统提供位置结果精度最优，主要使用GNSS定位技术提供定位服务<br/>此场景默认以最小1秒间隔上报定位结果。 |
-| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务。<br/>此场景默认以最小1秒间隔上报定位结果。 |
-| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>此场景默认以最小1秒间隔上报定位结果。 |
-| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用，做推荐、推送时定位用户大致位置即可。<br/>此场景默认以最小1秒间隔上报定位结果。 |
+| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
+| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
+| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。<br/>当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，如果用户在室内或车库等环境，我们会在GNSS提供稳定位置结果之前使用网络定位技术（蜂窝基站、WLAN、蓝牙定位技术）提供服务。 |
+| DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。 |
 | NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
 
 ## CountryCodeType
@@ -1326,7 +1298,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 isGeocoderAvailable(): boolean;
 
-判断（逆）地理编码服务状态。
+判断地理编码与逆地理编码服务状态。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -1334,7 +1306,7 @@ isGeocoderAvailable(): boolean;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:（逆）地理编码服务可用<br/>false：（逆）地理编码服务不可用。 |
+  | boolean | true:地理编码与逆地理编码服务可用<br/>false：地理编码与逆地理编码服务不可用。 |
 
 **错误码**：
 
