@@ -177,7 +177,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 | getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。 |
 | getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。 |
 
-## 媒体类文件归属类型查询场景
+## 如何查询媒体类文件归属类型
 
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
