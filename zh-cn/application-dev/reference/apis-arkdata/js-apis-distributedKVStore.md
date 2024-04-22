@@ -43,6 +43,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 | MAX_VALUE_LENGTH      | 4194303 | 数据库中Value允许的最大长度，单位字节。 |
 | MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中key允许的最大长度，单位字节。 |
 | MAX_STORE_ID_LENGTH   | 128     | 数据库标识符允许的最大长度，单位字节。  |
+| MAX_APP_ID_LENGTH   | 256     | 应用包名允许的最大长度，单位字节。  |
 | MAX_QUERY_LENGTH      | 512000  | 最大查询长度，单位字节。                |
 | MAX_BATCH_SIZE        | 128     | 最大批处理操作数量。                    |
 
@@ -362,10 +363,13 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified. |
+|               | 2.Incorrect parameters types.     |
+|               | 3.Parameter verification failed.  |
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
 
@@ -421,10 +425,11 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameters verification failed.|
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
 
@@ -467,9 +472,17 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | 是   | 应用的BundleName。                                      |
+| appId    | string                    | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                                      |
 | storeId  | string                    | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当要关闭的数据库成功关闭，err为undefined，否则为错误对象。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -522,7 +535,7 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | 是   | 应用的BundleName。                                       |
+| appId   | string   | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                           |
 | storeId | string   | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 
 **返回值：**
@@ -530,6 +543,14 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -579,16 +600,17 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | 是   | 应用的BundleName。                                       |
+| appId    | string                    | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                                      |
 | storeId  | string                    | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当要删除的数据库成功删除，err为undefined，否则为错误对象。     |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100004     | Not found.   |
 
 **示例：**
@@ -643,7 +665,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | 是   | 应用的BundleName。                                      |
+| appId   | string   | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                           |
 | storeId | string   | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 
 **返回值：**
@@ -654,10 +676,11 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100004     | Not found.   |
 
 **示例：**
@@ -708,8 +731,16 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
-| appId    | string                        | 是   | 应用的BundleName。                              |
+| appId    | string                        | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                              |
 | callback | AsyncCallback&lt;string[]&gt; | 是   | 回调函数。返回所有创建的分布式键值数据库的storeId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -751,6 +782,14 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 | ----------------------- | ------------------------------------------------------ |
 | Promise&lt;string[]&gt; | Promise对象。返回所有创建的分布式键值数据库的storeId。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:Mandatory parameters are left unspecified. |
+
 **示例：**
 
 ```ts
@@ -785,6 +824,14 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 | event         | string               | 是   | 订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
 | deathCallback | Callback&lt;void&gt; | 是   | 回调函数。订阅成功，err为undefined，否则为错误对象。     |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.|
+
 **示例：**
 
 ```ts
@@ -816,6 +863,14 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
 | event         | string               | 是   | 取消订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
 | deathCallback | Callback&lt;void&gt; | 否   | 回调函数。如果该参数不填，那么会将之前订阅过的所有的deathCallback取消订阅。                                          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1073,6 +1128,14 @@ move(offset: number): boolean
 | ------- | ----------------------------------------------- |
 | boolean | 返回true表示操作成功；返回false则表示操作失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1114,6 +1177,14 @@ moveToPosition(position: number): boolean
 | 类型    | 说明                                            |
 | ------- | ----------------------------------------------- |
 | boolean | 返回true表示操作成功；返回false则表示操作失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 
 **示例**
 
@@ -1375,6 +1446,14 @@ equalTo(field: string, value: number|string|boolean): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1412,6 +1491,14 @@ notEqualTo(field: string, value: number|string|boolean): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1447,6 +1534,14 @@ greaterThan(field: string, value: number|string|boolean): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1486,6 +1581,14 @@ lessThan(field: string, value: number|string): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1523,6 +1626,14 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1562,6 +1673,14 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1597,6 +1716,14 @@ isNull(field: string): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1635,6 +1762,14 @@ inNumber(field: string, valueList: number[]): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1671,6 +1806,14 @@ inString(field: string, valueList: string[]): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1709,6 +1852,14 @@ notInNumber(field: string, valueList: number[]): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1745,6 +1896,14 @@ notInString(field: string, valueList: string[]): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1783,6 +1942,14 @@ like(field: string, value: string): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1819,6 +1986,14 @@ unlike(field: string, value: string): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1918,6 +2093,14 @@ orderByAsc(field: string): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1954,6 +2137,14 @@ orderByDesc(field: string): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1993,6 +2184,14 @@ limit(total: number, offset: number): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -2031,6 +2230,14 @@ isNotNull(field: string): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -2130,6 +2337,14 @@ prefixKey(prefix: string): Query
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -2166,6 +2381,14 @@ setSuggestIndex(index: string): Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -2207,6 +2430,14 @@ deviceId(deviceId:string):Query
 | 类型           | 说明            |
 | -------------- | --------------- |
 | [Query](#query) | 返回Query对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -2275,10 +2506,11 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2332,10 +2564,11 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2381,10 +2614,12 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 202          | Permission verification failed, application which is not a system application uses system AP. |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2460,10 +2695,12 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 202          | Permission verification failed, application which is not a system application uses system AP. |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2528,10 +2765,12 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 202          | Permission verification failed, application which is not a system application uses system AP. |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
 
@@ -2593,10 +2832,12 @@ delete(key: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 202          | Permission verification failed, application which is not a system application uses system AP. |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2649,10 +2890,11 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2727,10 +2969,11 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2800,10 +3043,11 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -2864,10 +3108,11 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -2917,10 +3162,11 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
@@ -2978,10 +3224,11 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
@@ -3030,10 +3277,11 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3102,10 +3350,11 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3165,10 +3414,11 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3236,10 +3486,11 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3301,10 +3552,11 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3383,10 +3635,11 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3451,10 +3704,11 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3524,10 +3778,11 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3585,6 +3840,14 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 | resultSet | [KVStoreResultSet](#kvstoreresultset) | 是   | 表示要关闭的KVStoreResultSet对象。 |
 | callback  | AsyncCallback&lt;void&gt;             | 是   | 回调函数。关闭KVStoreResultSet对象成功，err为undefined，否则为错误对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -3636,6 +3899,14 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -3680,10 +3951,11 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3747,10 +4019,11 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3807,10 +4080,11 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3855,10 +4129,11 @@ backup(file:string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3896,10 +4171,11 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3944,10 +4220,11 @@ restore(file:string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3982,6 +4259,14 @@ deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[str
 | -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | files    | Array&lt;string&gt;                                | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数，返回删除备份的文件名及其处理结果。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -4022,6 +4307,14 @@ deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt
 | 类型                                         | 说明                                            |
 | -------------------------------------------- | ----------------------------------------------- |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，返回删除备份的文件名及其处理结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -4344,6 +4637,14 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 | enabled  | boolean                   | 是   | 设定是否开启同步，true表示开启同步，false表示不启用同步。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。设定成功，err为undefined，否则为错误对象。      |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -4383,6 +4684,14 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -4415,6 +4724,14 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 | localLabels         | string[]                  | 是   | 表示本地设备的同步标签。         |
 | remoteSupportLabels | string[]                  | 是   | 表示要同步数据的设备的同步标签。 |
 | callback            | AsyncCallback&lt;void&gt; | 是   | 回调函数。设置成功，err为undefined，否则为错误对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -4458,6 +4775,14 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -4491,6 +4816,14 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
 | defaultAllowedDelayMs | number                    | 是   | 表示数据库同步允许的默认延迟，以毫秒为单位。 |
 | callback              | AsyncCallback&lt;void&gt; | 是   | 回调函数。设置成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -4531,6 +4864,14 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息** |
+| ------------ | ------------ |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -4573,10 +4914,11 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**        |
 | ------------ | ------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
 
@@ -4659,10 +5001,11 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**        |
 | ------------ | ------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
 
@@ -4742,10 +5085,11 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100005     | Database or result set already closed. |
 
@@ -4778,6 +5122,14 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | 是   | 订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数。用于向调用方发送同步结果的回调。             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -4819,10 +5171,11 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4873,6 +5226,14 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
 | syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -5015,10 +5376,11 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
@@ -5075,10 +5437,11 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
@@ -5131,10 +5494,11 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
@@ -5196,10 +5560,11 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
@@ -5247,10 +5612,11 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5319,10 +5685,11 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5386,10 +5753,11 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5463,10 +5831,11 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5528,10 +5897,11 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5599,10 +5969,11 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5669,10 +6040,11 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5751,10 +6123,11 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5817,10 +6190,11 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5898,10 +6272,11 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5971,10 +6346,11 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6036,10 +6412,11 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6092,10 +6469,11 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6180,10 +6558,11 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6260,10 +6639,11 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6328,10 +6708,11 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6406,10 +6787,11 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6473,10 +6855,11 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6538,10 +6921,11 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6614,10 +6998,11 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
