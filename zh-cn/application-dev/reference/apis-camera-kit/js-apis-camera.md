@@ -2276,7 +2276,7 @@ on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): voi
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'frameShutterEnd'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | 是   | 回调函数，用于获取相关信息。该回调返回意味着拍照曝光结束。   |
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | 是   | 回调函数，用于获取相关信息。该回调返回表示拍照曝光结束。   |
 
 **示例：**
 
@@ -2491,6 +2491,7 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 | 名称      | 类型   | 只读 | 必填 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 是   | 拍照的ID。 |
+
 ## CaptureStartInfo<sup>11+</sup>
 
 拍照开始信息。
