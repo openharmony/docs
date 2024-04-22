@@ -560,6 +560,14 @@ GNSS硬件相关能力
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.Multimedia.AVSession.ExtendedDisplayDisplay
+
+扩展媒体投屏能力
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是      | 是     | 否            |
+
 ## SystemCapability.Multimedia.Audio.Core
 
 音频基础能力
