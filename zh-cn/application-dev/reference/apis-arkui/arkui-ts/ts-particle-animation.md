@@ -164,7 +164,7 @@ interface ImageParticleParameters {
 ```typescript
 interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
   range: [ResourceColor, ResourceColor]; 
-  distributionType: DistributionType;
+  distributionType?: DistributionType;
   updater?: {
     type: UPDATER;
     config: ParticleColorPropertyUpdaterConfigs[UPDATER];
