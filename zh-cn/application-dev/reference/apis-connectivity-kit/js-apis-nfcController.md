@@ -18,6 +18,8 @@ import controller from '@ohos.nfc.controller';
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | STATE_OFF | 1 | NFC已关闭状态。 |
