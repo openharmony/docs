@@ -26,39 +26,41 @@ s : source 源的缩写。 d : destination 目标的缩写。 sa : source alpha 
 
 r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
 
+以黄色矩形为源图像，蓝色圆形为目标图像，各混合模式枚举生成的效果示意图请参考下表。
+
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称        | 值   | 说明                                                         |
-| ----------- | ---- | ------------------------------------------------------------ |
-| CLEAR       | 0    | 清除模式，r = 0。                                            |
-| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。） |
-| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。） |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         |
-| DST_OVER    | 4    | r = d + (1 - da) * s                                         |
-| SRC_IN      | 5    | r = s * da                                                   |
-| DST_IN      | 6    | r = d * sa                                                   |
-| SRC_OUT     | 7    | r = s * (1 - da)                                             |
-| DST_OUT     | 8    | r = d * (1 - sa)                                             |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              |
-| PLUS        | 12   | r = min(s + d, 1)                                            |
-| MODULATE    | 13   | r = s * d                                                    |
-| SCREEN      | 14   | 滤色模式，r = s + d - s * d                                  |
-| OVERLAY     | 15   | 叠加模式                                                     |
-| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d |
-| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d |
-| COLOR_DODGE | 18   | 颜色减淡模式                                                 |
-| COLOR_BURN  | 19   | 颜色加深模式                                                 |
-| HARD_LIGHT  | 20   | 强光模式                                                     |
-| SOFT_LIGHT  | 21   | 柔光模式                                                     |
-| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d |
-| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d     |
-| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d            |
-| HUE         | 25   | 色相模式                                                     |
-| SATURATION  | 26   | 饱和度模式                                                   |
-| COLOR       | 27   | 颜色模式                                                     |
-| LUMINOSITY  | 28   | 亮度模式                                                     |
+| 名称        | 值   | 说明                                                         | 示意图   | 
+| ----------- | ---- | ------------------------------------------------------------ | -------- |
+| CLEAR       | 0    | 清除模式，r = 0。                                            | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
+| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。） | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
+| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。） | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
+| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
+| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
+| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
+| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
+| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
+| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
+| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
+| SCREEN      | 14   | 滤色模式，r = s + d - s * d                                  | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
+| OVERLAY     | 15   | 叠加模式                                                     | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
+| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
+| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
+| COLOR_DODGE | 18   | 颜色减淡模式                                                 | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
+| COLOR_BURN  | 19   | 颜色加深模式                                                 | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
+| HARD_LIGHT  | 20   | 强光模式                                                     | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
+| SOFT_LIGHT  | 21   | 柔光模式                                                     | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
+| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
+| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
+| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
+| HUE         | 25   | 色相模式                                                     | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
+| SATURATION  | 26   | 饱和度模式                                                   | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
+| COLOR       | 27   | 颜色模式                                                     | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
+| LUMINOSITY  | 28   | 亮度模式                                                     | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
 
 ## Path
 
@@ -554,6 +556,10 @@ attachPen(pen: Pen): void
 
 绑定画笔给画布，画布将使用画笔的样式和颜色去绘制图形形状的轮廓。
 
+> **说明：**
+>
+> 执行该方法后，若pen的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。
+
 **系统能力**：SystemCapability.Graphics.Drawing
 
 **参数：**
@@ -585,6 +591,10 @@ class DrawingRenderNode extends RenderNode {
 attachBrush(brush: Brush): void
 
 绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并其内部进行填充。
+
+> **说明：**
+>
+> 执行该方法后，若brush的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
