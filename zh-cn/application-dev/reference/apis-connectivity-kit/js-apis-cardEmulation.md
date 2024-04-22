@@ -116,7 +116,7 @@ hasHceCapability(): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -150,7 +150,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -218,7 +218,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -268,7 +268,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -294,7 +294,7 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -366,7 +366,7 @@ transmit(response: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -415,7 +415,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
