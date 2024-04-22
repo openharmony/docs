@@ -1013,7 +1013,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 getFocusController(): FocusController
 
-获取FocusController对象，可通过该对象控制焦点。
+获取[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)对象，可通过该对象控制焦点。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1087,7 +1087,7 @@ uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 
 getCursorController(): CursorController
 
-获取CursorController对象，可通过该对象控制光标。
+获取[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)对象，可通过该对象控制光标。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1107,7 +1107,7 @@ uiContext.CursorController();
 
 getContextMenuController(): ContextMenuController
 
-获取ContextMenuController对象，可通过该对象控制菜单。
+获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1120,7 +1120,7 @@ getContextMenuController(): ContextMenuController
 **示例：**
 
 ```ts
-uiContext.getContextMenuController()();
+uiContext.getContextMenuController();
 ```
 
 ## Font
@@ -4908,7 +4908,7 @@ struct CursorControlExample {
 
   build() {
     Column() {
-      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
+      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 100 ,y:70})
         .onHover((flag) => {
           if (flag) {
             this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
