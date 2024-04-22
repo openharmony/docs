@@ -62,7 +62,7 @@
   - 密钥导出
     - [密钥导出(ArkTS)](huks-export-key-arkts.md)
     - [密钥导出(C/C++)](huks-export-key-ndk.md)
-  - 批量查询密钥别名集
-    - [批量查询密钥别名集(ArkTS)](huks-list-aliases-arkts.md)
-    - [批量查询密钥别名集(C/C++)](huks-list-aliases-ndk.md)
+  - 查询密钥别名集
+    - [查询密钥别名集(ArkTS)](huks-list-aliases-arkts.md)
+    - [查询密钥别名集(C/C++)](huks-list-aliases-ndk.md)
   - [指定用户身份操作(仅对系统应用开放)](huks-as-user-sys.md)

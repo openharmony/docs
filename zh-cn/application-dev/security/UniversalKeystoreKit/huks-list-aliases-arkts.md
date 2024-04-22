@@ -1,7 +1,7 @@
-# 批量查询密钥别名集(ArkTS)
+# 查询密钥别名集(ArkTS)
 
 
-HUKS提供了接口供应用批量查询密钥别名集。
+HUKS提供了接口供应用查询密钥别名集。
 
 
 ## 开发步骤
@@ -12,7 +12,7 @@ HUKS提供了接口供应用批量查询密钥别名集。
 
 ```ts
 /*
- * 以下批量查询密钥别名集Promise操作使用为例
+ * 以下查询密钥别名集Promise操作使用为例
  */
 import { huks } from "@kit.UniversalKeystoreKit"
 import { BusinessError } from "@kit.BasicServicesKit"

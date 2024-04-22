@@ -2538,7 +2538,7 @@ async function testAbort() {
 
 listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 
-批量查询密钥别名接口，使用Promise方式异步返回结果。
+查询密钥别名集接口，使用Promise方式异步返回结果。
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 

@@ -1,7 +1,7 @@
-# 批量查询密钥别名集(C/C++)
+# 查询密钥别名集(C/C++)
 
 
-HUKS提供了接口供应用批量查询密钥别名集。
+HUKS提供了接口供应用查询密钥别名集。
 
 
 ## 开发步骤
@@ -11,7 +11,7 @@ HUKS提供了接口供应用批量查询密钥别名集。
 2. 调用接口[OH_Huks_ListAliases]，查询密钥别名集。
 
 ```c++
-/* 以下批量查询密钥别名集为例 */
+/* 以下查询密钥别名集为例 */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include <string.h>
@@ -54,7 +54,7 @@ static napi_value ListAliases(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        /* 2.批量查询密钥别名集 */
+        /* 2.查询密钥别名集 */
         ohResult = OH_Huks_ListAliases(testQueryParamSet, &outData);
     } while (0);
 
