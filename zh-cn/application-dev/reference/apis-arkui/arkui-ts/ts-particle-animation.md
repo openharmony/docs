@@ -286,7 +286,7 @@ enum DistributionType {
 | 名称  | 描述 |
 | -------- |  -------- | 
 UNIFORM |初始颜色随机值分布为均匀分布|
-CIRCLE | 初始颜色随机值分布为高斯分布|
+GAUSSIAN | 初始颜色随机值分布为高斯分布|
 
 ## ParticleUpdater
 ```typescript
