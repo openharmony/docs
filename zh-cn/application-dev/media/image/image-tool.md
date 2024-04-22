@@ -20,7 +20,7 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../../r
 
    // 获取沙箱路径创建ImageSource
    const fd : number = ...; // 获取需要被处理的图片的fd
-   const imageSource : image.ImageSource = image.createImageSource(fd);
+   const imageSourceApi : image.ImageSource = image.createImageSource(fd);
    ```
 
 2. 读取、编辑EXIF信息。
