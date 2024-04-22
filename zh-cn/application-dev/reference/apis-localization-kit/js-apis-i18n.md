@@ -65,6 +65,8 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 获取指定语言的本地化显示文本。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -218,6 +220,8 @@ static getSystemLanguage(): string
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -269,6 +273,8 @@ static getSystemRegion(): string
 static getSystemLocale(): string
 
 获取系统区域。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
