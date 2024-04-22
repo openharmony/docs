@@ -3280,3 +3280,15 @@ Allows an application to access the **Desktop** directory in the user directory.
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
+
+Allows a system application or system service to start the Text Autofill ability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
