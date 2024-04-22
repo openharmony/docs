@@ -88,6 +88,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 ## OutlineOptions对象说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称   | 类型                   |必填                                      | 说明                                                         |
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
 | width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)| 否| 设置外描边宽度，不支持百分比。<br/>默认值：0，外描边效果width为必设项，否则不显示外描边。 |
@@ -99,6 +101,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 引入该对象时，至少传入一个参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 参数类型                         | 必填   | 描述      |
 | ------ | ---------------------------- | ---- | ------- |
 | left   | [Dimension](ts-types.md#dimension10) | 否    | 左侧外描边宽度。 |
@@ -109,6 +113,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 ## EdgeColors对象说明
 
 引入该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
@@ -132,6 +138,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 引用该对象时，至少传入一个参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                         | 必填   | 描述       |
 | ----------- | ---------------------------- | ---- | -------- |
 | topLeft     | [Dimension](ts-types.md#dimension10) | 否    | 左上角圆角半径。 |
@@ -142,6 +150,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 ## EdgeOutlineStyles对象说明
 
 引入该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
