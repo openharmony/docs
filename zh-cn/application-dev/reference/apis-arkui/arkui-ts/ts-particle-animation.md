@@ -173,6 +173,7 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | 是 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White]
+| distributionType | [DistributionType](#distributiontype) | 是 | 粒子初始颜色随机值分布，允许用户选择颜色随机值生成的分布类型，支持均匀分布或正态（高斯）分布。<br>默认值：DistributionType.UNIFORM
 | updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 |
 
 
@@ -274,6 +275,17 @@ RECTANGLE |粒子发射器为矩形|
 CIRCLE | 粒子发射器为圆形|
 ELLIPSE |粒子发射器为椭圆形|
 
+## DistributionType
+```typescript
+enum DistributionType {
+  UNIFORM = 0,
+  GAUSSIAN = 1,
+}
+```
+| 名称  | 描述 |
+| -------- |  -------- | 
+UNIFORM |初始颜色分布为均匀分布|
+CIRCLE | 初始颜色分布为高斯分布|
 
 ## ParticleUpdater
 ```typescript
