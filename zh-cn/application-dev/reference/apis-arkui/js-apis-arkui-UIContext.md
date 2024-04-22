@@ -920,8 +920,6 @@ getDragController(): DragController
 
 获取DragController对象，可通过该对象创建并发起拖拽。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -963,8 +961,6 @@ getDragPreview(): dragController.DragPreview
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 
 产生关键帧动画。该接口的使用说明请参考[keyframeAnimateTo](arkui-ts/ts-keyframeAnimateTo.md)。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1217,8 +1213,6 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1244,8 +1238,6 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 取消监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1268,8 +1260,6 @@ observer.off('navDestinationUpdate');
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1296,8 +1286,6 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1462,8 +1450,6 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 监听router中page页面的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1489,8 +1475,6 @@ observer.on('routerPageUpdate', (info) => {
 off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
 
 取消监听router中page页面的状态变化。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3896,8 +3880,6 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3973,8 +3955,6 @@ struct DragControllerPage {
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4084,8 +4064,6 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
 **说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4463,16 +4441,16 @@ hideAllComponentContents(): void
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，以下接口将失效。
+> 从API version 12开始原子化服务menuBar样式变更，以下接口将失效。
 
 ### setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
-通过该方法设置元服务menuBar是否可见。
+通过该方法设置原子化服务menuBar是否可见。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -4482,7 +4460,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visible | boolean | 是 | 元服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。|
 
 
 **示例：**
@@ -4511,12 +4489,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
-通过该方法设置元服务menuBar的背景颜色。
+通过该方法设置原子化服务menuBar的背景颜色。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -4524,7 +4500,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | color:Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置元服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | color:Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
 
 **示例：**
 
@@ -4552,12 +4528,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setTitleContent(content:string): void
 
-通过该方法设置元服务menuBar的标题内容。
+通过该方法设置原子化服务menuBar的标题内容。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -4565,7 +4539,7 @@ setTitleContent(content:string): void
 
 |参数名|类型|必填|说明 |
 | ------- | ------- | ------- | ------- |
-| content | string | 是 | 元服务menuBar中的标题内容。|
+| content | string | 是 | 原子化服务menuBar中的标题内容。|
 
 **示例：**
 
@@ -4593,12 +4567,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setTitleFontStyle(font:FontStyle):void
 
-通过该方法设置元服务menuBar的字体样式。
+通过该方法设置原子化服务menuBar的字体样式。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
@@ -4606,7 +4578,7 @@ setTitleFontStyle(font:FontStyle):void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 元服务menuBar中的字体样式。 |
+| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar中的字体样式。 |
 
 **示例：**
 
@@ -4634,12 +4606,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setIconColor(color:Nullable<Color | number | string>): void
 
-通过该方法设置元服务图标的颜色。
+通过该方法设置原子化服务图标的颜色。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4647,7 +4617,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 元服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
 
 
 **示例：**

@@ -227,8 +227,6 @@ getUIFontConfig() : UIFontConfig
 
 获取系统的UI字体配置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -237,8 +235,6 @@ getUIFontConfig() : UIFontConfig
 | [UIFontConfig](#uifontconfig11)     | 系统的UI字体配置信息。          |
 
 ## UIFontConfig<sup>11+</sup>
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -249,8 +245,6 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontGenericInfo<sup>11+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -260,8 +254,6 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -269,8 +261,6 @@ getUIFontConfig() : UIFontConfig
 | fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 是 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体。 |
 
 ## UIFontAliasInfo<sup>11+</sup>
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -280,8 +270,6 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -289,8 +277,6 @@ getUIFontConfig() : UIFontConfig
 | to            | number  | 是 | 字体在应用中显示的weight值。 |
 
 ## UIFontFallbackInfo<sup>11+</sup>
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |

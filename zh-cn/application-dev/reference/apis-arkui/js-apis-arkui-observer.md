@@ -23,8 +23,8 @@ NavDestination组件状态。
 
 | 名称      | 值  | 说明                     |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | NavDestination组件显示。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| ON_HIDDEN | 1   | NavDestination组件隐藏。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| ON_SHOWN  | 0   | NavDestination组件显示。|
+| ON_HIDDEN | 1   | NavDestination组件隐藏。 |
 
 ## ScrollEventType<sup>12+</sup>
 
@@ -40,8 +40,6 @@ NavDestination组件状态。
 ## RouterPageState
 
 routerPage生命周期触发时对应的状态。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,9 +59,9 @@ NavDestination组件信息。
 
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。|
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。 |
+| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。 |
 | index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
@@ -93,8 +91,6 @@ Observer选项。
 ## RouterPageInfo
 
 RouterPageInfo包含的信息。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -146,8 +142,6 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -171,8 +165,6 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 
 取消监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -193,8 +185,6 @@ observer.off('navDestinationUpdate');
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -219,8 +209,6 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -383,8 +371,6 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 
 监听router中page页面的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -414,8 +400,6 @@ observer.on('routerPageUpdate', this.uiContext, callBackFunc);
 off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<RouterPageInfo\>): void
 
 取消监听router中page页面的状态变化。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
