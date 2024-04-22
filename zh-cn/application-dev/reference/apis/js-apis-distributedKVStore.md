@@ -1341,7 +1341,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含'^'。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1378,7 +1378,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含'^'。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1414,7 +1414,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 **参数：**
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含'^'。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1452,7 +1452,7 @@ lessThan(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含'^'。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1490,7 +1490,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含'^'。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1528,7 +1528,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含'^'。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1565,7 +1565,7 @@ isNull(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId  | string   | 是   | 表示指定字段，不能包含'^'。 |
 
 **返回值：**
 
@@ -1601,7 +1601,7 @@ inNumber(field: string, valueList: number[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId     | string   | 是   | 表示指定字段，不能包含'^'。 |
 | valueList | number[] | 是   | 表示指定的值列表。            |
 
 **返回值：**
@@ -1638,7 +1638,7 @@ inString(field: string, valueList: string[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId     | string   | 是   | 表示指定字段，不能包含'^'。 |
 | valueList | string[] | 是   | 表示指定的字符串值列表。      |
 
 **返回值：**
@@ -1675,7 +1675,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId     | string   | 是   | 表示指定字段，不能包含'^'。 |
 | valueList | number[] | 是   | 表示指定的值列表。            |
 
 **返回值：**
@@ -1712,7 +1712,7 @@ notInString(field: string, valueList: string[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId     | string   | 是   | 表示指定字段，不能包含'^'。 |
 | valueList | string[] | 是   | 表示指定的字符串值列表。      |
 
 **返回值：**
@@ -1749,7 +1749,7 @@ like(field: string, value: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId  | string   | 是   | 表示指定字段，不能包含'^'。 |
 | value  | string   | 是   | 表示指定的字符串值。          |
 
 **返回值：**
@@ -1786,7 +1786,7 @@ unlike(field: string, value: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId  | string   | 是   | 表示指定字段，不能包含'^'。 |
 | value  | string   | 是   | 表示指定的字符串值。          |
 
 **返回值：**
@@ -1885,7 +1885,7 @@ orderByAsc(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId  | string   | 是   | 表示指定字段，不能包含'^'。 |
 
 **返回值：**
 
@@ -1922,7 +1922,7 @@ orderByDesc(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId  | string   | 是   | 表示指定字段，不能包含'^'。 |
 
 **返回值：**
 
@@ -1999,7 +1999,7 @@ isNotNull(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | 是   | 表示指定字段，不能包含' ^ '。 |
+| fieId  | string   | 是   | 表示指定字段，不能包含'^'。 |
 
 **返回值：**
 
@@ -2097,7 +2097,7 @@ prefixKey(prefix: string): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | 是   | 表示指定的键前缀。 |
+| prefix | string   | 是   | 表示指定的键前缀，不能包含'^'。 |
 
 **返回值：**
 
@@ -2134,7 +2134,7 @@ setSuggestIndex(index: string): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | 是   | 指示要设置的索引。 |
+| index  | string   | 是   | 指示要设置的索引，不能包含'^'。 |
 
 **返回值：**
 
