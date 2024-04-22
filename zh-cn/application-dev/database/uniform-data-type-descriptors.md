@@ -246,10 +246,10 @@ try {
 // 1.导入模块
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 try {
-  // 可根据 “.mp3” 文件后缀查询对应UTD数据类型。
+  // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型。
   let fileExtention = '.mp3';
   let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
-  // 根据UTD数据类型查询对应的MIMEType列表。
+  // 3.根据UTD数据类型查询对应的MIMEType列表。
   let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
   let mimeTypes = typeObj.mimeTypes;
   console.info('mimeTypes:' + mimeTypes);
