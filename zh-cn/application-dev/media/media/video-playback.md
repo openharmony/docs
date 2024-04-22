@@ -257,7 +257,7 @@ export class AVPlayerDemo {
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // 播放hls网络直播码流
   }
 
-  // 以下demo为通过setMediaSource设置自定义头域及媒体播放优选参数来实现视频预下载
+  // 以下demo为通过setMediaSource设置自定义头域及媒体播放优选参数
   async preDownloadDemo() {
     // 创建avPlayer实例对象
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
