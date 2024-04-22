@@ -684,46 +684,48 @@ struct Index {
 ## 基础事件示例
 
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node"
+import { FrameNode, NodeController } from '@ohos.arkui.node'
 
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
+
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.rootNode.commonAttribute.width(100)
+      .height(100)
+      .backgroundColor(Color.Pink);
     this.addCommonEvent(this.rootNode);
     return this.rootNode;
   }
 
-  addCommonEvent(frameNode : FrameNode)
-  {
-    frameNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
-      console.log( `isHover FrameNode: ${isHover}`);
-      console.log( `isHover FrameNode: ${JSON.stringify(event)}`);
+  addCommonEvent(frameNode: FrameNode) {
+    frameNode.commonEvent.setOnHover(((isHover: boolean, event: HoverEvent): void => {
+      console.log(`isHover FrameNode: ${isHover}`);
+      console.log(`isHover FrameNode: ${JSON.stringify(event)}`);
       event.stopPropagation();
     }))
-    frameNode.commonEvent.setOnClick((event)=>{
+    frameNode.commonEvent.setOnClick((event: ClickEvent) => {
       console.log(`Click FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnTouch((event)=>{
+    frameNode.commonEvent.setOnTouch((event: TouchEvent) => {
       console.log(`touch FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnAppear(()=>{
+    frameNode.commonEvent.setOnAppear(() => {
       console.log(`on Appear FrameNode`)
     })
-    frameNode.commonEvent.setOnDisappear(()=>{
+    frameNode.commonEvent.setOnDisappear(() => {
       console.log(`onDisAppear FrameNode`)
     })
-    frameNode.commonEvent.setOnFocus(()=>{
+    frameNode.commonEvent.setOnFocus(() => {
       console.log(`onFocus FrameNode`)
     })
-    frameNode.commonEvent.setOnBlur(()=>{
+    frameNode.commonEvent.setOnBlur(() => {
       console.log(`onBlur FrameNode`)
     })
-    frameNode.commonEvent.setOnKeyEvent((event)=>{
+    frameNode.commonEvent.setOnKeyEvent((event: KeyEvent) => {
       console.log(`Key FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnMouse((event)=>{
+    frameNode.commonEvent.setOnMouse((event: MouseEvent) => {
       console.log(`Mouse FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
@@ -735,44 +737,45 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  @State index: number = 0;
   private myNodeController: MyNodeController = new MyNodeController();
-  @State index : number = 0;
+
   build() {
     Column() {
       Button("add CommonEvent to Text")
-        .onClick(()=>{
-          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
+        .onClick(() => {
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling() !)
         })
       Text("this is a Text")
         .fontSize(16)
         .borderWidth(1)
-        .onHover(((isHover?: boolean, event?: HoverEvent):void => {
-          console.log( `isHover Text: ${isHover}`);
-          console.log( `isHover Text: ${JSON.stringify(event)}`);
+        .onHover(((isHover: boolean, event: HoverEvent): void => {
+          console.log(`isHover Text: ${isHover}`);
+          console.log(`isHover Text: ${JSON.stringify(event)}`);
           event.stopPropagation();
         }))
-        .onClick((event)=>{
+        .onClick((event: ClickEvent) => {
           console.log(`Click Text    : ${JSON.stringify(event)}`)
         })
-        .onTouch((event)=>{
+        .onTouch((event: TouchEvent) => {
           console.log(`touch Text    : ${JSON.stringify(event)}`)
         })
-        .onAppear(()=>{
+        .onAppear(() => {
           console.log(`on Appear Text`)
         })
-        .onDisAppear(()=>{
+        .onDisAppear(() => {
           console.log(`onDisAppear Text`)
         })
-        .onFocus(()=>{
+        .onFocus(() => {
           console.log(`onFocus Text`)
         })
-        .onBlur(()=>{
+        .onBlur(() => {
           console.log(`onBlur Text`)
         })
-        .onKeyEvent((event)=>{
+        .onKeyEvent((event: KeyEvent) => {
           console.log(`Key Text    : ${JSON.stringify(event)}`)
         })
-        .onMouse((event)=>{
+        .onMouse((event: MouseEvent) => {
           console.log(`Mouse Text : ${JSON.stringify(event)}`)
         })
         .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
