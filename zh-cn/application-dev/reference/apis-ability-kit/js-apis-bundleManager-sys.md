@@ -137,6 +137,9 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -217,6 +220,9 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
 
@@ -278,6 +284,9 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -354,6 +363,9 @@ getApplicationInfo(bundleName: string, appFlags: number, userId: number, callbac
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -410,6 +422,9 @@ getApplicationInfo(bundleName: string, appFlags: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
 
@@ -470,6 +485,9 @@ getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promi
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -522,6 +540,9 @@ getAllBundleInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Ar
 
 | 错误码ID | 错误信息                         |
 | -------- | --------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700004 | The specified user ID is not found. |
 
 **示例：**
@@ -565,6 +586,16 @@ getAllBundleInfo(bundleFlags: number, callback: AsyncCallback<Array\<BundleInfo>
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。   |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | ---------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -619,6 +650,9 @@ getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInf
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700004 | The specified user ID is not found. |
 
 **示例：**
@@ -667,6 +701,9 @@ getAllApplicationInfo(appFlags: number, userId: number, callback: AsyncCallback<
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700004 | The specified user ID is not found. |
 
 **示例：**
@@ -710,6 +747,16 @@ getAllApplicationInfo(appFlags: number, callback: AsyncCallback<Array\<Applicati
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | ---------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -764,6 +811,9 @@ getAllApplicationInfo(appFlags: number, userId?: number): Promise<Array\<Applica
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700004 | The specified user ID is not found. |
 
 **示例：**
@@ -814,6 +864,9 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -874,6 +927,9 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700026 | The specified bundle is disabled.      |
@@ -938,6 +994,9 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Arr
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1025,6 +1084,9 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1103,6 +1165,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700004 | The specified userId is invalid.             |
@@ -1164,6 +1229,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700026 | The specified bundle is disabled.            |
@@ -1229,6 +1297,9 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified extensionAbility is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1319,6 +1390,9 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified extensionAbility is not found.    |
 | 17700004 | The specified userId is invalid.       |
@@ -1395,6 +1469,9 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息            |
 | -------- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
@@ -1448,6 +1525,9 @@ getBundleNameByUid(uid: number): Promise\<string>
 
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
@@ -1499,6 +1579,9 @@ getBundleNameByUidSync(uid: number): string
 
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **示例：**
@@ -1543,6 +1626,9 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCa
 
 | 错误码ID | 错误信息                  |
 | -------- | --------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700022 | The hapFilePath is invalid. |
 
 **示例：**
@@ -1599,6 +1685,9 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: number): Promise\<Bundle
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700022 | The hapFilePath is invalid. |
 
 **示例：**
@@ -1653,6 +1742,9 @@ getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700022 | The hapFilePath is invalid. |
 
 **示例：**
@@ -1698,6 +1790,9 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.                        |
 | 17700030 | The specified bundle does not support clearing of cache files. |
 
@@ -1753,6 +1848,9 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.                      |
 | 17700030 | The specified bundle does not support clearing of cache files. |
 
@@ -1802,6 +1900,9 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -1857,6 +1958,9 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -1904,6 +2008,9 @@ setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -1949,6 +2056,9 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback
 
 | 错误码ID | 错误信息                              |
 | -------- | ---------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700003 | The specified abilityInfo is not found. |
 
@@ -2018,6 +2128,9 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                              |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700003 | The specified abilityInfo is not found. |
 
@@ -2079,6 +2192,9 @@ setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ---------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700003 | The specified abilityInfo is not found. |
 
@@ -2140,6 +2256,8 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -2192,6 +2310,8 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -2242,6 +2362,8 @@ isApplicationEnabledSync(bundleName: string): boolean
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -2284,6 +2406,8 @@ isAbilityEnabled(info: AbilityInfo], callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700003 | The specified abilityName is not found. |
 
@@ -2350,6 +2474,8 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700003 | The specified abilityName is not found. |
 
@@ -2414,6 +2540,8 @@ isAbilityEnabledSync(info: AbilityInfo): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700003 | The specified abilityName is not found. |
 
@@ -2478,6 +2606,9 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -2530,6 +2661,9 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
 
@@ -2586,6 +2720,9 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -2643,6 +2780,9 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -2708,6 +2848,9 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700006 | The specified permission is not found. |
 
 **示例：**
@@ -2761,6 +2904,9 @@ getPermissionDef(permissionName: string): Promise\<PermissionDef>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700006 | The specified permission is not found. |
 
 **示例：**
@@ -2812,6 +2958,9 @@ getPermissionDefSync(permissionName: string): PermissionDef;
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700006 | The specified permission is not found. |
 
 **示例：**
@@ -2857,6 +3006,10 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundleName is not found.  |
 | 17700002 | The specified moduleName is not found.  |
 | 17700003 | The specified abilityName is not found. |
@@ -2919,6 +3072,10 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundleName is not found.  |
 | 17700002 | The specified moduleName is not found.  |
 | 17700003 | The specified abilityName is not found. |
@@ -2979,6 +3136,10 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundleName is not found.  |
 | 17700002 | The specified moduleName is not found.  |
 | 17700003 | The specified abilityName is not found. |
@@ -3036,6 +3197,9 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -3090,6 +3254,9 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : Applicati
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
 
@@ -3143,6 +3310,9 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
@@ -3197,6 +3367,9 @@ getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
 
@@ -3243,6 +3416,9 @@ getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCall
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 
@@ -3300,6 +3476,9 @@ getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<Sha
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 
@@ -3342,6 +3521,13 @@ getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): vo
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获所有的共享包信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+
 **示例：**
 
 ```ts
@@ -3380,6 +3566,13 @@ getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
 | Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Promise对象，返回所有的共享包信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
 
 **示例：**
 
@@ -3425,6 +3618,9 @@ getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInf
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -3476,6 +3672,9 @@ getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -3534,6 +3733,9 @@ getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionI
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -3601,6 +3803,9 @@ getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -3659,6 +3864,9 @@ getSpecifiedDistributionType(bundleName: string): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -3707,6 +3915,9 @@ getAdditionalInfo(bundleName: string): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found. |
 
 **示例：**
@@ -3758,6 +3969,9 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. At least one parameter(action, entity, uri or type) is required for implicit query. |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700004 | The specified userId is invalid.             |
@@ -3846,6 +4060,9 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.       |
 | 17700002 | The specified moduleName is not found.       |
 | 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
@@ -3889,6 +4106,13 @@ getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplica
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获所有可恢复的预置应用信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+
 **示例：**
 
 ```ts
@@ -3927,6 +4151,13 @@ getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
 | Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | Promise对象，返回所有可恢复的预置应用信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
 
 **示例：**
 
@@ -3972,6 +4203,9 @@ setAdditionalInfo(bundleName: string, additionalInfo: string): void
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found.                     |
 | 17700053 | Not app gallery call.                                      |
 
@@ -4026,6 +4260,9 @@ queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlag
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter extensionAbilityType is empty. |
 | 17700003 | The specified extensionAbility is not found. |
 | 17700004 | The specified userId is invalid.             |
 
@@ -4098,6 +4335,9 @@ getAllBundleInfoByDeveloperId(developerId: string): Array\<BundleInfo>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter developerId is empty. |
 | 17700059 | The specified developerId is invalid.       |
 
 **示例：**
@@ -4146,6 +4386,10 @@ getDeveloperIds(appDistributionType?: number): Array<String>
 
 错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
 
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -4189,6 +4433,9 @@ switchUninstallState(bundleName: string, state: boolean): void
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
 | 17700060 | The specified application can not be uninstalled.      |
 
