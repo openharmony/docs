@@ -16,6 +16,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片配置信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
@@ -47,6 +49,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 支持的卡片类型枚举。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
@@ -70,6 +74,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片状态信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
@@ -80,6 +86,8 @@ import formInfo from '@ohos.app.form.formInfo';
 ##  FormState
 
 卡片状态枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -92,6 +100,8 @@ import formInfo from '@ohos.app.form.formInfo';
 ##  FormParam
 
 卡片参数枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -119,18 +129,20 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| Dimension_1_2      | 1   | 1 x 2 form。   |
-| Dimension_2_2      | 2   | 2 x 2 form。   |
-| Dimension_2_4      | 3   | 2 x 4 form。   |
-| Dimension_4_4      | 4   | 4 x 4 form。   |
-| Dimension_2_1      | 5   | 2 x 1 form。   |
-| DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。   |
-| DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。   |
+| Dimension_1_2      | 1   | 1 x 2 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| Dimension_2_2      | 2   | 2 x 2 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| Dimension_2_4      | 3   | 2 x 4 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| Dimension_4_4      | 4   | 4 x 4 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| Dimension_2_1      | 5   | 2 x 1 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 
 ## FormInfoFilter
 
 卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -144,6 +156,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片当前可见类型枚举。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        |  值   | 说明         |
@@ -156,6 +170,8 @@ import formInfo from '@ohos.app.form.formInfo';
 ## LaunchReason<sup>10+</sup>
 
 卡片创建原因枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
