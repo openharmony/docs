@@ -23,7 +23,7 @@ NavDestination组件状态。
 
 | 名称      | 值  | 说明                     |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | NavDestination组件显示。 |
+| ON_SHOWN  | 0   | NavDestination组件显示。|
 | ON_HIDDEN | 1   | NavDestination组件隐藏。 |
 
 ## ScrollEventType<sup>12+</sup>
@@ -39,7 +39,7 @@ NavDestination组件状态。
 
 ## RouterPageState
 
-routerPage生命周期触发时对应的状态
+routerPage生命周期触发时对应的状态。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,9 +59,9 @@ NavDestination组件信息。
 
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
-| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。                   |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。|
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。 |
+| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。 |
 | index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
