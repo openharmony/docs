@@ -986,14 +986,16 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 
 | **名称**                      | **类型**                                                      | **可读** | **可写** | **说明**                                                                                     |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。                                     |
-| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。                                     |
+| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
+| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
 | supportedProfiles             | number[]                                                      | 是       | 否       | 支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。            |
 
 ## NdefRecord<sup>9+</sup>
 NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称** | **类型** | **可读** | **可写** | **说明**                                                                                  |
 | -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
@@ -1006,6 +1008,8 @@ NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDE
 NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称**                     | **值** | **说明**                    |
 | ---------------------------- | ------ | --------------------------- |
@@ -1024,6 +1028,8 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**         | **值** | **说明**                                         |
 | ---------------- | ------ | ------------------------------------------------ |
 | TNF_EMPTY        | 0x0    | Empty。                                          |
@@ -1039,6 +1045,8 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**              | **值** | **说明**                |
 | --------------------- | ------ | ----------------------- |
 | RTD_TEXT<sup>9+</sup> | [0x54] | 文本类型的NDEF Record。 |
@@ -1048,6 +1056,8 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 NFC Forum标准里面Tag类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称**         | **值** | **说明**             |
 | ---------------- | ------ | -------------------- |
@@ -1062,6 +1072,8 @@ MIFARE Classic标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**     | **值** | **说明**             |
 | ------------ | ------ | -------------------- |
 | TYPE_UNKNOWN | 0      | 未知的MIFARE类型。   |
@@ -1074,6 +1086,8 @@ MIFARE Classic标签存储大小的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**     | **值** | **说明**                          |
 | ------------ | ------ | --------------------------------- |
 | MC_SIZE_MINI | 320    | 每个标签5个扇区，每个扇区4个块。  |
@@ -1085,6 +1099,8 @@ MIFARE Classic标签存储大小的定义。
 MIFARE Ultralight标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称**          | **值** | **说明**                  |
 | ----------------- | ------ | ------------------------- |
