@@ -21,7 +21,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let uiAbilityContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -37,7 +37,7 @@
      export default class MyService extends ServiceExtensionAbility {
        onCreate(want: Want) {
          let serviceExtensionContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -48,7 +48,7 @@
      export default class MyAbilityStage extends AbilityStage {
        onCreate(): void {
          let abilityStageContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -61,7 +61,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let applicationContext = this.context.getApplicationContext();
-         ...
+         //...
        }
      }
      ```
@@ -112,7 +112,7 @@
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
+      //...
       Button()
         .onClick(() => {
           let applicationContext = this.context.getApplicationContext();
@@ -164,7 +164,7 @@
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
+      //...
       Button()
         .onClick(() => {
           let cacheDir = this.context.cacheDir;
@@ -240,20 +240,20 @@ struct Page_Context {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    ...
+    //...
     Button()
       .onClick(() => {
         // 存储普通信息前，切换到EL1设备级加密
         if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
           this.context.area = contextConstant.AreaMode.EL1; // 修改area
           promptAction.showToast({
-            message: $r('app.string.SwitchToEL1')
+            message: 'SwitchToEL1'
           });
         }
         // 存储普通信息
       })
     
-    ...
+    //...
 
     Button()
       .onClick(() => {
@@ -261,13 +261,13 @@ struct Page_Context {
         if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
           this.context.area = contextConstant.AreaMode.EL2; // 修改area
           promptAction.showToast({
-            message: $r('app.string.SwitchToEL2')
+            message: 'SwitchToEL2'
           });
         }
         // 存储敏感信息
       })
     
-    ...
+    //...
   }
 }
 ```
@@ -376,7 +376,7 @@ export default class LifecycleAbility extends UIAbility {
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
 
-  ...
+  //...
 
   onDestroy() : void {
     // 获取应用上下文
