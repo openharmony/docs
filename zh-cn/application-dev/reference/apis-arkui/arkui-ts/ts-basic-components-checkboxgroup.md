@@ -30,6 +30,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
@@ -48,6 +50,8 @@ selectAll(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -63,6 +67,8 @@ selectedColor(value: ResourceColor)
 设置被选中或部分选中状态的颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,6 +86,8 @@ unselectedColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -95,6 +103,8 @@ mark(value: MarkStyle)
 设置多选框内部图标样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,6 +142,8 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -144,6 +156,8 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型   | 描述      |
 | ------ | ------ | ------- |
 | name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
@@ -152,6 +166,8 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 ## SelectStatus枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称  | 描述 |
 | ----- | -------------------- |

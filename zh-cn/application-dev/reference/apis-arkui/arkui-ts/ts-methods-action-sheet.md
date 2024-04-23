@@ -10,13 +10,13 @@
 >
 > 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)来明确UI的执行上下文。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 ## ActionSheet.show
 
 static show(value: ActionSheetOptions)
 
 定义列表弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

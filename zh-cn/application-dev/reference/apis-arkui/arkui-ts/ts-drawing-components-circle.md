@@ -18,6 +18,8 @@ Circle(options?: {width?: string | number, height?: string | number})
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |

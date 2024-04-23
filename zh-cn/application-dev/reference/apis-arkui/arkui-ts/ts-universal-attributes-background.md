@@ -33,6 +33,8 @@ backgroundColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -48,6 +50,8 @@ backgroundImage(src: ResourceStr, repeat?: ImageRepeat)
 设置组件的背景图片。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,6 +70,8 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -81,6 +87,8 @@ backgroundImagePosition(value: Position | Alignment)
 设置背景图的位置。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,6 +106,8 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -112,6 +122,8 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 backgroundEffect(options: BackgroundEffectOptions)
 
 设置组件背景属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
