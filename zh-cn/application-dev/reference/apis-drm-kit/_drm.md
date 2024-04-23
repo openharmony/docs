@@ -488,7 +488,7 @@ PSSH信息的最大计数。
 ### DRM_CertificateStatus
 
 ```
-typedef enum DRM_CertificateStatusDRM_CertificateStatus
+typedef enum DRM_CertificateStatus DRM_CertificateStatus
 ```
 
 **描述**
@@ -503,7 +503,7 @@ typedef enum DRM_CertificateStatusDRM_CertificateStatus
 ### DRM_ContentProtectionLevel
 
 ```
-typedef enum DRM_ContentProtectionLevelDRM_ContentProtectionLevel
+typedef enum DRM_ContentProtectionLevel DRM_ContentProtectionLevel
 ```
 
 **描述**
@@ -518,7 +518,7 @@ typedef enum DRM_ContentProtectionLevelDRM_ContentProtectionLevel
 ### Drm_ErrCode
 
 ```
-typedef enum Drm_ErrCodeDrm_ErrCode
+typedef enum Drm_ErrCode Drm_ErrCode
 ```
 
 **描述**
@@ -533,7 +533,7 @@ DRM错误码。
 ### DRM_EventType
 
 ```
-typedef enum DRM_EventTypeDRM_EventType
+typedef enum DRM_EventType DRM_EventType
 ```
 
 **描述**
@@ -546,7 +546,7 @@ typedef enum DRM_EventTypeDRM_EventType
 ### DRM_KeysInfo
 
 ```
-typedef struct DRM_KeysInfoDRM_KeysInfo
+typedef struct DRM_KeysInfo DRM_KeysInfo
 ```
 
 **描述**
@@ -559,7 +559,7 @@ typedef struct DRM_KeysInfoDRM_KeysInfo
 ### DRM_MediaKeyRequest
 
 ```
-typedef struct DRM_MediaKeyRequestDRM_MediaKeyRequest
+typedef struct DRM_MediaKeyRequest DRM_MediaKeyRequest
 ```
 
 **描述**
@@ -572,7 +572,7 @@ typedef struct DRM_MediaKeyRequestDRM_MediaKeyRequest
 ### DRM_MediaKeyRequestInfo
 
 ```
-typedef struct DRM_MediaKeyRequestInfoDRM_MediaKeyRequestInfo
+typedef struct DRM_MediaKeyRequestInfo DRM_MediaKeyRequestInfo
 ```
 
 **描述**
@@ -585,7 +585,7 @@ typedef struct DRM_MediaKeyRequestInfoDRM_MediaKeyRequestInfo
 ### DRM_MediaKeyRequestType
 
 ```
-typedef enum DRM_MediaKeyRequestTypeDRM_MediaKeyRequestType
+typedef enum DRM_MediaKeyRequestType DRM_MediaKeyRequestType
 ```
 
 **描述**
@@ -600,7 +600,7 @@ typedef enum DRM_MediaKeyRequestTypeDRM_MediaKeyRequestType
 ### DRM_MediaKeyStatus
 
 ```
-typedef struct DRM_MediaKeyStatusDRM_MediaKeyStatus
+typedef struct DRM_MediaKeyStatus DRM_MediaKeyStatus
 ```
 
 **描述**
@@ -613,7 +613,7 @@ typedef struct DRM_MediaKeyStatusDRM_MediaKeyStatus
 ### DRM_MediaKeySystemDescription
 
 ```
-typedef struct DRM_MediaKeySystemDescriptionDRM_MediaKeySystemDescription
+typedef struct DRM_MediaKeySystemDescription DRM_MediaKeySystemDescription
 ```
 **描述**
 
@@ -625,7 +625,7 @@ DRM插件的名称和UUID。
 ### DRM_MediaKeySystemInfo
 
 ```
-typedef struct DRM_MediaKeySystemInfoDRM_MediaKeySystemInfo
+typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo
 ```
 
 **描述**
@@ -656,7 +656,7 @@ typedef void(* DRM_MediaKeySystemInfoCallback) (DRM_MediaKeySystemInfo *mediaKey
 ### DRM_MediaKeyType
 
 ```
-typedef enum DRM_MediaKeyTypeDRM_MediaKeyType
+typedef enum DRM_MediaKeyType DRM_MediaKeyType
 ```
 
 **描述**
@@ -671,7 +671,7 @@ typedef enum DRM_MediaKeyTypeDRM_MediaKeyType
 ### DRM_OfflineMediakeyIdArray
 
 ```
-typedef struct DRM_OfflineMediakeyIdArrayDRM_OfflineMediakeyIdArray
+typedef struct DRM_OfflineMediakeyIdArray DRM_OfflineMediakeyIdArray
 ```
 
 **描述**
@@ -684,7 +684,7 @@ typedef struct DRM_OfflineMediakeyIdArrayDRM_OfflineMediakeyIdArray
 ### DRM_OfflineMediaKeyStatus
 
 ```
-typedef enum DRM_OfflineMediaKeyStatusDRM_OfflineMediaKeyStatus
+typedef enum DRM_OfflineMediaKeyStatus DRM_OfflineMediaKeyStatus
 ```
 
 **描述**
@@ -699,7 +699,7 @@ typedef enum DRM_OfflineMediaKeyStatusDRM_OfflineMediaKeyStatus
 ### DRM_PsshInfo
 
 ```
-typedef struct DRM_PsshInfoDRM_PsshInfo
+typedef struct DRM_PsshInfo DRM_PsshInfo
 ```
 
 **描述**
@@ -712,7 +712,7 @@ uuid的PSSH信息。
 ### DRM_Statistics
 
 ```
-typedef struct DRM_StatisticsDRM_Statistics
+typedef struct DRM_Statistics DRM_Statistics
 ```
 
 **描述**
@@ -725,7 +725,7 @@ MediaKeySystem的度量信息。
 ### MediaKeySession
 
 ```
-typedef struct MediaKeySessionMediaKeySession
+typedef struct MediaKeySession MediaKeySession
 ```
 
 **描述**
@@ -738,7 +738,7 @@ typedef struct MediaKeySessionMediaKeySession
 ### MediaKeySession_Callback
 
 ```
-typedef struct MediaKeySession_CallbackMediaKeySession_Callback
+typedef struct MediaKeySession_Callback MediaKeySession_Callback
 ```
 
 **描述**
@@ -801,7 +801,7 @@ typedef Drm_ErrCode(* MediaKeySession_KeyChangeCallback) (DRM_KeysInfo *keysInfo
 ### MediaKeySystem
 
 ```
-typedef struct MediaKeySystemMediaKeySystem
+typedef struct MediaKeySystem MediaKeySystem
 ```
 
 **描述**
