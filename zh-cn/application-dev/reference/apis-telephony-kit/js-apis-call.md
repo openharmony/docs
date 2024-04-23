@@ -134,7 +134,6 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-
 **参数：**
 
 | 参数名      | 类型                      | 必填 | 说明                                       |
