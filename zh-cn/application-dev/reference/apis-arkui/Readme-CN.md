@@ -254,6 +254,7 @@
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
+      - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
       - [@ohos.arkui.advanced.ComposeListItem (列表)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
