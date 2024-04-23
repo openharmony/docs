@@ -1,4 +1,4 @@
-# Core File Kit (Basic File Services)
+# Core File Kit
 
 - [Introduction to Core File Kit](core-file-kit-intro.md)
 - Application Files

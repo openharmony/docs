@@ -688,7 +688,7 @@ static initializeWebEngine(): void
 本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -721,7 +721,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -1526,7 +1526,14 @@ struct WebComponent {
 
 registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
+<br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+
+> **说明：**
+
+>
+> - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
+> - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4201,7 +4208,7 @@ struct WebComponent {
 2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4287,7 +4294,7 @@ struct WebComponent {
 2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4808,7 +4815,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -8282,7 +8289,7 @@ struct WebComponent {
 
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 是   | 否   | 历史记录项的标题。           |
@@ -8719,7 +8726,7 @@ getLastErrorCode(): WebDownloadErrorCode
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载发生错误的时候的错误码。 |
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | 下载发生错误的时候的错误码。 |
 
 **示例：**
 
@@ -9720,6 +9727,12 @@ onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 触发下载的回调。 |
+
 **示例：**
 
 ```ts
@@ -9821,6 +9834,12 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 下载过程中的回调，通过该回调的参数可以了解下载进度等信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已更新。 |
 
 **示例：**
 
@@ -9924,6 +9943,12 @@ onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已完成。 |
+
 **示例：**
 
 ```ts
@@ -10025,6 +10050,12 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 下载失败的通知。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载回调失败。 |
 
 **示例：**
 

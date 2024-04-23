@@ -306,7 +306,7 @@ NavDestination作为子页面的根容器，用于显示Navigation的内容区�
   @Entry
   @Component
   struct Index {
-    @Provide('NavPathStack') pageInfos: NavPathStack = new NavPathStack()
+    @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
     isLogin: boolean = false;
 
     @Builder

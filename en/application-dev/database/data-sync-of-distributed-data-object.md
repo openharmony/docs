@@ -1,11 +1,11 @@
-# Cross-Device Synchronization of Distributed Data Objects
+# Cross-Device Sync of Distributed Data Objects
 
 
 ## When to Use
 
-The traditional implementation of data synchronization between devices involves heavy workload. You need to design the message processing logic for setting up a communication link, sending, receiving, and processing messages, and resolving data conflicts, as well as retry mechanism upon errors. In addition, the debugging complexity increases with the number of devices.
+The traditional implementation of data sync between devices involves heavy workload. You need to design the message processing logic for setting up a communication link, sending, receiving, and processing messages, and resolving data conflicts, as well as retry mechanism upon errors. In addition, the debugging complexity increases with the number of devices.
 
-The device status, message sending progress, and data transmitted are variables. If these variables support global access, they can be accessed as local variables by difference devices. This simplifies data synchronization across devices.
+The device status, message sending progress, and data transmitted are variables. If these variables support global access, they can be accessed as local variables by difference devices. This simplifies data sync across devices.
 
 The distributed data object (**distributedDataObject**) module implements global access to variables. It provides basic data object management capabilities, including creating, querying, deleting, and modifying in-memory objects and subscribing to data or status changes. It also provides distributed capabilities. OpenHarmony provides easy-to-use JS APIs for distributed application scenarios. With these APIs, you can easily implement data collaboration for an application across devices and listening for status and data changes between devices. The **distributedDataObject** module implements data object collaboration for the same application across multiple devices that form a Super Device. It greatly reduces the development workloads compared with the traditional implementation.
 
@@ -21,8 +21,8 @@ The distributed data object (**distributedDataObject**) module implements global
   The distributed data object has the following states in its lifecycle:
 
   - **Uninitialized**: The distributed data object is not instantiated or is destroyed.
-  - **Local**: A data table is created, but the data cannot be synchronized.
-  - **Distributed**: A data table is created, and data can be synchronized (there are at least two online devices with the same session ID). If a device is offline or the session ID is empty, the distributed data object changes to the local state.
+  - **Local**: A data table is created, but the data cannot be synced.
+  - **Distributed**: A data table is created, and data can be synced (there are at least two online devices with the same session ID). If a device is offline or the session ID is empty, the distributed data object changes to the local state.
 
 
 ## Working Principles
@@ -31,7 +31,7 @@ The distributed data object (**distributedDataObject**) module implements global
 
 ![distributedObject](figures/distributedObject.jpg)
 
-The distributed data objects are encapsulated JS objects in distributed in-memory databases, and can be operated in the same way as local variables. The system automatically implements data synchronization across devices.
+The distributed data objects are encapsulated JS objects in distributed in-memory databases, and can be operated in the same way as local variables. The system automatically implements data sync across devices.
 
 
 ### Encapsulation and Storage of JS Objects
@@ -44,24 +44,24 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance| Object Instance| Property Name| Property Value|
+| Distributed Data Object Instance| Object Instance| Property Name| Property Value| 
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database|
+| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database| 
 
 
-### Cross-Device Synchronization and Data Change Notification
+### Cross-Device Sync and Data Change Notification
 
-One of the most important functions of distributed data objects is to implement data synchronization between objects. Distributed data objects are created locally for the devices on a trusted network. If the distributed data objects on different devices are set with the same **sessionID**, data can be synchronized between them.
+One of the most important functions of distributed data objects is to implement data sync between objects. Distributed data objects are created locally for the devices on a trusted network. If the distributed data objects on different devices are set with the same **sessionID**, data can be synced between them.
 
-As shown in the following figure, distributed data object 1 of device A and distributed data object 1 of device B are set with the same session ID **session1**, and synchronization relationship of session 1 is established between the two objects.
+As shown in the following figure, distributed data object 1 of device A and distributed data object 1 of device B are set with the same session ID **session1**, and sync relationship of session 1 is established between the two objects.
 
-  **Figure 2** Object synchronization relationship 
+  **Figure 2** Object sync relationship 
 
 ![distributedObject_sync](figures/distributedObject_sync.jpg)
 
-For each device, only one distributed data object can be added to a synchronization relationship. As shown in the preceding figure, distributed data object 2 of device A cannot be added to session 1 because distributed data object 1 of device A has been added to session 1.
+For each device, only one distributed data object can be added to a sync relationship. As shown in the preceding figure, distributed data object 2 of device A cannot be added to session 1 because distributed data object 1 of device A has been added to session 1.
 
-After the synchronization relationship is established, each session has a copy of shared object data. The distributed data objects added to a session support the following operations:
+After the sync relationship is established, each session has a copy of shared object data. The distributed data objects added to a session support the following operations:
 
 - Reading or modifying the data in the session.
 
@@ -70,11 +70,11 @@ After the synchronization relationship is established, each session has a copy o
 - Listening for status changes, such as the addition and removal of other devices.
 
 
-### Minimum Synchronization Unit
+### Minimum Sync Unit
 
-Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed property needs to be synchronized.
+Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed property needs to be synced.
 
-**Figure 3** Synchronization of distributed data objects
+**Figure 3** Sync of distributed data objects
 
 
 ![distributedObject_syncView](figures/distributedObject_syncView.jpg)
@@ -90,9 +90,9 @@ You need to persist distributed data objects in the following scenarios:
 
 - Enable an application started on another device to retrieve the exact same data. In this case, you need to persist the distributed data object (for example, object 1 with session ID 1) on device A and synchronize the data to device B. Then, create a distributed data object (for example, object 2) and set the session ID to 1. When the application is started on device B, it can retrieve the same application data used on device A before the application is closed.
 
-### Asset Synchronization Mechanism
+### Asset Sync Mechanism
 
-In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) is used to describe a local entity asset file. When the distributed object is synchronized across devices, the file is also synchronized to other devices with it. Currently, only asset is supported. The type [assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets) is not supported. To synchronize multiple assets, use each asset as a root property of the distributed object.
+In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) is used to describe a local entity asset file. When the distributed object is synced across devices, the file is also synced to other devices with it. Currently, only asset is supported. The type [assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets) is not supported. To synchronize multiple assets, use each asset as a root property of the distributed object.
 
 ### Resolution of Joint Asset Conflicts 
 
@@ -100,9 +100,9 @@ When an asset in a distributed object and an asset in an RDB store point to the 
 
 ## Constraints
 
-- Only the data of the same application can be synchronized across devices, that is, the devices must have the same **bundleName**.
+- Only the data of the same application can be synced across devices, that is, the devices must have the same **bundleName**.
 
-- Data can be synchronized for the distributed data objects with the same session ID.
+- Data can be synced for the distributed data objects with the same session ID.
 
 - Each distributed data object occupies 100 KB to 150 KB of memory. Therefore, you are advised not to create too many distributed data objects.
 
@@ -114,13 +114,13 @@ When an asset in a distributed object and an asset in an RDB store point to the 
 
 - For the sake of performance and user experience, the maximum number of devices for data collaboration is 3.
 
-- For the distributed data object of the complex type, only the root property can be modified. The subordinate properties cannot be modified. In [asset synchronization mechanism](#asset-synchronization-mechanism), the data of the asset type must support modification of its lower-level properties.
+- For the distributed data object of the complex type, only the root property can be modified. The subordinate properties cannot be modified. In [asset sync mechanism](#asset-sync-mechanism), the data of the asset type must support modification of its lower-level properties.
 
 - Currently, only JS APIs are supported.
 
 ## Available APIs
 
-Most of the APIs for cross-device synchronization of distributed data objects are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed Data Object](../reference/apis-arkdata/js-apis-data-distributedobject.md).
+Most of the APIs for cross-device sync of distributed data objects are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed Data Object](../reference/apis-arkdata/js-apis-data-distributedobject.md).
 
 
 
@@ -128,7 +128,7 @@ Most of the APIs for cross-device synchronization of distributed data objects ar
 | -------- | -------- |
 | create(context: Context, source: object): DataObject | Creates a distributed data object instance.|
 | genSessionId(): string | Generates a session ID for distributed data objects.|
-| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data synchronization. Automatic synchronization is performed for devices with the same session ID on a trusted network.|
+| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network.|
 | setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions.|
 | on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object.|
 | off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object.|
@@ -141,9 +141,9 @@ Most of the APIs for cross-device synchronization of distributed data objects ar
 
 ## How to Develop
 
-### Data Synchronization Across Devices
+### Data Sync Across Devices
 
-The following example demonstrates how to implement synchronization of distributed data objects.
+The following example demonstrates how to implement sync of distributed data objects.
 
 1. Import the **@ohos.data.distributedDataObject** module.
 
@@ -233,7 +233,11 @@ The following example demonstrates how to implement synchronization of distribut
    let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
    ```
 
-4. Set the same session ID for the distributed data objects for data synchronization. The data objects in the synchronization network include the local and remote objects.
+4. Set the same session ID for the distributed data objects for data sync. The data objects in the sync network include the local and remote objects.
+
+   > **NOTE**
+   > 
+   > If the data of a distributed data object added to the network is different from that in the network, the data of the other distributed data objects will be synced with that of the newly added distributed data object. To enable the newly added distributed data object to sync data with the distributed data object in the network, set its attributes to **undefined**.
 
    ```ts
    // Set a session ID, for example, 123456, for device 1.
@@ -326,7 +330,7 @@ The following example demonstrates how to implement synchronization of distribut
     }).catch((err: BusinessError) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
-      
+   
     // Revoke the data saved.
     localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
@@ -347,7 +351,7 @@ The following example demonstrates how to implement synchronization of distribut
     localObject.off('status');
     ```
 
-12. Remove a distributed data object from the synchronization network. The data of the removed distributed data object will not be synchronized to other devices.
+12. Remove a distributed data object from the sync network. The data of the removed distributed data object will not be synced to other devices.
 
     ```ts
     localObject.setSessionId(() => {
@@ -355,9 +359,9 @@ The following example demonstrates how to implement synchronization of distribut
     });
     ```
 
-### Asset Synchronization Across Devices
+### Asset Sync Across Devices
 
-The asset type allows the file described by **asset** to be synchronized across devices with its distributed data object. The device that holds the asset file is the source device, and the device that obtains the asset file is the destination device.
+The asset type allows the file described by **asset** to be synced across devices with its distributed data object. The device that holds the asset file is the source device, and the device that obtains the asset file is the destination device.
 
 1. Import the **@ohos.data.distributedDataObject** and **@ohos.data.commonType** modules.
 
@@ -366,7 +370,7 @@ The asset type allows the file described by **asset** to be synchronized across 
    import commonType from '@ohos.data.commonType';
    ```
 
-2. Request permissions.
+2. Apply for permissions.
 
    1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
    2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
@@ -418,7 +422,7 @@ The asset type allows the file described by **asset** to be synchronized across 
     let receiverObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
     receiverObject.on('change', (sessionId: string, fields: Array<string>) => {
       if (fields.includes('attachment')) {
-        // When the destination device detects the change in the data of the asset type, the synchronization of the asset file is complete.
+        // When the destination device detects the change in the data of the asset type, the sync of the asset file is complete.
         console.info('attachment synchronization completed');
       }
     });

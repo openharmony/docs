@@ -2107,6 +2107,9 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 重命名文件或文件夹，使用Promise异步返回。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2145,6 +2148,9 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 重命名文件或文件夹，使用callback异步回调。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2179,6 +2185,9 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 renameSync(oldPath: string, newPath: string): void
 
 以同步方法重命名文件或文件夹。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2686,6 +2695,9 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
 移动源文件夹至目标路径下，使用Promise异步返回。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2725,6 +2737,9 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 移动源文件夹至目标路径下，支持设置移动模式。使用callback异步回调。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2770,6 +2785,9 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 
 移动模式为文件夹级别抛异常，当目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2810,6 +2828,9 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 moveDirSync(src: string, dest: string, mode?: number): void
 
 以同步方法移动源文件夹至目标路径下。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2854,6 +2875,9 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
 
 移动文件，使用Promise异步返回。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2893,6 +2917,9 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
 
 移动文件，支持设置移动模式。使用callback异步回调。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2929,6 +2956,9 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
 
 移动文件，当移动位置存在同名文件时，将强制移动覆盖。使用callback异步回调。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2962,6 +2992,9 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
 moveFileSync(src: string, dest: string, mode?: number): void
 
 以同步方式移动文件。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

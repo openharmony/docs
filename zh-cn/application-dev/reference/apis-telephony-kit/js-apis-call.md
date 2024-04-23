@@ -25,7 +25,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -57,7 +57,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -92,7 +92,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 

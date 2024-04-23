@@ -71,6 +71,7 @@
         Button('allowGeolocation')
           .onClick(() => {
             try {
+              // allowGeolocation第二个参数表示隐私模式（true）或非隐私模式（false）下，允许指定来源使用地理位置。
               web_webview.GeolocationPermissions.allowGeolocation(this.origin, true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -101,6 +102,7 @@
         Button('deleteGeolocation')
           .onClick(() => {
             try {
+              // deleteGeolocation第二个参数表示隐私模式（true）或非隐私模式（false）下，清除指定来源的地理位置权限状态。
               web_webview.GeolocationPermissions.deleteGeolocation(this.origin, true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -131,6 +133,7 @@
         Button('getAccessibleGeolocation')
           .onClick(() => {
             try {
+              // getAccessibleGeolocation第二个参数表示隐私模式（true）或非隐私模式（false）下，以回调方式异步获取指定源的地理位置权限状态。
               web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
                 if (error) {
                   console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
@@ -166,6 +169,7 @@
         Button('deleteAllData')
           .onClick(() => {
             try {
+              // deleteAllData第二个参数表示删除所有隐私模式（true）或非隐私模式（false）下，内存中的web数据。
               web_webview.WebStorage.deleteAllData(true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -196,6 +200,7 @@
         Button('fetchCookieSync')
           .onClick(() => {
             try {
+              // fetchCookieSync第二个参数表示获取隐私模式（true）或非隐私模式（false）下，webview的内存cookies。
               let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com', true);
               console.log("fetchCookieSync cookie = " + value);
             } catch (error) {
@@ -226,6 +231,7 @@
         Button('configCookieSync')
           .onClick(() => {
             try {
+              // configCookieSync第二个参数表示获取隐私模式（true）或非隐私模式（false）下，对应url的cookies。
               web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
               let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -248,11 +254,12 @@
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController();
-
+ 
     build() {
       Column() {
         Button('existCookie')
           .onClick(() => {
+            // existCookie参数表示隐私模式（true）或非隐私模式（false）下，查询是否存在cookies。
             let result = web_webview.WebCookieManager.existCookie(true);
             console.log("result: " + result);
           })
@@ -277,6 +284,7 @@
       Column() {
         Button('clearAllCookiesSync')
           .onClick(() => {
+            // clearAllCookiesSync参数表示清除隐私模式（true）或非隐私模式（false）下，webview的所有内存cookies。
             web_webview.WebCookieManager.clearAllCookiesSync(true);
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })

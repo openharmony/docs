@@ -276,7 +276,7 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 ## continuationManager.on('deviceConnect')<sup>(deprecated)</sup>
 
-on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
+on(type: 'deviceConnect', callback: Callback\<ContinuationResult>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -307,7 +307,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
 
 ## continuationManager.on('deviceDisconnect')<sup>(deprecated)</sup>
 
-on(type: "deviceDisconnect", callback: Callback\<string>): void
+on(type: 'deviceDisconnect', callback: Callback\<string>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
@@ -336,7 +336,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void
 
 ## continuationManager.off('deviceConnect')<sup>(deprecated)</sup>
 
-off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
+off(type: 'deviceConnect', callback?: Callback\<ContinuationResult>): void
 
 异步方法，取消监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -367,7 +367,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
 
 ## continuationManager.off('deviceDisconnect')<sup>(deprecated)</sup>
 
-off(type: "deviceDisconnect", callback?: Callback\<string>): void
+off(type: 'deviceDisconnect', callback?: Callback\<string>): void
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
@@ -396,7 +396,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void
 
 ## continuationManager.on('deviceSelected')<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceSelected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -444,7 +444,7 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
 
 ## continuationManager.on('deviceUnselected')<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
@@ -493,7 +493,7 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
 
 ## continuationManager.off('deviceSelected')<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void
+off(type: 'deviceSelected', token: number): void
 
 取消监听设备连接状态。
 
@@ -533,7 +533,7 @@ off(type: "deviceSelected", token: number): void
 
 ## continuationManager.off('deviceUnselected')<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void
+off(type: 'deviceUnselected', token: number): void
 
 取消监听设备断开状态。
 

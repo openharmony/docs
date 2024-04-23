@@ -32,7 +32,7 @@
 与这个公共事件相关的接口：removeOsAccount、DomainAccountManager.auth、updateAccountToken, 这些为系统API，具体参看[系统帐号接口文档](../js-apis-osAccount.md)。
 
 ## COMMON_EVENT_USER_SWITCHED
-表示用户切换正在发生的公共事件的动作。
+表示用户切换完成的公共事件的动作。
 
 - 值： usual.event.USER_SWITCHED
 - 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。

@@ -12,14 +12,18 @@
     - [Proper State Management](proper_state_management.md)
     - [Precisely Controlling Render Scope](precisely-control-render-scope.md)
     - [Reducing Animation Frame Loss](reduce-animation-frame-loss.md)
+    - [Reasonably Using Multithreaded Shared Memory](thread_memory_shared.md)
   - Improving Application Startup and Response Times
     - [Speeding Up Application Cold Start](improve-application-cold-start-speed.md)
     - [Speeding Up Application Response](improve-application-response.md)
     - [Flex Layout Performance Improvement](flex-development-performance-boost.md)
     - [Improving Layout Performance](reduce-view-nesting-levels.md)
     - [IPC Usage](reasonable-using-ipc.md)
+    - [Improving File Upload and Download Performance](improve-file-upload-and-download-performance.md)
     - [Reducing Redundant Operations on First Frame Drawing](reduce-redundant-operations-when-render-first-frame.md)
     - [Application Animation Practice](animation_practice.md)
     - [More Performance Improvement Methods](arkts-performance-improvement-recommendation.md)
+    - [Reasonably Running Background Tasks](reasonable-running-backgroundTask.md)
   - Profiling Tools
     - [CPU Profiler](application-performance-analysis.md)
+    - [Typical Traces](common-trace-using-instructions.md)

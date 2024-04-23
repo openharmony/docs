@@ -20,7 +20,6 @@
         - [@ohos.brightness (屏幕亮度)(系统接口)](js-apis-brightness-sys.md)
         - [@ohos.charger (充电类型)(系统接口)](js-apis-charger-sys.md)
         - [@ohos.deviceAttest (设备证明)(系统接口)](js-apis-deviceAttest-sys.md)
-        - [@ohos.enterprise.usbManager (USB管理)(系统接口)](js-apis-enterprise-usbManager-sys.md)
         - [@ohos.power (系统电源管理)(系统接口)](js-apis-power-sys.md)
         - [@ohos.systemCapability (系统能力)(系统接口)](js-apis-system-capability-sys.md)
         - [@ohos.systemParameterEnhance (系统参数)(系统接口)](js-apis-system-parameterEnhance-sys.md)
@@ -104,7 +103,6 @@
     - [系统参数错误码](errorcode-system-parameterV9.md)
     - [系统电源管理错误码](errorcode-power.md)
     - [帐号管理错误码](errorcode-account.md)
-    - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
     - [升级错误码](errorcode-update.md)
     - [锁屏服务错误码](errorcode-screenlock.md)
 

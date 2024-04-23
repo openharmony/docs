@@ -1,9 +1,10 @@
 # @ohos.data.relationalStore (RDB Store) (System API)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+
 ArkTS supports the following basic data types: number, string, binary data, and boolean. The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
-The **relationalStore** module provides the following functions:
+The **relationalStore** module provides the following:
 
 - [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
@@ -56,7 +57,7 @@ Defines the configuration of the distributed mode of tables.
 ## RdbStore
 
 Provides APIs for managing data in an RDB store.
-Before using the APIs of this class, use [executeSql](js-apis-data-relationalStore.md#executesql) to initialize the database table structure and related data.
+Before using the **RdbStore** APIs, use [executeSql](js-apis-data-relationalStore.md#executesql) to initialize the database table structure and related data.
 
 ### update
 
@@ -94,24 +95,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -163,24 +175,35 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -476,7 +499,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Sync mode of the database.                  |
 | predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data sync.                 |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback used to process database sync details.          |
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback invoked to process database sync details.          |
 | callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback invoked to send the sync result to the caller.|
 
 **Example**
@@ -514,7 +537,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 |------------|---------------------------------| ---- |---------------------|
 | mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Sync mode of the database.        |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data sync.               |
-| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
+| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback invoked to process database sync details.|
 
 **Return value**
 

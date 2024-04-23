@@ -1,4 +1,4 @@
-# Media Library Kit (Media File Management Service)
+# Media Library Kit
 
 - [Introduction to Media Library Kit](photoAccessHelper-overview.md)
 - [Before You Start](photoAccessHelper-preparation.md)

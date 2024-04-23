@@ -1,4 +1,4 @@
-# Connectivity Kit (Short-Range Communication Service)
+# Connectivity Kit
 
 - [Introduction to Connectivity Kit](connectivity-kit-intro.md)
 - Bluetooth

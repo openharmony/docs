@@ -163,123 +163,123 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
 10. 查询安全解码模块状态。
 
-   调用MediaKeySession类中的requireSecureDecoderModule方法，查询安全解码模块状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
+    调用MediaKeySession类中的requireSecureDecoderModule方法，查询安全解码模块状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
-   ```ts
-   function requireSecureDecoderModule(mimeType: string): boolean {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     try {
-       let status: boolean = mediaKeySession.requireSecureDecoderModule(mimeType);
-     } catch (err) {
-       let error = err as BusinessError;
-       console.error(`clearMediaKeys ERROR: ${error}`);
-     }
-     return status;
-   }
-   ```
+    ```ts
+    function requireSecureDecoderModule(mimeType: string): boolean {
+      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+      try {
+        let status: boolean = mediaKeySession.requireSecureDecoderModule(mimeType);
+      } catch (err) {
+        let error = err as BusinessError;
+        console.error(`clearMediaKeys ERROR: ${error}`);
+      }
+      return status;
+    }
+    ```
 
 11. 销毁MediaKeySession实例。
 
-   调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
+    调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
-   ```ts
-   function destroy(mediaKeySession: MediaKeySession): void {
-     mediaKeySession.destroy();
-     return;
-   }
-   ```
+    ```ts
+    function destroy(mediaKeySession: MediaKeySession): void {
+      mediaKeySession.destroy();
+      return;
+    }
+    ```
 
 12. 状态监听。
 
-   在播放器应用开发过程中，可以随时监听MediaKeySession信息状态，包括密钥请求事件监听、密钥过期事件监听、第三方自定义事件监听、密钥过期更新事件监听、密钥变化事件监听。
+    在播放器应用开发过程中，可以随时监听MediaKeySession信息状态，包括密钥请求事件监听、密钥过期事件监听、第三方自定义事件监听、密钥过期更新事件监听、密钥变化事件监听。
 
     - 通过注册固定的keyRequired回调函数获取监听设备证书请求，MediaKeySession创建成功时即可监听，有该事件返回结果则认为设备证书请求开始，不需要监听的时候使用off进行注销监听。
 
-   ```ts
-   function onRegisterkeyRequired(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.on('keyRequired', (eventInfo: EventInfo) => {
-       console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-     });
-     return;
-   }
-   ```
+       ```ts
+       function onRegisterkeyRequired(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.on('keyRequired', (eventInfo: EventInfo) => {
+           console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         });
+         return;
+       }
+       ```
 
-   ```ts
-   function unregisterkeyRequired(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.off('keyRequired');
-     return;
-   }
-   ```
+       ```ts
+       function unregisterkeyRequired(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.off('keyRequired');
+         return;
+       }
+       ```
 
-   - 通过注册固定的keyExpired回调函数获取监听密钥过期事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
+    - 通过注册固定的keyExpired回调函数获取监听密钥过期事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
-   ```ts
-   function onRegisterkeyExpired(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.on('keyExpired', (eventInfo: EventInfo) => {
-        console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-     });
-     return;
-   }
-   ```
+       ```ts
+       function onRegisterkeyExpired(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.on('keyExpired', (eventInfo: EventInfo) => {
+            console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         });
+         return;
+       }
+       ```
 
-   ```ts
-   function unRegisterkeyExpired(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.off('keyExpired');
-     return;
-   }
-   ```
+       ```ts
+       function unRegisterkeyExpired(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.off('keyExpired');
+         return;
+       }
+       ```
 
-   - 通过注册固定的vendorDefined回调函数获取监听第三方自验证事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
+    - 通过注册固定的vendorDefined回调函数获取监听第三方自验证事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
-   ```ts
-   function onRegisterVendorDefined(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.on('vendorDefined', (eventInfo: EventInfo) => {
-       console.log('vendorDefined' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-     });
-     return;
-   }
-   ```
+       ```ts
+       function onRegisterVendorDefined(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.on('vendorDefined', (eventInfo: EventInfo) => {
+           console.log('vendorDefined' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         });
+         return;
+       }
+       ```
 
-   ```ts
-   function unRegisterVendorDefined(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.off('vendorDefined');
-     return;
-   }
-   ```
+       ```ts
+       function unRegisterVendorDefined(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.off('vendorDefined');
+         return;
+       }
+       ```
 
-   - 通过注册固定的expirationUpdated回调函数获取监听过期更新事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
+    - 通过注册固定的expirationUpdated回调函数获取监听过期更新事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
-   ```ts
-   function onRegisterExpirationUpdated(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.on('expirationUpdate', (eventInfo: EventInfo) => {
-       console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-     });
-     return;
-   }
-   ```
+       ```ts
+       function onRegisterExpirationUpdated(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.on('expirationUpdate', (eventInfo: EventInfo) => {
+           console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         });
+         return;
+       }
+       ```
 
-   ```ts
-   function unRegisterExpirationUpdated(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.off('expirationUpdate');
-     return;
-   }
-   ```
+       ```ts
+       function unRegisterExpirationUpdated(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.off('expirationUpdate');
+         return;
+       }
+       ```
 
-   - 通过注册固定的keyChanged回调函数获取监听密钥变化事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
+    - 通过注册固定的keyChanged回调函数获取监听密钥变化事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
-   ```ts
-   function onRegisterKeyChanged(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.on('keysChange', (eventInfo: EventInfo) => {
-       console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
-     });
-     return;
-   }
-   ```
+       ```ts
+       function onRegisterKeyChanged(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.on('keysChange', (eventInfo: EventInfo) => {
+           console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         });
+         return;
+       }
+       ```
 
-   ```ts
-   function unRegisterKeyChanged(mediaKeysession: drm.MediaKeysession): void {
-     mediaKeysession.off('keysChange');
-     return;
-   }
-   ```
+       ```ts
+       function unRegisterKeyChanged(mediaKeysession: drm.MediaKeysession): void {
+         mediaKeysession.off('keysChange');
+         return;
+       }
+       ```

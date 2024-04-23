@@ -60,7 +60,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
         }
       });
   } catch (error) {
-    console.error(`promise: deletKeyItem input arg invalid` + error);
+    console.error(`promise: deleteKeyItem input arg invalid` + error);
   }
 }
 async function testDerive() {

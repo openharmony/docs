@@ -1,4 +1,4 @@
-# Crypto Architecture Kit (Crypto Architecture Kit)
+# Crypto Architecture Kit
 
 - [Introduction to Crypto Architecture Kit](crypto-architecture-kit-intro.md)
 - Key Generation and Conversion
@@ -25,7 +25,7 @@
     - [Encryption and Decryption with an SM4 Symmetric Key (ECB Mode)](crypto-sm4-sym-encrypt-decrypt-ecb.md)
     - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1)](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
     - [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
-    - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
+    - [Encryption and Decryption with an RSA Asymmetric Key Pair (PKCS1_OAEP)](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
     - [Encryption and Decryption with an SM2 Asymmetric Key Pair](crypto-sm2-asym-encrypt-decrypt.md)
 - Signing and Signature Verification
   - [Signing and Signature Verification Overview and Algorithm Specifications](crypto-sign-sig-verify-overview.md)

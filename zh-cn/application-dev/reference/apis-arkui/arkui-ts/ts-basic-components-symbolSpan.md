@@ -37,10 +37,10 @@ SymbolSpan(value: Resource)
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 设置SymbolSpan组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
 | fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置SymbolSpan组件大小。<br/>默认值：系统默认值。 |
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 设置SymbolSpan组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
-| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_folder_badge_plus支持分层与多色模式。 |
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
-SymbolSpan多色模式下各个组件的默认颜色与层数展示图。
+不同渲染策略效果可参考以下示意图。
 
 ![renderingStrategy](figures/renderingStrategy.png)
 
@@ -55,31 +55,31 @@ SymbolSpan多色模式下各个组件的默认颜色与层数展示图。
 @Entry
 @Component
 struct Index {
-  @State scaleplay:boolean = false
-  @State hieraplay:boolean = false
   build() {
     Column() {
       Row() {
-        Column(){
-          Text("细")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+        Column() {
+          Text("Light")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Lighter)
               .fontSize(96)
           }
         }
-        Column(){
-          Text("标准")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Normal")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Normal)
               .fontSize(96)
           }
         }
-        Column(){
-          Text("粗")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Bold")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Bold)
               .fontSize(96)
           }
@@ -87,36 +87,39 @@ struct Index {
       }
 
       Row() {
-        Column(){
+        Column() {
           Text("单色")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
-        Column(){
+
+        Column() {
           Text("多色")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
-        Column(){
-          Text("透明度")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("分层")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
       }
+
       Row() {
-        Column(){
+        Column() {
           Text("无动效")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -124,23 +127,23 @@ struct Index {
               .effectStrategy(SymbolEffectStrategy.NONE)
           }
         }
-        Column(){
+
+        Column() {
           Text("整体缩放动效")
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(this.scaleplay ? 1 : 0)
+              .effectStrategy(1)
           }
-          Button(this.scaleplay? '关闭':'播放').onClick(()=>{this.scaleplay = !this.scaleplay})
         }
-        Column(){
+
+        Column() {
           Text("层级动效")
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(this.hieraplay ? 2 : 0)
+              .effectStrategy(2)
           }
-          Button(this.hieraplay? '关闭':'播放').onClick(()=>{this.hieraplay = !this.hieraplay})
         }
       }
     }

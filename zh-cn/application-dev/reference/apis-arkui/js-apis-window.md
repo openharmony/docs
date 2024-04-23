@@ -19,7 +19,6 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
-
 窗口类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -59,7 +58,6 @@ import window from '@ohos.window';
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
 | TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示导航条区域。                                      |
 
-
 ## SystemBarProperties
 
 状态栏、导航栏的属性。
@@ -96,7 +94,6 @@ import window from '@ohos.window';
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
-
 ## Rect<sup>7+</sup>
 
 窗口矩形区域。
@@ -114,11 +111,13 @@ import window from '@ohos.window';
 
 窗口内容规避区域。如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。在规避区无法响应用户点击事件。 
  
-除此之外还需注意规避区域的如下约束，具体为：  
+除此之外还需注意规避区域的如下约束，具体为： 
 
-- 手势导航区域不支持拖拽事件，只支持点按事件。 
- 
-- 导航条区域不支持拖拽和长按事件。
+- 底部手势区域中非导航条区域支持点击、长按事件透传，不支持拖入。  
+
+- 左右侧边手势区域支持点击、长按以及上下滑动事件透传，不支持拖入。  
+
+- 导航条区域支持长按、点击、拖入事件响应，不支持事件向下透传。 
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -215,7 +214,7 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
-##  TitleButtonRect<sup>11+</sup>
+## TitleButtonRect<sup>11+</sup>
 
 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
 
@@ -834,10 +833,10 @@ import { BusinessError } from '@ohos.base';
 let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -2828,7 +2827,7 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 ```ts
 try {
   windowClass.on('windowStatusChange', (WindowStatusType) => {
-      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+    console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
@@ -2888,7 +2887,7 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 ```ts
 try {
   windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+    console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
@@ -3143,19 +3142,19 @@ setWindowBackgroundColor(color: string): void
 import { BusinessError } from '@ohos.base';
 
 private SetUIContent(windowClass: window.Window) {
-    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
-      if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      let color: string = '#00ff33';
-      try {
-        windowClass.setWindowBackgroundColor(color);
-      } catch (exception) {
-        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-      };
-    });
+  windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+    let color: string = '#00ff33';
+    try {
+      windowClass.setWindowBackgroundColor(color);
+    } catch (exception) {
+      console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+    };
+  });
 }
 ```
 
@@ -3999,7 +3998,6 @@ promise.then(() => {
 });
 ```
 
-
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
@@ -4032,7 +4030,7 @@ try {
 }
 ```
 
-###  setWindowLimits<sup>11+</sup>
+### setWindowLimits<sup>11+</sup>
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
@@ -4117,7 +4115,7 @@ try {
 }
 ```
 
-###  setWindowDecorVisible<sup>11+</sup>
+### setWindowDecorVisible<sup>11+</sup>
 
 setWindowDecorVisible(isVisible: boolean): void
 
@@ -4169,9 +4167,9 @@ export default class EntryAbility extends UIAbility {
         let isVisible = false;
         // 调用setWindowDecorVisible接口
         try {
-            mainWindow.setWindowDecorVisible(isVisible);
+          mainWindow.setWindowDecorVisible(isVisible);
         } catch (exception) {
-            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+          console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
         }
       })
     });
@@ -4179,7 +4177,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setWindowDecorHeight<sup>11+</sup>
+### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -4212,7 +4210,7 @@ try {
 }
 ```
 
-###  getWindowDecorHeight<sup>11+</sup>
+### getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
@@ -4244,7 +4242,7 @@ try {
 }
 ```
 
-###  getTitleButtonRect<sup>11+</sup>
+### getTitleButtonRect<sup>11+</sup>
 
 getTitleButtonRect(): TitleButtonRect
 
@@ -5491,7 +5489,7 @@ promise.then(() => {
 
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置屏幕亮度值，使用callback异步回调。
+允许应用窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -5528,7 +5526,7 @@ windowClass.setBrightness(brightness, (err: BusinessError) => {
 
 setBrightness(brightness: number): Promise&lt;void&gt;
 
-设置屏幕亮度值，使用Promise异步回调。
+允许应用窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -6045,7 +6043,6 @@ WindowStage生命周期。
 | title    | string | 否 | 是 | 子窗口标题。       |
 | decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
 
-
 ## WindowStage<sup>9+</sup>
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
@@ -6259,6 +6256,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
@@ -6317,6 +6315,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### createSubWindowWithOptions<sup>11+</sup>
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
@@ -6380,6 +6379,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
@@ -6429,6 +6429,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
@@ -6476,6 +6477,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void

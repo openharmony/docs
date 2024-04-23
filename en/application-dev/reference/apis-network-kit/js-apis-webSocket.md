@@ -1,4 +1,4 @@
-# # @ohos.net.webSocket (WebSocket Connection)
+# @ohos.net.webSocket (WebSocket Connection)
 
 > **NOTE**
 >

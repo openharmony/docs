@@ -39,7 +39,7 @@ TextInput(value?: TextInputOptions)
 | placeholderFont                       | [Font](ts-types.md#font)                                     | 设置placeholder文本样式。                                    |
 | enterKeyType                          | [EnterKeyType](#enterkeytype枚举说明)                        | 设置输入法回车键类型。<br/>默认值：EnterKeyType.Done         |
 | caretColor                            | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入框光标颜色。<br/>默认值：'#007DFF'。                 |
-| maxLength                             | number                                                       | 设置文本的最大输入字符数。                                   |
+| maxLength                             | number                                                       | 设置文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 | inputFilter<sup>8+</sup>              | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，匹配表达式的输入允许显示，不匹配的输入将被过滤。目前仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。<br/>从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。 |
 | copyOption<sup>9+</sup>               | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。<br/>**说明：** <br/>copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。 |
 | showPasswordIcon<sup>9+</sup>         | boolean                                                      | 密码输入模式时，输入框末尾的图标是否显示。<br/>默认值：true  |
@@ -63,7 +63,10 @@ TextInput(value?: TextInputOptions)
 | selectAll<sup>11+</sup>               | boolean                                                      | 初始状态，是否全选文本。<br />默认值：false<br />不支持内联模式。 |
 | showCounter<sup>11+</sup>             | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。 |
 >  **说明：**    
->  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: 12 vp,<br>&nbsp;right: 0 vp,<br>&nbsp;bottom: 12 vp,<br>&nbsp;left: 0 vp<br> }
+>  
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 
@@ -419,7 +422,7 @@ struct TextInputExample {
     Column() {
       TextInput({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
 }
