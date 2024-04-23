@@ -43,7 +43,7 @@
 
 - 场景2：有视频预览播放或倍速播放需求的视频编码录制场景。
 
-若开发场景不涉及动态调整时域参考结构，且分层结构简单，则推荐使用[全局时域可分层特性](##全局时域可分层特性（Feature_Temporal_Scalability）)，否则使能[长期参考帧特性](##长期参考帧特性（Feature_Long-Term_Reference）)。
+若开发场景不涉及动态调整时域参考结构，且分层结构简单，则推荐使用[全局时域可分层特性](#全局时域可分层特性（Feature_Temporal_Scalability）)，否则使能[长期参考帧特性](#长期参考帧特性（Feature_Long-Term_Reference）)。
 
 
 ## 约束和限制
