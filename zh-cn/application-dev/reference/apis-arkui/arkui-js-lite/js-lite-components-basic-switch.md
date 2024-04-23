@@ -1,6 +1,6 @@
-# image
+# switch
 
-图片组件，用来渲染展示图片。
+开关选择器，通过开关，开启或关闭某个功能。
 
 > **说明：**
 >
@@ -14,22 +14,23 @@
 
 ## 属性
 
-| 名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| src | string | 否 | <br/>图片的路径，支持的图片格式包括png、jpg。<br/>说明：部分轻量级设备不支持原图片格式的解析。所以，在应用编译阶段，图片会被直接编译为可解析的位图（总字节数约：图片长x宽x4），并打包在应用安装包里，这会增加安装包的大小。因此，在使用图片资源时，应尽量控制图片的分辨率，尺寸越大的图片对于空间的占用越明显。 |
-| id | string | 否 | 组件的唯一标识。 |
-| style | string | 否 | 组件的样式声明。 |
-| class | string | 否 | 组件的样式类，用于引用样式表。 |
-| ref | string | 否 | 用来指定指向子元素的引用信息，该引用将注册到父组件的$refs&nbsp;属性对象上。 |
+| 名称 | 类型 | 默认值 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| checked | boolean | false | 否 | 是否选中。 |
+| id | string | - | 否 | 组件的唯一标识。 |
+| style | string | - | 否 | 组件的样式声明。 |
+| class | string | - | 否 | 组件的样式类，用于引用样式表。 |
+| ref | string | - | 否 | 用来指定指向子元素的引用信息，该引用将注册到父组件的$refs&nbsp;属性对象上。 |
 
 
 ## 事件
 
 | 名称 | 参数 | 描述 |
 | -------- | -------- | -------- |
+| change | {&nbsp;checked:&nbsp;checkedValue&nbsp;} | 选中状态改变时触发该事件。 |
 | click | - | 点击动作触发该事件。 |
 | longpress | - | 长按动作触发该事件。 |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 
 ## 样式
@@ -46,7 +47,6 @@
 | border-color | &lt;color&gt; | black | 否 | 使用简写属性设置元素的所有边框颜色。 |
 | border-radius | &lt;length&gt; | - | 否 | border-radius属性是设置元素的外边框圆角半径。 |
 | background-color | &lt;color&gt; | - | 否 | 设置背景颜色。 |
-| opacity | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
 
@@ -55,20 +55,45 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <image src="common/images/hw_right.png" style="width: 300px; height: 300px; border-color: red; border-width: 2px;">
-  </image>
+  <div class="box">
+    <switch checked="true" @change="switchChange"></switch>
+    <text>{{title}}</text>
+  </div>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   width: 100%;
   height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.box{
+  width: 18%;
+  height: 25%;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
 }
 ```
 
-![image](figures/image-lite.png)
+```javascript
+// xxx.js
+export default {
+  data: {
+      title: 'on'
+  },
+  switchChange(e){
+      console.log(e.checked);
+      if(e.checked){
+          this.title="on"
+      }else{
+          this.title="off"
+      }
+  }
+}
+```
+
+![switch](figures/switch-lite.gif)

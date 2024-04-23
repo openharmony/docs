@@ -34,14 +34,14 @@
   | change | {&nbsp;checked:true&nbsp;\|&nbsp;false&nbsp;} | checkbox多选框或radio单选框的checked状态发生变化时触发该事件。 |
   | click | - | 点击动作触发该事件。 |
   | longpress | - | 长按动作触发该事件。 |
-  | swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+  | swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 - 当input类型为button时，支持如下事件：
     | 名称 | 参数 | 描述 |
   | -------- | -------- | -------- |
   | click | - | 点击动作触发该事件。 |
   | longpress | - | 长按动作触发该事件。 |
-  | swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+  | swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 
 ## 样式

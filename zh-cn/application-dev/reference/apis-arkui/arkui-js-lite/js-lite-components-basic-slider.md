@@ -32,7 +32,7 @@
 | change             | ChangeEvent                       | 选择值发生变化时触发该事件。 |
 | click              | -                                 | 点击动作触发该事件。     |
 | longpress          | -                                 | 长按动作触发该事件。     |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。    |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。    |
 
   **表1** ChangeEvent
 
