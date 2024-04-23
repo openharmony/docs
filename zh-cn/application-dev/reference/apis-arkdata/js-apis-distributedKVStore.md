@@ -43,7 +43,6 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 | MAX_VALUE_LENGTH      | 4194303 | 数据库中Value允许的最大长度，单位字节。 |
 | MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中key允许的最大长度，单位字节。 |
 | MAX_STORE_ID_LENGTH   | 128     | 数据库标识符允许的最大长度，单位字节。  |
-| MAX_APP_ID_LENGTH   | 256     | 应用包名允许的最大长度，单位字节。  |
 | MAX_QUERY_LENGTH      | 512000  | 最大查询长度，单位字节。                |
 | MAX_BATCH_SIZE        | 128     | 最大批处理操作数量。                    |
 
@@ -470,7 +469,7 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                                      |
+| appId    | string                    | 是   | 应用的BundleName，不可为空且长度不大于256。                                      |
 | storeId  | string                    | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当要关闭的数据库成功关闭，err为undefined，否则为错误对象。     |
 
@@ -3046,8 +3045,8 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
+| 15100003     | Database corrupted. |
 | 15100005     | Database or result set already closed. |
-
 **示例：**
 
 ```ts
@@ -3111,6 +3110,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
+| 15100003     | Database corrupted. |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
