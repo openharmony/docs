@@ -532,7 +532,7 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                           |
+| appId   | string   | 是   | 应用的BundleName，不可为空且长度不大于256。                           |
 | storeId | string   | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 
 **返回值：**
@@ -597,7 +597,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| appId    | string                    | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                                      |
+| appId    | string                    | 是   | 应用的BundleName，不可为空且长度不大于256。                                      |
 | storeId  | string                    | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当要删除的数据库成功删除，err为undefined，否则为错误对象。     |
 
@@ -662,7 +662,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 | 参数名  | 类型 | 必填 | 说明                                                         |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| appId   | string   | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                           |
+| appId   | string   | 是   | 应用的BundleName，不可为空且长度不大于256。                           |
 | storeId | string   | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)，且只能包含字母数字或下划线_。 |
 
 **返回值：**
@@ -728,7 +728,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
-| appId    | string                        | 是   | 应用的BundleName，不可为空且长度不大于[MAX_APP_ID_LENGTH](#constants)。                              |
+| appId    | string                        | 是   | 应用的BundleName，不可为空且长度不大于256。                              |
 | callback | AsyncCallback&lt;string[]&gt; | 是   | 回调函数。返回所有创建的分布式键值数据库的storeId。 |
 
 **错误码：**
