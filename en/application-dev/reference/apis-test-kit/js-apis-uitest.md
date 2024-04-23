@@ -12,9 +12,9 @@ This module provides the following functions:
 - [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection. This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot. This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
->**NOTE**
->
->The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+ > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+ > - The APIs of this module are used in [automated test scripts](../../application-test/arkxtest-guidelines.md).
 
 
 ## Modules to Import
@@ -616,6 +616,7 @@ let on:On = ON.description('123'); // Use the static constructor ON to create an
 ## Component<sup>9+</sup>
 
 Represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### click<sup>9+</sup>
@@ -2361,13 +2362,17 @@ For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md)
 import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2833,30 +2838,35 @@ Sets the coordinates for the action corresponding to the specified finger and st
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description            |
-| ------ | ---------------- | ---- | ---------------- |
-| finger | number           | Yes  | Sequence number of the finger.    |
-| step   | number           | Yes  | Sequence number of the step.    |
-| point  | [Point](#point9) | Yes  | Coordinates of the action.|
+| Name| Type            | Mandatory| Description                                                      |
+| ------ | ---------------- | ---- | ---------------------------------------------------------- |
+| finger | number           | Yes  | Sequence number of the finger.                                              |
+| step   | number           | Yes  | Sequence number of the step.                                              |
+| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinate points be within the range of 10 to 80 pixels.|
 
 **Example**
 
 ```ts
 import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
 }
 ```
 
 ## UiWindow<sup>9+</sup>
 
 The **UiWindow** class represents a window on the UI and provides APIs for obtaining window attributes, dragging a window, and adjusting the window size.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### getBundleName<sup>9+</sup>
@@ -3763,6 +3773,7 @@ let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <T
 ## UiComponent<sup>(deprecated)</sup>
 
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
