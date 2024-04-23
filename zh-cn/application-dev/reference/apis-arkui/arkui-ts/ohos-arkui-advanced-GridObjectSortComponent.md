@@ -29,8 +29,6 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **装饰器类型：**\@Component
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数**：
@@ -46,8 +44,6 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ##  GridObjectSortComponentOptions
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
 | type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认：GridObjectSortComponentType.text。 |
@@ -59,16 +55,12 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ## GridObjectSortComponentType 
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 | 名称     | 类型   | 值           | 说明           |
 | -------- | ------ | ------------ | -------------- |
 | IMAGE_TEXT | string | 'image_text' | 图片文字类型。 |
 | TEXT     | string | 'text'       | 文字类型。     |
 
 ## GridObjectSortComponentItem
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |

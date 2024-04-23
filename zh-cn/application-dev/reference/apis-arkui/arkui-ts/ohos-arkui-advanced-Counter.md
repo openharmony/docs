@@ -24,8 +24,6 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 **装饰器类型：**@Component
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数**：
@@ -37,8 +35,6 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 ## CounterOptions
 
 CounterOptions定义Counter的类型及具体式样参数。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,8 +58,6 @@ CounterOptions定义Counter的类型及具体式样参数。
 
 CounterType指定Counter的类型，如列表型Counter。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 说明                        |
@@ -76,8 +70,6 @@ CounterType指定Counter的类型，如列表型Counter。
 ## CommonOptions
 
 CommonOptions定义Counter的共通属性和事件。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,8 +87,6 @@ InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事�
 
 继承于[CommonOptions ](#commonoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                   | 必填 | 默认值 | 说明                                                   |
@@ -112,8 +102,6 @@ InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事�
 NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的属性和事件。
 
 继承于[InlineStyleOptions](#inlinestyleoptions)。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -131,8 +119,6 @@ DateStyleOptions定义Date style（日期内联型Counter）的属性和事件�
 
 继承于[CommonOptions ](#commonoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                | 必填 | 默认值 | 说明                                                      |
@@ -145,8 +131,6 @@ DateStyleOptions定义Date style（日期内联型Counter）的属性和事件�
 ## DateData
 
 DateData定义Date通用属性和方法，如年、月、日。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

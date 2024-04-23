@@ -83,8 +83,6 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 ## SymbolOptions<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | fontColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。 |

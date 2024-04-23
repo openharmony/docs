@@ -34,8 +34,6 @@ Popup(options: PopupOptions)
 
 PopupOptions定义Popup的具体式样参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型       | 必填        | 说明                            |
@@ -51,8 +49,6 @@ PopupOptions定义Popup的具体式样参数。
 
 PopupTextOptions设置文本样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型                                                         | 必填 | 描述               |
@@ -65,8 +61,6 @@ PopupTextOptions设置文本样式。
 ## PopupButtonOptions
 
 PopupButtonOptions定义按钮的相关属性和事件。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
