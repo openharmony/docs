@@ -4272,6 +4272,7 @@ promise.then(() => {
 maximize(): Promise&lt;void&gt;
 
 主窗口调用，实现最大化功能，进入沉浸式全屏，使用Promise异步回调。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -4440,6 +4441,7 @@ try {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
+
 ### setWindowMask<sup>12+</sup>
 
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
