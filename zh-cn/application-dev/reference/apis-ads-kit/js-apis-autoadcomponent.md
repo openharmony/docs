@@ -42,16 +42,16 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 ```ts
 import advertising from '@ohos.advertising';
 import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
-import hilog from '@ohos.hilog'; 
+import hilog from '@ohos.hilog';
 
 @Entry
 @Component
 export struct ShowCarouselAd {
   private adRequestParam: advertising.AdRequestParams = {
     // 广告类型
-    adType: 8, 
+    adType: 8,
     // 测试广告位ID
-    adId: "test1", 
+    adId: "test1",
   };
   private adOptions: advertising.AdOptions = {
     // 设置广告内容分级上限
@@ -68,11 +68,14 @@ export struct ShowCarouselAd {
   build() {
     Column() {
       // AutoAdComponent组件用于展示轮播非全屏广告
-      AutoAdComponent({ adParam: this.adRequestParam, adOptions: this.adOptions, displayOptions: this.adDisplayOptions,
+      AutoAdComponent({
+        adParam: this.adRequestParam,
+        adOptions: this.adOptions,
+        displayOptions: this.adDisplayOptions,
         interactionListener: {
           // 广告状态变化回调
           onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
-            switch(status) {
+            switch (status) {
               case 'onAdOpen':
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdOpen');
                 break;
@@ -83,7 +86,9 @@ export struct ShowCarouselAd {
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClose');
                 break;
             }
-          }}})
+          }
+        }
+      })
         .width('100%')
         .height('100%')
     }.width('100%').height('100%')
