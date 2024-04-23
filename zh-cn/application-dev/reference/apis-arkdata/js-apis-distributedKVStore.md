@@ -367,9 +367,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified. |
-|               | 2.Incorrect parameters types.     |
-|               | 3.Parameter verification failed.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
 | 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
 
