@@ -1972,7 +1972,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.|
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -2012,7 +2012,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.|
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
