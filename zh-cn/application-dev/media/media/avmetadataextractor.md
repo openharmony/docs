@@ -19,7 +19,7 @@
    >
    > - 如果设置dataSrc，必须正确设置dataSrc中的callback属性，确保callback被调用时能正确读取到对应资源，使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
 
-3. 获取元信息：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元信息。
+3. 获取元数据：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元数据。
 
 4. （可选）获取专辑封面：调用fetchAlbumCover()，可以获取到专辑封面。
 
@@ -27,7 +27,7 @@
 
 ## 完整示例
 
-参考以下示例，设置文件描述符，获取一个音频的元信息和专辑封面。
+参考以下示例，设置文件描述符，获取一个音频的元数据和专辑封面。
 
 ```ts
 import media from '@ohos.multimedia.media'
@@ -61,11 +61,11 @@ struct Index {
         .width('60%')
         .height('5%')
         .onClick(() => {
-          // 设置fdSrc, 获取音频元信息和专辑封面（异步接口以Callback形式调用）
+          // 设置fdSrc, 获取音频元数据和专辑封面（异步接口以Callback形式调用）
           this.testFetchMetadataFromFdSrcByCallback()
-          // 设置fdSrc, 获取音频元信息和专辑封面（异步接口以Promise形式调用）
+          // 设置fdSrc, 获取音频元数据和专辑封面（异步接口以Promise形式调用）
           this.testFetchMetadataFromFdSrcByPromise()
-          // 设置dataSrc, 获取音频元信息和专辑封面
+          // 设置dataSrc, 获取音频元数据和专辑封面
           this.testFetchMetadataFromDataSrc()
         })
         Image(this.pixelMap).width(300).height(300)
@@ -78,7 +78,7 @@ struct Index {
     .height('100%')
   }
 
-  // 在以下demo中，使用资源管理接口获取打包在HAP内的媒体资源文件，通过设置fdSrc属性，获取音频元信息并打印，
+  // 在以下demo中，使用资源管理接口获取打包在HAP内的媒体资源文件，通过设置fdSrc属性，获取音频元数据并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。该demo以Callback形式进行异步接口调用
   async testFetchMetadataFromFdSrcByCallback() {
     // 创建AVMetadataExtractor对象
@@ -87,7 +87,7 @@ struct Index {
     // 设置fdSrc
     avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
 
-    // 获取元信息（callback模式）
+    // 获取元数据（callback模式）
     avMetadataExtractor.fetchMetadata((error, metadata) => {
       if (error) {
         console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
@@ -115,7 +115,7 @@ struct Index {
     })
   }
 
-  // 在以下demo中，使用资源管理接口获取打包在HAP内的媒体资源文件，通过设置fdSrc属性，获取音频元信息并打印，
+  // 在以下demo中，使用资源管理接口获取打包在HAP内的媒体资源文件，通过设置fdSrc属性，获取音频元数据并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。该demo以Promise形式进行异步接口调用
   async testFetchMetadataFromFdSrcByPromise() {
     // 创建AVMetadataExtractor对象
@@ -123,7 +123,7 @@ struct Index {
     // 设置fdSrc
     avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
 
-    // 获取元信息（promise模式）
+    // 获取元数据（promise模式）
     let metadata = await avMetadataExtractor.fetchMetadata()
     console.info(TAG, `get meta data, hasAudio: ${metadata.hasAudio}`)
 
@@ -135,7 +135,7 @@ struct Index {
     console.info(TAG, `release success.`)
   }
 
-  // 在以下demo中，使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元信息并打印，
+  // 在以下demo中，使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元数据并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。
   async testFetchMetadataFromDataSrc() {
     let context = getContext(this) as common.UIAbilityContext
@@ -172,7 +172,7 @@ struct Index {
     // 设置dataSrc
     avMetadataExtractor.dataSrc = dataSrc;
 
-    // 获取元信息（promise模式）
+    // 获取元数据（promise模式）
     let metadata = await avMetadataExtractor.fetchMetadata()
     console.info(TAG, `get meta data, mimeType: ${metadata.mimeType}`)
 
