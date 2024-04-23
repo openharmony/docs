@@ -8,7 +8,7 @@
 
 开发者可自定义单次传入的数据量（示例中的updateLength），多次调用update传入数据。
 
-当前单次传入的长度为INT_MAX（Uint8Array类型的最大长度）。
+当前单次支持传入的最大长度为INT_MAX（Uint8Array类型的最大长度）。
 
 **开发者应当对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。**
 
