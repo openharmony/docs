@@ -98,7 +98,7 @@ import('harlibrary').then((ns:ESObject) => {
 DevEco IDE中模块间的依赖关系通过oh-package.json5中的dependencies进行配置。dependencies列表中所有模块默认都会进行安装（本地模块）或下载（远程模块），但是不会默认参与编译。HAP/HSP编译时会以入口文件（一般为Index.ets/ts）开始搜索依赖关系，搜索到的模块或文件才会加入编译。
 在编译期，静态import和常量动态import可以被打包工具rollup及其插件识别解析，加入依赖树中，参与到编译流程，最终生成方舟字节码。但是如果是变量动态import，该变量值可能需要进行运算或者外部传入才能得到，在编译态无法解析出其内容，也就无法加入编译。为了将这部分模块/文件加入编译，还需要额外增加一个runtimeOnly的buildOption配置，用于配置动态import的变量实际的模块名或者文件路径。
 
-1. **runtimeOnly字段schema配置格式**
+**1. runtimeOnly字段schema配置格式**
 
 在HAP/HSP/HAR的build-profile.json5中的buildOption中增加runtimeOnly配置项，仅在通过变量动态import时配置，静态import和常量动态import无需配置；并且，通过变量动态import加载API时也无需配置runtimeOnly。
 如下实例说明如何配置通过变量动态import其他模块，以及变量动态import本模块自己的单文件：
@@ -129,7 +129,7 @@ import(filePath).then(……);
 "runtimeOnly"的"packages"：用于配置本模块变量动态import其他模块名，要求与dependencies中配置的名字一致。
 "runtimeOnly"的"sources"：用于配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
 
-2. **使用实例**
+**2. 使用实例**
 
 - **HAP变量动态import HAR模块名**
 
@@ -347,7 +347,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 
 ![变量动态import HAR包依赖转移到HAP](figures/dynamicimport2.png)
 
-1. **使用限制**
+**1. 使用限制**
 - 仅限本地源码HAR包之间形成循环依赖时可使用该规避方案。
 - 被转移依赖的HAR之间只能通过变量动态import，不能有静态import或常量动态import。
 - 转移依赖时，dependencies和runtimeOnly依赖配置要同时转移。
@@ -356,7 +356,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 
   HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上，但是，不能将HAR3或HAR4转移到HAP上。
 
-2. **使用实例**
+**2. 使用实例**
 
 下面的实例HAP变量动态import HAR包har1，har1变量动态import另一个HAR包har2。
 
