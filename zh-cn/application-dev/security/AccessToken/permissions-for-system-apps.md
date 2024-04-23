@@ -2081,6 +2081,18 @@
 
 **起始版本**: 11
 
+### ohos.permission.ACCESS_TEXTAUTOFILL_ABILITY
+
+允许系统应用或系统服务拉起文本智能填充应用管理页面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
 ### ohos.permission.ACCESS_LOWPOWER_MANAGER
 
 允许系统应用或系统服务向lowpowermanager发送消息。
@@ -2830,6 +2842,18 @@
 允许应用访问本地备份数据目录。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CAST_AUDIO_OUTPUT
+
+允许系统投播/协同应用发起音频投播。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

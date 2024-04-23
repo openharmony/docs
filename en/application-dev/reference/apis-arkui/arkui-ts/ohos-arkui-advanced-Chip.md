@@ -34,13 +34,16 @@ Defines the type and style parameters of the chip.
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.|
 | enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**                        |
+| activated<sup>12+</sup>       | boolean                                        | No  | Whether the chip is activated.<br>Default value: **false**                     |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | No  | Prefix icon of the chip.                                              |
 | label           | [LabelOptions](#labeloptions)                                | Yes  | Text of the chip.                                                  |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | No  | Suffix icon of the chip.                                              |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.float.ohos_id_color_button_normal')**|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal').**|
+| activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**|
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**|
 | allowClose      | boolean                                                      | No  | Whether to show the deletion icon.<br>Default value: **true**                       |
 | onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.                                      |
+| onClicked<sup>12+</sup>       | ()=>void                                       | No  | Event triggered when the chip is clicked.                                      |
 
 > **NOTE**
 >
@@ -48,9 +51,11 @@ Defines the type and style parameters of the chip.
 >
 > 2. If **suffixIcon** is specified, **allowClose** has no effect.
 >
-> 3. If **undefined** is assigned to **backgroundColor**, the default background color is used. If an invalid value is assigned to **backgroundColor**, the background color is transparent.
+> 3. If **undefined** is assigned to **backgroundColor** or **activatedBackgroundColor**, the default background color is used. If an invalid value is specified, the background color is transparent.
 >
 > 4. The default value of **fillColor** is **$r('sys.color.ohos_id_color_secondary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_primary')** for **suffixIcon**. The color parsing of **fillColor** is the same as that of the **\<Image>** component.
+>
+> 5. The default value of **activatedFillColor** is **$r('sys.color.ohos_id_color_text_primary_contrary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_text_primary_contrary')** for **suffixIcon**. The color parsing of **activatedFillColor** is the same as that of the **\<Image>** component.
 
 ## ChipSize
 
@@ -70,10 +75,11 @@ Defines the common icon attributes of the chip.
 | src       | [ResourceStr](ts-types.md#resourcestr)     | Yes  | Icon source, which can be a specific image path or an image reference.                                    |
 | size      | [SizeOptions](ts-types.md#sizeoptions)     | No  | Icon size. This parameter cannot be set in percentage.<br>Default value: **{width: 16,height: 16}**|
 | fillColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Icon fill color.                                              |
+| activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No  | Icon fill color when the chip is activated.                           |
 
 > **NOTE**
 >
-> **fillColor** takes effect only when the icon format is **svg**.
+> **fillColor** and a**ctivatedFillColor** take effect only when the icon format is SVG.
 >
 
 ## PrefixIconOptions
@@ -99,8 +105,9 @@ Defines the text attributes of the chip.
 | Name       | Type                                      | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | text        | string                                     | Yes  | Text content.                                              |
-| fontSize    | [Dimension](ts-types.md#dimension10)       | No  | Font size. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_button3')**|
+| fontSize    | [Dimension](ts-types.md#dimension10)       | No  | Font size. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_button2')**|
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**|
+| activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color when the chip is activated.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary').**|
 | fontFamily  | string                                     | No  | Font family.<br>Default value: **"HarmonyOS Sans"**                   |
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | No  | Spacing between the text and the left and right icons.                                  |
 
@@ -156,7 +163,7 @@ struct Index {
 ```
 
 
-![](figures/chip1.jpeg)
+![](figures/chip1.png)
 
 ### Example 2
 
@@ -193,7 +200,7 @@ struct Index {
 ```
 
 
-![](figures/chip2.jpeg)
+![](figures/chip2.png)
 
 ### Example 3
 
@@ -233,4 +240,57 @@ struct Index {
 ```
 
 
-![](figures/chip3.jpeg)
+![](figures/chip3.png)
+
+### Example 4
+
+```ts
+import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+
+@Entry
+@Component
+struct Index {
+  @State isActivated: boolean = false
+
+  build() {
+    Column({ space: 10 }) {
+      Chip({
+        prefixIcon: {
+          src: $r('app.media.chips'),
+          size: { width: 16, height: 16 },
+          fillColor: Color.Blue,
+          activatedFillColor: $r('sys.color.ohos_id_color_text_primary_contrary')
+        },
+        label: {
+          text: "Chip",
+          fontSize: 12,
+          fontColor: Color.Blue,
+          activatedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
+          fontFamily: "HarmonyOS Sans",
+          labelMargin: { left: 20, right: 30 },
+        },
+        size: ChipSize.NORMAL,
+        allowClose: true,
+        enabled: true,
+        activated: this.isActivated,
+        backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
+        activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
+        borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
+        onClose:()=>{
+          console.log("chip on close")
+        },
+        onClicked:()=>{
+          console.log("chip on clicked")
+        }
+      })
+
+      Button('Activate/Deactivate').onClick(()=>{
+        this.isActivated = !this.isActivated
+      })
+    }
+  }
+}
+```
+
+
+![](figures/chip4.gif)

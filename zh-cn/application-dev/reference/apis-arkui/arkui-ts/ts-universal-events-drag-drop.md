@@ -404,7 +404,7 @@ struct Index {
           .height(100)
           .border({ color: Color.Black, width: 1 })
           .margin(15)
-          .allowDrop([UTD.UniformDataType.TEXT])
+          .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
           .onDrop((dragEvent?: DragEvent) => {
             this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();

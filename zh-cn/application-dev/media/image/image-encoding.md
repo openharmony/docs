@@ -25,7 +25,7 @@
    let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
    ```
 
-3. [创建PixelMap对象或创建ImageSource](image-decoding.md)对象。
+3. [创建PixelMap对象或创建ImageSource对象](image-decoding.md)。
 
 4. 进行图片编码，并保存编码后的图片。
    

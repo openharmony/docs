@@ -20,6 +20,8 @@ getFont(): Font
 
 获取Font对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -38,6 +40,8 @@ uiContext.getFont();
 getComponentUtils(): ComponentUtils
 
 获取ComponentUtils对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,6 +63,8 @@ getUIInspector(): UIInspector
 
 获取UIInspector对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -78,6 +84,8 @@ uiContext.getUIInspector();
 getUIObserver(): UIObserver
 
 获取UIObserver对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +107,8 @@ getMediaQuery(): MediaQuery
 
 获取MediaQuery对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -119,6 +129,8 @@ getRouter(): Router
 
 获取Router对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -138,6 +150,8 @@ uiContext.getRouter();
 getPromptAction(): PromptAction
 
 获取PromptAction对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,6 +192,8 @@ uiContext.getOverlayManager();
 animateTo(value: AnimateParam, event: () => void): void
 
 提供animateTo接口来指定由于闭包代码导致的状态变化插入过渡动效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -527,6 +543,8 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -565,6 +583,8 @@ uiContext.showAlertDialog(
 showActionSheet(value: ActionSheetOptions): void
 
 定义列表弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -621,6 +641,8 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 定义日期滑动选择器弹窗并弹出。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -656,6 +678,8 @@ uiContext.showDatePickerDialog({
 showTimePickerDialog(options: TimePickerDialogOptions): void
 
 定义时间滑动选择器弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -715,6 +739,8 @@ struct TimePickerDialogExample {
 showTextPickerDialog(options: TextPickerDialogOptions): void
 
 定义文本滑动选择器弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -783,6 +809,8 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 定义Animator类。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -832,6 +860,8 @@ runScopedTask(callback: () => void): void
 
 在当前UI上下文执行传入的回调函数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -855,6 +885,8 @@ uiContext.runScopedTask(
 setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 配置虚拟键盘弹出时，页面的避让模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -889,6 +921,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
 获取虚拟键盘弹出时，页面的避让模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -926,6 +960,8 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -960,6 +996,8 @@ getDragController(): DragController
 
 获取DragController对象，可通过该对象创建并发起拖拽。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -979,6 +1017,8 @@ uiContext.getDragController();
 getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1000,6 +1040,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 产生关键帧动画。该接口的使用说明请参考[keyframeAnimateTo](arkui-ts/ts-keyframeAnimateTo.md)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1013,7 +1055,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 getFocusController(): FocusController
 
-获取FocusController对象，可通过该对象控制焦点。
+获取[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)对象，可通过该对象控制焦点。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1087,7 +1129,7 @@ uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 
 getCursorController(): CursorController
 
-获取CursorController对象，可通过该对象控制光标。
+获取[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)对象，可通过该对象控制光标。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1107,7 +1149,7 @@ uiContext.CursorController();
 
 getContextMenuController(): ContextMenuController
 
-获取ContextMenuController对象，可通过该对象控制菜单。
+获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1120,7 +1162,203 @@ getContextMenuController(): ContextMenuController
 **示例：**
 
 ```ts
-uiContext.getContextMenuController()();
+uiContext.getContextMenuController();
+```
+
+### getMeasureUtils<sup>12+</sup>
+
+getMeasureUtils(): MeasureUtils
+
+允许用户通过UIContext对象，获取MeasureUtils对象进行文本计算。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) | 提供文本宽度、高度等相关计算。 |
+
+**示例：**
+
+```ts
+uiContext.getMeasureUtils();
+```
+
+### getComponentSnapshot<sup>12+</sup>
+
+getComponentSnapshot(): ComponentSnapshot
+
+获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) | 获取ComponentSnapshot对象。 |
+
+**示例：**
+
+```ts
+uiContext.getComponentSnapshot();
+```
+
+### vp2px<sup>12+</sup>
+
+vp2px(value : number) : number
+
+将vp单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将vp单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.vp2px(200);
+```
+
+### px2vp<sup>12+</sup>
+
+px2vp(value : number) : number
+
+将px单位的数值转换为以vp为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以vp为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2vp(200);
+```
+
+### fp2px<sup>12+</sup>
+
+fp2px(value : number) : number
+
+将fp单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将fp单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.fp2px(200);
+```
+
+### px2fp<sup>12+</sup>
+
+px2fp(value : number) : number
+
+将px单位的数值转换为以fp为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以fp为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2fp(200);
+```
+
+### lpx2px<sup>12+</sup>
+
+lpx2px(value : number) : number
+
+将lpx单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| value | number | 是   | 将lpx单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.lpx2px(200);
+```
+
+### px2lpx<sup>12+</sup>
+
+px2lpx(value : number) : number
+
+将px单位的数值转换为以lpx为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以lpx为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2lpx(200);
 ```
 
 ## Font
@@ -1132,6 +1370,8 @@ uiContext.getContextMenuController()();
 registerFont(options: font.FontOptions): void
 
 在字体管理中注册自定义字体。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1157,6 +1397,8 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1180,6 +1422,8 @@ if(font){
 getFontByName(fontName: string): font.FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1215,6 +1459,8 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1249,6 +1495,8 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 注册组件布局和绘制完成回调通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1281,6 +1529,8 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 监听NavDestination组件的状态变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1306,6 +1556,8 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 取消监听NavDestination组件的状态变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1328,6 +1580,8 @@ observer.off('navDestinationUpdate');
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1354,6 +1608,8 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1518,6 +1774,8 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 监听router中page页面的状态变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1543,6 +1801,8 @@ observer.on('routerPageUpdate', (info) => {
 off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
 
 取消监听router中page页面的状态变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2139,6 +2399,8 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2170,6 +2432,8 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2224,6 +2488,8 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2273,6 +2539,8 @@ router.pushUrl({
 pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2333,6 +2601,8 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2389,6 +2659,8 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回的结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2438,6 +2710,8 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2483,6 +2757,8 @@ router.replaceUrl({
 replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2539,6 +2815,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2590,6 +2868,8 @@ routerF.replaceUrl({
 pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2644,6 +2924,8 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2692,6 +2974,8 @@ router.pushNamedRoute({
 pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2752,6 +3036,8 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2808,6 +3094,8 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2857,6 +3145,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2902,6 +3192,8 @@ router.replaceNamedRoute({
 replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2959,6 +3251,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3010,6 +3304,8 @@ routerF.replaceNamedRoute({
 back(options?: router.RouterOptions ): void
 
 返回上一页面或指定的页面。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3065,6 +3361,8 @@ clear(): void
 
 清空页面栈中的所有历史页面，仅保留当前页面作为栈顶页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -3081,6 +3379,8 @@ router.clear();
 getLength(): string
 
 获取当前在页面栈内的页面数量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3105,6 +3405,8 @@ console.log('pages stack size = ' + size);
 getState(): router.RouterState
 
 获取当前页面的状态信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3200,6 +3502,8 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3239,6 +3543,8 @@ hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -3255,6 +3561,8 @@ router.hideAlertBeforeBackPage();
 getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3282,6 +3590,8 @@ router.getParams();
 showToast(options: promptAction.ShowToastOptions): void
 
 创建并显示文本提示框。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3322,6 +3632,8 @@ try {
 showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
 
 创建并显示对话框，对话框响应结果异步返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3383,6 +3695,8 @@ try {
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
 创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3446,7 +3760,9 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -3557,6 +3873,8 @@ try {
 showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
 创建并显示操作菜单，通过Promise获取菜单响应结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3890,6 +4208,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3965,6 +4285,8 @@ struct DragControllerPage {
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4074,6 +4396,8 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
 **说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4501,6 +4825,8 @@ setVisible(visible: boolean): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4541,6 +4867,8 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4579,6 +4907,8 @@ setTitleContent(content:string): void
 > **说明：**
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -4619,6 +4949,8 @@ setTitleFontStyle(font:FontStyle):void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
+**元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
 **参数：**
@@ -4658,6 +4990,8 @@ setIconColor(color:Nullable<Color | number | string>): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4691,6 +5025,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4780,7 +5116,7 @@ requestFocus(key: string): void
 | ------ | ---------------------------------------- |
 | 150001 | This component is not focusable. |
 | 150002 | This component has unfocusable ancestor.      |
-| 150003 | This id refers to a nonexistent component which haven't been created or invisible right now. |
+| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
 
 **示例：**
 
@@ -4908,7 +5244,7 @@ struct CursorControlExample {
 
   build() {
     Column() {
-      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
+      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 100 ,y:70})
         .onHover((flag) => {
           if (flag) {
             this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
@@ -4982,3 +5318,404 @@ struct Index {
 ```
 
 ![contextMenuController_close](figures/contextMenuController_close.gif)
+
+## MeasureUtils<sup>12+</sup>
+
+以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
+
+### measureText<sup>12+</sup>
+
+measureText(options: MeasureOptions): number
+
+计算指定文本单行布局下的宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+
+
+**示例：**
+通过MeasureUtils的measureText方法获取"Hello World"文字的宽度。
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  @State textWidth: number = this.uiContextMeasure.measureText({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textWidth}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![measureUtils-measureText](figures/measureUtils-measureText.png)
+
+## measureTextSize<sup>12+</sup>
+
+measureTextSize(options: MeasureOptions): SizeOptions
+
+计算指定文本单行布局下的宽度和高度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+
+
+**示例：**
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textSize.width}`)
+        Text(`The height of 'Hello World': ${this.textSize.height}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![measureUtils-measureTextSize](figures/measureUtils-measureTextSize.png)
+
+## ComponentSnapshot<sup>12+</sup>
+
+以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
+
+### get<sup>12+</sup>
+
+get(id: string, callback: AsyncCallback<image.PixelMap>): void
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+
+> **说明：** 
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
+            if (error) {
+              console.log("error: " + JSON.stringify(error))
+              return;
+            }
+            this.pixmap = pixmap
+          })
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### get<sup>12+</sup>
+
+get(id: string): Promise<image.PixelMap>
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.icon')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot()
+            .get("root")
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+            })
+            .catch((err: Error) => {
+              console.log("error: " + err)
+            })
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### createFromBuilder<sup>12+</sup>
+
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
+
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果。
+> **说明：** 
+>
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct ComponentSnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  @Builder
+  RandomBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+    }
+    .width(100)
+    .id("builder")
+  }
+
+  build() {
+    Column() {
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot().createFromBuilder(() => {
+            this.RandomBuilder()
+          },
+            (error: Error, pixmap: image.PixelMap) => {
+              if (error) {
+                console.log("error: " + JSON.stringify(error))
+                return;
+              }
+              this.pixmap = pixmap
+            })
+        })
+      Image(this.pixmap)
+        .margin(10)
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+### createFromBuilder<sup>12+</sup>
+
+createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
+
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果。
+
+> **说明：** 
+>
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct ComponentSnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  @Builder
+  RandomBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+    }
+    .width(100)
+    .id("builder")
+  }
+  build() {
+    Column() {
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot()
+            .createFromBuilder(() => {
+              this.RandomBuilder()
+            })
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+            })
+            .catch((err: Error) => {
+              console.log("error: " + err)
+            })
+        })
+      Image(this.pixmap)
+        .margin(10)
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```

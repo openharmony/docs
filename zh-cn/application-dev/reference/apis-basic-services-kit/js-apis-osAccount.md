@@ -2743,6 +2743,41 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
   });
   ```
 
+### getOsAccountName<sup>12+</sup>
+
+getOsAccountName(): Promise&lt;string&gt;
+
+查询调用方所属系统帐号的名称。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;string&gt; | Promise对象，返回调用方所属系统帐号的名称。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.getOsAccountName().then((name: string) => {
+      console.log('getOsAccountName, name: ' + name);
+    }).catch((err: BusinessError) => {
+      console.log('getOsAccountName err: ' + err);
+    });
+  } catch (e) {
+    console.log('getOsAccountName exception: ' + e);
+  }
+  ```
+
 ## OsAccountInfo
 
 表示系统帐号信息。

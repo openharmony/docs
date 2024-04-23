@@ -43,3 +43,20 @@
      }
    }
    ```
+
+4. 通过getMediaKeySystemName方法，获取设备支持对应的插件类型的name和uuid。
+
+   > **说明：**
+   >
+   > 如果查询出的map的size为null，说明该设备中不存在支持的插件。
+
+   ```ts
+   function getMediaKeySystemName(name: string): MediaKeySystem {
+    try {
+      let description : drm.MediaKeySystemDescripion[] = drm.getMediaKeySystemName();
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error('getMediaKeySystemName ERROR: ${error}')
+    }
+   }
+   ```

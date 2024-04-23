@@ -1526,7 +1526,13 @@ struct WebComponent {
 
 registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
+<br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+
+> **说明：**
+>
+> - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
+> - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5274,7 +5280,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10140,7 +10146,7 @@ struct WebComponent {
 
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 是   | 否   | 历史记录项的标题。           |
@@ -10270,7 +10276,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update guid: " + webDownloadItem.getGuid());
@@ -10290,7 +10296,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10337,7 +10343,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
@@ -10357,7 +10363,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10404,7 +10410,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10424,7 +10430,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10471,7 +10477,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
@@ -10491,7 +10497,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10538,7 +10544,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update download state: " + webDownloadItem.getState());
@@ -10558,7 +10564,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10582,7 +10588,7 @@ getLastErrorCode(): WebDownloadErrorCode
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载发生错误的时候的错误码。 |
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | 下载发生错误的时候的错误码。 |
 
 **示例：**
 
@@ -10605,7 +10611,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10626,7 +10632,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10673,7 +10679,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download， method:" + webDownloadItem.getMethod());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10693,7 +10699,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10740,7 +10746,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download， mime type:" + webDownloadItem.getMimeType());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10760,7 +10766,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10807,7 +10813,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download, url:" + webDownloadItem.getUrl());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10827,7 +10833,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10874,7 +10880,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10894,7 +10900,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10941,7 +10947,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10962,7 +10968,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11009,7 +11015,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11030,7 +11036,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11078,7 +11084,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11100,7 +11106,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11154,7 +11160,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11176,7 +11182,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11233,7 +11239,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11255,7 +11261,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11307,7 +11313,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11330,7 +11336,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11399,7 +11405,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11422,7 +11428,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11500,7 +11506,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11523,7 +11529,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11583,6 +11589,12 @@ onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 触发下载的回调。 |
+
 **示例：**
 
 ```ts
@@ -11606,7 +11618,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11629,7 +11641,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11685,6 +11697,12 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已更新。 |
+
 **示例：**
 
 ```ts
@@ -11708,7 +11726,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11731,7 +11749,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11787,6 +11805,12 @@ onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已完成。 |
+
 **示例：**
 
 ```ts
@@ -11810,7 +11834,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11833,7 +11857,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11889,6 +11913,12 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载回调失败。 |
+
 **示例：**
 
 ```ts
@@ -11912,7 +11942,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11935,7 +11965,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -12024,7 +12054,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -12039,6 +12069,7 @@ struct WebComponent {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
+            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -12047,7 +12078,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -12140,7 +12171,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -12155,6 +12186,7 @@ struct WebComponent {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
+            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -12163,7 +12195,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -13871,9 +13903,10 @@ exitFullscreen(): void
 |------|------|------|------|------|
 | embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
 | mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12) | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
 | controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
 | muted | boolean | 否 | N/A | 是否要求静音播放。 |
 | posterUrl | string | 否 | N/A | 海报的地址。 |
 | preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |

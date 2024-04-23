@@ -22,6 +22,8 @@ getPixelMap(): image.PixelMap
 
 获取pixelMap。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -107,6 +109,8 @@ getForeground(): DrawableDescriptor;
 
 获取前景的DrawableDescriptor对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -129,6 +133,8 @@ let drawableNew: object = drawable.getForeground()
 getBackground(): DrawableDescriptor;
 
 获取背景的DrawableDescriptor对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -153,6 +159,8 @@ getMask(): DrawableDescriptor
 
 获取蒙版的DrawableDescriptor对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -174,6 +182,8 @@ let drawableNew: object = drawable.getMask()
 static getMaskClipPath(): string
 
 LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,3 +217,87 @@ struct Index {
   }
 }
   ```
+
+## AnimationOptions<sup>12+</sup>
+
+PixelMap 数组通过Image组件显示时用来控制动画的播放。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名      | 类型    | 必填  | 说明                                    |
+| ---------- | ------ | -----| --------------------------------------- |
+| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。      |
+| iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放。 |
+
+**示例：**
+
+```ts
+import { AnimationOptions } from '@ohos.arkui.drawableDescriptor'
+@Entry
+@Component
+struct Example {
+  options: AnimationOptions = {duration: 2000, iterations: 1}
+  build() {
+  }
+}
+```
+
+## AnimatedDrawableDescriptor<sup>12+</sup>
+
+Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)。
+
+### constructor<sup>12+</sup>
+
+constructor(pixelMaps: Array<PixelMap>, options?: AnimationOptions)
+
+AnimatedDrawableDescriptor的构造函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型              | 必填  | 说明                                       |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| pixelMaps | Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PxielMap 数组类型参数，存储 PxielMap 图片数据。 |
+| options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
+
+**示例：**
+
+```ts
+import {AnimationOptions, AnimatedDrawableDescriptor} from '@ohos.arkui.drawableDescriptor'
+import image from '@ohos.multimedia.image'
+
+@Entry
+@Component
+struct Example {
+  pixelmaps: Array<image.PixelMap>  = [];
+  options: AnimationOptions = {duration:1000, iterations:-1};
+  @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  async aboutToAppear() {
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image1')))
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image2')))
+    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  }
+  build() {
+    Column() {
+      Row() {
+        Image(this.animated)
+      }
+    }
+  }
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+}
+
+```
