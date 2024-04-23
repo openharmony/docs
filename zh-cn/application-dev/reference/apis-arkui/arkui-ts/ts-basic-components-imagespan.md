@@ -25,6 +25,8 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 ## 属性
 
+[通用属性](ts-universal-attributes-size.md)方法支持尺寸设置、背景设置、边框设置。
+
 ### alt<sup>12+</sup>
 
 alt(value:&nbsp;PixelMap)
@@ -38,8 +40,6 @@ alt(value:&nbsp;PixelMap)
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。<br/>默认值：null |
-
-[通用属性](ts-universal-attributes-size.md)方法支持尺寸设置、背景设置、边框设置。
 
 ### verticalAlign
 
