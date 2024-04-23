@@ -166,7 +166,7 @@ Defines the parameters used to match a certificate. If no parameter is specified
 | x509Cert | [X509Cert](#x509cert)    | No|  Certificate object. |
 | validDate | string    | No |  Certificate validity period. |
 | issuer | Uint8Array | No | Certificate issuer, in DER format.|
-| keyUsage | Array\<boolean> | No | Usage of the key.|
+| keyUsage | Array\<boolean> | No | Whether to match the key usage.|
 | serialNumber | bigint    | No |  Serial number of the certificate. |
 | subject | Uint8Array | No | Certificate subject, in DER format.|
 | publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format.|
