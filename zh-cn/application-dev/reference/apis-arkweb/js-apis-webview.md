@@ -13901,9 +13901,10 @@ exitFullscreen(): void
 |------|------|------|------|------|
 | embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
 | mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12) | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
 | controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
 | muted | boolean | 否 | N/A | 是否要求静音播放。 |
 | posterUrl | string | 否 | N/A | 海报的地址。 |
 | preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
