@@ -33,6 +33,8 @@ static show(options?: CalendarDialogOptions)
 | onChange   | (value: Date) => void                           | 否   | 选择弹窗中日期使当前选中项改变时触发该回调。<br/>value：选中的日期值。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。 |
+| acceptButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](ts-methods-datepicker-dialog.md#pickerdialogbuttonstyle12类型说明) | 否 | 设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表。|
+| cancelButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](ts-methods-datepicker-dialog.md#pickerdialogbuttonstyle12类型说明) | 否 | 设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表。|
 | onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。 |
 | onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。 |
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
@@ -40,6 +42,10 @@ static show(options?: CalendarDialogOptions)
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM                 |  
 
 ## 示例
+
+### 示例1
+
+CalendarPickerDialog基本使用
 
 ```ts
 // xxx.ets
@@ -84,3 +90,57 @@ struct CalendarPickerDialogExample {
 ```
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog.gif)
+
+### 示例2
+
+按钮支持自定义样式
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date()
+  build() {
+    Column() {
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({
+            selected: this.selectedDate,
+            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
+              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
+              borderRadius: 20 },
+            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
+              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
+              borderRadius: 10 },
+            onAccept: (value) => {
+              console.info("calendar onAccept:" + JSON.stringify(value))
+            },
+            onCancel: () => {
+              console.info("calendar onCancel")
+            },
+            onChange: (value) => {
+              console.info("calendar onChange:" + JSON.stringify(value))
+            },
+            onDidAppear: () => {
+              console.info("calendar onDidAppear")
+            },
+            onDidDisappear: () => {
+              console.info("calendar onDidDisappear")
+            },
+            onWillAppear: () => {
+              console.info("calendar onWillAppear")
+            },
+            onWillDisappear: () => {
+              console.info("calendar onWillDisappear")
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![CalendarPickerDialog](figures/CalendarPickerDialog_CustomButton.png)
