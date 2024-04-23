@@ -1,21 +1,23 @@
-# list
+# qrcode
 
-列表包含一系列相同宽度的列表项。适合连续、多行呈现同类数据，例如图片和文本。
+
+生成并显示二维码。
 
 > **说明：**
 >
-> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从从API version 5 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
 
-仅支持&lt;[list-item](js-components-container-list-item.md)&gt;。
+不支持。
 
 
 ## 属性
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
+| value | string | - | 是 | 用来生成二维码的内容。最大长度为256。 |
 | id | string | - | 否 | 组件的唯一标识。 |
 | style | string | - | 否 | 组件的样式声明。 |
 | class | string | - | 否 | 组件的样式类，用于引用样式表。 |
@@ -26,19 +28,17 @@
 
 | 名称 | 参数 | 描述 |
 | -------- | -------- | -------- |
-| scrollend | - | 列表滑动已经结束。 |
 | click | - | 点击动作触发该事件。 |
 | longpress | - | 长按动作触发该事件。 |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
-| scrolltop<sup>8+</sup> | - | 当前列表已滑动到顶部位置。 |
-| scrollbottom<sup>8+</sup> | - | 当前列表已滑动到底部位置。 |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 
 ## 样式
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| flex-direction | string | column | 否 | 设置flex容器主轴的方向，指定flex项如何放置在flex容器中，可选值为：<br/>-&nbsp;column：主轴为纵向。<br/>-&nbsp;row：主轴为横向。<br/>其他组件默认值为row，在list组件中默认值为column。轻量级智能穿戴不支持动态修改。 |
+| color | &lt;color&gt; | \#000000 | 否 | 二维码颜色 |
+| background-color | &lt;color&gt; | \#ffffff | 否 | 二维码背景颜色 |
 | width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的宽度。<br/><br/>未设置时组件宽度默认为0。 |
 | height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的高度。<br/><br/>未设置时组件高度默认为0。 |
 | padding | &lt;length&gt; | 0 | 否 | 使用简写属性设置所有的内边距属性。<br/>&nbsp;&nbsp;该属性可以有1到4个值：<br/>-&nbsp;指定一个值时，该值指定四个边的内边距。<br/>-&nbsp;指定两个值时，第一个值指定上下两边的内边距，第二个指定左右两边的内边距。<br/>-&nbsp;指定三个值时，第一个指定上边的内边距，第二个指定左右两边的内边距，第三个指定下边的内边距。<br/>-&nbsp;指定四个值时分别为上、右、下、左边的内边距（顺时针顺序）。 |
@@ -48,76 +48,78 @@
 | border-width | &lt;length&gt; | 0 | 否 | 使用简写属性设置元素的所有边框宽度。 |
 | border-color | &lt;color&gt; | black | 否 | 使用简写属性设置元素的所有边框颜色。 |
 | border-radius | &lt;length&gt; | - | 否 | border-radius属性是设置元素的外边框圆角半径。 |
-| background-color | &lt;color&gt; | - | 否 | 设置背景颜色。 |
-| opacity<sup>5+</sup> | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
 
-
-## 方法
-
-| 名称 | 参数 | 描述 |
-| -------- | -------- | -------- |
-| scrollTo | {&nbsp;index:&nbsp;number(指定位置)&nbsp;} | list滑动到指定index的item位置。 |
+>  **说明：**
+> - width和height不一致时，以二者最小值作为二维码的边长。且最终生成的二维码居中显示；
+>
+>- width和height的最小值为200px。
 
 
 ## 示例
 
 
 ```html
-<!-- index.hml -->
+<!-- xxx.hml -->
 <div class="container">
-  <list class="todo-wraper">
-    <list-item for="{{todolist}}" class="todo-item">
-      <text class="todo-title">{{$item.title}}</text>
-      <text class="todo-title">{{$item.date}}</text>
-    </list-item>
-  </list>
+    <qrcode value="{{qr_value}}" class="qrCode" style="color: {{qr_col}};background-color: {{qr_bcol}};"></qrcode>
+    <input type="button" onclick="changeColor" class="button">Color</input>
+    <input type="button" onclick="changeBackgroundColor" class="button">BackgroundColor</input>
+    <input type="button" onclick="changeValue" class="button">Value</input>
 </div>
 ```
 
-
-```js
-// index.js
-export default {
-  data: {
-    todolist: [{
-      title: '刷题',
-      date: '2021-12-31 10:00:00',
-    }, {
-      title: '看电影',
-      date: '2021-12-31 20:00:00',
-    }],
-  },
-}
-```
-
-
 ```css
-/* index.css */
+/* xxx.css */
 .container {
-  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  left: 0px;
-  top: 0px;
-  width: 454px;
-  height: 454px;
 }
-.todo-wraper {
-  width: 454px;
-  height: 300px;
+.qrCode {
+  width: 200px;
+  height: 200px;
 }
-.todo-item {
-  width: 454px;
-  height: 80px;
-  flex-direction: column;
-}
-.todo-title {
-  width: 454px;
-  height: 40px;
-  text-align: center;
+.button {
+  width: 30%;
+  height: 10%;
+  margin-top: 5%;
 }
 ```
 
-![list](figures/list-lite.png)
+```javascript
+// xxx.js
+export default {
+    data: {
+        qr_col: '#87ceeb',
+        qr_bcol: '#f0ffff',
+        qr_value: 'value'
+    },
+    changeColor() {
+        if (this.qr_col == '#87ceeb') {
+            this.qr_col = '#fa8072';
+        } else {
+            this.qr_col = '#87ceeb';
+        }
+    },
+    changeBackgroundColor() {
+        if (this.qr_bcol == '#f0ffff') {
+            this.qr_bcol = '#ffffe0';
+        } else {
+            this.qr_bcol = '#f0ffff';
+        }
+    },
+    changeValue() {
+        if (this.qr_value == 'value') {
+            this.qr_value = 'change';
+        } else {
+            this.qr_value = 'value';
+        }
+    }
+}
+```
+
+![qrcode](figures/qrcode-lite.gif)
