@@ -51,6 +51,8 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
 | TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏，各设备系统定义可能不同。 |
@@ -65,6 +67,8 @@ import window from '@ohos.window';
 状态栏、导航栏的属性。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
@@ -84,11 +88,11 @@ import window from '@ohos.window';
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
 | UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。 |
-| PORTRAIT                              | 1    | 表示竖屏显示模式。             |
+| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
 | LANDSCAPE                             | 2    | 表示横屏显示模式。   |
 | PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。   |
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
-| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。 |
+| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
 | AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
 | AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
@@ -96,11 +100,14 @@ import window from '@ohos.window';
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
+
 ## Rect<sup>7+</sup>
 
 窗口矩形区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
@@ -111,9 +118,19 @@ import window from '@ohos.window';
 
 ## AvoidArea<sup>7+</sup>
 
-窗口内容规避区域。
+窗口内容规避区域。如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。在规避区无法响应用户点击事件。  
+
+除此之外还需注意规避区域的如下约束，具体为： 
+
+- 底部手势区域中非导航条区域支持点击、长按事件透传，不支持拖入。  
+
+- 左右侧边手势区域支持点击、长按以及上下滑动事件透传，不支持拖入。  
+
+- 导航条区域支持长按、点击、拖入事件响应，不支持事件向下透传。  
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
@@ -129,6 +146,8 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
 | width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
@@ -139,6 +158,8 @@ import window from '@ohos.window';
 窗口矩形（窗口位置及窗口大小）变化的原因。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
@@ -156,6 +177,8 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
 | rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
@@ -169,16 +192,16 @@ import window from '@ohos.window';
 
 | 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                                  |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。                      |
+| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
 | dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
-| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。                                                                   |
+| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                   |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。                                                                  |
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
@@ -198,6 +221,8 @@ import window from '@ohos.window';
 ## WindowEventType<sup>10+</sup>
 
 窗口生命周期。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
@@ -363,6 +388,8 @@ findWindow(name: string): Window
 查找name所对应的窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -956,6 +983,8 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                  | 类型       | 说明     |
 |---------------------|----------|--------|
 | status              | string   | 状态栏。   |
@@ -975,6 +1004,8 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 显示当前窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1013,6 +1044,8 @@ showWindow(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1047,6 +1080,8 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 销毁当前窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1086,6 +1121,8 @@ destroyWindow(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1123,6 +1160,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 全屏模式窗口不支持该操作。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1169,6 +1208,8 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 全屏模式窗口不支持该操作。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1228,6 +1269,8 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1283,6 +1326,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1330,6 +1375,8 @@ getWindowProperties(): WindowProperties
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1361,6 +1408,8 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1589,6 +1638,8 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&l
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型  | 必填 | 说明 |
@@ -1636,6 +1687,8 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1686,6 +1739,8 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1739,6 +1794,8 @@ getWindowSystemBarProperties(): SystemBarProperties
 主窗口获取导航栏、状态栏的属性。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1796,6 +1853,8 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
@@ -1838,6 +1897,8 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 设置窗口的显示方向属性，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1886,6 +1947,8 @@ getUIContext(): UIContext
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1946,6 +2009,8 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1988,6 +2053,8 @@ setUIContent(path: string): Promise&lt;void&gt;
 根据当前工程中某个页面的路径为窗口加载具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2036,6 +2103,8 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2098,6 +2167,8 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2163,6 +2234,8 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2248,6 +2321,8 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明             |
@@ -2328,6 +2403,8 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2414,6 +2491,8 @@ isWindowShowing(): boolean
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -2447,6 +2526,8 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
@@ -2474,6 +2555,8 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                          | 必填 | 说明                                                     |
@@ -2498,6 +2581,8 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: A
 开启系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2526,6 +2611,8 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area:
 关闭系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2604,6 +2691,8 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                | 必填 | 说明                                                         |
@@ -2630,6 +2719,8 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 关闭本窗口区域范围外的点击事件的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2770,6 +2861,8 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                       | 必填 | 说明                                                         |
@@ -2796,6 +2889,8 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 关闭窗口生命周期变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3083,6 +3178,8 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
@@ -3105,6 +3202,8 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 关闭窗口矩形（窗口位置及窗口大小）变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3314,6 +3413,8 @@ setWindowBackgroundColor(color: string): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -3360,6 +3461,8 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                                        |
@@ -3405,6 +3508,8 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3544,6 +3649,8 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -3587,6 +3694,8 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 设置屏幕是否为常亮状态，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3635,6 +3744,8 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **需要权限：** ohos.permission.PRIVACY_WINDOW
 
 **参数：**
@@ -3679,6 +3790,8 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **需要权限：** ohos.permission.PRIVACY_WINDOW
 
@@ -6444,6 +6557,8 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
 | SHOWN      | 1      | 切到前台。 |
@@ -6480,6 +6595,8 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -6532,6 +6649,8 @@ getMainWindow(): Promise&lt;Window&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                             | 说明                                             |
@@ -6581,6 +6700,8 @@ getMainWindowSync(): Window
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -6625,6 +6746,8 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -6688,6 +6811,8 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -6812,6 +6937,8 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                | 必填 | 说明                                              |
@@ -6862,6 +6989,8 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                          | 说明                                                 |
@@ -6909,6 +7038,8 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -6967,6 +7098,8 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -7030,6 +7163,8 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明                 |
@@ -7083,6 +7218,8 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -7164,6 +7301,8 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明             |
@@ -7239,6 +7378,8 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -7317,6 +7458,8 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -7366,6 +7509,8 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
