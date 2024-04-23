@@ -50,14 +50,15 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example01() {
   try {  
-    let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-    PhotoSelectOptions.maxSelectNumber = 5;
+    let photoSelectOptions = new picker.PhotoSelectOptions();
+    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+    photoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
-      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    photoPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
     });
@@ -89,18 +90,19 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example02() {
   try {
-    let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-    PhotoSelectOptions.maxSelectNumber = 5;
+    let photoSelectOptions = new picker.PhotoSelectOptions();
+    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+    photoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
+    photoPicker.select(photoSelectOptions, (err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+      console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -129,15 +131,16 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example03() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select((err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
+    photoPicker.select((err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+      console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -172,13 +175,14 @@ save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example04() {
   try {
-    let PhotoSaveOptions = new picker.PhotoSaveOptions();
-    PhotoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
+    let photoSaveOptions = new picker.PhotoSaveOptions();
+    photoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult: Array<string>) => {
-      console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
+    photoPicker.save(photoSaveOptions).then((photoSaveResult: Array<string>) => {
+      console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
     });
@@ -210,17 +214,18 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example05() {
   try {
-    let PhotoSaveOptions = new picker.PhotoSaveOptions();
-    PhotoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
+    let photoSaveOptions = new picker.PhotoSaveOptions();
+    photoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
+    photoPicker.save(photoSaveOptions, (err: BusinessError, photoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
+      console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -249,15 +254,16 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save((err: BusinessError, PhotoSaveResult: Array<string>) => {
+    photoPicker.save((err: BusinessError, photoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
+      console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -304,12 +310,13 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example07() {
   try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
+    let documentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult: Array<string>) => {
-      console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+    documentPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
+      console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
     });
@@ -341,16 +348,17 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example08() {
   try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
+    let documentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions, (err: BusinessError, DocumentSelectResult: Array<string>) => {
+    documentPicker.select(documentSelectOptions, (err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+      console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -379,15 +387,16 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select((err: BusinessError, DocumentSelectResult: Array<string>) => {
+    documentPicker.select((err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+      console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -423,13 +432,14 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example10() {
   try {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult: Array<string>) => {
-      console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+    documentPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
     });
@@ -461,17 +471,18 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example11() {
   try {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions, (err: BusinessError, DocumentSaveResult: Array<string>) => {
+    documentPicker.save(documentSaveOptions, (err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -500,15 +511,16 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save((err: BusinessError, DocumentSaveResult: Array<string>) => {
+    documentPicker.save((err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -555,12 +567,13 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example13() {
   try {
-    let AudioSelectOptions = new picker.AudioSelectOptions();
+    let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions).then((AudioSelectResult: Array<string>) => {
-      console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
+    audioPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
+      console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
     });
@@ -592,16 +605,17 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example14() {
   try {
-    let AudioSelectOptions = new picker.AudioSelectOptions();
+    let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions, (err: BusinessError, AudioSelectResult: Array<string>) => {
+    audioPicker.select(audioSelectOptions, (err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
+      console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -630,15 +644,16 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select((err: BusinessError, AudioSelectResult: Array<string>) => {
+    audioPicker.select((err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
+      console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -673,13 +688,14 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example16() {
   try {
-    let AudioSaveOptions = new picker.AudioSaveOptions();
-    AudioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
+    let audioSaveOptions = new picker.AudioSaveOptions();
+    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions).then((AudioSaveResult: Array<string>) => {
-      console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult))
+    audioPicker.save(audioSaveOptions).then((audioSaveResult: Array<string>) => {
+      console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult))
     }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
     });
@@ -711,17 +727,18 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example17() {
   try {
-    let AudioSaveOptions = new picker.AudioSaveOptions();
-    AudioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
+    let audioSaveOptions = new picker.AudioSaveOptions();
+    audioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions, (err: BusinessError, AudioSaveResult: Array<string>) => {
+    audioPicker.save(audioSaveOptions, (err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult));
+      console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -750,15 +767,16 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save((err: BusinessError, AudioSaveResult: Array<string>) => {
+    audioPicker.save((err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult));
+      console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
