@@ -2409,7 +2409,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       | if values to commit is invalid.         |
+| 401       | if value to modify is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2461,7 +2461,7 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if values to commit is invalid.         |
+| 401       |  if value to modify is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -4020,7 +4020,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
     // 应用需要确保待写入的uri是有效的
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
-    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.jpg";
+    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4";
     try {
       await movingPhoto.requestContent(imageFileUri, videoFileUri);
       console.log("moving photo contents retrieved successfully");
