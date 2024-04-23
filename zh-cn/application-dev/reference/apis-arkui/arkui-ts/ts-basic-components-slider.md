@@ -152,6 +152,12 @@ trackThickness(value: Length)
 
 设置滑轨的粗细。设置为小于等于0的值时，取默认值。
 
+为保证滑块和滑轨的[SliderStyle](#sliderstyle枚举说明)样式，[blockSize](#blocksize10)跟随trackThickness同比例增减。
+
+当style为[SliderStyle](#sliderstyle枚举说明).OutSet时，trackThickness ：[blockSize](#blocksize10) = 1 ：4，当style为[SliderStyle](#sliderstyle枚举说明).InSet时，trackThickness ：[blockSize](#blocksize10) = 5 ：3。
+
+在变更trackThickness过程中，若trackThickness的大小或者[blockSize](#blocksize10)的大小超过slider组件的width或者height([SliderStyle](#sliderstyle枚举说明).OutSet时可能trackThickness没超过，但是[blockSize](#blocksize10)超过了)，取默认值。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
