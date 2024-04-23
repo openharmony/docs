@@ -62,3 +62,56 @@ struct TextInputExample {
 **适配指导**
 
 组件默认样式变更调整，无需适配。
+
+## cl.arkui.2 Text组件clip通用属性默认值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+默认值false符合更多应用场景。
+
+**变更影响**
+
+Text组件clip通用属性默认值变更。
+
+变更前：Text组件clip通用属性默认值为true, 超出组件区域内容会被截断不显示。
+
+![Text组件默认值变更前效果图](figures/textcliptrue.png)
+
+变更后：Text组件clip通用属性默认值为false, 超出组件区域内容不会被截断全部显示。
+
+![Text组件默认值变更后效果图](figures/textclipfalse.png)
+
+示例：
+
+```ts
+@Entry
+@Component
+struct TextClipExample {
+  build() {
+    Column({ space: 20 }) {
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
+        .fontSize(12)
+        .border({ width: 1 })
+        .wordBreak(WordBreak.NORMAL)
+        .lineHeight(20)
+        .maxLines(2)
+    }.height(300).width(335).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+**API Level**
+
+起始支持版本为 API 7。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.22开始。
+
+**适配指导**
+
+组件clip通用属性默认值变更调整，无需适配。
