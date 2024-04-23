@@ -45,7 +45,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       ...
+       // ...
        Button()
          .onClick(() => {
 	   // context为Ability对象的成员，在非Ability对象内部调用需要
@@ -104,7 +104,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    @Component
    struct Page_UIAbilityComponentsInteractive {
      build() {
-       ...
+       // ...
        Button()
          .onClick(() => {
            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
@@ -883,7 +883,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = string;
      };
    
-     mySequenceable(num, string): void {
+     mySequenceable(num: number, string: string): void {
        this.num = num;
        this.str = string;
      };
@@ -912,7 +912,6 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    import UIAbility from '@ohos.app.ability.UIAbility';
    import type Want from '@ohos.app.ability.Want';
    import hilog from '@ohos.hilog';
-   import Logger from '../utils/Logger';
    import type rpc from '@ohos.rpc';
    import type { Caller } from '@ohos.app.ability.UIAbility';
 
@@ -929,7 +928,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = string;
      }
    
-     mySequenceable(num, string): void {
+     mySequenceable(num: number, string: string): void {
        this.num = num;
        this.str = string;
      }
@@ -976,9 +975,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
            this.caller.release();
            this.caller = undefined;
          }
-         Logger.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
        } catch (error) {
-         Logger.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
        };
      }
      onDestroy(): void {
@@ -1060,7 +1059,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
                hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                this.regOnRelease(caller);
                promptAction.showToast({
-                 message: 'CallerSuccess'
+                 message: 'caller success'
                });
              }
            }).catch((err: BusinessError) => {
