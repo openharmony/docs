@@ -41,6 +41,10 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.      |
 
@@ -97,6 +101,10 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
 
@@ -151,6 +159,10 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
 
@@ -195,6 +207,10 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[Launch
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700004 | The specified user ID is not found.      |
 
 示例：
@@ -248,6 +264,10 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700004 | The specified user ID is not found.      |
 
 **示例：**
@@ -295,6 +315,10 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 
 **示例：**
@@ -349,6 +373,10 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 
 **示例：**
@@ -401,6 +429,10 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 
 **示例：**
@@ -444,6 +476,10 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700065 | The specified shortcut want in shortcut info is not supported to be started.  |
 
 **示例：**
