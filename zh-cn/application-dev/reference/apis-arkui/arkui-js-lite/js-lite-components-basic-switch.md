@@ -30,7 +30,7 @@
 | change | {&nbsp;checked:&nbsp;checkedValue&nbsp;} | 选中状态改变时触发该事件。 |
 | click | - | 点击动作触发该事件。 |
 | longpress | - | 长按动作触发该事件。 |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 
 ## 样式
