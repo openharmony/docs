@@ -14,6 +14,8 @@ import pasteboard from '@ohos.pasteboard';
 
 ## 常量
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 名称 | 类型 | 值            | 说明                                                                                                                                        |
@@ -29,6 +31,8 @@ import pasteboard from '@ohos.pasteboard';
 
 用于表示允许的数据字段类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 类型 | 说明 |
@@ -43,6 +47,8 @@ import pasteboard from '@ohos.pasteboard';
 createData(mimeType: string, value: ValueType): PasteData
 
 构建一个自定义类型的剪贴板内容对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -80,6 +86,8 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 
 创建一条自定义数据内容条目。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -115,6 +123,8 @@ getSystemPasteboard(): SystemPasteboard
 
 获取系统剪贴板对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -132,6 +142,8 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 ## ShareOption<sup>9+</sup>
 
 可粘贴数据的范围类型枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -392,6 +404,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
 该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 名称 | 类型 | 可读 | 可写 | 说明                                                                                                                                                                                                                                       |
@@ -408,6 +422,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 对于剪贴板中内容记录的抽象定义，称之为条目。剪贴板内容部分由一个或者多个条目构成，例如一条文本内容、一份HTML、一个URI或者一个Want。
 
 ### 属性
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -426,6 +442,8 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 toPlainText(): string
 
 将一个PasteData中的内容强制转换为文本内容。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -519,6 +537,8 @@ getPrimaryText(): string
 
 获取首个条目的纯文本内容。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -539,6 +559,8 @@ let plainText: string = pasteData.getPrimaryText();
 getPrimaryHtml(): string
 
 获取首个条目的HTML内容。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -561,6 +583,8 @@ let htmlText: string = pasteData.getPrimaryHtml();
 getPrimaryWant(): Want
 
 获取首个条目的Want对象内容。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -589,6 +613,8 @@ getPrimaryUri(): string
 
 获取首个条目的URI内容。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -609,6 +635,8 @@ let uri: string = pasteData.getPrimaryUri();
 getPrimaryPixelMap(): image.PixelMap
 
 获取首个条目的PixelMap内容。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -644,6 +672,8 @@ addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -667,6 +697,8 @@ pasteData.addRecord(htmlRecord);
 addRecord(mimeType: string, value: ValueType): void
 
 向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -699,6 +731,8 @@ getMimeTypes(): Array&lt;string&gt;
 
 获取剪贴板中[PasteDataProperty](#pastedataproperty7)的mimeTypes列表，当剪贴板内容为空时，返回列表为空。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -719,6 +753,8 @@ let types: string[] = pasteData.getMimeTypes();
 getPrimaryMimeType(): string
 
 获取剪贴板内容中首个条目的数据类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -741,6 +777,8 @@ getProperty(): PasteDataProperty
 
 获取剪贴板内容的属性描述对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -761,6 +799,8 @@ let property: pasteboard.PasteDataProperty = pasteData.getProperty();
 setProperty(property: PasteDataProperty): void
 
 设置剪贴板内容的属性描述对象[PasteDataProperty](#pastedataproperty7)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -833,6 +873,8 @@ getRecord(index: number): PasteDataRecord
 
 获取剪贴板内容中指定下标的条目。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -867,6 +909,8 @@ let record: pasteboard.PasteDataRecord = pasteData.getRecord(0);
 getRecordCount(): number
 
 获取剪贴板内容中条目的个数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -910,6 +954,8 @@ hasType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定的MIME数据类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -936,6 +982,8 @@ let hasType: boolean = pasteData.hasType(pasteboard.MIMETYPE_TEXT_PLAIN);
 removeRecord(index: number): void
 
 移除剪贴板内容中指定下标的条目。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -965,6 +1013,8 @@ pasteData.removeRecord(0);
 replaceRecord(index: number, record: PasteDataRecord): void
 
 替换剪贴板内容中指定下标的条目。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1282,6 +1332,8 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 
 清空系统剪贴板内容，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1309,6 +1361,8 @@ clearData(): Promise&lt;void&gt;
 
 清空系统剪贴板内容，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1335,6 +1389,8 @@ systemPasteboard.clearData().then((data: void) => {
 setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪贴板，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1373,6 +1429,8 @@ systemPasteboard.setData(pasteData, (err, data) => {
 setData(data: PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1419,6 +1477,8 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1458,6 +1518,8 @@ getData(): Promise&lt;PasteData&gt;
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1493,6 +1555,8 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 判断系统剪贴板中是否有内容，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1521,6 +1585,8 @@ systemPasteboard.hasData((err: BusinessError, data: boolean) => {
 hasData(): Promise&lt;boolean&gt;
 
 判断系统剪贴板中是否有内容，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1800,6 +1866,8 @@ isRemoteData(): boolean
 
 判断剪贴板中的数据是否来自其他设备。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1834,6 +1902,8 @@ getDataSource(): string
 
 获取数据来源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1867,6 +1937,8 @@ try {
 hasDataType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定类型的数据。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1909,6 +1981,8 @@ clearDataSync(): void
 
 清空系统剪贴板内容, 此接口为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **错误码：**
@@ -1938,6 +2012,8 @@ getDataSync(): PasteData
 读取系统剪贴板内容, 此接口为同步接口。
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1972,6 +2048,8 @@ try {
 setDataSync(data: PasteData): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2008,6 +2086,8 @@ try {
 hasDataSync(): boolean
 
 判断系统剪贴板中是否有内容, 此接口为同步接口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
