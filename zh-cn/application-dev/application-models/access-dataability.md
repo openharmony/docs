@@ -32,8 +32,8 @@
 2. 构建数据库相关的RDB数据。
    
    ```ts
-   import ohos_data_ability from '@ohos.data.dataAbility'
-   import rdb from '@ohos.data.rdb'
+   import ohos_data_ability from '@ohos.data.dataAbility';
+   import rdb from '@ohos.data.rdb';
    let valuesBucket_insert: rdb.ValuesBucket = { name: 'Rose', introduction: 'insert' };
    let valuesBucket_update: rdb.ValuesBucket = { name: 'Rose', introduction: 'update' };
    let crowd = new Array({ name: 'Rose', introduction: 'batchInsert_one' } as rdb.ValuesBucket,
