@@ -28,7 +28,7 @@
 | -------- | -------- | -------- |
 | click | - | 点击动作触发该事件。 |
 | longpress | - | 长按动作触发该事件。 |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 
 ## 样式
@@ -52,4 +52,4 @@
 
 | 名称 | 参数 | 描述 |
 | -------- | -------- | -------- |
-| getContext | string&nbsp; | 获取canvas绘图上下文，参数仅支持“2d”，返回值为2D绘制对象，该对象提供具体的2D绘制操作。详见[CanvasRenderingContext2D对象](js-components-canvas-canvasrenderingcontext2d.md)章节。 |
+| getContext | string&nbsp; | 获取canvas绘图上下文，参数仅支持“2d”，返回值为2D绘制对象，该对象提供具体的2D绘制操作。详见[CanvasRenderingContext2D对象](js-lite-components-canvas-canvasrenderingcontext2d.md)章节。 |
