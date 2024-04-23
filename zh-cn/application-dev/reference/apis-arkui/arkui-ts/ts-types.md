@@ -231,8 +231,6 @@
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
 | top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
@@ -494,8 +492,6 @@ Callback<T,V = void> = (T) => V;
 
 带参数的函数回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 ## HoverCallback<sup>12+</sup>
 
 hover事件的回调类型。
@@ -519,6 +515,8 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 定义用户提交事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称              | 类型       | 必填 | 描述                                               |
 | ----------------- | ---------- | ---- | -------------------------------------------------- |
 | keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
@@ -528,10 +526,10 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 | 名称                   | 描述               |
 | ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。   |
-| Search                 | 显示为搜索样式。   |
-| Send                   | 显示为发送样式。   |
-| Next                   | 显示为下一步样式。 |
-| Done                   | 显示为完成样式。   |
+| Go                     | 显示为开始样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Search                 | 显示为搜索样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Send                   | 显示为发送样式。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Next                   | 显示为下一步样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Done                   | 显示为完成样式。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。   |

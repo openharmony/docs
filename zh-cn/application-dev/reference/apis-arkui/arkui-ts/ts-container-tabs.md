@@ -22,6 +22,8 @@
 
 Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名         | 参数类型                              | 必填   | 参数描述                                     |
@@ -31,6 +33,8 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称    | 描述                                       |
 | ----- | ---------------------------------------- |
@@ -48,6 +52,8 @@ vertical(value: boolean)
 
 设置是否为纵向Tab。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -62,6 +68,8 @@ scrollable(value: boolean)
 
 设置是否可以通过滑动页面进行页面切换。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -75,6 +83,8 @@ scrollable(value: boolean)
 barMode(value: BarMode, options?: ScrollableBarModeOptions)
 
 设置TabBar布局模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,6 +101,8 @@ barWidth(value: Length)
 
 设置TabBar的宽度值。设置为小于0或大于Tabs宽度值时，按默认值显示。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -104,6 +116,8 @@ barWidth(value: Length)
 barHeight(value: Length)
 
 设置TabBar的高度值。设置为小于0或大于Tabs高度值时，按默认值显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -119,6 +133,8 @@ animationDuration(value: number)
 
 设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。该参数不支持百分比设置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -132,6 +148,8 @@ animationDuration(value: number)
 divider(value: DividerStyle | null)
 
 设置区分TabBar和TabContent的分割线样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -147,6 +165,8 @@ fadingEdge(value: boolean)
 
 设置页签超过容器宽度时是否渐隐消失。建议配合barBackgroundColor属性一起使用，如果barBackgroundColor属性没有定义，会默认显示页签末端为白色的渐隐效果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -160,6 +180,8 @@ fadingEdge(value: boolean)
 barOverlap(value: boolean)
 
 设置TabBar是否背后变模糊并叠加在TabContent之上。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -175,6 +197,8 @@ barBackgroundColor(value: ResourceColor)
 
 设置TabBar的背景颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -188,6 +212,8 @@ barBackgroundColor(value: ResourceColor)
 barBackgroundBlurStyle(value: BlurStyle)
 
 设置TabBar的背景模糊材质。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -203,6 +229,8 @@ barGridAlign(value: BarGridColumnOptions)
 
 以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -213,6 +241,8 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## DividerStyle<sup>10+</sup>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp           |
@@ -221,6 +251,8 @@ barGridAlign(value: BarGridColumnOptions)
 | endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
 
 ## BarGridColumnOptions<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -232,6 +264,8 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## ScrollableBarModeOptions<sup>10+</sup>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | margin | [Dimension](ts-types.md#dimension10)          | 否    | Scrollable模式下的TabBar的左右边距（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp                    |
@@ -239,12 +273,16 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## BarMode枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 描述                                       |
 | ---------- | ---------------------------------------- |
 | Scrollable | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
 | Fixed      | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称         | 描述                                       |
 | ---------- | ---------------------------------------- |
@@ -272,6 +310,8 @@ Tab页签切换后触发的事件。
 
 4、通过页签处点击触发。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -285,6 +325,8 @@ Tab页签切换后触发的事件。
 onTabBarClick(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 Tab页签点击后触发的事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -403,6 +445,8 @@ onContentWillChange(handler: (currentIndex: number, comingIndex: number) => bool
 
 Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一个TabsController控制多个Tabs组件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### 导入对象
 
 ```ts
@@ -414,6 +458,8 @@ let controller: TabsController = new TabsController()
 changeIndex(value: number): void
 
 控制Tabs切换到指定页签。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
