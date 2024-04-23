@@ -12,7 +12,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 
 1. 应用程序通过HiChecker函数接口控制规则的增删查改。
 
-2. 子系统有耗时调用或者内存泄露时通过HiChecker通知有对应规则的事件发生，HiChecker检测条件满足时做对应的操作。
+2. 子系统有耗时调用或者Ability资源泄露时通过HiChecker通知有对应规则的事件发生，HiChecker检测条件满足时做对应的操作。
 
 ## 约束与限制
 
@@ -95,12 +95,31 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 
    ```shell
    hdc shell
-   hilog|grep RULE_THREAD_CHECK_SLOW_PROCESS
+   hilog|grep -i hichecker
    ```
 
-   安装hap后运行，shell窗口有如下结果说明检测成功
+   安装hap后运行，shell窗口可以看到调用栈信息结果说明检测成功
 
    ```shell
-   08-05 19:04:05.037  7791  7791 I C02d0b/HICHECKER: CautionMsg:trigger:RULE_THREAD_CHECK_SLOW_PROCESS,Trigger: pid = 1705, tid = 1705
-   08-05 19:04:11.851  7843  7843 I C02d0b/HICHECKER: CautionMsg:trigger:RULE_THREAD_CHECK_SLOW_PROCESS,Trigger: pid = 1747, tid = 1747
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: CautionMsg:trigger:RULE_THREAD_CHECK_SLOW_PROCESS,Trigger: pid = 254, tid = 254
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #00 pc 00003d33 /system/lib/chipset-pub-sdk/libbacktrace_local.so(OHOS::HiviewDFX::GetBacktrace(std::__h::basic_string<char, std::__h::char_traits<char>, std::__h::allocator<char>>&, bool, unsigned int)+90)(7c7c81050ce2a86bf0a22943c25773db)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #01 pc 00003a57 /system/lib/chipset-pub-sdk/libdfx_dumpcatcher.z.so(OHOS::HiviewDFX::DfxDumpCatcher::DoDumpCurrTid(unsigned int, std::__h::basic_string<char, std::__h::char_traits<char>, std::__h::allocator<char>>&, unsigned int)+26)(8e2b59ecc6cc00dd2135f9d84c23a724)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #02 pc 000042a1 /system/lib/chipset-pub-sdk/libdfx_dumpcatcher.z.so(OHOS::HiviewDFX::DfxDumpCatcher::DoDumpLocalLocked(int, int, std::__h::basic_string<char, std::__h::char_traits<char>, std::__h::allocator<char>>&, unsigned int)+40)(8e2b59ecc6cc00dd2135f9d84c23a724)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #03 pc 0000452d /system/lib/chipset-pub-sdk/libdfx_dumpcatcher.z.so(OHOS::HiviewDFX::DfxDumpCatcher::DumpCatch(int, int, std::__h::basic_string<char, std::__h::char_traits<char>, std::__h::allocator<char>>&, unsigned int, bool)+188)(8e2b59ecc6cc00dd2135f9d84c23a724)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #04 pc 00002cd7 /system/lib/platformsdk/libhichecker.so(OHOS::HiviewDFX::HiChecker::NotifySlowProcess(std::__h::basic_string<char, std::__h::char_traits<char>, std::__h::allocator<char>> const&)+90)(03f34822b1baca8c33fb87a2cd1817cd)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #05 pc 0004045d /system/lib/platformsdk/libimage_napi.z.so(f765998ba1f5185405f9735d86b0c7b7)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #06 pc 00040f43 /system/lib/platformsdk/libimage_napi.z.so(f765998ba1f5185405f9735d86b0c7b7)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #07 pc 0002b0c5 /system/lib/platformsdk/libace_napi.z.so(panda::JSValueRef ArkNativeFunctionCallBack<true>(panda::JsiRuntimeCallInfo*)+448)(a84fbb767fd826946623779c608395bf)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #08 pc 001e7597 /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::RunInternal(panda::ecmascript::JSThread*, unsigned char const*, unsigned long long*)+14710)(106c552f6ce4420b9feac95e8b21b792)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #09 pc 001e043b /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::EcmaInterpreter::Execute(panda::ecmascript::EcmaRuntimeCallInfo*)+986)(106c552f6ce4420b9feac95e8b21b792)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #10 pc 0029ec99 /system/lib/platformsdk/libark_jsruntime.so(panda::ecmascript::JSFunction::Call(panda::ecmascript::EcmaRuntimeCallInfo*)+388)(106c552f6ce4420b9feac95e8b21b792)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #11 pc 0034b14b /system/lib/platformsdk/libark_jsruntime.so(panda::FunctionRef::CallForNapi(panda::ecmascript::EcmaVM const*, panda::JSValueRef*, panda::JSValueRef* const*, int)+918)(106c552f6ce4420b9feac95e8b21b792)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #12 pc 0003d343 /system/lib/platformsdk/libace_napi.z.so(napi_call_function+198)(a84fbb767fd826946623779c608395bf)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #13 pc 000283e1 /system/lib/platformsdk/libuiabilitykit_native.z.so(OHOS::AbilityRuntime::JsUIAbility::CallObjectMethod(char const*, napi_value__* const*, unsigned int, bool, bool)+648)(118b2c16051d37927837ed0ce7874f1d)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #14 pc 00027c0d /system/lib/platformsdk/libuiabilitykit_native.z.so(OHOS::AbilityRuntime::JsUIAbility::OnStart(OHOS::AAFwk::Want const&, OHOS::sptr<OHOS::AAFwk::SessionInfo>)+616)(118b2c16051d37927837ed0ce7874f1d)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #15 pc 000548fd /system/lib/platformsdk/libuiabilitykit_native.z.so(OHOS::AbilityRuntime::UIAbilityImpl::Start(OHOS::AAFwk::Want const&, OHOS::sptr<OHOS::AAFwk::SessionInfo>)+396)(118b2c16051d37927837ed0ce7874f1d)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #16 pc 0005549d /system/lib/platformsdk/libuiabilitykit_native.z.so(OHOS::AbilityRuntime::UIAbilityImpl::HandleAbilityTransaction(OHOS::AAFwk::Want const&, OHOS::AAFwk::LifeCycleStateInfo const&, OHOS::sptr<OHOS::AAFwk::SessionInfo>)+764)(118b2c16051d37927837ed0ce7874f1d)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #17 pc 000359b3 /system/lib/platformsdk/libability_thread.z.so(OHOS::AbilityRuntime::UIAbilityThread::HandleAbilityTransaction(OHOS::AAFwk::Want const&, OHOS::AAFwk::LifeCycleStateInfo const&, OHOS::sptr<OHOS::AAFwk::SessionInfo>)+466)(889aa126c2fb643cd2ec6dbd64adddd1)
+08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: #18 pc 00039c2d /system/lib/platformsdk/libability_thread.z.so(889aa126c2fb643cd2ec6dbd64adddd1)
    ```
