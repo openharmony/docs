@@ -16,7 +16,7 @@
 
 ## 非对称加解密
 
-非对称加解密，不支持update操作，仅需要调用Cipher.init和Cipher.doFinal完成加解密。
+非对称加解密，不支持update操作，仅需要调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)和[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)完成加解密。
 
 非对称密钥的分段加密是指当明文大于单次加密支持的数据长度时（具体长度请查[RSA算法规格](crypto-asym-encrypt-decrypt-spec.md)），需要将待加密数据分为合适长度的数据段，并对每个数据段执行加密操作，即创建Cipher，然后调用Cipher.init和Cipher.doFinal接口。
 
