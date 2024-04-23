@@ -1272,7 +1272,7 @@ router.getParams();
 // 在当前页面中
 export default {
   pushPage() {
-    router.push({
+    router.pushUrl({
       url: 'pages/detail/detail',
       params: {
         data1: 'message'
