@@ -1060,7 +1060,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
                hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                this.regOnRelease(caller);
                promptAction.showToast({
-                 message: $r('app.string.CallerSuccess')
+                 message: 'CallerSuccess'
                });
              }
            }).catch((err: BusinessError) => {
