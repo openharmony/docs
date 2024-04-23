@@ -452,14 +452,14 @@ void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirty
 
 强制标记当前节点需要重新测算，布局或者绘制。
 
-系统属性设置更新场景下ArkUI框架会自动标记藏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
+系统属性设置更新场景下ArkUI框架会自动标记脏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| node | 需要标记藏区的节点对象。  | 
-| dirtyFlag | 藏区类型。  | 
+| node | 需要标记脏区的节点对象。  | 
+| dirtyFlag | 脏区类型。  | 
 
 
 ### measureNode
