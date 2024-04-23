@@ -1,6 +1,6 @@
 # list-item
 
-&lt;[list](js-components-container-list.md)&gt;的子组件，用来展示列表具体item。
+&lt;[list](js-lite-components-container-list.md)&gt;的子组件，用来展示列表具体item。
 
 > **说明：**
 >
@@ -28,7 +28,7 @@
 | -------- | -------- | -------- |
 | click | - | 点击动作触发该事件。 |
 | longpress | - | 长按动作触发该事件。 |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | 组件上快速滑动后触发。 |
 
 
 ## 样式
@@ -50,4 +50,4 @@
 
 ## 示例
 
-参考 [list示例](js-components-container-list.md)
+参考 [list示例](js-lite-components-container-list.md)

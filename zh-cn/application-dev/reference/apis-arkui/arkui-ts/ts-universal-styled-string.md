@@ -327,7 +327,7 @@ appendStyledString(other: StyledString): void
 | ------------ |---------------------| ---- | ---- | ------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  是  |  否  | 获取属性字符串的文本颜色。 |
 | fontFamily | string   | 是    | 否    | 获取属性字符串的文本字体。 |
-| fontSize   | number   | 是    | 否    | 获取属性字符串的文本字体大小。 |
+| fontSize   | number   | 是    | 否    | 获取属性字符串的文本字体大小。<br/>单位：vp |
 | fontWeight   | number   | 是    | 否    | 获取属性字符串的文本字体粗细。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 否    | 获取属性字符串的文本字体样式。 |
 
@@ -424,7 +424,7 @@ constructor(value: DecorationStyleInterface)
 
 | 名称           | 类型              | 只读   | 必填   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| baselineOffset  | number |  是  |  是  | 获取属性字符串的文本基线偏移量。 |
+| baselineOffset  | number |  是  |  是  | 获取属性字符串的文本基线偏移量。<br/>单位：vp |
 
 ### constructor
 
@@ -436,7 +436,7 @@ constructor(value: LengthMetrics)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本基线偏移量设置项。如果LengthMetric的unit值是percent，该设置不生效。 |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本基线偏移量设置项。如果LengthMetrics的unit值是percent，该设置不生效。 |
 
 ## LetterSpacingStyle
 
@@ -450,7 +450,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 必填   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| letterSpacing  | number |  是  |  是  | 获取属性字符串的文本字符间距。 |
+| letterSpacing  | number |  是  |  是  | 获取属性字符串的文本字符间距。<br/>单位：vp |
 
 ### constructor
 
@@ -462,7 +462,7 @@ constructor(value: LengthMetrics)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本字符间距设置项。如果LengthMetric的unit值是percent，该设置不生效。 |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本字符间距设置项。如果LengthMetrics的unit值是percent，该设置不生效。 |
 
 ## TextShadowStyle
 
