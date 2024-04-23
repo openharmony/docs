@@ -162,7 +162,7 @@ minFontSize(value: number | string | Resource)
 
 设置文本最小显示字号。
 
-需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
@@ -184,7 +184,7 @@ maxFontSize(value: number | string | Resource)
 
 设置文本最大显示字号。
 
-需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
