@@ -20,10 +20,10 @@
 1. 创建工具接口类对象。
    
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility'
-   import ohos_data_ability from '@ohos.data.dataAbility'
-   import relationalStore from '@ohos.data.relationalStore'
-   import ability from '@ohos.ability.ability'
+   import featureAbility from '@ohos.ability.featureAbility';
+   import ohos_data_ability from '@ohos.data.dataAbility';
+   import relationalStore from '@ohos.data.relationalStore';
+   import ability from '@ohos.ability.ability';
    // 作为参数传递的URI,与config中定义的URI的区别是多了一个"/",有三个"/"
    let uri: string = 'dataability:///com.samples.famodelabilitydevelop.DataAbility';
    let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(uri);
