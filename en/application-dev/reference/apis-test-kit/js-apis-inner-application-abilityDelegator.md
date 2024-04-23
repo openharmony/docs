@@ -1,10 +1,12 @@
 # AbilityDelegator
 
-The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
+The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module can be used only in [automated test scripts](../../application-test/arkxtest-guidelines.md).
 
 ## Modules to Import
 
@@ -14,7 +16,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## Usage
 
-An **AbilityDelegator** object is obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**. The APIs can be used only in the test environment.
+An **AbilityDelegator** object is obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**.
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
@@ -25,7 +27,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
-Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to return the result.
+Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -33,7 +35,7 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes      | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes      | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
 **Error codes**
@@ -42,7 +44,7 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 | ------- | -------- |
 | 16000100 | AddAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -71,7 +73,7 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-Adds an **AbilityMonitor** instance. This API uses a promise to return the result.
+Adds an **AbilityMonitor** instance. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -79,7 +81,7 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 
 **Return value**
 
@@ -93,7 +95,7 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 | ------- | -------- |
 | 16000100 | AddAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -121,7 +123,7 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 
 addAbilityMonitorSync(monitor: AbilityMonitor): void
 
-Adds an **AbilityMonitor** instance. This API returns the result synchronously.
+Adds an **AbilityMonitor** instance. This API returns the result synchronously. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -129,7 +131,7 @@ Adds an **AbilityMonitor** instance. This API returns the result synchronously.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 
 **Error codes**
 
@@ -137,7 +139,7 @@ Adds an **AbilityMonitor** instance. This API returns the result synchronously.
 | ------- | -------- |
 | 16000100 | AddAbilityMonitorSync failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -171,7 +173,7 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 | callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
@@ -180,7 +182,7 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -210,7 +212,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-Removes an **AbilityMonitor** instance. This API uses a promise to return the result.
+Removes an **AbilityMonitor** instance. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -218,7 +220,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 
 **Return value**
 
@@ -232,7 +234,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 - Example
 
@@ -261,7 +263,7 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
-Removes an **AbilityMonitor** instance. This API returns the result synchronously.
+Removes an **AbilityMonitor** instance. This API returns the result synchronously. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -269,7 +271,7 @@ Removes an **AbilityMonitor** instance. This API returns the result synchronousl
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 
 **Error codes**
 
@@ -277,7 +279,7 @@ Removes an **AbilityMonitor** instance. This API returns the result synchronousl
 | ------- | -------- |
 | 16000100 | RemoveAbilityMonitorSync failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -304,7 +306,7 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
-Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
+Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -312,8 +314,8 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
@@ -321,7 +323,7 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -355,7 +357,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
-Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
+Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -363,9 +365,9 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 | timeout  | number                                                       | Yes  | Maximum waiting time, in milliseconds.                                |
-| callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
@@ -373,7 +375,7 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -410,7 +412,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, da
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>
 
-Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result.
+Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -418,14 +420,14 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
+| monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
 | timeout | number                                                       | No  | Maximum waiting time, in milliseconds.                                |
 
 **Return value**
 
 | Type                                                       | Description                      |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance.|
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance.|
 
 **Error codes**
 
@@ -433,7 +435,7 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | ------- | -------- |
 | 16000100 | WaitAbilityMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -470,7 +472,7 @@ Obtains the application context.
 
 | Type                                 | Description                                       |
 | ------------------------------------- | ------------------------------------------- |
-| [Context](js-apis-inner-application-context.md) | Application [context](js-apis-inner-application-context.md).|
+| [Context](../apis-ability-kit/js-apis-inner-application-context.md) | [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 
 **Example**
 
@@ -495,7 +497,7 @@ Obtains the lifecycle state of an ability.
 
 | Name | Type                                             | Mandatory| Description           |
 | ------- | ------------------------------------------------- | ---- | --------------- |
-| ability | [UIAbility](js-apis-app-ability-uiAbility.md) | Yes  | Target ability.|
+| ability | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) | Yes  | Target ability.|
 
 **Return value**
 
@@ -534,7 +536,7 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -542,7 +544,7 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 | ------- | -------- |
 | 16000100 | GetCurrentTopAbility failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -573,7 +575,7 @@ Obtains the top ability of this application. This API uses a promise to return t
 
 | Type                                                       | Description                                  |
 | ----------------------------------------------------------- | -------------------------------------- |
-| Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | Promise used to return the top ability.|
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the top ability.|
 
 **Error codes**
 
@@ -581,7 +583,7 @@ Obtains the top ability of this application. This API uses a promise to return t
 | ------- | -------- |
 | 16000100 | GetCurrentTopAbility failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -611,7 +613,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
 | callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -634,7 +636,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -667,7 +669,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description           |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.|
 
 **Return value**
 
@@ -695,7 +697,7 @@ Starts an ability. This API uses a promise to return the result.
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -737,7 +739,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | ------- | -------- |
 | 16000100 | DoAbilityForeground failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -785,7 +787,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 | ------- | -------- |
 | 16000100 | DoAbilityForeground failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -828,7 +830,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | ------- | -------- |
 | 16000100 | DoAbilityBackground failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -876,7 +878,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 | ------- | -------- |
 | 16000100 | DoAbilityBackground failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1114,7 +1116,7 @@ Finishes the test and prints log information to the unit test console. This API 
 | ------- | -------- |
 | 16000100 | FinishTest failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1158,7 +1160,7 @@ Finishes the test and prints log information to the unit test console. This API 
 | ------- | -------- |
 | 16000100 | FinishTest failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1186,7 +1188,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
 **Error codes**
@@ -1195,7 +1197,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1226,7 +1228,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 
 **Return value**
 
@@ -1240,7 +1242,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1270,7 +1272,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 
 **Error codes**
 
@@ -1278,7 +1280,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | ------- | -------- |
 | 16000100 | AddAbilityStageMonitorSync failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1306,7 +1308,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
 **Error codes**
@@ -1315,7 +1317,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | ------- | -------- |
 | 16000100 | RemoveAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1346,7 +1348,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 
 **Return value**
 
@@ -1360,7 +1362,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | ------- | -------- |
 | 16000100 | RemoveAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1390,7 +1392,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 
 **Error codes**
 
@@ -1398,7 +1400,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | ------- | -------- |
 | 16000100 | removeAbilityStageMonitorSync failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1426,7 +1428,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.            |
 
 **Error codes**
@@ -1435,7 +1437,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1467,7 +1469,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | timeout | number | No  | Maximum waiting time, in milliseconds.|
 
 **Return value**
@@ -1482,7 +1484,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1513,7 +1515,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
+| monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | timeout | number | Yes  | Maximum waiting time, in milliseconds.|
 | callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.                    |
 
@@ -1523,7 +1525,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | ------- | -------- |
 | 16000100 | WaitAbilityStageMonitor failed. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1564,7 +1566,7 @@ Sets a list of mock data.
 | -------- | --------------- |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
