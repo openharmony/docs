@@ -29,7 +29,7 @@ PasteButton(option:PasteButtonOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。 |
+| option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
 
 ## PasteButtonOptions
 

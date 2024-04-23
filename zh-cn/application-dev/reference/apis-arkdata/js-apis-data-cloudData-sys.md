@@ -47,7 +47,7 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中accountId和bundleName不能为空。 |
+| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中accountId和bundleName不能为空。 |
 
 **样例：**
 
@@ -92,10 +92,10 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
+let account: string = 'test_id';
 let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
 try {
-  cloudData.Config.enableCloud(account, switches, (err) => {
+  cloudData.Config.enableCloud(account, switches, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeded in enabling cloud');
     } else {
@@ -136,7 +136,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
+let account: string = 'test_id';
 let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
 try {
   cloudData.Config.enableCloud(account, switches).then(() => {
@@ -172,9 +172,9 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
+let account: string = 'test_id';
 try {
-  cloudData.Config.disableCloud(account, (err) => {
+  cloudData.Config.disableCloud(account, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeded in disabling cloud');
     } else {
@@ -214,7 +214,7 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
+let account: string = 'test_id';
 try {
   cloudData.Config.disableCloud(account).then(() => {
     console.info('Succeeded in disabling cloud');
@@ -251,10 +251,10 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
-let bundleName = 'test_bundleName';
+let account: string = 'test_id';
+let bundleName: string = 'test_bundleName';
 try {
-  cloudData.Config.changeAppCloudSwitch(account, bundleName, true, (err) => {
+  cloudData.Config.changeAppCloudSwitch(account, bundleName, true, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeded in changing App cloud switch');
     } else {
@@ -296,8 +296,8 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
-let bundleName = 'test_bundleName';
+let account: string = 'test_id';
+let bundleName: string = 'test_bundleName';
 try {
   cloudData.Config.changeAppCloudSwitch(account, bundleName, true).then(() => {
     console.info('Succeeded in changing App cloud switch');
@@ -333,10 +333,10 @@ static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCa
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
-let bundleName = 'test_bundleName';
+let account: string = 'test_id';
+let bundleName: string = 'test_bundleName';
 try {
-  cloudData.Config.notifyDataChange(account, bundleName, (err) => {
+  cloudData.Config.notifyDataChange(account, bundleName, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeded in notifying the change of data');
     } else {
@@ -377,8 +377,8 @@ static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&g
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = 'test_id';
-let bundleName = 'test_bundleName';
+let account: string = 'test_id';
+let bundleName: string = 'test_bundleName';
 try {
   cloudData.Config.notifyDataChange(account, bundleName).then(() => {
     console.info('Succeeded in notifying the change of data');
@@ -413,12 +413,12 @@ try {
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let eventId = "cloud_data_change";
-let extraData = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let eventId: string = "cloud_data_change";
+let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
-  }, (err) => {
+  }, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeded in notifying the change of data');
     } else {
@@ -452,13 +452,13 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let eventId = "cloud_data_change";
-let extraData = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
-let userId = 100;
+let eventId: string = "cloud_data_change";
+let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
-  }, userId, (err) => {
+  }, userId, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeded in notifying the change of data');
     } else {
@@ -499,9 +499,9 @@ try {
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let eventId = "cloud_data_change";
-let extraData = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
-let userId = 100;
+let eventId: string = "cloud_data_change";
+let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
@@ -539,14 +539,14 @@ static clear(accountId: string, appActions: Record<string, ClearAction>,  callba
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = "test_id";
+let account: string = "test_id";
 type dataType = Record<string, cloudData.ClearAction>
 let appActions: dataType = {
   'test_bundleName1': cloudData.ClearAction.CLEAR_CLOUD_INFO,
   'test_bundleName2': cloudData.ClearAction.CLEAR_CLOUD_DATA_AND_INFO
 };
 try {
-  cloudData.Config.clear(account, appActions, (err) => {
+  cloudData.Config.clear(account, appActions, (err: BusinessError) => {
     if (err === undefined) {
       console.info('Succeeding in clearing cloud data');
     } else {
@@ -587,7 +587,7 @@ static clear(accountId: string, appActions: Record<string, ClearAction>): Promis
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let account = "test_id";
+let account: string = "test_id";
 type dataType = Record<string, cloudData.ClearAction>;
 let appActions: dataType = {
   'test_bundleName1': cloudData.ClearAction.CLEAR_CLOUD_INFO,
@@ -778,6 +778,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@ohos.base';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -796,7 +797,7 @@ participants.push({
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err, resultSet) => {
+cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, ['uuid', 'data'], (err: BusinessError, resultSet) => {
   if (err) {
     console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -833,6 +834,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 
 ```ts
 import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@ohos.base';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -851,7 +853,7 @@ participants.push({
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
 predicates.equalTo('data', 'data_test');
-cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err, resultSet) => {
+cloudData.sharing.allocResourceAndShare('storeName', predicates, participants, (err: BusinessError, resultSet) => {
   if (err) {
     console.error(`alloc resource and share failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -934,6 +936,8 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
@@ -948,7 +952,7 @@ participants.push({
   },
   attachInfo: ''
 })
-cloudData.sharing.share('sharing_resource_test', participants, ((err, result) => {
+cloudData.sharing.share('sharing_resource_test', participants, ((err: BusinessError, result) => {
   if (err) {
     console.error(`share failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1025,6 +1029,8 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
@@ -1039,7 +1045,7 @@ participants.push({
   },
   attachInfo: ''
 })
-cloudData.sharing.unshare('sharing_resource_test', participants, ((err, result) => {
+cloudData.sharing.unshare('sharing_resource_test', participants, ((err: BusinessError, result) => {
   if (err) {
     console.error(`unshare failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1100,7 +1106,9 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 **示例：**
 
 ```ts
-cloudData.sharing.exit('sharing_resource_test', ((err, result) => {
+import { BusinessError } from '@ohos.base';
+
+cloudData.sharing.exit('sharing_resource_test', ((err: BusinessError, result) => {
   if (err) {
     console.error(`exit share failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1178,6 +1186,8 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
   identity: '000000000',
@@ -1193,7 +1203,7 @@ participants.push({
   attachInfo: ''
 })
 
-cloudData.sharing.changePrivilege('sharing_resource_test', participants, ((err, result) => {
+cloudData.sharing.changePrivilege('sharing_resource_test', participants, ((err: BusinessError, result) => {
   if (err) {
     console.error(`change privilege failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1254,7 +1264,9 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 **示例：**
 
 ```ts
-cloudData.sharing.queryParticipants('sharing_resource_test', ((err, result) => {
+import { BusinessError } from '@ohos.base';
+
+cloudData.sharing.queryParticipants('sharing_resource_test', ((err: BusinessError, result) => {
   if (err) {
     console.error(`query participants failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1315,7 +1327,9 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err, result) => {
+import { BusinessError } from '@ohos.base';
+
+cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err: BusinessError, result) => {
   if (err) {
     console.error(`query participants by invitation failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1380,8 +1394,10 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let shareResource: string;
-cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err, result) => {
+cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err: BusinessError, result) => {
   if (err) {
     console.error(`confirm invitation failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -1445,7 +1461,9 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 **示例：**
 
 ```ts
-cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err, result) => {
+import { BusinessError } from '@ohos.base';
+
+cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err: BusinessError, result) => {
   if (err) {
     console.error(`change confirmation failed, code is ${err.code},message is ${err.message}`);
     return;

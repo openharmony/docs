@@ -1810,7 +1810,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
 netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -2137,12 +2137,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
-        if (error) {
-          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
-        } else {
-          console.info(JSON.stringify(data));
-        }
+      netHandle.bindSocket(tcp).then(() => {
+        console.info("bind socket success");
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
       });
     });
   } else {
@@ -2159,12 +2157,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     udp.on('message', (data: Data) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));
     });
-    netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
-      if (error) {
-        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);;
-      } else {
-        console.info(JSON.stringify(data));
-      }
+    netHandle.bindSocket(udp).then(() => {
+      console.info("bind socket success");
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
     });
   });
 }
@@ -2420,8 +2416,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，0表示无法评估当前网络带宽。  |
-| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，0表示无法评估当前网络带宽。   |
+| linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
+| linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。      |
 

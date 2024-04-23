@@ -1,7 +1,6 @@
 # @ohos.nfc.tag (Standard NFC Tags)
 
 The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
-
 - Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
 - Foreground mode: A foreground application has priority to read the NFC tag discovered.
 
@@ -55,6 +54,7 @@ To enable NFC tages to be read without starting an application, declare NFC-rela
 > - The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
 > - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+
 ## **Modules to Import**
 
 ```js
@@ -157,6 +157,8 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name | Type               | Mandatory| Description                                                         |
@@ -207,6 +209,8 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -259,6 +263,8 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name | Type               | Mandatory| Description                                                         |
@@ -310,6 +316,8 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name | Type               | Mandatory| Description                                                         |
@@ -337,6 +345,8 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 Obtains an **IsoDepTag** object, which allows access to the tags that use the IsoDep technology.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -366,6 +376,8 @@ Obtains an **NdefTag** object, which allows access to the tags in the NFC Data E
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name | Type               | Mandatory| Description                                                         |
@@ -393,6 +405,8 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 Obtains a **MifareClassicTag** object, which allows access to the tags that use MIFARE Classic.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -422,6 +436,8 @@ Obtains a **MifareUltralightTag** object, which allows access to the tags that u
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 | Name | Type               | Mandatory| Description                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
@@ -449,6 +465,8 @@ Obtains an **NdefFormatableTag** object, which allows access to the tags that ar
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Return value**
 
 | **Type**                                                 | **Description**                                                                 |
@@ -470,6 +488,8 @@ getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): 
 Obtains **TagInfo** from **Want**, which is initialized by the NFC service and contains the attributes required by **TagInfo**.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -493,6 +513,8 @@ Registers a listener for the NFC tag read event so that the tag can be preferent
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name      | Type    | Mandatory| Description                                                   |
@@ -514,6 +536,8 @@ Unregisters the listener for the NFC tag read event. If the listener is unregist
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -596,6 +620,8 @@ Subscribes to the NFC tag read event to implement dispatch of the tag to a foreg
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name      | Type    | Mandatory| Description                                                   |
@@ -626,6 +652,8 @@ Unsubscribes from the NFC tag card read event. The device exits the reader mode 
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -717,6 +745,8 @@ Creates an NDEF record based on the specified URI.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description                             |
@@ -755,6 +785,8 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 Creates an NDEF record based on the specified text data and encoding type.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -798,6 +830,8 @@ Creates an NDEF record based on the specified MIME data and type.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                                                   |
@@ -837,6 +871,8 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 Creates an NDEF record based on application-specific data.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -881,6 +917,8 @@ Converts an NDEF message to bytes.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | Name     | Type                                          | Mandatory| Description              |
@@ -916,6 +954,8 @@ Creates an NDEF message from raw byte data. The data must comply with the NDEF r
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
+**Ability API set**: Since API version 12, this API can be used in abilities.
+
 **Parameters**
 
 | **Name**| **Type**| **Mandatory**| **Description**                                                                          |
@@ -948,6 +988,8 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 Creates an NDEF message from the NDEF records list.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+
+**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 

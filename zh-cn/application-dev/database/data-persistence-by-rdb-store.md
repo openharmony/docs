@@ -186,22 +186,22 @@
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    // 以下三种方式可用
    const valueBucket1: ValuesBucket = {
-     'NAME':    value1,
-     'AGE':     value2,
-     'SALARY':  value3,
-     'CODES':   value4,
+     'NAME': value1,
+     'AGE': value2,
+     'SALARY': value3,
+     'CODES': value4,
    };
    const valueBucket2: ValuesBucket = {
-     NAME:      value1,
-     AGE:       value2,
-     SALARY:    value3,
-     CODES:     value4,
+     NAME: value1,
+     AGE: value2,
+     SALARY: value3,
+     CODES: value4,
    };
    const valueBucket3: ValuesBucket = {
-     "NAME":    value1,
-     "AGE":     value2,
-     "SALARY":  value3,
-     "CODES":   value4,
+     "NAME": value1,
+     "AGE": value2,
+     "SALARY": value3,
+     "CODES": value4,
    };
 
    if (store !== undefined) {
@@ -232,22 +232,22 @@
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    // 以下三种方式可用
    const valueBucket1: ValuesBucket = {
-     'NAME':    value1,
-     'AGE':     value2,
-     'SALARY':  value3,
-     'CODES':   value4,
+     'NAME': value1,
+     'AGE': value2,
+     'SALARY': value3,
+     'CODES': value4,
    };
    const valueBucket2: ValuesBucket = {
-     NAME:      value1,
-     AGE:       value2,
-     SALARY:    value3,
-     CODES:     value4,
+     NAME: value1,
+     AGE: value2,
+     SALARY: value3,
+     CODES: value4,
    };
    const valueBucket3: ValuesBucket = {
-     "NAME":    value1,
-     "AGE":     value2,
-     "SALARY":  value3,
-     "CODES":   value4,
+     "NAME": value1,
+     "AGE": value2,
+     "SALARY": value3,
+     "CODES": value4,
    };
    
    // 修改数据

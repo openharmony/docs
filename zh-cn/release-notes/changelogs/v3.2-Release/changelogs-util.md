@@ -97,3 +97,5 @@ pro.put(2,10);
 let obj = {1:"key"};
 let result = pro.contains(obj);
 ```
+
+<!--no_check-->

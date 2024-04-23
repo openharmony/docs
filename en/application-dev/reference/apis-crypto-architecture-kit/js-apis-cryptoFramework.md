@@ -36,6 +36,10 @@ Defines a buffer array of the Binary Large Object (BLOB) type.
 | ---- | ---------- | ---- | ---- | ------ |
 | data | Uint8Array | Yes  | Yes  | Binary data array.|
 
+> **NOTE**
+>
+> The Uint8Array typed array represents an array of 8-bit unsigned integers.
+
 ## ParamsSpec
 
 Encapsulates the parameters used for encryption or decryption. You need to construct its child class object and pass it to [init()](#init-2) for symmetric encryption or decryption. 
@@ -80,13 +84,13 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 1 to 16 bytes. A 12-byte IV is commonly used.                            |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authentication data (AAD), which is of 0 to INT_MAX bytes. A 16-byte AAD is commonly used.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>When the GCM mode is used for encryption, the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as **authTag** in [GcmParamsSpec](#gcmparamsspec) of [init()](#init-2).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>If the GCM mode is used for encryption, **authTag** in **GcmParamsSpec** of [init()](#init-2) is the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2).|
 
 > **NOTE**
 >
-> 1. Before passing **GcmParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
-> 2. The IV to use is not length bound. However, the operation result depends on whether the underlying OpenSSL supports the IV.
-> 3. If **aad** is not required or the length of **aad** is **0**, you can set **aad** to an empty Uint8Array, that is, **aad: { data: new Uint8Array() }**.
+> - Before passing **GcmParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> - The IV to use is not length bound. However, the operation result depends on whether the underlying OpenSSL supports the IV.
+> - If **aad** is not required or the length of **aad** is **0**, you can set **aad** to an empty Uint8Array, that is, **aad: { data: new Uint8Array() }**.
 
 ## CcmParamsSpec
 
@@ -100,7 +104,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                             |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>If the CCM mode is used for encryption, **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2) is the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2).|
 
 > **NOTE**
 >
@@ -130,9 +134,9 @@ Enumerates the asymmetric key parameters.
 | DSA_G_BN | 103 | Parameter **g** in the DSA algorithm.|
 | DSA_SK_BN | 104 | Private key **sk** in the DSA algorithm.|
 | DSA_PK_BN | 105 | Public key **pk** in the DSA algorithm.|
-| ECC_FP_P_BN | 201 | Prime number **p** in the **Fp** fields of the elliptic curve in the DSA algorithm.|
-| ECC_A_BN | 202 | First coefficient **a** of the elliptic curve in the DSA algorithm.|
-| ECC_B_BN | 203 | Second coefficient **b** of the elliptic curve in the DSA algorithm.|
+| ECC_FP_P_BN | 201 | Prime number **p** in the **Fp** field of the elliptic curve in the ECC algorithm.|
+| ECC_A_BN | 202 | First coefficient **a** of the elliptic curve in the ECC algorithm.|
+| ECC_B_BN | 203 | Second coefficient **b** of the elliptic curve in the ECC algorithm.|
 | ECC_G_X_BN | 204 | X coordinate of the base point **g** in the ECC algorithm.|
 | ECC_G_Y_BN | 205 | Y coordinate of the base point **g** in the ECC algorithm.|
 | ECC_N_BN | 206 | Order **n** of the base point **g** in the ECC algorithm.|
@@ -497,7 +501,7 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 ## DHKeyPairSpec<sup>11+</sup>
 
-Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify all parameters of the public and private keys in the DH algorithm.
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the DH algorithm.
 
 To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
@@ -521,13 +525,13 @@ Defines the parameters of the key derivation function. When the key derivation f
 
 ## PBKDF2Spec<sup>11+</sup>
 
-Defines the child class of [KdfSpec](#kdfspec11). It is used as an input of the PBKDF2 key derivation function.
+Defines the child class of [KdfSpec](#kdfspec11). It is used as a parameter for PBKDF2 key derivation.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user. |
+| password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user.|
 | salt | Uint8Array | Yes  | Yes  | Salt value.|
 | iterations | number | Yes  | Yes  | Number of iterations. The value must be a positive integer.|
 | keySize | number | Yes  | Yes  | Length of the derived key, in bytes.|
@@ -634,13 +638,13 @@ Obtains a key parameter. This API returns the result synchronously.
 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | Content of the key parameter obtained.|
+| bigint \| string \| number | Content of the key parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -692,13 +696,13 @@ Obtains a key parameter. This API returns the result synchronously.
 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | Content of the key parameter obtained.|
+| bigint \| string \| number | Content of the key parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -752,7 +756,7 @@ For details about the supported specifications, see [Symmetric Key Generation an
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String Parameter" in [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see **String Parameter** in [Symmetric Key Generation and Conversion Specifications] (../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
 
 **Return value**
 
@@ -776,7 +780,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 Provides APIs for using the **symKeyGenerator**.
 
-Before using any API of the **SymKeyGenerator** class, you must create a **symKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+Before using any API of the **SymKeyGenerator** class, you must create a **SymKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 ### Attributes
 
@@ -798,7 +802,7 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 > **NOTE**
 >
-> For the symmetric key used in the hash-based message authentication code (HMAC) algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key with the same length as the hash value will be randomly generated. For example, if **HMAC|SHA256** is specified, a 256-bit key will be randomly generated. <br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), symmetric key data cannot be randomly generated. In this case, you can use [convertKey](#convertkey) to generate symmetric key data.
+> For the symmetric key used with the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key with the same length as the hash value will be randomly generated. For example, if **HMAC|SHA256** is specified, a 256-bit key will be randomly generated.<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), symmetric key data cannot be randomly generated. In this case, you can use [convertKey](#convertkey) to generate symmetric key data.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -861,7 +865,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.generateSymKey()
     .then(symKey => {
       console.info('Generate symKey success, algName: ' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
     });
 ```
@@ -876,7 +880,7 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 > **NOTE**
 >
-> For the symmetric key used in the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data to be passed in must be of the same length as the hash. For example, if **HMAC|SHA256** is specified, a 256-bit key must be passed in. <br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), the length of the binary key data is in the range of [1,4096], in bytes.
+> For the symmetric key used with the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data to be passed in must be of the same length as the hash. For example, if **HMAC|SHA256** is specified, a 256-bit key must be passed in.<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), the length of the binary key data is in the range of [1,4096], in bytes.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -969,7 +973,7 @@ function testConvertKey() {
   symKeyGenerator.convertKey(keyMaterialBlob)
     .then(symKey => {
       console.info('Convert symKey success, algName: ' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
 }
@@ -1525,7 +1529,7 @@ Generates common parameters for an asymmetric key pair based on the specified na
 
 | Name | Type  | Mandatory| Description                                          |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| algName | string | Yes  | NID of the elliptic curve.|
+| curveName | string | Yes  | NID of the elliptic curve.|
 
 **Return value**
 
@@ -1749,9 +1753,9 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 > **NOTE**
 >
-> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. You can use **update** multiple times or do not use it (use **doFinal** after **init**), depending on the size of the data.<br>
->    The data to be passed in by **update** (once or accumulatively) is not size bound. For symmetric encryption and decryption of a large amount of data, you are advised to call **update** multiple times to pass in the data by segment.<br>
+> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.  <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. You can use **update** multiple times or do not use it (use **doFinal** after **init**), depending on the data volume.<br>
+>    The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.<br>
 >    For details about the sample code for calling **update** multiple times, see [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
 > 3. RSA or SM2 asymmetric encryption and decryption do not support **update**.
 
@@ -1784,11 +1788,12 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 > **NOTE**
 >
-> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.<br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. You can use **update** multiple times or do not use it (use **doFinal** after **init**), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. For symmetric encryption and decryption of a large amount of data, you are advised to call **update** multiple times to pass in the data by segment.<br>
+> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.  
+> <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update()** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update()** is output.<br>That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update()**/**doFinal()**.<br>When **doFinal()** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. You can call **update** multiple times or do not use it (use **doFinal** after **init**), depending on the data volume.<br>
+>    The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment.<br>
 >    For details about the sample code for calling **update** multiple times, see [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
->    3. RSA or SM2 asymmetric encryption and decryption do not support **update**.
+> 3. RSA or SM2 asymmetric encryption and decryption do not support **update**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1820,7 +1825,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
  (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data.<br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**.<br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
-- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**. **authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
  (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
@@ -1829,7 +1834,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >
 >  1. In symmetric encryption and decryption, after **doFinal** is called, the encryption and decryption process is complete and the [Cipher](#cipher) instance is cleared. When a new encryption and decryption process is started, **init()** must be called with a complete parameter list for initialization.<br>Even if the same symmetric key is used to encrypt and decrypt the same **Cipher** instance, the **params** parameter must be set when **init** is called during decryption.
 >  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
->  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  3. The result of **doFinal** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal** result.
 >  4. For details about the sample code for calling **doFinal** multiple times in asymmetric encryption and decryption, see [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md). The operations are similar for SM2 and RSA.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -1853,7 +1858,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Encryption with AES GCM (example)**
 
-For more encryption and decryption examples, see Encryption and Decryption with an AES Symmetric Key (GCM Mode)(../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
+For more encryption and decryption examples, see [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1914,7 +1919,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >
 >  1. In symmetric encryption and decryption, after **doFinal** is called, the encryption and decryption process is complete and the [Cipher](#cipher) instance is cleared. When a new encryption and decryption process is started, **init()** must be called with a complete parameter list for initialization.<br>Even if the same symmetric key is used to encrypt and decrypt the same **Cipher** instance, the **params** parameter must be set when **init** is called during decryption.
 >  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
->  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  3. The result of **doFinal** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal** result.
 >  4. For details about the sample code for calling **doFinal** multiple times in asymmetric encryption and decryption, see [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md). The operations are similar for SM2 and RSA.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -1943,7 +1948,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Encryption with AES GCM (example)**
 
-For more encryption and decryption examples, see Encryption and Decryption with an AES Symmetric Key (GCM Mode)(../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
+For more encryption and decryption examples, see [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2035,7 +2040,7 @@ Obtains cipher specifications. Currently, only RSA and SM2 (available since API 
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string\|Uint8Array | Returns the value of the cipher parameter obtained.|
+| string \| Uint8Array | Returns the value of the cipher parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2188,8 +2193,8 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 > **NOTE**
 >
-> You can call **update** multiple times or do not use **update** (call [sign](#sign-1) after [init](#init-2)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If a large amount of data needs to be signed, you are advised to use **update** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
+> You can call **update** multiple times or do not use **update** (call [sign](#sign-1) after [init](#init-2)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
 > For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2221,8 +2226,8 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 > **NOTE**
 >
-> You can call **update** multiple times or do not use **update** (call [sign](#sign-2) after [init](#init-3)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If a large amount of data needs to be signed, you are advised to use **update** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
+> You can call **update** multiple times or do not use **update** (call [sign](#sign-2) after [init](#init-3)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
 > For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2368,11 +2373,11 @@ async function signByPromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 Sets signing specifications. You can use this API to set signing parameters that cannot be set by [createSign](#cryptoframeworkcreatesign).
 
-Currently, only RSA and SM2 are supported. Since API version 11, signature parameters can be set for the SM2 algorithm.
+Currently, only RSA and SM2 are supported. Since API version 11, SM2 signing parameters can be set.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2381,7 +2386,7 @@ Currently, only RSA and SM2 are supported. Since API version 11, signature param
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signing parameter to set.|
-| itemValue | number\|Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set.|
+| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2419,7 +2424,7 @@ Obtains signing specifications. Currently, only RSA is supported.
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string\|number | Returns the value of the signing parameter obtained.|
+| string \| number | Returns the value of the signing parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2483,7 +2488,7 @@ Provides APIs for signature verification. Before using any API of the **Verify**
 
 The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** instance and call **init()** for initialization.
 
-The signature verification mode is determined in **createVerify()**, and key is set by **init()**.
+The signature verification mode is determined in **createVerify()**, and the key is set by **init()**.
 
 If the signed message is short, you can call **verify()** to pass in the signed message and signature (**signatureData**) for signature verification after **init()**. That is, you do not need to use **update()**.
 
@@ -2562,8 +2567,8 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 > **NOTE**
 >
-> You can call **update** multiple times or do not use **update** (call [verify](#verify-1) after [init](#init-4)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If the data is considerably long, you are advised to use **update()** multiple times to pass in data by segment. This prevents too much memory from being requested at a time.<br>
+> You can call **update** multiple times or do not use **update** (call [verify](#verify-1) after [init](#init-4)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
 > For details about the sample code for calling **update** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2595,8 +2600,8 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 > **NOTE**
 >
-> You can call **update()** multiple times or do not use **update** (call [verify](#verify-2) after [init](#init-5)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If the data is considerably long, you are advised to use **update()** multiple times to pass in data by segment. This prevents too much memory from being requested at a time.<br>
+> You can call **update** multiple times or do not use **update** (call [verify](#verify-2) after [init](#init-5)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
 > For details about the sample code for calling **update** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2750,11 +2755,11 @@ async function verifyByPromise() {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 Sets signature verification specifications. You can use this API to set signature verification parameters that cannot be set by [createVerify](#cryptoframeworkcreateverify).
 
-Currently, only RSA and SM2 (available since API version 11) are supported.
+Currently, only RSA and SM2 are supported. Since API version 11, SM2 signing parameters can be set.
 
 The parameters for signature verification must be the same as those for signing.
 
@@ -2765,7 +2770,7 @@ The parameters for signature verification must be the same as those for signing.
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signature verification parameter to set.|
-| itemValue | number\|Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set.|
+| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2805,7 +2810,7 @@ The parameters for signature verification must be the same as those for signing.
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string\|number | Returns the value of the parameter obtained.|
+| string \| number | Returns the value of the parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -3300,7 +3305,7 @@ Updates the message for MAC computation. This API uses an asynchronous callback 
 
 > **NOTE**
 >
-> For details about the code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
+> For details about the sample code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3327,7 +3332,7 @@ Updates the message for MAC computation. This API uses a promise to return the r
 
 > **NOTE**
 >
-> For details about the code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
+> For details about the sample code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3760,7 +3765,7 @@ Defines the key derivation function class. Before using APIs of this class, you 
 
 ### generateSecret
 
-generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
+generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 Generates a key based on the specified key derivation parameters. This API uses an asynchronous callback to return the result.
 
@@ -3804,7 +3809,7 @@ kdf.generateSecret(spec, (err, secret) => {
 
 ### generateSecret
 
-generateSecret(params: KdfSpec): Promise\<DataBlob>
+generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 Generates a key based on the specified key derivation parameters. This API uses a promise to return the result.
 

@@ -186,4 +186,6 @@ file_api部件fileio接口返回值不包含错误码error.code，现进行错�
 
 **适配指导**
 
-@ohos.file.fs新增统一的API异常处理方式，具体示例代码请参考[接口文档](../../../application-dev/reference/apis/js-apis-file-fs.md)。
+@ohos.file.fs新增统一的API异常处理方式，具体示例代码请参考[接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md)。
+
+<!--no_check-->

@@ -8,7 +8,7 @@ ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组
 
 ## onChildTouchTest
 
-onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
+onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 当前组件可通过设置回调来自定义子节点如何去做触摸测试。
 
@@ -22,9 +22,9 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult)
 
 **返回值：** 
 
-| 类型                                | 说明                       |
-| ----------------------------------- | -------------------------- |
-| [TouchTestInfo](#touchtestinfo说明) | 子节点进行触摸测试的方式。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 >**说明：**
 >子节点信息数组中只包含命名节点的信息，即开发者通过id属性设置了id的节点。

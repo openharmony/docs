@@ -1,6 +1,6 @@
 # Generating an Asymmetric Key Pair Based on Key Parameters
 
-This topic uses RSA and ECC as an example to describe how to generate an asymmetric key pair (**KeyPair**) based on the specified key parameters and obtain the key parameter properties.
+This topic walks you through on how to generate an RSA, an ECC, and an SM2 asymmetric key pair (**KeyPair**) based on the specified key parameters and obtain the key parameter properties.
 
 The **KeyPair** object created can be used for subsequent operations, such as encryption and decryption. The obtained key parameter properties can be used for key storage and transfer.
 
@@ -9,23 +9,23 @@ The **KeyPair** object created can be used for subsequent operations, such as en
 
 For details about the algorithm specifications, see [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
 
-1. Create an [RSACommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#rsacommonparamsspec10) object to specify the common parameter (**n**) of both the public and private keys of the RSA algorithm.
+1. Create an [RSACommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#rsacommonparamsspec10) object to specify the common parameter (**n**) of both the public and private keys of the RSA algorithm.
    
    **RSACommonParamsSpec** is a child class of **AsyKeySpec**. Specify the RSA algorithm in the **algName** parameter, and set the key parameter type to **AsyKeySpecType.COMMON_PARAMS_SPEC**, which indicates the common parameter for both the public and private keys.
 
    When key parameters are specified for generating a key, the bigint value must be a positive number in big-endian format.
 
-2. Create an [RSAPubKeySpec](../../reference/apis/js-apis-cryptoFramework.md#rsapubkeyspec10) object to specify the parameters (**n**, **pk**) contained in the public key of the RSA algorithm.
+2. Create an [RSAPubKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#rsapubkeyspec10) object to specify the parameters (**n**, **pk**) contained in the public key of the RSA algorithm.
    
    **RSAPubKeySpec** is a child class of **AsyKeySpec**. Specify the RSA algorithm in the **algName** parameter, and set the key parameter type to **AsyKeySpecType.PUBLIC_KEY_SPEC**, which indicates the parameters of the public key.
 
-3. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **RSAPubKeySpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
+3. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **RSAPubKeySpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
 
-4. Use [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis/js-apis-cryptoFramework.md#generatepubkey-1) to generate the public key (**PubKey**).
+4. Use [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1) to generate the public key (**PubKey**).
 
-5. Use [PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the modulus **n** and the public key exponent **pk** (expressed as **e** in the formula).
+5. Use [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the modulus **n** and the public key exponent **pk** (expressed as e in the formula).
 
-Example: Generate an RSA public key based on key parameters in callback mode.
+Example: Generate an RSA public key based on key parameters (using callback-based APIs).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -73,16 +73,16 @@ function rsaUsePubKeySpecGetCallback() {
   let rsaPubKeySpec = genRsa2048PubKeySpec();
   let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
   rsaGeneratorSpec.generatePubKey((error, key) => {
+    if (error) {
+      console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
+    }
     let pubKey = key;
     let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
     let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
     if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
-      AlertDialog.show({ message: 'error pub key big number' });
+      console.error('error pub key big number.');
     } else {
       console.info('n, e in the pubKey are same as the spec.');
-    }
-    if (error) {
-      console.error('generate pubKey error' + 'error code: ' + error.code + 'error message' + error.message);
     }
   });
 }
@@ -93,18 +93,18 @@ function rsaUsePubKeySpecGetCallback() {
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
 
-1. Create an [ECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#ecccommonparamsspec10) object to specify the common parameter of both the public and private keys of the ECC algorithm.
+1. Create an [ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10) object to specify the common parameters of both the public and private keys of the ECC algorithm.
    **ECCCommonParamsSpec** is a child class of **AsyKeySpec**. Specify the ECC algorithm in the **algName** parameter, and set the key parameter type to **AsyKeySpecType.COMMON_PARAMS_SPEC**, which indicates the common parameter for both the public and private keys.
 
    When key parameters are specified for generating a key, the bigint value must be a positive number in big-endian format.
 
-2. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCCommonParamsSpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
+2. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCCommonParamsSpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
 
-3. Use [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3) to generate a key pair.
+3. Use [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate a key pair (**KeyPair**).
 
-4. Use [PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain the private key specifications, and use [PubKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the public key specifications of the ECC.
+4. Use [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain the private key specifications, and use [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the public key specifications of the ECC.
 
-Example: Generate an ECC key pair based on key parameters in promise mode.
+Example: Generate an ECC key pair based on key parameters (using promise-based APIs).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -214,17 +214,17 @@ function testEccUseCommKeySpecGet() {
 
 For details about the algorithm specifications, see [SM2](crypto-asym-key-generation-conversion-spec.md#sm2).
 
-1. Create an [ECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#ecccommonparamsspec10) object to specify common parameters of the private and public keys. Use [genECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#genecccommonparamsspec11) with an NID string to generate the common parameter for the SM2 key pair. 
+1. Create an [ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10) object to specify common parameters of the private and public keys. Use [genECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genecccommonparamsspec11) with an NID string to generate the common parameters for the SM2 key pair.
 
     When key parameters are specified for generating a key, the bigint value must be a positive number in big-endian format.
 
-2. Create an [ECCKeyPairSpec](../../reference/apis/js-apis-cryptoFramework.md#ecckeypairspec10) object with **algName** set to **SM2** to specify the SM2 key pair parameters.
+2. Create an [ECCKeyPairSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecckeypairspec10) object with **algName** set to **SM2** to specify the SM2 key pair parameters.
 
-3. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCKeyPairSpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
+3. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCKeyPairSpec** object to create an asymmetric key generator object.
 
-4. Use [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3) to generate an SM2 key pair.
+4. Use [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an SM2 key pair (**KeyPair**).
 
-5. Use [PriKey.getAsyKeySpec](../../reference/apis/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain elliptic curve parameters of SM2.
+5. Use [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain elliptic curve parameters of SM2.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';

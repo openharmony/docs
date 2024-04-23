@@ -364,7 +364,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -462,7 +462,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -556,7 +556,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 

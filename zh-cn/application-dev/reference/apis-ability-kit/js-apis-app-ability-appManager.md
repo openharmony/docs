@@ -16,7 +16,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -53,7 +53,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
-查询当前是否处于稳定性测试场景。
+查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -89,7 +89,7 @@ appManager.isRunningInStabilityTest().then((flag) => {
 
 isRamConstrainedDevice(): Promise\<boolean>
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -124,7 +124,7 @@ appManager.isRamConstrainedDevice().then((data) => {
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
-查询是否为ram受限设备。
+查询是否为ram受限设备。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -160,7 +160,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>
 
-获取当前应用程序可以使用的内存的值。
+获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -182,7 +182,7 @@ getAppMemorySize(): Promise\<number>
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
-import { BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base';
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
@@ -195,7 +195,7 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取当前应用程序可以使用的内存的值。
+获取当前应用程序可以使用的内存的值。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -233,11 +233,9 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取当前运行进程的有关信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 > **说明：**
 >
-> 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
+> API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

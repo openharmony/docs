@@ -64,6 +64,4 @@ let notificationObj: notification = {
     });
   }
 }
-
-export default notificationObj
 ```

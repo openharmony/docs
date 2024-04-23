@@ -33,4 +33,4 @@
     - [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md)
     - [OhosPixelMapInfos](_ohos_pixel_map_infos.md)
 - Error Codes
-  - [Image Error Code](errorcode-image.md)
+  - [Image Error Codes](errorcode-image.md)

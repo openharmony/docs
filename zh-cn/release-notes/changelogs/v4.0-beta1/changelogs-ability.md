@@ -35,3 +35,5 @@ appRecovery接口中RestartFlag枚举命名从特定故障发生后**不重启**
 **适配指导**
 
 按新的语义进行适配。
+
+<!--no_check-->

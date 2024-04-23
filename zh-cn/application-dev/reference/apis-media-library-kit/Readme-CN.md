@@ -6,5 +6,3 @@
   - 已停止维护的接口
     - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
     - [@ohos.multimedia.medialibrary (媒体库管理)(系统接口)](js-apis-medialibrary-sys.md)
-- 错误码
-  - [文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)

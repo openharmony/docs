@@ -44,27 +44,7 @@
 
 3. 如果开发者定义了aboutToAppear，则执行aboutToAppear方法。
 
-4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在执行build()函数的过程中，框架会观察每个状态变量的读取状态，将保存两个map：
-   1. 状态变量 -&gt; UI组件（包括ForEach和if）。
-   2. UI组件 -&gt; 此组件的更新函数，即一个lambda方法，作为build()函数的子集，创建对应的UI组件并执行其属性方法，示例如下。
-
-
-   ```ts
-   build() {
-     ...
-     this.observeComponentCreation(() => {
-       Button.create();
-     })
-
-     this.observeComponentCreation(() => {
-       Text.create();
-     })
-     ...
-   }
-   ```
-
-
-当应用在后台启动时，此时应用进程并没有销毁，所以仅需要执行onPageShow。
+4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在首次渲染的过程中，框架会记录状态变量和组件的映射关系，当状态变量改变时，驱动其相关的组件刷新。
 
 
 ## 自定义组件重新渲染

@@ -48,11 +48,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
-function serverSocket(code: BusinessError, number: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + number);
+let serverSocket = (code: BusinessError, number: number) => {
+  if (code) {
+    console.error('sppListen error, code is ' + code);
+    return;
+  } else {
     serverNumber = number;
+    console.info('sppListen success, serverNumber = ' + serverNumber);
   }
 }
 
@@ -95,25 +97,20 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, number: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + number);
-    serverNumber = number;
-  }
-}
 let clientNumber = -1;
-function acceptClientSocket(code: BusinessError, number: number) {
+let serverNumber = -1;
+let acceptClientSocket = (code: BusinessError, number: number) => {
   console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth clientSocket Number: ' + number);
-    // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the server.
-    clientNumber = number;
+  if (code) {
+    console.error('sppListen error, code is ' + code);
+    return;
+  } else {
+    clientNumber = number; // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
+    console.info('sppListen success, serverNumber = ' + clientNumber);
   }
 }
 try {
-    socket.sppAccept(serverNumber, acceptClientSocket);
+    socket.sppAccept(serverNumber, acceptClientSocket); // serverNumber is the server number returned by the sppListen callback.
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -135,7 +132,7 @@ Initiates an SPP connection to a remote device from the client.
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.  |
+| option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.                 |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.       |
 
 **Error codes**
@@ -155,13 +152,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 import { BusinessError } from '@ohos.base';
 
 let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+let clientSocket = (code: BusinessError, number: number) => {
+  if (code) {
+    console.error('sppListen error, code is ' + code);
     return;
+  } else {
+    console.log('bluetooth serverSocket Number: ' + number);
+    // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
+    clientNumber = number;
   }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-  clientNumber = number;
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
@@ -199,14 +198,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, number: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + number);
-    serverNumber = number;
-  }
-}
+let serverNumber = -1; // Set serverNumber to the value of serverNumber returned by the sppListen callback.
 try {
     socket.sppCloseServerSocket(serverNumber);
 } catch (err) {
@@ -242,15 +234,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-  clientNumber = number;
-}
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 try {
     socket.sppCloseClientSocket(clientNumber);
 } catch (err) {
@@ -287,15 +271,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-  clientNumber = number;
-}
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
@@ -319,7 +295,7 @@ Subscribes to SPP read request events.
 
 | Name         | Type                         | Mandatory  | Description                        |
 | ------------ | --------------------------- | ---- | -------------------------- |
-| type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event. |
+| type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.|
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.             |
 | callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback invoked to return the data read.         |
 
@@ -336,16 +312,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-  clientNumber = number;
-}
-function dataRead(dataBuffer: ArrayBuffer) {
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
+let dataRead = (dataBuffer: ArrayBuffer) => {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
@@ -369,23 +337,15 @@ Unsubscribes from SPP read request events.
 
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.    |
+| type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.                       |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
 
 **Example**
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-  clientNumber = number;
-}
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 try {
     socket.off('sppRead', clientNumber);
 } catch (err) {

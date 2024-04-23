@@ -1,4 +1,4 @@
-# Checking Key Existence (ArkTS)
+# Checking a Key (ArkTS)
 
 
 Check whether a key exists.
@@ -10,7 +10,7 @@ Check whether a key exists.
 
 2. Initialize the key property set to specify the properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.
 
-3. Use [isKeyItemExist](../../reference/apis/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists.
+3. Use [isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists.
 
 ```ts
 import huks from '@ohos.security.huks';

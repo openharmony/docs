@@ -21,14 +21,6 @@
 6. 组件复用仅发生在存在可复用组件从组件树上移除并再次加入到组件树的场景中，若不存在上述场景，将无法触发组件复用。例如，使用ForEach渲染控制语法创建可复用的自定义组件，由于ForEach渲染控制语法的全展开属性，不能触发组件复用。
 7. 组件复用当前不支持嵌套使用。即在可复用的组件的子树中存在可复用的组件，可能导致未定义的结果。
 
-## 开发建议
-
-1. 建议复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高。
-2. 建议列表滑动场景下组件复用能力和LazyForEach渲染控制语法搭配使用以达到性能最优效果。
-3. 开发者需要区分好自定义组件的创建和更新过程中的行为，并注意到自定义组件的复用本质上是一种特殊的组件更新行为，组件创建过程中的流程与生命周期将不会在组件复用中发生，自定义组件的构造参数将通过aboutToReuse生命周期回调传递给自定义组件。例如，aboutToAppear生命周期和自定义组件的初始化传参将不会在组件复用中发生。
-4. 避免在aboutToReuse生命周期回调中产生耗时操作，最佳实践是仅在aboutToReuse中做自定义组件更新所需的状态变量值的更新。
-5. 无需在aboutToReuse中对@Link、@StorageLink、@ObjectLink、@Consume等自动更新值的状态变量进行更新，可能触发不必要的组件刷新。
-
 ## 生命周期
 
 可复用组件从C++侧的组件树上移除时，自定义组件在ArkUI框架native侧的CustomNode会被挂载到其对应的JSView上。复用发生之后，CustomNode被JSView引用，并触发ViewPU上的aboutToRecycle方法，ViewPU的实例将会被RecycleManager引用。
@@ -253,11 +245,165 @@ struct GoodItems {
 
 通过DevEco Studio的profiler工具分析复用前后的组件创建时间，可以得到应用使能组件复用后的优化情况，组件创建的时间平均从1800us降低到了570us。
 
-![before recycle](./figures/before-recycle.png)
+![before reuse](./figures/before-recycle.png)
 
-![using recycle](./figures/using-recycle.png)
+![using reuse](./figures/using-recycle.png)
 
 |                | 创建组件时间 |
 | -------------- | ------------ |
 | 不使能组件复用 | 1813us       |
 | 使能组件复用   | 570us        |
+
+## 开发建议
+
+1.建议复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高。
+
+2.建议列表滑动场景下组件复用能力和LazyForEach渲染控制语法搭配使用以达到性能最优效果。
+
+3.开发者需要区分好自定义组件的创建和更新过程中的行为，并注意到自定义组件的复用本质上是一种特殊的组件更新行为，组件创建过程中的流程与生命周期将不会在组件复用中发生，自定义组件的构造参数将通过aboutToReuse生命周期回调传递给自定义组件。例如，aboutToAppear生命周期和自定义组件的初始化传参将不会在组件复用中发生。
+
+4.避免在aboutToReuse生命周期回调中产生耗时操作，最佳实践是仅在aboutToReuse中做自定义组件更新所需的状态变量值的更新。
+
+5.避免在aboutToReuse中对@Link、@StorageLink、@ObjectLink、@Consume等自动更新值的状态变量进行更新，可能触发不必要的组件刷新。
+
+6.避免使用函数作为复用的自定义组件创建时的入参：
+
+由于在组件复用的场景下，每次复用都需要重新创建组件关联的数据对象，导致重复执行入参中的函数来获取入参结果。如果函数中存在耗时操作，会严重影响性能。正反例如下所示：
+
+【反例】
+
+```ts
+// 下文中BasicDateSource是实现IDataSource接口的类，具体可参考LazyForEach用法指导
+// 此处为复用的自定义组件
+@Reusable
+@Component
+struct ChildComponent {
+  @State desc: string = '';
+  @State sum: number = 0;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+  }
+
+  build() {
+    Column() {
+      Text('子组件' + this.desc)
+        .fontSize(30)
+        .fontWeight(30)
+      Text('结果' + this.sum)
+        .fontSize(30)
+        .fontWeight(30)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Reuse {
+  private data: BasicDateSource = new BasicDateSource();
+
+  aboutToAppear(): void {
+    for (let index = 0; index < 20; index++) {
+      this.data.pushData(index.toString())
+    }
+  }
+    
+  // 真实场景的函数中可能存在未知的耗时操作逻辑，此处用循环函数模拟耗时操作
+  count(): number {
+    let temp: number = 0;
+    for (let index = 0; index < 10000; index++) {
+      temp += index;
+    }
+    return temp;
+  }
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            // 此处sum参数是函数获取的，实际开发场景无法预料该函数可能出现的耗时操作，每次进行组件复用都会重复触发此函数的调用
+            ChildComponent({ desc: item, sum: this.count() })
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => item)
+      }
+    }
+  }
+}
+```
+
+上述反例操作中，复用的子组件参数sum是通过耗时函数生成。该函数在每次组件复用时都需要执行，会造成性能问题，甚至是列表滑动过程中的卡顿丢帧现象。
+
+【正例】
+
+```ts
+// 下文中BasicDateSource是实现IDataSource接口的类，具体可参考LazyForEach用法指导
+// 此处为复用的自定义组件
+@Reusable
+@Component
+struct ChildComponent {
+  @State desc: string = '';
+  @State sum: number = 0;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+  }
+
+  build() {
+    Column() {
+      Text('子组件' + this.desc)
+        .fontSize(30)
+        .fontWeight(30)
+      Text('结果' + this.sum)
+        .fontSize(30)
+        .fontWeight(30)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Reuse {
+  private data: BasicDateSource = new BasicDateSource();
+  @State sum: number = 0;
+
+  aboutToAppear(): void {
+    for (let index = 0; index < 20; index++) {
+      this.data.pushData(index.toString())
+    }
+    // 执行该异步函数
+    this.count();
+  }
+
+  // 模拟耗时操作逻辑
+  async count() {
+    let temp: number = 0;
+    for (let index = 0; index < 10000; index++) {
+      temp += index;
+    }
+    // 将结果放入状态变量中
+    this.sum = temp;
+  }
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            // 子组件的传参通过状态变量进行
+            ChildComponent({ desc: item, sum: this.sum })
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => item)
+      }
+    }
+  }
+}
+```
+
+上述正例操作中，通过耗时函数count生成的结果不变，可以将其放到页面初始渲染时执行一次，将结果赋值给this.sum。在复用组件的参数传递时，通过this.sum来进行。

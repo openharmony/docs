@@ -54,7 +54,7 @@ ErrorCallback\<T extends Error = BusinessError> {
 
 AsyncCallback\<T, E = void> {
 
-(err: BusinessError, data: T): void;
+(err: BusinessError\<E>, data: T): void;
 
 }
 

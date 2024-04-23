@@ -283,7 +283,7 @@ function runJSRetStr(data) {
 
 index.ets
 
-```
+```ts
 import testNapi from 'libentry.so'
 import web_webview from '@ohos.web.webview';
 
@@ -331,11 +331,13 @@ struct Index {
       }.height('20%')
 
       Row() {
-        Web({ src: $rawfile('runJS.html'), controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .javaScriptAccess(true)
           .fileAccess(true)
           .onControllerAttached(() => {
             console.error("ndk onControllerAttached webId: " + this.controller.getWebId());
+            // 设置回调函数
+            testNapi.nativeSetDestroy(this.webTag);
           })
       }.height('80%')
     }
@@ -345,7 +347,7 @@ struct Index {
 
 hello.cpp
 
-```
+```cpp
 
 #include "napi/native_api.h"
 #include <chrono>
@@ -445,6 +447,31 @@ static napi_value NativeWebInit(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 
+static napi_value NativeSetDestroy(napi_env env, napi_callback_info info) {
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy start");
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取第一个参数 webTag
+    size_t webTagSize = 0;
+    napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
+    char *webTagValue = new (std::nothrow) char[webTagSize + 1];
+    size_t webTagLength = 0;
+    napi_get_value_string_utf8(env, args[0], webTagValue, webTagSize + 1, &webTagLength);
+    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy webTag:%{public}s", webTagValue);
+
+    // 注册destroy回调函数
+    OH_NativeArkWeb_SetDestroyCallback(webTagValue, DestroyCallback);
+    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy DestroyCallback:%{public}p",
+                 DestroyCallback);
+    auto retDestroyCallback1 = OH_NativeArkWeb_GetDestroyCallback(webTagValue);
+    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy DestroyCallback get:%{public}p",
+                 retDestroyCallback1);
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy end");
+    return nullptr;
+}
+
 // 发送JS脚本到H5侧执行
 static napi_value RunJavaScript(napi_env env, napi_callback_info info) {
     size_t argc = 2;
@@ -482,6 +509,7 @@ static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"nativeWebInit", nullptr, NativeWebInit, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"runJavaScript", nullptr, RunJavaScript, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"nativeSetDestroy", nullptr, NativeSetDestroy, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -502,7 +530,8 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_mo
 ```
 
 index.d.ts
-```
+```ts
 export const nativeWebInit: (webName: string) => void;
 export const runJavaScript: (webName: string, jsCode: string) => void;
+export const nativeSetDestroy: (webTag: string) => void;
 ```

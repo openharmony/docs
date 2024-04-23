@@ -21,13 +21,13 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
    Either the public key or private key can be passed in. In this example, the public key is passed in.
 
-2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'RSA1024'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 1024-bit RSA key with two primes.
+2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'RSA1024'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 1024-bit RSA key with two primes.
 
    The default number of primes for creating an RSA asymmetric key is **2**. The **PRIMES_2** parameter is omitted in the string parameter here.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
-Example: Convert binary data into an RSA key pair in callback mode.
+Example: Convert binary data into an RSA key pair (using callback-based APIs).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -55,11 +55,11 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
    Either the public key or private key can be passed in. As shown in the following example, the public key and private key are passed in separately.
 
-2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
+2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
-Example: Convert binary data into an ECC key pair in callback mode.
+Example: Convert binary data into an ECC key pair (using callback-based APIs).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -89,11 +89,11 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
    Either the public key or private key can be passed in. As shown in the following example, the public key and private key are passed in separately.
 
-2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'SM2_256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit SM2 key pair.
+2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'SM2_256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit SM2 key pair.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
-Example: Convert binary data into an SM2 key pair in callback mode.
+Example: Convert binary data into an SM2 key pair (using callback-based APIs).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';

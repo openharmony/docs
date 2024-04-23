@@ -279,7 +279,7 @@ getMEID\(callback: AsyncCallback\<string\>\): void
 
 | 参数名   | 类型                    | 必填 | 说明       |
 | -------- | ----------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的指定卡槽的MEID。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的指定卡槽的MEID。如果MEID不存在，则返回空字符串。|
 
 **错误码：**
 
@@ -327,7 +327,7 @@ getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的指定卡槽的MEID。      |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的指定卡槽的MEID。如果MEID不存在，则返回空字符串。|
 
 **错误码：**
 
@@ -381,7 +381,7 @@ getMEID\(slotId?: number\): Promise\<string\>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。 |
+| Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。如果MEID不存在，则返回空字符串。|
 
 **错误码：**
 
@@ -415,6 +415,8 @@ radio.getMEID(slotId).then((data: string) => {
 getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
 获取设备主卡的唯一设备ID。使用callback异步回调。
+
+如果设备注册的是3GPP网络，则接口返回IMEI；如果注册的是3GPP2网络，则接口返回MEID。
 
 **系统接口：** 此接口为系统接口。
 
@@ -462,6 +464,8 @@ radio.getUniqueDeviceId((err: BusinessError, data: string) => {
 getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
+
+如果设备注册的是3GPP网络，则接口返回IMEI；如果注册的是3GPP2网络，则接口返回MEID。
 
 **系统接口：** 此接口为系统接口。
 
@@ -511,6 +515,8 @@ radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
 getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
 获取设备的指定卡槽的唯一设备ID。使用Promise异步回调。
+
+如果设备注册的是3GPP网络，则接口返回IMEI；如果注册的是3GPP2网络，则接口返回MEID。
 
 **系统接口：** 此接口为系统接口。
 

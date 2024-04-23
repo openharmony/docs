@@ -38,7 +38,7 @@
 ```
 import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 ```
-此外还需要适配异常处理，具体参考[backgroundTaskManager接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)。
+此外还需要适配异常处理，具体参考[backgroundTaskManager接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)。
 
 ## c2.resourceschedule.workScheduler 
 对资源调度子系统workScheduler仓原有接口进行整改，原有@ohos.workScheduler.d.ts中的API9接口删除，需要使用@ohos.resourceschedule.workScheduler.d.ts中的API9新接口。新的API9接口符合错误码规范。
@@ -108,4 +108,6 @@ import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 ```
 import bundle form '@ohos.resourceschedule.workScheduler'
 ```
-此外还需要适配异常处理，具体参考[workScheduler接口文档](../../../application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md)。
+此外还需要适配异常处理，具体参考[workScheduler接口文档](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md)。
+
+<!--no_check-->

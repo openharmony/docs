@@ -8,7 +8,7 @@
 
 ## onClick
 
-onClick(event: (event: ClickEvent) => void)
+onClick(event: (event: ClickEvent) => void): T
 
 点击动作触发该回调。
 
@@ -22,15 +22,21 @@ onClick(event: (event: ClickEvent) => void)
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## ClickEvent对象说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称            | 类型                                 | 描述                                                     |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | 点击位置相对于被点击元素原始区域左上角的X坐标。<br/>单位：vp     |
+| x                   | number                               | 点击位置相对于被点击元素左边缘的X坐标。<br/>单位：vp     |
 | y                   | number                               | 点击位置相对于被点击元素原始区域左上角的Y坐标。<br/>单位：vp          |
-| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔。<br/>单位：纳秒 |
+| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔。<br/>单位：ns |
 | target<sup>8+</sup> | [EventTarget](#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
 | windowX<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的X坐标。<br/>单位：vp |

@@ -26,7 +26,7 @@ import common from '@ohos.app.ability.common';
 
 > **NOTE**
 >
-> In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+> In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ## UIAbilityContext.startAbility
 
@@ -281,7 +281,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
@@ -363,7 +363,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
@@ -451,7 +451,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
@@ -802,7 +802,7 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
+Connects this ability to a ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -817,7 +817,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 
@@ -1141,7 +1141,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
+Sets a label for this ability in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1183,7 +1183,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
+Sets a label for this ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1234,7 +1234,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mission continuation state of this UIAbility. This API uses an asynchronous callback to return the result.
+Sets the mission continuation state of this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1274,7 +1274,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
-Sets the mission continuation state of this UIAbility. This API uses a promise to return the result.
+Sets the mission continuation state of this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1321,7 +1321,7 @@ export default class EntryAbility extends UIAbility {
 
 restoreWindowStage(localStorage: LocalStorage): void
 
-Restores the WindowStage data in the UIAbility.
+Restores the WindowStage data in the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1357,7 +1357,7 @@ export default class EntryAbility extends UIAbility {
 
 isTerminating(): boolean
 
-Checks whether this UIAbility is in the terminating state.
+Checks whether this ability is in the terminating state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1365,7 +1365,7 @@ Checks whether this UIAbility is in the terminating state.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
+| boolean | The value **true** means that the ability is in the terminating state, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1405,7 +1405,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
 | result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1483,7 +1483,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
 
 
 **Return value**
@@ -1555,7 +1555,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
- **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 

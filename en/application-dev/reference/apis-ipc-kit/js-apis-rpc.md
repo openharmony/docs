@@ -1899,7 +1899,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readLongArray(): number[]
 
-Reads the long array from this **MessageSequence** object.
+Reads the long integer array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3331,7 +3331,7 @@ Obtains the maximum amount of raw data that can be held by this **MessageSequenc
   hilog.info(0x0000, 'testTag', 'RpcTest: sequence get RawDataCapacity result is ' + result);
   ```
 
-### writeRawData<sup>11+(deprecated)</sup>
+### writeRawData<sup>(deprecated)</sup>
 
 >**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [writeRawDataBuffer](#writerawdatabuffer11).
 
@@ -3375,7 +3375,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### writeRawDataBuffer<sup>11+</sup>
 
-writeRawDataBuffer(rawData: ArrayBuffer, size: number): void;
+writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 Writes raw data to this **MessageSequence** object.
 
@@ -3418,7 +3418,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readRawData<sup>11+(deprecated)</sup>
+### readRawData<sup>(deprecated)</sup>
 
 >**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [readRawDataBuffer](#readrawdatabuffer11).
 
@@ -3542,7 +3542,7 @@ Provides APIs for reading and writing data in specific format. During RPC, the s
 
 static create(): MessageParcel
 
-Creates a **MessageParcel** object. This API is a static method.
+Creates a **MessageParcel** object. This method is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5902,7 +5902,6 @@ Writes an anonymous shared object to this **MessageParcel** object.
   hilog.info(0x0000, 'testTag', 'RpcTest: write ashmem to result is ' + isWriteSuccess);
   ```
 
-
 ### readAshmem<sup>8+</sup>
 
 readAshmem(): Ashmem
@@ -6672,6 +6671,8 @@ Checks whether this object is dead.
   | ------- | ---------------------------------- |
   | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
+
+
 ## RemoteProxy
 
 Provides APIs to implement **IRemoteObject**.
@@ -7051,7 +7052,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7738,7 +7739,7 @@ Checks whether the **RemoteObject** is dead.
 
   | Type   | Description                                             |
   | ------- | ------------------------------------------------- |
-  | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
+  | boolean | Returns **true** if **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
@@ -7797,7 +7798,7 @@ Defines the options used to construct the **MessageOption** object.
   | TF_SYNC       | 0 (0x00)  | Synchronous call.                                             |
   | TF_ASYNC      | 1 (0x01)  | Asynchronous call.                                             |
   | TF_ACCEPT_FDS | 16 (0x10) | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter is not used in IPC.                                    |
+  | TF_WAIT_TIME  | 8 (0x8)   | RPC wait time, in seconds. This parameter cannot be used in IPC.                                    |
 
 ### constructor<sup>9+</sup>
 
@@ -8300,7 +8301,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 static resetCallingIdentity(): string
 
-Changes the UID and PID of the remote user to the UID and PID of the local user. This API is a static method. You can use it in scenarios such as identity authentication.
+Resets the UID and PID of the remote user to those of the local user. This API is a static method and is used in scenarios such as identity authentication.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8328,7 +8329,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 static restoreCallingIdentity(identity: string): void
 
-Restores the UID and PID of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
+Restores the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8359,7 +8360,7 @@ Restores the UID and PID of the remote user. This API is a static method. It is 
 
 static setCallingIdentity(identity: string): boolean
 
-Sets the UID and PID to that of the remote user. This API is a static method. It is called after **resetCallingIdentity**, which returns the UID and PID of the remote user.
+Sets the UID and PID of the remote user. This API is a static method. It is usually called after **resetCallingIdentity**, and the UID and PID of the remote user returned by **resetCallingIdentity** are required.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8670,7 +8671,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -9821,7 +9822,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### writeAshmem<sup>11+(deprecated)</sup>
+### writeAshmem<sup>9+(deprecated)</sup>
 
 >**NOTE**<br>This API is no longer maintained since API version 11. You are advised to use [writeDataToAshmem](#writedatatoashmem11).
 
@@ -9867,7 +9868,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### writeToAshmem<sup>8+(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem11deprecated).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [writeAshmem](#writeashmem9deprecated).
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -9963,7 +9964,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   }
   ```
 
-### readAshmem<sup>11+(deprecated)</sup>
+### readAshmem<sup>9+(deprecated)</sup>
 
 >**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use the [readDataFromAshmem](#readdatafromashmem11).
 
@@ -10016,7 +10017,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 ### readFromAshmem<sup>8+(deprecated)</sup>
 
->**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [readAshmem][readAshmem](#readashmem11deprecated).
+>**NOTE**<br>This API is no longer maintained since API version 9. You are advised to use [readAshmem](#readashmem9deprecated).
 
 readFromAshmem(size: number, offset: number): number[]
 

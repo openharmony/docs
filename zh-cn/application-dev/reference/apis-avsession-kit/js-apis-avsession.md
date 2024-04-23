@@ -398,7 +398,7 @@ import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
@@ -702,7 +702,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的会话事件键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的会话事件内容。 |
 
 > **说明：**
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。
@@ -762,7 +762,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
-| args | {[key: string]: Object} | 是   | 需要传递的会话事件键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的会话事件内容。 |
 | callback | AsyncCallback\<void>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
 
 > **说明：**
@@ -1867,7 +1867,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playFromAssetId'`。 |
-| callback | callback: (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+| callback | callback: (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
 
 **错误码：**
 
@@ -2996,7 +2996,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 | 类型                                                        | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回远端播放状态。。 |
+| Promise<[AVPlaybackState](#avplaybackstate10)\>  | Promise对象。返回远端播放状态。 |
 
 **错误码：**
 
@@ -3989,7 +3989,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)以及[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4028,7 +4028,7 @@ off(type: 'error'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)以及[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -4142,11 +4142,12 @@ aVCastController.off('error')
 | isFavorite   | boolean                               | 否   | 是否收藏 |
 | activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
 | volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 | maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
 | muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
 | videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
 | videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -4179,9 +4180,8 @@ aVCastController.off('error')
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------  | ---- |---------------------------------------------------------------------|
-| state           | CallState[AVCallState](#avcallstate11)                 | 是    | 通话状态。      |                                                                                                                      
-| muted           | boolean                   | 是    | 通话mic是否静音|                                                                  
- 
+| state           | [CallState](#callstate11)                 | 是    | 当前通话状态。      |
+| muted           | boolean                   | 是    | 通话mic是否静音。 <br>true：静音。 <br>false：不是静音。|
 ## CallState<sup>11+</sup>
 
 表示通话状态的枚举。

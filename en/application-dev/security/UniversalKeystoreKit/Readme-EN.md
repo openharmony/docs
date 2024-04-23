@@ -1,4 +1,4 @@
-# Universal Keystore Kit (Key Management Service)
+# Universal Keystore Kit
 
 - [Introduction to Universal Keystore Kit](huks-overview.md)
 - [Basic Concepts of HUKS](huks-concepts.md)
@@ -54,8 +54,8 @@
     - [Non-anonymous Key Attestation (for System Applications Only) (C/C++)](huks-key-attestation-ndk.md)
 - Other Operations
   - Checking Key Existence
-    - [Checking Key Existence (ArkTS)](huks-check-key-arkts.md)
-    - [Checking Key Existence (C/C++)](huks-check-key-ndk.md)
+    - [Checking a Key (ArkTS)](huks-check-key-arkts.md)
+    - [Checking a Key (C/C++)](huks-check-key-ndk.md)
   - Obtaining Key Properties
     - [Obtaining Key Properties (ArkTS)](huks-obtain-key-properties-arkts.md)
     - [Obtaining Key Properties (C/C++)](huks-obtain-key-properties-ndk.md)

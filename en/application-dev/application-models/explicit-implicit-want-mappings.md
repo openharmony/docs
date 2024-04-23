@@ -20,7 +20,7 @@ The table below describes the matching rules of explicit [Want](../reference/api
 | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
 | parameters | {[key:&nbsp;string]:&nbsp;Object} | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 
-## Matching Rules for Implicit Want
+## Matching Rules of Implicit Want
 
 The table below describes the matching rules of implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md).
 
@@ -45,7 +45,7 @@ Get familiar with the following about implicit Want:
 - The **skills** field declares the capabilities of the target application component. For details, see [the skills tag](../quick-start/module-configuration-file.md#skills) in the [module.json5 file](../quick-start/module-configuration-file.md).
 
 
-The system matches the **want** parameter (including the **action**, **entities**, **uri**, and **type** attributes) passed by the caller against the **skills** configuration (including the **actions**, **entities**, **uris**, and **type** attributes) of the application components one by one. When all the four attributes are matched, a dialog box is displayed for users to select a matched application.
+The system matches the **want** parameter (including the **action**, **entities**, **uri**, and **type** attributes) passed by the caller against the **skills** configuration (including the **actions**, **entities**, **uris**, and **type** attributes) of the application components one by one. If none of the four attributes is configured, implicit matching fails. When all the four attributes are matched, a dialog box is displayed for users to select a matched application.
 
 
 ### Matching Rules of action in the want Parameter
@@ -124,7 +124,7 @@ To simplify the description:
 
 ### Matching Rules of uri
 
-The rules are as follows:
+The matching rules are as follows:
 
 - If **scheme** of **s_uri** is unspecified and **w_uri** is unspecified, the matching is successful. Otherwise, the matching fails.
 

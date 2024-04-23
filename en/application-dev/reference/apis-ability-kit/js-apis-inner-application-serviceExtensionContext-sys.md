@@ -842,7 +842,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -869,10 +869,10 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -914,7 +914,7 @@ Observe the following when using this API:
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -939,11 +939,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -1021,12 +1021,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends extension {
+export default class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -1534,7 +1534,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 
@@ -2172,13 +2172,10 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-Requests a modal window (expressed by a UIExtensionAbility). The information about the requester and target is carried by **want**. The system determines the type of the modal window to start by comparing **bundleName** of the requester carried in **want** with that of the application currently running in the foreground. This API uses a promise to return the result.
-
-- If the values of **bundleName** are the same, users must interact with the modal window before they can return to the current application screen.
-- If the values of **bundleName** are different, users must interact with the modal window before they can return to the current system screen.
+Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result.
 
 Observe the following when using this API:
-- If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+- If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
 - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -2198,13 +2195,14 @@ Observe the following when using this API:
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
+| 16200001 | The caller has been released.        |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -2215,15 +2213,16 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-class EntryAbility extends ServiceExtensionAbility {
-
+class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
     let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'requestModalUIExtension',
-      moduleName: 'requestModalUIExtension',
+      abilityName: 'com.example.myapplication.UIExtAbility',
+      moduleName: 'entry_test',
       parameters: {
-        bundleName: 'com.example.myapplication'
+        'bundleName': 'com.example.myapplication',
+        // The value is the same as the value of type configured for com.example.myapplication.UIExtAbility.
+        'ability.want.params.uiExtensionType': 'sys/commonUI'
       }
     };
 
@@ -2251,13 +2250,10 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-Requests a modal window (expressed by a UIExtensionAbility). The information about the requester and target is carried by **want**. The system determines the type of the modal window to start by comparing **bundleName** of the requester carried in **want** with that of the application currently running in the foreground. This API uses an asynchronous callback to return the result.
-
-- If the values of **bundleName** are the same, users must interact with the modal window before they can return to the current application screen.
-- If the values of **bundleName** are different, users must interact with the modal window before they can return to the current system screen.
+Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result.
 
 Observe the following when using this API:
-- If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+- If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
 - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
  
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -2272,13 +2268,14 @@ Observe the following when using this API:
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
+| 16200001 | The caller has been released.        |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -2289,14 +2286,16 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-class EntryAbility extends ServiceExtensionAbility {
+class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
      let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'requestModalUIExtension',
-      moduleName: 'requestModalUIExtension',
+      abilityName: 'com.example.myapplication.UIExtAbility',
+      moduleName: 'entry_test',
       parameters: {
-        bundleName: 'com.example.myapplication'
+        'bundleName': 'com.example.myapplication',
+        // The value is the same as the value of type configured for com.example.myapplication.UIExtAbility.
+        'ability.want.params.uiExtensionType': 'sys/commonUI'
       }
     };
 

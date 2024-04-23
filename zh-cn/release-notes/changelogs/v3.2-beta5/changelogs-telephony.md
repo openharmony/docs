@@ -57,3 +57,5 @@ let slotId = 0;
 let result = radio.isNRSupported(slotId);
 console.log("Result: "+ result);
 ```
+
+<!--no_check-->

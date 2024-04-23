@@ -41,8 +41,8 @@ PopupOptions定义Popup的具体式样参数。
 | icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 设置popup图标。<br />**说明：**<br />当size设置异常值或0时不显示。 |
 | title     | [PopupTextOptions](#popuptextoptions)                        | 否   | 设置popup标题文本。                  |
 | message   | [PopupTextOptions](#popuptextoptions)                        | 是   | 设置popup内容文本。<br />**说明：**<br />message不支持设置fontWeight。 |
-| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。                  |
-| onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。          |
+| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 设置popup关闭按钮。<br />默认值：true |
+| onClose   | () => void                                                   | 否   | 设置popup关闭按钮回调函数。|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 设置popup操作按钮,按钮最多设置两个。 |
 
 ## PopupTextOptions
@@ -54,9 +54,9 @@ PopupTextOptions设置文本样式。
 | 名称       | 类型                                                         | 必填 | 描述               |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置文本内容。     |
-| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | 否   | 设置文本字体大小。 |
-| fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置文本字体颜色。 |
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本字体粗细。 |
+| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | 否   | 设置文本字体大小。<br />默认值：`$r('sys.float.ohos_id_text_size_body2')`  |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置文本字体颜色。<br />默认值：`$r('sys.color.ohos_id_color_text_secondary')` |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本字体粗细。<br />默认值：FontWeight.Regular |
 
 ## PopupButtonOptions
 
@@ -67,9 +67,9 @@ PopupButtonOptions定义按钮的相关属性和事件。
 | 名称      | 类型                                                 | 必填 | 描述                   |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | 是   | 设置按钮内容。         |
-| action    | () => void                                           | 否   | 设置按钮click回调。    |
-| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 设置按钮文本字体大小。 |
-| fontColor | [ResourceColor](ts-types.md#resourcecolor)           | 否   | 设置按钮文本字体颜色。 |
+| action    | () => void                                           | 否   | 设置按钮click回调。 |
+| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')` |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor)           | 否   | 设置按钮文本字体颜色。<br />默认值：`$r('sys.color.ohos_id_color_text_primary_activated')` |
 
 ##  PopupIconOptions
 
@@ -80,10 +80,10 @@ PopupIconOptions定义icon（右上角图标）的属性。
 | 名称         | 类型                                                         | 必填 | 描述                               |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | image        | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置图标内容。                     |
-| width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP。 |
-| height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。<br />默认值：32VP。 |
+| width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP |
+| height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。<br />默认值：32VP |
 | fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。                 |
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：12VP   |
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：`$r('sys.float.ohos_id_corner_radius_default_s')`  |
 
 ## 示例   
 

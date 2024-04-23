@@ -459,7 +459,7 @@ setDevicePairingConfirmation(device: string, accept: boolean): boolean
 > **说明：**<br/>
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.setDevicePairingConfirmation](js-apis-bluetoothManager.md#bluetoothmanagersetdevicepairingconfirmationdeprecated)替代。
 
-**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1207,7 +1207,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.BLE.startBLEScan](js-apis-bluetoothManager.md#startblescandeprecated)替代。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH 和 ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请） 和 ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

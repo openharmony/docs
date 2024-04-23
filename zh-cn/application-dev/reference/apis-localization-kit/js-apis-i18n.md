@@ -107,6 +107,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 获取系统支持的语言列表。
 
+**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -294,7 +296,7 @@ static is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

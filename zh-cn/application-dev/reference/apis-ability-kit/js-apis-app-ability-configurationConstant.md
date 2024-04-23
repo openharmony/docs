@@ -14,7 +14,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 ## ConfigurationConstant.ColorMode
 
-使用时通过ConfigurationConstant.ColorMode获取。
+表示颜色模式的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
@@ -27,7 +27,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 ## ConfigurationConstant.Direction
 
-使用时通过ConfigurationConstant.Direction获取。
+表示屏幕方向的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
@@ -40,7 +40,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 ## ConfigurationConstant.ScreenDensity
 
-使用时通过ConfigurationConstant.ScreenDensity获取。
+表示屏幕像素的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 

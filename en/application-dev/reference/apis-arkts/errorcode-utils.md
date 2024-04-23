@@ -96,7 +96,7 @@ The worker thread does not support the API.
 
 Use a supported API.
 
-## 10200006 Worker Transmission Information Serialization Exception
+## 10200006 Worker Data Serialization Exception
 
 **Error Message**
 
@@ -104,15 +104,15 @@ An exception occurred during serialization.
 
 **Description**
 
-An error occurs when serializing transmission information.
+An error occurs during serialization.
 
 **Possible Causes**
 
-The transmission information is not serializable.
+The type of data to transfer does not support serialization or is imported externally.
 
 **Solution**
 
-Use transmission information that is a valid serialized object.
+Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [Serialization Types Supported by TaskPool and Worker](../../arkts-utils/serialization-support-types.md).
 
 ## 10200007 Abnormal Worker File Path
 
@@ -149,7 +149,7 @@ The buffer size is not an integer multiple of **size**, which can be 16-bit, 32-
 **Solution**
 
 Use a buffer the size of which meets the requirements.
-  
+
 
 ## 10200010 Empty Container
 

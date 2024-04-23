@@ -37,6 +37,8 @@ initCurve(curve?: Curve): ICurve
 
 ## Curve
 
+插值曲线，动效请参考[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)。
+
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -44,10 +46,10 @@ initCurve(curve?: Curve): ICurve
 | 名称                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | Linear              | 表示动画从头到尾的速度都是相同的。                           |
-| Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25, 0.1, 0.25, 1.0)。 |
-| EaseIn              | 表示动画以低速开始，CubicBezier(0.42, 0.0, 1.0, 1.0)。       |
-| EaseOut             | 表示动画以低速结束，CubicBezier(0.0, 0.0, 0.58, 1.0)。       |
-| EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42, 0.0, 0.58, 1.0)。 |
+| Ease                | 表示动画以低速开始，然后加快，在结束前变慢，cubic-bezier(0.25, 0.1, 0.25, 1.0)。 |
+| EaseIn              | 表示动画以低速开始，cubic-bezier(0.42, 0.0, 1.0, 1.0)。       |
+| EaseOut             | 表示动画以低速结束，cubic-bezier(0.0, 0.0, 0.58, 1.0)。       |
+| EaseInOut           | 表示动画以低速开始和结束，cubic-bezier(0.42, 0.0, 0.58, 1.0)。 |
 | FastOutSlowIn       | 标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。                 |
 | LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。                 |
 | FastOutLinearIn     | 加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。                 |
@@ -55,7 +57,7 @@ initCurve(curve?: Curve): ICurve
 | Sharp               | 锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。               |
 | Rhythm              | 节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。                 |
 | Smooth              | 平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。                 |
-| Friction            | 阻尼曲线，CubicBezier(0.2, 0.0, 0.2, 1.0)。                  |
+| Friction            | 阻尼曲线，cubic-bezier(0.2, 0.0, 0.2, 1.0)。                  |
 
 **示例：**
 

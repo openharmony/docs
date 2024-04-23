@@ -15,10 +15,10 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [count](#count) | 关键资产的条数。 |
-| [results](#results) | 指向关键资产数组的指针。 |
+| uint32_t [count](#count) | 关键资产的条数。  | 
+| [Asset_Result](_asset___result.md) \* [results](#results) | 指向关键资产数组的指针。  | 
 
 
 ## 结构体成员变量说明
@@ -40,4 +40,3 @@ Asset_Result* Asset_ResultSet::results
 ```
 **描述**
 指向关键资产数组的指针。
-

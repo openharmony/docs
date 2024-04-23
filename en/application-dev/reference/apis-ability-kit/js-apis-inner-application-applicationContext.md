@@ -84,7 +84,7 @@ export default class EntryAbility extends UIAbility {
         }
         // 1. Obtain applicationContext through the context attribute.
         let applicationContext = this.context.getApplicationContext();
-        // 2. Use applicationContext.on to subscribe to the 'abilityLifecycle' event.
+        // 2. Use applicationContext.on() to subscribe to the 'abilityLifecycle' event.
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
         console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
     }

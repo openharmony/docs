@@ -8,7 +8,7 @@
 
 ## onTouch
 
-onTouch(event: (event: TouchEvent) => void)
+onTouch(event: (event: TouchEvent) => void): T
 
 手指触摸动作触发该回调。
 
@@ -22,6 +22,12 @@ onTouch(event: (event: TouchEvent) => void)
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [TouchEvent](#touchevent对象说明) | 是   | 获得TouchEvent对象。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## TouchEvent对象说明
 
 | 名称                | 类型                                       | 描述           |
@@ -30,7 +36,7 @@ onTouch(event: (event: TouchEvent) => void)
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：纳秒 |
+| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：ns |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
 
@@ -70,7 +76,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | touchObject | [TouchObject](#touchobject对象说明)  | 历史点对应触摸事件的基础信息。                                                   |
 | size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
 | force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，压力越大值越大。<br/>此接口根据硬件设备不同，支持情况不同。当前只支持Tablet。|
-| timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：纳秒           |
+| timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
 ## 示例
 
 ```ts

@@ -561,6 +561,8 @@ Obtains the window object corresponding to the current UIExtension to notify the
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
 import Want from '@ohos.app.ability.Want';
+import uiExtensionHost from '@ohos.uiExtensionHost';
+
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
 
@@ -582,10 +584,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     let extensionHostWindow = session.getUIExtensionHostWindowProxy();
-    let storage: LocalStorage = new LocalStorage({
+    let data: Record<string, UIExtensionContentSession | uiExtensionHost.UIExtensionHostWindowProxy> = {
         'session': session,
         'extensionHostWindow': extensionHostWindow
-    });
+    }
+    let storage: LocalStorage = new LocalStorage(data);
     session.loadContent('pages/extension', storage);
   }
 

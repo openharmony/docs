@@ -32,6 +32,7 @@
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -43,11 +44,12 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // 此处指定别名�
 try {
   asset.remove(query).then(() => {
     console.info(`Asset removed successfully.`);
-  }).catch(() => {
-    console.error(`Failed to remove Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to remove Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 

@@ -51,7 +51,7 @@
    import dataPreferences from '@ohos.data.preferences';
    ```
 
-2. 要通过用户首选项实现数据持久化，首先要获取Preferences实例。读取指定文件，将数据加载到Preferences实例，用于数据操作。
+2. 获取Preferences实例。
 
    Stage模型示例：
 
@@ -90,7 +90,7 @@
 
    > **说明：**
    >
-   > 当对应的键已经存在时，putSync()方法会修改其值。可以使用hasSync()方法检查是否存在对应键值对。
+   > 当对应的键已经存在时，putSync()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
    示例代码如下所示：
 

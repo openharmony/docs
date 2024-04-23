@@ -6,7 +6,7 @@ multimedia 部件 mediaLibrary所有接口废弃。
 
 **变更影响**
 
-[mediaLibrary](../../../application-dev/reference/apis/js-apis-medialibrary.md)所有接口废弃。系统只对三方应用开放公共目录下文件资源选择和保存功能，由[FilePicker](../../../application-dev/reference/apis/js-apis-file-picker.md)提供能力。
+[mediaLibrary](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)所有接口废弃。系统只对三方应用开放公共目录下文件资源选择和保存功能，由[FilePicker](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-picker.md)提供能力。
 基于此前版本开发的应用，需注意废弃接口的迭代更新。
 
 **关键接口/组件变更**
@@ -57,7 +57,7 @@ multimedia 部件 mediaLibrary所有接口废弃。
 2. 创建MediaFetchOptions检索条件使用mediaLibrary实例调用getFileAssets接口获取公共目录下的文件。
 3. 使用FetchFileResult相应接口获取目的文件的fileAsset。
 4. 使用fileAsset.open接口打开这个文件得到fd。
-5. 通过fd使用[fs.writeSync](../../../application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改。
+5. 通过fd使用[fs.writeSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改。
 6. 修改完成后使用fileAsset.close接口关闭这个文件的fd。
 7. 使用fetchFileResult.close接口释放getFileAssets时占用的资源。
 8. 使用release接口释放媒体库实例。
@@ -100,9 +100,9 @@ async function example() {
 1. 获取DocumentViewPicker文件选择器对象。
 2. 拉起DocumentViewPicker.select接口选择目的文件。
 3. 用户选择完后返回目的文件的uri。
-4. 待界面从DocumentViewPicker返回后在其他函数中使用[fs.openSync](../../../application-dev/reference/apis/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到fd。
-5. 通过fd使用[fs.writeSync](../../../application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改。
-6. 编辑修改完毕后使用[fs.closeSync](../../../application-dev/reference/apis/js-apis-file-fs.md#closesync)接口关闭这个fd。
+4. 待界面从DocumentViewPicker返回后在其他函数中使用[fs.openSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到fd。
+5. 通过fd使用[fs.writeSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改。
+6. 编辑修改完毕后使用[fs.closeSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#closesync)接口关闭这个fd。
 
 **示例：**
 
@@ -183,9 +183,9 @@ async function example() {
 1. 获取DocumentViewPicker文件选择器对象。
 2. 拉起DocumentViewPicker.save接口创建保存一个空的文件。
 3. 用户保存完后返回目的文件的uri。
-4. 待界面从DocumentViewPicker返回后在其他函数中使用[fs.openSync](../../../application-dev/reference/apis/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到fd。
-5. 通过fd使用[fs.writeSync](../../../application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改。
-6. 编辑修改完毕后使用[fs.closeSync](../../../application-dev/reference/apis/js-apis-file-fs.md#closesync)接口关闭这个fd。
+4. 待界面从DocumentViewPicker返回后在其他函数中使用[fs.openSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到fd。
+5. 通过fd使用[fs.writeSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改。
+6. 编辑修改完毕后使用[fs.closeSync](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#closesync)接口关闭这个fd。
 
 **示例：**
 
@@ -270,3 +270,5 @@ medialibrary以下废弃接口由于功能管控，不对三方应用开放，�
 | medialibrary   |  **interface** Size  | 废弃     |
 | medialibrary   |  **interface** MediaAssetOption | 废弃     |
 | medialibrary   |  **interface** MediaSelectOption | 废弃     |
+
+<!--no_check-->

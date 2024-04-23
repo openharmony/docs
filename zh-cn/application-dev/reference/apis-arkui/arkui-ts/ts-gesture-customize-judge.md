@@ -8,18 +8,24 @@
 
 
 ## onGestureJudgeBegin
-onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult)
+onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 是     |  给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## GestureInfo对象说明
 
 | 名称            | 类型                        | 描述         |
 | ---------------  | -------------------------   | -----------|
-| tag              | string                      | 手势标记。  |
+| tag              | string                      | 手势标记。<br/>**说明：**<br/>如果未设置事件标识tag属性的情况下，此处tag不返回或者返回undefined。  |
 | type             | [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11)  | 手势类型。 |
 | isSystemGesture  | boolean                     | 判断当前手势是否为系统手势。|
 
@@ -32,12 +38,12 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | pressure | number | 按压的压力大小。  |
 | titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。  |
 | titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。  |
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明) | 事件输入源。  |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。  |
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
+| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 触发事件的所有手指信息。  |
 
 ## TapGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。

@@ -26,7 +26,7 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 
 | Name | Type  | Mandatory| Description                                |
 | ------- | ------ | ---- | ------------------------------------ |
-| busType | number | No  | Bus type of the peripheral device. If this parameter is left blank, all types of peripheral devices are queried.|
+| busType | number | No  | Bus type of the peripheral device to query. If this parameter is left blank, all types of peripheral devices are queried.|
 
 **Return value**
 
@@ -65,7 +65,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
-You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -75,7 +75,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                                                                                                | Mandatory| Description                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| deviceId     | number                                                                                               | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.          |
+| deviceId     | number                                                                                               | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.          |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | Yes  | Callback to be invoked when the bound peripheral device is disconnected.                    |
 | callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Yes  | Callback invoked to return the communication object of the peripheral device bound.|
 
@@ -120,7 +120,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
-You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -402,5 +402,3 @@ Represents information about a remote device driver.
 | --------- | ------ | ---- | ------------------- |
 | deviceId<sup>11+</sup>  | number | Yes  | ID of the peripheral device. |
 | remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes  | Remote driver object.|
-
-<!--no_check-->

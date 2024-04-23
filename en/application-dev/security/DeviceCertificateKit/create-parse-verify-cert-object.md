@@ -6,23 +6,20 @@ This topic walks you through on how to create a certificate object, obtain infor
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis/js-apis-cert.md) module.
+1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
    import certFramework from '@ohos.security.cert';
    ```
 
-2. Use [cryptoCert.createX509Cert](../../reference/apis/js-apis-cert.md#cryptocertcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.
+2. Use [cryptoCert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509cert) to create an **X509Cert** object based on the existing X.509 certificate data.  
 
-3. Obtain certificate information.
-   
-   The following example shows how to obtain the certificate version and serial number. For more information, see [X509Cert](../../reference/apis/js-apis-cert.md#x509cert).
-   
-4. Use [X509Cert.getPublicKey](../../reference/apis/js-apis-cert.md#getpublickey) to obtain the public key in the certificate and use [X509Cert.verify](../../reference/apis/js-apis-cert.md#verify) to verify the signature.
+3. Obtain certificate information.<br>
+   The following example shows how to obtain the certificate version and serial number. For more information, see [X509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509cert).
 
+4. Use [X509Cert.getPublicKey](../../reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey) to obtain the public key in the certificate and use [X509Cert.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify) to verify the signature.
    In this example, a self-signed certificate is used. Therefore, the public key in the certificate is obtained. In your app experience, obtain the public key for signature verification based on actual situation.
 
-5. Use [X509Cert.checkValidityWithDate](../../reference/apis/js-apis-cert.md#checkvaliditywithdate) to check the certificate validity period.
-
+5. Use [X509Cert.checkValidityWithDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate) to check the certificate validity period.
    The input parameter **date** is used to check whether the specified date is within the validity period of the X.509 certificate.
 
 ```ts

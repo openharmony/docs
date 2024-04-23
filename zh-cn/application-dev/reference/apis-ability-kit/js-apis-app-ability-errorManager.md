@@ -72,7 +72,7 @@ try {
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
-注销错误观测器。
+注销错误观测器。使用callback异步返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -118,7 +118,7 @@ try {
 
 off(type: 'error', observerId: number): Promise\<void>
 
-注销错误观测器。
+注销错误观测器。使用Promise异步返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,7 +133,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 

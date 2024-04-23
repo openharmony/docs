@@ -328,3 +328,5 @@ let storage = new LocalStorage({"PropA": "47"});
 let propA = storage.setAndProp("PropA", "48");
 propA.set(51); // one-way sync
 ```
+
+<!--no_check-->

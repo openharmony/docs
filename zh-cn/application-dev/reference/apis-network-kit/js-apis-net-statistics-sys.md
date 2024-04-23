@@ -274,7 +274,11 @@ import statistics from '@ohos.net.statistics';
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
-  ifaceInfo: null
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(
@@ -346,7 +350,11 @@ import statistics from '@ohos.net.statistics'
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
-  ifaceInfo: null
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {

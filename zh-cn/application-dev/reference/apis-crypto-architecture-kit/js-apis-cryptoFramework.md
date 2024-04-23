@@ -638,13 +638,13 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数。 |
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数。 |
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | 用于查看密钥参数的具体内容。 |
+| bigint \| string \| number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -696,13 +696,13 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数类型。 |
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数类型。 |
 
 **返回值：**
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | 用于查看密钥参数的具体内容。 |
+| bigint \| string \| number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -780,7 +780,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 对称密钥生成器。
 
-在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个symKeyGenerator实例。
+在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个SymKeyGenerator实例。
 
 ### 属性
 
@@ -865,7 +865,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.generateSymKey()
     .then(symKey => {
       console.info('Generate symKey success, algName: ' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
     });
 ```
@@ -973,7 +973,7 @@ function testConvertKey() {
   symKeyGenerator.convertKey(keyMaterialBlob)
     .then(symKey => {
       console.info('Convert symKey success, algName：' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
 }
@@ -1529,7 +1529,7 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 | 参数名  | 类型   | 必填 | 说明                                           |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| algName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
+| curveName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
 
 **返回值：**
 
@@ -2040,7 +2040,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| string\|Uint8Array | 获取的加解密参数的具体值。 |
+| string \| Uint8Array | 获取的加解密参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -2373,11 +2373,11 @@ async function signByPromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
 
-当前只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
+只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2386,7 +2386,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的签名参数。 |
-| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定签名参数的具体值。 |
+| itemValue | number \| Uint8Array<sup>11+</sup> | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -2424,7 +2424,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| string\|number | 获取的签名参数的具体值。 |
+| string \| number | 获取的签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -2755,11 +2755,11 @@ async function verifyByPromise() {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
 
-当前只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
+只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
 
 验签的参数应当与签名的参数保持一致。
 
@@ -2770,7 +2770,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
-| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
+| itemValue | number \| Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -2810,7 +2810,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| string\|number | 获取的验签参数的具体值。 |
+| string \| number | 获取的验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3305,7 +3305,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3332,7 +3332,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3380,7 +3380,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-此外，更多Hmac的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -3427,7 +3427,7 @@ doFinal(): Promise\<DataBlob>
 
 **示例：**
 
-此外，更多Hmac的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -3765,7 +3765,7 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
 
 ### generateSecret
 
-generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
+generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 基于传入的密钥派生参数进行密钥派生，通过注册回调函数返回派生得到的密钥。
 
@@ -3809,7 +3809,7 @@ kdf.generateSecret(spec, (err, secret) => {
 
 ### generateSecret
 
-generateSecret(params: KdfSpec): Promise\<DataBlob>
+generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 基于传入的密钥派生参数进行密钥派生，通过Promise形式返回派生得到的密钥。
 

@@ -156,10 +156,10 @@ struct Utils {
 
   build() {
     Column() {
-      Image($r("app.media.icon"))
+      Image($r("app.media.img"))
         .transform(this.matrix1)
-        .translate({ x: 100, y: 10, z: 50 })
-        .scale({ x: 2, y: 0.5, z: 1 })
+        .translate({ x: 20, y: 20, z: 20 })
+        .scale({ x: 0.5, y: 0.5, z: 1 })
         .rotate({
           x: 1,
           y: 1,
@@ -168,21 +168,21 @@ struct Utils {
           centerY: '50%',
           angle: 300
         })
-        .width("40%")
+        .width(300)
         .height(100)
         .key("image_01")
-      Button() {
-        Text('getRectangleById').fontSize(40).fontWeight(FontWeight.Bold);
-      }.margin(20)
+      Button('getRectangleById')
       .onClick(() => {
         this.value = JSON.stringify(componentUtils.getRectangleById("image_01"))
-      }).id('onClick')
+      }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)
         .width(300)
-        .height(400)
+        .height(300)
         .borderWidth(2)
-    }
+    }.margin({left: 50})
   }
 }
   ```
+
+  ![componentget](figures/getRectangleById.gif) 
