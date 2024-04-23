@@ -4940,7 +4940,7 @@ requestFocus(key: string): void
 | ------ | ---------------------------------------- |
 | 150001 | This component is not focusable. |
 | 150002 | This component has unfocusable ancestor.      |
-| 150003 | This id refers to a nonexistent component which haven't been created or invisible right now. |
+| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
 
 **示例：**
 
