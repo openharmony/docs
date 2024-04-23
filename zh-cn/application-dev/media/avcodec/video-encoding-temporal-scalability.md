@@ -43,7 +43,7 @@
 
 - 场景2：有视频预览播放或倍速播放需求的视频编码录制场景。
 
-若开发场景不涉及动态调整时域参考结构，且分层结构简单，则推荐使用[全局时域可分层特性](#全局时域可分层特性（Feature_Temporal_Scalability）)，否则使能[长期参考帧特性](#长期参考帧特性（Feature_Long-Term_Reference）)。
+若开发场景不涉及动态调整时域参考结构，且分层结构简单，则推荐使用[全局时域可分层特性](#全局时域可分层特性feature_temporal_scalability)，否则使能[长期参考帧特性](#长期参考帧特性feature_long-term_reference)。
 
 
 ## 约束和限制
@@ -56,7 +56,7 @@
 
   参考帧仅在GOP内有效，刷新I帧后，DPB随之清空, 参考帧随之也会被清空。
 
-  因此参考关系的指定受I帧刷新位置影响很大，使能时域分层能力后若需要通过`OH_MD_KEY_REQUEST_I_FRAME`临时请求I帧，**应避免使用生效时间无法确认的`OH_VideoEncoder_SetParameter`方式。**
+  因此参考关系的指定受I帧刷新位置影响很大，使能时域分层能力后若需要通过`OH_MD_KEY_REQUEST_I_FRAME`临时请求I帧，**应避免使用生效时`OH_VideoEncoder_SetParameter`方式。**
 
   应使用随帧配置方式，参考随帧配置通路相关指导。
 
@@ -85,11 +85,11 @@
 
 * **全局时域分层编码TGOP参考模式参数：** 可选配置，影响非关键帧参考模式。包括相邻参考`ADJACENT_REFERENCE`和跨帧参考`JUMP_REFERENCE`。相邻参考相对跨帧参考拥有更好的压缩性能，跨帧参考相对相邻参考拥有更好的丢帧自由度，如不配置则使用默认值。
 
-**使用举例1：TGOP=4，相邻参考模式**
+使用举例1：TGOP=4，相邻参考模式
 
 ![Temporal gop 4 adjacent reference](figures/temporal-scalability-tgop4-adjacent.png)
 
-**使用举例2：TGOP=4，跨帧参考模式**：
+使用举例2：TGOP=4，跨帧参考模式
 
 ![TGOP4 jump reference](figures/temporal-scalability-tgop4-jump.png)
 
@@ -228,7 +228,7 @@
 
     若支持，且支持的LTR数目满足自身码流结构需求，则可以使能LTR特性。
 
-2. 在配置阶段，注册回调的时候。
+2. 在配置之前注册回调时，注册随帧通路回调。
 
     Buffer输入模式示例：
     ```c++
