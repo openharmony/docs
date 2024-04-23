@@ -130,6 +130,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 
@@ -189,6 +190,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 
@@ -243,6 +245,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
@@ -301,6 +304,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
@@ -353,6 +357,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
