@@ -1948,12 +1948,10 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 ```ts
 import {BusinessError} from '@ohos.base';
 
-let observer = (data) => {
-    for (const key in data)  {
-        if (data.hasOwnProperty(key)) {
-            console.info(`observer Key: ${key}, Value: ${data[key]}`)
-        }
-    }
+let observer = (data: Record<string, dataPreferences.ValueType>) => {
+  for (const keyValue of Object.entries(data)) {
+    console.info(`observer : ${keyValue}`)
+  }
   console.info("The observer called.")
 }
 let keys = ['name', 'age']
@@ -2083,12 +2081,10 @@ off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Recor
 ```ts
 import {BusinessError} from '@ohos.base';
 
-let observer = (data) => {
-    for (const key in data)  {
-        if (data.hasOwnProperty(key)) {
-            console.info(`observer Key: ${key}, Value: ${data[key]}`)
-        }
-    }
+let observer = (data: Record<string, dataPreferences.ValueType>) => {
+  for (const keyValue of Object.entries(data)) {
+    console.info(`observer : ${keyValue}`)
+  }
   console.info("The observer called.")
 }
 let keys = ['name', 'age']
