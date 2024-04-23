@@ -516,3 +516,44 @@ API 12及之后，全屏模态转场/半模态转场的onAppear回调会在模�
 **适配指导**
 
 如有需要在模态页面显示动画开始前执行的逻辑，可以使用API 12新增的onWillAppear回调替代onAppear回调，请查阅[半模态转场](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
+
+## cl.arkui.9  Tabs组件底部页签样式去除按压态动效，默认高度变更为52vp
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX设计优化
+
+**变更影响**
+
+该变更为兼容性变更。
+
+API version 12开始，Tabs组件底部页签样式去除按压态动效，默认高度从56vp变更为52vp
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**示例：**
+API version 12之前, Tabs组件底部页签样式, 默认高度为56vp, 点击时有按压态动效
+
+![底部页签动效图](figures/oldBottomTabBar.gif)
+
+API version 12开始, Tabs组件底部页签样式, 默认高度为52vp, 点击时无按压态动效
+
+![底部页签动效图](figures/newBottomTabBar.gif)
+
+**变更的接口/组件**
+
+Tabs组件
+
+**适配指导**
+
+UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期， 如不符合则应自定义修改效果控制变量以达到预期
