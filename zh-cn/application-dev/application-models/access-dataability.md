@@ -20,10 +20,10 @@
 1. 创建工具接口类对象。
    
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility'
-   import ohos_data_ability from '@ohos.data.dataAbility'
-   import relationalStore from '@ohos.data.relationalStore'
-   import ability from '@ohos.ability.ability'
+   import featureAbility from '@ohos.ability.featureAbility';
+   import ohos_data_ability from '@ohos.data.dataAbility';
+   import relationalStore from '@ohos.data.relationalStore';
+   import ability from '@ohos.ability.ability';
    // 作为参数传递的URI,与config中定义的URI的区别是多了一个"/",有三个"/"
    let uri: string = 'dataability:///com.samples.famodelabilitydevelop.DataAbility';
    let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(uri);
@@ -32,8 +32,8 @@
 2. 构建数据库相关的RDB数据。
    
    ```ts
-   import ohos_data_ability from '@ohos.data.dataAbility'
-   import rdb from '@ohos.data.rdb'
+   import ohos_data_ability from '@ohos.data.dataAbility';
+   import rdb from '@ohos.data.rdb';
    let valuesBucket_insert: rdb.ValuesBucket = { name: 'Rose', introduction: 'insert' };
    let valuesBucket_update: rdb.ValuesBucket = { name: 'Rose', introduction: 'update' };
    let crowd = new Array({ name: 'Rose', introduction: 'batchInsert_one' } as rdb.ValuesBucket,
