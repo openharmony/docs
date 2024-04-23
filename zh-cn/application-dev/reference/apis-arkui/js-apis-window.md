@@ -260,7 +260,7 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
-##  TitleButtonRect<sup>11+</sup>
+## TitleButtonRect<sup>11+</sup>
 
 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
 
@@ -2984,6 +2984,7 @@ try {
 on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
 
 开启本窗口在指定超时时间内无交互事件的监听，交互事件支持物理键盘输入事件和屏幕触控点击事件，不支持软键盘输入事件。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -4270,8 +4271,7 @@ promise.then(() => {
 
 maximize(): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能，使用Promise异步回调。
-
+主窗口调用，实现最大化功能，进入沉浸式全屏，使用Promise异步回调。
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -4357,7 +4357,6 @@ promise.then(() => {
 });
 ```
 
-
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
@@ -4390,7 +4389,7 @@ try {
 }
 ```
 
-###  setWindowLimits<sup>11+</sup>
+### setWindowLimits<sup>11+</sup>
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
@@ -4441,7 +4440,7 @@ try {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
 ```
-###  setWindowMask<sup>12+</sup>
+### setWindowMask<sup>12+</sup>
 
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
 
@@ -4525,7 +4524,7 @@ try {
 }
 ```
 
-###  setWindowDecorVisible<sup>11+</sup>
+### setWindowDecorVisible<sup>11+</sup>
 
 setWindowDecorVisible(isVisible: boolean): void
 
@@ -4587,7 +4586,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setSubWindowModal<sup>12+</sup>
+### setSubWindowModal<sup>12+</sup>
 
 setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 
@@ -4634,7 +4633,7 @@ promise.then(() => {
 })
 ```
 
-###  setWindowDecorHeight<sup>11+</sup>
+### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -4667,7 +4666,7 @@ try {
 }
 ```
 
-###  getWindowDecorHeight<sup>11+</sup>
+### getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
@@ -4699,7 +4698,7 @@ try {
 }
 ```
 
-###  getTitleButtonRect<sup>11+</sup>
+### getTitleButtonRect<sup>11+</sup>
 
 getTitleButtonRect(): TitleButtonRect
 
@@ -4732,7 +4731,7 @@ try {
 }
 ```
 
-###  enableLandscapeMultiWindow<sup>12+</sup>
+### enableLandscapeMultiWindow<sup>12+</sup>
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
@@ -4770,7 +4769,7 @@ promise.then(() => {
 });
 ```
 
-###  disableLandscapeMultiWindow<sup>12+</sup>
+### disableLandscapeMultiWindow<sup>12+</sup>
 
 disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
@@ -6022,7 +6021,7 @@ promise.then(() => {
 
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置屏幕亮度值，使用callback异步回调。
+允许应用窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -6059,7 +6058,7 @@ windowClass.setBrightness(brightness, (err: BusinessError) => {
 
 setBrightness(brightness: number): Promise&lt;void&gt;
 
-设置屏幕亮度值，使用Promise异步回调。
+允许应用窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -7552,7 +7551,9 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用使用系统默认Density。
+设置应用是否使用系统默认Density。
+
+不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
