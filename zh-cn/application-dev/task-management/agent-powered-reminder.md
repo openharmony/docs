@@ -124,7 +124,7 @@
       ```
 
    - 定义闹钟实例。
-   
+    
       ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // 提醒类型为闹钟类型
