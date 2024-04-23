@@ -115,12 +115,14 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## DialogAlignment枚举说明
 
+
+
 | 名称                       | 描述      |
 | ------------------------ | ------- |
 | Top                      | 垂直顶部对齐。 |
 | Center                   | 垂直居中对齐。 |
 | Bottom                   | 垂直底部对齐。 |
-| Default                  | 默认对齐。   |
+| Default                  | 默认对齐。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | TopStart<sup>8+</sup>    | 左上对齐。   |
 | TopEnd<sup>8+</sup>      | 右上对齐。   |
 | CenterStart<sup>8+</sup> | 左中对齐。   |
