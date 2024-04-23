@@ -738,7 +738,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:Mandatory parameters are left unspecified. |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.|
 
 **示例：**
 
@@ -786,7 +786,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:Mandatory parameters are left unspecified. |
+| 401          | Parameter error.Possible causes:Mandatory parameters are left unspecified; 2.Parameter verification failed.|
 
 **示例：**
 
@@ -1132,7 +1132,7 @@ move(offset: number): boolean
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -2188,7 +2188,7 @@ limit(total: number, offset: number): Query
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -2235,7 +2235,7 @@ isNotNull(field: string): Query
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types. |
 
 **示例：**
 
@@ -2341,7 +2341,7 @@ prefixKey(prefix: string): Query
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types. |
 
 **示例：**
 
@@ -2386,7 +2386,7 @@ setSuggestIndex(index: string): Query
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -2617,7 +2617,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
 | 202          | Permission verification failed, application which is not a system application uses system AP. |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -2698,7 +2698,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
 | 202          | Permission verification failed, application which is not a system application uses system AP. |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -3279,7 +3279,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3352,7 +3352,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3416,7 +3416,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3488,7 +3488,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3637,7 +3637,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3706,7 +3706,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3780,7 +3780,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3844,7 +3844,7 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -3903,7 +3903,7 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -3953,7 +3953,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4021,7 +4021,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4729,7 +4729,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -4779,7 +4779,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -4821,7 +4821,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -4869,7 +4869,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 
 **示例：**
 
@@ -4916,7 +4916,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 | **错误码ID** | **错误信息**        |
 | ------------ | ------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
 
@@ -5003,7 +5003,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 | **错误码ID** | **错误信息**        |
 | ------------ | ------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
 
@@ -5614,7 +5614,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5687,7 +5687,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5755,7 +5755,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types. |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5833,7 +5833,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5899,7 +5899,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5971,7 +5971,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6042,7 +6042,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6125,7 +6125,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6192,7 +6192,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6274,7 +6274,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6348,7 +6348,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6414,7 +6414,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6471,7 +6471,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6560,7 +6560,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6641,7 +6641,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6710,7 +6710,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3.Parameter verification failed.  |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
