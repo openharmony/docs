@@ -1,4 +1,4 @@
-#使用HiChecker检测问题（ArkTS/JS）
+# 使用HiChecker检测问题（ArkTS/JS）
 
 ## 简介
 
