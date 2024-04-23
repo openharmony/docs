@@ -563,6 +563,14 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
