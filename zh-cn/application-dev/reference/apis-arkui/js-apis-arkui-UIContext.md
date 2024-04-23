@@ -1165,6 +1165,26 @@ getContextMenuController(): ContextMenuController
 uiContext.getContextMenuController();
 ```
 
+### getMeasureUtils<sup>12+</sup>
+
+getMeasureUtils(): MeasureUtils
+
+允许用户通过UIContext对象，获取MeasureUtils对象进行文本计算。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) | 提供文本宽度、高度等相关计算。 |
+
+**示例：**
+
+```ts
+uiContext.getMeasureUtils();
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -5122,3 +5142,109 @@ struct Index {
 ```
 
 ![contextMenuController_close](figures/contextMenuController_close.gif)
+
+## MeasureUtils<sup>12+</sup>
+
+以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
+
+### measureText<sup>12+</sup>
+
+measureText(options: MeasureOptions): number
+
+计算指定文本单行布局下的宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+
+
+**示例：**
+通过MeasureUtils的measureText方法获取"Hello World"文字的宽度。
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  @State textWidth: number = this.uiContextMeasure.measureText({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textWidth}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![measureUtils-measureText](figures/measureUtils-measureText.png)
+
+## measureTextSize<sup>12+</sup>
+
+measureTextSize(options: MeasureOptions): SizeOptions
+
+计算指定文本单行布局下的宽度和高度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+
+
+**示例：**
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textSize.width}`)
+        Text(`The height of 'Hello World': ${this.textSize.height}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![measureUtils-measureTextSize](figures/measureUtils-measureTextSize.png)
