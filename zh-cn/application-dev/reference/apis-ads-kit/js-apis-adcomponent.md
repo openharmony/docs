@@ -57,11 +57,12 @@ export struct ShowNonFullScreenAd {
   build() {
     Column() {
       // AdComponent组件用于展示非全屏广告
-      AdComponent({ ads: this.ads, displayOptions: this.adDisplayOptions,
+      AdComponent({
+        ads: this.ads, displayOptions: this.adDisplayOptions,
         interactionListener: {
           // 广告状态变化回调
           onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
-            switch(status) {
+            switch (status) {
               case 'onAdOpen':
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdOpen');
                 break;
@@ -72,7 +73,9 @@ export struct ShowNonFullScreenAd {
                 hilog.info(0x0000, 'testTag', '%{public}s', 'onAdClose');
                 break;
             }
-          }}})
+          }
+        }
+      })
         .width('100%')
         .height('100%')
     }.width('100%').height('100%')

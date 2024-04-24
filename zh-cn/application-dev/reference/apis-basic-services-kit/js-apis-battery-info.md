@@ -21,8 +21,8 @@ import batteryInfo from '@ohos.batteryInfo';
 
 | 名称      | 类型        | 可读 | 可写 |  说明     |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
-| batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                           |
-| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                               |
+| batterySOC                                | number                                         | 是   | 否   | 表示当前设备剩余电池电量百分比。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                           |
+| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | 是   | 否   | 表示当前设备电池的充电状态。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                               |
 | healthStatus                              | [BatteryHealthState](#batteryhealthstate)      | 是   | 否   | 表示当前设备电池的健康状态。                               |
 | pluggedType                               | [BatteryPluggedType](#batterypluggedtype)      | 是   | 否   | 表示当前设备连接的充电器类型。                             |
 | voltage                                   | number                                         | 是   | 否   | 表示当前设备电池的电压，单位微伏。                         |
@@ -81,7 +81,7 @@ import batteryInfo from '@ohos.batteryInfo';
 
 表示电池充电状态的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
