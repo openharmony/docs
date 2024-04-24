@@ -1,10 +1,10 @@
 # Managing Distributed Accounts (for System Applications Only)
 
-You can use the [distributed account SDK](../reference/apis-basic-services-kit/js-apis-distributed-account.md) to implement smooth switchover between a distributed account and a system account.
+You can use the [distributed account SDK](../../reference/apis-basic-services-kit/js-apis-distributed-account.md) to implement smooth switchover between a distributed account and a system account.
 
 ## Before You Start
 
-1. Request the ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import the **distributedAccount** module.
 
@@ -32,7 +32,7 @@ You can use the [distributed account SDK](../reference/apis-basic-services-kit/j
    };
    ```
 
-2. Use [setOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9) to log in to the distributed account.
+2. Use [setOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9) to log in to the distributed account.
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
@@ -42,7 +42,7 @@ You can use the [distributed account SDK](../reference/apis-basic-services-kit/j
    });
    ```
 
-3. After the login, use [getOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account.md#getosaccountdistributedinfo9) to obtain information of the distributed account.
+3. After the login, use [getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#getosaccountdistributedinfo9) to obtain information of the distributed account.
 
    ```ts
    distributedAccountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
@@ -77,7 +77,7 @@ You can use the [distributed account SDK](../reference/apis-basic-services-kit/j
    });
    ```
 
-3. After the login, use [getOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to obtain information of the distributed account.
+3. After the login, use [getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to obtain information of the distributed account.
 
    ```ts
    distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: account_distributedAccount.DistributedInfo) => {
@@ -101,7 +101,7 @@ You can use the [distributed account SDK](../reference/apis-basic-services-kit/j
    };
    ```
 
-2. Use [setOsAccountDistributedInfo](../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9) to log out of the specified distributed account.
+2. Use [setOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9) to log out of the specified distributed account.
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
@@ -126,7 +126,7 @@ You can use the [distributed account SDK](../reference/apis-basic-services-kit/j
    };
    ```
 
-2. Use [setOsAccountDistributedInfoByLocalId](../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to log out of the specified distributed account to the target system account.
+2. Use [setOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to log out of the specified distributed account to the target system account.
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
