@@ -1187,7 +1187,7 @@ getImageInfoSync(): ImageInfo
 |  501    | Resource Unavailable |
 
 **示例：**
- 
+
 ```ts
 import { BusinessError } from '@ohos.base';
 
@@ -2975,18 +2975,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
-| 62980096| The operation failed.             |
-| 62980103| The image data is not supported.            |
-| 62980110| The image source data is incorrect.            |
-| 62980111| The image source data is incomplete.             |
-| 62980112| The image format does not match.             |
-| 62980113| Unknown image format.             |
-| 62980115| Invalid image parameter.             |
-| 62980116| Failed to decode the image.              |
-| 62980118| Failed to create the image plugin.           |
-| 62980122| The image decoding header is abnormal.           |
 | 62980123| Images in EXIF format are not supported.             |
-| 62980135| The EXIF value is invalid.            |
 
 **示例：**
 
@@ -3189,7 +3178,6 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
-| 62980133| The EXIF data is out of range.    |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.        |
 
