@@ -347,7 +347,7 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口id。 |
+| name   | string | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 
 **返回值：**
 
@@ -550,7 +550,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | 是   | 窗口id。                             |
+| id       | string                                 | 是   | 窗口名字，即[Configuration](#configuration9)中的name。|
 | type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
@@ -589,7 +589,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| id     | string                    | 是   | 窗口id。   |
+| id     | string                    | 是   | 窗口名字，即[Configuration](#configuration9)中的name。   |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。 |
 
 **返回值：**
@@ -630,7 +630,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
-| id       | string                                                  | 是   | 窗口id。                             |
+| id       | string                                                  | 是   | 窗口名字，即[Configuration](#configuration9)中的name。   |
 | type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
@@ -669,7 +669,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
-| id     | string                    | 是   | 窗口id。                                                     |
+| id     | string                    | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
 **返回值：**
@@ -709,7 +709,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | 是   | 窗口id。                             |
+| id       | string                                 | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前查找到的窗口对象。 |
 
 **示例：**
@@ -745,7 +745,7 @@ find(id: string): Promise&lt;Window&gt;
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| id     | string | 是   | 窗口id。 |
+| id     | string | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 
 **返回值：**
 
