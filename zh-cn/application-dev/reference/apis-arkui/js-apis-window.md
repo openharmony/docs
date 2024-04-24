@@ -2623,7 +2623,17 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 **示例：**
 
 ```ts
+const callback = (size: Size) => {
+  // ...
+}
 try {
+  windowClass.on('windowSizeChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('windowSizeChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowSizeChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window size changes. Cause: ' + JSON.stringify(exception));
@@ -2680,7 +2690,17 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area:
 **示例：**
 
 ```ts
+const callback = (data) => {
+  // ...
+}
 try {
+  windowClass.on('avoidAreaChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('avoidAreaChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('avoidAreaChange');
 } catch (exception) {
   console.error('Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
@@ -2732,7 +2752,17 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
+const callback = (height: number) => {
+  // ...
+}
 try {
+  windowClass.on('keyboardHeightChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('keyboardHeightChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('keyboardHeightChange');
 } catch (exception) {
   console.error('Failed to disable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
@@ -2788,13 +2818,22 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
+const callback = () => {
+  // ...
+}
 try {
+  windowClass.on('touchOutside', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('touchOutside', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('touchOutside');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
 ```
-
 ### on('screenshot')<sup>9+</sup>
 
 on(type: 'screenshot', callback: Callback&lt;void&gt;): void
@@ -2902,7 +2941,17 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
+const callback = () => {
+  // ...
+}
 try {
+  windowClass.on('dialogTargetTouch', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('dialogTargetTouch', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('dialogTargetTouch');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -2958,7 +3007,17 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
 **示例：**
 
 ```ts
+const callback = (data) => {
+  // ...
+}
 try {
+  windowClass.on('windowEvent', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('windowEvent', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowEvent');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -3028,7 +3087,17 @@ off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+const callback = (boolean) => {
+  // ...
+}
 try {
+  windowClass.on('windowVisibilityChange', callback);
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('windowVisibilityChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowVisibilityChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -3099,7 +3168,17 @@ off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```ts
+const callback = () => {
+  // ...
+}
 try {
+  windowClass.on('noInteractionDetected', 60, callback);
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('noInteractionDetected', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('noInteractionDetected');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -3151,7 +3230,17 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 **示例：**
 
 ```ts
+const callback = (windowStatusType) => {
+  // ...
+}
 try {
+  windowClass.on('windowStatusChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('windowStatusChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowStatusChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
@@ -3268,7 +3357,17 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 **示例：**
 
 ```ts
+const callback = (titleButtonRect) => {
+  // ...
+}
 try {
+  windowClass.on('windowTitleButtonRectChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  windowClass.off('windowTitleButtonRectChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   windowClass.off('windowTitleButtonRectChange');
 } catch (exception) {
   console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
@@ -3320,6 +3419,12 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 **示例：**
 
 ```ts
+const callback = (rectChangeOptions) => {
+  // ...
+}
+windowClass.on('windowRectChange', callback);
+windowClass.off('windowRectChange', callback);
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
 windowClass.off('windowRectChange');
 ```
 
@@ -5849,6 +5954,12 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
+const callback = (avoidArea) => {
+  // ...
+}
+windowClass.on('systemAvoidAreaChange', callback);
+windowClass.off('systemAvoidAreaChange', callback);
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
 windowClass.off('systemAvoidAreaChange');
 ```
 
@@ -7636,22 +7747,23 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-
-export default class EntryAbility extends UIAbility {
+const callback = (windowStageEventType) => {
   // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
-    try {
-      windowStage.off('windowStageEvent');
-    } catch (exception) {
-      console.error('Failed to disable the listener for window stage event changes. Cause:' +
-      JSON.stringify(exception));
-    }
-  }
-};
+}
+try {
+  windowStage.on('windowStageEvent', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for window stage event changes. Cause:' +
+  JSON.stringify(exception));
+}
+try {
+  windowStage.off('windowStageEvent', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowStage.off('windowStageEvent');
+} catch (exception) {
+  console.error('Failed to disable the listener for window stage event changes. Cause:' +
+  JSON.stringify(exception));
+}
 ```
 
 ### setDefaultDensityEnabled()<sup>12+</sup>
