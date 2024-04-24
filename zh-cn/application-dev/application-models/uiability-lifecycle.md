@@ -46,13 +46,11 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis-arkui/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
 ```ts
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   // ...
-
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
     try {
@@ -60,25 +58,24 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            Logger.info('windowStage foreground.');
+            console.info('windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            Logger.info('windowStage active.');
+            console.info('windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            Logger.info('windowStage inactive.');
+            console.info('windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            Logger.info('windowStage background.');
+            console.info('windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      console.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
-
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -94,20 +91,16 @@ export default class EntryAbility extends UIAbility {
 对应于`onWindowStageCreate()`回调。在UIAbility实例销毁之前，则会先进入`onWindowStageDestroy()`回调，可以在该回调中释放UI资源。
 
 ```ts
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import type { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
   // ...
-
   onWindowStageCreate(windowStage: window.WindowStage): void {
     this.windowStage = windowStage;
     // ...
   }
-
   onWindowStageDestroy() {
     // 释放UI资源
   }
@@ -148,7 +141,9 @@ export default class EntryAbility extends UIAbility {
 当应用的UIAbility实例已创建，且UIAbility配置为[singleton](uiability-launch-type.md#singleton启动模式)启动模式时，再次调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例时，只会进入该UIAbility的[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。应用可以在该回调中更新要加载的资源和数据等，用于后续的UI展示。
 
 ```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
   // ...
