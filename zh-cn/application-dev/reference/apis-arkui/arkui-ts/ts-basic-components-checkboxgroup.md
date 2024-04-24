@@ -16,6 +16,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
+在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
