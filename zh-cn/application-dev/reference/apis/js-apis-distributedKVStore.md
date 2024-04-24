@@ -212,7 +212,7 @@ schema.skip = 0;
 | -------- | ------- | ---- | ---- | ------------------------------ |
 | nullable | boolean | 是   | 是   | 表示数据库字段是否可以为空。true表示此节点数据可以为空，false表示此节点数据不能为空。|
 | default  | string  | 是   | 是   | 表示Fieldnode的默认值。        |
-| type     | number  | 是   | 是   | 表示指定节点对应的数据类型，取值为[ValueType](#valuetype)对应的枚举值。|
+| type     | number  | 是   | 是   | 表示指定节点对应的数据类型，取值为[ValueType](#valuetype)对应的枚举值。暂不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#getkvstore)失败。|
 
 ### constructor
 
