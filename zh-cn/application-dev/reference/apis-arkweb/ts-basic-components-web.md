@@ -2823,12 +2823,20 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
             }
             let length = this.heads.push(head1)
             length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
+            const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
+              this.responseweb.setResponseHeader(this.heads)
+              this.responseweb.setResponseData(this.webdata)
+              this.responseweb.setResponseEncoding('utf-8')
+              this.responseweb.setResponseMimeType('text/html')
+              this.responseweb.setResponseCode(200)
+              this.responseweb.setReasonMessage('OK')
+              resolve("success");
+            })
+            promise.then(() => {
+              console.log("prepare response ready")
+              this.responseweb.setResponseIsReady(true)
+            })
+            this.responseweb.setResponseIsReady(false)
             return this.responseweb
           })
       }

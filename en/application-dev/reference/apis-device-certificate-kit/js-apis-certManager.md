@@ -66,7 +66,7 @@ Represents a set of parameters used for signing or signature verification, inclu
 
 ## CertInfo
 
-Represents the detailed information about a certificate.
+Represents detailed information about a certificate.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
@@ -85,7 +85,7 @@ Represents the detailed information about a certificate.
 
 ## CertAbstract
 
-Represents the brief information about a certificate.
+Represents brief information about a certificate.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
@@ -99,7 +99,7 @@ Represents the brief information about a certificate.
 
 ## Credential
 
-Represents the detailed information about a credential.
+Represents detailed information about a credential.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
@@ -114,7 +114,7 @@ Represents the detailed information about a credential.
 
 ## CredentialAbstract
 
-Represents the brief information about a credential.
+Represents brief information about a credential.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
@@ -135,7 +135,7 @@ Represents the result returned.
 | certList?          | Array<[CertAbstract](#certabstract)> | Yes  | Yes  | Brief certificate information.|
 | certInfo?          | [CertInfo](#certinfo) | Yes  | Yes  | Detailed certificate information.|
 | credentialList?          | Array<[CredentialAbstract](#credentialabstract)> | Yes  | Yes  | Brief credential information.|
-| credential?         | [Credential](#credential) | Yes  | Yes  | Credential detailed information.|
+| credential?         | [Credential](#credential) | Yes  | Yes  | Detailed credential information.|
 | appUidList?        | Array<string>     | Yes  | Yes  | List of authorized applications.|
 | uri?         | string    | Yes  | Yes  | Unique identifier of the certificate or credential.|
 | outData?         | Uint8Array    | Yes  | Yes  | Signature generated.|
@@ -180,8 +180,8 @@ Installs a private credential. This API uses an asynchronous callback to return 
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keystore | Uint8Array                   | Yes  | Keystore file containing the key pair and certificate.|
 | keystorePwd | string | Yes  | Password of the keystore file. The password cannot exceed 32 bytes.|
-| certAlias | string | Yes  | Certificate alias. Currently, the alias can contain only digits, letters, and underscores (_) and should not exceed 32 bytes.|
-| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, the URI of the installed credential is returned.|
+| certAlias | string | Yes  | Credential alias. Currently, the alias can contain only digits, letters, and underscores (_) and should not exceed 32 bytes.|
+| callback | AsyncCallback\<[CMResult](#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, the URI of the installed credential (**uri** in [CMResult](#cmresult)) is returned.|
 
 **Error codes**
 
@@ -237,7 +237,7 @@ Installs a private credential. This API uses a promise to return the result.
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](#cmresult)> | Promise used to return the result. If the operation is successful, the URI of the installed credential is returned.|
+| Promise\<[CMResult](#cmresult)> | Promise used to return the result. If the operation is successful, the URI of the installed credential (**uri** in [CMResult](#cmresult)) is returned.|
 
 **Error codes**
 
@@ -301,7 +301,7 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import certManager from '@ohos.security.certManager';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
@@ -356,7 +356,7 @@ For details about the following error codes, see [Certificate Management Error C
 import certManager from '@ohos.security.certManager';
 import { BusinessError } from '@ohos.base';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certManager.getPrivateCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
@@ -403,7 +403,7 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import certManager from '@ohos.security.certManager';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 try {
   certManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
@@ -453,7 +453,7 @@ For details about the following error codes, see [Certificate Management Error C
 import certManager from '@ohos.security.certManager';
 import { BusinessError } from '@ohos.base';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 try {
   certManager.uninstallPrivateCertificate(uri).then((cmResult) => {
     console.log("[Promise]uninstallPrivateCertificate success");
@@ -496,7 +496,7 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import certManager from '@ohos.security.certManager';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 const req: certManager.CMSignatureSpec = {
   purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
   padding: certManager.CmKeyPadding.CM_PADDING_PSS,
@@ -552,7 +552,7 @@ For details about the following error codes, see [Certificate Management Error C
 import certManager from '@ohos.security.certManager';
 import { BusinessError } from '@ohos.base';
 
-let uri: string = 'test'; /* URI of the credential installed, which is omitted here. */
+let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
 const req: certManager.CMSignatureSpec = {
   purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
   padding: certManager.CmKeyPadding.CM_PADDING_PSS,
