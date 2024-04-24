@@ -163,7 +163,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -289,7 +289,7 @@ export default class EntryAbility extends UIAbility {
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
     // use the IsoDep technology to access this nfc tag.
-    let isoDep : tag.IsoDepTag;
+    let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {
