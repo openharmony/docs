@@ -63,6 +63,17 @@
 | bottom | [Length](#length) | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
 | left   | [Length](#length) | 否    | 左内边距，组件内元素距组件左边界的尺寸。 |
 
+## LocalizedPadding<sup>12+</sup>
+
+内边距类型，用于描述组件不同方向的内边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右内边距，组件内元素距组件右边界的尺寸。<br />从右至左显示语言模式下为<br />左内边距，组件内元素距组件左边界的尺寸。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左内边距，组件内元素距组件左边界的尺寸。<br />从右至左显示语言模式下为<br />右内边距，组件内元素距组件右边界的尺寸。 |
+
 ## Margin
 
 外边距类型，用于描述组件不同方向的外边距。
@@ -73,6 +84,17 @@
 | right  | [Length](#length) | 否    | 右外边距，组件右边界距组件外元素的尺寸。 |
 | bottom | [Length](#length) | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
 | left   | [Length](#length) | 否    | 左外边距，组件左边界距组件外元素的尺寸。 |
+
+## LocalizedMargin<sup>12+</sup>
+
+外边距类型，用于描述组件不同方向的外边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
+| end    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 右外边距，组件右边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />左外边距，组件左边界距组件外元素的尺寸。 |
+| bottom | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
+| start  | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 左外边距，组件左边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />右外边距，组件右边界距组件外元素的尺寸。 |
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -85,6 +107,17 @@
 | bottom | [Length](#length) | 否    | 组件下边框宽度。 |
 | left   | [Length](#length) | 否    | 组件左边框宽度。 |
 
+## LocalizedEdgeWidths<sup>12+</sup>
+
+边框宽度类型，用于描述组件边框不同方向的宽度。
+
+| 名称     | 类型                | 必填   | 说明       |
+| ------ | ----------------- | ---- | -------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件上边框宽度。 |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右边框宽度。<br />从右至左显示语言模式下为组件左边框宽度。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件下边框宽度。 |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左边框宽度。<br />从右至左显示语言模式下为组件右边框宽度。 |
+
 ## BorderRadiuses<sup>9+</sup>
 
 圆角类型，用于描述组件边框圆角半径。
@@ -96,6 +129,17 @@
 | bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
 | bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
 
+## LocalizedBorderRadiuses<sup>12+</sup>
+
+圆角类型，用于描述组件边框圆角半径。
+
+| 名称          | 类型                | 必填   | 说明         |
+| ----------- | ----------------- | ---- | ---------- |
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右上角圆角半径。<br />从右至左显示语言模式下为组件左上角圆角半径。 |
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左下角圆角半径。<br />从右至左显示语言模式下为组件右下角圆角半径。 |
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右下角圆角半径。<br />从右至左显示语言模式下为组件左下角圆角半径。 |
+
 ## EdgeColors<sup>9+</sup>
 
 边框颜色，用于描述组件边框四条边的颜色。
@@ -106,6 +150,17 @@
 | right  | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。 |
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
 | left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
+
+## LocalizedEdgeColors<sup>12+</sup>
+
+边框颜色，用于描述组件边框四条边的颜色。
+
+| 名称     | 类型                              | 必填   | 说明       |
+| ------ | ------------------------------- | ---- | -------- |
+| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 

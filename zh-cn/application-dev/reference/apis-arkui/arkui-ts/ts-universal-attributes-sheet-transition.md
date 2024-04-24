@@ -46,8 +46,8 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。 |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
 | onHeightDidChange<sup>12+</sup> | (value: number) => void | 否 | 半模态页面高度变化回调函数。<br/>**说明：**<br/>底部弹窗时，只有挡位变化和拖拽跟手才返回每一帧高度，拉起半模态和避让软键盘只返回最后的高度，其他弹窗只在半模态拉起返回最后高度。<br/>返回值为px。 |
-| borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)  | 否 | 设置半模态页面的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素半模态页面宽的百分比来设置半模态页面的边框宽度。<br />当半模态页面左边框和右边框大于半模态页面宽度，半模态页面上边框和下边框大于半模态页面高度，显示可能不符合预期。<br />**说明：**<br />底部弹窗时，底部边框宽度设置无效。 |
-| borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)  | 否 | 设置半模态页面的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 <br />**说明：**<br />底部弹窗时，底部边框颜色设置无效。 |
+| borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](ts-types.md#edgewidths9)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-types.md#localizededgewidths12)<sup>12+</sup>  | 否 | 设置半模态页面的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素半模态页面宽的百分比来设置半模态页面的边框宽度。<br />当半模态页面左边框和右边框大于半模态页面宽度，半模态页面上边框和下边框大于半模态页面高度，显示可能不符合预期。<br />**说明：**<br />底部弹窗时，底部边框宽度设置无效。 |
+| borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-types.md#localizededgecolors12)<sup>12+</sup>  | 否 | 设置半模态页面的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 <br />**说明：**<br />底部弹窗时，底部边框颜色设置无效。 |
 | borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9)  | 否 | 设置半模态页面的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 <br />**说明：**<br />底部弹窗时，底部边框样式设置无效。 |
 | width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置半模态页面的宽度。<br /> 百分比参数方式：以父元素宽的百分比来设置半模态页面的宽度。|
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置半模态页面的阴影。 |
@@ -91,7 +91,8 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | title    | [ResourceStr](ts-types.md#resourcestr) | 是   | 半模态面板的主标题。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否   | 半模态面板的副标题。 |
 
-## 示例1
+## 示例
+### 示例1
 
 ```ts
 // xxx.ets
@@ -155,7 +156,7 @@ struct SheetTransitionExample {
 
 ![zh-cn_sheet](figures/zh-cn_sheet1.gif)
 
-## 示例2
+### 示例2
 
 ```ts
 // xxx.ets
@@ -205,3 +206,68 @@ struct SheetTransitionExample {
 ```
 
 ![zh-cn_sheet](figures/zh-cn_sheet2.gif)
+
+### 示例3
+
+```ts
+// xxx.ets
+// bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
+
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct SheetTransitionExample {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("content1")
+        .margin(10)
+        .fontSize(20)
+
+      Button("content2")
+        .margin(10)
+        .fontSize(20)
+    }
+    .width('100%')
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
+          preferType: SheetType.CENTER,
+          borderWidth: { top: LengthMetrics.vp(10), start: LengthMetrics.vp(10), end: LengthMetrics.vp(20) },
+          borderColor: { top: Color.Pink, start: Color.Blue, end: Color.Yellow },
+          shouldDismiss: ((sheetDismiss: SheetDismiss) => {
+            console.log("bind sheet shouldDismiss")
+            sheetDismiss.dismiss()
+          })
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+从左至右显示语言模式示例图
+
+![zh-cn_sheet](figures/zh-cn_sheet3_ltr.png)
+
+从右至左显示语言模式示例图
+
+![zh-cn_sheet](figures/zh-cn_sheet3_rtl.png)
