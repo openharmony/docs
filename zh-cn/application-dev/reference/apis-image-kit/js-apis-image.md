@@ -2155,6 +2155,43 @@ imageSourceApi.getImageInfo(0)
 	})
 ```
 
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(index?: number): ImageInfo
+
+获取指定序号的图片信息，使用同步形式返回图片信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名| 类型   | 必填 | 说明                                  |
+| ----- | ------ | ---- | ------------------------------------- |
+| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+
+**返回值：**
+
+| 类型                             | 说明                   |
+| -------------------------------- | ---------------------- |
+| [ImageInfo](#imageinfo) | 同步返回获取到的图片信息。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let imageInfo = imageSource.getImageInfoSync(0);
+    if (imageInfo == undefined) {
+        console.error('getImageInfoSync failed.');
+    } else {
+        console.info('getImageInfoSync succeeded.');
+        console.info('imageInfo.size.height:' + imageInfo.size.height);
+        console.info('imageInfo.size.width:' + imageInfo.size.width);
+    }
+```
+
 ### getImageProperty<sup>11+</sup>
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
@@ -2721,6 +2758,50 @@ imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: im
         console.info('Succeeded in creating pixelMap object.');
     }
 })
+```
+
+### createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options?: DecodingOptions): PixelMap
+
+通过图片解码参数同步创建PixelMap对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 用于同步返回创建结果。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+    if (pixelmap != undefined) {
+        console.info('Succeeded in creating pixelMap object.');
+    } else {
+        console.info('Failed to create pixelMap.');
+    }
 ```
 
 ### createPixelMapList<sup>10+</sup>
