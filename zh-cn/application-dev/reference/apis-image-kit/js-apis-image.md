@@ -2963,6 +2963,43 @@ imageSourceApi.getFrameCount().then((frameCount: number) => {
 })
 ```
 
+### getDisposalTypeList<sup>12+</sup>
+
+getDisposalTypeList(): Promise\<Array\<number>>
+
+获取图像帧过渡模式数组，使用Promise形式返回结果。此接口仅用于gif图片。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<Array\<number>> | Promise实例，异步返回帧过渡模式数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
+| 62980096 | The operation failed.      |
+| 62980101 | The image data is abnormal. |
+| 62980137 | Invalid media operation.        |
+| 62980149 | Invalid image source mime type.      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in disposalTypes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
+})
+```
+
 ### release
 
 release(callback: AsyncCallback\<void>): void
