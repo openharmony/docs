@@ -1,4 +1,4 @@
-# @ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)
+# @ohos.WorkSchedulerExtensionAbility (延迟任务回调)
 
 本模块提供延迟任务回调能力。开发者可重写模块接口，在延迟任务触发时，系统可通过本模块接口回调应用，在回调里处理任务逻辑。
 
