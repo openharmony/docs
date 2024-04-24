@@ -784,7 +784,7 @@ export default class FuncAbility extends UIAbility {
 
 > **说明：**
 >
-> 当被调用方[UIAbility组件启动模式](uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调就不会被用到。
+> 当被调用方[UIAbility组件启动模式](uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调就不会被用到。
 
 
 ## 通过Call调用实现UIAbility交互（仅对系统应用开放）
@@ -899,7 +899,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = messageSequence.readString();
        return true;
      };
-   };
+   }
    ```
 
 4. 实现Callee.on监听及Callee.off解除监听。
@@ -1034,11 +1034,10 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
          let message = (err as BusinessError).message;
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
        }
-       ;
      }
    
      build() {
-       Button()
+       Button('StartAbilityByCall')
          .onClick(() => {
            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
            let want: Want = {
