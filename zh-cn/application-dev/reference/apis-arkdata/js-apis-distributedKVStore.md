@@ -3272,7 +3272,6 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
-| 15100003     | Database corrupted. |
 | 15100005     | Database or result set already closed. |
 **示例：**
 
@@ -3337,7 +3336,6 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.  |
-| 15100003     | Database corrupted. |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
