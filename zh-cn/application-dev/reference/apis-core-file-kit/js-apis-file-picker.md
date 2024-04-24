@@ -849,10 +849,10 @@ async function example18() {
 
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅支持特定设备，且目录选择的最大个数为1） |
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                            |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection |
 
 
 ## DocumentSaveOptions
