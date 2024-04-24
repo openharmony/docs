@@ -201,6 +201,15 @@
 | x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
 | y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
+## LocalizedPosition<sup>12+</sup>
+
+位置类型，用于表示一个坐标点。
+
+| 名称   | 类型                | 必填   | 说明                          |
+| ---- | ----------------- | ---- | --------------------------- |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时x轴相对左边坐标，RTL模式x轴相对右边坐标。  |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | y轴坐标。 |
+
 ## Edges<sup>12+</sup>
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
@@ -211,6 +220,17 @@
 | bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
 | left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
 | right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+
+## LocalizedEdges<sup>12+</sup>
+
+位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置start和end，仅start生效。
+
+| 名称   | 类型     | 必填   | 说明                          |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对顶边的偏移量。 |
+| bottom    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对底边的偏移量。 |
+| start    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对左边的偏移量，RTL模式时相对右边的偏移量。|
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对右边的偏移量，RTL模式时相对左边的偏移量。 |
 
 ## ConstraintSizeOptions
 
