@@ -471,6 +471,24 @@ getId(): string
 
 请参考[节点操作示例](#节点操作示例)。
 
+### getUniqueId<sup>12+</sup>
+
+getUniqueId(): number
+
+获取系统分配的唯一标识的节点UniqueID。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| number | 系统分配的唯一标识的节点UniqueID |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 ### getNodeType<sup>12+</sup>
 
 getNodeType(): string
@@ -574,6 +592,30 @@ getInspectorInfo(): Object
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Object | 节点的结构信息。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getCustomProperty<sup>12+</sup>
+
+getCustomProperty(name: string): Object | undefined
+
+通过名称获取组件的自定义属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| name  | string | 是   | 自定义属性的名称。 |
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Object \| undefined | 自定义属性的值。 |
 
 **示例：**
 
@@ -883,6 +925,11 @@ class MyNodeController extends NodeController {
     let id = this.frameNode?.getId();
     console.log(TEST_TAG + id);
   }
+  getUniqueId()
+  {
+    let uniqueId = this.frameNode?.getUniqueId();
+    console.log(TEST_TAG + uniqueId);
+  }
   getNodeType()
   {
     let nodeType = this.frameNode?.getNodeType();
@@ -912,6 +959,11 @@ class MyNodeController extends NodeController {
   {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
+  }
+  getCustomProperty()
+  {
+    let customProperty = this.frameNode?.getCustomProperty();
+    console.log(TEST_TAG + customProperty);
   }
 
   throwError()
@@ -1028,6 +1080,11 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.getId();
         })
+      Button("getUniqueId")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUniqueId();
+        })
       Button("getNodeType")
         .width(300)
         .onClick(()=>{
@@ -1057,6 +1114,11 @@ struct Index {
         .width(300)
         .onClick(()=>{
           this.myNodeController.getInspectorInfo();
+        })
+      Button("getCustomProperty")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getCustomProperty();
         })
       Button("throwError")
         .width(300)
