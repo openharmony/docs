@@ -1,6 +1,6 @@
 # 属性字符串
 
-作为[Text](./ts-basic-components-text.md)组件的入参对象，方便灵活应用文本样式。
+方便灵活应用文本样式的对象，可通过TextController中的[setStyledString](./ts-basic-components-text.md#setstyledstring12)方法与Text组件绑定。
 
 >  **说明：**
 >
@@ -9,21 +9,18 @@
 ## 规则说明
 
 * 当组件样式和属性字符串中的样式冲突时，冲突部分以属性字符串设置的样式为准，未冲突部分则生效组件的样式。
-* 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略[Text](./ts-basic-components-text.md)组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
-* 属性字符串不支持和其他类型文本入参动态切换。
+* 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略Text组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
 * 不支持@State修饰。
 
 ## StyledString
 
-StyledString(value: string , styles?: Array\<StyleOptions>)
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+StyledString(value: string | ImageAttachment , styles?: Array\<StyleOptions>)
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 属性字符串文本内容。|
+| value | string \| [ImageAttachment](#imageattachment) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment时，styles参数不生效。  |
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。<br/>styledValue入参合法时，styledKey传入undefined时，此时样式不生效。 |
 
 ### getString
@@ -38,7 +35,7 @@ getString(): string
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| string | 属性字符串文本内容。 |
+| string | 属性字符串文本内容。<br/>**说明：** <br/>当属性字符串中包含Attachment时，其返回的结果用空格表示。 |
 
 ### length
 
@@ -52,7 +49,7 @@ readonly length: number
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| number | 属性字符串字符的长度。 |
+| number | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含Attachment时，其返回的长度按1计算。 |
 
 ### equals
 
@@ -163,6 +160,8 @@ insertString(start: number , other: string): void
 
 移除指定范围的字符串。
 
+当属性字符串中包含Attachment时，同样生效。
+
 removeString(start: number , length: number): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -186,7 +185,7 @@ replaceStyle(spanStyle: SpanStyle): void
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认清空原有样式，替换为新样式。 |
+| spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认清空原有样式，替换为新样式。<br/>当SpanStyle的styledKey为IMAGE时，只有当start的位置当前是image且长度为1，才会生效，其余情况无效果。 |
 
 ### setStyle
 
@@ -200,13 +199,15 @@ setStyle(spanStyle: SpanStyle): void
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认不清空原有样式，叠加新样式。若是已有样式，则更新。 |
+| spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认不清空原有样式，叠加新样式。若是已有样式，则更新。<br/>当SpanStyle的styledKey为IMAGE时，只有当start的位置当前是image且长度为1，才会生效，其余情况无效果。 |
 
 ### removeStyle
 
 清除指定范围内容的指定类型样式。
 
 被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。
+
+当属性字符串中包含Attachment时，同样生效。
 
 removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
@@ -225,6 +226,8 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 清除指定范围内容的所有样式。
 
 被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。
+
+当属性字符串中包含Attachment时，同样生效。
 
 removeStyles(start: number , length: number): void
 
@@ -324,7 +327,7 @@ appendStyledString(other: StyledString): void
 | ------------ |---------------------| ---- | ---- | ------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor) |  是  |  否  | 获取属性字符串的文本颜色。 |
 | fontFamily | string   | 是    | 否    | 获取属性字符串的文本字体。 |
-| fontSize   | number   | 是    | 否    | 获取属性字符串的文本字体大小。 |
+| fontSize   | number   | 是    | 否    | 获取属性字符串的文本字体大小。<br/>单位：vp |
 | fontWeight   | number   | 是    | 否    | 获取属性字符串的文本字体粗细。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 否    | 获取属性字符串的文本字体样式。 |
 
@@ -346,7 +349,7 @@ constructor(value?: TextStyleInterface)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
 | fontFamily | [ResourceStr](ts-types.md#resourcestr) | 否   | 文本字体。 |
-| fontSize | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 否   | 字体大小。如果LengthMetric的unit值是percent，当前设置不生效，处理为0vp。 |
+| fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0vp。 |
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。 |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 字体样式。 |
 
@@ -421,11 +424,11 @@ constructor(value: DecorationStyleInterface)
 
 | 名称           | 类型              | 只读   | 必填   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| baselineOffset  | number |  是  |  是  | 获取属性字符串的文本基线偏移量。 |
+| baselineOffset  | number |  是  |  是  | 获取属性字符串的文本基线偏移量。<br/>单位：vp |
 
 ### constructor
 
-constructor(value: LengthMetric)
+constructor(value: LengthMetrics)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -433,7 +436,7 @@ constructor(value: LengthMetric)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 文本基线偏移量设置项。如果LengthMetric的unit值是percent，该设置不生效。 |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本基线偏移量设置项。如果LengthMetrics的unit值是percent，该设置不生效。 |
 
 ## LetterSpacingStyle
 
@@ -447,11 +450,11 @@ constructor(value: LengthMetric)
 
 | 名称           | 类型              | 只读   | 必填   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| letterSpacing  | number |  是  |  是  | 获取属性字符串的文本字符间距。 |
+| letterSpacing  | number |  是  |  是  | 获取属性字符串的文本字符间距。<br/>单位：vp |
 
 ### constructor
 
-constructor(value: LengthMetric)
+constructor(value: LengthMetrics)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -459,7 +462,7 @@ constructor(value: LengthMetric)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 文本字符间距设置项。如果LengthMetric的unit值是percent，该设置不生效。 |
+| value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本字符间距设置项。如果LengthMetrics的unit值是percent，该设置不生效。 |
 
 ## TextShadowStyle
 
@@ -487,6 +490,54 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) \| Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)>  | 是   | 文本阴影设置项。 |
 
+## ImageAttachment
+
+图片附件对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  是  | 获取属性字符串的图片数据源。 |
+| size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  否  | 获取属性字符串的图片尺寸。 |
+| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  是  |  否  | 获取属性字符串的图片对齐方式。 |
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  否  | 获取属性字符串的图片缩放类型。 |
+| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  否  | 获取属性字符串的图片布局。 |
+
+### constructor
+
+constructor(value: ImageAttachmentInterface)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ImageAttachmentInterface](#imageattachmentinterface对象说明) | 是   | 图片附件设置项。 |
+
+## ImageAttachmentInterface对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。 |
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
+| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。 |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 |
+| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
+
+## ImageAttachmentLayoutStyle对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。 |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。 |
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。 |
+
 ## 示例
 
 ### 示例1
@@ -498,33 +549,56 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 @Entry
 @Component
 struct styled_string_demo1 {
-  @State height1:number = 450;
-  @State fontSize1:number = 16;
-  @State fontWeight1:number = 400;
-  @State color1:Color = Color.Blue;
-
+  @State height1: number = 450;
+  @State fontSize1: number = 16;
+  @State fontWeight1: number = 400;
+  @State color1: Color = Color.Blue;
   scroll: Scroller = new Scroller();
-  fontStyleAttr1:TextStyle = new TextStyle({fontColor:Color.Blue});
-  fontStyleAttr2:StyledStringValue = new TextStyle({fontColor:Color.Orange});
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  fontStyleAttr2: StyledStringValue = new TextStyle({ fontColor: Color.Orange });
   // 创建可读写属性字符串的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟");
   // 创建构造入参有字符串和样式的对象mutableStyledString2
-  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{start:0, length:5, styledKey:StyledStringKey.FONT, styledValue: this.fontStyleAttr1}]);
+  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr1
+  }]);
   // 创建只读属性字符串对象styledString2
   styledString2: StyledString = new StyledString("运动45分钟");
-  spanStyle1:SpanStyle = {start:0, length:5, styledKey:StyledStringKey.FONT, styledValue: new TextStyle({ fontColor:Color.Pink})};
-  spanStyle2:SpanStyle = { start:0, length:2, styledKey:StyledStringKey.FONT, styledValue: new TextStyle({fontColor:Color.Red})};
-  @State string1:string = '';
-  @State fontColor1:ResourceColor = Color.Red;
+  spanStyle1: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Pink })
+  };
+  spanStyle2: SpanStyle = {
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Red })
+  };
+  @State string1: string = '';
+  @State fontColor1: ResourceColor = Color.Red;
+  controller1: TextController = new TextController();
+  controller2: TextController = new TextController();
+  controller3: TextController = new TextController();
 
-  build(){
-    Column(){
-      Scroll(this.scroll){
-        Column(){
+  async onPageShow() {
+    this.controller1.setStyledString(this.styledString2)
+    this.controller2.setStyledString(this.mutableStyledString1)
+    this.controller3.setStyledString(this.mutableStyledString2)
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroll) {
+        Column() {
           // 显示属性字符串
-          Text(this.styledString2)
-          Text(this.mutableStyledString1).key('mutableStyledString1')
-          Text(this.mutableStyledString2).key('mutableStyledString2')
+          Text(undefined, { controller: this.controller1 })
+          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
+          Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('修改string1的值')
             .onClick(() => {
               let result = this.mutableStyledString1.equals(this.styledString2);
@@ -536,31 +610,32 @@ struct styled_string_demo1 {
             })
 
           // 属性字符串与Span冲突时忽略Span,以及样式与Text组件属性未冲突部分生效Text设置的属性
-          Text(this.mutableStyledString1){
+          Text(undefined, { controller: this.controller2 }) {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
-              .decoration({type:TextDecorationType.LineThrough})
+              .decoration({ type: TextDecorationType.LineThrough })
             ImageSpan($r('app.media.icon'))
-          }.key('styledString2')
+          }
+          .key('styledString2')
           .fontColor(this.fontColor1)
           .letterSpacing(10)
           .fontSize(32)
           .fontWeight(600)
           .fontStyle(FontStyle.Italic)
           .lineHeight(30)
-          .textShadow({radius:5, color:Color.Blue, offsetX: 5, offsetY:5})
+          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
           .textCase(TextCase.UpperCase)
-          .decoration({type:TextDecorationType.LineThrough, color: Color.Yellow})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
           .baselineOffset(2)
           .copyOption(CopyOptions.InApp)
-          .margin({top: 10})
+          .margin({ top: 10 })
           .draggable(true)
 
           // 以上冲突测试对照组
-          Text(){
+          Text() {
             Span(this.string1)
               .fontColor(this.color1)
-              .decoration({type:TextDecorationType.LineThrough})
+              .decoration({ type: TextDecorationType.LineThrough })
             ImageSpan($r('app.media.icon'))
               .width(50).height(50)
           }
@@ -569,23 +644,34 @@ struct styled_string_demo1 {
           .fontWeight(600)
           .fontStyle(FontStyle.Italic)
           .lineHeight(30)
-          .textShadow({radius:5, color:Color.Blue, offsetX: 5, offsetY:5})
+          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
           .textCase(TextCase.UpperCase)
-          .decoration({type:TextDecorationType.LineThrough, color: Color.Yellow})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
           .baselineOffset(2)
 
           Button('设置样式及替换文本')
             .onClick(() => {
-              this.mutableStyledString1.replaceStyle({start:2, length: 2, styledKey:StyledStringKey.FONT, styledValue:this.fontStyleAttr1})
-              this.mutableStyledString1.insertString(0,"压力85偏高，")
-              this.mutableStyledString1.setStyle({start:2, length:2, styledKey:StyledStringKey.FONT, styledValue:this.fontStyleAttr2})
+              this.mutableStyledString1.replaceStyle({
+                start: 2,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: this.fontStyleAttr1
+              })
+              this.mutableStyledString1.insertString(0, "压力85偏高，")
+              this.mutableStyledString1.setStyle({
+                start: 2,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: this.fontStyleAttr2
+              })
+              this.controller2.setStyledString(this.mutableStyledString1)
             })
-            .margin({top: 10})
+            .margin({ top: 10 })
 
           Button('查询样式及清空样式')
             .onClick(() => {
-              let styles = this.mutableStyledString1.getStyles(0,this.mutableStyledString1.length)
-              if ( styles.length == 2 ) {
+              let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+              if (styles.length == 2) {
                 for (let i = 0; i < styles.length; i++) {
                   console.info('StyledString style object start:' + styles[i].start)
                   console.info('StyledString style object length:' + styles[i].length)
@@ -597,12 +683,15 @@ struct styled_string_demo1 {
                 }
               }
               this.mutableStyledString2.setStyle(styles[0]);
+              this.controller3.setStyledString(this.mutableStyledString2);
               this.mutableStyledString1.removeStyles(2, 3);
+              this.controller2.setStyledString(this.mutableStyledString1);
             })
-            .margin({top: 10})
+            .margin({ top: 10 })
         }.width('100%')
 
-      }.expandSafeArea([SafeAreaType.KEYBOARD])
+      }
+      .expandSafeArea([SafeAreaType.KEYBOARD])
       .scrollable(ScrollDirection.Vertical)
       .scrollBar(BarState.On)
       .scrollBarColor(Color.Gray)
@@ -672,6 +761,11 @@ struct styled_string_demo2 {
     }]);
   @State fontColor1: ResourceColor = Color.Red;
   @State backgroundColor1: ResourceColor | undefined = undefined;
+  controller3: TextController = new TextController();
+
+  async onPageShow() {
+    this.controller3.setStyledString(this.mutableStyledString3)
+  }
 
   build() {
     Column() {
@@ -679,7 +773,7 @@ struct styled_string_demo2 {
         Column({ space: 30 }) {
           Button("响应属性字符串事件改变背景色").backgroundColor(this.backgroundColor1).width('80%')
           // 包含事件的属性字符串
-          Text(this.mutableStyledString3).fontSize(30)
+          Text(undefined, { controller: this.controller3 }).fontSize(30)
             .copyOption(CopyOptions.InApp)
             .draggable(true)
             .clip(true)
@@ -885,7 +979,135 @@ struct styled_string_demo3 {
 ```
 ![](figures/styledstring_3.png)
 
+### 示例4
 
+属性字符串图片附件接口使用示例
+
+```ts
+// xxx.ets
+import image from '@ohos.multimedia.image'
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct styled_string_demo4 {
+  @State message: string = 'Hello World'
+  imagePixelMap: image.PixelMap | undefined = undefined
+  @State imagePixelMap3: image.PixelMap | undefined = undefined
+  mutableStr: MutableStyledString = new MutableStyledString('123');
+  controller: TextController = new TextController();
+  mutableStr2: MutableStyledString = new MutableStyledString('This is set decoration line style to the mutableStr2', [{
+    start: 0,
+    length: 15,
+    styledKey: StyledStringKey.DECORATION,
+    styledValue: new DecorationStyle({
+      type: TextDecorationType.Overline,
+      color: Color.Orange,
+      style: TextDecorationStyle.DOUBLE
+    })
+  }])
+
+  async aboutToAppear() {
+    console.info("aboutToAppear initial imagePixelMap")
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'))
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+
+        Button('设置图片')
+          .onClick(() => {
+            if (this.imagePixelMap !== undefined) {
+              this.mutableStr = new MutableStyledString(new ImageAttachment({
+                value: this.imagePixelMap,
+                size: { width: 50, height: 50 },
+                layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+                verticalAlign: ImageSpanAlignment.BASELINE,
+                objectFit: ImageFit.Contain
+              }))
+              this.controller.setStyledString(this.mutableStr)
+            }
+          })
+
+        Button('Image之Append')
+          .onClick(() => {
+            let str = new StyledString('123')
+            this.mutableStr.appendStyledString(str)
+            this.controller.setStyledString(this.mutableStr)
+          })
+
+        Button('Image之Insert 前')
+          .onClick(() => {
+            this.mutableStr.insertString(0, '123')
+            this.controller.setStyledString(this.mutableStr)
+          })
+
+        Button('Image之Insert 后')
+          .onClick(() => {
+            this.mutableStr.insertString(1, '123')
+            this.controller.setStyledString(this.mutableStr)
+          })
+
+        Button('Image之replace')
+          .onClick(() => {
+            this.mutableStr.replaceString(2, 5, "789")
+            this.controller.setStyledString(this.mutableStr)
+            this.mutableStr
+          })
+
+        Button('Image之Get')
+          .onClick(() => {
+            let imageArray = this.mutableStr.getStyles(0, 1, StyledStringKey.IMAGE)
+            for (let i = 0; i < imageArray.length; ++i) {
+              console.info('mutableStr start ' + imageArray[i].start + ' length ' + imageArray[i].length + ' type ' + imageArray[i].styledKey)
+              if (imageArray[i].styledKey === 300) {
+                let attachment = imageArray[i].styledValue as ImageAttachment
+                this.imagePixelMap3 = attachment.value
+                console.info('mutableStr value ' + JSON.stringify(attachment.value))
+                if (attachment.size !== undefined) {
+                  console.info('mutableStr size width ' + attachment.size.width + ' height ' + attachment.size.height)
+                }
+                console.info('mutableStr vertical ' + attachment.verticalAlign)
+                console.info('mutableStr fit ' + attachment.objectFit)
+                if (attachment.layoutStyle !== undefined) {
+                  let radius = attachment.layoutStyle.borderRadius as BorderRadiuses
+                  console.info('mutableStr radius ' + JSON.stringify(radius))
+                }
+              }
+
+            }
+          })
+
+        Image(this.imagePixelMap3).width(50).height(50)
+
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_4.png)
 
 
 

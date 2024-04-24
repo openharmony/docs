@@ -5,7 +5,8 @@
 > **说明**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> 
+> 从API version 12开始，可以通过UIContext中的getMeasureUtils方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
 
 ## 导入模块
 

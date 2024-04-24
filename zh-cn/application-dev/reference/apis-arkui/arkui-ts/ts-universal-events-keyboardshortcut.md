@@ -80,7 +80,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | 隐藏组件<br />                               | 响应快捷键                              | 无                                        |
 | disable状态组件                              | 不响应快捷键                             | 无                                        |
 | 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效          | Button('button1').keyboardShortcut('c',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
-| SHIFT+TAB键用于响应焦点事件 | 焦点事件响应优先级详见[按键事件](../../../ui/arkts-common-events-device-input-event.md#按键事件)    | 无 |
+| SHIFT+TAB键用于响应焦点事件 | 焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)    | 无 |
 
 ## 系统已有组合键
 

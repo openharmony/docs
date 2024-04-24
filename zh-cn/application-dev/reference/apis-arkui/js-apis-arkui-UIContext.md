@@ -1165,6 +1165,202 @@ getContextMenuController(): ContextMenuController
 uiContext.getContextMenuController();
 ```
 
+### getMeasureUtils<sup>12+</sup>
+
+getMeasureUtils(): MeasureUtils
+
+允许用户通过UIContext对象，获取MeasureUtils对象进行文本计算。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) | 提供文本宽度、高度等相关计算。 |
+
+**示例：**
+
+```ts
+uiContext.getMeasureUtils();
+```
+
+### getComponentSnapshot<sup>12+</sup>
+
+getComponentSnapshot(): ComponentSnapshot
+
+获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) | 获取ComponentSnapshot对象。 |
+
+**示例：**
+
+```ts
+uiContext.getComponentSnapshot();
+```
+
+### vp2px<sup>12+</sup>
+
+vp2px(value : number) : number
+
+将vp单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将vp单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.vp2px(200);
+```
+
+### px2vp<sup>12+</sup>
+
+px2vp(value : number) : number
+
+将px单位的数值转换为以vp为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以vp为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2vp(200);
+```
+
+### fp2px<sup>12+</sup>
+
+fp2px(value : number) : number
+
+将fp单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将fp单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.fp2px(200);
+```
+
+### px2fp<sup>12+</sup>
+
+px2fp(value : number) : number
+
+将px单位的数值转换为以fp为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以fp为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2fp(200);
+```
+
+### lpx2px<sup>12+</sup>
+
+lpx2px(value : number) : number
+
+将lpx单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| value | number | 是   | 将lpx单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.lpx2px(200);
+```
+
+### px2lpx<sup>12+</sup>
+
+px2lpx(value : number) : number
+
+将px单位的数值转换为以lpx为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以lpx为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2lpx(200);
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -4920,7 +5116,7 @@ requestFocus(key: string): void
 | ------ | ---------------------------------------- |
 | 150001 | This component is not focusable. |
 | 150002 | This component has unfocusable ancestor.      |
-| 150003 | This id refers to a nonexistent component which haven't been created or invisible right now. |
+| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
 
 **示例：**
 
@@ -5122,3 +5318,404 @@ struct Index {
 ```
 
 ![contextMenuController_close](figures/contextMenuController_close.gif)
+
+## MeasureUtils<sup>12+</sup>
+
+以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
+
+### measureText<sup>12+</sup>
+
+measureText(options: MeasureOptions): number
+
+计算指定文本单行布局下的宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+
+
+**示例：**
+通过MeasureUtils的measureText方法获取"Hello World"文字的宽度。
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  @State textWidth: number = this.uiContextMeasure.measureText({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textWidth}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![measureUtils-measureText](figures/measureUtils-measureText.png)
+
+## measureTextSize<sup>12+</sup>
+
+measureTextSize(options: MeasureOptions): SizeOptions
+
+计算指定文本单行布局下的宽度和高度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+
+
+**示例：**
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textSize.width}`)
+        Text(`The height of 'Hello World': ${this.textSize.height}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![measureUtils-measureTextSize](figures/measureUtils-measureTextSize.png)
+
+## ComponentSnapshot<sup>12+</sup>
+
+以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
+
+### get<sup>12+</sup>
+
+get(id: string, callback: AsyncCallback<image.PixelMap>): void
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+
+> **说明：** 
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
+            if (error) {
+              console.log("error: " + JSON.stringify(error))
+              return;
+            }
+            this.pixmap = pixmap
+          })
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### get<sup>12+</sup>
+
+get(id: string): Promise<image.PixelMap>
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.icon')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot()
+            .get("root")
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+            })
+            .catch((err: Error) => {
+              console.log("error: " + err)
+            })
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### createFromBuilder<sup>12+</sup>
+
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
+
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果。
+> **说明：** 
+>
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct ComponentSnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  @Builder
+  RandomBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+    }
+    .width(100)
+    .id("builder")
+  }
+
+  build() {
+    Column() {
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot().createFromBuilder(() => {
+            this.RandomBuilder()
+          },
+            (error: Error, pixmap: image.PixelMap) => {
+              if (error) {
+                console.log("error: " + JSON.stringify(error))
+                return;
+              }
+              this.pixmap = pixmap
+            })
+        })
+      Image(this.pixmap)
+        .margin(10)
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+### createFromBuilder<sup>12+</sup>
+
+createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
+
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果。
+
+> **说明：** 
+>
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct ComponentSnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  @Builder
+  RandomBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+    }
+    .width(100)
+    .id("builder")
+  }
+  build() {
+    Column() {
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot()
+            .createFromBuilder(() => {
+              this.RandomBuilder()
+            })
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+            })
+            .catch((err: Error) => {
+              console.log("error: " + err)
+            })
+        })
+      Image(this.pixmap)
+        .margin(10)
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```

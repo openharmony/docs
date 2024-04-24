@@ -975,9 +975,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
            this.caller.release();
            this.caller = undefined;
          }
-         console.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
        } catch (error) {
-         console.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
        };
      }
      onDestroy(): void {
@@ -1058,7 +1058,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
                hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                this.regOnRelease(caller);
                promptAction.showToast({
-                 message: 'CallerSuccess'
+                 message: 'caller success'
                });
              }
            }).catch((err: BusinessError) => {

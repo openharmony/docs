@@ -2409,7 +2409,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       | if values to commit is invalid.         |
+| 401       | if value to modify is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2461,7 +2461,7 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if values to commit is invalid.         |
+| 401       |  if value to modify is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -4020,7 +4020,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
     // 应用需要确保待写入的uri是有效的
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
-    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.jpg";
+    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4";
     try {
       await movingPhoto.requestContent(imageFileUri, videoFileUri);
       console.log("moving photo contents retrieved successfully");
@@ -4400,7 +4400,7 @@ title参数规格为：
 
 ## RecommendationType<sup>11+</sup>
 
-枚举，推荐的照片类型。
+枚举，推荐的图片类型。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4411,16 +4411,88 @@ title参数规格为：
 | BAR_CODE |  3 | 条码。 |
 | ID_CARD |  4 | 身份证。 |
 | PROFILE_PICTURE |  5 | 头像。 |
+| PASSPORT<sup>12+</sup> |  6 | 护照。 |
+| BANK_CARD<sup>12+</sup> |  7 | 银行卡。 |
+| DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。 |
+| DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。 |
 
-## RecommendationOptions<sup>11+</sup>
+**示例：**
 
-照片推荐选项(基于照片数据分析结果，依赖设备适配)。
+```ts
+import { BusinessError } from '@ohos.base';
+async function example() {
+  try {
+    let recommendOptions: photoAccessHelper.RecommendationOptions = {
+      recommendationType: photoAccessHelper.RecommendationType.ID_CARD
+    }
+    let options: photoAccessHelper.PhotoSelectOptions = {
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+      maxSelectNumber: 1,
+      reommendationOptions: recommendOptions
+    }
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## TextContextInfo<sup>12+</sup>
+
+文本信息，用于推荐图片的文本信息。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 可选择的照片推荐类型，若无此参数，则默认为不推荐照片。 |
+| text | string   | 否   | 如果需要根据文本(支持250字以内的简体中文)推荐相应的图片，则配置此参数。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+async function example() {
+  try {
+    let textInfo: photoAccessHelper.TextContextInfo = {
+      text: '上海野生动物园的大熊猫'
+    }
+    let recommendOptions: photoAccessHelper.RecommendationOptions = {
+      textContextInfo: textInfo
+    }
+    let options: photoAccessHelper.PhotoSelectOptions = {
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+      maxSelectNumber: 1,
+      reommendationOptions: recommendOptions
+    }
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## RecommendationOptions<sup>11+</sup>
+
+图片推荐选项(基于图片数据分析结果，依赖设备适配)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
+| textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。 |
 
 ## PhotoSelectOptions
 
@@ -4435,7 +4507,7 @@ title参数规格为：
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持照片推荐。      |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持图片推荐。      |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
 
 ## PhotoSelectResult
