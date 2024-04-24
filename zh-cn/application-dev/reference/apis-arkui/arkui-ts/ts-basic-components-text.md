@@ -972,7 +972,10 @@ struct TextExample7 {
   }
 }
 ```
+![](figures/text7.png)
+
 ### 示例8
+
 bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 
 ```ts
