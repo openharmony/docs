@@ -1059,10 +1059,15 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
 **主动聚焦示例：**
 
 ```ts
-build() {
-  Column() {
-    // 待聚焦组件添加id属性，id唯一性由使用者保证
-    Button('待聚焦组件').id('click')
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      // 待聚焦组件添加id属性，id唯一性由使用者保证
+      Button('待聚焦组件').id('click')
+    }
   }
 }
 ```
