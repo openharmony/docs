@@ -291,10 +291,10 @@ SizeT\<T>
 
 **属性：**
 
-| Name          | Type                                    | Readable  | Writable  | Description    |
+| 名称   | 类型 | 可读 | 可写 | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
-| value       | number | Yes   | Yes   | 长度属性的值。   |
-| unit | [LengthUnit](#lengthunit12)                                   | Yes   | Yes   | 长度属性的单位，默认为VP。|
+| value       | number | 是   | 是   | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)                                   | 是   | 是   | 长度属性的单位，默认为VP。|
 
 ### constructor<sup>12+</sup>
 
