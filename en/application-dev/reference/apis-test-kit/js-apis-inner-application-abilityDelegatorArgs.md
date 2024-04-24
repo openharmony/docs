@@ -5,6 +5,8 @@ The **AbilityDelegatorArgs** module provides APIs to obtain an **AbilityDelegato
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module can be used only in [automated test scripts](../../application-test/arkxtest-guidelines.md).
 
 ## Modules to Import
 
@@ -14,7 +16,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## Usage
 
-An **AbilityDelegatorArgs** object is obtained by calling [getArguments](../apis/js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetarguments) in **AbilityDelegatorRegistry**.
+An **AbilityDelegatorArgs** object is obtained by calling [getArguments](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetarguments) in **AbilityDelegatorRegistry**.
 
 ## AbilityDelegatorArgs
 
