@@ -10,6 +10,10 @@
 
 Memory operation failed.
 
+**Description**
+
+This error code is reported when a memory operation fails.
+
 **Possible Causes**
 
 1. A memory leak occurs.
@@ -26,6 +30,10 @@ Memory operation failed.
 
 Parcel operation failed.
 
+**Description**
+
+This error code is reported when parcel data fails to be read or written during IPC.
+
 **Possible Causes**
 
 An exception occurs when invoking the **MessageParcel** object to read or write an object.
@@ -39,6 +47,10 @@ Try again later or restart the device.
 **Error Message**
 
 System service operation failed.
+
+**Description**
+
+This error code is reported when the client process fails to obtain the system service.
 
 **Possible Causes**
 
@@ -55,6 +67,10 @@ Try again later or restart the device.
 
 Check workInfo failed.
 
+**Description**
+
+This error code is reported when the **workInfo** parameter is abnormal.
+
 **Possible Causes**
 
 1. The value of **bundleName** in **workInfo** does not match the UID of the application.
@@ -64,11 +80,15 @@ Check workInfo failed.
 
 Check the **workInfo** parameters.
 
-## 9700005 startWork Failure
+## 9700005 startWork Call Failure
 
 **Error Message**
 
 StartWork failed.
+
+**Description**
+
+This error code is reported when the request for a deferred task fails.
 
 **Possible Causes**
 
