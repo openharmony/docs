@@ -421,7 +421,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
+static create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -882,7 +882,7 @@ Checks whether this **RationalNumber** object equals the given object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| object | Object | Yes| Object used to compare with this **RationalNumber** object.|
+| obj | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 

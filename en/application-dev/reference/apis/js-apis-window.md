@@ -54,7 +54,7 @@ Defines the parameters for creating a subwindow or system window.
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | Yes| Name of the window.                                                                      |
 | windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
-| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model.|
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>In the FA model, do not pass in this parameter when creating a subwindow. Otherwise, an error is reported.<br>In the stage model, you must pass in this parameter when creating a floating window, modal window, or system window.|
 | displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
 | parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
@@ -1546,10 +1546,10 @@ import { BusinessError } from '@ohos.base';
 let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -4005,19 +4005,19 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 private SetUIContent(windowClass: window.Window) {
-    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
-      if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      let color: string = '#00ff33';
-      try {
-        windowClass.setWindowBackgroundColor(color);
-      } catch (exception) {
-        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-      };
-    });
+  windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+    let color: string = '#00ff33';
+    try {
+      windowClass.setWindowBackgroundColor(color);
+    } catch (exception) {
+      console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+    };
+  });
 }
 ```
 
@@ -4748,7 +4748,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4783,7 +4783,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4824,7 +4824,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4866,7 +4866,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4883,9 +4883,9 @@ try {
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
- getTransitionController(): TransitionController
+getTransitionController(): TransitionController
 
 Obtains the transition animation controller.
 
@@ -4906,7 +4906,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4937,7 +4937,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4972,7 +4972,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -4982,7 +4982,6 @@ try {
 } catch (exception) {
   console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -5008,7 +5007,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -5018,7 +5017,6 @@ try {
 } catch (exception) {
   console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setShadow<sup>9+</sup>
@@ -5047,7 +5045,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -5057,7 +5055,6 @@ try {
 } catch (exception) {
   console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setCornerRadius<sup>9+</sup>
@@ -5083,7 +5080,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300004 | Unauthorized operation.  |
 
 **Example**
 
@@ -5093,7 +5090,6 @@ try {
 } catch (exception) {
   console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### raiseToAppTop<sup>10+</sup>
@@ -5118,10 +5114,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -5136,7 +5132,6 @@ windowClass.raiseToAppTop((err: BusinessError) => {
   }
   console.info('Succeeded in raising the window to app top.');
 });
-
 ```
 
 ### raiseToAppTop<sup>10+</sup>
@@ -5161,10 +5156,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -5177,7 +5172,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setAspectRatio<sup>10+</sup>
@@ -5208,8 +5202,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -5227,7 +5221,6 @@ try {
 } catch (exception) {
   console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setAspectRatio<sup>10+</sup>
@@ -5253,8 +5246,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -5274,7 +5267,6 @@ try {
 } catch (exception) {
   console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### resetAspectRatio<sup>10+</sup>
@@ -5299,8 +5291,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -5317,7 +5309,6 @@ try {
 } catch (exception) {
   console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### resetAspectRatio<sup>10+</sup>
@@ -5342,8 +5333,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal. |
-| 1300004 | Unauthorized operation.        |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
 
 **Example**
 
@@ -5351,18 +5342,17 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 try {
-    windowClass.resetAspectRatio((err: BusinessError) => {
-        const errCode: number = err.code;
-        if (errCode) {
-            console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in resetting aspect ratio of window.');
-    });
+  windowClass.resetAspectRatio((err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in resetting aspect ratio of window.');
+  });
 } catch (exception) {
-    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -5393,9 +5383,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300008 | The operation is on invalid display.          |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
 
 **Example**
 
@@ -5413,7 +5403,6 @@ try {
 } catch (exception) {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -5439,9 +5428,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300008 | The operation is on invalid display.          |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
 
 **Example**
 
@@ -5461,7 +5450,6 @@ try {
 } catch (exception) {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
-
 ```
 
 ### raiseAboveTarget<sup>10+</sup>
@@ -5487,10 +5475,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -5500,13 +5488,12 @@ let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 windowClass.raiseAboveTarget(targetId, (err) => {
-    if (err.code) {
-        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
+  if (err.code) {
+    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in raising the subWindow to target subWindow top.');
 });
-
 ```
 
 ### raiseAboveTarget<sup>10+</sup>
@@ -5537,10 +5524,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -5551,11 +5538,10 @@ let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
 promise.then(()=> {
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
+  console.info('Succeeded in raising the subWindow to target subWindow top.');
 }).catch((err)=>{
-    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+  console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setRaiseByClickEnabled<sup>10+</sup>
@@ -5583,21 +5569,21 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
 ```ts
 let enabled = false;
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
-    if (err.code) {
-        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in disabling the raise-by-click function.');
+  if (err.code) {
+    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in disabling the raise-by-click function.');
 });
 
 ```
@@ -5632,10 +5618,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300009 | The parent window is invalid.                 |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
 
 **Example**
 
@@ -5643,11 +5629,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 let enabled = false;
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
-    console.info('Succeeded in disabling the raise-by-click function.');
+  console.info('Succeeded in disabling the raise-by-click function.');
 }).catch((err)=>{
-    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+  console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### minimize<sup>10+</sup>
@@ -5672,7 +5657,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -5681,37 +5666,36 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Call minimize.
-            mainWindow.minimize((err) => {
-                if (err.code) {
-                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Successfully minimized app main window.');
-            });
-        })
-    }
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // Obtain the main window.
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+    // Call minimize.
+      mainWindow.minimize((err) => {
+        if (err.code) {
+          console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Successfully minimized app main window.');
+      });
+    })
+  }
 };
-
 ```
 
 ### minimize<sup>10+</sup>
@@ -5736,7 +5720,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -5745,36 +5729,35 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Promise object of the minimize API.
-            let promise = mainWindow.minimize();
-            promise.then(()=> {
-                console.info('Successfully minimized app main window.');
-            }).catch((err)=>{
-                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // Obtain the main window.
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+    // Promise object of the minimize API.
+      let promise = mainWindow.minimize();
+      promise.then(()=> {
+        console.info('Successfully minimized app main window.');
+      }).catch((err)=>{
+        console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
+      });
+    })
+  }
 };
-
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
@@ -5800,9 +5783,9 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
+| 1300004 | Unauthorized operation. |
 
 **Example**
 
@@ -5810,39 +5793,38 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // Obtain the main window.
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-            let enabled = false;
-            // Call setResizeByDragEnabled.
-            mainWindow.setResizeByDragEnabled(enabled, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            });
-        })
-    }
+      let enabled = false;
+    // Call setResizeByDragEnabled.
+      mainWindow.setResizeByDragEnabled(enabled, (err) => {
+        if (err.code) {
+          console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+      });
+    })
+  }
 };
-
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
@@ -5873,7 +5855,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.                |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
@@ -5882,38 +5864,37 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // Obtain the main window.
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-            let enabled = false;
-            // Promise object of the setResizeByDragEnabled API.
-            let promise = mainWindow.setResizeByDragEnabled(enabled);
-            promise.then(()=> {
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err)=>{
-                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
+      let enabled = false;
+    // Promise object of the setResizeByDragEnabled API.
+      let promise = mainWindow.setResizeByDragEnabled(enabled);
+      promise.then(()=> {
+        console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+      }).catch((err)=>{
+        console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+      });
+    })
+  }
 };
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -5947,7 +5928,6 @@ windowClass.show((err: BusinessError) => {
   }
   console.info('Succeeded in showing the window.');
 });
-
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -5979,7 +5959,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -6013,7 +5992,6 @@ windowClass.destroy((err: BusinessError) => {
   }
   console.info('Succeeded in destroying the window.');
 });
-
 ```
 
 ### destroy<sup>(deprecated)</sup>
@@ -6045,7 +6023,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -6083,7 +6060,6 @@ windowClass.moveTo(300, 300, (err: BusinessError) => {
   }
   console.info('Succeeded in moving the window.');
 });
-
 ```
 
 ### moveTo<sup>(deprecated)</sup>
@@ -6124,7 +6100,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -6171,7 +6146,6 @@ windowClass.resetSize(500, 1000, (err: BusinessError) => {
   }
   console.info('Succeeded in changing the window size.');
 });
-
 ```
 
 ### resetSize<sup>(deprecated)</sup>
@@ -6221,7 +6195,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -6259,7 +6232,6 @@ windowClass.setWindowType(type, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the window type.');
 });
-
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -6300,7 +6272,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -6334,7 +6305,6 @@ windowClass.getProperties((err: BusinessError, data) => {
   }
   console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### getProperties<sup>(deprecated)</sup>
@@ -6366,7 +6336,6 @@ promise.then((data) => {
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -6402,7 +6371,6 @@ windowClass.getAvoidArea(type, (err: BusinessError, data) => {
   }
   console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 });
-
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
@@ -6441,7 +6409,6 @@ promise.then((data) => {
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -6479,7 +6446,6 @@ windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
   }
   console.info('Succeeded in enabling the full-screen mode.');
 });
-
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -6520,7 +6486,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
@@ -6558,7 +6523,6 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the window layout to full-screen mode.');
 });
-
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
@@ -6599,7 +6563,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
@@ -6636,7 +6599,6 @@ windowClass.setSystemBarEnable(names, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the system bar to be invisible.');
 });
-
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
@@ -6676,7 +6638,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
-
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
@@ -6718,7 +6679,6 @@ windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
   }
   console.info('Succeeded in setting the system bar properties.');
 });
-
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
@@ -6763,7 +6723,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -6798,7 +6757,6 @@ windowClass.loadContent('pages/page2/page3', (err: BusinessError) => {
   }
   console.info('Succeeded in loading the content.');
 });
-
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -6836,7 +6794,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -6870,7 +6827,6 @@ windowClass.isShowing((err: BusinessError, data) => {
   }
   console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### isShowing<sup>(deprecated)</sup>
@@ -6902,7 +6858,6 @@ promise.then((data) => {
 }).catch((err: BusinessError) => {
   console.error('Failed to check whether the window is showing. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -6930,7 +6885,6 @@ Subscribes to the event indicating changes to the area where the window cannot b
 windowClass.on('systemAvoidAreaChange', (data) => {
   console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
@@ -6956,7 +6910,6 @@ Unsubscribes from the event indicating changes to the area where the window cann
 
 ```ts
 windowClass.off('systemAvoidAreaChange');
-
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -6990,7 +6943,6 @@ windowClass.isSupportWideGamut((err: BusinessError, data) => {
   }
   console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
 });
-
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -7022,7 +6974,6 @@ promise.then((data) => {
 }).catch((err: BusinessError) => {
   console.error('Failed to check whether the window support WideGamut. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -7057,7 +7008,6 @@ windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => 
   }
   console.info('Succeeded in setting window colorspace.');
 });
-
 ```
 
 ### setColorSpace<sup>(deprecated)</sup>
@@ -7095,7 +7045,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -7129,7 +7078,6 @@ windowClass.getColorSpace((err: BusinessError, data) => {
   }
   console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data));
 });
-
 ```
 
 ### getColorSpace<sup>(deprecated)</sup>
@@ -7161,7 +7109,6 @@ promise.then((data) => {
 }).catch((err: BusinessError) => {
   console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
@@ -7197,7 +7144,6 @@ windowClass.setBackgroundColor(color, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the background color.');
 });
-
 ```
 
 ### setBackgroundColor<sup>(deprecated)</sup>
@@ -7236,7 +7182,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
@@ -7274,7 +7219,6 @@ windowClass.setBrightness(brightness, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the brightness.');
 });
-
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
@@ -7315,7 +7259,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -7350,7 +7293,6 @@ windowClass.setDimBehind(0.5, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the dimness.');
 });
-
 ```
 
 ### setDimBehind<sup>(deprecated)</sup>
@@ -7388,7 +7330,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setFocusable<sup>(deprecated)</sup>
@@ -7424,7 +7365,6 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the window to be focusable.');
 });
-
 ```
 
 ### setFocusable<sup>(deprecated)</sup>
@@ -7463,7 +7403,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window to be focusable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -7499,7 +7438,6 @@ windowClass.setKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the screen to be always on.');
 });
-
 ```
 
 ### setKeepScreenOn<sup>(deprecated)</sup>
@@ -7538,7 +7476,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
 });
-
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -7580,7 +7517,6 @@ else {
     console.info('Succeeded in setting the area to be touchable.');
   });
 }
-
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -7625,7 +7561,6 @@ promise.then(() => {
   console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
 });
 }
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -7663,7 +7598,6 @@ windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
   }
   console.info('Succeeded in setting the window to privacy mode.');
 });
-
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -7704,7 +7638,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -7745,7 +7678,6 @@ else {
     console.info('Succeeded in setting the window to be touchable.');
   });
 }
-
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
@@ -7784,7 +7716,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
-
 ```
 
 ## WindowStageEventType<sup>9+</sup>
@@ -7857,7 +7788,6 @@ export default class EntryAbility extends UIAbility {
     });
   }
 };
-
 ```
 
 ### getMainWindow<sup>9+</sup>
@@ -7907,7 +7837,6 @@ export default class EntryAbility extends UIAbility {
     });
   }
 };
-
 ```
 
 ### getMainWindowSync<sup>9+</sup>
@@ -7953,7 +7882,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -8017,7 +7945,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### createSubWindow<sup>9+</sup>
@@ -8077,7 +8004,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -8128,7 +8054,6 @@ export default class EntryAbility extends UIAbility {
     });
   }
 };
-
 ```
 
 ### getSubWindow<sup>9+</sup>
@@ -8177,7 +8102,6 @@ export default class EntryAbility extends UIAbility {
     })
   }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -8236,7 +8160,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -8299,7 +8222,6 @@ export default class EntryAbility extends UIAbility {
     ;
   }
 };
-
 ```
 
 ### loadContent<sup>9+</sup>
@@ -8354,7 +8276,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### on('windowStageEvent')<sup>9+</sup>
@@ -8405,7 +8326,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### off('windowStageEvent')<sup>9+</sup>
@@ -8453,7 +8373,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ### disableWindowDecor()<sup>9+</sup>
@@ -8491,7 +8410,6 @@ export default class EntryAbility extends UIAbility {
     windowStage.disableWindowDecor();
   }
 };
-
 ```
 
 ### setShowOnLockScreen()<sup>9+</sup>
@@ -8539,7 +8457,6 @@ export default class EntryAbility extends UIAbility {
     }
   }
 };
-
 ```
 
 ## TransitionContext<sup>9+</sup>
@@ -8601,12 +8518,37 @@ Completes the transition. This API can be called only after [animateTo()](../ark
   }
   console.info('complete transition end');
 };
-
 ```
 
 ## TransitionController<sup>9+</sup>
 
-Implements the transition animation controller.
+Implements the transition animation controller. Before calling any API, you must create a system window. For details, see the sample code.
+
+**System API**: This is a system API.
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "systemTypeWindow",
+  windowType: window.WindowType.TYPE_PANEL, // Select a system window type as required.
+  ctx: this.context
+};
+try {
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+}
+```
 
 ### animationForShown<sup>9+</sup>
 
@@ -8645,7 +8587,6 @@ export class AnimationConfig {
     })
   }
 }
-
 ```
 
 ```ts
@@ -8681,7 +8622,6 @@ try {
 } catch (error) {
   console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
-
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -8701,7 +8641,6 @@ Customizes the animation for the scenario when the window is hidden.
 | context | [TransitionContext](#transitioncontext9) | Yes       | Context of the transition animation. |
 
 **Example**
-
 ```ts
 // xxx.ts
 export class AnimationConfig {

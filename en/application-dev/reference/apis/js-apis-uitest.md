@@ -12,9 +12,9 @@ This module provides the following functions:
 - [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection. This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot. This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+ > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -1262,7 +1262,7 @@ Scrolls to the top of this component. This API is applicable to components that 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -1296,7 +1296,7 @@ Scrolls to the bottom of this component. This API is applicable to components th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -1424,7 +1424,6 @@ async function demo() {
 ## Driver<sup>9+</sup>
 
 The **Driver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
-
 All APIs provided by this class, except **Driver.create()**, use a promise to return the result and must be invoked using **await**.
 
 ### create<sup>9+</sup>
@@ -1744,11 +1743,11 @@ Triggers a key combination based on the specified key values. For example, if th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description               |
-| ------ | ------ | ---- | ------------------- |
-| key0   | number | Yes  | The first key value.|
-| key1   | number | Yes  | The second key value.|
-| key2   | number | No  | The third key value.|
+| Name| Type  | Mandatory| Description                          |
+| ------ | ------ | ---- | ------------------------------ |
+| key0   | number | Yes  | The first key value.           |
+| key1   | number | Yes  | The second key value.           |
+| key2   | number | No  | The third key value. The default value is **0**.|
 
 **Error codes**
 
@@ -1884,7 +1883,7 @@ Swipes on this **Driver** object from the given start point to the given end poi
 | starty | number | Yes  | Y coordinate of the start point.                      |
 | endx   | number | Yes  | X coordinate of the end point.                      |
 | endy   | number | Yes  | Y coordinate of the end point.                      |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Swipe speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -1920,7 +1919,7 @@ Drags this **Driver** object from the given start point to the given end point.
 | starty | number | Yes  | Y coordinate of the start point.                      |
 | endx   | number | Yes  | X coordinate of the end point.                      |
 | endy   | number | Yes  | Y coordinate of the end point.                      |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2278,7 +2277,7 @@ Injects a multi-touch operation to the device.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | pointers | [PointerMatrix](#pointermatrix9) | Yes  | Scroll trajectory, including the number of fingers and an array of coordinates along the trajectory.                  |
-| speed    | number                           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed    | number                           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Return value**
 
@@ -2393,12 +2392,12 @@ Injects a mouse click at the specified coordinates, with the optional key or key
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description               |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | Yes  | Coordinates of the mouse click.   |
-| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
-| key1   | number                        | No  | The first key value.|
-| key2   | number                        | No  | The second key value.|
+| Name| Type                         | Mandatory| Description                          |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | Yes  | Coordinates of the mouse click.              |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.              |
+| key1   | number                        | No  | The first key value. The default value is **0**.|
+| key2   | number                        | No  | The second key value. The default value is **0**.|
 
 **Error codes**
 
@@ -2433,8 +2432,8 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                           |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward.|
 | d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.        |
-| key1   | number           | No  | The first key value.                                        |
-| key2   | number           | No  | The second key value.                                        |
+| key1   | number           | No  | The first key value. The default value is **0**.                             |
+| key2   | number           | No  | The second key value. The default value is **0**.                             |
 
 **Error codes**
 
@@ -2562,11 +2561,11 @@ Sets the coordinates for the action corresponding to the specified finger and st
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description            |
-| ------ | ---------------- | ---- | ---------------- |
-| finger | number           | Yes  | Sequence number of the finger.    |
-| step   | number           | Yes  | Sequence number of the step.    |
-| point  | [Point](#point9) | Yes  | Coordinates of the action.|
+| Name| Type            | Mandatory| Description                                                      |
+| ------ | ---------------- | ---- | ---------------------------------------------------------- |
+| finger | number           | Yes  | Sequence number of the finger.                                              |
+| step   | number           | Yes  | Sequence number of the step.                                              |
+| point  | [Point](#point9) | Yes  | Coordinates of the action. |
 
 **Example**
 
@@ -2764,7 +2763,7 @@ async function demo() {
 
 isActived(): Promise\<boolean>
 
-Checks whether this window is active.
+Checks whether this window is active. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3457,6 +3456,7 @@ let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <T
 ## UiComponent<sup>(deprecated)</sup>
 
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
