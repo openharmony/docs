@@ -573,19 +573,19 @@ import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    //...
+    // ...
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     let subWindowClass: window.Window | undefined = undefined;
     let windowClassId: number = -1;
     let subWindowClassId: number = -1;
 
-    //获取应用主窗及ID
+    // 获取应用主窗及ID
     try {
-      let promise = windowStage.getMainWindow();;
+      let promise = windowStage.getMainWindow();
       promise.then((data) => {
         windowClass = data;
-        windowClass.loadContent("pages/Index");
+        windowClass.setUIContent("pages/Index");
         windowClassId = windowClass.getWindowProperties().id;
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
@@ -595,17 +595,17 @@ export default class EntryAbility extends UIAbility {
       console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
     }
 
-    //创建或获取子窗及ID
+    // 创建或获取子窗及ID 此时子窗口获焦
     try {
       let promise =  windowStage.createSubWindow("testSubWindow");
       promise.then((data) => {
         subWindowClass = data;
         subWindowClassId = subWindowClass.getWindowProperties().id;
         subWindowClass.resize(200, 500);
-        subWindowClass.loadContent("pages/Index2")
+        subWindowClass.setUIContent("pages/Index2")
         subWindowClass.showWindow();
 
-        //切换焦点
+        // 切换焦点
         try {
           let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId)
           promise.then(() => {
