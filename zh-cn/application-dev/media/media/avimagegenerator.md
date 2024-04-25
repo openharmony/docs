@@ -13,7 +13,7 @@
 2. 设置资源：需要设置属性fdSrc（表示文件描述符）。
    > **说明：**
    >
-   > 开发者需根据实际情况，确认资源有效性并设置fdSrc, 可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
+   > 开发者需根据实际情况，确认资源有效性并设置fdSrc, 可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考ResourceManager API参考。
 
 3. 获取缩略图：调用fetchFrameByTime()，可以获取到一个PixelMap对象，该对象可用于图片显示。
 
