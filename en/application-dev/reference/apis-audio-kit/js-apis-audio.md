@@ -798,9 +798,11 @@ Defines the configuration of internal audio recording.
 
 Defines the options for filtering the played audio streams to be recorded.
 
-**Required permissions**: ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+**Required permissions**
 
-To use **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION** in API version 10, you must request the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission. Since API version 11, this enumerated value is no longer supported, and the permission is not required.
+- In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission is required. Only system applications can request this permission.
+
+- Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -2842,7 +2844,7 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 >
 > This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG (available only for system applications)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -2877,7 +2879,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 >
 > This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG (available only for system applications)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3256,7 +3258,6 @@ async function getCurrentAudioRendererInfoArray(){
   });
 }
 ```
-
 ### getCurrentAudioRendererInfoArraySync<sup>10+</sup>
 
 getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
@@ -3560,7 +3561,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
     }
   }
 });
-
 ```
 
 ### off('audioCapturerChange')<sup>9+</sup>
@@ -3591,7 +3591,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
-
 ```
 
 ### isActive<sup>9+</sup>
@@ -3621,7 +3620,6 @@ if (err) {
 }
   console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
 });
-
 ```
 
 ### isActive<sup>9+</sup>
@@ -3650,7 +3648,6 @@ Checks whether a stream is active. This API uses a promise to return the result.
 audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the stream is obtained ${value}.`);
 });
-
 ```
 
 ### isActiveSync<sup>10+</sup>
@@ -3693,7 +3690,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the active status of the stream ${error}.`);
 }
-
 ```
 
 ### getAudioEffectInfoArray<sup>10+</sup>
@@ -3733,7 +3729,6 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC,
     console.info(`The effect modes are: ${audioEffectInfoArray}`);
   }
 });
-
 ```
 
 ### getAudioEffectInfoArray<sup>10+</sup>
@@ -3775,7 +3770,6 @@ audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC)
 }).catch((err: BusinessError) => {
   console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioEffectInfoArraySync<sup>10+</sup>
@@ -3818,7 +3812,6 @@ try {
   let error = err as BusinessError;
   console.error(`getAudioEffectInfoArraySync ERROR: ${error}`);
 }
-
 ```
 
 ## AudioRoutingManager<sup>9+</sup>
@@ -3852,7 +3845,6 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: Busin
   }
   console.info('Callback invoked to indicate that the device list is obtained.');
 });
-
 ```
 
 ### getDevices<sup>9+</sup>
@@ -3881,7 +3873,6 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
-
 ```
 
 ### getDevicesSync<sup>10+</sup>
@@ -3924,7 +3915,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the device list. ${error}`);
 }
-
 ```
 
 ### on('deviceChange')<sup>9+</sup>
@@ -3960,7 +3950,6 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
   console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
   console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
 });
-
 ```
 
 ### off('deviceChange')<sup>9+</sup>
@@ -3990,7 +3979,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioRoutingManager.off('deviceChange');
-
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4023,7 +4011,6 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
   }
   console.info('Callback invoked to indicate that the device is set to the active status.');
 });
-
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4055,7 +4042,6 @@ This API will be deprecated in a later version due to function design changes. Y
 audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true).then(() => {
   console.info('Promise returned to indicate that the device is set to the active status.');
 });
-
 ```
 
 ### isCommunicationDeviceActive<sup>9+</sup>
@@ -4085,7 +4071,6 @@ audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SP
   }
   console.info('Callback invoked to indicate that the active status of the device is obtained.');
 });
-
 ```
 
 ### isCommunicationDeviceActive<sup>9+</sup>
@@ -4114,7 +4099,6 @@ Checks whether a communication device is active. This API uses a promise to retu
 audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER).then((value: boolean) => {
   console.info(`Promise returned to indicate that the active status of the device is obtained ${value}.`);
 });
-
 ```
 
 ### isCommunicationDeviceActiveSync<sup>10+</sup>
@@ -4157,7 +4141,6 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the active status of the device ${error}.`);
 }
-
 ```
 
 ### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
@@ -4185,7 +4168,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | 6800301 | System error. Return by callback.                |
 
 **Example**
-
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
@@ -4204,11 +4186,9 @@ async function getPreferOutputDevice() {
     }
   });
 }
-
 ```
 
 ### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
-
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 Obtains the output device with the highest priority based on the audio renderer information. This API uses a promise to return the result.
@@ -4254,11 +4234,9 @@ async function getPreferOutputDevice() {
     console.error(`Result ERROR: ${err}`);
   })
 }
-
 ```
 
 ### getPreferredOutputDeviceForRendererInfoSync<sup>10+</sup>
-
 getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): AudioDeviceDescriptors
 
 Obtains the output device with the highest priority based on the audio renderer information. This API returns the result synchronously.
@@ -4303,7 +4281,6 @@ try {
   let error = err as BusinessError;
   console.error(`Result ERROR: ${error}`);
 }
-
 ```
 
 ### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
@@ -4343,7 +4320,6 @@ let rendererInfo: audio.AudioRendererInfo = {
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
 });
-
 ```
 
 ### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
@@ -4373,7 +4349,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
-
 ```
 
 ### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
@@ -4401,7 +4376,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | 6800301 | System error. Return by callback.            |
 
 **Example**
-
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
@@ -4418,7 +4392,6 @@ audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: B
     console.info(`device descriptor: ${desc}`);
   }
 });
-
 ```
 
 ### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
@@ -4466,7 +4439,6 @@ audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((d
 }).catch((err: BusinessError) => {
   console.error(`Result ERROR: ${err}`);
 });
-
 ```
 
 ### getPreferredInputDeviceForCapturerInfoSync<sup>10+</sup>
@@ -4515,7 +4487,6 @@ try {
   let error = err as BusinessError;
   console.error(`Result ERROR: ${error}`);
 }
-
 ```
 
 ### on('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
@@ -4555,7 +4526,6 @@ let capturerInfo: audio.AudioCapturerInfo = {
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
 });
-
 ```
 
 ### off('preferredInputDeviceChangeForCapturerInfo')<sup>10+</sup>
@@ -4585,7 +4555,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
-
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -4634,7 +4603,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
     }
   }
 });
-
 ```
 
 
@@ -4684,7 +4652,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
     }
   }
 });
-
 ```
 
 ## AudioEffectInfoArray<sup>10+</sup>
@@ -4733,7 +4700,6 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
     console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
   }
 });
-
 ```
 
 ## AudioRenderer<sup>8+</sup>
@@ -4754,7 +4720,6 @@ Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, 
 import audio from '@ohos.multimedia.audio';
 
 let state: audio.AudioState = audioRenderer.state;
-
 ```
 
 ### getRendererInfo<sup>8+</sup>
@@ -4782,7 +4747,6 @@ audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRend
   console.info(`Renderer usage: ${rendererInfo.usage}`);
   console.info(`Renderer flags: ${rendererInfo.rendererFlags}`);
 });
-
 ```
 
 ### getRendererInfo<sup>8+</sup>
@@ -4812,7 +4776,6 @@ audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => 
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err}`);
 });
-
 ```
 
 ### getRendererInfoSync<sup>10+</sup>
@@ -4843,7 +4806,6 @@ try {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${error}`);
 }
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -4872,7 +4834,6 @@ audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamIn
   console.info(`Renderer format: ${streamInfo.sampleFormat}`);
   console.info(`Renderer encoding type: ${streamInfo.encodingType}`);
 });
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -4903,7 +4864,6 @@ audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getStreamInfoSync<sup>10+</sup>
@@ -4935,7 +4895,6 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -4960,7 +4919,6 @@ import { BusinessError } from '@ohos.base';
 audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`Renderer GetStreamId: ${streamId}`);
 });
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -4987,7 +4945,6 @@ audioRenderer.getAudioStreamId().then((streamId: number) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioStreamIdSync<sup>10+</sup>
@@ -5016,7 +4973,6 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
-
 ```
 
 ### setAudioEffectMode<sup>10+</sup>
@@ -5054,7 +5010,6 @@ audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: Bus
     console.info('Callback invoked to indicate a successful audio effect mode setting.');
   }
 });
-
 ```
 
 ### setAudioEffectMode<sup>10+</sup>
@@ -5095,7 +5050,6 @@ audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() =
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioEffectMode<sup>10+</sup>
@@ -5124,7 +5078,6 @@ audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEff
     console.info(`getAudioEffectMode: ${effectMode}`);
   }
 });
-
 ```
 
 ### getAudioEffectMode<sup>10+</sup>
@@ -5151,7 +5104,6 @@ audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -5180,7 +5132,6 @@ audioRenderer.start((err: BusinessError) => {
     console.info('Renderer start success.');
   }
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -5207,7 +5158,6 @@ audioRenderer.start().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### pause<sup>8+</sup>
@@ -5236,7 +5186,6 @@ audioRenderer.pause((err: BusinessError) => {
     console.info('Renderer paused.');
   }
 });
-
 ```
 
 ### pause<sup>8+</sup>
@@ -5263,7 +5212,6 @@ audioRenderer.pause().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### drain<sup>8+</sup>
@@ -5292,7 +5240,6 @@ audioRenderer.drain((err: BusinessError) => {
     console.info('Renderer drained.');
   }
 });
-
 ```
 
 ### drain<sup>8+</sup>
@@ -5319,7 +5266,6 @@ audioRenderer.drain().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### flush<sup>11+</sup>
@@ -5354,7 +5300,6 @@ audioRenderer.flush().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### stop<sup>8+</sup>
@@ -5383,7 +5328,6 @@ audioRenderer.stop((err: BusinessError) => {
     console.info('Renderer stopped.');
   }
 });
-
 ```
 
 ### stop<sup>8+</sup>
@@ -5410,7 +5354,6 @@ audioRenderer.stop().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### release<sup>8+</sup>
@@ -5439,7 +5382,6 @@ audioRenderer.release((err: BusinessError) => {
     console.info('Renderer released.');
   }
 });
-
 ```
 
 ### release<sup>8+</sup>
@@ -5466,7 +5408,6 @@ audioRenderer.release().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### write<sup>8+(deprecated)</sup>
@@ -5529,7 +5470,6 @@ audioRenderer.getBufferSize().then((data: number)=> {
   }).catch((err: BusinessError) => {
     console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
-
 
 
 ```
@@ -5596,7 +5536,6 @@ audioRenderer.getBufferSize().then((data: number) => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5621,7 +5560,6 @@ import { BusinessError } from '@ohos.base';
 audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5648,7 +5586,6 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioTimeSync<sup>10+</sup>
@@ -5677,7 +5614,6 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -5708,7 +5644,6 @@ audioRenderer.getBufferSize((err: BusinessError, data: number) => {
     bufferSize = data;
   }
 });
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -5737,7 +5672,6 @@ audioRenderer.getBufferSize().then((data: number) => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
-
 ```
 
 ### getBufferSizeSync<sup>10+</sup>
@@ -5767,7 +5701,6 @@ try {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${error}`);
 }
-
 ```
 
 ### setRenderRate<sup>8+(deprecated)</sup>
@@ -5801,7 +5734,6 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: Bu
     console.info('Callback invoked to indicate a successful render rate setting.');
   }
 });
-
 ```
 
 ### setRenderRate<sup>8+(deprecated)</sup>
@@ -5838,7 +5770,6 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### setSpeed<sup>11+</sup>
@@ -5867,7 +5798,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioRenderer.setSpeed(1.5);
-
 ```
 
 ### getRenderRate<sup>8+(deprecated)</sup>
@@ -5896,7 +5826,6 @@ import { BusinessError } from '@ohos.base';
 audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
 });
-
 ```
 
 ### getRenderRate<sup>8+(deprecated)</sup>
@@ -5927,7 +5856,6 @@ audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getRenderRateSync<sup>10+(deprecated)</sup>
@@ -5960,7 +5888,6 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
-
 ```
 
 ### getSpeed<sup>11+</sup>
@@ -5981,7 +5908,6 @@ Obtains the playback speed.
 
 ```ts
 let speed = audioRenderer.getSpeed();
-
 ```
 
 ### setInterruptMode<sup>9+</sup>
@@ -6015,9 +5941,7 @@ audioRenderer.setInterruptMode(mode).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`setInterruptMode Fail: ${err}`);
 });
-
 ```
-
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
@@ -6045,7 +5969,6 @@ audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
   }
   console.info('setInterruptMode Success!');
 });
-
 ```
 
 ### setInterruptModeSync<sup>10+</sup>
@@ -6082,7 +6005,6 @@ try {
   let error = err as BusinessError;
   console.error(`setInterruptMode Fail: ${error}`);
 }
-
 ```
 
 ### setVolume<sup>9+</sup>
@@ -6115,9 +6037,7 @@ audioRenderer.setVolume(0.5).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`setVolume Fail: ${err}`);
 });
-
 ```
-
 ### setVolume<sup>9+</sup>
 
 setVolume(volume: number, callback: AsyncCallback\<void>): void
@@ -6145,7 +6065,6 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
   }
   console.info('setVolume Success!');
 });
-
 ```
 
 ### getMinStreamVolume<sup>10+</sup>
@@ -6174,9 +6093,7 @@ audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
     console.info(`getMinStreamVolume Success! ${minVolume}`);
   }
 });
-
 ```
-
 ### getMinStreamVolume<sup>10+</sup>
 
 getMinStreamVolume(): Promise&lt;number&gt;
@@ -6201,7 +6118,6 @@ audioRenderer.getMinStreamVolume().then((value: number) => {
 }).catch((err: BusinessError) => {
   console.error(`Get min stream volume Fail: ${err}`);
 });
-
 ```
 
 ### getMinStreamVolumeSync<sup>10+</sup>
@@ -6230,7 +6146,6 @@ try {
   let error = err as BusinessError;
   console.error(`Get min stream volume Fail: ${error}`);
 }
-
 ```
 
 ### getMaxStreamVolume<sup>10+</sup>
@@ -6259,9 +6174,7 @@ audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
     console.info(`getMaxStreamVolume Success! ${maxVolume}`);
   }
 });
-
 ```
-
 ### getMaxStreamVolume<sup>10+</sup>
 
 getMaxStreamVolume(): Promise&lt;number&gt;
@@ -6286,7 +6199,6 @@ audioRenderer.getMaxStreamVolume().then((value: number) => {
 }).catch((err: BusinessError) => {
   console.error(`Get max stream volume Fail: ${err}`);
 });
-
 ```
 
 ### getMaxStreamVolumeSync<sup>10+</sup>
@@ -6315,7 +6227,6 @@ try {
   let error = err as BusinessError;
   console.error(`Get max stream volume Fail: ${error}`);
 }
-
 ```
 
 ### getUnderflowCount<sup>10+</sup>
@@ -6344,9 +6255,7 @@ audioRenderer.getUnderflowCount((err: BusinessError, underflowCount: number) => 
     console.info(`getUnderflowCount Success! ${underflowCount}`);
   }
 });
-
 ```
-
 ### getUnderflowCount<sup>10+</sup>
 
 getUnderflowCount(): Promise&lt;number&gt;
@@ -6371,7 +6280,6 @@ audioRenderer.getUnderflowCount().then((value: number) => {
 }).catch((err: BusinessError) => {
   console.error(`Get underflow count Fail: ${err}`);
 });
-
 ```
 
 ### getUnderflowCountSync<sup>10+</sup>
@@ -6400,7 +6308,6 @@ try {
   let error = err as BusinessError;
   console.error(`Get underflow count Fail: ${error}`);
 }
-
 ```
 
 ### getCurrentOutputDevices<sup>10+</sup>
@@ -6438,9 +6345,7 @@ audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.Aud
     }
   }
 });
-
 ```
-
 ### getCurrentOutputDevices<sup>10+</sup>
 
 getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
@@ -6474,7 +6379,6 @@ audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescr
 }).catch((err: BusinessError) => {
   console.error(`Get current output devices Fail: ${err}`);
 });
-
 ```
 
 ### getCurrentOutputDevicesSync<sup>10+</sup>
@@ -6512,9 +6416,7 @@ try {
   let error = err as BusinessError;
   console.error(`Get current output devices Fail: ${error}`);
 }
-
 ```
-
 ### setChannelBlendMode<sup>11+</sup>
 
 setChannelBlendMode(mode: ChannelBlendMode): void
@@ -6545,9 +6447,7 @@ let mode = audio.ChannelBlendMode.MODE_DEFAULT;
 
 audioRenderer.setChannelBlendMode(mode);
 console.info(`BlendMode: ${mode}`);
-
 ```
-
 ### setVolumeWithRamp<sup>11+</sup>
 
 setVolumeWithRamp(volume: number, duration: number): void
@@ -6580,7 +6480,6 @@ let duration = 1000;
 
 audioRenderer.setVolumeWithRamp(volume, duration);
 console.info(`setVolumeWithRamp: ${volume}`);
-
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
@@ -6680,7 +6579,6 @@ async function onAudioInterrupt(){
     }
   });
 }
-
 ```
 
 ### on('markReach')<sup>8+</sup>
@@ -6707,7 +6605,6 @@ audioRenderer.on('markReach', 1000, (position: number) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 
@@ -6729,7 +6626,6 @@ Unsubscribes from mark reached events.
 
 ```ts
 audioRenderer.off('markReach');
-
 ```
 
 ### on('periodReach') <sup>8+</sup>
@@ -6756,7 +6652,6 @@ audioRenderer.on('periodReach', 1000, (position: number) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 ### off('periodReach') <sup>8+</sup>
@@ -6777,7 +6672,6 @@ Unsubscribes from period reached events.
 
 ```ts
 audioRenderer.off('periodReach');
-
 ```
 
 ### on('stateChange')<sup>8+</sup>
@@ -6806,7 +6700,6 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
     console.info('audio renderer state is: STATE_RUNNING');
   }
 });
-
 ```
 
 ### on('outputDeviceChange') <sup>10+</sup>
@@ -6840,7 +6733,6 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
-
 ```
 
 ### off('outputDeviceChange') <sup>10+</sup>
@@ -6874,7 +6766,6 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
 });
-
 ```
 
 ### on('outputDeviceChangeWithInfo') <sup>11+</sup>
@@ -6909,7 +6800,6 @@ audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStr
   console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
   console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
 });
-
 ```
 
 ### off('outputDeviceChangeWithInfo') <sup>11+</sup>
@@ -6944,7 +6834,6 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
   console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
   console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
 });
-
 ```
 
 ### on('writeData')<sup>11+</sup>
@@ -7001,7 +6890,6 @@ audioRenderer.start().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### off('writeData')<sup>11+</sup>
@@ -7033,7 +6921,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 audioRenderer.off('writeData', (data: ArrayBuffer) => {
     console.info(`write data: ${data}`);
 });
-
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -7054,7 +6941,6 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 import audio from '@ohos.multimedia.audio';
 
 let state: audio.AudioState = audioCapturer.state;
-
 ```
 
 ### getCapturerInfo<sup>8+</sup>
@@ -7085,7 +6971,6 @@ audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapt
     console.info(`Capturer flags: ${capturerInfo.capturerFlags}`);
   }
 });
-
 ```
 
 
@@ -7120,7 +7005,6 @@ audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) =
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err}`);
 })
-
 ```
 
 ### getCapturerInfoSync<sup>10+</sup>
@@ -7150,7 +7034,6 @@ try {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${error}`);
 }
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -7183,7 +7066,6 @@ audioCapturer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamIn
     console.info(`Capturer encoding type: ${streamInfo.encodingType}`);
   }
 });
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -7214,7 +7096,6 @@ audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
 }).catch((err: BusinessError) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
-
 ```
 
 ### getStreamInfoSync<sup>10+</sup>
@@ -7246,7 +7127,6 @@ try {
   let error = err as BusinessError;
   console.error(`getStreamInfo :ERROR: ${error}`);
 }
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -7271,7 +7151,6 @@ import { BusinessError } from '@ohos.base';
 audioCapturer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`audioCapturer GetStreamId: ${streamId}`);
 });
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -7298,7 +7177,6 @@ audioCapturer.getAudioStreamId().then((streamId: number) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioStreamIdSync<sup>10+</sup>
@@ -7327,7 +7205,6 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
-
 ```
 
 ### start<sup>8+</sup>
@@ -7356,7 +7233,6 @@ audioCapturer.start((err: BusinessError) => {
     console.info('Capturer start success.');
   }
 });
-
 ```
 
 
@@ -7390,7 +7266,6 @@ audioCapturer.start().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
-
 ```
 
 ### stop<sup>8+</sup>
@@ -7419,7 +7294,6 @@ audioCapturer.stop((err: BusinessError) => {
     console.info('Capturer stopped.');
   }
 });
-
 ```
 
 
@@ -7451,7 +7325,6 @@ audioCapturer.stop().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
-
 ```
 
 ### release<sup>8+</sup>
@@ -7480,7 +7353,6 @@ audioCapturer.release((err: BusinessError) => {
     console.info('capturer released.');
   }
 });
-
 ```
 
 
@@ -7510,7 +7382,6 @@ audioCapturer.release().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
-
 ```
 
 ### read<sup>8+(deprecated)</sup>
@@ -7550,7 +7421,6 @@ audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) =
     console.info('Success in reading the buffer data');
   }
 });
-
 ```
 
 ### read<sup>8+(deprecated)</sup>
@@ -7596,7 +7466,6 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR : ${err}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -7621,7 +7490,6 @@ import { BusinessError } from '@ohos.base';
 audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -7648,7 +7516,6 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
-
 ```
 
 ### getAudioTimeSync<sup>10+</sup>
@@ -7677,7 +7544,6 @@ try {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
 }
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -7709,7 +7575,6 @@ audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
     });
   }
 });
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -7738,7 +7603,6 @@ audioCapturer.getBufferSize().then((data: number) => {
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
-
 ```
 
 ### getBufferSizeSync<sup>10+</sup>
@@ -7768,7 +7632,6 @@ try {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRecLog: getBufferSizeSync :ERROR : ${error}`);
 }
-
 ```
 
 ### getCurrentInputDevices<sup>11+</sup>
@@ -7800,7 +7663,6 @@ console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
 if (deviceDescriptors[0].encodingTypes) {
   console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
 }
-
 ```
 
 ### getCurrentAudioCapturerChangeInfo<sup>11+</sup>
@@ -7835,7 +7697,6 @@ console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
 if (info.deviceDescriptors[0].encodingTypes) {
   console.info(`Device encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
 }
-
 ```
 
 ### on('audioInterrupt')<sup>10+</sup>
@@ -7914,7 +7775,6 @@ async function onAudioInterrupt(){
     }
   });
 }
-
 ```
 
 ### off('audioInterrupt')<sup>10+</sup>
@@ -7943,7 +7803,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioCapturer.off('audioInterrupt');
-
 ```
 
 ### on('inputDeviceChange')<sup>11+</sup>
@@ -7977,9 +7836,7 @@ audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescri
   console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
   console.info(`inputDevice deviceType: ${deviceChangeInfo[0].deviceType}`);
 });
-
 ```
-
 ### off('inputDeviceChange')<sup>11+</sup>
 
 off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
@@ -8007,7 +7864,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioCapturer.off('inputDeviceChange');
-
 ```
 
 ### on('audioCapturerChange')<sup>11+</sup>
@@ -8041,7 +7897,6 @@ audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturer
   console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
   console.info(`audioCapturerChange deviceType: ${capturerChangeInfo[0].deviceType}`);
 });
-
 ```
 
 ### off('audioCapturerChange')<sup>11+</sup>
@@ -8071,7 +7926,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 audioCapturer.off('audioCapturerChange');
-
 ```
 
 ### on('markReach')<sup>8+</sup>
@@ -8098,7 +7952,6 @@ audioCapturer.on('markReach', 1000, (position: number) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 ### off('markReach')<sup>8+</sup>
@@ -8119,7 +7972,6 @@ Unsubscribes from mark reached events.
 
 ```ts
 audioCapturer.off('markReach');
-
 ```
 
 ### on('periodReach')<sup>8+</sup>
@@ -8146,7 +7998,6 @@ audioCapturer.on('periodReach', 1000, (position: number) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 ### off('periodReach')<sup>8+</sup>
@@ -8167,7 +8018,6 @@ Unsubscribes from period reached events.
 
 ```ts
 audioCapturer.off('periodReach');
-
 ```
 
 ### on('stateChange')<sup>8+</sup>
@@ -8196,7 +8046,6 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
     console.info('audio capturer state is: STATE_RUNNING');
   }
 });
-
 ```
 
 ### on('readData')<sup>11+</sup>
@@ -8253,7 +8102,6 @@ audioCapturer.start((err: BusinessError) => {
     console.info('Capturer start success.');
   }
 });
-
 ```
 
 ### off('readData')<sup>11+</sup>
@@ -8285,7 +8133,6 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 audioCapturer.off('readData', (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
 });
-
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>

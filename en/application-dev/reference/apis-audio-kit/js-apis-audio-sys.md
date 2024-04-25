@@ -317,7 +317,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
-  key_example: 'value_example'
+  'key_example': 'value_example'
 }
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
@@ -1914,10 +1914,10 @@ Subscribes to spatial audio rendering status changes.
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                      |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| Name  | Type                                                | Mandatory| Description                                          |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.   |
 
 **Error codes**
 
@@ -1954,7 +1954,7 @@ Unsubscribes from spatial audio rendering status changes.
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering.|
+| callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2120,7 +2120,7 @@ Subscribes to head tracking status changes.
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2157,7 +2157,7 @@ Unsubscribes from head tracking status changes.
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of head tracking.|
+| callback | Callback<boolean\> | No  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
