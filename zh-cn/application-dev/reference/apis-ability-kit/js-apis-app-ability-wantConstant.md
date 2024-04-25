@@ -28,6 +28,7 @@ want的Params操作的常量。
 | SUPPORT_CONTINUE_PAGE_STACK_KEY<sup>10+</sup>    | ohos.extra.param.key.supportContinuePageStack  | 指示在跨端迁移过程中是否迁移页面栈信息，默认值为true，自动迁移页面栈信息。|
 | SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | 指示跨端迁移源端应用是否退出，默认值为true，源端应用自动退出。|
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | 指示展示模式，值为枚举类型wantConstant.ShowMode|
+| PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | 指示携带的文件URI要授权给目标方。对应的value必须是string类型的文件URI数组。文件URI的获取参考[fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)  |
 
 ## wantConstant.Flags
 
@@ -37,9 +38,9 @@ Flags说明。用于表示处理Want的方式。
 
 | 名称                                 | 值       | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                  |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | 指示该URI可被接收方持久化。该字段仅在平板类设备上生效。|
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对文件URI执行读取操作的授权。                                  |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对文件URI执行写入操作的授权。                                  |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | 指示该文件URI可被接收方持久化。该字段仅在平板类设备上生效。|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                              |
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | 如果隐式启动能力不能匹配任何应用程序，则不会弹出提示对话框。       |
 ## wantConstant.ShowMode<sup>12+</sup>

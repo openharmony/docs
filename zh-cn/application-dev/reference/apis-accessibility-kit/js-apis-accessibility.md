@@ -789,6 +789,8 @@ isOpenAccessibilitySync(): boolean
 
 是否启用了辅助功能。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
@@ -879,6 +881,8 @@ accessibility.isOpenTouchGuide((err: BusinessError, data: boolean) => {
 isOpenTouchGuideSync(): boolean
 
 是否开启了触摸浏览模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -1059,10 +1063,15 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
 **主动聚焦示例：**
 
 ```ts
-build() {
-  Column() {
-    // 待聚焦组件添加id属性，id唯一性由使用者保证
-    Button('待聚焦组件').id('click')
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      // 待聚焦组件添加id属性，id唯一性由使用者保证
+      Button('待聚焦组件').id('click')
+    }
   }
 }
 ```

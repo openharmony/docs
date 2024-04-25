@@ -2155,6 +2155,43 @@ imageSourceApi.getImageInfo(0)
 	})
 ```
 
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(index?: number): ImageInfo
+
+获取指定序号的图片信息，使用同步形式返回图片信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名| 类型   | 必填 | 说明                                  |
+| ----- | ------ | ---- | ------------------------------------- |
+| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+
+**返回值：**
+
+| 类型                             | 说明                   |
+| -------------------------------- | ---------------------- |
+| [ImageInfo](#imageinfo) | 同步返回获取到的图片信息。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let imageInfo = imageSource.getImageInfoSync(0);
+    if (imageInfo == undefined) {
+        console.error('getImageInfoSync failed.');
+    } else {
+        console.info('getImageInfoSync succeeded.');
+        console.info('imageInfo.size.height:' + imageInfo.size.height);
+        console.info('imageInfo.size.width:' + imageInfo.size.width);
+    }
+```
+
 ### getImageProperty<sup>11+</sup>
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
@@ -2723,6 +2760,50 @@ imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: im
 })
 ```
 
+### createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options?: DecodingOptions): PixelMap
+
+通过图片解码参数同步创建PixelMap对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 用于同步返回创建结果。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+    if (pixelmap != undefined) {
+        console.info('Succeeded in creating pixelMap object.');
+    } else {
+        console.info('Failed to create pixelMap.');
+    }
+```
+
 ### createPixelMapList<sup>10+</sup>
 
 createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
@@ -2904,7 +2985,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片。
+获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2950,7 +3031,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片。
+获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3075,6 +3156,43 @@ imageSourceApi.getFrameCount().then((frameCount: number) => {
     console.info('Succeeded in getting frame count.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+})
+```
+
+### getDisposalTypeList<sup>12+</sup>
+
+getDisposalTypeList(): Promise\<Array\<number>>
+
+获取图像帧过渡模式数组，使用Promise形式返回结果。此接口仅用于gif图片。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<Array\<number>> | Promise实例，异步返回帧过渡模式数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
+| 62980096 | The operation failed.      |
+| 62980101 | The image data is abnormal. |
+| 62980137 | Invalid media operation.        |
+| 62980149 | Invalid image source mime type.      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in disposalTypes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -4326,6 +4444,7 @@ img.release().then(() => {
 | stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。  |
+| mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
 
 ## Size
 
