@@ -13,7 +13,7 @@
 
 ## 接口
 
-Text(content?: string | Resource | StyledString , value?: TextOptions)
+Text(content?: string | Resource , value?: TextOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -21,7 +21,7 @@ Text(content?: string | Resource | StyledString , value?: TextOptions)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) \| [StyledString](./ts-universal-styled-string.md)<sup>12+</sup> | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>[StyledString](./ts-universal-styled-string.md#styledstring)的子类[MutableStyledString](./ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -60,7 +60,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。
 
 从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
@@ -162,7 +162,7 @@ minFontSize(value: number | string | Resource)
 
 设置文本最小显示字号。
 
-需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
@@ -184,7 +184,7 @@ maxFontSize(value: number | string | Resource)
 
 设置文本最大显示字号。
 
-需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
@@ -269,8 +269,6 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 设置文字阴影效果。
 
 不支持fill字段,不支持智能取色模式。
-
-Text组件clip属性默认为true，超出组件大小区域的内容（例如文字阴影）会被截断。在Text组件内容超出组件大小区域场景下，建议设置clip属性为false达到完整文字阴影效果。
 
 从API version 11开始，该接口支持以数组形式入参，实现多重文字阴影。
 
@@ -472,8 +470,6 @@ fontFeature(value: string)
 >
 >  不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。
 >
->  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，在Text组件中，默认值为true，即文本内容大于组件内容时，文本会截断。如果需要显示超出的部分，可以设置clip为false。
->
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。
 >
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
@@ -544,6 +540,18 @@ controller: TextController = new TextController()
 closeSelectionMenu(): void
 
 关闭自定义选择菜单或系统默认选择菜单。
+
+### setStyledString<sup>12+</sup>
+
+setStyledString(value: StyledString): void
+
+触发绑定或更新属性字符串。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述                |
+| ----- | ------ | ---- | ------------------- |
+| value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
 
 ## 示例
 

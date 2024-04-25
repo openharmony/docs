@@ -47,6 +47,9 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -66,7 +69,7 @@ privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1,
   console.error(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
 });
 // with options param
-let optons: privacyManager.AddPermissionUsedRecordOptions = {
+let options: privacyManager.AddPermissionUsedRecordOptions = {
   .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
 };
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
@@ -103,6 +106,9 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -153,6 +159,9 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. the value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -206,6 +215,9 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. the value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -267,6 +279,9 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -312,6 +327,9 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -364,6 +382,9 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -409,6 +430,9 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
@@ -460,6 +484,9 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
@@ -508,6 +535,9 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
 | 12100004 | The interface is not used together with 'on'|
 | 12100007 | Service is abnormal. |
@@ -555,6 +585,9 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |

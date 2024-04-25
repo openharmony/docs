@@ -86,7 +86,7 @@ function requestAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "test1", 
+    adId: "testy63txaom8", 
   };
   const adOptions: advertising.AdOptions = {
     // 设置广告内容分级上限
@@ -155,13 +155,13 @@ function requestMultiAd(context: common.Context): void {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "test1",
+      adId: "testy63txaom8",
     } as advertising.AdRequestParams,
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "test2", 
+      adId: "testy63txaom8", 
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
@@ -302,6 +302,8 @@ export struct ShowAd {
 
 ### onAdLoadFailure
 
+onAdLoadFailure(errorCode: number, errorMsg: string): void
+
 广告请求失败回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
@@ -313,6 +315,8 @@ export struct ShowAd {
 
 
 ### onAdLoadSuccess
+
+onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void
 
 广告请求成功后回调。
 
@@ -348,6 +352,8 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 ### onAdLoadFailure
 
+onAdLoadFailure(errorCode: number, errorMsg: string): void
+
 多广告位广告请求失败回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
@@ -360,13 +366,15 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 ### onAdLoadSuccess
 
+onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void
+
 多广告位广告请求成功后回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| ads |  Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;| 是 | 广告数据。 | 
+| adsMap |  Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;| 是 | 广告数据。 | 
 
 
 **示例：**
@@ -434,13 +442,15 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 ### onStatusChanged
 
+onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement), data: string)
+
 广告状态回调。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| status | string | 是 | status：广告展示状态，取值<br/>onAdOpen（打开广告回调）、onAdClose（关闭广告回调）、onAdClick（点击广告回调）、onVideoPlayBegin（广告视频开始播放回调）、onVideoPlayEnd（广告视频播放结束回调）、onAdLoad（广告加载成功回调）、onAdFail（广告加载失败回调）、onMediaProgress（广告播放进度回调）、onMediaStart（广告开始播放回调）、onMediaPause（广告暂停播放回调）、onMediaStop（广告停止播放回调）、onMediaComplete（广告播放完成回调）、onMediaError（广告播放失败回调）、onLandscape（竖屏状态下点击全屏按钮回调）、onPortrait（全屏状态下点击返回按钮回调）。 | 
+| status | string | 是 | status：广告展示状态，取值<br/>onAdOpen（打开广告回调）、onAdClose（关闭广告回调）、onAdClick（点击广告回调）、onVideoPlayBegin（广告视频开始播放回调）、onVideoPlayEnd（广告视频播放结束回调）、onAdLoad（广告加载成功回调）、onAdFail（广告加载失败回调）、onMediaProgress（广告播放进度回调）、onMediaStart（广告开始播放回调）、onMediaPause（广告暂停播放回调）、onMediaStop（广告停止播放回调）、onMediaComplete（广告播放完成回调）、onMediaError（广告播放失败回调）、onLandscape（竖屏状态下点击全屏按钮回调）、onPortrait（全屏状态下点击返回按钮回调）、onAdReward (广告获得奖励回调) 、onMediaCountDown (广告倒计时回调) 、onBackClicked (返回点击广告回调)。 | 
 | ad | advertising.[Advertisement](#advertisement) | 是 | 发生状态变化的广告内容。 | 
 | data | string | 是 | 扩展信息。 | 
 

@@ -3464,6 +3464,52 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
   }
   ```
 
+### updateAccountInfo<sup>12+</sup>
+
+updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+修改指定域帐号信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域帐号信息。|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域帐号信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | The new account info is invalid. |
+| 12300003 | The old account not found. |
+| 12300004 | The new account already exists. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let oldDomainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'oldtestAccountName'};
+  let newDomainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'newtestAccountName'};
+  try {
+    account_osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
+      console.log('updateAccountInfo, success');
+    }).catch((err: BusinessError) => {
+      console.log('updateAccountInfo err: ' + err);
+    });
+  } catch (e) {
+    console.log('updateAccountInfo exception: ' + e);
+  }
+  ```
+
 ### getAccountInfo<sup>10+</sup>
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
@@ -3663,6 +3709,53 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
     });
   } catch (err) {
     console.log('getAccessToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### isAuthenticationExpired<sup>12+</sup>
+
+isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;;
+
+判断指定域帐号是否登录超期。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否登录超期。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Domain account not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let domainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
+  try {
+    account_osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
+      console.log('isAuthenticationExpired, result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('isAuthenticationExpired err: ' + err);
+    });
+  } catch (e) {
+    console.log('isAuthenticationExpired exception: ' + e);
   }
   ```
 

@@ -1526,7 +1526,13 @@ struct WebComponent {
 
 registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
+<br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+
+> **说明：**
+>
+> - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
+> - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4974,7 +4980,7 @@ struct WebComponent {
 
 static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
 
-根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存密钥和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请通过[clearPrefetchedResource()](clearPrefetchedResource12)清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。如果要使用预获取的资源缓存，开发者需要在正式发起的post请求的请求头中增加键值“ArkWebPostCacheKey”，其内容为对应缓存的cacheKey。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4984,7 +4990,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
 | request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
-| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的密钥。仅支持字母和数字，未传入或传入空则取默认值url作为密钥。 |
+| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
 | cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
 
 **错误码：**
@@ -5019,6 +5025,52 @@ export default class EntryAbility extends UIAbility {
         AppStorage.setOrCreate("abilityWant", want);
         console.log("EntryAbility onCreate done");
     }
+}
+```
+
+### clearPrefetchedResource<sup>12+</sup>
+
+static clearPrefetchedResource(cacheKeyList: Array\<string>): void
+
+根据指定的缓存key列表清除对应的预获取资源缓存。入参中的缓存key必须是[prefetchResource()](prefetchresource12)指定预获取到的资源缓存key。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型        | 必填  | 说明                                                                       |
+| ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
+| cacheKeyList      | string      | 是   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: "https://www.example.com/", controller: this.webviewController})
+        .onAppear(() => {
+            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+            web_webview.WebviewController.prefetchResource(
+              {url:"https://www.example1.com/post?e=f&g=h",
+              method:"POST",
+              formData:"a=x&b=y",},
+              [{headerKey:"c",
+                headerValue:"z",},],
+              "KeyX", 500);
+        })
+        .onPageEnd(() => {
+            // 清除后续不再使用的预获取缓存。
+            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
+        })
+    }
+  }
 }
 ```
 
@@ -5228,7 +5280,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -6999,6 +7051,199 @@ struct WebComponent {
         })
     }
   }
+}
+```
+
+### onCreateNativeMediaPlayer<sup>12+</sup>
+
+onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
+
+注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。  
+如果应用接管网页媒体播放功能未开启，则注册的回调函数不会被触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| callback | [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) | 是 | 接管网页媒体播放的回调函数。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import webview from '@ohos.web.webview'
+
+class ActualNativeMediaPlayerListener {
+  handler: webview.NativeMediaPlayerHandler;
+
+  constructor(handler: webview.NativeMediaPlayerHandler) {
+    this.handler = handler;
+  }
+
+  onPlaying() {
+    // 本地播放器开始播放。
+    this.handler.handleStatusChanged(webview.PlaybackStatus.PLAYING);
+  }
+  onPaused() {
+    // 本地播放器暂停播放。
+    this.handler.handleStatusChanged(webview.PlaybackStatus.PAUSED);
+  }
+  onSeeking() {
+    // 本地播放器开始执行跳转到目标时间点。
+    this.handler.handleSeeking();
+  }
+  onSeekDone() {
+    // 本地播放器 seek 完成。
+    this.handler.handleSeekFinished();
+  }
+  onEnded() {
+    // 本地播放器播放完成。
+    this.handler.handleEnded();
+  }
+  onVolumeChanged() {
+    // 获取本地播放器的音量。
+    let volume: number = getVolume();
+    this.handler.handleVolumeChanged(volume);
+  }
+  onCurrentPlayingTimeUpdate() {
+    // 更新播放时间。
+    let currentTime: number = getCurrentPlayingTime();
+    // 将时间单位换算成秒。
+    let currentTimeInSeconds = convertToSeconds(currentTime);
+    this.handler.handleTimeUpdate(currentTimeInSeconds);
+  }
+  onBufferedChanged() {
+    // 缓存发生了变化。
+    // 获取本地播放器的缓存时长。
+    let bufferedEndTime: number = getCurrentBufferedTime();
+    // 将时间单位换算成秒。
+    let bufferedEndTimeInSeconds = convertToSeconds(bufferedEndTime);
+    this.handler.handleBufferedEndTimeChanged(bufferedEndTimeInSeconds);
+
+    // 检查缓存状态。
+    // 如果缓存状态发生了变化，则向 ArkWeb 内核通知缓存状态。
+    let lastReadyState: webview.ReadyState = getLastReadyState();
+    let currentReadyState:  webview.ReadyState = getCurrentReadyState();
+    if (lastReadyState != currentReadyState) {
+      this.handler.handleReadyStateChanged(currentReadyState);
+    }
+  }
+  onEnterFullscreen() {
+    // 本地播放器进入了全屏状态。
+    let isFullscreen: boolean = true;
+    this.handler.handleFullscreenChanged(isFullscreen);
+  }
+  onExitFullscreen() {
+    // 本地播放器退出了全屏状态。
+    let isFullscreen: boolean = false;
+    this.handler.handleFullscreenChanged(isFullscreen);
+  }
+  onUpdateVideoSize(width: number, height: number) {
+    // 当本地播放器解析出视频宽高时， 通知 ArkWeb 内核。
+    this.handler.handleVideoSizeChanged(width, height);
+  }
+
+  // ... 监听本地播放器其他的状态 ...
+}
+
+class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
+  constructor(handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) {
+    // 1. 创建一个本地播放器的状态监听。
+    let listener: ActualNativeMediaPlayerListener = new ActualNativeMediaPlayerListener(handler);
+    // 2. 创建一个本地播放器。
+    // 3. 监听该本地播放器。
+    // ...
+  }
+
+  updateRect(x: number, y: number, width: number, height: number) {
+    // <video> 标签的位置和大小发生了变化。
+    // 根据该信息变化，作出相应的改变。
+  }
+
+  play() {
+    // 启动本地播放器播放。
+  }
+
+  pause() {
+    // 暂停本地播放器播放。
+  }
+
+  seek(targetTime: number) {
+    // 本地播放器跳转到指定的时间点。
+  }
+
+  release() {
+    // 销毁本地播放器。
+  }
+
+  setVolume(volume: number) {
+    // ArkWeb 内核要求调整本地播放器的音量。
+    // 设置本地播放器的音量。
+  }
+
+  setMuted(muted: boolean) {
+    // 将本地播放器静音或取消静音。
+  }
+
+  setPlaybackRate(playbackRate: number) {
+    // 调整本地播放器的播放速度。
+  }
+
+  enterFullscreen() {
+    // 将本地播放器设置为全屏播放。
+  }
+
+  exitFullscreen() {
+    // 将本地播放器退出全屏播放。
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+        .onPageBegin((event) => {
+          this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
+            if (!shouldHandle(mediaInfo)) {
+              // 本地播放器不接管该媒体。
+              // ArkWeb 内核将用自己的播放器来播放该媒体。
+              return null;
+            }
+            let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+            return nativePlayer;
+          });
+        })
+    }
+  }
+}
+
+// stub
+function getVolume() {
+  return 1;
+}
+function getCurrentPlayingTime() {
+  return 1;
+}
+function getCurrentBufferedTime() {
+  return 1;
+}
+function convertToSeconds(input: number) {
+  return input;
+}
+function getLastReadyState() {
+  return webview.ReadyState.HAVE_NOTHING;
+}
+function getCurrentReadyState() {
+  return webview.ReadyState.HAVE_NOTHING;
+}
+function shouldHandle(mediaInfo: webview.MediaInfo) {
+  return true;
 }
 ```
 
@@ -9901,7 +10146,7 @@ struct WebComponent {
 
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 是   | 否   | 历史记录项的标题。           |
@@ -10031,7 +10276,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update guid: " + webDownloadItem.getGuid());
@@ -10051,7 +10296,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10098,7 +10343,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
@@ -10118,7 +10363,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10165,7 +10410,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10185,7 +10430,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10232,7 +10477,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
@@ -10252,7 +10497,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10299,7 +10544,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update download state: " + webDownloadItem.getState());
@@ -10319,7 +10564,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10343,7 +10588,7 @@ getLastErrorCode(): WebDownloadErrorCode
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载发生错误的时候的错误码。 |
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | 下载发生错误的时候的错误码。 |
 
 **示例：**
 
@@ -10366,7 +10611,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10387,7 +10632,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10434,7 +10679,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download， method:" + webDownloadItem.getMethod());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10454,7 +10699,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10501,7 +10746,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download， mime type:" + webDownloadItem.getMimeType());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10521,7 +10766,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10568,7 +10813,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download, url:" + webDownloadItem.getUrl());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10588,7 +10833,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10635,7 +10880,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10655,7 +10900,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10702,7 +10947,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10723,7 +10968,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10770,7 +11015,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10791,7 +11036,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10839,7 +11084,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10861,7 +11106,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10915,7 +11160,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10937,7 +11182,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10994,7 +11239,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11016,7 +11261,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11068,7 +11313,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11091,7 +11336,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11160,7 +11405,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11183,7 +11428,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11261,7 +11506,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11284,7 +11529,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11344,6 +11589,12 @@ onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 触发下载的回调。 |
+
 **示例：**
 
 ```ts
@@ -11367,7 +11618,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11390,7 +11641,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11446,6 +11697,12 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已更新。 |
+
 **示例：**
 
 ```ts
@@ -11469,7 +11726,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11492,7 +11749,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11548,6 +11805,12 @@ onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已完成。 |
+
 **示例：**
 
 ```ts
@@ -11571,7 +11834,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11594,7 +11857,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11650,6 +11913,12 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载回调失败。 |
+
 **示例：**
 
 ```ts
@@ -11673,7 +11942,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11696,7 +11965,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11785,7 +12054,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11800,6 +12069,7 @@ struct WebComponent {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
+            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11808,7 +12078,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11901,7 +12171,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11916,6 +12186,7 @@ struct WebComponent {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
+            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11924,7 +12195,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -13092,3 +13363,579 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | 名称        | 类型   | 可读 | 可写 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
 | responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
+
+## PlaybackStatus<sup>12+</sup>
+
+[handleStatusChanged](#handlestatuschanged12) 接口参数， 用于表示播放器的播放状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| PAUSED  | 0 | 播放状态为播放状态。 |
+| PLAYING | 1 | 播放状态为暂停状态。 |
+
+## NetworkState<sup>12+<sup>
+
+播放器的网络状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| EMPTY         | 0 | 播放器还没有开始下载数据。 |
+| IDLE          | 1 | 播放器网络状态空闲，比如媒体分片下载完成，下一个分片还没有开始下载。 |
+| LOADING       | 2 | 播放器正在下载媒体数据。 |
+| NETWORK_ERROR | 3 | 发生了网络错误。 |
+
+## ReadyState<sup>12+<sup>
+
+播放器的缓存状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| HAVE_NOTHING      | 0 | 没有缓存。 |
+| HAVE_METADATA     | 1 | 只缓存了媒体元数据。 |
+| HAVE_CURRENT_DATA | 2 | 只缓存到当前的播放进度。 |
+| HAVE_FUTURE_DATA  | 3 | 缓存时长超过了当前的播放进度, 但是仍有可能导致卡顿。 |
+| HAVE_ENOUGH_DATA  | 4 | 缓存了足够的数据，保证播放流畅。 |
+
+## MediaError<sup>12+<sup>
+
+播放器的错误类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| NETWORK_ERROR | 1 | 网络错误。 |
+| FORMAT_ERROR  | 2 | 媒体格式错误。 |
+| DECODE_ERROR  | 3 | 解码错误。 |
+
+## NativeMediaPlayerHandler<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。  
+应用通过该对象，将播放器的状态报告给ArkWeb内核。
+
+### handleStatusChanged<sup>12+<sup>
+
+handleStatusChanged(status: PlaybackStatus): void
+
+当播放器的播放状态发生变化时，调用该方法将播放状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| status | [PlaybackStatus](#playbackstatus12) | 是 | 播放器的播放状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleVolumeChanged<sup>12+<sup>
+
+handleVolumeChanged(volume: number): void
+
+当播放器的音量发生变化时，调用该方法将音量通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| volume | number | 是 | 播放器的音量。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleMutedChanged<sup>12+<sup>
+
+handleMutedChanged(muted: boolean): void
+
+当播放器的静音状态发生变化时，调用该方法将静音状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| muted | boolean | 是 | 当前播放器是否静音。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handlePlaybackRateChanged<sup>12+<sup>
+
+handlePlaybackRateChanged(playbackRate: number): void
+
+当播放器的播放速度发生变化时，调用该方法将播放速度通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| playbackRate | number | 是 | 播放速率。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleDurationChanged<sup>12+<sup>
+
+handleDurationChanged(duration: number): void
+
+当播放器解析出媒体的总时长时，调用该方法将媒体的总时长通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| duration | number | 是 | 媒体的总时长。单位： 秒 。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleTimeUpdate<sup>12+<sup>
+
+handleTimeUpdate(currentPlayTime: number): void
+
+当媒体的播放进度发生变化时，调用该方法将媒体的播放进度通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| currentPlayTime | number | 是 | 当前播放时间。单位： 秒。  |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleBufferedEndTimeChanged<sup>12+<sup>
+
+handleBufferedEndTimeChanged(bufferedEndTime: number): void
+
+当媒体的缓冲时长发生变化时，调用该方法将媒体的缓冲时长通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| bufferedEndTime | number | 是 | 媒体缓冲的时长。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleEnded<sup>12+<sup>
+
+handleEnded(): void
+
+当媒体播放结束时，调用该方法通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleNetworkStateChanged<sup>12+<sup>
+
+handleNetworkStateChanged(state: NetworkState): void
+
+当播放器的网络状态发生变化时，调用该方法将播放器的网络状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| state | [NetworkState](#networkstate12) | 是 | 播放器的网络状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleReadyStateChanged<sup>12+<sup>
+
+handleReadyStateChanged(state: ReadyState): void
+
+当播放器的缓存状态发生变化时，调用该方法将播放器的缓存状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| state | [ReadyState](#readystate12) | 是 | 播放器的缓存状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleFullscreenChanged<sup>12+<sup>
+
+handleFullscreenChanged(fullscreen: boolean): void
+
+当播放器的全屏状态发生变化时，调用该方法将播放器的全屏状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| fullscreen | boolean | 是 | 是否全屏。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleSeeking<sup>12+<sup>
+
+handleSeeking(): void
+
+当播放器进入seek 状态时，调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleSeekFinished<sup>12+<sup>
+
+handleSeekFinished(): void
+
+当播放器 seek 完成后，调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleError<sup>12+<sup>
+
+handleError(error: MediaError, errorMessage: string): void
+
+当播放器发生错误时， 调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| error | [MediaError](#mediaerror12) | 是 | 错误类型。 |
+| errorMessage | string | 是 | 错误的详细描述。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleVideoSizeChanged<sup>12+<sup>
+
+handleVideoSizeChanged(width: number, height: number): void
+
+当播放器解析出视频的尺寸时， 调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| width  | number | 是 | 视频的宽。 |
+| height | number | 是 | 视频的高。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+
+## NativeMediaPlayerBridge<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。  
+接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。  
+ArkWeb 内核通过该接口类的实例对象来控制应用创建的用来接管网页媒体的播放器。
+
+### updateRect<sup>12+<sup>
+
+updateRect(x: number, y: number, width: number, height: number): void
+
+更新 surface 位置信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| x | number | 是 | surface 相对于 Web 组件的 x 坐标信息。 |
+| y | number | 是 | surface 相对于 Web 组件的 y 坐标信息。 |
+| width  | number | 是 | surface 的宽度。 |
+| height | number | 是 | surface 的高度。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### play<sup>12+<sup>
+
+play(): void
+
+播放视频。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### pause<sup>12+<sup>
+
+pause(): void
+
+暂停播放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### seek<sup>12+<sup>
+
+seek(targetTime: number): void
+
+播放跳转到某个时间点。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| targetTime | number | 是 | 单位： 秒。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setVolume<sup>12+<sup>
+
+setVolume(volume: number): void
+
+设置播放器音量值。  
+取值范围: [0, 1.0]
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| volume | number | 是 | 播放器的音量。取值范围是从 0 到 1.0 。 其中 0 表示静音， 1.0 表示最大音量。 |
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setMuted<sup>12+<sup>
+
+setMuted(muted: boolean): void
+
+设置静音状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| muted | boolean | 是 | 是否静音。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setPlaybackRate<sup>12+<sup>
+
+setPlaybackRate(playbackRate: number): void
+
+设置播放速度。  
+取值范围: [0, 10.0]
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| playbackRate | number | 是 | 播放倍率。取值范围是从 0 到 10.0 。其中 1 表示原速播放。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### release<sup>12+<sup>
+
+release(): void
+
+销毁播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### enterFullscreen<sup>12+<sup>
+
+enterFullscreen(): void
+
+播放器进入全屏。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### exitFullscreen<sup>12+<sup>
+
+exitFullscreen(): void
+
+播放器退出全屏。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+## MediaType<sup>12+<sup>
+
+表示媒体类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| VIDEO | 0 | 视频。 |
+| AUDIO | 1 | 音频。 |
+
+## SourceType<sup>12+<sup>
+
+表示媒体源的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| URL | 0 | 媒体源的类型是 URL 。 |
+| MSE | 1 | 媒体源的类型是 blob 。 |
+
+## MediaSourceInfo<sup>12+<sup>
+
+表示媒体源的信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| type | [SourceType](#sourcetype12) | 否 | N/A | 媒体源的类型。 |
+| source | string | 否 | N/A | 媒体源地址。 |
+| format | string | 否 | N/A | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+
+## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
+
+[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)中用于同层渲染的 surface 信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | N/A | surface 的位置信息。 |
+
+## Preload<sup>12+<sup>
+
+播放器预加载媒体数据。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| NONE     | 0 | 不预加载。 |
+| METADATA | 1 | 只预加载媒体的元数据。 |
+| AUTO     | 2 | 预加载足够多的媒体数据，以保证能流畅地播放。 |
+
+## MediaInfo<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。  
+包含了网页中媒体的信息。应用可以根据这些信息来创建接管网页媒体播放的播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
+| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | N/A | 是否要求静音播放。 |
+| posterUrl | string | 否 | N/A | 海报的地址。 |
+| preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | N/A | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | N/A | `<video>` 或 `<audio>` 标签中的属性。 |
+
+
+## CreateNativeMediaPlayerCallback<sup>12+<sup>
+
+[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。  
+一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
+
+type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| handler | [NativeMediaPlayerHandler](#nativemediaplayerhandler12) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。 |
+| mediaInfo | [MediaInfo](#mediainfo12) | 是 | 网页媒体的信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+|------|------|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | 接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。<br/>应用需要实现该接口类。<br/> ArkWeb 内核通过该接口类的对象来控制应用创建的用来接管网页媒体的播放器。<br/>如果应用返回了 null ， 则表示应用不接管这个媒体，由 ArkWeb 内核来播放该媒体。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。

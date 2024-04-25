@@ -39,10 +39,11 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
@@ -91,10 +92,11 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
@@ -149,10 +151,11 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
@@ -206,10 +209,11 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The Uri is not exist. |
 
 **示例：**
@@ -254,10 +258,11 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The Uri is not exist. |
 
 **示例：**
@@ -419,10 +424,11 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -456,17 +462,20 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.acts.datasharetest");
-export function callback(error,ChangeInfo) {
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
@@ -492,10 +501,11 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -531,17 +541,20 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.acts.datasharetest");
-export function callback(error,ChangeInfo) {
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
@@ -568,10 +581,11 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The uri is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -613,10 +627,11 @@ delTemplate(uri: string, subscriberId: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The uri is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -667,10 +682,11 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -719,10 +735,11 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -760,10 +777,11 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -816,10 +834,11 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -856,10 +875,11 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -904,10 +924,11 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -950,10 +971,11 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -986,10 +1008,11 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1028,10 +1051,11 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1061,10 +1085,11 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1125,10 +1150,11 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1182,10 +1208,11 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1237,10 +1264,11 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1286,10 +1314,11 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1344,10 +1373,11 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1395,10 +1425,11 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1463,10 +1494,11 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1527,10 +1559,11 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
 | 15700013 | The DataShareHelper instance is already closed. |
 
@@ -1573,11 +1606,14 @@ try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
-      for (const [key, values] of Object.entries(data)) {
-          console.info(`Update uri:${key}`);
-          for (const value of values) {
-              console.info(`Update result:${value}`);
-          }
+      let a = Object.entries(data);
+      for (let i =0, i < a.length; i++) {
+        let key = a[i][0];
+        let values = a[i][1]
+        console.info(`Update uri:${key}`);
+        for (const value of values) {
+          console.info(`Update result:${value}`);
+        }
       }
     }).catch((err: BusinessError) => {
       console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
@@ -1608,10 +1644,11 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1673,10 +1710,11 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1760,10 +1798,11 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1805,10 +1844,11 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1843,10 +1883,11 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1888,10 +1929,11 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1926,10 +1968,11 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -1965,10 +2008,11 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -2002,10 +2046,11 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -2014,10 +2059,10 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 import values from '@ohos.data.ValuesBucket';
 
 let dsUri = ("datashare:///com.acts.datasharetest");
-let people: Array<values.ValuesBucket> = new Array(
-                {"name": "LiSi"},
-                {"name": "WangWu"},
-                {"name": "ZhaoLiu"});
+let bucket1: values.ValuesBucket = {"name": "LiSi"};
+let bucket2: values.ValuesBucket = {"name": "WangWu"};
+let bucket3: values.ValuesBucket = {"name": "ZhaoLiu"};
+let people: Array<values.ValuesBucket> = new Array(bucket1, bucket2, bucket3);
 let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);

@@ -61,6 +61,7 @@ SaveButton(option:SaveButtonOptions)
 | DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 |
 | RECEIVE | 6 | 保存按钮的文字描述为“接收”。 |
 | CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 |
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存到图库”。 |
 
 
 ## SaveButtonOnClickResult枚举说明

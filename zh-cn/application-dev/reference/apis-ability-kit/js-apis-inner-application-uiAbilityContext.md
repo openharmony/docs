@@ -63,6 +63,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -78,7 +80,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -140,6 +141,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -159,7 +162,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -230,6 +232,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -249,14 +253,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -316,6 +319,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -332,7 +337,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -398,6 +402,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -415,7 +421,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -423,7 +428,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -491,6 +496,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -508,14 +515,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -572,7 +578,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -629,7 +634,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf()
@@ -689,7 +693,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -765,7 +768,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -846,7 +848,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -857,16 +858,17 @@ export default class EntryAbility extends UIAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.info('onFailed...');
       }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (err) {
@@ -916,7 +918,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -930,7 +931,7 @@ export default class EntryAbility extends UIAbility {
       }).catch((err: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      })
+      });
     } catch (err) {
       commRemote = null;
       // 处理入参错误异常
@@ -974,7 +975,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -1045,6 +1045,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1061,10 +1062,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 后台启动Ability，不配置parameters
     let wantBackground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1102,10 +1101,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
     let wantForeground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1170,7 +1167,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
@@ -1217,7 +1213,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
@@ -1521,7 +1516,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1601,7 +1595,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
       }
     });
-    console.log("MainAbility onWindowStageCreate")
+    console.log("MainAbility onWindowStageCreate");
   }
 };
   ```
@@ -1631,6 +1625,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1639,26 +1634,32 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
-    },
-    onResult: (abilityResult: common.AbilityResult) => {
-      console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+      
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
+        if (err) {
+          console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+        } else {
+          console.log(`success`);
+        }
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`success`);
-    }
-  });
   ```
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
@@ -1691,6 +1692,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1699,25 +1701,31 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
-    },
-    onResult: (abilityResult: common.AbilityResult) => {
-      console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
+        console.log(`startAbilityByType success`);
+      }).catch((err: BusinessError) => {
+        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
-    console.log(`startAbilityByType success`);
-  }).catch((err: BusinessError) => {
-    console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-  })
   ```
 
 ## UIAbilityContext.showAbility<sup>12+</sup>
@@ -1748,15 +1756,77 @@ showAbility() : Promise\<void>
 **示例：**
 
   ```ts
+  // Index.ets
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  context.showAbility().then(() => {
-    console.log(`showAbility success`);
-  }).catch((err: BusinessError) => {
-    console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
-  })
+
+  @Entry
+  @Component
+  struct Index {
+    @State showAbility: string = 'showAbility'
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.showAbility)
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              let context = getContext(this) as common.UIAbilityContext;
+
+              context.showAbility().then(() => {
+                console.log(`showAbility success`);
+              }).catch((err: BusinessError) => {
+                console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
+              });
+            });
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
   ```
+  ```ts
+  // EntryAbility.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import contextConstant from '@ohos.app.ability.contextConstant';
+  import { BusinessError } from '@ohos.base';
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
+      };
+      let options: StartOptions = {
+        displayId: 0,
+        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // 处理入参错误异常
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```
+
 ## UIAbilityContext.hideAbility<sup>12+</sup>
 
 hideAbility() : Promise\<void>
@@ -1785,14 +1855,75 @@ hideAbility() : Promise\<void>
 **示例：**
 
   ```ts
+    // Index.ets
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  context.hideAbility().then(() => {
-    console.log(`hideAbility success`);
-  }).catch((err: BusinessError) => {
-    console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
-  })
+
+  @Entry
+  @Component
+  struct Index {
+    @State hideAbility: string = 'hideAbility'
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.hideAbility)
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              let context = getContext(this) as common.UIAbilityContext;
+
+              context.hideAbility().then(() => {
+                console.log(`hideAbility success`);
+              }).catch((err: BusinessError) => {
+                console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
+              });
+            });
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+  ```ts
+  // EntryAbility.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import contextConstant from '@ohos.app.ability.contextConstant';
+  import { BusinessError } from '@ohos.base';
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
+      };
+      let options: StartOptions = {
+        displayId: 0,
+        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // 处理入参错误异常
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
   ```
 
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
@@ -1839,10 +1970,11 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             let context = getContext(this) as common.UIAbilityContext;
+
             context.moveAbilityToBackground().then(() => {
               console.log(`moveAbilityToBackground success.`);
             }).catch((err: BusinessError) => {
-              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`)
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`);
             });
           });
       }
@@ -1907,11 +2039,10 @@ import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -2015,11 +2146,12 @@ struct Index {
           .margin({ bottom: '12vp' })
           .onClick(() => {
             let context = getContext(this) as common.UIAbilityContext;
-            let link: string = "https://www.example.com"
+            let link: string = "https://www.example.com";
             let openLinkOptions: OpenLinkOptions = {
               appLinkingOnly: true,
               parameters: {demo_key: "demo_value"}
             };
+            
             try {
               context.openLink(
                 link,
@@ -2033,7 +2165,7 @@ struct Index {
                 hilog.info(DOMAIN, TAG, 'open link success.');
               }).catch((err: BusinessError)=>{
                 hilog.error(DOMAIN, TAG, 'open link failed, errCode ' + JSON.stringify(err.code));
-              })
+              });
             }
             catch (e) {
               hilog.error(DOMAIN, TAG, 'exception occured, errCode ' + JSON.stringify(e.code));

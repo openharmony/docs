@@ -13,7 +13,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 开发步骤
 
-以实现对用户点击按钮触发踩内存场景生成的踩内存事件订阅为例，说明开发步骤。
+以实现对写数组越界场景生成的踩内存事件订阅为例，说明开发步骤。
 
 1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
 
@@ -245,7 +245,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
          Column() {
            Button("address-sanitizer").onClick(() = > {
              testNapi.test();
-             })
+           })
          }
          .width('100%')
        }
@@ -258,7 +258,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    ```text
    HiAppEvent eventInfo.domain=OS
-   HiAppEvent eventInfo.name=APP_ADDRESS_SANITIZER
+   HiAppEvent eventInfo.name=ADDRESS_SANITIZER
    HiAppEvent eventInfo.eventType=1
    HiAppEvent eventInfo.params.time=1713148093326
    HiAppEvent eventInfo.params.bundle_version=1.0.0
@@ -272,21 +272,21 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 10. 移除应用事件观察者：
 
-   ```c++
-   static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
-       // 使观察者停止监听事件
-       OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
-       return {};
-   }
-   ```
+    ```c++
+    static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
+        // 使观察者停止监听事件
+        OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
+        return {};
+    }
+    ```
 
 11. 销毁应用事件观察者：
 
-   ```c++
-   static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-       // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
-       OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-       onTriggerWatcher = nullptr;
-       return {};
-   }
-   ```
+    ```c++
+    static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
+        // 销毁创建的观察者，并置onReceiverWatcher为nullptr。
+        OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
+        onTriggerWatcher = nullptr;
+        return {};
+    }
+    ```

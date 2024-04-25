@@ -399,9 +399,6 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**  
->   如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### caretStyle<sup>12+</sup>
 
 caretStyle(value: CaretStyle)
@@ -426,19 +423,23 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0 |
 
 ### textOverflow<sup>12+</sup>
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。
+设置文本超长时的显示方式。在非内联模式、内联模式下支持
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+overflow在非内联模式下建议配合maxLines使用，否则设置为Ellipsis时，变为单行Ellipsis效果。
+
+overflow在内联模式下设置为TextOverflow.Ellipsis时，如果设置maxLines，效果仅为单行Ellipsis。
 
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
@@ -452,6 +453,63 @@ textOverflow(value: TextOverflow)
 
 >  **说明：**     
 >   TextArea组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 显示为TextOverflow.Clip
+
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及[maxLines](#maxlines10)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
+### heightAdaptivePolicy<sup>12+</sup>
+
+heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
+
+设置文本自适应高度的方式。
+
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
+组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+
+当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
 
 ## 事件
 
@@ -627,7 +685,7 @@ getTextContentRect(): [RectResult](#rectresult10)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -1107,3 +1165,43 @@ struct TextAreaExample {
 ```
 ![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
+### 示例10
+
+该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  build() {
+    Row() {
+      Column() {
+        Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+        TextArea({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(90).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        TextArea({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(90).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+        TextArea({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(90).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![TextAreaAdaptFont](figures/textarea_adapt_font.png)

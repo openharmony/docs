@@ -45,7 +45,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       ...
+       // ...
        Button()
          .onClick(() => {
 	   // context为Ability对象的成员，在非Ability对象内部调用需要
@@ -104,7 +104,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    @Component
    struct Page_UIAbilityComponentsInteractive {
      build() {
-       ...
+       // ...
        Button()
          .onClick(() => {
            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
@@ -784,7 +784,7 @@ export default class FuncAbility extends UIAbility {
 
 > **说明：**
 >
-> 当被调用方[UIAbility组件启动模式](uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调就不会被用到。
+> 当被调用方[UIAbility组件启动模式](uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调就不会被用到。
 
 
 ## 通过Call调用实现UIAbility交互（仅对系统应用开放）
@@ -883,7 +883,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = string;
      };
    
-     mySequenceable(num, string): void {
+     mySequenceable(num: number, string: string): void {
        this.num = num;
        this.str = string;
      };
@@ -899,7 +899,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = messageSequence.readString();
        return true;
      };
-   };
+   }
    ```
 
 4. 实现Callee.on监听及Callee.off解除监听。
@@ -912,7 +912,6 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    import UIAbility from '@ohos.app.ability.UIAbility';
    import type Want from '@ohos.app.ability.Want';
    import hilog from '@ohos.hilog';
-   import Logger from '../utils/Logger';
    import type rpc from '@ohos.rpc';
    import type { Caller } from '@ohos.app.ability.UIAbility';
 
@@ -929,7 +928,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = string;
      }
    
-     mySequenceable(num, string): void {
+     mySequenceable(num: number, string: string): void {
        this.num = num;
        this.str = string;
      }
@@ -976,9 +975,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
            this.caller.release();
            this.caller = undefined;
          }
-         Logger.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
        } catch (error) {
-         Logger.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
        };
      }
      onDestroy(): void {
@@ -1035,11 +1034,10 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
          let message = (err as BusinessError).message;
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
        }
-       ;
      }
    
      build() {
-       Button()
+       Button('StartAbilityByCall')
          .onClick(() => {
            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
            let want: Want = {
@@ -1060,7 +1058,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
                hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                this.regOnRelease(caller);
                promptAction.showToast({
-                 message: $r('app.string.CallerSuccess')
+                 message: 'caller success'
                });
              }
            }).catch((err: BusinessError) => {

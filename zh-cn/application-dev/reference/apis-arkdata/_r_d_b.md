@@ -140,7 +140,9 @@
 | [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 | 
 | [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。 | 
 | [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 | 
-
+| int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 | 
+| int [OH_Rdb_UnlockRow](#oh_rdb_unlockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁解锁数据库中的数据。 | 
+| [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_QueryLockedRow](#oh_rdb_querylockedrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | 根据指定条件查询数据库中锁定的数据。 | 
 
 ### 变量
 
@@ -1423,6 +1425,32 @@ int OH_Rdb_Insert (OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuc
 
 [OH_Rdb_Store](_o_h___rdb___store.md), [OH_VBucket](_o_h___v_bucket.md).
 
+### OH_Rdb_LockRow()
+
+```
+int OH_Rdb_LockRow (OH_Rdb_Store *store, OH_Predicates *predicates )
+```
+
+**描述**
+
+根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定锁定条件。 | 
+
+**返回：**
+
+返回锁定结果。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md).
 
 ### OH_Rdb_Query()
 
@@ -1453,6 +1481,34 @@ OH_Cursor* OH_Rdb_Query (OH_Rdb_Store *store, OH_Predicates *predicates, const c
 
 [OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md), [OH_Cursor](_o_h___cursor.md).
 
+### OH_Rdb_QueryLockedRow()
+
+```
+OH_Cursor *OH_Rdb_QueryLockedRow (OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length )
+```
+
+**描述**
+
+根据指定条件查询数据库中锁定的数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定查询条件。 | 
+| columnNames | 表示要查询的列。如果值为空，则查询应用于所有列。 | 
+| length | 表示columnNames数组的长度。若length大于columnNames数组的实际长度，则会访问越界。 | 
+
+**返回：**
+
+如果查询成功则返回一个指向[OH_Cursor](_o_h___cursor.md)结构体实例的指针，否则返回NULL。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md), [OH_Cursor](_o_h___cursor.md).
 
 ### OH_Rdb_Restore()
 
@@ -1628,6 +1684,32 @@ int OH_Rdb_SubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressObs
 
 [Rdb_ProgressObserver](_rdb___progress_observer.md).
 
+### OH_Rdb_UnlockRow()
+
+```
+int OH_Rdb_UnlockRow (OH_Rdb_Store *store, OH_Predicates *predicates )
+```
+
+**描述**
+
+根据指定的条件锁解锁数据库中的数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 | 
+| predicates | 表示指向[OH_Predicates](_o_h___predicates.md)实例的指针，指定解锁条件。 | 
+
+**返回：**
+
+返回解锁结果。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md).
 
 ### OH_Rdb_Unsubscribe()
 

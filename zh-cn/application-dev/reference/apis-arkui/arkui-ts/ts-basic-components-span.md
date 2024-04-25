@@ -123,7 +123,7 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 ### baselineOffset<sup>12+</sup>
 
-baselineOffset(value: LengthMetric)
+baselineOffset(value: LengthMetrics)
 
 设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。
 
@@ -131,9 +131,9 @@ baselineOffset(value: LengthMetric)
 
 **参数：** 
 
-| 参数名 | 类型                                                        | 必填 | 描述                                                         |
-| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 设置Span基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0 |
+| 参数名 | 类型                                                         | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置Span基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0 |
 
 ## 事件
 
@@ -269,7 +269,7 @@ struct Index {
 该示例实现了如何设置Span基线的偏移量。
 
 ```ts
-import { LengthUnit,LengthMetric } from '@ohos.arkui.node';
+import { LengthUnit,LengthMetrics } from '@ohos.arkui.node';
 
 @Entry
 @Component
@@ -280,12 +280,12 @@ struct Index {
       Column() {
         Text(){
           Span('word1')
-            .baselineOffset(new LengthMetric(20,LengthUnit.VP))
+            .baselineOffset(new LengthMetrics(20,LengthUnit.VP))
           Span('word2')
-            .baselineOffset(new LengthMetric(0,LengthUnit.VP))
+            .baselineOffset(new LengthMetrics(0,LengthUnit.VP))
           ImageSpan($r("app.media.icon"))
             .width('45px')
-            .baselineOffset(new LengthMetric(-20,LengthUnit.VP))
+            .baselineOffset(new LengthMetrics(-20,LengthUnit.VP))
         }
         .backgroundColor(Color.Gray)
       }

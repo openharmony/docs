@@ -555,9 +555,9 @@
 
 ### ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
-允许应用进行证书及凭据的安装、卸载、启用、禁用等操作。
+允许应用进行用户公共证书凭据的安装、卸载、授权等操作。
 
-**权限级别**：system_basic
+**权限级别**：API version 9-11为system_basic；从API version 12开始为system_core。
 
 **授权方式**：system_grant
 
@@ -2045,6 +2045,30 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_PRIVATE_SPACE_MANAGER
+
+允许系统应用或系统服务拉起隐私空间管理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
+### ohos.permission.ACCESS_PRIVATE_SPACE_PASSWORD_PROTECT
+
+允许系统应用调用隐私空间服务密码保护相关接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
+
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
 允许系统应用或系统服务拉起密码保险箱能力。
@@ -2056,6 +2080,18 @@
 **ACL使能**：true
 
 **起始版本**: 11
+
+### ohos.permission.ACCESS_TEXTAUTOFILL_ABILITY
+
+允许系统应用或系统服务拉起文本智能填充应用管理页面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**: 12
 
 ### ohos.permission.ACCESS_LOWPOWER_MANAGER
 
@@ -2705,7 +2741,7 @@
 
 **起始版本**：12
 
-## ohos.permission.USE_CLOUD_DRIVE_SERVICE
+### ohos.permission.USE_CLOUD_DRIVE_SERVICE
 
 允许应用和服务使用云空间服务进行端云数据同步。
 
@@ -2717,7 +2753,7 @@
 
 **起始版本**：12
 
-## ohos.permission.USE_CLOUD_BACKUP_SERVICE
+### ohos.permission.USE_CLOUD_BACKUP_SERVICE
 
 允许应用和服务触发云空间云备份任务执行和通知备份相关事件。
 
@@ -2729,7 +2765,7 @@
 
 **起始版本**：12
 
-## ohos.permission.USE_CLOUD_COMMON_SERVICE
+### ohos.permission.USE_CLOUD_COMMON_SERVICE
 
 允许应用通过云空间公共服务获取云空间相关信息和资源。
 
@@ -2753,7 +2789,7 @@
 
 **起始版本**: 12
 
-### ohos.permission.INPUT_INFRARED_EMITTE
+### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 允许系统应用使用红外接口。
 
@@ -2768,6 +2804,78 @@
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
 允许应用设置是否支持应用缓存及缓存后快速启动。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SYSTEM_APP_CERT
+
+允许调用方管理和使用系统业务证书凭据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_USER_TRUSTED_CERT
+
+允许调用方管理用户CA证书。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_LOCAL_BACKUP
+
+允许应用访问本地备份数据目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CAST_AUDIO_OUTPUT
+
+允许系统投播/协同应用发起音频投播。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.WRITE_RINGTONE
+
+允许铃音库进行写操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.KILL_APP_PROCESSES
+
+允许系统应用杀掉其他应用。
 
 **权限级别**：system_basic
 

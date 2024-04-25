@@ -22,13 +22,21 @@ Stack组件为容器组件，容器内可包含各种子元素。其中子元素
 
 
 ```ts
+// xxx.ets
 let MTop:Record<string,number> = { 'top': 50 }
-Column(){
-  Stack({ }) {
-    Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
-    Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
-    Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
-  }.width('100%').height(150).margin(MTop)
+
+@Entry
+@Component
+struct StackExample {
+  build() {
+    Column(){
+      Stack({ }) {
+        Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
+        Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
+        Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
+      }.width('100%').height(150).margin(MTop)
+    }
+  }
 }
 ```
 

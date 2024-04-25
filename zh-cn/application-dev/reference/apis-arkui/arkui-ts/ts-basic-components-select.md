@@ -77,6 +77,28 @@ controlSize(value: ControlSize)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | value  | [ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup> | 是   | Select组件的尺寸。<br/>默认值:ControlSize.NORMAL |
 
+controlSize、width、height接口作用优先级：
+
+   1）如果开发者只设置了width和height，当文字大小设置的是比较大的值的时候，文字超出组件大小，且以省略号方式显示；
+
+   2）如果开发者只设置了controlSize，没有设置width和height，组件宽高自适应文字，文字不超出组件，并设置最小宽度minWidth和最小高度minHeight；
+
+   3）如果controlSize、width、height接口都设置了，width和height设置的值生效，但如果width和height设置的值小于controlSize设置的最小宽度minWidth和最小高度minHeight，width和height设置的值不生效，宽高仍保持controlSize设置的最小宽度minWidth和最小高度minHeight。
+
+### menuItemContentModifier<sup>12+</sup>
+
+menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
+
+定制Select下拉菜单项内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12对象说明) | 是   | 在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ### font
 
 font(value: Font)
@@ -89,7 +111,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>从API Version 12以后，<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是'14fp'，否则还是'16fp'。|
 
 ### fontColor
 
@@ -319,6 +341,16 @@ menuBackgroundBlurStyle(value: BlurStyle)
 | CENTER              | 居中对齐。 |
 | END                 | 按照语言方向末端对齐。 |
 
+## MenuItemConfiguration<sup>12+</sup>对象说明
+
+| 参数名 | 类型                                         | 必填 | 说明                                                         |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。 |
+| icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
+| selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
+| index  | number | 是   | 下拉菜单项的索引。 |
+| triggerSelect  | (index: number, value: string) => void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
+
 ## 事件
 
 ### onSelect
@@ -336,7 +368,7 @@ onSelect(callback: (index: number, value:&nbsp;string) => void)
 | index  | number | 是   | 选中项的索引。 |
 | value  | string | 是   | 选中项的值。   |
 
-##  示例
+##  示例1
 
 ```ts
 // xxx.ets
@@ -377,3 +409,63 @@ struct SelectExample {
 ```
 
 ![](figures/selectExample.png)
+
+##  示例2
+该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + 图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
+
+```ts
+import { MenuItemModifier } from '@ohos.arkui.modifier'
+
+class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
+  modifierText: string = ""
+  constructor(text: string) {
+    this.modifierText = text;
+  }
+  applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
+    return wrapBuilder(MenuItemBuilder)
+  }
+}
+
+@Builder
+function MenuItemBuilder(configuration: MenuItemConfiguration) {
+  Row() {
+    Text(configuration.value)
+    Blank()
+    Image(configuration.icon).size({ width: 40, height: 40 })
+    Blank(30)
+    Text((configuration.contentModifier as MyMenuItemContentModifier).modifierText)
+    Path()
+      .width('100px')
+      .height('150px')
+      .commands('M40 0 L80 100 L0 100 Z')
+      .fillOpacity(0)
+      .stroke(Color.Black)
+      .strokeWidth(3)
+  }
+  .onClick(() => {
+    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())
+  })
+}
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "有modifier"
+  build() {
+    Column() {
+      Row() {
+        Select([{ value: 'item1', icon: $r("app.media.icon") },
+          { value: 'item2', icon: $r("app.media.icon") }])
+          .value(this.text)
+          .onSelect((index:number, text?: string)=>{
+            console.info('Select index:' + index)
+            console.info('Select text:' + text)
+          })
+          .menuItemContentModifier(new MyMenuItemContentModifier("我来自Modifier"))
+
+      }.alignItems(VerticalAlign.Center).height("50%")
+    }
+  }
+}
+```
+![](figures/selectBuilderExample.png)

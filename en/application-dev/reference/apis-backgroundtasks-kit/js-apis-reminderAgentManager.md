@@ -659,7 +659,7 @@ Defines the request for publishing a reminder.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No| Buttons displayed for the reminder notification.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
@@ -669,7 +669,7 @@ Defines the request for publishing a reminder.
 | content | string | No| Reminder content.|
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.)|
-| notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
+| notificationId | number | No| Notification ID used by the reminder. You must pass in a notification ID. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
 | tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |

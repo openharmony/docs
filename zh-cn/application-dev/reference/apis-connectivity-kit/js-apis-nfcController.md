@@ -18,6 +18,8 @@ import controller from '@ohos.nfc.controller';
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | STATE_OFF | 1 | NFC已关闭状态。 |
@@ -125,7 +127,7 @@ isNfcOpen(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -141,7 +143,7 @@ getNfcState(): [NfcState](#nfcstate)
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -157,7 +159,7 @@ on(type: 'nfcStateChange', callback: Callback&lt;[NfcState](#nfcstate)&gt;): voi
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数**
   
@@ -174,7 +176,7 @@ off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数**
 

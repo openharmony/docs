@@ -802,5 +802,10 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
-| GESTURE | 事件手势键。<br/>**说明：** [GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| IMAGE | 图片附件键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|

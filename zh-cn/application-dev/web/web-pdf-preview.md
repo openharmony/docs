@@ -72,11 +72,12 @@ struct WebComponent {
 此外，通过配置PDF文件预览参数，可以控制打开预览时页面状态。
 
 当前支持如下参数: 
-| Syntax		| Desription |
+
+| 语法		| 描述 |
 | --------- 	| ---------- |
 | nameddest=destination 	|  指定PDF文档中的命名目标 |
-| page=pagenum 	| 使用整数指定文档中的页码,文档第一页的pagenum值为1 | 
-| zoom=scale    zoom=scale,left,top	| 使用浮点或整数值设置缩放和滚动系数。 例如，缩放值 100 表示缩放值为 100%。 向左和向上滚动值位于坐标系中，其中 0,0 表示可见页面的左上角,无论文档如何旋转。 |
+| page=pagenum 	| 使用整数指定文档中的页码，文档第一页的pagenum值为1。| 
+| zoom=scale    zoom=scale,left,top	| 使用浮点或整数值设置缩放和滚动系数。 例如：缩放值100表示缩放值为100%。 向左和向上滚动值位于坐标系中，0,0 表示可见页面的左上角，无论文档如何旋转。 |
 | toolbar=1\|0 	| 打开或关闭顶部工具栏。 | 
 | navpanes=1\|0 	| 打开或关闭侧边导航窗格。 | 
 

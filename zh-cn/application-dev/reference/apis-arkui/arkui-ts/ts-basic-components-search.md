@@ -355,9 +355,6 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**     
->   如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### inputFilter<sup>12+</sup>
 
 inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
@@ -375,20 +372,6 @@ inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 正则表达式。                       |
 | error  | &nbsp;Callback<&nbsp;string&nbsp;>     | 否   | 正则匹配失败时，返回被过滤的内容。 |
 
-### onEditChange<sup>12+</sup>
-
-onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
-
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名    | 类型                                | 必填 | 说明                 |
-| --------- | ---------------------------------- | ---- | -------------------- |
-| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
-
 ### textIndent<sup>12+</sup>
 
 textIndent(value: Dimension)
@@ -399,9 +382,45 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0   |
+
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -571,6 +590,20 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | ------------ | ------ | ---- | ---------------------------------- |
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 否   | 文本在内容区的纵坐标偏移，单位px。 |
+
+### onEditChange<sup>12+</sup>
+
+onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
+
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                | 必填 | 说明                 |
+| --------- | ---------------------------------- | ---- | -------------------- |
+| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
 
 ## SearchController
 
@@ -992,3 +1025,33 @@ struct SearchExample {
 ```
 
 ![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
+
+### 示例8
+
+该示例实现了使用minFontSize及maxFontSize设置文本自适应字号。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  build() {
+    Row() {
+      Column() {
+        Text('adaptive font').fontSize(9).fontColor(0xCCCCCC)
+
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![searchAdaptFont](figures/search_adapt_font.png)

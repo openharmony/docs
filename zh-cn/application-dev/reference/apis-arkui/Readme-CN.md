@@ -245,6 +245,7 @@
       - [CanvasGradient](arkui-ts/ts-components-canvas-canvasgradient.md)
       - [CanvasPattern](arkui-ts/ts-components-canvas-canvaspattern.md)
       - [CanvasRenderingContext2D](arkui-ts/ts-canvasrenderingcontext2d.md)
+      - [DrawingRenderingContext](arkui-ts/ts-drawingrenderingcontext.md)
       - [ImageBitmap](arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData](arkui-ts/ts-components-canvas-imagedata.md)
       - [Matrix2D](arkui-ts/ts-components-canvas-matrix2d.md)
@@ -253,6 +254,7 @@
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
+      - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
       - [@ohos.arkui.advanced.ComposeListItem (列表)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
@@ -260,6 +262,7 @@
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
+      - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
       - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
       - [@ohos.arkui.advanced.Popup (气泡组件)](arkui-ts/ohos-arkui-advanced-Popup.md)

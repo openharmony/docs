@@ -192,7 +192,7 @@ async function EncryptData() {
     .then((data) => {
         handle = data.handle;
     }).catch((error: BusinessError)=>{
-        console.error(`promise: init encryptdata failed` + error);
+        console.error(`promise: init EncryptData failed` + error);
     })
     /*
     * 5. 调用finishSession获取加密后的密文
@@ -228,7 +228,7 @@ async function DecryptData() {
     .then((data) => {
         handle = data.handle;
     }).catch((error: BusinessError)=>{
-        console.error(`promise: init decryptdata failed` + error);
+        console.error(`promise: init DecryptData failed` + error);
     })
     /*
     * 5. 调用finishSession获取解密后的数据

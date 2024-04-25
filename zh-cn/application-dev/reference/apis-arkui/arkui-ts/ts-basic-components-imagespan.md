@@ -27,6 +27,20 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 [通用属性](ts-universal-attributes-size.md)方法支持尺寸设置、背景设置、边框设置。
 
+### alt<sup>12+</sup>
+
+alt(value:&nbsp;PixelMap)
+
+设置图片加载时显示的占位图。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                     | 必填 | 说明                                                         |
+| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。<br/>默认值：null |
+
 ### verticalAlign
 
 verticalAlign(value: ImageSpanAlignment)
@@ -71,7 +85,7 @@ textBackgroundStyle(value: TextBackgroundStyle)
 
 ### baselineOffset<sup>12+</sup>
 
-baselineOffset(value: LengthMetric)
+baselineOffset(value: LengthMetrics)
 
 设置ImageSpan基线的偏移量。此属性与父组件的baselineOffset是共存的。
 
@@ -79,9 +93,9 @@ baselineOffset(value: LengthMetric)
 
 **参数：** 
 
-| 参数名 | 类型                                                        | 必填 | 描述                                                         |
-| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [LengthMetric](../js-apis-arkui-graphics.md#lengthmetric12) | 是   | 设置ImageSpan基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>设置为非0时会导致设置verticalAlign失效。 |
+| 参数名 | 类型                                                         | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置ImageSpan基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>设置为非0时会导致设置verticalAlign失效。 |
 
 ## ImageSpanAlignment
 

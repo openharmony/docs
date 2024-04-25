@@ -518,6 +518,60 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
   }
   ```
 
+## backup.updateTimer
+
+updateTimer(bundleName: string, timeout: number): void;
+
+调用时机为onBundleBegin之后，onBundleEnd之前
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | 是   | 需要设置备份或恢复时长的应用名称 |
+| timeout | number | 是   | 备份或恢复的限制时长，单位:ms |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| boolean | 超时时间是否设置成功 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import backup form '@ohos.file.backup';
+
+  updateTimer() {
+    try {
+      let timeout = 30000;
+      let bundleName = "com.example.hiworld";
+      let result = backup.updateTimer(bundleName, timeout);
+      if (result) {
+        console.info('updateTimer success');
+      } else {
+        console.info('updateTimer fail');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('updateTimer failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
 ## SessionBackup
 
 备份流程对象，用来支撑应用备份的流程。在使用前，需要先创建SessionBackup实例。

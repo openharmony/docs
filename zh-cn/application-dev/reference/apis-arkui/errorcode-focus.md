@@ -44,7 +44,7 @@ NA
 
 **错误信息**
 
-This id refers to a nonexistent component which haven't been created or invisible right now.
+The component doesn't exist, is currently invisible, or has been disabled.
 
 **错误描述**
 

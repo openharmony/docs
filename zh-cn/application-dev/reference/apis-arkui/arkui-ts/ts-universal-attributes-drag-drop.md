@@ -78,7 +78,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
-| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。<br/>注：在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true<br/> |
+| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，当设置为浮点数时，只显示整数部分。<br/>注：在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true<br/> |
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 

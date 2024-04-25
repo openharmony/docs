@@ -65,7 +65,7 @@ marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value | MarqueeUpdateStrategy | 否 | 跑马灯组件属性更新后，跑马灯的滚动策略<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
+| value |[MarqueeUpdateStrategy](ts-basic-components-marquee.md#marqueeupdatestrategy12枚举说明) | 否 | 跑马灯组件属性更新后，跑马灯的滚动策略<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
 
 ## 事件
 

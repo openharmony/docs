@@ -10,7 +10,7 @@ When you set or switch the system language, the system checks whether the [exten
 
 ## How to Develop
 
-For details about how to use related APIs, see [System](../reference/apis/js-apis-i18n.md#system9).
+For details about how to use related APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
 
 1. Import the **i18n** module.
    ```ts

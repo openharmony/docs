@@ -63,6 +63,17 @@
 | bottom | [Length](#length) | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
 | left   | [Length](#length) | 否    | 左内边距，组件内元素距组件左边界的尺寸。 |
 
+## LocalizedPadding<sup>12+</sup>
+
+内边距类型，用于描述组件不同方向的内边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右内边距，组件内元素距组件右边界的尺寸。<br />从右至左显示语言模式下为<br />左内边距，组件内元素距组件左边界的尺寸。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左内边距，组件内元素距组件左边界的尺寸。<br />从右至左显示语言模式下为<br />右内边距，组件内元素距组件右边界的尺寸。 |
+
 ## Margin
 
 外边距类型，用于描述组件不同方向的外边距。
@@ -73,6 +84,17 @@
 | right  | [Length](#length) | 否    | 右外边距，组件右边界距组件外元素的尺寸。 |
 | bottom | [Length](#length) | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
 | left   | [Length](#length) | 否    | 左外边距，组件左边界距组件外元素的尺寸。 |
+
+## LocalizedMargin<sup>12+</sup>
+
+外边距类型，用于描述组件不同方向的外边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
+| end    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 右外边距，组件右边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />左外边距，组件左边界距组件外元素的尺寸。 |
+| bottom | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
+| start  | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 左外边距，组件左边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />右外边距，组件右边界距组件外元素的尺寸。 |
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -85,6 +107,17 @@
 | bottom | [Length](#length) | 否    | 组件下边框宽度。 |
 | left   | [Length](#length) | 否    | 组件左边框宽度。 |
 
+## LocalizedEdgeWidths<sup>12+</sup>
+
+边框宽度类型，用于描述组件边框不同方向的宽度。
+
+| 名称     | 类型                | 必填   | 说明       |
+| ------ | ----------------- | ---- | -------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件上边框宽度。 |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右边框宽度。<br />从右至左显示语言模式下为组件左边框宽度。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件下边框宽度。 |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左边框宽度。<br />从右至左显示语言模式下为组件右边框宽度。 |
+
 ## BorderRadiuses<sup>9+</sup>
 
 圆角类型，用于描述组件边框圆角半径。
@@ -96,6 +129,17 @@
 | bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
 | bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
 
+## LocalizedBorderRadiuses<sup>12+</sup>
+
+圆角类型，用于描述组件边框圆角半径。
+
+| 名称          | 类型                | 必填   | 说明         |
+| ----------- | ----------------- | ---- | ---------- |
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右上角圆角半径。<br />从右至左显示语言模式下为组件左上角圆角半径。 |
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左下角圆角半径。<br />从右至左显示语言模式下为组件右下角圆角半径。 |
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右下角圆角半径。<br />从右至左显示语言模式下为组件左下角圆角半径。 |
+
 ## EdgeColors<sup>9+</sup>
 
 边框颜色，用于描述组件边框四条边的颜色。
@@ -106,6 +150,17 @@
 | right  | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。 |
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
 | left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
+
+## LocalizedEdgeColors<sup>12+</sup>
+
+边框颜色，用于描述组件边框四条边的颜色。
+
+| 名称     | 类型                              | 必填   | 说明       |
+| ------ | ------------------------------- | ---- | -------- |
+| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -201,6 +256,15 @@
 | x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
 | y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
+## LocalizedPosition<sup>12+</sup>
+
+位置类型，用于表示一个坐标点。
+
+| 名称   | 类型                | 必填   | 说明                          |
+| ---- | ----------------- | ---- | --------------------------- |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时x轴相对左边坐标，RTL模式x轴相对右边坐标。  |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | y轴坐标。 |
+
 ## Edges<sup>12+</sup>
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
@@ -211,6 +275,17 @@
 | bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
 | left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
 | right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+
+## LocalizedEdges<sup>12+</sup>
+
+位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置start和end，仅start生效。
+
+| 名称   | 类型     | 必填   | 说明                          |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对顶边的偏移量。 |
+| bottom    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对底边的偏移量。 |
+| start    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对左边的偏移量，RTL模式时相对右边的偏移量。|
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对右边的偏移量，RTL模式时相对左边的偏移量。 |
 
 ## ConstraintSizeOptions
 
@@ -459,7 +534,12 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
+| DecorationStyle | 文本装饰线样式。 |
+| BaselineOffsetStyle | 文本基线偏移量样式。 |
+| LetterSpacingStyle | 文本字符间距样式。 |
+| TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
+| ImageAttachment | 图片附件样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
