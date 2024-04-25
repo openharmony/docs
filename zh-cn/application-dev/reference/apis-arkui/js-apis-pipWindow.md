@@ -59,10 +59,10 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                                                                                           |
-|-------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401   | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
-| 801   | Capability not supported                                                                                                                                               |
+| 错误码ID | 错误信息                                                                                                                                            |
+|-------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801   | Capability not supported                                                                                                                        |
 
 **示例：**
 
