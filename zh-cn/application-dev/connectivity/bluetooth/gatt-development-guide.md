@@ -201,13 +201,9 @@ let characteristic: ble.BLECharacteristic = {
 clientDevice.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE);
 
 // 写入描述符
-let message = '';
-if (clientDevice.writeDescriptorValue(descriptor)) {
-  message = 'writeDescriptorValue success';
-} else {
-  message = 'writeDescriptorValue failed';
-}
-console.info(message);
+clientDevice.writeDescriptorValue(descriptor).then(() => {
+  console.info('writeDescriptorValue success')
+});
 
 // 断开连接
 clientDevice.disconnect();
