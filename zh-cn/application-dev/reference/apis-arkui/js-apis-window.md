@@ -6038,7 +6038,7 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型  | 可读 | 可写 | 说明         |
+| 名称      | 类型  | 只读 | 必填 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | 否 | 是 | 子窗口标题。       |
 | decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
