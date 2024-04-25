@@ -20,15 +20,17 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 
 | 名称                                  |    值   |   说明                         |
 | ------------------------------------- | -------- | ---------------------------- |
-| INVALID_PARAMS                        | 401      | 非法入参。                   |
+| INVALID_PARAMS                        | 401      | 非法入参。元服务API：从API version 11开始，该接口支持在元服务中使用。                 |
 | NOT_SUPPORT                           | 801      | 操作不支持。                 |
-| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。                   |
+| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。元服务API：从API version 11开始，该接口支持在元服务中使用。                   |
 | ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。             |
-| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。     |
+| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。元服务API：从API version 11开始，该接口支持在元服务中使用。     |
 
 ## DataBlob
 
 buffer数组，提供blob数据类型。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -114,6 +116,8 @@ buffer数组，提供blob数据类型。
 
 表示加解密操作的枚举。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称         | 值   | 说明               |
@@ -124,6 +128,8 @@ buffer数组，提供blob数据类型。
 ## AsyKeySpecItem<sup>10+</sup>
 
 表示密钥参数的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -164,6 +170,8 @@ buffer数组，提供blob数据类型。
 
 表示密钥参数类型的枚举。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称         | 值   | 说明             |
@@ -178,6 +186,8 @@ buffer数组，提供blob数据类型。
 表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
 
 当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -209,6 +219,8 @@ buffer数组，提供blob数据类型。
 ## AsyKeySpec<sup>10+</sup>
 
 指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -352,6 +364,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -363,6 +377,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -376,6 +392,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的全量参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -565,6 +583,8 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
@@ -581,6 +601,8 @@ getEncoded(): DataBlob
 > **说明：**
 >
 > RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -649,6 +671,8 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 同步方法，获取密钥参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -691,6 +715,8 @@ getEncodedDer(format: string): DataBlob
 > 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
 > 1. 本接口可根据入参决定数据的输出格式。
 > 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -735,6 +761,8 @@ clearMem(): void
 
 同步方法，将系统底层内存中的的密钥内容清零。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **示例：**
@@ -749,6 +777,8 @@ key.clearMem(); // For the asymmetric private key, clearMem() releases the inter
 getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 同步方法，获取密钥参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -794,6 +824,8 @@ console.info('ecc item --- p: ' + p.toString(16));
 > 业务方使用时应持有KeyPair对象的引用，而非内部pubKey或priKey对象的引用。
 
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1131,6 +1163,8 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1166,6 +1200,8 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                             |
@@ -1177,6 +1213,8 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 异步获取非对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1216,6 +1254,8 @@ generateKeyPair(): Promise\<KeyPair>
 
 异步获取该非对称密钥生成器随机生成的密钥，通过Promise获取结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
@@ -1252,6 +1292,8 @@ keyGenPromise.then(keyPair => {
 generateKeyPairSync(): KeyPair
 
 同步获取该非对称密钥生成器随机生成的密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1293,6 +1335,8 @@ try {
 convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCallback\<KeyPair\>): void
 
 异步获取指定数据生成非对称密钥，通过注册回调函数获取结果。详情请看下方**密钥转换说明**。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1337,6 +1381,8 @@ asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
 convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 异步获取指定数据生成非对称密钥，通过Promise获取结果。详情请看下方**密钥转换说明**。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1385,6 +1431,8 @@ keyGenPromise.then(keyPair => {
 convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 同步获取指定数据生成非对称密钥。详情请看下方**密钥转换说明**。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1445,6 +1493,8 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 通过指定密钥参数，获取相应的非对称密钥生成器实例。
 
 支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1507,6 +1557,8 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                       |
@@ -1520,6 +1572,8 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。
 
 当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1560,6 +1614,8 @@ generateKeyPair(): Promise\<KeyPair>
 
 当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
@@ -1599,6 +1655,8 @@ generateKeyPairSync(): KeyPair
 同步获取该非对称密钥生成器生成的密钥。
 
 当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1645,6 +1703,8 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1683,6 +1743,8 @@ generatePriKey(): Promise\<PriKey>
 异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1723,6 +1785,8 @@ generatePriKeySync(): PriKey
 同步获取该非对称密钥生成器生成的密钥。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1768,6 +1832,8 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1806,6 +1872,8 @@ generatePubKey(): Promise\<PubKey>
 异步获取该非对称密钥生成器生成的密钥，通过Promise获取结果。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1846,6 +1914,8 @@ generatePubKeySync(): PubKey
 同步获取该非对称密钥生成器生成的密钥。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2177,6 +2247,8 @@ createCipher(transformation: string): Cipher
 
 支持的规格详见[对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md)和[非对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2234,6 +2306,8 @@ try {
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
@@ -2247,6 +2321,8 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2276,6 +2352,8 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 初始化加解密的cipher对象，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2310,6 +2388,8 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。initSync、updateSync、doFinalSync为三段式接口，需要成组使用。其中initSync和doFinalSync必选，updateSync可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2347,6 +2427,8 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2383,6 +2465,8 @@ update(data: DataBlob): Promise\<DataBlob>
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2416,6 +2500,8 @@ updateSync(data: DataBlob): void
 必须在对[Cipher](#cipher)实例使用[initSync()](#initsync12)初始化后，才能使用本函数。
 
 其他注意事项同上异步接口说明。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2452,6 +2538,8 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2538,6 +2626,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2618,6 +2708,8 @@ doFinalSync(data: DataBlob | null): void
 
 其他注意事项同接口[doFinal()](#dofinal)说明。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2686,6 +2778,8 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 设置加解密参数。常用的加解密参数可以直接通过[createCipher](#cryptoframeworkcreatecipher) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2718,6 +2812,8 @@ cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSo
 getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 获取加解密参数。当前只支持RSA算法和SM2算法，从API version 11开始，支持SM2算法获取加解密参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4308,6 +4404,8 @@ createRandom(): Random
 
 支持的规格详见框架概述[随机数算法规格](../../security/CryptoArchitectureKit/crypto-generate-random-number.md#支持的算法与规格)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值**：
@@ -4342,6 +4440,8 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 ### 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                 |
@@ -4353,6 +4453,8 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 异步生成指定长度的随机数，通过注册回调函数返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4392,6 +4494,8 @@ rand.generateRandom(12, (err, randData) => {
 generateRandom(len: number): Promise\<DataBlob>
 
 异步生成指定长度的随机数，通过Promise返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4435,6 +4539,8 @@ promiseGenerateRand.then(randData => {
 generateRandomSync(len: number): DataBlob
 
 同步生成指定长度的随机数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4483,6 +4589,8 @@ try {
 setSeed(seed: DataBlob): void
 
 设置指定的种子。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
