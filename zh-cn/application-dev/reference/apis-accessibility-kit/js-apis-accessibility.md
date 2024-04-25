@@ -789,6 +789,8 @@ isOpenAccessibilitySync(): boolean
 
 是否启用了辅助功能。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
@@ -879,6 +881,8 @@ accessibility.isOpenTouchGuide((err: BusinessError, data: boolean) => {
 isOpenTouchGuideSync(): boolean
 
 是否开启了触摸浏览模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
