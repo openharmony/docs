@@ -564,19 +564,60 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let sourceWindowId: number = 40;
-  let targetWindowId: number = 41;
-  let promise = window.shiftAppWindowFocus(sourceWindowId, targetWindowId);
-  promise.then(() => {
-    console.info('Succeeded in shifting app window focus');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to shift app window focus. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to shift app window focus. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let subWindowClass: window.Window | undefined = undefined;
+    let windowClassId: number = -1;
+    let subWindowClassId: number = -1;
+
+    // 获取应用主窗及ID
+    try {
+      let promise = windowStage.getMainWindow();
+      promise.then((data) => {
+        windowClass = data;
+        windowClass.setUIContent("pages/Index");
+        windowClassId = windowClass.getWindowProperties().id;
+        console.info('Succeeded in obtaining the window')
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtaining the window. Cause: ' + JSON.stringify(err))
+      })
+    } catch (exception) {
+      console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+    }
+
+    // 创建或获取子窗及ID，此时子窗口获焦
+    try {
+      let promise =  windowStage.createSubWindow("testSubWindow");
+      promise.then((data) => {
+        subWindowClass = data;
+        subWindowClassId = subWindowClass.getWindowProperties().id;
+        subWindowClass.resize(200, 500);
+        subWindowClass.setUIContent("pages/Index2")
+        subWindowClass.showWindow();
+
+        // 切换焦点
+        try {
+          let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId)
+          promise.then(() => {
+            console.info('Succeeded in shifting app window focus')
+          }).catch((err: BusinessError) => {
+            console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err))
+          })
+        } catch (exception) {
+          console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception))
+        }
+      })
+    } catch (exception) {
+      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception))
+    }
+  }
 }
 ```
 
