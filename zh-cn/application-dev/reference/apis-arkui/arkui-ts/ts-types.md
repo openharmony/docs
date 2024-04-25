@@ -464,7 +464,7 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | LetterSpacingStyle | 文本字符间距样式。 |
 | TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
-| ImageAttachment | 图片附件样式。 |
+| ImageAttachment | 图片样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
