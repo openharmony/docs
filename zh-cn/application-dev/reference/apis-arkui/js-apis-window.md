@@ -601,7 +601,7 @@ export default class EntryAbility extends UIAbility {
       promise.then((data) => {
         subWindowClass = data;
         subWindowClassId = subWindowClass.getWindowProperties().id;
-        subWindowClass.resize(200, 500);
+        subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
         subWindowClass.showWindow();
 
@@ -659,11 +659,12 @@ export struct Index2 {
     Row() {
       Column() {
         Text(this.message)
-          .fontSize(50)
+          .fontSize(8)
           .fontWeight(FontWeight.Bold)
       }
       .width('100%')
     }
+    .backgroundColor(Color.Green)
     .height('100%')
   }
 }
