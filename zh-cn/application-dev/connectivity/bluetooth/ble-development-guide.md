@@ -21,7 +21,7 @@
 | stopBLEScan()                      | 停止BLE扫描流程。                                                                |
 | startAdvertising()                 | 开始发送BLE广播。                                                                |
 | disableAdvertising()                | 临时停止BLE广播。                                                                |
-| enableAdvertising()                | 临时停止BLE广播。                                                                |
+| enableAdvertising()                | 临时启动BLE广播。                                                                |
 | stopAdvertising()                  | 停止发送BLE广播。                                                                |
 | on(type: 'advertisingStateChange') | 订阅BLE广播状态。                                                                |
 | off(type: 'advertisingStateChange')| 取消订阅BLE广播状态。                                                            |
