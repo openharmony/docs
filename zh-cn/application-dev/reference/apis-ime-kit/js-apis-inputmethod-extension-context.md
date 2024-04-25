@@ -105,7 +105,7 @@ startAbility(want: Want): Promise<**void**>;
 
 销毁输入法应用。使用Promise异步回调。
 
-xxxxxxxxxx import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';class InputMethodExt extends InputMethodExtensionAbility {  onDestroy(): void {    console.log('onDestroy');  }}ts
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
