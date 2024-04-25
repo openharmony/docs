@@ -4,7 +4,7 @@ The **Window** module provides basic window management capabilities, such as cre
 
 This module provides the following common window-related functions:
 
-- [Window](#window): the current window instance, which is the basic unit managed by the window manager.
+- [Window](#window): window instance, which is the basic unit managed by the window manager.
 - [WindowStage](#windowstage9): window manager that manages windows.
 
 > **NOTE**
@@ -74,7 +74,6 @@ Enumerates the window layout modes.
 | ---------- | ---- | ----------------------------- |
 | WINDOW_LAYOUT_MODE_CASCADE  | 0    | Cascade mode.      |
 | WINDOW_LAYOUT_MODE_TILE | 1    | Tile mode.            |
-
 
 ## BlurStyle<sup>9+</sup>
 
@@ -164,7 +163,6 @@ Describes the translation parameters.
 | x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 | y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 | z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -848,7 +846,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 ## Window
 
-Represents the current window instance, which is the basic unit managed by the window manager.
+Represents a window instance, which is the basic unit managed by the window manager.
 
 In the following API examples, you must use [getLastWindow()](js-apis-window.md#windowgetlastwindow9), [createWindow()](js-apis-window.md#windowcreatewindow9), or [findWindow()](js-apis-window.md#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
 
@@ -1007,7 +1005,6 @@ promise.then(() => {
   console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
-
 
 ### showWithAnimation<sup>9+</sup>
 
@@ -1821,9 +1818,9 @@ try {
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
- getTransitionController(): TransitionController
+getTransitionController(): TransitionController
 
 Obtains the transition animation controller.
 
@@ -2176,7 +2173,7 @@ Adds or deletes the watermark flag for this window. This API uses an asynchronou
 
 | Name  | Type                      | Mandatory| Description                                             |
 | -------- | ------------------------- | ---  | ----------------------------------------------- |
-| enable   | boolean                   | Yes  | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag.|
+| enable   | boolean                   | Yes  | Whether to add or delete the flag. The value **true** means to add the flag and **false** means to delete the flag.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
@@ -2208,6 +2205,7 @@ try {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2244,11 +2242,11 @@ let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 windowClass.raiseAboveTarget(targetId, (err) => {
-    if (err.code) {
-        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
+  if (err.code) {
+    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in raising the subWindow to target subWindow top.');
 });
 ```
 
@@ -2294,11 +2292,12 @@ let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
 promise.then(()=> {
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
+  console.info('Succeeded in raising the subWindow to target subWindow top.');
 }).catch((err)=>{
-    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+  console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
 });
 ```
+
 ### setRaiseByClickEnabled<sup>10+</sup>
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -2334,11 +2333,11 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```js
 let enabled = false;
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
-    if (err.code) {
-        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in disabling the raise-by-click function.');
+  if (err.code) {
+    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in disabling the raise-by-click function.');
 });
 ```
 
@@ -2383,9 +2382,9 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 let enabled = false;
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
-    console.info('Succeeded in disabling the raise-by-click function.');
+  console.info('Succeeded in disabling the raise-by-click function.');
 }).catch((err)=>{
-    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+  console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -2421,37 +2420,37 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // Obtain the main window.
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-            let enabled = false;
-            // Call setResizeByDragEnabled.
-            mainWindow.setResizeByDragEnabled(enabled, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            });
-        })
-    }
+      let enabled = false;
+      // Call setResizeByDragEnabled.
+      mainWindow.setResizeByDragEnabled(enabled, (err) => {
+        if (err.code) {
+          console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+      });
+    })
+  }
 };
 ```
 
@@ -2492,36 +2491,36 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+  onWindowStageCreate(windowStage) {
+    // Load content for the main window.
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // Obtain the main window.
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-            let enabled = false;
-            // Promise object of the setResizeByDragEnabled API.
-            let promise = mainWindow.setResizeByDragEnabled(enabled);
-            promise.then(()=> {
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err)=>{
-                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
+      let enabled = false;
+      // Promise object of the setResizeByDragEnabled API.
+      let promise = mainWindow.setResizeByDragEnabled(enabled);
+      promise.then(()=> {
+        console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+      }).catch((err)=>{
+        console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+      });
+    })
+  }
 };
 ```
 
@@ -2709,9 +2708,9 @@ import { BusinessError } from '@ohos.base';
 let enable = true;
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
+  console.info('Succeeded in enabling the single-frame-composer function.');
 }).catch((err: BusinessError)=>{
-    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+  console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
 });
 ```
 
@@ -2881,6 +2880,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## TransitionContext<sup>9+</sup>
 
 Provides the context for the transition animation.
@@ -2946,9 +2946,33 @@ Completes the transition. This API can be called only after [animateTo()](arkui-
 
 ## TransitionController<sup>9+</sup>
 
-Implements the transition animation controller.
+Implements the transition animation controller. Before calling any API, you must create a system window. For details, see the sample code.
 
 **System API**: This is a system API.
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "systemTypeWindow",
+  windowType: window.WindowType.TYPE_PANEL, // Select a system window type as required.
+  ctx: this.context
+};
+try {
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+}
+```
 
 ### animationForShown<sup>9+</sup>
 
@@ -3023,6 +3047,7 @@ try {
   console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
+
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void
@@ -3096,5 +3121,3 @@ try {
   console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
-
- <!--no_check--> 
