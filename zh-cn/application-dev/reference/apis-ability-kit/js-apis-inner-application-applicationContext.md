@@ -594,6 +594,7 @@ clearUpApplicationData(): Promise\<void\>
 清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。
 
 > **说明：**
+>
 > 该接口会停止应用进程，应用进程停止后，后续的所有回调都不会再触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -633,6 +634,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。
 
 > **说明：**
+>
 > 该接口会停止应用进程，应用进程停止后，后续的所有回调都不会再触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
