@@ -2041,7 +2041,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径：<br/>-位于调用方的缓存文件夹下的相对路径。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
+| path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
 | extras | Object | 否 | 文件信息的附加内容。 |
@@ -2076,7 +2076,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，仅支持"internal://cache/"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为相对路径，即下载至调用方当前缓存路径下。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为相对路径，即下载至调用方当前缓存路径下。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
