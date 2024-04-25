@@ -10,7 +10,7 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 ## Modules to Import
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 ```
 
 ## WindowModeType<sup>10+</sup>
