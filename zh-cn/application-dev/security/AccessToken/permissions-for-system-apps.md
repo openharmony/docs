@@ -2741,7 +2741,7 @@
 
 **起始版本**：12
 
-## ohos.permission.USE_CLOUD_DRIVE_SERVICE
+### ohos.permission.USE_CLOUD_DRIVE_SERVICE
 
 允许应用和服务使用云空间服务进行端云数据同步。
 
@@ -2753,7 +2753,7 @@
 
 **起始版本**：12
 
-## ohos.permission.USE_CLOUD_BACKUP_SERVICE
+### ohos.permission.USE_CLOUD_BACKUP_SERVICE
 
 允许应用和服务触发云空间云备份任务执行和通知备份相关事件。
 
@@ -2765,7 +2765,7 @@
 
 **起始版本**：12
 
-## ohos.permission.USE_CLOUD_COMMON_SERVICE
+### ohos.permission.USE_CLOUD_COMMON_SERVICE
 
 允许应用通过云空间公共服务获取云空间相关信息和资源。
 
@@ -2854,6 +2854,30 @@
 允许系统投播/协同应用发起音频投播。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.WRITE_RINGTONE
+
+允许铃音库进行写操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.KILL_APP_PROCESSES
+
+允许系统应用杀掉其他应用。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

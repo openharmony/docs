@@ -27,6 +27,10 @@ NavDestination组件状态。
 | ON_HIDDEN | 1   | NavDestination组件隐藏。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。 |
 | ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 |
+| ON_WILL_SHOW<sup>12+</sup> | 4   | NavDestination组件显示之前。 |
+| ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。 |
+| ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。|
+| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。|
 | ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>

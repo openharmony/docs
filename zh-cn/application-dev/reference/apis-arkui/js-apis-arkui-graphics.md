@@ -38,6 +38,17 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 | x    | number | 是   | 是   | 水平方向位置，单位为vp。 |
 | y    | number | 是   | 是   | 垂直方向位置，单位为vp。 |
 
+## PositionT<sup>12+</sup>
+
+用于设置或返回组件的位置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| x    | number | 是   | 是   | 水平方向位置，单位为vp。 |
+| y    | number | 是   | 是   | 垂直方向位置，单位为vp。 |
+
 ## Frame
 
 用于设置或返回组件的布局大小和位置，单位为vp。
@@ -280,10 +291,10 @@ SizeT\<T>
 
 **属性：**
 
-| Name          | Type                                    | Readable  | Writable  | Description    |
+| 名称   | 类型 | 可读 | 可写 | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
-| value       | number | Yes   | Yes   | 长度属性的值。   |
-| unit | [LengthUnit](#lengthunit12)                                   | Yes   | Yes   | 长度属性的单位，默认为VP。|
+| value       | number | 是   | 是   | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)                                   | 是   | 是   | 长度属性的单位，默认为VP。|
 
 ### constructor<sup>12+</sup>
 

@@ -237,6 +237,10 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 当Ability准备迁移时触发，保存数据。
 
+**说明：**
+> 
+> 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>形式。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -251,7 +255,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt;  | 接续的结果或带接续结果的Promise对象。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&gt;  | 接续的结果或带接续结果的Promise对象。 |
 
 **示例：**
 

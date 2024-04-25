@@ -602,7 +602,7 @@ textOverflow(value: TextOverflow)
 
 | 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
 
 >  **说明：**  
 >   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
@@ -677,6 +677,22 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+
+## showPassword<sup>12+</sup>
+
+showPassword(visible: boolean)
+
+设置密码的显隐状态。
+
+需组合.type(InputType.Password)属性才能生效，非密码输入模式不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -774,7 +790,7 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onSubmit
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void)
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void))
 
 按下输入法回车键触发该回调。
 
@@ -889,6 +905,20 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | ------------ | ------ | ---- | ---------------------------------- |
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
+
+### onSecurityStateChange<sup>12+</sup>
+
+onSecurityStateChange(callback: Callback\<boolean>)
+
+密码显隐状态切换时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                               |
+| ------------ | ------ | ---- | ---------------------------------- |
+| callback | Callback\<boolean> | 是   | 回调函数。|
 
 ## TextInputController<sup>8+</sup>
 

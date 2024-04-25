@@ -327,6 +327,7 @@ Enumerates the audio device types.
 | BLUETOOTH_A2DP       | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.|
 | MIC                  | 15     | Microphone.                                                 |
 | USB_HEADSET          | 22     | USB Type-C headset.                                      |
+| DISPLAY_PORT<sup>12+</sup>        | 23     | Display port (DP), which is used to connect to external devices.           |
 | DEFAULT<sup>9+</sup> | 1000   | Default device type.                                           |
 
 ## CommunicationDeviceType<sup>9+</sup>
@@ -422,7 +423,10 @@ Enumerates the audio sampling rates. The sampling rates supported vary according
 | SAMPLE_RATE_44100 | 44100  | The sampling rate is 44100.|
 | SAMPLE_RATE_48000 | 48000  | The sampling rate is 48000.|
 | SAMPLE_RATE_64000 | 64000  | The sampling rate is 64000.|
+| SAMPLE_RATE_88200<sup>12+</sup> | 88200  | The sampling rate is 88200.|
 | SAMPLE_RATE_96000 | 96000  | The sampling rate is 96000.|
+| SAMPLE_RATE_176400<sup>12+</sup> | 176400  | The sampling rate is 176400.|
+| SAMPLE_RATE_192000<sup>12+</sup> | 192000  | The sampling rate is 192000.|
 
 ## AudioEncodingType<sup>8+</sup>
 
@@ -534,6 +538,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_GAME<sup>10+</sup>           | 11     | Gaming.                                                                                                                                      |
 | STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | Audiobook.                                                                                                                                      |
 | STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | Navigation.                                                                                                                                        |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | Video call.                                                                                                                                        |
 
 ## AudioState<sup>8+</sup>
 
@@ -783,6 +788,7 @@ Enumerates the audio source types.
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
+| SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | Voice message source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 
 ## AudioPlaybackCaptureConfig<sup>10+</sup>
 
@@ -798,9 +804,11 @@ Defines the configuration of internal audio recording.
 
 Defines the options for filtering the played audio streams to be recorded.
 
-**Required permissions**: ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
+**Required permissions**
 
-To use **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION** in API version 10, you must request the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission. Since API version 11, this enumerated value is no longer supported, and the permission is not required.
+- In API version 10, **CaptureFilterOptions** supports **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**, and therefore the **ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO** permission is required. Only system applications can request this permission.
+
+- Since API version 11, **CaptureFilterOptions** does not support **StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION**. Therefore, no permission is required for calling this API.
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -2842,7 +2850,7 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 >
 > This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG (available only for system applications)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -2877,7 +2885,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 >
 > This API is supported since API version 9 and deprecated since API version 11. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG (available only for system applications)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -3156,6 +3164,113 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`Fail to adjust the system volume by step. ${error}`);
+}
+```
+
+### getMaxAmplitudeForInputDevice<sup>12+</sup>
+
+getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
+
+Obtains the maximum amplitude of the audio stream for an input device.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ----------- | ------------------------------------- | ---- | --------------------------------------------------- |
+| inputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | Yes  | Descriptor of the target device.                                |
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the maximum amplitude, which ranges from 0 to 1.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+| 6800301 | system error                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let inputDeviceDesc: audio.AudioDeviceDescriptor;
+
+let capturerInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  capturerFlags : 0 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
+  (desc) => {
+    inputDeviceDesc = desc;
+  }).catch((err) => {
+    console.error("get outputDeviceId error" + JSON.stringify(err));
+    return;
+  });
+audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
+  console.info(`mic volatileume amplitude is: ${value}`);
+}
+```
+
+### getMaxAmplitudeForOutputDevice<sup>12+</sup>
+
+getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
+
+Obtains the maximum amplitude of the audio stream for an output device.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ------------ | --------------------------------------- | ---- | -------------------------------------------------------- |
+| outputDevice | [AudioDeviceDescriptor](#audiodevicedescriptor) | Yes  | Descriptor of the target device.                                            |
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the maximum amplitude, which ranges from 0 to 1.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | invalid parameter error                     |
+| 6800301 | system error                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let outputDeviceDesc: audio.AudioDeviceDescriptor;
+
+let rendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_MUSIC,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 0 }
+
+audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
+  (desc) => {
+    outputDeviceDesc = desc;
+  }).catch((err) => {
+    console.error("get outputDeviceId error" + JSON.stringify(err));
+    return;
+  });
+
+audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
+  console.info(`speaker volatileume amplitude is: ${value}`);
 }
 ```
 
@@ -6148,6 +6263,35 @@ audioRenderer.setVolume(0.5, (err: BusinessError) => {
 
 ```
 
+### getVolume<sup>12+</sup>
+
+getVolume(): number
+
+Obtains the volume of the audio render. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type   | Description                     |
+| ------ | ------------------------------- |
+| number | Volume, in the range [0.0-1.0]. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioRenderer.getVolume();
+  console.info(`Indicate that the volume is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the volume, error ${error}.`);
+}
+
+```
+
 ### getMinStreamVolume<sup>10+</sup>
 
 getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
@@ -8285,6 +8429,62 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 audioCapturer.off('readData', (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
 });
+
+```
+
+### getOverflowCount<sup>12+</sup>
+
+getOverflowCount(): Promise&lt;number&gt;
+
+Obtains the number of overflow audio frames in the audio stream that is being captured. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                  | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the number of overflow audio frames. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+audioCapturer.getOverflowCount().then((value: number) => {
+  console.info(`Get overflow count Success! ${value}`);
+}).catch((err: BusinessError) => {
+  console.error(`Get overflow count Fail: ${err}`);
+});
+
+```
+
+### getOverflowCountSync<sup>12+</sup>
+
+getOverflowCountSync(): number
+
+Obtains the number of overflow audio frames in the audio stream that is being captured. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type   | Description                      |
+| ------ | -------------------------------- |
+| number | Number of overflow audio frames. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let value: number = audioCapturer.getOverflowCountSync();
+  console.info(`Get overflow count Success! ${value}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get overflow count Fail: ${error}`);
+}
 
 ```
 

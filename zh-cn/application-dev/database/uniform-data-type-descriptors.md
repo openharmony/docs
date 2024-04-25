@@ -43,13 +43,15 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ## 标准化数据类型的定义
 
-标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，每个类型定义具体包含以下内容：
+标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，具体可见[TypeDescriptor属性](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#属性)，每个类型定义具体包含以下内容：
 
-+ **TypeId：** 定义标准化数据类型的ID，该ID具有唯一性。
-+ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
-+ **Description：** 标准化数据类型的简要说明。
-+ **ReferenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
-+ **IconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
++ **typeId：** 定义标准化数据类型的ID，该ID具有唯一性。
++ **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
++ **description：** 标准化数据类型的简要说明。
++ **referenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
++ **iconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
++ **filenameExtensions：**  标准化数据类型所关联的文件名后缀列表。
++ **mimeTypes：** 标准化数据类型所关联的多用途互联网邮件扩展类型列表。
 
 ## 预置数据类型
 
@@ -175,7 +177,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 | getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。 |
 | getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。 |
 
-## 开发步骤
+## 如何查询媒体类文件归属类型
 
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
@@ -198,6 +200,9 @@ try {
   console.info('belongingToTypes:' + typeObj1.belongingToTypes);
   console.info('description:' + typeObj1.description);
   console.info('referenceURL:' + typeObj1.referenceURL);
+  console.info('filenameExtensions:' + typeObj1.filenameExtensions);
+  console.info('mimeTypes:' + typeObj1.mimeTypes);
+
 
   // 3.可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
   let mineType = 'audio/mp3';
@@ -206,7 +211,9 @@ try {
   console.info('typeId:' + typeObj2.typeId);
   console.info('belongingToTypes:' + typeObj2.belongingToTypes);
   console.info('description:' + typeObj2.description);
-  console.info('referenceURL:' + typeObj2.referenceURL);
+  console.info('filenameExtensions:' + typeObj2.filenameExtensions);
+  console.info('mimeTypes:' + typeObj2.mimeTypes);
+
 
   // 4.将数据类型进行比较，确认是否同一种数据类型
   if (typeObj1 != null && typeObj2 != null) {
@@ -222,6 +229,53 @@ try {
     ret = mediaTypeObj.isHigherLevelType('general.audio'); // 确认是否存在归属关系
     console.info('isHigherLevelType, ret:' + ret);
   }
+} catch (err) {
+  console.error('err message:' + err.message + ', err code:' + err.code);
+}
+```
+
+## 如何通过文件后缀获取对应的MIMEType列表
+
+下面以通过“.mp3”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
+
+1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型。
+3. 根据UTD数据类型查询对应的MIMEType列表。
+
+```ts
+// 1.导入模块
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+try {
+  // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型。
+  let fileExtention = '.mp3';
+  let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
+  // 3.根据UTD数据类型查询对应的MIMEType列表。
+  let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+  let mimeTypes = typeObj.mimeTypes;
+  console.info('mimeTypes:' + mimeTypes);
+} catch (err) {
+  console.error('err message:' + err.message + ', err code:' + err.code);
+}
+```
+## 如何通过MIMEType获取对应的后缀列表
+
+下面以通过“audio/mp3”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
+
+1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+2. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
+3. 根据UTD数据类型查询对应的MIMEType列表。
+
+```ts
+// 1.导入模块
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+try {
+  // 2.可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
+  let mineType = 'audio/mp3';
+  let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
+  // 3. 根据UTD数据类型查询对应的MIMEType列表
+  let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+  let filenameExtensions = typeObj.filenameExtensions;
+  console.info('filenameExtensions:' + filenameExtensions);
 } catch (err) {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }
