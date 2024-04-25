@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```ts
 import process from '@ohos.process';
 ```
 
