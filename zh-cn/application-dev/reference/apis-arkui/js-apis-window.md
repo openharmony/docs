@@ -582,7 +582,7 @@ export default class EntryAbility extends UIAbility {
 
     //获取应用主窗及ID
     try {
-      let promise = window.getLastWindow(this.context);
+      let promise = windowStage.getMainWindow();;
       promise.then((data) => {
         windowClass = data;
         windowClass.loadContent("pages/Index");
@@ -597,7 +597,7 @@ export default class EntryAbility extends UIAbility {
 
     //创建或获取子窗及ID
     try {
-      let promise = window.getLastWindow(this.context);
+      let promise =  windowStage.createSubWindow("testSubWindow");
       promise.then((data) => {
         subWindowClass = data;
         subWindowClassId = subWindowClass.getWindowProperties().id;
