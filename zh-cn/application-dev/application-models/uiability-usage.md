@@ -20,7 +20,6 @@ export default class EntryAbility extends UIAbility {
       // ...
     });
   }
-
   // ...
 }
 ```
@@ -45,7 +44,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // 获取UIAbility实例的上下文
       let context = this.context;
-      ...
+      // ...
     }
   }
   ```
@@ -70,7 +69,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
     // 页面展示
     build() {
-      ...
+      // ...
     }
   }
   ```
@@ -96,7 +95,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
     // 页面展示
     build() {
-      ...
+      // ...
     }
   }
   ```

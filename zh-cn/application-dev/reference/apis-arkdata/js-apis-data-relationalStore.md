@@ -1679,6 +1679,66 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
+### notContains<sup>12+</sup>
+
+notContains(field: string, value: string): RdbPredicates
+
+配置谓词以匹配数据表的field列中不包含value的字段。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| field  | string | 是   | 数据库表中的列名。     |
+| value  | string | 是   | 指示要与谓词匹配的值。 |
+
+**返回值**：
+
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**示例：**
+
+```ts
+// 匹配数据表的"NAME"列中不包含"os"的字段，如列表中的"Lisa"
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notContains("NAME", "os");
+```
+
+### notLike<sup>12+</sup>
+
+notLike(field: string, value: string): RdbPredicates
+
+配置谓词以匹配数据表的field列中值不存在类似于value的字段。 
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| field  | string | 是   | 数据库表中的列名。     |
+| value  | string | 是   | 指示要与谓词匹配的值。 |
+
+**返回值**：
+
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**示例：**
+
+```ts
+// 匹配数据表的"NAME"列中不等于"os"的字段，如列表中的"Rose"
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notLike("NAME", "os");
+```
+
+
+
 ## RdbStore
 
 提供管理关系数据库(RDB)方法的接口。

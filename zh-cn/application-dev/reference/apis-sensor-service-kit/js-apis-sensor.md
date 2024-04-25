@@ -22,7 +22,7 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 **需要权限：** ohos.permission.ACCELEROMETER
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -295,7 +295,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 
 **需要权限：** ohos.permission.GYROSCOPE
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -667,7 +667,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 订阅方向传感器数据。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor 
 
@@ -1854,7 +1854,7 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 **需要权限：** ohos.permission.ACCELEROMETER
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -2113,7 +2113,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 **需要权限：** ohos.permission.GYROSCOPE
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -2457,7 +2457,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 取消订阅方向传感器数据。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -3864,15 +3864,15 @@ try {
 
 | 名称                        | 值   | 说明                                                         |
 | --------------------------- | ---- | ------------------------------------------------------------ |
-| ACCELEROMETER               | 1    | 加速度传感器。<br/>元服务 API：从 API 11开始，该接口支持在元服务中使用。 |
-| GYROSCOPE                   | 2    | 陀螺仪传感器。<br/>元服务 API：从 API 11开始，该接口支持在元服务中使用。 |
+| ACCELEROMETER               | 1    | 加速度传感器。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
+| GYROSCOPE                   | 2    | 陀螺仪传感器。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
 | AMBIENT_LIGHT               | 5    | 环境光传感器。                                               |
 | MAGNETIC_FIELD              | 6    | 磁场传感器。                                                 |
 | BAROMETER                   | 8    | 气压计传感器。                                               |
 | HALL                        | 10   | 霍尔传感器。                                                 |
 | PROXIMITY                   | 12   | 接近光传感器。                                               |
 | HUMIDITY                    | 13   | 湿度传感器。                                                 |
-| ORIENTATION                 | 256  | 方向传感器。<br/>元服务 API：从 API 11开始，该接口支持在元服务中使用。 |
+| ORIENTATION                 | 256  | 方向传感器。<br/>**元服务API：** 从API Version 11开始，该接口在支持元服务中使用。 |
 | GRAVITY                     | 257  | 重力传感器。                                                 |
 | LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。                                           |
 | ROTATION_VECTOR             | 259  | 旋转矢量传感器。                                             |
@@ -3921,7 +3921,7 @@ try {
 
 传感器数据的精度。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -3936,7 +3936,7 @@ try {
 
 传感器数据的时间戳。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -3968,7 +3968,7 @@ try {
 
 加速度传感器数据，继承于[Response](#response)。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4029,7 +4029,7 @@ try {
 
 方向传感器数据，继承于[Response](#response)。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4060,7 +4060,7 @@ try {
 
 陀螺仪传感器数据，继承于[Response](#response)。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4256,7 +4256,7 @@ try {
 
 设置传感器上报频率。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4268,7 +4268,7 @@ try {
 
 传感器上报频率模式。
 
-**元服务 API：** 从 API 11开始，该接口在元服务中使用。
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
