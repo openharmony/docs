@@ -4326,7 +4326,7 @@ img.release().then(() => {
 | stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。  |
-| mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式。  |
+| mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
 
 ## Size
 
