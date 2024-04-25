@@ -393,6 +393,8 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >- 使用该命令采集时需先获取应用图层名
   >
   >- 将-VIEW 后的 DisplayNode 替换为获取到的图层名，进入应用内滑动或切换页面
+  >
+  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）
 
   5.12 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、屏幕截图、网络速率、内存信息
 
@@ -580,16 +582,16 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
     | voltageNow        | 当前读到的电压值       |单位μV(微伏)| 
     | fps               | 屏幕刷新帧率          |单位fps|
     | fpsJitters        | 每一帧绘制间隔        |单位ns|
-    | networkDown       | 下行速率              |单位B|
-    | networkUp         | 上行速率              |单位B|
+    | networkDown       | 下行速率              |单位byte/s|
+    | networkUp         | 上行速率              |单位byte/s|
     | shell_front       | 前壳温度              |单位℃|
     | shell_frame       | 边框温度              |单位℃|
     | shell_back        | 后壳温度              |单位℃|
-    | soc_thermal       | 系统芯片温度          |单位°C|
-    | system_h          | 系统温度             |单位°C|
-    | Battery           | 电池温度             |单位°C|
-    | memAvailable      | 整机可用内存         |单位B|
-    | memFree           | 整机空闲内存         |单位B|
-    | memTotal          | 整机总内存           |单位B|
-    | pss               | 进程内存             |单位B|
+    | soc_thermal       | 系统芯片温度          |单位℃|
+    | system_h          | 系统温度             |单位℃|
+    | Battery           | 电池温度             |单位℃|
+    | memAvailable      | 整机可用内存         |单位kB|
+    | memFree           | 整机空闲内存         |单位kB|
+    | memTotal          | 整机总内存           |单位kB|
+    | pss               | 进程内存             |单位kB|
     | timeStamp         | 当前时间戳           |对应采集时间| 
