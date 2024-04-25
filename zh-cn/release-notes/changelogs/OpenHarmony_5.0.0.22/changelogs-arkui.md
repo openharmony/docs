@@ -170,3 +170,38 @@ struct TextClipExample {
 **适配指导**
 
 组件clip通用属性默认值变更调整，无需适配。
+
+## cl.arkui.3 TextInput,TextArea,Search组件caretPosition接口异常值处理变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+优化Search、TextInput、TextArea组件设置光标时异常值处理逻辑。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API Version 11 以及之前的版本：TextInput.caretPosition()的入参是负数、undefined时，接口不生效。
+TextInputController.caretPosition()、TextAreaController.caretPosition()、SearchController.caretPosition()的入参是负数时，
+接口生效，移动光标到0的位置并记录光标位置是负数。
+
+API Version 12 变更后：TextInput.caretPosition()的入参是负数、undefined时，当作0处理，接口生效。
+TextInputController.caretPosition()、TextAreaController.caretPosition()、SearchController.caretPosition()的入参是负数时，
+当作0处理，接口生效，移动光标到0的位置并记录光标位置是0。
+
+**起始 API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.22开始。
+
+**适配指导**
+
+光标位置的视觉效果不会发生变化。
+如果此前设置光标位置的参数是负数、undefined，并且需要光标位置不发生变化，需要修改业务代码，输入合法数值。
