@@ -110,10 +110,10 @@ import window from '@ohos.window';
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`0xE5FFFFFF。` |
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000。` |
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 |
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF。` |
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 |
 
 ## Orientation<sup>9+</sup>
 
@@ -429,7 +429,7 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口id。 |
+| name   | string | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 
 **返回值：**
 
@@ -1263,7 +1263,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | 是   | 窗口id。                             |
+| id       | string                                 | 是   | 窗口名字，即[Configuration](#configuration9)中的name。                             |
 | type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
@@ -1302,7 +1302,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| id     | string                    | 是   | 窗口id。   |
+| id     | string                    | 是   | 窗口名字，即[Configuration](#configuration9)中的name。   |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。 |
 
 **返回值：**
@@ -1343,7 +1343,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
 | ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
-| id       | string                                                  | 是   | 窗口id。                             |
+| id       | string                                                  | 是   | 窗口名字，即[Configuration](#configuration9)中的name。                             |
 | type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
@@ -1382,7 +1382,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
-| id     | string                    | 是   | 窗口id。                                                     |
+| id     | string                    | 是   | 窗口名字，即[Configuration](#configuration9)中的name。                                                     |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
 **返回值：**
@@ -1422,7 +1422,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | 是   | 窗口id。                             |
+| id       | string                                 | 是   | 窗口名字，即[Configuration](#configuration9)中的name。                             |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前查找到的窗口对象。 |
 
 **示例：**
@@ -1458,7 +1458,7 @@ find(id: string): Promise&lt;Window&gt;
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| id     | string | 是   | 窗口id。 |
+| id     | string | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 
 **返回值：**
 
