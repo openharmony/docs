@@ -595,30 +595,35 @@ export default class EntryAbility extends UIAbility {
       console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
     }
 
-    // 创建或获取子窗及ID 此时子窗口获焦
+    // 创建或获取子窗及ID，此时子窗口获焦
     try {
-      let promise =  windowStage.createSubWindow("testSubWindow");
+      let promise = windowStage.createSubWindow("testSubWindow");
       promise.then((data) => {
         subWindowClass = data;
         subWindowClassId = subWindowClass.getWindowProperties().id;
         subWindowClass.resize(200, 500);
-        subWindowClass.setUIContent("pages/Index2")
+        subWindowClass.setUIContent("pages/Index2");
         subWindowClass.showWindow();
 
-        // 切换焦点
-        try {
-          let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId)
-          promise.then(() => {
-            console.info('Succeeded in shifting app window focus')
-          }).catch((err: BusinessError) => {
-            console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err))
-          })
-        } catch (exception) {
-          console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception))
-        }
+        // 监听Window状态，确保已经就绪
+        subWindowClass.on("windowEvent", (windowEvent) => {
+          if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
+            // 切换焦点
+            try {
+              let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
+              promise.then(() => {
+                console.info('Succeeded in shifting app window focus');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err));
+              })
+            } catch (exception) {
+              console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception));
+            }
+          }
+        })
       })
     } catch (exception) {
-      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception))
+      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception));
     }
   }
 }
