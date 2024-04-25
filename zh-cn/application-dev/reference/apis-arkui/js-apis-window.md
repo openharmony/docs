@@ -2187,37 +2187,18 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      }
-      else {
-        (windowClass as window.Window).loadContent('pages/page2', storage, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+windowClass.loadContent('pages/page2', storage, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-};
+  console.info('Succeeded in loading the content.');
+});
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2257,35 +2238,16 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      }
-      else {
-        let promise = (windowClass as window.Window).loadContent('pages/page2', storage);
-        promise.then(() => {
-          console.info('Succeeded in loading the content.');
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      }
-    } catch (exception) {
-      console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
-};
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+let promise = windowClass.loadContent('pages/page2', storage);
+promise.then(() => {
+  console.info('Succeeded in loading the content.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### loadContentByName<sup>11+</sup>
@@ -6453,19 +6415,14 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 ```ts
 import { BusinessError } from '@ohos.base';
 
-if (!windowClass) {
-  console.info('Failed to load the content. Cause: windowClass is null');
-}
-else {
-  (windowClass as window.Window).setOutsideTouchable(true, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the area to be touchable. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the area to be touchable.');
-  });
-}
+windowClass.setOutsideTouchable(true, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set the area to be touchable. Cause code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting the area to be touchable.');
+});
 ```
 
 ### setOutsideTouchable<sup>(deprecated)</sup>
@@ -6499,17 +6456,12 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-if (!windowClass) {
-  console.info('Failed to load the content. Cause: windowClass is null');
-}
-else {
-let promise = (windowClass as window.Window).setOutsideTouchable(true);
+let promise = windowClass.setOutsideTouchable(true);
 promise.then(() => {
   console.info('Succeeded in setting the area to be touchable.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to set the area to be touchable. Cause code: ${err.code}, message: ${err.message}`);
 });
-}
 ```
 
 ### setPrivacyMode<sup>(deprecated)</sup>
@@ -6610,19 +6562,14 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let isTouchable = true;
-if (!windowClass) {
-  console.info('Failed to load the content. Cause: windowClass is null');
-}
-else {
-  (windowClass as window.Window).setTouchable(isTouchable, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the window to be touchable. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the window to be touchable.');
-  });
-}
+windowClass.setTouchable(isTouchable, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set the window to be touchable. Cause code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting the window to be touchable.');
+});
 ```
 
 ### setTouchable<sup>(deprecated)</sup>
