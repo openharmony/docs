@@ -330,7 +330,7 @@ setAutoStartEnabled(enable: boolean): void
 
 | 参数名      | 类型        | 必填    | 说明                              |
 |----------|-----------|-------|---------------------------------|
-| enable   | boolean   | 是     | true表示设置返回桌面时自动启动画中画，否则为false。  |
+| enable   | boolean   | 是     | 如返回桌面时需自动启动画中画，则该参数配置为true，否则为false。若设置中自动启动画中画开关为关闭状态，就算该参数配置为true，应用返回桌面时也不会自动启动画中画窗口。  |
 
 ```ts
 let enable: boolean = true;

@@ -514,7 +514,7 @@ console.trace("Show the trace");
 
 static traceHybridStack(): void
 
-打印当前混合堆栈。
+在主线程/worker线程中可打印当前线程混合堆栈信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -523,5 +523,5 @@ static traceHybridStack(): void
 ```ts
 console.traceHybridStack();
 // TraceHybridStack:
-//     xxxxxxxxxx(当前混合堆栈信息)
+//     xxxxxxxxxx(当前线程混合堆栈信息)
 ```

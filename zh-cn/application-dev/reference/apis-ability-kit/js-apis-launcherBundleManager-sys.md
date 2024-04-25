@@ -467,7 +467,7 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise<void>
 
 | 参数名        | 类型   | 必填 | 说明         |
 | ------------ | ------ | ---- | -------------- |
-| ShortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 应用的快捷方式信息。 |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 应用的快捷方式信息。 |
 | options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | 否   | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
 **错误码：**
