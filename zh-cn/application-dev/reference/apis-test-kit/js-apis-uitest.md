@@ -28,6 +28,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 控件属性支持的匹配模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称        | 值   | 说明           |
@@ -40,6 +42,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -58,6 +62,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 坐标点信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称 | 类型   | 可读 | 可写 | 说明             |
@@ -68,6 +74,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## Rect<sup>9+</sup>
 
 控件的边框信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -82,6 +90,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 窗口的窗口模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 值   | 说明       |
@@ -95,6 +105,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 设备显示器的显示方向。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称         | 值   | 说明                                     |
@@ -107,6 +119,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## WindowFilter<sup>9+</sup>
 
 窗口的标志属性信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -122,6 +136,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 进行抛滑等UI操作时的方向。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称  | 值   | 说明   |
@@ -135,6 +151,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 模拟注入的鼠标按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称                | 值   | 说明         |
@@ -146,6 +164,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## UIElementInfo<sup>10+</sup>
 
 UI事件的相关信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -170,6 +190,8 @@ ON.text('123').type('Button');
 text(txt: string, pattern?: MatchPattern): On
 
 指定目标控件文本属性，支持多种匹配模式，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -207,6 +229,8 @@ id(id: string): On
 
 指定目标控件id属性，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -242,6 +266,8 @@ let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目�
 type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -279,6 +305,8 @@ clickable(b?: boolean): On
 
 指定目标控件的可点击状态属性，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -313,6 +341,8 @@ let on:On = ON.clickable(true); // 使用静态构造器ON创建On对象，指�
 longClickable(b?: boolean): On
 
 指定目标控件的可长按点击状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -350,6 +380,8 @@ scrollable(b?: boolean): On
 
 指定目标控件的可滑动状态属性，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -384,6 +416,8 @@ let on:On = ON.scrollable(true); // 使用静态构造器ON创建On对象，指�
 enabled(b?: boolean): On
 
 指定目标控件的使能状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -455,6 +489,8 @@ selected(b?: boolean): On
 
 指定目标控件的被选中状态属性，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -489,6 +525,8 @@ let on:On = ON.selected(true); // 使用静态构造器ON创建On对象，指定
 checked(b?: boolean): On
 
 指定目标控件的被勾选状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -525,6 +563,8 @@ checkable(b?: boolean): On
 
 指定目标控件能否被勾选状态属性，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -559,6 +599,8 @@ let on:On = ON.checkable(true); // 使用静态构造器ON创建On对象，指�
 isBefore(on: On): On
 
 指定目标控件位于给出的特征属性控件之前，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -597,6 +639,8 @@ isAfter(on: On): On
 
 指定目标控件位于给出的特征属性控件之后，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -634,6 +678,8 @@ within(on: On): On
 
 指定目标控件位于给出的特征属性控件之内，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -670,6 +716,8 @@ inWindow(bundleName: string): On;
 
 指定目标控件位于给出的应用窗口内，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -704,6 +752,8 @@ let on:On = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创�
 description(val: string, pattern?: MatchPattern): On
 
 指定目标控件的描述属性，支持多种匹配模式，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -746,6 +796,8 @@ click(): Promise\<void>
 
 控件对象进行点击操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -773,6 +825,8 @@ async function demo() {
 doubleClick(): Promise\<void>
 
 控件对象进行双击操作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -802,6 +856,8 @@ longClick(): Promise\<void>
 
 控件对象进行长按操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -829,6 +885,8 @@ async function demo() {
 getId(): Promise\<string>
 
 获取控件对象的id值。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -864,6 +922,8 @@ getText(): Promise\<string>
 
 获取控件对象的文本信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -897,6 +957,8 @@ async function demo() {
 getType(): Promise\<string>
 
 获取控件对象的控件类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -932,6 +994,8 @@ getBounds(): Promise\<Rect>
 
 获取控件对象的边框信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -966,6 +1030,8 @@ getBoundsCenter(): Promise\<Point>
 
 获取控件对象所占区域的中心点信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -999,6 +1065,8 @@ async function demo() {
 isClickable(): Promise\<boolean>
 
 获取控件对象可点击属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1038,6 +1106,8 @@ isLongClickable(): Promise\<boolean>
 
 获取控件对象可长按点击属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1075,6 +1145,8 @@ async function demo() {
 isChecked(): Promise\<boolean>
 
 获取控件对象被勾选状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1114,6 +1186,8 @@ isCheckable(): Promise\<boolean>
 
 获取控件对象能否被勾选属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1151,6 +1225,8 @@ async function demo() {
 isScrollable(): Promise\<boolean>
 
 获取控件对象可滑动属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1191,6 +1267,8 @@ isEnabled(): Promise\<boolean>
 
 获取控件使能状态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1228,6 +1306,8 @@ async function demo() {
 isFocused(): Promise\<boolean>
 
 判断控件对象获焦状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1267,6 +1347,8 @@ isSelected(): Promise\<boolean>
 
 获取控件对象被选中状态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1305,6 +1387,8 @@ inputText(text: string): Promise\<void>
 
 向控件中输入文本(适用于文本框控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1340,6 +1424,8 @@ clearText(): Promise\<void>
 
 清除控件的文本信息(适用于文本框控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -1366,6 +1452,8 @@ async function demo() {
 scrollSearch(on: On): Promise\<Component>
 
 在控件上滑动查找目标控件(适用支持滑动的控件)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1408,6 +1496,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 在控件上滑动到顶部(适用支持滑动的控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1443,6 +1533,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 在控件上滑动到底部(适用支持滑动的控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1477,6 +1569,8 @@ async function demo() {
 dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1514,6 +1608,8 @@ pinchOut(scale: number): Promise\<void>
 
 将控件按指定的比例进行捏合放大。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1549,6 +1645,8 @@ pinchIn(scale: number): Promise\<void>
 
 将控件按指定的比例进行捏合缩小。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1583,6 +1681,8 @@ async function demo() {
 getDescription(): Promise\<string>
 
 获取控件对象的描述信息，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1624,6 +1724,8 @@ static create(): Driver
 
 静态方法，构造一个Driver对象，并返回该对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1654,6 +1756,8 @@ async function demo() {
 delayMs(duration: number): Promise\<void>
 
 Driver对象在给定的时间内延时。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1687,6 +1791,8 @@ async function demo() {
 findComponent(on: On): Promise\<Component>
 
 在Driver对象中，根据给出的目标控件属性要求查找目标控件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1727,6 +1833,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1766,6 +1874,8 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 通过指定窗口的属性来查找目标窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1804,6 +1914,8 @@ async function demo() {
 waitForComponent(on: On, time: number): Promise\<Component>
 
 在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1845,6 +1957,8 @@ assertComponentExist(on: On): Promise\<void>
 
 断言API，用于断言当前界面是否存在满足给出的目标属性的控件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1879,6 +1993,8 @@ pressBack(): Promise\<void>
 
 Driver对象进行点击BACK键的操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -1904,6 +2020,8 @@ async function demo() {
 triggerKey(keyCode: number): Promise\<void>
 
 Driver对象采取如下操作：传入key值实现模拟点击对应按键的效果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1937,6 +2055,8 @@ async function demo() {
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1974,6 +2094,8 @@ click(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点单击。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2007,6 +2129,8 @@ async function demo() {
 doubleClick(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点双击。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2042,6 +2166,8 @@ longClick(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点长按。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2075,6 +2201,8 @@ async function demo() {
 swipe(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
 Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2113,6 +2241,8 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2149,6 +2279,8 @@ async function demo() {
 screenCap(savePath: string): Promise\<boolean>
 
 Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2189,6 +2321,8 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2222,6 +2356,8 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 获取当前设备的屏幕显示方向。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -2253,6 +2389,8 @@ async function demo() {
 setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2287,6 +2425,8 @@ getDisplaySize(): Promise\<Point>
 
 获取当前设备的屏幕大小。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -2320,6 +2460,8 @@ getDisplayDensity(): Promise\<Point>
 
 获取当前设备屏幕的分辨率。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -2352,6 +2494,8 @@ wakeUpDisplay(): Promise\<void>
 
 唤醒当前设备即设备亮屏。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -2378,6 +2522,8 @@ pressHome(): Promise\<void>
 
 设备返回到桌面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -2403,6 +2549,8 @@ async function demo() {
 waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 判断当前界面的所有控件是否已经空闲。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2444,6 +2592,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 模拟手指滑动后脱离屏幕的快速滑动操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2479,6 +2629,8 @@ async function demo() {
 injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<boolean>
 
 向设备注入多指操作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2531,6 +2683,8 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2564,6 +2718,8 @@ async function demo() {
 screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2605,6 +2761,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2640,6 +2798,8 @@ async function demo() {
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise\<void>;
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2680,6 +2840,8 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型             | 必填 | 说明           |
@@ -2710,6 +2872,8 @@ async function demo() {
 createUIEventObserver(): UIEventObserver;
 
 创建一个UI事件监听器。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2742,6 +2906,8 @@ async function demo() {
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2781,6 +2947,8 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2816,6 +2984,8 @@ async function demo() {
 mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
 在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2853,6 +3023,8 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标从起始坐标点滑向终点坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2888,6 +3060,8 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2922,6 +3096,8 @@ async function demo() {
 inputText(p: Point, text: string): Promise\<void>
 
 在指定坐标点输入文本。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2963,6 +3139,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 静态方法，构造一个PointerMatrix对象，并返回该对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3000,6 +3178,8 @@ async function demo() {
 setPoint(finger: number, step: number, point: Point): void
 
 设置PointerMatrix对象中指定手指和步骤对应动作的坐标点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3049,6 +3229,8 @@ getBundleName(): Promise\<string>
 
 获取窗口归属应用的包名信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -3084,6 +3266,8 @@ getBounds(): Promise\<Rect>
 
 获取窗口的边框信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -3117,6 +3301,8 @@ async function demo() {
 getTitle(): Promise\<string>
 
 获取窗口的标题信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3152,6 +3338,8 @@ getWindowMode(): Promise\<WindowMode>
 
 获取窗口的窗口模式信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -3185,6 +3373,8 @@ async function demo() {
 isFocused(): Promise\<boolean>
 
 判断窗口是否处于获焦状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3256,6 +3446,8 @@ focus(): Promise\<void>
 
 让窗口获焦。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3283,6 +3475,8 @@ async function demo() {
 moveTo(x: number, y: number): Promise\<void>
 
 将窗口移动到目标点。适用于支持移动的窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3320,6 +3514,8 @@ async function demo() {
 resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 根据传入的宽、高和调整方向来调整窗口的大小。适用于支持调整大小的窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3359,6 +3555,8 @@ split(): Promise\<void>
 
 将窗口模式切换成分屏模式。适用于支持切换分屏模式的窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3387,6 +3585,8 @@ async function demo() {
 maximize(): Promise\<void>
 
 将窗口最大化。适用于支持窗口最大化操作的窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3417,6 +3617,8 @@ minimize(): Promise\<void>
 
 将窗口最小化。适用于支持窗口最小化操作的窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3445,6 +3647,8 @@ async function demo() {
 resume(): Promise\<void>
 
 将窗口恢复到之前的窗口模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3475,6 +3679,8 @@ close(): Promise\<void>
 
 将窗口关闭。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3503,6 +3709,8 @@ async function demo() {
 isActive(): Promise\<boolean>
 
 判断窗口是否为用户正在交互窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3542,6 +3750,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听toast控件出现的事件，使用callback的形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3580,6 +3790,8 @@ async function demo() {
 once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听dialog控件出现的事件，使用callback的形式返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
