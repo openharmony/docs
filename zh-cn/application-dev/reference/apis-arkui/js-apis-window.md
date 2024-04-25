@@ -196,8 +196,8 @@ import window from '@ohos.window';
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| type   | [AvoidAreaType](#avoidAreaType7) | 是   | 是   | 系统规避区变化后返回的规避区域类型。 |
-| area   | [AvoidArea](#avoidArea7)         | 是   | 是   | 系统规避区变化后返回的规避区域。 |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 是   | 系统规避区变化后返回的规避区域类型。 |
+| area   | [AvoidArea](#avoidarea7)         | 是   | 是   | 系统规避区变化后返回的规避区域。 |
 
 ## WindowProperties
 
