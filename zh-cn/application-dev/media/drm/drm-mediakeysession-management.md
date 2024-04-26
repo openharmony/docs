@@ -16,7 +16,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: drm.OptionalData[]): Promise<drm.MediaKeyRequest> {
-    let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+    let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
     let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
     let optionalData = [
@@ -36,7 +36,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array> {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      mediaKeySession.processMediaKeyResponse(response).then((mediaKeyId: Uint8Array) => {
        console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -51,7 +51,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function checkMediaKeyStatus(): drm.MediaKeyStatus[] {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      try {
        let mediakeyStatus: drm.MediaKeyStatus[] =  mediaKeySession.checkMediaKeyStatus();
@@ -67,7 +67,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function clearMediaKeys(): void {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      try {
        mediaKeySession.clearMediaKeys();
@@ -82,7 +82,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function generateOfflineReleaseRequest(mediakeyId: Uint8Array): Promise<Uint8Array> {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
@@ -105,7 +105,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function processOfflineReleaseResponse(response: Uint8Array): Promise<void> {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
@@ -127,7 +127,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function restoreOfflineMediaKeys(mediakeyId: Uint8Array): Promise<void> {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processOfflineReleaseResponse(mediakeyId, response).then(() => {
@@ -149,7 +149,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
    ```ts
    function getContentProtectionLevel(): drm.ContentProtectionLevel {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      try {
        let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
@@ -167,7 +167,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
     ```ts
     function requireSecureDecoderModule(mimeType: string): boolean {
-      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
       let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
       try {
         let status: boolean = mediaKeySession.requireSecureDecoderModule(mimeType);
