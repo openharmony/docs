@@ -533,9 +533,17 @@ export default class EntryAbility extends UIAbility {
     try {
       let promise = windowStage.getMainWindow();
       promise.then((data) => {
+        if (data == null) {
+          console.error("Failed to obtaining the window. Cause: The data is empty");
+          return;
+        }
         windowClass = data;
         windowClass.setUIContent("pages/Index");
-        windowClassId = windowClass.getWindowProperties().id;
+        try {
+          windowClassId = windowClass.getWindowProperties().id;
+        } catch (exception) {
+          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+        }
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
         console.error('Failed to obtaining the window. Cause: ' + JSON.stringify(err))
@@ -548,8 +556,16 @@ export default class EntryAbility extends UIAbility {
     try {
       let promise = windowStage.createSubWindow("testSubWindow");
       promise.then((data) => {
+        if (data == null) {
+          console.error("Failed to obtaining the window. Cause: The data is empty");
+          return;
+        }
         subWindowClass = data;
-        subWindowClassId = subWindowClass.getWindowProperties().id;
+        try {
+          subWindowClassId = subWindowClass.getWindowProperties().id;
+        } catch (exception) {
+          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+        }
         subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
         subWindowClass.showWindow();
