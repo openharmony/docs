@@ -301,67 +301,6 @@ struct CustomDialogUser {
 
 由于自定义弹窗在状态管理侧有父子关系，如果将第二个弹窗定义在第一个弹窗内，那么当父组件（第一个弹窗）被销毁（关闭）时，子组件（第二个弹窗）内无法再继续创建新的组件。
 
-## 完整示例
-
-```ts
-@CustomDialog
-struct CustomDialogExample {
-  cancel?: () => void
-  confirm?: () => void
-  controller: CustomDialogController
-
-  build() {
-    Column() {
-      Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('cancel')
-          .onClick(() => {
-            this.controller.close()
-            if (this.cancel) {
-              this.cancel()
-            }
-          }).backgroundColor(0xffffff).fontColor(Color.Black)
-        Button('confirm')
-          .onClick(() => {
-            this.controller.close()
-            if (this.confirm) {
-              this.confirm()
-            }
-          }).backgroundColor(0xffffff).fontColor(Color.Red)
-      }.margin({ bottom: 10 })
-    }
-  }
-}
-
-@Entry
-@Component
-struct CustomDialogUser {
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() },
-    }),
-  })
-
-  onCancel() {
-    console.info('Callback when the first button is clicked')
-  }
-
-  onAccept() {
-    console.info('Callback when the second button is clicked')
-  }
-
-  build() {
-    Column() {
-      Button('click me')
-        .onClick(() => {
-          this.dialogController.open()
-        })
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
 ## 相关实例
 
 针对自定义弹窗开发，有以下相关实例可供参考：
