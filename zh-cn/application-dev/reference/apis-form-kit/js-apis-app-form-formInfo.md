@@ -62,6 +62,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 卡片支持的颜色模式枚举。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
@@ -107,19 +109,19 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。   |
-| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。   |
-| NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。   |
-| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。   |
-| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。   |
-| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
-| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
-| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
-| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。 |
-| LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
-| PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
-| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。  |
-| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。  |
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ##  FormDimension
 
