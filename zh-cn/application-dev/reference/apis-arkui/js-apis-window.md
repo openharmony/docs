@@ -577,47 +577,6 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-```ts
-// ets/pages/Index.ets
-export const entryName : string = 'Index';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
-@Component
-export struct Index {
-  @State message: string = 'Main Window'
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-```ts
-// ets/pages/Index2.ets
-export const entryName : string = 'Index2';
-@Entry({routeName: entryName, storage : LocalStorage.getShared()})
-@Component
-export struct Index2 {
-  @State message: string = 'SubWindow'
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(8)
-          .fontWeight(FontWeight.Bold)
-      }
-      .width('100%')
-    }
-    .backgroundColor(Color.Green)
-    .height('100%')
-  }
-}
-```
 
 ## window.create<sup>(deprecated)</sup>
 
