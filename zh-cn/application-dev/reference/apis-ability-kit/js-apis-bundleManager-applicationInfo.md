@@ -39,7 +39,7 @@
 
 ## PreinstalledApplicationInfo<sup>12+<sup>
 
-描述预置应用部分信息
+描述预置应用部分信息。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
