@@ -22,10 +22,9 @@ AdComponent(ads: Array&lt;advertising.Advertisement&gt;, displayOptions: adverti
 
 展示非全屏广告。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
-
-**起始版本：** 11
-
 
 **参数：**
 
