@@ -7,6 +7,8 @@
 
 ## BundleInfo
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
@@ -31,6 +33,8 @@
 
 应用运行时需向系统申请的权限集合的详细信息。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                  | 类型                    | 可读 | 可写 | 说明                 |
@@ -47,6 +51,8 @@
 
 描述权限使用的场景和时机。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
@@ -57,6 +63,8 @@
 ## SignatureInfo
 
 描述应用包的签名信息。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
