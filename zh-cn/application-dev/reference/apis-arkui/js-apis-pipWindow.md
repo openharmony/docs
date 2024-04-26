@@ -45,9 +45,9 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 **参数：**
 
-| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                    |
-|--------------|------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context和componentController不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12) |
+| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context和componentController不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
 
 **返回值：**
 
@@ -59,10 +59,10 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                                                                                            |
-|-------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401   | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801   | Capability not supported                                                                                                                        |
+| 错误码ID | 错误信息                                                                                                                                         |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 801   | Capability not supported                                                                                                                     |
 
 **示例：**
 
@@ -365,9 +365,9 @@ updateContentSize(width: number, height: number): void
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                                                          |
-|-------|---------------------------------------------------------------------------------------------------------------|
-| 401   | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 ```ts
 let width: number = 540; // 假设当前内容宽度变为540px。
