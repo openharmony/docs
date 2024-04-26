@@ -6,6 +6,8 @@ HUKS提供了接口供应用查询密钥别名集。
 
 ## 开发步骤
 
+准备：编译产物是libhuks_ndk.z.so，需要在CMakeLists.txt依赖此NDK产物
+
 1. 初始化密钥属性集。用于查询指定密钥别名集TAG，TAG仅支持HUKS_TAG_AUTH_STORAGE_LEVEL。
 
 2. 调用接口[OH_Huks_ListAliases]，查询密钥别名集。
