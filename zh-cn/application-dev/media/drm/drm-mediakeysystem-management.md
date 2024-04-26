@@ -155,7 +155,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     ```ts
     function createMediaKeySession(level: drm.ContentProtectionLevel): drm.MediaKeySession {
       try {
-        let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.level.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+        let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(level.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
       } catch (err) {
         let error = err as BusinessError;
         console.error(`getCertificateStatus ERROR: ${error}`);
