@@ -121,6 +121,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
   ```
   # SP_daemon --help
+  OpenHarmony performance testing tool SmartPerf command-line version
   Usage: SP_daemon <options> <arguments>
   options:
   These are common commands list:
@@ -333,12 +334,14 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   /data/local/tmp/capture created!
 
   order:0 timestamp=1705041754324
-  order:1 capture=data/local/tmp/capture/screenCap_1705041754324.png
+  order:1 capture=NA
 
   command exec finished!
   #
   ```
   >**说明**
+  >
+  >- 截图采集是2秒截取一次
   >
   >- 截图报告存放路径为：data/local/tmp/capture
   >
@@ -620,19 +623,6 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率
   >
   >- 该命令需单独采集，采集结果不写入data.csv
-
-  5.21 导出csv文件到指定路径
-
-  ``` 
-  #SP_daemon -OUT data/1
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- cd 到data路径下，ls查看自定义的文件：1.csv，导出方式如下
-  >
-  >- 该命令需单独采集  
 
 6.输出采集结果和查看采集结果。
 
