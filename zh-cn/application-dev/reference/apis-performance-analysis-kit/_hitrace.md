@@ -70,7 +70,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 | bool [OH_HiTrace_IsIdValid](#oh_hitrace_isidvalid) (const [HiTraceId](_hi_trace_id.md) \*id) | 判断trace id是否有效。 | 
 | bool [OH_HiTrace_IsFlagEnabled](#oh_hitrace_isflagenabled) (const [HiTraceId](_hi_trace_id.md) \*id, [HiTrace_Flag](#hitrace_flag) flag) | 判断跟踪id是否启用了跟踪标志。 | 
 | void [OH_HiTrace_EnableFlag](#oh_hitrace_enableflag) (const [HiTraceId](_hi_trace_id.md) \*id, [HiTrace_Flag](#hitrace_flag) flag) | 启用跟踪ID的指定跟踪标志。 | 
-| int [OH_HiTrace_GetFlags](#oh_hitrace_getflags) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取HiTraceId结构体中设置的的标志位。 | 
+| int [OH_HiTrace_GetFlags](#oh_hitrace_getflags) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取HiTraceId结构体中设置的标志位。 | 
 | void [OH_HiTrace_SetFlags](#oh_hitrace_setflags) ([HiTraceId](_hi_trace_id.md) \*id, int flags) | 设置跟踪标志位到HiTraceId结构体中。 | 
 | uint64_t [OH_HiTrace_GetChainId](#oh_hitrace_getchainid) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取跟踪链ID。 | 
 | void [OH_HiTrace_SetChainId](#oh_hitrace_setchainid) ([HiTraceId](_hi_trace_id.md) \*id, uint64_t chainId) | 设置跟踪链ID到HiTraceId结构体中。 | 
@@ -302,7 +302,7 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 
 开始跟踪进程实现。
 
-启动跟踪；生成HiTraceId结构体并设置到当前线程TLS中。
+启动跟踪；生成HiTraceId结构体并设置到当前线程TLS中。第一次调用有效，否则无效。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -317,7 +317,7 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 
 **返回：**
 
-第一次调用有效，否则无效。
+生成的HitraceId。
 
 
 ### OH_HiTrace_ClearId()
@@ -478,6 +478,9 @@ uint64_t OH_HiTrace_GetChainId (const HiTraceId * id)
 | -------- | -------- |
 | id | 需要获取跟踪链ID的HiTraceId结构体。 | 
 
+**返回：**
+
+HiTraceId结构体中设置的跟踪链ID。
 
 ### OH_HiTrace_GetFlags()
 
@@ -487,7 +490,7 @@ int OH_HiTrace_GetFlags (const HiTraceId * id)
 
 **描述**
 
-获取HiTraceId结构体中设置的的标志位。
+获取HiTraceId结构体中设置的标志位。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -498,6 +501,10 @@ int OH_HiTrace_GetFlags (const HiTraceId * id)
 | 名称 | 描述 | 
 | -------- | -------- |
 | id | 需要获取标志位的HiTraceId结构体。 | 
+
+**返回：**
+
+HiTraceId结构体中设置的标志位。
 
 
 ### OH_HiTrace_GetId()
@@ -518,7 +525,7 @@ HiTraceId OH_HiTrace_GetId ()
 
 **返回：**
 
-如果当前线程具有跟踪ID，则有效，否则无效。
+当前线程的HiTraceId。如果调用线程没有HiTraceId，则返回无效的HiTraceId。。
 
 
 ### OH_HiTrace_GetParentSpanId()
@@ -562,6 +569,9 @@ uint64_t OH_HiTrace_GetSpanId (const HiTraceId * id)
 | -------- | -------- |
 | id | 需要获取分支ID的HiTraceId结构体。 | 
 
+**返回：**
+
+HiTraceId结构体中设置的分支ID。
 
 ### OH_HiTrace_IdFromBytes()
 
@@ -608,6 +618,9 @@ int OH_HiTrace_IdToBytes (const HiTraceId * id, uint8_t * pIdArray, int len )
 | pIdArray | 字节数组。 | 
 | len | 字节数组长度。 | 
 
+**返回：**
+
+转换后的字节数组长度。
 
 ### OH_HiTrace_InitId()
 

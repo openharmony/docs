@@ -109,7 +109,7 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 | bool [OH_HiTrace_IsIdValid](_hitrace.md#oh_hitrace_isidvalid) (const [HiTraceId](_hi_trace_id.md) \*id) | 判断trace id是否有效。  | 
 | bool [OH_HiTrace_IsFlagEnabled](_hitrace.md#oh_hitrace_isflagenabled) (const [HiTraceId](_hi_trace_id.md) \*id, [HiTrace_Flag](_hitrace.md#hitrace_flag) flag) | 判断跟踪id是否启用了跟踪标志。  | 
 | void [OH_HiTrace_EnableFlag](_hitrace.md#oh_hitrace_enableflag) (const [HiTraceId](_hi_trace_id.md) \*id, [HiTrace_Flag](_hitrace.md#hitrace_flag) flag) | 启用跟踪ID的指定跟踪标志。  | 
-| int [OH_HiTrace_GetFlags](_hitrace.md#oh_hitrace_getflags) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取HiTraceId结构体中设置的的标志位。  | 
+| int [OH_HiTrace_GetFlags](_hitrace.md#oh_hitrace_getflags) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取HiTraceId结构体中设置的标志位。  | 
 | void [OH_HiTrace_SetFlags](_hitrace.md#oh_hitrace_setflags) ([HiTraceId](_hi_trace_id.md) \*id, int flags) | 设置跟踪标志位到HiTraceId结构体中。  | 
 | uint64_t [OH_HiTrace_GetChainId](_hitrace.md#oh_hitrace_getchainid) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取跟踪链ID。  | 
 | void [OH_HiTrace_SetChainId](_hitrace.md#oh_hitrace_setchainid) ([HiTraceId](_hi_trace_id.md) \*id, uint64_t chainId) | 设置跟踪链ID到HiTraceId结构体中。  | 
