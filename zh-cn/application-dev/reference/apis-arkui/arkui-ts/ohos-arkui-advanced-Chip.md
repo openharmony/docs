@@ -33,16 +33,16 @@ ChipOptions定义chip的样式及具体式样参数。
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。 |
-| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true。                         |
-| activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false。                      |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。                                               |
-| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。                                                   |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。                                               |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。 |
+| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true |
+| activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。 |
+| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。  |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')|
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
-| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。 |
-| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true。                        |
-| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。                                       |
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button') |
+| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true |
+| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/> |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
 
 > **说明：**
@@ -72,9 +72,9 @@ IconCommonOptions定义图标的共通属性。
 
 | 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。                                     |
-| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16}。 |
-| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。                                               |
+| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。 |
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16} |
+| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。 |
 | activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时图标填充颜色。                            |
 
 > **说明：**
@@ -86,13 +86,13 @@ IconCommonOptions定义图标的共通属性。
 
 PrefixIconOptions定义前缀图标的属性。
 
-继承于[IconCommonOptions](#iconcommonoptions)
+继承于[IconCommonOptions](#iconcommonoptions)。
 
 ## SuffixIconOptions
 
 SuffixIconOptions定义后缀图标的属性。
 
-继承于[IconCommonOptions](#iconcommonoptions)
+继承于[IconCommonOptions](#iconcommonoptions)。
 
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
@@ -104,12 +104,12 @@ LabelOptions定义文本的属性。
 
 | 名称        | 类型                                       | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| text        | string                                     | 是   | 文本文字内容。                                               |
-| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2')。 |
-| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')。 |
-| activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')。 |
-| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"。                    |
-| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。                                   |
+| text        | string                                     | 是   | 文本文字内容。 |
+| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2') |
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
+| activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
+| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans" |
+| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。 |
 
 ## LabelMarginOptions
 

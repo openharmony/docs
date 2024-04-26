@@ -85,7 +85,7 @@ CommonOptions定义Counter的共通属性和事件。
 
 InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事件。
 
-继承于[CommonOptions ](#commonoptions)
+继承于[CommonOptions ](#commonoptions)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,7 +101,7 @@ InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事�
 
 NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的属性和事件。
 
-继承于[InlineStyleOptions](#inlinestyleoptions)
+继承于[InlineStyleOptions](#inlinestyleoptions)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,7 +117,7 @@ NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的
 
 DateStyleOptions定义Date style（日期内联型Counter）的属性和事件。
 
-继承于[CommonOptions ](#commonoptions)
+继承于[CommonOptions ](#commonoptions)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
