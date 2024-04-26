@@ -142,8 +142,6 @@ onChangeFormVisibility(newStatus: Record\<string, number>): void
 卡片提供方接收修改可见性的通知接口。
 该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -316,7 +314,7 @@ onStop?(): void
 
 当卡片提供方的卡片进程退出时，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
   
 **系统能力：** SystemCapability.Ability.Form
 
