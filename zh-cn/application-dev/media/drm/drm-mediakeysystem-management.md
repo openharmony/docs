@@ -16,7 +16,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function setConfigurationString(configName: string, value: string): void {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      try {
        mediaKeysystem.setConfigurationString(configName, value);
     } catch (err) {
@@ -31,7 +31,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function getConfigurationString(configName: string): string {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      try {
        let configValue: string = mediaKeysystem.getConfigurationString(configName);
      } catch (err) {
@@ -46,7 +46,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function setConfigurationByteArray(configName: string, value: Uint8Array): void {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      try {
        mediaKeysystem.setConfigurationByteArray(configName, value);
      } catch (err) {
@@ -61,7 +61,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    ```ts
    function getConfigurationByteArray(configName: string): Uint8Array {
-     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      try {
        let configValue: Uint8Array = mediaKeysystem.getConfigurationByteArray(configName);
      } catch (err) {
