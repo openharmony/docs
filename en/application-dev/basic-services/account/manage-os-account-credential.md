@@ -31,7 +31,7 @@ Credential types are further classified into the following subtypes:
 
 ## Before You Start
 
-1. Request the following permissions. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the following permissions. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
    - ohos.permission.MANAGE_USER_IDM
    - ohos.permission.ACCESS_PIN_AUTH
 
@@ -45,18 +45,6 @@ Credential types are further classified into the following subtypes:
 
    ```ts
    let userIDM: account_osAccount.UserIDM = new account_osAccount.UserIDM();
-   ```
-
-## Opening a Session
-
-Use [openSession](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
-
-**Procedure**
-
-1. Use [openSession](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
-
-   ```ts
-   let challenge: Uint8Array = await userIDM.openSession();
    ```
 
 ## Registering a PIN Inputer
@@ -76,16 +64,28 @@ Register a PIN inputer to transmit PIN data.
    }
    ```
 
-2. Use [registerInputer](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerinputer8) to register the PIN inputer.
+2. Use [registerInputer](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerinputer8) to register the PIN inputer.
 
    ```ts
    let pinAuth: PINAuth = new account_osAccount.PINAuth();
    pinAuth.registerInputer(inputer);
    ```
 
+## Opening a Session
+
+Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
+
+**Procedure**
+
+Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
+
+```ts
+let challenge: Uint8Array = await userIDM.openSession();
+```
+
 ## Enrolling a PIN
 
-Use [addCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to enroll a PIN.
+Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to enroll a PIN.
 
 **Procedure**
 
@@ -98,7 +98,7 @@ Use [addCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.m
    };
    ```
 
-2. Use [addCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to add credential information. The credential is returned by a callback or promise.
+2. Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to add credential information. The credential is returned by a callback or promise.
 
    ```ts
    userIDM.addCredential(credentialInfo, {
@@ -111,7 +111,7 @@ Use [addCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.m
 
 ## Authenticating a PIN
 
-Use [auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform PIN authentication.
+Use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform PIN authentication.
 
 **Procedure**
 
@@ -123,7 +123,7 @@ Use [auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) 
    let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
    ```
 
-2. Use [auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform PIN authentication.
+2. Use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform PIN authentication.
 
    ```ts
    let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
@@ -154,7 +154,7 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
    }
    ```
 
-3. Use [addCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to enroll face credentials.
+3. Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to enroll face credentials.
 
    ```ts
    userIDM.addCredential(faceCredInfo, {
@@ -175,7 +175,7 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
    }
    ```
 
-5. Use [addCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to enroll the fingerprint.
+5. Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8) to enroll the fingerprint.
 
    ```ts
    userIDM.addCredential(fingerprintCredInfo, {
@@ -188,7 +188,7 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
 
 ## Authenticating Biometric Credentials
 
-Biometric authentication can be performed after the biometric credentials are enrolled. You can use [auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform biometric authentication.
+Biometric authentication can be performed after the biometric credentials are enrolled. You can use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform biometric authentication.
 
 **Procedure**
 
@@ -214,7 +214,7 @@ Biometric authentication can be performed after the biometric credentials are en
 
 ## Updating a Credential
 
-The user can update credentials as required. You can use [updateCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update credential information.
+The user can update credentials as required. You can use [updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update credential information.
 
 **Procedure**
 
@@ -230,7 +230,7 @@ The user can update credentials as required. You can use [updateCredential](../r
    };
    ```
 
-3. Use [updateCredential](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update the credential.  
+3. Use [updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update the credential.  
 
    ```ts
    userIDM.updateCredential(credentialInfo, {
@@ -243,7 +243,7 @@ The user can update credentials as required. You can use [updateCredential](../r
 
 ## Obtaining Credential Information
 
-The enrolled credentials need to be displayed on the credential management page, and the available credential types need to be displayed on the lock screen page. You can use [getAuthInfo](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getauthinfo8) to obtain the credential information to be displayed.
+The enrolled credentials need to be displayed on the credential management page, and the available credential types need to be displayed on the lock screen page. You can use [getAuthInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getauthinfo8) to obtain the credential information to be displayed.
 
 **Procedure**
 
@@ -253,7 +253,7 @@ The enrolled credentials need to be displayed on the credential management page,
    let enrolledCredInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo();
    ```
 
-2. Use [getAuthInfo](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getauthinfo8) to obtain the credential of the specified type. In the following example, the fingerprint enrolled is obtained.
+2. Use [getAuthInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getauthinfo8) to obtain the credential of the specified type. In the following example, the fingerprint enrolled is obtained.
 
    ```ts
    let enrolledFingerCredInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo(account_osAccount.AuthType.Fingerprint);
@@ -261,7 +261,7 @@ The enrolled credentials need to be displayed on the credential management page,
 
 ## Deleting a Credential
 
-Before a credential is deleted, [PIN authentication](#authenticating-a-pin) is required and the ID of the credential to be deleted needs to be [obtained](#obtaining-credential-information).
+Before a credential is deleted, [PIN Authentication](#authenticating-a-pin) is required and the ID of the credential to be deleted needs to be [obtained](#obtaining-credential-information).
 
 For example, delete a fingerprint, do as follows:
 
@@ -277,7 +277,7 @@ For example, delete a fingerprint, do as follows:
 
 2. [Perform PIN authentication](#authenticating-a-pin) to obtain the authentication token.
 
-3. Use [delCred](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#delcred8) to delete the fingerprint credential.
+3. Use [delCred](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#delcred8) to delete the fingerprint credential.
 
    ```ts
    userIDM.delCred(credentialId, token, {
@@ -290,7 +290,7 @@ For example, delete a fingerprint, do as follows:
 
 ## Unregistering a PIN Inputer
 
-Use [unregisterInputer](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#unregisterinputer8) to unregister the PIN inputer that is no longer required.
+Use [unregisterInputer](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#unregisterinputer8) to unregister the PIN inputer that is no longer required.
 
 **Procedure**
 
@@ -300,7 +300,7 @@ pinAuth.unregisterInputer();
 
 ## Closing a Session
 
-Use [closeSession](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#closesession8) to close a session to terminate credential management.
+Use [closeSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#closesession8) to close a session to terminate credential management.
 
 **Procedure**
 

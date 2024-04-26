@@ -4,7 +4,7 @@ The system provides APIs for registering and unregistering a domain account plug
 
 ## Before You Start
 
-1. Request the following permissions. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the following permissions. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
    - ohos.permission.MANAGE_LOCAL_ACCOUNTS
    - ohos.permission.GET_DOMAIN_ACCOUNTS
 
@@ -23,7 +23,7 @@ The system provides APIs for registering and unregistering a domain account plug
 
 ## Registering a Domain Account Plugin
 
-The domain account plugin prototype is [DomainPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#domainplugin9). The domain account plugin must inherit and implement the **DomainPlugin** APIs. You can use [registerPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerplugin9) to register a plugin.
+The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#domainplugin9). The domain account plugin must inherit and implement the **DomainPlugin** APIs. You can use [registerPlugin](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerplugin9) to register a plugin.
 
 **Procedure**
 
@@ -145,7 +145,7 @@ The domain account plugin prototype is [DomainPlugin](../reference/apis-basic-se
    }
    ```
 
-2. Use [registerPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerplugin9) to register the plug-in.
+2. Use [registerPlugin](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerplugin9) to register the plug-in.
 
    ```ts
    try {
@@ -158,7 +158,7 @@ The domain account plugin prototype is [DomainPlugin](../reference/apis-basic-se
 
 ## Unregistering a Domain Account Plugin
 
-Use [unregisterPlugin](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#unregisterplugin9) to unregister a domain account plugin that is not required.
+Use [unregisterPlugin](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#unregisterplugin9) to unregister a domain account plugin that is not required.
 
 **Example**
 
