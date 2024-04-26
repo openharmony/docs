@@ -484,7 +484,17 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 **示例：**
 
 ```ts
+const callback = (systemBarTintState: window.SystemBarTintState) => {
+  // ...
+}
 try {
+  window.on('systemBarTintChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  window.off('systemBarTintChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('systemBarTintChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -558,7 +568,17 @@ off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;):
 **示例：**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('gestureNavigationEnabledChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  window.off('gestureNavigationEnabledChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -630,7 +650,17 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('waterMarkFlagChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  window.off('waterMarkFlagChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('waterMarkFlagChange');
 } catch (exception) {
   console.error(`Failed to disable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
