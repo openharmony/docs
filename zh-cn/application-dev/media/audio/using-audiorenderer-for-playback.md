@@ -137,6 +137,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
   
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 
 const TAG = 'AudioRendererDemo';
@@ -169,11 +170,11 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   let options: Options = {
-    offset: renderBufferSize,
+    offset: bufferSize,
     length: buffer.byteLength
   }
   fs.readSync(file.fd, buffer, options);
-  renderBufferSize += buffer.byteLength;
+   bufferSize += buffer.byteLength;
 }
 
 // 初始化，创建实例，设置监听事件
