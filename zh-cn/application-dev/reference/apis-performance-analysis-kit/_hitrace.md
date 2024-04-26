@@ -525,7 +525,7 @@ HiTraceId OH_HiTrace_GetId ()
 
 **返回：**
 
-当前线程的HiTraceId。如果调用线程没有HiTraceId，则返回无效的HiTraceId。。
+当前线程的HiTraceId。如果调用线程没有HiTraceId，则返回无效的HiTraceId。
 
 
 ### OH_HiTrace_GetParentSpanId()
