@@ -189,7 +189,6 @@
 |model有变化|方法名 or 属性名：preferencesDir<br>model:@stagemodelonly|方法名 or 属性名：preferencesDir<br>model:@StageModelOnly|Context.d.ts|
 |model有变化|方法名 or 属性名：bundleCodeDir<br>model:@stagemodelonly|方法名 or 属性名：bundleCodeDir<br>model:@StageModelOnly|Context.d.ts|
 |model有变化|方法名 or 属性名：distributedFilesDir<br>model:@stagemodelonly|方法名 or 属性名：distributedFilesDir<br>model:@StageModelOnly|Context.d.ts|
-|model有变化|方法名 or 属性名：cloudFileDir<br>model:@stagemodelonly|方法名 or 属性名：cloudFileDir<br>model:@StageModelOnly|Context.d.ts|
 |model有变化|方法名 or 属性名：eventHub<br>model:@stagemodelonly|方法名 or 属性名：eventHub<br>model:@StageModelOnly|Context.d.ts|
 |model有变化|方法名 or 属性名：area<br>model:@stagemodelonly|方法名 or 属性名：area<br>model:@StageModelOnly|Context.d.ts|
 |model有变化|方法名 or 属性名：createBundleContext<br>model:@stagemodelonly|方法名 or 属性名：createBundleContext<br>model:@StageModelOnly|Context.d.ts|

@@ -46,7 +46,6 @@ OpenHarmony 3.2 Canary1版本相较于OpenHarmony 3.1 Release版本，元能力�
 | context | Context | createBundleContext(bundleName: string): Context; | 新增 |
 | context | Context | eventHub: EventHub; | 新增 |
 | context | Context | distributedFilesDir: string; | 新增 |
-| context | Context | cloudFileDir: string; | 新增 |
 | context | Context | bundleCodeDir : string; | 新增 |
 | context | Context | storageDir : string; | 新增 |
 | context | Context | databaseDir : string; | 新增 |

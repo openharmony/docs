@@ -51,7 +51,6 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，元能力子
 | context | Context | area: AreaMode; | 新增 |
 | context | Context | eventHub: EventHub; | 新增 |
 | context | Context | distributedFilesDir: string; | 新增 |
-| context | Context | cloudFileDir: string; | 新增 |
 | context | Context | bundleCodeDir : string; | 新增 |
 | context | Context | preferencesDir : string; | 新增 |
 | context | Context | databaseDir : string; | 新增 |

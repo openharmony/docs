@@ -95,7 +95,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/temp |
   | databaseDir | <路径前缀>/<加密等级>/database |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles |
-  | cloudFileDir | <路径前缀>/el2/hmdfs/clouds/data |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data |
 
   示例代码如下所示。
 
@@ -149,7 +149,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
-  | cloudFileDir | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
 
   示例代码如下所示。
 

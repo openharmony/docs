@@ -67,6 +67,19 @@ disturbanceFields(fields: Array&lt;DisturbanceFieldsOptions&gt;)
 | ------ | ------- | ---- | ---------------------------- |
 | fields  | Array<[DisturbanceFieldsOptions](#disturbancefieldsoptions12)> | 是   | 扰动场数组。 |
 
+### emitter<sup>12+</sup>
+emitter(value: Array&lt;EmitterProperty&gt;)
+
+支持发射器位置动态更新
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| value  | Array<[EmitterProperty](#emitterproperty12)> | 是   | 需要更新的emitter参数数组 |
+
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
 
@@ -337,6 +350,15 @@ enum ParticleUpdater {
 | RECT    | 长方形。   |
 |  CIRCLE | 圆。       |
 | ELLIPSE | 椭圆。     |
+
+## EmitterProperty<sup>12+</sup>
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| index   | number | 是   |索引，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。 |
+| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizet12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。 |
 
 ## 示例
 
@@ -966,3 +988,78 @@ struct ParticleExample {
 
 ```
 ![particle](figures/disturbanceFields.gif)
+
+### 示例4
+通过emitter()调整粒子发射器的位置。
+```ts
+@Entry
+@Component
+struct ParticleExample {
+  @State emitterProterties: Array<EmitterProperty> = [
+    {
+      index: 0,
+      emitRate: 100,
+      position: { x: 300, y: 400 },
+      size: { width: 500, height: 500 }
+    }
+  ]
+
+  build() {
+    Stack() {
+      Text()
+        .width(300).height(300).backgroundColor(Color.Black)
+      Particle({ particles: [
+        {
+          emitter: {
+            particle: {
+              type: ParticleType.POINT, // 粒子类型
+              config: {
+                radius: 5// 圆点半径
+              },
+              count: 400, // 粒子总数
+              lifetime: -1// 粒子的生命周期，1表示粒子生命周期无限大
+            },
+            emitRate: 10, // 每秒发射粒子数
+            position: [0, 0], // 粒子发射位置
+            shape: ParticleEmitterShape.CIRCLE// 发射器形状
+          },
+          color: {
+            range: [Color.Red, Color.Yellow], // 初始颜色范围
+            updater: {
+              type: ParticleUpdater.CURVE, // 变化方式为曲线变化
+              config: [
+                {
+                  from: Color.White,
+                  to: Color.Pink,
+                  startMillis: 0,
+                  endMillis: 3000,
+                  curve: Curve.EaseIn
+                },
+                {
+                  from: Color.Pink,
+                  to: Color.Orange,
+                  startMillis: 3000,
+                  endMillis: 5000,
+                  curve: Curve.EaseIn
+                },
+                {
+                  from: Color.Orange,
+                  to: Color.Pink,
+                  startMillis: 5000,
+                  endMillis: 8000,
+                  curve: Curve.EaseIn
+                },
+              ]
+            }
+          },
+        },
+      ]
+      })
+        .width(300)
+        .height(300)
+        .emitter(this.emitterProterties)
+    }.width("100%").height("100%").align(Alignment.Center)
+  }
+}
+```
+![particle](figures/emitters.gif)

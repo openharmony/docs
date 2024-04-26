@@ -1361,6 +1361,53 @@ px2lpx(value : number) : number
 uiContext.px2lpx(200);
 ```
 
+### getWindowName<sup>12+</sup>
+
+getWindowName(): string | undefined
+
+获取当前实例所在窗口的名称。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| string \| undefined | 当前实例所在窗口的名称。若窗口不存在，则返回undefined。 |
+
+**示例：**
+
+```ts
+import window from '@ohos.window';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  aboutToAppear() {
+    const windowName = this.getUIContext().getWindowName();
+    console.error('WindowName ' + windowName);
+    const currWindow = window.findWindow(windowName);
+    const windowProperties = currWindow.getWindowProperties();
+    console.error(`Window width ${windowProperties.windowRect.width}, height ${windowProperties.windowRect.height}`);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
