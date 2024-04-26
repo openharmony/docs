@@ -75,9 +75,9 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 6. 调用MediaKeySystem类中的getMetrics()方法，获取系统统计信息。其中包括当前会话数、插件版本信息、解密次数和解密失败次数。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function getStatistics(): StatisticKeyValue[] {
+   function getStatistics(): drm.StatisticKeyValue[] {
      try {
-       let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
+       let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
      } catch (err) {
        let error = err as BusinessError;
        console.error(`getConfigurationByteArray ERROR: ${error}`);
@@ -91,7 +91,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySystem类中的getMaxContentProtectionLevel方法，获取设备支持的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-   function getMaxContentProtectionLevel(): ContentProtectionLevel {
+   function getMaxContentProtectionLevel(): drm.ContentProtectionLevel {
      try {
        let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
      } catch (err) {
@@ -137,7 +137,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     调用MediaKeySystem类中的getCertificateStatus方法，获取设备证书状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function getCertificateStatus(): CertificateStatus {
+    function getCertificateStatus(): drm.CertificateStatus {
       try {
         let certificateStatus: drm.CertificateStatus = mediaKeysystem.getCertificateStatus();
       } catch (err) {
@@ -153,7 +153,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     调用MediaKeySystem类中的createMediaKeySession方法，按指定安全级别进行创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function createMediaKeySession(level: ContentProtectionLevel): MediaKeySession {
+    function createMediaKeySession(level: drm.ContentProtectionLevel): drm.MediaKeySession {
       try {
         let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.level.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
       } catch (err) {
@@ -169,7 +169,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     调用MediaKeySystem类中的createMediaKeySession方法，创建会话。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function createMediaKeySession(): MediaKeySession {
+    function createMediaKeySession(): drm.MediaKeySession {
       try {
         let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
       } catch (err) {
@@ -201,7 +201,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     调用MediaKeySystem类中的getOfflineMediaKeyStatus方法，获取离线许可证状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function getOfflineMediaKeyStatus(mediakeyId: Uint8Array): OfflineMediaKeyStatus {
+    function getOfflineMediaKeyStatus(mediakeyId: Uint8Array): drm.OfflineMediaKeyStatus {
       try {
         let offlineMediaKeyStatus: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediakeyId);
       } catch (err) {
@@ -233,7 +233,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     调用MediaKeySystem类中的destroy方法，销毁MediaKeySystem实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function destroy(mediaKeySyste: MediaKeySyste): void {
+    function destroy(mediaKeySyste: drm.MediaKeySyste): void {
       try {
         mediaKeysystem.destroy();
       } catch (err) {
@@ -252,7 +252,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```ts
     function onRegisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-      mediaKeysystem.on('keySystemRequired', (eventInfo: EventInfo) => {
+      mediaKeysystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
         console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
       });
     }
