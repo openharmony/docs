@@ -3461,7 +3461,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | action | [ExtendAction](#extendaction10) | 是   | 要发送的扩展操作。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
+| callback | import { BusinessError } from '@ohos.base';​inputMethodSetting.displayOptionalInputMethod().then(() => {  console.log('Succeeded in displaying optionalInputMethod.');}).catch((err: BusinessError) => {  console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);})ts | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3547,7 +3547,7 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 
 >**说明**
 >
->提供系统预置输入法应用与实现私有数据传递功能的系统其他部分的通信机制，用于设备级厂商在特定设备上实现特有的输入法功能。
+>私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
 >
 >私有数据规格限制：总大小32KB，数量限制5条
 
