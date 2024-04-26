@@ -18,6 +18,8 @@ import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
