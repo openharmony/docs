@@ -426,14 +426,6 @@ struct ScaleCapabilitySample {
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
   @Builder slider() {
-    Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
-      .blockColor(Color.White)
-      .width('60%')
-      .height(50)
-      .onChange((value: number) => {
-        this.sliderWidth = value;
-      })
-      .position({ x: '20%', y: '80%' })
     Slider({ value: this.sliderHeight, min: 100, max: 400, style: SliderStyle.OutSet })
       .blockColor(Color.White)
       .width('60%')
@@ -441,7 +433,17 @@ struct ScaleCapabilitySample {
       .onChange((value: number) => {
         this.sliderHeight = value
       })
+      .position({ x: '20%', y: '80%' })
+
+    Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
+      .blockColor(Color.White)
+      .width('60%')
+      .height(50)
+      .onChange((value: number) => {
+        this.sliderWidth = value;
+      })
       .position({ x: '20%', y: '87%' })
+   
   }
 
   build() {
