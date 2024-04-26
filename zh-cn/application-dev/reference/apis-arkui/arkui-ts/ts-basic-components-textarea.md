@@ -411,7 +411,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](#caretstyle12对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-basic-components-textinput.md#caretstyle10对象说明) | 是   | 光标的风格。 |
 
 ### textIndent<sup>12+</sup>
 
@@ -774,11 +774,6 @@ setTextSelection选中文字时的配置。
 | 名称             | 类型    | 必填 | 描述                                                         |
 | ---------------- | ------- | ---- | ------------------------------------------------------------ |
 | supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
-
-## CaretStyle<sup>12+</sup>对象说明
-| 参数名 | 类型  | 必填 | 说明  |
-| ------ | -------- | ---- | ------------------------------------------- |
-| width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
 
 ## 示例
 
