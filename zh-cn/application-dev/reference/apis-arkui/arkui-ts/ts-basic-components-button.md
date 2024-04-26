@@ -235,6 +235,20 @@ role(value: ButtonRole)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | value  | [ButtonRole](#buttonrole12枚举说明) | 是   | 设置Button组件的角色。<br/>默认值:ButtonRole.NORMAL |
 
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
+
+定制Button内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ## ButtonType枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -256,12 +270,12 @@ role(value: ButtonRole)
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
-| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
-| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。<br/>**说明：**  <br/>minFontSize小于或等于0时，自适应字号不生效。 |
-| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。                             |
-| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。     |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
+| maxLines             | number                                                       | 否   | 设置label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。<br/>**说明：**  <br/>minFontSize小于或等于0时，自适应字号不生效。 |
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。 |
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
 
@@ -290,6 +304,25 @@ role(value: ButtonRole)
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
 | ERROR  | 警示按钮。              |
+
+## ButtonConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    | 说明              |
+| ------ | ------ | ---------------- |
+| label | string | Button的文本标签。 |
+| pressed | boolean | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | 使用builder新构建出来组件的点击事件。 |
+
+## ButtonTriggerClickCallback<sup>12+</sup>对象说明
+
+定义ButtonConfiguration中使用的回调类型。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| xPos | number | 是 | 点击位置x的坐标。 |
+| yPos | number | 是 | 点击位置y的坐标。 |
 
 ## 事件
 
@@ -484,3 +517,69 @@ struct ButtonExample {
 }
 ```
 ![buttonrole](figures/buttonrole.jpeg)
+
+### 示例6
+该示例实现了自定义样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
+```ts
+class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
+  x: number = 0
+  y: number = 0
+  selectedColor:Color = Color.Black
+
+  constructor(x : number, y: number,ColorType:Color) {
+    this.x = x
+    this.y = y
+    this.selectedColor = ColorType
+  }
+  applyContent() : WrappedBuilder<[ButtonConfiguration]>
+  {
+    return wrapBuilder(buildButton1)
+  }
+}
+
+@Builder function buildButton1(config: ButtonConfiguration) {
+  Column({space:30}) {
+    Text(config.enabled ? "enabled true" : "enabled false")
+    Text('圆圈状态' + (config.pressed ? "（ 按压 ）" : "（ 非按压 ）"))
+    Text('点击位置x坐标：' + (config.enabled ? (config.contentModifier as MyButtonStyle).x : "0"))
+    Text('点击位置y坐标：' + (config.enabled ? (config.contentModifier as MyButtonStyle).y : "0"))
+    Circle({ width: 50, height: 50 })
+      .fill(config.pressed ? (config.contentModifier as MyButtonStyle).selectedColor : Color.Black)
+      .gesture(
+        TapGesture({count:1}).onAction((event: GestureEvent)=>{
+          config.triggerClick(event.fingerList[0].localX,event.fingerList[0].localY)
+        })).opacity(config.enabled ? 1 : 0.1)
+  }
+}
+
+@Entry
+@Component
+struct ButtonExample {
+  @State buttonEnabled: boolean = true;
+  @State positionX: number = 0
+  @State positionY: number = 0
+  @State state : boolean[] = [true,false]
+  @State index:number = 0
+  build() {
+    Column() {
+      Button('OK')
+        .contentModifier(new MyButtonStyle(this.positionX,this.positionY,Color.Red))
+        .onClick((event) => {
+          console.info('change' + JSON.stringify(event))
+          this.positionX = event.displayX
+          this.positionY = event.displayY
+        }).enabled(this.buttonEnabled)
+      Row() {
+        Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
+          if (value) {
+            this.buttonEnabled = true
+          } else {
+            this.buttonEnabled = false
+          }
+        }).margin({left:-80})
+      }
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![buttonrole](figures/buttonbuilder.gif)

@@ -19,6 +19,7 @@
 TextArea(value?: TextAreaOptions)
 
 **参数：**
+
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 | value | [TextAreaOptions](#textareaoptions对象说明) | 否  | TextArea组件参数。 |
@@ -100,7 +101,7 @@ caretColor(value: ResourceColor)
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#007DFF' |
 
 >  **说明：**     
->   从API version 12开始，此接口支持设置文本手柄颜色和文本选中底板颜色，光标、文本手柄和文本选中底板颜色保持一致。<br/>文本手柄透明度为设置透明度，文本选中底板透明度，默认20%，如果设置透明度，文本选中底板颜色透明度在设置色透明度的基础上再叠加20%。例如，设置透明度50%，文本选中底板颜色透明度为10%。
+>   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
 
 ### inputFilter<sup>8+</sup>
 
@@ -384,6 +385,132 @@ wordBreak(value: WordBreak)
 >
 >  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
 
+### selectedBackgroundColor<sup>12+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
+### caretStyle<sup>12+</sup>
+
+caretStyle(value: CaretStyle)
+
+设置光标风格。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明         |
+| ------ | ----------------------------------- | ---- | ------------ |
+| value  | [CaretStyle](#caretstyle12对象说明) | 是   | 光标的风格。 |
+
+### textIndent<sup>12+</sup>
+
+textIndent(value: Dimension)
+
+设置首行文本缩进。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0 |
+
+### textOverflow<sup>12+</sup>
+
+textOverflow(value: TextOverflow)
+
+设置文本超长时的显示方式。在非内联模式、内联模式下支持
+
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+
+当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+overflow在非内联模式下建议配合maxLines使用，否则设置为Ellipsis时，变为单行Ellipsis效果。
+
+overflow在内联模式下设置为TextOverflow.Ellipsis时，如果设置maxLines，效果仅为单行Ellipsis。
+
+**卡片能力：** 该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                          | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip           |
+
+>  **说明：**     
+>   TextArea组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 显示为TextOverflow.Clip
+
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及[maxLines](#maxlines10)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
+### heightAdaptivePolicy<sup>12+</sup>
+
+heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
+
+设置文本自适应高度的方式。
+
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
+组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+
+当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -542,24 +669,6 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
 
-##  SelectionOptions<sup>12+</sup>
-
-setTextSelection选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
-
 ### stopEditing<sup>10+</sup>
 
 stopEditing(): void
@@ -576,7 +685,7 @@ getTextContentRect(): [RectResult](#rectresult10)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -640,13 +749,36 @@ getCaretOffset(): CaretOffset
 | NUMBER   | 纯数字输入模式。      |
 | PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
 
+## SelectionOptions<sup>12+</sup>
+
+setTextSelection选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
+
 ## KeyboardOptions<sup>12+</sup>
 
 设置自定义键盘是否支持避让功能。
 
-| 名称            | 类型              | 必填   | 描述                               |
-| --------------- | ---------------  |---- | ------------------------------------  |
-| supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+| 名称             | 类型    | 必填 | 描述                                                         |
+| ---------------- | ------- | ---- | ------------------------------------------------------------ |
+| supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
+
+## CaretStyle<sup>12+</sup>对象说明
+| 参数名 | 类型  | 必填 | 说明  |
+| ------ | -------- | ---- | ------------------------------------------- |
+| width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
 
 ## 示例
 
@@ -846,7 +978,7 @@ struct TextInputExample {
 
 
 ### 示例6
-示例展示设置不同wordBreak属性的TextInput样式。
+示例展示设置不同wordBreak属性的TextArea样式。
 
 ```ts
 // xxx.ets
@@ -861,7 +993,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.NORMAL)
       Text("英文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
       TextArea({
@@ -869,7 +1000,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.BREAK_ALL)
       Text("中文文本，属性WordBreakType为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
       TextArea({
@@ -877,7 +1007,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.BREAK_ALL)
       Text("属性WordBreakType为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
       TextArea({
@@ -885,7 +1014,6 @@ struct TextAreaExample {
       })
         .fontSize(16)
         .border({ width: 1 })
-        .maxLines(2)
         .wordBreak(WordBreak.BREAK_WORD)
     }
   }
@@ -1027,6 +1155,7 @@ struct TextAreaExample {
       .width("100%")
       .padding({bottom:50})
       TextArea({ controller: this.controller, text: this.inputValue})
+        .height(100)
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
         // .height(200)
@@ -1034,5 +1163,45 @@ struct TextAreaExample {
   }
 }
 ```
-![CustomTextAreaType](figures/Custom_Text_Area.gif)
+![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
+### 示例10
+
+该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  build() {
+    Row() {
+      Column() {
+        Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+        TextArea({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(90).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        TextArea({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(90).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+        TextArea({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(90).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![TextAreaAdaptFont](figures/textarea_adapt_font.png)

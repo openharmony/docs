@@ -87,7 +87,9 @@ typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
 ```
 typedef void(* OH_VideoEncoder_OnNeedInputParameter) (OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
 ```
+
 **描述**
+
 当OH_AVCodec在运行过程中需要新的输入参数时，将调用此函数指针，并携带可用的缓冲区来填充新的输入参数。设置的参数随帧立即生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
@@ -531,7 +533,9 @@ OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 ```
 OH_AVErrCode OH_VideoEncoder_PushInputParameter (OH_AVCodec *codec, uint32_t index)
 ```
+
 **描述**
+
 将填入数据的输入参数缓冲区提交给视频编码器。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
@@ -582,7 +586,9 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 ```
 OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback (OH_AVCodec *codec, OH_VideoEncoder_OnNeedInputParameter onInputParameter, void *userData)
 ```
+
 **描述**
+
 注册异步输入参数回调函数，让应用可以响应视频编码器生成的事件。
 
 编码surface模式，需要设置随帧参数时，须使用该接口。 如果使用该接口，必须在[OH_VideoEncoder_Configure](#oh_videoencoder_configure)之前调用该接口。

@@ -54,3 +54,9 @@ SET(CMAKE_INSTALL_RPATH "\${ORIGIN}/module")
 
 ### 2.4 支持symbol-version机制
 symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机制，支持不同版本的符号重定位，也可以帮助解决重复符号的问题。可参考<a href="https://www.gnu.org/software/gnulib/manual/html_node/LD-Version-Scripts.html">LD Version Scripts (GNU Gnulib)</a>
+
+### 2.5 网络接口select支持fd fortify检测
+宏定义FD_SET/FD_CLR新增fd有效值检查，当传入的fd不在区间`[0, 1024)`中会触发abort crash。
+
+宏定义FD_ISSET新增fd有效值检查，当传入的fd不在区间`[0, 1024)`中会返回false。
+

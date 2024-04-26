@@ -13,12 +13,12 @@ None
 
 ## Child Components
 
-The **[\<list-item-group>](../arkui-js/js-components-container-list-item-group.md)** and **[\<list-item>](../arkui-js/js-components-container-list-item.md)** components are supported.
+The **[\<list-item-group>](js-components-container-list-item-group.md)** and **[\<list-item>](js-components-container-list-item.md)** components are supported.
 
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name                         | Type                                      | Default Value    | Mandatory  | Description                                      |
 | --------------------------- | ---------------------------------------- | ------- | ---- | ---------------------------------------- |
@@ -26,7 +26,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 | cachedcount                 | number                                   | 0       | No   | Minimum number of cached list items when a long list is loaded with delay.<br>When the number of list items cached outside the visible area is less than the value of this attribute, a **requestitem** event is triggered.|
 | scrollbar                   | string                                   | off     | No   | Display mode of the side scrollbar. (Currently, only the vertical scrollbar is supported.)<br>- **off**: no display.<br>- **auto**: displayed on demand (The side scrollbar is displayed when touched and disappears 2s later.).<br>- **on**: always displayed.|
 | scrolleffect                | string                                   | spring  | No   | Scroll effect. Available values are as follows:<br>- **spring**: Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded.<br>- **fade**: Similar to the physical dynamic effect of fade. When you scroll to the edge, a wave shape fades. The fade changes according to the speed and scrolling distance.<br>- **no**: No effect after the scrollbar is moved to the edge.|
-| indexer                     | boolean \| Array&lt;string&gt; | false   | No   | Whether to display the alphabetical index bar on the sidebar. If this attribute is set to **true** or a customized indexer, the index bar is displayed at the right boundary of the list. Example:<br>**"indexer" : "true"** indicates the default alphabetical indexer.<br>**"indexer" : "false"** indicates no indexer.<br>"indexer": ['#', '1', '2', '3', '4', '5', '6', '7', '8'] indicates a customized index. You must include **"#"** when using a customized indexer.<br>This **indexer** attribute is valid only when **flex-direction** is set to **column** and **columns** is set to **1**.<br>This attribute must be used together with the **[section](../arkui-js/js-components-container-list-item.md#attributes)** attribute of **\<list-item>**.|
+| indexer                     | boolean \| Array&lt;string&gt; | false   | No   | Whether to display the alphabetical index bar on the sidebar. If this attribute is set to **true** or a customized indexer, the index bar is displayed at the right boundary of the list. Example:<br>**"indexer" : "true"** indicates the default alphabetical indexer.<br>**"indexer" : "false"** indicates no indexer.<br>"indexer": ['#', '1', '2', '3', '4', '5', '6', '7', '8'] indicates a customized index. You must include **"#"** when using a customized indexer.<br>This **indexer** attribute is valid only when **flex-direction** is set to **column** and **columns** is set to **1**.<br>This attribute must be used together with the **[section](js-components-container-list-item.md#attributes)** attribute of **\<list-item>**.|
 | indexercircle<sup>5+</sup>  | boolean                                  | -       | No   | Whether to use a circle indexer.<br>The default value is **true** for wearables and **false** for other device types. This attribute is invalid if **indexer** is set to **false**.|
 | indexermulti<sup>5+</sup>   | boolean                                  | false   | No   | Whether to use a multi-language indexer.<br>This attribute is invalid if **indexer** is set to **false**.    |
 | indexerbubble<sup>5+</sup>  | boolean                                  | true    | No   | Whether to display the bubble effect when switching among indexes.<br>This attribute is invalid if **indexer** is set to **false**.   |
@@ -41,7 +41,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name                           | Type                                      | Default Value        | Mandatory  | Description                                      |
 | ----------------------------- | ---------------------------------------- | ----------- | ---- | ---------------------------------------- |
@@ -61,7 +61,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 | Name                        | Parameter                                      | Description                                      |
 | -------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -77,7 +77,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 | Name           | Parameter                                      | Description                                      |
 | ------------- | ---------------------------------------- | ---------------------------------------- |

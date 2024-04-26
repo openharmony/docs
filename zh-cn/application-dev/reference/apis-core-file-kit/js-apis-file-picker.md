@@ -50,14 +50,15 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example01() {
   try {  
-    let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-    PhotoSelectOptions.maxSelectNumber = 5;
+    let photoSelectOptions = new picker.PhotoSelectOptions();
+    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+    photoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
-      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    photoPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
     });
@@ -89,18 +90,19 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example02() {
   try {
-    let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-    PhotoSelectOptions.maxSelectNumber = 5;
+    let photoSelectOptions = new picker.PhotoSelectOptions();
+    photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+    photoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
+    photoPicker.select(photoSelectOptions, (err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+      console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -129,15 +131,16 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example03() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select((err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
+    photoPicker.select((err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+      console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -172,13 +175,14 @@ save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example04() {
   try {
-    let PhotoSaveOptions = new picker.PhotoSaveOptions();
-    PhotoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
+    let photoSaveOptions = new picker.PhotoSaveOptions();
+    photoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult: Array<string>) => {
-      console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
+    photoPicker.save(photoSaveOptions).then((photoSaveResult: Array<string>) => {
+      console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     }).catch((err: BusinessError) => {
       console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
     });
@@ -210,17 +214,18 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example05() {
   try {
-    let PhotoSaveOptions = new picker.PhotoSaveOptions();
-    PhotoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
+    let photoSaveOptions = new picker.PhotoSaveOptions();
+    photoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
+    photoPicker.save(photoSaveOptions, (err: BusinessError, photoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
+      console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -249,15 +254,16 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save((err: BusinessError, PhotoSaveResult: Array<string>) => {
+    photoPicker.save((err: BusinessError, photoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
+      console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -269,6 +275,8 @@ async function example06() {
 ## DocumentViewPicker
 
 文件选择器对象，用来支撑选择和保存各种格式文档。在使用前，需要先创建DocumentViewPicker实例。
+
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -285,6 +293,8 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -304,12 +314,13 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example07() {
   try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
+    let documentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult: Array<string>) => {
-      console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+    documentPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
+      console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
     });
@@ -328,6 +339,8 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
@@ -341,16 +354,17 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example08() {
   try {
-    let DocumentSelectOptions = new picker.DocumentSelectOptions();
+    let documentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions, (err: BusinessError, DocumentSelectResult: Array<string>) => {
+    documentPicker.select(documentSelectOptions, (err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+      console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -367,6 +381,8 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
@@ -379,15 +395,16 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select((err: BusinessError, DocumentSelectResult: Array<string>) => {
+    documentPicker.select((err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
+      console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -396,7 +413,6 @@ async function example09() {
 }
 ```
 
-
 ### save
 
 save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
@@ -404,6 +420,8 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的uri数组。
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -423,13 +441,14 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example10() {
   try {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult: Array<string>) => {
-      console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+    documentPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     }).catch((err: BusinessError) => {
       console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
     });
@@ -448,6 +467,8 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
@@ -461,17 +482,18 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example11() {
   try {
-    let DocumentSaveOptions = new picker.DocumentSaveOptions();
-    DocumentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    documentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions, (err: BusinessError, DocumentSaveResult: Array<string>) => {
+    documentPicker.save(documentSaveOptions, (err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -488,6 +510,8 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
@@ -500,15 +524,16 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save((err: BusinessError, DocumentSaveResult: Array<string>) => {
+    documentPicker.save((err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -555,12 +580,13 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example13() {
   try {
-    let AudioSelectOptions = new picker.AudioSelectOptions();
+    let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions).then((AudioSelectResult: Array<string>) => {
-      console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
+    audioPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
+      console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
     });
@@ -592,16 +618,17 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example14() {
   try {
-    let AudioSelectOptions = new picker.AudioSelectOptions();
+    let audioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions, (err: BusinessError, AudioSelectResult: Array<string>) => {
+    audioPicker.select(audioSelectOptions, (err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
+      console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -630,15 +657,16 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select((err: BusinessError, AudioSelectResult: Array<string>) => {
+    audioPicker.select((err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
+      console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -673,13 +701,14 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example16() {
   try {
-    let AudioSaveOptions = new picker.AudioSaveOptions();
-    AudioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
+    let audioSaveOptions = new picker.AudioSaveOptions();
+    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions).then((AudioSaveResult: Array<string>) => {
-      console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult))
+    audioPicker.save(audioSaveOptions).then((audioSaveResult: Array<string>) => {
+      console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult))
     }).catch((err: BusinessError) => {
       console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
     });
@@ -711,17 +740,18 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example17() {
   try {
-    let AudioSaveOptions = new picker.AudioSaveOptions();
-    AudioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
+    let audioSaveOptions = new picker.AudioSaveOptions();
+    audioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions, (err: BusinessError, AudioSaveResult: Array<string>) => {
+    audioPicker.save(audioSaveOptions, (err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult));
+      console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -750,15 +780,16 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import picker from '@ohos.file.picker';
 async function example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save((err: BusinessError, AudioSaveResult: Array<string>) => {
+    audioPicker.save((err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
-      console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult));
+      console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -796,10 +827,10 @@ async function example18() {
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
-| 名称                    | 类型                | 可读 | 可写 | 说明                           |
+| 名称                    | 类型                | 只读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
-| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。 |
+| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。 |
 
 ## PhotoSaveOptions
 
@@ -815,6 +846,8 @@ async function example18() {
 
 枚举，picker选择的文档类型。
 
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
 
 | 名称  |  值 |  说明 |
@@ -827,20 +860,24 @@ async function example18() {
 
 文档选择选项。
 
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅支持特定设备，且目录选择的最大个数为1） |
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection|
 | defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                            |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection |
-| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false。当authMode为true时，defaultFilePathUri必填，表明待授权uri。仅支持特定设备 |     
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection |
+| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅支持特定设备（非特定设备是兼容的） |     
 
 
 ## DocumentSaveOptions
 
 文档保存选项。
+
+**原子化服务API**： 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 

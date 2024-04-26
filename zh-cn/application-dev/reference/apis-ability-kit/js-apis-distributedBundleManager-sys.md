@@ -51,6 +51,10 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 
 | 错误码ID |    错误信息                   |
 |----------|--------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -112,6 +116,10 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -166,6 +174,10 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -234,6 +246,10 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -296,6 +312,10 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -358,6 +378,10 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -413,6 +437,10 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 | 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -482,6 +510,10 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |

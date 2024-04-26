@@ -20,7 +20,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
-  // 在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController

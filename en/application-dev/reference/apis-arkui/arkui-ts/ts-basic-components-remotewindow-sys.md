@@ -1,12 +1,12 @@
 # RemoteWindow (System API)
 
-**\<RemoteWindow>** is a component used to control the application window, providing the component animator and application window linkage animator during application startup and exit.
+**\<RemoteWindow>** is a component used to control the application window, providing the component animator and application window animation linkage during application startup and exit.
 
 >  **NOTE**
 >  
 >  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The APIs provided by this component are system APIs.
+>  The APIs provided by this module are system APIs.
 
 ## Child Components
 
@@ -56,7 +56,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
-The **\<RemoteWindow>** component needs to receive the **WindowAnimationTarget** object passed from the **WindowAnimationController** object set through [windowAnimationManager](../apis/js-apis-windowAnimationManager.md). You can create a **RemoteWindowExample.ets** file and encapsulate the **RemoteWindowExample** component and the passed **WindowAnimationTarget** object.
+The **\<RemoteWindow>** component needs to receive the **WindowAnimationTarget** object from the **WindowAnimationController** object set by [windowAnimationManager](../js-apis-windowAnimationManager-sys.md). You can create a **RemoteWindowExample.ets** file as an example to encapsulate the **\<RemoteWindow>** component and the passed **WindowAnimationTarget** object.
 The **\<RemoteWindow>** component can be used only in the system application Launcher. Therefore, you can place the **RemoteWindowExample** component in the **build** function of the **EntryView.ets** page of Launcher, compile Launcher, and push the Launcher installation package to the device system.
 
 ```ts

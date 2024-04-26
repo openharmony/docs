@@ -362,7 +362,7 @@ Swipe手势识别成功回调。
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
 | direction | [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
-| speed | number | 否 | 识别滑动的最小速度。<br/>默认值：100VP/秒 <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
+| speed | number | 否 | 识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
 
 ## PinchGestureHandler
 

@@ -35,7 +35,7 @@ Provides optional parameters for creating a BuilderNode.
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | No  | Ideal size of the node.                                            |
 | type          | [NodeRenderType](#noderendertype)      | No  | Rendering type of the node.                                            |
-| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage) instance.|
+| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage) instance.|
 
 ## BuilderNode
 
@@ -229,7 +229,7 @@ struct Index {
 
 update(arg: Object): void
 
-Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](###build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
+Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](#build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -237,7 +237,7 @@ Updates this BuilderNode based on the provided parameter, which is of the same t
 
 | Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](###build) API.|
+| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](#build) API.|
 
 **Example**
 ```ts
@@ -344,7 +344,7 @@ Dispatches an event to the FrameNode created by this BuilderNode.
 
 | Name| Type                                                                     | Mandatory| Description      |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
+| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
 
 **Return value**
 

@@ -78,7 +78,7 @@ fontWeight(value: number | FontWeight | string)
 
 renderingStrategy(value: SymbolRenderingStrategy)
 
-设置SymbolSpan渲染策略。$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。
+设置SymbolSpan渲染策略。$r('sys.symbol.ohos_*')中引用的资源仅ohos_folder_badge_plus支持分层与多色模式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,6 +87,10 @@ renderingStrategy(value: SymbolRenderingStrategy)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
+
+不同渲染策略效果可参考以下示意图。
+
+![renderingStrategy](figures/renderingStrategy.png)
 
 ### effectStrategy
 

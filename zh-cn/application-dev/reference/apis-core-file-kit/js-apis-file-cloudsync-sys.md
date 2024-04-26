@@ -1398,7 +1398,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
 | recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
-| callback | Callback&lt;ChangeData&gt; | 是   | 返回更改的数据。 |
+| callback | Callback&lt;[ChangeData](#changedata12)&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
 
@@ -1408,7 +1408,6 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |

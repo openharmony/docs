@@ -1757,127 +1757,6 @@ function getColorEffect(session: camera.PhotoSessionForSys): camera.ColorEffectT
 | BRIGHT                | 1    | 明艳的色彩效果。  |
 | SOFT                  | 2    | 柔和的色彩效果。  |
 
-## ColorManagement<sup>11+</sup>
-
-色彩管理类，用于设置色彩空间参数。
-
-### getSupportedColorSpaces<sup>11+</sup>
-
-getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
-
-获取支持的色彩空间列表。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103         |  Session not config.                       |
-| 202             |  Not System Application.                   |
-
-**示例：**
-
-```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
-function getSupportedColorSpaces(session: camera.PhotoSessionForSys): Array<colorSpaceManager.ColorSpace> {
-  let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
-  return colorSpaces;
-}
-```
-
-### setColorSpace<sup>11+</sup>
-
-setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
-
-设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces11)获取当前设备所支持的ColorSpaces。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名         | 类型                 | 必填 | 说明                      |
-| ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202             |  Not System Application.                       |
-| 7400102         |  The colorSpace does not match the format.     |
-| 7400103         |  Session not config.                           |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
-function setColorSpace(session: camera.PhotoSessionForSys, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
-  if (colorSpaces === undefined || colorSpaces.length <= 0) {
-    return;
-  }
-  try {
-    session.setColorSpace(colorSpaces[0]);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The setColorSpace call failed, error code: ${err.code}`);
-  }
-}
-```
-
-### getActiveColorSpace<sup>11+</sup>
-
-getActiveColorSpace(): colorSpaceManager.ColorSpace
-
-获取当前设置的色彩空间。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
-| 202             |  Not System Application.                         |
-
-**示例：**
-
-```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
-function getActiveColorSpace(session: camera.PhotoSessionForSys): colorSpaceManager.ColorSpace {
-  let colorSpace: colorSpaceManager.ColorSpace = session.getActiveColorSpace();
-  return colorSpace;
-}
-```
-
 ## Portrait<sup>11+</sup>
 
 人像类，用于设置人像参数。
@@ -2415,7 +2294,7 @@ PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, M
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom
+PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2487,7 +2366,7 @@ VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, M
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization
+VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 

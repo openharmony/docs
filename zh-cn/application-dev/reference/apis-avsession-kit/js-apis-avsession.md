@@ -125,6 +125,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
 ## AVSessionType<sup>10+<sup>
 
@@ -3550,6 +3551,79 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ```
 
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+在线DRM资源投播时，处理许可证响应。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | 是   | 媒体ID。 |
+| response | Uint8Array             | 是   | 许可证响应。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，当处理许可证响应成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import http from '@ohos.net.http'
+
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
+   //get media key from DRM server
+   let licenseResponeStr: string = 'defaultStr';
+   let httpRequest = http.createHttp();
+   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+   try {
+     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
+        method: http.RequestMethod.POST,
+        header: {
+           'Content-Type': 'application/json',
+           'Accept-Encoding': 'gzip, deflate',
+        },
+        extraData: licenseRequestStr,
+        expectDataType: http.HttpDataType.STRING,
+      });
+      if (response?.responseCode == http.ResponseCode.OK) {
+        if (typeof response.result == 'string') {
+          licenseResponeStr = response.result;
+        }
+      }
+      httpRequest.destroy();
+   } catch (e) {
+     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
+     return;
+   }
+
+   let licenseResponeData: Unit8Array = TypeConversion.stringToByte(licenseResponeStr);
+   try {
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponeData);
+   } catch (err) {
+    let error = err as BusinessError;
+    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
+   }
+}
+
+```
+
 ### release<sup>11+</sup>
 
 release(callback: AsyncCallback\<void>): void
@@ -4206,6 +4280,90 @@ off(type: 'error'): void
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+在线DRM资源投播时，设置许可证请求的事件监听。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | 是   | 事件回调类型，支持事件`'keyRequest'`：当DRM资源播放需要许可证时，触发该事件。 |
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | 是   | 回调函数，媒体资源及许可证请求数据。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+取消监听许可证请求的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持的事件是`'keyRequest'`。 |
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('keyRequest');
+```
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+许可证请求事件的回调函数。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | 是   | 媒体ID。 |
+| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+```
+
 ## CastDisplayState<sup>12+</sup>
 
 投播显示设备状态。
@@ -4274,6 +4432,7 @@ aVCastController.off('error')
 | previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4287,25 +4446,27 @@ aVCastController.off('error')
 
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。          |
-| title        | string                  | 否   | 播放列表媒体标题。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。   |
-| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
+| assetId      | string                  | 是   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。         |
-| duration     | number                  | 否   | 播放列表媒体播放时长。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。         |
+| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -4330,20 +4491,20 @@ aVCastController.off('error')
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态 |
-| speed        | number                                | 否   | 播放倍速 |
-| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置 |
-| bufferedTime | number                                | 否   | 缓冲时间 |
-| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式 |
-| isFavorite   | boolean                               | 否   | 是否收藏 |
-| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
-| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| speed        | number                                | 否   | 播放倍速<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bufferedTime | number                                | 否   | 缓冲时间<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
-| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
-| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
+| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -4413,6 +4574,8 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | CATEGORY_LOCAL      | 0    | 本地播放，默认播放设备，声音从本机或者连接的蓝牙耳机设备出声。     |
@@ -4423,6 +4586,8 @@ aVCastController.off('error')
 播放设备的类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4446,6 +4611,7 @@ aVCastController.off('error')
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
 

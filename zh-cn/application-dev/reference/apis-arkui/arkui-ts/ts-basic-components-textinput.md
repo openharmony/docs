@@ -227,9 +227,6 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**     
->   从API version 12开始，如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### caretStyle<sup>10+</sup>
 
 caretStyle(value: CaretStyle)
@@ -491,7 +488,10 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 | options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
 
 >  **说明：**    
->  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: 12 vp,<br>&nbsp;right: 0 vp,<br>&nbsp;bottom: 12 vp,<br>&nbsp;left: 0 vp<br> }
+>
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### lineHeight<sup>12+</sup>
@@ -563,6 +563,9 @@ fontFeature(value: string)
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
+>  **说明：**
+>  type属性中InputType枚举为Password、NEW_PASSWORD和NUMBER_PASSWORD等密码模式时，暂时不支持fontFeature设置文本样式。
+
 ### wordBreak<sup>12+</sup>
 
 wordBreak(value: WordBreak)
@@ -580,6 +583,116 @@ wordBreak(value: WordBreak)
 >  **说明：**
 >
 >  组件不支持clip属性设置，设置该属性任意枚举值对组件文本截断无影响。
+
+### textOverflow<sup>12+</sup>
+
+textOverflow(value: TextOverflow)
+
+设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
+
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+
+当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
+
+**卡片能力：** 该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
+
+>  **说明：**  
+>   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
+
+### textIndent<sup>12+</sup>
+
+textIndent(value: Dimension)
+
+设置首行文本缩进。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                  | 必填 | 说明                         |
+| ------ | ------------------------------------ | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 首行文本缩进。<br/>默认值：0 |
+
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及[maxLines](#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及[maxLines](#maxlines10)(组件设置为内联输入风格且编辑态时使用)或布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
+
+### heightAdaptivePolicy<sup>12+</sup>
+
+heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
+
+设置文本自适应高度的方式。
+
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性(组件设置为内联输入风格且编辑态时使用)来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
+组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+
+当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
+
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+
+## showPassword<sup>12+</sup>
+
+showPassword(visible: boolean)
+
+设置密码的显隐状态。
+
+需组合.type(InputType.Password)属性才能生效，非密码输入模式不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
 
 ## CaretStyle<sup>10+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
@@ -611,26 +724,29 @@ wordBreak(value: WordBreak)
 
 自动填充类型。
 
-| 名称                | 值   | 描述                                                         |
-| ------------------- | ---- | ------------------------------------------------------------ |
-| USER_NAME           | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| PASSWORD            | 1    | 【密码】在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| NEW_PASSWORD        | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
-| FULL_STREET_ADDRESS | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
-| HOUSE_NUMBER        | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
-| DISTRICT_ADDRESS    | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
-| CITY_ADDRESS        | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
-| PROVINCE_ADDRESS    | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
-| COUNTRY_ADDRESS     | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
-| PERSON_FULL_NAME    | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
-| PERSON_LAST_NAME    | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
-| PERSON_FIRST_NAME   | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
-| PHONE_NUMBER        | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
-| PHONE_COUNTRY_CODE  | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
-| FULL_PHONE_NUMBER   | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
-| EMAIL_ADDRESS       | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
-| BANK_CARD_NUMBER    | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
-| ID_CARD_NUMBER      | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+| 名称                       | 值   | 描述                                                         |
+| -------------------------- | ---- | ------------------------------------------------------------ |
+| USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
+| PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
+| NEW_PASSWORD               | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
+| FULL_STREET_ADDRESS        | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
+| HOUSE_NUMBER               | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
+| DISTRICT_ADDRESS           | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
+| CITY_ADDRESS               | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
+| PROVINCE_ADDRESS           | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
+| COUNTRY_ADDRESS            | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
+| PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
+| PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
+| PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
+| BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
+| ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+| NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
+| DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
+| FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
@@ -674,7 +790,7 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onSubmit
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void)
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void))
 
 按下输入法回车键触发该回调。
 
@@ -790,6 +906,20 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
+### onSecurityStateChange<sup>12+</sup>
+
+onSecurityStateChange(callback: Callback\<boolean>)
+
+密码显隐状态切换时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                               |
+| ------------ | ------ | ---- | ---------------------------------- |
+| callback | Callback\<boolean> | 是   | 回调函数。|
+
 ## TextInputController<sup>8+</sup>
 
 TextInput组件的控制器。
@@ -827,25 +957,6 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
->
-
-## SelectionOptions<sup>12+</sup>
-
-setTextSelection选中文字时的配置。
-
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
 
 ### stopEditing<sup>10+</sup>
 
@@ -922,6 +1033,24 @@ getCaretOffset(): CaretOffset
 | ------------------- | ------- | ------------------------------------------------------------ |
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
+
+## SelectionOptions<sup>12+</sup>
+
+setTextSelection选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
 
 ## UnderlineColor<sup>12+</sup>对象说明
 
@@ -1119,7 +1248,7 @@ struct TextInputExample {
     Column() {
       TextInput({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
 }
@@ -1234,7 +1363,7 @@ struct phone_example {
   build() {
     Column() {
         Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber)
+          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
             .onChange((number: string) => {
               let teleNumberNoSpace: string = this.removeSpace(number);
               if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
@@ -1268,7 +1397,7 @@ struct phone_example {
 }
 
 ```
-![phone_example](figures/phone_number.jpeg)
+![phone_example](figures/phone_number.PNG)
 
 ### 示例7
 
@@ -1300,7 +1429,7 @@ struct Index {
 
 
 ### 示例8
-示例展示设置不同wordBreak属性的TextArea样式。
+示例展示设置不同wordBreak属性的TextInput样式。
 
 ```ts
 // xxx.ets
@@ -1486,4 +1615,46 @@ struct Input {
 }
 ```
 
-![CustomTextInputType](figures/Custom_Text_Input.gif)
+![CustomTextInputType](figures/textInputCustomKeyboard.gif)
+
+### 示例12
+
+该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+
+```ts
+@Entry
+@Component
+struct TextInputExample {
+  build() {
+    Row() {
+      Column() {
+        Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+        TextInput({text: 'This is the text without the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        TextInput({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+        TextInput({text: 'This is the text with the height adaptive policy set'})
+          .width('80%').height(50).borderWidth(1).margin(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+          .maxLines(3)
+          .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![TextInputAdaptFont](figures/textinput_adapt_font.png)

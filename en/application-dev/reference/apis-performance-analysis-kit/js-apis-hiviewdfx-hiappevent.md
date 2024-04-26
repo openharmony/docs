@@ -772,6 +772,11 @@ Defines the names of predefined events.
 | DISTRIBUTED_SERVICE_START | string | Distributed service startup event.|
 | APP_CRASH<sup>11+</sup>   | string | Application crash event.      |
 | APP_FREEZE<sup>11+</sup>  | string | Application freeze event.      |
+| APP_LAUNCH<sup>12+</sup>  | string | Event indicating the application launch duration.  |
+| SCROLL_JANK<sup>12+</sup> | string | Event indicating frame loss during swiping.  |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | Event indicating a high CPU usage.|
+| BATTERY_USAGE<sup>12+</sup> | string | Event indicating battery usage statistics.|
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | Event indicating an application resource leakage.|
 
 
 ## param

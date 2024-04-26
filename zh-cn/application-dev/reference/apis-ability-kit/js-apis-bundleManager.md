@@ -191,6 +191,14 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 | ----------------------------------------------------------- | ------------------------------------- |
 | Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回当前应用的BundleInfo。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -225,6 +233,14 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 | ----------- | ------ | ---- | --------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -274,6 +290,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -334,6 +351,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -410,6 +428,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -475,6 +494,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -534,6 +554,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -602,6 +623,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -654,6 +676,14 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 | ------------------------------------------------- | -------------------- |
 | [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -694,6 +724,8 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700201 | verifyAbc failed. |
 
 **示例：**
@@ -747,6 +779,8 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700201 | verifyAbc failed. |
 
 **示例：**
@@ -797,6 +831,8 @@ deleteAbc(abcPath: string): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700202 | deleteAbc failed. |
 
 **示例：**
@@ -825,7 +861,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 根据给定的bundleName获得扩展资源对应的moduleNames。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -847,6 +883,9 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700303 | GetExtResource failed due to no extend resource. |
 
@@ -860,7 +899,7 @@ let bundleName : string = 'com.ohos.demo';
 
 try {
     bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
-        for (let i = 0; i < modules.length; i++>) {
+        for (let i = 0; i < modules.length; i++) {
             hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
         }
     }).catch((err: BusinessError) => {
@@ -901,6 +940,9 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 | 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
@@ -954,6 +996,9 @@ disableDynamicIcon(bundleName: string): Promise\<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
 
@@ -983,7 +1028,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 根据给定的bundleName获得动态图标对应的moduleName。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1005,6 +1050,9 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700306 | No dynamic icon. |
 
@@ -1054,6 +1102,7 @@ canOpenLink(link: string): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700055 | The specified link is invalid.                      |
 | 17700056 | The scheme of the specified link is not in the querySchemes.        |
 

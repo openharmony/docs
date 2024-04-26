@@ -223,6 +223,10 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 当Ability准备迁移时触发，保存数据。
 
+**说明：**
+> 
+> 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>形式。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -235,7 +239,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt;  | 接续的结果或带接续结果的Promise对象。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&gt;  | 接续的结果或带接续结果的Promise对象。 |
 
 **示例：**
 
@@ -256,6 +260,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {
@@ -458,7 +463,10 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 onBackPressed(): boolean
 
-UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。同步接口，不支持异步回调。
+UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回值决定是否销毁UIAbility。
+
+- 当targetSdkVersion<12时，默认返回值为false，会销毁UIAbility。
+- 当targetSdkVersion>=12时，默认返回值为true，会将UIAbility移动到后台不销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

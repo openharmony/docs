@@ -61,7 +61,7 @@ import accessibility from '@ohos.accessibility';
 
 ## Action
 
-应用所支持的目标动作。
+应用所支持的目标动作，需要配置参数的目标动作已在描述中标明。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -80,10 +80,15 @@ import accessibility from '@ohos.accessibility';
 | copy                    | 表示复制操作。   |
 | paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
-| setText                 | 表示设置文本操作。当前版本暂不支持。 |
+| setText                 | 表示设置文本操作，需配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd。   |
 | common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
+| home<sup>12+</sup>                | 表示返回桌面操作。   |
+| back<sup>12+</sup>                | 表示返回上一级操作。   |
+| recentTask<sup>12+</sup>          | 表示打开最近任务操作。   |
+| notificationCenter<sup>12+</sup>  | 表示打开通知栏操作。   |
+| controlCenter<sup>12+</sup>       | 表示打开控制中心操作。   |
 
 ## Capability
 
@@ -784,6 +789,8 @@ isOpenAccessibilitySync(): boolean
 
 是否启用了辅助功能。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
@@ -874,6 +881,8 @@ accessibility.isOpenTouchGuide((err: BusinessError, data: boolean) => {
 isOpenTouchGuideSync(): boolean
 
 是否开启了触摸浏览模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -1054,10 +1063,15 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
 **主动聚焦示例：**
 
 ```ts
-build() {
-  Collumn() {
-    // 待聚焦组件添加id属性，id唯一性由使用者保证
-    Button('待聚焦组件').id('abc123')
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      // 待聚焦组件添加id属性，id唯一性由使用者保证
+      Button('待聚焦组件').id('click')
+    }
   }
 }
 ```
@@ -1069,7 +1083,7 @@ let eventInfo: accessibility.EventInfo = ({
   type: 'requestFocusForAccessibility',
   bundleName: 'com.example.MyApplication',
   triggerAction: 'common',
-  customId: 'abc123' // 对应待聚焦组件id属性值
+  customId: 'click' // 对应待聚焦组件id属性值
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

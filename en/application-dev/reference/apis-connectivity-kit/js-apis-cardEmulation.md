@@ -116,7 +116,7 @@ Checks whether the device supports HCE.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -150,7 +150,7 @@ Checks whether an application is the default application of the specified servic
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -218,7 +218,7 @@ Starts HCE, including enabling this application to run in the foreground prefere
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -268,7 +268,7 @@ Stops HCE, including canceling the subscription of APDU data, exiting this appli
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -294,7 +294,7 @@ Registers a callback to receive APDUs from the peer card reader. The application
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -366,7 +366,7 @@ Transmits an APDU to the peer card reader. This API uses a promise to return the
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -415,7 +415,7 @@ Transmits an APDU to the peer card reader. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 

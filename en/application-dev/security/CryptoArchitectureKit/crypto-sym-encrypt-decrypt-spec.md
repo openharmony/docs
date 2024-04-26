@@ -116,6 +116,6 @@ The block cipher algorithm has a fixed block length. If the length of the last b
 
 - **PKCS5**: pads a block cipher with a block size of 8 bytes. PKCS#5 applies padding in whole bytes. The value of each added byte is the number of bytes that are added.
 
-- **PKCS7**: pads a block cipher with a block size from 1 to 255 bytes. The padding scheme is the same as that of PKCS#5.
+- **PKCS7**: pads a block cipher with a block size from 1 to 255 bytes. The padding scheme is the same as that of PKCS#5. PKCS#5 is defined for 8-byte block sizes, while PKCS#7 can work with block size ranging from 1 to 255 bytes.
 
 For the modes that convert block ciphers into stream ciphers, such as CFB, OFB, CTR, GCM, and CCM, padding is not required. Therefore, **NoPadding** is used no matter whether the padding mode is specified.

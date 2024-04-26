@@ -101,6 +101,7 @@
         - [多态样式](arkui-ts/ts-universal-attributes-polymorphic-style.md)
         - [分布式迁移标识](arkui-ts/ts-universal-attributes-restoreId.md)
         - [前景色设置](arkui-ts/ts-universal-attributes-foreground-color.md)
+        - [前景属性设置](arkui-ts/ts-universal-attributes-foreground-effect.md)
         - [组件内容模糊](arkui-ts/ts-universal-attributes-foreground-blur-style.md)
         - [点击回弹效果](arkui-ts/ts-universal-attributes-click-effect.md)
         - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
@@ -108,6 +109,7 @@
         - [动态手势设置](arkui-ts/ts-universal-attributes-gesture-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
+        - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
         - 触摸交互控制
           - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
           - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -243,6 +245,7 @@
       - [CanvasGradient](arkui-ts/ts-components-canvas-canvasgradient.md)
       - [CanvasPattern](arkui-ts/ts-components-canvas-canvaspattern.md)
       - [CanvasRenderingContext2D](arkui-ts/ts-canvasrenderingcontext2d.md)
+      - [DrawingRenderingContext](arkui-ts/ts-drawingrenderingcontext.md)
       - [ImageBitmap](arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData](arkui-ts/ts-components-canvas-imagedata.md)
       - [Matrix2D](arkui-ts/ts-components-canvas-matrix2d.md)
@@ -251,6 +254,7 @@
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
+      - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
       - [@ohos.arkui.advanced.ComposeListItem (列表)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
@@ -258,6 +262,7 @@
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
+      - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
       - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
       - [@ohos.arkui.advanced.Popup (气泡组件)](arkui-ts/ohos-arkui-advanced-Popup.md)
@@ -326,7 +331,6 @@
   - 头文件和结构体
     - 头文件
       - [native_dialog.h](native__dialog_8h.md)
-      - [native_event.h](native__event_8h.md)
       - [native_gesture.h](native__gesture_8h.md)
       - [native_interface.h](native__interface_8h.md)
       - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
@@ -340,6 +344,7 @@
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
       - [ArkUI_IntOffset](_ark_u_i___int_offset.md)
       - [ArkUI_IntSize](_ark_u_i___int_size.md)
+      - [ArkUI_Margin](_ark_u_i___margin.md)
       - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
       - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)

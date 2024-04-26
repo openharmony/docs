@@ -290,24 +290,31 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise = httpRequest.request("EXAMPLE_URL", {
-  method: http.RequestMethod.GET,
-  connectTimeout: 60000,
-  readTimeout: 60000,
-  header: new Header('application/json')
-});
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // This parameter is used to transfer data when the POST request is used.
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    // You can add header fields based on service requirements.
+    header: new Header('application/json'),
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+};
 
-promise.then((data:http.HttpResponse) => {
-  console.info('Result:' + data.result);
-  console.info('code:' + data.responseCode);
-  console.info('type:' + JSON.stringify(data.resultType));
-  console.info('header:' + JSON.stringify(data.header));
-  console.info('cookies:' + data.cookies); // Cookies are supported since API version 8.
-  console.info('header.content-Type:' + data.header);
-  console.info('header.Status-Line:' + data.header);
-
-}).catch((err:Error) => {
-  console.info('error:' + JSON.stringify(err));
+httpRequest.request("EXAMPLE_URL", options, (err: Error, data: http.HttpResponse) => {
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('type:' + JSON.stringify(data.resultType));
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // Cookies are supported since API version 8.
+  } else {
+    console.info('error:' + JSON.stringify(err));
+  }
 });
 ```
 
@@ -565,7 +572,21 @@ import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 let httpRequest = http.createHttp();
-httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // This parameter is used to transfer data when the POST request is used.
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    // You can add header fields based on service requirements.
+    header: new Header('application/json'),
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+};
+httpRequest.requestInStream("EXAMPLE_URL", options, (err: BusinessError<void> , data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -950,13 +971,13 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
+class DataReceiveProgressInfo {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -985,13 +1006,13 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
+class DataReceiveProgressInfo {
   receiveSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1017,13 +1038,13 @@ Registers an observer for events indicating progress of sending HTTP requests.
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
+class DataSendProgressInfo {
   sendSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1052,13 +1073,13 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
+class DataSendProgressInfo {
   sendSize: number = 2000
   totalSize: number = 2000
 }
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1145,7 +1166,7 @@ Enumerates the response codes for an HTTP request.
 | ENTITY_TOO_LARGE  | 413  | "Request Entity Too Large." The server refuses to process a request because the request entity is larger than the server is able to process.           |
 | REQ_TOO_LONG      | 414  | "Request-URI Too Long." The Request-URI is too long for the server to process.             |
 | UNSUPPORTED_TYPE  | 415  | "Unsupported Media Type." The server is unable to process the media format in the request.                                   |
-| RANGE_NOT_SATISFIABLE | 416  | "Range Not Satisfiable." The server cannot serve the requested ranges.                                 |
+| RANGE_NOT_SATISFIABLE<sup>12+</sup> | 416  | "Range Not Satisfiable." The server cannot serve the requested ranges.                                 |
 | INTERNAL_ERROR    | 500  | "Internal Server Error." The server encounters an unexpected error that prevents it from fulfilling the request.                              |
 | NOT_IMPLEMENTED   | 501  | "Not Implemented." The server does not support the function required to fulfill the request.                      |
 | BAD_GATEWAY       | 502  | "Bad Gateway." The server acting as a gateway or proxy receives an invalid response from the upstream server.|
@@ -1379,7 +1400,7 @@ httpRequest.request("EXAMPLE_URL").then(data => {
     }
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```

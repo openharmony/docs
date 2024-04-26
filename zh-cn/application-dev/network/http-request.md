@@ -63,7 +63,7 @@ httpRequest.request(
     header: {
       'Content-Type': 'application/json'
     },
-    // 当使用POST请求时此字段用于传递内容
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
     extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
@@ -136,10 +136,14 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 // 用于订阅HTTP流式响应数据接收事件
-let res = '';
+let res = new ArrayBuffer(0);
 httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-  res += data;
-  console.info('res: ' + res);
+   const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
+   const resView = new Uint8Array(newRes);
+   resView.set(new Uint8Array(res));
+   resView.set(new Uint8Array(data), res.byteLength);
+   res = newRes;
+   console.info('res length: ' + res.byteLength);
 });
 // 用于订阅HTTP流式响应数据接收完毕事件
 httpRequest.on('dataEnd', () => {
@@ -160,7 +164,7 @@ let streamInfo: http.HttpRequestOptions = {
   header: {
     'Content-Type': 'application/json'
   },
-  // 当使用POST请求时此字段用于传递内容
+  // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
   extraData: "data to send",
   expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型
   usingCache: true, // 可选，默认为true

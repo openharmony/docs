@@ -540,6 +540,27 @@ buffer数组，提供blob数据类型。
 >
 > password指的是原始密码，如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型，同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
 
+## HKDFSpec<sup>12+</sup>
+
+密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为HKDF密钥派生函数进行密钥派生时的输入。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| key | string \| Uint8Array | 是   | 是   | 密钥材料。|
+| salt | Uint8Array | 是   | 是   | 盐值。 |
+| info | Uint8Array | 是   | 是   | 拓展信息。 |
+| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
+
+> **说明：**
+>
+> key指的是用户输入的最初的密钥材料。info与salt是可选参数，根据模式的不同可以传空，但是不可不传。
+>
+> 例如：EXTRACT_AND_EXPAND模式需要输入全部的值，EXTRACT_ONLY模式info可以为空，在构建HKDFspec的时候，info传入null值。
+>
+> 默认的模式为EXTRACT_AND_EXPAND，"HKDF|SHA256|EXTRACT_AND_EXPAND"等价于"HKDF|SHA256"。
+
 ## SM2CipherTextSpec<sup>12+</sup>
 
 SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需要用到此对象。可以通过指定此参数，生成符合国密标准的ASN.1格式的SM2密文，反之，也可以从ASN.1格式的SM2密文中获取具体参数。
@@ -779,6 +800,48 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
+```
+### getEncodedDer<sup>12+</sup>
+
+getEncodedDer(format: string): DataBlob
+
+支持根据指定的密钥格式（如采用哪个规范），获取满足ASN.1语法、DER编码的私钥数据。当前仅支持获取PKCS8格式的ecc私钥数据。
+
+> **说明：**
+>
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
+> 1. 本接口可根据入参决定数据的输出格式，当前支持获取PKCS8格式的ecc私钥数据。
+> 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 用于指定当前密钥格式，取值当前仅支持"PKCS8"。 |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的ecc私钥数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
+let returnBlob = key.getEncodedDer('PKCS8');
+console.info('returnBlob data：' + returnBlob.data);
 ```
 
 ## KeyPair
@@ -1434,7 +1497,7 @@ try {
 
 **密钥转换说明**
 
-1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，此数据可用于跨应用传输或持久化存储。
+1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，其中对于ecc私钥，返回的是RFC5915定义格式。上述数据可用于跨应用传输或持久化存储。
 2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
 3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 
@@ -4530,7 +4593,7 @@ createKdf(algName: string): Kdf
 
 | 参数名  | 类型   | 必填 | 说明                              |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前仅支持PBKDF2算法，如"PBKDF2\|SHA1"。 |
+| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前支持PBKDF2、HKDF算法，如"PBKDF2\|SHA256", "HKDF\|SHA256"。 |
 
 **返回值**：
 
@@ -4548,10 +4611,9 @@ createKdf(algName: string): Kdf
 | 17620001 | memory error.          |
 
 **示例：**
-
+- PBKDF2算法
 ```ts
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
-
+let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 ```
 
 ## Kdf<sup>11+</sup>
@@ -4592,23 +4654,45 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-```ts
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-kdf.generateSecret(spec, (err, secret) => {
-  if (err) {
-    console.error("key derivation error.");
-    return;
-  }
-  console.info('key derivation output is ' + secret.data);
-});
-```
+- PBKDF2算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info('key derivation output is ' + secret.data);
+  });
+  ```
+
+- HKDF算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info('key derivation output is ' + secret.data);
+  });
+  ```
 
 ### generateSecret
 
@@ -4641,21 +4725,44 @@ generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
+- PBKDF2算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
 
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-let kdfPromise = kdf.generateSecret(spec);
-kdfPromise.then(secret => {
-  console.info('key derivation output is ' + secret.data);
-}).catch((error: BusinessError) => {
-  console.error("key derivation error.");
-});
-```
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```
+
+- HKDF算法
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
+
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```

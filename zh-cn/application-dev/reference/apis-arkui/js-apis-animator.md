@@ -164,7 +164,7 @@ animator.pause();
 
 cancel(): void
 
-删除动画。
+取消动画。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

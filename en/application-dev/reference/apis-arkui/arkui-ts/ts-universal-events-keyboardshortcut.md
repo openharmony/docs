@@ -8,7 +8,7 @@ You can set one or more custom keyboard shortcuts for a component. The behavior 
 
 ## keyboardShortcut
 
-keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?: () => void)
+keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?: () => void): T
 
 Sets a keyboard shortcut for the component.
 
@@ -21,6 +21,12 @@ Sets a keyboard shortcut for the component.
 | value | string \| [FunctionKey](#functionkey) | Yes   | Character key (which can be entered through the keyboard) or [function key](#functionkey).<br>|
 | keys  | Array\<[ModifierKey](#modifierkey)>    | Yes   | Modifier keys.<br>                              |
 | action  | () => void    | No   | Callback for a custom event after the keyboard shortcut is triggered.<br>                              |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## ModifierKey
 
@@ -50,13 +56,15 @@ Sets a keyboard shortcut for the component.
 
 ## Precautions for Using Keyboard Shortcuts
 
+Keyboard shortcuts, as system keys, take precedence over the common key event **OnKeyEvent**. For details about the key event triggering logic, see [Key Event](../../../ui/arkts-common-events-device-input-event.md#key-event).
+
 | Scenario                                      | Processing Logic                           | Example                                      |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
 | All components that support the **onClick** event                        | Custom keyboard shortcuts are supported.                          | –                                       |
-| Requirements for custom keyboard shortcuts                                | A custom keyboard shortcut consists of one or more modifier keys (**Ctrl**, **Shift**, **Alt**, or any combination thereof) and a character key or function key.| Button('button1').keyboardShortcut('a',[ModifierKey.CTRL]) |
+| Requirements for custom keyboard shortcuts                                | A custom keyboard shortcut consists of one or more modifier keys (Ctrl, Shift, Alt, or any combination thereof) and a character key or function key.| Button('button1').keyboardShortcut('a',[ModifierKey.CTRL]) |
 | Setting one custom keyboard shortcut for multiple components                           | Only the first component in the component tree responds to the custom keyboard shortcut.         | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('a',[ModifierKey.CTRL]) |
 | When the component is focused or not                              | The component responds to the custom keyboard shortcut as long as the window is focused.                     | –                                       |
-| When a single keyboard shortcut is set, it can be canceled by setting the **value**, **keys**, or both of them to null in the **keyboardShortcut** API.<br>When multiple keyboard shortcuts are set, they cannot be canceled.| Canceling the custom keyboard shortcut settings                          | Button('button1').keyboardShortcut('',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('a',[l])<br>Button('button3').keyboardShortcut('',[]) |
+| When a single keyboard shortcut is set, it can be canceled by setting the **value**, **keys**, or both of them to null in the **keyboardShortcut** API.<br>When multiple keyboard shortcuts are set, they cannot be canceled.| Canceling the custom keyboard shortcut settings                          | Button('button1').keyboardShortcut('',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('a',[])<br>Button('button3').keyboardShortcut('',[]) |
 | The independent pipeline sub-window and main window coexist                 | The focused window responds to the keyboard shortcut.                        | –                                       |
 | Ctrl, Shift, or Alt key in the **keys** parameter of the **keyboardShortcut** API| Both the keys on the left or right sides of the keyboard work.                         | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL, ModifierKey.ALT]) |
 | Character key in the **value** parameter of the **keyboardShortcut** API           | The response is case-insensitive.                         | Button('button1').keyboardShortcut('a',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('A',[ModifierKey.CTRL]) |
@@ -82,7 +90,9 @@ Sets a keyboard shortcut for the component.
 
 ## Example
 
-Set a keyboard shortcut. You can then press the modifier key and accompanying key at the same time to trigger the component to respond to the shortcut and trigger the **onClick** event or other custom event.
+### Example 1
+
+This example sets a keyboard shortcut. You can press the modifier key and accompanying key at the same time to trigger the component to respond to the shortcut and trigger the **onClick** event or other custom event.
 
 ```ts
 // xxx.ets
@@ -117,6 +127,39 @@ struct Index {
           this.message = "I clicked Button 4";
           console.log("I clicked user callback.");
         }).keyboardShortcut(FunctionKey.F3, [])
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### Example 2
+
+This example registers and deregisters a keyboard shortcut through clicks.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'disable'
+  @State shortCutEnable: boolean = false
+  @State keyValue: string = ''
+
+  build() {
+    Row() {
+      Column() {
+        Text('Ctrl+A is ' + this.message)
+        Button("Test short cut").onClick((event) => {
+          this.message = "I clicked Button";
+          console.log("I clicked");
+        }).keyboardShortcut(this.keyValue, [ModifierKey.CTRL])
+        Button(this.message + 'shortCut').onClick((event) => {
+          this.shortCutEnable = !this.shortCutEnable;
+          this.message = this.shortCutEnable ? 'disable' : 'enable';
+          this.keyValue = this.shortCutEnable ? 'a' : '';
+        })
       }
       .width('100%')
     }

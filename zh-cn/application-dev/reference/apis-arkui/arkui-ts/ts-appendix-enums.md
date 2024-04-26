@@ -666,7 +666,13 @@ Nullable\<T> {
 灰阶模糊参数。
 | 名称        |   类型   |   必填 | 说明                        |
 | ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
+
+## ForegroundEffectOptions<sup>12+<sup>
+前景效果参数。
+| 名称        |   类型         |   必填 |  说明                        |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
@@ -796,4 +802,10 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| IMAGE | 图片附件键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|

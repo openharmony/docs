@@ -42,7 +42,7 @@ export default class EntryAbility extends UIAbility {
     };
 
     try {
-      this.context.openAtomicService(want, options)
+      this.context.openAtomicService(appId, options)
         .then((result: common.AbilityResult) => {
           // 执行正常业务
           console.info('openAtomicService succeed');

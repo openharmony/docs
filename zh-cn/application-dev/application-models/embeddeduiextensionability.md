@@ -32,7 +32,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为EmbeddedUIExtAbility。
 
-2. 在EmbeddedUIExtAbility目录，右键选择“New &gt; ts File”，新建一个.ts文件并命名为EmbeddedUIExtAbility.ts。
+2. 在EmbeddedUIExtAbility目录，右键选择“New &gt; File”，新建一个.ts文件并命名为EmbeddedUIExtAbility.ts。
 
 3. 打开EmbeddedUIExtAbility.ts文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
@@ -131,6 +131,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 ```ts
 import Want from '@ohos.app.ability.Want'
+import { BusinessError } from '@ohos.base'
 
 @Entry
 @Component
@@ -148,10 +149,10 @@ struct Index {
         EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
           .width('100%')
           .height('90%')
-          .onTerminated((info)=>{
+          .onTerminated((info: TerminationInfo)=>{
             this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
-          .onError((error)=>{
+          .onError((error: BusinessError)=>{
             this.message = 'Error: code = ' + error.code;
           })
       }

@@ -15,4 +15,4 @@ The **ffrt_mutexattr_t** struct describes an FFRT mutex attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| long [storage](_f_f_r_t.md#storage-66) |  | 
+| long [storage](_f_f_r_t.md#storage-66) | Storage size of a mutex attribute.| 

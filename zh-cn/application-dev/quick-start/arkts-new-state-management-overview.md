@@ -31,6 +31,7 @@
 
 - [\@ObservedV2](arkts-new-ObservedV2-and-Trace.md)：\@ObservedV2装饰器装饰class，使得被装饰的class具有深度监听的能力。\@ObservedV2和\@Trace配合使用可以使class中的属性具有深度观测的能力。
 - [\@Trace](arkts-new-ObservedV2-and-Trace.md)：\@Trace装饰器装饰被\@ObservedV2装饰的class中的属性，被装饰的属性具有深度观测的能力。
+- [\@Monitor](arkts-new-monitor.md)：\@Monitor装饰器用在被\@ObservedV2装饰的class中，使得被@Trace装饰的成员属性具有深度监听的能力。
 
 ## 使用限制
 

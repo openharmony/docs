@@ -287,6 +287,51 @@ try {
 }
 ```
 
+## appManager.on<sup>12+</sup>
+
+on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
+
+注册监听Ability首帧绘制完成事件观察者对象，可用于系统应用监听Ability首帧绘制事件。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | 是   | 调用接口类型，固定填'abilityFirstFrameState'字符串。         |
+| observer   | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 是   | 表示待注册的Ability首帧绘制完成事件观察者对象。              |
+| bundleName | string                                                       | 否   | 表示待监听的Ability的应用bundleName，不填表示注册监听所有应用ability首帧绘制完成事件。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+abilityFirstFrameStateObserverForAll: 	 	      		   appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData:             		appManager.AbilityFirstFrameStateData) {
+	  console.log("abilityFirstFrame: ",      	              		  JSON.stringify(abilityStateData));
+    }
+  };
+try {
+  appManager.on('abilityFirstFrameState',      				  	  this.abilityFirstFrameStateObserverForAll);
+} catch(e) {
+  console.log('error log:' + e.code)
+}
+```
+
 ## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
@@ -506,6 +551,45 @@ try {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
   console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.off<sup>12+</sup>
+
+off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
+
+取消注册监听Ability首帧绘制完成事件观察者对象。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 调用接口类型，固定填'abilityFirstFrameState'字符串。         |
+| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 否   | 表示待取消的Ability首帧绘制完成事件观察者对象，不填表示取消所有监听对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+try {
+  appManager.off('abilityFirstFrameState', 		          		this.abilityFirstFrameStateObserverForAll)
+} catch (e) {
+  console.log('error log:' + e.code)
 }
 ```
 

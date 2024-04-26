@@ -178,7 +178,7 @@ onUpdateRequest(request: UpdateRequest): void
   class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
     onUpdateRequest(request: autoFillManager.UpdateRequest) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'on update request, view data is: %{public}s',
-        JSON.stringify(request.data));
+        JSON.stringify(request.viewData));
     }
   }
   ```

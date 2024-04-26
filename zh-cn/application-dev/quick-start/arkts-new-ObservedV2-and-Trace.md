@@ -4,7 +4,7 @@
 
 >**说明：**
 >
->@ObservedV2与@Trace装饰器从API version 12开始支持。
+>\@ObservedV2与\@Trace装饰器从API version 12开始支持。
 
 ## 概述
 
@@ -301,20 +301,13 @@ class Info {
 @Entry
 @Component
 struct Index {
-  @State info: Info = new Info();
-  isRender(index: number): number {
-      console.log(`${index} is rendered`);
-      return 1;
-  }
+  @State info: Info = new Info(); // 无法混用，运行时crash
 
   build() {
     Column() {
       Text(`name: ${this.info.name}`)
-        .opacity(this.isRender(1))
       Text(`age: ${this.info.age}`)
-        .opacity(this.isRender(2))
       Text(`jobName: ${this.info.job.jobName}`)
-        .opacity(this.isRender(3))
       Button("change age")
         .onClick(() => {
           this.info.age++;
@@ -327,16 +320,6 @@ struct Index {
   }
 }
 ```
-
-上述示例代码使用\@ObservedV2与\@Trace装饰Info类，并用\@State创建Info类的实例。当点击按钮"change age"时，输出以下日志：
-
-```ts
-1 is rendered
-2 is rendered
-3 is rendered
-```
-
-尽管只改变了age的值，但是日志反映出三个Text组件都进行了刷新。这说明被\@ObservedV2与\@Trace装饰的Info类失去了属性级更新的能力，而是使用了\@State的观测能力，因此出现了冗余更新的问题。所以，不能将\@ObservedV2与\@Trace装饰的类和\@State混合使用。
 
 ## 使用场景
 

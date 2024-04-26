@@ -227,19 +227,19 @@ class ClassA {
 
 @Observed
 class ClassB {
-  public a: ClassA;
+  public classA: ClassA;
 
-  constructor(a: ClassA) {
-    this.a = a;
+  constructor(classA: ClassA) {
+    this.classA = classA;
   }
 }
 
 @Observed
 class ClassD {
-  public c: ClassC;
+  public classC: ClassC;
 
-  constructor(c: ClassC) {
-    this.c = c;
+  constructor(classC: ClassC) {
+    this.classC = classC;
   }
 }
 
@@ -253,12 +253,28 @@ class ClassC extends ClassA {
     this.k = k;
   }
 }
-```
 
+@Component
+struct ViewA {
+  label: string = 'ViewA';
+  @ObjectLink a: ClassA;
 
-  以下组件层次结构呈现的是嵌套类对象的数据结构。
+  build() {
+    Column() {
+      Text(`ViewC [${this.label}] this.a.c = ${this.a.c}`)
+        .fontColor('#ffffffff')
+        .backgroundColor('#ff3fc4c4')
+        .height(50)
+        .borderRadius(25)
+      Button(`ViewA: this.a.c add 1`)
+        .backgroundColor('#ff7fcf58')
+        .onClick(() => {
+          this.a.c += 1;
+        })
+    }
+  }
+}
 
-```ts
 @Component
 struct ViewC {
   label: string = 'ViewC1';
@@ -267,7 +283,7 @@ struct ViewC {
   build() {
     Row() {
       Column() {
-        Text(`ViewC [${this.label}] this.a.c = ${this.c.c}`)
+        Text(`ViewC [${this.label}] this.c.c = ${this.c.c}`)
           .fontColor('#ffffffff')
           .backgroundColor('#ff3fc4c4')
           .height(50)
@@ -292,13 +308,23 @@ struct ViewB {
 
   build() {
     Column() {
-      ViewC({ label: 'ViewC #3',
-        c: this.child.c })
-      Button(`ViewC: this.child.c.c add 10`)
+      ViewA({ label: 'ViewA #1', a: this.b.classA })
+      ViewC({ label: 'ViewC #3', c: this.child.classC })
+      Button(`ViewC: this.child.classC.c add 10`)
         .backgroundColor('#ff7fcf58')
         .onClick(() => {
-          this.child.c.c += 10
-          console.log('this.child.c.c:' + this.child.c.c)
+          this.child.classC.c += 10
+          console.log('this.child.classC.c:' + this.child.classC.c)
+        })
+      Button(`ViewB: this.b.classA = new ClassA(10)`)
+        .backgroundColor('#ff7fcf58')
+        .onClick(() => {
+          this.b.classA = new ClassA(10);
+        })
+      Button(`ViewB: this.b = new ClassB(ClassA(20))`)
+        .backgroundColor('#ff7fcf58')
+        .onClick(() => {
+          this.b = new ClassB(new ClassA(20));
         })
     }
   }
@@ -311,15 +337,15 @@ struct ViewB {
 ViewB中的事件句柄：
 
 
-- this.child.c = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
+- this.b.classA = new ClassA(10) 和this.b = new ClassB(new ClassA(20))： 对@State装饰的变量b和其属性的修改。
 
-- this.child.c.c = ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+- this.child.classC.c = ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
 ViewC中的事件句柄：
 
 
-- this.c.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.c.c += 1：对\@ObjectLink变量c的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.a = new ClassA(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
@@ -739,6 +765,8 @@ struct Child {
   }
 }
 ```
+
+![ObjectLink-support-union-types](figures/ObjectLink-support-union-types.gif)
 
 ## 常见问题
 
@@ -1560,7 +1588,9 @@ struct ParentComp {
 
 ### 在@Observed装饰类的构造函数中延时更改成员变量
 
-在状态管理中，使用@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者在类的构造函数中对成员变量进行赋值或者修改时，此修改不会经过代理（因为是直接对数据源中的值进行修改），也就无法被观测到。所以，如果开发者在类的构造函数中使用定时器修改类中的成员变量，即使该修改成功执行了，也不会触发UI的刷新。
+在状态管理中，使用@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
+
+当开发者在类的构造函数中对成员变量进行赋值或者修改时，此修改不会经过代理（因为是直接对数据源中的值进行修改），也就无法被观测到。所以，如果开发者在类的构造函数中使用定时器修改类中的成员变量，即使该修改成功执行了，也不会触发UI的刷新。
 
 【反例】
 
@@ -1652,65 +1682,3 @@ struct Index {
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
 
-### 在@Observed装饰的类内使用static方法进行初始化
-
-在@Observed装饰的类内，尽量避免使用static方法进行初始化，在创建时会绕过Observed的实现，导致无法被代理，UI不刷新。
-
-```ts
-@Entry
-@Component
-struct MainPage {
-  @State viewModel: ViewModel = ViewModel.build();
-
-  build() {
-    Column() {
-      Button("Click")
-        .onClick((event) => {
-          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
-        })
-      SubComponent({ viewModel: this.viewModel.subViewModel })
-    }
-    .padding({ top: 60 })
-    .width('100%')
-    .alignItems(HorizontalAlign.Center)
-  }
-}
-
-@Component
-struct SubComponent {
-  @ObjectLink viewModel: SubViewModel;
-
-  build() {
-    Column() {
-      if (this.viewModel.isShow) {
-        Text("click to take effect");
-      }
-    }
-  }
-}
-
-class ViewModel {
-  subViewModel: SubViewModel = SubViewModel.build(); //内部静态方法创建
-
-  static build() {
-    console.log("ViewModel build()")
-    return new ViewModel();
-  }
-}
-
-@Observed
-class SubViewModel {
-  isShow?: boolean = false;
-
-  static build() {
-    //只有在SubViewModel内部的静态方法创建对象，会影响关联
-    console.log("SubViewModel build()")
-    let viewModel = new SubViewModel();
-    return viewModel;
-  }
-}
-```
-
-上文的示例中，在自定义组件ViewModel中使用static方法进行初始化，此时点击Click按钮，页面中并不会显示click to take effect。
-
-因此，不推荐开发者在自定义的类装饰器内使用static方法进行初始化。

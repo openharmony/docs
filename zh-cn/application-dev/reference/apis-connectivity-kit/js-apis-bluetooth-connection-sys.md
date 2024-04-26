@@ -755,7 +755,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 
 ```js
 import { BusinessError } from '@ohos.base';
-let onReceiveEvent: (data: Array<DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -797,7 +797,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 
 ```js
 import { BusinessError } from '@ohos.base';
-let onReceiveEvent: (data: Array<DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -897,8 +897,8 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 import { BusinessError } from '@ohos.base';
 //promise
 try {
-    connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: conection.DeviceType) => {
-        console.info('getRemoteDeviceType success, DeviceType:' JSON.stringify(data));
+    connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {
+        console.info('getRemoteDeviceType success, DeviceType:' + JSON.stringify(data));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

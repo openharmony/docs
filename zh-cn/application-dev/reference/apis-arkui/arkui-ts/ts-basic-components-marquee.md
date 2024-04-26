@@ -6,7 +6,8 @@
 >  **说明：**
 >
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
+>
+>  为了不影响滚动帧率，建议在滚动类组件中Marquee的个数不超过4个，或者使用[Text](ts-basic-components-text.md)组件的[TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow)替代。
 
 ## 子组件
 
@@ -54,7 +55,7 @@ allowScale(value: boolean)
 
 marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
-设置文本更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)<br>
+跑马灯组件属性更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)<br>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -64,7 +65,7 @@ marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value | MarqueeUpdateStrategy | 否 | 文本更新后，跑马灯的滚动策略<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
+| value |[MarqueeUpdateStrategy](ts-basic-components-marquee.md#marqueeupdatestrategy12枚举说明) | 否 | 跑马灯组件属性更新后，跑马灯的滚动策略<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
 
 ## 事件
 
@@ -101,8 +102,8 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 ## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
-| DEFAULT | 文本更新后， 从开始位置， 运行跑马灯效果。     |
-| PRESERVE_POSITION  | 文本更新后， 保持当前位置， 运行跑马灯效果。 |
+| DEFAULT | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
+| PRESERVE_POSITION  | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
 
 ## 示例
 
