@@ -15,7 +15,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 2. 调用MediaKeySession类中的generateMediaKeyRequest方法，生成许可证请求。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: OptionalData[]): Promise<MediaKeyRequest> {
+   function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: drm.OptionalData[]): Promise<drm.MediaKeyRequest> {
     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
     let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
@@ -50,7 +50,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 4. 调用MediaKeySession类中的checkMediaKeyStatus方法，检查当前会话的许可证状态。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function checkMediaKeyStatus(): MediaKeyStatus[] {
+   function checkMediaKeyStatus(): drm.MediaKeyStatus[] {
      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      try {
@@ -148,7 +148,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    调用MediaKeySession类中的getContentProtectionLevel方法，获取当前会话的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function getContentProtectionLevel(): ContentProtectionLevel {
+   function getContentProtectionLevel(): drm.ContentProtectionLevel {
      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      try {
@@ -184,7 +184,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     调用MediaKeySession类中的destroy方法，销毁MediaKeySession实例。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function destroy(mediaKeySession: MediaKeySession): void {
+    function destroy(mediaKeySession: drm.MediaKeySession): void {
       mediaKeySession.destroy();
       return;
     }
@@ -198,7 +198,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterkeyRequired(mediaKeysession: drm.MediaKeysession): void {
-         mediaKeysession.on('keyRequired', (eventInfo: EventInfo) => {
+         mediaKeysession.on('keyRequired', (eventInfo: drm.EventInfo) => {
            console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
          return;
@@ -216,7 +216,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterkeyExpired(mediaKeysession: drm.MediaKeysession): void {
-         mediaKeysession.on('keyExpired', (eventInfo: EventInfo) => {
+         mediaKeysession.on('keyExpired', (eventInfo: drm.EventInfo) => {
             console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
          return;
@@ -234,7 +234,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterVendorDefined(mediaKeysession: drm.MediaKeysession): void {
-         mediaKeysession.on('vendorDefined', (eventInfo: EventInfo) => {
+         mediaKeysession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
            console.log('vendorDefined' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
          return;
@@ -252,7 +252,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterExpirationUpdated(mediaKeysession: drm.MediaKeysession): void {
-         mediaKeysession.on('expirationUpdate', (eventInfo: EventInfo) => {
+         mediaKeysession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
            console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
          return;
@@ -270,7 +270,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterKeyChanged(mediaKeysession: drm.MediaKeysession): void {
-         mediaKeysession.on('keysChange', (eventInfo: EventInfo) => {
+         mediaKeysession.on('keysChange', (eventInfo: drm.EventInfo) => {
            console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
          return;
