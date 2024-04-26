@@ -115,7 +115,6 @@ getDefaultNet(): Promise\<NetHandle>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -151,7 +150,6 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -454,7 +452,6 @@ getAppNet(): Promise\<NetHandle>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -489,7 +486,6 @@ getAppNetSync(): NetHandle
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -653,7 +649,6 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -688,7 +683,6 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -1022,7 +1016,6 @@ isDefaultNetMetered(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -1057,7 +1050,6 @@ isDefaultNetMeteredSync(): boolean
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -1090,7 +1082,6 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -1161,7 +1152,6 @@ hasDefaultNetSync(): boolean
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -1651,7 +1641,6 @@ clearCustomDnsRules(): Promise\<void\>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -1738,7 +1727,6 @@ unregister(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 201 | Permission denied.|
 | 401 | Parameter error.         |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
