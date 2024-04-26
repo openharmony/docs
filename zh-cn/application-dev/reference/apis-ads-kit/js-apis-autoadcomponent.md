@@ -22,9 +22,9 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 
 自动播放广告组件。
 
-**系统能力：** SystemCapability.Advertising.Ads
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
-**起始版本：** 11
+**系统能力：** SystemCapability.Advertising.Ads
 
 
 **参数：**
