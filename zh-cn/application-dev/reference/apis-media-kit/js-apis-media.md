@@ -1218,7 +1218,7 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 
 selectTrack(index: number): Promise\<void>
 
-使用AVPlayer播放多音轨视频时选择指定音轨播放。[视频播放开发指导](../../media/media/video-playback.md)。
+使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1226,7 +1226,7 @@ selectTrack(index: number): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引。 |
+| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
 
 **返回值：**
 
@@ -1279,7 +1279,7 @@ avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 
 deselectTrack(index: number): Promise\<void>
 
-使用AVPlayer播放多音轨视频时取消指定音轨播放。[视频播放开发指导](../../media/media/video-playback.md)。
+使用AVPlayer播放多音轨视频时取消指定音轨播放，通过Promise获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1287,7 +1287,7 @@ deselectTrack(index: number): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引。 |
+| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
 
 **返回值：**
 
