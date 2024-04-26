@@ -2930,7 +2930,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-开启模态窗口目标窗口的点击事件的监听。
+开启模态窗口自身（例如弹窗）的点击事件的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2938,8 +2938,8 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                          |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
+| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口自身（例如弹窗）的点击事件。 |
+| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口自身（例如弹窗）的回调。 |
 
 **示例：**
 
@@ -3728,7 +3728,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击时是否支持切换焦点窗口，使用callback异步回调。
+设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3772,7 +3772,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击时是否支持切换焦点窗口，使用Promise异步回调。
+设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4501,7 +4501,7 @@ export default class EntryAbility extends UIAbility {
 
 recover(): Promise&lt;void&gt;
 
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在2In1设备类型下生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4823,7 +4823,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
+| height | number | 是   | 设置的窗口标题栏高度，支持所有窗口类型。该参数为整数，如入参为小数则为非法入参，取值范围为[37,112]，单位为vp。 |
 
 **错误码：**
 
@@ -6347,7 +6347,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击时是否支持切换焦点窗口，使用callback异步回调。
+设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -6382,7 +6382,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击时是否支持切换焦点窗口，使用Promise异步回调。
+设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 > **说明：**
 >
