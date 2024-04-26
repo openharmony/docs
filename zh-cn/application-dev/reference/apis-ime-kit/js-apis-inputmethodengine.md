@@ -156,16 +156,13 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 import inputMethodEngine from '@ohos.inputMethodEngine';
 import { BusinessError } from '@ohos.base';
 
-inputMethodEngine.getInputMethodAbility.on('inputStart', (kbController, textInputClient) => {
-    globalThis.textInputClient = textInputClient;
-})
 try {
   let record :Record<string, inputMethodEngine.CommandDataType> = {
     "valueString1": "abcdefg",
     "valueString2": true,
     "valueString3": 500,
   }
-  globalThis.textInputClient.sendPrivateCommand(record).then((err) => {
+  inputClient.sendPrivateCommand(record).then((err) => {
   }).catch(err => {
     if (err !== undefined) {
       let error = err as BusinessError;
@@ -3580,16 +3577,13 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 import inputMethodEngine from '@ohos.inputMethodEngine';
 import { BusinessError } from '@ohos.base';
 
-inputMethodEngine.getInputMethodAbility.on('inputStart', (kbController, textInputClient) => {
-    globalThis.textInputClient = textInputClient;
-})
 try {
   let record :Record<string, inputMethodEngine.CommandDataType> = {
     "valueString1": "abcdefg",
     "valueString2": true,
     "valueString3": 500,
   }
-  globalThis.textInputClient.sendPrivateCommand(record).then((err) => {
+  inputClient.sendPrivateCommand(record).then((err) => {
   }).catch(err => {
     if (err !== undefined) {
       let error = err as BusinessError;
