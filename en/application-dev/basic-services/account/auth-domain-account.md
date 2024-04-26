@@ -12,11 +12,11 @@ import account_osAccount from '@ohos.account.osAccount';
 
 ## Domain Account Authentication by Password
 
-The domain account can be authenticated by password. You can use [auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10) to implement this operation. To call this API, the app must have the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission.
+The domain account can be authenticated by password. You can use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10) to implement this operation. To call this API, the app must have the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission.
 
 **Procedure**
 
-1. Request the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Obtain user input information, including the domain account and its password.
 
@@ -39,7 +39,7 @@ The domain account can be authenticated by password. You can use [auth](../refer
    }
    ```
 
-4. Use [auth](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10) to authenticate the domain account by password.
+4. Use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10) to authenticate the domain account by password.
 
    ```ts
    try {
@@ -51,7 +51,7 @@ The domain account can be authenticated by password. You can use [auth](../refer
 
 ## Domain Account Authentication by a Dialog
 
-If the domain account password is unavailable, display a dialog box to authentication the domain account. You can use [authWithPopup](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10) to implement this operation.
+If the domain account password is unavailable, display a dialog box to authentication the domain account. You can use [authWithPopup](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10) to implement this operation.
 
 **Procedure**
 
@@ -66,7 +66,7 @@ If the domain account password is unavailable, display a dialog box to authentic
    }
    ```
 
-2. Use [authWithPopup](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10) to authenticate the domain account in a dialog box displayed.
+2. Use [authWithPopup](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10) to authenticate the domain account in a dialog box displayed.
 
    ```ts
    try {

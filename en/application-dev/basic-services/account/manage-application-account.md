@@ -1,6 +1,8 @@
 # Managing App Accounts
 
-You can use the [application account SDK](../reference/apis-basic-services-kit/js-apis-appAccount.md) to manage app accounts.
+You can use the [application account SDK](../../reference/apis-basic-services-kit/js-apis-appAccount.md) to manage app accounts.
+
+When an app is uninstalled, the account data of the app will be automatically deleted. When a local account is deleted, the account data of all apps of the local account will be automatically deleted.
 
 ## Before You Start
 
@@ -33,7 +35,7 @@ Create an app account for an application user.
    };
    ```
 
-2. Use [createAccount](../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9) to create an app account based on the specified parameters.
+2. Use [createAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9) to create an app account based on the specified parameters.
 
    ```ts
    try {
@@ -54,7 +56,7 @@ Create an app account for an application user.
    let owner: string = 'com.example.accountjsdemo2';
    ```
 
-2. Use [getAllAccounts](../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the app account list.
+2. Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the app account list.
 
    ```ts
    appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
@@ -76,7 +78,7 @@ Create an app account for an application user.
    let credential: string = 'xxxxxx';
    ```
 
-2. Use [getCredential](../reference/apis-basic-services-kit/js-apis-appAccount.md#getcredential9) to obtain the account credential.
+2. Use [getCredential](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getcredential9) to obtain the account credential.
 
    ```ts
    appAccountManager.getCredential(name, credentialType).then((data: string) => {
@@ -86,7 +88,7 @@ Create an app account for an application user.
    });
    ```
 
-3. Use [setCredential](../reference/apis-basic-services-kit/js-apis-appAccount.md#setcredential9) to set the account credential.
+3. Use [setCredential](../../reference/apis-basic-services-kit/js-apis-appAccount.md#setcredential9) to set the account credential.
 
    ```ts
    appAccountManager.setCredential(name, credentialType, credential).then(() => {
@@ -108,7 +110,7 @@ Create an app account for an application user.
    let value: string = '12';
    ```
 
-2. Use [setCustomData](../reference/apis-basic-services-kit/js-apis-appAccount.md#setcustomdata9) to customize account data.
+2. Use [setCustomData](../../reference/apis-basic-services-kit/js-apis-appAccount.md#setcustomdata9) to customize account data.
 
    ```ts
    appAccountManager.setCustomData(name, key, value).then(() => {
@@ -118,7 +120,7 @@ Create an app account for an application user.
    });
    ```
 
-3. Use [getCustomData](../reference/apis-basic-services-kit/js-apis-appAccount.md#getcustomdata9) to obtain the custom account data.
+3. Use [getCustomData](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getcustomdata9) to obtain the custom account data.
 
    ```ts
    appAccountManager.getCustomData(name, key).then((data: string) => {
@@ -141,7 +143,7 @@ Create an app account for an application user.
    let token: string = 'xxxxxx';
    ```
 
-2. Use [setAuthToken](../reference/apis-basic-services-kit/js-apis-appAccount.md#setauthtoken9) to set an authorization token for the specified authentication type.
+2. Use [setAuthToken](../../reference/apis-basic-services-kit/js-apis-appAccount.md#setauthtoken9) to set an authorization token for the specified authentication type.
 
    ```ts
    appAccountManager.setAuthToken(name, authType, token).then(() => {
@@ -151,7 +153,7 @@ Create an app account for an application user.
    });
    ```
 
-3. Use [getAuthToken](../reference/apis-basic-services-kit/js-apis-appAccount.md#getauthtoken9) to obtain the authentication token of the specified authentication type.
+3. Use [getAuthToken](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getauthtoken9) to obtain the authentication token of the specified authentication type.
 
    ```ts
    appAccountManager.getAuthToken(name, owner, authType).then((data: string) => {
@@ -167,7 +169,7 @@ Delete the app account after the user logs out of the system.
 
 **Procedure**
 
-1. Use [removeAccount](../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to delete the app account.
+1. Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to delete the app account.
 
    ```ts
    let name: string = 'Zhangsan';

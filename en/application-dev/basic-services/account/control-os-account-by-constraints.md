@@ -4,11 +4,11 @@ The **account** module provides a role-based access control mechanism. You can s
 
 ## Constraints
 
-For details about the predefined account constraints, see [Constraints](../reference/apis-basic-services-kit/js-apis-osAccount.md#constraints).
+For details about the predefined account constraints, see [Constraints](../../reference/apis-basic-services-kit/js-apis-osAccount.md#constraints).
 
 ## Before You Start
 
-1. Request the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import the **osAccount** module.
 
@@ -35,7 +35,7 @@ The user can set constraints to restrict the system account behaviors. For examp
    let constraint: string[] = [ 'constraint.wifi.set' ];
    ```
 
-2. Use [setOsAccountConstraints](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountconstraints) to enable the constraints for the system account.
+2. Use [setOsAccountConstraints](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountconstraints) to enable the constraints for the system account.
 
    ```ts
    try {
@@ -49,7 +49,7 @@ The user can set constraints to restrict the system account behaviors. For examp
 ## Checking Whether a Constraint Can be Enabled for a System Account
 
 Before a constraint is enabled for a system account, the application needs to check whether the constraint can be enabled.
-You can use [isOsAccountConstraintEnabled](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to implement this operation.
+You can use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to implement this operation.
 
 **Procedure**
 
@@ -60,7 +60,7 @@ You can use [isOsAccountConstraintEnabled](../reference/apis-basic-services-kit/
    let constraint: string = 'constraint.wifi.set';
    ```
 
-2. Use [isOsAccountConstraintEnabled](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to check whether the constraint can be enabled for the system account.
+2. Use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to check whether the constraint can be enabled for the system account.
 
    ```ts
    let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);

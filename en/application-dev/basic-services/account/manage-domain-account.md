@@ -4,7 +4,7 @@ The user can add a domain account to a device so that the domain account user ca
 
 ## Before You Start
 
-1. Request the following permissions. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the following permissions. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
    - ohos.permission.MANAGE_LOCAL_ACCOUNTS
    - ohos.permission.GET_DOMAIN_ACCOUNTS
 
@@ -23,7 +23,7 @@ The user can add a domain account to a device so that the domain account user ca
 
 ## Checking for a Domain Account
 
-Before adding a domain account, the user may need to check whether the domain account exists. You can use [hasAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10) to check whether a domain account exists.
+Before adding a domain account, the user may need to check whether the domain account exists. You can use [hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10) to check whether a domain account exists.
 
 **Procedure**
 
@@ -36,7 +36,7 @@ Before adding a domain account, the user may need to check whether the domain ac
    }
    ```
 
-2. Use [hasAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10) to check whether the domain account exists.
+2. Use [hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10) to check whether the domain account exists.
 
    ```ts
    let isAccountExisted: boolean = await account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
@@ -44,7 +44,7 @@ Before adding a domain account, the user may need to check whether the domain ac
 
 ## Adding a Domain Account
 
-The user can add a domain account in **Settings** to allow the domain account user to log in to and use the device. You can use [createOsAccountForDomain](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain) to implement this operation.
+The user can add a domain account in **Settings** to allow the domain account user to log in to and use the device. You can use [createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain) to implement this operation.
 
 **Procedure**
 
@@ -57,7 +57,7 @@ The user can add a domain account in **Settings** to allow the domain account us
    };
    ```
 
-2. Use [createOsAccountForDomain](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain) to create a domain account on the device.
+2. Use [createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain) to create a domain account on the device.
 
    ```ts
    try {
@@ -73,11 +73,11 @@ The user can add a domain account in **Settings** to allow the domain account us
 
 ## Deleting a Domain Account
 
-The user can delete the domain account that is not required. Since a domain account is in one-to-one relationship with a system account, you can use [removeOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account. The domain account is deleted as well.
+The user can delete the domain account that is not required. Since a domain account is in one-to-one relationship with a system account, you can use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account. The domain account is deleted as well.
 
 **Procedure**
 
-1. Use [getOsAccountLocalIdForDomain](../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9) to obtain the system account ID based on the domain account information.
+1. Use [getOsAccountLocalIdForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9) to obtain the system account ID based on the domain account information.
 
    ```ts
    let domainInfo: account_osAccount.DomainAccountInfo = {
@@ -92,7 +92,7 @@ The user can delete the domain account that is not required. Since a domain acco
    }
    ```
 
-2. Use [removeOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account.
+2. Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account.
 
    ```ts
    try {
@@ -110,11 +110,11 @@ The user can delete the domain account that is not required. Since a domain acco
 
 ## Obtaining Domain Account Information
 
-After passing the authentication, the user can query their own or others' domain account information. You can use [getAccountInfo](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10) to implement this operation.
+After passing the authentication, the user can query their own or others' domain account information. You can use [getAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10) to implement this operation.
 
 **Procedure**
 
-1. Specify the query options, including the domain name and account name. The option type is [GetDomainAccountInfoOptions](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getdomainaccountinfooptions10).
+1. Specify the query options, including the domain name and account name. The option type is [GetDomainAccountInfoOptions](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getdomainaccountinfooptions10).
 
    ```ts
    let options: account_osAccount.GetDomainAccountInfoOptions = {
@@ -123,7 +123,7 @@ After passing the authentication, the user can query their own or others' domain
    }
    ```
 
-2. Use [getAccountInfo](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10) to obtain domain account information.
+2. Use [getAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getaccountinfo10) to obtain domain account information.
 
    ```ts
    try {

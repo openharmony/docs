@@ -13,14 +13,15 @@ Currently, only the following types of system accounts can be created:
 | ADMIN  | 0      | Administrator account.|
 | NORMAL | 1      | Normal account.  |
 | GUEST  | 2      | Guest account.  |
+| PRIVATE<sup>12+</sup> | 1024  | Private account.  |
 
 ### Account Information
 
-For details about the complete system account information, see [OsAccountInfo](../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo).
+For details about complete system account information, see [OsAccountInfo](../../reference/apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo).
 
 ## Before You Start
 
-1. Request the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import the **osAccount** module.
 
@@ -40,7 +41,7 @@ The default system account is created during the system initialization. The user
 
 **Procedure**
 
-Use [createOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccount) to create a system account with the specified name and type.
+Use [createOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccount) to create a system account with the specified name and type.
 
 ```ts
 let name: string = 'Bob';
@@ -58,7 +59,7 @@ The account management page may need to display information about all the system
 
 **Procedure**
 
-Use [queryAllCreatedOsAccounts](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts) to obtain informatory about all system accounts. 
+Use [queryAllCreatedOsAccounts](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts) to obtain informatory about all system accounts. 
 
 ```ts
 accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
@@ -73,7 +74,7 @@ Detailed information about a system account can be obtained based on the account
 
 **Procedure**
 
-Use [queryOsAccountById](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryosaccountbyid) to obtain detailed information about a system account.
+Use [queryOsAccountById](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryosaccountbyid) to obtain detailed information about a system account.
 
 ```ts
 let localId: number = 100;
@@ -89,7 +90,7 @@ Change the profile picture and nickname of a system account as required.
 
 **Procedure**
 
-1. Use [setOsAccountProfilePhoto](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountprofilephoto) to change the profile picture of a system account.
+1. Use [setOsAccountProfilePhoto](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountprofilephoto) to change the profile picture of a system account.
 
    ```ts
    let localId: number = 100;
@@ -103,7 +104,7 @@ Change the profile picture and nickname of a system account as required.
    });
    ```
 
-2. Use [setOsAccountName](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountname) to change the system account name.
+2. Use [setOsAccountName](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#setosaccountname) to change the system account name.
 
    ```ts
    let localId: number = 100;
@@ -119,11 +120,11 @@ Change the profile picture and nickname of a system account as required.
 
 ## Activating a System Account
 
-System accounts are not activated by default. A system account can be used only after being activated. You can use [activateOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount) to activate a system account.
+System accounts are not activated by default. A system account can be used only after being activated. You can use [activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount) to activate a system account.
 
 **Procedure**
 
-Use [activateOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount) to activate a system account.
+Use [activateOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#activateosaccount) to activate a system account.
 
 ```ts
 let localId: number = 101;
@@ -142,7 +143,7 @@ Delete a system account that is no longer used.
 
 **Procedure**
 
-Use [removeOsAccount](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete a system account.
+Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete a system account.
 
 ```ts
 let localId: number = 101;
