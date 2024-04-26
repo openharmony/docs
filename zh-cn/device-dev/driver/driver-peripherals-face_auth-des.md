@@ -206,7 +206,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
        }
        auto *hdfFaceAuthInterfaceHost = new (std::nothrow) HdfFaceAuthInterfaceHost;
        if (hdfFaceAuthInterfaceHost == nullptr) {
-           IAM_LOGE("failed to create create HdfFaceAuthInterfaceHost object");
+           IAM_LOGE("failed to create HdfFaceAuthInterfaceHost object");
            return HDF_FAILURE;
        }
 
