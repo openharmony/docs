@@ -18,8 +18,8 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: OptionalData[]): Promise<MediaKeyRequest> {
     let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-    var uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-    var optionalData = [
+    let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+    let optionalData = [
      {name : "optionalDataNameA", value : "optionalDataValueA"},
      {name : "optionalDataNameB", value : "optionalDataValueB"},
     ];
@@ -84,7 +84,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    function generateOfflineReleaseRequest(mediakeyId: Uint8Array): Promise<Uint8Array> {
      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     var offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+     let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
        console.log('processMediaKeyResponse:' + mediaKeyId);
      }).catch((err: BusinessError) => {
@@ -107,7 +107,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    function processOfflineReleaseResponse(response: Uint8Array): Promise<void> {
      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     var offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+     let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
       console.log('processMediaKeyResponse:' + mediaKeyId);
      }).catch((err: BusinessError) => {
@@ -129,7 +129,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    function restoreOfflineMediaKeys(mediakeyId: Uint8Array): Promise<void> {
      let mediaKeysystem: drm.mediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-     var response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+     let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
      mediaKeySession.processOfflineReleaseResponse(mediakeyId, response).then(() => {
        console.log('processOfflineReleaseResponse');
      }).catch((err: BusinessError) => {
