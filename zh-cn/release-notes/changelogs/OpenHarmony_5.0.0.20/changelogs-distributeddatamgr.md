@@ -12,11 +12,9 @@ OpenHarmony 5.0.0.20 版本相较于OpenHarmony 之前的版本，分布式数�
 
 **变更原因** 
 
-使用close接口后，出现新的异常场景。
+新增close接口，该接口可以主动关闭DataShareHelper实例。
 
 **变更影响**
-
-非兼容性变更，需要使用者进行适配。
 
 变更前：业务不会主动关闭DataShareHelper实例。
 
