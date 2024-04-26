@@ -909,6 +909,7 @@ SymbolSpan样式选项。
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，只有图片或BuilderSpan放在段首时不支持。 |
 | wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
+| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符，当开发者配置为非法属性值时，会按照默认值GREEDY生效。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -3420,3 +3421,81 @@ struct SoftKeyboardEnterTypeExample {
 ```
 
 ![SoftKeyboardEnterType](figures/richeditorentertype.gif)
+
+### 示例19
+lineBreakStrategy属性值设置、更新、查询使用示例。
+
+```ts
+@Entry
+@Component
+struct LineBreakStrategyExample {
+  controller: RichEditorController = new RichEditorController();
+  private spanParagraphs: RichEditorParagraphResult[] = [];
+  @State lineBreakOptionStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+  @State attributeValue: string = ""
+  @State testStr: string = "0123456789,0123456789,0123456789,0123456789,0123456789."
+  build() {
+    Column() {
+      RichEditor({ controller: this.controller })
+        .onReady(() => {
+          this.controller.addTextSpan(this.testStr, {
+            style: {
+              fontColor: Color.Black,
+              fontSize: "32",
+            },
+            paragraphStyle: {
+              textAlign: TextAlign.Start,
+              lineBreakStrategy: LineBreakStrategy.GREEDY
+            }
+          })
+        })
+        .width(400)
+        .height(300)
+        .margin({bottom:20})
+        .draggable(false)
+      Column(){
+        Text('linebreak属性值为：' + this.attributeValue).fontSize(20).fontColor(Color.Black)
+      }.margin({bottom: 10})
+      Column({ space: 10 }) {
+        Button("设置折行类型GREEDY").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              lineBreakStrategy: LineBreakStrategy.GREEDY,
+            }
+          })
+        })
+        Button("设置折行类型HIGH_QUALITY").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              lineBreakStrategy: LineBreakStrategy.HIGH_QUALITY,
+            }
+          })
+        })
+        Button("设置折行类型BALANCED").onClick(() => {
+          this.controller.updateParagraphStyle({ start: -1, end: -1,
+            style: {
+              lineBreakStrategy: LineBreakStrategy.BALANCED,
+            }
+          })
+        })
+        Divider()
+        Row(){
+          Button("获取linebreak属性值").onClick(() => {
+            this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 })
+            console.log("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs))
+            this.spanParagraphs.forEach(item => {
+              if(typeof(item as RichEditorParagraphResult)['style'] != 'undefined'){
+                this.attributeValue = ""
+                console.info('lineBreakStrategy:'+ JSON.stringify((item as RichEditorParagraphResult)['style']))
+                this.attributeValue += this.lineBreakOptionStr[Number((item as RichEditorParagraphResult)['style'].lineBreakStrategy)];
+              }
+            })
+          })
+        }
+      }
+    }
+  }
+}
+```
+
+![LineBreakStrategy](figures\richEditorLineBreak.gif)
