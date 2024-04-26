@@ -3,7 +3,7 @@
 
 ## 版本概述
 
-当前版本在OpenHarmony 4.0 Release的基础上，修复了内存泄漏及linux kernel等开源组件的安全漏洞，增强了系统安全性。修复了部分系统稳定性的issue，增强了系统稳定性。更新配套的SDK版本。
+当前版本在OpenHarmony 4.0 Release的基础上，修复了部分功能问题、内存泄漏问题及开源组件的安全漏洞，增强了系统安全性。修复了部分系统稳定性的issue，增强了系统稳定性。更新配套的SDK版本。
 
 
 ## 配套关系
@@ -100,17 +100,6 @@
 
 本版本在OpenHarmony 4.0 Release的基础上有如下变更：
 
-
-### API变更
-
-- *OpenHarmony 4.0 Release相比4.0 Beta2的API差异请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/release-notes/api-diff/v4.0-Release-vs-v4.0-beta2/Readme-CN.md)。*
-- *OpenHarmony 4.0 Release相比3.2 Release的API差异请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/release-notes/api-diff/v4.0-Release-vs-v3.2-Release/Readme-CN.md)。*
-
-*此外，从4.0 Beta2至今，有少量接口变更可能影响此前应用工程的兼容性或需要您关注，详细的变更说明请[点击这里查看](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Release/zh-cn/release-notes/changelogs/v4.0-Release/Readme-CN.md)*
-
-3.2.5 Release对比3.2.4 Release API接口无变更。
-
-
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
@@ -118,7 +107,7 @@
 
 ## 修复缺陷列表
 
-**表4** 修复缺陷ISSUE列表
+**表3** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 |
 | -------- | -------- |
@@ -211,4 +200,4 @@
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | -------- | -------- | -------- | -------- |
-| I827LU | 进入设置反复打开关闭蓝牙开关会出现内存泄漏，经测试一个小时泄露15MB。 | 开关一次蓝牙系统内存泄露8.3KB，重启设备后可恢复，影响可控。<br />对于需要使用OpenHarmony进行商业开发的伙伴，建议使用芯片或硬件自带蓝牙模块的协议栈以规避此问题。 | 12月30日 |
+| I827LU | 进入设置反复打开关闭蓝牙开关会出现内存泄漏，经测试一个小时泄露15MB。 | 开关一次蓝牙系统内存泄露8.3KB，重启设备后可恢复，影响可控。<br />对于需要使用OpenHarmony进行商业开发的伙伴，建议使用芯片或硬件自带蓝牙模块的协议栈以规避此问题。 | 5月30日 |
