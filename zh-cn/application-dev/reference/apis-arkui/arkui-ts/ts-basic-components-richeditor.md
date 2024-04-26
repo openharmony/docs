@@ -357,7 +357,7 @@ onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
 
 | 类型                                            | 必填 | 说明                     |
 | ----------------------------------------------- | ---- | ------------------------ |
-| Array<[RichEditorTextSpanResult>](#richeditortextspanresult)> | 是   | 文本变化后信息。与RichEditorChangeValue中的replacedSpans相同。 |
+| Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是   | 文本变化后信息。与RichEditorChangeValue中的replacedSpans相同。 |
 
 ### onCut<sup>12+</sup>
 
