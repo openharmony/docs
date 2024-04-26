@@ -358,6 +358,104 @@ try {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
+## deviceManager.queryDeviceInfo<sup>12+</sup>
+
+queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
+
+查询设备详细信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+**系统能力：**  SystemCapability.Driver.ExternalDevice
+
+**参数：**
+
+| 参数名   | 类型   | 必填  | 说明                           |
+| -------- | ------ |-----| ------------------------------ |
+| deviceId | number | 否   | 设备ID，通过queryDevices获得。 |
+
+**返回值：**
+
+| 类型                                                     | 说明        |
+|--------------------------------------------------------|-----------|
+| Array&lt;Readonly&lt;[DeviceInfo](#deviceInfo)&gt;&gt; | 设备详细信息列表。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息                                                                  |
+|----------|-----------------------------------------------------------------------|
+| 201      | The permission check failed.                                          |
+| 202      | Permission denied. A non-system application cannot call a system API. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types.        |
+| 26300001 | ExternalDeviceManager service exception.                              |
+
+**示例：**
+
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
+try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
+  let deviceInfos : Array<deviceManager.DeviceInfo> = deviceManager.queryDeviceInfo(12345678);
+  for (let item of deviceInfos) {
+    console.info(`Device id is ${item.deviceId}`)
+  }
+} catch (error: BusinessError) {
+  console.error(`Failed to query device info. Code is ${error.code}, message is ${error.message}`);
+}
+```
+## deviceManager.queryDriverInfo<sup>12+</sup>
+
+queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
+
+查询驱动详细信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+**系统能力：**  SystemCapability.Driver.ExternalDevice
+
+**参数：**
+
+| 参数名       | 类型     | 必填  | 说明                         |
+|-----------|--------|-----|----------------------------|
+| driverUid | string | 否   | 驱动UID，通过queryDeviceInfo获得。 |
+
+**返回值：**
+
+| 类型                                                     | 说明        |
+|--------------------------------------------------------|-----------|
+| Array&lt;Readonly&lt;[DriverInfo](#driverInfo)&gt;&gt; | 驱动详细信息列表。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息                                                                  |
+|----------|-----------------------------------------------------------------------|
+| 201      | The permission check failed.                                          |
+| 202      | Permission denied. A non-system application cannot call a system API. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types.        |
+| 26300001 | ExternalDeviceManager service exception.                              |
+
+**示例：**
+
+```ts
+import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
+
+try {
+  // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
+  let driverInfos : Array<deviceManager.DriverInfo> = deviceManager.queryDriverInfo("driver-12345");
+  for (let item of driverInfos) {
+    console.info(`driver name is ${item.driverName}`)
+  }
+} catch (error: BusinessError) {
+  console.error(`Failed to query driver info. Code is ${error.code}, message is ${error.message}`);
+}
+```
 
 ## Device
 
@@ -402,3 +500,65 @@ USB设备信息。
 | --------- | ------ | ---- | ------------------- |
 | deviceId<sup>11+</sup>  | number | 是   | 设备ID。  |
 | remote<sup>11+</sup> | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | 是   | 远程驱动程序对象。 |
+
+## <text id="deviceInfo">DeviceInfo<sup>12+</sup></text>
+
+设备详细信息。
+
+**系统能力：** SystemCapability.Driver.ExternalDevice
+
+| 名称              | 类型      | 必填  | 说明          |
+|-----------------|---------|-----|-------------|
+| deviceId        | number  | 是   | 设备ID。       |
+| isDriverMatched | boolean | 是   | 设备是否匹配到驱动。  |
+| driverUid       | string  | 否   | 设备匹配的驱动UID。 |
+
+## USBDeviceInfo<sup>12+</sup>
+
+USB设备详细信息。
+
+**系统能力：** SystemCapability.Driver.ExternalDevice
+
+| 名称                | 类型                                                                 | 必填  | 说明               |
+|-------------------|--------------------------------------------------------------------|-----|------------------|
+| vendorId          | number                                                             | 是   | USB设备Vendor ID。  |
+| productId         | number                                                             | 是   | USB设备Product ID。 |
+| interfaceDescList | Array&lt;Readonly&lt;[USBInterfaceDesc](#usbInterfaceDesc)&gt;&gt; | 是   | USB设备接口描述符列表。    |
+
+## <text id="usbInterfaceDesc">USBInterfaceDesc<sup>12+</sup></text>
+
+USB设备接口描述符
+
+**系统能力：** SystemCapability.Driver.ExternalDevice
+
+| 名称               | 类型     | 必填  | 说明     |
+|------------------|--------|-----|--------|
+| bInterfaceNumber | number | 是   | 接口编号。  |
+| bClass           | number | 是   | 类型代码。  |
+| bSubClass        | number | 是   | 子类型代码。 |
+| bProtocol        | number | 是   | 协议代码。  |
+
+## <text id="driverInfo">DriverInfo<sup>12+</sup></text>
+
+驱动详细信息
+
+**系统能力：** SystemCapability.Driver.ExternalDevice
+
+| 名称            | 类型                  | 必填  | 说明     |
+|---------------|---------------------|-----|--------|
+| busType       | [BusType](#bustype) | 是   | 总线类型。  |
+| driverUid     | string              | 是   | 驱动Uid。 |
+| driverName    | string              | 是   | 驱动名称。  |
+| driverVersion | string              | 是   | 驱动版本。  |
+| description   | string              | 是   | 驱动描述。  |
+
+## USBDriverInfo<sup>12+</sup>
+
+USB设备驱动详细信息
+
+**系统能力：** SystemCapability.Driver.ExternalDevice
+
+| 名称            | 类型                  | 必填  | 说明                |
+|---------------|---------------------|-----|-------------------|
+| productIdList | Array&lt;number&gt; | 是   | 驱动支持的USB设备产品ID列表。 |
+| vendorIdList  | Array&lt;number&gt; | 是   | 驱动支持的USB设备厂商ID列表。 |
