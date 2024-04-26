@@ -2,9 +2,6 @@
 
 - [应用开发导读](application-dev-guide.md)
 - 了解OpenHarmony
-  - [了解OpenHarmony开源项目](../OpenHarmony-Overview_zh.md)
-  - [术语](../glossary.md)
-  - [版本说明](../release-notes/Readme.md)
 - [入门](quick-start/Readme-CN.md)
 - 开发
   - [应用模型](application-models/Readme-CN.md)
@@ -41,4 +38,3 @@
 - [API参考](reference/Readme-CN.md)
 - [常见问题](faqs/Readme-CN.md)
 - 贡献
-  - [参与贡献](../contribute/贡献文档.md)
