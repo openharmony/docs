@@ -8,7 +8,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 本开发指导将以SoundPool进行一次低时延播放音频的过程为例，向开发者讲解如何使用SoundPool。详细的API声明请参考[SoundPool API参考](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md)。
 
-过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考[音频解码支持](../avcodec/audio-decoding.md)），设置播放参数（循环模式/播放优先级等），播放控制（播放/停止），释放资源。
+过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考<!--start_del-->[音频解码支持](../avcodec/audio-decoding.md)<!--del_end-->），设置播放参数（循环模式/播放优先级等），播放控制（播放/停止），释放资源。
 
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 

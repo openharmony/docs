@@ -15,7 +15,7 @@
    >
    > 开发者需根据实际情况，确认资源有效性并设置：
    >
-   > - 如果设置fdSrc，可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
+   > - 如果设置fdSrc，可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考]<!--start_del-->(../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)<!--del_end-->。
    >
    > - 如果设置dataSrc，必须正确设置dataSrc中的callback属性，确保callback被调用时能正确读取到对应资源，使用应用沙箱路径访问对应资源。
 
