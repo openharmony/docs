@@ -13,8 +13,12 @@
    ```ts
    import drm from '@ohos.multimedia.drm';
    ```
+2. 导入BusinessError模块，用于获取drm模块相关接口抛出的错误码。
 
-2. 通过isMediaKeySystemSupported方法，查询设备是否支持对应的插件类型。
+   ```ts
+   import {BusinessError} from '@ohos.base';
+   ```
+3. 通过isMediaKeySystemSupported方法，查询设备是否支持对应的插件类型。
 
    > **说明：**
    >
@@ -29,7 +33,7 @@
    }
    ```
 
-3. 通过drm的createMediaKeySystem(name: string)方法，创建MediaKeySystem实例，同步返回结果，创建失败，不可继续后续操作。
+4. 通过drm的createMediaKeySystem(name: string)方法，创建MediaKeySystem实例，同步返回结果，创建失败，不可继续后续操作。
 
    > **说明：**
    >
@@ -44,7 +48,7 @@
    }
    ```
 
-4. 通过getMediaKeySystemName方法，获取设备支持对应的插件类型的name和uuid。
+5. 通过getMediaKeySystemName方法，获取设备支持对应的插件类型的name和uuid。
 
    > **说明：**
    >
