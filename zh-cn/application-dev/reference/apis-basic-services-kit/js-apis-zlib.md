@@ -386,7 +386,7 @@ try {
 
 ## zlib.getOriginalSize<sup>12+</sup>
 
-getOriginalSize(inFile: string): Promise\<number>
+getOriginalSize(compressedFile: string): Promise\<number>
 
 获取压缩文件的原始大小，使用Promise异步返回。成功时返回压缩文件的原始大小，失败时返回错误码。
 
@@ -396,7 +396,7 @@ getOriginalSize(inFile: string): Promise\<number>
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的压缩文件的文件路径，只支持zip格式压缩文件。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| compressedFile  | string              | 是   | 指定的压缩文件的文件路径，只支持zip格式压缩文件。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 
 **返回值：**
 
@@ -421,10 +421,10 @@ getOriginalSize(inFile: string): Promise\<number>
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
-let inFile = '/data/storage/el2/base/temp/test.zip';
+let compressedFile = '/data/storage/el2/base/temp/test.zip';
 
 try {
-    zlib.getOriginalSize(inFile).then((data: number) => {
+    zlib.getOriginalSize(compressedFile).then((data: number) => {
         console.info(`getOriginalSize success. getOriginalSize: ${data}`);
     }).catch((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
