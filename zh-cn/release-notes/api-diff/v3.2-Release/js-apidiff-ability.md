@@ -518,6 +518,7 @@
 |新增|NA|类名：Context;<br>方法or属性：preferencesDir: string;|Context.d.ts|
 |新增|NA|类名：Context;<br>方法or属性：bundleCodeDir: string;|Context.d.ts|
 |新增|NA|类名：Context;<br>方法or属性：distributedFilesDir: string;|Context.d.ts|
+|新增|NA|类名：Context;<br>方法or属性：cloudFileDir: string;|Context.d.ts|
 |新增|NA|类名：Context;<br>方法or属性：eventHub: EventHub;|Context.d.ts|
 |新增|NA|类名：Context;<br>方法or属性：area: contextConstant.AreaMode;|Context.d.ts|
 |新增|NA|类名：Context;<br>方法or属性：createBundleContext(bundleName: string): Context;|Context.d.ts|

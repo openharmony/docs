@@ -630,6 +630,7 @@
 |model有变化|方法名 or 属性名：cacheDir<br>model:@StageModelOnly|方法名 or 属性名：cacheDir<br>model:@stagemodelonly|Context.d.ts|
 |model有变化|方法名 or 属性名：tempDir<br>model:@StageModelOnly|方法名 or 属性名：tempDir<br>model:@stagemodelonly|Context.d.ts|
 |model有变化|方法名 or 属性名：distributedFilesDir<br>model:@StageModelOnly|方法名 or 属性名：distributedFilesDir<br>model:@stagemodelonly|Context.d.ts|
+|model有变化|方法名 or 属性名：cloudFileDir<br>model:@StageModelOnly|方法名 or 属性名：cloudFileDir<br>model:@stagemodelonly|Context.d.ts|
 |model有变化|方法名 or 属性名：eventHub<br>model:@StageModelOnly|方法名 or 属性名：eventHub<br>model:@stagemodelonly|Context.d.ts|
 |model有变化|方法名 or 属性名：area<br>model:@StageModelOnly|方法名 or 属性名：area<br>model:@stagemodelonly|Context.d.ts|
 |model有变化|方法名 or 属性名：createBundleContext<br>model:@StageModelOnly|方法名 or 属性名：createBundleContext<br>model:@stagemodelonly|Context.d.ts|

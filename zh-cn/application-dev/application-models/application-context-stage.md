@@ -95,6 +95,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/temp |
   | databaseDir | <路径前缀>/<加密等级>/database |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles |
+  | cloudFileDir | <路径前缀>/el2/hmdfs/clouds/data |
 
   示例代码如下所示。
 
@@ -123,6 +124,7 @@
           let bundleCodeDir = applicationContext.bundleCodeDir;
           let distributedFilesDir = applicationContext.distributedFilesDir;
           let preferencesDir = applicationContext.preferencesDir;
+          let cloudFileDir = applicationContext.cloudFileDir;
           // 获取应用文件路径
           let filePath = tempDir + 'test.txt';
           hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
@@ -147,6 +149,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
+  | cloudFileDir | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
 
   示例代码如下所示。
 
@@ -174,6 +177,7 @@
           let bundleCodeDir = this.context.bundleCodeDir;
           let distributedFilesDir = this.context.distributedFilesDir;
           let preferencesDir = this.context.preferencesDir;
+          let cloudFileDir = this.context.cloudFileDir;
           // 获取应用文件路径
           let filePath = tempDir + 'test.txt';
           hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
