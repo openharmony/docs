@@ -20,11 +20,11 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 
 | 名称                                  |    值   |   说明                         |
 | ------------------------------------- | -------- | ---------------------------- |
-| INVALID_PARAMS                        | 401      | 非法入参。元服务API：从API version 11开始，该接口支持在元服务中使用。                 |
+| INVALID_PARAMS                        | 401      | 非法入参。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                 |
 | NOT_SUPPORT                           | 801      | 操作不支持。                 |
-| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。元服务API：从API version 11开始，该接口支持在元服务中使用。                   |
+| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                   |
 | ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。             |
-| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。元服务API：从API version 11开始，该接口支持在元服务中使用。     |
+| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
 
 ## DataBlob
 
