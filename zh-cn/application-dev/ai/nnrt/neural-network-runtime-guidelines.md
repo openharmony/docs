@@ -347,7 +347,7 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         returnCode = OH_NNModel_SetTensorType(model, 2, OH_NN_ADD_ACTIVATIONTYPE);
         CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
 
-        // 将激活函数类型设置为OH_NNBACKEND_FUSED_NONE，表示该算子不添加激活函数。
+        // 将激活函数类型设置为OH_NN_FUSED_NONE，表示该算子不添加激活函数。
         int8_t activationValue = OH_NN_FUSED_NONE;
         returnCode = OH_NNModel_SetTensorData(model, 2, &activationValue, sizeof(int8_t));
         CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor data failed.");
