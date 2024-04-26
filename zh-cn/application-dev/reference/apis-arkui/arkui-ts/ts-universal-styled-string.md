@@ -35,7 +35,7 @@ getString(): string
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| string | 属性字符串文本内容。<br/>**说明：** <br/>当属性字符串中包含Attachment时，其返回的结果用空格表示。 |
+| string | 属性字符串文本内容。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的结果用空格表示。 |
 
 ### length
 
@@ -49,7 +49,7 @@ readonly length: number
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| number | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含Attachment时，其返回的长度按1计算。 |
+| number | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的长度按1计算。 |
 
 ### equals
 
@@ -160,7 +160,7 @@ insertString(start: number , other: string): void
 
 移除指定范围的字符串。
 
-当属性字符串中包含Attachment时，同样生效。
+当属性字符串中包含图片时，同样生效。
 
 removeString(start: number , length: number): void
 
@@ -207,7 +207,7 @@ setStyle(spanStyle: SpanStyle): void
 
 被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。
 
-当属性字符串中包含Attachment时，同样生效。
+当属性字符串中包含图片时，同样生效。
 
 removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
@@ -227,7 +227,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 被清空样式类型对象属性使用的是对应[Text](./ts-basic-components-text.md)组件属性的设置值，若Text组件未设置值，则使用对应Text组件属性的默认值。
 
-当属性字符串中包含Attachment时，同样生效。
+当属性字符串中包含图片时，同样生效。
 
 removeStyles(start: number , length: number): void
 
@@ -492,7 +492,7 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 
 ## ImageAttachment
 
-图片附件对象说明。
+图片对象说明。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -518,7 +518,7 @@ constructor(value: ImageAttachmentInterface)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [ImageAttachmentInterface](#imageattachmentinterface对象说明) | 是   | 图片附件设置项。 |
+| value | [ImageAttachmentInterface](#imageattachmentinterface对象说明) | 是   | 图片设置项。 |
 
 ## ImageAttachmentInterface对象说明
 
@@ -981,7 +981,7 @@ struct styled_string_demo3 {
 
 ### 示例4
 
-属性字符串图片附件接口使用示例
+属性字符串图片接口使用示例
 
 ```ts
 // xxx.ets
