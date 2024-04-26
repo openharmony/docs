@@ -188,7 +188,7 @@ import window from '@ohos.window';
 
 ## WindowLimits<sup>11+</sup>
 
-窗口尺寸限制参数。
+窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
