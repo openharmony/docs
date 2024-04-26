@@ -483,7 +483,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 | url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>从API version 11开始不支持webm。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。 |
-| surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
+| surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId]<!--start_del-->(../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)<!--del_end-->。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 |
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>在第一次调用[play()](#play9)之前设置， 以便此后中断模式生效。 |
@@ -586,7 +586,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
+| callback | [ErrorCallback]<!--start_del-->(../apis-basic-services-kit/js-apis-base.md#errorcallback)<!--del_end--> | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
 
 **错误码：**
 
@@ -1139,12 +1139,12 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/js-apis-drm.md#mediakeysession) | 是   | 解密会话 |
+| mediaKeySession | [drm.MediaKeySession]<!--start_del-->(../apis-drm-kit/js-apis-drm.md#mediakeysession) <!--del_end--> | 是   | 解密会话 |
 | secureVideoPath | boolean | 是 | 安全视频通路，true表示选择安全视频通路，false表示选择非安全视频通路 |
 
 **示例：**
 
-关于drm模块的示例具体可见[js-apis-drm.md](../apis-drm-kit/js-apis-drm.md)。
+关于drm模块的示例具体可见[js-apis-drm.md]<!--start_del-->(../apis-drm-kit/js-apis-drm.md)<!--del_end-->。
 ```ts
 import drm from '@ohos.multimedia.drm'
 
@@ -1170,7 +1170,7 @@ getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 
 | 类型                                                   | 说明                                              |
 | ------------------------------------------------------ | ------------------------------------------------- |
-|  Array<[drm.MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)> | MediaKeySystemInfo数组，MediaKeySystemInfo具有uuid和pssh两个属性。 |
+|  Array<[drm.MediaKeySystemInfo]<!--start_del-->(../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)<!--del_end-->> | MediaKeySystemInfo数组，MediaKeySystemInfo具有uuid和pssh两个属性。 |
 
 **示例：**
 
@@ -1436,7 +1436,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.M
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 版权保护信息更新上报事件回调类型，支持的事件：'mediaKeySystemInfoUpdate'，当播放内容的版权保护信息更新时上报事件。 |
-| callback | function | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组，具体可见[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)。 |
+| callback | function | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组，具体可见[MediaKeySystemInfo]<!--start_del-->(../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)<!--del_end-->。 |
 
 **示例：**
 
@@ -1465,7 +1465,7 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: (mediaKeySystemInfo: Array<drm.
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 版权保护信息更新上报事件回调类型，取消注册的事件：'mediaKeySystemInfoUpdate'。 |
-| callback | function | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组，具体可见[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
+| callback | function | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组，具体可见[MediaKeySystemInfo]<!--start_del-->(../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)<!--del_end-->。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
 
 **示例：**
 
@@ -1927,7 +1927,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
+| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd]<!--start_del-->(../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)<!--del_end-->获取。     |
 | offset | number | 否   | 资源偏移量，默认值为0，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
@@ -2029,7 +2029,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 > **说明：**
 >
-> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理]<!--start_del-->(../apis-camera-kit/js-apis-camera.md)<!--del_end-->。
 
 ### 属性
 
@@ -2049,7 +2049,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理]<!--start_del-->(../apis-camera-kit/js-apis-camera.md)<!--del_end-->。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2117,7 +2117,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理]<!--start_del-->(../apis-camera-kit/js-apis-camera.md)<!--del_end-->。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3118,7 +3118,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback]<!--start_del-->(../apis-basic-services-kit/js-apis-base.md#errorcallback)<!--del_end--> | 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
@@ -3468,7 +3468,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>    | 是   | 回调函数。异步返回专辑封面。 |
+| callback | AsyncCallback\<[image.PixelMap]<!--start_del-->(../apis-image-kit/js-apis-image.md#pixelmap7) <!--del_end--> >  | 是   | 回调函数。异步返回专辑封面。 |
 
 **错误码：**
 
@@ -3519,7 +3519,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> |  Promise对象。异步返回专辑封面。 |
+| Promise\<[image.PixelMap]<!--start_del-->(../apis-image-kit/js-apis-image.md#pixelmap7)<!--del_end-->> |  Promise对象。异步返回专辑封面。 |
 
 **错误码：**
 
@@ -4228,7 +4228,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：音频播放中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 播放错误事件回调方法。                                       |
+| callback | [ErrorCallback]<!--start_del-->(../apis-basic-services-kit/js-apis-base.md#errorcallback)<!--del_end--> | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
@@ -5230,7 +5230,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 播放错误事件回调类型，支持的事件包括：'error'。<br>- 'error'：视频播放中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 播放错误事件回调方法。                                       |
+| callback | [ErrorCallback]<!--start_del-->(../apis-basic-services-kit/js-apis-base.md#errorcallback)<!--del_end--> | 是   | 播放错误事件回调方法。                                       |
 
 **示例：**
 
@@ -5505,7 +5505,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：音频录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback]<!--start_del-->(../apis-basic-services-kit/js-apis-base.md#errorcallback)<!--del_end--> | 是   | 录制错误事件回调方法。                                       |
 
 **示例：**
 
@@ -5690,7 +5690,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 | timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
 | param | [PixelMapParams](#pixelmapparams12)     | 是   | 需要获取的缩略图的格式参数。 |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | 是   | 回调函数，异步返回视频缩略图对象。 |
+| callback | AsyncCallback\<[image.PixelMap]<!--start_del-->(../apis-image-kit/js-apis-image.md#pixelmap7)<!--del_del-->>   | 是   | 回调函数，异步返回视频缩略图对象。 |
 
 **错误码：**
 
@@ -5759,7 +5759,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise对象，异步返回视频缩略图对象。 |
+| Promise\<[image.PixelMap]<!--start_del-->(../apis-image-kit/js-apis-image.md#pixelmap7)<!--del_end-->> | Promise对象，异步返回视频缩略图对象。 |
 
 **错误码：**
 

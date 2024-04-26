@@ -886,7 +886,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback]<!--start_del-->(../apis-basic-services-kit/js-apis-base.md#errorcallback) <!--del_end-->| 是   | 录制错误事件回调方法。                                       |
 
 **错误码：**
 
