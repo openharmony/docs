@@ -21,7 +21,7 @@
    > 如果查询为false，说明该设备不支持对应的DRM方案。
 
    ```ts
-   function isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean {
+   function isMediaKeySystemSupported(name: string, mimeType: string, level: drm.ContentProtectionLevel): boolean {
      let isSupported = drm.isMediaKeySystemSupported(name);
      isSupported = drm.isMediaKeySystemSupported(name, mimeType);
      isSupported = drm.isMediaKeySystemSupported(name, mimeType, level);
@@ -36,7 +36,7 @@
    > 如果如果创建失败则返回undefined，说明该设备不支持DRM能力。
 
    ```ts
-   function createMediaKeySystem(name: string): MediaKeySystem {
+   function createMediaKeySystem(name: string): drm.MediaKeySystem {
      let mediaKeySystem = drm.createMediaKeySystem(name);
      if (mediaKeySystem === undefined) {
        return undefined;
@@ -51,7 +51,7 @@
    > 如果查询出的map的size为null，说明该设备中不存在支持的插件。
 
    ```ts
-   function getMediaKeySystemName(name: string): MediaKeySystem {
+   function getMediaKeySystemName(name: string): drm.MediaKeySystem {
     try {
       let description : drm.MediaKeySystemDescripion[] = drm.getMediaKeySystemName();
     } catch (err) {
