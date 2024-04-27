@@ -5,37 +5,7 @@ UI界面除了运行动画之外，还承载着与用户进行实时交互的功
 
 假设对于某一可动画属性，存在正在运行的动画。当UI侧行为改变该属性终点值时，开发者仅需在[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)动画闭包中改变属性值或者改变[animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)接口作用的属性值，即可产生动画。系统会自动衔接之前的动画和当前的动画，开发者仅需要关注当前单次动画的实现。
 
-
-```ts
-import curves from '@ohos.curves'
-class SetSlt{
-  scaleToggle:boolean = true
-  set():void{
-    this.scaleToggle = !this.scaleToggle;
-  }
-}
-let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
-// 第一步：声明相关状态变量
-@state scaleToggle: boolean = true;
-
-...
-Column() {
-  Button()
-    // 第二步：将状态变量设置到相关可动画属性接口
-    .scale(this.scaleToggle ? 1 : 0.5)
-    // 第三步：通过点击事件改变状态变量值，影响可动画属性值
-    .onclick(() => {
-      let sets = new SetSlt()
-      sets.set()
-    })
-    // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
-    .animation(CurAn)
-}
-...
-```
-
-完整示例如下。通过点击click，红色方块的缩放属性会发生变化。当连续快速点击click时，缩放属性的终点值连续发生变化，当前动画也会平滑过渡到朝着新的缩放属性终点值运动。
-
+示例如下。通过点击click，红色方块的缩放属性会发生变化。当连续快速点击click时，缩放属性的终点值连续发生变化，当前动画也会平滑过渡到朝着新的缩放属性终点值运动。
 
 ```ts
 import curves from '@ohos.curves';
@@ -48,6 +18,7 @@ class SetSlt{
 @Entry
 @Component
 struct AnimationToAnimationDemo {
+  // 第一步：声明相关状态变量
   @State SetAnimation: SetSlt = new SetSlt();
 
   build() {
@@ -61,11 +32,14 @@ struct AnimationToAnimationDemo {
         .backgroundColor(0xf56c6c)
         .width(100)
         .height(100)
+        // 第二步：将状态变量设置到相关可动画属性接口
         .scale({ x: this.SetAnimation.isAnimation ? 2 : 1, y: this.SetAnimation.isAnimation ? 2 : 1 })
+        // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
         .animation({ curve: curves.springMotion(0.4, 0.8) })
 
       Button('Click')
         .margin({ top: 200 })
+        // 第三步：通过点击事件改变状态变量值，影响可动画属性值
         .onClick(() => {
           this.SetAnimation.set()
         })
