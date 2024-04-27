@@ -390,8 +390,9 @@ constructor(value?: GestureStyleInterface)
 
 | 名称           | 类型              | 只读   | 必填   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  是  | 获取属性字符串的文本下划线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 否    | 获取属性字符串的文本下划线颜色。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  是  | 获取属性字符串的文本装饰线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 否    | 获取属性字符串的文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 是    | 否    | 获取属性字符串的文本装饰线样式。 |
 
 ### constructor
 
@@ -403,14 +404,15 @@ constructor(value: DecorationStyleInterface)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 事件设置项。 |
+| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 文本装饰线设置项。 |
 
 ## DecorationStyleInterface对象说明
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 下划线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 下划线颜色。 |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
 
 ## BaselineOffsetStyle
 

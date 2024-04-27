@@ -816,3 +816,13 @@ Nullable\<T> {
 | TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
 | GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
+
+## TextDecorationStyle<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| SOLID   | 单实线（默认值）。  |
+| DOUBLE | 双实线。 |
+| DOTTED    | 点线。  |
+| DASHED        | 虚线。 |
+| WAVY        | 波浪线。 |
