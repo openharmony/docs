@@ -50,6 +50,14 @@ on(event: string, callback: Function): void;
 | event | string | 是 | 事件名称。 |
 | callback | Function | 是 | 事件回调，事件触发后调用。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -96,6 +104,14 @@ off(event: string, callback?: Function): void;
 | event | string | 是 | 事件名称。 |
 | callback | Function | 否 | 事件回调。如果不传callback，则取消订阅该事件下所有callback。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -134,6 +150,14 @@ emit(event: string, ...args: Object[]): void;
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
 | ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
