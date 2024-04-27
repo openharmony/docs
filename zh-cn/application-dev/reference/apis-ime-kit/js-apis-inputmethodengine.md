@@ -3458,7 +3458,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | action | [ExtendAction](#extendaction10) | 是   | 要发送的扩展操作。 |
-| callback | import { BusinessError } from '@ohos.base';​inputMethodSetting.displayOptionalInputMethod().then(() => {  console.log('Succeeded in displaying optionalInputMethod.');}).catch((err: BusinessError) => {  console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);})ts | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
