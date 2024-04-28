@@ -12,7 +12,7 @@
 
 **变更影响**
 
-TextInput组件默认样式变更。
+该变更为非兼容性变更。
 
 变更前：下划线模式输入框设置borderRadius未生效，还是默认样式radius为0。下划线模式输入框左右padding为12vp。非下划线模式输入框默认高度为48vp。
 
@@ -51,17 +51,21 @@ struct TextInputExample {
 }
 ```
 
-**API Level**
+**起始API Level**
 
-起始支持版本为 API 10。
+10
 
 **变更发生版本**
 
 从OpenHarmony SDK 5.0.0.22开始。
 
+**变更的接口/组件**
+
+TextInput组件默认样式变更。
+
 **适配指导**
 
-组件默认样式变更调整，无需适配。
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
 ## cl.arkui.2  Toast弹窗接口更改消息框背景色、字色，以及Toast的最大宽度及高度，界面语超长逐级缩小字号至12fp，超出截断。
 
@@ -130,13 +134,13 @@ UX默认行为变更，无需适配。
 
 **变更影响**
 
-Text组件clip通用属性默认值变更。
+该变更为非兼容性变更。
 
-变更前：Text组件clip通用属性默认值为true, 超出组件区域内容会被截断不显示。
+API version 12 变更前：Text组件clip通用属性默认值为true, 超出组件区域内容会被截断不显示。
 
 ![Text组件默认值变更前效果图](figures/textcliptrue.png)
 
-变更后：Text组件clip通用属性默认值为false, 超出组件区域内容不会被截断全部显示。
+API version 12 变更后：Text组件clip通用属性默认值为false, 超出组件区域内容不会被截断全部显示。
 
 ![Text组件默认值变更后效果图](figures/textclipfalse.png)
 
@@ -159,19 +163,23 @@ struct TextClipExample {
 }
 ```
 
-**API Level**
+**起始API Level**
 
-起始支持版本为 API 7。
+7
 
 **变更发生版本**
 
 从OpenHarmony SDK 5.0.0.22开始。
 
+**变更的接口/组件**
+
+Text组件clip通用属性默认值变更。
+
 **适配指导**
 
-组件clip通用属性默认值变更调整，无需适配。
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.3 TextInput,TextArea,Search组件caretPosition接口异常值处理变更
+## cl.arkui.4 TextInput,TextArea,Search组件caretPosition接口异常值处理变更
 
 **访问级别**
 
