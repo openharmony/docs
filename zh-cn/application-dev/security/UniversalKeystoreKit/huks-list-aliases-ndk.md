@@ -8,11 +8,28 @@ HUKS提供了接口供应用查询密钥别名集。
 
 准备：编译产物是libhuks_ndk.z.so，需要在CMakeLists.txt依赖此NDK产物
 
+
+
+
+
+## 代码示例
+
+更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
+
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+   ```
+
+2. 参考如下示例代码，进行业务功能开发
+
+### 开发步骤
+
 1. 初始化密钥属性集。用于查询指定密钥别名集TAG，TAG仅支持HUKS_TAG_AUTH_STORAGE_LEVEL。
 
 2. 调用接口[OH_Huks_ListAliases]，查询密钥别名集。
 
-```c++
+ ```c++
 /* 以下查询密钥别名集为例 */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
