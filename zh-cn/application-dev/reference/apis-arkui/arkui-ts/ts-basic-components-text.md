@@ -474,6 +474,22 @@ fontFeature(value: string)
 >
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
 
+### lineSpacing<sup>12+</sup>
+
+lineSpacing(value: LengthMetrics)
+
+设置文本的行间距，设置值不大于0时，取默认值0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](ts-types.md#LengthMetrics12) | 是   | 文本的行间距。默认值：0 |
+
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
@@ -1113,3 +1129,45 @@ struct text {
 ```
 
 ![fontFeature](figures/textFontFeature.png)
+
+### 示例10
+lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LineSpacingExample {
+  build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+        Text('This is a context with no lineSpacing set.\nThis is a context with no lineSpacing set.')
+          .fontSize(12)
+          .border({ width: 1 })
+        Text( 'This is a context with lineSpacing set to 20_px.\nThis is a context with lineSpacing set to 20_px.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.px(20))
+        Text('This is the TextArea with lineSpacing set to 20_vp.\nThis is the TextArea with lineSpacing set to 20_vp.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.vp(20))
+        Text('This is the TextArea with lineSpacing set to 20_fp.\nThis is the TextArea with lineSpacing set to 20_fp.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.fp(20))
+        Text('This is the TextArea with lineSpacing set to 20_lpx.\nThis is the TextArea with lineSpacing set to 20_lpx.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.lpx(20))
+        Text('This is the TextArea with lineSpacing set to 100%.\nThis is the TextArea with lineSpacing set to 100%.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.percent(1))
+      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![lineSpacing](figures/Text_lineSpacing.png)

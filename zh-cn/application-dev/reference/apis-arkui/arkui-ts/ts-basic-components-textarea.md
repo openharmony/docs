@@ -511,6 +511,22 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
 
+### lineSpacing<sup>12+</sup>
+
+lineSpacing(value: LengthMetrics)
+
+设置文本的行间距，设置值不大于0时，取默认值0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](ts-types.md#LengthMetrics12) | 是   | 文本的行间距。默认值：0 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -1200,3 +1216,39 @@ struct TextAreaExample {
 ```
 
 ![TextAreaAdaptFont](figures/textarea_adapt_font.png)
+
+### 示例11
+lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LineSpacingExample {
+  build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+        TextArea({ placeholder: 'This is the TextArea with no lineSpacing set.' })
+          .fontSize(12)
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_px.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.px(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_vp.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.vp(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_fp.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.fp(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_lpx.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.lpx(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 100%.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.percent(1))
+      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![lineSpacing](figures/TextArea_lineSpacing.png)
