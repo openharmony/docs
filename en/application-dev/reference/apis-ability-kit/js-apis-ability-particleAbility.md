@@ -4,8 +4,9 @@ The **particleAbility** module provides APIs for operating a DataAbility and Ser
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the FA model. In the stage model, use the APIs provided by the [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md) and [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) modules instead.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module can be used only in the FA model.
 
 ## Constraints
 
@@ -23,21 +24,18 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 Starts a ParticleAbility. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.startAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability) instead.
 
 **Parameters**
 
 | Name     | Type                                           | Mandatory| Description             |
 | --------- | ----------------------------------------------- | ---- | ----------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes  | Ability to start.|
-| callback  | AsyncCallback\<void>                            | Yes  | Callback used to return the result. |
+| callback  | AsyncCallback\<void>                            | Yes  | Callback used to return the result. If the ParticleAbility is started, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -75,14 +73,11 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 Starts a ParticleAbility. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.startAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability-1) instead.
 
 **Parameters**
 
@@ -129,13 +124,11 @@ Terminates this ParticleAbility. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.terminateSelf](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) instead.
-
 **Parameters**
 
 | Name    | Type                | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ParticleAbility is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -158,8 +151,6 @@ terminateSelf(): Promise\<void>
 Terminates this ParticleAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.terminateSelf](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself-1) instead.
 
 **Return value**
 
@@ -185,15 +176,12 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 Obtains a **dataAbilityHelper** object.
 
-Observe the following when using this API:
- - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
- - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when accessing the DataAbility.)
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model. In the stage model, use [dataShare.createDataShareHelper](../apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper) instead.
 
 **Parameters**
 
@@ -227,15 +215,17 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**Note**: This API can be used only in the FA model. In the stage model, use [backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8) instead.
+**NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning) instead.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | number | Yes| Notification ID of a continuous task.|
-| request | [NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| Notification ID of the continuous task.|
+  | request | [NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the continuous task is requested, **err** is **undefined**. Otherwise, **err** is an error object.|
 
  **Example**
 
@@ -293,7 +283,9 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**Note**: This API can be used only in the FA model. In the stage model, use [backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning8-1) instead.
+**NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1) instead.
 
 **Parameters**
 
@@ -358,15 +350,17 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**Note**: This API can be used only in the FA model. In the stage model, use [backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8) instead.
+**NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning) instead.
 
- **Parameters**
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the continuous task is canceled, **err** is **undefined**. Otherwise, **err** is an error object.|
 
- **Example**
+**Example**
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
@@ -392,7 +386,9 @@ Requests to cancel a continuous task from the system. This API uses a promise to
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**Note**: This API can be used only in the FA model. In the stage model, use [backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning8-1) instead.
+**NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning-1) instead.
 
 **Return value**
 
@@ -418,17 +414,15 @@ particleAbility.cancelBackgroundRunning().then(() => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific ServiceAbility.
+Connects this ability to a ServiceAbility.
 
-Observe the following when using this API:
- - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
- - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when connecting to the ServiceAbility.)
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.connectServiceExtensionAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextconnectserviceextensionability) instead.
 
 **Parameters**
 
@@ -483,14 +477,12 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.disconnectServiceExtensionAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextdisconnectserviceextensionability) instead.
-
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -530,13 +522,16 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [ServiceExtensionContext.disconnectServiceExtensionAbility](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextdisconnectserviceextensionability-1) instead.
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
 | Promise\<void> | Promise used to return the result. Promise that returns no value.|
 
 **Example**
@@ -579,5 +574,3 @@ Enumerates the error codes that may be returned when an ability is started.
 | Name                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
 | INVALID_PARAMETER | -1   | Invalid parameter.|
-
- <!--no_check--> 

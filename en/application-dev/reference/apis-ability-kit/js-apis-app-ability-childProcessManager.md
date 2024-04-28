@@ -48,13 +48,14 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 **Error codes**
 
+  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -106,13 +107,14 @@ Creates a child process and invokes the entrypoint method of the child process. 
 
 **Error codes**
 
+  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 

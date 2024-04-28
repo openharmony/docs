@@ -7,8 +7,6 @@ The EmbeddableUIAbility module provides the UIAbility that can be started in emb
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
->
-> The APIs of this module can be used only in atomic services.
 
 ## Modules to Import
 
@@ -22,9 +20,9 @@ import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | No| Yes| Context of the UIAbility.|
-| launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the EmbeddableUIAbility. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters carried in the last request. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
+| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | No| Yes| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the EmbeddableUIAbility. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters carried in the last request. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | callee | [Callee](#callee) | No| No| Object that invokes the stub service. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
 
 ## EmbeddableUIAbility.onCreate
@@ -35,12 +33,14 @@ Called to initialize the service logic when an EmbeddableUIAbility instance in t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information of the EmbeddableUIAbility, including the ability name and bundle name.|
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | No| Parameters for starting the EmbeddableUIAbility, and the reason for the last abnormal exit. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the EmbeddableUIAbility, and the reason for the last abnormal exit. This parameter is available only for the EmbeddableUIAbility in redirection startup mode.|
 
 **Example**
 
@@ -64,6 +64,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 Called when a **WindowStage** is created for this EmbeddableUIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -93,6 +95,8 @@ Called when the **WindowStage** is destroyed for this EmbeddableUIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Example**
 
   ```ts
@@ -113,6 +117,8 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 Called when the **WindowStage** is restored during the migration of this EmbeddableUIAbility, which is a multi-instance ability. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -141,6 +147,8 @@ onDestroy(): void | Promise&lt;void&gt;
 Called to clear resources when this EmbeddableUIAbility is being destroyed. This API returns the result synchronously or uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Returns**
 
@@ -182,6 +190,8 @@ Called when this EmbeddableUIAbility is switched from the background to the fore
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Example**
 
   ```ts
@@ -203,6 +213,8 @@ Called when this EmbeddableUIAbility is switched from the foreground to the back
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Example**
 
   ```ts
@@ -218,12 +230,13 @@ Called when this EmbeddableUIAbility is switched from the foreground to the back
 
 ## EmbeddableUIAbility.onContinue
 
-onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
 Called to save data during the EmbeddableUIAbility migration preparation process. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -235,7 +248,7 @@ Called to save data during the EmbeddableUIAbility migration preparation process
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | Continuation result.|
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp; \| &nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt; | Ability continuation result.|
 
 **Example**
 
@@ -260,6 +273,8 @@ onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 Called when an EmbeddableUIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -290,6 +305,8 @@ onDump(params: Array\<string>): Array\<string>
 Called to dump the client information. This API can be used to dump non-sensitive information. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -324,6 +341,8 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 Called when the framework automatically saves the EmbeddableUIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -361,6 +380,8 @@ Called by this EmbeddableUIAbility to set data to share in the cross-device shar
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -390,6 +411,8 @@ Called when this EmbeddableUIAbility is about to terminate in case that the syst
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Returns**
 
@@ -435,15 +458,17 @@ Called when this EmbeddableUIAbility is about to terminate in case that the syst
 
 onBackPressed(): boolean
 
-Called when an operation of going back to the previous page is triggered on this EmbeddableUIAbility. The return value determines whether to destroy the EmbeddableUIAbility instance. By default, the EmbeddableUIAbility instance is destroyed. This API is valid only when the EmbeddableUIAbility in started in redirection startup mode.
+Called when an operation of going back to the previous page is triggered on this EmbeddableUIAbility. The return value determines whether to destroy the EmbeddableUIAbility instance. The default return value is **true**, indicating that the EmbeddableUIAbility will be switched to the background and will not be destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| boolean | The value **true** means that the EmbeddableUIAbility instance will be moved to the background and will not be destroyed, and **false** means that the EmbeddableUIAbility instance will be destroyed.|
+| boolean | The value **true** means that the EmbeddableUIAbility instance will be switched to the background and will not be destroyed, and **false** means that the EmbeddableUIAbility instance will be destroyed.|
 
 **Example**
 
@@ -496,7 +521,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
   import rpc from '@ohos.rpc';
@@ -583,7 +608,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
   import rpc from '@ohos.rpc';
@@ -658,7 +683,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -709,7 +734,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -762,7 +787,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -817,7 +842,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
   ```ts
   import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -862,8 +887,8 @@ Deregisters a callback that is invoked when the stub on the target EmbeddableUIA
 **Example**
 
   ```ts
-  import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller, OnReleaseCallback } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
@@ -909,8 +934,8 @@ Deregisters a callback that is invoked when the stub on the target EmbeddableUIA
 **Example**
 
   ```ts
-  import EmbeddableUIAbility, { OnReleaseCallback } from '@ohos.app.ability.EmbeddableUIAbility';
-  import { Caller } from '@ohos.app.ability.EmbeddableUIAbility';
+  import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+  import { Caller, OnReleaseCallback } from '@ohos.app.ability.UIAbility';
   import { BusinessError } from '@ohos.base';
   import window from '@ohos.window';
 
