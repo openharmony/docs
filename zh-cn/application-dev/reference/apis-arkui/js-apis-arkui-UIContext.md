@@ -5419,9 +5419,7 @@ struct Index {
 }
 ```
 
-![measureUtils-measureText](figures/measureUtils-measureText.png)
-
-## measureTextSize<sup>12+</sup>
+### measureTextSize<sup>12+</sup>
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
@@ -5469,8 +5467,6 @@ struct Index {
   }
 }
 ```
-
- ![measureUtils-measureTextSize](figures/measureUtils-measureTextSize.png)
 
 ## ComponentSnapshot<sup>12+</sup>
 
