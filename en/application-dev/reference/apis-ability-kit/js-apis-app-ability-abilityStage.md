@@ -22,6 +22,8 @@ onCreate(): void
 
 Called when the application is created.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Example**
@@ -42,6 +44,8 @@ class MyAbilityStage extends AbilityStage {
 onAcceptWant(want: Want): string
 
 Called when a specified ability is started.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,6 +116,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the global configuration is updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -138,6 +144,8 @@ class MyAbilityStage extends AbilityStage {
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -166,6 +174,8 @@ context: AbilityStageContext
 
 Defines the context of **AbilityStage**.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name     | Type                       | Description                                                        |
@@ -182,5 +192,27 @@ export default class MyAbilityStage extends AbilityStage {
     let abilityStageContext = this.context;
   }
   // ...
+}
+```
+
+## AbilityStage.onDestroy<sup>12+<sup>
+
+onDestroy(): void
+
+Called when the application is destroyed. This API is called during the normal lifecycle. If the application exits abnormally or is terminated, this API is not called.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Example**
+
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+class MyAbilityStage extends AbilityStage {
+    onDestroy() {
+        console.log('MyAbilityStage.onDestroy is called');
+    }
 }
 ```
