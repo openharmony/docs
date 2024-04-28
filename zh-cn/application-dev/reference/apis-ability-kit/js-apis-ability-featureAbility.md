@@ -21,7 +21,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-启动新的Ability（callback形式）。
+启动新的Ability。使用callback异步回调。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -75,7 +75,7 @@ featureAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<number>
 
-启动新的Ability（Promise形式）。
+启动新的Ability。使用Promise异步回调。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -164,7 +164,7 @@ let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability。Ability被启动后，有如下情况(callback形式):
+启动一个Ability。使用callback异步回调。启动Ability后，存在如下几种情况：
  - 正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -220,7 +220,7 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-启动一个Ability。Ability被启动后，有如下情况(Promise形式):
+启动一个Ability。使用Promise异步回调。启动Ability后，存在如下几种情况：
  - 正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
  - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
@@ -237,7 +237,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 | 参数名        | 类型                                       | 必填   | 说明            |
 | --------- | ---------------------------------------- | ---- | ------------- |
-| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability |
+| parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
 
 **返回值：**
 
@@ -285,7 +285,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
+停止当前的Ability。使用callback异步回调。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -339,7 +339,7 @@ featureAbility.terminateSelfWithResult(
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（Promise形式）。
+停止当前的Ability。使用Promise异步回调。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -349,7 +349,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 | 参数名        | 类型                              | 必填   | 说明            |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果 |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
 
 **返回值：**
 
@@ -397,7 +397,7 @@ featureAbility.terminateSelfWithResult(
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
-检查Ability的主窗口是否具有窗口焦点（callback形式）。
+检查Ability的主窗口是否具有窗口焦点。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -407,7 +407,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是    | 以callback的形式返回结果。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| callback | AsyncCallback\<boolean> | 是    |回调函数。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -426,7 +426,7 @@ featureAbility.hasWindowFocus((error, data) => {
 
 hasWindowFocus(): Promise\<boolean>
 
-检查Ability的主窗口是否具有窗口焦点（Promise形式）。
+检查Ability的主窗口是否具有窗口焦点。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -434,7 +434,7 @@ hasWindowFocus(): Promise\<boolean>
 
 | 类型                | 说明                                    |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | Promise形式返回结果，如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| Promise\<boolean> | Promise对象。如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -449,7 +449,7 @@ featureAbility.hasWindowFocus().then((data) => {
 
 getWant(callback: AsyncCallback\<Want>): void
 
-获取要拉起的Ability对应的Want（callback形式）。
+获取要拉起的Ability对应的Want。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -459,7 +459,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 | 参数名       | 类型                            | 必填   | 说明        |
 | -------- | ----------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | 是    | 以callback的形式返回want。 |
+| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | 是    | 回调函数，返回want信息。 |
 
 **示例：**
 
@@ -478,7 +478,7 @@ featureAbility.getWant((error, data) => {
 
 getWant(): Promise\<Want>
 
-获取要拉起的Ability对应的Want（Promise形式）。
+获取要拉起的Ability对应的Want。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -488,7 +488,7 @@ getWant(): Promise\<Want>
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Promise\<[Want](js-apis-application-want.md)> | 以Promise的形式返回want。 |
+| Promise\<[Want](js-apis-application-want.md)> | Promise对象，返回want信息。 |
 
 **示例：**
 
@@ -533,7 +533,7 @@ context.getBundleName((error, data) => {
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-停止当前的Ability（callback形式）。
+停止当前的Ability。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -543,7 +543,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                   | 必填   | 说明       |
 | -------- | -------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | 是    | 以callback的形式返回停止当前Ability结果 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当停止当前的Ability成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -560,7 +560,7 @@ featureAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-停止当前的Ability（Promise形式）。
+停止当前的Ability。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -640,7 +640,7 @@ let connectId = featureAbility.connectAbility(
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-断开与指定ServiceAbility的连接（callback形式）。
+断开与指定ServiceAbility的连接。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -651,7 +651,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 | 参数名         | 类型                   | 必填   | 说明                      |
 | ---------- | -------------------- | ---- | ----------------------- |
 | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
-| callback   | AsyncCallback\<void> | 是    | 以callback的形式返回断开连接结果                |
+| callback   | AsyncCallback\<void> | 是    | 回调函数。当断开与指定ServiceAbility的连接成功，err为undefined，否则为错误对象。      |
 
 **示例：**
 
@@ -690,7 +690,7 @@ featureAbility.disconnectAbility(connectId, (error) => {
 
 disconnectAbility(connection: number): Promise\<void>
 
-断开与指定ServiceAbility的连接（Promise形式）。
+断开与指定ServiceAbility的连接。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -745,7 +745,7 @@ featureAbility.disconnectAbility(connectId).then(() => {
 
 getWindow(callback: AsyncCallback\<window.Window>): void
 
-获取当前Ability对应的窗口（callback形式）。
+获取当前Ability对应的窗口。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -755,7 +755,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 | 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | 是   | callback形式返回当前Ability对应的窗口。 |
+| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | 是   | 回调函数，返回当前Ability对应的窗口。 |
 
 **示例：**
 
@@ -777,7 +777,7 @@ featureAbility.getWindow((error: BusinessError, data: window.Window) => {
 
 getWindow(): Promise\<window.Window>
 
-获取当前Ability对应的窗口（Promise形式）。
+获取当前Ability对应的窗口。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -787,7 +787,7 @@ getWindow(): Promise\<window.Window>
 
 | 类型                    | 说明                          |
 | ----------------------- | ----------------------------- |
-| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise形式返回当前Ability对应的窗口。 |
+| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise对象，返回当前Ability对应的窗口。 |
 
 **示例：**
 
@@ -803,7 +803,7 @@ featureAbility.getWindow().then((data: window.Window) => {
 });
 ```
 
-## AbilityWindowConfiguration
+## AbilityWindowConfiguration<sup>7+</sup>
 
 表示当前Ability对应的窗口配置项，使用时通过featureAbility.AbilityWindowConfiguration获取。
 
@@ -817,14 +817,14 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 | 名称                                     | 值   | 说明                                       |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。 |
-| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。    |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。 |
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。 |
-| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。 |
+| WINDOW_MODE_UNDEFINED       | 0    | 未定义。 |
+| WINDOW_MODE_FULLSCREEN      | 1    | 全屏。    |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100  | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。 |
+| WINDOW_MODE_SPLIT_SECONDARY | 101  | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。 |
+| WINDOW_MODE_FLOATING        | 102  | 悬浮窗。 |
 
 
-## AbilityStartSetting
+## AbilityStartSetting<sup>7+</sup>
 
 表示当前Ability对应的窗口属性，abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
 
@@ -840,9 +840,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | 名称                           | 值              | 说明                                       |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
-| WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
-| DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
+| BOUNDS_KEY      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
+| WINDOW_MODE_KEY | 'windowMode'    | 窗口显示模式属性的参数名。|
+| DISPLAY_ID_KEY  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
 
 ## ErrorCode<sup>7+</sup>
 
@@ -857,15 +857,15 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
 | PERMISSION_DENY   | -3   | 权限拒绝。   |
 
-## DataAbilityOperationType
+## DataAbilityOperationType<sup>7+</sup>
 
-表示数据的操作类型。DataAbility批量操作数据时可以通过该枚举值指定操作类型
+表示数据的操作类型。DataAbility批量操作数据时可以通过该枚举值指定操作类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                       | 值    | 说明                                       |
 | ------------------------ | ---- | ---------------------------------------- |
-| TYPE_INSERT<sup>7+</sup> | 1    | 插入类型。 |
-| TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。 |
-| TYPE_DELETE<sup>7+</sup> | 3    | 删除类型。 |
-| TYPE_ASSERT<sup>7+</sup> | 4    | 声明类型。 |
+| TYPE_INSERT | 1    | 插入类型。 |
+| TYPE_UPDATE | 2    | 修改类型。 |
+| TYPE_DELETE | 3    | 删除类型。 |
+| TYPE_ASSERT | 4    | 声明类型。 |

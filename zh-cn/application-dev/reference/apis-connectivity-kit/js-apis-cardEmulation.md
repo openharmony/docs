@@ -78,6 +78,8 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 值         | 说明                |
 | ------- | --------- | ----------------- |
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |

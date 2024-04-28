@@ -118,7 +118,6 @@ struct RefreshExample {
         console.log('onRefreshing test')
       })
       .backgroundColor(0x89CFF0)
-      .pullToRefresh(true)
     }
   }
 }
@@ -181,7 +180,6 @@ struct RefreshExample {
         console.log('onRefreshing test')
       })
       .backgroundColor(0x89CFF0)
-      .pullToRefresh(true)
     }
   }
 }

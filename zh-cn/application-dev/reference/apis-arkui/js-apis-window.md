@@ -19,7 +19,6 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
-
 窗口类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -59,7 +58,6 @@ import window from '@ohos.window';
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
 | TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | 表示导航条区域。                                      |
 
-
 ## SystemBarProperties
 
 状态栏、导航栏的属性。
@@ -70,10 +68,10 @@ import window from '@ohos.window';
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`0xE5FFFFFF。` |
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000。` |
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 |
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF。` |
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 |
 
 ## Orientation<sup>9+</sup>
 
@@ -95,7 +93,6 @@ import window from '@ohos.window';
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
-
 
 ## Rect<sup>7+</sup>
 
@@ -217,7 +214,7 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
-##  TitleButtonRect<sup>11+</sup>
+## TitleButtonRect<sup>11+</sup>
 
 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
 
@@ -350,7 +347,7 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口id。 |
+| name   | string | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 
 **返回值：**
 
@@ -519,19 +516,81 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let sourceWindowId: number = 40;
-  let targetWindowId: number = 41;
-  let promise = window.shiftAppWindowFocus(sourceWindowId, targetWindowId);
-  promise.then(() => {
-    console.info('Succeeded in shifting app window focus');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to shift app window focus. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to shift app window focus. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let subWindowClass: window.Window | undefined = undefined;
+    let windowClassId: number = -1;
+    let subWindowClassId: number = -1;
+
+    // 获取应用主窗及ID
+    try {
+      let promise = windowStage.getMainWindow();
+      promise.then((data) => {
+        if (data == null) {
+          console.error("Failed to obtaining the window. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        windowClass.setUIContent("pages/Index");
+        try {
+          windowClassId = windowClass.getWindowProperties().id;
+        } catch (exception) {
+          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+        }
+        console.info('Succeeded in obtaining the window')
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtaining the window. Cause: ' + JSON.stringify(err))
+      })
+    } catch (exception) {
+      console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+    }
+
+    // 创建或获取子窗及ID，此时子窗口获焦
+    try {
+      let promise = windowStage.createSubWindow("testSubWindow");
+      promise.then((data) => {
+        if (data == null) {
+          console.error("Failed to obtaining the window. Cause: The data is empty");
+          return;
+        }
+        subWindowClass = data;
+        try {
+          subWindowClassId = subWindowClass.getWindowProperties().id;
+        } catch (exception) {
+          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+        }
+        subWindowClass.resize(500, 500);
+        subWindowClass.setUIContent("pages/Index2");
+        subWindowClass.showWindow();
+
+        // 监听Window状态，确保已经就绪
+        subWindowClass.on("windowEvent", (windowEvent) => {
+          if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
+            // 切换焦点
+            try {
+              let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
+              promise.then(() => {
+                console.info('Succeeded in shifting app window focus');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err));
+              })
+            } catch (exception) {
+              console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception));
+            }
+          }
+        })
+      })
+    } catch (exception) {
+      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -553,7 +612,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | 是   | 窗口id。                             |
+| id       | string                                 | 是   | 窗口名字，即[Configuration](#configuration9)中的name。|
 | type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
@@ -592,7 +651,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- | ---------- |
-| id     | string                    | 是   | 窗口id。   |
+| id     | string                    | 是   | 窗口名字，即[Configuration](#configuration9)中的name。   |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。 |
 
 **返回值：**
@@ -633,7 +692,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 | 参数名   | 类型                                                    | 必填 | 说明                                 |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
-| id       | string                                                  | 是   | 窗口id。                             |
+| id       | string                                                  | 是   | 窗口名字，即[Configuration](#configuration9)中的name。   |
 | type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
@@ -672,7 +731,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
-| id     | string                    | 是   | 窗口id。                                                     |
+| id     | string                    | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
 **返回值：**
@@ -712,7 +771,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | 是   | 窗口id。                             |
+| id       | string                                 | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前查找到的窗口对象。 |
 
 **示例：**
@@ -748,7 +807,7 @@ find(id: string): Promise&lt;Window&gt;
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| id     | string | 是   | 窗口id。 |
+| id     | string | 是   | 窗口名字，即[Configuration](#configuration9)中的name。 |
 
 **返回值：**
 
@@ -836,10 +895,10 @@ import { BusinessError } from '@ohos.base';
 let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -1110,8 +1169,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
-| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
+| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
@@ -1156,8 +1215,8 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
-| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
+| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
 
 **返回值：**
 
@@ -1214,8 +1273,8 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
-| height   | number                    | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| width    | number                    | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+| height   | number                    | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                |
 
 **错误码：**
@@ -1269,8 +1328,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | -- | ------------------------ |
-| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
-| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
 
 **返回值：**
 
@@ -2830,7 +2889,7 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 ```ts
 try {
   windowClass.on('windowStatusChange', (WindowStatusType) => {
-      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+    console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
@@ -2890,7 +2949,7 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 ```ts
 try {
   windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+    console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
@@ -3145,19 +3204,19 @@ setWindowBackgroundColor(color: string): void
 import { BusinessError } from '@ohos.base';
 
 private SetUIContent(windowClass: window.Window) {
-    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
-      if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      let color: string = '#00ff33';
-      try {
-        windowClass.setWindowBackgroundColor(color);
-      } catch (exception) {
-        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-      };
-    });
+  windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+    let color: string = '#00ff33';
+    try {
+      windowClass.setWindowBackgroundColor(color);
+    } catch (exception) {
+      console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+    };
+  });
 }
 ```
 
@@ -4001,7 +4060,6 @@ promise.then(() => {
 });
 ```
 
-
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
@@ -4034,7 +4092,7 @@ try {
 }
 ```
 
-###  setWindowLimits<sup>11+</sup>
+### setWindowLimits<sup>11+</sup>
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
@@ -4119,7 +4177,7 @@ try {
 }
 ```
 
-###  setWindowDecorVisible<sup>11+</sup>
+### setWindowDecorVisible<sup>11+</sup>
 
 setWindowDecorVisible(isVisible: boolean): void
 
@@ -4171,9 +4229,9 @@ export default class EntryAbility extends UIAbility {
         let isVisible = false;
         // 调用setWindowDecorVisible接口
         try {
-            mainWindow.setWindowDecorVisible(isVisible);
+          mainWindow.setWindowDecorVisible(isVisible);
         } catch (exception) {
-            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+          console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
         }
       })
     });
@@ -4181,7 +4239,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setWindowDecorHeight<sup>11+</sup>
+### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -4214,7 +4272,7 @@ try {
 }
 ```
 
-###  getWindowDecorHeight<sup>11+</sup>
+### getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
@@ -4246,7 +4304,7 @@ try {
 }
 ```
 
-###  getTitleButtonRect<sup>11+</sup>
+### getTitleButtonRect<sup>11+</sup>
 
 getTitleButtonRect(): TitleButtonRect
 
@@ -4425,8 +4483,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                              |
 | -------- | ------------------------- | ---- | ------------------------------------------------- |
-| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
-| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
+| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                        |
 
 **示例：**
@@ -4462,8 +4520,8 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ------ | ------ | ---- | ------------------------------------------------- |
-| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
-| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
+| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
 
 **返回值：**
 
@@ -4511,8 +4569,8 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名   | 类型                      | 必填 | 说明                       |
 | -------- | ------------------------- | ---- | -------------------------- |
-| width    | number                    | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
-| height   | number                    | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| width    | number                    | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+| height   | number                    | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                 |
 
 **示例：**
@@ -4557,8 +4615,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| width  | number | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
-| height | number | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入，负值为非法参数。 |
+| width  | number | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
+| height | number | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入，浮点数输入将向下取整，负值为非法参数。 |
 
 **返回值：**
 
@@ -5493,7 +5551,7 @@ promise.then(() => {
 
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置屏幕亮度值，使用callback异步回调。
+允许应用窗口设置屏幕亮度值，使用callback异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -5530,7 +5588,7 @@ windowClass.setBrightness(brightness, (err: BusinessError) => {
 
 setBrightness(brightness: number): Promise&lt;void&gt;
 
-设置屏幕亮度值，使用Promise异步回调。
+允许应用窗口设置屏幕亮度值，使用Promise异步回调。
 
 当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
@@ -6042,7 +6100,7 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称      | 类型  | 可读 | 可写 | 说明         |
+| 名称      | 类型  | 只读 | 必填 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | 否 | 是 | 子窗口标题。       |
 | decorEnabled | boolean | 否 | 是 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
@@ -6260,6 +6318,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
@@ -6318,6 +6377,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### createSubWindowWithOptions<sup>11+</sup>
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
@@ -6381,6 +6441,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
@@ -6430,6 +6491,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
@@ -6477,6 +6539,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void

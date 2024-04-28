@@ -39,7 +39,7 @@ CommonEvent.createSubscriber(subscribeInfo, createCB);
 
 getCode(callback: AsyncCallback\<number>): void
 
-以回调形式获取公共事件代码。
+获取有序公共事件代码。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -67,7 +67,7 @@ subscriber.getCode(getCodeCB);
 
 getCode(): Promise\<number>
 
-以Promise形式获取公共事件代码。
+获取有序公共事件代码。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -91,7 +91,7 @@ subscriber.getCode().then((code:number) => {
 
 getCodeSync(): number
 
-getCode的同步接口。
+获取有序公共事件代码。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -112,7 +112,7 @@ console.info("getCodeSync " + JSON.stringify(code));
 
 setCode(code: number, callback: AsyncCallback\<void>): void
 
-以回调形式设置公共事件的代码。
+设置有序公共事件的代码。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -141,7 +141,7 @@ subscriber.setCode(1, setCodeCB);
 
 setCode(code: number): Promise\<void>
 
-以Promise形式设置公共事件的代码。
+设置有序公共事件的代码。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -171,7 +171,7 @@ subscriber.setCode(1).then(() => {
 
 setCodeSync(code: number): void
 
-setCode的同步接口。
+设置有序公共事件的代码。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -198,7 +198,7 @@ try {
 
 getData(callback: AsyncCallback\<string>): void
 
-以回调形式获取公共事件的数据。
+获取有序公共事件的数据。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -226,7 +226,7 @@ subscriber.getData(getDataCB);
 
 getData(): Promise\<string>
 
-以Promise形式获取公共事件的数据。
+获取有序公共事件的数据。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -250,7 +250,7 @@ subscriber.getData().then((data:string) => {
 
 getDataSync(): string
 
-getData的同步接口。
+获取有序公共事件的数据。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -271,7 +271,7 @@ console.info("getDataSync " + JSON.stringify(data));
 
 setData(data: string, callback: AsyncCallback\<void>): void
 
-以回调形式设置公共事件的数据。
+设置有序公共事件的数据。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -300,7 +300,7 @@ subscriber.setData("publish_data_changed", setDataCB);
 
 setData(data: string): Promise\<void>
 
-以Promise形式设置公共事件的果数据。
+设置有序公共事件的数据。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -330,7 +330,7 @@ subscriber.setData("publish_data_changed").then(() => {
 
 setDataSync(data: string): void
 
-setData的同步接口。
+设置有序公共事件的数据。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -355,7 +355,7 @@ try {
 
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
-以回调形式设置公共事件代码和数据。
+设置有序公共事件代码和数据。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -385,7 +385,7 @@ subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
 
 setCodeAndData(code: number, data: string): Promise\<void>
 
-以Promise形式设置公共事件的代码和数据。
+设置有序公共事件的代码和数据。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -416,7 +416,7 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 
 setCodeAndDataSync(code: number, data: string): void
 
-setCodeAndData的同步接口。
+设置有序公共事件的代码和数据。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -438,11 +438,12 @@ try {
 }
 
 ```
+
 ## isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
-以回调形式查询当前公共事件是否为有序公共事件。
+查询当前公共事件是否为有序公共事件。使用callback异步回调。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -472,7 +473,7 @@ subscriber.isOrderedCommonEvent(isOrderedCB);
 
 isOrderedCommonEvent(): Promise\<boolean>
 
-以Promise形式查询当前公共事件是否为有序公共事件。
+查询当前公共事件是否为有序公共事件。使用Promise异步回调。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -498,7 +499,7 @@ subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
 
 isOrderedCommonEventSync(): boolean
 
-isOrderedCommonEvent的同步接口。
+查询当前公共事件是否为有序公共事件。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -521,7 +522,7 @@ console.info("isOrdered " + JSON.stringify(isOrdered));
 
 isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
-以回调形式检查当前公共事件是否为一个粘性事件。
+检查当前公共事件是否为一个粘性事件。使用callback异步回调。
 
 返回true代表是粘性公共事件，false代表不是粘性公共事件。
 
@@ -551,7 +552,7 @@ subscriber.isStickyCommonEvent(isStickyCB);
 
 isStickyCommonEvent(): Promise\<boolean>
 
-以Promise形式检查当前公共事件是否为一个粘性事件。
+检查当前公共事件是否为一个粘性事件。使用Promise异步回调。
 
 返回true代表是粘性公共事件，false代表不是粘性公共事件。
 
@@ -577,7 +578,7 @@ subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
 
 isStickyCommonEventSync(): boolean
 
-isStickyCommonEvent的同步接口。
+检查当前公共事件是否为一个粘性事件。
 
 返回true代表是粘性公共事件，false代表不是粘性公共事件。
 
@@ -600,7 +601,7 @@ console.info("isSticky " + JSON.stringify(isSticky));
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
-以回调形式取消当前的有序公共事件，取消后，有序公共事件不再向下一个订阅者传递。
+取消当前的有序公共事件，取消后，有序公共事件不再向下一个订阅者传递。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -628,7 +629,7 @@ subscriber.abortCommonEvent(abortCB);
 
 abortCommonEvent(): Promise\<void>
 
-以Promise形式取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。
+取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -652,7 +653,7 @@ subscriber.abortCommonEvent().then(() => {
 
 abortCommonEventSync(): void
 
-abortCommonEvent的同步接口。
+取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -666,7 +667,7 @@ subscriber.abortCommonEventSync();
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-以回调形式清除当前有序公共事件。
+清除当前有序公共事件。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -694,7 +695,7 @@ subscriber.clearAbortCommonEvent(clearAbortCB);
 
 clearAbortCommonEvent(): Promise\<void>
 
-以Promise形式清除当前有序公共事件。
+清除当前有序公共事件。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -718,7 +719,7 @@ subscriber.clearAbortCommonEvent().then(() => {
 
 clearAbortCommonEventSync(): void
 
-clearAbortCommonEvent的同步接口。
+清除当前有序公共事件。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -732,7 +733,7 @@ subscriber.clearAbortCommonEventSync();
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
-以回调形式获取当前有序公共事件是否取消的状态。
+获取当前有序公共事件是否取消的状态。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -760,7 +761,7 @@ subscriber.getAbortCommonEvent(getAbortCB);
 
 getAbortCommonEvent(): Promise\<boolean>
 
-以Promise形式获取当前有序公共事件是否取消的状态。
+获取当前有序公共事件是否取消的状态。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -784,7 +785,7 @@ subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
 
 getAbortCommonEventSync(): boolean
 
-getAbortCommonEvent的同步接口。
+获取当前有序公共事件是否取消的状态。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -805,7 +806,7 @@ console.info("getAbortCommonEventSync " + JSON.stringify(abortEvent));
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
-以回调形式获取订阅者的订阅信息。
+获取订阅者的订阅信息。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -833,7 +834,7 @@ subscriber.getSubscribeInfo(getCB);
 
 getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
-以Promise形式获取订阅者的订阅信息。
+获取订阅者的订阅信息。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -857,7 +858,7 @@ subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEvent
 
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
-getSubscribeInfo的同步接口。
+获取订阅者的订阅信息。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -878,7 +879,7 @@ console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 
 finishCommonEvent(callback: AsyncCallback\<void>): void
 
-以回调形式结束当前有序公共事件。
+结束当前有序公共事件。使用callback异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -907,7 +908,7 @@ subscriber.finishCommonEvent(finishCB);
 
 finishCommonEvent(): Promise\<void>
 
-以Promise形式结束当前有序公共事件。
+结束当前有序公共事件。使用Promise异步回调。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 

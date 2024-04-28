@@ -79,6 +79,7 @@ getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 获取扫描结果，使用Promise异步回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 ohos.permission.LOCATION)
+ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -96,6 +97,7 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 获取扫描结果，使用callback异步回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 ohos.permission.LOCATION)
+ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 

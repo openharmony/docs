@@ -281,7 +281,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
-开启位置变化订阅，并发起定位请求。
+开启位置变化订阅，并发起定位请求。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -293,7 +293,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | request |  [LocationRequest](#locationrequest) | 是 | 设置位置请求参数。 |
-  | callback | Callback&lt;[Location](#location)&gt; | 是 | 接收位置变化状态变化监听。 |
+  | callback | Callback&lt;[Location](#location)&gt; | 是 | 回调函数，返回位置信息。 |
 
 **错误码**：
 
@@ -372,7 +372,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
-订阅位置服务状态变化。
+订阅位置服务状态变化。使用callback异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -381,7 +381,7 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationEnabledChange”，表示位置服务状态。 |
-  | callback | Callback&lt;boolean&gt; | 是 | 接收位置服务状态变化监听。 |
+  | callback | Callback&lt;boolean&gt; | 是 | 回调函数。返回true表示位置信息开关已经开启；返回false表示位置信息开关已经关闭。 |
 
 **错误码**：
 
@@ -451,7 +451,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
 on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -463,7 +463,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
-  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 回调函数，返回GNSS缓存位置。 |
 
 **错误码**：
 
@@ -541,7 +541,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 
 on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
-订阅GNSS卫星状态信息上报事件。
+订阅GNSS卫星状态信息上报事件。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -552,7 +552,7 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“satelliteStatusChange”，表示订阅GNSS卫星状态信息上报。 |
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 是 | 接收GNSS卫星状态信息上报。 |
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | 是 | 回调函数，返回GNSS卫星状态信息。 |
 
 **错误码**：
 
@@ -628,7 +628,7 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
 on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
-订阅GNSS NMEA信息上报事件。
+订阅GNSS NMEA信息上报事件。使用callback异步回调。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -639,7 +639,7 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessage”，表示订阅GNSS&nbsp;NMEA信息上报。 |
-  | callback | Callback&lt;string&gt; | 是 | 接收GNSS&nbsp;NMEA信息上报。 |
+  | callback | Callback&lt;string&gt; | 是 | 回调函数，返回GNSS&nbsp;NMEA信息。 |
 
 **错误码**：
 
@@ -836,7 +836,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
 on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
-订阅国家码信息变化事件。
+订阅国家码信息变化事件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -845,7 +845,7 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“countryCodeChange”，表示订阅国家码信息变化事件。 |
-  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | 是 | 接收国家码信息上报。 |
+  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | 是 | 回调函数，返回国家码信息。 |
 
 **错误码**：
 
@@ -920,7 +920,7 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 
 getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
-获取当前位置，使用callback回调异步返回结果。
+获取当前位置，使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -931,7 +931,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequest) | 是 | 设置位置请求参数。 |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
+  | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 回调函数，返回当前位置信息。 |
 
 **错误码**：
 
@@ -969,7 +969,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
-获取当前位置，通过callback方式异步返回结果。
+获取当前位置，使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -979,7 +979,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
+  | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 回调函数，返回当前位置信息。 |
 
 **错误码**：
 
@@ -1016,7 +1016,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
-获取当前位置，使用Promise方式异步返回结果。
+获取当前位置，使用Promise异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1032,7 +1032,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[Location](#location)&gt; | 以Promise形式返回位置信息。 |
+  | Promise&lt;[Location](#location)&gt; | Promise对象，返回当前位置信息。 |
 
 **错误码**：
 
@@ -1054,7 +1054,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));
       })  
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -1114,7 +1114,7 @@ isLocationEnabled(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 位置服务是否已经使能。 |
+  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
 
 **错误码**：
 
@@ -1141,7 +1141,7 @@ isLocationEnabled(): boolean
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。
+调用逆地理编码服务，将坐标转换为地理描述，使用callback异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -1150,7 +1150,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 设置逆地理编码请求的相关参数。 |
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 接收逆地理编码结果的回调函数。 |
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 回调函数，返回逆地理编码结果。 |
 
 **错误码**：
 
@@ -1186,7 +1186,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
-调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
+调用逆地理编码服务，将坐标转换为地理描述，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -1200,7 +1200,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 以Promise形式返回地理描述信息。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise对象，返回地理描述信息。 |
 
 **错误码**：
 
@@ -1221,7 +1221,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
       })
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -1234,7 +1234,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。
+调用地理编码服务，将地理描述转换为具体坐标，使用callback异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -1243,7 +1243,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | 是 | 设置地理编码请求的相关参数。 |
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 接收地理编码结果的回调函数。 |
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 回调函数，返回地理编码结果。 |
 
 **错误码**：
 
@@ -1279,7 +1279,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
 getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
-调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
+调用地理编码服务，将地理描述转换为具体坐标，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
@@ -1293,7 +1293,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 以Promise形式返回地理编码查询结果。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise对象，返回地理编码查询结果。 |
 
 **错误码**：
 
@@ -1314,7 +1314,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -1334,7 +1334,7 @@ isGeocoderAvailable(): boolean;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 返回（逆）地理编码服务是否可用。 |
+  | boolean | true:（逆）地理编码服务可用<br/>false：（逆）地理编码服务不可用。 |
 
 **错误码**：
 
@@ -1361,7 +1361,7 @@ isGeocoderAvailable(): boolean;
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1371,7 +1371,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 用来接收GNSS芯片缓存位置个数的回调。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回GNSS芯片缓存位置个数。 |
 
 **错误码**：
 
@@ -1406,7 +1406,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1416,7 +1416,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise形式返回GNSS缓存位置的个数。 |
+  | Promise&lt;number&gt; | Promise对象，返回GNSS缓存位置的个数。 |
 
 **错误码**：
 
@@ -1436,7 +1436,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
       geoLocationManager.getCachedGnssLocationsSize().then((result) => {
           console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -1449,7 +1449,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
-读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1459,7 +1459,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当操作成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -1492,7 +1492,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 flushCachedGnssLocations(): Promise&lt;void&gt;;
 
-读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1502,7 +1502,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回Promise对象。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象 |
 
 **错误码**：
 
@@ -1523,7 +1523,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
       geoLocationManager.flushCachedGnssLocations().then(() => {
           console.log('promise, flushCachedGnssLocations success');
       })
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -1536,7 +1536,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void;
 
-给位置服务子系统的各个部件发送扩展命令。
+给位置服务子系统的各个部件发送扩展命令。使用callback异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -1545,7 +1545,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | command |  [LocationCommand](#locationcommand) | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -1577,7 +1577,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
 sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
-给位置服务子系统的各个部件发送扩展命令。
+给位置服务子系统的各个部件发送扩展命令。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -1591,7 +1591,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回Promise对象。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象 |
 
 **错误码**：
 
@@ -1611,7 +1611,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
       geoLocationManager.sendCommand(requestInfo).then(() => {
           console.log('promise, sendCommand success');
       })  
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -1624,7 +1624,7 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
 getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
-查询当前的国家码。
+查询当前的国家码。使用callback异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -1632,7 +1632,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[CountryCode](#countrycode)&gt; | 是 | 用来接收国家码。 |
+  | callback | AsyncCallback&lt;[CountryCode](#countrycode)&gt; | 是 | 回调函数，返回国家码信息。 |
 
 **错误码**：
 
@@ -1667,7 +1667,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
 getCountryCode(): Promise&lt;CountryCode&gt;;
 
-查询当前的国家码。
+查询当前的国家码。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -1675,7 +1675,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[CountryCode](#countrycode)&gt; | 以Promise形式返回国家码。 |
+  | Promise&lt;[CountryCode](#countrycode)&gt; | Promise对象，返回国家码信息。 |
 
 **错误码**：
 
@@ -1696,7 +1696,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
       .then((result) => {
           console.log('promise, getCountryCode: result=' + JSON.stringify(result));
       })
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {

@@ -21,6 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| struct&nbsp;&nbsp;[ArkUI_ContextCallback](_ark_u_i___context_callback.md) | 事件回调类型。  | 
 | union&nbsp;&nbsp;[ArkUI_NumberValue](union_ark_u_i___number_value.md) | ArkUI在native侧的数字类型定义。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md) | 定义单列滑动数据选择器支持图片资源的输入结构体。  | 
 | struct&nbsp;&nbsp;[ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md) | 定义多列带联动能力的滑动数据选择器的输入结构体。  | 
@@ -36,7 +37,8 @@
 | -------- | -------- |
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
 | typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
-| typedef struct [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
+| typedef struct [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  |
+| typedef struct ArkUI_Context \* [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle) | 定义ArkUI native UI的上下文实例对象指针定义。  |  
 
 
 ### 枚举
@@ -107,6 +109,7 @@
 | [ArkUI_EllipsisMode](_ark_u_i___native_module.md#arkui_ellipsismode) { [ARKUI_ELLIPSIS_MODE_START](_ark_u_i___native_module.md) = 0, [ARKUI_ELLIPSIS_MODE_CENTER](_ark_u_i___native_module.md), [ARKUI_ELLIPSIS_MODE_END](_ark_u_i___native_module.md) } | 定义文本省略位置。  | 
 | [ArkUI_ImageRenderMode](_ark_u_i___native_module.md#arkui_imagerendermode) { [ARKUI_IMAGE_RENDER_MODE_ORIGINAL](_ark_u_i___native_module.md) = 0, [ARKUI_IMAGE_RENDER_MODE_TEMPLATE](_ark_u_i___native_module.md) } | 定义图片渲染模式。  | 
 | [ArkUI_TransitionEdge](_ark_u_i___native_module.md#arkui_transitionedge) { [ARKUI_TRANSITION_EDGE_TOP](_ark_u_i___native_module.md) = 0, [ARKUI_TRANSITION_EDGE_BOTTOM](_ark_u_i___native_module.md), [ARKUI_TRANSITION_EDGE_START](_ark_u_i___native_module.md), [ARKUI_TRANSITION_EDGE_END](_ark_u_i___native_module.md) } | 定义转场从边缘滑入和滑出的效果。  | 
+| [ArkUI_FinishCallbackType](_ark_u_i___native_module.md#arkui_finishcallbacktype) { [ARKUI_FINISH_CALLBACK_REMOVED](_ark_u_i___native_module.md) = 0, [ARKUI_FINISH_CALLBACK_LOGICALLY](_ark_u_i___native_module.md) } | 在动画中定义onFinish回调的类型。  | 
 | [ArkUI_BlendApplyType](_ark_u_i___native_module.md#arkui_blendapplytype) { [BLEND_APPLY_TYPE_FAST](_ark_u_i___native_module.md) = 0, [BLEND_APPLY_TYPE_OFFSCREEN](_ark_u_i___native_module.md) } | 指定的混合模式应用于视图的内容选项.  | 
 
 

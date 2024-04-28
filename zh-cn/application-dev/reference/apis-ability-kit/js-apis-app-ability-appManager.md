@@ -12,11 +12,29 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 import appManager from '@ohos.app.ability.appManager';
 ```
 
+## ProcessState<sup>10+</sup>
+
+表示进程状态的枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                 | 值  | 说明                               |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+
 ## appManager.isRunningInStabilityTest
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -55,6 +73,8 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -91,6 +111,8 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -125,6 +147,8 @@ appManager.isRamConstrainedDevice().then((data) => {
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -162,6 +186,8 @@ getAppMemorySize(): Promise\<number>
 
 获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -196,6 +222,8 @@ appManager.getAppMemorySize().then((data) => {
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取当前应用程序可以使用的内存的值。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -238,6 +266,8 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 > **说明：**
 >
 > 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

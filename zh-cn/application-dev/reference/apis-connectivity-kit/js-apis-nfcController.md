@@ -18,6 +18,8 @@ import controller from '@ohos.nfc.controller';
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | STATE_OFF | 1 | NFC已关闭状态。 |
@@ -52,7 +54,7 @@ openNfc(): boolean
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[enableNfc](#controllerenablenfc9)替代。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -68,7 +70,7 @@ enableNfc(): void
 
 打开NFC开关。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -89,7 +91,7 @@ closeNfc(): boolean
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[disableNfc](#controllerdisablenfc9)替代。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -105,7 +107,7 @@ disableNfc(): void
 
 关闭NFC开关。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -185,7 +187,7 @@ controller.on("nfcStateChange", (nfcState : number)=> {
   console.log("controller on callback nfcState: " + nfcState);
 });
 
-// open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
+// open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (!controller.isNfcOpen()) {
   let ret = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
@@ -199,7 +201,7 @@ try {
   console.error("controller enableNfc busiError: " + busiError);
 }
 
-// close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
+// close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (controller.isNfcOpen()) {
   let ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);

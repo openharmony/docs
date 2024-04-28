@@ -332,7 +332,7 @@
   </html>
   ```
 
-- 应用侧调用前端页面Object里的Function。
+- 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';

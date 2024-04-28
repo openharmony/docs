@@ -30,7 +30,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype10) | 是   | 会话类型。 |
 
@@ -79,7 +79,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型。                               |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |

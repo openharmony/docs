@@ -21,7 +21,6 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
-
 窗口类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -75,7 +74,6 @@ import window from '@ohos.window';
 | ---------- | ---- | ----------------------------- |
 | WINDOW_LAYOUT_MODE_CASCADE  | 0    | 表示使用层叠布局模式。       |
 | WINDOW_LAYOUT_MODE_TILE | 1    | 表示使用平铺布局模式。             |
-
 
 ## BlurStyle<sup>9+</sup>
 
@@ -165,7 +163,6 @@ import window from '@ohos.window';
 | x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -1009,7 +1006,6 @@ promise.then(() => {
 });
 ```
 
-
 ### showWithAnimation<sup>9+</sup>
 
 showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
@@ -1822,9 +1818,9 @@ try {
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
- getTransitionController(): TransitionController
+getTransitionController(): TransitionController
 
 获取窗口属性转换控制器。
 
@@ -2331,11 +2327,11 @@ let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 windowClass.raiseAboveTarget(targetId, (err) => {
-    if (err.code) {
-        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
+  if (err.code) {
+    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in raising the subWindow to target subWindow top.');
 });
 ```
 
@@ -2381,11 +2377,12 @@ let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
 promise.then(()=> {
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
+  console.info('Succeeded in raising the subWindow to target subWindow top.');
 }).catch((err)=>{
-    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+  console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
 });
 ```
+
 ### setRaiseByClickEnabled<sup>10+</sup>
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -2421,11 +2418,11 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 ```js
 let enabled = false;
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
-    if (err.code) {
-        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in disabling the raise-by-click function.');
+  if (err.code) {
+    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in disabling the raise-by-click function.');
 });
 ```
 
@@ -2470,9 +2467,9 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 let enabled = false;
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
-    console.info('Succeeded in disabling the raise-by-click function.');
+  console.info('Succeeded in disabling the raise-by-click function.');
 }).catch((err)=>{
-    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+  console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -2508,37 +2505,37 @@ setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+  onWindowStageCreate(windowStage) {
+    // 为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // 获取应用主窗口。
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-            let enabled = false;
-            // 调用setResizeByDragEnabled接口。
-            mainWindow.setResizeByDragEnabled(enabled, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            });
-        })
-    }
+      let enabled = false;
+      // 调用setResizeByDragEnabled接口。
+      mainWindow.setResizeByDragEnabled(enabled, (err) => {
+        if (err.code) {
+          console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+      });
+    })
+  }
 };
 ```
 
@@ -2579,36 +2576,36 @@ setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+  onWindowStageCreate(windowStage) {
+    // 为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+    // 获取应用主窗口。
+    let mainWindow: window.Window | undefined = undefined;
+    
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-            let enabled = false;
-            // 获取setResizeByDragEnabled接口的promise对象
-            let promise = mainWindow.setResizeByDragEnabled(enabled);
-            promise.then(()=> {
-                console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err)=>{
-                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
+      let enabled = false;
+      // 获取setResizeByDragEnabled接口的promise对象
+      let promise = mainWindow.setResizeByDragEnabled(enabled);
+      promise.then(()=> {
+        console.info('Succeeded in setting the function of disabling the resize by dragg window.');
+      }).catch((err)=>{
+        console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+      });
+    })
+  }
 };
 ```
 
@@ -2659,7 +2656,7 @@ export default class EntryAbility extends UIAbility {
     });
 
     // 获取应用主窗口。
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2734,7 +2731,7 @@ export default class EntryAbility extends UIAbility {
     });
 
     // 获取应用主窗口。
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2796,13 +2793,13 @@ import { BusinessError } from '@ohos.base';
 let enable = true;
 let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
+  console.info('Succeeded in enabling the single-frame-composer function.');
 }).catch((err: BusinessError)=>{
-    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+  console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
 });
 ```
 
-###  setTitleButtonVisible<sup>12+</sup>
+### setTitleButtonVisible<sup>12+</sup>
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
@@ -3027,6 +3024,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## TransitionContext<sup>9+</sup>
 
 属性转换的上下文信息。
@@ -3193,6 +3191,7 @@ try {
   console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
+
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void

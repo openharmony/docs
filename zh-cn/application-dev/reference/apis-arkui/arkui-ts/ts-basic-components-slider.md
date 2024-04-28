@@ -28,12 +28,14 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions对象说明
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0的值时，按默认值显示。 |
+| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>若设置的step值小于0或大于max值时，则按默认值显示。 |
 | style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向，横向Slider默认为从左往右滑动，竖向Slider默认为从上往下滑动。<br/>默认值：false |
@@ -150,6 +152,12 @@ trackThickness(value: Length)
 
 设置滑轨的粗细。设置为小于等于0的值时，取默认值。
 
+为保证滑块和滑轨的[SliderStyle](#sliderstyle枚举说明)样式，[blockSize](#blocksize10)跟随trackThickness同比例增减。
+
+当style为[SliderStyle](#sliderstyle枚举说明).OutSet时，trackThickness ：[blockSize](#blocksize10) = 1 ：4，当style为[SliderStyle](#sliderstyle枚举说明).InSet时，trackThickness ：[blockSize](#blocksize10) = 5 ：3。
+
+在变更trackThickness过程中，若trackThickness的大小或者[blockSize](#blocksize10)的大小超过slider组件的width或者height([SliderStyle](#sliderstyle枚举说明).OutSet时可能trackThickness没超过，但是[blockSize](#blocksize10)超过了)，取默认值。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -172,8 +180,6 @@ blockBorderColor(value: ResourceColor)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderColor可设置自定义形状中线的颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -194,8 +200,6 @@ blockBorderWidth(value: Length)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderWidth可设置自定义形状中线的粗细。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -209,8 +213,6 @@ blockBorderWidth(value: Length)
 stepColor(value: ResourceColor)
 
 设置刻度颜色。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -226,8 +228,6 @@ trackBorderRadius(value: Length)
 
 设置底板圆角半径。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -241,8 +241,6 @@ trackBorderRadius(value: Length)
 blockSize(value: SizeOptions)
 
 设置滑块大小。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -258,8 +256,6 @@ blockStyle(value: SliderBlockStyle)
 
 设置滑块形状参数。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -273,8 +269,6 @@ blockStyle(value: SliderBlockStyle)
 stepSize(value: Length)
 
 设置刻度大小（直径）。当值为0时，刻度点不显示，当值小于0时，取默认值。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

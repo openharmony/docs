@@ -355,7 +355,7 @@ attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 | 类型                                           | 说明                                          |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。 |
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。当调用成功时，HuksReturnResult的certChains成员非空，为获取到的证书链，否则为失败。 |
 
 **错误码：**
 
@@ -522,7 +522,7 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) 
 
 | 类型                                           | 说明                                          |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。 |
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。当调用成功时，HuksReturnResult的certChains成员非空，为获取到的证书链，否则为失败。 |
 
 **错误码：**
 
@@ -1346,7 +1346,7 @@ exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 
 | 类型                                           | 说明                                                         |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
+| Promise<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。 当调用成功时，HuksReturnResult的outData成员非空，为从密钥中导出的公钥，否则为失败。 |
 
 **错误码：**
 
@@ -1476,7 +1476,7 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOption
 
 | 类型                                            | 说明                                                         |
 | ----------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
+| Promise\<[HuksReturnResult](js-apis-huks.md#huksreturnresult9)> | Promise对象。当调用成功时，HuksReturnResult的properties成员非空，为生成密钥时所需参数，否则为失败。
 
 **错误码：**
 

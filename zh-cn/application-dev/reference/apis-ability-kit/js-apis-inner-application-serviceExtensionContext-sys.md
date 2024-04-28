@@ -27,7 +27,7 @@ import common from '@ohos.app.ability.common';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
       let context = this.context; // 获取ServiceExtensionContext
@@ -872,7 +872,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -943,7 +943,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1026,7 +1026,7 @@ import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1642,7 +1642,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1706,7 +1706,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1733,7 +1733,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId、parameters(可选)，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 

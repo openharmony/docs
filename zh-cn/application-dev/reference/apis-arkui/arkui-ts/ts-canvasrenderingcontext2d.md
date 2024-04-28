@@ -3013,7 +3013,7 @@ struct CanvasExample {
 
 | 名称      | 描述                  |
 | ------- | ------------------- |
-| inherit | 继承canvas组件已设定的文本方向。 |
+| inherit | 继承canvas组件通用属性已设定的文本方向。 |
 | ltr     | 从左往右。               |
 | rtl     | 从右往左。               |
 

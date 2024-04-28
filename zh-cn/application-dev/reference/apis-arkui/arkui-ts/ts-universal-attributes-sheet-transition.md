@@ -93,7 +93,6 @@ struct SheetTransitionExample {
   @State isShow:boolean = false
   @State isShow2:boolean = false
   @State sheetHeight:number = 300;
-  @State showDragBar:boolean = true;
 
   @Builder myBuilder() {
     Column() {
@@ -109,13 +108,6 @@ struct SheetTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.sheetHeight = -1;
-        })
-
-      Button("close dragBar")
-        .margin(10)
-        .fontSize(20)
-        .onClick(()=>{
-          this.showDragBar = false;
         })
 
       Button("close modal 1")
@@ -139,7 +131,6 @@ struct SheetTransitionExample {
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           height: this.sheetHeight, 
-          dragBar: this.showDragBar, 
           backgroundColor: Color.Green, 
           onAppear: () => {console.log("BindSheet onAppear.")}, 
           onDisappear: () => {console.log("BindSheet onDisappear.")}
@@ -152,7 +143,7 @@ struct SheetTransitionExample {
 }
 ```
 
-![zh-cn_sheet](figures/zh-cn_sheet.gif)
+![zh-cn_sheet](figures/zh-cn_sheet1.gif)
 
 ## 示例2
 

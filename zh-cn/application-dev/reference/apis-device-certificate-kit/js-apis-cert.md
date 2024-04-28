@@ -336,7 +336,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey     | 是   | 用于验签的公钥对象                                           |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象                                           |
 | callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
 **错误码：**
@@ -417,7 +417,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| key    | cryptoFramework.PubKey | 是   | 用于验签的公钥对象 |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象 |
 
 **返回值：**
 
@@ -635,7 +635,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | X509证书公钥对象：仅用于X509Cert的verify接口 |
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | X509证书公钥对象：仅用于X509Cert的verify接口 |
 
 **错误码：**
 
@@ -705,7 +705,7 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间必须以Z结尾：表示标准时间） |
+| date     | string         | 是   | 日期，为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -1104,7 +1104,7 @@ getNotBeforeTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X509证书有效期起始时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
+| string | 表示X509证书有效期起始时间，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -1175,7 +1175,7 @@ getNotAfterTime() : string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X509证书有效期截止时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
+| string | 表示X509证书有效期截止时间，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -3047,7 +3047,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象                                       |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象                                       |
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
@@ -3200,7 +3200,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象。 |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。 |
 
 **返回值**：
 
@@ -5923,7 +5923,7 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 | 类型               | 说明                 |
 | ------------------ | -------------------- |
-| CertChainValidator | 表示证书链校验器对象 |
+| [CertChainValidator](#certchainvalidator) | 表示证书链校验器对象 |
 
 **错误码：**
 
@@ -7346,7 +7346,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crldeprecated)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -7463,7 +7463,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数对象。 |
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crldeprecated)>>    | 是   | 回调函数。表示匹配到的证书吊销列表对象数组。 |
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | 是   | 回调函数。表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 

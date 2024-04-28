@@ -388,7 +388,7 @@ friction(value: number | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                        |
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
 
 ### flingSpeedLimit<sup>11+</sup>
 
@@ -537,21 +537,6 @@ onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute
 | 类型                                                  | 说明                 |
 | ----------------------------------------------------- | -------------------- |
 | [ComputedBarAttribute](#computedbarattribute对象说明) | 滚动条的位置及长度。 |
-
-### onScroll<sup>10+</sup>
-
-onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void)
-
-网格滑动时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名       | 类型                                                    | 必填 | 说明                                                         |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。 |
-| scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
 
 ### onReachStart<sup>10+</sup>
 

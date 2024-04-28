@@ -55,6 +55,8 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [removeNodeEventReceiver](#removenodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 在组件上删除注册的组件事件回调函数。  | 
 | int32_t(\* [addNodeCustomEventReceiver](#addnodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 在组件上添加自定义事件回调函数，用于接受该组件产生的自定义事件（如布局事件，绘制事件）。  | 
 | int32_t(\* [removeNodeCustomEventReceiver](#removenodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 在组件上删除注册的自定义事件回调函数。  | 
+| int32_t(\* [setLengthMetricUnit](#setlengthmetricunit) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 指定组件的单位。  | 
+
 
 
 ## 结构体成员变量说明
@@ -452,14 +454,14 @@ void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirty
 
 强制标记当前节点需要重新测算，布局或者绘制。
 
-系统属性设置更新场景下ArkUI框架会自动标记藏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
+系统属性设置更新场景下ArkUI框架会自动标记脏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| node | 需要标记藏区的节点对象。  | 
-| dirtyFlag | 藏区类型。  | 
+| node | 需要标记脏区的节点对象。  | 
+| dirtyFlag | 脏区类型。  | 
 
 
 ### measureNode
@@ -498,7 +500,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeCustomEvent) (ArkUI_NodeHandle node
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数&lt;**userData 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeCustomEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 ** | 
+| targetId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。 | 
+| userData | 自定义事件参数，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。|
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeCustomEventReceiver
@@ -540,8 +547,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数&lt;**userData 自定义事件参数，当事件触发时在回调参数&lt; ArkUI_NodeEvent&gt;中携带回来。 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。 ** | 
+| targetId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。   | 
+| userData | 自定义事件参数，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。 |
 
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 ### registerNodeEventReceiver
 
@@ -700,6 +711,26 @@ int32_t(* ArkUI_NativeNodeAPI_1::setLayoutPosition) (ArkUI_NodeHandle node, int3
 | node | 目标节点对象。  | 
 | positionX | x轴坐标。  | 
 | positionY | y轴坐标。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
+
+
+### setLengthMetricUnit
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::setLengthMetricUnit) (ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit)
+```
+**描述**
+指定组件的单位。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 用于指定单位的组件。  | 
+| unit | 单位类型[ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit)，默认为 ARKUI_LENGTH_METRIC_UNIT_DEFAULT。  | 
 
 **返回：**
 
