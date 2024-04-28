@@ -41,10 +41,8 @@
 
    ```ts
    function createMediaKeySystem(name: string): drm.MediaKeySystem {
-     let mediaKeySystem = drm.createMediaKeySystem(name);
-     if (mediaKeySystem === undefined) {
-       return undefined;
-     }
+     let mediaKeySystem：drm.MediaKeySystem = drm.createMediaKeySystem(name);
+     return mediaKeySystem;
    }
    ```
 
@@ -55,12 +53,14 @@
    > 如果查询出的map的size为null，说明该设备中不存在支持的插件。
 
    ```ts
-   function getMediaKeySystemName(name: string): drm.MediaKeySystem {
+   function getMediaKeySystems(): drm.MediaKeySystemDescription | undefined {
+    let description : drm.MediaKeySystemDescripion[] | undefined = undefined;
     try {
-      let description : drm.MediaKeySystemDescripion[] = drm.getMediaKeySystemName();
+      description = drm.getMediaKeySystems();
     } catch (err) {
       let error = err as BusinessError;
-      console.error('getMediaKeySystemName ERROR: ${error}')
+      console.error('getMediaKeySystems ERROR: ${error}')
     }
+    return description;
    }
    ```
