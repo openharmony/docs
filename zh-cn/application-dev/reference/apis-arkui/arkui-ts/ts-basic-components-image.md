@@ -261,7 +261,7 @@ copyOption(value: CopyOptions)
 
 ### colorFilter<sup>9+</sup>
 
-colorFilter(value: ColorFilter)
+colorFilter(value: ColorFilter | DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
 
