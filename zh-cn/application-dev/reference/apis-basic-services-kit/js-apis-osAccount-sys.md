@@ -40,6 +40,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -91,6 +92,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -141,6 +143,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -190,6 +193,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -239,6 +243,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -282,6 +287,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -337,6 +343,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -387,6 +394,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
@@ -442,6 +450,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
@@ -488,6 +497,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or localName. |
 | 12300003 | Account not found. |
@@ -542,6 +552,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or localName.    |
 | 12300003 | Account not found. |
@@ -585,6 +596,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -625,6 +637,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -671,6 +684,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -713,6 +727,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -752,6 +767,7 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -790,6 +806,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -832,6 +849,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localName or type. |
 | 12300004 | Local name already exists. |
@@ -885,6 +903,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localName, type or options. |
 | 12300004 | Local name already exists. |
@@ -936,6 +955,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
@@ -990,6 +1010,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
@@ -1079,6 +1100,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1127,6 +1149,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
@@ -1171,6 +1194,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1219,6 +1243,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1264,6 +1289,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
@@ -1317,6 +1343,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
@@ -1367,6 +1394,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
 
@@ -1408,6 +1436,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
 
@@ -1448,6 +1477,7 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1488,6 +1518,7 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1525,6 +1556,7 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1565,6 +1597,7 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1600,6 +1633,7 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
@@ -1645,6 +1679,7 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
@@ -1691,6 +1726,7 @@ getBundleIdForUidSync(uid: number): number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid uid. |
 
 **示例：**
@@ -1728,6 +1764,7 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1767,6 +1804,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1809,6 +1847,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
@@ -1858,6 +1897,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
@@ -1907,6 +1947,7 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -2000,6 +2041,7 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
@@ -2039,6 +2081,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
 
@@ -2093,6 +2136,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
 
@@ -2143,6 +2187,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
 
@@ -2196,6 +2241,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
 
@@ -2250,6 +2296,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
@@ -2311,6 +2358,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
@@ -2427,6 +2475,7 @@ registerInputer(inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
@@ -2492,6 +2541,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or inputer. |
 | 12300103 | The credential inputer has been registered. |
@@ -2534,6 +2584,7 @@ static unregisterInputer(authType: AuthType): void
 **错误码：**
 
 | 错误码ID | 错误信息                     |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | -------- | --------------------------- |
 | 12300002  | Invalid authType. |
 
@@ -3054,6 +3105,7 @@ static registerPlugin(plugin: DomainPlugin): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300201 | The domain plugin has been registered. |
 
 **示例：**
@@ -3131,6 +3183,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo or credential. |
 | 12300003 | Domain account does not exist. |
@@ -3186,6 +3239,7 @@ authWithPopup(callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
@@ -3236,6 +3290,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId. |
 | 12300003 | No domain account is bound. |
@@ -3285,6 +3340,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
@@ -3338,6 +3394,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
@@ -3385,6 +3442,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
@@ -3440,6 +3498,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
@@ -3487,6 +3546,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | The new account info is invalid. |
 | 12300003 | The old account not found. |
@@ -3533,6 +3593,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
@@ -3587,6 +3648,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
@@ -3632,6 +3694,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
@@ -3686,6 +3749,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
@@ -3740,6 +3804,7 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Domain account not found. |
 
@@ -3802,6 +3867,7 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -3840,6 +3906,7 @@ openSession(): Promise&lt;Uint8Array&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -3880,6 +3947,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300101 | Token is invalid. |
@@ -3941,6 +4009,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
 | 12300101 | Token is invalid. |
@@ -4030,6 +4099,7 @@ cancel(challenge: Uint8Array): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid challenge. |
 
@@ -4067,6 +4137,7 @@ delUser(token: Uint8Array, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息        |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300101 | Token is invalid. |
 
@@ -4110,6 +4181,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | Token is invalid. |
@@ -4154,6 +4226,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 | 错误码ID | 错误信息               |
 | -------- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300102 | Credential not enrolled. |
 
@@ -4287,6 +4360,7 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid pinSubType. |
 
 **示例：**
