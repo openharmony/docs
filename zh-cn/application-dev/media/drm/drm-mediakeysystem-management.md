@@ -134,7 +134,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
    调用MediaKeySystem类中的processKeySystemResponse方法，处理设备证书响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
-     ```ts
+   ```ts
    function processKeySystemResponse(response: Uint8Array): void {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      mediaKeysystem.processKeySystemResponse(response).then(() => {
@@ -143,7 +143,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
        console.error(`processKeySystemResponse: ERROR: ${err}`);
      });
    }
-     ```
+   ```
 
 11. 获取设备证书状态。
 
