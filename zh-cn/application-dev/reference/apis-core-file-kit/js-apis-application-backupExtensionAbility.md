@@ -81,3 +81,54 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
     }
   }
   ```
+  ### onRestoreEx
+
+onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string;
+
+Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作。
+onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
+onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                           |
+| ------------- | ------------------------------- | ---- | ------------------------------ |
+| bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
+| bundleInfo |string | 否   | 其他需要传递的包信息。 |
+
+**示例：**
+
+  ```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+
+  class BackupExt extends BackupExtension {
+    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
+      console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+      let info = "app diy info";
+      return info;
+    }
+  }
+  ```
+
+  ### getBackupInfo
+
+getBackupInfo(): string;
+
+在调用方查询应用数据时执行，由开发者提供扩查询应用数据的操作。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**示例：**
+
+  ```ts
+
+  class BackupExt extends BackupExtension {
+    async getBackupInfo(): string {
+      console.log(`getBackupInfo ok`);
+      let info = "app diy info";
+      return info;
+    }
+  }
+  ```

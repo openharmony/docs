@@ -599,3 +599,71 @@ onAboutToAppear(进场NavDestination页面)->onAppear(进场NavDestination页面
 **适配指导**
 
 依赖进场页面的aboutToAppear与退场页面aboutToDisAppear执行时间先后顺序的场景，可以将aboutToDisAppear生命周期转到willDisAppear生命周期中或者Navigation路由拦截setInterception的didShow回调中处理。
+
+## cl.arkui.13 select组件样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Select下拉按钮样式风格增强，通过设置ControlSize，来实现Select下拉按钮小型化。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+1. 新增加controlSize设置select下拉按钮默认尺寸（NORMAL、SMALL）
+
+涉及属性列表：
+
+| 属性         | NORMAL 组件                        | SMALL 组件               |
+| ------------ | --------------------------------- | --------------------------------- |
+| 背板高度     | 40vp                              | 28vp                              |
+| 背板最小宽度 | 68vp                              | 56vp                              |
+| 背板圆角     | 20vp                              | 14vp                              |
+| 图标高度     | 24vp                              | 20vp                              |
+| 图标宽度     | 12vp                              | 10vp                              |
+| 图标间距     | 上间距8vp 、右间距16vp、下间距8vp   | 上间距4vp 、右间距12vp、下间距4vp   |
+| 文本大小     | 16fp                              | 14fp                              |
+| 文本间距     | 上间距8vp 、左间距16vp、下间距8vp   | 上间距4vp 、左间距12vp、下间距4vp   |
+
+API version 11及以前，NORMAL的背板最小宽度是66vp；
+API version 12及以后，NORMAL的背板最小宽度是68vp；
+
+2. 修改select下拉按钮默认颜色，
+
+API version 11及以前，默认背景颜色是系统资源中的`ohos_id_color_card_bg`；
+
+API version 12及以后，默认背景颜色是系统资源中的`ohos_id_color_button_normal`。
+
+3. controlSize、width、height接口作用优先级：
+
+   1）如果开发者只设置了width和height，当文字大小设置的是比较大的值的时候，文字超出组件大小，且以省略号方式显示；
+
+   2）如果开发者只设置了controlSize，没有设置width和height，组件宽高自适应文字，文字不超出组件，并设置最小宽度minWidth和最小高度minHeight；
+
+   3）如果controlSize、width、height接口都设置了，width和height设置的值生效，但如果width和height设置的值小于controlSize设置的最小宽度minWidth和最小高度minHeight，width和height设置的值不生效，宽高仍保持controlSize设置的最小宽度minWidth和最小高度minHeight。
+
+4. disabled状态的select下拉按钮背景色的opacity：
+
+API version 11及以前，disabled状态的select下拉按钮背景色不透明。
+
+API version 12及以后，disabled状态的select下拉按钮背景色与字体的opacity一致。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+Select组件
+
+**适配指导**
+
+请查阅[select组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md)文档进行适配。

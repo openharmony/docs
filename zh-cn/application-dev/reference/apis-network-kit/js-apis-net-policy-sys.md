@@ -1501,9 +1501,14 @@ interface Data {
   uid: number,
   policy: policy.NetUidPolicy
 }
-policy.on('netUidPolicyChange', (data: Data) => {
-  console.log('on netUidPolicyChange: ' + JSON.stringify(data));
-});
+
+try {
+  policy.on('netUidPolicyChange', (data: Data) => {
+    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netUidPolicyChange')<sup>10+</sup>
@@ -1539,11 +1544,27 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 **示例：**
 
 ```ts
-let callback = (data: object) => {
-  console.log('on netUidPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netUidPolicyChange', callback);
-policy.off('netUidPolicyChange', callback);
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+
+try {
+  policy.on('netUidPolicyChange', (data: Data) => {
+    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netUidPolicyChange', (data: Data) => {
+    console.log('off netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netUidPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netUidRuleChange')<sup>10+</sup>
@@ -1579,9 +1600,19 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 **示例：**
 
 ```ts
-policy.on('netUidRuleChange', (data: object) => {
-  console.log('on netUidRuleChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  rule: policy.NetUidRule
+}
+
+try {
+  policy.on('netUidRuleChange', (data: Data) => {
+    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidRuleChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netUidRuleChange')<sup>10+</sup>
@@ -1617,11 +1648,27 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 **示例：**
 
 ```ts
-let callback = (data: object) => {
-  console.log('on netUidRuleChange, data:' + JSON.stringify(data));
-};
-policy.on('netUidRuleChange', callback);
-policy.off('netUidRuleChange', callback);
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  rule: policy.NetUidRule
+}
+
+try {
+  policy.on('netUidRuleChange', (data: Data) => {
+    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidRuleChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netUidRuleChange', (data: Data) => {
+    console.log('off netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netUidRuleChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netMeteredIfacesChange')<sup>10+</sup>
@@ -1657,9 +1704,14 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 **示例：**
 
 ```ts
-policy.on('netMeteredIfacesChange', (data: string[]) => {
-  console.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+try {
+  policy.on('netMeteredIfacesChange', (data: string[]) => {
+    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netMeteredIfacesChange')<sup>10+</sup>
@@ -1695,11 +1747,23 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 **示例：**
 
 ```ts
-let callback = (data: string[]) => {
-  console.log('on netMeteredIfacesChange, data:' + JSON.stringify(data));
-};
-policy.on('netMeteredIfacesChange', callback);
-policy.off('netMeteredIfacesChange', callback);
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netMeteredIfacesChange', (data: string[]) => {
+    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netMeteredIfacesChange', (data: string[]) => {
+    console.log('off netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netQuotaPolicyChange')<sup>10+</sup>
@@ -1735,9 +1799,19 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 **示例：**
 
 ```ts
-policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
-  console.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+
+try {
+  policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
+    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netQuotaPolicyChange')<sup>10+</sup>
@@ -1773,12 +1847,23 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 **示例：**
 
 ```ts
-policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-});
-policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+    console.log('off netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1814,9 +1899,15 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 **示例：**
 
 ```ts
-policy.on('netBackgroundPolicyChange', (data: boolean) => {
-  console.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1852,11 +1943,23 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 **示例：**
 
 ```ts
-let callback = (data: boolean) => {
-  console.log('on netBackgroundPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netBackgroundPolicyChange', callback);
-policy.off('netBackgroundPolicyChange', callback);
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ## NetBackgroundPolicy<sup>10+</sup>

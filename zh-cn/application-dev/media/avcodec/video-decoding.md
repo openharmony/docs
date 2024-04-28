@@ -147,9 +147,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置视频帧宽度（必须）
-    constexpr uint32_t DEFAULT_WIDTH = 320; 
+    constexpr int32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
+    constexpr int32_t DEFAULT_HEIGHT = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
@@ -429,6 +429,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
     ```c++
+    int32_t width = 0;
+    int32_t height = 0;
+    int32_t widthStride = 0;
+    int32_t heightStride = 0;
+    bool isFirstFrame = true;
     // 解码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -437,16 +442,19 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         (void)errorCode;
         (void)userData;
     }
-
+    
     // 解码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         // 可通过format获取到变化后的视频宽、高、跨距等
         (void)codec;
-        (void)format;
         (void)userData;
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
     }
-
+    
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
@@ -455,12 +463,22 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 数据处理，请参考:
         // - 写入解码码流
     }
-
+    
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
+        // 获取视频宽、高、跨距
+        if (isFirstFrame) {
+            OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_Destroy(format);
+            isFirstFrame = false;
+        }
         // 数据处理，请参考:
         // - 释放解码帧
     }
@@ -476,9 +494,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置视频帧宽度（必须）
-    constexpr uint32_t DEFAULT_WIDTH = 320; 
+    constexpr int32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
+    constexpr int32_t DEFAULT_HEIGHT = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
@@ -568,7 +586,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
 
     ```c++
     // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。

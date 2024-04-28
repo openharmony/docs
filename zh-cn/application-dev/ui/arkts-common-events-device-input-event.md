@@ -330,7 +330,7 @@ Button默认的悬浮态效果就是缩放效果，因此Auto和Scale的效果�
 
 
 ```ts
-onKeyEvent(event: (event?: KeyEvent) => void)
+onKeyEvent(event: (event: KeyEvent) => void): T
 onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 ```
 
@@ -475,7 +475,7 @@ struct KeyEventExample {
 
 ![zh-cn_image_0000001511900508](figures/zh-cn_image_0000001511900508.gif)
 
-使用OnKeyPreIme屏蔽在输入框中使用方向键。
+使用OnKeyPreIme屏蔽在输入框中使用方向左键。
 ```ts
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 

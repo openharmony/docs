@@ -24,11 +24,12 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      
    ```ts
    import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@ohos.base';
    
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
-   }, (error: Error) => {
+   }, (error: BusinessError) => {
      console.error('createAVRecorder failed');
    })
    ```
@@ -41,6 +42,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
    ```ts
    import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@ohos.base';
    
    // 状态上报回调函数
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {

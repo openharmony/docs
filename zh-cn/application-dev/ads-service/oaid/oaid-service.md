@@ -13,24 +13,25 @@ OAID是基于华为自有算法生成的32位类UUID（Universally Unique Identi
 
 OAID的特性：
 - OAID是设备级标识符，同一台设备上不同的App获取到的OAID值一样。
-- OAID的获取受应用的跟踪开关影响：当应用的跟踪开关开启时，该应用可获取到OAID；当应用的跟踪开关关闭时，该应用仅能获取到全0的OAID。
+- OAID的获取受应用的跟踪开关影响：当应用的跟踪开关开启时，该应用可获取到非全0的有效OAID；当应用的跟踪开关关闭时，该应用仅能获取到全0的OAID。
 - 同一台设备上首个应用开启应用跟踪开关时，会首次生成OAID。
 
 OAID会在下述场景中发生变化：
 - 用户恢复手机出厂设置。
+- 用户操作重置OAID。
 
 ### 接口说明
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid):Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
+| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid): Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
+| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp; void | 获取OAID，通过Callback回调返回值。 |
 
 > **说明：**
-> 如调用getOAID接口需要申请ohos.permission.app_tracking_consent权限，并获取用户授权。存在如下三种情况：
-> 1.如应用已配置ohos.permission.app_tracking_consent权限且弹框后用户手动授权，则返回OAID。
-> 2.如应用已配置ohos.permission.app_tracking_consent权限，但弹框后用户未手动授权，则返回00000000-0000-0000-0000-000000000000。
-> 3.如应用未配置ohos.permission.app_tracking_consent权限，则返回00000000-0000-0000-0000-000000000000。
+> 如调用getOAID接口需要申请ohos.permission.APP_TRACKING_CONSENT权限，并获取用户授权。存在如下三种情况：<br/>
+> 1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限且弹框后用户手动授权，则返回OAID。<br/>
+> 2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，但弹框后用户未手动授权，则返回00000000-0000-0000-0000-000000000000。<br/>
+> 3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。
 
 
 ### 开发步骤
@@ -83,7 +84,7 @@ OAID会在下述场景中发生变化：
        }).catch((err: BusinessError) => {
          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
        })
-     } catch(err) {
+     } catch (err) {
        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
      }
    }

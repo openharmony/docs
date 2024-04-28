@@ -87,7 +87,7 @@ struct Index {
           iconHeight: 200,
           iconColor: Color.Blue,
           onIconClick: () => {
-            console.info("The user clicked the icon.");
+            console.info('The user clicked the icon.');
           },
           onAuthResult: (result: userAuth.UserAuthResult) => {
             console.info('Get user auth result, result = ' + JSON.stringify(result));
@@ -99,4 +99,12 @@ struct Index {
 }
 ```
 
+调用onAuthResult可能会抛出错误码，错误码详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
+**人脸认证图例：**
+
+![人脸图标](figures/user_auth_icon_face.png)
+
+**指纹认证图例：**
+
+![指纹图标](figures/user_auth_icon_fingerprint.png)

@@ -6,11 +6,15 @@
 
 | 异步接口 | 同步接口 | 说明 |
 | ----- | ------ | ------- |
-| [preQuery(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequery) | [preQuerySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequerysync12) | 查询预处理。| 
+| [preQuery(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequery) | [preQuerySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetprequerysync12) | 查询预处理。|
 | [query(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquery) | [querySync(query: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysync12) | 查询关键资产。|
 | [postQuery(handle: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquery) | [postQuerySync(handle: AssetMap)](../../reference/apis-asset-store-kit/js-apis-asset.md#assetpostquerysync12) | 查询后置处理。 |
 
 在查询需要用户认证的关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
+
+>**注意：**
+>
+>下表中名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
 
 - **preQuery参数列表**
 
@@ -23,14 +27,18 @@
   | AUTH_VALIDITY_PERIOD  | 类型为number，取值范围：1-600，单位为秒。        | 可选     | 用户认证的有效期。             |
   | SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型。                           |
   | IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。                 |
-  | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节。                          | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
-  | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
-  | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
-  | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-2048字节。                       | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-2048字节。                      | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+  | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+  | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+  | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 
 - **query参数列表**
 
@@ -45,14 +53,18 @@
   | AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)。 | 可选     | 访问关键资产所需的用户认证类型。                  |
   | SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型。                           |
   | IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。                 |
-  | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。 |
-  | DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
-  | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
-  | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
-  | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。 |
+  | DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+  | DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+  | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+  | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+  | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 
 - **postQuery参数列表**
 

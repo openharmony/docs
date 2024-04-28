@@ -90,9 +90,9 @@ struct WebComponent {
 
 ## 预获取post请求
 
-可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。
+可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
 
-  以下示例，在Web组件onAppear中，对要加载页面中的post请求进行预获取。
+  以下示例，在Web组件onAppear中，对要加载页面中的post请求进行预获取。在onPageEnd中，可以清除预获取的post请求缓存。
 
 ```ts
 // xxx.ets
@@ -114,6 +114,10 @@ struct WebComponent {
               [{headerKey:"c",
                 headerValue:"z",},],
               "KeyX", 500);
+        })
+        .onPageEnd(() => {
+            // 清除后续不再使用的预获取资源缓存。
+            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
         })
     }
   }

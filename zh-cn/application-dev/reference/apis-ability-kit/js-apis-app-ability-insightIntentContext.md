@@ -22,6 +22,8 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -99,6 +101,8 @@ startAbility(want: Want): Promise\<void\>
 启动Ability，仅当Ability与意图调用执行基类具有相同包名才能被拉起。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
