@@ -2645,7 +2645,7 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                | 必填 | 说明                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'screenshot'，即截屏事件，对控制中心截屏和hdc命令截屏生效，对截屏接口不生效。 |
+| type     | string              | 是   | 监听事件，固定为'screenshot'，对控制中心截屏、hdc命令截屏、整屏截屏接口生效。 |
 | callback | Callback&lt;void&gt; | 是   | 回调函数。发生截屏事件时的回调。                               |
 
 **示例：**
@@ -3319,7 +3319,8 @@ try {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
+
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3363,7 +3364,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4028,7 +4029,7 @@ promise.then(() => {
 
 recover(): Promise&lt;void&gt;
 
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在2In1设备类型下生效。
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5699,7 +5700,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -5734,7 +5735,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击调用此接口的窗口内区域时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 > **说明：**
 >
