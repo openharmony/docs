@@ -3544,9 +3544,8 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 
 >**说明**
 >
->私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
->
->私有数据规格限制：总大小32KB，数量限制5条
+> - 私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
+> - 私有数据规格限制：总大小32KB，数量限制5条。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3577,23 +3576,25 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 import inputMethodEngine from '@ohos.inputMethodEngine';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let record :Record<string, inputMethodEngine.CommandDataType> = {
-    "valueString1": "abcdefg",
-    "valueString2": true,
-    "valueString3": 500,
-  }
-  inputClient.sendPrivateCommand(record).then((err) => {
-  }).catch(err => {
-    if (err !== undefined) {
-      let error = err as BusinessError;
-      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textInputClient) => {
+  try {
+    let record: Record<string, inputMethodEngine.CommandDataType> = {
+      "valueString1": "abcdefg",
+      "valueString2": true,
+      "valueString3": 500,
     }
-  });
-} catch (err) {
-  let error = err as BusinessError;
-  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
-}
+    textInputClient.sendPrivateCommand(record).then((err) => {
+    }).catch(err => {
+      if (err !== undefined) {
+        let error = err as BusinessError;
+        this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+      }
+    });
+  } catch (err) {
+    let error = err as BusinessError;
+    this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+  }
+})
 ```
 
 ## EditorAttribute

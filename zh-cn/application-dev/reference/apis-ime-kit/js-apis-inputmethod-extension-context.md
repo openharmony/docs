@@ -103,7 +103,7 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 
 startAbility(want: Want): Promise<**void**>;
 
-销毁输入法应用。使用Promise异步回调。
+拉起目标应用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
