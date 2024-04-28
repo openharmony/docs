@@ -1,7 +1,11 @@
 # 通过startAbilityByType拉起垂类意图面板
+开发者可通过特定的垂域业务类型如导航、金融等垂域类型，调用startAbilityByType接口拉起对应的垂域面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。垂域面板为调用方提供统一的安全、可信的目标方应用，同时降低调用方的接入成本。
+![](./figures/process-start-intent-panel.png)
+## 使用约束
+**设备限制**
+HarmonyOS NEXT Developer Preview0及以上版本的设备
 ## 接口介绍
-接口**startAbilityByType<sup>11+</sup>**是[UIAbilityContext](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis/js-apis-inner-application-uiAbilityContext.md)和[UIExtensionContentSession](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/reference/apis/js-apis-app-ability-uiExtensionContentSession.md)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用，垂域面板为调用方提供统一的安全、可信的目标方应用，同时也降低调用方的接入成本。
-> **版本约束：**从API Version11开始支持。
+接口**startAbilityByType<sup>11+</sup>**是[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
 
 ## 场景参数
 |   参数名|  类型 | 说明  |
@@ -9,25 +13,7 @@
 | type  |  string |  垂域业务类型：导航，金融等 |
 | wantParam  | Record<string, Object>  |  与type垂域业务类型相对应的扩展参数 |
 
-
-## 垂域场景
-垂域场景是指与特定行业或者特定专业领域的相关的场景，比如导航、金融等，每个垂域场景又可细分为多个子场景。
-### 导航场景
-导航场景用于拉起导航面板，用于为调用方提供支持导航功能应用的统一目标方，并可按场景细分为路线规划、导航等细分类型。 
-
-- **调用方接入步骤：**
-
-**1. 导入模块**
-
-```
-import common from '@ohos.app.ability.common';
-```
-**2. 构造接口参数**
-
-- type
-固定取值为"navigation"，指定为导航场景。
-+ wantParam
-
+**导航场景下的wantParam:**
 
 | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
@@ -40,6 +26,23 @@ import common from '@ohos.app.ability.common';
 | originLongitude      | 起点经度<sup>GCJ-02</sup>(路线规划场景有效)                                   | number   | 可缺省   |
 | vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交(路线规划场景有效) | number   | 可缺省,缺省时由应用自行处理   |
 
+## 垂域场景
+垂域场景是指与特定行业或者特定专业领域的相关的场景，比如导航、金融等，每个垂域场景又可细分为多个子场景。
+### 导航场景
+导航场景用于拉起导航面板，用于为调用方提供支持导航功能应用的统一目标方，并可按场景细分为路线规划、导航等细分类型。 
+
+- **调用方接入步骤：**
+
+1. 导入ohos.app.ability.common模块
+
+```
+import common from '@ohos.app.ability.common';
+```
+2. 构造接口参数并调用startAbilityByType接口
+
+- type
+固定取值为"navigation"，指定为导航场景。
+- wantParam 垂域业务类型对应的扩展参数，参考接口场景参数填写
 
 **3. 调用示例**
   ~~~typescript
@@ -71,17 +74,17 @@ import common from '@ohos.app.ability.common';
   ~~~
 效果示例图：
 <center>
-    <img src="./figures/start-navigation-panel.png" alt="图片描述" />
+    ![图片描述](./figures/start-navigation-panel.png)
 </center>
 + **目标方接入步骤**
 
-**1. 导入模块**
+1. 导入ohos.app.ability.UIAbility模块。
 ~~~typescript
 import UIAbility from '@ohos.app.ability.UIAbility';
 ~~~
-**2. 声明特性**
+2. module.json5中声明特性。
 
-应用在module.json5中新增[linkFeature](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#skills%E6%A0%87%E7%AD%BE)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
+应用在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills%E6%A0%87%E7%AD%BE)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
 配置示例：
 
@@ -118,7 +121,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 }
 ~~~
 
-**3. 解析参数**
+3. 解析参数并做对应处理。
 
 ~~~typescript
 UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
