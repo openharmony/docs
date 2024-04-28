@@ -5,7 +5,7 @@
 **设备限制**
 HarmonyOS NEXT Developer Preview0及以上版本的设备
 ## 接口介绍
-接口**startAbilityByType<sup>11+</sup>**是[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
+接口**startAbilityByType<sup>11+</sup>**是[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
 
 ## 场景参数
 |   参数名|  类型 | 说明  |
