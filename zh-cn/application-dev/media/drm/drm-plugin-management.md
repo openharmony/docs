@@ -59,7 +59,7 @@
       description = drm.getMediaKeySystems();
     } catch (err) {
       let error = err as BusinessError;
-      console.error('getMediaKeySystems ERROR: ${error}')
+      console.error(`getMediaKeySystems ERROR: ${error}`)
     }
     return description;
    }
