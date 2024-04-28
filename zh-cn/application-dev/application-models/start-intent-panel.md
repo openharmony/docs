@@ -33,18 +33,18 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 - **调用方接入步骤：**
 
-1. 导入ohos.app.ability.common模块
+1. 导入ohos.app.ability.common模块。
 
 ```
 import common from '@ohos.app.ability.common';
 ```
-2. 构造接口参数并调用startAbilityByType接口
+2. 构造接口参数并调用startAbilityByType接口。
 
 - type
 固定取值为"navigation"，指定为导航场景。
 - wantParam 垂域业务类型对应的扩展参数，参考接口场景参数填写
 
-**3. 调用示例**
+**调用示例**
   ~~~typescript
   import common from '@ohos.app.ability.common';
   let context = getContext(this) as common.UIAbilityContext;
