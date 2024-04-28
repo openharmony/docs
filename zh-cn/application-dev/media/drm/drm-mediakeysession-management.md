@@ -193,7 +193,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     - 通过注册固定的keyRequired回调函数获取监听设备证书请求，MediaKeySession创建成功时即可监听，有该事件返回结果则认为设备证书请求开始，不需要监听的时候使用off进行注销监听。
 
        ```ts
-       function onRegisterkeyRequired(mediaKeySession: drm.MediaKeysession): void {
+       function onRegisterkeyRequired(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
            console.log('keyRequired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
@@ -202,7 +202,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        ```
 
        ```ts
-       function unregisterkeyRequired(mediaKeySession: drm.MediaKeysession): void {
+       function unregisterkeyRequired(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('keyRequired');
          return;
        }
@@ -211,7 +211,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     - 通过注册固定的keyExpired回调函数获取监听密钥过期事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
        ```ts
-       function onRegisterkeyExpired(mediaKeySession: drm.MediaKeysession): void {
+       function onRegisterkeyExpired(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
             console.log('keyExpired' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
@@ -220,7 +220,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        ```
 
        ```ts
-       function unRegisterkeyExpired(mediaKeySession: drm.MediaKeysession): void {
+       function unRegisterkeyExpired(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('keyExpired');
          return;
        }
@@ -229,7 +229,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     - 通过注册固定的vendorDefined回调函数获取监听第三方自验证事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
        ```ts
-       function onRegisterVendorDefined(mediaKeySession: drm.MediaKeysession): void {
+       function onRegisterVendorDefined(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
            console.log('vendorDefined' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
@@ -238,7 +238,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        ```
 
        ```ts
-       function unRegisterVendorDefined(mediaKeySession: drm.MediaKeysession): void {
+       function unRegisterVendorDefined(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('vendorDefined');
          return;
        }
@@ -247,7 +247,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     - 通过注册固定的expirationUpdated回调函数获取监听过期更新事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
        ```ts
-       function onRegisterExpirationUpdated(mediaKeySession: drm.MediaKeysession): void {
+       function onRegisterExpirationUpdated(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
            console.log('expirationUpdate' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
@@ -265,7 +265,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     - 通过注册固定的keyChanged回调函数获取监听密钥变化事件，MediaKeySession创建成功时即可监听，不需要监听的时候使用off进行注销监听。
 
        ```ts
-       function onRegisterKeyChanged(mediaKeySession: drm.MediaKeysession): void {
+       function onRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.on('keysChange', (eventInfo: drm.EventInfo) => {
            console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
          });
@@ -274,7 +274,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        ```
 
        ```ts
-       function unRegisterKeyChanged(mediaKeySession: drm.MediaKeysession): void {
+       function unRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('keysChange');
          return;
        }
