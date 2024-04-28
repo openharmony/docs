@@ -467,6 +467,33 @@ Span类型信息。
 | letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距。    |
 | fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。 |
 
+>  **说明：**
+>
+>  在RichEditorTextStyle中，fontWeight是设置字体粗细的输入参数。
+>  而在RichEditorTextStyleResult中，会将之前设置的字体粗细转换为数字后返回。
+>  转换关系如下：
+>
+>  | RichEditorTextStyle中的fontWeight | RichEditorTextStyleResult中的fontWeight |
+>  | ---- | ----------------------------------- |
+>  | 100   | 0 |
+>  | 200   | 1 |
+>  | 300   | 2 |
+>  | 400   | 3 |
+>  | 500   | 4 |
+>  | 600   | 5 |
+>  | 700   | 6 |
+>  | 800   | 7 |
+>  | 900   | 8 |
+>  | bold   | 9 |
+>  | bolder   | 10 |
+>  | lighter   | 11 |
+>  | medium   | 12 |
+>  | normal   | 13 |
+>  | regular   | 14 |
+>
+>  RichEditorSymbolSpanStyle和RichEditorSymbolSpanStyleResult中fontWeight的转换关系，
+>  与RichEditorTextStyle和RichEditorTextStyleResult中fontWeight的转换关系一致。
+
 ## RichEditorImageSpanResult
 
 后端返回的图片信息。
