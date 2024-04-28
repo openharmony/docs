@@ -535,7 +535,7 @@ API Level 8，在API 12进行版本隔离
 
 **API Level**
 
-API Level 7，在API Version 12进行版本隔离。
+API Level 7，在API Version 12生效。
 
 **变更发生版本**
 
@@ -548,6 +548,10 @@ API Level 7，在API Version 12进行版本隔离。
 API Version 12前：页面生命周期先触发退出页面隐藏onPageHide,再触发进场页面的aboutToAppear
 
 API Version 12后：页面跳转时，先触发进来页面的创建生命周期aboutToAppear,再触发退出页面的onPageHide生命周期。
+
+**适配指导**
+
+依赖退出页面的onPageHide与进场页面的aboutToAppear生命周期执行的场景可以在aboutToAppear中通过事件通知机制，将触发退出页面的onPageHide中的实现逻辑。
 
 ## cl.arkui.12 NavDestination生命周期变更
 
@@ -578,14 +582,20 @@ API Level 10
 [NavDestination](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)生命周期
 
 变更前:
+
+| 变更前有动画 | 变更前无动画 |
+|---|---|
+|![](./figures/navigation_lifecycle_before.PNG) | ![](./figures/navigation_lifecycle_before_without_animtion.PNG) |
+
 1. 有动画场景：onAboutToAppear(进场NavDestination页面) -> onAppear(进场NavDestination页面) -> onHidden(退出NavDestination页面) -> onShown(进场NavDestination页面) -> onAboutToDisAppear(退场NavDestination页面) -> onDisAppear(退场NavDestination页面)。
 
 2. 无动画场景：
 onAboutToAppear(进场NavDestination页面) -> onAppear(进场NavDestination页面) -> onHidden(退出NavDestination页面) -> onAboutToDisAppear(退场NavDestination页面) -> onDisAppear(退场NavDestination页面)-> onShown(进场NavDestination页面)。
 
 变更后：
+![](./figures/navigation_lifecycle_after.PNG)
 onAboutToAppear(进场NavDestination页面)->onAppear(进场NavDestination页面) -> onHidden(退出NavDestination页面) -> onShown(进场NavDestination页面) -> onDisAppear(退出NavDestination页面) -> onAboutToDisAppear(退出NavDestination页面)。
 
 **适配指导**
 
-依赖 aboutToAppear与onDisAppear执行时间先后顺序，可以将对应处理逻辑转到willDisAppear生命周期中。
+依赖进场页面的aboutToAppear与退场页面aboutToDisAppear执行时间先后顺序的场景，可以将aboutToDisAppear生命周期转到willDisAppear生命周期中或者Navigation路由拦截setInterception的didShow回调中处理。
