@@ -38,6 +38,19 @@
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。        |
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。                                                                                                   |
 
+## PreinstalledApplicationInfo<sup>12+<sup>
+
+描述预置应用部分信息。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| bundleName     | string         | 是   | 否   | 应用包的名称。                 |
+| moduleName | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
+| iconId | number         | 是   | 否   | 应用图标Id。            |
+| labelId | number         | 是   | 否   | 应用标签Id。            |
+
 ## ModuleMetadata<sup>10+</sup>
 
 描述模块的元数据信息。
