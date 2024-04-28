@@ -2669,6 +2669,18 @@
 
 **起始版本**：12
 
+### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_AS_USER
+
+允许U0用户空间业务静默授权
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
 
 允许应用订阅通知面板显示或收起时发送的广播。
