@@ -245,11 +245,17 @@ onFailure(): void
 
 ### FillRequestCallback.onCancel
 
-onCancel(): void
+onCancel(fillContent?: string): void
 
 通知自动填充已被取消。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名                    | 类型   | 必填 | 说明                 |
+| ------------------------- | ------ | ---- | -------------------- |
+| fillContent<sup>12+</sup> | string | 否   | 表示需要填充的内容。 |
 
 **错误码：**
 
