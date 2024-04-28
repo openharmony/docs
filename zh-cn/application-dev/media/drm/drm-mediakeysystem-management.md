@@ -174,7 +174,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
       let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
       let mediaKeySession: drm.MediaKeySession | undefined = undefined;
       try {
-        mediaKeySession = mediaKeysystem.createMediaKeySession(drm.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+        mediaKeySession = mediaKeysystem.createMediaKeySession(level);
       } catch (err) {
         let error = err as BusinessError;
         console.error(`getCertificateStatus ERROR: ${error}`);
