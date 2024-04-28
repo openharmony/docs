@@ -21,15 +21,10 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 3. 调用MediaKeySession类中的generateMediaKeyRequest方法，生成许可证请求。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   async function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionalData: drm.OptionalData[]): Promise<drm.MediaKeyRequest | undefined> {
+   async function generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediakeyType: number, optionsData: drm.OptionsData[]): Promise<drm.MediaKeyRequest | undefined> {
     let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
     let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-    let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-    let optionalData = [
-     {name : "optionalDataNameA", value : "optionalDataValueA"},
-     {name : "optionalDataNameB", value : "optionalDataValueB"},
-    ];
-    let mediaKeyRequest: drm.MediaKeyRequest | undefined = await mediaKeySession.generateMediaKeyRequest(mimeType, initData, mediakeyType, optionalData).catch((err: BusinessError) => {
+    let mediaKeyRequest: drm.MediaKeyRequest | undefined = await mediaKeySession.generateMediaKeyRequest(mimeType, initData, mediakeyType, optionsData).catch((err: BusinessError) => {
        console.error(`generateMediaKeyRequest: ERROR: ${err}`);
        return undefined;
      });
@@ -93,10 +88,10 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        console.error(`processMediaKeyResponse: ERROR: ${err}`);
        return undefined;
      });
-     let offlineReleaseRequest: Uint8Array | undefined = mediaKeySession.generateOfflineReleaseRequest(mediakeyId).catch((err: BusinessError) => {
+     let offlineReleaseRequest: Uint8Array | undefined = await mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).catch((err: BusinessError) => {
        console.error(`generateOfflineReleaseRequest: ERROR: ${err}`);
        return undefined;
-     });
+   });
      return offlineReleaseRequest;
    }
    ```
@@ -125,7 +120,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    调用MediaKeySession类中的restoreOfflineMediaKeys方法，恢复离线许可证。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): void {
+   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): Promise<void> {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
@@ -169,7 +164,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     function requireSecureDecoderModule(mimeType: string): boolean {
       let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
       let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-      let status: boolean | undefined = undefined;
+      let status: boolean = false;
       try {
         status = mediaKeySession.requireSecureDecoderModule(mimeType);
       } catch (err) {
