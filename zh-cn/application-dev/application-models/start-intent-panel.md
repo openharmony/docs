@@ -84,7 +84,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 ~~~
 2. module.json5中声明特性。
 
-应用在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills%E6%A0%87%E7%AD%BE)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
+应用在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
 配置示例：
 
@@ -121,7 +121,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 }
 ~~~
 
-3. 解析参数并做对应处理。
+1. 解析参数并做对应处理。
 
 ~~~typescript
 UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
