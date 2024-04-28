@@ -493,7 +493,7 @@ export default class EntryAbility extends UIAbility {
 
 ## backgroundTaskManager.startBackgroundRunning<sup>12+</sup>
 
-startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;void&gt;
+startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
 申请长时任务，使用promise异步回调。
 
@@ -561,9 +561,10 @@ export default class EntryAbility extends UIAbility {
             // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
             wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
-                    let list: Array<string> = ["audioPlayback", "location"];
-                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then(() => {
+                    let list: Array<string> = ["dataTransfer"];
+                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res:backgroundTaskManager.ContinuousTaskNotification) => {
                         console.info("Operation startBackgroundRunning succeeded");
+                        // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知。
                     }).catch((error: BusinessError) => {
                         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
                     });
@@ -579,7 +580,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
 
-updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt;
+updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
 更新长时任务，使用promise异步回调。
 
@@ -671,3 +672,15 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
+
+## ContinuousTaskNotification
+
+长时任务通知信息。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+| 名称             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| slotType       | number | 是    | 长时任务通知的渠道类型。|
+| contentType | number | 是    | 长时任务通知的内容类型。|
+| notificationId | number | 是    | 长时任务通知 Id。|
