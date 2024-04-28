@@ -113,6 +113,8 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -167,6 +169,8 @@ try {
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -228,6 +232,8 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -281,6 +287,8 @@ try {
 decompressFile(inFile: string, outFile: string, options?: Options): Promise\<void>
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -341,6 +349,8 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -390,6 +400,8 @@ createChecksum(): Promise&lt;Checksum&gt;
 
 创建校验对象，使用Promise异步返回。成功时返回Checksum对象实例。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **返回值：**
@@ -413,6 +425,8 @@ zlib.createChecksum().then((data) => {
 createChecksumSync():  Checksum
 
 创建校验对象。成功时返回Checksum对象实例。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -486,6 +500,8 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 
 将两个Adler-32校验和合并，使用Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -548,6 +564,8 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-32校验，使用Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -596,6 +614,8 @@ checksum.crc32(0, arrayBufferIn).then((data) => {
 crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
 将两个CRC-32校验合并，使用Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -659,6 +679,8 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-64校验，使用Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -708,6 +730,8 @@ getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-32校验表，使用Promise异步返回。成功时返回CRC-32校验表。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **返回值：**
@@ -736,6 +760,8 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-64校验表，使用Promise异步返回。成功时返回CRC-64校验表。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **返回值：**
@@ -760,6 +786,8 @@ checksum.getCrc64Table().then((data) => {
 
 ## Options
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
@@ -769,6 +797,8 @@ checksum.getCrc64Table().then((data) => {
 | strategy | CompressStrategy | 是   | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
 
 ## zip.CompressLevel
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -781,6 +811,8 @@ checksum.getCrc64Table().then((data) => {
 
 ## zip.MemLevel
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称              | 值   | 说明                             |
@@ -790,6 +822,8 @@ checksum.getCrc64Table().then((data) => {
 | MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存。 |
 
 ## zip.CompressStrategy
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
