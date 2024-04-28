@@ -582,6 +582,134 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 }); 
 ```
 
+## reminderAgentManager.addExcludeDate<sup>12+</sup>
+
+addExcludeDate(reminderId: number, date: Date): Promise\<void>
+
+为指定Id的日历类型的代理提醒添加不提醒日期，即提醒时间在date范围内，则不提醒。使用Promise异步回调。
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                |
+| ---------- | ------ | ---- | ----------------------------------- |
+| reminderId | number | 是   | 需要添加ExcludeDate的代理提醒的Id。 |
+| date       | Date   | 是   | 无需提醒的日期。                    |
+
+**返回值**：
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 1700003  | The reminder does not exist. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+let date = new Date();
+reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
+  console.log("addExcludeDate promise");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
+## reminderAgentManager.deleteExcludeDates<sup>12+</sup>
+
+deleteExcludeDates(reminderId: number): Promise\<void>
+
+删除指定Id的日历类型的代理提醒的所有ExcludeDate。使用Promise异步回调。
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                |
+| ---------- | ------ | ---- | ----------------------------------- |
+| reminderId | number | 是   | 需要删除ExcludeDate的代理提醒的Id。 |
+
+**返回值**：
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 1700003  | The reminder does not exist. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
+  console.log("deleteExcludeDates promise");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
+## reminderAgentManager.getExcludeDates<sup>12+</sup>
+
+getExcludeDates(reminderId: number): Promise\<Array\<Date>>
+
+查询指定Id的代理提醒的ExcludeDate。使用Promise异步回调。
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                |
+| ---------- | ------ | ---- | ----------------------------------- |
+| reminderId | number | 是   | 需要添加ExcludeDate的代理提醒的Id。 |
+
+**返回值**：
+
+| 类型                   | 说明                              |
+| ---------------------- | --------------------------------- |
+| Promise\<Array\<Date>> | 执行提醒id下的所有的ExcludeDate。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 1700003  | The reminder does not exist. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
+  console.log("getExcludeDates promise length: " + dates.length);
+  for (let i = 0; i < dates.length; i++) {
+	console.log("getExcludeDates promise date is: " + dates[i].toString());
+  }
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
 ## ActionButtonType
 
 按钮的类型。
@@ -691,6 +819,7 @@ ReminderRequestCalendar extends ReminderRequest
 | repeatMonths | Array\<number> | 否 | 指明重复提醒的月份。 |
 | repeatDays | Array\<number> | 否 | 指明重复提醒的日期。 |
 | daysOfWeek<sup>11+</sup> | Array\<number> | 否 | 指明每周哪几天需要重复提醒。范围为周一到周日，对应数字为1到7。 |
+| endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | 否 | 指明提醒的结束时间。 |
 
 
 ## ReminderRequestAlarm
