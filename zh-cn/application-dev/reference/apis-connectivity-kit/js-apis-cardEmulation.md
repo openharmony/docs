@@ -129,12 +129,12 @@ hasHceCapability(): boolean
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 
-let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
 }
 
-let hasHceCap = cardEmulation.hasHceCapability();
+let hasHceCap: boolean = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
@@ -167,12 +167,21 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import bundleManager from '@ohos.bundle.bundleManager';
-
-let elementName : bundleManager.ElementName;
+import Want from '@ohos.app.ability.Want';
 
 // init elementName here, bundleName and abilityName are required.
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
 
-let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 // do something according to the isDefaultService value
 ```
 
@@ -302,16 +311,18 @@ import hilog from '@ohos.hilog';
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { AsyncCallback } from '@ohos.base';
 import { ElementName } from './bundleManager/ElementName'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
@@ -433,14 +444,14 @@ try {
 
   hceService.transmit(responseData, (err : BusinessError)=> {
     if (err) {
-      console.error("transmit AsyncCallback err Code: ${err.code}, message: ${err.message}");
+      console.error(`transmit AsyncCallback err Code: ${err.code}, message: ${err.message}`);
     } else {
       console.log("transmit AsyncCallback success.");
     }
   });
-} catch (busiError) {
-  console.error("transmit AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-    "message: ${(busiError as Businsess).message}");
+} catch (error) {
+  console.error(`transmit AsyncCallback catch Code: ${(error as BusinessError).code}, ` +
+    `message: ${(error as BusinessError).message}`);
 }
 ```
 
