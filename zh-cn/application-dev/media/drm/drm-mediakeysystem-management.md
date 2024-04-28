@@ -119,14 +119,13 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySystem类中的generateKeySystemRequest方法，获取设备证书请求。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-   function generateKeySystemRequest(): Promise<ProvisionRequest> | undefined {
+   async function generateKeySystemRequest(): Promise<ProvisionRequest | undefined> {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let provisionRequest: drm.ProvisionRequest | undefined = undefined;
-     mediaKeysystem.generateKeySystemRequest().then((provisionRequest) => {
-       console.log("generateKeySystemRequest");
-     }).catch((err: BusinessError) => {
-       console.error(`generateKeySystemRequest: ERROR: ${err}`);
-     });
+     let provisionRequest: drm.ProvisionRequest | undefined = await mediaKeysystem.generateKeySystemRequest().catch((err: BusinessError) => {
+        console.error(`generateKeySystemRequest: ERROR: ${err}`);
+        return undefined;
+      });
+
      return provisionRequest;
    }
      ```
@@ -136,14 +135,13 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySystem类中的processKeySystemResponse方法，处理设备证书响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-   function processKeySystemResponse(response: Uint8Array): Promise<void> {
+   function processKeySystemResponse(response: Uint8Array): void {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      mediaKeysystem.processKeySystemResponse(response).then(() => {
        console.log("processKeySystemResponse");
      }).catch((err: BusinessError) => {
        console.error(`processKeySystemResponse: ERROR: ${err}`);
      });
-     return;
    }
      ```
 
