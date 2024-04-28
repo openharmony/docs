@@ -34,6 +34,7 @@
 | typedef struct NativeWindow [OHNativeWindow](_native_window.md#ohnativewindow) | 提供对OHNativeWindow的访问功能。 | 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) | 提供对OHNativeWindowBuffer的访问功能。 | 
 | typedef struct [Region](_region.md)  [Region](_native_window.md#region) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
+| typedef enum [OHScalingModeV2](_native_window.md#ohscalingmodev2)  [OHScalingModeV2](_native_window.md#ohscalingmodev2) | 渲染缩放模式枚举。 | 
 
 
 ### 枚举
@@ -42,6 +43,7 @@
 | -------- | -------- |
 | [NativeWindowOperation](_native_window.md#nativewindowoperation) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 | 
 | [OHScalingMode](_native_window.md#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式 Scaling Mode。 | 
+| [OHScalingModeV2](_native_window.md#ohscalingmodev2) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。 | 
 | [OHHDRMetadataKey](_native_window.md#ohhdrmetadatakey) {<br/>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br/>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br/>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br/>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br/>} | 枚举HDR元数据关键字。 | 
 
 
@@ -71,3 +73,4 @@
 | int32_t [OH_NativeWindow_NativeWindowDetachBuffer](_native_window.md#oh_nativewindow_nativewindowdetachbuffer) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer从OHNativeWindow中分离。 |
 | int32_t [OH_NativeWindow_GetSurfaceId](_native_window.md#oh_nativewindow_getsurfaceid) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window, uint64_t \*surfaceId) | 通过OHNativeWindow获取对应的surfaceId。 | 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](_native_window.md#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](_native_window.md#ohnativewindow) \*\*window) | 通过surfaceId创建对应的OHNativeWindow。 | 
+| int32_t [OH_NativeWindow_NativeWindowSetScalingModeV2](_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window, [OHScalingModeV2](_native_window.md#ohscalingmodev2) scalingMode) | 设置OHNativeWindow的渲染缩放模式。 |
