@@ -245,4 +245,4 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
 
 针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
-- [AccessibilityExtensionAbility示例（仅对系统应用开放）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
+- [AccessibilityExtensionAbility示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
