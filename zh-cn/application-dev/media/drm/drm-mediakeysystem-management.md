@@ -83,9 +83,9 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 7. 调用MediaKeySystem类中的getMetrics()方法，获取系统统计信息。其中包括当前会话数、插件版本信息、解密次数和解密失败次数。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function getStatistics(): drm.StatisticKeyValue[] | undefined {
+   function getStatistics(): drm.StatisticKeyValue[] {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let statisticKeyValue: drm.StatisticKeyValue[] | undefined = undefined;
+     let statisticKeyValue: drm.StatisticKeyValue[] = [];
      try {
        statisticKeyValue = mediaKeysystem.getStatistics();
      } catch (err) {
@@ -101,9 +101,9 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySystem类中的getMaxContentProtectionLevel方法，获取设备支持的安全级别。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-   function getMaxContentProtectionLevel(): drm.ContentProtectionLevel | undefined {
+   function getMaxContentProtectionLevel(): drm.ContentProtectionLevel {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-     let contentProtectionLevel: drm.ContentProtectionLevel | undefined = undefined;
+     let contentProtectionLevel: drm.ContentProtectionLevel = drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN;
      try {
        contentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
      } catch (err) {
@@ -119,13 +119,12 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    调用MediaKeySystem类中的generateKeySystemRequest方法，获取设备证书请求。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
      ```ts
-   async function generateKeySystemRequest(): Promise<ProvisionRequest | undefined> {
+   async function generateKeySystemRequest(): Promise<drm.ProvisionRequest | undefined> {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let provisionRequest: drm.ProvisionRequest | undefined = await mediaKeysystem.generateKeySystemRequest().catch((err: BusinessError) => {
         console.error(`generateKeySystemRequest: ERROR: ${err}`);
         return undefined;
       });
-
      return provisionRequest;
    }
      ```
@@ -150,9 +149,9 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     调用MediaKeySystem类中的getCertificateStatus方法，获取设备证书状态。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
     ```ts
-    function getCertificateStatus(): drm.CertificateStatus | undefined {
+    function getCertificateStatus(): drm.CertificateStatus {
       let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-      let certificateStatus: drm.CertificateStatus | undefined = undefined;
+      let certificateStatus: drm.CertificateStatus = drm.CertificateStatus.CERT_STATUS_PROVISIONED;
       try {
         certificateStatus = mediaKeysystem.getCertificateStatus();
       } catch (err) {
@@ -258,6 +257,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
     ```ts
     function destroy(mediaKeySystem: drm.MediaKeySystem): void {
+      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
       try {
         mediaKeysystem.destroy();
       } catch (err) {
