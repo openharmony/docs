@@ -113,6 +113,8 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -167,6 +169,8 @@ try {
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -228,6 +232,8 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -281,6 +287,8 @@ try {
 decompressFile(inFile: string, outFile: string, options?: Options): Promise\<void>
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -341,6 +349,8 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -386,6 +396,8 @@ try {
 
 ## Options
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
@@ -395,6 +407,8 @@ try {
 | strategy | CompressStrategy | 是   | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
 
 ## zip.CompressLevel
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -407,6 +421,8 @@ try {
 
 ## zip.MemLevel
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称              | 值   | 说明                             |
@@ -416,6 +432,8 @@ try {
 | MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存。 |
 
 ## zip.CompressStrategy
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
