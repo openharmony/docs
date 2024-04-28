@@ -157,13 +157,14 @@ USB设备接口描述符。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称            | 类型                                                 | 必填  | 说明     |
-|---------------|----------------------------------------------------|-----|--------|
-| busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 是   | 总线类型。  |
-| driverUid     | string                                             | 是   | 驱动Uid。 |
-| driverName    | string                                             | 是   | 驱动名称。  |
-| driverVersion | string                                             | 是   | 驱动版本。  |
-| description   | string                                             | 是   | 驱动描述。  |
+| 名称            | 类型                                                 | 必填  | 说明             |
+|---------------|----------------------------------------------------|-----|----------------|
+| busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 是   | 总线类型。          |
+| driverUid     | string                                             | 是   | 驱动Uid。         |
+| driverName    | string                                             | 是   | 驱动名称。          |
+| driverVersion | string                                             | 是   | 驱动版本。          |
+| driverSize    | string                                             | 是   | 驱动大小(单位为Byte)。 |
+| description   | string                                             | 是   | 驱动描述。          |
 
 ## USBDriverInfo
 
