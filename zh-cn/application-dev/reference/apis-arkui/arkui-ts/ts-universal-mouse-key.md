@@ -13,6 +13,8 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
 鼠标进入或退出组件时触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -33,6 +35,8 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 onMouse(event: (event: MouseEvent) => void)
 
 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

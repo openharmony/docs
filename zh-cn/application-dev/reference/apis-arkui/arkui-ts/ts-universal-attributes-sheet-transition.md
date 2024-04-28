@@ -14,6 +14,8 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 
 给组件绑定半模态页面，点击后显示模态页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

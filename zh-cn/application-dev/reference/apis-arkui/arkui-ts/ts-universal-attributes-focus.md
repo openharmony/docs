@@ -12,6 +12,8 @@ focusable(value: boolean)
 
 设置当前组件是否可以获焦。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -40,6 +42,8 @@ defaultFocus(value: boolean)
 
 设置当前组件是否为当前页面上的默认焦点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -54,6 +58,8 @@ groupDefaultFocus(value: boolean)
 
 设置当前组件是否为当前组件所在容器获焦时的默认焦点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -67,6 +73,8 @@ groupDefaultFocus(value: boolean)
 focusOnTouch(value: boolean)
 
 设置当前组件是否支持点击获焦能力。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

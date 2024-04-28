@@ -12,6 +12,8 @@ renderFit(fitMode: RenderFit)
 
 设置宽高动画过程中的组件内容填充方式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -21,6 +23,8 @@ renderFit(fitMode: RenderFit)
 | fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
 
 ## RenderFit枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                          | 描述                                       | 示意图                                      |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
