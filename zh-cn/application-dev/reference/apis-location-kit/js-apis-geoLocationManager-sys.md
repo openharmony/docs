@@ -65,7 +65,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- | -------- |
 | isFromMock | Boolean | 否 | 是 | 否 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
 
 
