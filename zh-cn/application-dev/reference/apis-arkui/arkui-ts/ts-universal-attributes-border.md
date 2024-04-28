@@ -79,6 +79,8 @@ borderRadius(value: Length | BorderRadiuses)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -132,6 +134,8 @@ borderRadius(value: Length | BorderRadiuses)
 ## EdgeStyles<sup>9+</sup>对象说明
 
 引入该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
