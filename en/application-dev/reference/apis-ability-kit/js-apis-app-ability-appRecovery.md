@@ -15,6 +15,8 @@ import appRecovery from '@ohos.app.ability.appRecovery';
 
 Enumerates the application restart flags. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name      | Value  | Description      |
@@ -28,6 +30,8 @@ Enumerates the application restart flags. This enum is used as an input paramete
 
 Enumerates the scenarios for saving the application state. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                         | Value  | Description                                                        |
@@ -38,6 +42,8 @@ Enumerates the scenarios for saving the application state. This enum is used as 
 ## appRecovery.SaveModeFlag  
 
 Enumerates the application state saving modes. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -53,6 +59,8 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -96,6 +104,8 @@ This API can be used together with the APIs of [errorManager](js-apis-app-abilit
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 
@@ -126,6 +136,8 @@ saveAppState(): boolean
 Saves the application state. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -162,6 +174,8 @@ saveAppState(context?: UIAbilityContext): boolean
 Saves the ability state, which will be used for recovery. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -204,6 +218,8 @@ setRestartWant(want: Want): void
 Sets an ability that will be recovered. The ability must be a UIAbility in the current bundle.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

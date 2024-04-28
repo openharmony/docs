@@ -23,9 +23,9 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.|
-| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters carried in the last request.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters carried in the last request.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
@@ -33,6 +33,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start](../../application-models/uiability-intra-device-interaction.md#cold-starting-uiability). This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -64,6 +66,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 Called when a **WindowStage** is created for this UIAbility.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -92,6 +96,8 @@ onWindowStageDestroy(): void
 
 Called when the **WindowStage** is destroyed for this UIAbility.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -112,6 +118,8 @@ Called when the **WindowStage** is destroyed for this UIAbility.
 onWindowStageRestore(windowStage: window.WindowStage): void
 
 Called when the **WindowStage** is restored during the migration of this UIAbility, which is a multi-instance ability.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -140,6 +148,8 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 onDestroy(): void | Promise&lt;void&gt;
 
 Called to clear resources when this UIAbility is destroyed. This API returns the result synchronously or uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -181,6 +191,8 @@ onForeground(): void
 
 Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -201,6 +213,8 @@ Called when this UIAbility is switched from the background to the foreground. Th
 onBackground(): void
 
 Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -223,6 +237,9 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 Called to save data during the UIAbility migration preparation process.
 
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -235,7 +252,7 @@ Called to save data during the UIAbility migration preparation process.
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | Continuation result.|
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)  | Continuation result.|
 
 **Example**
 
@@ -258,6 +275,8 @@ Called to save data during the UIAbility migration preparation process.
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background. In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -288,6 +307,8 @@ Called when a UIAbility instance that has undergone the following states is star
 onDump(params: Array\<string>): Array\<string>
 
 Called to dump the client information. This API can be used to dump non-sensitive information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -322,6 +343,8 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
 Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -359,6 +382,8 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 Called by this UIAbility to set data to share in the cross-device sharing scenario.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -388,6 +413,8 @@ onPrepareToTerminate(): boolean
 Called when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
 
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -436,6 +463,8 @@ Called when this UIAbility is about to terminate in case that the system paramet
 onBackPressed(): boolean
 
 Called when an operation of going back to a previous page is triggered on this UIAbility. The return value determines whether to destroy the UIAbility instance. By default, the UIAbility instance is destroyed. This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
