@@ -87,63 +87,20 @@ struct AnimationToAnimationDemo {
 
 离手阶段的属性变化初始速度应与离手前一刻的属性改变速度保持一致。如果离手后属性变化速度从0开始，就好像正在运行的汽车紧急刹车，造成观感上的骤变是用户和开发者都不希望看到的。
 
-针对在手势和动画之间进行衔接的场景（如列表滑动），可以在跟手阶段每一次更改组件属性时，都做成使用跟手弹簧曲线的属性动画。离手时再用离手弹簧曲线产生离手阶段的属性动画。对于采用[springMotion](../reference/apis-arkui/js-apis-curve.md#curvesspringmotion9)曲线的动画，离手阶段动画将自动继承跟手阶段动画的速度，并以跟手动画当前位置为起点，运动到指定的属性终点。
+针对在[手势](../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)和[动画](./arkts-animation.md)之间进行衔接的场景（如列表滑动），可以在跟手阶段每一次更改组件属性时，都做成使用跟手弹簧曲线的属性动画。离手时再用离手弹簧曲线产生离手阶段的属性动画。对于采用[springMotion](../reference/apis-arkui/js-apis-curve.md#curvesspringmotion9)曲线的动画，离手阶段动画将自动继承跟手阶段动画的速度，并以跟手动画当前位置为起点，运动到指定的属性终点。
 
 
-```ts
-import curves from '@ohos.curves'
-class SetOffset{
-  offsetX:number = 0;
-  offsetY:number = 0;
-  set(x:number,y:number):void{
-    this.offsetX = x;
-    this.offsetY = y;
-  }
-}
-// 第一步：声明相关状态变量
-@state offsetX: number = 0;
-@State offsetY: number = 0;
-targetOffsetX: number = 100;
-targetOffsetY: number = 100;
-...
-Column() 
-  // 第二步：将状态变量设置到相关可动画属性接口
-  .translate({ x: this.offsetX, y: this.offsetY})
-  .gesture(
-    PanGesture({})
-      .onActionUpdate((event?: GestureEvent) => {
-        // 第三步：在跟手过程改变状态变量值，并且采用reponsiveSpringMotion动画运动到新的值
-        animateTo({
-          curve: curves.responsiveSpringMotion()
-        }, () => {
-          if(event){
-            let setxy = new SetOffset();
-            setxy.set(event.offsetX,event.offsetY)
-          }
-        })
-      })
-      .onActionEnd(() => {
-        // 第四步：在离手过程设定状态变量终点值，并且用springMotion动画运动到新的值，springMotion动画将继承跟手阶段的动画速度
-        animateTo({
-          curve: curves.SpringMotion()
-        }, () => {
-          let setxy = new SetOffset();
-          setxy.set(targetOffsetX,targetOffsetY)
-        })
-      })
-  )
-...
-```
+**示例**
 
-完整的示例和效果如下。
-
-
+小球跟手动画
 ```ts
 import curves from '@ohos.curves';
 
 @Entry
 @Component
 struct SpringMotionDemo {
+
+  // 第一步：声明相关状态变量
   @State positionX: number = 100;
   @State positionY: number = 100;
   diameter: number = 50;
@@ -153,7 +110,9 @@ struct SpringMotionDemo {
       Row() {
         Circle({ width: this.diameter, height: this.diameter })
           .fill(Color.Blue)
+          // 第二步：将状态变量设置到相关可动画属性接口
           .position({ x: this.positionX, y: this.positionY })
+          // 第三步：在跟手过程改变状态变量值，并且采用reponsiveSpringMotion动画运动到新的值
           .onTouch((event?: TouchEvent) => {
             if(event){
               if (event.type === TouchType.Move) {
@@ -165,7 +124,7 @@ struct SpringMotionDemo {
                   console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {
-                // 离手时，使用springMotion曲线
+                // 第四步：在离手过程设定状态变量终点值，并且用springMotion动画运动到新的值，springMotion动画将继承跟手阶段的动画速度
                 animateTo({ curve: curves.springMotion() }, () => {
                   this.positionX = 100;
                   this.positionY = 100;
