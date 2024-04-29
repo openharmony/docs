@@ -1,6 +1,6 @@
 # uri
 
-uri对象，可以通过[bundleManager.queryAbilityInfo](js-apis-bundleManager-sys.md#bundleManager.queryAbilityInfo)获取，其中入参abilityFlags至少包含GET_ABILITY_INFO_WITH_SKILL。此对象在[Skill](js-apis-bundleManager-skill.md)中包含。
+uri对象，可以通过[bundleManager.queryAbilityInfo](js-apis-bundleManager-sys.md#queryAbilityInfo)获取，其中入参abilityFlags至少包含GET_ABILITY_INFO_WITH_SKILL。此对象在[Skill](js-apis-bundleManager-skill.md)中包含。
 
 > **说明：**
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
