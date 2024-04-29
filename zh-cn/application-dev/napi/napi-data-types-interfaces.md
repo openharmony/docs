@@ -216,6 +216,7 @@ typedef enum {
 | napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
 
 ### 事件循环模式
+
 napi提供了运行底层事件循环的两种模式, 其定义如下：
 
 ```c
@@ -231,6 +232,7 @@ typedef enum {
 | napi_event_mode_nowait | 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。 |
 
 ### 线程安全任务优先级
+
 napi提供了线程安全任务的优先级, 底层任务队列中的任务会根据其优先级被依次执行, 优先级的定义如下：
 
 ```c
@@ -543,11 +545,13 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
 ```
 
 #### napi_run_event_loop
+
 ```c
 napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 ```
 
 #### napi_stop_event_loop
+
 ```c
 napi_status napi_stop_event_loop(napi_env env);
 ```
