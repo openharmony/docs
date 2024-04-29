@@ -86,13 +86,13 @@ import window from '@ohos.window';
 | ------------------------------------- | ---- | ----------------------------- |
 | UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | LOCKED                                | 11   | 表示锁定模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
@@ -186,6 +186,19 @@ import window from '@ohos.window';
 | rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
 | reason    | [RectChangeReason](#rectchangereason12) | 是   | 是   | 窗口矩形变化的原因。 |
 
+## AvoidAreaOptions<sup>12+</sup>
+
+系统规避区变化后返回当前规避区域以及规避区域类型。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称       | 类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 是   | 系统规避区变化后返回的规避区域类型。 |
+| area   | [AvoidArea](#avoidarea7)         | 是   | 是   | 系统规避区变化后返回的规避区域。 |
+
 ## WindowProperties
 
 窗口属性。
@@ -197,8 +210,8 @@ import window from '@ohos.window';
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                                  |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
-| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
+| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                                                  |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                                            |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
 | brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
@@ -1520,6 +1533,8 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1565,6 +1580,8 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2674,7 +2691,7 @@ try {
 
 ### on('avoidAreaChange')<sup>9+</sup>
 
-on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: AvoidArea}&gt;): void
+on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 开启系统规避区变化的监听。
 
@@ -2684,10 +2701,10 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: A
 
 **参数：**
 
-| 参数名   | 类型                                                               | 必填 | 说明                                   |
-| -------- |------------------------------------------------------------------| ---- |--------------------------------------|
-| type     | string                                                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
+| 参数名   | 类型                              | 必填 | 说明                                  |
+| -------- |----------------------------------| ---- |--------------------------------------|
+| type     | string                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
 
 **示例：**
 
@@ -2704,7 +2721,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area: AvoidArea }&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
 关闭系统规避区变化的监听。
 
@@ -2714,10 +2731,10 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area:
 
 **参数：**
 
-| 参数名   | 类型                                                                          | 必填  | 说明                                 |
-| -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
-| type     | string                                                                      | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
+| 参数名   | 类型                              | 必填 | 说明                                |
+| -------- |----------------------------------|------|------------------------------------|
+| type     | string                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
 
 **示例：**
 
