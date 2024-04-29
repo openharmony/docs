@@ -6,6 +6,8 @@
   - 已停止维护的接口
     - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
     - [@ohos.multimedia.medialibrary (媒体库管理)(系统接口)](js-apis-medialibrary-sys.md)
+- ArkTS组件
+  - [@ohos.multimedia.movingphotoview (动态照片组件)](ohos-multimedia-movingphotoview.md)
 - C API
   - 模块
     - [MediaAssetManager](_media_asset_manager.md)
