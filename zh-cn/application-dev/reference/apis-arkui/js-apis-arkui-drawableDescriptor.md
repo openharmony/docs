@@ -274,8 +274,7 @@ struct Example {
   options: AnimationOptions = {duration:1000, iterations:-1};
   @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   async aboutToAppear() {
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image1')))
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image2')))
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')))
     this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   }
   build() {
