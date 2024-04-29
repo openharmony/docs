@@ -10,7 +10,7 @@ ImageEffect提供了一系列接口用于图像的编辑。开发者可以通过
 
 ## 接口说明
 
-详细的接口说明请参考[image_effect][../../reference/apis-image-kit/image_effect.md]。
+详细的接口说明请参考[ImageEffect](../../reference/apis-image-kit/_image_effect.md)。
 
 ## 开发步骤
 
@@ -60,7 +60,7 @@ target_link_libraries(entry PUBLIC
     
 3. 设置处理数据。
 
-    场景一：设置 OH_PixelmapNative 输入类型。
+    **场景一：设置 OH_PixelmapNative 输入类型。**
 
     OH_PixelmapNative的具体使用方法请参考[Pixelmap开发指导](image-pixelmap-operation-native.md)。
 
@@ -74,7 +74,7 @@ target_link_libraries(entry PUBLIC
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputPixelmap fail!");
     ```
 
-    场景二：设置 OH_NativeBuffer 输入类型。
+    **场景二：设置 OH_NativeBuffer 输入类型。**
 
     OH_NativeBuffer的具体使用方法请参考[NativeBuffer开发指导](../../graphics/native-buffer-guidelines.md)。
     
@@ -88,7 +88,7 @@ target_link_libraries(entry PUBLIC
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputNativeBuffer fail!");
     ```
 
-    场景三：设置 URI 输入类型。
+    **场景三：设置 URI 输入类型。**
     
     ```c++
     // 设置输入的URI。
@@ -100,14 +100,14 @@ target_link_libraries(entry PUBLIC
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputUri fail!");
     ```
 
-    场景四：设置 OHNativeWindow 输入类型。
+    **场景四：设置 OHNativeWindow 输入类型。**
 
     以相机预览场景为例来说明OHNativeWindow输入场景。XComponent组件为相机预览流提供的SurfaceId，可在native c++层将SurfaceId转换成OHNativeWindow，下面提供一份代码示例。
     XComponent模块的具体使用方法请参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
     NativeWindow模块的具体使用方法请参考[OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md)。
     Camera的具体使用方法请参考[Camera预览参考](../camera/native-camera-preview.md)。
     
-    1. 在xxx.ets中添加一个XComponent组件。
+    (1) 在xxx.ets中添加一个XComponent组件。
     
         ```ts
         XComponent({ 
@@ -130,7 +130,7 @@ target_link_libraries(entry PUBLIC
         .height('100%')
         ```
 
-    2. imageEffect.getSurfaceId的native c++层具体实现。
+    (2) imageEffect.getSurfaceId的native c++层具体实现。
       
         ```c++
         // 根据SurfaceId创建NativeWindow，注意创建出来的NativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
@@ -160,6 +160,7 @@ target_link_libraries(entry PUBLIC
         ```
 
 4. 启动效果器。
+
     ```c++
     // 执行生效滤镜效果。
     errorCode = OH_ImageEffect_Start(imageEffect);
@@ -167,6 +168,7 @@ target_link_libraries(entry PUBLIC
     ```
 
 5. 停止生效效果（可选，仅在输入Surface场景下才有效）。
+
     ```c++
     // 停止生效滤镜效果。
     errorCode = OH_ImageEffect_Stop(imageEffect);
@@ -174,6 +176,7 @@ target_link_libraries(entry PUBLIC
     ```
 
 6. 序列化效果器（可选）。
+
     ```c++
     char *info = nullptr;
     errorCode = OH_ImageEffect_Save(imageEffect, &info);
@@ -189,8 +192,11 @@ target_link_libraries(entry PUBLIC
     ```
 
 ### 自定义滤镜
+
 以下步骤描述了如何实现并注册自定义滤镜接口：
+
 1. 定义 ImageEffect_FilterDelegate。
+
     ```c++
     // 图像信息结构体。
     struct EffectBufferInfo {
@@ -247,7 +253,7 @@ target_link_libraries(entry PUBLIC
     ```
 其中Render接口的实现分两种场景。
 
-    场景一：自定义算法可以直接修改info中的像素数据（比如：亮度调节滤镜）。
+    **场景一：自定义算法可以直接修改info中的像素数据（比如：亮度调节滤镜）。**
 
     ```c++
     bool Render(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFilterDelegate_PushData pushData)
@@ -269,7 +275,7 @@ target_link_libraries(entry PUBLIC
     }
     ```
 
-    场景二：自定义算法不能直接修改info中的像素数据（比如：裁剪滤镜）。
+    **场景二：自定义算法不能直接修改info中的像素数据（比如：裁剪滤镜）。**
 
     ```c++
     bool Render(OH_EffectFilter *filter, OH_EffectBufferInfo *info, OH_EffectFilterDelegate_PushData pushData)
@@ -308,6 +314,7 @@ target_link_libraries(entry PUBLIC
     ```
 
 2. 生成自定义滤镜信息。
+
     ```c++
     // 创建 OH_EffectFilterInfo 实例。
     OH_EffectFilterInfo *customFilterInfo = OH_EffectFilterInfo_Create();
@@ -326,6 +333,7 @@ target_link_libraries(entry PUBLIC
     ```
 
 3. 将 ImageEffect_FilterDelegate 注册到效果器。
+
     ```c++
     // 注册自定义滤镜。
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_Register(customFilterInfo, &filterDelegate);
@@ -333,13 +341,16 @@ target_link_libraries(entry PUBLIC
     ```
 
 ### EffectFilter快速实现单个滤镜的处理效果
+
 1. 创建滤镜。
+
     ```c++
     // 创建滤镜。比如：创建对比度效果器。
     OH_EffectFilter *filter = OH_EffectFilter_Create(OH_EFFECT_CONTRAST_FILTER);
     ```
 
 2. 设置滤镜参数。
+
     ```c++
     // 设置滤镜参数, 滤镜强度设置为50。
     ImageEffect_Any value = {.dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, .dataValue.floatValue = 50.f};
@@ -348,19 +359,23 @@ target_link_libraries(entry PUBLIC
     ```
 
 3. 生效滤镜。
+
     ```c++
     // 生效滤镜效果。
     errorCode = OH_EffectFilter_Render(filter, inputPixelmap, outputPixelmap);
     ```
 
 4. 销毁滤镜实例。
+
     ```c++
     // 销毁滤镜实例。
     errorCode = OH_EffectFilter_Release(filter);
     ```
 
 ### 查询能力
+
 - 根据滤镜名查询滤镜信息。
+
     ```c++
     // 创建 OH_EffectFilterInfo 实例。
     OH_EffectFilterInfo *filterInfo = OH_EffectFilterInfo_Create();
@@ -389,6 +404,7 @@ target_link_libraries(entry PUBLIC
     ```
 
 - 根据条件查询满足条件的滤镜。
+
     ```c++
     // 查询所有的Filter，需要主动进行资源释放。
     ImageEffect_FilterNames *filterNames = OH_EffectFilter_LookupFilters("Default");
