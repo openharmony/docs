@@ -392,9 +392,9 @@ try {
 
 ```
 
-## drm.getMediaKeySystemName<sup>12+</sup>
+## drm.getMediaKeySystems<sup>12+</sup>
 
-getMediaKeySystemName(): MediaKeySystemDescription[]
+getMediaKeySystems(): MediaKeySystemDescription[]
 
 获取设备支持的DRM插件的名称和uuid。
 
@@ -428,10 +428,10 @@ getMediaKeySystemName(): MediaKeySystemDescription[]
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 try {
-  let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystemName();
+  let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`getMediaKeySystemName ERROR: ${error}`);
+  console.error(`getMediaKeySystems ERROR: ${error}`);  
 }
 ```
 
@@ -1166,12 +1166,12 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-let OptionsData = [
-    {name : "optionalsDataNameA", value : "optionalsDataValueA"},
-    {name : "optionalsDataNameB", value : "optionalsDataValueB"}
+let optionsData: drm.OptionsData[]  = [
+    {name : "optionsDataNameA", value : "optionsDataValueA"},
+    {name : "optionsDataNameB", value : "optionsDataValueB"}
 ];
 let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
+mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, optionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
   console.log('generateMediaKeyRequest' + mediaKeyRequest);
 }).catch((err: BusinessError) => {
   console.error(`generateMediaKeyRequest: ERROR: ${err}`);
