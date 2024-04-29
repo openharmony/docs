@@ -107,6 +107,33 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### WindowStageWillDestroy状态
+对应`onWindowStageWillDestroy()`回调，在WindowStage销毁前执行，此时WindowStage可以使用。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  windowStage: window.WindowStage | undefined = undefined;
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    this.windowStage = windowStage;
+    // ...
+  }
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    // 释放通过windowStage对象获取的资源
+  }
+  onWindowStageDestroy() {
+    // 释放UI资源
+  }
+}
+```
+
+> **说明：**
+>
+> WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
+
 
 ### Foreground和Background状态
 
