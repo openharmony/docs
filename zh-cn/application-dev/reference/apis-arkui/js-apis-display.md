@@ -146,11 +146,8 @@ getDefaultDisplaySync(): Display
 import display from '@ohos.display';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+
+displayClass = display.getDefaultDisplaySync();
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -186,7 +183,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -227,7 +224,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -254,11 +251,8 @@ import { Callback } from '@ohos.base';
 let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on("add", callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+
+display.on("add", callback);
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -279,11 +273,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-try {
-  display.off("remove");
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+display.off("remove");
 ```
 
 ## display.isFoldable<sup>10+</sup>
@@ -312,27 +302,8 @@ isFoldable(): boolean
 ```ts
 import display from '@ohos.display';
 
-let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  let ret: boolean = false;
-  try {
-    ret = display.isFoldable();
-  } catch (exception) {
-    console.error('Failed to check is foldable or not. Code: ' + JSON.stringify(exception));
-  }
-  if (ret == undefined) {
-    console.log("Failed to check is foldable or not.");
-  }
-  if (ret) {
-    console.log("The device is foldable.");
-  } else if (!ret) {
-    console.log("The device is not foldable.");
-  }
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+let ret: boolean = false;
+ret = display.isFoldable();
 ```
 
 ## display.getFoldStatus<sup>10+</sup>
@@ -361,11 +332,8 @@ getFoldStatus(): FoldStatus
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getFoldStatus();
-} catch (exception) {
-  console.error('Failed to obtain the fold status. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldStatus = display.getFoldStatus();
+console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
 ```
 
 ## display.getFoldDisplayMode<sup>10+</sup>
@@ -394,11 +362,8 @@ getFoldDisplayMode(): FoldDisplayMode
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getFoldDisplayMode();
-} catch (exception) {
-  console.error('Failed to obtain the fold display mode. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldDisplayMode = display.getFoldDisplayMode();
+console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
 ```
 
 ## display.getCurrentFoldCreaseRegion<sup>10+</sup>
@@ -427,11 +392,8 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getCurrentFoldCreaseRegion();
-} catch (exception) {
-  console.error('Failed to obtain the current fold crease region. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
+console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
 ```
 
 ## display.on('foldStatusChange')<sup>10+</sup>
@@ -465,11 +427,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on('foldStatusChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldStatusChange', callback);
 ```
 
 ## display.off('foldStatusChange')<sup>10+</sup>
@@ -498,11 +456,7 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 **示例：**
 
 ```ts
-try {
-  display.off('foldStatusChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+display.off('foldStatusChange');
 ```
 
 ## display.on('foldAngleChange')<sup>12+</sup>
@@ -536,11 +490,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<Array<number>> = (angles: Array<number>) => {
   console.info('Listening fold angles length: ' + angles.length);
 };
-try {
-  display.on('foldAngleChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldAngleChange', callback);
 ```
 
 ## display.off('foldAngleChange')<sup>12+</sup>
@@ -569,11 +519,7 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 **示例：**
 
 ```ts
-try {
-  display.off('foldAngleChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+display.off('foldAngleChange');
 ```
 
 ## display.on('captureStatusChange')<sup>12+</sup>
@@ -607,11 +553,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<boolean> = (captureStatus: boolean) => {
   console.info('Listening capture status: ' + captureStatus);
 };
-try {
-  display.on('captureStatusChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('captureStatusChange', callback);
 ```
 
 ## display.off('captureStatusChange')<sup>12+</sup>
@@ -640,11 +582,7 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-try {
-  display.off('captureStatusChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+display.off('captureStatusChange');
 ```
 
 ## display.isCaptured<sup>12+</sup>
@@ -674,11 +612,7 @@ isCaptured(): boolean
 import display from '@ohos.display';
 
 let ret: boolean = false;
-try {
-  ret = display.isCaptured();
-} catch (exception) {
-  console.error('Failed to check is captured or not. Code: ' + JSON.stringify(exception));
-}
+ret = display.isCaptured();
 ```
 
 ## display.on('foldDisplayModeChange')<sup>10+</sup>
@@ -712,11 +646,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on('foldDisplayModeChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldDisplayModeChange', callback);
 ```
 
 ## display.off('foldDisplayModeChange')<sup>10+</sup>
@@ -745,11 +675,7 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 **示例：**
 
 ```ts
-try {
-  display.off('foldDisplayModeChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+display.off('foldDisplayModeChange');
 ```
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
@@ -779,7 +705,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -816,7 +742,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -846,7 +772,7 @@ import { BusinessError } from '@ohos.base';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -880,7 +806,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -939,20 +865,16 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    return;
+  }
+  console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+});
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -981,16 +903,11 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
-  promise.then((data: display.CutoutInfo) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+displayClass = display.getDefaultDisplaySync();
+let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
+promise.then((data: display.CutoutInfo) => {
+  console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+});
 ```
