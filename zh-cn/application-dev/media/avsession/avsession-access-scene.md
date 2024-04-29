@@ -403,10 +403,10 @@ async function setListener() {
  let playBackState: AVSessionManager.AVPlayBackState = {
    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
  };
- session.setAVPlayBackState(playBackState).then(() => {
-   console.info(`set AVPlayBackState successfully`);
+ session.setAVPlaybackState(playBackState).then(() => {
+   console.info(`set AVPlaybackState successfully`);
  }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+   console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
  });
 
  // 应用注册循环模式的控制监听
@@ -416,10 +416,10 @@ async function setListener() {
    let playBackState: AVSessionManager.AVPlayBackState = {
     loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
    };
-   session.setAVPlayBackState(playBackState).then(() => {
-     console.info(`set AVPlayBackState successfully`);
+   session.setAVPlaybackState(playBackState).then(() => {
+     console.info(`set AVPlaybackState successfully`);
    }).catch((err: BusinessError) => {
-     console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+     console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
    });
  });
 
