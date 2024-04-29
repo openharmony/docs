@@ -265,7 +265,7 @@ export class BreakpointState<T extends Object> {
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```ts
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakpointState } from './common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 @Entry
 @Component
