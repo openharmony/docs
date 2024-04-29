@@ -50,7 +50,7 @@
 
    > **说明：**
    >
-   > 如果查询出的map的size为null，说明该设备中不存在支持的插件。
+   > 如果查询出的数组的size为null，说明该设备中不存在支持的插件。
 
    ```ts
    function getMediaKeySystems(): drm.MediaKeySystemDescription[]{
