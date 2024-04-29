@@ -280,6 +280,34 @@ type(value: TextAreaType)
 | ------ | --------------------------------------- | ---- | -------------------------------------------- |
 | value  | [TextAreaType](#textareatype11枚举说明) | 是   | 输入框类型。<br/>默认值：TextAreaType.Normal |
 
+### enableAutoFill<sup>12+</sup>
+
+enableAutoFill(value: boolean)
+
+设置是否启用自动填充。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否启用自动填充。<br/>true表示启用，false表示不启用。<br/>默认值：true |
+
+### contentType<sup>12+</sup>
+
+contentType(contentType: ContentType)
+
+设置自动填充类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填 | 说明           |
+| ----------- | ------------------------------------- | ---- | -------------- |
+| contentType | [ContentType](#contenttype12枚举说明) | 是   | 自动填充类型。 |
+
 ### enterKeyType<sup>11+</sup>
 
 enterKeyType(value: EnterKeyType)
@@ -764,6 +792,34 @@ getCaretOffset(): CaretOffset
 | EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
 | NUMBER   | 纯数字输入模式。      |
 | PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
+
+## ContentType<sup>12+</sup>枚举说明
+
+自动填充类型。
+
+| 名称                       | 值   | 描述                                                         |
+| -------------------------- | ---- | ------------------------------------------------------------ |
+| USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
+| PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
+| NEW_PASSWORD               | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
+| FULL_STREET_ADDRESS        | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
+| HOUSE_NUMBER               | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
+| DISTRICT_ADDRESS           | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
+| CITY_ADDRESS               | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
+| PROVINCE_ADDRESS           | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
+| COUNTRY_ADDRESS            | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
+| PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
+| PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
+| PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
+| BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
+| ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+| NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
+| DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
+| FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
 
 ## SelectionOptions<sup>12+</sup>
 
@@ -1252,3 +1308,38 @@ struct LineSpacingExample {
 ```
 
 ![lineSpacing](figures/TextArea_lineSpacing.png)
+
+### 示例12
+自动填充示例
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = ''
+
+  build() {
+    Column() {
+      // 邮箱地址自动填充类型
+      TextArea({ placeholder: 'input your email...' })
+        .width('95%')
+        .height(40)
+        .margin(20)
+        .contentType(ContentType.EMAIL_ADDRESS)
+        .enableAutoFill(true)
+        .maxLength(20)
+      // 街道地址自动填充类型
+      TextArea({ placeholder: 'input your street address...' })
+        .width('95%')
+        .height(40)
+        .margin(20)
+        .contentType(ContentType.FULL_STREET_ADDRESS)
+        .enableAutoFill(true)
+        .maxLength(20)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![CustomTextAreaType](figures/textAreaAutoFillFeature.png)
