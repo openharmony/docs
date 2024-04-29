@@ -125,6 +125,8 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## BackgroundImageResizable<sup>12+</sup>
 
 backgroundImageResizable(value: ResizableOptions)
