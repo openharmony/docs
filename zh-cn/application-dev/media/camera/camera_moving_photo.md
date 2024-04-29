@@ -6,7 +6,7 @@
 
 - 查询当前设备的当前模式是否支持拍摄动态照片。
 - 如果支持动态照片，可以调用相机框架提供的使能接口**使能**动态照片能力。
-- 监听缩略图回调，获取缩略图代理类，将缩略图存入媒体库。
+- 监听照片回调，将照片存入媒体库。
 
 > **说明：**
 > 
@@ -100,33 +100,8 @@
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
-       // 调用媒体库接口落盘缩略图，详细实现见2。
-       saveDeferredPhoto(proxyObj);
+       saveCameraPhoto(proxyObj);
      });
    }
    ```
 
-
-2. 调用媒体库接口落盘缩略图。
-
-   Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
-   ```ts
-   let context = getContext(this);
-   
-   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
-     try {
-       // 创建 photoAsset
-       let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-       let testFileName = 'testFile' + Date.now() + '.jpg';
-       let photoAsset = await photoAccessHelper.createAsset(testFileName);
-       // 将缩略图代理类传递给媒体库
-       let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
-       mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
-       let res = await photoAccessHelper.applyChanges(mediaRequest);
-       console.info('saveDeferredPhoto success.');
-     } catch (err) {
-       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
-     }
-   }
-   ```
