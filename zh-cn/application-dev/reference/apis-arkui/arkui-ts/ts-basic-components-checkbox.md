@@ -34,7 +34,7 @@ Checkbox(options?: CheckboxOptions)
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 用于指定多选框名称。 |
 | group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
-| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。自定义组件按照设定的尺寸来显示，超过Checkbox组件的部分，也不会对尺寸进行裁剪。indicatorBuilder不是function时，默认为indicatorBuilder未设置。|
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。|
 
 ## 属性
 
