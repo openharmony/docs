@@ -309,7 +309,7 @@ LOSCFG_PLATFORM_EXC=y
 #endif
 ```
 
-#### 操作系统接管还是不接管中断向量
+#### 操作系统是否接管中断向量
 LiteOS接管与否可以通过配置target_config.h中的配置来实现。1接管，0不接管。
 ```
 #define LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT                 0
