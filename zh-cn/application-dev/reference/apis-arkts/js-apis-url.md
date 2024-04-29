@@ -437,7 +437,7 @@ console.log(params.toString());
 **示例：**
 
 ```ts
-let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
+let that = Url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
 console.log("hash " + that.hash) // hash #fragment
 console.log("host " + that.host) // host host:8080
 console.log("hostname " + that.hostname) // hostname host
