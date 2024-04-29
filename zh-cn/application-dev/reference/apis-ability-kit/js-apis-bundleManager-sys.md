@@ -1139,9 +1139,9 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfos<sup>12+</sup>
+### bundleManager.queryAbilityInfo<sup>12+</sup>
 
-queryAbilityInfos(wants: Array\<Want>, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
+queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
 以异步方法根据给定的want列表、abilityFlags和userId获取一个或多个AbilityInfo。
 
@@ -1195,13 +1195,16 @@ let want1: Want = {
     abilityName : "EntryAbility"
 };
 let wants: Array<Want> = [ want, want1 ];
-try {
-    let infos = bundleManager.queryAbilityInfos(wants, abilityFlags, userId);
-    hilog.info(0x0000, 'testTag', 'queryAbilityInfos successfully. Data: %{public}s', JSON.stringify(infos));
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'queryAbilityInfos failed. Cause: %{public}s', message);
-}
+ try {
+        bundleManager.queryAbilityInfo(wants, abilityFlags, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+      })
+    } catch (err) {
+      let message = (err as BusinessError).message;
+      hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
+    }
 ```
 
 ### bundleManager.queryExtensionAbilityInfo
