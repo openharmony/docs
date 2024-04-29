@@ -96,11 +96,7 @@
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       // 获取photoAsset pixelMap
-       proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
-         AppStorage.setOrCreate('proxyThumbnail', thumbnail);
-       });
-       saveCameraPhoto(proxyObj);
+       saveCameraPhoto();
      });
    }
    ```
