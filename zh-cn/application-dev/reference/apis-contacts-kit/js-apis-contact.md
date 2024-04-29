@@ -19,6 +19,8 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 添加联系人，使用callback方式作为异步方法。
 
+**元服务API**：从API12开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -99,6 +101,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 addContact(context: Context, contact: Contact): Promise<number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+**元服务API**：从API12开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -1230,6 +1234,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
+**元服务API**：从API11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1263,6 +1269,8 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
+**元服务API**：从API11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
@@ -1294,6 +1302,8 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
+
+**元服务API**：从API11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1330,6 +1340,8 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
+
+**元服务API**：从API11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
