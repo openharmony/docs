@@ -280,10 +280,17 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 ```ts
 try {
+  // 如果通过on注册多个callback，同时关闭所有callback监听
   display.off("remove");
 } catch (exception) {
   console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
+
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in unregistering the callback for display remove. Data: ' + JSON.stringify(data))
+};
+// 关闭传入的callback监听
+display.off('remove', callback);
 ```
 
 ## display.isFoldable<sup>10+</sup>
@@ -499,10 +506,17 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
 ```ts
 try {
+  // 如果通过on注册多个callback，同时关闭所有callback监听
   display.off('foldStatusChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
+
+let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
+  console.info('unregistering FoldStatus changes callback. Data: ' + JSON.stringify(data));
+};
+// 关闭传入的callback监听
+display.off('foldStatusChange', callback);
 ```
 
 ## display.on('foldDisplayModeChange')<sup>10+</sup>
@@ -570,11 +584,19 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 
 ```ts
 try {
+  // 如果通过on注册多个callback，同时关闭所有callback监听
   display.off('foldDisplayModeChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
+
+let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+  console.info('unregistering FoldDisplayMode changes callback. Data: ' + JSON.stringify(data));
+};
+// 关闭传入的callback监听
+display.off('foldDisplayModeChange', callback);
 ```
+
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
