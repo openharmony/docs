@@ -367,41 +367,6 @@ try {
 }
 ```
 
-## huks.getSdkVersion<sup>(deprecated)</sup>
-
-getSdkVersion(options: HuksOptions) : string
-
-获取当前系统sdk版本。
-
-> **说明：**
->
-> 从API version 11开始废弃。
-
-**系统能力：** SystemCapability.Security.Huks.Extension
-
-**参数：**
-
-| 参数名  | 类型       | 必填 | 说明                      |
-| ------- | ---------- | ---- | ------------------------- |
-| options | [HuksOptions](#huksoptions) | 是   | 空对象，用于存放sdk版本。 |
-
-**返回值：**
-
-| 类型   | 说明          |
-| ------ | ------------- |
-| string | 返回sdk版本。 |
-
-**示例：**
-
-```ts
-import huks from '@ohos.security.huks';
-/* 此处options选择emptyOptions传空 */
-let emptyOptions: huks.HuksOptions = {
-    properties: []
-};
-let result = huks.getSdkVersion(emptyOptions);
-```
-
 ## huks.importKeyItem<sup>9+</sup>
 
 importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
@@ -3103,6 +3068,41 @@ async function testListAliases() {
 | HUKS_TAG_SYMMETRIC_KEY_DATA                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+
+## huks.getSdkVersion<sup>(deprecated)</sup>
+
+getSdkVersion(options: HuksOptions) : string
+
+获取当前系统sdk版本。
+
+> **说明：**
+>
+> 从API version 11开始废弃。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名  | 类型       | 必填 | 说明                      |
+| ------- | ---------- | ---- | ------------------------- |
+| options | [HuksOptions](#huksoptions) | 是   | 空对象，用于存放sdk版本。 |
+
+**返回值：**
+
+| 类型   | 说明          |
+| ------ | ------------- |
+| string | 返回sdk版本。 |
+
+**示例：**
+
+```ts
+import huks from '@ohos.security.huks';
+/* 此处options选择emptyOptions传空 */
+let emptyOptions: huks.HuksOptions = {
+    properties: []
+};
+let result = huks.getSdkVersion(emptyOptions);
+```
 
 ## huks.generateKey<sup>(deprecated)</sup>
 
