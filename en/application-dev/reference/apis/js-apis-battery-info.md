@@ -35,6 +35,39 @@ Describes battery information.
 | nowCurrent<sup>9+</sup>                   | number                                         | Yes  | No  | Battery current of the device, in unit of mA. This is a system API.      |
 | remainingEnergy<sup>9+</sup>              | number                                         | Yes  | No  | Remaining battery capacity of the device, in unit of mAh. This is a system API.|
 
+**Example**
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let batterySOCInfo: number = batteryInfo.batterySOC;
+  console.info("The batterySOCInfo is: " + batterySOCInfo);
+
+  let chargingStatusInfo = batteryInfo.chargingStatus;
+  console.info("The chargingStatusInfo is: " + chargingStatusInfo);
+
+  let healthStatusInfo = batteryInfo.healthStatus;
+  console.info("The healthStatusInfo is: " + healthStatusInfo);
+
+  let pluggedTypeInfo = batteryInfo.pluggedType;
+  console.info("The pluggedTypeInfo is: " + pluggedTypeInfo);
+
+  let voltageInfo: number = batteryInfo.voltage;
+  console.info("The voltageInfo is: " + voltageInfo);
+
+  let technologyInfo: string = batteryInfo.technology;
+  console.info("The technologyInfo is: " + technologyInfo);
+
+  let batteryTemperatureInfo: number = batteryInfo.batteryTemperature;
+  console.info("The batteryTemperatureInfo is: " + batteryTemperatureInfo);
+
+  let isBatteryPresentInfo: boolean = batteryInfo.isBatteryPresent;
+  console.info("The isBatteryPresentInfo is: " + isBatteryPresentInfo);
+
+  let batteryCapacityLevelInfo = batteryInfo.batteryCapacityLevel;
+  console.info("The batteryCapacityLevelInfo is: " + batteryCapacityLevelInfo);
+  ```
+
 ## BatteryPluggedType
 
 Enumerates charger types.

@@ -89,7 +89,7 @@ HiSysEvent listening is implemented using the API provided in the following tabl
 | Name                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | int OH_HiSysEvent_Add_Watcher(HiSysEventWatcher* watcher,<br>HiSysEventWatchRule rules[],<br>size_t ruleSize); | Adds a listener to listen for system events based on the specified rules.<br>Input arguments:<br>- **watcher**: watcher for system events.<br>- **rules**: array of event listening rules.<br>- **ruleSize**: length of the array of event listening rules.<br>Return value:<br>- **0**: The listener is added successfully.<br>- A negative value: The listener fails to be added.|
-| int OH_HiSysEvent_Remove_Watcher(HiSysEventWatcher* watcher); | Remove the watcher for system events.<br>Input arguments:<br>- **watcher**: watcher for system events.<br>Return value:<br>- **0**: The watcher is removed successfully.<br>- A negative value: The watcher fails to be removed. |
+| int OH_HiSysEvent_Remove_Watcher(HiSysEventWatcher* watcher); | Remove the watcher for system events.<br>Input arguments:<br>- **watcher**: watcher for system events.<br>Return value:<br>- **0**: The listener is removed successfully.<br>- A negative value: The watcher fails to be removed. |
 
 
   **Table 6** Description of the HiSysEventWatcher structure
@@ -182,7 +182,7 @@ HiSysEvent listening is implemented using the API provided in the following tabl
     }
     ```
 
-3. Call the listening API while passing in parameters such as **watcher** and **rules**. When the service ends, disable event listening.
+3. Call the listening API while passing in parameters such as **listener** and **rules**. When the service ends, disable event listening.
 
     ```c++
     HiSysEventWatcher watcher;

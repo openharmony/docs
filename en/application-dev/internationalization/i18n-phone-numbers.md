@@ -56,17 +56,17 @@ import I18n from '@ohos.i18n'
 
 // Format the phone number.
 let phoneNumberFormat1 = new I18n.PhoneNumberFormat('CN');
-let formattedPhoneNumber1 = phoneNumberFormat1.format('1582312'); // formattedPhoneNumber1: 158  2312
+let formattedPhoneNumber1 = phoneNumberFormat1.format('158****2312'); // formattedPhoneNumber1: 158 **** 2312
 
 // Set the format type of the phone number to RFC3966.
 let phoneNumberFormat2 = new I18n.PhoneNumberFormat('CN', {type: 'RFC3966'});
-let formattedPhoneNumber2 = phoneNumberFormat2.format('1582312'); // formattedPhoneNumber2: tel:+86-158--2312
+let formattedPhoneNumber2 = phoneNumberFormat2.format('158****2312'); // formattedPhoneNumber2: tel:+86-158-****-2312
 
 // Check whether the phone number is valid.
 let phoneNumberFormat3 = new I18n.PhoneNumberFormat('CN');
-let isValid = phoneNumberFormat3.isValidNumber('1582312'); // isValid: true
+let isValid = phoneNumberFormat3.isValidNumber('158****2312'); // isValid: true
 
 // Display the home area of the phone number in the specified language.
 let phoneNumberFormat4 = new I18n.PhoneNumberFormat("CN");
-let locationName4 = phoneNumberFormat4.getLocationName('1582312', 'en-GB') // locationName4: XiAn, Shanxi
+let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') // locationName4: XiAn, Shanxi
 ```

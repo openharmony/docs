@@ -62,7 +62,7 @@ The following uses date and time formatting as an example. For details about API
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.
 
    ```ts
-   let date = new Date(2023, 9, 25);
+   let date = new Date(2023, 9, 23);
    
    // Method 1: Create a Locale object using the locale string.
    let zhLocale = new Intl.Locale("zh-Hans-CN-u-nu-latn");

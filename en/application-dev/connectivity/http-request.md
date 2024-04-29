@@ -18,7 +18,7 @@ The following table provides only a simple description of the related APIs. For 
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
-| requestInStream()<sup>10+</sup>                  | Initiates an HTTP network request based on the URL and returns a streaming response.|
+| requestInStream()<sup>10+</sup>                  | Initiates an HTTP network request to a given URL and returns a streaming response.|
 | destroy()                                 | Destroys an HTTP request.                     |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
 | off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
@@ -69,7 +69,7 @@ httpRequest.request(
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
   }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       // data.result carries the HTTP response. Parse the response based on service requirements.
@@ -164,4 +164,3 @@ httpRequest.requestInStream(
 }
 );
 ```
-
