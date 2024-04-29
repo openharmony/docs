@@ -21,7 +21,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | 参数名  | 参数类型                                                  | 必填 | 参数描述       |
 | ------- | --------------------------------------------------------- | ---- | -------------- |
-| options | [MovingPhotoViewOptions](#movingphotoviewoptions对象说明) | 是   | 动态照片信息。 |
+| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | 是   | 动态照片信息。 |
 
 ## MovingPhotoViewOptions
 
