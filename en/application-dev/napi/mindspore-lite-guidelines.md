@@ -10,9 +10,9 @@ This document describes the general development process for MindSpore Lite model
 
 Before getting started, you need to understand the following basic concepts:
 
-**Tensor**: a special data structure that is similar to arrays and matrices. It is basic data structure used in MindSpore Lite network operations.
+**Tensor**: a special data structure that is similar to arrays and matrices. It is a basic data structure used in MindSpore Lite network operations.
 
-**Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
+**Float16 inference**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
 
 
@@ -24,7 +24,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 | ------------------ | ----------------- |
 |OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object.|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|Sets the number of runtime threads.|
-| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.
+| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.|
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|Creates a runtime device information object.|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|Destroys a context object.|
 |void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)|Sets whether to enable float16 inference. This function is available only for CPU and GPU devices.|
