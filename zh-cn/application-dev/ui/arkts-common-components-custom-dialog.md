@@ -139,7 +139,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    
    ```ts
    // Index.ets
-   import { router } from '@kit.ArkUI';
+   import router from '@ohos.router'
    
    @CustomDialog
    struct CustomDialogExample {
@@ -239,7 +239,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    
    ```ts
    // Index2.ets
-   import { router } from '@kit.ArkUI';
+   import router from '@ohos.router'
    
    @Entry
    @Component
