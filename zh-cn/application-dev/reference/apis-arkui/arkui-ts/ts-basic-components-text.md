@@ -537,7 +537,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 onMarqueeStateChange(callback: Callback<MarqueeState>)
 
-跑马灯动画进行到某些阶段时，触发该回调。
+跑马灯动画在开始、完成一次滚动和停止时，触发该回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
