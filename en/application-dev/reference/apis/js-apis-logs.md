@@ -4,7 +4,11 @@ The **console** module provides a simple debugging console, which is similar to 
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - In the stage model, the console supports only printing of strings, but not formatting. 
+>
+> - In the stage model, the maximum length of a single parameter that can be printed on the console is 1024 bytes. Parameters that exceed the limit will not be printed.
 
 ## console.debug
 
@@ -29,6 +33,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 const number = 5;
 console.debug('count: %d', number);  // Print the debugging information with arguments in the message replaced.
 // count: 5 
+
 console.debug('count:', number);  // Print the message and other information.
 // count: 5 
 console.debug('count:'); // Print the message only.
@@ -58,6 +63,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 const number = 5;
 console.log('count: %d', number);  // Print the log information with arguments in the message replaced.
 // count: 5 
+// The stage model does not support formatted output. The displayed output is count: %d 5.
 console.log('count:', number);  // Print the message and other information.
 // count: 5 
 console.log('count:'); // Print the message only.
@@ -87,6 +93,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 const number = 5;
 console.info('count: %d', number);  // Print the log information with arguments in the message replaced.
 // count: 5 
+// The stage model does not support formatted output. The displayed output is count: %d 5.
 console.info('count:', number);  // Print the message and other information.
 // count: 5 
 console.info('count:'); // Print the message only.
@@ -116,6 +123,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 const str = "name should be string";
 console.warn('warn: %d', str); // Print the warning information with arguments in the message replaced.
 // warn: name should be string
+// The stage model does not support formatted output. The displayed output is warn: %d name should be string.
 console.warn('warn:', str);  // Print the message and other information.
 // warn: name should be string
 console.warn('warn:'); // Print the message only.
@@ -146,6 +154,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 const str = "value is not defined";
 console.error('error: %d', str);  // Print the error information with arguments in the message replaced.
 // error: value is not defined
+// The stage model does not support formatted output. The displayed output is error: %d value is not defined.
 console.error('error:', str);  // Print the message and other information.
 // error: value is not defined
 console.error('error:'); // Print the message only.

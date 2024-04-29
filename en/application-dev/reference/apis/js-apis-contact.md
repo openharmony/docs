@@ -770,17 +770,21 @@ This API can be used only in the FA model.
 
 | Name  | Type                                                 | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
+| context | Context | Yes  | Application context. For details about the application context of the stage model, see **Context**.|
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
   ```js
-  contact.queryContacts((err, data) => {
-      if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
-          return;
-      }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+  import { BusinessError } from '@ohos.base';
+  // Obtain the context.
+  let context = getContext(this) as Context;
+  contact.queryContacts(context, (err: BusinessError, data) => {
+    if (err) {
+        console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 

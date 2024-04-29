@@ -10,9 +10,9 @@ This document describes the general development process for MindSpore Lite model
 
 Before getting started, you need to understand the following basic concepts:
 
-**Tensor**: a special data structure that is similar to arrays and matrices. It is a basic data structure used in MindSpore Lite network operations.
+**Tensor**: a special data structure that is similar to arrays and matrices. It is basic data structure used in MindSpore Lite network operations.
 
-**Float16 inference**: a mode in which Float16 is used for inference. Float16, also called half-precision, uses 16 bits to represent a number. 
+**Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
 
 
@@ -24,7 +24,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 | ------------------ | ----------------- |
 |OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object.|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|Sets the number of runtime threads.|
-| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.|
+| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|Creates a runtime device information object.|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|Destroys a context object.|
 |void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)|Sets whether to enable float16 inference. This function is available only for CPU and GPU devices.|
@@ -54,8 +54,32 @@ The following figure shows the development process for MindSpore Lite model infe
 **Figure 1** Development process for MindSpore Lite model inference
 ![how-to-use-mindspore-lite](figures/01.png)
 
-The development process consists of the following main steps:
+Before moving to the development process, you need to reference related header files and compile functions to generate random input. The sample code is as follows:
 
+```c
+#include <stdlib.h>
+#include <stdio.h>
+#include "mindspore/model.h"
+
+// Generate random input.
+int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
+  for (size_t i = 0; i < inputs.handle_num; ++i) {
+    float *input_data = (float *)OH_AI_TensorGetMutableData(inputs.handle_list[i]);
+    if (input_data == NULL) {
+      printf("MSTensorGetMutableData failed.\n");
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    int64_t num = OH_AI_TensorGetElementNum(inputs.handle_list[i]);
+    const int divisor = 10;
+    for (size_t j = 0; j < num; j++) {
+      input_data[j] = (float)(rand() % divisor) / divisor;  // 0--0.9f
+    }
+  }
+  return OH_AI_STATUS_SUCCESS;
+}
+```
+
+The development process consists of the following main steps:
 1. Prepare the required model.
 
     The required model can be downloaded directly or obtained using the model conversion tool.
@@ -101,8 +125,8 @@ The development process consists of the following main steps:
       return OH_AI_STATUS_LITE_ERROR;
     }
 
-    // Load and build the model. The model type is OH_AI_ModelTypeMindIR.
-    int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_ModelTypeMindIR, context);
+    // Load and build the inference model. The model type is OH_AI_MODELTYPE_MINDIR.
+    int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_MODELTYPE_MINDIR, context);
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
       OH_AI_ModelDestroy(&model);
@@ -193,13 +217,13 @@ The development process consists of the following main steps:
             dl
     )
     ```
-   - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/ohos-sdk/linux/native/build/cmake/ohos.toolchain.cmake"`.
+   - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.cmake"`.
     
    - The toolchain builds a 64-bit application by default. To build a 32-bit application, add the following configuration: `-DOHOS_ARCH="armeabi-v7a"`.
 
 2. Run the CMake tool.
 
-    - Use hdc_std to connect to the device and put **demo** and **mobilenetv2.ms** to the same directory on the board.
+    - Use hdc_std to connect to the device and put **demo** and **mobilenetv2.ms** to the same directory on the device.
     - Run the hdc_std shell command to access the device, go to the directory where **demo** is located, and run the following command:
 
     ```shell
