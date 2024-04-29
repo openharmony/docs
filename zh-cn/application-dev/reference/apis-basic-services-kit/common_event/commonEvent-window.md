@@ -4,9 +4,10 @@
 ## COMMON_EVENT_SPLIT_SCREEN<sup>10+</sup>
 表示分屏行为的公共事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 - 常量值： “usual.event.SPLIT_SCREEN”
 - 订阅者需要的权限：无。
-- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 启动最近任务窗口、创建或销毁分屏条，都会触发通知服务发布这个系统公共事件。
 
