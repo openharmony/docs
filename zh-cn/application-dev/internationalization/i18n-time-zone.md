@@ -80,7 +80,7 @@
 2. 选择时区列表中的时区放入应用偏好时区列表中。
    ```ts
    let timezone1 = I18n.getTimeZone("America/Sao_Paulo");
-   let timezone1 = I18n.getTimeZone();
+   let timezone2 = I18n.getTimeZone();
    let appPreferredTimeZoneList = [] // 应用偏好时区列表
    appPreferredTimeZoneList.push(timezone1);
    appPreferredTimeZoneList.push(timezone2);
