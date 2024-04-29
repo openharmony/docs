@@ -1,5 +1,9 @@
 # 匿名密钥证明(C/C++)
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
