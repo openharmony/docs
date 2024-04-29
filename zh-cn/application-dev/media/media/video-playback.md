@@ -268,7 +268,7 @@ export class AVPlayerDemo {
   }
 
   // 以下demo为通过selectTrack设置音频轨道，通过deselectTrack取消上次设置的音频轨道并恢复到视频默认音频轨道。
-  async preDownloadDemo() {
+  async multiTrackDemo() {
     // 创建avPlayer实例对象
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
