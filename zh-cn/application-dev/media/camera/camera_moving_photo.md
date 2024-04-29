@@ -53,8 +53,6 @@
 3. 查询当前设备当前模式是否支持动态照片能力。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-
    function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
      let isSupported: boolean = false;
      try {
@@ -71,8 +69,6 @@
 4. 使能分段式拍照能力。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-
    function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
      try {
        photoOutput.enableMovingPhoto(true);
