@@ -66,7 +66,7 @@
    }
    ```
 
-4. 使能分段式拍照能力。
+4. 使能动态照片拍照能力。
 
    ```ts
    function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
@@ -96,7 +96,7 @@
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       saveCameraPhoto();
+       photoAsset.saveCameraPhoto();
      });
    }
    ```
