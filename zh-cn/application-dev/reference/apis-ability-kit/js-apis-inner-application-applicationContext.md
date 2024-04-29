@@ -23,6 +23,8 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 注册监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -97,6 +99,8 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 
 取消监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -135,6 +139,8 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 取消监听应用内生命周期。使用Promise异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -171,6 +177,8 @@ export default class MyAbility extends Ability {
 on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -221,6 +229,8 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -258,6 +268,8 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 取消对系统环境变化的监听。使用Promise异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -293,6 +305,8 @@ export default class MyAbility extends Ability {
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
 注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -336,6 +350,8 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 取消当前应用注册的前后台变化的全部监听。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -363,6 +379,8 @@ export default class MyAbility extends UIAbility {
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取有关运行进程的信息。使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -404,6 +422,8 @@ export default class MyAbility extends UIAbility {
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
 获取有关运行进程的信息。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -447,6 +467,8 @@ killAllProcesses(): Promise\<void\>
 
 杀死应用所在的进程。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -481,6 +503,8 @@ export default class MyAbility extends UIAbility {
 killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -520,6 +544,8 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -557,6 +583,8 @@ setLanguage(language: string): void
 
 设置应用的语言。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -593,6 +621,10 @@ clearUpApplicationData(): Promise\<void\>
 
 清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。
 
+> **说明：**
+>
+> 该接口会停止应用进程，应用进程停止后，后续的所有回调都不会再触发。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -628,6 +660,10 @@ export default class MyAbility extends UIAbility {
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。
+
+> **说明：**
+>
+> 该接口会停止应用进程，应用进程停止后，后续的所有回调都不会再触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -666,6 +702,8 @@ export default class MyAbility extends UIAbility {
 restartApp(want: Want): void
 
 应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

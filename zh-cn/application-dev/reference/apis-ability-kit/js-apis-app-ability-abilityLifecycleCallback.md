@@ -20,6 +20,8 @@ onAbilityCreate(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability创建时触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -37,6 +39,8 @@ onAbilityCreate(ability: UIAbility): void
 onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -57,6 +61,8 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -75,6 +81,8 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -95,6 +103,8 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -114,6 +124,8 @@ onAbilityDestroy(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability销毁时触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -131,6 +143,8 @@ onAbilityDestroy(ability: UIAbility): void
 onAbilityForeground(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -150,6 +164,8 @@ onAbilityBackground(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -167,6 +183,8 @@ onAbilityBackground(ability: UIAbility): void
 onAbilityContinue(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability迁移时触发回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

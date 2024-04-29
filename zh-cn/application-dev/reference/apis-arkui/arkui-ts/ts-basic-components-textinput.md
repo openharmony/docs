@@ -678,13 +678,15 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
 
-## showPassword<sup>12+</sup>
+### showPassword<sup>12+</sup>
 
 showPassword(visible: boolean)
 
 设置密码的显隐状态。
 
-需组合.type(InputType.Password)属性才能生效，非密码输入模式不生效。
+需组合密码模式才能生效，非密码输入模式不生效。
+
+由于小眼睛图标内置更新密码模式的状态，建议在onSecurityStateChange上增加状态同步。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1080,6 +1082,7 @@ setTextSelection选中文字时的配置。
 struct TextInputExample {
   @State text: string = ''
   @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+  @State passwordState: boolean = false
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -1119,6 +1122,12 @@ struct TextInputExample {
         .type(InputType.Password)
         .maxLength(9)
         .showPasswordIcon(true)
+        .showPassword(this.passwordState)
+        .onSecurityStateChange(((isShowPassword: boolean) => {
+          // 更新密码显示状态
+          console.info('isShowPassword',isShowPassword)
+          this.passwordState = isShowPassword
+        }))
       // 邮箱地址自动填充类型
       TextInput({ placeholder: 'input your email...' })
         .width('95%')

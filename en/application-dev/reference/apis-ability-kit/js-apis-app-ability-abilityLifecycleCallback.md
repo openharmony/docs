@@ -20,6 +20,8 @@ onAbilityCreate(ability: UIAbility): void
 
 Called when an ability is created.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -37,6 +39,8 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability is created.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -57,6 +61,8 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability gains focus.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -75,6 +81,8 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability loses focus.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -95,6 +103,8 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 Called when the window stage of an ability is destroyed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -114,6 +124,8 @@ onAbilityDestroy(ability: UIAbility): void
 
 Called when an ability is destroyed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -131,6 +143,8 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 onAbilityForeground(ability: UIAbility): void
 
 Called when an ability is switched from the background to the foreground.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -150,6 +164,8 @@ onAbilityBackground(ability: UIAbility): void
 
 Called when an ability is switched from the foreground to the background.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -167,6 +183,8 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 onAbilityContinue(ability: UIAbility): void
 
 Called when an ability is continued on another device.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

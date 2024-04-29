@@ -14,7 +14,18 @@ abilities字段属性srcEntrance在API9中已经被srcEntry替代，但校验规
 
 该变更为非兼容性变更。
 
-变更后，API8以及之前版本SDK生成的工程，将不能直接通过API12版本SDK进行编译。
+变更后，如果原有工程中使用的是srcEntrance字段，在新版本SDK中编译构建时，会产生如下报错信息：
+```
+> hvigor ERROR: Failed :entry:default@PreBuild... 
+> hvigor ERROR: Schema validate failed.
+{
+  instancePath: 'module.abilities[0]',
+  keyword: 'required',
+  params: { missingProperty: 'srcEntry' },
+  message: "must have required property 'srcEntry'",
+  location: 'C:/.../Projects/MyApp/entry/src/main/module.json5:15:8'
+} 
+```
 
 **API Level**
 
@@ -26,4 +37,4 @@ abilities字段属性srcEntrance在API9中已经被srcEntry替代，但校验规
 
 **适配指导**
 
-对于API8以及之前版本SDK生成的工程，如果开发者需要在API12版本SDK上进行编译，可以将工程module.json5中的srcEntrance字段名称改为srcEntry。
+开发者可以将工程中的srcEntrance字段名称改为srcEntry，即可正常编译构建。

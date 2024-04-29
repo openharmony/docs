@@ -176,8 +176,6 @@
 2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
      
    ```ts
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
-   
    let store: relationalStore.RdbStore | undefined = undefined;
 
    let value1 = 'Lisa';
@@ -186,21 +184,21 @@
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    let value5 = BigInt('15822401018187971961171');
    // 以下三种方式可用
-   const valueBucket1: ValuesBucket = {
+   const valueBucket1: relationalStore.ValuesBucket = {
      'NAME': value1,
      'AGE': value2,
      'SALARY': value3,
      'CODES': value4,
      'IDENTITY': value5,
    };
-   const valueBucket2: ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
      IDENTITY: value5,
    };
-   const valueBucket3: ValuesBucket = {
+   const valueBucket3: relationalStore.ValuesBucket = {
      "NAME": value1,
      "AGE": value2,
      "SALARY": value3,
@@ -236,21 +234,21 @@
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    let value5 = BigInt('15822401018187971967863');
    // 以下三种方式可用
-   const valueBucket1: ValuesBucket = {
+   const valueBucket1: relationalStore.ValuesBucket = {
      'NAME': value1,
      'AGE': value2,
      'SALARY': value3,
      'CODES': value4,
      'IDENTITY': value5,
    };
-   const valueBucket2: ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
      IDENTITY: value5,
    };
-   const valueBucket3: ValuesBucket = {
+   const valueBucket3: relationalStore.ValuesBucket = {
      "NAME": value1,
      "AGE": value2,
      "SALARY": value3,

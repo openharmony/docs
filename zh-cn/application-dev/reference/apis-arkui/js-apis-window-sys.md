@@ -129,12 +129,12 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                         |
-| ------ | -------- | ---- | ---- |--------------------------------------------|
-| x      | number   | 否   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
-| y      | number   | 否   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
-| pivotX | number   | 否   | 是   | 缩放中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
-| pivotY | number   | 否   | 是   | 缩放中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
+| 名称   | 类型 | 只读 | 必填 | 说明                                         |
+| ------ | -------- | ---- | ---- | --------------------------------------------|
+| x      | number   | 否   | 否   | X轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| y      | number   | 否   | 否   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| pivotX | number   | 否   | 否   | 缩放中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
+| pivotY | number   | 否   | 否   | 缩放中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
 
 ## RotateOptions<sup>9+</sup>
 
@@ -144,13 +144,13 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                          |
-| ------ | -------- | ---- | ---- |---------------------------------------------|
-| x      | number   | 否   | 是   | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| y      | number   | 否   | 是   | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| z      | number   | 否   | 是   | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| pivotX | number   | 否   | 是   | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| pivotY | number   | 否   | 是   | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
+| 名称   | 类型 | 只读 | 必填 | 说明                                          |
+| ------ | -------- | ---- |---- |---------------------------------------------|
+| x      | number   | 否   | 否  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 否  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 否  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 否  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 否  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -160,11 +160,11 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明                         |
+| 名称 | 类型 | 只读 | 必填 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| x    | number   | 否   | 否  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 否  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 否  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 
 ## window.minimizeAll<sup>9+</sup>
@@ -205,16 +205,16 @@ try {
     window.minimizeAll(displayClass.id, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in minimizing all windows.');
     });
   } catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -262,13 +262,13 @@ try {
     promise.then(() => {
       console.info('Succeeded in minimizing all windows.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to minimize all windows. Cause code: ${err.code}, message: ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to minimize all windows. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 } catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -303,7 +303,7 @@ import { BusinessError } from '@ohos.base';
 window.toggleShownStateForAllAppWindows((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to toggle shown state for all app windows. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in toggling shown state for all app windows.');
@@ -342,7 +342,7 @@ let promise = window.toggleShownStateForAllAppWindows();
 promise.then(() => {
   console.info('Succeeded in toggling shown state for all app windows.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to toggle shown state for all app windows. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -379,13 +379,13 @@ try {
   window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set window layout mode. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting window layout mode.');
   });
 } catch (exception) {
-  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set window layout mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -428,10 +428,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting window layout mode.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set window layout mode. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set window layout mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -460,7 +460,7 @@ try {
     console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -484,10 +484,20 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 **示例：**
 
 ```ts
+const callback = (systemBarTintState: window.SystemBarTintState) => {
+  // ...
+}
 try {
+  window.on('systemBarTintChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  window.off('systemBarTintChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('systemBarTintChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to disable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -525,7 +535,7 @@ try {
     console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -558,10 +568,20 @@ off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;):
 **示例：**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('gestureNavigationEnabledChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  window.off('gestureNavigationEnabledChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -598,7 +618,7 @@ try {
     console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -630,10 +650,20 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+const callback = (bool: boolean) => {
+  // ...
+}
 try {
+  window.on('waterMarkFlagChange', callback);
+} catch (exception) {
+  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+}
+try {
+  window.off('waterMarkFlagChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
   window.off('waterMarkFlagChange');
 } catch (exception) {
-  console.error('Failed to disable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to disable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -671,13 +701,13 @@ try {
   window.setGestureNavigationEnabled(true, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set gesture navigation enabled. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting gesture navigation enabled.');
   });
 } catch (exception) {
-  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set gesture navigation enabled. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -721,10 +751,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting gesture navigation enabled.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set gesture navigation enabled. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set gesture navigation enabled. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -773,16 +803,16 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
     window.setWaterMarkImage(pixelMap, enable, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to show watermark image. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in showing watermark image.');
     });
   } catch (exception) {
-    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to show watermark image. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -837,13 +867,13 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
     promise.then(() => {
       console.info('Succeeded in showing watermark image.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to show watermark image. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to show watermark image. Cause code: ${err.code}, message: ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to show watermark image. Cause: ' + JSON.stringify(exception));
+    console.error(`Failed to show watermark image. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 }).catch((err: BusinessError) => {
-  console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to create PixelMap. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -888,10 +918,10 @@ try {
     console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
     pixelMap.release();
   }).catch((err: BusinessError) =>{
-    console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
+    console.error(`Failed to get snapshot. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -933,7 +963,7 @@ import { BusinessError } from '@ohos.base';
 windowClass.hide((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide the window. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in hiding the window.');
@@ -973,7 +1003,7 @@ let promise = windowClass.hide();
 promise.then(() => {
   console.info('Succeeded in hiding the window.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to hide the window. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1011,7 +1041,7 @@ import { BusinessError } from '@ohos.base';
 windowClass.hideWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide the window with animation. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in hiding the window with animation.');
@@ -1053,7 +1083,7 @@ let promise = windowClass.hideWithAnimation();
 promise.then(() => {
   console.info('Succeeded in hiding the window with animation.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to hide the window with animation. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1091,7 +1121,7 @@ import { BusinessError } from '@ohos.base';
 windowClass.showWithAnimation((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to show the window with animation. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in showing the window with animation.');
@@ -1133,7 +1163,7 @@ let promise = windowClass.showWithAnimation();
 promise.then(() => {
   console.info('Succeeded in showing the window with animation.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to show the window with animation. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1173,13 +1203,13 @@ try {
   windowClass.setWindowMode(mode, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting the window mode.');
   });
 } catch (exception) {
-  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1225,10 +1255,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting the window mode.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set the window mode. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set the window mode. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1296,7 +1326,7 @@ try {
   window.createWindow(config, (err: BusinessError, data) => {
     let errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     windowClass = data;
@@ -1306,13 +1336,13 @@ try {
   }, (err: BusinessError) => {
     let errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in binding dialog target.');
   });
 } catch (exception) {
-  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1389,7 +1419,7 @@ try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     windowClass = data;
@@ -1400,10 +1430,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in binding dialog target.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+    console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to bind dialog target. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1453,7 +1483,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       window.createWindow(config, (err: BusinessError, data) => {
         let errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -1464,13 +1494,13 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       }, (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+          console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('Succeeded in binding dialog target.');
       });
     } catch (err) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
     }
   }
 }
@@ -1527,7 +1557,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       window.createWindow(config, (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         windowClass = data;
@@ -1539,10 +1569,10 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       promise.then(() => {
         console.info('Succeeded in binding dialog target.');
       }).catch((err: BusinessError) => {
-        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+        console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (err) {
-      console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err))
+      console.error(`Failed to bind dialog target. Cause code: ${err.code}, message: ${err.message}`)
     }
   }
 }
@@ -1580,7 +1610,7 @@ let wakeUp: boolean = true;
 try {
   windowClass.setWakeUpScreen(wakeUp);
 } catch (exception) {
-  console.error('Failed to wake up the screen. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to wake up the screen. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1612,7 +1642,7 @@ let isSkip: boolean = true;
 try {
   windowClass.setSnapshotSkip(isSkip);
 } catch (exception) {
-  console.error('Failed to Skip. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to Skip. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1652,13 +1682,13 @@ try {
   windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
+      console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in forbidding window moving in split screen mode.');
   });
 } catch (exception) {
-  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1704,10 +1734,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in forbidding window moving in split screen mode.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(exception));
+  console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1742,7 +1772,7 @@ opacity(opacity: number): void
 try {
   windowClass.opacity(0.5);
 } catch (exception) {
-  console.error('Failed to opacity. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to opacity. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1783,7 +1813,7 @@ let obj: window.ScaleOptions = {
 try {
   windowClass.scale(obj);
 } catch (exception) {
-  console.error('Failed to scale. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to scale. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1825,7 +1855,7 @@ let obj: window.RotateOptions = {
 try {
   windowClass.rotate(obj);
 } catch (exception) {
-  console.error('Failed to rotate. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to rotate. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1865,7 +1895,7 @@ let obj: window.TranslateOptions = {
 try {
   windowClass.translate(obj);
 } catch (exception) {
-  console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to translate. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1931,7 +1961,7 @@ setBlur(radius: number): void
 try {
   windowClass.setBlur(4.0);
 } catch (exception) {
-  console.error('Failed to set blur. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set blur. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1966,7 +1996,7 @@ setBackdropBlur(radius: number): void
 try {
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
-  console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set backdrop blur. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2001,7 +2031,7 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 try {
   windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
-  console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set backdrop blur style. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2039,7 +2069,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 try {
   windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
 } catch (exception) {
-  console.error('Failed to set shadow. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set shadow. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2074,7 +2104,7 @@ setCornerRadius(cornerRadius: number): void
 try {
   windowClass.setCornerRadius(4.0);
 } catch (exception) {
-  console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2092,7 +2122,7 @@ setTouchableAreas(rects: Array&lt;Rect&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。 |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。可触摸区域最大个数不能超过10个，且范围不能超出窗口区域。 |
 
 **错误码：**
 
@@ -2110,7 +2140,7 @@ try {
   windowClass.setTouchableAreas([{left: 100, top: 100, width: 200, height:200},
     {left: 400, top: 100, width: 200, height:200}]);
 } catch (exception) {
-  console.error('Failed to set touchable areas. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set touchable areas. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2149,7 +2179,7 @@ import { BusinessError } from '@ohos.base';
 windowClass.raiseToAppTop((err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in raising the window to app top.');
@@ -2192,7 +2222,7 @@ let promise = windowClass.raiseToAppTop();
 promise.then(() => {
   console.info('Succeeded in raising the window to app top.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2239,10 +2269,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting water mark flag of window.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    console.error(`Failed to set water mark flag of window. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set water mark flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2283,13 +2313,13 @@ try {
   windowClass.setWaterMarkFlag(enable, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+      console.error(`Failed to set water mark flag of window. Cause code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info('Succeeded in setting water mark flag of window.');
   });
 } catch (exception) {
-  console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set water mark flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2335,10 +2365,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting handwriting flag of window.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set handwriting flag of window. Cause:' + JSON.stringify(err));
+    console.error(`Failed to set handwriting flag of window. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set handwriting flag of window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to set handwriting flag of window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2372,14 +2402,14 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 // windowClass的获取需放在targetWindow之上
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
-        console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
         return;
     }
     console.info('Succeeded in raising the subWindow to target subWindow top.');
@@ -2421,7 +2451,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 // windowClass的获取需放在targetWindow之上
 let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
@@ -2430,7 +2460,7 @@ let promise = windowClass.raiseAboveTarget(targetId);
 promise.then(()=> {
     console.info('Succeeded in raising the subWindow to target subWindow top.');
 }).catch((err)=>{
-    console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 ### setRaiseByClickEnabled<sup>10+</sup>
@@ -2465,11 +2495,11 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例：**
 
-```js
+```ts
 let enabled = false;
 windowClass.setRaiseByClickEnabled(enabled, (err) => {
     if (err.code) {
-        console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
         return;
     }
     console.info('Succeeded in disabling the raise-by-click function.');
@@ -2513,13 +2543,13 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 let enabled = false;
 let promise = windowClass.setRaiseByClickEnabled(enabled);
 promise.then(()=> {
     console.info('Succeeded in disabling the raise-by-click function.');
 }).catch((err)=>{
-    console.error('Failed to disable the raise-by-click function. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2551,7 +2581,8 @@ setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例：**
 
-```js
+```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
@@ -2559,7 +2590,7 @@ export default class EntryAbility extends UIAbility {
         // 为主窗口加载对应的目标页面。
         windowStage.loadContent("pages/page2", (err) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             console.info('Succeeded in loading the content.');
@@ -2569,7 +2600,7 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             mainWindow = data;
@@ -2579,7 +2610,7 @@ export default class EntryAbility extends UIAbility {
             // 调用setResizeByDragEnabled接口。
             mainWindow.setResizeByDragEnabled(enabled, (err) => {
                 if (err.code) {
-                    console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+                    console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
                     return;
                 }
                 console.info('Succeeded in setting the function of disabling the resize by dragg window.');
@@ -2622,7 +2653,8 @@ setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
@@ -2630,7 +2662,7 @@ export default class EntryAbility extends UIAbility {
         // 为主窗口加载对应的目标页面。
         windowStage.loadContent("pages/page2", (err) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             console.info('Succeeded in loading the content.');
@@ -2640,7 +2672,7 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
                 return;
             }
             mainWindow = data;
@@ -2652,7 +2684,7 @@ export default class EntryAbility extends UIAbility {
             promise.then(()=> {
                 console.info('Succeeded in setting the function of disabling the resize by dragg window.');
             }).catch((err)=>{
-                console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
+                console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
             });
         })
     }
@@ -2691,6 +2723,7 @@ hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
@@ -2699,7 +2732,7 @@ export default class EntryAbility extends UIAbility {
     // 加载主窗口对应的页面
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
@@ -2709,7 +2742,7 @@ export default class EntryAbility extends UIAbility {
     let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       mainWindow = data;
@@ -2719,7 +2752,7 @@ export default class EntryAbility extends UIAbility {
       // 调用带callback参数的hideNonSystemFloatingWindows接口
       mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
         if (err.code) {
-          console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('Succeeded in hiding the non-system floating windows.');
@@ -2766,6 +2799,7 @@ hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
@@ -2774,7 +2808,7 @@ export default class EntryAbility extends UIAbility {
     // 加载主窗口对应的页面
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('Succeeded in loading the content.');
@@ -2784,7 +2818,7 @@ export default class EntryAbility extends UIAbility {
     let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
-        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
         return;
       }
       mainWindow = data;
@@ -2796,7 +2830,7 @@ export default class EntryAbility extends UIAbility {
       promise.then(()=> {
         console.info('Succeeded in hiding the non-system floating windows.');
       }).catch((err)=>{
-        console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
       });
     })
   }
@@ -2839,7 +2873,8 @@ setTopmost(isTopmost: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
@@ -2854,7 +2889,7 @@ export default class EntryAbility extends UIAbility {
       promise.then(() => {
         console.info('Succeeded in setting the main window to be topmost.');
       }).catch((err: BusinessError) => {
-        console.error('Failed to set the main window to be topmost. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
       });
     });
   }
@@ -2903,7 +2938,7 @@ let promise = windowClass.setSingleFrameComposerEnabled(enable);
 promise.then(()=> {
     console.info('Succeeded in enabling the single-frame-composer function.');
 }).catch((err: BusinessError)=>{
-    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
 });
 ```
 
@@ -2939,6 +2974,7 @@ setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, is
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
@@ -2958,7 +2994,7 @@ export default class EntryAbility extends UIAbility {
         }
       ).catch((err: BusinessError) => {
           if(err.code){
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
           }
       });
     });
@@ -2996,7 +3032,7 @@ let type = window.WindowType.TYPE_SYSTEM_ALERT;
 windowClass.setWindowType(type, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to set the window type. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
   console.info('Succeeded in setting the window type.');
@@ -3039,7 +3075,7 @@ let promise = windowClass.setWindowType(type);
 promise.then(() => {
   console.info('Succeeded in setting the window type.');
 }).catch((err: BusinessError) => {
-  console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to set the window type. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3073,6 +3109,7 @@ disableWindowDecor(): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
@@ -3116,6 +3153,7 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
@@ -3127,7 +3165,7 @@ export default class EntryAbility extends UIAbility {
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
-      console.error('Failed to show on lockscreen. Cause:' + JSON.stringify(exception));
+      console.error(`Failed to show on lockscreen. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
@@ -3190,7 +3228,7 @@ completeTransition(isCompleted: boolean): void
   try {
     context.completeTransition(true)
   } catch (exception) {
-    console.info('toWindow translate fail. Cause: ' + JSON.stringify(exception));
+    console.error(`toWindow translate fail. Cause code: ${exception.code}, message: ${exception.message}`);
   }
   console.info('complete transition end');
 };
@@ -3219,10 +3257,10 @@ try {
     windowClass = data;
     console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+    console.error(`Failed to create the Window. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3296,7 +3334,7 @@ try {
     console.info('complete transition end');
   });
 } catch (error) {
-  console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
+  console.error(`ShowWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -3370,6 +3408,6 @@ try {
     console.info('complete transition end');
   });
 } catch (error) {
-  console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
+  console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```

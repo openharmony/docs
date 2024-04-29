@@ -183,7 +183,7 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialogApi10.gif)
+![DataPickerDialog](figures/DatePickerDialog.gif)
 
 ### 示例2
 

@@ -2669,6 +2669,18 @@
 
 **起始版本**：12
 
+### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_AS_USER
+
+允许U0用户空间业务调用账号开放能力API
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SUBSCRIBE_NOTIFICATION_WINDOW_STATE
 
 允许应用订阅通知面板显示或收起时发送的广播。
@@ -2876,6 +2888,30 @@
 ### ohos.permission.KILL_APP_PROCESSES
 
 允许系统应用杀掉其他应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GET_ACCOUNT_MINORS_INFO
+
+允许系统应用获取用户帐号的未成年使用者信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_LOCAL_THEME
+
+允许系统应用访问下载到本地的主题内容。
 
 **权限级别**：system_basic
 

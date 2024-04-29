@@ -58,7 +58,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | GET_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的abilityInfo。                     |
 | GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的abilityInfo。                            |
 | GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | 用于获取包含禁用的abilityInfo的abilityInfo。                   |
-| GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 用于仅为系统应用程序获取abilityInfo。                         |
+| GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | 用于仅为系统应用程序获取abilityInfo。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                         |
 | GET_ABILITY_INFO_WITH_APP_LINKING  | 0x00000040 | 用于获取通过域名校验筛选的abilityInfo。                         |
 
 ### ExtensionAbilityFlag
@@ -4226,6 +4226,38 @@ try {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'setAdditionalInfo failed. Cause: %{public}s', message);
 }
+```
+
+### bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
+
+getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo\>\>
+
+以异步的方法获取所有预置应用信息，使用promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise对象，返回Array\<PreinstalledApplicationInfo>。 |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import Base from '@ohos.base';
+
+bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
+    console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
+
+}).catch((err: Base.BusinessError) => {
+    console.error("GetAllPreinstalledApplicationInfo success errCode is :" + JSON.stringify(err.code));
+});
 ```
 
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>

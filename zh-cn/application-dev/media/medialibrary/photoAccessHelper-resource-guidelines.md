@@ -81,39 +81,6 @@ async function example() {
 }
 ```
 
-### 指定文件添加的时间获取图片或视频资源
-
-下面以查询指定添加时间为'2022-06-01'至'2023-06-01'这一年内为例。
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // 查询起始时间距1970年1月1日的秒数值。
-  let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // 查询结束时间距1970年1月1日的秒数值。
-  let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
-  predicates.between(date_added, startTime, endTime);
-  predicates.orderByDesc(date_added); // 查询结果按照降序排序。
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [date_added], // date_added属性不属于默认查询列，需要自行添加。
-    predicates: predicates
-  };
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    console.info('getAssets count: ' + fetchResult.getCount());
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
-
 ## 获取图片和视频缩略图
 
 通过接口[PhotoAsset.getThumbnail](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail-2)，传入缩略图尺寸，可以获取图片和视频缩略图。缩略图常用于UI界面展示。

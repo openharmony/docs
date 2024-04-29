@@ -41,18 +41,18 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。 | 
-| imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
-| imageSize | [SizeOptions](ts-types.md#sizeoptions) | 否 | - | 自定义图片尺寸。默认值：64*64vp | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框内容。 | 
-| checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 | 
-| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 |
-| checkAction<sup>12+</sup> | (isChecked: boolean) => void | 否 | - | checkbox的选中状态改变事件。 |  
-| primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框左侧按钮。 | 
-| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框右侧按钮。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| imageSize | [SizeOptions](ts-types.md#sizeoptions) | 否 | - | 自定义图片尺寸。<br/>默认值：64*64vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框标题。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 提示弹出框内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| checkAction<sup>12+</sup> | (isChecked: boolean) => void | 否 | - | checkbox的选中状态改变事件。 |
+| primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 
 ## SelectDialog
@@ -63,18 +63,20 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 
 **装饰器类型：**\@CustomDialog
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 选择弹出框控制器。 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 选择弹出框标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
-| selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
-| confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 选择弹出框控制器。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 选择弹出框标题。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 |
+| selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 |
+| confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 |
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 |
 
 
 ## ConfirmDialog
@@ -85,19 +87,21 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 **装饰器类型：**\@CustomDialog
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 确认弹出框控制器。 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 确认弹出框标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 确认弹出框内容。 | 
-| checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 | 
-| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 | 
-| primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框左侧按钮。 | 
-| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框右侧按钮。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 确认弹出框控制器。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 确认弹出框标题。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 确认弹出框内容。 |
+| checkTips | [ResourceStr](ts-types.md#resourcestr) | 否 | - | checkbox的提示内容。 |
+| isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 |
+| primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框左侧按钮。 |
+| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框右侧按钮。 |
 
 
 ## AlertDialog
@@ -112,14 +116,14 @@ AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, seco
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。 | 
-| primaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框一级标题。 | 
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框二级标题。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。 | 
-| primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。 | 
-| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 确认弹出框控制器。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| primaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框一级标题。 |
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 确认框二级标题。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 
 ## LoadingDialog
@@ -130,14 +134,16 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 **装饰器类型：**\@CustomDialog
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 | 
-| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 |
 
 
 ## CustomContentDialog<sup>12+</sup>
@@ -152,9 +158,9 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 弹出框控制器。 |
 | contentBuilder | () => void | 是 | 弹出框内容。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
@@ -166,13 +172,13 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 按钮的内容。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 按钮的点击事件。 | 
-| background | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的背景。 | 
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。 | 
-| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 按钮的内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 按钮的点击事件。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| background | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的背景。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
 | role<sup>12+</sup> | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否 | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。 |
 
 >  **说明：**

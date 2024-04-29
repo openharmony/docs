@@ -24,7 +24,7 @@ isSupported(type: RunningLockType): boolean;
 
 | 参数名 | 类型                                | 必填 | 说明                 |
 | ------ | ----------------------------------- | ---- | -------------------- |
-| type   | [RunningLockType](#runninglocktype) | 是   | 需要查询的锁的类型。 |
+| type   | [RunningLockType](#runninglocktype) | 是   | 需要查询的锁的类型；该参数必须是一个枚举类。 |
 
 **返回值：**
 
@@ -39,6 +39,7 @@ isSupported(type: RunningLockType): boolean;
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -65,9 +66,17 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| name     | string                                     | 是   | 锁的名字。                                                   |
-| type     | [RunningLockType](#runninglocktype)        | 是   | 要创建的锁的类型。                                           |
-| callback | AsyncCallback<[RunningLock](#runninglock)> | 是   | 回调函数。当创建锁成功，err为undefined，data为创建的RunningLock；否则为错误对象。 |
+| name     | string                                     | 是   | 锁的名字；该参数必须为字符串类型。                                                   |
+| type     | [RunningLockType](#runninglocktype)        | 是   | 要创建的锁的类型；该参数必须是一个枚举类。                                           |
+| callback | AsyncCallback<[RunningLock](#runninglock)> | 是   | 回调函数。当创建锁成功，err为undefined，data为创建的RunningLock；否则为错误对象；AsyncCallback封装了一个RunningLock类型的类。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
 
@@ -95,14 +104,22 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 | 参数名 | 类型                                | 必填 | 说明               |
 | ------ | ----------------------------------- | ---- | ------------------ |
-| name   | string                              | 是   | 锁的名字。         |
-| type   | [RunningLockType](#runninglocktype) | 是   | 要创建的锁的类型。 |
+| name   | string                              | 是   | 锁的名字；该参数必须为字符串类型。 |
+| type   | [RunningLockType](#runninglocktype) | 是   | 要创建的锁的类型；该参数必须是一个枚举类。 |
 
 **返回值：**
 
 | 类型                                       | 说明                                 |
 | ------------------------------------------ | ------------------------------------ |
 | Promise&lt;[RunningLock](#runninglock)&gt; | Promise对象，返回RunningLock锁对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
 
@@ -266,7 +283,7 @@ hold(timeout: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                      |
 | ------- | ------ | ---- | ----------------------------------------- |
-| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒。 |
+| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒；该参数必须为数字类型。 |
 
 **错误码：**
 
@@ -275,6 +292,7 @@ hold(timeout: number): void
 | 错误码ID   | 错误信息     |
 |---------|----------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
