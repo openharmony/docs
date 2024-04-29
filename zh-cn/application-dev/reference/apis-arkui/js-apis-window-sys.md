@@ -2122,7 +2122,7 @@ setTouchableAreas(rects: Array&lt;Rect&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。 |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | 是   | 窗口可触摸区域。可触摸区域最大个数不能超过10个，且范围不能超出窗口区域。 |
 
 **错误码：**
 
