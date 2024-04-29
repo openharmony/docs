@@ -46,7 +46,7 @@
    }
    ```
 
-5. 通过getMediaKeySystemName方法，获取设备支持对应的插件类型的name和uuid。
+5. 通过getMediaKeySystems方法，获取设备支持对应的插件类型的name和uuid。
 
    > **说明：**
    >
