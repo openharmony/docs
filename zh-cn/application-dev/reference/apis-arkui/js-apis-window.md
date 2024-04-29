@@ -86,13 +86,13 @@ import window from '@ohos.window';
 | ------------------------------------- | ---- | ----------------------------- |
 | UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | LOCKED                                | 11   | 表示锁定模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
@@ -101,6 +101,7 @@ import window from '@ohos.window';
 | USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 表示临时横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 | USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 表示临时反向竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 | USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 表示临时反向横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| FOLLOW_DESKTOP<sup>12+</sup>                   | 17   | 表示跟随桌面的旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## Rect<sup>7+</sup>
 
@@ -185,6 +186,19 @@ import window from '@ohos.window';
 | rect   | [Rect](#rect7) | 是   | 是   | 窗口矩形变化后的值。 |
 | reason    | [RectChangeReason](#rectchangereason12) | 是   | 是   | 窗口矩形变化的原因。 |
 
+## AvoidAreaOptions<sup>12+</sup>
+
+系统规避区变化后返回当前规避区域以及规避区域类型。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称       | 类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 是   | 系统规避区变化后返回的规避区域类型。 |
+| area   | [AvoidArea](#avoidarea7)         | 是   | 是   | 系统规避区变化后返回的规避区域。 |
+
 ## WindowProperties
 
 窗口属性。
@@ -196,8 +210,8 @@ import window from '@ohos.window';
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                                  |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
-| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
+| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                                                  |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                                            |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
 | brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
@@ -1519,6 +1533,8 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1564,6 +1580,8 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2673,7 +2691,7 @@ try {
 
 ### on('avoidAreaChange')<sup>9+</sup>
 
-on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: AvoidArea}&gt;): void
+on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 开启系统规避区变化的监听。
 
@@ -2683,10 +2701,10 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{ type: AvoidAreaType, area: A
 
 **参数：**
 
-| 参数名   | 类型                                                               | 必填 | 说明                                   |
-| -------- |------------------------------------------------------------------| ---- |--------------------------------------|
-| type     | string                                                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
+| 参数名   | 类型                              | 必填 | 说明                                  |
+| -------- |----------------------------------| ---- |--------------------------------------|
+| type     | string                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
 
 **示例：**
 
@@ -2703,7 +2721,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area: AvoidArea }&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
 关闭系统规避区变化的监听。
 
@@ -2713,10 +2731,10 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;{ type: AvoidAreaType, area:
 
 **参数：**
 
-| 参数名   | 类型                                                                          | 必填  | 说明                                 |
-| -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
-| type     | string                                                                      | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;{ type: [AvoidAreaType](#avoidareatype7), area: [AvoidArea](#avoidarea7) }&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
+| 参数名   | 类型                              | 必填 | 说明                                |
+| -------- |----------------------------------|------|------------------------------------|
+| type     | string                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
 
 **示例：**
 
@@ -2878,7 +2896,7 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                | 必填 | 说明                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
+| type     | string              | 是   | 监听事件，固定为'screenshot'，即截屏事件，对控制中心截屏、hdc命令截屏、整屏截屏接口生效。 |
 | callback | Callback&lt;void&gt; | 是   | 回调函数。发生截屏事件时的回调。                               |
 
 **示例：**
@@ -2932,7 +2950,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-开启模态窗口目标窗口的点击事件的监听。
+开启模态窗口所遮盖窗口的点击或触摸事件的监听
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2940,8 +2958,8 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                          |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
+| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口所遮盖窗口的点击或触摸事件。 |
+| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击或触摸事件发生在模态窗口所遮盖窗口的回调。 |
 
 **示例：**
 
@@ -3796,7 +3814,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击时是否支持切换焦点窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3840,7 +3858,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击时是否支持切换焦点窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4569,7 +4587,7 @@ export default class EntryAbility extends UIAbility {
 
 recover(): Promise&lt;void&gt;
 
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4891,7 +4909,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
+| height | number | 是   | 设置的窗口标题栏高度，支持所有窗口类型。该参数为整数，如入参为小数则为非法入参，取值范围为[37,112]，单位为vp。 |
 
 **错误码：**
 
@@ -6421,7 +6439,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击时是否支持切换焦点窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -6456,7 +6474,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击时是否支持切换焦点窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 > **说明：**
 >

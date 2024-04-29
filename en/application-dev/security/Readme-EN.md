@@ -10,4 +10,4 @@
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
   - [HarmonyAppProvision File](app-provision-structure.md)
-
+- [Asset Store Service](AssetStoreKit/Readme-EN.md)

@@ -291,6 +291,7 @@ nm_register_func对应的函数需要加上修饰符static，防止与其他so�
 
 **错误示例**
 以下代码为模块名为nativerender时的错误示例
+
 ```cpp
 EXTERN_C_START
 napi_value Init(napi_env env, napi_value exports)
@@ -321,6 +322,7 @@ extern "C" __attribute__((constructor)) void RegisterModule()
 
 **正确示例**：
 以下代码为模块名为nativerender时的正确示例
+
 ```cpp
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -344,6 +346,47 @@ extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
 {
     napi_module_register(&nativeModule);
 }
+```
+
+## 正确的使用napi_create_external系列接口创建的JS Object
+
+**【规则】** napi_create_external系列接口创建出来的JS对象仅允许在当前线程传递和使用，跨线程传递（如使用worker的post_message）将会导致应用crash。若需跨线程传递绑定有Native对象的JS对象，请使用napi_coerce_to_native_binding_object接口绑定JS对象和Native对象。
+
+**错误示例**
+
+```cpp
+static void MyFinalizeCB(napi_env env, void *finalize_data, void *finalize_hint) { return; };
+
+static napi_value CreateMyExternal(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_external(env, nullptr, MyFinalizeCB, nullptr, &result);
+    return result;
+}
+
+// 此处已省略模块注册的代码, 你可能需要自行注册 CreateMyExternal 方法
+```
+
+```ts
+// index.d.ts
+export const createMyExternal: () => Object;
+
+// 应用代码
+import testNapi from 'libentry.so';
+import worker from '@ohos.worker';
+
+const mWorker = new worker.ThreadWorker('../workers/Worker');
+
+{
+    const mExternalObj = testNapi.createMyExternal();
+
+    mWorker.postMessage(mExternalObj);
+
+}
+
+// 关闭worker线程
+// 应用可能在此步骤崩溃, 或在后续引擎进行GC的时候崩溃
+mWorker.terminate();
+// Worker的实现为默认模板，此处省略
 ```
 
 ## 其它

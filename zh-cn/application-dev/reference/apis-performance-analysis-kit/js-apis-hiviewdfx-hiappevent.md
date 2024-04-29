@@ -714,7 +714,7 @@ let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHo
 holder2.setSize(1000);
 ```
 
-### setRow
+### setRow<sup>12+</sup>
 
 setRow(size: number): void
 

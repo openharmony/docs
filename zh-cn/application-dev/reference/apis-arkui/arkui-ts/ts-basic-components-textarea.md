@@ -280,6 +280,34 @@ type(value: TextAreaType)
 | ------ | --------------------------------------- | ---- | -------------------------------------------- |
 | value  | [TextAreaType](#textareatype11枚举说明) | 是   | 输入框类型。<br/>默认值：TextAreaType.Normal |
 
+### enableAutoFill<sup>12+</sup>
+
+enableAutoFill(value: boolean)
+
+设置是否启用自动填充。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否启用自动填充。<br/>true表示启用，false表示不启用。<br/>默认值：true |
+
+### contentType<sup>12+</sup>
+
+contentType(contentType: ContentType)
+
+设置自动填充类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填 | 说明           |
+| ----------- | ------------------------------------- | ---- | -------------- |
+| contentType | [ContentType](#contenttype12枚举说明) | 是   | 自动填充类型。 |
+
 ### enterKeyType<sup>11+</sup>
 
 enterKeyType(value: EnterKeyType)
@@ -411,7 +439,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](#caretstyle12对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-basic-components-textinput.md#caretstyle10对象说明) | 是   | 光标的风格。 |
 
 ### textIndent<sup>12+</sup>
 
@@ -510,6 +538,22 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
+
+### lineSpacing<sup>12+</sup>
+
+lineSpacing(value: LengthMetrics)
+
+设置文本的行间距，设置值不大于0时，取默认值0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](ts-types.md#LengthMetrics12) | 是   | 文本的行间距。默认值：0 |
 
 ## 事件
 
@@ -749,6 +793,34 @@ getCaretOffset(): CaretOffset
 | NUMBER   | 纯数字输入模式。      |
 | PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
 
+## ContentType<sup>12+</sup>枚举说明
+
+自动填充类型。
+
+| 名称                       | 值   | 描述                                                         |
+| -------------------------- | ---- | ------------------------------------------------------------ |
+| USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
+| PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
+| NEW_PASSWORD               | 2    | 【新密码】在已启用密码保险箱的情况下，支持自动生成新密码。   |
+| FULL_STREET_ADDRESS        | 3    | 【详细地址】在已启用情景化自动填充的情况下，支持详细地址的自动保存和自动填充。 |
+| HOUSE_NUMBER               | 4    | 【门牌号】在已启用情景化自动填充的情况下，支持门牌号的自动保存和自动填充。 |
+| DISTRICT_ADDRESS           | 5    | 【区/县】在已启用情景化自动填充的情况下，支持区/县的自动保存和自动填充。 |
+| CITY_ADDRESS               | 6    | 【市】在已启用情景化自动填充的情况下，支持市的自动保存和自动填充。 |
+| PROVINCE_ADDRESS           | 7    | 【省】在已启用情景化自动填充的情况下，支持省的自动保存和自动填充。 |
+| COUNTRY_ADDRESS            | 8    | 【国家】在已启用情景化自动填充的情况下，支持国家的自动保存和自动填充。 |
+| PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
+| PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
+| PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
+| BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
+| ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
+| NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
+| DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
+| FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
+
 ## SelectionOptions<sup>12+</sup>
 
 setTextSelection选中文字时的配置。
@@ -774,11 +846,6 @@ setTextSelection选中文字时的配置。
 | 名称             | 类型    | 必填 | 描述                                                         |
 | ---------------- | ------- | ---- | ------------------------------------------------------------ |
 | supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
-
-## CaretStyle<sup>12+</sup>对象说明
-| 参数名 | 类型  | 必填 | 说明  |
-| ------ | -------- | ---- | ------------------------------------------- |
-| width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
 
 ## 示例
 
@@ -1205,3 +1272,74 @@ struct TextAreaExample {
 ```
 
 ![TextAreaAdaptFont](figures/textarea_adapt_font.png)
+
+### 示例11
+lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LineSpacingExample {
+  build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+        TextArea({ placeholder: 'This is the TextArea with no lineSpacing set.' })
+          .fontSize(12)
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_px.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.px(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_vp.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.vp(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_fp.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.fp(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_lpx.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.lpx(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 100%.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.percent(1))
+      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![lineSpacing](figures/TextArea_lineSpacing.png)
+
+### 示例12
+自动填充示例
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = ''
+
+  build() {
+    Column() {
+      // 邮箱地址自动填充类型
+      TextArea({ placeholder: 'input your email...' })
+        .width('95%')
+        .height(40)
+        .margin(20)
+        .contentType(ContentType.EMAIL_ADDRESS)
+        .enableAutoFill(true)
+        .maxLength(20)
+      // 街道地址自动填充类型
+      TextArea({ placeholder: 'input your street address...' })
+        .width('95%')
+        .height(40)
+        .margin(20)
+        .contentType(ContentType.FULL_STREET_ADDRESS)
+        .enableAutoFill(true)
+        .maxLength(20)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![CustomTextAreaType](figures/textAreaAutoFillFeature.png)

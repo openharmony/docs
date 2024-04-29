@@ -60,6 +60,18 @@ huks Handle结构体。
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
 | certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
+## HuksListAliasesReturnResult<sup>12+</sup>
+
+调用接口返回的result。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+
+
+| 名称     | 类型                            | 必填 | 说明             |
+| ---------- | ------------------------------- | ---- | ---------------- |
+| keyAliases | Array\<string>                  | 否   | 表示密钥别名集。 |
+
 
 ## huks.generateKeyItem<sup>9+</sup>
 
@@ -83,7 +95,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -169,7 +181,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -251,7 +263,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -308,7 +320,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -396,7 +408,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -496,7 +508,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -595,7 +607,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | check permission failed. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -742,7 +754,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | check permission failed. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -886,7 +898,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1032,7 +1044,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1162,7 +1174,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1400,7 +1412,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1458,7 +1470,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1519,7 +1531,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1576,7 +1588,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1637,7 +1649,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1694,7 +1706,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
@@ -1757,7 +1769,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
@@ -1815,7 +1827,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
@@ -1882,7 +1894,7 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
@@ -1946,7 +1958,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1986,7 +1998,7 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2021,7 +2033,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2059,7 +2071,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2102,7 +2114,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2139,7 +2151,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2177,7 +2189,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2220,7 +2232,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -2257,7 +2269,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果 。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -2369,7 +2381,7 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -2522,6 +2534,71 @@ async function testAbort() {
 }
 ```
 
+## huks.listAliases<sup>12+</sup>
+
+listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
+
+查询密钥别名集接口，使用Promise方式异步返回结果。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名  | 类型                        | 必填 | 说明                                        |
+| ------- | --------------------------- | ---- | ------------------------------------------- |
+| options  | [HuksOptions](#huksoptions)                      | 是   | listAliases操作的参数集合。                         |
+
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise<[HuksListAliasesReturnResult](#hukslistaliasesreturnresult12)> | Promise对象。将listAliases操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import { huks } from "@kit.UniversalKeystoreKit"
+import { BusinessError } from "@kit.BasicServicesKit"
+
+class HuksProperties {
+  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL
+  value: huks.HuksAuthStorageLevel
+}
+
+async function testListAliases() {
+  let queryProperties: HuksProperties[] = [
+    {
+      tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
+      value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
+    }
+  ];
+  let queryOptions: huks.HuksOptions = {
+    properties: queryProperties
+  };
+
+  try {
+    let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
+    console.info(`promise: listAliases success`);
+  } catch (error: BusinessError) {
+    console.error(`promise: listAliases fail , code: ` + error.code + `, msg: ` + error.message);
+  }
+}
+
+```
+
 
 ## HuksExceptionErrCode<sup>9+</sup>
 
@@ -2534,7 +2611,7 @@ async function testAbort() {
 | 名称                                           | 值 |  说明                        |
 | ---------------------------------------------- | -------- |--------------------------- |
 | HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。可能原因：1. 必选参数未指定。2. 参数类型不正确。3. 参数校验失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
 | HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。<br> **系统能力：** SystemCapability.Security.Huks.Core               |
 | HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。<br> **系统能力：** SystemCapability.Security.Huks.Core         |
 | HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
