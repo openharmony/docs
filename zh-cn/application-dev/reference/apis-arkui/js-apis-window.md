@@ -2662,7 +2662,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 | 参数名   | 类型                              | 必填 | 说明                                  |
 | -------- |----------------------------------| ---- |--------------------------------------|
 | type     | string                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;AvoidAreaOptions&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
+| callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
 
 **示例：**
 
@@ -2692,7 +2692,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 | 参数名   | 类型                              | 必填 | 说明                                |
 | -------- |----------------------------------|------|------------------------------------|
 | type     | string                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | Callback&lt;AvoidAreaOptions&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
+| callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。|
 
 **示例：**
 
