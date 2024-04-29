@@ -640,7 +640,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
 | 201      | Permission denied     |
-| 401      | The parameter check failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. |
 | 5400101  | No Memory. Return by callback. |
 | 5400102  | Operation not allowed.|
@@ -707,7 +707,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400102  | Operation not allowed. Return by callback. |
 
 **示例：**
@@ -1949,7 +1949,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 
 **示例：**
 
@@ -1980,7 +1980,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 
 **示例：**
 
@@ -2157,7 +2157,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
 | 201      | Permission denied. Return by callback.  |
-| 401      | Parameter error. Return by callback.    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 5400102  | Operate not permit. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -2232,7 +2232,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 201      | Permission denied. Return by promise.  |
-| 401      | Parameter error. Return by promise.    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -2385,7 +2385,7 @@ updateRotation(rotation: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-|   401    | Parameter error. Return by callback.   |
+|   401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
@@ -3336,7 +3336,7 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 
 **示例：**
 
@@ -6036,7 +6036,7 @@ createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSo
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -6144,7 +6144,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 | -------- | ---------------------------------------------- |
 | 401      | The parameter check failed. Return by promise. |
 | 5400103  | IO error. Return by promise.                   |
-| 5400105  | Service died. Return by promise.               |
+| 5400105  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.              |
 
 **示例：**
 
