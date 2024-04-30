@@ -2,8 +2,8 @@
 
 ## 概述
 
-针对自研和生态应用，构建ArkUI应用级和页面级主题设置能力，并满足局部深浅色模式设置、动态换肤等诉求，应用可适配主题换肤功能。
-本文描述应用如下场景的开发指导：
+针对自研和生态应用，构建ArkUI应用级和页面级主题设置能力，并提供局部深浅色模式设置、动态换肤等功能。
+本文提供如下场景：
 - [自定义品牌色](#自定义品牌色)
 - [应用级自定义品牌色](#设置应用级自定义品牌色)
 - [局部页面自定义主题风格](#设置应用局部页面自定义主题风格)
@@ -11,7 +11,7 @@
 
 
 ## 自定义品牌色
-CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只需要复写需要的修改的部分，其余部分会继承自系统。详情参考：
+CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分，未修改内容继承于系统。请参考：
 
   ```ts
     import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
@@ -37,10 +37,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
   ```
 
 ## 设置应用级自定义品牌色
-- 方法一：在页面入口处统一设置
-- 约束：要在页面build前执行ThemeControl。
-
-  其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
+- 可在页面入口处统一设置，需要在页面build前执行ThemeControl。其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
 
 参考示例：
 
@@ -304,8 +301,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     }
   ```
 
-- 方法二：在ability中设置ThemeControl
-- 约束：如果在ability中设置，需要在onWindowStageCreate()方法中setDefaultTheme。
+在Ability中设置ThemeControl，需要在onWindowStageCreate()方法中setDefaultTheme。
 
 参考示例：
 
@@ -356,7 +352,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 ![systemTheme](figures/systemTheme.png)
 
 ## 设置应用局部页面自定义主题风格 
-- 将自定义Theme的配色通过设置WithTheme作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
+将自定义Theme的配色通过设置WithTheme作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
 在下面示例中，通过WithTheme({ theme: this.myTheme })将作用域内的组件配色设置为自定义主题风格。后续可通过更改this.myTheme更换主题风格。
 onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
 
@@ -625,8 +621,10 @@ onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对�
 ![customTheme](figures/customTheme.png)
 
 ## 设置应用页面局部深浅色
-- 通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。
+通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。
+
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。
+
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
 
   ```ts
