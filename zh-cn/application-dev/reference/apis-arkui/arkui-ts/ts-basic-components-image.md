@@ -794,7 +794,7 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.test'))//gif图, 生成多张PixelMap
+    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.icon'))//gif图, 生成多张PixelMap
     Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon'))) //添加一张图片
     return Mypixelmaps;
   }

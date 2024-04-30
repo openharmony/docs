@@ -334,14 +334,8 @@ struct ImageAnimatorExample {
   @State iterations: number = 1
   @State images:Array<ImageFrameInfo> = []
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image1')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image2')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image3')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image4')))
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
     this.images.push({src:this.imagePixelMap[0]})
-    this.images.push({src:this.imagePixelMap[1]})
-    this.images.push({src:this.imagePixelMap[2]})
-    this.images.push({src:this.imagePixelMap[3]})
   }
   build() {
     Column({ space: 10 }) {
