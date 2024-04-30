@@ -287,7 +287,7 @@ draggable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽。<br/>默认值：false<br/>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
+| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。 |
 
 ### enableAnalyzer<sup>11+</sup>
 
