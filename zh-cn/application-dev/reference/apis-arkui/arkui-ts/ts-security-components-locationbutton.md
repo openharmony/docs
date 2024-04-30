@@ -25,6 +25,8 @@ LocationButton(option:LocationButtonOptions)
 
 创建包含指定元素的位置按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -32,6 +34,8 @@ LocationButton(option:LocationButtonOptions)
 | option | [LocationButtonOptions](#locationbuttonoptions) | 否 | 创建包含指定元素的位置按钮。 |
 
 ## LocationButtonOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -42,6 +46,8 @@ LocationButton(option:LocationButtonOptions)
 
 ## LocationIconStyle枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
@@ -49,6 +55,8 @@ LocationButton(option:LocationButtonOptions)
 
 
 ## LocationDescription枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -66,6 +74,8 @@ LocationButton(option:LocationButtonOptions)
 
 
 ## LocationButtonOnClickResult枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -87,6 +97,8 @@ LocationButton(option:LocationButtonOptions)
 onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; void)
 
 点击动作触发该回调
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
