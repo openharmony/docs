@@ -358,7 +358,7 @@ let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
 
   }
 }
@@ -414,7 +414,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (adsMap: Map<string, Array<advertising.Advertisement>>): void {
+  onAdLoadSuccess: (adsMap: Map<string, Array<advertising.Advertisement>>) => {
 
   }
 }
