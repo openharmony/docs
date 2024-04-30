@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import identifier from '@ohos.identifier.oaid';
+import identifier from '@kit.AdsKit';
 ```
 
 
