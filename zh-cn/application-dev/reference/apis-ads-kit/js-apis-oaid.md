@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import identifier from '@kit.AdsKit';
+import { identifier } from '@kit.AdsKit';
 ```
 
 
@@ -42,8 +42,8 @@ getOAID(): Promise&lt;string&gt;
 
 **示例：**
 ```
-import identifier from '@kit.AdsKit';
-import hilog from '@kit.PerformanceAnalysisKit';
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {

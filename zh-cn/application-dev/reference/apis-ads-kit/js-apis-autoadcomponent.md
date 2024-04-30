@@ -41,7 +41,7 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 **示例：**
 ```ts
 import { AutoAdComponent, advertising } from '@kit.AdsKit';
-import hilog from '@kit.PerformanceAnalysisKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
