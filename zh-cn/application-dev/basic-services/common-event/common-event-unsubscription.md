@@ -27,7 +27,7 @@
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
 
-3. 调用CommonEvent中的unsubscribe()方法取消订阅某事件。
+3. 调用CommonEvent中的[unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法取消订阅某事件。
    
    ```ts
    // subscriber为订阅事件时创建的订阅者对象
