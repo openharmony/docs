@@ -79,26 +79,30 @@ import window from '@ohos.window';
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
 | navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 |
 
+
 ## Orientation<sup>9+</sup>
 
 窗口显示方向类型枚举。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
-| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。 |
-| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| LANDSCAPE                             | 2    | 表示横屏显示模式。   |
-| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。   |
-| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
-| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
-| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
-| LOCKED                                | 11   | 表示锁定模式。 |
+| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| LOCKED                                | 11   | 表示锁定模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 表示受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 表示临时竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 表示临时横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 表示临时反向竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 表示临时反向横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 
 ## Rect<sup>7+</sup>
