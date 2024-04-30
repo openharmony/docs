@@ -37,11 +37,22 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 ### 设置应用级自定义品牌色
 - 方法一：在页面入口处统一设置
 - 约束：要在页面build前执行ThemeControl。
+  onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
+
+| 接口名          | 方法/属性名                                    | 是否必填 | 描述（说明默认值）                                                       | 所属文件                   |
+|--------------|-------------------------------------------|------|-----------------------------------------------------------------|------------------------|
+| ThemeControl | setDefaultTheme(theme: CustomTheme): void | 是    | 将自定义Theme应用于APP组件，实现APP组件风格跟随Theme切换。Theme后续可扩展shape, typograph | @ohos.arkui.theme.d.ts |
+
+
+| 组件名             | 方法/属性名                          | 是否必填 | 描述（说明默认值）                 | 所属文件        |
+|-----------------|---------------------------------|------|---------------------------|-------------|
+| CustomComponent | onWillApplyTheme?(theme: Theme) | 是    | 回调函数用于自定义组件获取当前生效的Theme对象 | common.d.ts |
+
 
 参考示例：
 
   ```ts
-    import { ThemeControl } from '@ohos.arkui.theme'
+    import { Theme, ThemeControl } from '@ohos.arkui.theme'
     import { gAppTheme } from './AppTheme'
     
     //在页面build前执行ThemeControl
@@ -61,8 +72,11 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
       screenTimeout = 'Screen timeout'
       randomTouchProtection = 'Random touch protection'
       touchSensitivity = 'Touch sensitivity'
-      menuItemColor = '#ffffff'
-      pageBackgroundColor = '#dcdcdc'
+      menuItemColor: ResourceColor = $r('sys.color.background_primary')
+      
+      onWillApplyTheme(theme: Theme) {
+        this.menuItemColor = theme.colors.backgroundPrimary;
+      }
 
       build() {
           Column() {
@@ -290,7 +304,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
             }
           }
           .padding('10vp')
-          .backgroundColor(this.pageBackgroundColor)
+          .backgroundColor('#dcdcdc')
           .width('100%')
           .height('100%')
       }
@@ -300,10 +314,6 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 - 方法二：在ability中设置ThemeControl
 - 约束：如果在ability中设置，需要在onWindowStageCreate()方法中setDefaultTheme。
 
-| 接口名          | 方法/属性名                                    | 是否必填 | 描述（说明默认值）                                                       | 所属文件                   |
-|--------------|-------------------------------------------|------|-----------------------------------------------------------------|------------------------|
-| ThemeControl | setDefaultTheme(theme: CustomTheme): void | 是    | 将自定义Theme应用于APP组件，实现APP组件风格跟随Theme切换。Theme后续可扩展shape, typograph | @ohos.arkui.theme.d.ts |
-
 参考示例：
 
   ```ts
@@ -312,8 +322,13 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     import UIAbility from '@ohos.app.ability.UIAbility';
     import Want from '@ohos.app.ability.Want';
     import window from '@ohos.window';
-    import { ThemeControl } from '@ohos.arkui.theme'
-    import { AppColors } from './AppTheme';
+    import { CustomColors, ThemeControl } from '@ohos.arkui.theme';
+
+    class AppColors implements CustomColors {
+      fontPrimary = 0xFFD53032
+      iconOnPrimary = 0xFFD53032
+      iconFourth = 0xFFD53032
+    }
     
     const abilityThemeColors = new AppColors();
     
