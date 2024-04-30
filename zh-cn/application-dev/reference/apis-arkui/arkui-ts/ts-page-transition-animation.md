@@ -14,8 +14,6 @@ pageTransition?(): void
 
 进入此页面或移动到其他页面时实现动画。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## PageTransitionEnter
@@ -23,6 +21,8 @@ pageTransition?(): void
 PageTransitionEnter(value: PageTransitionOptions)
 
 设置当前页面的自定义入场动效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,6 +38,8 @@ PageTransitionExit(value: PageTransitionOptions)
 
 设置当前页面的自定义退场动效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -48,6 +50,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## PageTransitionOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                                                         | 必填 | 描述                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -58,6 +61,8 @@ PageTransitionExit(value: PageTransitionOptions)
 
 
 ## 属性
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名称  | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -76,6 +81,8 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## RouteType枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
 | Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
@@ -83,6 +90,8 @@ PageTransitionExit(value: PageTransitionOptions)
 | None | 页面未重定向。如Push和Pop描述中RouteType为None的情形，即页面进场时PageTransitionEnter的转场效果生效；退场时PageTransitionExit的转场效果生效。 |
 
 ## SlideEffect枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述                                               |
 | ------ | -------------------------------------------------- |
