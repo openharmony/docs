@@ -576,7 +576,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         console.info('==========================>triggerCallback=======================>');
     }
 
-    WantAgent.trigger(wantAgent, {code:0, startOptions:{windowMode: 100}}, triggerCallback)
+    WantAgent.trigger(wantAgent, {code:0}, triggerCallback)
 }
 
 WantAgent.getWantAgent({
