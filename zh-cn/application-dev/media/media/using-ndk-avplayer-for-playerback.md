@@ -49,6 +49,9 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
+
+static char *Url;
+
 void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 {
     int32_t ret;
@@ -114,6 +117,8 @@ void OnError(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)
     // do something
 }
 
+// 调用播放方法时，需要在index.d.ts文件内描述映射的play方法，需要传入一个string类型的参数
+// ets文件调用播放方法时，传入文件路径 testNapi.play("/data/test/test.mp3")
 static napi_value Play(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -155,6 +160,8 @@ static napi_value Play(napi_env env, napi_callback_info info)
         // 处理异常
         return nullptr;
     }
+
+    Url = url;
     
     // 创建播放实例
     OH_AVPlayer *player = OH_AVPlayer_Create();
