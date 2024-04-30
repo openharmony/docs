@@ -120,13 +120,9 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     @Entry
     @Component
     struct WillApplyThemePage {
-      @State textSize: Length = 0
-      @State textWeight: FontWeight | number | string = 0
-      @State textPadding: Length = 0
-      @State textCorners: Length = 0
       @State textColor: ResourceColor = Color.Transparent
       @State textBackgroundColor: ResourceColor = Color.Transparent
-      @State textPressBackgroundColor: ResourceColor = Color.Transparent
+      @State textPressedBackgroundColor: ResourceColor = Color.Transparent
         
       @Styles
       normalStyles() {
@@ -135,27 +131,24 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
         
       @Styles
       pressedStyles() {
-        .backgroundColor(this.textPressBackgroundColor)
+        .backgroundColor(this.textPressedBackgroundColor)
       }
         
       willApplyTheme(theme: Theme) {
         this.textColor = theme.colors.fontOnPrimary
         this.textBackgroundColor = theme.colors.backgroundEmphasize
-        this.textPressBackgroundColor = theme.colors.interactivePressed
+        this.textPressedBackgroundColor = theme.colors.interactivePressed
       }
         
       build() {
         Column() {
           Row() {
-            Text('Hello World')
-              .fontSize(this.textSize)
-              .fontWeight(this.textWeight)
-              .padding(this.textPadding)
-              .borderRadius(this.textCorners)
+            Text('Hello World!')
+              .fontSize('24fp')
               .fontColor(this.textColor)
               .stateStyles({
                 normal: this.normalStyles,
-                pressed: this.pressedStyles,
+                pressed: this.pressedStyles
               })
           }
           .alignItems(VerticalAlign.Center)
@@ -167,6 +160,8 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
       }
     }
   ```
+
+![systemTheme](figures/systemTheme.png)
 
 ### 设置应用页面局部换肤  
 - 将自定义Theme的配色通过设置WithTheme作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
@@ -223,6 +218,8 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     }
   ```
 
+![customTheme](figures/customTheme.png)
+
 ### 设置应用页面局部深浅色
 - 通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。
@@ -251,4 +248,4 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     }
   ```
   
-
+![darkLightTheme](figures/darkLightTheme.png)
