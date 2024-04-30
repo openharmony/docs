@@ -450,6 +450,7 @@ maxFontSize(value: number | string | Resource)
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -918,12 +919,12 @@ struct SearchExample {
         Search({value: 'LineThrough, Red'})
           .border({ width: 1 }).padding(5)
           .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        Search({value: 'Overline, Red'})
+        Search({value: 'Overline, Red, DOTTED'})
           .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        Search({value: 'Underline, Red'})
+          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})
+        Search({value: 'Underline, Red, WAVY'})
           .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
       }.height('90%')
     }
     .width('90%')

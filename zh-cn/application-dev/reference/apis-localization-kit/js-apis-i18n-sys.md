@@ -36,7 +36,7 @@ static setSystemLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 语言ID。 |
+| language | string | 是    | 合法的语言ID。 |
 
 **错误码：**
 
@@ -44,7 +44,9 @@ static setSystemLanguage(language: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -95,7 +97,7 @@ static setSystemRegion(region: string): void
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| region | string | 是    | 地区ID。 |
+| region | string | 是    | 合法的地区ID。 |
 
 **错误码：**
 
@@ -103,7 +105,9 @@ static setSystemRegion(region: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -135,7 +139,7 @@ static setSystemLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| locale | string | 是    | 指定区域ID，例如zh-CN。 |
+| locale | string | 是    | 合法的区域ID，例如zh-CN。 |
 
 **错误码：**
 
@@ -143,7 +147,9 @@ static setSystemLocale(locale: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -182,7 +188,9 @@ static set24HourClock(option: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -213,7 +221,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 | 参数名      | 类型     | 必填   | 说明         |
 | -------- | ------ | ---- | ---------- |
-| language | string | 是    | 待添加的偏好语言。  |
+| language | string | 是    | 待添加的偏好语言，要求是合法的语言ID。  |
 | index    | number | 否    | 偏好语言的添加位置。默认值：系统偏好语言列表长度。 |
 
 **错误码：**
@@ -222,7 +230,9 @@ static addPreferredLanguage(language: string, index?: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -263,7 +273,9 @@ static removePreferredLanguage(index: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -303,7 +315,9 @@ static setUsingLocalDigit(flag: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -349,7 +363,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | 是   | 待排序语言列表。|
+| languages | Array&lt;string&gt; | 是   | 待排序语言列表，要求是合法的语言ID。|
 | options   | [SortOptions](#sortoptions10)   | 否   | 语言排序选项。 |
 
 **返回值：**
@@ -364,7 +378,8 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -398,7 +413,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| regions   | Array&lt;string&gt; | 是   | 待排序的国家或地区列表。|
+| regions   | Array&lt;string&gt; | 是   | 待排序的国家或地区列表，要求是合法的国家或地区ID。|
 | options   | [SortOptions](#sortoptions10)   | 否   | 国家或地区排序选项。默认值：locale的默认值为系统Locale，isUseLocalName的默认值为false，isSuggestedFirst的默认值为true。 |
 
 **返回值：**
@@ -413,7 +428,8 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts

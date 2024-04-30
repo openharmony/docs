@@ -13,12 +13,19 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 以实现对用户点击按钮触发卡死场景生成的卡死事件订阅为例，说明开发步骤。
 
-1. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，完整示例代码如下：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
+
+   ```ts
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+   import hilog from '@ohos.hilog';
+   ```
+
+2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
 
    ```ts
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "watcher3",
+      name: "watcher",
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了卡死事件
       appEventFilters: [
         {
@@ -74,7 +81,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     });
    ```
 
-2. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造卡死场景，以触发卡死事件，完整示例代码如下：
+3. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造卡死场景，以触发卡死事件，示例代码如下：
 
    ```ts
     Button("appFreeze").onClick(()=>{
@@ -85,9 +92,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     })
    ```
 
-3. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次卡死事件。
+4. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appFreeze”，触发一次卡死事件。
 
-4. 应用工程卡死恢复运行后可以在Log窗口看到对系统事件数据的处理日志：
+5. 应用卡死退出后，重新进入应用可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS

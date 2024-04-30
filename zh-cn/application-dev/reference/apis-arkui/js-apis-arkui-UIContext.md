@@ -5419,9 +5419,7 @@ struct Index {
 }
 ```
 
-![measureUtils-measureText](figures/measureUtils-measureText.png)
-
-## measureTextSize<sup>12+</sup>
+### measureTextSize<sup>12+</sup>
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
@@ -5470,8 +5468,6 @@ struct Index {
 }
 ```
 
- ![measureUtils-measureTextSize](figures/measureUtils-measureTextSize.png)
-
 ## ComponentSnapshot<sup>12+</sup>
 
 以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
@@ -5506,6 +5502,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 ```ts
 import image from '@ohos.multimedia.image'
 import { UIContext } from '@ohos.arkui.UIContext';
+
 @Entry
 @Component
 struct SnapshotExample {
@@ -5514,8 +5511,8 @@ struct SnapshotExample {
   build() {
     Column() {
       Row() {
-        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
-        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+        Image(this.pixmap).width(150).height(150).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(150).height(150).margin(5).id("root")
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
@@ -5580,8 +5577,8 @@ struct SnapshotExample {
   build() {
     Column() {
       Row() {
-        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
-        Image($r('app.media.icon')).autoResize(true).width(200).height(200).margin(5).id("root")
+        Image(this.pixmap).width(150).height(150).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.icon')).autoResize(true).width(150).height(150).margin(5).id("root")
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
@@ -5606,7 +5603,7 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果。
+在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
 > **说明：** 
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
@@ -5633,6 +5630,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 ```ts
 import image from '@ohos.multimedia.image'
 import { UIContext } from '@ohos.arkui.UIContext';
+
 @Entry
 @Component
 struct ComponentSnapshotExample {
@@ -5686,7 +5684,7 @@ struct ComponentSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果。
+在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
 
 > **说明：** 
 >
@@ -5719,6 +5717,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 ```ts
 import image from '@ohos.multimedia.image'
 import { UIContext } from '@ohos.arkui.UIContext';
+
 @Entry
 @Component
 struct ComponentSnapshotExample {

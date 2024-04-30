@@ -528,14 +528,14 @@
 
 | 名称                   | 描述        |
 | -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。   |
-| Regular              | 普通厚度材质模糊。 |
-| Thick                | 厚材质模糊。    |
-| BACKGROUND_THIN       | 近距景深模糊。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。   |
-| BACKGROUND_THICK      | 远距景深模糊。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
-| NONE<sup>10+</sup> | 关闭模糊。  |
+| Thin                 | 轻薄材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Regular              | 普通厚度材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Thick                | 厚材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| BACKGROUND_THIN       | 近距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
 | COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
 | COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
@@ -551,6 +551,8 @@
 | DARK   | 固定使用深色模式。  |
 
 ## AdaptiveColor<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
@@ -711,6 +713,8 @@ Nullable\<T> {
 
 ## TextDataDetectorType<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | PHONE_NUMBER  | 电话号码 |
@@ -722,6 +726,8 @@ Nullable\<T> {
 
 [Span](ts-basic-components-span.md)类型信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 说明 |
 | -------- | -------- |
 | TEXT | Span为文字类型。 |
@@ -729,6 +735,8 @@ Nullable\<T> {
 | MIXED | Span为图文混合类型。|
 
 ## TextResponseType<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 描述            |
 | ---------- | ------------- |
@@ -749,6 +757,8 @@ Nullable\<T> {
 
 动效类型的枚举值。设置动效后启动即生效，无需触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | NONE | 无动效（默认值）。 |
@@ -758,6 +768,8 @@ Nullable\<T> {
 ## SymbolRenderingStrategy<sup>11+</sup>
 
 渲染模式的枚举值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -816,3 +828,13 @@ Nullable\<T> {
 | TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
 | GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
+
+## TextDecorationStyle<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| SOLID   | 单实线（默认值）。  |
+| DOUBLE | 双实线。 |
+| DOTTED    | 点线。  |
+| DASHED        | 虚线。 |
+| WAVY        | 波浪线。 |

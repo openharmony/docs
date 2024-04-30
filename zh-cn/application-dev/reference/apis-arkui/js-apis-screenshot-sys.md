@@ -62,10 +62,13 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
+| 201     | Permission verification failed.|
+| 202     | Permission denied, non-system app called system api.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -118,6 +121,15 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------- |
+| 201     | Permission verification failed.|
+
 **示例：**
 
 ```ts
@@ -161,6 +173,16 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 | 类型                          | 说明                                            |
 | ----------------------------- | ----------------------------------------------- |
 | Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回一个PixelMap对象。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------- |
+| 201     | Permission verification failed.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**
 

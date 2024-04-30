@@ -33,6 +33,8 @@ alt(value:&nbsp;PixelMap)
 
 设置图片加载时显示的占位图。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -47,6 +49,8 @@ verticalAlign(value: ImageSpanAlignment)
 
 设置图片基于文本的对齐方式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -60,6 +64,8 @@ verticalAlign(value: ImageSpanAlignment)
 objectFit(value: ImageFit)
 
 设置图片的缩放类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
