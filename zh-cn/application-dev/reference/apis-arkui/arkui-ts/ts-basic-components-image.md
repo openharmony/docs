@@ -289,6 +289,29 @@ draggable(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。 |
 
+### enableAnalyzer<sup>11+</sup>
+
+edgeAntialiasing(value:&nbsp;boolean)
+
+设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
+
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。  
+
+alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。 
+
+基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。 copyOption属性不影响AI分析功能。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
 
 ### resizable<sup>11+</sup>
 
@@ -315,27 +338,21 @@ resizable(value: ResizableOptions)
 >  - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline和polygon。
 
-### enableAnalyzer<sup>11+</sup>
+### privacySensitive<sup>12+</sup>
 
-edgeAntialiasing(value:&nbsp;boolean)
+privacySensitive(supported: boolean)
 
-设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
+设置是否支持卡片敏感隐私信息。
 
-分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。  
-
-alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。 
-
-基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。 copyOption属性不影响AI分析功能。
-
-当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
+| 参数名    | 类型    | 必填 | 说明                     |
+| --------- | ------- | ---- | ------------------------ |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
 
 ## ImageInterpolation
 

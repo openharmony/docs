@@ -44,7 +44,6 @@ edgeAntialiasing(value: number)
 | ------ | ------ | ---- | ----------------------------------- |
 | value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：$0$ |
 
-
 ## ImageAnalyzerConfig<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
