@@ -2382,7 +2382,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-// EntryAbility.ets
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
@@ -2455,7 +2454,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
@@ -2531,7 +2529,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
