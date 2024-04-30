@@ -72,6 +72,8 @@
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
+  - 主题设置
+    - [主题换肤开发指导](theme_skinning.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明
@@ -144,5 +146,4 @@
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
-  - [主题换肤开发指导](theme_skinning.md)
 - [窗口管理](../windowmanager/Readme-CN.md)
