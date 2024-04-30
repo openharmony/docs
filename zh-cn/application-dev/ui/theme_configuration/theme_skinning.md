@@ -14,9 +14,9 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     import { CustomTheme, CustomColors } from '@ohos.arkui.theme'
 
     class AppColors implements CustomColors {
-      //Button字体
+      //字体颜色
       fontOnPrimary: ResourceColor = '#ff0c0b0b';
-      //Button背景颜色
+      //背景颜色
       backgroundEmphasize: ResourceColor = '#ffebecee';
     }
 
