@@ -27,7 +27,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -74,7 +74,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -130,7 +130,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -190,7 +190,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -244,7 +244,7 @@ cancel(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -322,7 +322,7 @@ cancel(group: TaskGroup): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -383,7 +383,7 @@ getTaskPoolInfo(): TaskPoolInfo
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -403,7 +403,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -456,7 +456,7 @@ Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -493,7 +493,7 @@ Task的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -533,7 +533,7 @@ static isCanceled(): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -605,7 +605,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -669,7 +669,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -824,7 +824,7 @@ static sendData(...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -866,7 +866,7 @@ onReceiveData(callback?: Function): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -909,7 +909,7 @@ addDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -966,7 +966,7 @@ removeDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1023,7 +1023,7 @@ taskpool.execute(task3).then(() => {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
@@ -1046,7 +1046,7 @@ TaskGroup的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **示例：**
 
@@ -1062,7 +1062,7 @@ TaskGroup的构造函数，可以指定任务组名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1086,7 +1086,7 @@ addTask(func: Function, ...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1124,7 +1124,7 @@ addTask(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1158,7 +1158,7 @@ taskGroup.addTask(task);
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
@@ -1176,7 +1176,7 @@ SequenceRunner的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1203,7 +1203,7 @@ execute(task: Task): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1273,7 +1273,7 @@ async function seqRunner()
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称      | 值        | 说明          |
 | --------- | -------- | ------------- |
@@ -1294,10 +1294,10 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。 **元服务API**：从API version 12 开始，该接口支持在元服务中使用。                                                     |
-| taskId   | number             | 是   | 否   | 任务的ID。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                  |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。  |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。                                                     |
+| taskId   | number             | 是   | 否   | 任务的ID。<br>**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br>**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。                                                  |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br>**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -1309,7 +1309,7 @@ async function seqRunner()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
@@ -1327,7 +1327,7 @@ async function seqRunner()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称          | 类型                              | 可读 | 可写 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
