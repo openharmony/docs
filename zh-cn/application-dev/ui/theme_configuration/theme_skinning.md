@@ -4,17 +4,12 @@
 
 针对应用需要设置自己的品牌色和主题风格，需要在局部页面使用自己的主题风格，并且在局部设置深浅色的三种场景需求，设计了Theme主题换肤方案，开发指导如下：
 
-### 主题色主要场景
-
-- 应用：应用品牌色、应用级深浅色和局部换肤，支持动态换肤。
-- 主题：官方预置主题色、个性化和在线主题色。
-- 产品组件预置：产品品牌色。
 
 ### 自定义品牌色
 CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只需要复写需要的修改的部分，其余部分会继承自系统。详情参考：
 >UX鸿蒙色彩设计原色介绍
 
-    ```ts
+  ```ts
     // xxx.ets
     import { CustomTheme, CustomColors } from '@ohos.arkui.theme'
 
@@ -30,7 +25,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     }
 
     export let gAppTheme: CustomTheme = new AppTheme()
-    ```
+  ```
 
 ### 设置应用级全局风格
 - 方法一：在ability中设置ThemeControl
@@ -43,7 +38,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 
 参考示例：
 
-    ```ts
+  ```ts
     xxx.ts
     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
     import hilog from '@ohos.hilog';
@@ -101,7 +96,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
       }
     }
-    ```
+  ```
 - 方法二：在页面入口处统一设置
 - 约束：要在页面build前执行ThemeControl。
 
@@ -114,7 +109,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 
 参考示例：
 
-    ```ts
+  ```ts
     // xxx.ets
     import { Theme, ThemeControl, CustomTheme } from '@ohos.arkui.theme';
     import { gAppTheme } from '../Theme/AppTheme'
@@ -171,7 +166,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
         .height('100%')
       }
     }
-    ```
+  ```
 
 ### 设置应用页面局部换肤  
 - 将自定义Theme的配色通过设置WithTheme作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
@@ -183,7 +178,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 | WithTheme(options: WithThemeOptions) | WithThemeOptions? {<br/>theme?: CustomTheme // 自定义Theme<br/>colorMode?: ColorMode // 深浅色模式<br/>} | 是    | WithThemeOptions为自定义Theme或指定的深浅色模式 | with_theme.d.ts |
 
 
-    ```ts
+  ```ts
     // xxx.ets
     import { CustomTheme } from '@ohos.arkui.theme'
     import { BrownThemeColors, GreenThemeColors, RedThemeColors } from '../theme/CustomColorsImlp'
@@ -226,14 +221,14 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
         .height('100%')
       }
     }
-    ```
+  ```
 
 ### 设置应用页面局部深浅色
 - 通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.LIGHT })将组件设置为浅色模式。
 
-    ```ts
+  ```ts
     // xxx.ets
     @Entry
     @Component
@@ -254,6 +249,6 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
         .height('100%')
       }
     }
-    ```
+  ```
   
 
