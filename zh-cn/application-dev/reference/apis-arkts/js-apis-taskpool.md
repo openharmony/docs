@@ -375,6 +375,78 @@ concurrntFunc();
 ```
 
 
+## taskpool.terminateTask<sup>12+</sup>
+
+terminateTask(longTask: LongTask): void
+
+中止任务池中的长时任务，在长时任务执行完成后调用。中止后，执行长时任务的线程可能会被回收。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| longTask   | [LongTask](#longtask12) | 是   | 需要中止的长时任务。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function longTask(arg: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < arg) {
+    continue;
+  }
+  console.info("longTask has been executed.");
+  return arg;
+}
+
+function concurrntFunc() {
+  let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
+  taskpool.execute(task1).then((res: Object)=>{
+    taskpool.terminateTask(task1);
+    console.info("taskpool longTask result: " + res);
+  });
+}
+
+concurrntFunc();
+```
+
+## taskpool.isConcurrent<sup>12+</sup>
+
+isConcurrent(func: Function): boolean
+
+检查函数是否为并发函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| function   | Function | 是   | 需要检查的函数。 |
+
+**返回值：**
+
+| 类型    | 说明                                 |
+| ------- | ------------------------------------ |
+| boolean | 如果被检查函数标注了[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)，返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function test() {}
+
+let result: Boolean = taskpool.isConcurrent(test)
+console.info("result is: " + result)
+```
+
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
 
 getTaskPoolInfo(): TaskPoolInfo
@@ -1033,6 +1105,26 @@ taskpool.execute(task3).then(() => {
 | totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
 | ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
 | cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
+
+## LongTask<sup>12+</sup>
+
+**系统能力：** SystemCapability.Utils.Lang
+
+表示长时任务。LongTask继承自[Task](#task)。
+长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持在任务组（TaskGroup）执行和多次执行。
+执行长时任务的线程一直存在，直到执行完成后调用[terminateTask](#taskpoolterminatetask12)，该线程会在空闲时被回收。
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
+```
 
 ## TaskGroup<sup>10+</sup>
 
