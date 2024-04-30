@@ -15,7 +15,6 @@ Image为图片组件，常用于在应用中显示图片。
 | -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | analyzerConfig<sup>11+</sup> | [ImageAnalyzerConfig](#imageanalyzerconfig11)                                                 | 设置AI分析类型，包括主体识别和文字识别功能，默认全部开启。<br>**说明：**<br /> 分析类型不支持动态修改。<br>**系统接口：**<br /> 此接口为系统接口。|
 | edgeAntialiasing<sup>11+</sup> | number                                                 | 设置SVG图源抗锯齿效果，仅对svg图源生效。<br/>取值范围：$[0.333, 1.333]$，有效数字保留小数点后3位。<br/>默认值：$0$。<br>**说明：**<br />适用于超低分辨率设备（PPI低于200的设备）的SVG图源的锯齿优化，存在一定的性能影响，请谨慎使用。 <br>**系统接口：**<br /> 此接口为系统接口。|
-| enableAnalyzer<sup>11+</sup> | boolean                                                 | 设置组件支持AI分析，设置为true时，组件可进行AI分析。<br>不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。<br/>默认值：false<br>**说明：**<br/> 该特性依赖设备能力。 <br/> 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。 <br/> alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。<br/> 基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。<br/> copyOption属性不影响AI分析功能。<br>**系统接口：**<br /> 此接口为系统接口。 |
 
 ## ImageAnalyzerConfig<sup>11+</sup>
 
