@@ -519,8 +519,8 @@ setSelection的选择项配置。
 | 名称         | 描述            |
 | ---------- | ------------- |
 | DEFAULT  | 默认逻辑,是否弹出菜单取决于场景。   |
-| NEVER | 始终不弹出菜单。 |
-| ALWAYS | 始终弹出菜单。 |
+| HIDE | 始终不弹出菜单。 |
+| SHOW | 始终弹出菜单。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>
 
