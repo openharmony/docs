@@ -68,8 +68,6 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
@@ -1754,8 +1752,6 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **参数：**
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
@@ -1805,8 +1801,6 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1860,8 +1854,6 @@ getWindowSystemBarProperties(): SystemBarProperties
 主窗口获取导航栏、状态栏的属性。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
