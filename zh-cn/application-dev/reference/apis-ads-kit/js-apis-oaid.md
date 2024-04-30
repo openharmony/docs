@@ -91,8 +91,8 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 ```
-import identifier from '@kit.AdsKit;
-import hilog from '@kit.PerformanceAnalysisKit';
+import { identifier } from '@kit.AdsKit;
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
  
 try {
