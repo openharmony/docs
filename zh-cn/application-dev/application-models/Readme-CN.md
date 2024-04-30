@@ -27,6 +27,9 @@
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
+    - [跨应用启动方式](cross-app-startup.md)
+      - [App Linking开发指南](app-linking.md)
+      - [应用间显式跳转切换link跳转适配](uiability-startup-adjust.md)
     - [AppStartup开发指南](app-startup.md)
     <!--Del-->
     - 应用组件跨设备交互（流转）

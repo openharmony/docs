@@ -15,7 +15,8 @@
 
 - **显式Want**：在启动目标应用组件时，调用方传入的want参数中指定了abilityName和bundleName，称为显式Want。
   
-    显式Want通常用于在当前应用中启动已知的目标应用组件，通过提供目标应用组件所在应用的Bundle名称信息（bundleName）并在Want对象内指定abilityName来启动目标应用组件。当有明确处理请求的对象时，显式Want是一种简单有效的启动目标应用组件的方式。
+    显式Want通常用于在当前应用中启动已知的目标应用组件，通过提供目标应用组件所在应用的Bundle名称信息（bundleName）并在Want对象内指定abilityName来启动目标应用组件。当有明确处理请求的对象时，显式Want是一种简单有效的启动目标应用组件的方式。<br>
+    **在API 12及以上版本，三方应用间的显式Want组件启动已进行限制，需要切换以uri匹配的隐式Want启动。**
   
   ```ts
   import Want from '@ohos.app.ability.Want';
