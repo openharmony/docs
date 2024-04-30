@@ -711,6 +711,8 @@ Nullable\<T> {
 
 ## TextDataDetectorType<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | PHONE_NUMBER  | 电话号码 |
@@ -722,6 +724,8 @@ Nullable\<T> {
 
 [Span](ts-basic-components-span.md)类型信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 说明 |
 | -------- | -------- |
 | TEXT | Span为文字类型。 |
@@ -729,6 +733,8 @@ Nullable\<T> {
 | MIXED | Span为图文混合类型。|
 
 ## TextResponseType<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 描述            |
 | ---------- | ------------- |

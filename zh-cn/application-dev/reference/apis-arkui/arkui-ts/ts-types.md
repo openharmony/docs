@@ -484,6 +484,8 @@ Swiper组件动画相关信息集合。
 
 Tabs组件动画相关信息集合。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型定义      |  必填             | 描述                                       |
 | ------------- | ---------------------- | ----------------|------------------------ |
 | currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
@@ -535,6 +537,8 @@ Tabs组件动画相关信息集合。
 
 Tabs自定义切换动画相关信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型定义         | 必填          | 描述                                       |
 | ------------- | ---------------------- | ------------------|---------------------- |
 | timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
@@ -543,6 +547,8 @@ Tabs自定义切换动画相关信息。
 ## TabContentTransitionProxy<sup>11+</sup>
 
 Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            | 类型定义     |  必填              | 描述                                       |
 | ------------- | ---------------------- | ----------------------|------------------ |
@@ -601,6 +607,8 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 定义用户提交事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称              | 类型       | 必填 | 描述                                               |
 | ----------------- | ---------- | ---- | -------------------------------------------------- |
 | keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
@@ -610,13 +618,13 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 | 名称                   | 描述               |
 | ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。   |
-| Search                 | 显示为搜索样式。   |
-| Send                   | 显示为发送样式。   |
-| Next                   | 显示为下一步样式。 |
-| Done                   | 显示为完成样式。   |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
+| Go                     | 显示为开始样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Search                 | 显示为搜索样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Send                   | 显示为发送样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Next                   | 显示为下一步样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Done                   | 显示为完成样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
 
 ## LengthMetrics<sup>12+</sup>
 
