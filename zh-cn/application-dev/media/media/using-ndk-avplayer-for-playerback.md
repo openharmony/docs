@@ -119,7 +119,7 @@ static napi_value Play(napi_env env, napi_callback_info info)
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     
-    napi_get_cb_info(environ, info, &argc, args, nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     
     // 获取参数类型
     napi_valuetype stringType;
