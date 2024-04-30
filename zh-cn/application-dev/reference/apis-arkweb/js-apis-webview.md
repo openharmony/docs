@@ -970,7 +970,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
-> 
+>
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 > 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
@@ -3194,7 +3194,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  
+
   build() {
     Column() {
       Button('getUserAgent')
@@ -3826,7 +3826,7 @@ struct WebComponent {
             this.controller.slideScroll(500, 500);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`); 
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -5804,6 +5804,149 @@ struct WebComponent {
   }
 }
 ```
+
+### enableAdsBlock<sup>12+</sup>
+
+enableAdsBlock(enable: boolean): void
+
+启用广告过滤功能，默认该功能未启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  enable | boolean | 是   | 是否启用广告过滤功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('enableAdsBlock')
+        .onClick(() => {
+          try {
+            this.controller.enableAdsBlock(true)
+            console.log("enableAdsBlock: true")
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isAdsBlockEnabled<sup>12+</sup>
+
+isAdsBlockEnabled() : boolean
+
+查询广告过滤功能是否开启，默认该功能未启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('isAdsBlockEnabled')
+        .onClick(() => {
+          try {
+            let isAdsBlockEnabled: boolean = this.controller.isAdsBlockEnabled()
+            console.log("isAdsBlockEnabled:", isAdsBlockEnabled)
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isAdsBlockEnabledForCurPage<sup>12+</sup>
+
+isAdsBlockEnabledForCurPage() : boolean
+
+查询当前网页是否开启广告过滤功能。
+当Web组件使能广告过滤功能后，默认所有页面都是开启广告过滤的，支持通过[addAdsBlockDisallowedList](#addadsblockdisallowedlist12)指定域名禁用广告过滤。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回true代表此网页已开启广告过滤，返回false代表当前网页已关闭广告过滤。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('isAdsBlockEnabledForCurPage')
+        .onClick(() => {
+          try {
+            let isAdsBlockEnabledForCurPage: boolean = this.controller.isAdsBlockEnabledForCurPage()
+            console.log("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage)
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### setRenderProcessMode<sup>12+</sup>
 
 static setRenderProcessMode(mode: RenderProcessMode): void
@@ -6146,7 +6289,7 @@ getSecurityLevel(): SecurityLevel
 import webview from '@ohos.web.webview'
 
 
-	
+
 @Entry
 @Component
 struct WebComponent {
@@ -7116,7 +7259,7 @@ closeCamera(): void
 
 precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
 
-预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。   
+预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。
 接口通过提供的文件信息、E-Tag响应头和Last-Modified响应头判断是否需要更新已有的字节码缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -7178,7 +7321,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    // DynamicComponent.ets
    import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
    import { UIContext } from '@ohos.arkui.UIContext';
-   
+
    export interface BuilderData {
      url: string;
      controller: WebviewController;
@@ -7322,16 +7465,16 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
    import { businessWebview } from "./BusinessWebview"
-   
+
    @Entry
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
      precompileController: web_webview.WebviewController = new web_webview.WebviewController();
-   
+
      @State businessNode: NodeController | undefined = undefined;
      businessController: web_webview.WebviewController = new web_webview.WebviewController();
-   
+
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
@@ -7361,7 +7504,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
 onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
 
-注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。  
+注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。
 如果应用接管网页媒体播放功能未开启，则注册的回调函数不会被触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -7554,9 +7697,9 @@ function shouldHandle(mediaInfo: webview.MediaInfo) {
 
 injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourcemap12)\>): void
 
-将本地离线资源注入到内存缓存中，以提升页面首次启动速度。   
-内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。   
-正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。   
+将本地离线资源注入到内存缓存中，以提升页面首次启动速度。
+内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。
+正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
 当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
@@ -14138,7 +14281,7 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 ## NativeMediaPlayerHandler<sup>12+<sup>
 
-[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。  
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。
 应用通过该对象，将播放器的状态报告给ArkWeb内核。
 
 ### handleStatusChanged<sup>12+<sup>
@@ -14398,8 +14541,8 @@ handleVideoSizeChanged(width: number, height: number): void
 
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
-[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。  
-接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。  
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。
+接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。
 ArkWeb 内核通过该接口类的实例对象来控制应用创建的用来接管网页媒体的播放器。
 
 ### updateRect<sup>12+<sup>
@@ -14469,7 +14612,7 @@ seek(targetTime: number): void
 
 setVolume(volume: number): void
 
-设置播放器音量值。  
+设置播放器音量值。
 取值范围: [0, 1.0]
 
 **参数：**
@@ -14506,7 +14649,7 @@ setMuted(muted: boolean): void
 
 setPlaybackRate(playbackRate: number): void
 
-设置播放速度。  
+设置播放速度。
 取值范围: [0, 10.0]
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -14616,7 +14759,7 @@ exitFullscreen(): void
 
 ## MediaInfo<sup>12+<sup>
 
-[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。  
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。
 包含了网页中媒体的信息。应用可以根据这些信息来创建接管网页媒体播放的播放器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -14638,7 +14781,7 @@ exitFullscreen(): void
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
 
-[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。  
+[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。
 一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
 
 type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
@@ -14729,3 +14872,467 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
 | width  | number   | 是   | 是   | 矩形的宽度。    |
 | height  | number   | 是   | 是   | 矩形的高度。    |
+
+## AdsBlockManager<sup>12+</sup>
+
+通过AdsBlockManager可以向Web组件中设置自定义的广告过滤配置、关闭特定网站的广告过滤功能，其中每个应用中的所有Web组件都共享一个AdsBlockManager实例。
+
+### setAdsBlockRules<sup>12+</sup>
+
+static setAdsBlockRules(rulesFile: string, replace: boolean): void
+
+向Web组件中设置自定义的符合通用easylist语法规则的广告过滤配置文件。
+
+> **说明：**
+>
+> 此接口设置的广告过滤规则，内部解析成功后会持久化存储，应用重启后不需要重复设置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
+| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import picker from '@ohos.file.picker';
+import fileuri from '@ohos.file.fileuri';
+
+// 演示点击按钮，通过filepicker打开一个easylist规则文件并设置到Web组件中
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Row() {
+      Flex() {
+        Button({type: ButtonType.Capsule}) {
+          Text("setAdsBlockRules")
+        }
+        .onClick(() => {
+          try {
+            let documentSelectionOptions: ESObject = new picker.DocumentSelectOptions()
+            let documentPicker: ESObject = new picker.DocumentViewPicker()
+            documentPicker.select(documentSelectionOptions).then((documentSelectResult: ESObject) => {
+              if (documentSelectResult && documentSelectResult.length > 0) {
+                let fileRealPath = new fileuri.FileUri(documentSelectResult[0])
+                console.info('DocumentViewPicker.select successfully, uri: ' + fileRealPath)
+
+                web_webview.AdsBlockManager.setAdsBlockRules(fileRealPath.path, true)
+              }
+            })
+          } catch (err) {
+            console.error('DocumentViewPicker.select failed with err:' + err)
+          }
+        })
+      }
+    }
+  }
+}
+```
+
+### addAdsBlockDisallowedList<sup>12+</sup>
+
+static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
+
+向AdsBlockManager的DisallowedList中添加一组域名。广告过滤功能开启时，将禁用这些网站的广告过滤功能。
+
+> **说明：**
+>
+> 此接口设置的域名不会持久化，应用重启需要重新设置。
+>
+> 广告过滤特性会使用后缀匹配的方式判断domainSuffix和当前站点的url是否能匹配，例如，当前Web组件打开的网站是https://www.example.com，设置的DisallowList中有'example.com'或者'www.example.com'，后缀匹配成功，此网站将禁用广告过滤，访问'https://m.example.com'也将禁用广告过滤。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("addAdsBlockDisallowedList") }
+            .onClick(() => {
+              let arrDomainSuffixes = new Array<string>()
+              arrDomainSuffixes.push('example.com')
+              arrDomainSuffixes.push('abcdefg.cn')
+              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### removeAdsBlockDisallowedList<sup>12+</sup>
+
+static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
+
+从AdsBlockManager的DisallowedList中删除一组域名。
+
+> **说明：**
+>
+> AdsBlockManager的DisallowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击从AdsBlockManager的DisallowedList中删除域名元素
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("removeAdsBlockDisallowedList") }
+            .onClick(() => {
+              let arrDomainSuffixes = new Array<string>()
+              arrDomainSuffixes.push('example.com')
+              arrDomainSuffixes.push('abcdefg.cn')
+              web_webview.AdsBlockManager.removeAdsBlockDisallowedList(arrDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### clearAdsBlockDisallowedList<sup>12+</sup>
+
+static clearAdsBlockDisallowedList(): void
+
+清空AdsBlockManager的DisallowedList。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("clearAdsBlockDisallowedList") }
+            .onClick(() => {
+              web_webview.AdsBlockManager.clearAdsBlockDisallowedList()
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### addAdsBlockAllowedList<sup>12+</sup>
+
+static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
+
+向AdsBlockManager的AllowedList中添加一组域名，主要用于重新开启DisallowList中的部分网站的广告过滤。
+
+> **说明：**
+>
+> 此接口设置的域名不会持久化，应用重启需要重新设置。
+>
+> AllowedList的优先级比DisAllowList高，例如，DisallowList中配置了['example.com']，禁用了所有example.com域名下的网页，此时如果需要开启'news.example.com'下的广告过滤，可以使用addAdsBlockAllowedList(['news.example.com'])。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("addAdsBlockAllowedList") }
+            .onClick(() => {
+              let arrDisallowDomainSuffixes = new Array<string>()
+              arrDisallowDomainSuffixes.push('example.com')
+              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes)
+
+              let arrAllowedDomainSuffixes = new Array<string>()
+              arrAllowedDomainSuffixes.push('news.example.com')
+              web_webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### removeAdsBlockAllowedList<sup>12+</sup>
+
+static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
+
+从AdsBlockManager的AllowedList中删除一组域名。
+
+> **说明：**
+>
+> AdsBlockManager的AllowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击从AdsBlockManager的DisallowedList中删除域名元素
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("removeAdsBlockAllowedList") }
+            .onClick(() => {
+              let arrDomainSuffixes = new Array<string>()
+              arrDomainSuffixes.push('example.com')
+              arrDomainSuffixes.push('abcdefg.cn')
+              web_webview.AdsBlockManager.removeAdsBlockAllowedList(arrDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### clearAdsBlockAllowedList<sup>12+</sup>
+
+static clearAdsBlockAllowedList(): void
+
+清空AdsBlockManager的AllowedList。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("clearAdsBlockAllowedList") }
+            .onClick(() => {
+              web_webview.AdsBlockManager.clearAdsBlockAllowedList()
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
