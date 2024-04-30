@@ -1,4 +1,4 @@
-# @ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）(系统接口)
+# @ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）
 
 本模块提供企业设备管理扩展能力。
 
@@ -6,11 +6,10 @@
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+> 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 > 
 > 本模块接口仅可在Stage模型下使用。
 > 
-> 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -108,7 +107,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAppStart<sup>10+</sup>
+## EnterpriseAdminExtensionAbility.onAppStart
 
 onAppStart(bundleName: string): void
 
@@ -134,7 +133,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAppStop<sup>10+</sup>
+## EnterpriseAdminExtensionAbility.onAppStop
 
 onAppStop(bundleName: string): void
 
@@ -159,7 +158,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
-## EnterpriseAdminExtensionAbility.onSystemUpdate<sup>11+</sup>
+## EnterpriseAdminExtensionAbility.onSystemUpdate
 
 onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
@@ -171,9 +170,9 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
 **参数：**
 
-| 参数名              | 类型                                                      | 必填  | 说明         |
-| ---------------- | ------------------------------------------------------- | --- | ---------- |
-| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager-sys.md#systemupdateinfo11) | 是   | 系统更新的版本信息。 |
+| 参数名           | 类型                                                         | 必填 | 说明                 |
+| ---------------- | ------------------------------------------------------------ | ---- | -------------------- |
+| systemUpdateInfo | [systemManager.SystemUpdateInfo](js-apis-enterprise-systemManager.md#systemupdateinfo) | 是   | 系统更新的版本信息。 |
 
 **示例：**
 
@@ -186,7 +185,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onStart<sup>11+</sup>
+## EnterpriseAdminExtensionAbility.onStart
 
 onStart(): void
 
