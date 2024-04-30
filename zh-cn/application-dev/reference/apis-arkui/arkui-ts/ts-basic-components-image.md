@@ -267,6 +267,25 @@ draggable(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。 |
 
+### enableAnalyzer<sup>11+</sup>
+
+edgeAntialiasing(value:&nbsp;boolean)
+
+设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
+
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。  
+
+alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。 
+
+基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。 copyOption属性不影响AI分析功能。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
 
 ### resizable<sup>11+</sup>
 
