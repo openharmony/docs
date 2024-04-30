@@ -17,16 +17,16 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
 
     export class AppColors implements CustomColors {
-      fontPrimary: ResourceColor = '#FF246677'
-      fontOnPrimary: ResourceColor = '#FFFFFF'
-      iconOnPrimary: ResourceColor = '#FFFFFF'
-      iconFourth: ResourceColor = '#FF246677'
-      compBackgroundTertiary: ResourceColor = '#0C013542'
-      compBackgroundEmphasize: ResourceColor = '#AFECFF'
-      backgroundEmphasize: ResourceColor = '#AFECFF'
-      interactiveFocus: ResourceColor = '#AFECFF'
-      compBackgroundPrimary: ResourceColor = '#000000'
-      compBackgroundSecondary: ResourceColor = '#19013542'
+      fontPrimary: ResourceColor = '#6A3E80'
+      fontOnPrimary: ResourceColor = '#FDECFF'
+      iconOnPrimary: ResourceColor = '#FDECFF'
+      iconFourth: ResourceColor = '#336A3E80'
+      compBackgroundTertiary: ResourceColor = '#Oc9162A8'
+      compBackgroundEmphasize: ResourceColor = '#FF75D9'
+      backgroundEmphasize: ResourceColor = '#FF75D9'
+      interactiveFocus: ResourceColor = '#FF75D9'
+      compBackgroundPrimary: ResourceColor = '#FFF1FB'
+      compBackgroundSecondary: ResourceColor = '#199162A8'
     }
 
     export class AppTheme implements CustomTheme {
