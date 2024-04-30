@@ -45,9 +45,10 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts

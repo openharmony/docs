@@ -33,6 +33,8 @@ backgroundColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -48,6 +50,8 @@ backgroundImage(src: ResourceStr, repeat?: ImageRepeat)
 设置组件的背景图片。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,6 +70,8 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -81,6 +87,8 @@ backgroundImagePosition(value: Position | Alignment)
 设置背景图的位置。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,6 +106,8 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -113,6 +123,8 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 设置组件背景属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -121,11 +133,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
-## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
-
-继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
-
-## BackgroundImageResizable<sup>12+</sup>
+## backgroundImageResizable<sup>12+</sup>
 
 backgroundImageResizable(value: ResizableOptions)
 
@@ -142,6 +150,12 @@ backgroundImageResizable(value: ResizableOptions)
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
+
+## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
+
+继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ## 示例
 

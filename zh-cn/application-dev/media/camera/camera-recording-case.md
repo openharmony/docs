@@ -166,7 +166,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   });
 
   //创建会话
-  let videoSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.VideoSession | undefined = undefined;
   try {
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {

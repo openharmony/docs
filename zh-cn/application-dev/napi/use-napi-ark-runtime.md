@@ -81,7 +81,7 @@
    
        // 2. 加载自定义模块
        napi_value objUtils;
-       ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }

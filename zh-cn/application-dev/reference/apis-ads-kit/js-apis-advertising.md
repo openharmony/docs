@@ -17,6 +17,8 @@ import advertising from '@ohos.advertising';
 
 提供加载广告的功能
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 ### constructor
@@ -24,6 +26,8 @@ import advertising from '@ohos.advertising';
 constructor(context: common.Context);
 
 构造函数。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -53,6 +57,8 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 请求单广告位广告。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 **参数：**
@@ -71,6 +77,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 | -------- | -------- |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
@@ -122,6 +129,8 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 请求多广告位广告。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 **参数：**
@@ -140,6 +149,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 | -------- | -------- |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
@@ -198,6 +208,8 @@ function requestMultiAd(context: common.Context): void {
 showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityContext): void
 
 展示全屏广告。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -265,6 +277,8 @@ export struct ShowAd {
 
 广告配置参数。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 
@@ -280,6 +294,8 @@ export struct ShowAd {
 
 广告请求参数。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 
@@ -288,8 +304,8 @@ export struct ShowAd {
 | adId | string | 是 | 广告位ID。 | 
 | adType | number | 否 | 请求的广告类型。<br/>- 1：开屏广告。<br/>- 3：原生广告。<br/>- 7：激励广告。<br/>- 8：banner广告。<br/>- 12：插屏广告。<br/>- 60：贴片广告。 |
 | adCount | number | 否 | 请求的广告数量。 | 
-| adWidth | number | 否 | 广告位宽度。 | 
-| adHeight | number | 否 | 广告位高度。 | 
+| adWidth | number | 否 | 广告位宽度，必须大于0。 | 
+| adHeight | number | 否 | 广告位高度，必须大于0。 | 
 | adSearchKeyword | string | 否 | 广告关键字。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。 | 
 
@@ -298,6 +314,8 @@ export struct ShowAd {
 
 单广告位广告请求回调。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 ### onAdLoadFailure
@@ -305,6 +323,8 @@ export struct ShowAd {
 onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 广告请求失败回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -319,6 +339,8 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void
 
 广告请求成功后回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -348,6 +370,8 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 多广告位广告请求回调。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 ### onAdLoadFailure
@@ -355,6 +379,8 @@ let adLoaderListener: advertising.AdLoadListener = {
 onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 多广告位广告请求失败回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -369,6 +395,8 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void
 
 多广告位广告请求成功后回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -398,6 +426,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 请求的广告内容。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -418,6 +447,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告展示参数。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -437,6 +467,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告状态变化回调。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -445,6 +476,8 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement), data: string)
 
 广告状态回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 

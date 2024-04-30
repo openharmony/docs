@@ -29,6 +29,8 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 添加AbilityMonitor实例（callback形式）。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -74,6 +76,8 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 添加AbilityMonitor实例（promise形式）。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -125,6 +129,8 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 
 同步添加AbilityMonitor实例。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -166,6 +172,8 @@ abilityDelegator.addAbilityMonitorSync(monitor);
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 删除已经添加的AbilityMonitor实例（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -213,6 +221,8 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 删除已经添加的AbilityMonitor实例（promise形式）。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -265,6 +275,8 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
 同步删除已经添加的AbilityMonitor实例。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -307,6 +319,8 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
 等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -358,6 +372,8 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -414,6 +430,8 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -466,6 +484,8 @@ getAppContext(): Context
 
 获取应用Context。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -490,6 +510,8 @@ let context = abilityDelegator.getAppContext();
 getAbilityState(ability: UIAbility): number
 
 获取指定ability的生命周期状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -530,6 +552,8 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 获取当前应用顶部ability（callback形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -569,6 +593,8 @@ getCurrentTopAbility(): Promise\<UIAbility>
 
 获取当前应用顶部ability（promise形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -606,6 +632,8 @@ abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
 startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 启动指定ability（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -662,6 +690,8 @@ abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
 startAbility(want: Want): Promise\<void>
 
 启动指定ability（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -724,6 +754,8 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 调度指定ability生命周期状态到Foreground状态（callback形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -766,6 +798,8 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 doAbilityForeground(ability: UIAbility): Promise\<void>
 
 调度指定ability生命周期状态到Foreground状态（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -815,6 +849,8 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 调度指定ability生命周期状态到Background状态（callback形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -857,6 +893,8 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 doAbilityBackground(ability: UIAbility): Promise\<void>
 
 调度指定ability生命周期状态到Background状态（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -906,6 +944,8 @@ printSync(msg: string): void
 
 打印日志信息到单元测试终端控制台。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -931,6 +971,8 @@ abilityDelegator.printSync(msg);
 print(msg: string, callback: AsyncCallback\<void>): void
 
 打印日志信息到单元测试终端控制台（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -961,6 +1003,8 @@ abilityDelegator.print(msg, (err : BusinessError) => {
 print(msg: string): Promise\<void>
 
 打印日志信息到单元测试终端控制台（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -998,6 +1042,8 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1029,6 +1075,8 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 指定超时时间，并执行指定的shell命令（callback形式）。
 
 仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1063,6 +1111,8 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 指定超时时间，并执行指定的shell命令（promise形式）。
 
 仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1099,6 +1149,8 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
 finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
 结束测试并打印日志信息到单元测试终端控制台（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1138,6 +1190,8 @@ abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
 finishTest(msg: string, code: number): Promise\<void>
 
 结束测试并打印日志信息到单元测试终端控制台（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1182,6 +1236,8 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改（callback形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1221,6 +1277,8 @@ abilityDelegator.addAbilityStageMonitor({
 addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1266,6 +1324,8 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 同步添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1301,6 +1361,8 @@ abilityDelegator.addAbilityStageMonitorSync({
 removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void
 
 从应用程序内存中删除指定的AbilityStageMonitor对象（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1341,6 +1403,8 @@ abilityDelegator.removeAbilityStageMonitor({
 removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 从应用程序内存中删除指定的AbilityStageMonitor对象（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1386,6 +1450,8 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 同步从应用程序内存中删除指定的AbilityStageMonitor对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1421,6 +1487,8 @@ abilityDelegator.removeAbilityStageMonitorSync({
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1462,6 +1530,8 @@ abilityDelegator.waitAbilityStageMonitor({
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1509,6 +1579,8 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象（callback形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1551,6 +1623,8 @@ abilityDelegator.waitAbilityStageMonitor({
 setMockList(mockList: Record\<string, string>): void
 
 设置模块的mock替换关系。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

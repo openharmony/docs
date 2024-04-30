@@ -1,6 +1,6 @@
-# 程序访问子系统变更说明
+# 程序访问控制子系统变更说明
 
-## cl.access_token.1 requestPermissionsFromUser接口重复弹窗问题修复
+## cl.access_token.1 requestPermissionsFromUser接口变更
 
 **访问级别**
 
@@ -14,13 +14,13 @@
 
 该变更为非兼容性变更。
 
-API version 11及以前，通过requestPermissionsFromUser接口多次请求权限时，会同时弹出多个权限弹窗；相同权限需要多次点击操作。
+变更前，通过requestPermissionsFromUser接口同时多次请求权限时，会同时弹出多个权限弹窗；相同权限需要多次点击操作。
 
-API version 12及以后，通过requestPermissionsFromUser接口多次请求权限时，仅展示一个弹窗；相同权限仅需要点击操作一次。
+变更后，通过requestPermissionsFromUser接口同时多次请求权限时，仅展示一个弹窗；相同权限仅需要点击操作一次。
 
-**API Level**
+**起始 API Level**
 
-12
+9
 
 **变更发生版本**
 

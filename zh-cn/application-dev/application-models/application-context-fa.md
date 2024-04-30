@@ -44,7 +44,7 @@ let context = featureAbility.getContext()
        });
        Logger.info(TAG, 'Application onCreate');
      }
-     ...
+     //...
    }
    
    export default new MainAbility();
@@ -72,7 +72,7 @@ let context = featureAbility.getContext()
      onDestroy() {
        Logger.info(TAG, 'Application onDestroy');
      }
-     ...  
+     //...  
    }
    
    export default new PageAbilitySingleton();

@@ -1142,3 +1142,21 @@ observer not found.
 **处理步骤**
 
 请检查是否有重复注销监听器。
+
+## 16300005 指定的包信息不存在。
+
+**错误信息**
+
+The target bundle does not exist.
+
+**错误描述**
+
+预加载应用的包信息不存在时，方法将返回该错误码。
+
+**可能原因**
+
+预加载的bundleName、userId或appIndex错误，导致查询不到相关包信息。
+
+**处理步骤**
+
+检查传入的bundleName、userId和appIndex参数是否正确。

@@ -419,6 +419,9 @@ getAppVMMemoryInfo(): VMMemoryInfo
 **示例：**
 
   ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
@@ -444,6 +447,9 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 **示例：**
 
   ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
@@ -489,6 +495,8 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
@@ -521,6 +529,8 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
@@ -548,6 +558,8 @@ getAppMemoryLimit() : MemoryLimit
 **示例**
 
 ```ts
+ import hidebug from '@ohos.hidebug';
+
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
 ## MemoryLimit<sup>12+</sup>
@@ -652,6 +664,8 @@ getSystemCpuUsage() : number
 
 **示例**
   ```ts
+  import hidebug from '@ohos.hidebug';
+
   let cpuUsage: number = hidebug.getSystemCpuUsage();
   ```
 
@@ -672,6 +686,9 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
@@ -721,6 +738,9 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
 hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);

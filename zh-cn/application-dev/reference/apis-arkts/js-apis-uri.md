@@ -21,6 +21,8 @@ import uri from '@ohos.uri'
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scheme | string | 是 | 否 | 获取URI&nbsp;的协议部分。 |
@@ -104,6 +106,8 @@ constructor(uri: string)
 
 constructor是URI的构造函数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -138,6 +142,8 @@ toString(): string
 **系统能力：** SystemCapability.Utils.Lang
 
 返回适用于URI中的查询字符串。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -190,6 +196,8 @@ equalsTo(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -218,6 +226,8 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -241,6 +251,8 @@ console.log(`${uriInstance1.checkIsAbsolute()}`); // false
 normalize(): URI
 
 规范化此URI的路径。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

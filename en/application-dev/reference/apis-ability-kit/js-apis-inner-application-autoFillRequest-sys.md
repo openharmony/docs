@@ -24,10 +24,21 @@ Defines the information about an auto-fill request.
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | Yes  | Type of the element to be automatically filled in.         |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
+| isPopup<sup>12+</sup>    | boolean               | Yes  | Whether a dialog box is displayed for the auto-fill request.<br>**true**: A dialog box is displayed<br>**false**: A modal window is displayed             |
 
 ## SaveRequest
 
 Defines the information about an auto-saving request.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| Name       | Type                | Mandatory| Description                                                        |
+| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
+
+## UpdateRequest<sup>12+</sup>
+
+Defines the information about an auto-update request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -462,7 +473,7 @@ Called when a saving request fails to be processed.
   import hilog from '@ohos.hilog';
 
   let storage: LocalStorage = LocalStorage.getShared();
-  let saveCallback: autoFillManager.FillRequestCallback | undefined =
+  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
     storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
 
   @Entry

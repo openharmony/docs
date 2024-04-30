@@ -74,6 +74,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID|    Error Message                           |
 |----------|---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -129,6 +133,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -177,6 +185,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -230,6 +242,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700002 | The specified module name is not found. |
 
@@ -277,6 +293,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 
 **Example**
@@ -328,6 +348,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 
 **Example**
@@ -366,6 +390,16 @@ Obtains the dispatch information. This API uses an asynchronous callback to retu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback<[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**, and **data** is the [DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md) object obtained. otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID|    Error Message                           |
+|----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 801 | Capability not supported. |
+
 **Example**
 
 ```js
@@ -400,6 +434,16 @@ Obtains the dispatch information. This API uses a promise to return the result.
 | Type                                            | Description                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | Promise<[DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md)> | Promise used to return the [DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md) object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID|    Error Message                           |
+|----------|----------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 801 | Capability not supported. |
 
 **Example**
 

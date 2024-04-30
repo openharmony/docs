@@ -36,7 +36,7 @@ The **AbilityInfo** module defines the ability information. A third-party applic
 | enabled               | boolean                                                  | Yes  | No  | Whether the ability is enabled.                          |
 | supportWindowModes    | Array\<[SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | Yes  | No  | Window modes supported by the ability.                     |
 | windowSize|[WindowSize](#windowsize)                                            |    Yes  | No  | Window size.|
-| excludeFromDock             | boolean                                                  | Yes  | No  | Whether the ability can hide icons in the dock area.        |
+| excludeFromDock<sup>12+</sup>             | boolean                                                  | Yes  | No  | Whether the ability can hide icons in the dock area.        |
 
 ## WindowSize
 

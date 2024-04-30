@@ -15,6 +15,8 @@ import common from '@ohos.app.ability.common';
 
 ## 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                  | 类型     | 只读   | 必填   | 说明                                                               |
@@ -29,6 +31,7 @@ import common from '@ohos.app.ability.common';
 | preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
 | bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。 |
 | distributedFilesDir | string | 是    | 是    | 分布式文件目录。                                                         |
+| cloudFileDir<sup>12+</sup>        | string | 是    | 是    | 云文件目录。                                                        |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
@@ -37,6 +40,8 @@ import common from '@ohos.app.ability.common';
 createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -79,6 +84,8 @@ getApplicationContext(): ApplicationContext
 
 获取本应用的应用上下文。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -111,6 +118,8 @@ export default class EntryAbility extends UIAbility {
 getGroupDir(dataGroupID: string): Promise\<string>
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -161,6 +170,8 @@ export default class EntryAbility extends UIAbility {
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

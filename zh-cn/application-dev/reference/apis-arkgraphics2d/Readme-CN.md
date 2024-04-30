@@ -7,6 +7,7 @@
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
   - [@ohos.graphics.drawing (绘制模块)](js-apis-graphics-drawing.md)
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
+  - [@ohos.graphics.text (文本模块)](js-apis-graphics-text.md)
 - C API
   - 模块
     - [Drawing](_drawing.md)

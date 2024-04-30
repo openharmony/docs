@@ -19,6 +19,8 @@
 
 Hyperlink(address: string | Resource, content?: string | Resource)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -35,6 +37,8 @@ Hyperlink(address: string | Resource, content?: string | Resource)
 color(value: Color | number | string | Resource)
 
 设置超链接文本的颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

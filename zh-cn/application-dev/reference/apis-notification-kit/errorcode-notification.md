@@ -26,7 +26,7 @@ Internal error.
 
 **错误信息**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **错误描述**
 
@@ -221,6 +221,24 @@ No memory space.
 **处理步骤**
 
 确认系统内存是否足够。
+
+## 1600013 通知弹窗已弹出
+
+**错误信息**
+
+Enable Notification Dialog has been popping already.
+
+**错误描述**
+
+通知弹窗已经弹出，方法将返回该错误码。
+
+**可能原因**
+
+通知弹窗已经弹出。
+
+**处理步骤**
+
+确认通知弹窗是否弹出。
 
 ## 17700001 包名不存在
 

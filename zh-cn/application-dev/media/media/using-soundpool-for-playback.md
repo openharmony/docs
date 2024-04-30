@@ -220,7 +220,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
-let PlayParameters: media.PlayParameters = {
+let playParameters: media.PlayParameters = {
   loop: 3, // 循环4次
   rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
   leftVolume: 0.5, // range = 0.0-1.0
@@ -264,7 +264,7 @@ function setErrorCallback() {
 }
 async function PlaySoundPool() {
   // 开始播放,这边play也可带播放播放的参数PlayParameters
-  await soundPool.play(soundID, playParameters, (error, streamID: number) => {
+  await soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
       console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
     } else {
