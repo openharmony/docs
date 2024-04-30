@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import advertising from '@kit.AdsKit';
+import { advertising } from '@kit.AdsKit';
 ```
 ## AdLoader
 
@@ -42,8 +42,8 @@ constructor(context: common.Context);
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@kit.AdsKit';
-import common from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
 
 function createConstructor(context: common.Context): void {
   const load: advertising.AdLoader = new advertising.AdLoader(context);
@@ -84,9 +84,9 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@kit.AdsKit';
-import common from '@kit.AbilityKit';
-import hilog from '@kit.PerformanceAnalysisKit'; 
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'; 
 
 function requestAd(context: common.Context): void {
   const adRequestParam: advertising.AdRequestParams = {
@@ -156,9 +156,9 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@kit.AdsKit';
-import common from '@kit.AbilityKit';
-import hilog from '@kit.PerformanceAnalysisKit';
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function requestMultiAd(context: common.Context): void {
   const adRequestParamArray: advertising.AdRequestParams[] = [{
@@ -238,9 +238,9 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 **示例：**
 
 ```ts
-import advertising from '@kit.AdsKit';
-import hilog from '@kit.PerformanceAnalysisKit'; 
-import common from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'; 
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -352,7 +352,7 @@ onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): 
 **示例：**
 
 ```ts
-import advertising from '@kit.AdsKit';
+import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
@@ -408,7 +408,7 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#adv
 **示例：**
 
 ```ts
-import advertising from '@kit.AdsKit';
+import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
@@ -490,7 +490,7 @@ onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement),
 **示例：**
 
 ```ts
-import advertising from '@kit.AdsKit';
+import { advertising } from '@kit.AdsKit';
 
 let adInteractionListener: advertising.AdInteractionListener = {
   onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {

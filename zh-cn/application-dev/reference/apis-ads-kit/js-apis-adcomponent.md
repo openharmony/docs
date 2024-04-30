@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { AdComponent } from '@ohos.advertising.AdComponent';
+import { AdComponent } from '@kit.AdsKit';
 ```
 
 
@@ -39,7 +39,7 @@ AdComponent(ads: Array&lt;advertising.Advertisement&gt;, displayOptions: adverti
 
 ```ts
 import { AdComponent, advertising } from '@kit.AdsKit';
-import hilog from '@kit.PerformanceAnalysisKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
