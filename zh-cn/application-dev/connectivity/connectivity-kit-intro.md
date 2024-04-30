@@ -43,7 +43,7 @@
   PAN（Personal Area Network）是个人区域网络的缩写，是一种无线通信技术，用于将设备连接到一个小范围的网络中。例如可以将手机、电脑、打印机等设备连接到一个PAN网络中，实现文件的共享和打印。
   详情请参考[@ohos.bluetooth.pan API参考](../reference/apis-connectivity-kit/js-apis-bluetooth-pan.md)。
 
-相关开发指南可参考：[蓝牙br/gatt/spp等指南](./bluetooth/Readme-CN.md)。
+相关开发指南可参考：[蓝牙开发指南](./bluetooth/bluetooth-overview.md)。
 
 ### WLAN简介
 无线局域网（Wireless Local Area Networks，WLAN），是通过无线电、红外光信号或者其他技术发送和接收数据的局域网，用户可以通过WLAN实现结点之间无物理连接的网络通讯。常用于用户携带可移动终端的办公、公众环境中。
