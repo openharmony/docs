@@ -118,7 +118,7 @@ lineHeight(value: number | string | Resource)
 
 ### decoration
 
-decoration(value: { type: TextDecorationType; color?: ResourceColor })
+decoration(value: DecorationStyleInterface)
 
 设置文本装饰线样式及其颜色。
 
@@ -132,7 +132,7 @@ decoration(value: { type: TextDecorationType; color?: ResourceColor })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black,&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;} |
 
 ### baselineOffset
 
@@ -731,6 +731,8 @@ struct TextExample1 {
 
 ### 示例2
 
+decoration、baselineOffset、letterSpacing、textCase属性接口使用示例
+
 ```ts
 @Entry
 @Component
@@ -752,7 +754,8 @@ struct TextExample2 {
       Text('This is the text content with the decoration set to Overline and the color set to Red.')
         .decoration({
           type: TextDecorationType.Overline,
-          color: Color.Red
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
         })
         .fontSize(12)
         .border({ width: 1 })
@@ -763,7 +766,8 @@ struct TextExample2 {
       Text('This is the text content with the decoration set to Underline and the color set to Red.')
         .decoration({
           type: TextDecorationType.Underline,
-          color: Color.Red
+          color: Color.Red,
+          style: TextDecorationStyle.WAVY
         })
         .fontSize(12)
         .border({ width: 1 })
@@ -920,6 +924,7 @@ struct TextExample4 {
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
         .maxLines(2)
+        .clip(true)
       Text('WordBreakType:Normal且clip为false').fontSize(9).fontColor(0xCCCCCC)
       Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
