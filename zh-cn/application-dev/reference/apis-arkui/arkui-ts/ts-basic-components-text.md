@@ -490,6 +490,22 @@ lineSpacing(value: LengthMetrics)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](ts-types.md#LengthMetrics12) | 是   | 文本的行间距。默认值：0 |
 
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(supported: boolean)
+
+设置是否支持卡片敏感隐私信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                     |
+| --------- | ------- | ---- | ------------------------ |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
+
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
