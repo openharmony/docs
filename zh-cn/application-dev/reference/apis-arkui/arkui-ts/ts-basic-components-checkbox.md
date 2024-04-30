@@ -30,6 +30,8 @@ Checkbox(options?: CheckboxOptions)
 
 ## CheckboxOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 类型 | 必填  | 描述 |
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 用于指定多选框名称。 |
@@ -49,6 +51,8 @@ select(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -65,6 +69,8 @@ selectedColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -79,6 +85,8 @@ unselectedColor(value: ResourceColor)
 
 设置多选框非选中状态边框颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -92,6 +100,8 @@ unselectedColor(value: ResourceColor)
 mark(value: MarkStyle)
 
 设置多选框内部图标样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,6 +138,8 @@ onChange(callback: (value: boolean) => void)
 当选中状态发生变化时，触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

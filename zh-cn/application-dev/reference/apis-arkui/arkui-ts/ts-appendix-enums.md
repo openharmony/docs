@@ -527,14 +527,14 @@
 
 | 名称                   | 描述        |
 | -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。   |
-| Regular              | 普通厚度材质模糊。 |
-| Thick                | 厚材质模糊。    |
-| BACKGROUND_THIN       | 近距景深模糊。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。   |
-| BACKGROUND_THICK      | 远距景深模糊。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
-| NONE<sup>10+</sup> | 关闭模糊。  |
+| Thin                 | 轻薄材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Regular              | 普通厚度材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Thick                | 厚材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| BACKGROUND_THIN       | 近距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
 | COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
 | COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
@@ -550,6 +550,8 @@
 | DARK   | 固定使用深色模式。  |
 
 ## AdaptiveColor<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
