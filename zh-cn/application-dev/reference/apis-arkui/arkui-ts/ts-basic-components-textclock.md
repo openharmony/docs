@@ -17,6 +17,8 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数名            | 参数类型      | 必填     | 参数描述                                                     |
@@ -47,6 +49,8 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 非卡片中默认值：aa hh:mm:ss。卡片中默认值：hh:mm 。卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -148,6 +152,8 @@ onDateChange(event: (value: number) => void)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -162,6 +168,8 @@ TextClock容器组件的控制器，可以将该控制器绑定到TextClock组�
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### 导入对象
 
 ```ts
@@ -175,6 +183,8 @@ start()
 启动文本时钟。
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### stop
 
