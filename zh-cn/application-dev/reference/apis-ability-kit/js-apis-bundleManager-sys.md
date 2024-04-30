@@ -4514,7 +4514,7 @@ try {
 
 switchUninstallState(bundleName: string, state: boolean): void
 
-切换指定应用的可卸载状态
+切换指定应用的可卸载状态，此接口与EDM应用拦截管控机制不互相影响。
 
 **系统接口：** 此接口为系统接口。
 
