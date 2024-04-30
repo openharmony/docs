@@ -27,6 +27,8 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
@@ -71,6 +73,8 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。该任务可以多次调用execute执行。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -125,6 +129,8 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 将创建好的任务组放入taskpool内部任务队列等待，等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。当前执行模式适用于执行一组有关联的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -184,6 +190,8 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 类型          | 必填 | 说明                 |
@@ -235,6 +243,8 @@ cancel(task: Task): void
 取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回undefined作为结果；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -312,6 +322,8 @@ cancel(group: TaskGroup): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                 |
@@ -371,6 +383,8 @@ getTaskPoolInfo(): TaskPoolInfo
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                | 说明                |
@@ -388,6 +402,8 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 表示所创建任务（Task）执行时的优先级。
 
 **系统能力：**  SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -440,6 +456,8 @@ Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型      | 必填 | 说明                                                                  |
@@ -474,6 +492,8 @@ constructor(name: string, func: Function, ...args: Object[])
 Task的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -512,6 +532,8 @@ static isCanceled(): boolean
 检查当前正在运行的任务是否已取消。使用该方法前需要先构造Task。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -583,6 +605,8 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型           | 必填 | 说明                                          |
@@ -644,6 +668,8 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 > 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器声明并校验sendable-class)使用，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -798,6 +824,8 @@ static sendData(...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型          | 必填 | 说明                                              |
@@ -837,6 +865,8 @@ onReceiveData(callback?: Function): void
 > 不支持给同一个任务定义多种回调函数，如果重复赋值只有最后一个会生效。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -878,6 +908,8 @@ addDependency(...tasks: Task[]): void
 为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务和已执行的任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -934,6 +966,8 @@ removeDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -989,6 +1023,8 @@ taskpool.execute(task3).then(() => {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
@@ -1010,6 +1046,8 @@ TaskGroup的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **示例：**
 
 ```ts
@@ -1023,6 +1061,8 @@ constructor(name: string)
 TaskGroup的构造函数，可以指定任务组名称。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1045,6 +1085,8 @@ addTask(func: Function, ...args: Object[]): void
 将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1082,6 +1124,8 @@ addTask(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                                       |
@@ -1114,6 +1158,8 @@ taskGroup.addTask(task);
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
 | name<sup>11+</sup> | string | 是   | 是   | 创建任务组时指定的任务组名称。 |
@@ -1129,6 +1175,8 @@ constructor(priority?: Priority)
 SequenceRunner的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1154,6 +1202,8 @@ execute(task: Task): Promise\<Object>
 > - 前面的任务执行失败或取消不影响后续任务执行。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1223,6 +1273,8 @@ async function seqRunner()
 
 **系统能力：**  SystemCapability.Utils.Lang
 
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称      | 值        | 说明          |
 | --------- | -------- | ------------- |
 | WAITING   | 1        | 任务正在等待。 |
@@ -1242,10 +1294,10 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。                                                     |
-| taskId   | number             | 是   | 否   | 任务的ID。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。 **元服务API**：从API version 12 开始，该接口支持在元服务中使用。                                                     |
+| taskId   | number             | 是   | 否   | 任务的ID。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                  |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -1256,6 +1308,8 @@ async function seqRunner()
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
@@ -1272,6 +1326,8 @@ async function seqRunner()
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
+
+元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称          | 类型                              | 可读 | 可写 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
