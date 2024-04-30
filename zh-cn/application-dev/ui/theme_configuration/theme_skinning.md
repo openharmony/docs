@@ -47,13 +47,13 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
       compBackgroundSecondary: ResourceColor = '#FFCAC9C9'
     }
 
-    export class AppTheme1 implements CustomTheme {
+    export class AppThemeSec implements CustomTheme {
       public colors: AppColors = new AppColorsSec()
     }
     
     export let gAppTheme: CustomTheme = new AppTheme()
     
-    export let gAppThemeSec: CustomTheme = new AppTheme1()
+    export let gAppThemeSec: CustomTheme = new AppThemeSec()
     
     export let gAppColor: AppColors = new AppColors()
     
