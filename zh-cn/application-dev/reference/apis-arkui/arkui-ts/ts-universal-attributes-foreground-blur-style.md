@@ -28,8 +28,8 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 
 | 名称                        | 参数类型                                                | 必填 | 描述                                                         |
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default |
+| colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。<br/>默认值：grayScale: [0,0] |
 
 

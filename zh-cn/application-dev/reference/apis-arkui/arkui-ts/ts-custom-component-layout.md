@@ -12,6 +12,8 @@ onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名            | 类型                                                         | 说明               |
@@ -25,6 +27,8 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions):[SizeResult](#sizeresult10)
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
