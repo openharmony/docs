@@ -12,11 +12,17 @@ a)当前Toggle组件Switch样式宽高比固定1.8倍，依照UX规范移除1.8�
 
 **变更影响**
 
-该变更为非兼容性变更。API version 11及以前，Toggle组件Switch样式宽高比固定1.8倍。API version 12及以后，Toggle组件Switch样式宽高比没有限制。
+该变更为非兼容性变更。
 
-**API Level**
+API version 11及以前，Toggle组件Switch样式宽高比固定为1.8倍，开发者设置宽高比大于1.8倍时以高度为基准，小于1.8倍时以宽度为基准。
 
-12 
+例：宽度设置为200vp，高度设置为100vp，则宽度会被重置为180vp，高度保持100vp；宽度设置为180vp，高度设置为150vp，则高度会被重置为100vp，宽度保持180vp；
+
+API version 12及以后，Toggle组件Switch样式宽高比没有限制。
+
+**起始API Level**
+
+width，height通用属性的起始支持版本为API 7
 
 **变更发生版本**
 
@@ -28,7 +34,9 @@ Toggle组件
 
 **适配指导**
 
-请查阅[Toggle组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)文档进行适配。
+取消组件宽高比例限制， 如果此前设置组件宽高比例大于1.8倍时需要以高度为基准修改业务代码，小于1.8倍时需要以宽度为基准修改业务代码，才能保持原有组件样式。
+
+其他适配请查阅[Toggle组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)文档进行适配。
 
 ## cl.arkui.2  Radio组件单选项样式风格增强、支持显示自定义图标 
 
