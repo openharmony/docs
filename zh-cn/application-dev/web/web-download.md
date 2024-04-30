@@ -61,7 +61,7 @@ struct WebComponent {
 <!DOCTYPE html>
 <html>
 <body>
-<a href='./download.html' download='download.html'>下载</a>
+<a href='data:text/html,%3Ch1%3EHello%2C%20World%21%3C%2Fh1%3E' download='download.html'>下载</a>
 </body>
 </html>
 ```
