@@ -54,6 +54,7 @@ struct WebComponent {
   
     build() {
       Column() {
+        // 资源文件route.html存放路径src/main/resources/rawfile
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {

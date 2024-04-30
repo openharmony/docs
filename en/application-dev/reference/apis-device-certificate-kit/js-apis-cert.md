@@ -1,6 +1,6 @@
 # @ohos.security.cert (Certificate)
 
-The certificate algorithm library framework provides certificate-related APIs. For details about the APIs for implementing the basic algorithm capabilities based on the cryptographic (crypto) framework, see [Crypto Framework](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md).
+The certificate algorithm library framework provides certificate-related APIs. The **certFramework** module relies on the basic algorithm capabilities of the Crypto framework. For details, see [Crypto Framework](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md).
 
 > **NOTE**
 >
@@ -137,7 +137,7 @@ Defines the parameters used to match a certificate. If no parameter is specified
 | x509Cert | [X509Cert](#x509cert)    | No|  Certificate object. |
 | validDate | string    | No |  Certificate validity period. |
 | issuer | Uint8Array | No | Certificate issuer, in DER format.|
-| keyUsage | Array\<boolean> | No | Key usage.|
+| keyUsage | Array\<boolean> | No | Whethre to match the key usage.|
 | serialNumber | bigint    | No |  Serial number of the certificate. |
 | subject | Uint8Array | No | Certificate subject, in DER format.|
 | publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format.|
@@ -145,7 +145,7 @@ Defines the parameters used to match a certificate. If no parameter is specified
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
-Defines the parameters used to match a CRL. If no parameter is specified, all CRLs are matched.
+Represents the parameters used to match a certificate revocation list (CRL). If no parameter is specified, all CRLs are matched.
 
 
 **System capability**: SystemCapability.Security.Cert
@@ -169,7 +169,7 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 
 ## CertChainValidationParameters<sup>11+</sup>
 
-Defines the parameters for certificate chain validation.
+Represents the parameters for certificate chain validation.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -271,7 +271,7 @@ Creates an **X509Cert** instance. This API uses a promise to return the result.
 
 | Type    | Description            |
 | ------- | ---------------- |
-| Promise\<[X509Cert](#x509cert)> | **X509Cert** instance created.|
+| Promise\<[X509Cert](#x509cert)> | Promise used to return the **X509Cert** instance created.|
 
 **Error codes**
 
@@ -336,7 +336,7 @@ Verifies the signature of an X.509 certificate. This API uses an asynchronous ca
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey     | Yes  | Public key used for signature verification.                                          |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey)     | Yes  | Public key used for signature verification.                                          |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
@@ -417,7 +417,7 @@ Verifies the signature of an X.509 certificate. This API uses a promise to retur
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| key    | cryptoFramework.PubKey | Yes  | Public key used for signature verification.|
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
@@ -627,7 +627,7 @@ certFramework.createX509Cert(encodingBlob).then(x509Cert => {
 
 getPublicKey() : cryptoFramework.PubKey
 
-Obtains the public key of this X.509 certificate. This API uses an asynchronous callback to return the result.
+Obtains the public key of this X.509 certificate.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -635,7 +635,7 @@ Obtains the public key of this X.509 certificate. This API uses an asynchronous 
 
 | Type  | Description            |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey)  | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
 
 **Error codes**
 
@@ -697,7 +697,7 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 checkValidityWithDate(date: string) : void
 
-Checks the validity period of this X.509 certificate. This API uses an asynchronous callback to return the result.
+Checks the validity period of this X.509 certificate.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1871,7 +1871,7 @@ Obtains the fields in the X.509 certificate.
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| [DataBlob](#datablob) | Returns the obtained fields in DER format.|
+| [DataBlob](#datablob) | Fields in DER format.|
 
 **Error codes**
 
@@ -1934,7 +1934,7 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 match(param: X509CertMatchParameters): boolean
 
-Matches a certificate.
+Checks whether this certificate matches the specified parameters.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -1942,13 +1942,13 @@ Matches a certificate.
 
 | Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters used to match the certificate.|
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters specified for matching the certificate.|
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| boolean | Returns **true** if a certificate is matched; returns **false** otherwise.|
+| boolean | Returns **true** if the certificate matches the parameters specified; returns **false** otherwise.|
 
 **Error codes**
 
@@ -2481,8 +2481,8 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 | Name  | Type                               | Mandatory| Description                          |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized certificate revocation list (CRL) data.    |
-| callback | AsyncCallback\<[X509Crl](#x509crl)> | Yes  | Callback invoked to return the **X509Crl** instance created. |
+| inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized CRL data.    |
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | Yes  | Callback invoked to return the **X509Crl** instance created.|
 
 **Error codes**
 
@@ -2613,7 +2613,7 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 | Name  | Type                                 | Mandatory| Description                          |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized certificate revocation list (CRL) data.    |
+| inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized CRL data.    |
 | callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback invoked to return the **X509Crl** instance created.|
 
 **Error codes**
@@ -3047,7 +3047,7 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey | Yes  | Public key used for signature verification.                                      |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                      |
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
@@ -3200,7 +3200,7 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | Yes  | Public key used for signature verification.|
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
@@ -3473,7 +3473,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getLastUpdate() : string
 
-Obtains the date when the X.509 CRL was last updated.
+Obtains the last update date of this X.509 CRL.
 
 > **NOTE**
 >
@@ -3485,7 +3485,7 @@ Obtains the date when the X.509 CRL was last updated.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Last update date of the X.509 CRL.|
+| string | Last update date of the X.509 CRL, in ASN.1 format.|
 
 **Error codes**
 
@@ -3547,7 +3547,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getNextUpdate() : string
 
-Obtains the date when the CRL will be updated the next time.
+Obtains the next update date of this CRL.
 
 > **NOTE**
 >
@@ -3559,7 +3559,7 @@ Obtains the date when the CRL will be updated the next time.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Next update date obtained.|
+| string | Next update date of the CRL, in ASN.1 format.|
 
 **Error codes**
 
@@ -3621,7 +3621,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getRevokedCert(serialNumber : number) : X509CrlEntry
 
-Obtains the revoked X.509 certificate based on the specified serial number of the certificate. This API uses an asynchronous callback to return the result.
+Obtains the revoked X.509 certificate based on the specified serial number of the certificate.
 
 > **NOTE**
 >
@@ -3639,7 +3639,7 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 | Type                  | Description                  |
 | ---------------------- | --------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | Promise used to return the revoked X.509 certificate obtained.|
+| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
@@ -3701,7 +3701,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
-Obtains the revoked X.509 certificate based on the specified certificate. This API uses an asynchronous callback to return the result.
+Obtains the revoked X.509 certificate based on the specified certificate.
 
 > **NOTE**
 >
@@ -3946,7 +3946,7 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 
 getTbsInfo() : DataBlob
 
-Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This API uses an asynchronous callback to return the result.
+Obtains the DER-encoded CRL information, that is, the **tbsCertList** from this CRL.
 
 > **NOTE**
 >
@@ -4305,7 +4305,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -4928,7 +4928,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getLastUpdate() : string
 
-Obtains the date when the X.509 CRL was last updated.
+Obtains the last update date of this X.509 CRL.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -4936,7 +4936,7 @@ Obtains the date when the X.509 CRL was last updated.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Last update date of the X.509 CRL.|
+| string | Last update date of the X.509 CRL, in ASN.1 format.|
 
 **Error codes**
 
@@ -4998,7 +4998,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 getNextUpdate() : string
 
-Obtains the date when the CRL will be updated the next time.
+Obtains the next update date of this CRL.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5006,7 +5006,7 @@ Obtains the date when the CRL will be updated the next time.
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Next update date obtained.|
+| string | Next update date of the CRL, in ASN.1 format.|
 
 **Error codes**
 
@@ -5646,7 +5646,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
     } catch (err) {
-      let e: BusinessError = error as BusinessError;
+      let e: BusinessError = err as BusinessError;
       console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
@@ -5797,7 +5797,7 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 
 match(param: X509CRLMatchParameters): boolean
 
-Matches a CRL.
+Checks whether this CRL matches the specified parameters.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -5811,7 +5811,7 @@ Matches a CRL.
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| boolean | Returns **true** if a CRL is matched; returns **false** otherwise.|
+| boolean | Returns **true** if the CRL matches the parameters specified; returns **false** otherwise.|
 
 **Error codes**
 
@@ -5923,7 +5923,7 @@ Creates a **CertChainValidator** object.
 
 | Type              | Description                |
 | ------------------ | -------------------- |
-| CertChainValidator | **CertChainValidator** object created.|
+| [CertChainValidator](#certchainvalidator) | **CertChainValidator** object created.|
 
 **Error codes**
 
@@ -5968,7 +5968,7 @@ Provides APIs for certificate chain validator operations.
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 Validates an X.509 certificate chain. This API uses an asynchronous callback to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details about certificate specifications, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6032,7 +6032,7 @@ try {
 validate(certChain : CertChainData) : Promise\<void>
 
 Validates the X.509 certificate chain. This API uses a promise to return the result.
-The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
+The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details about certificate specifications, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6439,11 +6439,11 @@ certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
 
 getRevocationDate() : string
 
-Obtains the date when the certificate was revoked. This API uses an asynchronous callback to return the result.
+Obtains the date when the certificate was revoked.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getRevocationDate](#getrevocationdate11).
+> This API is deprecated since API version 11. You are advised to use [X509CRLEntry.getRevocationDate](#getrevocationdate11).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6451,7 +6451,7 @@ Obtains the date when the certificate was revoked. This API uses an asynchronous
 
 | Type  | Description               |
 | ------ | ------------------ |
-| string | Promise used to return the certificate revocation date obtained.|
+| string | Certificate revocation date, in ASN.1 format.|
 
 **Error codes**
 
@@ -6527,7 +6527,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 | Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback invoked to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6753,7 +6753,7 @@ Obtains the issuer of this revoked certificate.
 
 | Type                 | Description                      |
 | --------------------- | -------------------------- |
-| [DataBlob](#datablob) | Issuer of the revoked certificate obtained. |
+| [DataBlob](#datablob) | Issuer of the revoked certificate obtained.|
 
 **Error codes**
 
@@ -6825,7 +6825,7 @@ Obtains the date when the certificate was revoked.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Certificate revocation date obtained. |
+| string | Certificate revocation date, in ASN.1 format.|
 
 **Error codes**
 
@@ -6897,7 +6897,7 @@ Obtains the CRL extensions.
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | CRL extensions obtained. |
+| [DataBlob](#datablob) | CRL extensions obtained.|
 
 **Error codes**
 
@@ -7206,7 +7206,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7297,7 +7297,7 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
   try {
     x509Cert = await certFramework.createX509Cert(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509Cert;
@@ -7347,7 +7347,7 @@ Selects CRLs that match the specified parameters. This API uses a promise to ret
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crldeprecated)>> | Promise used to return the matched CRLs.|
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise used to return the matched CRLs.|
 
 **Error codes**
 
@@ -7393,7 +7393,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;
@@ -7464,7 +7464,7 @@ Selects CRLs that match the specified parameters. This API uses an asynchronous 
 | Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | Yes  | Parameters used to match the CRLs.|
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crldeprecated)>>    | Yes  | Callback invoked to return the matched CRLs.|
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>     | Yes  | Callback invoked to return the matched CRLs.|
 
 **Error codes**
 
@@ -7510,7 +7510,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   try {
     x509CRL = await certFramework.createX509CRL(encodingBlob);
   } catch (err) {
-    let e: BusinessError = error as BusinessError;
+    let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
   return x509CRL;

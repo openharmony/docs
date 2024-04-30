@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
 
-本模块对OpenHarmony标准化数据类型进行了抽象定义与描述。
+本模块对标准化数据类型进行了抽象定义与描述。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 ## UniformDataType
 
-OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
+标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -107,12 +107,12 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | VCARD<sup>11+</sup>             | 'general.vcard'               | 所有电子名片类数据的基类型，归属类型为OBJECT。                     |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | 所有导航类数据的基类型，归属类型为OBJECT。                       |
 | LOCATION<sup>11+</sup>        | 'general.location'          | 导航定位类型，归属类型为NAVIGATION。            |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | OpenHarmony系统定义的卡片类型，归属类型为OBJECT。              |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | OpenHarmony系统定义的桌面图标类型，归属类型为OBJECT。            |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | OpenHarmony系统定义的像素图类型，归属类型为IMAGE。             |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | OpenHarmony系统定义的元服务类型，归属类型为OBJECT。             |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | OpenHarmony系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | OpenHarmony系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | 系统定义的卡片类型，归属类型为OBJECT。              |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | 系统定义的桌面图标类型，归属类型为OBJECT。            |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | 系统定义的像素图类型，归属类型为IMAGE。             |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | 系统定义的元服务类型，归属类型为OBJECT。             |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | 系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | 系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
 
 ## TypeDescriptor<sup>11+</sup> 
 

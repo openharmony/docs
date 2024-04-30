@@ -17,10 +17,10 @@ import ability from '@ohos.ability.ability';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 名称       | 类型  |     必填    |       说明   |
-| --------  | --------  | --------    | --------    |
-| uri?      | string    |      否    | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。  |
-| count?     | number    |      否    | 指示受操作影响的数据数量。  |
+| 名称      | 类型  | 只读  | 必填    |       说明   |
+| -------- | -------- | -------- | -------- | -------- |
+| uri      | string    | 否  | 否    | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。  |
+| count     | number   | 否  | 否    | 指示受操作影响的数据数量。  |
 
 **示例：**
 

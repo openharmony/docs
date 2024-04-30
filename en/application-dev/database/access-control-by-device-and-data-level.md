@@ -14,7 +14,7 @@ The data can be rated into four security levels: S1, S2, S3, and S4.
 
   | Risk Level| Security Level| Definition| Example| 
 | -------- | -------- | -------- | -------- |
-| Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause significant adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information| 
+| Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause severe adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information| 
 | High| S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Individual real-time precise positioning information and movement trajectory| 
 | Moderate| S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Detailed addresses and nicknames of individuals| 
 | Low| S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Gender, nationality, and user application records| 
@@ -29,9 +29,9 @@ During device networking, you can run the **hidumper -s 3511** command to query 
 ![en-us_image_0000001542496993](figures/en-us_image_0000001542496993.png)
 
 
-## Access Control Mechanism in Cross-Device Synchronization
+## Access Control Mechanism in Cross-Device Sync
 
-In cross-device data synchronization, data access is controlled based on the device security level and data security labels. In principle, data can be synchronized only to the devices whose data security labels are not higher than the device's security level. The access control matrix is as follows:
+In cross-device data sync, data access is controlled based on the device security level and data security labels. In principle, data can be synced only to the devices whose data security labels are not higher than the device's security level. The access control matrix is as follows:
 
 |Device Security Level|Data Security Labels of the Synchornizable Device|
 |---|---|
@@ -41,12 +41,12 @@ In cross-device data synchronization, data access is controlled based on the dev
 |SL4|S1 to S4|
 |SL5|S1 to S4| 
 
-For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synchronized with RK3568 and Hi3516, but the databases with database labels S2-S4 cannot.
+For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synced with RK3568 and Hi3516, but the databases with database labels S2-S4 cannot.
 
 
 ## When to Use
 
-The access control mechanism ensures secure data storage and synchronization across devices. When creating a database, you need to correctly set the security level for the database.
+The access control mechanism ensures secure data storage and sync across devices. When creating a database, you need to correctly set the security level for the database.
 
 
 ## Setting the Security Level for a KV Store

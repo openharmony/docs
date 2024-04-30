@@ -22,6 +22,8 @@ onCreate(): void
 
 Called when the application is created.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Example**
@@ -42,6 +44,8 @@ class MyAbilityStage extends AbilityStage {
 onAcceptWant(want: Want): string
 
 Called when a specified ability is started.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,6 +116,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the global configuration is updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -139,6 +145,8 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -165,6 +173,8 @@ class MyAbilityStage extends AbilityStage {
 context: AbilityStageContext
 
 Defines the context of **AbilityStage**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

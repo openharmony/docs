@@ -18,6 +18,8 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -55,6 +57,8 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -91,6 +95,8 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -125,6 +131,8 @@ appManager.isRamConstrainedDevice().then((data) => {
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -162,6 +170,8 @@ getAppMemorySize(): Promise\<number>
 
 获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -196,6 +206,8 @@ appManager.getAppMemorySize().then((data) => {
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取当前应用程序可以使用的内存的值。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -236,6 +248,8 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 > **说明：**
 >
 > API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -311,7 +325,7 @@ appManager.getRunningProcessInformation((err, data) => {
 
 ## ProcessState<sup>10+</sup>
 
-进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData-sys.md)返回相应的进程状态。
+表示进程状态的枚举。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

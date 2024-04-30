@@ -21,7 +21,7 @@
   - [@ohos.file.recent (Latest Access List) (System API)](js-apis-file-recent-sys.md)
   - [@ohos.file.storageStatistics (Application Space Statistics) (System API)](js-apis-file-storage-statistics-sys.md)
   - [@ohos.file.trash (Trash) (System API)](js-apis-file-trash-sys.md)
-  - [@ohos.file.volumeManager (volume Management) (System API)](js-apis-file-volumemanager-sys.md)
+  - [@ohos.file.volumeManager (Volume Management) (System API)](js-apis-file-volumemanager-sys.md)
   - [@ohos.filemanagement.userFileManager (User Data Management) (System API)](js-apis-userFileManager-sys.md)
   - [@ohos.fileshare (File Sharing) (System API)](js-apis-fileShare-sys.md)
   - APIs No Longer Maintained

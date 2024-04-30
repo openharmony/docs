@@ -12,9 +12,9 @@ This module provides the following functions:
 - [UiComponent<sup>(deprecated)</sup>](#uicomponentdeprecated): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection. This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot. This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
->**NOTE**
->
->The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+ > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+ > - The APIs of this module are used in [automated test scripts](../../application-test/arkxtest-guidelines.md).
 
 
 ## Modules to Import
@@ -629,7 +629,7 @@ Clicks this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -657,7 +657,7 @@ Double-clicks this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -685,7 +685,7 @@ Long-clicks this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -719,7 +719,7 @@ Obtains the ID of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -753,7 +753,7 @@ Obtains the text information of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -787,7 +787,7 @@ Obtains the type of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -821,7 +821,7 @@ Obtains the bounds of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -855,7 +855,7 @@ Obtains the information about the center of the bounding box around this compone
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -889,7 +889,7 @@ Obtains the clickable status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -927,7 +927,7 @@ Obtains the long-clickable status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -965,7 +965,7 @@ Obtains the checked status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1003,7 +1003,7 @@ Obtains the checkable status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -1041,7 +1041,7 @@ Obtains the scrollable status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1080,7 +1080,7 @@ Obtains the enabled status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1118,7 +1118,7 @@ Obtains the focused status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1156,7 +1156,7 @@ Obtains the selected status of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1194,7 +1194,7 @@ Enters text into this component (available for text boxes).
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1221,7 +1221,7 @@ Clears text in this component. This API is applicable to text boxes.
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1261,7 +1261,7 @@ Scrolls on this component to search for the target component. This API is applic
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1291,11 +1291,11 @@ Scrolls to the top of this component. This API is applicable to components that 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1325,11 +1325,11 @@ Scrolls to the bottom of this component. This API is applicable to components th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1363,7 +1363,7 @@ Drags this component to the target component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1398,7 +1398,7 @@ Pinches a component to scale it up to the specified ratio.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1432,7 +1432,7 @@ Pinches a component to scale it down to the specified ratio.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1454,7 +1454,7 @@ async function demo() {
 
 getDescription(): Promise\<string>
 
-Obtains the description of this component.
+Obtains the description of this component. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -1466,7 +1466,7 @@ Obtains the description of this component.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -1487,7 +1487,6 @@ async function demo() {
 ## Driver<sup>9+</sup>
 
 The **Driver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
-
 All APIs provided by this class, except **Driver.create()**, use a promise to return the result and must be invoked using **await**.
 
 ### create<sup>9+</sup>
@@ -1506,7 +1505,7 @@ Creates a **Driver** object and returns the object created. This API is a static
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -1537,7 +1536,7 @@ Delays this **Driver** object within the specified duration.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1575,7 +1574,7 @@ Searches this **Driver** object for the target component that matches the given 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1613,7 +1612,7 @@ Searches this **Driver** object for all components that match the given attribut
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1651,7 +1650,7 @@ Searches for the window that matches the specified attributes.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1690,7 +1689,7 @@ Searches this **Driver** object for the target component that matches the given 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1722,7 +1721,7 @@ Asserts that a component that matches the given attributes exists on the current
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1749,7 +1748,7 @@ Presses the Back button on this **Driver** object.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1781,7 +1780,7 @@ Triggers the key of this **Driver** object that matches the given key code.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1807,15 +1806,15 @@ Triggers a key combination based on the specified key values. For example, if th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description               |
-| ------ | ------ | ---- | ------------------- |
-| key0   | number | Yes  | The first key value.|
-| key1   | number | Yes  | The second key value.|
-| key2   | number | No  | The third key value.|
+| Name| Type  | Mandatory| Description                          |
+| ------ | ------ | ---- | ------------------------------ |
+| key0   | number | Yes  | The first key value.           |
+| key1   | number | Yes  | The second key value.           |
+| key2   | number | No  | The third key value. The default value is **0**.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1849,7 +1848,7 @@ Clicks a specific point of this **Driver** object based on the given coordinates
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1882,7 +1881,7 @@ Double-clicks a specific point of this **Driver** object based on the given coor
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1915,7 +1914,7 @@ Long-clicks a specific point of this **Driver** object based on the given coordi
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1947,11 +1946,11 @@ Swipes on this **Driver** object from the given start point to the given end poi
 | starty | number | Yes  | Y coordinate of the start point.                      |
 | endx   | number | Yes  | X coordinate of the end point.                      |
 | endy   | number | Yes  | Y coordinate of the end point.                      |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Swipe speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1983,11 +1982,11 @@ Drags this **Driver** object from the given start point to the given end point.
 | starty | number | Yes  | Y coordinate of the start point.                      |
 | endx   | number | Yes  | X coordinate of the end point.                      |
 | endy   | number | Yes  | Y coordinate of the end point.                      |
-| speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number | No  | Drag speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2025,7 +2024,7 @@ Captures the current screen of this **Driver** object and saves it as a PNG imag
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2057,7 +2056,7 @@ Sets the display rotation of the device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2089,7 +2088,7 @@ Obtains the display rotation of the current device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2121,7 +2120,7 @@ Enables or disables display rotation.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2153,7 +2152,7 @@ Obtains the display size of the current device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2186,7 +2185,7 @@ Obtains the display density of the current device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2212,7 +2211,7 @@ Wakes up the device display.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2238,7 +2237,7 @@ Returns to the home screen.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2277,7 +2276,7 @@ Checks whether all components on the current page are idle.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2312,7 +2311,7 @@ Simulates a fling operation on the screen.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2341,7 +2340,7 @@ Injects a multi-touch operation to the device.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | pointers | [PointerMatrix](#pointermatrix9) | Yes  | Scroll trajectory, including the number of fingers and an array of coordinates along the trajectory.                  |
-| speed    | number                           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed    | number                           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Return value**
 
@@ -2351,7 +2350,7 @@ Injects a multi-touch operation to the device.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2363,13 +2362,17 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2391,7 +2394,7 @@ Simulates a fling operation on the screen, in the specified direction and speed.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2430,7 +2433,7 @@ Captures the specified area of the current screen and saves the captured screens
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2456,16 +2459,16 @@ Injects a mouse click at the specified coordinates, with the optional key or key
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description               |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | Yes  | Coordinates of the mouse click.   |
-| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
-| key1   | number                        | No  | The first key value.|
-| key2   | number                        | No  | The second key value.|
+| Name| Type                         | Mandatory| Description                          |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | Yes  | Coordinates of the mouse click.              |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.              |
+| key1   | number                        | No  | The first key value. The default value is **0**.|
+| key2   | number                        | No  | The second key value. The default value is **0**.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2496,12 +2499,12 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                           |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward.|
 | d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.        |
-| key1   | number           | No  | The first key value.                                        |
-| key2   | number           | No  | The second key value.                                        |
+| key1   | number           | No  | The first key value. The default value is **0**.                             |
+| key2   | number           | No  | The second key value. The default value is **0**.                             |
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2533,7 +2536,7 @@ Moves the cursor to the target point.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2565,7 +2568,7 @@ Creates a UI event listener.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -2596,13 +2599,13 @@ Injects a mouse scroll action at the specified coordinates. You can specify the 
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                            |
 | down   | boolean          | Yes  | Whether the mouse wheel scrolls downward.<br>**true**: The mouse wheel scrolls downward.<br>**false**: The mouse wheel scrolls upward. |
 | d      | number           | Yes  | Number of cells by which the mouse wheel scrolls. Scrolling by one cell means a 120-pixel offset of the target point.         |
-| key1   | number           | No  | The first key value.                                         |
-| key2   | number           | No  | The second key value.                                         |
+| key1   | number           | No  | The first key value. The default value is **0**.                              |
+| key2   | number           | No  | The second key value. The default value is **0**.                              |
 | speed  | number           | No  | Scroll speed of the mouse wheel, in cells/second.<br>Value range: 1 to 500<br>If the value is not within the range, the default value **20** will be used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -2628,16 +2631,16 @@ Injects a double-click action at the specified coordinates, with the optional ke
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description               |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | Yes  | Coordinates of the double-click.   |
-| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
-| key1   | number                        | No  | The first key value.|
-| key2   | number                        | No  | The second key value.|
+| Name| Type                         | Mandatory| Description                          |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | Yes  | Coordinates of the double-click.              |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.              |
+| key1   | number                        | No  | The first key value. The default value is **0**.|
+| key2   | number                        | No  | The second key value. The default value is **0**.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -2663,16 +2666,16 @@ Injects a long-click action of the mouse device at the specified coordinates, wi
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description               |
-| ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | Yes  | Coordinates of the long-click of the mouse device.   |
-| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
-| key1   | number                        | No  | The first key value.|
-| key2   | number                        | No  | The second key value.|
+| Name| Type                         | Mandatory| Description                          |
+| ------ | ----------------------------- | ---- | ------------------------------ |
+| p      | [Point](#point9)              | Yes  | Coordinates of the long-click of the mouse device.              |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.              |
+| key1   | number                        | No  | The first key value. The default value is **0**.|
+| key2   | number                        | No  | The second key value. The default value is **0**.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -2702,11 +2705,11 @@ Moves the mouse pointer from the start point to the end point.
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
 | to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
-| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -2718,7 +2721,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack(100,100,200,200,600);
+  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2736,11 +2739,11 @@ Drags the mouse pointer from the start point to the end point.
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | Yes  | Coordinates of the start point.                                                |
 | to     | [Point](#point9) | Yes  | Coordinates of the end point.                                                  |
-| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed  | number           | No  | Scroll speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -2752,7 +2755,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag(100,100,200,200,600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2773,7 +2776,7 @@ Enters text at the specified point.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -2835,24 +2838,28 @@ Sets the coordinates for the action corresponding to the specified finger and st
 
 **Parameters**
 
-| Name| Type            | Mandatory| Description            |
-| ------ | ---------------- | ---- | ---------------- |
-| finger | number           | Yes  | Sequence number of the finger.    |
-| step   | number           | Yes  | Sequence number of the step.    |
-| point  | [Point](#point9) | Yes  | Coordinates of the action.|
+| Name| Type            | Mandatory| Description                                                      |
+| ------ | ---------------- | ---- | ---------------------------------------------------------- |
+| finger | number           | Yes  | Sequence number of the finger.                                              |
+| step   | number           | Yes  | Sequence number of the step.                                              |
+| point  | [Point](#point9) | Yes  | Coordinates of the action. It is recommended that the distance between adjacent coordinate points be within the range of 10 to 80 pixels.|
 
 **Example**
 
 ```ts
 import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,3);
-  pointers.setPoint(0,0,{x:230,y:480});
-  pointers.setPoint(0,1,{x:250,y:380});
-  pointers.setPoint(0,2,{x:270,y:280});
-  pointers.setPoint(1,0,{x:230,y:680});
-  pointers.setPoint(1,1,{x:240,y:580});
-  pointers.setPoint(1,2,{x:250,y:480});
+  let pointers: PointerMatrix = PointerMatrix.create(2,5);
+  pointers.setPoint(0,0,{x:250,y:480});
+  pointers.setPoint(0,1,{x:250,y:440});
+  pointers.setPoint(0,2,{x:250,y:400});
+  pointers.setPoint(0,3,{x:250,y:360});
+  pointers.setPoint(0,4,{x:250,y:320});
+  pointers.setPoint(1,0,{x:250,y:480});
+  pointers.setPoint(1,1,{x:250,y:440});
+  pointers.setPoint(1,2,{x:250,y:400});
+  pointers.setPoint(1,3,{x:250,y:360});
+  pointers.setPoint(1,4,{x:250,y:320});
 }
 ```
 
@@ -2878,7 +2885,7 @@ Obtains the bundle name of the application to which this window belongs.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2913,7 +2920,7 @@ Obtains the bounds information of this window.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2947,7 +2954,7 @@ Obtains the title of this window.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -2981,7 +2988,7 @@ Obtains the window mode of this window.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3015,7 +3022,7 @@ Checks whether this window is in focused state.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3051,7 +3058,7 @@ This API is supported since API version 9 and deprecated since API version 11. Y
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3079,7 +3086,7 @@ Moves the focus to this window.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3114,7 +3121,7 @@ Moves this window to the target point. This API is applicable to moveable window
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3151,7 +3158,7 @@ Resizes this window based on the specified width, height, and resize direction. 
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3180,7 +3187,7 @@ Switches the window to split-screen mode. This API is applicable to windows that
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -3209,7 +3216,7 @@ Maximizes this window. This API is applicable to windows that can be maximized.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3238,7 +3245,7 @@ Minimizes this window. This API is applicable to windows that can be minimized.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3267,7 +3274,7 @@ Restores this window to the previous window mode.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3296,7 +3303,7 @@ Closes this window.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -3331,7 +3338,7 @@ Checks whether this window is active.
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |
@@ -3766,6 +3773,7 @@ let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <T
 ## UiComponent<sup>(deprecated)</sup>
 
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
@@ -4298,7 +4306,7 @@ This API is deprecated since API version 9. You are advised to use [assertCompon
 
 **Error codes**
 
-For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+For details about the error codes, see [UiTest Error Codes](errorcode-uitest.md).
 
 | ID| Error Message                                        |
 | -------- | ------------------------------------------------ |

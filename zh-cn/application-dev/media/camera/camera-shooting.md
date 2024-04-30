@@ -12,7 +12,7 @@
    import image from '@ohos.multimedia.image';
    import camera from '@ohos.multimedia.camera';
    import fs from '@ohos.file.fs';
-   import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+   import photoAccessHelper from '@ohos.file.photoAccessHelper';
    import { BusinessError } from '@ohos.base';
    ```
 
@@ -45,11 +45,11 @@
    let context = getContext(this);
 
    async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-     let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-     let options: PhotoAccessHelper.CreateOptions = {
+     let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+     let options: photoAccessHelper.CreateOptions = {
        title: Date.now().toString()
      };
-     let photoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.IMAGE, 'jpg', options);
+     let photoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg', options);
      //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
      let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
      await fs.write(file.fd, buffer);

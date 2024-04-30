@@ -21,7 +21,7 @@ The **native_averrors.h** file declares the error codes used by the playback fra
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [OH_AVErrCode](_core.md#oh_averrcode-1) [OH_AVErrCode](_core.md#oh_averrcode) | Defines an enum that enumerates the audio and video error codes.| 
+| typedef enum [OH_AVErrCode](_core.md#oh_averrcode-1) [OH_AVErrCode](_core.md#oh_averrcode) | Defines an enum for audio and video error codes.| 
 
 
 ### Enums

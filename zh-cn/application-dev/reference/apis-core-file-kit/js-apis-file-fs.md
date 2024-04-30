@@ -2107,6 +2107,9 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 重命名文件或文件夹，使用Promise异步返回。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2145,6 +2148,9 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 重命名文件或文件夹，使用callback异步回调。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2179,6 +2185,9 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 renameSync(oldPath: string, newPath: string): void
 
 以同步方法重命名文件或文件夹。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2686,6 +2695,9 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
 移动源文件夹至目标路径下，使用Promise异步返回。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2725,6 +2737,9 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 移动源文件夹至目标路径下，支持设置移动模式。使用callback异步回调。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2770,6 +2785,9 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 
 移动模式为文件夹级别抛异常，当目标文件夹下存在与源文件夹名冲突的文件夹，则抛出异常。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2810,6 +2828,9 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
 moveDirSync(src: string, dest: string, mode?: number): void
 
 以同步方法移动源文件夹至目标路径下。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2854,6 +2875,9 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
 
 移动文件，使用Promise异步返回。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2893,6 +2917,9 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
 
 移动文件，支持设置移动模式。使用callback异步回调。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2929,6 +2956,9 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
 
 移动文件，当移动位置存在同名文件时，将强制移动覆盖。使用callback异步回调。
 
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -2962,6 +2992,9 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
 moveFileSync(src: string, dest: string, mode?: number): void
 
 以同步方式移动文件。
+
+> **说明：**
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4853,34 +4886,34 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| length | number     | 期望读取数据的长度。可选，默认缓冲区长度。           |
-|  offset    | number     | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | 否 | 期望读取数据的长度。可选，默认缓冲区长度。           |
+|  offset    | number     | 否 | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
 
 ## ReadTextOptions<sup>11+</sup>
 
-可选项类型，支持readText接口使用。
+可选项类型，支持readText接口使用，ReadTextOptions继承至[ReadOptions](#readoptions11)。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| length | number     | 期望读取数据的长度。可选，默认文件长度。           |
-|  offset    | number     | 期望读取文件的位置。可选，默认从当前位置开始读取。 |
-| encoding    | string | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。       |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | 否 | 期望读取数据的长度。可选，默认文件长度。           |
+|  offset    | number     | 否 | 期望读取文件的位置。可选，默认从当前位置开始读取。 |
+| encoding    | string | 否 | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。       |
 
 ## WriteOptions<sup>11+</sup>
 
-可选项类型，支持write接口使用。
+可选项类型，支持write接口使用，WriteOptions继承至[Options](#options11)。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| length | number     | 期望写入数据的长度。可选，默认缓冲区长度。           |
-|  offset    | number     | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。 |
-| encoding    | string | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。           |
+|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。 |
+| encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
 
 ## ListFileOptions<sup>11+</sup>
 
@@ -4888,8 +4921,8 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| recursion | boolean     | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
-|  listNum    | number     | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
-| filter    | [Filter](#filter10) | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
+|  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
+| filter    | [Filter](#filter10) | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |

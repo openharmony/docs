@@ -99,7 +99,7 @@ The AVPlayer module provides APIs related to media playback.
 ### AVPlaybackSpeed
 
 ```
-typedef enum AVPlaybackSpeedAVPlaybackSpeed
+typedef enum AVPlaybackSpeed AVPlaybackSpeed
 ```
 
 **Description**
@@ -114,7 +114,7 @@ Defines an enum that enumerates the playback speeds of the AVPlayer.
 ### AVPlayerCallback
 
 ```
-typedef struct AVPlayerCallbackAVPlayerCallback
+typedef struct AVPlayerCallback AVPlayerCallback
 ```
 
 **Description**
@@ -129,7 +129,7 @@ Defines all the callback function pointers of an **OH_AVPlayer** instance. To en
 ### AVPlayerOnInfoType
 
 ```
-typedef enum AVPlayerOnInfoTypeAVPlayerOnInfoType
+typedef enum AVPlayerOnInfoType AVPlayerOnInfoType
 ```
 
 **Description**
@@ -144,7 +144,7 @@ Defines an enum that enumerates the types of messages received by the AVPlayer.
 ### AVPlayerSeekMode
 
 ```
-typedef enum AVPlayerSeekModeAVPlayerSeekMode
+typedef enum AVPlayerSeekMode AVPlayerSeekMode
 ```
 
 **Description**
@@ -159,7 +159,7 @@ Defines an enum that enumerates the seek modes of the AVPlayer.
 ### AVPlayerState
 
 ```
-typedef enum AVPlayerStateAVPlayerState
+typedef enum AVPlayerState AVPlayerState
 ```
 
 **Description**

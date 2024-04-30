@@ -28,14 +28,6 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-class ExtraData {
-  public data: string;
-
-  constructor(data: string) {
-    this.data = data;
-  }
-}
-
 class Header {
   public contentType: string;
 
@@ -48,8 +40,8 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 当使用POST请求时此字段用于传递内容
-    extraData: new ExtraData('data to send'),
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
+    extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -292,7 +284,7 @@ class Header {
 let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 当使用POST请求时此字段用于传递内容
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
     extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
@@ -571,10 +563,18 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 let httpRequest = http.createHttp();
 let options: http.HttpRequestOptions = {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 当使用POST请求时此字段用于传递内容
+    // 当使用POST请求时此字段用于传递请求体内容，具体格式与服务端协商确定
     extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
@@ -971,13 +971,8 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 ```ts
 import http from '@ohos.net.http';
 
-class DataReceiveProgressInfo {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1006,13 +1001,8 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 ```ts
 import http from '@ohos.net.http';
 
-class DataReceiveProgressInfo {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: DataReceiveProgressInfo) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1038,13 +1028,8 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class DataSendProgressInfo {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1073,13 +1058,8 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 ```ts
 import http from '@ohos.net.http';
 
-class DataSendProgressInfo {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1094,7 +1074,7 @@ httpRequest.off("dataSendProgress");
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
-| extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'content-Type'为'text/xml'时，该字段对应的类型通常为String；当'content-Type'为'application/json'时，该字段对应的类型通常为Object；当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 |
+| extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据必须在key和value进行URL转码后(encodeURIComponent/encodeURI)，按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String；当'content-Type'为'text/xml'时，该字段对应的类型通常为String；当'content-Type'为'application/json'时，该字段对应的类型通常为Object；当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer；当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。以上信息仅供参考，并可能根据具体情况有所不同。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。 |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存。   |
 | priority<sup>9+</sup>        | number                          | 否   | http/https请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。                           |
@@ -1104,12 +1084,12 @@ httpRequest.off("dataSendProgress");
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。 |
 | caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。                             |
-| resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
-| resumeTo<sup>11+</sup> | number | 否 | 用于设置上传或下载结束位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时设置此参数，可能出现未知问题。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
+| resumeFrom<sup>11+</sup> | number | 否 | 用于设置上传或下载起始位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
+| resumeTo<sup>11+</sup> | number | 否 | 用于设置上传或下载结束位置。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书 |
 | dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用https协议的服务器进行DNS解析。<br />-参数必须以以下格式进行URL编码："https:// host:port/path"。 |
 | dnsServers<sup>11+</sup> | Array<string> | 否 | 设置指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。<br />-服务器必须是IPV4或者IPV6地址。 |
-| maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制，默认值为5*1024*1024，以字节为单位。最大值为100*1024*1024，以字节为单位。  |
+| maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制，默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。  |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 
 ## RequestMethod

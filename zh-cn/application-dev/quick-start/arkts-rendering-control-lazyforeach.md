@@ -334,7 +334,7 @@ struct MyComponent {
 }
  ```
 
-运行效果如下图所示。可以看到`Hello 0`在滑动过程中被错误渲染为`Hello 13`。
+运行效果如下图所示。
 
 **图2**  LazyForEach存在相同键值  
 ![LazyForEach-Render-SameKey](./figures/LazyForEach-Render-SameKey.gif)

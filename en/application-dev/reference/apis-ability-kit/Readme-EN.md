@@ -204,5 +204,4 @@
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
   - [Bundle Error Codes](errorcode-bundle.md)
-  - [zlib Error Codes](errorcode-zlib.md)
   - [Access Control Error Codes](errorcode-access-token.md)

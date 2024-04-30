@@ -38,8 +38,6 @@ struct AnimateToDemo {
       Column() {
       }
       .rotate({ angle: this.rotateValue })
-      // 第三步：通过属性动画接口开启属性动画
-      .animation({ curve: curves.springMotion() })
       .backgroundColor('#317AF7')
       .justifyContent(FlexAlign.Center)
       .width(100)
@@ -48,7 +46,7 @@ struct AnimateToDemo {
       .onClick(() => {
         animateTo({ curve: curves.springMotion() }, () => {
           this.animate = !this.animate;
-          // 第四步：闭包内通过状态变量改变UI界面
+          // 第三步：闭包内通过状态变量改变UI界面
           // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
           // 组件一的rotate属性发生变化，所以会给组件一添加rotate旋转动画
           this.rotateValue = this.animate ? 90 : 0;

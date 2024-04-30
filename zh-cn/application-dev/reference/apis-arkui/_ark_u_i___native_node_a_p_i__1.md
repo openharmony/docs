@@ -201,14 +201,14 @@ void(* ArkUI_NativeNodeAPI_1::markDirty) (ArkUI_NodeHandle node, ArkUI_NodeDirty
 
 强制标记当前节点需要重新测算，布局或者绘制。
 
-系统属性设置更新场景下ArkUI框架会自动标记藏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
+系统属性设置更新场景下ArkUI框架会自动标记脏区并重新执行测算，布局或者绘制，不需要开发者主动调用该函数。
 
 **参数:**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| node | 需要标记藏区的节点对象。  |
-| dirtyFlag | 藏区类型。  |
+| node | 需要标记脏区的节点对象。  |
+| dirtyFlag | 脏区类型。  |
 
 
 ### registerNodeEvent
@@ -226,7 +226,11 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  |
 | eventType | 需要注册的事件类型。  |
-| eventId | 自定义事件ID，当事件触发时在回调参数&lt;0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 |
+| eventId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeEvent中携带回来。 |
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeEventReceiver

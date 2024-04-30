@@ -1,6 +1,6 @@
 # Context
 
-The **Context** module provides context for abilities or applications. It allows access to application-specific resources.
+The Context module, inherited frome [BaseContext](js-apis-inner-application-baseContext.md), provides context for abilities or applications, including access to application-specific resources.
 
 > **NOTE**
 >
@@ -14,6 +14,8 @@ import common from '@ohos.app.ability.common';
 ```
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -37,6 +39,8 @@ import common from '@ohos.app.ability.common';
 createModuleContext(moduleName: string): Context
 
 Creates the context based on the module name.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -81,6 +85,8 @@ getApplicationContext(): ApplicationContext
 
 Obtains the context of this application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -113,6 +119,8 @@ export default class EntryAbility extends UIAbility {
 getGroupDir(dataGroupID: string): Promise\<string>
 
 Obtains the shared directory based on a group ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -163,6 +171,8 @@ export default class EntryAbility extends UIAbility {
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

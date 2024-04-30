@@ -16,6 +16,8 @@ import common from '@ohos.app.ability.common';
 
 ## 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -37,6 +39,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -77,7 +81,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -113,6 +116,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -155,7 +160,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -195,6 +199,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -242,14 +248,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -284,6 +289,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -325,7 +332,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -365,6 +371,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -408,7 +416,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -416,7 +423,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -452,6 +459,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -501,14 +510,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -536,6 +544,8 @@ export default class EntryAbility extends UIAbility {
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 停止Ability自身（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -565,7 +575,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -593,6 +602,8 @@ export default class EntryAbility extends UIAbility {
 terminateSelf(): Promise&lt;void&gt;
 
 停止Ability自身（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -622,7 +633,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf()
@@ -650,6 +660,8 @@ export default class EntryAbility extends UIAbility {
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -682,7 +694,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -722,6 +733,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 停止当前的Ability。如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者（promise形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -758,7 +771,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -839,7 +851,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -850,16 +861,17 @@ export default class EntryAbility extends UIAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.info('onFailed...');
       }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (err) {
@@ -909,7 +921,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -923,7 +934,7 @@ export default class EntryAbility extends UIAbility {
       }).catch((err: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      })
+      });
     } catch (err) {
       commRemote = null;
       // 处理入参错误异常
@@ -967,7 +978,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -1017,7 +1027,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId、parameters(可选)，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1054,10 +1064,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 后台启动Ability，不配置parameters
     let wantBackground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1095,10 +1103,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
     let wantForeground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1136,6 +1142,8 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置UIAbility在任务中显示的名称（callback形式）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1163,7 +1171,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
@@ -1177,6 +1184,8 @@ export default class EntryAbility extends UIAbility {
 setMissionLabel(label: string): Promise&lt;void&gt;
 
 设置UIAbility在任务中显示的名称（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1210,7 +1219,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
@@ -1228,6 +1236,8 @@ export default class EntryAbility extends UIAbility {
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
 设置UIAbility任务中流转状态（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1268,6 +1278,8 @@ export default class EntryAbility extends UIAbility {
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
 设置UIAbility任务中流转状态（promise形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1316,6 +1328,8 @@ restoreWindowStage(localStorage: LocalStorage): void
 
 恢复UIAbility中的WindowStage数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1351,6 +1365,8 @@ export default class EntryAbility extends UIAbility {
 isTerminating(): boolean
 
 查询UIAbility是否在terminating状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1514,7 +1530,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1546,6 +1561,8 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1594,7 +1611,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
       }
     });
-    console.log("MainAbility onWindowStageCreate")
+    console.log("MainAbility onWindowStageCreate");
   }
 };
   ```
@@ -1605,6 +1622,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
 通过type隐式启动UIExtensionAbility。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1632,23 +1651,32 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+      
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
+        if (err) {
+          console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+        } else {
+          console.log(`success`);
+        }
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`success`);
-    }
-  });
   ```
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
@@ -1657,6 +1685,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
 通过type隐式启动UIExtensionAbility。使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1689,20 +1719,29 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
+        console.log(`startAbilityByType success`);
+      }).catch((err: BusinessError) => {
+        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
-    console.log(`startAbilityByType success`);
-  }).catch((err: BusinessError) => {
-    console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-  })
   ```

@@ -106,7 +106,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -159,7 +159,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -215,7 +215,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -257,7 +257,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', //需要手动替换为真实服务器地址
+    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -652,11 +652,11 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
-| method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
+| method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用PUT修改资源，使用POST新增资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
 | begins<sup>11+</sup> | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
 | ends<sup>11+</sup> | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
-| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。文件以 HTTP 的 multipart/form-data 格式提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
@@ -739,6 +739,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 import { BusinessError } from '@ohos.base';
 
   try {
+    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
@@ -789,6 +790,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 import { BusinessError } from '@ohos.base';
 
   try {
+    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
@@ -840,6 +842,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   ```js
   let downloadTask;
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
   }).catch((err) => {
@@ -875,6 +878,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
   ```js
   let downloadTask;
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
     if (err) {
@@ -924,6 +928,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 import { BusinessError } from '@ohos.base';
 
   try {
+    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
@@ -962,6 +967,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
@@ -1008,6 +1014,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
@@ -1056,6 +1063,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
@@ -1135,6 +1143,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
@@ -1173,6 +1182,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
@@ -1217,6 +1227,7 @@ delete(): Promise&lt;boolean&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
@@ -1255,6 +1266,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
@@ -1295,6 +1307,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
@@ -1333,6 +1346,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
@@ -1355,7 +1369,7 @@ try {
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-查询下载的任务的 MimeType，异步方法，使用promise形式返回结果。
+查询下载的任务的 MimeType (HTTP中表示资源的媒体类型)，异步方法，使用promise形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1373,6 +1387,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
@@ -1411,6 +1426,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
@@ -1451,6 +1467,7 @@ suspend(): Promise&lt;boolean&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
@@ -1489,6 +1506,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
@@ -1529,6 +1547,7 @@ restore(): Promise&lt;boolean&gt;
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
@@ -1567,6 +1586,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
+  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
@@ -2191,7 +2211,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2217,6 +2237,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2262,7 +2283,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2288,6 +2309,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2333,7 +2355,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2359,6 +2381,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2400,7 +2423,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2426,6 +2449,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2467,7 +2491,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2493,6 +2517,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2534,7 +2559,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2560,6 +2585,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2605,7 +2631,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2639,6 +2665,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务进度的所有回调
     task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2684,7 +2711,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2718,6 +2745,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务完成的所有回调
     task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2763,7 +2791,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2797,6 +2825,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务失败的所有回调
     task.off('failed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2838,7 +2867,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2872,6 +2901,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务暂停的所有回调
     task.off('pause');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2913,7 +2943,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2947,6 +2977,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务恢复的所有回调
     task.off('resume');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2988,7 +3019,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3022,6 +3053,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
     //表示取消订阅任务移除的所有回调
     task.off('remove');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3061,7 +3093,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3129,7 +3161,7 @@ start(): Promise&lt;void&gt;
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3194,7 +3226,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3215,6 +3247,8 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3261,7 +3295,7 @@ pause(): Promise&lt;void&gt;
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3282,6 +3316,8 @@ pause(): Promise&lt;void&gt;
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -3328,7 +3364,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3349,6 +3385,10 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3398,7 +3438,7 @@ resume(): Promise&lt;void&gt;
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3419,6 +3459,10 @@ resume(): Promise&lt;void&gt;
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    task.pause();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -3463,7 +3507,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3484,6 +3528,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3526,7 +3572,7 @@ stop(): Promise&lt;void&gt;
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3547,6 +3593,8 @@ stop(): Promise&lt;void&gt;
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -3601,7 +3649,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3627,6 +3675,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
+    task.start();
   });
   ```
 
@@ -3682,7 +3731,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3704,6 +3753,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
+    task.start();
   }).catch((err) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });

@@ -42,7 +42,7 @@ The platform does not support service subscription.
 
 Deploy the subscription service on the platform.
 
-## 14801001 Stage Model Required
+## 15501001 Stage Model Required
 
 **Error Message**
 

@@ -36,24 +36,33 @@
 // onScroll高频回调场景反例
 @Component
 struct NegativeOfOnScroll {
-  Scroll() {
-    ForEach(this.arr, (item: number) => {
-      Text("TextItem" + item)
-      .width("100%")
-      .height(100)
-    }, (item: number) => item.toString())
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  build() {
+    Scroll() {
+      List() {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text("TextItem" + item)
+          }
+          .width("100%")
+          .height(100)
+        }, (item: number) => item.toString())
+      }
+      .divider({ strokeWidth: 3, color: Color.Gray })
+    }
+    .width('100%')
+    .height('100%')
+    .onScroll(() => {
+      hitrace.startTrace("ScrollSlide", 1001);
+      hilog.info(1001, 'Scroll', 'TextItem');
+      // 耗时操作
+      // ...
+      // 业务逻辑
+      // ...
+      hitrace.finishTrace("ScrollSlid", 1001);
+    })
   }
-  .width('100%')
-  .height('100%')
-  .onScroll(() => {
-    hitrace.startTrace("ScrollSlide", 1001);
-    hilog.info(1001, 'Scroll', 'TextItem');
-    // 耗时操作
-    ...
-    // 业务逻辑
-    ...
-    hitrace.finishTrace("ScrollSlid", 1001);
-  })
 }
 ```
 
@@ -65,19 +74,28 @@ struct NegativeOfOnScroll {
 // onScroll高频回调场景正例
 @Component
 struct PositiveOfOnScroll {
-  Scroll() {
-    ForEach(this.arr, (item: number) => {
-      Text("ListItem" + item)
-      .width("100%")
-      .height("100%")
-    }, (item: number) => item.toString())
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  build() {
+    Scroll() {
+      List() {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text("TextItem" + item)
+          }
+          .width("100%")
+          .height(100)
+        }, (item: number) => item.toString())
+      }
+      .divider({ strokeWidth: 3, color: Color.Gray })
+    }
+    .width('100%')
+    .height('100%')
+    .onScroll(() => {
+      // 业务逻辑
+      // ...
+    })
   }
-  .width('100%')
-  .height('100%')
-  .onScroll(() => {
-    // 业务逻辑
-    ...
-  })
 }
 ```
 
@@ -101,11 +119,14 @@ struct PositiveOfOnScroll {
 // Trace场景反例
 @Component
 struct NegativeOfTrace {
-  aboutToAppear {
+  aboutToAppear(): void {
     hitrace.startTrace("HITRACE_TAG_APP", 1002);
     // 业务代码
-    ...
+    // ...
     hitrace.finishTrace("HITRACE_TAG_APP", 1002);
+  }
+  build() {
+    // 业务代码
   }
 }
 ```
@@ -118,9 +139,12 @@ struct NegativeOfTrace {
 // Trace场景正例
 @Component
 struct PositiveOfTrace {
-  aboutToAppear {
+  aboutToAppear(): void {
     // 业务代码
-    ...
+    // ...
+  }
+   build() {
+    // 业务代码
   }
 }
 ```
@@ -135,14 +159,20 @@ struct PositiveOfTrace {
 
 ```ts
 // debug日志打印反例
-@State string1: string = 'a';
-@State string2: string = 'b';
-@Component
 struct NegativeOfDebug {
-  aboutToAppear {
+  @State string1: string = 'a';
+  @State string2: string = 'b';
+
+  aboutToAppear(): void {
     hilog.debug(1003, 'Debug', (this.string1 + this.string2));
     // 业务代码
-    ...
+    // ...
+  }
+
+  build() {
+    // 业务代码
+    // ...
+  }
 }
 
 // 实际调用debug方法前会先将参数拼接为msg，再调用debug方法
@@ -158,9 +188,14 @@ hilog.debug(msg);
 // debug日志打印正例
 @Component
 struct PositiveOfDebug {
-  aboutToAppear {
+  aboutToAppear(): void {
     // 业务代码
-    ...
+    // ...
+  }
+  build() {
+    // 业务代码
+    // ...
+  }
 }
 ```
 
@@ -193,7 +228,7 @@ struct NegativeOfOnClick {
         hitrace.startTrace("ButtonClick", 1004);
         hilog.info(1004, 'Click', 'ButtonType.Normal')
         hitrace.finishTrace("ButtonClick", 1004);
-        // 业务逻辑
+        // 业务代码
         // ...
       })
       .onAreaChange((oldValue: Area, newValue: Area) => {
@@ -214,7 +249,7 @@ struct PositiveOfOnClick {
   build() {
     Button('Click', { type: ButtonType.Normal, stateEffect: true })
       .onClick(() => {
-        // 业务逻辑
+        // 业务代码
         // ...
     })
 }

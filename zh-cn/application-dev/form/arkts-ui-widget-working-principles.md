@@ -47,7 +47,7 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 
 - 不支持使用native语言开发。
 
-- 仅支持[声明式范式](../reference/apis-arkui/arkui-ts/ts-components-summary.md)的部分组件、事件、动效、数据管理、状态管理和API能力。
+- 仅支持[声明式范式](../ui/arkts-ui-development-overview.md)的部分组件、事件、动效、数据管理、状态管理和API能力。
 
 - 卡片的事件处理和使用方的事件处理是独立的，建议在使用方支持左右滑动的场景下卡片内容不要使用左右滑动功能的组件，以防手势冲突影响交互体验。
 
@@ -67,4 +67,4 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 
 - [Stage模型卡片（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
 
-- [Stage模型卡片JS与C++通信（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
+- [Stage模型卡片JS与C++通信（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)

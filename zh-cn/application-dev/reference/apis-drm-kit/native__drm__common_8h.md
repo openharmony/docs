@@ -28,7 +28,8 @@
 | struct&nbsp;&nbsp;[DRM_KeysInfo](_d_r_m___keys_info.md) | 媒体密钥信息。 | 
 | struct&nbsp;&nbsp;[DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | 媒体密钥状态。 | 
 | struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | uuid的PSSH信息。 | 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | 用于播放器从媒体源获取媒体密钥系统信息。 | 
+| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | 播放器从媒体源获取媒体密钥系统信息。 | 
+| struct&nbsp;&nbsp;[DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | DRM插件的名称和UUID。  | 
 
 
 ### 宏定义
@@ -56,6 +57,8 @@
 | [DRM_UUID_LEN](_drm.md#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Drm系统 uuid长度。 | 
 | [MAX_PSSH_DATA_LEN](_drm.md#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | PSSH数据的最大长度。 | 
 | [MAX_PSSH_INFO_COUNT](_drm.md#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | PSSH信息的最大计数。 | 
+| [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](_drm.md#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | 媒体密钥系统名称的最大长度。  | 
+| [MAX_MEDIA_KEY_SYSTEM_NUM](_drm.md#max_media_key_system_num)&nbsp;&nbsp;&nbsp;8 | 支持的媒体密钥系统的最大数量。  | 
 
 
 ### 类型定义
@@ -75,7 +78,7 @@
 | typedef struct [DRM_KeysInfo](_d_r_m___keys_info.md) [DRM_KeysInfo](_drm.md#drm_keysinfo) | 媒体密钥信息。 | 
 | typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](_drm.md#drm_mediakeystatus) | 媒体密钥状态。 | 
 | typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](_drm.md#drm_psshinfo) | uuid的PSSH信息。 | 
-| typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](_drm.md#drm_mediakeysysteminfo) | 用于播放器从媒体源获取媒体密钥系统信息。 | 
+| typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](_drm.md#drm_mediakeysysteminfo) | 播放器从媒体源获取媒体密钥系统信息。 | 
 | typedef void(\* [DRM_MediaKeySystemInfoCallback](_drm.md#drm_mediakeysysteminfocallback)) ([DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | 应用程序为从媒体源获取媒体密钥系统信息而设置的回调。 | 
 | typedef struct [MediaKeySystem](_drm.md#mediakeysystem) [MediaKeySystem](_drm.md#mediakeysystem) | 媒体密钥系统结构。 | 
 | typedef struct [MediaKeySession](_drm.md#mediakeysession) [MediaKeySession](_drm.md#mediakeysession) | 媒体密钥会话结构。 | 

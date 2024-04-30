@@ -22,17 +22,23 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 
 ## onMeasureSize<sup>10+</sup>
 
-onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions):[SizeResult](#sizeresult10)
+onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions):SizeResult
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
 
 **参数：**
 
-| 参数名            | 类型                                                         | 说明               |
-|----------------|------------------------------------------------------------|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。         |
-| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。         |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+| 参数名         | 类型                                                       | 说明                                                         |
+| -------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。                                             |
+| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。                                       |
+
+**返回值：** 
+
+| 类型                        | 描述           |
+| --------------------------- | -------------- |
+| [SizeResult](#sizeresult10) | 组件尺寸信息。 |
 
 ## GeometryInfo<sup>10+</sup>
 
@@ -54,7 +60,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 | 属性         | 属性类型                                                    | 描述                  |
 |------------|---------------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
-| layout     | (position: [Position](ts-types.md#position8))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
+| layout     | (position: [Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
 ## Measurable<sup>10+</sup>
 
@@ -193,14 +199,14 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
 
-| 属性         | 属性类型                                                               | 描述                  |
-|------------|--------------------------------------------------------------------|---------------------|
-| name       | string                                                             | 子组件名称。              |
-| id         | string                                                             | 子组件id。              |
-| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)         | 子组件约束尺寸。            |
-| borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)                             | 子组件border信息。        |
-| position   | [Position](ts-types.md#position8)                                   | 子组件位置坐标。            |
-| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;void                            | 调用此方法对子组件的尺寸范围进行限制。 |
+| 属性       | 属性类型                                                     | 描述                                   |
+| ---------- | ------------------------------------------------------------ | -------------------------------------- |
+| name       | string                                                       | 子组件名称。                           |
+| id         | string                                                       | 子组件id。                             |
+| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)   | 子组件约束尺寸。                       |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)              | 子组件border信息。                     |
+| position   | [Position](ts-types.md#position)                             | 子组件位置坐标。                       |
+| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的尺寸范围进行限制。 |
 | layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
 ## LayoutBorderInfo<sup>(deprecated)</sup>
@@ -221,9 +227,9 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 
 从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
-| 属性         | 属性类型                                                       | 描述       |
-|------------|------------------------------------------------------------|----------|
-| position   | [Position](ts-types.md#position8)                           | 子组件位置坐标。 |
+| 属性       | 属性类型                                                   | 描述             |
+| ---------- | ---------------------------------------------------------- | ---------------- |
+| position   | [Position](ts-types.md#position)                           | 子组件位置坐标。 |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。 |
 
 ```ts

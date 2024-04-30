@@ -4,7 +4,7 @@
 
 ## Background
 
-The waterfall layout is a popular layout for presenting images and frequently seen in shopping and information applications. It is implemented using the [\<WaterFlow>](../reference/arkui-ts/ts-container-waterflow.md) component in ArkUI. This document discusses how to improve the **\<WaterFlow>** performance, with practical examples.
+The waterfall layout is a popular layout for presenting images and frequently seen in shopping and information applications. It is implemented using the [\<WaterFlow>](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) component in ArkUI. This document discusses how to improve the **\<WaterFlow>** performance, with practical examples.
 
 ## Using Lazy Loading
 
@@ -48,7 +48,7 @@ Considering that **\<Image>** components are loaded asynchronously by default, y
 
 In the example, the fixed number of **\<FlowItem>** components results in failure to achieve infinite scrolling.
 
-To implement infinite scrolling with the capabilities provided by the **\<WaterFlow>** component, you can new data to the **LazyForEach** data source during **onReachEnd**, and set the footer to the loading-new-data style (by using the [\<LoadingProgress>](../reference/arkui-ts/ts-basic-components-loadingprogress.md) component).
+To implement infinite scrolling with the capabilities provided by the **\<WaterFlow>** component, you can new data to the **LazyForEach** data source during **onReachEnd**, and set the footer to the loading-new-data style (by using the [\<LoadingProgress>](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) component).
 
 ```ts
   build() {

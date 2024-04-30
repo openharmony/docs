@@ -12,9 +12,9 @@ You need to implement flexible service logics via callbacks of the service provi
 
 There are two roles in **DataShare**:
 
-- Data provider: implements operations, such as adding, deleting, modifying, and querying data, and opening a file, using [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md).
+- Data provider: implements operations, such as adding, deleting, modifying, and querying data, and opening a file, using [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md).
 
-- Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper).
+- Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper).
 
 **Figure 1** Data sharing mechanism
 
@@ -34,7 +34,7 @@ There are two roles in **DataShare**:
 
 ### Data Provider Application Development (Only for System Applications)
 
-[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md) provides the following APIs. You can override these APIs as required.
+[DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) provides the following APIs. You can override these APIs as required.
 
 - **onCreate**: called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server.
 
