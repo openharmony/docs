@@ -46,7 +46,7 @@
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from './common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface TabBar  {
   name: string
@@ -152,7 +152,7 @@ struct Home {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from './common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 @Entry
 @Component
@@ -215,7 +215,7 @@ export default struct Banner {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from './common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface GridItemInfo {
   name: string
@@ -277,7 +277,7 @@ struct MultiLaneList {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from './common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface ListItemInfo {
   name: string
@@ -349,7 +349,7 @@ struct MultiLaneList {
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from './common/breakpointsystem'
+import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
 
 interface imagesInfo{
   label:string,
