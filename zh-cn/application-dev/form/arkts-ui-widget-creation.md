@@ -3,7 +3,7 @@
 创建卡片当前有两种入口：
 
 - 创建工程时，选择Application，默认不带卡片，可以在创建工程后右键新建卡片。
-- 创建工程时，选择Atomic Service，默认自带卡片，也可以在创建工程后右键新建卡片。
+- 创建工程时，选择Atomic Service，也可以在创建工程后右键新建卡片。
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
 >**说明：** 
