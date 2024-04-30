@@ -21,7 +21,7 @@ import uri from '@ohos.uri'
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -106,7 +106,7 @@ constructor(uri: string)
 
 constructor是URI的构造函数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -143,7 +143,7 @@ toString(): string
 
 返回适用于URI中的查询字符串。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -196,7 +196,7 @@ equalsTo(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -226,7 +226,7 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -252,7 +252,7 @@ normalize(): URI
 
 规范化此URI的路径。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
