@@ -39,7 +39,7 @@ addProcessor(processor: Processor): number
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. |
+| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 
 **示例：**
 
@@ -113,7 +113,7 @@ removeProcessor(id: number): void
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. |
+| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 
 **示例：**
 
@@ -333,7 +333,7 @@ setUserId(name: string, value: string): void
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. |
+| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 
 **示例：**
 
@@ -373,7 +373,7 @@ getUserId(name: string): string
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. |
+| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 
 **示例：**
 
@@ -410,7 +410,7 @@ setUserProperty(name: string, value: string): void
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. |
+| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 
 **示例：**
 
@@ -450,7 +450,7 @@ getUserProperty(name: string): string
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. |
+| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 
 **示例：**
 
