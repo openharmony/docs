@@ -27,7 +27,7 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 
-let commRemote: rpc.IRemoteObject; // Release the instance when the connection is disconnected.
+let commRemote: rpc.IRemoteObject | null; // Release the instance when the connection is disconnected.
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
       let context = this.context; // Obtain a ServiceExtensionContext instance.
@@ -270,10 +270,9 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -351,10 +350,9 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 Starts an ability with the account ID and start options specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -438,10 +436,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 Starts an ability with the account ID specified. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -828,10 +825,9 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -872,7 +868,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -899,10 +895,9 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -943,7 +938,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -974,10 +969,9 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1026,7 +1020,7 @@ import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -1642,7 +1636,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // Process input parameter errors.
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1706,7 +1700,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // Process input parameter errors.
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1733,7 +1727,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId**, and **parameters** (optional). If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1843,10 +1837,9 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1919,10 +1912,9 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 You can use this API to carry start options.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2001,10 +1993,9 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 Starts an ability. If the ability has multiple instances, the latest instance is started.
 This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2174,9 +2165,11 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result.
 
-Observe the following when using this API:
-- If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2252,9 +2245,10 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
-- If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

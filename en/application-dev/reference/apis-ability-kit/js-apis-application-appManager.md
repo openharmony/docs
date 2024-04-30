@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Example**
     
@@ -51,9 +51,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Example**
     
@@ -79,9 +79,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Example**
     
@@ -106,9 +106,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Example**
     
@@ -134,9 +134,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  |
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
 
 **Example**
     
@@ -161,9 +161,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  |
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
 
 **Example**
     
@@ -186,7 +186,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 > This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
+**Required permissions**: ohos.permission.GET_RUNNING_INFO (available only for system applications)
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -217,7 +217,7 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 > This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
+**Required permissions**: ohos.permission.GET_RUNNING_INFO (available only for system applications)
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -240,4 +240,3 @@ Obtains information about the running processes. This API uses an asynchronous c
       }
   });
   ```
-
