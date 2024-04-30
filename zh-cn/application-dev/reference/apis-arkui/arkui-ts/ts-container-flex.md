@@ -20,7 +20,9 @@ Flex(value?: FlexOptions)
 
 标准Flex布局容器。具体指南请参考[弹性布局](../../../ui/arkts-layout-development-flex-layout.md)。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数:**
 
