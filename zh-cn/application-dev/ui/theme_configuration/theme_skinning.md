@@ -648,7 +648,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 ### 设置应用页面局部深浅色
 - 通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。
-在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.LIGHT })将作用域内的组件设置为浅色模式。
+在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
 
   ```ts
     // xxx.ets
@@ -667,10 +667,9 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     randomTouchProtection = 'Random touch protection'
     touchSensitivity = 'Touch sensitivity'
     menuItemColor = '#ffffff'
-    pageBackgroundColor = '#dcdcdc'
     
     build() {
-      WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
+      WithTheme({ colorMode: ThemeColorMode.DARK }) {
         Column() {
           List({ space: 10 }) {
               ListItem() {
@@ -896,7 +895,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
             }
           }
           .padding('10vp')
-          .backgroundColor(this.pageBackgroundColor)
+          .backgroundColor($r('sys.color.background_primary'))
           .width('100%')
           .height('100%')
         }
