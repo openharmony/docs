@@ -14,6 +14,8 @@ pageTransition?(): void
 
 进入此页面或移动到其他页面时实现动画。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## PageTransitionEnter
