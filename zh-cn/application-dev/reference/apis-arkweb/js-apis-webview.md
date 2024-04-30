@@ -5054,7 +5054,7 @@ struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
-      Web({ src: "https://www.example.com/", controller: this.webviewController})
+      Web({ src: "https://www.example.com/", controller: this.controller})
         .onAppear(() => {
             // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
             web_webview.WebviewController.prefetchResource(
@@ -5751,6 +5751,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
