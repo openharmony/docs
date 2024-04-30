@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { AdComponent } from '@ohos.advertising.AdComponent';
+import { AdComponent } from '@kit.AdsKit';
 ```
 
 
@@ -38,9 +38,8 @@ AdComponent(ads: Array&lt;advertising.Advertisement&gt;, displayOptions: adverti
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
-import { AdComponent } from '@ohos.advertising.AdComponent';
-import hilog from '@ohos.hilog';
+import { AdComponent, advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
