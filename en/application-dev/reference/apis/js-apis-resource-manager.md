@@ -52,7 +52,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -61,7 +61,6 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
     });
   });
   ```
-> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +108,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -120,7 +119,6 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
     console.error("error is " + error);
   });
   ```
-> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 ## resourceManager.getResourceManager
 
@@ -370,7 +368,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> %d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
 
@@ -468,7 +466,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> %d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
 
@@ -562,7 +560,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> %d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
 

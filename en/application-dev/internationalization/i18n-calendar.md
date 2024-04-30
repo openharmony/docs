@@ -44,21 +44,14 @@ let minimalDaysInFirstWeek : number = calendar.getMinimalDaysInFirstWeek(); // 1
 calendar.setMinimalDaysInFirstWeek(3);
 
 // Obtain the value of the specified field in the Calendar object.
-let value: number = calendar.get("year"); // 2023
+let value: number = calendar.get("year"); // 2022
 
 // Obtain the localized name of the Calendar object.
 let calendarName: string = calendar.getDisplayName("zh-Hans"); // Gregorian calendar
 
 // Check whether a given date is a weekend for the Calendar object.
-let isWeekend : boolean= calendar.isWeekend(new Date(2023, 10, 15)); // true
+let isWeekend : boolean= calendar.isWeekend(new Date(2023, 9, 15)); // true
 
-// Perform addition and subtraction operations on the specified field of the Calendar object.
-calendar.set(2023, 10, 15);
-calendar.add("date", 2);
-calendar.get("date"); // 17
-
-// Check the number of days between the Calendar object and the specified date.
-calendar.compareDays(new Date(2023, 10, 15)); // -3
 ```
 
 3. Obtain the lunar calendar date corresponding to the Gregorian calendar date.

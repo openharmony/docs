@@ -44,7 +44,7 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
    - To send SMS messages, call the **sendShortMessage** API and declare the **ohos.permission.SEND\_MESSAGES** permission. The permission is of the **system\_basic** level.
    - To set the SMSC address, call the** setSmscAddr** API and declare the **ohos.permission.SET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
    - To obtain the SMSC address, call the** getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
-   Before requesting the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+   Before requesting permissions, ensure that the [basic principles for using permissions](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 2. (Optional) Implement the function of jumping to the SMS message editing page. Generally, a third-party application cannot obtain the preceding permissions. If you need to implement the function of jumping to the SMS message editing page with the edited content and recipient number, call the **startAbility** API to specify the recipient number and jump to the SMS message sending page. For details, see sample code 2.
 
@@ -134,5 +134,3 @@ struct JumpMessage {
     }
 }
 ```
-
-

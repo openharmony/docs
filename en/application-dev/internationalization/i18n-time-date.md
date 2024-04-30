@@ -20,7 +20,7 @@ Date and time formatting is implemented by the [format](../reference/apis/js-api
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import Intl from '@ohos.intl'
    ```
 
 2. Create a **DateTimeFormat** object.
@@ -84,7 +84,7 @@ The following uses the time **2021-09-17 13:04:00** and locale **zh-CN** as an e
 | narrow | 5| 
 
 
-**Table 5** Hour cycle (hourCycle)
+**Table 5** Hour cycle (hourCycle12)
 
 | Value| Display Effect| 
 | -------- | -------- |
@@ -96,7 +96,7 @@ The following uses the time **2021-09-17 13:04:00** and locale **zh-CN** as an e
 **Development Example**
 ```ts
 // Import the intl module.
-import Intl from '@ohos.intl';
+import Intl from '@ohos.intl'
 
 // Set the date to be formatted.
 let date = new Date(2021, 8, 17, 13, 4, 0);
@@ -129,7 +129,7 @@ let formattedDate6 = dateFormat6.format(date); // formattedDate6: ٢٠٢١/٩/١
 
 // Format a time segment.
 let dataFormat7 = new Intl.DateTimeFormat('en-GB');
-let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/9/2021 - 18/9/2021
+let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/09/2021 - 18/09/2021
 
 // Obtain formatting options.
 let dataFormat8 = new Intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
@@ -143,7 +143,7 @@ Relative time formatting is implemented by the [format](../reference/apis/js-api
 
 1. Import the **intl** module.
    ```ts
-   import Intl from '@ohos.intl';
+   import Intl from '@ohos.intl'
    ```
 
 2. Create a **RelativeTimeFormat** object.
@@ -190,7 +190,7 @@ Table 7 Internationalization message length (style)
 **Development Example**
 ```ts
 // Import the intl module.
-import Intl from '@ohos.intl';
+import Intl from '@ohos.intl'
 
 // Display the relative time.
 let relativeTimeFormat1 = new Intl.RelativeTimeFormat('en-GB');
