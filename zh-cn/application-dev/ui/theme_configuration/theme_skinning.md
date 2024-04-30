@@ -17,50 +17,26 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
 
     export class AppColors implements CustomColors {
-      fontPrimary: ResourceColor = '#FF030F3B'
-      fontOnPrimary: ResourceColor = '#FF06207C'
-      iconOnPrimary: ResourceColor = '#FFFCAD60'
-      iconFourth: ResourceColor = '#FF0775E0'
-      compBackgroundTertiary: ResourceColor = '#FFAFD3F6'
-      compBackgroundEmphasize: ResourceColor = '#FF0775E0'
-      backgroundEmphasize: ResourceColor = '#FF0775E0'
-      interactiveFocus: ResourceColor = '#FF06207C'
-      compBackgroundPrimary: ResourceColor = '#FFFCAD60'
-      compBackgroundSecondary: ResourceColor = '#FFCAC9C9'
+      fontPrimary: ResourceColor = '#FF246677'
+      fontOnPrimary: ResourceColor = '#FFFFFF'
+      iconOnPrimary: ResourceColor = '#FFFFFF'
+      iconFourth: ResourceColor = '#FF246677'
+      compBackgroundTertiary: ResourceColor = '#0C013542'
+      compBackgroundEmphasize: ResourceColor = '#AFECFF'
+      backgroundEmphasize: ResourceColor = '#AFECFF'
+      interactiveFocus: ResourceColor = '#AFECFF'
+      compBackgroundPrimary: ResourceColor = '#000000'
+      compBackgroundSecondary: ResourceColor = '#19013542'
     }
 
     export class AppTheme implements CustomTheme {
       public colors: AppColors = new AppColors()
     }
-
-    export class AppColorsSec implements CustomColors {
-      fontOnPrimary = '#ff111111'
-      backgroundEmphasize = '#ff26d000'
-      interactivePressed = '#ffd41010'
-      interactiveFocus = '#ffff0000'
-      fontPrimary: ResourceColor = '#ffff0000'
-      iconOnPrimary: ResourceColor = '#ffff0000'
-      iconFourth: ResourceColor = '#ffff0000'
-      compBackgroundTertiary: ResourceColor = '#FFAFD3F6'
-      compBackgroundEmphasize: ResourceColor = '#FF0775E0'
-      compBackgroundPrimary: ResourceColor = '#FFFCAD60'
-      compBackgroundSecondary: ResourceColor = '#FFCAC9C9'
-    }
-
-    export class AppThemeSec implements CustomTheme {
-      public colors: AppColors = new AppColorsSec()
-    }
     
     export let gAppTheme: CustomTheme = new AppTheme()
-    
-    export let gAppThemeSec: CustomTheme = new AppThemeSec()
-    
-    export let gAppColor: AppColors = new AppColors()
-    
-    export let gAppColorSec: AppColorsSec = new AppColorsSec()
   ```
 
-### 设置应用级全局风格
+### 设置应用级自定义品牌色
 - 方法一：在ability中设置ThemeControl
 - 约束：如果在ability中设置，需要在onWindowStageCreate()方法中setDefaultTheme。
 
@@ -138,10 +114,10 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
   ```ts
     // xxx.ets
     import { ThemeControl } from '@ohos.arkui.theme'
-    import { gAppThemeSec } from './AppTheme'
+    import { gAppTheme } from './AppTheme'
     
     //在页面build前执行ThemeControl
-    ThemeControl.setDefaultTheme(gAppThemeSec)
+    ThemeControl.setDefaultTheme(gAppTheme)
 
     @Entry
     @Component
@@ -395,9 +371,9 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 
 ![systemTheme](figures/systemTheme.png)
 
-### 设置应用页面局部换肤  
+### 设置应用局部页面自定义主题风格 
 - 将自定义Theme的配色通过设置WithTheme作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
-在下面示例中，通过WithTheme({ theme: this.myTheme })将作用域内的组件配色设置为自定义redCustomTheme的配色。
+在下面示例中，通过WithTheme({ theme: this.myTheme })将作用域内的组件配色设置为自定义主题风格。后续可通过更改this.myTheme更换主题风格。
 
 
 | 组件名                                  | 方法/属性名                                                                                      | 是否必填 | 描述（说明默认值）                          | 所属文件            |
@@ -408,7 +384,7 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
   ```ts
     // xxx.ets
     import { CustomTheme } from '@ohos.arkui.theme'
-    import { gAppTheme, gAppThemeSec } from './AppTheme'
+    import { gAppTheme } from './AppTheme'
     
     @Entry
     @Component
@@ -433,21 +409,8 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
       build() {
         WithTheme({ theme: this.myTheme }) {
           Column() {
-            Button('SwitchColors').onClick(() => {
-              this.count++;
-              if (this.count > 1) {
-                this.count = 0;
-              }
-              switch (this.count) {
-                case 0:
-                  this.myTheme = gAppTheme;
-                  break;
-                case 1:
-                  this.myTheme = gAppThemeSec;
-                break;
-              }
-            })
-    
+          Button('SwitchColors')
+          
             List({ space: 10 }) {
               ListItem() {
                 Column({ space: '5vp' }) {
@@ -680,12 +643,12 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
     }
   ```
 
-![customTheme](figures/customTheme.gif)
+![customTheme](figures/customTheme.png)
 
 ### 设置应用页面局部深浅色
 - 通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。
-在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.LIGHT })将组件设置为浅色模式。
+在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.LIGHT })将作用域内的组件设置为浅色模式。
 
   ```ts
     // xxx.ets
