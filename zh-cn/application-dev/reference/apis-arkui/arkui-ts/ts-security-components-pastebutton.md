@@ -20,10 +20,14 @@ PasteButton()
 
 默认创建带有图标、文本、背景的粘贴按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### PasteButton
 PasteButton(option:PasteButtonOptions)
 
 创建包含指定元素的粘贴按钮。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -32,6 +36,8 @@ PasteButton(option:PasteButtonOptions)
 | option | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
 
 ## PasteButtonOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -47,6 +53,8 @@ PasteButton(option:PasteButtonOptions)
 
 ## PasteIconStyle枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | LINES | 0 | 粘贴按钮展示线条样式图标。 |
@@ -54,12 +62,16 @@ PasteButton(option:PasteButtonOptions)
 
 ## PasteDescription枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
 
 
 ## PasteButtonOnClickResult枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -76,6 +88,8 @@ PasteButton(option:PasteButtonOptions)
 onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 
 点击动作触发该回调
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
