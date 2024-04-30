@@ -79,6 +79,20 @@ textCase(value: TextCase)
 | ------ | ----------------------------------------- | ---- | ---------------------------------------- |
 | value  | [TextCase](ts-appendix-enums.md#textcase) | 是   | 文本大小写。<br/>默认值：TextCase.Normal |
 
+### lineHeight<sup>10+</sup>
+
+lineHeight(value: Length)
+
+设置文本行高。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 描述           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [Length](ts-types.md#length) | 是   | 文本行高。 |
+
 ### font<sup>10+</sup>
 
 font(value: Font)
