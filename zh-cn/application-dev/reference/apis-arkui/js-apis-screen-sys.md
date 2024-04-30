@@ -1422,4 +1422,4 @@ try {
 | id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
 | width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数应为整数。                                |
 | height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
-| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数，该参数应为整数。                                     |
+| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |
