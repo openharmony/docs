@@ -493,7 +493,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 addEvent(event: Event, callback: AsyncCallback\<number>): void
 
-创建日程，入参[Event](#event)不填日程id，使用callback异步回调。
+创建日程，入参Event不填日程id，使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -538,7 +538,7 @@ calendarMgr?.getCalendar().then((data: calendarManager.Calendar) => {
 
 addEvent(event: Event): Promise\<number>
 
-创建日程，入参[Event](#event)不填日程id，使用Promise异步回调。
+创建日程，入参Event不填日程id，使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -588,7 +588,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
-批量创建日程，入参[Event](#event)不填日程id，使用callback异步回调。
+批量创建日程，入参Event不填日程id，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -640,7 +640,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 addEvents(events: Event[]): Promise\<void>
 
-批量创建日程，入参[Event](#event)不填日程id，使用Promise异步回调。
+批量创建日程，入参Event不填日程id，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 

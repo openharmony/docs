@@ -909,7 +909,7 @@ SymbolSpan样式选项。
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，只有图片或BuilderSpan放在段首时不支持。 |
 | wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
-| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符，当开发者配置为非法属性值时，会按照默认值GREEDY生效。 |
+| lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -1097,7 +1097,7 @@ onLongPress?: (event: GestureEvent) => void
 
 ## SubmitCallback<sup>12+</sup>
 
-设置自定义键盘是否支持避让功能。
+软键盘按下回车键时的回调事件。
 
 | 名称     | 类型                                             | 必填 | 描述                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
@@ -3498,4 +3498,4 @@ struct LineBreakStrategyExample {
 }
 ```
 
-![LineBreakStrategy](figures\richEditorLineBreak.gif)
+![LineBreakStrategy](figures/richEditorLineBreak.gif)

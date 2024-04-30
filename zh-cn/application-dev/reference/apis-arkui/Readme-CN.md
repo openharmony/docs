@@ -110,6 +110,7 @@
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
+        - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
         - 触摸交互控制
           - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
           - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -328,6 +329,7 @@
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
+    - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
       - [native_dialog.h](native__dialog_8h.md)
@@ -339,6 +341,8 @@
       - [native_type.h](native__type_8h.md)
       - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
       - [ui_input_event.h](ui__input__event_8h.md)
+      - [oh_window_comm.h](oh__window__comm_8h.md)
+      - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
     - 结构体
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)

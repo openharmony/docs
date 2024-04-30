@@ -32,6 +32,7 @@
             this.sendFromEts = value;
           })
 
+        // 该内容可以放在onPageEnd生命周期中调用。
         Button('postMessage')
           .onClick(() => {
             try {

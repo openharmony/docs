@@ -133,7 +133,7 @@
         Button('getAccessibleGeolocation')
           .onClick(() => {
             try {
-              // getAccessibleGeolocation第二个参数表示隐私模式（true）或非隐私模式（false）下，以回调方式异步获取指定源的地理位置权限状态。
+              // getAccessibleGeolocation第三个参数表示隐私模式（true）或非隐私模式（false）下，以回调方式异步获取指定源的地理位置权限状态。
               web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
                 if (error) {
                   console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
@@ -169,7 +169,7 @@
         Button('deleteAllData')
           .onClick(() => {
             try {
-              // deleteAllData第二个参数表示删除所有隐私模式（true）或非隐私模式（false）下，内存中的web数据。
+              // deleteAllData参数表示删除所有隐私模式（true）或非隐私模式（false）下，内存中的web数据。
               web_webview.WebStorage.deleteAllData(true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -231,7 +231,7 @@
         Button('configCookieSync')
           .onClick(() => {
             try {
-              // configCookieSync第二个参数表示获取隐私模式（true）或非隐私模式（false）下，对应url的cookies。
+              // configCookieSync第三个参数表示获取隐私模式（true）或非隐私模式（false）下，对应url的cookies。
               web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
               let e:business_error.BusinessError = error as business_error.BusinessError;

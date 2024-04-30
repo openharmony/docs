@@ -394,6 +394,58 @@ try {
 }
 ```
 
+## zlib.getOriginalSize<sup>12+</sup>
+
+getOriginalSize(compressedFile: string): Promise\<number>
+
+获取压缩文件的原始大小，使用Promise异步返回。成功时返回压缩文件的原始大小，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| compressedFile  | string              | 是   | 指定的压缩文件的文件路径，只支持zip格式压缩文件。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<number> | Promise对象，返回压缩文件的原始大小，单位字节。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| ------ | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 900001 | The input source file is invalid.      |
+| 900003 | The input source file is not ZIP format or damaged. |
+
+**示例：**
+
+```typescript
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
+import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
+let compressedFile = '/data/storage/el2/base/temp/test.zip';
+
+try {
+    zlib.getOriginalSize(compressedFile).then((data: number) => {
+        console.info(`getOriginalSize success. getOriginalSize: ${data}`);
+    }).catch((errData: BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+} catch(errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
 ## zlib.createChecksum<sup>12+</sup>
 
 createChecksum(): Promise&lt;Checksum&gt;

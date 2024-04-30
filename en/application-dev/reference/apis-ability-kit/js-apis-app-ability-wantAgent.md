@@ -815,7 +815,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
 | otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
-| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
 **Example**
 
@@ -905,7 +905,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
 **Example**
 
@@ -1153,6 +1153,8 @@ try {
 
 ## WantAgentFlags
 
+Enumerates the flags used by the **WantAgent** objects.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name               | Value            | Description                                                                     |
@@ -1172,6 +1174,8 @@ try {
 
 ## OperationType
 
+Enumerates the operation types of the **WantAgent** objects.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name             | Value           | Description                     |
@@ -1185,6 +1189,8 @@ try {
 
 
 ## CompleteData 
+
+Describes the data returned by the **WantAgent** object after being triggered.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

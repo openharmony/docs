@@ -14,7 +14,7 @@ addColorStop(offset: number, color: string): void
 
 Adds a color stop for the **CanvasGradient** object based on the specified offset and gradient color.
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 
 **Parameters**
@@ -55,6 +55,6 @@ struct Page45 {
   }
 }
   ```
-  ![en-us_image_0000001256858381](figures/en-us_image_0000001256858381.png)
+  ![en-us_image_0000001194032516](figures/en-us_image_0000001194032516.jpeg)
 
  

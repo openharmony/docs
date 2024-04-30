@@ -335,4 +335,4 @@ struct ComponentChild {
 
 **参考文档**
 
-[animator动画](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md)
+[animator动画](../../../application-dev/reference/apis-arkui/js-apis-animator.md)

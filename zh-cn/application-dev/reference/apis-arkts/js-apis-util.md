@@ -404,9 +404,11 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## TextDecoderOptions<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
@@ -416,9 +418,11 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## DecodeWithStreamOptions<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 解码是否跟随附加数据块相关选项参数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -672,6 +676,8 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -697,6 +703,8 @@ let retStr = result.encoding
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -821,6 +829,8 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
 | read     | number  | 是 | 否 |表示已读取的字符数。 |
@@ -847,6 +857,8 @@ constructor()
 
 TextEncoder的构造函数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -860,6 +872,8 @@ let textEncoder = new util.TextEncoder();
 constructor(encoding?: string)
 
 TextEncoder的构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -881,6 +895,8 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -900,6 +916,8 @@ let textEncoder = util.TextEncoder.create("utf-8");
 encodeInto(input?: string): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -929,6 +947,8 @@ result = textEncoder.encodeInto("\uD800¥¥");
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 对字符串进行编码，将结果写入dest数组。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2653,6 +2673,8 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts 
@@ -2664,6 +2686,8 @@ Base64Helper的构造函数。
 encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2695,6 +2719,8 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2725,6 +2751,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应Uint8Array对象。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2754,6 +2782,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2935,12 +2965,13 @@ Base64编码格式枚举。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。|
-| MIME  | 1 | 表示MIME编码格式。 |
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
+| BASIC | 0 | 表示BASIC编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
 
 
 ## types<sup>8+</sup>

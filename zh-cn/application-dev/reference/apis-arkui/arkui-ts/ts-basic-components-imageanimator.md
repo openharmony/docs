@@ -19,6 +19,8 @@ ImageAnimator()
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -30,6 +32,8 @@ images(value: Array&lt;ImageFrameInfo&gt;)
 设置图片帧信息集合。不支持动态更新。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +51,8 @@ state(value: AnimationStatus)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -62,6 +68,8 @@ duration(value: number)
 设置播放时长。当Images中任意一帧图片设置了单独的duration后，该属性设置无效。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -79,6 +87,8 @@ reverse(value: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -94,6 +104,8 @@ fixedSize(value: boolean)
 设置图片大小是否固定为组件大小。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,6 +141,8 @@ fillMode(value: FillMode)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -143,6 +157,8 @@ iterations(value: number)
 
 设置播放次数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -152,6 +168,8 @@ iterations(value: number)
 | value  | number | 是   | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 
 ## ImageFrameInfo对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名称   | 参数类型   | 必填 | 参数描述 |
 | -------- | -------------- | -------- | -------- |
@@ -174,6 +192,8 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onPause
@@ -184,6 +204,8 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onRepeat
@@ -191,6 +213,8 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 状态回调，动画重复播放时触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -202,6 +226,8 @@ onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onFinish
@@ -211,6 +237,8 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 状态回调，动画播放完成时或者停止播放时触发。 
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -306,14 +334,8 @@ struct ImageAnimatorExample {
   @State iterations: number = 1
   @State images:Array<ImageFrameInfo> = []
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image1')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image2')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image3')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image4')))
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
     this.images.push({src:this.imagePixelMap[0]})
-    this.images.push({src:this.imagePixelMap[1]})
-    this.images.push({src:this.imagePixelMap[2]})
-    this.images.push({src:this.imagePixelMap[3]})
   }
   build() {
     Column({ space: 10 }) {

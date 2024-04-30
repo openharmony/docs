@@ -14,6 +14,8 @@
 
 MenuItemGroup(value?: MenuItemGroupOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数  | 类型                                                                                   | 必填 | 参数描述                                    |
@@ -21,6 +23,8 @@ MenuItemGroup(value?: MenuItemGroupOptions)
 | value | [MenuItemGroupOptions](ts-basic-components-menuitemgroup.md#menuitemgroupoptions类型说明) | 否   | 包含设置MenuItemGroup的标题和尾部显示信息。 |
 
 ## MenuItemGroupOptions类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 类型                                                                                      | 必填 | 描述                          |
 | ------ | ----------------------------------------------------------------------------------------- | ---- | ----------------------------- |

@@ -43,6 +43,25 @@ let pixmapNew: object = pixmap.getPixelMap()
 
 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
 
+## PixelMapDrawableDescriptor<sup>12+</sup>
+
+支持通过传入pixelMap创建PixelMapDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)。
+
+### constructor<sup>12+</sup>
+
+constructor(src?: image.PixelMap)
+
+PixelMapDrawableDescriptor的构造函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型              | 必填  | 说明                                       |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | PxielMap类型参数，存储 PxielMap 图片数据。 |
+
+
 ## LayeredDrawableDescriptor
 
 当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)
@@ -59,7 +78,8 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 }
 ```
 
-**示例：**
+**示例：**  
+1.通过json文件创建LayeredDrawableDescriptor
 ```ts
 // xxx.ets
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
@@ -77,6 +97,58 @@ struct Index {
           .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
+  }
+}
+```
+2.通过PixelMapDrawableDescriptor创建LayeredDrawableDescriptor
+```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import image from '@ohos.multimedia.image'
+
+@Entry
+@Component
+struct Index {
+  @State fore1: image.PixelMap | undefined = undefined
+  @State back1: image.PixelMap | undefined = undefined
+
+  @State foregroundDraw:DrawableDescriptor|undefined=undefined
+  @State backgroundDraw:DrawableDescriptor|undefined=undefined
+  @State maskDraw:DrawableDescriptor|undefined=undefined
+  @State maskPixel: image.PixelMap | undefined = undefined
+  @State draw : LayeredDrawableDescriptor | undefined = undefined
+  async aboutToAppear() {
+    this.fore1 = await this.getPixmapFromMedia($r('app.media.foreground'))
+    this.back1 = await this.getPixmapFromMedia($r('app.media.background'))
+    this.maskPixel = await this.getPixmapFromMedia($r('app.media.ohos_icon_mask'))
+    // 使用PixelMapDrawableDescriptor创建LayeredDrawableDescriptor
+    this.foregroundDraw = new PixelMapDrawableDescriptor(this.fore1)
+    this.backgroundDraw = new PixelMapDrawableDescriptor(this.back1)
+    this.maskDraw = new PixelMapDrawableDescriptor(this.maskPixel)
+
+    this.draw = new LayeredDrawableDescriptor(this.foregroundDraw,this.backgroundDraw,this.maskDraw)
+  }
+  build() {
+    Row() {
+      Column() {
+          Image(this.draw)
+            .width(300)
+            .height(300)
+      }.height('100%').justifyContent(FlexAlign.Center)
+    }.width('100%').height("100%").backgroundColor(Color.Pink)
+  }
+  // 根据资源，通过图片框架获取pixelMap
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.BGRA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
   }
 }
 ```
@@ -258,7 +330,7 @@ AnimatedDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PxielMap 数组类型参数，存储 PxielMap 图片数据。 |
+| pixelMaps | Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
 | options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
 
 **示例：**
@@ -274,8 +346,7 @@ struct Example {
   options: AnimationOptions = {duration:1000, iterations:-1};
   @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   async aboutToAppear() {
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image1')))
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image2')))
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')))
     this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   }
   build() {

@@ -887,14 +887,74 @@ import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContent
 
 export default class UiExtAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string,
+    let sessionId:string = '';
+    if(want.parameters){
+      sessionId  = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
+    }
     let status = abilityManager.UserStatus.ASSERT_TERMINATE;
     abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
-      console.log(TAG, 'notifyDebugAssertResult success.');
+      console.log('notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
-      console.error(TAG, `notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
+      console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
     });
   }
 }
 
+```
+
+## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+
+isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
+
+Checks whether the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) can be started in embedded mode. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the caller.|
+| appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that embedded startup is allowed, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let appId: string = '6918661953712445909';
+
+    try {
+      abilityManager.isEmbeddedOpenAllowed(this.context, appId).then((data) => {
+        console.info(`isEmbeddedOpenAllowed data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`isEmbeddedOpenAllowed failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
 ```

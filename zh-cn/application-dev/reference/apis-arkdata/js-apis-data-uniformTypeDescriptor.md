@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
 
-本模块对OpenHarmony标准化数据类型进行了抽象定义与描述。
+本模块对标准化数据类型进行了抽象定义与描述。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 ## UniformDataType
 
-OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
+标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -145,16 +145,16 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | POSTSCRIPT_FONT<sup>12+</sup>                         | 'com.adobe.postscript-font'                    | PostScript 字体类型，归属类型为FONT。       |
 | POSTSCRIPT_PFB_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfb-font'                    | PostScript Font Binary字体类型，归属类型为FONT。       |
 | POSTSCRIPT_PFA_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfa-font'                    | Adobe Type 1 字体类型，归属类型为FONT。       |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | OpenHarmony系统定义的卡片类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | OpenHarmony系统定义的桌面图标类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。            |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | OpenHarmony系统定义的像素图类型，归属类型为IMAGE。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | OpenHarmony系统定义的元服务类型，归属类型为OBJECT。             |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | OpenHarmony系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | OpenHarmony系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
-| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | OpenHarmony系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | OpenHarmony系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | OpenHarmony系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | OpenHarmony系统定义的Want类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | 系统定义的卡片类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | 系统定义的桌面图标类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。            |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | 系统定义的像素图类型，归属类型为IMAGE。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | 系统定义的元服务类型，归属类型为OBJECT。             |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | 系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | 系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
+| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | 系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | 系统定义的Want类型，归属类型为COMPOSITE_OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 

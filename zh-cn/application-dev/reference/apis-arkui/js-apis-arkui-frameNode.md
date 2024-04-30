@@ -13,7 +13,7 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint } from "@ohos.arkui.node";
 ```
 
 ## FrameNode
@@ -471,6 +471,24 @@ getId(): string
 
 请参考[节点操作示例](#节点操作示例)。
 
+### getUniqueId<sup>12+</sup>
+
+getUniqueId(): number
+
+获取系统分配的唯一标识的节点UniqueID。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| number | 系统分配的唯一标识的节点UniqueID |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 ### getNodeType<sup>12+</sup>
 
 getNodeType(): string
@@ -574,6 +592,30 @@ getInspectorInfo(): Object
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Object | 节点的结构信息。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getCustomProperty<sup>12+</sup>
+
+getCustomProperty(name: string): Object | undefined
+
+通过名称获取组件的自定义属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| name  | string | 是   | 自定义属性的名称。 |
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Object \| undefined | 自定义属性的值。 |
 
 **示例：**
 
@@ -731,7 +773,141 @@ FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被�
 
 **示例：**
 
-请参考[节点自绘制示例](#节点自绘制示例)。
+请参考[节点自定义示例](#节点自定义示例)。
+
+### onMeasure<sup>12+</sup>
+
+onMeasure(constraint: LayoutConstraint): void
+
+FrameNode的自定义测量方法，该方法会重写默认测量方法，在FrameNode进行测量时被调用，测量FrameNode及其内容的大小。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| constraint | [LayoutConstraint](#layoutconstraint12) | 是   | 组件进行测量时使用的布局约束。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### LayoutConstraint<sup>12+</sup>
+
+LayoutConstraint
+
+描述组件的布局约束。
+
+| 名称            |  类型  | 必填  | 说明                                       |
+| -------------- | ------ | ----- | ------------------------------------------ |
+| maxSize           | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最大尺寸。              |
+| minSize            | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最小尺寸。                  |
+| percentReference      | [Size](./js-apis-arkui-graphics.md#size) | 是    | 子节点计算百分比时的尺寸基准。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onLayout<sup>12+</sup>
+
+onLayout(position: Position): void
+
+FrameNode的自定义布局方法，该方法会重写默认布局方法，在FrameNode进行布局时被调用，为FrameNode及其子节点指定位置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| position | [Position](./js-apis-arkui-graphics.md#position) | 是   | 组件进行布局时使用的位置信息。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### setMeasuredSize<sup>12+</sup>
+
+setMeasuredSize(size: Size): void
+
+设置FrameNode的测量后的尺寸，默认单位PX。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| size | [Size](./js-apis-arkui-graphics.md#size) | 是   | FrameNode的测量后的尺寸。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### setLayoutPosition<sup>12+</sup>
+
+setLayoutPosition(position: Position): void
+
+设置FrameNode的布局后的位置，默认单位PX。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| position | [Position](./js-apis-arkui-graphics.md#position) | 是   | FrameNode的布局后的位置。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### measure<sup>12+</sup>
+
+measure(constraint: LayoutConstraint): void
+
+调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| constraint | [LayoutConstraint](#layoutconstraint12) | 是   | 组件进行测量时使用的父容器布局约束。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### layout<sup>12+</sup>
+
+layout(position: Position): void
+
+调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| position | [Position](./js-apis-arkui-graphics.md#position) | 是   | 组件进行布局时使用的位置信息。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### setNeedsLayout<sup>12+</sup>
+
+setNeedsLayout(): void
+
+该方法会将FrameNode标记为需要布局的状态，下一帧将会进行重新布局。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
 
 ### invalidate<sup>12+</sup>
 
@@ -743,7 +919,7 @@ invalidate(): void
 
 **示例：**
 
-请参考[节点自绘制示例](#节点自绘制示例)。
+请参考[节点自定义示例](#节点自定义示例)。
 
 ## 节点操作示例
 ```ts
@@ -883,6 +1059,11 @@ class MyNodeController extends NodeController {
     let id = this.frameNode?.getId();
     console.log(TEST_TAG + id);
   }
+  getUniqueId()
+  {
+    let uniqueId = this.frameNode?.getUniqueId();
+    console.log(TEST_TAG + uniqueId);
+  }
   getNodeType()
   {
     let nodeType = this.frameNode?.getNodeType();
@@ -912,6 +1093,11 @@ class MyNodeController extends NodeController {
   {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
+  }
+  getCustomProperty()
+  {
+    let customProperty = this.frameNode?.getCustomProperty();
+    console.log(TEST_TAG + customProperty);
   }
 
   throwError()
@@ -1028,6 +1214,11 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.getId();
         })
+      Button("getUniqueId")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUniqueId();
+        })
       Button("getNodeType")
         .width(300)
         .onClick(()=>{
@@ -1057,6 +1248,11 @@ struct Index {
         .width(300)
         .onClick(()=>{
           this.myNodeController.getInspectorInfo();
+        })
+      Button("getCustomProperty")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getCustomProperty();
         })
       Button("throwError")
         .width(300)
@@ -1189,15 +1385,71 @@ struct Index {
 }
 ```
 
-## 节点自绘制示例
+## 节点自定义示例
 
 ```ts
 import { UIContext } from '@ohos.arkui.UIContext';
-import { DrawContext, FrameNode, NodeController } from '@ohos.arkui.node'
-import drawing from '@ohos.graphics.drawing'
+import { DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@ohos.arkui.node';
+import drawing from '@ohos.graphics.drawing';
+
+function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
+  const size = child.getUserConfigSize();
+  const width = Math.max(
+    Math.min(constraint.maxSize.width, size.width.value), 
+    constraint.minSize.width
+    );
+  const height = Math.max(
+    Math.min(constraint.maxSize.height, size.height.value), 
+    constraint.minSize.height
+    );
+  const finalSize: Size = { width, height };
+  const res: LayoutConstraint = {
+    maxSize: finalSize,
+    minSize: finalSize,
+    percentReference: finalSize
+  };
+
+  return res;
+}
 
 class MyFrameNode extends FrameNode {
   public width: number = 10;
+  private space: number = 1;
+
+  onMeasure(constraint: LayoutConstraint): void {
+    let sizeRes: Size = { width: 100, height: 100 };
+    for (let i = 0;i < this.getChildrenCount();i++) {
+      let child = this.getChild(i);
+      if (child) {
+        let childConstraint = GetChildLayoutConstraint(constraint, child);
+        child.measure(childConstraint);
+        let size = child.getMeasuredSize();
+        sizeRes.height += size.height + this.space;
+        sizeRes.width = Math.max(sizeRes.width, size.width);
+      }
+    }
+    this.setMeasuredSize(sizeRes);
+  }
+
+  onLayout(position: Position): void {
+    let y = 0;
+    for (let i = 0;i < this.getChildrenCount();i++) {
+      let child = this.getChild(i);
+      if (child) {
+        child.layout({
+          x: 10,
+          y: 10
+        });
+        child.setNeedsLayout();
+        child.layout({
+          x: 20,
+          y: y
+        });
+        y += child.getMeasuredSize().height + this.space;
+      }
+    }
+    this.setLayoutPosition(position);
+  }
 
   onDraw(context: DrawContext) {
     const canvas = context.canvas;
