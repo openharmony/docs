@@ -316,7 +316,7 @@ onStop?(): void
 
 当卡片提供方的卡片进程退出时，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
   
 **系统能力：** SystemCapability.Ability.Form
 
