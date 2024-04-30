@@ -2392,13 +2392,13 @@ let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
 try {
   (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-    });
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+  });
 } catch (exception) {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
