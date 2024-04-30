@@ -49,6 +49,18 @@ CustomTheme接口用于自定义Theme。CustomTheme的属性是可选的，只�
 | CustomComponent | onWillApplyTheme?(theme: Theme) | 是    | 回调函数用于自定义组件获取当前生效的Theme对象 | common.d.ts |
 
 
+  其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
+
+| 接口名          | 方法/属性名                                    | 是否必填 | 描述（说明默认值）                                                       | 所属文件                   |
+|--------------|-------------------------------------------|------|-----------------------------------------------------------------|------------------------|
+| ThemeControl | setDefaultTheme(theme: CustomTheme): void | 是    | 将自定义Theme应用于APP组件，实现APP组件风格跟随Theme切换。Theme后续可扩展shape, typograph | @ohos.arkui.theme.d.ts |
+
+
+| 组件名             | 方法/属性名                          | 是否必填 | 描述（说明默认值）                 | 所属文件        |
+|-----------------|---------------------------------|------|---------------------------|-------------|
+| CustomComponent | onWillApplyTheme?(theme: Theme) | 是    | 回调函数用于自定义组件获取当前生效的Theme对象 | common.d.ts |
+
+
 参考示例：
 
   ```ts
