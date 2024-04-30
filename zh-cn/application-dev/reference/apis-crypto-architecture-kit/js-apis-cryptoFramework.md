@@ -830,6 +830,56 @@ let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
 console.info('returnBlob data：' + returnBlob.data);
 ```
 
+### getEncodedPem<sup>12+</sup>
+
+getEncodedPem(format: string): string
+
+同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，公钥格式满足X.509规范、PKCS#1规范和PEM编码格式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 指定的获取密钥字符串的编码格式。其中，公钥可为'PKCS1' 或'X509'格式。|
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| string | 用于获取指定密钥格式的具体内容。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let publicPkcs1Str1024: string  =
+  "-----BEGIN RSA PUBLIC KEY-----\n"
+  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+  + "-----END RSA PUBLIC KEY-----\n";
+
+function TestPubKeyPkcs1ToX509BySync1024() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertPemKeySync(publicPkcs1Str1024, null);
+  let pubPemKey = keyPair.pubKey;
+  let pubString = pubPemKey.getEncodedPem('X509');
+  console.info("[sync]TestPubKeyPkcs1ToX509BySync1024 pubString output is " + pubString);
+}
+```
+
 ## PriKey
 
 私钥，是[Key](#key)的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。
@@ -934,6 +984,66 @@ getEncodedDer(format: string): DataBlob
 let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
 let returnBlob = key.getEncodedDer('PKCS8');
 console.info('returnBlob data：' + returnBlob.data);
+```
+
+### getEncodedPem<sup>12+</sup>
+
+getEncodedPem(format: string): string
+
+同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，私钥格式满足PKCS#8规范、PKCS#1规范和PEM编码方式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 指定的获取密钥字符串的编码格式。其中，私钥可为'PKCS1' 或'PKCS8'格式。|
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| string | 用于获取指定密钥格式的具体内容。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+  + "-----END RSA PRIVATE KEY-----\n";
+
+function TestPriKeyPkcs1ToPkcs8BySync1024() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertPemKeySync(null, priKeyPkcs1Str1024);
+  let priPemKey = keyPair.priKey;
+  let priString = priPemKey.getEncodedPem('PKCS8');
+  console.info("[sync]TestPriKeyPkcs1ToPkcs8BySync1024 priString output is " + priString);
+}
 ```
 
 ## KeyPair
@@ -1627,6 +1737,149 @@ try {
 2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
 3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 4. convertKey或convertKeySync方法将外来二进制数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
+
+### convertPemKey<sup>12+</sup>
+
+convertPemKey(pubKey: string | null, priKey: string | null): Promise\<KeyPair>
+
+异步获取指定数据生成非对称密钥，通过Promise获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明             |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null | 是  | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
+| priKey | string \| null | 是  | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+  + "-----END RSA PRIVATE KEY-----\n";
+  let publicPkcs1Str1024: string  =
+  "-----BEGIN RSA PUBLIC KEY-----\n"
+  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+  + "-----END RSA PUBLIC KEY-----\n";
+async function TestConvertPemKeyByPromise() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyGenPromise = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
+  keyGenPromise.then(keyPair => {
+    console.info('convertPemKey success.');
+  }).catch((error: BusinessError) => {
+    console.error("convertPemKey error.");
+  });
+}
+```
+
+### convertPemKeySync<sup>12+</sup>
+
+convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
+
+同步获取指定数据生成非对称密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明             |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null| 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
+| priKey | string \| null| 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+  + "-----END RSA PRIVATE KEY-----\n";
+  let publicPkcs1Str1024: string  =
+  "-----BEGIN RSA PUBLIC KEY-----\n"
+  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+  + "-----END RSA PUBLIC KEY-----\n";
+function TestConvertPemKeyBySync() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  try {
+    let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
+    if (keyPairData != null) {
+      console.info('[Sync]: convert pem key pair success');
+    } else {
+      console.error("[Sync]: convert pem key pair result fail!");
+    }
+  } catch (e) {
+    console.error(`Sync error, ${e.code}, ${e.message}`);
+  }
+}
+```
 
 ## cryptoFramework.createAsyKeyGeneratorBySpec<sup>10+</sup>
 
