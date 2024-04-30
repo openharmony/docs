@@ -3,6 +3,10 @@
 
 业务需要获取持久化存储的非对称密钥的公钥时使用，当前支持ECC/RSA/ED25519/X25519的公钥导出。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
