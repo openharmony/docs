@@ -4,9 +4,9 @@
 HUKS提供了接口供应用查询密钥别名集。
 
 ## 在CMake脚本中链接相关动态库
- ```txt
+```txt
    target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
-   ```
+```
 
 ## 开发步骤
 

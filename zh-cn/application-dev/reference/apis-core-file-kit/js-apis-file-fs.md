@@ -4986,34 +4986,34 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| length | number     | 期望读取数据的长度。可选，默认缓冲区长度。     <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。      |
-|  offset    | number     | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。<br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ |------------------ |
+| length | number     | 否 | 期望读取数据的长度。可选，默认缓冲区长度。     <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。      |
+|  offset    | number     | 否 | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。<br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## ReadTextOptions<sup>11+</sup>
 
-可选项类型，支持readText接口使用，ReadTextOptions继承至ReadOptions。
+可选项类型，支持readText接口使用，ReadTextOptions继承至[ReadOptions](#readoptions11)。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| length | number     | 期望读取数据的长度。可选，默认文件长度。    <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。       |
-|  offset    | number     | 期望读取文件的位置。可选，默认从当前位置开始读取。<br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| encoding    | string | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。   <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。    |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | 否 | 期望读取数据的长度。可选，默认文件长度。    <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。       |
+|  offset    | number     | 否 | 期望读取文件的位置。可选，默认从当前位置开始读取。<br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| encoding    | string | 否 | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。   <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。    |
 
 ## WriteOptions<sup>11+</sup>
 
-可选项类型，支持write接口使用，WriteOptions继承至Options。
+可选项类型，支持write接口使用，WriteOptions继承至[Options](#options11)。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| length | number     | 期望写入数据的长度。可选，默认缓冲区长度。           |
-|  offset    | number     | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。 |
-| encoding    | string | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
+| 名称        | 类型       | 必选       | 说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。           |
+|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。 |
+| encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
 
 ## ListFileOptions<sup>11+</sup>
 
@@ -5021,8 +5021,8 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称        | 类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| recursion | boolean     | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。    <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。       |
-|  listNum    | number     | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。<br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| filter    | [Filter](#filter10) | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。  <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。     |
+| 名称        | 类型       | 必选       |  说明                |
+| ----------- | --------------- | ------------------ | ------------------ |
+| recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。    <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。       |
+|  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。<br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| filter    | [Filter](#filter10) | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。  <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。     |

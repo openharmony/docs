@@ -14,6 +14,8 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 
 给组件绑定半模态页面，点击后显示模态页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -64,11 +66,11 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 
 | 名称            | 类型                                       | 必填 | 说明                     |
 | --------------- | ------------------------------------------ | ---- | ------------------------ |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色。   |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | onWillAppear<sup>12+</sup>        | () => void                                 | 否   | 半模态页面显示（动画开始前）回调函数。 |
-| onAppear        | () => void                                 | 否   | 半模态页面显示（动画结束后）回调函数。 |
+| onAppear        | () => void                                 | 否   | 半模态页面显示（动画结束后）回调函数。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | onWillDisappear<sup>12+</sup>     | () => void                                 | 否   | 半模态页面回退（动画开始前）回调函数。<br />**说明：**<br />不允许在onWillDisappear函数中修改状态变量，可能会导致组件行为不稳定。 |
-| onDisappear     | () => void                                 | 否   | 半模态页面回退（动画结束后）回调函数。 |
+| onDisappear     | () => void                                 | 否   | 半模态页面回退（动画结束后）回调函数。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## SheetType<sup>11+</sup>枚举说明
 

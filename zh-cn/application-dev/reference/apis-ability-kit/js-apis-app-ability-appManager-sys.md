@@ -14,6 +14,20 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 import appManager from '@ohos.app.ability.appManager';
 ```
 
+## appManager.PreloadMode<sup>12+</sup>
+
+表示预加载应用进程模式的枚举。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 名称        | 值  | 说明                         |
+| ----------- | --- | --------------------------- |
+| PRESS_DOWN  | 0 | 按下应用图标时进行应用进程预加载。 |
+
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
 isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>
@@ -1534,5 +1548,68 @@ try {
     let code = (paramError as BusinessError).code;
     let message = (paramError as BusinessError).message;
     console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.preloadApplication<sup>12+</sup>
+
+预加载应用进程。接口返回成功并不代表预加载成功，具体结果以目标应用进程是否创建成功为准。使用Promise异步回调。
+
+**需要权限**：ohos.permission.PRELOAD_APPLICATION
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 预加载的应用包名。 |
+| userId | number | 是 | 预加载的用户Id。 |
+| mode | [PreloadMode](#appmanagerpreloadmode12+) | 是 | 预加载模式。 |
+| appIndex | number | 否 | 预加载应用分身的appIndex。 |
+
+**返回值：**
+
+| 类型           | 说明              |
+| -------------- | ---------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16000050 | Internal error. |
+| 16300005 | The target bundle does not exist. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let bundleName = "ohos.samples.etsclock";
+  let userId = 100;
+  let mode = appManager.PreloadMode.PRESS_DOWN;
+  let appIndex = 0;
+  appManager.preloadApplication(bundleName, userId, mode, appIndex)
+    .then(() => {
+      hilog.info(0x0000, 'testTag', `preloadApplication success`);
+    })
+    .catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `preloadApplication error, code: ${err.code}, msg:${err.message}`);
+    })
+} catch (err) {
+  hilog.error(0x0000, 'testTag', `preloadApplication error, code: ${err.code}, msg:${err.message}`);
 }
 ```

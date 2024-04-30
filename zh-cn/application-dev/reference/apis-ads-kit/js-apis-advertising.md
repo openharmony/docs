@@ -77,6 +77,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 | -------- | -------- |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
@@ -148,6 +149,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 | -------- | -------- |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
@@ -302,8 +304,8 @@ export struct ShowAd {
 | adId | string | 是 | 广告位ID。 | 
 | adType | number | 否 | 请求的广告类型。<br/>- 1：开屏广告。<br/>- 3：原生广告。<br/>- 7：激励广告。<br/>- 8：banner广告。<br/>- 12：插屏广告。<br/>- 60：贴片广告。 |
 | adCount | number | 否 | 请求的广告数量。 | 
-| adWidth | number | 否 | 广告位宽度。 | 
-| adHeight | number | 否 | 广告位高度。 | 
+| adWidth | number | 否 | 广告位宽度，必须大于0。 | 
+| adHeight | number | 否 | 广告位高度，必须大于0。 | 
 | adSearchKeyword | string | 否 | 广告关键字。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。 | 
 
