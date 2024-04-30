@@ -136,7 +136,7 @@ static napi_value Play(napi_env env, napi_callback_info info)
     
     // 获取传递的string长度
     size_t length = 0;
-    if (napi_ok == napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
+    if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
         // 处理异常
         return nullptr;
     }
