@@ -359,8 +359,6 @@ multiply(other?: Matrix2D): Matrix2D
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 该接口从API version 10开始废弃。
 
 **参数：**

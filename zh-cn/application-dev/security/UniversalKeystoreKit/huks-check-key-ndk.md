@@ -3,6 +3,10 @@
 
 HUKS提供了接口供应用查询指定密钥是否存在。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 

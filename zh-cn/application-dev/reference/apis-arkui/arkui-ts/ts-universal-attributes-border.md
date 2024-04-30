@@ -15,6 +15,8 @@ border(value: BorderOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -30,6 +32,8 @@ borderStyle(value: BorderStyle | EdgeStyles)
 设置元素的边框线条样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,6 +82,8 @@ borderRadius(value: Length | BorderRadiuses)
 设置边框的圆角。圆角大小受组件尺寸限制，最大值为组件宽或高的一半。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,6 +138,8 @@ borderRadius(value: Length | BorderRadiuses)
 ## EdgeStyles<sup>9+</sup>对象说明
 
 引入该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |

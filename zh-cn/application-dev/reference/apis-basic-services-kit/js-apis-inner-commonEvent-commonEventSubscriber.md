@@ -41,6 +41,8 @@ getCode(callback: AsyncCallback\<number>): void
 
 获取有序公共事件代码。使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **参数：**
@@ -69,6 +71,8 @@ getCode(): Promise\<number>
 
 获取有序公共事件代码。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **返回值：**
@@ -93,6 +97,8 @@ getCodeSync(): number
 
 获取有序公共事件代码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **返回值：**
@@ -113,6 +119,8 @@ console.info("getCodeSync " + JSON.stringify(code));
 setCode(code: number, callback: AsyncCallback\<void>): void
 
 设置有序公共事件的代码。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -142,6 +150,8 @@ subscriber.setCode(1, setCodeCB);
 setCode(code: number): Promise\<void>
 
 设置有序公共事件的代码。使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -173,6 +183,8 @@ setCodeSync(code: number): void
 
 设置有序公共事件的代码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **参数：**
@@ -199,6 +211,8 @@ try {
 getData(callback: AsyncCallback\<string>): void
 
 获取有序公共事件的数据。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -228,6 +242,8 @@ getData(): Promise\<string>
 
 获取有序公共事件的数据。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **返回值：**
@@ -252,6 +268,8 @@ getDataSync(): string
 
 获取有序公共事件的数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **返回值：**
@@ -272,6 +290,8 @@ console.info("getDataSync " + JSON.stringify(data));
 setData(data: string, callback: AsyncCallback\<void>): void
 
 设置有序公共事件的数据。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -301,6 +321,8 @@ subscriber.setData("publish_data_changed", setDataCB);
 setData(data: string): Promise\<void>
 
 设置有序公共事件的数据。使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -332,6 +354,8 @@ setDataSync(data: string): void
 
 设置有序公共事件的数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **参数：**
@@ -356,6 +380,8 @@ try {
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 设置有序公共事件代码和数据。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -387,6 +413,8 @@ setCodeAndData(code: number, data: string): Promise\<void>
 
 设置有序公共事件的代码和数据。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **参数：**
@@ -415,6 +443,8 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 ## setCodeAndDataSync<sup>10+</sup>
 
 setCodeAndDataSync(code: number, data: string): void
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 设置有序公共事件的代码和数据。
 
@@ -808,6 +838,8 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 获取订阅者的订阅信息。使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **参数：**
@@ -836,6 +868,8 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 获取订阅者的订阅信息。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
 **返回值：**
@@ -859,6 +893,8 @@ subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEvent
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
 获取订阅者的订阅信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 

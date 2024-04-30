@@ -110,6 +110,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 引入该对象时，至少传入一个参数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
 | left   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧外描边颜色。 |
@@ -131,6 +133,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 ## EdgeOutlineStyles对象说明
 
 引入该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |

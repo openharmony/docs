@@ -110,6 +110,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 位置信息请求参数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
@@ -124,6 +126,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 ## CurrentLocationRequest
 
 当前位置信息请求参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -207,19 +211,18 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
-| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
-| altitude | number | 是 | 否 | 表示高度信息，单位米。 |
-| accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
-| speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
-| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
-| direction | number | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。 |
-| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
-| additions | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
-| additionSize | number | 是 | 否 | 附加信息数量。取值范围为大于等于0。  
-
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| latitude | number| 是 | 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| longitude | number| 是 | 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| altitude | number | 是 | 是 | 否 | 表示高度信息，单位米。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| accuracy | number | 是 | 是 | 否 | 表示精度信息，单位米。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| speed | number | 是 | 是 | 否 |表示速度信息，单位米每秒。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| timeStamp | number | 是 | 是 | 否 | 表示位置时间戳，UTC格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| direction | number | 是 | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| timeSinceBoot | number | 是 | 是 | 否 | 表示位置时间戳，开机时间格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| additions | Array&lt;string&gt;| 否 | 是 | 否 | 附加信息。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| additionSize | number| 否 | 是 | 否 | 附加信息数量。取值范围为大于等于0。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 | 
 
 
 
@@ -238,6 +241,8 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 位置请求中位置信息优先级类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 值 | 说明 |
@@ -250,7 +255,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestScenario
 
-  位置请求中定位场景类型。
+位置请求中定位场景类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -282,6 +289,8 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
 开启位置变化订阅，并发起定位请求。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -328,6 +337,8 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 关闭位置变化订阅，并删除对应的定位请求。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -922,6 +933,8 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 获取当前位置，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -971,6 +984,8 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 获取当前位置，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1017,6 +1032,8 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 获取当前位置，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1069,6 +1086,8 @@ getLastLocation(): Location
 
 获取上一次位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1107,6 +1126,8 @@ getLastLocation(): Location
 isLocationEnabled(): boolean
 
 判断位置服务是否已经使能。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

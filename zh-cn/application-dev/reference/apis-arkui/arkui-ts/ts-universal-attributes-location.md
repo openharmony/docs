@@ -14,6 +14,8 @@ align(value: Alignment)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -29,6 +31,8 @@ direction(value: Direction)
 设置容器元素内主轴方向上的布局。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,6 +82,8 @@ offset(value: Position | Edges)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -117,6 +123,9 @@ alignRules(value: AlignRuleOption)
 | bias   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
 
 ## Bias对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | Bias  | { horizontal?: number, vertical?: number } | &nbsp;否 | 组件在锚点约束下的偏移参数。<br/>-&nbsp;horizontal：水平方向上的bias值。<br/>-&nbsp;vertical：垂直方向上的bias值。<br/>-&nbsp;当子组件的width可以确定并且有2个水平方向的锚点时生效。<br/>-&nbsp;当子组件的height可以确定并且有2个垂直方向的锚点时生效。<br/>默认值：{<br/>horizontal:&nbsp;0.5,<br/>vertical:&nbsp;0.5<br/>}。 |

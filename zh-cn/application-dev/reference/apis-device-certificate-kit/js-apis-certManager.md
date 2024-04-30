@@ -188,9 +188,10 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 | 17500003 | The keystore is not valid format or keystorePwd is not correct. |
 
 **示例**：
@@ -244,9 +245,10 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 | 17500003 | The keystore is not valid format or keystorePwd is not correct. |
 
 **示例**：
@@ -295,6 +297,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -349,6 +352,7 @@ getPrivateCertificate(keyUri: string) : Promise\<CMResult>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -397,6 +401,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : vo
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -446,6 +451,7 @@ uninstallPrivateCertificate(keyUri: string) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -490,6 +496,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by user. |
@@ -546,6 +553,7 @@ init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by user. |
@@ -594,9 +602,10 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -649,9 +658,10 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -697,9 +707,10 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -749,9 +760,10 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -804,9 +816,10 @@ finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -866,9 +879,10 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -917,9 +931,10 @@ abort(handle: Uint8Array) : Promise\<void>
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -970,7 +985,7 @@ getPublicCertificate(keyUri: string) : Promise\<CMResult>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005 | The application is not authorized by user. |
@@ -1026,7 +1041,7 @@ isAuthorizedApp(keyUri: string) : Promise\<boolean>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 
 **示例**：

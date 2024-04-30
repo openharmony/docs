@@ -188,7 +188,7 @@ struct WebComponent {
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 否 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -9240,8 +9240,8 @@ Web组件发送的资源请求信息。
 
 | 名称 | 类型 | 可读 | 可写 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
+| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -9730,9 +9730,9 @@ setError(message: Error): void
 
 | 名称   | 类型   | 可读 | 可写 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 否 | 指定源的字符串索引。 |
-| usage  | number | 是  | 否 | 指定源的存储量。     |
-| quota  | number | 是  | 否 | 指定源的存储配额。   |
+| origin | string | 是  | 是 | 指定源的字符串索引。 |
+| usage  | number | 是  | 是 | 指定源的存储量。     |
+| quota  | number | 是  | 是 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -9742,8 +9742,8 @@ setError(message: Error): void
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -9808,9 +9808,9 @@ struct WebComponent {
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
 | icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 否   | 历史记录项的标题。           |
+| historyUrl    | string                                 | 是   | 是   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 是   | 是   | 历史记录项的原始url地址。    |
+| title         | string                                 | 是   | 是   | 历史记录项的标题。           |
 
 ## WebCustomScheme
 

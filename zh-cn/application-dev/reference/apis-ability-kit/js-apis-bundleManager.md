@@ -17,6 +17,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 包信息标志，指示需要获取的包信息的内容。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                                      | 值         | 说明                                                         |
@@ -41,7 +43,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。 |
+| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
@@ -69,6 +71,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 指示权限授予状态。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
@@ -79,6 +83,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### SupportWindowMode
 
 标识该组件所支持的窗口模式。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -91,6 +97,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### LaunchType
 
 指示组件的启动方式。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -118,6 +126,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
@@ -140,6 +150,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识共享库的版本兼容类型。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                   | 值   | 说明                             |
@@ -149,6 +161,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### ModuleType
 
 标识模块类型。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -161,6 +175,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### BundleType
 
 标识应用的类型。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -176,6 +192,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -225,6 +243,8 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -272,6 +292,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -328,6 +350,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -406,6 +430,8 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -477,6 +503,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -531,6 +559,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -601,6 +631,8 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -661,6 +693,8 @@ try {
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 以同步方法根据给定的bundleFlags获取当前应用的BundleInfo。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1081,6 +1115,8 @@ try {
 canOpenLink(link: string): boolean
 
 查询给定的链接是否可以打开。指定链接的scheme需要在module.json文件的querySchemes字段下配置。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

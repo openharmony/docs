@@ -2780,7 +2780,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
 | 62980096| The operation failed.             |
 | 62980103| The image data is not supported.            |
 | 62980110| The image source data is incorrect.            |
@@ -2941,7 +2941,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
 | 62980133| The EXIF data is out of range.    |
 | 62980135| The EXIF value is invalid.             |
@@ -4119,7 +4119,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
 
 **示例：**
 
@@ -4448,7 +4448,7 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;          |
 
 **示例：**
 
@@ -5141,7 +5141,7 @@ PixelMap的初始化选项。
 ## 补充说明
 ### SVG标签说明
 
-从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG文件需添加xml声明，应以“<?xml”开头，并且SVG标签需设置width，height。当前支持的标签列表有：
 - a
 - circla
 - clipPath
