@@ -34,6 +34,7 @@ onDependencyCompleted(dependency: string, result: ESObject): void
 ```ts
 import StartupTask from '@ohos.app.appstartup.StartupTask';
 
+@Sendable
 export default class Sample_001 extends StartupTask {
   onDependencyCompleted(dependence: string, result) {
     console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
@@ -68,6 +69,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 ```ts
 import StartupTask from '@ohos.app.appstartup.StartupTask';
 
+@Sendable
 export default class Sample_001 extends StartupTask {
   async init(context) {
     console.info("StartupTest Sample_001 init");
