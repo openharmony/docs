@@ -18,6 +18,8 @@ import buffer from '@ohos.buffer';
 
 表示支持的编码格式类型。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 类型    | 说明                 |
@@ -39,6 +41,8 @@ import buffer from '@ohos.buffer';
 alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding): Buffer
 
 创建一定字节长度的Buffer对象，并初始化。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -73,6 +77,8 @@ allocUninitializedFromPool(size: number): Buffer
 创建指定大小未被初始化的Buffer对象。内存从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -103,6 +109,8 @@ allocUninitialized(size: number): Buffer
 创建指定大小未被初始化的Buffer实例。内存不从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -131,6 +139,8 @@ buf.fill(0);
 byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
 
 根据不同的编码方法，返回指定字符串的字节数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -163,6 +173,7 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
 返回两个数组的比较结果，通常用于对Buffer对象数组进行排序。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -198,6 +209,8 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 将数组中的内容复制指定字节长度到新的Buffer对象中并返回。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -239,6 +252,8 @@ from(array: number[]): Buffer;
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -265,6 +280,8 @@ console.log(buf.toString('hex')); // 627566666572
 from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?: number): Buffer
 
 创建指定长度的与`arrayBuffer`共享内存的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -305,6 +322,8 @@ from(buffer: Buffer | Uint8Array): Buffer
 
 创建并复制`buffer`数据到新的Buffer对象并返回。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -333,6 +352,8 @@ let buf2 = buffer.from(buf1);
 from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 
 根据指定的`object`类型数据，创建新的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -363,6 +384,8 @@ let buf = buffer.from(new String('this is a test'), 'utf8', 14);
 from(string: String, encoding?: BufferEncoding): Buffer
 
 根据指定编码格式的字符串，创建新的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -398,6 +421,8 @@ isBuffer(obj: Object): boolean
 
 判断`obj`是否为Buffer。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -429,6 +454,8 @@ let result4 = buffer.isBuffer(new Uint8Array(1024)); // false
 isEncoding(encoding: string): boolean
 
 判断`encoding`是否为支持的编码格式。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -463,6 +490,8 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -491,6 +520,8 @@ console.log(newBuf.toString('ascii'));
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -523,6 +554,8 @@ console.log(JSON.stringify(buf.byteOffset));
 compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
 当前Buffer对象与目标Buffer对象进行比较，并返回Buffer在排序中的顺序结果。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -568,6 +601,8 @@ console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
 copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sourceEnd?: number): number
 
 将`this`实例中指定位置的数据复制到`target`的指定位置上，并返回复制的字节总长度。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -617,6 +652,8 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
 返回一个包含key和value的迭代器。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -644,6 +681,8 @@ while (!next.done) {
 equals(otherBuffer: Uint8Array | Buffer): boolean
 
 比较`this`实例和otherBuffer实例是否相等。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -677,6 +716,8 @@ console.log(buf1.equals(buf3).toString());	// 打印: false
 fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number, encoding?: BufferEncoding): Buffer
 
 用`value`填充当前对象指定位置的数据，默认为循环填充，并返回填充后的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -719,6 +760,8 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 
 检查Buffer对象是否包含`value`值。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -750,6 +793,8 @@ console.log(buf.includes('be').toString());	// 打印: false
 indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
 查找当前对象中第一次出现`value`的索引，如果不包含`value`，则为-1。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -783,6 +828,8 @@ keys(): IterableIterator&lt;number&gt;
 
 返回一个包含key值的迭代器。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -808,6 +855,8 @@ for (const key of numbers) {
 lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
 返回`this`实例中最后一次出现`value`的索引，如果对象不包含，则为-1。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -841,6 +890,8 @@ console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
 readBigInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的大端序64位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -883,6 +934,8 @@ readBigInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的小端序64位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -923,6 +976,8 @@ let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 readBigUInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的大端序64位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -965,6 +1020,8 @@ readBigUInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的小端序64位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1006,6 +1063,8 @@ readDoubleBE(offset?: number): number
 
 从指定`offset`处读取64位大端序双精度值。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1045,6 +1104,8 @@ let result = buf1.writeDoubleBE(123.456, 0);
 readDoubleLE(offset?: number): number
 
 从指定`offset`处读取64位小端序双精度值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1086,6 +1147,8 @@ readFloatBE(offset?: number): number
 
 从指定`offset`处读取32位大端序浮点数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1126,6 +1189,8 @@ readFloatLE(offset?: number): number
 
 从指定`offset`处读取32位小端序浮点数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1165,6 +1230,8 @@ let result = buf1.writeFloatLE(0xcabcbcbc, 0);
 readInt8(offset?: number): number
 
 从指定的`offset`处读取有符号的8位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1207,6 +1274,8 @@ readInt16BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序16位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1246,6 +1315,8 @@ let result = buf1.writeInt16BE(0x1234, 0);
 readInt16LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序16位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1287,6 +1358,8 @@ readInt32BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序32位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1327,6 +1400,8 @@ readInt32LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序32位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1366,6 +1441,8 @@ let result = buf1.writeInt32BE(0x12345678, 0);
 readIntBE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取byteLength个字节，并将结果解释为支持最高48位精度的大端序、二进制补码有符号值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1411,6 +1488,8 @@ readIntLE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的小端序、二进制补码有符号值。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1452,6 +1531,8 @@ let result = buf1.writeIntLE(0x123456789011, 0, 6);
 readUInt8(offset?: number): number
 
 从`offset`处读取8位无符号整型数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1497,6 +1578,8 @@ readUInt16BE(offset?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1536,6 +1619,8 @@ let result = buf1.writeUInt16BE(0x1234, 0);
 readUInt16LE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的小端序16位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1578,6 +1663,8 @@ let result = buf1.writeUInt16LE(0x1234, 0);
 readUInt32BE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的大端序32位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1622,6 +1709,8 @@ readUInt32LE(offset?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1660,6 +1749,8 @@ let result = buf1.writeUInt32LE(0x12345678, 0);
 readUIntBE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的无符号大端序整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1702,6 +1793,8 @@ let result = buf1.writeUIntBE(0x13141516, 0, 4);
 readUIntLE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的无符号小端序整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1747,6 +1840,8 @@ subarray(start?: number, end?: number): Buffer
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1780,6 +1875,8 @@ console.log(buf2.toString('ascii', 0, buf2.length));
 swap16(): Buffer
 
 将当前对象解释为无符号的16位整数数组，并交换字节顺序。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1816,6 +1913,8 @@ swap32(): Buffer
 
 将当前对象解释为无符号的32位整数数组，并交换字节顺序。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 
@@ -1851,6 +1950,8 @@ swap64(): Buffer
 
 将当前对象解释为无符号的64位整数数组，并交换字节顺序。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 
@@ -1885,6 +1986,8 @@ toJSON(): Object
 
 将Buffer转为JSON并返回。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 
@@ -1910,6 +2013,8 @@ console.log(JSON.stringify(obj));
 toString(encoding?: string, start?: number, end?: number): string
 
 将当前对象中指定位置数据转成指定编码格式字符串并返回。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1946,6 +2051,8 @@ values(): IterableIterator&lt;number&gt;
 
 返回一个包含value的迭代器。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1973,6 +2080,8 @@ while (!next.done) {
 write(str: string, offset?: number, length?: number, encoding?: string): number
 
 从Buffer对象的offset偏移写入指定编码的字符串str，写入的字节长度为length。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2020,6 +2129,8 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入有符号的大端序64位BigInt型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2059,6 +2170,8 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入有符号的小端序64位BigInt型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2095,6 +2208,8 @@ let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
 ### writeBigUInt64BE
 
 writeBigUInt64BE(value: bigint, offset?: number): number
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 从Buffer对象的offset偏移写入无符号的大端序64位BigUInt型数据value。
 
@@ -2137,6 +2252,8 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入无符号的小端序64位BigUInt型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2175,6 +2292,8 @@ let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
 writeDoubleBE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的64位双浮点型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2215,6 +2334,8 @@ writeDoubleLE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的64位双浮点型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2253,6 +2374,8 @@ let result = buf.writeDoubleLE(123.456, 0);
 writeFloatBE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位浮点型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2294,6 +2417,8 @@ writeFloatLE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位浮点型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2332,6 +2457,8 @@ let result = buf.writeFloatLE(0xcafebabe, 0);
 writeInt8(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入8位有符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2374,6 +2501,8 @@ writeInt16BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的16位有符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2414,6 +2543,8 @@ writeInt16LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的16位有符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2452,6 +2583,8 @@ let result = buf.writeInt16LE(0x0304, 0);
 writeInt32BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位有符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2493,6 +2626,8 @@ writeInt32LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位有符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2531,6 +2666,8 @@ let result = buf.writeInt32LE(0x05060708, 0);
 writeIntBE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入大端序的有符号value数据，value字节长度为byteLength。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2573,6 +2710,8 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入小端序的有符号value数据，value字节长度为byteLength。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2612,6 +2751,8 @@ let result = buf.writeIntLE(0x1234567890ab, 0, 6);
 writeUInt8(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入8位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2655,6 +2796,8 @@ writeUInt16BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的16位无符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2694,6 +2837,8 @@ let result1 = buf.writeUInt16BE(0xbeef, 2);
 writeUInt16LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的16位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2735,6 +2880,8 @@ writeUInt32BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位无符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2774,6 +2921,8 @@ writeUInt32LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位无符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2812,6 +2961,8 @@ let result = buf.writeUInt32LE(0xfeedface, 0);
 writeUIntBE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入大端序的无符号value数据，value字节长度为byteLength。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2853,6 +3004,8 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入小端序的无符号value数据，value字节长度为byteLength。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2891,6 +3044,8 @@ let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
 
 ### 属性
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -2903,6 +3058,8 @@ let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
 constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob[] , options?: Object)
 
 Blob的构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2934,6 +3091,8 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 将Blob中的数据放入到ArrayBuffer中，并返回一个Promise。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2957,6 +3116,8 @@ pro.then((val: ArrayBuffer) => {
 slice(start?: number, end?: number, type?: string): Blob
 
 创建并返回一个复制原Blob对象中指定数据长度的Blob新对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2987,6 +3148,8 @@ let blob3 = blob.slice(0, 2, "MIME");
 text(): Promise&lt;string&gt;
 
 使用UTF8进行解码并返回一个文本。使用Promise异步回调。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

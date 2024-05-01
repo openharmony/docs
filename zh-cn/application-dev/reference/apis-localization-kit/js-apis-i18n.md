@@ -29,8 +29,8 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | 显示指定国家的区域ID。     |
+| country      | string  | 是    | 指定的国家，要求是合法的国家码。            |
+| locale       | string  | 是    | 显示指定国家的区域ID，要求是合法的区域ID。     |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：**
@@ -45,7 +45,8 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -65,14 +66,16 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 获取指定语言的本地化显示文本。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 指定语言。            |
-| locale       | string  | 是    | 显示指定语言的区域ID。     |
+| language     | string  | 是    | 指定的语言，要求是合法的语言ID。            |
+| locale       | string  | 是    | 显示指定语言的区域ID，要求是合法的区域ID。     |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：**
@@ -87,7 +90,8 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -141,7 +145,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 语言ID。 |
+| language | string | 是    | 合法的语言ID。 |
 
 **返回值：**
 
@@ -155,7 +159,8 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -196,7 +201,8 @@ static isSuggested(language: string, region?: string): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -216,7 +222,9 @@ static getSystemLanguage(): string
 
 获取系统语言。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -269,6 +277,8 @@ static getSystemRegion(): string
 static getSystemLocale(): string
 
 获取系统区域。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -383,7 +393,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 语言ID。 |
+| language | string | 是    | 合法的语言ID。 |
 
 **错误码：**
 
@@ -391,7 +401,8 @@ static setAppPreferredLanguage(language: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -526,7 +537,7 @@ constructor(locale?: string)
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 否    | 区域ID。 |
+| locale | string | 否    | 合法的区域ID。 |
 
 **错误码：**
 
@@ -534,7 +545,8 @@ constructor(locale?: string)
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -560,6 +572,14 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 | 类型   | 说明                |
 | ---- | ----------------- |
 | Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 识别的实体对象列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -889,7 +909,8 @@ add(field: string, amount: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -948,6 +969,14 @@ compareDays(date: Date): number
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
 | number | 相差的天数，正数代表日历时间更早，负数代表日历时间更晚。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -1693,7 +1722,8 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -2142,7 +2172,8 @@ static getTimePeriodName(hour:number, locale?: string): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -2183,7 +2214,8 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
 
@@ -2220,6 +2252,14 @@ static getInstance(mode: NormalizerMode): Normalizer
 | ------ | ------------------- |
 | [Normalizer](#normalizer10) | 返回指定范式的文本正则化对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
   ```ts
   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
@@ -2245,6 +2285,14 @@ normalize(text: string): string
 | 类型     | 说明                  |
 | ------ | ------------------- |
 | string | 正则化后的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -2289,7 +2337,8 @@ constructor(icsPath: String)
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -2315,6 +2364,14 @@ isHoliday(date?: Date): boolean
 |       类型        |         说明          |
 | ----------------- | ----------------------|
 | boolean           | 返回true是节假日，返回false不是节假日。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
   ```ts
@@ -2359,7 +2416,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts

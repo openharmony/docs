@@ -34,6 +34,8 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 ## TextBackgroundStyle对象说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称   | 参数类型                                                                 | 必填 | 描述         |
 | ------ | ------------------------------------------------------------------------ | ---- | ------------ |
 | color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |

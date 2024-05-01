@@ -63,6 +63,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **示例：**
@@ -107,6 +108,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **示例：**
@@ -196,6 +198,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
@@ -255,6 +258,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
@@ -344,6 +348,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **示例：**

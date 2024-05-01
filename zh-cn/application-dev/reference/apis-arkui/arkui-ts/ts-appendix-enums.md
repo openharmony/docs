@@ -528,14 +528,14 @@
 
 | 名称                   | 描述        |
 | -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。   |
-| Regular              | 普通厚度材质模糊。 |
-| Thick                | 厚材质模糊。    |
-| BACKGROUND_THIN       | 近距景深模糊。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。   |
-| BACKGROUND_THICK      | 远距景深模糊。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
-| NONE<sup>10+</sup> | 关闭模糊。  |
+| Thin                 | 轻薄材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Regular              | 普通厚度材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Thick                | 厚材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| BACKGROUND_THIN       | 近距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
 | COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
 | COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
@@ -551,6 +551,8 @@
 | DARK   | 固定使用深色模式。  |
 
 ## AdaptiveColor<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
@@ -636,6 +638,13 @@ Nullable\<T> {
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
+## LineBreakStrategy<sup>12+</sup>
+| 名称         | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
+| HIGH_QUALITY | 在BALANCED的基础上，尽可能填满行，在最后一行的权重上比较低，可能会出现最后一行留白比较多。 |
+| BALANCED     | 尽可能保证在不拆词的情况下，使一个段落中每一行的宽度相同。   |
+
 ## GestureJudgeResult<sup>11+</sup>
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
@@ -704,6 +713,8 @@ Nullable\<T> {
 
 ## TextDataDetectorType<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | PHONE_NUMBER  | 电话号码 |
@@ -715,6 +726,8 @@ Nullable\<T> {
 
 [Span](ts-basic-components-span.md)类型信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 说明 |
 | -------- | -------- |
 | TEXT | Span为文字类型。 |
@@ -722,6 +735,8 @@ Nullable\<T> {
 | MIXED | Span为图文混合类型。|
 
 ## TextResponseType<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 描述            |
 | ---------- | ------------- |
@@ -742,6 +757,8 @@ Nullable\<T> {
 
 动效类型的枚举值。设置动效后启动即生效，无需触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | NONE | 无动效（默认值）。 |
@@ -751,6 +768,8 @@ Nullable\<T> {
 ## SymbolRenderingStrategy<sup>11+</sup>
 
 渲染模式的枚举值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -802,5 +821,20 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
-| GESTURE | 事件手势键。<br/>**说明：** [GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
+
+## TextDecorationStyle<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| SOLID   | 单实线（默认值）。  |
+| DOUBLE | 双实线。 |
+| DOTTED    | 点线。  |
+| DASHED        | 虚线。 |
+| WAVY        | 波浪线。 |

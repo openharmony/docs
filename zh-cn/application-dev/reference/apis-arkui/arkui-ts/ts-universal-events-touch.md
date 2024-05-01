@@ -14,6 +14,8 @@ onTouch(event: (event: TouchEvent) => void): T
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -29,6 +31,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | T | 返回当前组件。 |
 
 ## TouchEvent对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |

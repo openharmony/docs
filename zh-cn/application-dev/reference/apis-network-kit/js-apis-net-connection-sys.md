@@ -70,7 +70,6 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -258,7 +257,6 @@ enableAirplaneMode(): Promise\<void>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -335,7 +333,6 @@ disableAirplaneMode(): Promise\<void>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -374,7 +371,6 @@ factoryReset(): Promise\<void\>
 | ------- | ------------------------------------------  |
 | 201     | Permission denied.                          |
 | 202     | Non-system applications use system APIs.    |
-| 401     | Parameter error.                            |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.                      |
 

@@ -48,7 +48,7 @@ Method 2: View the error information in the crash file. The crash file is locate
 
 The console encapsulates the HiLog system with the default parameter configuration. It is mainly used in the application development and debugging phase.
 
-HiLog is recommended because it supports log classification and processing in a unified manner. For details, see [@ohos.hilog (HiLog)](../reference/apis/js-apis-hilog.md).
+HiLog is recommended because it supports log classification and processing in a unified manner. For details, see [@ohos.hilog (HiLog)](../reference/apis-performance-analysis-kit/js-apis-hilog.md).
 
 The value of the **domain** parameter in the HiLog API ranges from **0x0** to **0xFFFF**. You are advised to customize the value as required.
 
@@ -96,11 +96,11 @@ How do I use the cash log collection and performance troubleshooting functions p
 
 **Solution**
 
-FaultLogger: collects crash logs. For details, see [FaultLogger](../reference/apis/js-apis-faultLogger.md).
+FaultLogger: collects crash logs. For details, see [FaultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md).
 
-HiChecker: detects potential faults. For details, see [HiChecker](../reference/apis/js-apis-hichecker.md).
+HiChecker: detects potential faults. For details, see [HiChecker](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
 
-hiTraceMeter: implements performance tracing. For details, see [hiTraceMeter](../reference/apis/js-apis-hitracemeter.md).
+hiTraceMeter: implements performance tracing. For details, see [hiTraceMeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md).
 
 
 ## How do I control log output? (API 9)

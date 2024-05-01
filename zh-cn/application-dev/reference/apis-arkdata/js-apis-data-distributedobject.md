@@ -34,6 +34,14 @@ create(context: Context, source: object): DataObject
 | -------- | -------- |
 | [DataObject](#dataobject) | 创建完成的分布式数据对象。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 FA模型示例：
@@ -173,11 +181,13 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | Create table failed.|
+  | 201      | Permission verification failed. |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **示例：**
 
@@ -210,11 +220,13 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | Create table failed.|
+  | 201      | Permission verification failed. |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **示例：**
 
@@ -253,11 +265,13 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-  以下错误码的详细介绍参见[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式数据对象错误码](errorcode-distributed-dataObject.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | Create table failed.|
+  | 201      | Permission verification failed. |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 15400001 | Create table failed. |
 
 **示例：**
 
@@ -291,6 +305,14 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
 | callback | Function | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -319,6 +341,13 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
 | callback | Function | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -351,6 +380,14 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
 | callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -374,6 +411,13 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
 | callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -408,6 +452,15 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 保存数据的deviceId，当deviceId为"local"，代表存储在本地设备。 |
   | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | 是 | 回调函数。返回SaveSuccessResponse，包含sessionId、version、deviceId等信息。 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -454,6 +507,15 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
   | -------- | -------- |
   | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise对象。返回SaveSuccessResponse，包含sessionId、version、deviceId等信息。|
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -485,6 +547,15 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 是 | 回调函数。返回RevokeSaveSuccessResponse，包含sessionId。 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -531,6 +602,14 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
   | -------- | -------- |
   | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise对象。返回RevokeSaveSuccessResponse，包含sessionId。 |
 
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 801      | Capability not supported. |
+
 **示例：**
 
 ```ts
@@ -572,6 +651,15 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
   | assetKey | string                    | 是   | 待绑定的融合资产在分布式对象中的键值。                                             |
   | bindInfo | [BindInfo](#bindinfo11)   | 是   | 待绑定的融合资产在数据库中的信息，包含库名、表名、主键、列名及在数据库中的资产名。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 绑定数据库的回调。                                                                 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例：**
 
@@ -651,6 +739,15 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
   | 类型                | 说明          |
   | ------------------- | ------------- |
   | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+  以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+  | 801      | Capability not supported. |
 
 **示例:**
 

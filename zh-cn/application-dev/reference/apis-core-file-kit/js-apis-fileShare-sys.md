@@ -127,7 +127,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对特定设备（非特定设备是兼容的）开放。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 

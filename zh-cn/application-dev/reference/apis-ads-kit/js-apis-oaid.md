@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import identifier from '@ohos.identifier.oaid';
+import { identifier } from '@kit.AdsKit';
 ```
 
 
@@ -42,9 +42,9 @@ getOAID(): Promise&lt;string&gt;
 
 **示例：**
 ```
-import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   identifier.getOAID().then((data) => {
@@ -91,9 +91,9 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 ```
-import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
  
 try {
   identifier.getOAID((err: BusinessError, data: string) => {

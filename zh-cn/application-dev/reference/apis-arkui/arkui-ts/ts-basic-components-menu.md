@@ -27,6 +27,8 @@ Menu()
 >
 > 设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -53,6 +55,8 @@ font(value: Font)
 
 统一设置Menu中所有文本的尺寸。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -67,6 +71,8 @@ fontColor(value: ResourceColor)
 
 统一设置Menu中所有文本的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -80,6 +86,8 @@ fontColor(value: ResourceColor)
 radius(value: Dimension | BorderRadiuses)
 
 设置Menu边框圆角半径。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -18,6 +18,8 @@ Slider(options?: SliderOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -29,6 +31,8 @@ Slider(options?: SliderOptions)
 ## SliderOptions对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -46,8 +50,8 @@ Slider(options?: SliderOptions)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OutSet | 滑块在滑轨上。 |
-| InSet | 滑块在滑轨内。 |
+| OutSet | 滑块在滑轨上。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| InSet | 滑块在滑轨内。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | NONE<sup>12+</sup> | 无滑块 |
 
 ## 属性
@@ -68,6 +72,8 @@ blockColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -86,13 +92,15 @@ trackColor(value: ResourceColor | LinearGradient)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                      |
-| ------ | ------------------------------------------ | ---- | ----------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431' |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431'<br/>该接口中的LinearGradient类型不支持在元服务中使用。 |
 
 ### selectedColor
 
@@ -101,6 +109,8 @@ selectedColor(value: ResourceColor)
 设置滑轨的已滑动部分颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,6 +127,8 @@ showSteps(value: boolean)
 设置当前是否显示步长刻度值。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,6 +150,8 @@ tip的绘制区域为Slider自身节点的overlay。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -153,7 +167,15 @@ trackThickness(value: Length)
 
 设置滑轨的粗细。设置为小于等于0的值时，取默认值。
 
+为保证滑块和滑轨的[SliderStyle](#sliderstyle枚举说明)样式，[blockSize](#blocksize10)跟随trackThickness同比例增减。
+
+当style为[SliderStyle](#sliderstyle枚举说明).OutSet时，trackThickness ：[blockSize](#blocksize10) = 1 ：4，当style为[SliderStyle](#sliderstyle枚举说明).InSet时，trackThickness ：[blockSize](#blocksize10) = 5 ：3。
+
+在变更trackThickness过程中，若trackThickness的大小或者[blockSize](#blocksize10)的大小超过slider组件的width或者height([SliderStyle](#sliderstyle枚举说明).OutSet时可能trackThickness没超过，但是[blockSize](#blocksize10)超过了)，取默认值。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -175,6 +197,8 @@ blockBorderColor(value: ResourceColor)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderColor可设置自定义形状中线的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -195,6 +219,8 @@ blockBorderWidth(value: Length)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderWidth可设置自定义形状中线的粗细。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -209,6 +235,8 @@ stepColor(value: ResourceColor)
 
 设置刻度颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -222,6 +250,8 @@ stepColor(value: ResourceColor)
 trackBorderRadius(value: Length)
 
 设置底板圆角半径。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -251,6 +281,8 @@ blockSize(value: SizeOptions)
 
 设置滑块大小。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -265,6 +297,8 @@ blockStyle(value: SliderBlockStyle)
 
 设置滑块形状参数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -278,6 +312,8 @@ blockStyle(value: SliderBlockStyle)
 stepSize(value: Length)
 
 设置刻度大小（直径）。当值为0时，刻度点不显示，当值小于0时，取默认值。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -371,6 +407,8 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 
 Slider组件滑块形状参数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 类型                                                         | 必填 | 说明                                                         |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
@@ -380,6 +418,8 @@ Slider组件滑块形状参数。
 ## SliderBlockType<sup>10+</sup>枚举说明
 
 Slider组件滑块形状枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称    | 描述                   |
 | ------- | ---------------------- |
@@ -412,6 +452,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -424,6 +466,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 ## SliderChangeMode枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
@@ -452,8 +496,6 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | ------ | ------ | ---- | ---------------- |
 | value | number | 是 | 设置当前的进度值。 |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
-
-
 
 ## 示例
 

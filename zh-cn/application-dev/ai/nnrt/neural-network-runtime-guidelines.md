@@ -18,7 +18,7 @@ Neural Network Runtime部件的环境要求如下：
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：系统定义的标准设备，系统中内置AI硬件驱动并已接入Neural Network Runtime。
 
-由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。在社区的每日构建中下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
+由于Neural Network Runtime通过Native API对外开放，需要通过Native开发套件编译Neural Network Runtime应用。在社区的每日构建中下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
 
 ### 环境搭建
 
@@ -347,7 +347,7 @@ Neural Network Runtime的开发流程主要包含**模型构造**、**模型编�
         returnCode = OH_NNModel_SetTensorType(model, 2, OH_NN_ADD_ACTIVATIONTYPE);
         CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
 
-        // 将激活函数类型设置为OH_NNBACKEND_FUSED_NONE，表示该算子不添加激活函数。
+        // 将激活函数类型设置为OH_NN_FUSED_NONE，表示该算子不添加激活函数。
         int8_t activationValue = OH_NN_FUSED_NONE;
         returnCode = OH_NNModel_SetTensorData(model, 2, &activationValue, sizeof(int8_t));
         CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor data failed.");

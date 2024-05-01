@@ -113,6 +113,8 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -130,6 +132,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 
@@ -167,6 +170,8 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -189,6 +194,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 
@@ -226,6 +232,8 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -243,6 +251,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
@@ -279,6 +288,8 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -301,6 +312,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
@@ -337,6 +349,8 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -353,6 +367,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
@@ -379,11 +394,65 @@ try {
 }
 ```
 
+## zlib.getOriginalSize<sup>12+</sup>
+
+getOriginalSize(compressedFile: string): Promise\<number>
+
+获取压缩文件的原始大小，使用Promise异步返回。成功时返回压缩文件的原始大小，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| compressedFile  | string              | 是   | 指定的压缩文件的文件路径，只支持zip格式压缩文件。文件路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<number> | Promise对象，返回压缩文件的原始大小，单位字节。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| ------ | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 900001 | The input source file is invalid.      |
+| 900003 | The input source file is not ZIP format or damaged. |
+
+**示例：**
+
+```typescript
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
+import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
+let compressedFile = '/data/storage/el2/base/temp/test.zip';
+
+try {
+    zlib.getOriginalSize(compressedFile).then((data: number) => {
+        console.info(`getOriginalSize success. getOriginalSize: ${data}`);
+    }).catch((errData: BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+} catch(errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
 ## zlib.createChecksum<sup>12+</sup>
 
 createChecksum(): Promise&lt;Checksum&gt;
 
 创建校验对象，使用Promise异步返回。成功时返回Checksum对象实例。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -408,6 +477,8 @@ zlib.createChecksum().then((data) => {
 createChecksumSync():  Checksum
 
 创建校验对象。成功时返回Checksum对象实例。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -450,6 +521,14 @@ adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回计算后的Adler-32校验和。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -473,6 +552,8 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 
 将两个Adler-32校验和合并，使用Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -488,6 +569,14 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 | 类型                  | 说明                                      |
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回合并后的Adler-32校验和。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -527,6 +616,8 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-32校验，使用Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -541,6 +632,14 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回更新后的CRC-32校验。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -568,6 +667,8 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
 将两个CRC-32校验合并，使用Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -583,6 +684,14 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回合并后的CRC-32校验。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -622,6 +731,8 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-64校验，使用Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -636,6 +747,14 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回更新后的CRC-64校验。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | --------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -662,6 +781,8 @@ checksum.crc64(0, arrayBufferIn).then((data) => {
 getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-32校验表，使用Promise异步返回。成功时返回CRC-32校验表。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -691,6 +812,8 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-64校验表，使用Promise异步返回。成功时返回CRC-64校验表。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **返回值：**
@@ -715,6 +838,8 @@ checksum.getCrc64Table().then((data) => {
 
 ## Options
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
@@ -724,6 +849,8 @@ checksum.getCrc64Table().then((data) => {
 | strategy | CompressStrategy | 是   | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
 
 ## zip.CompressLevel
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -736,6 +863,8 @@ checksum.getCrc64Table().then((data) => {
 
 ## zip.MemLevel
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称              | 值   | 说明                             |
@@ -745,6 +874,8 @@ checksum.getCrc64Table().then((data) => {
 | MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存。 |
 
 ## zip.CompressStrategy
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 

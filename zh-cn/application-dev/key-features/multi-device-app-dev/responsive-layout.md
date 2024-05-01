@@ -128,7 +128,7 @@
 在实际应用开发过程中，开发者常常需要针对不同类型设备或同一类型设备的不同状态来修改应用的样式。媒体查询提供了丰富的媒体特征监听能力，可以监听应用显示区域变化、横竖屏、深浅色、设备类型等等，因此在应用开发过程中使用的非常广泛。
 
 
-本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
+本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听[断点](#断点)的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
 
 
 > **说明：**
@@ -146,7 +146,7 @@
 | ![zh-cn_image_0000001336165712](figures/zh-cn_image_0000001336165712.jpg) | ![zh-cn_image_0000001386485617](figures/zh-cn_image_0000001386485617.jpg) | ![zh-cn_image_0000001386805569](figures/zh-cn_image_0000001386805569.jpg) | 
 
 
-1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
+1.对通过媒体查询监听[断点](#断点)的功能做简单的封装，方便后续使用
 ```ts
 // common/breakpointsystem.ets
 import mediaQuery from '@ohos.mediaquery'
@@ -265,7 +265,7 @@ export class BreakpointState<T extends Object> {
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```ts
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakpointState } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 @Entry
 @Component

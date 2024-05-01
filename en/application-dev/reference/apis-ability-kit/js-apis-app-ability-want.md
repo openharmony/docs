@@ -14,6 +14,8 @@ import Want from '@ohos.app.ability.Want';
 
 ## Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name       | Type                | Mandatory| Description                                                        |
@@ -26,7 +28,7 @@ import Want from '@ohos.app.ability.Want';
 | entities | Array\<string> | No| Additional category information (such as browser and video player) of the ability. It is a supplement to the **action** field for implicit Want. and is used to filter ability types.|
 | uri | string | No| Data carried. This field is used together with **type** to specify the data type. If **uri** is specified in a Want, the Want will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
 | type | string | No| MIME type, that is, the type of the file to open, for example, **'text/xml'** and **'image/*'**. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.|
-| parameters   | Record\<string, Object> | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerBundleName**: bundle name of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.<br>- **ability.params.backToOtherMissionStack**: whether to support redirection back across mission stacks.|
+| parameters   | Record\<string, Object> | No  | List of parameters in the **Want** object.<br>1. The values of the following keys are assigned by the system. Manual settings do not take effect, since the system automatically changes the values to the actual values during data transfer.<br>- **ohos.aafwk.callerPid**: PID of the caller. The value is a string.<br>- **ohos.aafwk.param.callerBundleName**: bundle name of the caller. The value is a string.<br>- **ohos.aafwk.param.callerToken**: token of the caller. The value is a string.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information. The value is a number.<br>- **component.startup.newRules**: enabled status of the new control rule. The value is of the Boolean type.<br>- **moduleName**: module name of the caller. The value is a string.<br>- **ability.params.backToOtherMissionStack**: support for redirection back across mission stacks. The value is of the Boolean type.<br>- **ohos.ability.params.abilityRecoveryRestart**: support for ability restart upon fault recovery. The value is of the Boolean type.<br>- **ohos.extra.param.key.contentTitle**: title that can be shared by the ability. The value is a string.<br>- **ohos.extra.param.key.shareAbstract**: content that can be shared by the ability. The value is a string.<br>- **ohos.extra.param.key.shareUrl**: URL of the content that can be shared by the ability. The value is a string.<br>- **ohos.extra.param.key.supportContinuePageStack**: support for migration of page stack information during cross-device migration. The value is of the Boolean type. The default value is **true**, indicating that page stack information is automatically migrated.<br>- **ohos.extra.param.key.supportContinueSourceExit**: support for application exit on the source device during cross-device migration. The value is of the Boolean type. The default value is **true**, indicating that the application on the source device automatically exits.<br>- **ohos.extra.param.key.showMode**: mode to show the ability startup. The value is an enumerated value of [wantConstant.ShowMode](js-apis-app-ability-wantConstant.md#wantconstantshowmode12).<br>- **ohos.dlp.params.sandbox**: available only for DLP files. This key is involved only in system applications.<br>- **ohos.dlp.params.bundleName**: bundle name of DLP. The value is a string. This key is involved only in system applications.<br>- **ohos.dlp.params.moduleName**: module name of DLP. The value is a string. This key is involved only in system applications.<br>- **ohos.dlp.params.abilityName**: ability name of DLP. The value is a string. This key is involved only in system applications.<br>- 	**ohos.dlp.params.index**: DLP index. The value is a number. This key is involved only in system applications.<br>- **ohos.ability.params.asssertFaultSessionId**: session ID of the fault assertion. The value is a string. This key is involved only in system applications.<br><br>2. The following keys are defined by the system, and their values need to be manually assigned.<br>- **ability.params.stream**: File URIs to be authorized to the target ability. The value is a file URI array of the string type.<br><br>3. In addition to the foregoing cases, applications may further agree on the key-value pairs to transfer.<br><br>For details about the constants of **Params** in **want**, see [wantConstant](js-apis-app-ability-wantConstant.md).|
 | [flags](js-apis-ability-wantConstant.md#wantconstantflags) | number | No| How the **Want** object will be handled. By default, a number is passed in.<br>For example, **wantConstant.Flags.FLAG_ABILITY_CONTINUATION** specifies whether to start the ability in cross-device migration scenarios.|
 
 **Example**
@@ -203,86 +205,61 @@ import Want from '@ohos.app.ability.Want';
           }
         });
       ```
-    - Usage of **parameter**:
 
-      The following uses **ability.params.backToOtherMissionStack** as an example. When a ServiceExtensionAbility starts a UIAbility, redirection back across mission stacks is supported.
+- **parameter** usage: **parameter** carries custom parameters. It is transferred by UIAbilityA to UIAbilityB and obtained from UIAbilityB.
 
-      ```ts
-        // (1) UIAbility1 starts a ServiceExtensionAbility.
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+    ```ts
+      //(1) UIAbilityA calls startAbility to start UIAbilityB.
+      import common from '@ohos.app.ability.common';
+      import Want from '@ohos.app.ability.Want';
+      import { BusinessError } from '@ohos.base';
 
-        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication1',
-          abilityName: 'ServiceExtensionAbility',
-        };
-        context.startAbility(want, (err: BusinessError) => {
-          if (err.code) {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          }
-        });
-      ```
-
-      ```ts
-        // (2) The ServiceExtensionAbility starts UIAbility2, carrying **"ability.params.backToOtherMissionStack": true** during the startup.
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
-
-        let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication2',
-          abilityName: 'MainAbility',
-          parameters: {
-            "ability.params.backToOtherMissionStack": true,
-          },
-        };
-
-        context.startAbility(want, (err: BusinessError) => {
-          if (err.code) {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          }
-        });
-      ```
-
-      > **NOTE**
-      >
-      > In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility2.
-
-      **parameter** carries customized parameters. It is transferred by UIAbilityA to UIAbilityB and obtained from UIAbilityB.
-
-      ```ts
-        //(1) UIAbilityA calls startAbility to start UIAbilityB.
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
-
-        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication',
-          abilityName: 'UIAbilityB',
-          parameters: {
-            developerParameters: 'parameters',
-          },
-        };
-        context.startAbility(want, (err: BusinessError) => {
-          if (err.code) {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          }
-        });
-      ```
-
-      ```ts
-        // (2) If the UIAbilityB instance is started for the first time, it enters the onCreate lifecycle.
-        import UIAbility from '@ohos.app.ability.UIAbility';
-        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-        import Want from '@ohos.app.ability.Want';
-
-        class UIAbilityB extends UIAbility {
-          onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-            console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
-          }
+      let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+      let want: Want = {
+        bundleName: 'com.example.myapplication',
+        abilityName: 'UIAbilityB',
+        parameters: {
+          developerParameters: 'parameters',
+        },
+      };
+      context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         }
-      ```
+      });
+    ```
+
+    ```ts
+      // (2) If the UIAbilityB instance is started for the first time, it enters the onCreate lifecycle.
+      import UIAbility from '@ohos.app.ability.UIAbility';
+      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+      import Want from '@ohos.app.ability.Want';
+
+      class UIAbilityB extends UIAbility {
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+          console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
+        }
+      }
+    ```
+- Usage of the keys of [wantConstant](js-apis-app-ability-wantConstant.md) in **parameter**.
+    ```ts
+      import common from '@ohos.app.ability.common';
+      import Want from '@ohos.app.ability.Want';
+      import wantConstant from '@ohos.app.ability.wantConstant';
+      import { BusinessError } from '@ohos.base';
+
+      let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+      let want: Want = {
+        bundleName: 'com.example.myapplication',
+        abilityName: 'FuncAbility',
+        parameters: {
+          [wantConstant.Params.CONTENT_TITLE_KEY]: 'contentTitle',
+        },
+      };
+
+      context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        }
+      });
+    ```

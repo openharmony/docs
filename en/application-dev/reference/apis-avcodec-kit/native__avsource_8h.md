@@ -26,6 +26,7 @@ The **native_avsource.h** file declares the native APIs used for audio and video
 
 | Name| Description| 
 | -------- | -------- |
+| [OH_AVSource](_a_v_source.md#oh_avsource) \* [OH_AVSource_CreateWithDataSource](_a_v_source.md#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | Creates an **OH_AVSource** instance with a user-defined data source. You can release the instance by calling **OH_AVSource_Destroy**. | 
 | [OH_AVSource](_a_v_source.md#oh_avsource) \* [OH_AVSource_CreateWithURI](_a_v_source.md#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.| 
 | [OH_AVSource](_a_v_source.md#oh_avsource) \* [OH_AVSource_CreateWithFD](_a_v_source.md#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](_a_v_source.md#oh_avsource_destroy) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources.| 

@@ -24,6 +24,8 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 发布公共事件，并在发布后执行相应的回调函数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
@@ -72,6 +74,8 @@ try {
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 以回调的形式发布公共事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -130,6 +134,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 以回调形式创建订阅者。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
@@ -176,6 +182,8 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 以Promise形式创建订阅者。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
@@ -217,6 +225,8 @@ createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscr
 
 createSubscriber的同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
@@ -257,6 +267,8 @@ try {
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
 以回调形式订阅公共事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -329,6 +341,8 @@ try {
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
 以回调形式取消订阅公共事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 

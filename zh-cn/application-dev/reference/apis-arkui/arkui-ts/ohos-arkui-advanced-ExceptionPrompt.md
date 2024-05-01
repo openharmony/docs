@@ -30,6 +30,8 @@ ExceptionPrompt({ options: PromptOptions })
 
 **装饰器类型：**\@Component
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -46,6 +48,8 @@ ExceptionPrompt({ options: PromptOptions })
 
 PromptOptions定义options的类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -60,6 +64,8 @@ PromptOptions定义options的类型。
 ## MarginType
 
 MarginType定义marginType的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

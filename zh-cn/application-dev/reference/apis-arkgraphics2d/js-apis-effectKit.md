@@ -298,30 +298,28 @@ getMainColor(): Promise\<Color>
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
 
-export function test06(): void {
-  const color = new ArrayBuffer(96);
-  let opts: image.InitializationOptions = {
-    editable: true,
-    pixelFormat: 3,
-    size: {
-      height: 4,
-      width: 6
-    }
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
   }
-  image.createPixelMap(color, opts).then((pixelMap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
-      if (error) {
-        console.error('Failed to create color picker.');
-      } else {
-        console.info('Succeeded in creating color picker.');
-        colorPicker.getMainColor().then(color => {
-          console.info('Succeeded in getting main color.');
-          console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
-        })
-      }
-    })
-  })
 }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.error('Failed to create color picker.');
+     } else {
+       console.info('Succeeded in creating color picker.');
+       colorPicker.getMainColor().then(color => {
+        console.info('Succeeded in getting main color.');
+         console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
+      })
+    }
+  })
+})
 ```
 
 ### getMainColorSync
@@ -672,6 +670,93 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 ![zh-ch_image_Add_Blur.png](figures/zh-ch_image_Add_Blur.png)
+
+### invert<sup>12+</sup>
+
+invert(): Filter
+
+将反转效果添加到效果链表中，结果返回效果链表的头节点。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | 返回已添加的图像效果。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.invert();
+  }
+})
+```
+![zh-ch_image_Add_Invert.png](figures/zh-ch_image_Add_Invert.png)
+
+### setColorMatrix<sup>12+</sup>
+
+setColorMatrix(colorMatrix: Array\<number>): Filter
+
+将自定义效果添加到效果链表中，结果返回效果链表的头节点。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                         |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  colorMatrix  |   Array\<number> | 是   | 自定义颜色矩阵。 <br>用于创建效果滤镜的 5x4 大小的矩阵, 矩阵元素取值范围为[0, 1], 0和1代表的是矩阵中对应位置的颜色通道的权重，0代表该颜色通道不参与计算，1代表该颜色通道参与计算并保持原始权重。 |
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | 返回已添加的图像效果。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let colorMatrix:Array<number> = [
+    0.2126,0.7152,0.0722,0,0,
+    0.2126,0.7152,0.0722,0,0,
+    0.2126,0.7152,0.0722,0,0,
+    0,0,0,1,0
+  ];
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.setColorMatrix(colorMatrix);
+  }
+})
+```
 
 ### brightness
 

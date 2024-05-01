@@ -70,6 +70,9 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission denied.  |
+| 202 | Not system App. |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 | 9300002 | Target ability already enabled. |
 
@@ -114,6 +117,9 @@ enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-a
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission denied.  |
+| 202 | Not system App. |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 | 9300002 | Target ability already enabled. |
 
@@ -164,6 +170,9 @@ disableAbility(name: string): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission denied.  |
+| 202 | Not system App. |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 
 **示例：**
@@ -205,6 +214,9 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission denied.  |
+| 202 | Not system App. |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300001 | Invalid bundle name or ability name.  |
 
 **示例：**

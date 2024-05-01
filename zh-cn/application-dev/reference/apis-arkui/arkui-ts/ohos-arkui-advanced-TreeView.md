@@ -24,7 +24,7 @@ import { TreeView } from "@ohos.arkui.advanced.TreeView"
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 ## TreeView
 
@@ -38,14 +38,16 @@ TreeView({ treeController: TreeController })
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| treeController | [TreeController](#treecontroller) | 是 | 树视图节点信息。 | 
+| treeController | [TreeController](#treecontroller) | 是 | 树视图节点信息。 |
 
 
 ## TreeController
 
 树视图组件的控制器，可以将此对象绑定至树视图组件，然后通过它控制树的节点信息，同一个控制器不可以控制多个树视图组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 ### addNode
@@ -53,23 +55,26 @@ TreeView({ treeController: TreeController })
 
 addNode(nodeParam?: NodeParam): void
 
+点击某个节点后，调用该方法可以触发新增孩子节点。
 
-点击某个节点后，调用该方法可以触发新增孩子节点
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 | 
+| nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 |
 
 
 ### removeNode
 
 removeNode(): void
 
-点击某个节点后，调用该方法可以触发删除该节点
+点击某个节点后，调用该方法可以触发删除该节点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 ### modifyNode
@@ -77,15 +82,18 @@ removeNode(): void
 
 modifyNode(): void
 
+点击某个节点后，调用该方法可以触发修改该节点。
 
-点击某个节点后，调用该方法可以触发修改该节点
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 ### buildDone
 
 buildDone(): void
 
-建立树视图。节点增加完毕后，必须调用该方法，触发树信息的保存
+建立树视图。节点增加完毕后，必须调用该方法，触发树信息的保存。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 ### refreshNode
@@ -94,28 +102,31 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 更新树视图。调用该方法，更新当前节点的信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parentId | number | 是 | 父节点Id。 | 
-| parentSubTitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 父节点副文本。 | 
-| currentSubtitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 当前节点副文本。 | 
-
+| parentId | number | 是 | 父节点Id。 |
+| parentSubTitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 父节点副文本。 |
+| currentSubtitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 当前节点副文本。 |
 
 ## NodeParam
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parentNodeId | number | 否 | 父节点。 | 
-| currentNodeId | number | 否 | 当前子节点。 | 
-| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 | 
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 | 
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 | 
-| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 | 
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 | 
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 | 
-| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 | 
+| parentNodeId | number | 否 | 父节点。 |
+| currentNodeId | number | 否 | 当前子节点。 |
+| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。 |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。 |
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。 |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。 |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
+| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。 |
 
 
 ## TreeListenerManager
@@ -127,14 +138,18 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 getInstance(): [TreeListenerManager](#treelistenermanager)
 
-获取监听管理器单例对象
+获取监听管理器单例对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 ### getTreeListener
 
 getTreeListener(): [TreeListener](#treelistener)
 
-获取监听器
+获取监听器。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 ## TreeListener
@@ -146,29 +161,33 @@ getTreeListener(): [TreeListener](#treelistener)
 
 on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): void;
 
-注册监听
+注册监听。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
+| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 |
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 |
 
 
 ### once
 
 once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): void;
 
-注册一次监听
+注册一次监听。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 | 
+| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 |
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 是 | 节点信息。 |
 
 
 ### off
@@ -176,39 +195,42 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void): void;
 
+取消监听。
 
-取消监听
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
-| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 否 | 节点信息。 | 
-
+| type | [TreeListenType](#treelistentype) | 是 | 监听类型。 |
+| callback | (callbackParam: [CallbackParam](#callbackparam)) =&gt; void | 否 | 节点信息。 |
 
 ## TreeListenType
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| NODE_CLICK | 监听节点点击事件。 | 
-| NODE_ADD | 监听节点增加事件。 | 
-| NODE_DELETE | 监听节点删除事件。 | 
-| NODE_MODIFY | 监听节点修改事件。 | 
-| NODE_MOVE | 监听节点移动事件。 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+| 名称 | 说明 |
+| -------- | -------- |
+| NODE_CLICK | 监听节点点击事件。 |
+| NODE_ADD | 监听节点增加事件。 |
+| NODE_DELETE | 监听节点删除事件。 |
+| NODE_MODIFY | 监听节点修改事件。 |
+| NODE_MOVE | 监听节点移动事件。 |
 
 ## CallbackParam
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| currentNodeId | number | 是 | 当前子节点。 | 
-| parentNodeId | number | 否 | 父节点。 | 
-| childIndex | number | 否 | 子索引。 | 
+| currentNodeId | number | 是 | 当前子节点。 |
+| parentNodeId | number | 否 | 父节点。 |
+| childIndex | number | 否 | 子索引。 |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 

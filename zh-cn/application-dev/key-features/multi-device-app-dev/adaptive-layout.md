@@ -221,7 +221,7 @@ struct EquipartitionCapabilitySample {
         Row() {
           ForEach(this.list, (item:number) => {
             Column() {
-              Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+              Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
                 .width(64)
                 .height(30)
@@ -242,7 +242,7 @@ struct EquipartitionCapabilitySample {
         Row() {
           ForEach(this.list, (item:number) => {
             Column() {
-              Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+              Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
                 .width(64)
                 .height(30)
@@ -426,20 +426,21 @@ struct ScaleCapabilitySample {
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
   @Builder slider() {
-    Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
-      .blockColor(Color.White)
-      .width('60%')
-      .height(50)
-      .onChange((value: number) => {
-        this.sliderWidth = value;
-      })
-      .position({ x: '20%', y: '80%' })
+    
     Slider({ value: this.sliderHeight, min: 100, max: 400, style: SliderStyle.OutSet })
       .blockColor(Color.White)
       .width('60%')
       .height(50)
       .onChange((value: number) => {
         this.sliderHeight = value
+      })
+      .position({ x: '20%', y: '80%' })
+      Slider({ value: this.sliderWidth, min: 100, max: 400, style: SliderStyle.OutSet })
+      .blockColor(Color.White)
+      .width('60%')
+      .height(50)
+      .onChange((value: number) => {
+        this.sliderWidth = value;
       })
       .position({ x: '20%', y: '87%' })
   }
@@ -536,7 +537,7 @@ struct ExtensionCapabilitySample1 {
           ForEach(this.appList, (item:number) => {
             ListItem() {
               Column() {
-                Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+                Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
                 Text('App name')
                   .width(64)
                   .height(30)
@@ -599,7 +600,7 @@ struct ExtensionCapabilitySample2 {
         Row({ space: 10 }) {
           ForEach(this.appList, () => {
             Column() {
-              Image($r("app.media.icon")).width(48).height(48).margin({ top: 8 })
+              Image($r("app.media.startIcon")).width(48).height(48).margin({ top: 8 })
               Text('App name')
                 .width(64)
                 .height(30)
@@ -615,10 +616,10 @@ struct ExtensionCapabilitySample2 {
         }
         .padding({ top: 16, left: 10 })
         .height(118)
-        .borderRadius(16)
         .backgroundColor(Color.White)
       }
       .scrollable(ScrollDirection.Horizontal)
+      .borderRadius(16)
       .width(this.rate * 100 + '%')
 
       this.slider()
