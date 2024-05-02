@@ -1021,7 +1021,7 @@ class MyNodeController extends NodeController {
   }
   getPositionToParent()
   {
-    let positionToParent = this.frameNode?.getPositionToWindow();
+    let positionToParent = this.frameNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
   getMeasuredSize()
