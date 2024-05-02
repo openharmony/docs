@@ -24,6 +24,8 @@ AVCastPicker()
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## 属性
 
 除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：

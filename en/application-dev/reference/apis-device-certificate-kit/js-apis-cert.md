@@ -166,7 +166,7 @@ Defines the parameters used to match a certificate. If no parameter is specified
 | x509Cert | [X509Cert](#x509cert)    | No|  Certificate object. |
 | validDate | string    | No |  Certificate validity period. |
 | issuer | Uint8Array | No | Certificate issuer, in DER format.|
-| keyUsage | Array\<boolean> | No | Usage of the key.|
+| keyUsage | Array\<boolean> | No | Whether to match the key usage.|
 | serialNumber | bigint    | No |  Serial number of the certificate. |
 | subject | Uint8Array | No | Certificate subject, in DER format.|
 | publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format.|
@@ -774,7 +774,7 @@ certFramework.createX509Cert(encodingBlob).then(x509Cert => {
 
 getPublicKey() : cryptoFramework.PubKey
 
-Obtains the public key of this X.509 certificate. This API uses an asynchronous callback to return the result.
+Obtains the public key of this X.509 certificate.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -844,7 +844,7 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 checkValidityWithDate(date: string) : void
 
-Checks the validity period of this X.509 certificate. This API uses an asynchronous callback to return the result.
+Checks the validity period of this X.509 certificate.
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -3768,7 +3768,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 
 getRevokedCert(serialNumber : number) : X509CrlEntry
 
-Obtains the revoked X.509 certificate based on the specified serial number of the certificate. This API uses an asynchronous callback to return the result.
+Obtains the revoked X.509 certificate based on the specified serial number of the certificate.
 
 > **NOTE**
 >
@@ -3786,7 +3786,7 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 | Type                  | Description                  |
 | ---------------------- | --------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | Promise used to return the revoked X.509 certificate obtained.|
+| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
@@ -4093,7 +4093,7 @@ certFramework.createX509Crl(encodingBlob).then(x509Crl => {
 
 getTbsInfo() : DataBlob
 
-Obtains the DER-encoded CRL information, the **tbsCertList** from this CRL. This API uses an asynchronous callback to return the result.
+Obtains the DER-encoded CRL information, that is, the **tbsCertList** from this CRL.
 
 > **NOTE**
 >
@@ -6178,7 +6178,7 @@ try {
 
 validate(certChain : CertChainData) : Promise\<void>
 
-Validates the X.509 certificate chain. This API uses a promise to return the result.
+Validates an X.509 certificate chain. This API uses a promise to return the result.
 The certificate chain validator does not verify the certificate validity period because the system time on the device is untrusted. To check the validity period of a certificate, use the [checkValidityWithDate()](#checkvaliditywithdate) API of the **X509Cert** class. For details about certificate specifications, see [Certificate Specifications](../../security/DeviceCertificateKit/certificate-framework-overview.md#certificate-specifications).
 
 **System capability**: SystemCapability.Security.Cert
@@ -6277,7 +6277,7 @@ Provides APIs for operating the revoked certificates.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CrlEntry](#x509crlentry11).
+> This API is deprecated since API version 11. You are advised to use [X509CrlEntry](#x509crlentry11).
 
 ### getEncoded<sup>(deprecated)</sup>
 
@@ -6287,7 +6287,7 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getEncoded](#getencoded11-2).
+> This API is deprecated since API version 11. You are advised to use [X509CRLEntry.getEncoded](#getencoded11-2).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6369,7 +6369,7 @@ Obtains the serialized data of the revoked certificate. This API uses a promise 
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getEncoded](#getencoded11-3).
+> This API is deprecated since API version 11. You are advised to use [X509CRLEntry.getEncoded](#getencoded11-3).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6449,7 +6449,7 @@ Obtains the serial number of this revoked certificate.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getSerialNumber](#getserialnumber11).
+> This API is deprecated since API version 11. You are advised to use [X509CRLEntry.getSerialNumber](#getserialnumber11).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6515,7 +6515,7 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getCertIssuer](#getcertissuer11).
+> This API is deprecated since API version 11. You are advised to use [X509CRLEntry.getCertIssuer](#getcertissuer11).
 
 **System capability**: SystemCapability.Security.Cert
 
@@ -6590,7 +6590,7 @@ Obtains the date when the certificate was revoked.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use[X509CRLEntry.getRevocationDate](#getrevocationdate11).
+> This API is deprecated since API version 11. You are advised to use [X509CRLEntry.getRevocationDate](#getrevocationdate11).
 
 **System capability**: SystemCapability.Security.Cert
 

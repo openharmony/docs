@@ -146,7 +146,7 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
   }
 };
 
-let deleteFormInfo = async (formId: string, context) => {
+let deleteFormInfo = async (formId: string, context: featureAbility.Context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
@@ -376,7 +376,7 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
   }
 };
 
-let deleteFormInfo = async (formId: string, context) => {
+let deleteFormInfo = async (formId: string, context: featureAbility.Context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info

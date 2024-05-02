@@ -1,7 +1,7 @@
 # 连接ServiceAbility
 
 
-如果ServiceAbility需要与PageAbility或其他应用的ServiceAbility进行交互，则须创建用于连接的Connection。ServiceAbility支持其他Ability通过connectAbility()方法与其进行连接。PageAbility的connectAbility方法定义在featureAbility中，ServiceAbility的connectAbility方法定义在particleAbility中。连接ServiceAbility的规则详见[组件启动规则](component-startup-rules.md)章节。在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现。
+如果ServiceAbility需要与PageAbility或其他应用的ServiceAbility进行交互，则须创建用于连接的Connection。ServiceAbility支持其他Ability通过connectAbility()方法与其进行连接。PageAbility的[connectAbility()](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7)方法定义在[featureAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md)中，ServiceAbility的[connectAbility()](../reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilityconnectability)方法定义在[particleAbility](../reference/apis-ability-kit/js-apis-ability-particleAbility.md)中。连接ServiceAbility的规则详见[组件启动规则](component-startup-rules-fa.md)章节。在使用connectAbility()处理回调时，需要传入目标Service的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)与[IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)的实例。[IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)提供了以下方法供开发者实现。
 
 
   **表1** IAbilityConnection接口说明
@@ -103,5 +103,5 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
     return true;
   }
 }
-...
+//...
 ```

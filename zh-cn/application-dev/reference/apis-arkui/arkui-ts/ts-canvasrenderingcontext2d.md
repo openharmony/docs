@@ -14,6 +14,8 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
@@ -29,6 +31,8 @@ RenderingContextSettings(antialias?: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 参数类型    | 必填   | 参数描述                          |
@@ -37,6 +41,8 @@ RenderingContextSettings(antialias?: boolean)
 
 
 ## 属性
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                                       | 类型                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -861,6 +867,8 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数     | 类型     | 必填   | 默认值  | 说明            |
@@ -907,6 +915,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 说明           |
@@ -952,6 +962,8 @@ clearRect(x: number, y: number, w: number, h: number): void
 删除指定区域内的绘制内容。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1001,6 +1013,8 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数       | 类型     | 必填   | 默认值  | 说明              |
@@ -1048,6 +1062,8 @@ strokeText(text: string, x: number, y: number, maxWidth?:number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数       | 类型     | 必填   | 默认值  | 描述              |
@@ -1094,6 +1110,8 @@ measureText(text: string): TextMetrics
 该方法返回一个文本测算的对象，通过该对象可以获取指定文本的宽度值。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1146,6 +1164,8 @@ stroke(path?: Path2D): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型                                       | 必填   | 默认值  | 描述           |
@@ -1194,6 +1214,8 @@ beginPath(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -1235,6 +1257,8 @@ moveTo(x: number, y: number): void
 路径从当前点移动到指定点。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1283,6 +1307,8 @@ lineTo(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述        |
@@ -1330,6 +1356,8 @@ closePath(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -1371,6 +1399,8 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 通过指定图像和重复方式创建图片填充的模板。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1427,6 +1457,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述             |
@@ -1478,6 +1510,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述          |
@@ -1526,6 +1560,8 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 绘制弧线路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1577,6 +1613,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数     | 类型     | 必填   | 默认值  | 描述              |
@@ -1625,6 +1663,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 在规定的矩形区域绘制一个椭圆。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1681,6 +1721,8 @@ rect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述            |
@@ -1727,6 +1769,8 @@ fill(fillRule?: CanvasFillRule): void
 对封闭路径进行填充。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数:** 
 
@@ -1825,6 +1869,8 @@ clip(fillRule?: CanvasFillRule): void
 设置当前路径为剪切路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数:** 
 
@@ -1965,6 +2011,7 @@ resetTransform(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### rotate
 
@@ -1973,6 +2020,8 @@ rotate(angle: number): void
 针对当前坐标轴进行顺时针旋转。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2017,6 +2066,8 @@ scale(x: number, y: number): void
 设置canvas画布的缩放变换属性，后续的绘制操作将按照缩放比例进行缩放。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2064,6 +2115,8 @@ transform(a: number, b: number, c: number, d: number, e: number, f: number): voi
 transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 > **说明：**
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
@@ -2126,6 +2179,8 @@ setTransform(a: number, b: number, c: number, d: number, e: number, f: number): 
 setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2235,6 +2290,8 @@ getTransform(): Matrix2D
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                       | 说明    |
@@ -2295,6 +2352,8 @@ translate(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述       |
@@ -2344,6 +2403,8 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 进行图像绘制。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2398,6 +2459,8 @@ createImageData(sw: number, sh: number): ImageData
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认   | 描述            |
@@ -2430,6 +2493,8 @@ createImageData(imageData: ImageData): ImageData
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2484,6 +2549,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2543,6 +2610,8 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数          | 类型                                       | 必填   | 默认值          | 描述                            |
@@ -2600,6 +2669,8 @@ setLineDash(segments: number[]): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数       | 类型       | 描述                  |
@@ -2644,6 +2715,8 @@ getLineDash(): number[]
 获得当前画布的虚线样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：** 
 
@@ -2701,6 +2774,8 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数     | 类型                                       | 描述                 |
@@ -2752,6 +2827,8 @@ toDataURL(type?: string, quality?: number): string
 生成一个包含图片展示的URL。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：** 
 
@@ -2806,6 +2883,8 @@ restore(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -2846,6 +2925,8 @@ save(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts
@@ -2885,6 +2966,8 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
 创建一个线性渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2943,6 +3026,8 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述                |
@@ -2998,6 +3083,8 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 创建一个圆锥渐变色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3147,6 +3234,8 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述                  |
 | ------- | ------------------- |
 | inherit | 继承canvas组件通用属性已设定的文本方向。 |
@@ -3157,6 +3246,8 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述    |
 | ------- | ----- |
 | evenodd | 奇偶规则。 |
@@ -3165,6 +3256,8 @@ struct ImageAnalyzerExample {
 ## CanvasLineCap
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -3176,6 +3269,8 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称    | 描述                                       |
 | ----- | ---------------------------------------- |
 | bevel | 在线段相连处使用三角形为底填充， 每个部分矩形拐角独立。             |
@@ -3185,6 +3280,8 @@ struct ImageAnalyzerExample {
 ## CanvasTextAlign
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述           |
 | ------ | ------------ |
@@ -3197,6 +3294,8 @@ struct ImageAnalyzerExample {
 ## CanvasTextBaseline
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 描述                                       |
 | ----------- | ---------------------------------------- |
@@ -3211,6 +3310,8 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述   |
 | ------ | ---- |
 | low    | 低画质  |
@@ -3218,6 +3319,8 @@ struct ImageAnalyzerExample {
 | high   | 高画质  |
 
 ## TextMetrics
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 属性                       | 类型     | 描述                                       |
 | ------------------------ | ------ | ---------------------------------------- |

@@ -57,6 +57,20 @@ value(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 量规图的数据值，可用于动态修改量规图的数据值。<br/>默认值：0 |
 
+## contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<GaugeConfiguration>)
+
+定制Slider内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<GaugeConfiguration>](#gaugeconfiguration12对象说明) | 是   | 在Gauge组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ### startAngle
 
 startAngle(angle: number)
@@ -185,6 +199,17 @@ indicator(value: GaugeIndicatorOptions)
 | ------------- | ------- | ---- | -------- |
 | icon | [Resource](ts-types.md#resource类型) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
 | space | [Dimension](ts-types.md#dimension10) | 否 | 指针距离圆环外边的间距。(不支持百分比) <br/>默认值：8<br/>单位：vp <br/>**说明：** <br/> 对于默认的三角形样式指针，间距为黑色三角形到圆环外边的间距。<br/> 若设置值小于0，则使用默认值。<br/>若设置值大于圆环半径，则使用默认值。|
+
+## GaugeConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    | 说明              |
+| ------ | ------ | ---------------- |
+| value | number | 当前数据值。 |
+| min | number | 当前数据段最小值。 |
+| max | number | 当前数据段最大值。 |
+
 
 ## 示例
 ### 示例1
@@ -523,3 +548,85 @@ struct Gauge7 {
 }
 ```
 ![gauge](figures/gauge-image7.png)
+
+
+
+### 示例8
+
+```ts
+// xxx.ets
+//该示例实现了Gauge组件使用Builder定制内容区，使用了环形图表组件，按钮和文本框。点击增加按钮，环形图表指针位置会向右偏移，反之点减少按钮环形图表指针位置会向左偏移。
+@Builder
+function buildGauge(config: GaugeConfiguration) {
+  Column({ space: 30 }) {
+    Row() {
+      Text('【ContentModifier】 value：' + JSON.stringify((config.contentModifier as MyGaugeStyle).value) +
+        '  min：' + JSON.stringify((config.contentModifier as MyGaugeStyle).min) +
+        '  max：' + JSON.stringify((config.contentModifier as MyGaugeStyle).max))
+        .fontSize(12)
+    }
+
+    Text('【Config】value：' + config.value + '  min：' + config.min + '  max：' + config.max).fontSize(12)
+    Gauge({
+      value: config.value,
+      min: config.min,
+      max: config.max
+    }).width("50%")
+  }
+  .width("100%")
+  .padding(20)
+  .margin({ top: 5 })
+  .alignItems(HorizontalAlign.Center)
+}
+
+class MyGaugeStyle implements ContentModifier<GaugeConfiguration> {
+  value: number = 0
+  min: number = 0
+  max: number = 0
+
+  constructor(value: number, min: number, max: number) {
+    this.value = value
+    this.min = min
+    this.max = max
+  }
+
+  applyContent(): WrappedBuilder<[GaugeConfiguration]> {
+    return wrapBuilder(buildGauge)
+  }
+}
+
+@Entry
+@Component
+struct refreshExample {
+  @State gaugeValue: number = 20
+  @State gaugeMin: number = 0
+  @State gaugeMax: number = 100
+
+  build() {
+    Column({ space: 20 }) {
+      Gauge({
+        value: this.gaugeValue,
+        min: this.gaugeMin,
+        max: this.gaugeMax
+      })
+        .contentModifier(new MyGaugeStyle(30, 10, 100))
+
+      Column({ space: 20 }) {
+        Row({ space: 20 }) {
+          Button('增加').onClick(() => {
+            if (this.gaugeValue < this.gaugeMax) {
+              this.gaugeValue += 1
+            }
+          })
+          Button('减少').onClick(() => {
+            if (this.gaugeValue > this.gaugeMin) {
+              this.gaugeValue -= 1
+            }
+          })
+        }
+      }.width('100%')
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![gauge](figures/gauge_builder.gif)

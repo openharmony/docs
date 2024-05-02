@@ -80,7 +80,8 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | valueMin             | number                                                             | 是   | 否   | 最小值。|
 | valueNow             | number                                                             | 是   | 否   | 当前值。 |
 | windowId             | number                                                             | 是   | 否   | 窗口id。 |
-| textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置 |
+| textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置。 |
+| offset<sup>12+</sup>             | number                                                             | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。 |
 
 ## FocusDirection
 
@@ -152,6 +153,14 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -179,6 +188,14 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
 | targetNames | Array&lt;string&gt;       | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置关注的目标包名失败，则AsyncCallback中err有数据返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -224,6 +241,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. Incorrect parameter types. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -262,6 +280,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -303,6 +322,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -350,6 +370,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.M.Incorrect parameter types; 2.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -388,6 +409,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -429,6 +451,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -476,6 +499,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1..Incorrect parameter types; 2.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -511,6 +535,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -549,6 +574,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -689,6 +715,7 @@ injectGestureSync(gesturePath: GesturePath): void
 
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300003  | Do not have accessibility right for this operation. |
 
 **示例：**
@@ -796,6 +823,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300004 | This property does not exist. |
 
 
@@ -837,6 +865,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300004 | This property does not exist. |
 
 **示例：**
@@ -938,6 +967,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1007,6 +1037,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1048,6 +1079,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1089,6 +1121,14 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 | ---------------------------------------- | ----------------------------- |
 | Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1119,6 +1159,14 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 | type      | string                                   | 是    | 固定为'content',表示查找的类型为节点元素内容。 |
 | condition | string                                   | 是    | 表示查找的条件。                     |
 | callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回满足指定查询关键字的所有节点元素。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1158,6 +1206,14 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 | ----------------------------------- | ------------------------------ |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询焦点元素类型的节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1189,6 +1245,14 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 | type      | string                                   | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype)                  | 是    | 表示查询焦点元素的类型。                       |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1229,6 +1293,14 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 | ----------------------------------- | -------------------------------- |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询下一焦点元素方向的节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1260,6 +1332,14 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 | type      | string                                   | 是    | 固定为'focusDirection', 表示查询的类型为节点的下一焦点元素方向。 |
 | condition | [FocusDirection](#focusdirection)        | 是    | 表示下一查询焦点元素的方向。                           |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询下一焦点元素方向的节点元素。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1300,6 +1380,14 @@ findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement
 | ----------------------------------- | -------------------------------- |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询条件的节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1336,6 +1424,14 @@ findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityE
 | 类型                                       | 说明                            |
 | ---------------------------------------- | ----------------------------- |
 | Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 

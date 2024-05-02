@@ -14,11 +14,13 @@
     - [指定密钥参数生成非对称密钥对](crypto-generate-asym-key-pair-from-key-spec.md)
     - [使用ECC压缩/非压缩公钥格式转换](crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
     - [使用ECC压缩/非压缩点格式转换](crypto-convert-compressed-or-uncompressed-ECC-point.md)
+    - [指定PEM格式字符串数据转换非对称密钥对](crypto-convert-string-data-to-asym-key-pair.md)
 - 加解密
   - [加解密介绍](crypto-encryption-decryption-overview.md)
   - 加解密算法规格
     - [对称密钥加解密算法规格](crypto-sym-encrypt-decrypt-spec.md)
     - [非对称密钥加解密算法规格](crypto-asym-encrypt-decrypt-spec.md)
+    - [分段加解密说明](crypto-encrypt-decrypt-by-segment.md)
   - 加解密开发指导
     - [使用AES对称密钥（GCM模式）加解密](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（CBC模式）加解密](crypto-aes-sym-encrypt-decrypt-cbc.md)

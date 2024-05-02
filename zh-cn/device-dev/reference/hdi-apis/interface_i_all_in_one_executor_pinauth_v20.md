@@ -129,7 +129,7 @@ IAllInOneExecutor::SendMessage ([in] unsigned long scheduleId, [in] int srcRole,
 IAllInOneExecutor::SetData ([in] unsigned long scheduleId, [in] unsigned long authSubType, [in] unsigned char[] data, [in] int resultCode)
 ```
 **描述**
-向执行器发送消息。
+设置口令数据，口令认证驱动处理注册或认证口令请求时，如果口令数据由口令认证服务获取，需要通过该接口将口令数据传给口令认证驱动。
 
 **起始版本：** 5.0
 
@@ -154,7 +154,7 @@ IAllInOneExecutor::SetData ([in] unsigned long scheduleId, [in] unsigned long au
 IAllInOneExecutor::Enroll ([in] unsigned long scheduleId, [in] unsigned char[] extraInfo, [in] IExecutorCallback callbackObj)
 ```
 **描述**
-向执行器发送消息。
+注册口令。
 
 **起始版本：** 5.0
 
@@ -178,7 +178,7 @@ IAllInOneExecutor::Enroll ([in] unsigned long scheduleId, [in] unsigned char[] e
 IAllInOneExecutor::Authenticate ([in] unsigned long scheduleId, [in] unsigned long[] templateIdList, [in] unsigned char[] extraInfo, [in] IExecutorCallback callbackObj)
 ```
 **描述**
-向执行器发送消息。
+认证口令。
 
 **起始版本：** 5.0
 
@@ -203,7 +203,7 @@ IAllInOneExecutor::Authenticate ([in] unsigned long scheduleId, [in] unsigned lo
 IAllInOneExecutor::Delete ([in] unsigned long templateId)
 ```
 **描述**
-向执行器发送消息。
+删除口令。
 
 **起始版本：** 5.0
 

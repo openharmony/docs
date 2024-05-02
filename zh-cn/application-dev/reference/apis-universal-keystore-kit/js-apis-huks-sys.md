@@ -38,7 +38,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : 
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -132,7 +132,7 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -237,7 +237,7 @@ importKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -341,7 +341,7 @@ attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -496,7 +496,7 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) 
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -645,7 +645,7 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1306,7 +1306,7 @@ exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Pr
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1425,7 +1425,7 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOption
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
@@ -1541,7 +1541,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promi
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
@@ -1654,7 +1654,7 @@ initSessionAsUser(userId: number, keyAlias: string, options: HuksOptions) : Prom
 | -------- | ------------- |
 | 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |

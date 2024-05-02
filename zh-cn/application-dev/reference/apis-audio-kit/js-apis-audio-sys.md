@@ -499,13 +499,23 @@ disableSafeMediaVolume(): Promise&lt;void&gt;
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+"reqPermissions": [
+    {
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
+        "reason": "use ohos.permission.MODIFY_AUDIO_SETTINGS"
+    }
+]
 let audioManager = audio.getAudioManager();
 try {
-    audioManager.disableSafeMediaVolume();
-    expect(true).assertTrue();
-    done();
+    await audioManager.disableSafeMediaVolume().then(() => {
+        expect(true).assertTrue();
+        done();
+    }).catch((err) => {
+        console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+        expect(err.code).assertEqual(201);
+        done();
+    });
 } catch (error) {
-    console.info(`${TagFrmwk}: disableSafeMediaVolume Fail,error:${error},ErrorCode:${error.code},${typeof (error.code)}`);
     expect(false).assertTrue();
     done();
 }

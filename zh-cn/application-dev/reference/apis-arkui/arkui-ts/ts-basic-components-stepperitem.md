@@ -17,6 +17,8 @@
 
 StepperItem()
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## 属性
 
 ### prevLabel
@@ -24,6 +26,8 @@ StepperItem()
 prevLabel(value: string)
 
 设置左侧文本按钮内容，第一页没有左侧文本按钮，当步骤导航器大于一页时，除第一页外默认值都为“返回”。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -39,6 +43,8 @@ nextLabel(value: string)
 
 设置右侧文本按钮内容，最后一页默认值为“开始”，其余页默认值为“下一步”。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -52,6 +58,8 @@ nextLabel(value: string)
 status(value?: ItemState)
 
 设置步骤导航器nextLabel的显示状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,6 +75,8 @@ status(value?: ItemState)
 >  - StepperItem组件不支持设置通用高度属性，其高度由Stepper父组件高度减去label按钮组件高度。
 >  - StepperItem组件不支持设置aspectRadio/constrainSize影响长宽的属性。
 ## ItemState枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 |   名称    | 描述 |
 | -------- |-------- |

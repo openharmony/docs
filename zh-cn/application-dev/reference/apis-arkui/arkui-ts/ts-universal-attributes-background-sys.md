@@ -28,6 +28,8 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style-sys.md)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## BackgroundBrightnessOptions<sup>11+</sup>对象说明
 
 **系统接口：** 此接口为系统接口

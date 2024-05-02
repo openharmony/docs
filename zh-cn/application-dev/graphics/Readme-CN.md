@@ -8,6 +8,7 @@
   - [请求自绘制内容绘制帧率](displaysync-xcomponent.md)
 - [过度绘制调试使用指导](overdraw-dfx-guidelines.md)
 - [使用Drawing实现图形绘制与显示](drawing-js-guidelines.md)
+- [使用Text模块实现文本显示](text-js-guidelines.md)
 - [使用Drawing实现图形绘制与显示 (C/C++)](drawing-guidelines.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)

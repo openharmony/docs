@@ -43,6 +43,14 @@ createDeviceManager(bundleName: string): DeviceManager;
   | ------------------------------------------- | --------- |
   | [DeviceManager](#devicemanager) | 返回设备管理器对象实例。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -75,10 +83,12 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -148,10 +158,12 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -187,10 +199,11 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -232,10 +245,11 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -270,10 +284,11 @@ getLocalDeviceNetworkId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -309,10 +324,11 @@ getLocalDeviceName(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -348,10 +364,11 @@ getLocalDeviceType(): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -387,10 +404,11 @@ getLocalDeviceId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -432,10 +450,12 @@ getDeviceName(networkId: string): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -479,10 +499,12 @@ getDeviceType(networkId: string): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -521,10 +543,12 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery repeats.                                              |
 
@@ -572,10 +596,12 @@ stopDiscovering(): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Stop discovery repeats.                                         |
 
@@ -613,10 +639,12 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 | 11600103 | Bind invalid.                                                   |
 
@@ -672,10 +700,12 @@ unbindTarget(deviceId: string): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -709,6 +739,15 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
 
@@ -754,6 +793,15 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -798,6 +846,15 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序，固定为discoverSuccess。 |
   | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -841,6 +898,15 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
   | type     | string                                   | 是    | 取消注册设备发现回调，固定为discoverSuccess。                 |
   | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
   ```ts
@@ -883,6 +949,15 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
   | type     | string                                   | 是    | 注册设备名称改变回调，以便在设备名称改变时通知应用程序，固定为deviceNameChange。 |
   | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 是    | 注册设备名称改变的回调方法。                 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -919,6 +994,15 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 取消注册设备名称改变回调，固定为deviceNameChange。 |
   | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 否    | 指示要取消注册设备名称改变的回调方法。                 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
 
@@ -957,6 +1041,15 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序，固定为discoverFailure。 |
   | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -993,6 +1086,15 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发现失败回调，固定为discoverFailure。     |
   | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
 
@@ -1031,6 +1133,15 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
   | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | Callback&lt;{}&gt; | 否    | 注册serviceDie的回调方法。                       |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1063,6 +1174,15 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | Callback&lt;{}&gt; | 否    | 取消注册serviceDie的回调方法。                     |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
 

@@ -17,6 +17,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 包信息标志，指示需要获取的包信息的内容。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                                      | 值         | 说明                                                         |
@@ -32,6 +34,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
 | GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup>   | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 
 ### ExtensionAbilityType
 
@@ -41,7 +44,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。 |
+| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
@@ -69,6 +72,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 指示权限授予状态。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
@@ -79,6 +84,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### SupportWindowMode
 
 标识该组件所支持的窗口模式。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -91,6 +98,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### LaunchType
 
 指示组件的启动方式。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -118,6 +127,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
@@ -140,6 +151,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识共享库的版本兼容类型。
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                   | 值   | 说明                             |
@@ -149,6 +162,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### ModuleType
 
 标识模块类型。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -161,6 +176,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 ### BundleType
 
 标识应用的类型。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -177,6 +194,8 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -190,6 +209,14 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 | 类型                                                        | 说明                                  |
 | ----------------------------------------------------------- | ------------------------------------- |
 | Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回当前应用的BundleInfo。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -217,6 +244,8 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -225,6 +254,14 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 | ----------- | ------ | ---- | --------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。 |
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的当前应用的BundleInfo；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -257,6 +294,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -274,6 +313,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -312,6 +352,8 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -334,6 +376,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -388,6 +431,8 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -410,6 +455,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -458,6 +504,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -475,6 +523,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -512,6 +561,8 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -534,6 +585,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -580,6 +632,8 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -602,6 +656,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -640,6 +695,8 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 以同步方法根据给定的bundleFlags获取当前应用的BundleInfo。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -653,6 +710,14 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 | 类型                                              | 说明                 |
 | ------------------------------------------------- | -------------------- |
 | [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -694,6 +759,8 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700201 | verifyAbc failed. |
 
 **示例：**
@@ -747,6 +814,8 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700201 | verifyAbc failed. |
 
 **示例：**
@@ -797,6 +866,8 @@ deleteAbc(abcPath: string): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700202 | deleteAbc failed. |
 
 **示例：**
@@ -847,6 +918,9 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700303 | GetExtResource failed due to no extend resource. |
 
@@ -901,6 +975,9 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 | 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
@@ -954,6 +1031,9 @@ disableDynamicIcon(bundleName: string): Promise\<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
 
@@ -1005,6 +1085,9 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700306 | No dynamic icon. |
 
@@ -1034,6 +1117,8 @@ canOpenLink(link: string): boolean
 
 查询给定的链接是否可以打开。指定链接的scheme需要在module.json文件的querySchemes字段下配置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **参数：**
@@ -1054,6 +1139,7 @@ canOpenLink(link: string): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700055 | The specified link is invalid.                      |
 | 17700056 | The scheme of the specified link is not in the querySchemes.        |
 

@@ -47,20 +47,35 @@ showToast(options: ShowToastOptions): void
 ```ts
 import promptAction from '@ohos.promptAction'
 import { BusinessError } from '@ohos.base';
-try {
-  promptAction.showToast({
-    message: 'Message Info',
-    duration: 2000
-  });
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showToast args error code is ${code}, message is ${message}`);
-};
-
+@Entry
+@Component
+struct toastExample {
+  build() {
+    Column() {
+      Button('Show toast').fontSize(20)
+        .onClick(() => {
+          try {
+            promptAction.showToast({
+              message: 'Hello World',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message
+            let code = (error as BusinessError).code
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
+API version 11及之前Toast样式
 
-![zh-cn_image_0001](figures/zh-cn_image_0001.gif)
+![zh-cn_image_0001](figures/toast-api11.gif)
+
+API version 12及之后Toast样式
+
+![zh-cn_image_0001](figures/toast-api12.gif)
 
 ## ShowToastOptions
 

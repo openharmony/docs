@@ -24,7 +24,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                           |
 | -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;ThermalLevel&gt; | 是   | 回调函数，返回变化后的热档位。 |
+| callback | Callback&lt;ThermalLevel&gt; | 是   | 回调函数，返回变化后的热档位；该参数是一个函数类型。 |
 
 **错误码：**
 
@@ -33,6 +33,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4800101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -68,6 +69,7 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4800101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
