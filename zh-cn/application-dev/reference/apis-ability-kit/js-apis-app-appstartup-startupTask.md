@@ -36,6 +36,10 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 
 @Sendable
 export default class Sample_001 extends StartupTask {
+  constructor() {
+    super();
+  }
+
   onDependencyCompleted(dependence: string, result) {
     console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
     ...
@@ -71,6 +75,10 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 
 @Sendable
 export default class Sample_001 extends StartupTask {
+  constructor() {
+    super();
+  }
+
   async init(context) {
     console.info("StartupTest Sample_001 init");
     ...
