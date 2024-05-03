@@ -13,7 +13,7 @@ The **http** module provides the HTTP data request capability. An application ca
 import http from '@ohos.net.http';
 ```
 
-## Example
+## Examples
 
 ```ts
 // Import the http namespace.
@@ -28,14 +28,6 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-class ExtraData {
-  public data: string;
-
-  constructor(data: string) {
-    this.data = data;
-  }
-}
-
 class Header {
   public contentType: string;
 
@@ -48,8 +40,8 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-    // This parameter is used to transfer data when the POST request is used.
-    extraData: new ExtraData('data to send'),
+    // This field is used to transfer the request body when a POST request is used. Its format needs to be negotiated with the server.
+    extraData: 'data to send',
     expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
@@ -122,7 +114,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | An **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
+| HttpRequest | **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
@@ -290,24 +282,31 @@ class Header {
 }
 
 let httpRequest = http.createHttp();
-let promise = httpRequest.request("EXAMPLE_URL", {
-  method: http.RequestMethod.GET,
-  connectTimeout: 60000,
-  readTimeout: 60000,
-  header: new Header('application/json')
-});
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // This field is used to transfer the request body when a POST request is used. Its format needs to be negotiated with the server.
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    // You can add header fields based on service requirements.
+    header: new Header('application/json'),
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+};
 
-promise.then((data:http.HttpResponse) => {
-  console.info('Result:' + data.result);
-  console.info('code:' + data.responseCode);
-  console.info('type:' + JSON.stringify(data.resultType));
-  console.info('header:' + JSON.stringify(data.header));
-  console.info('cookies:' + data.cookies); // Cookies are supported since API version 8.
-  console.info('header.content-Type:' + data.header);
-  console.info('header.Status-Line:' + data.header);
-
-}).catch((err:Error) => {
-  console.info('error:' + JSON.stringify(err));
+httpRequest.request("EXAMPLE_URL", options, (err: Error, data: http.HttpResponse) => {
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('type:' + JSON.stringify(data.resultType));
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // Cookies are supported since API version 8.
+  } else {
+    console.info('error:' + JSON.stringify(err));
+  }
 });
 ```
 
@@ -564,8 +563,30 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
 let httpRequest = http.createHttp();
-httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
+let options: http.HttpRequestOptions = {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // This field is used to transfer the request body when a POST request is used. Its format needs to be negotiated with the server.
+    extraData: 'data to send',
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    // You can add header fields based on service requirements.
+    header: new Header('application/json'),
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+};
+httpRequest.requestInStream("EXAMPLE_URL", options, (err: BusinessError<void> , data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -943,20 +964,15 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataReceiveProgress**.|
-| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | Yes  | Callback used to return the data receiving progress.|
 
 **Example**
 
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -978,20 +994,15 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | Yes  | Event type. The value is **dataReceiveProgress**.|
-| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | No  | Callback used to return the result.     |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | No  | Callback used to return the data receiving progress.   |
 
 **Example**
 
 ```ts
 import http from '@ohos.net.http';
 
-class RequestData {
-  receiveSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataReceiveProgress", (data: RequestData) => {
+httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
   console.info("dataReceiveProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataReceiveProgress");
@@ -1010,20 +1021,15 @@ Registers an observer for events indicating progress of sending HTTP requests.
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataSendProgress**.|
-| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | Yes  | Callback used to return the data sending progress.|
 
 **Example**
 
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1045,20 +1051,15 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
 | type     | string             | Yes  | Event type. The value is **dataSendProgress**.|
-| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>  | No| Callback used to return the result.  |
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>  | No| Callback used to return the data sending progress.|
 
 **Example**
 
 ```ts
 import http from '@ohos.net.http';
 
-class SendData {
-  sendSize: number = 2000
-  totalSize: number = 2000
-}
-
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: SendData) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1073,22 +1074,22 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
-| extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and this field is usually in the String format. If **content-Type** is **text/xml**, this field is usually in the String format. If **content-Type** is **application/json**, this field is usually in the Object format. If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
+| extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding (encodeURIComponent/encodeURI) and this field is usually in the String format. If **content-Type** is **text/xml**, this field is usually in the String format. If **content-Type** is **application/json**, this field is usually in the Object format. If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
-| usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one. |
-| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
+| usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.  |
+| priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
 | usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.|
 | caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.                            |
-| resumeFrom<sup>11+</sup> | number | No| Start position for file upload or download. According to section 3.1 of RFC 7233:<br>- If this field is set when the PUT method is used, unknown problems may occur.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
-| resumeTo<sup>11+</sup> | number | No| End position for file upload or download. According to section 3.1 of RFC 7233:<br>- If this field is set when the PUT method is used, unknown problems may occur.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
+| resumeFrom<sup>11+</sup> | number | No| Start position for file upload or download. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
+| resumeTo<sup>11+</sup> | number | No| End position for file upload or download. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No| Client certificate.|
 | dnsOverHttps<sup>11+</sup> | string | No| DNS resolution for a server that uses the HTTPS protocol.<br>The value must be URL-encoded in the following format: "https://host:port/path".|
 | dnsServers<sup>11+</sup> | Array<string> | No| Array of DNS servers used for DNS resolution.<br>- You can set a maximum of three DNS servers. If there are more than three DNS servers, only the first three DNS servers are used.<br>- The DNS servers must be expressed as IPv4 or IPv6 addresses.|
-| maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is **5*1024*1024**. The maximum value is **100*1024*1024**. |
+| maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is **5\*1024\*1024**. The maximum value is **100\*1024\*1024**. |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
 
 ## RequestMethod
@@ -1242,7 +1243,7 @@ Defines the type of multi-form data.
 
 createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
-Creates a default object to store responses to HTTP access requests.
+Creates an **HttpResponseCache** object that stores the response data of HTTP requests. You can call the **flush** or **delete** method as needed in the object. **cacheSize** specifies the cache size.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1274,7 +1275,7 @@ Defines an object that stores the response to an HTTP request. Before invoking A
 
 flush(callback: AsyncCallback\<void\>): void
 
-Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result. Cached data includes the response header (header), response body (result), cookies, request time (requestTime), and response time (responseTime).
+Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result. Cached data includes the response header (header), response body (result), cookies, request time (requestTime), and response time (responseTime).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1313,7 +1314,7 @@ httpRequest.request("EXAMPLE_URL", (err: BusinessError, data: http.HttpResponse)
 
 flush(): Promise\<void\>
 
-Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses a promise to return the result.
+Flushes cached data to the file system so that the data can be accessed in the next HTTP request. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1367,7 +1368,7 @@ import { BusinessError } from '@ohos.base';
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
   const httpResponseCache = http.createHttpResponseCache();
-  httpResponseCache.delete(err => {
+  httpResponseCache.delete((err: BusinessError) => {
     try {
       if (err) {
         console.error('fail: ' + err);
@@ -1379,7 +1380,7 @@ httpRequest.request("EXAMPLE_URL").then(data => {
     }
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```
@@ -1409,11 +1410,11 @@ httpRequest.request("EXAMPLE_URL").then(data => {
   const httpResponseCache = http.createHttpResponseCache();
   httpResponseCache.delete().then(() => {
     console.log("success");
-  }).catch(err => {
+  }).catch((err: BusinessError) => {
     console.error("fail");
   });
   httpRequest.destroy();
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.error("errocode" + JSON.stringify(error));
 });
 ```
@@ -1453,5 +1454,3 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
-
-<!--no_check-->
