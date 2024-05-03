@@ -13,7 +13,7 @@ Before getting started, you need to understand the following basic concepts:
 **Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
 
 ## Available APIs
-APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs. For more APIs, see [@ohos.ai.mindSporeLite](../reference/apis/js-apis-mindSporeLite.md).
+APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs. For more APIs, see [@ohos.ai.mindSporeLite](../../reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md).
 
 | API       | Description       |
 | ------------------ | ----------------- |
