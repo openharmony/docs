@@ -11,8 +11,9 @@
 1. 指定密钥别名。
 
 2. 初始化密钥属性集，可指定参数TAG(可选)，HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
-   - HUKS_STORAGE_ONLY_USED_IN_HUKS：表示由该密钥派生出的密钥存储于HUKS中，由HUKS进行托管。
-   - HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+   - HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示由该密钥派生出的密钥存储于HUKS中，由HUKS进行托管。
+   - HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+   - 不指定：表示由该密钥派生出的密钥可直接导出给业务方，也可存储于HUKS中。
 
 3. 调用[generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
@@ -21,6 +22,13 @@
 **密钥派生**
 
 1. 获取密钥别名、指定对应的属性参数HuksOptions。
+
+    可指定参数TAG(可选)，HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG(不可与生成时指定的规格冲突)：
+
+    - HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示本次派生得到的密钥存储于HUKS中，由HUKS进行托管。
+
+    - HUKS_STORAGE_KEY_EXPORT_ALLOWED/不指定：表示本次派生得到的密钥直接导出给业务方，HUKS不对其进行托管服务。
+
 
 2. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 

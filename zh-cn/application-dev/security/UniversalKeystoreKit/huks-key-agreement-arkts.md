@@ -12,9 +12,11 @@
 
 密钥生成时，可指定参数TAG(可选)，HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
 
-- HUKS_STORAGE_ONLY_USED_IN_HUKS：表示由该密钥协商出的密钥存储于HUKS中，由HUKS进行托管。
+- HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示由该密钥协商出的密钥存储于HUKS中，由HUKS进行托管。
 
-- HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥协商出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+- HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示由该密钥协商出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+
+- 不指定：表示由该密钥协商出的密钥可直接导出给业务方，也可存储于HUKS中。
 
 **导出密钥**
 
@@ -23,6 +25,12 @@
 **密钥协商**
 
 设备A、B分别基于本端私钥和对端设备的公钥，协商出共享密钥。
+
+密钥协商时，可指定参数TAG(可选)，HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG(不可与生成时指定的规格冲突)：
+
+- HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示本次协商得到的密钥存储于HUKS中，由HUKS进行托管。
+
+- HUKS_STORAGE_KEY_EXPORT_ALLOWED/不指定：表示本次协商得到的密钥直接导出给业务方，HUKS不对其进行托管服务。
 
 **删除密钥**
 
