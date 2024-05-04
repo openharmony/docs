@@ -16,7 +16,7 @@
 
 2. 初始化密钥属性集，可指定参数TAG(可选)，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
    - OH_HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示由该密钥派生出的密钥存储于HUKS中，由HUKS进行托管。
-   - OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+   - OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
    - 不指定：表示由该密钥派生出的密钥可直接导出给业务方，也可存储于HUKS中。
 
 3. 调用OH_Huks_GenerateKeyItem生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
