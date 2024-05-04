@@ -213,3 +213,44 @@ TextInputController.caretPosition()、TextAreaController.caretPosition()、Searc
 
 光标位置的视觉效果不会发生变化。
 如果此前设置光标位置的参数是负数、undefined，并且需要光标位置不发生变化，需要修改业务代码，输入合法数值。
+
+## cl.arkui.5  ListItem横划UX行为变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+API version 12及之后更改ListItem横划UX行为。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+- API version 11及之前，ListItem横划展开划出菜单以后，点击List组件非划出菜单区域，ListItem划出菜单不会自动收起，点击位置的组件可以响应点击事件。<br/>
+
+- API version 12及之后，ListItem横划展开划出菜单以后，点击List组件非划出菜单区域，ListItem划出菜单会自动收起，点击位置的组件不响应点击事件。<br/>
+
+**示例：**
+如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/swipeActionBeforeAPI12.gif)  |  ![](figures/swipeActionAPI12.gif)  |
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.22 版本开始。
+
+**变更的接口/组件**
+
+ListItem组件
+
+**适配指导**
+
+UX默认行为变更，无需适配。
