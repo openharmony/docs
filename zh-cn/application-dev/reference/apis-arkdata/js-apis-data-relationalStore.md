@@ -505,6 +505,7 @@ class EntryAbility extends UIAbility {
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| allowRebuild<sup>12+<sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -674,6 +675,18 @@ class EntryAbility extends UIAbility {
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | 订阅本地数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+
+## RebuldType<sup>12+</sup>
+
+描述数据库重建类型的枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称    | 值   | 说明                                     |
+| ------- | ---- | ---------------------------------------- |
+| NONE    | 0    | 表示数据库未进行重建。                   |
+| REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库。 |
 
 ## ChangeType<sup>10+</sup>
 
@@ -1749,9 +1762,10 @@ predicates.notLike("NAME", "os");
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称         | 类型            | 必填 | 说明                             |
-| ------------ | ----------- | ---- | -------------------------------- |
-| version<sup>10+</sup>  | number | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
+| 名称         | 类型            | 只读       | 必填 | 说明                             |
+| ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
+| version<sup>10+</sup>  | number | 否 | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuldtype12) | 是 | 是 | 用于获取数据库是否进行过重建。 |
 
 **示例：**
 
@@ -1761,6 +1775,8 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).version = 3;
   // 获取数据库版本
   console.info(`RdbStore version is ${store.version}`);
+  // 获取数据库是否重建
+  console.info(`RdbStore rebuilt is ${store.rebuilt}`);
 }
 ```
 
@@ -3884,8 +3900,6 @@ if(store != undefined) {
 }
 ```
 
-### 
-
 ### setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
@@ -4394,7 +4408,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | 是   | 取值为'dataChange'，表示数据更改。                           |
-| type     | [SubscribeType](#subscribetype) | 是   | 订阅类型。                                                   |
+| type     | [SubscribeType](#subscribetype)                              | 是   | 订阅类型。                                                   |
 | observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
@@ -4425,7 +4439,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-注册数据库的数据变更的事件监听。当分布式数据库中的数据发生更改时，将调用回调。
+注册数据库的数据变更的事件监听。当分布式数据库或本地数据库中的数据发生更改时，将调用回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4435,9 +4449,9 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
-**示例：**
+**示例1：type为SUBSCRIBE_TYPE_REMOTE**
 
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
@@ -4458,6 +4472,40 @@ try {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message
   console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+```
+
+**示例2：type为SUBSCRIBE_TYPE_LOCAL_DETAILS**
+
+```ts
+try {
+  if(store != undefined) {
+    store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
+      for (let i = 0; i < ChangeInfos.length; i++) {
+        console.info(TAG + `table = ${ChangeInfos[i].table}`);
+        console.info(TAG + `type = ${ChangeInfos[i].type}`);
+        console.info(TAG + `inserted = ${ChangeInfos[i].inserted[0]}`);
+        console.info(TAG + `updated = ${ChangeInfos[i].updated[0]}`);
+        console.info(TAG + `deleted = ${ChangeInfos[i].updated[0]}`);
+      }
+    });
+  }
+} catch (err) {
+  console.error(TAG + `on dataChange fail, code:${err.code}, message: ${err.message}`);
+}
+
+try {
+  const valueBucket1 = {
+    'name': 'zhangsan',
+    'age': 18,
+    'salary': 25000,
+    'blobType': new Uint8Array([1, 2, 3]),
+  };
+
+  let rowId = await store.insert('test', valueBucket1);
+  await store.delete('test');
+} catch (err) {
+  console.error(TAG + `insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4587,7 +4635,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **示例：**
 
@@ -5182,6 +5230,42 @@ if(store != undefined) {
   }).catch((err: BusinessError) => {
     console.error(`Query failed, code is ${err.code},message is ${err.message}`);
   })
+}
+```
+### close<sup>12+</sup>
+
+关闭数据库，使用Promise异步回调。
+
+close(): Promise&lt;void&gt;
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                    |
+| ------------ | ----------------------------------------------- |
+| 401          | Parameter error. The store must be not nullptr. |
+| 14800000     | Inner error.                                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).close().then(() => {
+        console.info(`close succeeded`);
+    }).catch ((err: BusinessError) => {
+        console.error(`close failed, code is ${err.code},message is ${err.message}`);
+    })
 }
 ```
 

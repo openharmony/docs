@@ -382,7 +382,7 @@ terminateTask(longTask: LongTask): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -422,7 +422,7 @@ isConcurrent(func: Function): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1109,8 +1109,6 @@ taskpool.execute(task3).then(() => {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 表示长时任务。LongTask继承自[Task](#task)。
 长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持在任务组（TaskGroup）执行和多次执行。
 执行长时任务的线程一直存在，直到执行完成后调用[terminateTask](#taskpoolterminatetask12)，该线程会在空闲时被回收。
@@ -1387,7 +1385,7 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                    |
 | taskId   | number             | 是   | 否   | 任务的ID。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                     |
 | state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                    |
 | duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。  |

@@ -892,7 +892,8 @@ JS值操作和抽象操作。
 |OH_JSVM_IsDate | 判断一个 JavaScript 对象是否为 Date 类型对象 |
 |OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 Typedarray 类型对象 |
 |OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 Dataview 类型对象 |
-|OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否相等 |
+|OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
+|OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
 |OH_JSVM_IsDetachedArraybuffer | 检查给定的 ArrayBuffer 是否已被分离(detached) |
 
@@ -923,7 +924,7 @@ OH_JSVM_GetValueStringUtf8(env, stringValue, buffer, bufferSize, &copied);
 // buffer:"123";
 ```
 
-判断两个JS值类型是否相同
+判断两个JS值类型是否严格相同：先比较操作数类型，操作数类型不同就是不相等，操作数类型相同时，比较值是否相等，相等才返回true。
 
 ```c++
 JSVM_Value value = nullptr;
@@ -933,6 +934,21 @@ OH_JSVM_CreateArray(env, &value);
 OH_JSVM_CreateInt32(env, 10, &value1);
 bool isArray = true;
 OH_JSVM_StrictEquals(env, value, value, &isArray);
+```
+
+判断两个JS值类型是否宽松相同：判断两个操作数的类型是否相同，若不相同，且可以转换为相同的数据类型，转换为相同的数据类型后，值做严格相等比较，其他的都返回false。
+
+```c++
+JSVM_HandleScope handleScope;
+OH_JSVM_OpenHandleScope(env, &handleScope);
+const char testStr[] = "1";
+JSVM_Value lhs = nullptr;
+OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &lhs);
+JSVM_Value rhs;
+OH_JSVM_CreateInt32(env, 1, &rhs);
+bool isEquals = false;
+OH_JSVM_Equals(env, lhs, rhs, &isEquals); // 这里isEquals的值是true
+OH_JSVM_CloseHandleScope(env, handleScope);
 ```
 
 ### JS属性操作

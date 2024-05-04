@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 ```
 ## AdLoader
 
@@ -42,8 +42,8 @@ constructor(context: common.Context);
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@ohos.advertising';
-import common from '@ohos.app.ability.common';
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
 
 function createConstructor(context: common.Context): void {
   const load: advertising.AdLoader = new advertising.AdLoader(context);
@@ -84,9 +84,9 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@ohos.advertising';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog'; 
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'; 
 
 function requestAd(context: common.Context): void {
   const adRequestParam: advertising.AdRequestParams = {
@@ -109,7 +109,7 @@ function requestAd(context: common.Context): void {
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'request single ad success!');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'request single ad succeed!');
       // 保存请求到的广告内容用于展示
       const returnAds = ads;
     }
@@ -156,9 +156,9 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@ohos.advertising';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog'; 
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function requestMultiAd(context: common.Context): void {
   const adRequestParamArray: advertising.AdRequestParams[] = [{
@@ -188,7 +188,7 @@ function requestMultiAd(context: common.Context): void {
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'request multi ads success!');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'request multi ads succeed!');
       // 保存请求到的广告内容为数组用于展示
       let returnAds: Array<advertising.Advertisement> = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
@@ -238,9 +238,9 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
-import hilog from '@ohos.hilog'; 
-import common from '@ohos.app.ability.common';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'; 
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -352,13 +352,13 @@ onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): 
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
 
   }
 }
@@ -408,13 +408,13 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#adv
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
 
   },
-  onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>): void {
+  onAdLoadSuccess: (adsMap: Map<string, Array<advertising.Advertisement>>) => {
 
   }
 }
@@ -473,7 +473,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 ### onStatusChanged
 
-onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement), data: string)
+onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement), data: string)
 
 广告状态回调。
 
@@ -490,7 +490,7 @@ onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement),
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 
 let adInteractionListener: advertising.AdInteractionListener = {
   onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {

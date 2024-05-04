@@ -625,10 +625,8 @@ struct refreshExample {
           })
         }
       }.width('100%')
-      .margin({ top: 280 })
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
-
 ![gauge](figures/gauge_builder.gif)

@@ -588,7 +588,7 @@ lineSpacing(value: LengthMetrics)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | [LengthMetrics](ts-types.md#LengthMetrics12) | 是   | 文本的行间距。默认值：0 |
+| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
 
 ## 事件
 
@@ -840,6 +840,7 @@ getCaretOffset(): CaretOffset
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
 
 ## TextAreaType<sup>11+</sup>枚举说明
 
@@ -1180,12 +1181,12 @@ struct TextAreaExample {
         TextArea({text: 'LineThrough, Red\nsecond line'})
           .border({ width: 1 }).padding(5).margin(5)
           .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextArea({text: 'Overline, Red\nsecond line'})
+        TextArea({text: 'Overline, Red, DOTTED\nsecond line'})
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        TextArea({text: 'Underline, Red\nsecond line'})
+          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})
+        TextArea({text: 'Underline, Red, WAVY\nsecond line'})
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
       }.height('90%')
     }
     .width('90%')

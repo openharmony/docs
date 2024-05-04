@@ -35,7 +35,7 @@ Span(value: string | Resource)
 
 ### decoration
 
-decoration(value: { type: TextDecorationType; color?: ResourceColor })
+decoration(value: DecorationStyleInterface)
 
 设置文本装饰线样式及其颜色。
 
@@ -49,7 +49,7 @@ decoration(value: { type: TextDecorationType; color?: ResourceColor })
 
 | 参数名 | 类型                                                         | 必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {&nbsp;type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype);&nbsp;color:?&nbsp;[ResourceColor](ts-types.md#resourcecolor)&nbsp;} | 是   | 文本装饰线样式及其颜色。<br/>type：文本装饰线样式。color：文本装饰线颜色。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black&nbsp;} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black,&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;} |
 
 ### letterSpacing
 
@@ -176,6 +176,9 @@ baselineOffset(value: LengthMetrics)
 
 ## 示例
 ### 示例1
+
+decoration、letterSpacing、textCase属性接口使用示例
+
 ```ts
 // xxx.ets
 @Entry
@@ -198,17 +201,17 @@ struct SpanExample {
       // 文本横线添加
       Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
       Text() {
-        Span('I am Underline-span').decoration({ type: TextDecorationType.Underline, color: Color.Red }).fontSize(12)
+        Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)
       }
 
       Text() {
-        Span('I am LineThrough-span')
-          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+        Span('I am LineThrough-DOTTED-span')
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red, style: TextDecorationStyle.DOTTED })
           .fontSize(12)
       }
 
       Text() {
-        Span('I am Overline-span').decoration({ type: TextDecorationType.Overline, color: Color.Red }).fontSize(12)
+        Span('I am Overline-DASHED-span').decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED }).fontSize(12)
       }
 
       // 文本字符间距
