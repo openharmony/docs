@@ -2363,7 +2363,8 @@ class LeadingMarginCreator {
     const offsetLevel = [22, 28, 32, 34, 38]
     const fontSizeLevel = this.getFontSizeLevel(fontSize)
     const marginlevel = this.getmarginLevel(width)
-    const newOffContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+    const newCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+    const newOffContext: OffscreenCanvasRenderingContext2D = newCanvas.getContext("2d", this.settings)
     const centerCoordinate = 50
     const radius = 10
     this.clearCanvas()
