@@ -396,13 +396,17 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+> **说明：**
+>
+> 从API version 12开始默认改为开启。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
