@@ -2021,6 +2021,18 @@
 
 **起始版本**：12
 
+### ohos.permission.EXEMPT_PRIVACY_INDICATOR
+
+允许应用在使用权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 允许获取超级隐私模式的状态。
