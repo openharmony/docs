@@ -462,7 +462,7 @@ fling(velocity: number): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -586,7 +586,7 @@ getItemRect(index: number): RectResult
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |

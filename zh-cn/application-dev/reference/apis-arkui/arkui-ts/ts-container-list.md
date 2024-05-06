@@ -912,7 +912,7 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -937,7 +937,7 @@ scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -958,7 +958,7 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1024,7 +1024,7 @@ set childDefaultSize(value: number): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1057,7 +1057,7 @@ splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1086,7 +1086,7 @@ update(index: number, childSize: number): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |

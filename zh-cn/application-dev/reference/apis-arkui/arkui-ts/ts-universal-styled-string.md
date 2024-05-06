@@ -94,7 +94,7 @@ subStyledString(start: number , length?: number): StyledString
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -124,7 +124,7 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -159,7 +159,7 @@ replaceString(start: number , length: number , other: string): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -182,7 +182,7 @@ insertString(start: number , other: string): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -207,7 +207,7 @@ removeString(start: number , length: number): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -229,7 +229,7 @@ replaceStyle(spanStyle: SpanStyle): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -271,7 +271,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -298,7 +298,7 @@ removeStyles(start: number , length: number): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -332,7 +332,7 @@ replaceStyledString(start: number , length: number , other: StyledString): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -355,7 +355,7 @@ insertStyledString(start: number , other: StyledString): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
