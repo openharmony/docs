@@ -30,6 +30,8 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称        | 类型                       | 必填   | 描述                             |
 | ------ | ----------------------------- | -----| -------------------------------- |
 | x      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左上角的x轴坐标。<br/>默认值：0vp |

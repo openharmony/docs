@@ -601,6 +601,9 @@ getItemRect(index: number): RectResult
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
 ## NestedScrollOptions<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
 | scrollForward | NestedScrollMode | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |

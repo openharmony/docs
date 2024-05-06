@@ -53,6 +53,8 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 
 ## KeyEvent对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                                    | 类型                                       | 描述                         |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。                     |

@@ -75,6 +75,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                 | 描述                                                                         |
 | ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |
 | touchObject | [TouchObject](#touchobject对象说明)  | 历史点对应触摸事件的基础信息。                                                   |
