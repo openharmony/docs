@@ -44,8 +44,11 @@
 
 描述预置应用部分信息。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
  **系统接口：**  此接口为系统接口。
+
+ **参数：**
 
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
