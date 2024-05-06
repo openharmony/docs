@@ -32,6 +32,14 @@ Obtains the ID attached to the end of a given URI.
 | ------ | ------------------------ |
 | number | ID obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -67,6 +75,14 @@ Attaches an ID to the end of a given URI.
 | Type  | Description                 |
 | ------ | --------------------- |
 | string | URI object with the ID attached.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 
@@ -108,6 +124,14 @@ Deletes the ID from the end of a given URI.
 | ------ | ------------------- |
 | string | URI object with the ID deleted.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -144,6 +168,14 @@ Updates the ID in a given URI.
 | Type  | Description           |
 | ------ | --------------- |
 | string | URI object with the new ID.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

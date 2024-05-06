@@ -18,6 +18,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                                     | Value        | Description                                                        |
@@ -33,6 +35,7 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
 | GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup>   | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
 
 ### ExtensionAbilityType
 
@@ -42,7 +45,7 @@ Enumerates the types of ExtensionAbilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.|
+| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): enables applications to run in the background and provide services.|
@@ -70,6 +73,8 @@ Enumerates the types of ExtensionAbilities.
 
 Enumerates the permission grant states.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
@@ -80,6 +85,8 @@ Enumerates the permission grant states.
 ### SupportWindowMode
 
 Enumerates the window modes supported by the ability.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -92,6 +99,8 @@ Enumerates the window modes supported by the ability.
 ### LaunchType
 
 Enumerates the launch types of the ability.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -119,6 +128,8 @@ Enumerates the types of abilities.
 
 Enumerates the display orientations of the ability. This attribute applies only to the ability using the Page template.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                              |Value|Description|
@@ -141,6 +152,8 @@ Enumerates the display orientations of the ability. This attribute applies only 
 
 Defines the version compatibility type of the shared library.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                  | Value  | Description                            |
@@ -150,6 +163,8 @@ Defines the version compatibility type of the shared library.
 ### ModuleType
 
 Enumerates the module types.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -162,6 +177,8 @@ Enumerates the module types.
 ### BundleType
 
 Enumerates the bundle types.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -177,6 +194,8 @@ Enumerates the bundle types.
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -225,6 +244,8 @@ try {
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -275,6 +296,8 @@ Obtains the JSON string array of the current application's configuration file in
 > **NOTE**
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -333,6 +356,8 @@ Obtains the JSON string array of the current application's configuration file in
 > **NOTE**
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -413,6 +438,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -486,6 +513,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -542,6 +571,8 @@ Obtains the JSON string array of the current application's configuration file in
 > **NOTE**
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -614,6 +645,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -674,6 +707,8 @@ try {
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1094,6 +1129,8 @@ try {
 canOpenLink(link: string): boolean
 
 Checks whether a link can be opened. The scheme of the specified link must be configured in the **querySchemes** field of the **module.json** file.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
