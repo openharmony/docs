@@ -146,7 +146,7 @@ export default class EntryAbility extends UIAbility {
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
-创建系统级Hsp的某个模块的资源管理对象。
+创建系统级HSP的某个模块的资源管理对象。
 
 **系统接口：** 此接口为系统接口。
 
