@@ -165,8 +165,8 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 参数错误. |
-| 16400001 | 传入的包名和模块名不是系统级HSP. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 16400001 | The specified ability does not exist. |
 
 
 
