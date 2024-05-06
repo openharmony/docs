@@ -1,5 +1,5 @@
 # 通过startAbilityByType拉起垂类意图面板
-开发者可通过特定的垂域业务类型如导航、金融等垂域类型，调用startAbilityByType接口拉起对应的垂域面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。垂域面板为调用方提供统一的安全、可信的目标方应用，同时降低调用方的接入成本。<br>
+开发者可通过特定的垂域业务类型如导航、金融等垂域类型，调用startAbilityByType接口拉起对应的垂域面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。垂域面板为调用方提供统一的安全、可信的目标方应用，同时降低调用方的接入成本。  
 ![](./figures/process-start-intent-panel.png)
 ## 使用约束
 **设备限制**
@@ -10,7 +10,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 ## 场景参数
 |   参数名|  类型 | 说明  |
 | ----- | ------------ | ------------ |
-| type  |  string |  垂域业务类型：导航取值navigation，金融取值finance等 |
+| type  |  string |  垂域业务类型：导航类型取值navigation，金融类型取值finance |
 | wantParam  | Record<string, Object>  |  与type垂域业务类型相对应的扩展参数 |
 
 **type为navigation导航对应的wantParam:**
@@ -39,7 +39,7 @@ import common from '@ohos.app.ability.common';
 2.构造接口参数并调用startAbilityByType接口。
 ```
 - type 固定取值为"navigation"，指定为导航场景。
-- wantParam 垂域业务类型对应的扩展参数，参考接口场景参数填写
+- wantParam 垂域业务类型对应的扩展参数，参考接口场景参数填写。
 ```
 **调用示例**
   ~~~typescript
@@ -71,7 +71,7 @@ import common from '@ohos.app.ability.common';
   ~~~
 效果示例图：
 
-![效果示例图](./figures/start-navigation-panel.png#pic_center)
+![效果示例图](./figures/start-navigation-panel.png)
 
 **目标方接入步骤** 
 
