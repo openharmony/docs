@@ -285,7 +285,16 @@ import { BusinessError } from '@ohos.base';
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err: BusinessError, value: boolean) => {
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+    ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -294,6 +303,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   });
 });
 ```
+
+> **说明**
+>
+> send接口必须在监听到open事件后才可以调用。
 
 ### send<sup>6+</sup>
 
@@ -332,7 +345,17 @@ import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+
 ws.connect(url, (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.log("send success")
@@ -341,6 +364,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   });
 });
 ```
+
+> **说明**
+>
+> send接口必须在监听到open事件后才可以调用。
 
 ### close<sup>6+</sup>
 
