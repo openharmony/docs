@@ -214,7 +214,7 @@
   }
   ```
 
-- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync)设置隐私模式下指定url的单个cookie的值。
+- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookie11)设置隐私模式下指定url的单个cookie的值。
 
   ```ts
   // xxx.ets
@@ -269,7 +269,7 @@
   }
   ```
 
-- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync)清除隐私模式下所有cookie。 
+- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookies11)清除隐私模式下所有cookie。 
 
   ```ts
   // xxx.ets
