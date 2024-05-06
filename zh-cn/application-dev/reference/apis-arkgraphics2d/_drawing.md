@@ -5,7 +5,7 @@
 
 Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。
 
-本模块不提供像素单位，和应用上下文环境保持一致。如果处于ArkUI开发环境中，采用框架默认像素单位vp。
+本模块采用屏幕物理像素单位px。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
