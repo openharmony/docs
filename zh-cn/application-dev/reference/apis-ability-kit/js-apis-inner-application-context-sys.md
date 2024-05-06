@@ -162,7 +162,7 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 **错误码**：
 
 | 错误码ID | 错误信息 |
-|  | -------- |
+| -------- | -------- |
 | 401 | 参数错误. |
 | 16400001 | 传入的包名和模块名不是系统级HSP. |
 
