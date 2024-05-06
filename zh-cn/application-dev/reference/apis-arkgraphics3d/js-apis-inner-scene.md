@@ -245,7 +245,7 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景结点参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
