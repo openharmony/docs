@@ -1,4 +1,4 @@
-# Sample Server Overview
+# Sample Server Development Overview
 
 The sample server provides a simple server instance for deploying update packages. It can be used as an auxiliary test environment for the UpdateService subsystem.
 
@@ -14,7 +14,7 @@ The sample server provides a simple server instance for deploying update package
 
 ## Constraints
 
-The following is an example of the JSON response returned by the server. Note that the **verifyInfo** field indicates the SHA-256 value of the update package, and the **size** field indicates the size of the update package, in bytes.
+- The following is an example of the JSON response returned by the server. Note that the **verifyInfo** field indicates the SHA-256 value of the update package, and the **size** field indicates the size of the update package, in bytes.
 
 ```json
 {
