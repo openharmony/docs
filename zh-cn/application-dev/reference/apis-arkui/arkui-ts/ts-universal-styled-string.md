@@ -466,6 +466,32 @@ constructor(value: LengthMetrics)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本字符间距设置项。如果LengthMetrics的unit值是percent，该设置不生效。 |
 
+## LineHeightStyle
+
+文本行高对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| lineHeight  | number |  是  |  是  | 获取属性字符串的文本行高。<br/>单位：vp |
+
+### constructor
+
+constructor(lineHeight: LengthMetrics)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| lineHeight | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本行高设置项。如果LengthMetrics的value值不大于0时，不限制文本行高，自适应字体大小。 |
+
 ## TextShadowStyle
 
 文本阴影对象说明。
@@ -539,6 +565,52 @@ constructor(value: ImageAttachmentInterface)
 | margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。 |
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。 |
 | borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。 |
+
+## ParagraphStyle
+
+文本段落样式对象说明。
+
+除首个段落外，后续段落按'\n'划分。
+
+每个段落的段落样式按首个占位设置的段落样式生效，未设置时，段落按被绑定组件的段落样式生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  是  |  否  | 获取属性字符串文本段落在水平方向的对齐方式。 |
+| textIndent | number   | 是    | 否    | 获取属性字符串文本段落的首行文本缩进。 |
+| maxLines   | number   | 是    | 否    | 获取属性字符串文本段落的最大行数。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | 是    | 否    | 获取属性字符串文本段落超长时的显示方式。 |
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 否    | 获取属性字符串文本段落的断行规则。 |
+| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 否    | 获取属性字符串文本段落的缩进。 |
+
+### constructor
+
+constructor(value?: ParagraphStyleInterface)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ParagraphStyleInterface](#paragraphstyleinterface对象说明) | 否   | 段落样式设置项。 |
+
+## ParagraphStyleInterface对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。 |
+| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。 |
+| maxLines   | number   | 否    | 设置文本段落的最大行数。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。 |
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
+| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
 
 ## 示例
 
@@ -684,8 +756,10 @@ struct styled_string_demo1 {
                   }
                 }
               }
-              this.mutableStyledString2.setStyle(styles[0]);
-              this.controller3.setStyledString(this.mutableStyledString2);
+              if (styles[0] !== undefined) {
+                this.mutableStyledString2.setStyle(styles[0]);
+                this.controller3.setStyledString(this.mutableStyledString2);
+              }
               this.mutableStyledString1.removeStyles(2, 3);
               this.controller2.setStyledString(this.mutableStyledString1);
             })
@@ -1111,8 +1185,151 @@ struct styled_string_demo4 {
 
 ![](figures/styledstring_4.png)
 
+### 示例5
 
+属性字符串LineHeightStyle、ParagraphStyle使用示例
 
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+const canvasWidth = 1000
+const canvasHeight = 100
+class LeadingMarginCreator {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
+
+  public genSquareMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2
+    const sideLength = fontSize / 1.5
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength)
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
+  }
+
+  private clearCanvas() {
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight)
+  }
+}
+@Entry
+@Component
+struct Index {
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance
+  leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
+    pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
+    size:[15, 15]
+  }
+  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+  //第一段落首行缩进15vp
+  paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+  //第二段落缩进15vp且首行有placeholder占位显示
+  paragraphStyleAttr2: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Start, leadingMargin:  this.leadingMarginPlaceholder1 });
+  //第三段落不设置缩进配置最大行数及超长显示方式
+  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
+  //30vp行高样式对象
+  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+  //创建含段落样式的对象paragraphStyledString1
+  paragraphStyledString1: StyledString = new StyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束\n正文第二段落开始hello world正文第二段落结束\n正文第三段落ABCDEFGHIJKLMNOPQRSTUVWXYZ。", [
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.titleParagraphStyleAttr
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: new LineHeightStyle(new LengthMetrics(50))
+    },{
+    start: 0,
+    length: 4,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+  },
+    {
+      start: 5,
+      length: 3,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr1
+    },
+    {
+      start: 5,
+      length: 20,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    },
+    {
+      start: 32,
+      length: 5,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr2
+    },
+    {
+      start: 32,
+      length: 20,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    },
+    {
+      start: 60,
+      length: 5,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr3
+    },
+    {
+      start: 60,
+      length: 5,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    }
+  ]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.paragraphStyledString1)
+  }
+
+  build() {
+    Row() {
+      Column( { space : 5 }) {
+        Text(undefined, { controller: this.controller })
+          .width(240)
+          .borderWidth(1)
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+
+        //查询段落样式
+        Text()
+          .onClick(() => {
+            let styles = this.paragraphStyledString1.getStyles(0, this.paragraphStyledString1.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('paragraphStyledString1 style object start:' + styles[i].start)
+                console.info('paragraphStyledString1 style object length:' + styles[i].length)
+                console.info('paragraphStyledString1 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 200) {
+                  let paraAttr = styles[i].styledValue as ParagraphStyle;
+                  console.info('paragraphStyledString1 textAlign:' + paraAttr.textAlign)
+                  console.info('paragraphStyledString1 textIndent:' + paraAttr.textIndent)
+                  console.info('paragraphStyledString1 maxLines:' + paraAttr.maxLines)
+                  console.info('paragraphStyledString1 wordBreak:' + paraAttr.wordBreak)
+                  console.info('paragraphStyledString1 leadingMargin:' + paraAttr.leadingMargin)
+                  console.info('paragraphStyledString1 overflow:' + paraAttr.overflow)
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_5.png)
 
 
 
