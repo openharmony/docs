@@ -387,7 +387,7 @@ AlphabetIndexer组件
 
 请查阅[AlphabetIndexer组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)文档进行适配。
 
-## cl.arkui.7 Menu组件header、footer对齐方式变更
+## cl.arkui.7 MenuItemGroup组件header、footer对齐方式变更
 
 **访问级别**
 
@@ -398,40 +398,17 @@ UX样式变更
 
 **变更影响**
 
-该变更为兼容性变更。变更前，header、footer与菜单文本左对齐。变更后，header、footer与左侧图标左对齐。
+API12变更之前：header、footer与菜单文本左对齐。
 
-**API Level**
+![MenuItemGroup组件默认值变更前效果图](figures/MenuItemGroup_HeaderAlign_Before.png)
 
-起始level 9，在API 12进行版本隔离。
+API12变更之后：header、footer与左侧图标左对齐。
 
-**变更发生版本**
+![MenuItemGroup组件默认值变更后效果图](figures/MenuItemGroup_HeaderAlign_After.png)
 
-从OpenHarmony SDK 5.0.0.21 版本开始。
+**起始API Level**
 
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-UX默认行为变更，无需适配。
-
-## cl.arkui.8 Menu组件上下安全边距变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-UX样式变更
-
-**变更影响**
-
-该变更为兼容性变更。变更前，菜单布局避让顶部状态栏与底部导航条后，上下再保留48vp的边距。变更后，菜单布局避让顶部状态栏与底部导航条后，上方保留16vp的边距，下方保留4vp的边距。
-
-**API Level**
-
-在API 12进行版本隔离
+9
 
 **变更发生版本**
 
@@ -439,13 +416,13 @@ UX样式变更
 
 **变更的接口/组件**
 
-Menu组件。
+MenuItemGroup组件。
 
 **适配指导**
 
 UX默认行为变更，无需适配。
 
-## cl.arkui.9 DatePickerDialog列宽比例、picker上下间距、内容与弹窗边距样式变更
+## cl.arkui.8 DatePickerDialog列宽比例、picker上下间距、内容与弹窗边距样式变更
 
 **访问级别**
 
@@ -496,7 +473,7 @@ API Level 8，在API 12进行版本隔离
 
 默认样式变更调整，无需适配。
 
-## cl.arkui.10 快捷键接口keyboardShortcut匹配规则变更为严格匹配，匹配成功后拦截后续按键事件处理
+## cl.arkui.9 快捷键接口keyboardShortcut匹配规则变更为严格匹配，匹配成功后拦截后续按键事件处理
 
 **访问级别**
 
@@ -527,7 +504,7 @@ API Level 8，在API 12进行版本隔离
 
 快捷键的按键集合严格对应所需要的按键。
 
-## cl.arkui.11 onPageHide变更
+## cl.arkui.10 onPageHide变更
 
 **访问级别**
 
@@ -561,7 +538,7 @@ API Version 12后：页面跳转时，先触发进来页面的创建生命周期
 
 依赖退出页面的onPageHide与进场页面的aboutToAppear生命周期执行的场景可以在aboutToAppear中通过事件通知机制，将触发退出页面的onPageHide中的实现逻辑。
 
-## cl.arkui.12 NavDestination生命周期变更
+## cl.arkui.11 NavDestination生命周期变更
 
 **访问级别**
 
@@ -608,7 +585,7 @@ onAboutToAppear(进场NavDestination页面)->onAppear(进场NavDestination页面
 
 依赖进场页面的aboutToAppear与退场页面aboutToDisAppear执行时间先后顺序的场景，可以将aboutToDisAppear生命周期转到willDisAppear生命周期中或者Navigation路由拦截setInterception的didShow回调中处理。
 
-## cl.arkui.13 select组件样式变更
+## cl.arkui.12 select组件样式变更
 
 **访问级别**
 
