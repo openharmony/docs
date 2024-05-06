@@ -1168,6 +1168,22 @@ setTextSelection选中文字时的配置。
 | --------------- | ---------------  |---- | ------------------------------------  |
 | supportAvoidance |  boolean      | 否 | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
+### lineBreakStrategy<sup>12+</sup>
+
+lineBreakStrategy(value: LineBreakStrategy)
+
+设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
+
 ## 示例
 
 ### 示例1
@@ -1764,3 +1780,50 @@ struct TextInputExample {
 ```
 
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
+
+### 示例13
+lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+
+```ts
+@Entry
+@Component
+struct TextExample1 {
+  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.GREEDY)
+      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
+      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+    }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)
