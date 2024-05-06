@@ -176,7 +176,7 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景结点参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 | materialType | [MaterialType](js-apis-inner-scene-resources.md#materialtype) | 是 | 材质类型。 |
 
 **返回值：**
