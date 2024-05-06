@@ -45,6 +45,8 @@ onMouse(event: (event: MouseEvent) => void)
 
 ## MouseEvent对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
 | x                      | number                                   | 鼠标位置相对于当前组件左上角的x轴坐标。         |
@@ -63,6 +65,8 @@ onMouse(event: (event: MouseEvent) => void)
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API verdion 10开始不再维护，建议使用windowY代替。 |
 
 ## HoverEvent<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称              | 属性类型       | 描述      |
 | --------------- | ---------- | ------- |

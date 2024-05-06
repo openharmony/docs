@@ -82,6 +82,8 @@ focusOnTouch(value: boolean)
 
 焦点控制模块
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### requestFocus<sup>9+</sup>
 
 requestFocus(value: string): boolean
