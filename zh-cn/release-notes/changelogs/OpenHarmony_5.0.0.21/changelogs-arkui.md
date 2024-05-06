@@ -614,14 +614,23 @@ Select下拉按钮样式风格增强，通过设置ControlSize，来实现Select
 | 文本大小     | 16fp                              | 14fp                              |
 | 文本间距     | 上间距8vp 、左间距16vp、下间距8vp   | 上间距4vp 、左间距12vp、下间距4vp   |
 
-API version 11及以前，NORMAL的背板最小宽度是66vp；
-API version 12及以后，NORMAL的背板最小宽度是68vp；
+变更前，NORMAL的背板最小宽度是66vp；
+
+![select_min_width_66vp_api11](figures/select_min_width_66vp_api11.png)
+
+变更后，NORMAL的背板最小宽度是68vp；
+
+![select_min_width_68vp_api12](figures/select_min_width_68vp_api12.png)
 
 2. 修改select下拉按钮默认颜色，
 
-API version 11及以前，默认背景颜色是系统资源中的`ohos_id_color_card_bg`；
+变更前，默认背景颜色是系统资源中的`ohos_id_color_card_bg`；
 
-API version 12及以后，默认背景颜色是系统资源中的`ohos_id_color_button_normal`。
+![select_default_backgroundColor_api11](figures/select_default_backgroundColor_api11.png)
+
+变更后，默认背景颜色是系统资源中的`ohos_id_color_button_normal`。
+
+![select_default_backgroundColor_api12](figures/select_default_backgroundColor_api12.png)
 
 3. controlSize、width、height接口作用优先级：
 
@@ -631,13 +640,21 @@ API version 12及以后，默认背景颜色是系统资源中的`ohos_id_color_
 
    3）如果controlSize、width、height接口都设置了，width和height设置的值生效，但如果width和height设置的值小于controlSize设置的最小宽度minWidth和最小高度minHeight，width和height设置的值不生效，宽高仍保持controlSize设置的最小宽度minWidth和最小高度minHeight。
 
+      宽度和高度随字体大小自适应示意图：
+
+      ![select_adaptation](figures/select_adaptation.gif)
+
 4. disabled状态的select下拉按钮背景色的opacity：
 
-API version 11及以前，disabled状态的select下拉按钮背景色不透明。
+变更前，disabled状态的select下拉按钮背景色不透明。
 
-API version 12及以后，disabled状态的select下拉按钮背景色与字体的opacity一致。
+![select_disabled_opacity_api11](figures/select_disabled_opacity_api11.png)
 
-**API Level**
+变更后，disabled状态的select下拉按钮背景色与字体的opacity一致。
+
+![select_disabled_opacity_api12](figures/select_disabled_opacity_api12.png)
+
+**起始 API Level**
 
 12
 
