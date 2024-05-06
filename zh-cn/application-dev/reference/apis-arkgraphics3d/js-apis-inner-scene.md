@@ -215,7 +215,7 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Shader](js-apis-inner-scene-resources.md#shader)> | 返回着色器对象。 |
+| Promise\<[Shader](js-apis-inner-scene-resources.md#shader)> | Promise对象，返回着色器对象。 |
 
 **示例：**
 ```ts
@@ -398,6 +398,7 @@ function getFactory() : void {
 
 ### destroy
 destroy(): void
+
 销毁场景，释放所有的场景资源。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
