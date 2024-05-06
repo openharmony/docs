@@ -1,16 +1,15 @@
-# @ohos.enterprise.locationManager（位置服务管理）(系统接口)
+# @ohos.enterprise.locationManager（位置服务管理）
 
 本模块提供设备位置服务策略管理的能力，包括设置和查询位置服务开关策略等。
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
 > 
-> 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -34,16 +33,18 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| policy | [LocationPolicy](#locationpolicy) | 是    | 位置服务策略。<br>- 0：默认策略<br>- 1：禁用<br>- 2：强制启用。 |
+| policy | [LocationPolicy](#locationpolicy) | 是    | 位置服务策略。<br>- 0：默认策略。<br>- 1：禁用。<br>- 2：强制启用。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                     |          
+| 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -82,18 +83,20 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 **返回值：**
 
-| 类型             | 说明                                                   |
-| ---------------- | ------------------------------------------------------ |
-| LocationPolicy | 位置服务策略枚举值 0：默认策略 1：禁用 2：强制启用。 |
+| 类型                              | 说明                                                 |
+| --------------------------------- | ---------------------------------------------------- |
+| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值 0：默认策略 1：禁用 2：强制启用。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
