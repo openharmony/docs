@@ -48,7 +48,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@ohos.base'; 
 
 usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
