@@ -311,7 +311,7 @@ async function createEnvironmentPromise() : Promise<scene3d.Environment> {
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | environment | [Environment](js-apis-inner-scene-resources.md#environment) | 否 | 是 | 环境对象。 |
-| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 是 | 动画数组。 用于保存3D场景中的动画对象|
+| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 是 | 动画数组。 用于保存3D场景中的动画对象。|
 | root | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 是 | 3D场景树根结点。 |
 
 ### load
