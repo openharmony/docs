@@ -30,10 +30,11 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -84,10 +85,11 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -137,10 +139,11 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -182,10 +185,11 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -220,10 +224,11 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -282,10 +287,11 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -312,10 +318,11 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -352,10 +359,11 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -378,10 +386,11 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -423,10 +432,11 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码]（../errorcode-universal.md）。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
