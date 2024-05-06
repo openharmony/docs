@@ -75,7 +75,7 @@ createCamera(params: SceneNodeParameters): Promise\<Camera>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](js-apis-inner-scene.md#scenenodeparameters) | 是 | 场景结点参数。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -108,7 +108,7 @@ createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](js-apis-inner-scene.md#scenenodeparameters) | 是 | 场景结点参数。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
 | lightType | [LightType](js-apis-inner-scene-nodes.md#lighttype) | 是 | 灯光类型。 |
 
 **返回值：**
@@ -142,7 +142,7 @@ createNode(params: SceneNodeParameters): Promise\<Node>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](js-apis-inner-scene.md#scenenodeparameters) | 是 | 场景结点参数。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -176,7 +176,7 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](js-apis-inner-scene.md#sceneresourceparameters) | 是 | 场景结点参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景结点参数。 |
 | materialType | [MaterialType](js-apis-inner-scene-resources.md#materialtype) | 是 | 材质类型。 |
 
 **返回值：**
@@ -210,7 +210,7 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](js-apis-inner-scene.md#sceneresourceparameters) | 是 | 场景资源参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -245,7 +245,7 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](js-apis-inner-scene.md#sceneresourceparameters) | 是 | 场景结点参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景结点参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -278,7 +278,7 @@ createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](js-apis-inner-scene.md#sceneresourceparameters) | 是 | 场景资源参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
