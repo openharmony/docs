@@ -138,7 +138,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 调用OH_VideoDecoder_Configure()配置解码器。
 
-    详细可配置选项的说明请参考[变量](../../reference/apis-avcodec-kit/_codec_base.md#变量)。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -176,6 +176,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 6. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -433,6 +434,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t height = 0;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
+    int32_t cropTop = 0;
+    int32_t cropBottom = 0;
+    int32_t cropLeft = 0;
+    int32_t cropRight = 0;
     bool isFirstFrame = true;
     // 解码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -453,6 +458,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        // 获取裁剪矩形信息可选
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
     }
     
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现
@@ -476,6 +486,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            // 获取裁剪矩形信息可选
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
             OH_AVFormat_Destroy(format);
             isFirstFrame = false;
         }
