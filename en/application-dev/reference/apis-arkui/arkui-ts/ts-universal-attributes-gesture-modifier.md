@@ -1,6 +1,6 @@
 # Gesture Modifier
 
-With the attribute modifier, you can dynamically set gestures bound to components, complete with the **if/else** syntax.
+With the gesture modifier, you can dynamically set gestures bound to components, complete with the **if/else** syntax.
 
 >  **NOTE**
 >
