@@ -27,17 +27,17 @@ If your application needs to access the device location information, it must fir
 
 To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
 
-A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
 
-For details about how to request for a continuous task, see [Continuous Task](../task-management/continuous-task.md).
+For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
-You can declare the required permission in your application's configuration file. For details, see [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md).
+You can declare the required permission in your application's configuration file. For details, see [Requesting Application Permissions](../../security/AccessToken/determine-application-mode.md).
 
 For details about the permissions required for each API of Location Kit, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 ### How to Develop
 
-For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md).
+For details, see [Applying for Application Permissions](../../security/AccessToken/determine-application-mode.md).
 
 
 ## Obtaining Device Location Information
