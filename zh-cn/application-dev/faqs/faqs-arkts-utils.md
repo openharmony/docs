@@ -738,3 +738,13 @@ build-profile.json5部分参数示例如下:
 **解决方案**
 
 上述四个接口可独立使用，无调用的先后顺序。
+
+## 如何在HAR中使用Sendable class
+
+**解决方案**
+
+使用TS HAR，具体内容参考以下文档。
+
+**参考链接**
+
+[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)
