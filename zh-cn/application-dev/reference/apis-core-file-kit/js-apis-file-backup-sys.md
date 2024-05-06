@@ -825,9 +825,11 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
 
 ### appendBundles
 
-appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
+appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
+
+从API version 12开始, 新增可选参数infos, 可携带备份所需要的信息
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -838,6 +840,7 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
+| infos           | string[] | 否   | 备份所需信息的数组, 需与bundlesToBackup相同索引的内容对应, 从API version 12开始支持。|
 
 **返回值：**
 
@@ -906,6 +909,30 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
         "com.example.hiworld",
       ];
       await sessionBackup.appendBundles(backupApps);
+      console.info('appendBundles success');
+      let infos: Array<string> = [
+        `
+         {
+          "infos":[
+            {
+              "details": [
+                {
+                  "detail": [
+                    {
+                      "source": "com.example.hiworld", // 应用旧系统包名
+                      "target": "com.example.helloworld" // 应用新系统包名
+                    }
+                  ]，
+                  "type": "app_mapping_relation"
+                }
+              ],
+              "type":"unitcast"
+            }
+          ]
+         }
+        `
+      ]
+      await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
     let err: BusinessError = error as BusinessError;
