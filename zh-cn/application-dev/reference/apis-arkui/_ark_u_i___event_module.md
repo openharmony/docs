@@ -83,6 +83,8 @@
 | double [OH_ArkUI_AxisEvent_GetHorizontalAxisValue](#oh_arkui_axisevent_gethorizontalaxisvalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的水平滚动轴的值。  | 
 | double [OH_ArkUI_AxisEvent_GetPinchAxisScaleValue](#oh_arkui_axisevent_getpinchaxisscalevalue) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前轴事件的捏合轴缩放的值。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [HitTestMode](#hittestmode) mode) | 配置HitTest模式。  | 
+| int32_t [OH_ArkUI_MouseEvent_GetMouseButton](#oh_arkui_mouseevent_getmousebutton) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的按键类型的值。  | 
+| int32_t [OH_ArkUI_MouseEvent_GetMouseAction](#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的鼠标动作类型的值。  | 
 
 
 ## 类型定义说明
@@ -259,6 +261,50 @@ double OH_ArkUI_AxisEvent_GetVerticalAxisValue (const ArkUI_UIInputEvent * event
 **返回：**
 
 返回当前轴事件的垂直滚动轴的值，如果参数异常则返回0.0。
+
+
+### OH_ArkUI_MouseEvent_GetMouseAction()
+
+```
+int32_t OH_ArkUI_MouseEvent_GetMouseAction (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取鼠标事件的鼠标动作类型的值。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回鼠标动作类型，1表示按键按下，2表示按键松开，3表示鼠标移动。
+
+
+### OH_ArkUI_MouseEvent_GetMouseButton()
+
+```
+int32_t OH_ArkUI_MouseEvent_GetMouseButton (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取鼠标事件的按键类型的值。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+
+**返回：**
+
+返回鼠标按键类型，1为左键，2为右键，4为中键，8为后退键，16为前进键。
 
 
 ### OH_ArkUI_PointerEvent_GetDisplayX()
@@ -491,6 +537,7 @@ float OH_ArkUI_PointerEvent_GetHistoryPressure (const ArkUI_UIInputEvent * event
 **返回：**
 
 返回当前带有指向性的输入事件产生的触屏压力，如果参数异常则返回0.0f。
+
 
 ### OH_ArkUI_PointerEvent_GetHistorySize()
 

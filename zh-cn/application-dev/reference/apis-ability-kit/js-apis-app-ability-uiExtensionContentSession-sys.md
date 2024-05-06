@@ -34,11 +34,13 @@ sendData(data: Record\<string, Object>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
@@ -58,11 +60,13 @@ setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
@@ -83,11 +87,13 @@ setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Reco
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbility
 
@@ -99,8 +105,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 > 对应UIExtensionComponent控件所在的应用需要处于前台获焦状态。
-
-
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -115,8 +119,13 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -132,8 +141,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbility
 
@@ -160,8 +167,13 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -175,8 +187,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbility
 
@@ -208,8 +218,13 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -225,8 +240,6 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -257,8 +270,13 @@ Ability的终止方式包括以下几种情况:
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -274,8 +292,6 @@ Ability的终止方式包括以下几种情况:
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -307,8 +323,13 @@ Ability的终止方式包括以下几种情况:
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -322,8 +343,6 @@ Ability的终止方式包括以下几种情况:
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -361,8 +380,13 @@ Ability的终止方式包括以下几种情况:
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -378,8 +402,6 @@ Ability的终止方式包括以下几种情况:
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.setWindowBackgroundColor
 
@@ -399,11 +421,13 @@ setWindowBackgroundColor(color: string): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -422,11 +446,15 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
-
 **错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -442,8 +470,6 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -463,11 +489,15 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
-
 **错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -481,8 +511,6 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -509,8 +537,13 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 202      | Not System App. Interface caller is not a system app. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -526,8 +559,6 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
 
@@ -547,8 +578,11 @@ getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -593,4 +627,3 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 }
 ```
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。

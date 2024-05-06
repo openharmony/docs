@@ -142,10 +142,10 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 | modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## ProgressConfiguration<sup>12+</sup>
-| 名称 | 参数类型   | 必填 | 描述         |
-| ------ | ------ | ---- | ------------ |
-| value  | number | 是   | 当前进度值。 |
-| total  | number | 是   | 进度总长。   |
+| 名称 | 参数类型  | 描述         |
+| ------ | ------ | ------------|
+| value  | number | 当前进度值。 |
+| total  | number | 进度总长。   |
 ## ProgressStyleOptions<sup>8+</sup>
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |

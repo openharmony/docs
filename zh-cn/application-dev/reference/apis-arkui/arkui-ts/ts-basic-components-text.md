@@ -421,7 +421,7 @@ enableDataDetector(enable: boolean)
 
 设置使能文本识别。所识别实体的fontColor和decoration会被更改为如下样式：
 
-fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}
+fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue,<br/>style:&nbsp;TextDecorationStyle.SOLID<br/>}
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 

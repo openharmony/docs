@@ -72,7 +72,6 @@ try {
 }
 ```
 
-
 ## certManager.getAllAppPrivateCertificates
 
 getAllAppPrivateCertificates() : Promise\<CMResult>
@@ -117,5 +116,54 @@ try {
   })
 } catch (error) {
   console.error("[Promise]getAllAppPrivateCertificates failed");
+}
+```
+
+## certManager.getAllSystemAppCertificates<sup>12+</sup>
+
+getAllSystemAppCertificates() : Promise\<CMResult>
+
+表示获取所有系统凭据列表，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**系统接口：** 此接口为系统接口。
+
+**返回值**：
+
+| 类型                                        | 说明                 |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | 表示获取所有系统凭据列表的结果，返回值为[CMResult](js-apis-certManager.md#cmresult)中的credentialList。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | The application has no permission to call the API. |
+| 202 | The application is not system app. |
+| 17500001 | There is an generic error occurred when calling the API. |
+
+**示例**：
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+  certManager.getAllSystemAppCertificates().then((cmResult) => {
+    if (cmResult.credentialList == undefined) {
+      console.log("[Promise]getAllSystemAppCertificates result is undefined");
+    } else {
+      let list = cmResult.credentialList;
+      console.log("[Promise]getAllSystemAppCertificates success");
+    }
+  }).catch((err: BusinessError) => {
+    console.error('[Promise]getAllSystemAppCertificates failed');
+  })
+} catch (error) {
+  console.error("[Promise]getAllSystemAppCertificates failed");
 }
 ```
