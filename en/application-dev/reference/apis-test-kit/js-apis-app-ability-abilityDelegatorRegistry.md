@@ -18,6 +18,8 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 Enumerates the ability lifecycle states. It can be used in [getAbilityState(ability)](js-apis-inner-application-abilityDelegator.md#getabilitystate9) of [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) to return different ability lifecycle states.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name         | Value  | Description                       |
@@ -33,6 +35,8 @@ Enumerates the ability lifecycle states. It can be used in [getAbilityState(abil
 getAbilityDelegator(): AbilityDelegator
 
 Obtains an [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -68,6 +72,8 @@ abilityDelegator.startAbility(want, (err) => {
 getArguments(): AbilityDelegatorArgs
 
 Obtains an [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
