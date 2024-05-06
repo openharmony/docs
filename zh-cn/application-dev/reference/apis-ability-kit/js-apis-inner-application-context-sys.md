@@ -146,7 +146,9 @@ export default class EntryAbility extends UIAbility {
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
-创建系统级Hsp的某个模块的资源管理对象。
+<<<<<<< weekly_20240401
+创建系统级HSP的某个模块的资源管理对象。
+
 
 **系统接口：** 此接口为系统接口。
 
@@ -159,14 +161,17 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 | bundleName | string | 是    | 包名。  |
 | moduleName | string | 是    | 模块名。 |
 
+<<<<<<< weekly_20240401
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 **错误码**：
 
-| 错误码ID  | 错误信息 |
-|--------| -------- |
-| 401    | 参数错误. |
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | 参数错误. |
 | 16400001 | 传入的包名和模块名不是系统级HSP. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 
 **示例：**
 
