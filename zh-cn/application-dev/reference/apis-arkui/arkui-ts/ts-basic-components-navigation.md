@@ -474,11 +474,11 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | 系统内部错误。|
 | 100005    | 创建NavDestination组件的builder函数未注册。 |
 | 100006    | 目标页面中不存在NavDestination组件。|
@@ -505,11 +505,11 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | 系统内部错误。|
 | 100005    | 创建NavDestination组件的builder函数未注册。 |
 | 100006    | 目标页面中不存在NavDestination组件。|
@@ -537,11 +537,11 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | 系统内部错误。|
 | 100005    | 创建NavDestination组件的builder函数未注册。 |
 | 100006    | 目标页面中不存在NavDestination组件。|
