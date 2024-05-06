@@ -20,6 +20,8 @@
 
 TabContent()
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 
 ## 属性
 
@@ -35,6 +37,8 @@ tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; te
 
 设置的内容超出tabbar页签时进行裁切。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -48,6 +52,8 @@ tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; te
 tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 设置TabBar上显示内容。底部样式没有下划线效果。icon异常时显示灰色图块。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,11 +74,15 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 子页签样式。打开后在切换页签时会播放跳转动画。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### constructor
 
 constructor(content: ResourceStr | ComponentContent)
 
 SubTabBarStyle的构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -86,6 +96,8 @@ static of(content: ResourceStr | ComponentContent)
 
 SubTabBarStyle的静态构造函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名  | 参数类型                                   | 必填 | 参数描述           |
@@ -98,14 +110,16 @@ SubTabBarStyle的静态构造函数。
 
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。|
-| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
-| board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。|
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。 |
-| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
-| id<sup>11+</sup> | string | 设置子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| id<sup>11+</sup> | string | 设置子页签的[id](ts-universal-attributes-component-id.md#属性)。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------------------------------- |
@@ -116,12 +130,17 @@ SubTabBarStyle的静态构造函数。
 | marginTop | [Length](ts-types.md#length) | 否 | 下划线与文字的间距（不支持百分比设置）。<br/>默认值：8.0<br/>单位：vp |
 
 ## SelectedMode<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
 | INDICATOR | 使用下划线模式。     |
 | BOARD   | 使用背板模式。     |
 
 ## BoardStyle<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | ------------------------------------ |
@@ -131,12 +150,12 @@ SubTabBarStyle的静态构造函数。
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。默认值是省略号截断。 |
-| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过textOverflow来指定截断方式。默认值是1。 |
-| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号（不支持百分比设置）。需配合maxFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。|
-| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。||
-| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。                              |
-| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。      |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。默认值是省略号截断。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过textOverflow来指定截断方式。默认值是1。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号（不支持百分比设置）。需配合maxFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 |
 | selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF |
 
@@ -149,6 +168,8 @@ SubTabBarStyle的静态构造函数。
 constructor(icon: ResourceStr, text: ResourceStr)
 
 BottomTabBarStyle的构造函数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -163,6 +184,8 @@ static of(icon: ResourceStr, text: ResourceStr)
 
 BottomTabBarStyle的静态构造函数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
@@ -176,15 +199,17 @@ BottomTabBarStyle的静态构造函数。
 
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置底部页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp} |
-| verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
-| layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10枚举说明) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL |
-| symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false |
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。 |
-| id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置底部页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10枚举说明) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | iconStyle<sup>12+</sup> | [IconStyle](#iconstyle12对象说明) | 设置底部页签的label图标的样式。 |
 
 ## LayoutMode<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称         | 描述                                       |
 | ----------  | ---------------------------------------- |
@@ -209,6 +234,8 @@ onWillShow(event: VoidCallback)
 
 逻辑回调，TabContent将要显示的时候触发该回调。场景包括TabContent首次显示，TabContent切换，页面切换，窗口前后台切换。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -222,6 +249,8 @@ onWillShow(event: VoidCallback)
 onWillHide(event: VoidCallback)
 
 逻辑回调，TabContent将要隐藏的时候触发该回调。场景包括TabContent切换，页面切换，窗口前后台切换。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1188,10 +1217,10 @@ struct Index {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
-          }.tabBar(new SubTabBarStyle(this.tabBar1.getFrameNode()))
+          }.tabBar(new SubTabBarStyle(this.tabBar1))
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
-          }.tabBar(SubTabBarStyle.of(this.tabBar2.getFrameNode()))
+          }.tabBar(SubTabBarStyle.of(this.tabBar2))
         }
         .vertical(false)
         .barWidth(414)

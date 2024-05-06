@@ -345,14 +345,14 @@ function f(shouldInitialize: boolean) {
 console.log(f(true));  // b
 console.log(f(false)); // undefined
 
-let upper_let = 0;
+let upperLet = 0;
 {
-  var scoped_var = 0;
-  let scoped_let = 0;
-  upper_let = 5;
+  var scopedVar = 0;
+  let scopedLet = 0;
+  upperLet = 5;
 }
-scoped_var = 5; // 可见
-scoped_let = 5; // 编译时错误
+scopedVar = 5; // 可见
+scopedLet = 5; // 编译时错误
 ```
 
 **ArkTS**
@@ -369,14 +369,14 @@ function f(shouldInitialize: boolean): string {
 console.log(f(true));  // b
 console.log(f(false)); // a
 
-let upper_let = 0;
-let scoped_var = 0;
+let upperLet = 0;
+let scopedVar = 0;
 {
-  let scoped_let = 0;
-  upper_let = 5;
+  let scopedLet = 0;
+  upperLet = 5;
 }
-scoped_var = 5;
-scoped_let = 5; //编译时错误
+scopedVar = 5;
+scopedLet = 5; //编译时错误
 ```
 
 ### 使用具体的类型而非`any`或`unknown`
@@ -1141,16 +1141,16 @@ class Point {
   y: number = 0
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o;
 }
 
 // TS支持structural typing，可以推断p的类型为Point
 let p = {x: 5, y: 10};
-id_x_y(p);
+getPoint(p);
 
 // 可通过上下文推断出对象字面量的类型为Point
-id_x_y({x: 5, y: 10});
+getPoint({x: 5, y: 10});
 ```
 
 **ArkTS**
@@ -1164,16 +1164,16 @@ class Point {
   // 由于没有为Point定义构造函数，编译器将自动添加一个默认构造函数。
 }
 
-function id_x_y(o: Point): Point {
+function getPoint(o: Point): Point {
   return o;
 }
 
 // 字面量初始化需要显式定义类型
 let p: Point = {x: 5, y: 10};
-id_x_y(p);
+getPoint(p);
 
-// id_x_y接受Point类型，字面量初始化生成一个Point的新实例
-id_x_y({x: 5, y: 10});
+// getPoint接受Point类型，字面量初始化生成一个Point的新实例
+getPoint({x: 5, y: 10});
 ```
 
 **相关约束**
@@ -3319,6 +3319,7 @@ function f() {
   let e7 = e6;              // OK，使用ESObject类型赋值
   bar(e7);                  // OK，ESObject类型变量传给跨语言调用的函数
 }
+```
 
 **相关约束**
 

@@ -28,7 +28,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -75,10 +75,13 @@ promise?.then(()=> {
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+> **说明：**
+>
+> 添加安全水印标志后，窗口在前台时会将当前全屏幕覆盖水印。全屏、悬浮窗、分屏等场景下只要有添加了安全水印标志的窗口在前台，就会显示全屏水印。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

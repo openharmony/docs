@@ -28,6 +28,7 @@ Defines the RDB store configuration.
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 
 ## Reference<sup>11+</sup>
 
@@ -56,7 +57,7 @@ Defines the configuration of the distributed mode of tables.
 ## RdbStore
 
 Provides APIs for managing data in an RDB store.
-Before using the APIs of this class, use [executeSql](js-apis-data-relationalStore.md#executesql) to initialize the database table structure and related data.
+Before using the **RdbStore** APIs, use [executeSql](js-apis-data-relationalStore.md#executesql) to initialize the database table structure and related data.
 
 ### update
 
@@ -94,24 +95,35 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates, (err, rows) => {
     if (err) {
       console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -163,24 +175,35 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
-let key1 = "NAME";
-let key2 = "AGE";
-let key3 = "SALARY";
-let key4 = "CODES";
 let value1 = "Rose";
 let value2 = 22;
 let value3 = 200.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-const valueBucket: ValuesBucket = {
-  key1: value1,
-  key2: value2,
-  key3: value3,
-  key4: value4,
+
+// You can use either of the following:
+const valueBucket1: ValuesBucket = {
+  'NAME': value1,
+  'AGE': value2,
+  'SALARY': value3,
+  'CODES': value4,
 };
+const valueBucket2: ValuesBucket = {
+  NAME: value1,
+  AGE: value2,
+  SALARY: value3,
+  CODES: value4,
+};
+const valueBucket3: ValuesBucket = {
+  "NAME": value1,
+  "AGE": value2,
+  "SALARY": value3,
+  "CODES": value4,
+};
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 if(store != undefined) {
-  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates).then(async (rows: Number) => {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket1, predicates).then(async (rows: Number) => {
     console.info(`Updated row count: ${rows}`);
   }).catch((err: BusinessError) => {
     console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
@@ -476,7 +499,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Sync mode of the database.                  |
 | predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data sync.                 |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback used to process database sync details.          |
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback invoked to process database sync details.          |
 | callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback invoked to send the sync result to the caller.|
 
 **Example**
@@ -514,7 +537,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 |------------|---------------------------------| ---- |---------------------|
 | mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Sync mode of the database.        |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data sync.               |
-| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
+| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback invoked to process database sync details.|
 
 **Return value**
 
@@ -693,4 +716,46 @@ if(store != undefined) {
   })
 }
 
+```
+
+## ResultSet
+
+Provides APIs to access the result set obtained by querying the RDB store. A result set is a set of results returned by **query()**.
+
+### getFloat32Array<sup>12+</sup>
+
+getFloat32Array(columnIndex: number): Float32Array
+
+Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector database](#storeconfig).
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description                   |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | Yes  | Index of the target column, starting from 0.|
+
+**Return value**
+
+| Type      | Description                            |
+| ---------- | -------------------------------- |
+| Float32Array | Value obtained, in a Float32Array.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 14800011     | Failed to open database by database corrupted. |
+| 14800013     | The column value is null or the column type is incompatible. |
+
+**Example**
+
+```ts
+let resultSet: relationalStore.ResultSet | undefined;
+if(resultSet != undefined) {
+  const id = (resultSet as relationalStore.ResultSet).getFloat32Array(0);
+}
 ```

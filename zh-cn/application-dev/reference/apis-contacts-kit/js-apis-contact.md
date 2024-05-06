@@ -19,6 +19,8 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 添加联系人，使用callback方式作为异步方法。
 
+**元服务API**：从API12开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -99,6 +101,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 addContact(context: Context, contact: Contact): Promise<number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+**元服务API**：从API12开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -780,8 +784,8 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                      | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| id       | number                       | 是   | 联系人对象的id属性。                                         |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| id       | number                       | 是   | 名片对象的id属性。                                         |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表的是“我的名片”，false则代表不是。 |
 
 **错误码：**
 
@@ -823,8 +827,8 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| id       | number                       | 是   | 联系人对象的id属性。                                         |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| id       | number                       | 是   | 名片对象的id属性。                                         |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回是否为“我的名片”的布尔值。true代表的是“我的名片”，false则代表不是。 |
 
 **示例：**
 
@@ -855,13 +859,13 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| id      | number  | 是   | 联系人对象的id属性。                                         |
+| id      | number  | 是   | 名片对象的id属性。                                         |
 
 **返回值：**
 
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表的是“我的名片”，false则代表不是。 |
 
 **错误码：**
 
@@ -902,13 +906,13 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| id     | number | 是   | 联系人对象的id属性。 |
+| id     | number | 是   | 名片对象的id属性。 |
 
 **返回值：**
 
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表的是“我的名片”，false则代表不是。 |
 
 **示例：**
 
@@ -1230,6 +1234,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
+**元服务API**：从API11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1250,10 +1256,10 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@ohos.base';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1262,6 +1268,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
+
+**元服务API**：从API11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1283,9 +1291,9 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
   import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
 
@@ -1294,6 +1302,8 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
+
+**元服务API**：从API11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1318,10 +1328,10 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1330,6 +1340,8 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
+
+**元服务API**：从API11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1352,9 +1364,9 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
   import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
 
@@ -1466,7 +1478,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -1505,7 +1517,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -1631,7 +1643,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1673,7 +1685,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1726,7 +1738,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1771,7 +1783,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1888,7 +1900,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -1926,7 +1938,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2049,7 +2061,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2090,7 +2102,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2141,7 +2153,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2186,7 +2198,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2307,7 +2319,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2346,7 +2358,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2472,7 +2484,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2514,7 +2526,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2567,7 +2579,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2613,7 +2625,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2733,7 +2745,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2772,7 +2784,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2898,7 +2910,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2940,7 +2952,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2993,7 +3005,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -3039,7 +3051,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -3156,7 +3168,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
   // 获取context
   let context = getContext(this) as Context;
   contact.queryGroups(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3194,7 +3206,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryGroups({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3243,7 +3255,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryGroups(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3285,7 +3297,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryGroups({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3550,7 +3562,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
   // 获取context
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3589,7 +3601,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryKey(/*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3639,7 +3651,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryKey(context, /*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3682,7 +3694,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryKey(/*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3899,7 +3911,7 @@ email.email = "xxx@email.com";
 
 | 名称        | 类型   | 可读 | 可写 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | 是   | 否   | Bundle名称。 |
+| bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
 | displayName | string | 是   | 否   | 应用名称。   |
 | holderId    | number | 是   | 是   | 应用ID。     |
 
@@ -3912,7 +3924,7 @@ email.email = "xxx@email.com";
 let holder: contact.Holder = {
   bundleName: "com.ohos.contacts",
   displayName: "displayName",
-  holderId: 0
+  holderId: 1
 };
 ```
 
@@ -3920,7 +3932,7 @@ let holder: contact.Holder = {
 
 ```js
 let holder = new contact.Holder();
-holder.holderId = 0;
+holder.holderId = 1;
 ```
 
 

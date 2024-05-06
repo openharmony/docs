@@ -84,3 +84,4 @@
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+      - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)

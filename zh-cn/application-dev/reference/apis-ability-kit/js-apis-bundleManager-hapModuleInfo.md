@@ -7,6 +7,8 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
 ## HapModuleInfo
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                              | 类型                                                         | 可读 | 可写 | 说明                 |
@@ -64,7 +66,6 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | 名称           | 类型   | 只读 | 必填 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | name          | string | 是   | 是   | 标识跳转页面的名称。       |
-| pageModule    | string | 是   | 是   | 标识页面所在的模块名称。 |
 | pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
 | buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
 | data          | Array\<[DataItem](#dataitem12)> | 是   | 是   | 标识自定义数据。   |

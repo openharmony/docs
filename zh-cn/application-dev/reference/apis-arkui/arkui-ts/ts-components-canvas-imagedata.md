@@ -10,15 +10,15 @@ ImageData对象可以存储canvas渲染的像素数据。
 
 constructor(width: number, height: number, data?: Uint8ClampedArray);
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 ## 属性
 
 | 属性     | 类型                | 描述                                       |
 | ------ | ----------------- | ---------------------------------------- |
-| width | number | 只读属性，矩形区域实际像素宽度，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 只读属性，矩形区域实际像素高度，单位为px。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| data | Uint8ClampedArray | 只读属性，一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width | number | 只读属性，矩形区域实际像素宽度，单位为px。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | 只读属性，矩形区域实际像素高度，单位为px。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| data | Uint8ClampedArray | 只读属性，一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 >  **说明：**
 >

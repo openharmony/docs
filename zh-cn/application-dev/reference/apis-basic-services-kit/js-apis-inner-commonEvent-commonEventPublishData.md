@@ -12,10 +12,10 @@
 
 | 名称                  | 类型                 | 可读 | 可写 | 说明                         |
 | --------------------- | -------------------- | ---- | ---- | ---------------------------- |
-| bundleName            | string               | 是  | 否  | 表示订阅者包名称，只有包名为bundleName的订阅者才能收到该公共事件。 |
-| code                  | number               | 是  | 否  | 表示公共事件的结果代码。       |
-| data                  | string               | 是  | 否  | 表示公共事件的自定义结果数据。 |
-| subscriberPermissions | Array\<string>       | 是  | 否  | 表示订阅者的权限。             |
+| bundleName            | string               | 是  | 否  | 表示订阅者包名称，只有包名为bundleName的订阅者才能收到该公共事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| code                  | number               | 是  | 否  | 表示公共事件的结果代码。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
+| data                  | string               | 是  | 否  | 表示公共事件的自定义结果数据。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| subscriberPermissions | Array\<string>       | 是  | 否  | 表示订阅者的权限。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
 | isOrdered             | boolean              | 是  | 否  | 表示是否是有序事件。           |
 | isSticky              | boolean              | 是  | 否  | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
-| parameters            | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。       |
+| parameters            | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |

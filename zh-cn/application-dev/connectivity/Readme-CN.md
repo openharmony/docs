@@ -11,3 +11,6 @@
   - [NFC标签读写开发指南](nfc/nfc-tag-access-guide.md)
   - [HCE卡模拟开发指南](nfc/nfc-hce-guide.md)
   - [安全单元访问开发指南](nfc/nfc-se-access-guide.md)
+- WLAN
+  - [WLAN服务开发概述](wlan/wlan-overview.md)
+  - [P2P模式开发指南](wlan/p2p-development-guide.md)

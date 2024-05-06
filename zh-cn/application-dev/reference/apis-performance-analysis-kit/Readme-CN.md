@@ -35,6 +35,7 @@
     - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
+    - [HiTraceId](_hi_trace_id.md)
 - 错误码
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)

@@ -24,14 +24,19 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | Defines the **OH_NativeBuffer** attribute configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the attributes of an existing instance.|
+| struct  [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) | Describes the **OH_NativeBuffer** attribute configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the attributes of an existing instance.|
+| struct  [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md) | Describes the plane information of an image.| 
+| struct  [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md) | Describes the plane information of images in an **OH_NativeBuffer** instance.| 
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeBuffer](#oh_nativebuffer) | Provides the declaration of an **OH_NativeBuffer** struct.|
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer)  [OH_NativeBuffer](#oh_nativebuffer) | Provides the declaration of an **OH_NativeBuffer** struct.| 
+| typedef struct [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)  [OH_NativeBuffer_Config](#oh_nativebuffer_config) | Defines the **OH_NativeBuffer** attribute configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the attributes of an existing instance.| 
+| typedef struct [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)  [OH_NativeBuffer_Plane](#oh_nativebuffer_plane) | Defines a struct that describes the plane information of an image.| 
+| typedef struct [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)  [OH_NativeBuffer_Planes](#oh_nativebuffer_planes) | Defines a struct that describes the plane information of images in an **OH_NativeBuffer** instance.| 
 
 
 ### Enums
@@ -57,7 +62,8 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 | [OH_NativeBuffer_Unmap](#oh_nativebuffer_unmap) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer) | Unmaps the ION memory corresponding to an **OH_NativeBuffer** instance from the process address space.|
 | [OH_NativeBuffer_GetSeqNum](#oh_nativebuffer_getseqnum) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer) | Obtains the sequence number of an **OH_NativeBuffer** instance.|
 | [OH_NativeBuffer_SetColorSpace](#oh_nativebuffer_setcolorspace) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer, [OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace) colorSpace) | Sets the color space for an **OH_NativeBuffer** instance.|
-
+| int32_t [OH_NativeBuffer_MapPlanes](#oh_nativebuffer_mapplanes) ([OH_NativeBuffer](#oh_nativebuffer) \*buffer, void \*\*virAddr, [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md) \*outPlanes) | Maps the multi-channel ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.| 
+| int32_t [OH_NativeBuffer_FromNativeWindowBuffer](#oh_nativebuffer_fromnativewindowbuffer) (OHNativeWindowBuffer \*nativeWindowBuffer, [OH_NativeBuffer](#oh_nativebuffer) \*\*buffer) | Converts an **OHNativeWindowBuffer** instance to an **OH_NativeBuffer** instance.| 
 
 ## Type Description
 
@@ -73,6 +79,50 @@ typedef struct OH_NativeBufferOH_NativeBuffer
 Provides the declaration of an **OH_NativeBuffer** struct.
 
 **Since**: 9
+
+### OH_NativeBuffer_Config
+
+```
+typedef struct OH_NativeBuffer_Config OH_NativeBuffer_Config
+```
+
+**Description**
+
+Defines the **OH_NativeBuffer** attribute configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the attributes of an existing instance.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**Since**: 9
+
+
+### OH_NativeBuffer_Plane
+
+```
+typedef struct OH_NativeBuffer_Plane OH_NativeBuffer_Plane
+```
+
+**Description**
+
+Defines a struct that describes the plane information of an image.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**Since**: 12
+
+
+### OH_NativeBuffer_Planes
+
+```
+typedef struct OH_NativeBuffer_Planes OH_NativeBuffer_Planes
+```
+
+**Description**
+
+Defines a struct that describes the plane information of images in an **OH_NativeBuffer** instance.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**Since**: 12
 
 
 ## Enum Description
@@ -286,6 +336,31 @@ Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** s
 
 Returns the pointer to the **OH_NativeBuffer** instance created if the operation is successful; returns **NULL** otherwise.
 
+### OH_NativeBuffer_FromNativeWindowBuffer()
+
+```
+int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWindowBuffer, OH_NativeBuffer **buffer )
+```
+
+**Description**
+
+Converts an **OHNativeWindowBuffer** instance to an **OH_NativeBuffer** instance.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| nativeWindowBuffer | Pointer to an **OHNativeWindowBuffer** instance.| 
+| buffer | Pointer to an **OH_NativeBuffer** instance.| 
+
+**Returns**
+
+Returns **0** if the operation is successful.
+
 
 ### OH_NativeBuffer_GetConfig()
 
@@ -354,6 +429,32 @@ Maps the ION memory corresponding to an **OH_NativeBuffer** instance to the proc
 | -------- | -------- |
 | buffer | Pointer to an **OH_NativeBuffer** instance.|
 | virAddr | Double pointer to the address of the virtual memory.|
+
+**Returns**
+
+Returns **0** if the operation is successful.
+
+### OH_NativeBuffer_MapPlanes()
+
+```
+int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_NativeBuffer_Planes *outPlanes )
+```
+
+**Description**
+
+Maps the multi-channel ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| buffer | Pointer to an **OH_NativeBuffer** instance.| 
+| virAddr | Double pointer to the address of the virtual memory.| 
+| outPlanes | Pointer to the plane information of all images.| 
 
 **Returns**
 

@@ -140,7 +140,7 @@ Data sources of the archived type can be classified into local resources, online
 
 ### Pixel Map
 
-A pixel map is a pixel image obtained after image decoding. For details, see [Image Development](../media/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
+A pixel map is a pixel image obtained after image decoding. For details, see [Introduction to Image Kit](../media/image/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
 
 1. Create a **PixelMap** state variable.
 

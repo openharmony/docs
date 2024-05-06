@@ -505,6 +505,7 @@ class EntryAbility extends UIAbility {
 | dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| allowRebuild<sup>12+<sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -580,6 +581,7 @@ class EntryAbility extends UIAbility {
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 | Float32Array<sup>12+</sup> | 表示值类型为浮点数组。 |
+| bigint<sup>12+</sup> | 表示值类型为任意长度的整数。<br/>当字段类型是bigint时，在创建表的sql语句中，类型应当为：UNLIMITED INT, 详见[通过关系型数据库实现数据持久化](../../database/data-persistence-by-rdb-store.md)。<br/>**说明：** bigint类型当前不支持比较大小，不支持如下谓词：between、notBetween、greaterThanlessThan、greaterThanOrEqualTo、lessThanOrEqualTo、orderByAsc、orderByDesc。<br/>bigint类型字段的数据写入时，需通过BigInt()方法或在数据尾部添加'n'的方式明确为bigint类型，如'let data = BigInt(1234)'或'let data = 1234n'。<br/>bigint字段如果写入number类型的数据，则查询该数据的返回类型为number，而非bigint。 |
 
 ## ValuesBucket
 
@@ -673,6 +675,18 @@ class EntryAbility extends UIAbility {
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | 订阅本地数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+
+## RebuldType<sup>12+</sup>
+
+描述数据库重建类型的枚举。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称    | 值   | 说明                                     |
+| ------- | ---- | ---------------------------------------- |
+| NONE    | 0    | 表示数据库未进行重建。                   |
+| REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库。 |
 
 ## ChangeType<sup>10+</sup>
 
@@ -1678,6 +1692,66 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
+### notContains<sup>12+</sup>
+
+notContains(field: string, value: string): RdbPredicates
+
+配置谓词以匹配数据表的field列中不包含value的字段。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| field  | string | 是   | 数据库表中的列名。     |
+| value  | string | 是   | 指示要与谓词匹配的值。 |
+
+**返回值**：
+
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**示例：**
+
+```ts
+// 匹配数据表的"NAME"列中不包含"os"的字段，如列表中的"Lisa"
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notContains("NAME", "os");
+```
+
+### notLike<sup>12+</sup>
+
+notLike(field: string, value: string): RdbPredicates
+
+配置谓词以匹配数据表的field列中值不存在类似于value的字段。 
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| field  | string | 是   | 数据库表中的列名。     |
+| value  | string | 是   | 指示要与谓词匹配的值。 |
+
+**返回值**：
+
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**示例：**
+
+```ts
+// 匹配数据表的"NAME"列中不等于"os"的字段，如列表中的"Rose"
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.notLike("NAME", "os");
+```
+
+
+
 ## RdbStore
 
 提供管理关系数据库(RDB)方法的接口。
@@ -1688,9 +1762,10 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称         | 类型            | 必填 | 说明                             |
-| ------------ | ----------- | ---- | -------------------------------- |
-| version<sup>10+</sup>  | number | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
+| 名称         | 类型            | 只读       | 必填 | 说明                             |
+| ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
+| version<sup>10+</sup>  | number | 否 | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuldtype12) | 是 | 是 | 用于获取数据库是否进行过重建。 |
 
 **示例：**
 
@@ -1700,6 +1775,8 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).version = 3;
   // 获取数据库版本
   console.info(`RdbStore version is ${store.version}`);
+  // 获取数据库是否重建
+  console.info(`RdbStore rebuilt is ${store.rebuilt}`);
 }
 ```
 
@@ -2954,6 +3031,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -2992,6 +3071,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3032,6 +3113,8 @@ if(store != undefined) {
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3077,7 +3160,10 @@ if(store != undefined) {
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，返回值类型为ValueType，使用Promise异步回调。
+
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3114,7 +3200,7 @@ if(store != undefined) {
   const SQL_CHECK_INTEGRITY = 'PRAGMA integrity_check';
   (store as relationalStore.RdbStore).execute(SQL_CHECK_INTEGRITY).then((data) => {
     console.info(`check result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3124,7 +3210,7 @@ if(store != undefined) {
   const SQL_DELETE_TABLE = 'DELETE FROM test';
   (store as relationalStore.RdbStore).execute(SQL_DELETE_TABLE).then((data) => {
     console.info(`delete result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3134,7 +3220,7 @@ if(store != undefined) {
   const SQL_DROP_TABLE = 'DROP TABLE test';
   (store as relationalStore.RdbStore).execute(SQL_DROP_TABLE).then((data) => {
     console.info(`drop result: ${data}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`drop failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -3145,7 +3231,10 @@ if(store != undefined) {
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
 执行包含指定参数的SQL语句，使用Promise异步回调。
+
 该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3811,8 +3900,6 @@ if(store != undefined) {
 }
 ```
 
-### 
-
 ### setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
@@ -4321,7 +4408,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | 是   | 取值为'dataChange'，表示数据更改。                           |
-| type     | [SubscribeType](#subscribetype) | 是   | 订阅类型。                                                   |
+| type     | [SubscribeType](#subscribetype)                              | 是   | 订阅类型。                                                   |
 | observer | Callback&lt;Array&lt;string&gt;&gt;                          | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
@@ -4352,7 +4439,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-注册数据库的数据变更的事件监听。当分布式数据库中的数据发生更改时，将调用回调。
+注册数据库的数据变更的事件监听。当分布式数据库或本地数据库中的数据发生更改时，将调用回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4362,9 +4449,9 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
-**示例：**
+**示例1：type为SUBSCRIBE_TYPE_REMOTE**
 
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
@@ -4385,6 +4472,40 @@ try {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message
   console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+```
+
+**示例2：type为SUBSCRIBE_TYPE_LOCAL_DETAILS**
+
+```ts
+try {
+  if(store != undefined) {
+    store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
+      for (let i = 0; i < ChangeInfos.length; i++) {
+        console.info(TAG + `table = ${ChangeInfos[i].table}`);
+        console.info(TAG + `type = ${ChangeInfos[i].type}`);
+        console.info(TAG + `inserted = ${ChangeInfos[i].inserted[0]}`);
+        console.info(TAG + `updated = ${ChangeInfos[i].updated[0]}`);
+        console.info(TAG + `deleted = ${ChangeInfos[i].updated[0]}`);
+      }
+    });
+  }
+} catch (err) {
+  console.error(TAG + `on dataChange fail, code:${err.code}, message: ${err.message}`);
+}
+
+try {
+  const valueBucket1 = {
+    'name': 'zhangsan',
+    'age': 18,
+    'salary': 25000,
+    'blobType': new Uint8Array([1, 2, 3]),
+  };
+
+  let rowId = await store.insert('test', valueBucket1);
+  await store.delete('test');
+} catch (err) {
+  console.error(TAG + `insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4514,7 +4635,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **示例：**
 
@@ -4857,14 +4978,14 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let attachStore: relationalStore.RdbStore= undefined;
+let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
     name: "rdbstore1.db",
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -4872,7 +4993,7 @@ await relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbSt
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG1, "attachDB").then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -4885,7 +5006,7 @@ if(store != undefined) {
 ```ts
 import { BusinessError } from "@ohos.base";
 
-let attachStore: relationalStore.RdbStore= undefined;
+let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 
 const STORE_CONFIG2: relationalStore.StoreConfig = {
@@ -4894,7 +5015,7 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -4902,7 +5023,7 @@ await relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbSt
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -4954,6 +5075,196 @@ if(store != undefined) {
         console.info(`detach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`detach failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### lockRow<sup>12+</sup>
+
+lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
+
+根据RdbPredicates的指定实例对象从数据库中锁定数据，锁定数据不执行端云同步，使用Promise异步回调。
+
+该接口只支持主键为基本类型的表、不支持共享表、无主键表和复合类型主键表。
+该接口不支持依赖关系表之间的锁传递，如果表存在依赖关系，需要根据依赖关系手动调用该接口。
+该接口不支持对已删除数据的操作。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                 | 必填 | 说明                                      |
+| ---------- | ------------------------------------ | ---- | ----------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+
+**返回值**：
+
+| 类型                  | 说明                            |
+| --------------------- | ------------------------------- |
+| Promise&lt;void&gt;   | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | Inner error.                                 |
+| 14800018     | No data was locked.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).lockRow(predicates).then(() => {
+    console.info(`Lock success`);
+  }).catch((err: BusinessError) => {
+    console.error(`Lock failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### unlockRow<sup>12+</sup>
+
+unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
+
+根据RdbPredicates的指定实例对象从数据库中解锁数据，使用Promise异步回调。
+
+该接口只支持主键为基本类型的表、不支持共享表、无主键表和复合类型主键表。
+该接口不支持依赖关系表之间的锁传递，如果表存在依赖关系，需要根据依赖关系手动调用该接口。
+该接口不支持对已删除数据的操作。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                 | 必填 | 说明                                      |
+| ---------- | ------------------------------------ | ---- | ----------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+
+**返回值**：
+
+| 类型                  | 说明                            |
+| --------------------- | ------------------------------- |
+| Promise&lt;void&gt;   | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | Inner error.                                 |
+| 14800018     | No data was unlocked.                        |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Lisa");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).unlockRow(predicates).then(() => {
+    console.info(`Unlock success`);
+  }).catch((err: BusinessError) => {
+    console.error(`Unlock failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### queryLockedRow<sup>12+</sup>
+
+queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+
+根据指定条件查询数据库中锁定的数据，使用Promise异步回调。
+由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名     | 类型                                 | 必填 | 说明                                             |
+| ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.equalTo("NAME", "Rose");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).queryLockedRow(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // 释放数据集的内存
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+### close<sup>12+</sup>
+
+关闭数据库，使用Promise异步回调。
+
+close(): Promise&lt;void&gt;
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                    |
+| ------------ | ----------------------------------------------- |
+| 401          | Parameter error. The store must be not nullptr. |
+| 14800000     | Inner error.                                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).close().then(() => {
+        console.info(`close succeeded`);
+    }).catch ((err: BusinessError) => {
+        console.error(`close failed, code is ${err.code},message is ${err.message}`);
     })
 }
 ```
@@ -5264,6 +5575,43 @@ goToPreviousRow(): boolean
 ```ts
 if(resultSet != undefined) {
   (resultSet as relationalStore.ResultSet).goToPreviousRow();
+}
+```
+
+### getValue<sup>12+</sup>
+
+getValue(columnIndex: number): ValueType
+
+获取当前指定列的值，值类型可以是ValueType指定的任意类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                    |
+| ----------- | ------ | ---- | ----------------------- |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [ValueType](#valuetype) | 表示允许的数据字段类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800000     | Inner error. |
+| 14800011     | Database corruption. |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
 }
 ```
 

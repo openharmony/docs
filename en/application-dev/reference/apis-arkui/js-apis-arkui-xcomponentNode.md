@@ -48,9 +48,9 @@ Called when the XComponentNode loading is complete.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| event  | object   | No  | Context of the **\<XComponent>** object. The APIs contained in the context are defined by you at the C++ layer.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| event  | Object | No  | Context of the **\<XComponent>** object. The APIs contained in the context are defined by you at the C++ layer.|
 
 ### onDestroy
 

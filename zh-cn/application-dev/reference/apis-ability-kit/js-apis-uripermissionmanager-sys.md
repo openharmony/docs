@@ -40,14 +40,18 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **错误码：**
 
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 16000050 | Internal error. |
 | 16000058 | Invalid URI flag. |
 | 16000059 | Invalid URI type. |
 | 16000060 | Sandbox application can not grant URI permission. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -102,14 +106,17 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **错误码：**
 
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
+  | 201 | Permission denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
   | 16000050 | Internal error. |
   | 16000058 | Invalid URI flag. |
   | 16000059 | Invalid URI type. |
   | 16000060 | Sandbox application can not grant URI permission. |
-
-  以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -159,12 +166,14 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 **错误码：**
 
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
-
-  以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -206,12 +215,15 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 **错误码：**
 
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
-  以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     

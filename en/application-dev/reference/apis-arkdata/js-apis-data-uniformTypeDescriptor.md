@@ -28,9 +28,10 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | HTML                  | 'general.html'                   | HTML.<br>This type belongs to **TEXT**.              |
 | HYPERLINK         | 'general.hyperlink'              | Hyperlink.<br>This type belongs to **TEXT**.                 |
 | XML<sup>11+</sup>    | 'general.xml'                   | XML.<br>This type belongs to **TEXT**.               |
+| SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  Synchronized Multimedia Integration Language (SMIL).<br>This type belongs to **XML**.      |
 | SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | Base source code type.<br>This type belongs to **PLAIN_TEXT**.       |
 | SCRIPT<sup>11+</sup>    | 'general.script'                  | Source code in any scripting language.<br>This type belongs to **SOURCE_CODE**.  |
-| SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | Shell script.<br>This type belongs to **SCRIPT**.           |    
+| SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | Shell script.<br>This type belongs to **SCRIPT**.           |
 | CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C shell script.<br>This type belongs to **SHELL_SCRIPT**.   |
 | PERL_SCRIPT<sup>11+</sup> |'general.perl-script'               | Perl script.<br>This type belongs to **SHELL_SCRIPT**.      |
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP script.<br>This type belongs to **SHELL_SCRIPT**.       |
@@ -43,6 +44,7 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               | Header file in C++.<br>This type belongs to **SOURCE_CODE**.       |
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | Source code in C++.<br>This type belongs to **SOURCE_CODE**.       |
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Source code in Java.<br>This type belongs to **SOURCE_CODE**.      |
+| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | Markdown.<br>This type belongs to **PLAIN_TEXT**.      |
 | EBOOK<sup>11+</sup>                         | 'general.ebook'                   | Base eBook file format type.<br>This type belongs to **COMPOSITE_OBJECT**.                    |
 | EPUB<sup>11+</sup>                        | 'general.epub'                  | Electronic publication (EPUB).<br>This type belongs to **EBOOK**.    |
 | AZW<sup>11+</sup>                        | 'com.amazon.azw'                  | AZW.<br>This type belongs to **EBOOK**.         |
@@ -59,6 +61,14 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | ICO<sup>11+</sup>             | 'com.microsoft.ico'               | Windows icon.<br>This type belongs to **IMAGE**.        |
 | PHOTOSHOP_IMAGE<sup>11+</sup>         | 'com.adobe.photoshop-image'           | Adobe Photoshop image.<br>This type belongs to **IMAGE**.  |
 | AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**.|
+| FAX<sup>12+</sup>                         | 'general.fax'                    | Base type of the fax.<br>This type belongs to **IMAGE**.      |
+| JFX_FAX<sup>12+</sup>                         | 'com.j2.jfx-fax'                    | J2 jConnect fax file format.<br>This type belongs to **FAX**.      |
+| EFX_FAX<sup>12+</sup>                         | 'com.js.efx-fax'                    | EFX file format.<br>This type belongs to **FAX**.      |
+| XBITMAP_IMAGE<sup>12+</sup>                         | 'general.xbitmap-image'                    | X BitMAP (XBM) used in the X Window system (X11).<br>This type belongs to **IMAGE**.      |
+| TGA_IMAGE<sup>12+</sup>                         | 'com.truevision.tga-image'                    | Tagged Graphics (TGA) format.<br>This type belongs to **IMAGE**.      |
+| SGI_IMAGE<sup>12+</sup>                         | 'com.sgi.sgi-image'                    | Silicon Graphics image (SGI) format.<br>This type belongs to **IMAGE**.      |
+| OPENEXR_IMAGE<sup>12+</sup>                         | 'com.ilm.openexr-image'                    | OpenXR image format.<br>This type belongs to **IMAGE**.      |
+| FLASHPIX_IMAGE<sup>12+</sup>                         | 'com.kodak.flashpix.image'                    | FlashPix image format.<br>This type belongs to **IMAGE**.      |
 | WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word. <br>This type belongs to **COMPOSITE_OBJECT**.               |
 | EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel. <br>This type belongs to **COMPOSITE_OBJECT**.              |
 | PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint.<br>This type belongs to **COMPOSITE_OBJECT**.       |
@@ -71,9 +81,12 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4.<br>This type belongs to **VIDEO**.           |
 | VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GP (3GPP file format).<br>This type belongs to **VIDEO**.             |
 | VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3G2 (3GPP2 file format).<br>This type belongs to **VIDEO**.            |
-| WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | Windows WM.<br>This type belongs to **VIDEO**.       |
-| WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | Windows WMV.<br>This type belongs to **VIDEO**.      |
-| WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | Windows WMP.<br>This type belongs to **VIDEO**.      |
+| WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | Windows WM format.<br>This type belongs to **VIDEO**.       |
+| WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | Windows WMV format.<br>This type belongs to **VIDEO**.      |
+| WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | Windows WMP format.<br>This type belongs to **VIDEO**.      |
+| WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | Windows WVX format.<br>This type belongs to **VIDEO**.      |
+| WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | Windows WMX format.<br>This type belongs to **VIDEO**.      |
+| REALMEDIA<sup>12+</sup>                         | 'com.real.realmedia'                    | RealMedia format.<br>This type belongs to **VIDEO**.      |
 | AUDIO       | 'general.audio'          | Base audio type.<br>This type belongs to **MEDIA**.             |
 | AAC<sup>11+</sup>                         | 'general.aac'                   | AAC.<br>This type belongs to **AUDIO**.              |
 | AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF.<br>This type belongs to **AUDIO**.             |
@@ -84,9 +97,11 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | PCM<sup>11+</sup>         | 'general.pcm'           | PCM.<br>This type belongs to **AUDIO**.              |
 | WINDOWS_MEDIA_WMA<sup>11+</sup>        | 'com.microsoft.windows-media-wma'          | Windows WMA.<br>This type belongs to **AUDIO**.      |
 | WAVEFORM_AUDIO<sup>11+</sup>                         | 'com.microsoft.waveform-audio'                   | Windows Waveform.<br>This type belongs to **AUDIO**.        |
-| WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | Windows WMX.<br>This type belongs to **AUDIO**.      |
-| WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | Windows WVX.<br>This type belongs to **AUDIO**.      |
 | WINDOWS_MEDIA_WAX<sup>11+</sup>                        | 'com.microsoft.windows-media-wax'                  | Windows WAX.<br>This type belongs to **AUDIO**.      |
+| AU_AUDIO<sup>12+</sup>                         | 'general.au-audio'                    | AU format.<br>This type belongs to **AUDIO**.      |
+| AIFC_AUDIO<sup>12+</sup>                         | 'general.aifc-audio'                    | AIFC.<br>This type belongs to **AUDIO**.      |
+| SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | Digidesign Sound Designer II (SDII).<br>This type belongs to **AUDIO**.      |
+| REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealAudio.<br>This type belongs to **AUDIO**.      |
 | FILE                       | 'general.file'                 | Base file type.<br>This type belongs to **ENTITY**.                         |
 | DIRECTORY<sup>11+</sup>             | 'general.directory'               | Base directory type.<br>This type belongs to **ENTITY**.                         |
 | FOLDER        | 'general.folder'           | Base folder type.<br>This type belongs to **DIRECTORY**.                        |
@@ -100,23 +115,53 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN archive.<br>This type belongs to **ARCHIVE**.          |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP archive.<br>This type belongs to **ARCHIVE**.         |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR.<br>This type belongs to **ARCHIVE**.      |
+| OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   OpenXML base type.<br>This type belongs to **ARCHIVE**.      |
+| WORDPROCESSINGML_DOCUMENT<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.document'                    | WordProcessingML format.<br>This type belongs to **OPENXML**.      |
+| SPREADSHEETML_SHEET<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.sheet'                    | SpreadsheetML format.<br>This type belongs to **OPENXML**.      |
+| PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | PresentationML format. <br>This type belongs to **OPENXML**.      |
+| OPENDOCUMENT<sup>12+</sup>                         | 'org.oasis.opendocument'                    | OpenDocument format for Office applications.<br>This type belongs to **ARCHIVE**.      |
+| OPENDOCUMENT_TEXT<sup>12+</sup>                         | 'org.oasis.opendocument.text'                    | OpenDocument format for word processing (text) documents.<br>This type belongs to **OPENDOCUMENT**.      |
+| OPENDOCUMENT_SPREADSHEET<sup>12+</sup>                         | 'org.oasis.opendocument.spreadsheet'                    | OpenDocument format for spreadsheets. <br>This type belongs to **OPENDOCUMENT**.      |
+| OPENDOCUMENT_PRESENTATION<sup>12+</sup>                         | 'org.oasis.opendocument.presentation'                    | OpenDocument format for presentations.<br>This type belongs to **OPENDOCUMENT**.      |
+| OPENDOCUMENT_GRAPHICS<sup>12+</sup>                         | 'org.oasis.opendocument.graphics'                    | OpenDocument format for graphics.<br>This type belongs to **OPENDOCUMENT**.      |
+| OPENDOCUMENT_FORMULA<sup>12+</sup>                         | 'org.oasis.opendocument.formula'                    | OpenDocument format for formula.<br>This type belongs to **OPENDOCUMENT**.      |
+| STUFFIT_ARCHIVE<sup>12+</sup>                         | 'com.allume.stuffit-archive'                    | Stuffit compression format (stuffit archive).<br>This type belongs to **ARCHIVE**.      |
 | CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | Base calendar type.<br>This type belongs to **OBJECT**.                      |
+| VCS<sup>12+</sup>                         | 'general.vcs'                    | VCalendar (VCS) format.<br>This type belongs to **CALENDAR**.      |
+| ICS<sup>12+</sup>                         | 'general.ics'                    | Internet Calendaring and Scheduling (ICS) format.<br>This type belongs to **CALENDAR**.      |
 | CONTACT<sup>11+</sup>                        | 'general.contact'                  | Base contact type.<br>This type belongs to **OBJECT**.                     |
 | DATABASE<sup>11+</sup>                        | 'general.database'                  | Base database file type.<br>This type belongs to **OBJECT**.                      |
 | MESSAGE<sup>11+</sup>                       | 'general.message'                 | Base message type.<br>This type belongs to **OBJECT**.                      |
+| EXECUTABLE<sup>12+</sup>                         | 'general.executable'                    |  Base type of all executable files.<br>This type belongs to **OBJECT**.      |
+| PORTABLE_EXECUTABLE<sup>12+</sup>                         | 'com.microsoft.portable-executable'                    | Microsoft Windows portable executable format.<br>This type belongs to **EXECUTABLE**.      |
+| SUN_JAVA_CLASS<sup>12+</sup>                         | 'com.sun.java-class'                    | Java class file format.<br>This type belongs to **EXECUTABLE**.      |
 | VCARD<sup>11+</sup>             | 'general.vcard'               | Base electronic business card type.<br>This type belongs to **OBJECT**.                    |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Base navigation data type.<br>This type belongs to **OBJECT**.                      |
 | LOCATION<sup>11+</sup>        | 'general.location'          | Location data.<br>This type belongs to **NAVIGATION**.           |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined by OpenHarmony.<br>This type belongs to **OBJECT**.             |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined by OpenHarmony.<br>This type belongs to **OBJECT**.           |
+| FONT<sup>12+</sup>                         | 'general.font'                    | Basic type of fonts. <br>This type belongs to **ENTITY**.      |
+| TRUETYPE_FONT<sup>12+</sup>                         | 'general.truetype-font'                    | TrueType font format.<br>This type belongs to **FONT**.      |
+| TRUETYPE_COLLECTION_FONT<sup>12+</sup>                         | 'general.truetype-collection-font'                    | TrueType Collection font format.<br>This type belongs to **FONT**.      |
+| OPENTYPE_FONT<sup>12+</sup>                         | 'general.opentype-font'                    | OpenType font format.<br>This type belongs to **FONT**.      |
+| POSTSCRIPT_FONT<sup>12+</sup>                         | 'com.adobe.postscript-font'                    | PostScript font format.<br>This type belongs to **FONT**.      |
+| POSTSCRIPT_PFB_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfb-font'                    | PostScript Font Binary font format.<br>This type belongs to **FONT**.      |
+| POSTSCRIPT_PFA_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfa-font'                    | Adobe Type 1 font format.<br>This type belongs to **FONT**.      |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined for OpenHarmony.<br>This type belongs to **OBJECT**.             |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined for OpenHarmony.<br>This type belongs to **OBJECT**.           |
 | OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | Pixel map defined by OpenHarmony.<br>This type belongs to **IMAGE**.            |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined by OpenHarmony.<br>This type belongs to **OBJECT**.            |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package defined by OpenHarmony (compressed directory).<br>This type belongs to **DIRECTORY**.            |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined by OpenHarmony.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined for OpenHarmony.<br>This type belongs to **OBJECT**.            |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package defined for OpenHarmony (compressed folder).<br>This type belongs to **DIRECTORY**.            |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined for OpenHarmony.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
+| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | Memo format defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | Note format defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | Style string type defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | Want type defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+
 
 ## TypeDescriptor<sup>11+</sup> 
 
 Provides attributes and APIs for describing a uniform data type and its relationship with other uniform data types.
+
+## Attributes
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -127,6 +172,8 @@ Provides attributes and APIs for describing a uniform data type and its relation
 | description<sup>11+</sup>     | string                  | Yes  | No  | Brief description of the uniform data type.                                           |
 | referenceURL<sup>11+</sup>     | string                  | Yes  | No  | URL of the link to the reference (detailed information) of the uniform data type.                           |
 | iconFile<sup>11+</sup>     | string                  | Yes  | No  | File path of the default icon for the uniform data type. An empty string means the uniform data type has no default icon. The application can determine whether to use the default icon.                                  |
+| filenameExtensions<sup>12+</sup>  | Array\<string>          | Yes  | No  | List of file name extensions associated with uniform data types.                                  |
+| mimeTypes<sup>12+</sup>  | Array\<string>          | Yes  | No  | List of MIME types associated with uniform data types.                                  |
 
 ### belongsTo<sup>11+</sup> 
 
@@ -140,7 +187,7 @@ Checks whether this data type belongs to the specified uniform data type.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -178,7 +225,7 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -216,7 +263,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -343,7 +390,7 @@ Obtains the uniform data type ID based on the given file name extension and data
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| string | Returns the uniform data type ID obtained. If the uniform data type does not exist, **null** is returned.|
+| string | ID of the uniform data type that matches the specified file name extension and **belongsTo** (if specified). If no match is found, the data type dynamically generated based on the rules specified by the input parameters is returned.|
 
 **Example**
 
@@ -355,6 +402,17 @@ try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
     if(typeId) {
         console.info('typeId is general.type-script');
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// If no uniform data type is found based on ".myts" and "general.plain-text", the type generated based on the input parameters is returned.
+try {
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.myts', 'general.plain-text');
+    if(typeId) {
+        console.info('typeId is flex.************');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -381,7 +439,7 @@ Obtains the uniform data type ID based on the given MIME type and data type.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| string | Returns the uniform data type ID obtained. If the uniform data type does not exist, **null** is returned.|
+| string | ID of the uniform data type that matches the specified MIME type and **belongsTo** (if specified). If no match is found, the data type dynamically generated based on the rules specified by the input parameters is returned.|
 
 **Example**
 
@@ -393,6 +451,17 @@ try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
     if(typeId) {
         console.info('typeId is general.jpeg');
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// If no uniform data type cannot be found based on "image/myimage" and "general.image", the type generated based on the input parameters is returned.
+try {
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/myimage', 'general.image');
+    if(typeId) {
+        console.info('typeId is flex.************');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;

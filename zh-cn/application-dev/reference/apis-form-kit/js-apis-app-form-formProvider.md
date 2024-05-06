@@ -18,6 +18,8 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 设置指定卡片的下一次更新时间，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -68,6 +70,8 @@ try {
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 设置指定卡片的下一次更新时间，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -122,6 +126,8 @@ try {
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
 更新指定的卡片，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -178,6 +184,8 @@ try {
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 
 更新指定的卡片，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -238,6 +246,8 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 获取设备上当前应用程序的卡片信息，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -280,6 +290,8 @@ try {
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 获取设备上当前应用程序的卡片信息，并筛选符合条件的信息，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -331,6 +343,8 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 获取设备上当前应用程序的卡片信息，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -378,49 +392,3 @@ try {
 }
 ```
 
-## setConfigurationUpdateEnabled
-
-setConfigurationUpdateEnabled(formId: string, enableFlags: formInfo.ConfigurationUpdateFlags) : void
-
-设置配置信息更新时，是否允许配置信息在卡片页面中生效。
-
-**系统能力：** SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| enableFlags | [formInfo.ConfigurationUpdateFlags](js-apis-app-form-formInfo.md#configurationupdateflags) | 否 | 卡片配置信息更新开关标志位。 |
-
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-| 16500100 | Failed to obtain the configuration information. |
-| 16501000 | An internal functional error occurred. |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](../apis-form-kit/errorcode-form.md)。
-
-**示例：**
-
-```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
-
-let formId: string = '12400633174999288';
-const enableFlags: formInfo.ConfigurationUpdateFlags = {
-  fontEnabled : false
-};
-try {
-    formProvider.setConfigurationUpdateEnabled(formId, enableFlags);
-} catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
-}
-```

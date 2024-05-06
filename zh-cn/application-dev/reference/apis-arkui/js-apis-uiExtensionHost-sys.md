@@ -26,7 +26,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -61,7 +61,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -92,7 +92,7 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -121,7 +121,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -152,7 +152,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -181,7 +181,7 @@ properties: UIExtensionHostWindowProxyProperties
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名     | 类型                                 | 说明                             |
 | ---------- | ------------------------------------ | -------------------------------- |
@@ -212,7 +212,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -336,10 +336,13 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+> **说明：**
+>
+> 添加安全水印标志后，窗口在前台时会将当前全屏幕覆盖水印。全屏、悬浮窗、分屏等场景下只要有添加了安全水印标志的窗口在前台，就会显示全屏水印。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

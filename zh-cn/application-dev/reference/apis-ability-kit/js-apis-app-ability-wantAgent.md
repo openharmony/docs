@@ -741,7 +741,10 @@ import { BusinessError } from '@ohos.base';
 let wantAgent: _WantAgent;
 // triggerInfo
 let triggerInfo: WantAgent.TriggerInfo = {
-    code: 0 //自定义义结果码
+    code: 0, //自定义义结果码
+    startOptions : {
+        windowMode: 101
+    }
 };
 //WantAgentInfo对象
 let wantAgentInfo: WantAgent.WantAgentInfo = {

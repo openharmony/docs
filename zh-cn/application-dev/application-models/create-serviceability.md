@@ -3,7 +3,7 @@
 
 1. 创建ServiceAbility。
 
-   重写ServiceAbility的生命周期方法，添加其他Ability请求与ServiceAbility交互时的处理方法。
+   通过DevEco Studio开发平台创建ServiceAbility时，DevEco Studio会默认生成onStart、onStop、onCommand方法，其他方法需要开发者自行实现，接口说明参见前述章节。开发者也可以添加其他Ability请求与ServiceAbility交互时的处理方法，示例如下：
 
    ```ts
    import type Want from '@ohos.app.ability.Want';

@@ -24,7 +24,7 @@ Badge(value: BadgeParamWithNumber)
 
 创建数字标记组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -38,7 +38,7 @@ Badge(value: BadgeParamWithString)
 
 根据字符串创建标记组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -49,6 +49,8 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeParamWithNumber对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
@@ -58,6 +60,8 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeParamWithString对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | value | string | 是 | - | 提示内容的文本字符串。 |
@@ -66,7 +70,9 @@ Badge(value: BadgeParamWithString)
 
 ## BadgePosition枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- |-------- |
@@ -76,7 +82,9 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeStyle对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                      | 类型                                                         | 必填 | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

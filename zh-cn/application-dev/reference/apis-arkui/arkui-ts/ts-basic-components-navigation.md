@@ -29,6 +29,8 @@ Navigation(pathInfos: NavPathStack)
 
 绑定路由栈到Navigation组件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 参数类型                            | 必填   | 参数描述   |
@@ -45,6 +47,8 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 设置页面标题。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -52,7 +56,7 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9类型说明)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9类型说明)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
-| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题样式，默认白色背景，关闭模糊样式。                                                   |
+| options | [NavigationTitleOptions](#navigationtitleoptions11类型说明)<sup>11+</sup> | 否   | 标题栏选项。                                                   |
 
 ### subTitle<sup>(deprecated)</sup>
 
@@ -76,6 +80,8 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -89,6 +95,8 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 titleMode(value: NavigationTitleMode)
 
 设置页面标题栏显示模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,6 +130,8 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -129,13 +139,15 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10类型说明)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏下必须配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem类型说明)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
-| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项，默认白色背景，关闭模糊样式。                                                 |
+| options | [NavigationToolbarOptions](#navigationtoolbaroptions11类型说明)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
 
 ### hideToolBar
 
 hideToolBar(value: boolean)
 
 设置是否隐藏工具栏。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -151,6 +163,8 @@ hideTitleBar(value: boolean)
 
 设置是否隐藏标题栏。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -164,6 +178,8 @@ hideTitleBar(value: boolean)
 hideBackButton(value: boolean)
 
 设置是否隐藏标题栏中的返回键。返回键仅针对[titleMode](#titlemode)为NavigationTitleMode.Mini时才生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -179,6 +195,8 @@ navBarWidth(value: Length)
 
 设置导航栏宽度。仅在Navigation组件分栏时生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -192,6 +210,8 @@ navBarWidth(value: Length)
 navBarPosition(value: NavBarPosition)
 
 设置导航栏位置。仅在Navigation组件分栏时生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,6 +227,8 @@ mode(value: NavigationMode)
 
 设置导航栏的显示模式。支持Stack、Split与Auto模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -220,6 +242,8 @@ mode(value: NavigationMode)
 backButtonIcon(value: string | PixelMap | Resource)
 
 设置标题栏中返回键图标。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -237,6 +261,8 @@ hideNavBar(value: boolean)
 
 从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -250,6 +276,8 @@ hideNavBar(value: boolean)
 navDestination(builder: (name: string, param: unknown) => void)
 
 创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -267,6 +295,8 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 **规则：** 优先级规则详见说明。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -282,6 +312,8 @@ minContentWidth(value: Dimension)
 设置导航栏内容区最小宽度（双栏模式下生效）。
 
 **规则：** 优先级规则详见说明。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -307,6 +339,8 @@ onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void)
 
 当[titleMode](#titlemode)为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -321,6 +355,8 @@ onNavBarStateChange(callback: (isVisible: boolean) =&gt; void)
 
 导航栏显示状态切换时触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -334,6 +370,8 @@ onNavBarStateChange(callback: (isVisible: boolean) =&gt; void)
 onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) 
 
 当Navigation首次显示或者单双栏状态发生变化时触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -375,6 +413,8 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 将info指定的NavDestination页面信息入栈。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -387,6 +427,8 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -573,6 +615,8 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -611,6 +655,8 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 popToName(name: string, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -651,6 +697,8 @@ popToIndex(index: number, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -663,6 +711,8 @@ popToIndex(index: number, animated?: boolean): void
 popToIndex(index: number, result: Object, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -677,6 +727,8 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 moveToTop(name: string, animated?: boolean): number
 
 将由栈底开始第一个名为name的NavDestination页面移到栈顶。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -697,6 +749,8 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 将index指定的NavDestination页面移到栈顶。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -710,6 +764,8 @@ clear(animated?: boolean): void
 
 清除栈中所有页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -722,6 +778,8 @@ getAllPathName(): Array<string\>
 
 获取栈中所有NavDestination页面的名称。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型             | 说明                         |
@@ -733,6 +791,8 @@ getAllPathName(): Array<string\>
 getParamByIndex(index: number): unknown | undefined
 
 获取index指定的NavDestination页面的参数信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -753,6 +813,8 @@ getParamByName(name: string): Array<unknown\>
 
 获取全部名为name的NavDestination页面的参数信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -771,6 +833,8 @@ getIndexByName(name: string): Array<number\>
 
 获取全部名为name的NavDestination页面的位置索引。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -788,6 +852,8 @@ getIndexByName(name: string): Array<number\>
 size(): number
 
 获取栈大小。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -812,6 +878,8 @@ disableAnimation(value: boolean): void
 getParent(): NavPathStack | null
 
 获取父NavPathStack。<br/>当出现Navigation嵌套Navigation的情况时（可以是直接嵌套，也可以是间接嵌套），内部Navigation的NavPathStack能够获取到外层Navigation的NavPathStack。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -838,6 +906,8 @@ setInterception(interception: NavigationInterception): void
 ### constructor
 
 constructor(name: string, param: unknown)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -910,9 +980,10 @@ Navigation跳转拦截对象。
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  |
-| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 |
-| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
+| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
+| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## object类型说明
 
@@ -924,6 +995,8 @@ Navigation跳转拦截对象。
 
 ## ToolbarItem<sup>10+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                       | 必填   | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。                            |
@@ -934,6 +1007,8 @@ Navigation跳转拦截对象。
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
 | NORMAL   | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
@@ -941,6 +1016,8 @@ Navigation跳转拦截对象。
 | ACTIVE   | 设置工具栏单个选项为ACTIVE态， 该选项通过点击事件可以将icon图标更新为activeIcon对应的图片资源。 |
 
 ## NavigationTitleMode枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
@@ -950,12 +1027,16 @@ Navigation跳转拦截对象。
 
 ## NavigationCommonTitle<sup>9+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型     | 必填   | 描述     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
 
 ## NavigationCustomTitle<sup>9+</sup>类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
@@ -964,12 +1045,16 @@ Navigation跳转拦截对象。
 
 ## NavBarPosition<sup>9+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称    | 描述               |
 | ----- | ---------------- |
 | Start | 双栏显示时，主列在主轴方向首部。 |
 | End   | 双栏显示时，主列在主轴方向尾部。 |
 
 ## NavigationMode<sup>9+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
@@ -993,17 +1078,21 @@ Navigation跳转拦截对象。
 
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
 
 ## 示例
 
@@ -1115,24 +1204,12 @@ struct NavigationExample {
 ### 示例2
 ```ts
 // Index.ets
-import { PageOneTmp } from './PageOne'
-import { pageTwoTmp } from './PageTwo'
-import { Pages }  from './PageTwo'
 
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+  pageInfos: NavPathStack = new NavPathStack()
   isUseInterception: boolean = false;
-
-  @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      PageOneTmp()
-    } else if (name === 'pageTwo') {
-      pageTwoTmp({ names: name, values: this.pageInfos } as Pages)
-    }
-  }
 
   registerInterception() {
     this.pageInfos.setInterception({
@@ -1200,7 +1277,7 @@ struct NavigationExample {
             }
           })
       }
-    }.title('NavIndex').navDestination(this.PageMap)
+    }.title('NavIndex')
   }
 }
 ```
@@ -1209,9 +1286,16 @@ struct NavigationExample {
 class TmpClass{
   count:number=10
 }
+
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOne()
+}
+
 @Component
-export struct PageOneTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack;
+export struct PageOne {
+
+  pageInfos: NavPathStack = new NavPathStack()
 
   build() {
     NavDestination() {
@@ -1281,34 +1365,84 @@ export struct PageOneTmp {
       const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
       console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
       return true
+    }).onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack
     })
   }
 }
 ```
 ```ts
 // PageTwo.ets
-export class Pages {
-  names: string = ""
-  values: NavPathStack | null = null
+@Builder
+export function PageTwoBuilder(name: string, param: Object) {
+  PageTwo()
 }
 
-@Builder
-export function pageTwoTmp(info: Pages) {
-  NavDestination() {
-    Column() {
-      Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).pushPathByName('pageOne', null)
-        })
-    }.width('100%').height('100%')
-  }.title('pageTwo')
-  .onBackPressed(() => {
-    (info.values as NavPathStack).pop()
-    return true
-  })
+@Component
+export struct PageTwo {
+  pathStack: NavPathStack = new NavPathStack()
+
+  private menuItems: Array<NavigationMenuItem> = [
+    {
+      value: "1",
+      icon: 'resources/base/media/undo.svg',
+    },
+    {
+      value: "2",
+      icon: 'resources/base/media/redo.svg',
+      isEnabled: false,
+    },
+    {
+      value: "3",
+      icon: 'resources/base/media/ic_public_ok.svg',
+      isEnabled: true,
+    }
+  ]
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.pushPathByName('pageOne', null)
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .menus(this.menuItems)
+    .onBackPressed(() => {
+      this.pathStack.pop()
+      return true
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+      console.log("current page config info is " + JSON.stringify(context.getConfigInRouteMap()))
+    })
+  }
+}
+```
+
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "pageTwo",
+      "pageSourceFile": "src/main/ets/pages/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    }
+  ]
 }
 ```
 ![navigation.gif](figures/navigation.gif)
@@ -1320,22 +1454,11 @@ export function pageTwoTmp(info: Pages) {
 ```ts
 // Index.ets
 import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
-import { pageOneTmp } from './PageOne'
-import {PageTwoTemp} from './PageTwo'
 
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-
-  @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      pageOneTmp({pageId: Date.now()})
-    } else if (name === 'pageTwo') {
-      PageTwoTemp({pageId: Date.now()})
-    }
-  }
+  pageInfos: NavPathStack = new NavPathStack()
 
   aboutToAppear() {
     if (this.pageInfos === undefined) {
@@ -1346,7 +1469,7 @@ struct NavigationExample {
 
   build() {
     Navigation(this.pageInfos) {
-    }.title('NavIndex').navDestination(this.PageMap)
+    }.title('NavIndex')
     .hideNavBar(true)
     .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
       if (from.mode == NavDestinationMode.DIALOG || to.mode == NavDestinationMode.DIALOG) {
@@ -1403,9 +1526,14 @@ struct NavigationExample {
 // PageOne.ets
 import {CustomTransition} from './CustomNavigationUtils'
 
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOne()
+}
+
 @Component
-export struct pageOneTmp {
-  @Consume('pageInfos') pageInfos: NavPathStack
+export struct PageOne {
+  pageInfos: NavPathStack = new NavPathStack()
   @State x: number = 0
   @State scaleVal: number = 1
   pageId: number = 0;
@@ -1442,6 +1570,9 @@ export struct pageOneTmp {
     .onDisAppear(()=>{
       CustomTransition.getInstance().unRegisterNavParam(this.pageId)
     })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack
+    })
     .translate({x: this.x, y: 0, z: 0})
     .backgroundColor(Color.White)
   }
@@ -1451,9 +1582,14 @@ export struct pageOneTmp {
 // PageTwo.ets
 import {CustomTransition} from './CustomNavigationUtils'
 
+@Builder
+export function PageTwoBuilder(name: string, param: Object) {
+  PageTwo()
+}
+
 @Component
 export struct PageTwoTemp {
-  @Consume('pageInfos') pageInfos: NavPathStack
+  pathInfo: NavPathStack = new NavPathStack()
   @State x: number = 300
   pageId: number = 0
 
@@ -1488,6 +1624,9 @@ export struct PageTwoTemp {
     })
     .onDisAppear(()=>{
       CustomTransition.getInstance().unRegisterNavParam(this.pageId)
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack;
     })
     .opacity(0.5)
     .translate({x: this.x})
@@ -1554,28 +1693,38 @@ export class CustomTransition {
   }
 }
 ```
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "pageTwo",
+      "pageSourceFile": "src/main/ets/pages/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    }
+  ]
+}
+```
+
 ![customNavigation.gif](figures/customNavigation.gif)
 
 ### 示例4
 ```ts
 // Index.ets
-import { PageOneTmp } from './PageOne'
-import { pageTwoTmp } from './PageTwo'
-import { Pages }  from './PageTwo'
 
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack()
-
-  @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      PageOneTmp()
-    } else if (name === 'pageTwo') {
-      pageTwoTmp({ names: name, values: this.pageInfo } as Pages)
-    }
-  }
+  pageInfo: NavPathStack = new NavPathStack()
 
   build() {
     Navigation(this.pageInfo) {
@@ -1588,7 +1737,7 @@ struct NavigationExample {
             this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈。
           })
       }
-    }.title('NavIndex').navDestination(this.PageMap)
+    }.title('NavIndex')
   }
 }
 ```
@@ -1605,9 +1754,14 @@ class ParamWithOp {
   count: number = 10
 }
 
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOne()
+}
+
 @Component
-export struct PageOneTmp {
-  @Consume('pageInfo') pageInfo: NavPathStack;
+export struct PageOne {
+  pageInfo: NavPathStack = new NavPathStack();
   @State message: string = 'Hello World'
 
   build() {
@@ -1730,16 +1884,14 @@ export struct PageOneTmp {
     .onBackPressed(() => {
       this.pageInfo.pop({number: 1}) // 弹出路由栈栈顶元素。
       return true
+    }).onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
     })
   }
 }
 ```
 ```ts
 // PageTwo.ets
-export class Pages {
-  names: string = ""
-  values: NavPathStack | null = null
-}
 
 class resultClass {
   constructor(count: number) {
@@ -1749,62 +1901,94 @@ class resultClass {
 }
 
 @Builder
-export function pageTwoTmp(info: Pages) {
-  NavDestination() {
-    Column() {
-      Button('pop', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).pop(new resultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中。
-        })
+export function PageTwoBuilder(name: string, pram: Object) {
+  PageTwo()
+}
 
-      Button('popToName', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).popToName('pageOne', new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
-        })
+@Component
+export struct PageTwo {
+  pathStack: NavPathStack = new NavPathStack()
 
-      Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).popToIndex(0, new resultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
-        })
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.pop(new resultClass(1)); // 回退到上一个页面，将处理结果传入push的onPop回调中。
+          })
 
-      Button('popWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).pop();
-        })
+        Button('popToName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.popToName('pageOne', new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+          })
 
-      Button('popToNameWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).popToName('pageOne');
-        })
+        Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.popToIndex(0, new resultClass(111)); // 将index指定的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+          })
 
-      Button('popToIndexWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
-        .width('80%')
-        .height(40)
-        .margin(20)
-        .onClick(() => {
-          (info.values as NavPathStack).popToIndex(0);
-        })
-    }.width('100%').height('100%')
-  }.title('pageTwo')
-  .onBackPressed(() => {
-    (info.values as NavPathStack).pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
-    return true;
-  })
+        Button('popWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.pop();
+          })
+
+        Button('popToNameWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.popToName('pageOne');
+          })
+
+        Button('popToIndexWithoutResult', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pathStack.popToIndex(0);
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pathStack.pop(new resultClass(0)); // 回退到上一个页面，将处理结果传入push的onPop回调。
+      return true;
+    }).onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack
+    })
+  }
+}
+```
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "pageTwo",
+      "pageSourceFile": "src/main/ets/pages/PageTwo.ets",
+      "buildFunction": "PageTwoBuilder"
+    }
+  ]
 }
 ```
 ![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)
@@ -1894,14 +2078,6 @@ struct NavigationExample {
 struct NavigationExample1 {
   @State childNavStack: NavPathStack = new NavPathStack();
 
-  @Builder
-  PageMap(name: string) {
-    NavDestination() {
-      Text("this is " + name)
-    }
-    .title(name)
-  }
-
   build() {
     Navigation() {
       Stack({alignContent: Alignment.Center}) {
@@ -1917,7 +2093,6 @@ struct NavigationExample1 {
             })
         }
         .clip(true)
-        .navDestination(this.PageMap)
         .backgroundColor(Color.Orange)
         .width('80%')
         .height('80%')
@@ -1929,9 +2104,34 @@ struct NavigationExample1 {
     .backgroundColor(Color.Green)
     .width('100%')
     .height('100%')
-    .navDestination(this.PageMap)
     .title('ParentNavigation')
   }
+}
+```
+```ts
+// PageOne.ets
+  @Builder
+  export function PageOneBuilder(name: string) {
+    NavDestination() {
+      Text("this is " + name)
+    }
+    .title(name)
+  }
+```
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
 }
 ```
 ![navPathStackGetParent.gif](figures/navPathStackGetParent.gif)
@@ -1947,6 +2147,11 @@ class PageParam {
     this.num = num_;
   }
   num: number = 0;
+}
+
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOne()
 }
 
 @Component
@@ -1999,13 +2204,6 @@ struct PageOne {
 struct NavigationExample2 {
   private stack : NavPathStack = new NavPathStack();
 
-  @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      PageOne()
-    }
-  }
-
   build() {
     Navigation(this.stack) {
       Stack({alignContent: Alignment.Center}) {
@@ -2023,9 +2221,24 @@ struct NavigationExample2 {
     }
     .width('100%')
     .height('100%')
-    .navDestination(this.PageMap)
     .title('Navigation')
   }
+}
+```
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
 }
 ```
 ![navigationOnReady1.gif](figures/navigationOnReady1.gif)
@@ -2034,6 +2247,11 @@ struct NavigationExample2 {
 
 ```ts
 // 该示例演示NavDestination的生命周期时序。
+@Builder
+export function PageOneBuilder(name: string, param: Object) {
+  PageOneComponent()
+}
+
 @Component
 struct PageOneComponent {
   private stack: NavPathStack | null = null;
@@ -2085,13 +2303,6 @@ struct PageOneComponent {
 struct NavigationExample3 {
   private stack : NavPathStack = new NavPathStack();
 
-  @Builder
-  PageMap(name: string) {
-    if (name === 'pageOne') {
-      PageOneComponent()
-    }
-  }
-
   build() {
     Navigation(this.stack) {
       Stack({alignContent: Alignment.Center}) {
@@ -2108,9 +2319,24 @@ struct NavigationExample3 {
     }
     .width('100%')
     .height('100%')
-    .navDestination(this.PageMap)
     .title('Navigation')
   }
+}
+```
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
 }
 ```
 ![navigationOnReady2.gif](figures/navigationOnReady2.gif)

@@ -1,6 +1,6 @@
 # Native API Standard Libraries
 
-- [libc](musl.md)
+- [musl libc](musl.md)
 - [libc++](cpp.md)
 - [Node-API](napi.md)
 - [libuv](libuv.md)
@@ -23,6 +23,6 @@
     - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)
 - Appendix
   - [libc Symbols Not Exported](musl-peculiar-symbol.md)
-  - [libc Symbols That May Fail to Call Due to Permission Control](musl-permission-control-symbol.md)
+  - [Restricted musl libc APIs](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
   - [EGL Symbols Exported](egl-symbol.md)
   - [OpenGL ES 3.2 Symbols Exported](openglesv3-symbol.md)

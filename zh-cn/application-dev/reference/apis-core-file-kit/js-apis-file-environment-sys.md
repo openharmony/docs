@@ -45,7 +45,7 @@ getStorageDataDir():Promise&lt;string&gt;
   environment.getStorageDataDir().then((path: string) => {
       console.info("getStorageDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
-      console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -80,7 +80,7 @@ getStorageDataDir(callback:AsyncCallback&lt;string&gt;):void
   import { BusinessError } from '@ohos.base';
   environment.getStorageDataDir((err: BusinessError, path: string) => {
     if (err) {
-      console.info("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getStorageDataDir successfully, Path: " + path);
     }
@@ -119,7 +119,7 @@ getUserDataDir():Promise&lt;string&gt;
   environment.getUserDataDir().then((path: string) => {
     console.info("getUserDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
-    console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -154,7 +154,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@ohos.base';
   environment.getUserDataDir((err: BusinessError, path: string) => {
     if (err) {
-      console.info("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getUserDataDir successfully, Path: " + path);
     }
@@ -165,7 +165,7 @@ getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
 getExternalStorageDir(): string
 
-获取外卡根目录的沙箱路径，该接口仅对特定设备开放。
+获取外卡根目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
@@ -208,7 +208,7 @@ function getExternalStorageDirExample() {
 
 getUserHomeDir(): string
 
-获取当前用户下应用沙箱路径的内卡目录，该接口仅对特定设备开放。
+获取当前用户下应用沙箱路径的内卡目录，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 

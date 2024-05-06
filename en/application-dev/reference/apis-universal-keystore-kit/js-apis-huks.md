@@ -157,6 +157,12 @@ Generates a key. This API uses a promise to return the result. Because the key i
 | keyAlias | string                      | Yes  | Alias of the key.              |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
 
+**Return value**
+
+| Type                                          | Description                                         |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
@@ -290,6 +296,12 @@ Deletes a key. This API uses a promise to return the result.
 | keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Options for deleting the key. For example, you can pass in [HuksAuthStorageLevel](#huksauthstoragelevel11) to specify the security level of the key to delete. **HuksAuthStorageLevel** can be left empty, which means the default value **HUKS_AUTH_STORAGE_LEVEL_DE** is used.           |
 
+**Return value**
+
+| Type                                          | Description                                         |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
@@ -327,11 +339,15 @@ try {
 }
 ```
 
-## huks.getSdkVersion
+## huks.getSdkVersion<sup>(deprecated)</sup>
 
 getSdkVersion(options: HuksOptions) : string
 
 Obtains the SDK version of the current system.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11.
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -468,6 +484,12 @@ Imports a key in plaintext. This API uses a promise to return the result.
 | keyAlias | string                      | Yes  | Alias of the key.                         |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import. The algorithm, key purpose, and key length are mandatory.|
 
+**Return value**
+
+| Type                                          | Description                                         |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
@@ -554,7 +576,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 Attests a key. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.ATTEST_KEY
+**Required permissions**: ohos.permission.ATTEST_KEY (available only for system applications)
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -696,7 +718,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 Attests a key. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.ATTEST_KEY
+**Required permissions**: ohos.permission.ATTEST_KEY (available only for system applications)
 
 **System capability**: SystemCapability.Security.Huks.Extension
 
@@ -711,7 +733,7 @@ Attests a key. This API uses a promise to return the result.
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained.|
 
 **Error codes**
 
@@ -1002,7 +1024,7 @@ This operation requires Internet access and takes time.
 
 | Type                                          | Description                                         |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **certChains** in **HuksReturnResult** is the certificate chain obtained.|
 
 **Error codes**
 
@@ -1366,6 +1388,12 @@ Imports a wrapped key. This API uses a promise to return the result.
 | wrappingKeyAlias | string                      | Yes  | Alias of the data used to unwrap the key imported.   |
 | options          | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and the wrapped key to import. The algorithm, key purpose, and key length are mandatory.|
 
+**Return value**
+
+| Type                                          | Description                                         |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
@@ -1422,7 +1450,7 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. If the operation fails, an error code is returned.|
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. Otherwise, an error code is returned.|
 
 **Error codes**
 
@@ -1483,7 +1511,7 @@ Exports a key. This API uses a promise to return the result.
 
 | Type                                          | Description                                                        |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. If the operation fails, an error code is returned. |
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **outData** in **HuksReturnResult** is the public key exported.|
 
 **Error codes**
 
@@ -1601,7 +1629,7 @@ Obtains key properties. This API uses a promise to return the result.
 
 | Type                                           | Description                                                        |
 | ----------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+| Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, **properties** in **HuksReturnResult** holds the parameters required for generating the key.|
 
 **Error codes**
 
@@ -1673,6 +1701,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -1735,6 +1764,7 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
 | 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
@@ -2020,7 +2050,7 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | Yes  | Handle for the **updateSession** operation.                        |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **updateSession** operation.                      |
-| token    | Uint8Array                                           | Yes  | Token of the **updateSession** operation.                         |
+| token    | Uint8Array                                           | Yes  | Authentication token for [refined key access control](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md).                        |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **updateSession** operation result.|
 
 **Error codes**
@@ -2058,7 +2088,7 @@ Updates the key operation by segment. This API uses a promise to return the resu
 | ------- | ---------------------------------------------- | ---- | -------------------------------------------- |
 | handle  | number                                         | Yes  | Handle for the **updateSession** operation.                        |
 | options | [HuksOptions](#huksoptions)                    | Yes  | Parameter set used for the **updateSession** operation.                      |
-| token   | Uint8Array                                     | No  | Token of the **updateSession** operation.                         |
+| token   | Uint8Array                                     | No  |Authentication token for [refined key access control](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md). If this parameter is left blank, refined key access control is not performed.                         |
 
 **Return value**
 
@@ -2138,7 +2168,7 @@ Finishes the key operation. This API uses an asynchronous callback to return the
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                                | Yes  | Handle for the **finishSession** operation.                        |
 | options  | [HuksOptions](#huksoptions)                           | Yes  | Parameter set used for the **finishSession** operation.                          |
-| token    | Uint8Array                                            | Yes  | Token of the **finishSession** operation.                         |
+| token    | Uint8Array                                            | Yes  | Authentication token for [refined key access control](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md).                        |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
 
 **Error codes**
@@ -2176,7 +2206,7 @@ Finishes the key operation. This API uses a promise to return the result. **huks
 | ------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | handle  | number                                          | Yes  | Handle for the **finishSession** operation.               |
 | options | [HuksOptions](#huksoptions)                     | Yes  | Parameter set used for the **finishSession** operation.             |
-| token   | Uint8Array                                      | No  | Token of the **finishSession** operation.                |
+| token   | Uint8Array                                      | No  | Authentication token for [refined key access control](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md). If this parameter is left blank, refined key access control is not performed.    |
 
 **Return value**
 
@@ -2585,6 +2615,7 @@ Enumerates the cipher modes.
 | HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_MODE_CTR | 3    | Counter (CTR) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_CFB<sup>12+</sup> | 5    | Ciphertext Feedback (CFB) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
 

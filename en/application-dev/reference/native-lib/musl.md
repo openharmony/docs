@@ -1,4 +1,4 @@
-# libc
+# musl libc
 
 ## Overview
 The C standard library (libc) provides standard header files and common library implementations (such as input/output processing and string handling) in C language programming.
@@ -11,13 +11,11 @@ For details about the differences between musl and glibc, see [Functional differ
 
 C11 is implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header). 
 
-- libc: provides thread-related interfaces and a majority of standard interfaces.
+libc: provides thread-related interfaces and a majority of standard interfaces.
 
+libm: provides mathematical library interfaces. Currently, OpenHarmony provides a link to libm, and the interfaces are defined in libc.
 
-- libm: provides mathematical library interfaces. Currently, OpenHarmony provides a link to libm, and the interfaces are defined in libc.
-
-- libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony provides a link to libdl, and the interfaces are defined in libc.
-
+libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony provides a link to libdl, and the interfaces are defined in libc.
 
 ## musl Version
 
@@ -62,11 +60,11 @@ param set musl.log.ld.all true
 param set musl.log.ld.app.{app_name} false
 ```
 
-## Interfaces Not Supported by musl
+## musl APIs Not Supported 
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
-[Native API Symbols That May Fail to Call Due to Permission Control](musl-permission-control-symbol.md)
+[Restricted musl libc APIs](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
 
 
 

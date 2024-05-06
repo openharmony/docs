@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决OpenHarmony系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述。
+标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述。
 
 当相关类型的数据进行跨应用、跨设备传输时，目标端应用/设备需要进行多方面的适配，才能够对数据内容进行相关处理，且存在无法识别的情况。
 
@@ -43,13 +43,15 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ## 标准化数据类型的定义
 
-标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，每个类型定义具体包含以下内容：
+标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，具体可见[TypeDescriptor属性](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#属性)，每个类型定义具体包含以下内容：
 
 + **typeId：** 定义标准化数据类型的ID，该ID具有唯一性。
 + **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，允许存在一个标准化数据类型归属于多个类型的情况。
 + **description：** 标准化数据类型的简要说明。
 + **referenceURL：** 标准化数据类型的参考链接URL，用于描述类型的详细信息。
 + **iconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
++ **filenameExtensions：**  标准化数据类型所关联的文件名后缀列表。
++ **mimeTypes：** 标准化数据类型所关联的多用途互联网邮件扩展类型列表。
 
 ## 预置数据类型
 
@@ -74,18 +76,18 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 针对自定义的类型描述各字段，有以下相关要求和限制：
 
-+ **typeId：** 定义标准化数据类型的ID，该ID具有唯一性，由应用bundleName + 具体类型名组成，不可缺省，允许包含数字、大小写字母、-和.。
++ **TypeId：** 定义标准化数据类型的ID，该ID具有唯一性，由应用bundleName + 具体类型名组成，不可缺省，允许包含数字、大小写字母、-和.。
 
-+ **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据
++ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据
   类型（标准化数据类型预置类型或其他新增自定义数据类型），不能为应用自定义类型本身，不能为空，且与现有标准化数据类型、其他新增自定义数据类型不能形成环行依赖结构。
 
 + **FilenameExtensions：** 应用自定义标准化数据类型所关联的文件后缀。可以缺省；可以为多个，每个后缀为以.开头且长度不超过127的字符串。
 
-+ **mimeTypes：** 应用自定义标准化数据类型所关联的web消息数据类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
++ **MIMETypes：** 应用自定义标准化数据类型所关联的web消息数据类型。可以缺省；可以为多个，每个类型为长度不超过127的字符串。
 
-+ **description：** 应用自定义标准化数据类型的简要说明。可以缺省；填写时，长度为不超过255的字符串。
++ **Description：** 应用自定义标准化数据类型的简要说明。可以缺省；填写时，长度为不超过255的字符串。
 
-+ **referenceURL：** 应用自定义标准化数据类型的参考链接URL，用于描述类型的详细信息。可以缺省；填写时，长度为不超过255的字符串。
++ **ReferenceURL：** 应用自定义标准化数据类型的参考链接URL，用于描述类型的详细信息。可以缺省；填写时，长度为不超过255的字符串。
 
 
 ### 开发步骤
@@ -99,28 +101,28 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    {
         "UniformDataTypeDeclarations": [
             {
-                "typeId": "com.example.myFirstHap.image",
-                "belongingToTypes": ["general.image"],
+                "TypeId": "com.example.myFirstHap.image",
+                "BelongingToTypes": ["general.image"],
                 "FilenameExtensions": [".myImage", ".khImage"],
-                "mimeTypes": ["application/myImage", "application/khImage"],
-                "description": "My Image.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myImage", "application/khImage"],
+                "Description": "My Image.",
+                "ReferenceURL": ""
             },
             {
-                "typeId": "com.example.myFirstHap.audio",
-                "belongingToTypes": ["general.audio"],
+                "TypeId": "com.example.myFirstHap.audio",
+                "BelongingToTypes": ["general.audio"],
                 "FilenameExtensions": [".myAudio", ".khAudio"],
-                "mimeTypes": ["application/myAudio", "application/khAudio"],
-                "description": "My audio.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myAudio", "application/khAudio"],
+                "Description": "My audio.",
+                "ReferenceURL": ""
             },
             {
-                "typeId": "com.example.myFirstHap.video",
-                "belongingToTypes": ["general.video"],
+                "TypeId": "com.example.myFirstHap.video",
+                "BelongingToTypes": ["general.video"],
                 "FilenameExtensions": [".myVideo", ".khVideo"],
-                "mimeTypes": ["application/myVideo", "application/khVideo"],
-                "description": "My video.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myVideo", "application/khVideo"],
+                "Description": "My video.",
+                "ReferenceURL": ""
             }
         ]
    }
@@ -134,29 +136,29 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
    {
        "ReferenceUniformDataTypeDeclarations": [
             {
-                "typeId": "com.example.myFirstHap.image",
-                "belongingToTypes": ["general.image"],
+                "TypeId": "com.example.myFirstHap.image",
+                "BelongingToTypes": ["general.image"],
                 "FilenameExtensions": [".myImage", ".khImage"],
-                "mimeTypes": ["application/myImage", "application/khImage"],
-                "description": "My Image.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myImage", "application/khImage"],
+                "Description": "My Image.",
+                "ReferenceURL": ""
             }
        ]
    }
    ```
 
-4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd.json5配置文件示例如下：
+4. 其他应用也可以在DevEco Studio中创建utd.json5模板，在模板中引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。同时，DevEco Studio还会对配置文件中的字段进行格式校验，utd.json5配置文件示例如下：
 
    ```json
    {
        "UniformDataTypeDeclarations": [
            {
-               "typeId": "com.example.mySecondHap.image",
-               "belongingToTypes": ["com.example.myFirstHap.image"],
+               "TypeId": "com.example.mySecondHap.image",
+               "BelongingToTypes": ["com.example.myFirstHap.image"],
                "FilenameExtensions": [".myImageEx", ".khImageEx"],
-               "mimeTypes": ["application/my-ImageEx", "application/khImageEx"],
-               "description": "My Image extension.",
-               "referenceURL": ""
+               "MIMETypes": ["application/my-ImageEx", "application/khImageEx"],
+               "Description": "My Image extension.",
+               "ReferenceURL": ""
            }
        ]
    }
@@ -168,14 +170,14 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| UniformDataType                                              | OpenHarmony标准化数据类型的枚举定义。此处不再展开列举各枚举。 |
+| UniformDataType                                              | 标准化数据类型的枚举定义。此处不再展开列举各枚举。 |
 | belongsTo(type: string): boolean                             | 判断当前标准化数据类型是否归属于指定的标准化数据类型。       |
 | isLowerLevelType(type: string): boolean                      | 判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。 |
 | isHigherLevelType(type: string): boolean                     | 判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。 |
 | getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。 |
 | getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。 |
 
-## 开发步骤
+## 如何查询媒体类文件归属类型
 
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
@@ -198,6 +200,9 @@ try {
   console.info('belongingToTypes:' + typeObj1.belongingToTypes);
   console.info('description:' + typeObj1.description);
   console.info('referenceURL:' + typeObj1.referenceURL);
+  console.info('filenameExtensions:' + typeObj1.filenameExtensions);
+  console.info('mimeTypes:' + typeObj1.mimeTypes);
+
 
   // 3.可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
   let mineType = 'audio/mp3';
@@ -206,7 +211,9 @@ try {
   console.info('typeId:' + typeObj2.typeId);
   console.info('belongingToTypes:' + typeObj2.belongingToTypes);
   console.info('description:' + typeObj2.description);
-  console.info('referenceURL:' + typeObj2.referenceURL);
+  console.info('filenameExtensions:' + typeObj2.filenameExtensions);
+  console.info('mimeTypes:' + typeObj2.mimeTypes);
+
 
   // 4.将数据类型进行比较，确认是否同一种数据类型
   if (typeObj1 != null && typeObj2 != null) {
@@ -222,6 +229,53 @@ try {
     ret = mediaTypeObj.isHigherLevelType('general.audio'); // 确认是否存在归属关系
     console.info('isHigherLevelType, ret:' + ret);
   }
+} catch (err) {
+  console.error('err message:' + err.message + ', err code:' + err.code);
+}
+```
+
+## 如何通过文件后缀获取对应的MIMEType列表
+
+下面以通过“.mp3”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
+
+1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型。
+3. 根据UTD数据类型查询对应的MIMEType列表。
+
+```ts
+// 1.导入模块
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+try {
+  // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型。
+  let fileExtention = '.mp3';
+  let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
+  // 3.根据UTD数据类型查询对应的MIMEType列表。
+  let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+  let mimeTypes = typeObj.mimeTypes;
+  console.info('mimeTypes:' + mimeTypes);
+} catch (err) {
+  console.error('err message:' + err.message + ', err code:' + err.code);
+}
+```
+## 如何通过MIMEType获取对应的后缀列表
+
+下面以通过“audio/mp3”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
+
+1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+2. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
+3. 根据UTD数据类型查询对应的MIMEType列表。
+
+```ts
+// 1.导入模块
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+try {
+  // 2.可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
+  let mineType = 'audio/mp3';
+  let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
+  // 3. 根据UTD数据类型查询对应的MIMEType列表
+  let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+  let filenameExtensions = typeObj.filenameExtensions;
+  console.info('filenameExtensions:' + filenameExtensions);
 } catch (err) {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }

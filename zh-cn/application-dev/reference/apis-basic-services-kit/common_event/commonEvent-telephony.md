@@ -16,7 +16,7 @@
 提示短信接收完成。
 
 - 值：usual.event.SMS_RECEIVED_COMPLETED
-- 订阅者所需权限：ohos.permission.RECEIVE_SMS
+- 订阅者所需权限：ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
 
 在设备接收到短信时，将会触发事件通知服务发布该系统公共事件。
 
@@ -25,7 +25,7 @@
 提示紧急小区广播短信接收完成。
 
 - 值：usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
-- 订阅者所需权限：ohos.permission.RECEIVE_SMS
+- 订阅者所需权限：ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
 
 在设备接收到紧急小区广播短信时，将会触发事件通知服务发布该系统公共事件。
 
@@ -34,7 +34,7 @@
 提示小区广播短信接收完成。
 
 - 值：usual.event.SMS_CB_RECEIVE_COMPLETED
-- 订阅者所需权限：ohos.permission.RECEIVE_SMS
+- 订阅者所需权限：ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
 
 在设备接收到小区广播短信时，将会触发事件通知服务发布该系统公共事件。
 
@@ -79,7 +79,7 @@
 提示服务信息短信接收完成。
 
 - 值：usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
-- 订阅者所需权限：ohos.permission.RECEIVE_SMS
+- 订阅者所需权限：ohos.permission.RECEIVE_SMS（该权限仅系统应用可申请）
 
 在设备接收短信完成时，将会触发事件通知服务发布该系统公共事件。
 
@@ -151,7 +151,7 @@
 提示呼叫状态更新。
 
 - 值：usual.event.CALL_STATE_CHANGED
-- 订阅者所需权限：ohos.permission.GET_TELEPHONY_STATE
+- 订阅者所需权限：ohos.permission.GET_TELEPHONY_STATE（该权限仅系统应用可申请）
 
 在设备呼叫状态更新时，将会触发事件通知服务发布该系统公共事件。
 
@@ -187,7 +187,7 @@
 提示未接来电。
 
 - 值：usual.event.INCOMING_CALL_MISSED
-- 订阅者所需权限：ohos.permission.GET_TELEPHONY_STATE
+- 订阅者所需权限：ohos.permission.GET_TELEPHONY_STATE（该权限仅系统应用可申请）
 
 在设备有未接来电时，将会触发事件通知服务发布该系统公共事件。
 
