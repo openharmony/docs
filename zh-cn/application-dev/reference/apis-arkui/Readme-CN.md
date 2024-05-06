@@ -124,8 +124,7 @@
         - [组件内容填充方式](arkui-ts/ts-universal-attributes-renderfit.md)
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
-        - [特效绘制合并 (系统接口)](arkui-ts/ts-universal-attributes-use-effect-sys.md)
-        - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
+        - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
         - [背景设置 (系统接口)](arkui-ts/ts-universal-attributes-background-sys.md)
         - [组件内容模糊 (系统接口)](arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
         - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
@@ -292,7 +291,7 @@
         - [组件内隐式共享元素转场 (geometryTransition)](arkui-ts/ts-transition-animation-geometrytransition.md)
       - [路径动画 (motionPath)](arkui-ts/ts-motion-path-animation.md)
       - [粒子动画 (Particle)](arkui-ts/ts-particle-animation.md)
-      - [显式动画立即下发 (animateToImmediately)(系统接口)](arkui-ts/ts-explicit-animatetoimmediately-sys.md)
+      - [显式动画立即下发 (animateToImmediately)](arkui-ts/ts-explicit-animatetoimmediately.md)
     - 全局UI方法
       - 弹窗
         - [警告弹窗 (AlertDialog)](arkui-ts/ts-methods-alert-dialog-box.md)
