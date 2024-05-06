@@ -154,7 +154,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | 系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。       |
 | OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。       |
 | OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | 系统定义的Want类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | 系统定义的Want类型，归属类型为OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 
