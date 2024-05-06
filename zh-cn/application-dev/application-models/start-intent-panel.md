@@ -5,15 +5,15 @@
 **设备限制**
 HarmonyOS NEXT Developer Preview0及以上版本的设备
 ## 接口介绍
-接口**startAbilityByType<sup>11+</sup>**是[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
+接口**startAbilityByType<sup>11+</sup>** 是[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
 
 ## 场景参数
 |   参数名|  类型 | 说明  |
 | ----- | ------------ | ------------ |
-| type  |  string |  垂域业务类型：导航，金融等 |
+| type  |  string |  垂域业务类型：导航取值navigation，金融取值finance等 |
 | wantParam  | Record<string, Object>  |  与type垂域业务类型相对应的扩展参数 |
 
-**导航场景下的wantParam:**
+**type为navigation导航对应的wantParam:**
 
 | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
@@ -27,23 +27,20 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 | vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交(路线规划场景有效) | number   | 可缺省,缺省时由应用自行处理   |
 
 ## 垂域场景
-垂域场景是指与特定行业或者特定专业领域的相关的场景，比如导航、金融等，每个垂域场景又可细分为多个子场景。
-### 导航场景
-导航场景用于拉起导航面板，用于为调用方提供支持导航功能应用的统一目标方，并可按场景细分为路线规划、导航等细分类型。 
+垂域场景是指与特定行业或者特定专业领域的相关的场景，比如导航、金融等，每个垂域场景又可细分为多个子场景，目前仅支持导航场景，以导航场景举例，可细分为路线规划、导航、地点搜索等类型。
 
-- **调用方接入步骤：**
+## 接入步骤
+**调用方接入步骤** 
 
-1. 导入ohos.app.ability.common模块。
-
+1.导入ohos.app.ability.common模块。 
 ```
 import common from '@ohos.app.ability.common';
 ```
-2. 构造接口参数并调用startAbilityByType接口。
-
-- type
-固定取值为"navigation"，指定为导航场景。
+2.构造接口参数并调用startAbilityByType接口。
+```
+- type 固定取值为"navigation"，指定为导航场景。
 - wantParam 垂域业务类型对应的扩展参数，参考接口场景参数填写
-
+```
 **调用示例**
   ~~~typescript
   import common from '@ohos.app.ability.common';
@@ -52,8 +49,8 @@ import common from '@ohos.app.ability.common';
       'sceneType':1,
       'destinationLatitude':32.060844,
       'destinationLongitude':118.78315,
-      'destinationName':'中山陵',
-      'originName':'大梅沙海滨公园',
+      'destinationName':'xx市xx路xx号',
+      'originName':'xx市xx公园',
       'originLatitude':31.060844,
       'originLongitude':120.78315,
       'vehicleType':0
@@ -73,72 +70,71 @@ import common from '@ohos.app.ability.common';
   
   ~~~
 效果示例图：
-<center>
-    ![图片描述](./figures/start-navigation-panel.png)
-</center>
-+ **目标方接入步骤**
+
+![效果示例图](./figures/start-navigation-panel.png#pic_center)
+
+**目标方接入步骤** 
 
 1. 导入ohos.app.ability.UIAbility模块。
-~~~typescript
-import UIAbility from '@ohos.app.ability.UIAbility';
-~~~
-2. module.json5中声明特性。
+    ~~~typescript
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    ~~~
+2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
-应用在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
+    配置示例：
 
-配置示例：
-
-~~~json
-{
-  "abilities": [
+    ~~~json
     {
-      "skills": [
+    "abilities": [
         {
-          "uris": [
+        "skills": [
             {
-              "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-              "host": "navigation",
-              "path": "",
-              "linkFeature": "navigation" // 声明应用支持导航功能
-            },
-            {
-              "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-              "host": "routePlan",
-              "path": "",
-              "linkFeature": "routePlan" // 声明应用支持路线规划功能
-            },
-            {
-              "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
-              "host": "search",
-              "path": "",
-              "linkFeature": "textSearch" // 声明应用支持位置搜索功能
+            "uris": [
+                {
+                "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                "host": "navigation",
+                "path": "",
+                "linkFeature": "navigation" // 声明应用支持导航功能
+                },
+                {
+                "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                "host": "routePlan",
+                "path": "",
+                "linkFeature": "routePlan" // 声明应用支持路线规划功能
+                },
+                {
+                "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
+                "host": "search",
+                "path": "",
+                "linkFeature": "textSearch" // 声明应用支持位置搜索功能
+                }
+            ]
             }
-          ]
+        ]
         }
-      ]
+    ]
     }
-  ]
-}
-~~~
+    ~~~
 
-1. 解析参数并做对应处理。
+3. 解析参数并做对应处理。
 
-~~~typescript
-UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
-~~~
+    ~~~typescript
+    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    ~~~
 
-在参数**want.parameters**中会携带Caller方传入的参数(与调用方传入的有些差异)，如下表所示：
+    在参数**want.parameters**中会携带Caller方传入的参数(与调用方传入的有些差异)，如下表所示：
 
-| 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
-| -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
-| destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
-| destinationName      | 终点名称                                                     | string   | 可缺省   |
-| originName           | 起点名称                                   | string   | 可缺省，存在时可用于展示路线规划页面   |
-| originLatitude       | 起点纬度<sup>GCJ-02</sup>                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
-| originLongitude      | 起点经度<sup>GCJ-02</sup>                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
-| vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交(路线规划场景有效) | number   | 可缺省，缺省时由应用自行处理   |
-应用可根据linkFeature中定义的特性功能比如路线规划和导航结合接收到的参数开发不同的样式页面。
+    | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
+    | -------------------- | ------------------------------------------------------------ | -------- | -------- |
+    | destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
+    | destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
+    | destinationName      | 终点名称                                                     | string   | 可缺省   |
+    | originName           | 起点名称                                   | string   | 可缺省，存在时可用于展示路线规划页面   |
+    | originLatitude       | 起点纬度<sup>GCJ-02</sup>                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
+    | originLongitude      | 起点经度<sup>GCJ-02</sup>                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
+    | vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交(路线规划场景有效) | number   | 可缺省，缺省时由应用自行处理   |
+
+    应用可根据linkFeature中定义的特性功能比如路线规划和导航结合接收到的参数开发不同的样式页面。
 
 **解析示例：**
 
