@@ -958,9 +958,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## abilityManager.setResidentProcessEnable<sup>12</sup>
+## abilityManager.setResidentProcessEnabled<sup>12+</sup>
 
-setResidentProcessEnable(bundleName: string, enable: boolean): Promise<void>;
+setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
 
 常驻进程支持按需启停。
 
@@ -973,7 +973,7 @@ setResidentProcessEnable(bundleName: string, enable: boolean): Promise<void>;
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 常驻进程的包名。 |
-| enable | boolean | 是 | 需要更新的使能状态 |
+| enable | boolean | 是 | 需要更新的使能状态, true代表开机启动常驻进程或把停止的常驻进程拉起来, false代表开机不拉起常驻进程并失去常驻进程属性不在进行保活。 |
 
 **返回值：**
 
@@ -985,10 +985,10 @@ setResidentProcessEnable(bundleName: string, enable: boolean): Promise<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 201  | Permission denien. |
-| 202  | Not a system application. |
-| 401  | If the input parameter is not valid parameter. |
+| 202 | Not a system application. |
+| 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
+| 16200006 | The caller application can only set the resident status of the configured process|
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -998,11 +998,19 @@ setResidentProcessEnable(bundleName: string, enable: boolean): Promise<void>;
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-let residentProcessBundleName: string = 'com.xxx.xxxxxx';
-let enable: boolen = false;
-abilityManager.setResidentProcessEnable(residentProcessBundleName, enable)
-    .then( () => {console.log('setResidentProcessEnable success.');})
-    .catch((err:BusinessError) => {
-        console.error(`setResidentProcessEnable fail, err: ${JSON.stringify(err)}`);
-    });
+try {
+    let residentProcessBundleName: string = 'com.xxx.xxxxxx';
+    let enable: boolean = false;
+    abilityManager.setResidentProcessEnabled(residentProcessBundleName, enable)
+        .then(() => {
+            console.log('setResidentProcessEnabled success.');
+        })
+        .catch((err:BusinessError) => {
+            console.error(`setResidentProcessEnabled fail, err: ${JSON.stringify(err)}`);
+        });
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error(`setResidentProcessEnabled failed, code is ${code}, message is ${message}`);
+}
 ```
