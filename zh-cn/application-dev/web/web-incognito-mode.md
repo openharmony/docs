@@ -183,7 +183,7 @@
   }
   ```
 
-- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync)获取隐私模式下指定url对应cookie的值。
+- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11)获取隐私模式下指定url对应cookie的值。
 
   ```ts
   // xxx.ets
