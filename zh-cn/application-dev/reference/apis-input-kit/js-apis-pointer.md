@@ -29,7 +29,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -73,7 +73,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -107,7 +107,7 @@ setPointerVisibleSync(visible: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -140,7 +140,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -230,7 +230,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -285,7 +285,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -340,7 +340,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -375,7 +375,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -424,7 +424,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -473,7 +473,7 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -604,7 +604,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -653,7 +653,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
