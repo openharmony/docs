@@ -361,7 +361,7 @@ function getNode() : void {
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| fov | number | 否 | 是 | 视场。 |
+| fov | number | 否 | 是 | 视场，取值在0到1之间。 |
 | nearPlane | number | 否 | 是 | 近平面，取值在0到1之间。 |
 | farPlane | number | 否 | 是 | 远平面，取值在0到1之间。 |
 | viewPort | [Rect](js-apis-inner-scene-types.md#rect) | 否 | 是 | 视口。 |
