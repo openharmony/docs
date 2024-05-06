@@ -2,7 +2,7 @@
 
 ## When to Use
 
-The sample server provides a package search server for checking update packages and obtaining the update package download URLs, which was previously unavailable in the real-world update service. The sample server supports update service testing and functional verification for secondary development, building an end-to-end environment to cater for diverse update service use cases.
+The sample server provides a package search server for checking update packages and obtaining the update package download URLs, which was previously unavailable in the real-world update service. The sample server supports update service testing and secondary development function verification, building an end-to-end environment to cater for diverse update service use cases.
 
 ## How to Develop
 

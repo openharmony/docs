@@ -12,7 +12,7 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## Available APIs
 
-The following table lists the common APIs provided by the **inputConsumer** module. For details, see [ohos.multimodalInput.inputConsumer](../reference/apis-input-kit/js-apis-inputconsumer-sys.md).
+The following table lists the common APIs provided by the **inputConsumer** module. For details, see [ohos.multimodalInput.inputConsumer](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
@@ -23,8 +23,8 @@ The following table lists the common APIs provided by the **inputConsumer** modu
 
 ## How to Develop
 
-When an application that uses specific combination keys is started, [on](../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron) is called to subscribe to combination key events.
-When the application is stopped, [off](../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff) is called to unsubscribe from combination key events.
+When an application that uses specific combination keys is started, [on](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeron) is called to subscribe to combination key events.
+When the application is stopped, [off](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md#inputconsumeroff) is called to unsubscribe from combination key events.
 
 ```js
 let leftAltKey = 2045;

@@ -27,17 +27,17 @@ If your application needs to access the device location information, it must fir
 
 To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
 
-A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
 
-For details about how to request for a continuous task, see [Continuous Task](../task-management/continuous-task.md).
+For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
-You can declare the required permission in your application's configuration file. For details, see [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md).
+You can declare the required permission in your application's configuration file. For details, see [Requesting Application Permissions](../../security/AccessToken/determine-application-mode.md).
 
-For details about the permissions required for each API of Location Kit, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
+For details about the permissions required for each API of Location Kit, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 ### How to Develop
 
-For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md).
+For details, see [Applying for Application Permissions](../../security/AccessToken/determine-application-mode.md).
 
 
 ## Obtaining Device Location Information
@@ -50,7 +50,7 @@ Real-time location of the device is recommended for location-sensitive services.
 
 ### Available APIs
 
-The following table lists the APIs used to obtain the device location information. For details, see (../reference/apis-location-kit/js-apis-geoLocationManager.md).
+The following table lists the APIs used to obtain the device location information. For details, see (../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 **Table 2** APIs for obtaining device location information
 
@@ -193,7 +193,7 @@ The geocoding information describes a location using several attributes, includi
 
 ### Available APIs
 
-The following table lists the APIs used for mutual conversion between coordinates and geographic descriptions. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
+The following table lists the APIs used for mutual conversion between coordinates and geographic descriptions. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 **Table 3** APIs for geocoding and reverse geocoding conversion
 
@@ -247,7 +247,7 @@ The following table lists the APIs used for mutual conversion between coordinate
       }
       ```
 
-      The application can access the **GeoAddress** list that matches the specified coordinates for the corresponding geographic descriptions. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
+      The application can access the **GeoAddress** list that matches the specified coordinates for the corresponding geographic descriptions. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
    - Call **getAddressesFromLocationName** to convert geographic descriptions into coordinates.
      
       ```ts
@@ -265,7 +265,7 @@ The following table lists the APIs used for mutual conversion between coordinate
       }
       ```
 
-      The application can access the **GeoAddress** list that matches the specified geographic descriptions for the corresponding coordinates. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
+      The application can access the **GeoAddress** list that matches the specified geographic descriptions for the corresponding coordinates. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
       To improve the accuracy of location results, you can set the longitude and latitude ranges in **GeoCodeRequest**.
 
@@ -282,7 +282,7 @@ A typical application of geofencing is to create a geofence around an enterprise
 
 ### Available APIs
 
-Geo-fencing uses the following interfaces. For details, see [Location Kit](../reference/apis-location-kit/js-apis-geoLocationManager.md).
+Geo-fencing uses the following interfaces. For details, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
 **Table 4** Geofencing APIs
 

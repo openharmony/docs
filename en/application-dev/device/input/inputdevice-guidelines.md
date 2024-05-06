@@ -12,7 +12,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 ## Available APIs
 
-The following table lists the common APIs for input device management. For details about the APIs, see [ohos.multimodalInput.inputDevice](../reference/apis-input-kit/js-apis-inputdevice.md).
+The following table lists the common APIs for input device management. For details about the APIs, see [ohos.multimodalInput.inputDevice](../../reference/apis-input-kit/js-apis-inputdevice.md).
 
 | API | Description|
 | ----------- | ------------------------------------------------------------ | -------------------------- |
@@ -27,8 +27,8 @@ When a user enters text, the input method determines whether to launch the virtu
 
 ## How to Develop
 
-1. Call the [getDeviceList](../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetdevicelist9) API to obtain the list of connected input devices. Call the [getKeyboardType](../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetkeyboardtype9) API to traverse all connected devices to check whether a physical keyboard exists. If a physical keyboard exists, mark the physical keyboard as connected. This step ensures that your application detects all inserted input devices before listening for device hot swap events.
-2. Call the [on](../reference/apis-input-kit/js-apis-inputdevice.md#inputdeviceon9) API to listen for device hot swap events. If a physical keyboard is inserted, mark the physical keyboard as connected. If a physical keyboard is removed, mark the physical keyboard as disconnected.
+1. Call the [getDeviceList](../../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetdevicelist9) API to obtain the list of connected input devices. Call the [getKeyboardType](../../reference/apis-input-kit/js-apis-inputdevice.md#inputdevicegetkeyboardtype9) API to traverse all connected devices to check whether a physical keyboard exists. If a physical keyboard exists, mark the physical keyboard as connected. This step ensures that your application detects all inserted input devices before listening for device hot swap events.
+2. Call the [on](../../reference/apis-input-kit/js-apis-inputdevice.md#inputdeviceon9) API to listen for device hot swap events. If a physical keyboard is inserted, mark the physical keyboard as connected. If a physical keyboard is removed, mark the physical keyboard as disconnected.
 
 
 ```js
