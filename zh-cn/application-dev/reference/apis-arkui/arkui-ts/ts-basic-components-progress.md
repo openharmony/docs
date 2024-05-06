@@ -202,6 +202,20 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 | LOADING  | 加载中。 |
 | PROGRESSING | 进度更新中。 |
 
+## privacySensitive<sup>12+</sup>
+
+privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
+
+设置隐私敏感。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                  |
+| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)。
@@ -466,3 +480,33 @@ struct Index {
 
 ```
 ![progressCustom](figures/arkts-progressCustom.gif)
+
+### 示例7
+
+该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  build() {
+    Scroll() {
+      Column({ space: 15 }) {
+        Row() {
+          Progress({ value: 50, total: 100, type: ProgressType.Capsule }).width(100).height(50)
+            .style({
+              borderColor: Color.Blue,
+              borderWidth: 1,
+              content: 'Installing...',
+              font: { size: 13, style: FontStyle.Normal },
+              fontColor: Color.Gray,
+              enableScanEffect: false,
+              showDefaultPercentage: true
+            })
+            .privacySensitive(true)
+        }
+      }
+    }
+  }
+}
+```

@@ -187,6 +187,20 @@ indicator(value: GaugeIndicatorOptions)
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | value  | [GaugeIndicatorOptions](#gaugeindicatoroptions11对象说明) | 是   | 指针样式。<br/>**说明：** <br/>设置null则不显示指针。 |
 
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
+
+设置隐私敏感。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                  |
+| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下Gauge指针指向0位置，最大值最小值文本将被遮罩，量程显示灰色或者底色。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+
 ## GaugeShadowOptions<sup>11+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
@@ -630,3 +644,47 @@ struct refreshExample {
 }
 ```
 ![gauge](figures/gauge_builder.gif)
+
+
+### 示例9
+
+该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  build() {
+    Scroll() {
+      Column({ space: 15 }) {
+        Row() {
+          Gauge({ value: 50, min: 1, max: 100 }) {
+            Column() {
+              Text('60')
+                .maxFontSize("180sp")
+                .minFontSize("160.0vp")
+                .fontWeight(FontWeight.Medium)
+                .fontColor("#ff182431")
+                .width('40%')
+                .height('30%')
+                .textAlign(TextAlign.Center)
+                .margin({ top: '22.2%' })
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
+                .maxLines(1)
+            }.width('100%').height('100%')
+          }
+          .startAngle(225)
+          .endAngle(135)
+          .colors(Color.Red)
+          .width('80%')
+          .height('80%')
+          .strokeWidth(18)
+          .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
+          .padding(18)
+          .privacySensitive(true)
+        }
+      }
+    }
+  }
+}
+```
