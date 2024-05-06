@@ -22,7 +22,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ArkUI_UIInputEvent](#arkui_uiinputevent)[ArkUI_UIInputEvent](#arkui_uiinputevent) | UI输入事件定义。  | 
+| typedef struct [ArkUI_UIInputEvent](#arkui_uiinputevent) [ArkUI_UIInputEvent](#arkui_uiinputevent) | UI输入事件定义。  | 
 
 
 ### 枚举
@@ -93,7 +93,7 @@
 ### ArkUI_UIInputEvent
 
 ```
-typedef struct ArkUI_UIInputEventArkUI_UIInputEvent
+typedef struct ArkUI_UIInputEvent ArkUI_UIInputEvent
 ```
 **描述：**
 
