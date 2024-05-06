@@ -345,7 +345,7 @@ onResultReport : AsyncCallback&lt;string&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 401      | The input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13500003 | Backup or restore timed out     |
 | 13500004 | Application extension death     |
 | 13600001 | IPC error                       |
