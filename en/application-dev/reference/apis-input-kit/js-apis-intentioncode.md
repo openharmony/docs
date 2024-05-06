@@ -33,4 +33,4 @@ Enumerates intention codes.
 | INTENTION_PAGE_UP                |  11 | Page up                        |
 | INTENTION_PAGE_DOWN              |  12 | Page down                        |
 | INTENTION_ZOOM_OUT               |  13 | Zoom out                       |
-| INTENTION_ZOOM_IN                |  14 | Zoom in                        |
+| INTENTION_ZOOM_IN                |  14 | Zoom in                         |

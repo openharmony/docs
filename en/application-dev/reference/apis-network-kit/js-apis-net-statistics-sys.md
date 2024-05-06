@@ -272,8 +272,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 import { BusinessError } from '@ohos.base';
 import statistics from '@ohos.net.statistics';
 
-let uidInfo: statistics.UidInfo
-uidInfo.uid = 20010037
+let uidInfo: statistics.UidInfo = {
+  uid: 20010037,
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
+}
 
 statistics.getTrafficStatsByUid(
   uidInfo,
@@ -342,8 +348,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 ```js
 import statistics from '@ohos.net.statistics'
 
-let uidInfo: statistics.UidInfo
-uidInfo.uid = 20010037
+let uidInfo: statistics.UidInfo = {
+  uid: 20010037,
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
+}
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
   console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
