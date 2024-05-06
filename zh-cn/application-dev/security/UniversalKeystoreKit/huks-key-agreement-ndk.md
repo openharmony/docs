@@ -14,13 +14,13 @@
 
 设备A、设备B各自生成一个非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)或[密钥导入](huks-key-import-overview.md)。
 
-密钥生成时，可指定参数TAG（可选），OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
+密钥生成时，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
 
-- OH_HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示由该密钥协商出的密钥存储于HUKS中，由HUKS进行托管。
+- 当TAG设置为OH_HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
 
-- OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示由该密钥协商出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+- 当TAG设置为OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥协商出的密钥，返回给调用方管理，由业务自行保证密钥安全。
 
-- 不指定：表示由该密钥协商出的密钥可直接导出给业务方，也可存储于HUKS中。
+- 若业务未设置TAG的具体值，表示基于该密钥协商出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续协商时再选择使用何种方式保护密钥。
 
 **导出密钥**
 
@@ -30,11 +30,17 @@
 
 设备A、B分别基于本端私钥和对端设备的公钥，协商出共享密钥。
 
-密钥协商时，可指定参数TAG(可选)，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG(不可与生成时指定的规格冲突)：
+密钥协商时，可指定参数OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识协商得到的密钥是否由HUKS管理。
 
-- OH_HUKS_STORAGE_ONLY_USED_IN_HUKS(推荐)：表示由该密钥协商出的密钥存储于HUKS中，由HUKS进行托管。
+| 生成 | 协商 | 规格 |
+| -------- | -------- | -------- |
+| OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | HUKS管理 |
+| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | 返回业务 |
+| 未指定TAG具体值 | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | HUKS管理|
+| 未指定TAG具体值 | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | 返回业务 |
+| 未指定TAG具体值 | 未指定TAG具体值 | 返回业务|
 
-- OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED/不指定：表示本次协商得到的密钥直接导出给业务方，HUKS不对其进行托管服务。
+注：协商时指定的TAG值，不可与生成时指定的TAG值冲突。表格中仅列举有效的指定方式。
 
 **删除密钥**
 
