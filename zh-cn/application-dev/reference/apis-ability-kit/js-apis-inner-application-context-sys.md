@@ -159,6 +159,8 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 | bundleName | string | 是    | 包名。  |
 | moduleName | string | 是    | 模块名。 |
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 **错误码**：
 
 | 错误码ID | 错误信息 |
@@ -166,7 +168,7 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 | 401 | 参数错误. |
 | 16400001 | 传入的包名和模块名不是系统级HSP. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 
 **示例：**
 
