@@ -55,6 +55,7 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [removeNodeEventReceiver](#removenodeeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 在组件上删除注册的组件事件回调函数。  | 
 | int32_t(\* [addNodeCustomEventReceiver](#addnodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 在组件上添加自定义事件回调函数，用于接受该组件产生的自定义事件（如布局事件，绘制事件）。  | 
 | int32_t(\* [removeNodeCustomEventReceiver](#removenodecustomeventreceiver) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void(\*eventReceiver)(ArkUI_NodeCustomEvent \*event)) | 在组件上删除注册的自定义事件回调函数。  | 
+| int32_t(\* [setLengthMetricUnit](#setlengthmetricunit) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 指定组件的单位。  |
 
 
 ## 结构体成员变量说明
@@ -710,6 +711,26 @@ int32_t(* ArkUI_NativeNodeAPI_1::setLayoutPosition) (ArkUI_NodeHandle node, int3
 | node | 目标节点对象。  | 
 | positionX | x轴坐标。  | 
 | positionY | y轴坐标。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
+
+
+### setLengthMetricUnit
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::setLengthMetricUnit) (ArkUI_NodeHandle node, ArkUI_LengthMetricUnit unit)
+```
+**描述**
+指定组件的单位。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 用于指定单位的组件。  | 
+| unit | 单位类型[ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit)，默认为 ARKUI_LENGTH_METRIC_UNIT_DEFAULT。  | 
 
 **返回：**
 
