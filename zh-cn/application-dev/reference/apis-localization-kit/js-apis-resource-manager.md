@@ -330,10 +330,11 @@ getStringSync(resId: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -373,11 +374,11 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | string | 资源ID值对应的格式化字符串。|
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ----------------------------------------------- |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                               |
 | 9001002  | If the resource not found by resId.                 |
 | 9001006  | If the resource re-ref too much.                    |
@@ -420,10 +421,11 @@ getStringSync(resource: Resource): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -471,11 +473,11 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | string | resource对象对应的格式化字符串。|
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -522,10 +524,11 @@ getStringByNameSync(resName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -566,10 +569,11 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -605,10 +609,11 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the module resId invalid.             |
 | 9001002  | If the resource not found by resId.      |
 | 9001006  | If the resource re-ref too much.         |
@@ -654,10 +659,11 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -802,11 +808,11 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | callback | AsyncCallback&lt;string&gt; | 是    |返回获取的字符串。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -852,10 +858,11 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1028,11 +1035,11 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1077,11 +1084,11 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1226,10 +1233,11 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1275,10 +1283,11 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1474,10 +1483,11 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1528,10 +1538,11 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1639,10 +1650,11 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.                |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1692,10 +1704,11 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1746,10 +1759,11 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1949,10 +1963,11 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.              | 
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -1993,10 +2008,11 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2041,10 +2057,11 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2340,11 +2357,11 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2433,10 +2450,11 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2682,10 +2700,11 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2774,10 +2793,11 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3074,10 +3094,11 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3166,10 +3187,11 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3239,7 +3261,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
@@ -3261,10 +3283,11 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3297,7 +3320,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
@@ -3321,10 +3344,11 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3363,7 +3387,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
@@ -3385,10 +3409,11 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3441,10 +3466,11 @@ getBoolean(resId: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3485,10 +3511,11 @@ getBoolean(resource: Resource): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3534,10 +3561,11 @@ getBooleanByName(resName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -3577,10 +3605,11 @@ getNumber(resId: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3630,10 +3659,11 @@ getNumber(resource: Resource): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3679,10 +3709,11 @@ getNumberByName(resName: string): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -4192,11 +4223,11 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid.               |
 
 **示例：** 
   ```ts
@@ -4239,10 +4270,11 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **示例：** 
@@ -4460,10 +4492,11 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **示例：** 
@@ -4510,10 +4543,11 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **示例：** 
@@ -4588,10 +4622,11 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | The resource not found by path.          |
 
 **示例：** 
@@ -4633,10 +4668,11 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **示例：** 
