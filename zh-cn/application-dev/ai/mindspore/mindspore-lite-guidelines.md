@@ -254,7 +254,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
     target_link_libraries(
             demo
-            mindspore-lite.huawei
+            mindspore_lite_ndk
             pthread
             dl
     )
