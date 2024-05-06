@@ -12,7 +12,7 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 
 ## Available APIs
 
-The following table lists common APIs for event injection. For details about the APIs, see [ohos.multimodalInput.shortKey](../reference/apis/js-apis-shortKey.md).
+The following table lists common APIs for event injection. For details about the APIs, see [ohos.multimodalInput.shortKey](../../reference/apis/js-apis-shortKey.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |

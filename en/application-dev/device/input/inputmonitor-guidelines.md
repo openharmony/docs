@@ -12,7 +12,7 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 
 ## Available APIs
 
-The following table lists the common APIs provided by the **inputMonitor** module. For details, see [ohos.multimodalInput.inputMonitor](../reference/apis-input-kit/js-apis-inputmonitor-sys.md).
+The following table lists the common APIs provided by the **inputMonitor** module. For details, see [ohos.multimodalInput.inputMonitor](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
@@ -33,7 +33,7 @@ The following table lists the common APIs provided by the **inputMonitor** modul
 
 ## How to Develop
 
-This example assumes that the application needs to change the style based on the mouse button pressing status. Specifically, listen for mouse button events by calling [on](../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9), and cancel listening for mouse button events by calling [off](../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9).
+This example assumes that the application needs to change the style based on the mouse button pressing status. Specifically, listen for mouse button events by calling [on](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoronmouse9), and cancel listening for mouse button events by calling [off](../../reference/apis-input-kit/js-apis-inputmonitor-sys.md#inputmonitoroffmouse9).
 
 ```js
 import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
