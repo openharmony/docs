@@ -829,6 +829,7 @@ has(propName: string): boolean
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -860,6 +861,7 @@ get&lt;T&gt;(propName: string): T | undefined
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -969,6 +971,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1037,6 +1040,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1107,6 +1111,7 @@ delete(propName: string): boolean
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1142,6 +1147,7 @@ keys(): IterableIterator&lt;string&gt;
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1167,6 +1173,7 @@ size(): number
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1194,6 +1201,7 @@ clear(): boolean
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1250,6 +1258,7 @@ abstract get(): T
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

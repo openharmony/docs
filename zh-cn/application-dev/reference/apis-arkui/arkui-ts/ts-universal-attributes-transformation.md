@@ -76,6 +76,8 @@ transform(value: Matrix4Transit)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                      | 类型                       | 必填 | 说明                                                         |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | x                         | number                     | 否   | 旋转轴向量x坐标。                                            |
@@ -93,6 +95,8 @@ transform(value: Matrix4Transit)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型                       | 必填 | 说明            |
 | ---- | -------------------------- | ---- | --------------- |
 | x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。 |
@@ -102,6 +106,8 @@ transform(value: Matrix4Transit)
 ## ScaleOptions对象说明
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
