@@ -35,7 +35,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
 | serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**说明**：可作为设备唯一识别码。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
-| abiList | string | 是 | 否 | 应用二进制接口（Abi）列表。 |
+| abiList | string | 是 | 否 | 应用二进制接口（Abi）。 |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。 |
 | displayVersion | string | 是 | 否 | 产品版本。 |
 | incrementalVersion | string | 是 | 否 | 差异版本号。 |
