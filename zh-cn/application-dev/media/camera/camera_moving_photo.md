@@ -21,9 +21,6 @@
    ```ts
    import camera from '@ohos.multimedia.camera';
    import image from '@ohos.multimedia.image';
-   import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-   import fs from '@ohos.file.fs';
-   import media from '@ohos.multimedia.media';
    import photoAccessHelper from '@ohos.file.photoAccessHelper';
    import { BusinessError } from '@ohos.base';
    ```
@@ -58,9 +55,9 @@
      try {
        isSupported = photoOutput.isMovingPhotoSupported();
      } catch (error) {
-     // 失败返回错误码error.code并处理
-     let err = error as BusinessError;
-     console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+       // 失败返回错误码error.code并处理
+       let err = error as BusinessError;
+       console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
      }
      return isSupported;
    }
@@ -90,12 +87,13 @@
 
    ```ts
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
-     photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: media.PhotoAsset): void => {
+     photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
          console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
+       // 保存或使用照片，需开发者实现
        photoAsset.saveCameraPhoto();
      });
    }
