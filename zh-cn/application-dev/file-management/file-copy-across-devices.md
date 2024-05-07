@@ -14,7 +14,6 @@
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
    import fileUri from '@ohos.file.fileuri';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
@@ -28,8 +27,7 @@
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
-   } catch (error: BusinessError) {
-    let err: BusinessError = error as BusinessError;
+   } catch (error) {
     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
    }
 
@@ -44,12 +42,10 @@
     fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
-    }).catch((error: BusinessError)=>{
-      let err: BusinessError = error as BusinessError;
+    }).catch((error)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (error: BusinessError) {
-    let err: BusinessError = error as BusinessError;
+   } catch (error) {
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -59,7 +55,6 @@
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
    import fileUri from '@ohos.file.fileuri';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
@@ -87,12 +82,10 @@
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((error: BusinessError)=>{
-      let err: BusinessError = error as BusinessError;
+    }).catch((error)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (error: BusinessError) {
-    let err: BusinessError = error as BusinessError;
+   } catch (error) {
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
    ```
