@@ -126,7 +126,6 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
-        - [背景设置 (系统接口)](arkui-ts/ts-universal-attributes-background-sys.md)
         - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
