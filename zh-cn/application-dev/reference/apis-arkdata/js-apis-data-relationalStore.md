@@ -39,22 +39,22 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                 |
-|-----------| ------------------------------------------------------------ |
+| **错误码ID** | **错误信息**   |
+|-----------|---------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000  | Inner error. |
-| 14800010  | Failed to open or delete database by invalid database path. |
-| 14800011  | Failed to open database by database corrupted. |
-| 14801001  | Only supported in stage mode.                               |
-| 14801002  | The data group id is not valid.                             |
-| 14800017  | Config changed. |
-| 14800021  | SQLite: Generic error. |
-| 14800022  | SQLite: Callback routine requested an abort. |
-| 14800023  | SQLite: Access permission denied. |
-| 14800027  | SQLite: Attempt to write a readonly database. |
-| 14800028  | SQLite: Some kind of disk I/O error occurred. |
-| 14800029  | SQLite: The database is full. |
-| 14800030  | SQLite: Unable to open the database file. |
+| 14800000  | Inner error.     |
+| 14800010  | Failed to open or delete database by invalid database path.   |
+| 14800011  | Database corrupted.    |
+| 14801001  | Only supported in stage mode.    |
+| 14801002  | The data group id is not valid.     |
+| 14800017  | Config changed.   |
+| 14800021  | SQLite: Generic error.    |
+| 14800022  | SQLite: Callback routine requested an abort.   |
+| 14800023  | SQLite: Access permission denied.    |
+| 14800027  | SQLite: Attempt to write a readonly database.   |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.     |
+| 14800029  | SQLite: The database is full.  |
+| 14800030  | SQLite: Unable to open the database file.   |
 
 **示例：**
 
@@ -140,7 +140,7 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800010  | Failed to open or delete database by invalid database path. |
-| 14800011  | Failed to open database by database corrupted. |
+| 14800011  | Database corrupted.  |
 | 14801001  | Only supported in stage mode.                               |
 | 14801002  | The data group id is not valid.                             |
 | 14800017  | Config changed. |
@@ -2017,7 +2017,6 @@ predicates.notLike("NAME", "os");
 | 14800014  | Already closed. |
 | 14800015  | The database is busy. |
 | 14800021  | SQLite: Generic error. |
-| 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
 | 14800024  | SQLite: The database file is locked. |
 | 14800025  | SQLite: A table in the database is locked. |
@@ -2026,10 +2025,6 @@ predicates.notLike("NAME", "os");
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800029  | SQLite: The database is full. |
 | 14800030  | SQLite: Unable to open the database file. |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
-| 14800032  | SQLite: Abort due to constraint violation. |
-| 14800033  | SQLite: Data type mismatch. |
-| 14800034  | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -2788,6 +2783,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -6054,7 +6050,6 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 |-----------|--------|
 | 401       | Parameter error. Possible causes: 1. Need 2 - 3  parameter(s)! 2. The RdbStore must be valid. 3. The event must be a not empty string. 4. The progress must be function. |
 | 801       | Capability not supported.  |
-| 14800000  | Inner error.     |
 | 14800014  | Already closed.     |
 
 **示例：**
@@ -6679,28 +6674,27 @@ detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                                                                     |
-|-----------|--------------------------------------------------------------------------------------------------------------|
+| **错误码ID** | **错误信息**       |
+|-----------|------------------------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000  | Inner error.                                                                                                 |
-| 14800010  | Invalid database path.                                                                                       |
-| 14800011  | Database corrupted.                                                                                          |
-| 14800014  | Already closed.                                                                                              |
-| 14800015  | The database does not respond.                                                                               |
-| 14800021  | SQLite: Generic error.                                                                                       |
-| 14800022  | SQLite: Callback routine requested an abort.                                                                 |
-| 14800023  | SQLite: Access permission denied.                                                                            |
-| 14800024  | SQLite: The database file is locked.                                                                         |
-| 14800025  | SQLite: A table in the database is locked.                                                                   |
-| 14800026  | SQLite: The database is out of memory.                                                                       |
-| 14800027  | SQLite: Attempt to write a readonly database.                                                                |
-| 14800028  | SQLite: Some kind of disk I/O error occurred.                                                                |
-| 14800029  | SQLite: The database is full.                                                                                |
-| 14800030  | SQLite: Unable to open the database file.                                                                    |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit.                                                                             |
-| 14800032  | SQLite: Abort due to constraint violation.                                                                   |
-| 14800033  | SQLite: Data type mismatch.                                                                                  |
-| 14800034  | SQLite: Library used incorrectly.                                                                            |
+| 14800000  | Inner error.            |
+| 14800011  | Database corrupted.         |
+| 14800014  | Already closed.        |
+| 14800015  | The database does not respond.         |
+| 14800021  | SQLite: Generic error.            |
+| 14800022  | SQLite: Callback routine requested an abort.       |
+| 14800023  | SQLite: Access permission denied.           |
+| 14800024  | SQLite: The database file is locked.        |
+| 14800025  | SQLite: A table in the database is locked.       |
+| 14800026  | SQLite: The database is out of memory.     |
+| 14800027  | SQLite: Attempt to write a readonly database.        |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.    |
+| 14800029  | SQLite: The database is full.      |
+| 14800030  | SQLite: Unable to open the database file.       |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.      |
+| 14800032  | SQLite: Abort due to constraint violation.    |
+| 14800033  | SQLite: Data type mismatch.       |
+| 14800034  | SQLite: Library used incorrectly.       |
 
 **示例：**
 
@@ -6747,26 +6741,25 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                                                                                     |
 |-----------|----------------------------------------------------------------------------------------------|
 | 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000  | Inner error.    |
-| 14800010  | Invalid database path.     |
-| 14800011  | Database corrupted.      |
-| 14800014  | Already closed.      |
-| 14800015  | The database does not respond.   |
-| 14800018  | No data was locked.      |
-| 14800021  | SQLite: Generic error.   |
-| 14800022  | SQLite: Callback routine requested an abort.    |
-| 14800023  | SQLite: Access permission denied.    |
-| 14800024  | SQLite: The database file is locked.    |
-| 14800025  | SQLite: A table in the database is locked.   |
-| 14800026  | SQLite: The database is out of memory.   |
-| 14800027  | SQLite: Attempt to write a readonly database.    |
-| 14800028  | SQLite: Some kind of disk I/O error occurred.    |
-| 14800029  | SQLite: The database is full.  |
-| 14800030  | SQLite: Unable to open the database file.    |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit.    |
-| 14800032  | SQLite: Abort due to constraint violation.    |
-| 14800033  | SQLite: Data type mismatch.     |
-| 14800034  | SQLite: Library used incorrectly.     |
+| 14800000  | Inner error.                                                                                 |
+| 14800011  | Database corrupted.                                                                          |
+| 14800014  | Already closed.                                                                              |
+| 14800015  | The database is busy.                                                                        |
+| 14800018  | No data meets the condition.                                                                 |
+| 14800021  | SQLite: Generic error.                                                                       |
+| 14800022  | SQLite: Callback routine requested an abort.                                                 |
+| 14800023  | SQLite: Access permission denied.                                                            |
+| 14800024  | SQLite: The database file is locked.                                                         |
+| 14800025  | SQLite: A table in the database is locked.                                                   |
+| 14800026  | SQLite: The database is out of memory.                                                       |
+| 14800027  | SQLite: Attempt to write a readonly database.                                                |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.                                                |
+| 14800029  | SQLite: The database is full.                                                                |
+| 14800030  | SQLite: Unable to open the database file.                                                    |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.                                                     |
+| 14800032  | SQLite: Abort due to constraint violation.                                                   |
+| 14800033  | SQLite: Data type mismatch.                                                                  |
+| 14800034  | SQLite: Library used incorrectly.                                                            |
 
 **示例：**
 
@@ -6816,11 +6809,10 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 |-----------| ------------------------------------------------------------ |
 | 401       | Parameter error. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
-| 14800010  | Invalid database path.               |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database does not respond.                 |
-| 14800018  | No data was unlocked.                |
+| 14800015  | The database is busy.                 |
+| 14800018  | No data meets the condition.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -6878,7 +6870,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database does not respond.                 |
+| 14800015  | The database is busy.                 |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -7030,7 +7022,7 @@ getColumnIndex(columnName: string): number
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7088,7 +7080,7 @@ getColumnName(columnIndex: number): string
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7145,7 +7137,7 @@ goTo(offset:number): boolean
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800012  | The result set is empty or the specified location is invalid. |
+| 14800012  | Row out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7200,7 +7192,7 @@ goToRow(position: number): boolean
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800012  | The result set is empty or the specified location is invalid. |
+| 14800012  | Row out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7249,7 +7241,7 @@ goToFirstRow(): boolean
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800012  | The result set is empty or the specified location is invalid. |
+| 14800012  | Row out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7297,7 +7289,7 @@ goToLastRow(): boolean
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800012  | The result set is empty or the specified location is invalid. |
+| 14800012  | Row out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7345,7 +7337,7 @@ goToNextRow(): boolean
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800012  | The result set is empty or the specified location is invalid. |
+| 14800012  | Row out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7393,7 +7385,7 @@ goToPreviousRow(): boolean
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
-| 14800012  | The result set is empty or the specified location is invalid. |
+| 14800012  | Row out of bounds. |
 | 14800014  | Already closed. |
 | 14800019  | The SQL must be a query statement. |
 | 14800021  | SQLite: Generic error. |
@@ -7443,27 +7435,28 @@ getValue(columnIndex: number): ValueType
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                 |
-|-----------| ------------------------------------------------------------ |
+| **错误码ID** | **错误信息**     |
+|-----------|---------|
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14800000  | Inner error. |
-| 14800011  | Database corruption. |
-| 14800012  | Row out of bounds. |
-| 14800014  | Already closed. |
-| 14800021  | SQLite: Generic error. |
-| 14800022  | SQLite: Callback routine requested an abort. |
-| 14800023  | SQLite: Access permission denied. |
-| 14800024  | SQLite: The database file is locked. |
-| 14800025  | SQLite: A table in the database is locked. |
-| 14800026  | SQLite: The database is out of memory. |
-| 14800027  | SQLite: Attempt to write a readonly database. |
-| 14800028  | SQLite: Some kind of disk I/O error occurred. |
-| 14800029  | SQLite: The database is full. |
-| 14800030  | SQLite: Unable to open the database file. |
-| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
-| 14800032  | SQLite: Abort due to constraint violation. |
-| 14800033  | SQLite: Data type mismatch. |
-| 14800034  | SQLite: Library used incorrectly. |
+| 14800000  | Inner error.      |
+| 14800011  | Database corruption.        |
+| 14800012  | Row out of bounds.       |
+| 14800013  | Column out of bounds.   |
+| 14800014  | Already closed.       |
+| 14800021  | SQLite: Generic error.    |
+| 14800022  | SQLite: Callback routine requested an abort.     |
+| 14800023  | SQLite: Access permission denied.    |
+| 14800024  | SQLite: The database file is locked.    |
+| 14800025  | SQLite: A table in the database is locked.  |
+| 14800026  | SQLite: The database is out of memory.    |
+| 14800027  | SQLite: Attempt to write a readonly database.    |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.    |
+| 14800029  | SQLite: The database is full.   |
+| 14800030  | SQLite: Unable to open the database file.    |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.    |
+| 14800032  | SQLite: Abort due to constraint violation.   |
+| 14800033  | SQLite: Data type mismatch.      |
+| 14800034  | SQLite: Library used incorrectly.    |
 
 **示例：**
 
@@ -7503,7 +7496,7 @@ getBlob(columnIndex: number): Uint8Array
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -7558,7 +7551,7 @@ getString(columnIndex: number): string
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -7613,7 +7606,7 @@ getLong(columnIndex: number): number
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -7668,7 +7661,7 @@ getDouble(columnIndex: number): number
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -7723,7 +7716,7 @@ getAsset(columnIndex: number): Asset
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -7778,7 +7771,7 @@ getAssets(columnIndex: number): Assets
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
@@ -7881,7 +7874,7 @@ isColumnNull(columnIndex: number): boolean
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800012  | Row out of bounds. |
-| 14800013  | The column value is null or the column type is incompatible. |
+| 14800013  | Column out of bounds. |
 | 14800014  | Already closed. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
