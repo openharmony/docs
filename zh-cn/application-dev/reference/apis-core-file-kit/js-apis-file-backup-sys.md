@@ -183,7 +183,7 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
-| 401      | The input parameter is invalid.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13500001 | The application is not added to the backup or restore |
 | 13500002 | Failed to start application extension Procedure       |
 | 13600001 | IPC error                                             |
@@ -239,7 +239,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 401      | The input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13500003 | Backup or restore timed out     |
 | 13500004 | Application extension death     |
 | 13600001 | IPC error                       |
@@ -324,6 +324,51 @@ onBackupServiceDied : Callback&lt;undefined&gt;
     console.info('onBackupServiceDied success');
   }
   ```
+
+### onResultReport
+
+onResultReport : AsyncCallback&lt;string&gt;
+
+回调函数。当应用恢复结束后，如果成功触发回调，返回恢复数量或应用异常信息
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**返回值：**
+
+| 参数名     | 类型          | 必填 | 说明                                                        |
+| ---------- | ------------- | ---- | ----------------------------------------------------------- |
+| result     | string        | 是   | json格式返回的应用名称及应用信息                                          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 13500003 | Backup or restore timed out     |
+| 13500004 | Application extension death     |
+| 13600001 | IPC error                       |
+| 13900005 | I/O error                       |
+| 13900011 | Out of memory                   |
+| 13900020 | Invalid argument                |
+| 13900025 | No space left on device         |
+| 13900042 | Unknown error                   |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  onResultReport: (err: BusinessError, result: string) => {
+    if (err) {
+      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('onResultReport success, result: ' + result);
+  }
+  ```
+
 
 ## backup.getLocalCapabilities
 
@@ -487,7 +532,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900005 | I/O error                                                                                      |
 | 13900011 | Out of memory                                                                                  |
@@ -514,6 +559,60 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+## backup.getBackupInfo
+
+getBackupInfo(bundleToBackup: string): string;
+
+获取需要备份的应用信息。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleToBackup | string | 是   | 需要备份的应用名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| string | 返回应用上报的信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
+**示例：**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  function getBackupInfo() {
+    try {
+      let backupApp = "com.example.hiworld"；
+      let result = backup.getBackupInfo(backupApp);
+      console.info('getBackupInfo success， result: ' + result);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('getBackupInfo failed with err: ' + JSON.stringify(err));
     }
   }
   ```
@@ -785,7 +884,7 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
@@ -902,6 +1001,13 @@ constructor(callbacks: GeneralCallbacks);
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -982,6 +1088,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1091,6 +1204,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1209,6 +1329,13 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1302,6 +1429,13 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1405,6 +1539,13 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1502,6 +1643,13 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
       onBackupServiceDied: () => {
         console.info('service died');
       }
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
+      }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
     return sessionRestore;
@@ -1533,7 +1681,7 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
@@ -1590,6 +1738,13 @@ release(): Promise&lt;void&gt;
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1628,7 +1783,7 @@ constructor(callbacks: GeneralCallbacks);
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 
 **示例：**
 
@@ -1703,7 +1858,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): promise&lt;v
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
@@ -1790,7 +1945,7 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
