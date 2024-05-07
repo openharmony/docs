@@ -1,4 +1,4 @@
-# 显式动画立即下发 (animateToImmediately)(系统接口)
+# 显式动画立即下发 (animateToImmediately)
 
 animateToImmediately接口用来提供[显式动画](ts-explicit-animation.md)立即下发功能。同时加载多个属性动画的情况下，使用该接口可以立即执行闭包代码中状态变化导致的过渡动效。
 
@@ -6,7 +6,6 @@ animateToImmediately接口用来提供[显式动画](ts-explicit-animation.md)�
 >
 > 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块为系统接口
 
 animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam对象说明) , event: () => void): void
 

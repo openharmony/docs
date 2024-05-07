@@ -17,23 +17,21 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 包信息标志，指示需要获取的包信息的内容。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称                                      | 值         | 说明                                                         |
-| ----------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                   | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_APPLICATION          | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_HAP_MODULE           | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_ABILITY              | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY    | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。 |
-| GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
-| GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup>   | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
+| 名称                                          | 值         | 说明                                                         |
+| --------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ### ExtensionAbilityType
 
@@ -126,25 +124,25 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
 |:----------------------------------|---|---|
-| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定。 |
-| LANDSCAPE                          |1 |表示横屏显示模式。 |
-| PORTRAIT                           |2 |表示竖屏显示模式。 |
-| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式。 |
-| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式。 |
-| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式。 |
-| AUTO_ROTATION                      |6 |表示传感器自动旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式。 |
-| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式。 |
-| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。|
-| LOCKED                             |12|表示锁定模式。|
+| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| LANDSCAPE                          |1 |表示横屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| PORTRAIT                           |2 |表示竖屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AUTO_ROTATION                      |6 |表示传感器自动旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| LOCKED                             |12|表示锁定模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ### CompatiblePolicy<sup>10+</sup>
 
