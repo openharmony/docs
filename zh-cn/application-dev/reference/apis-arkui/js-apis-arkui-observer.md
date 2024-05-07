@@ -69,6 +69,17 @@ NavDestination组件信息。
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
 
+## NavigationInfo<sup>12+</sup>
+
+Navigation组件信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                                               | 必填 | 说明                                         |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| navigationId | string | 是   | Navigation组件的id。 |
+| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 是   | Navigation组件的路由栈。                   |
+
 ## ScrollEventInfo<sup>12+</sup>
 
 ScrollEvent滚动信息。
